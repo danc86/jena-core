@@ -212,14 +212,23 @@ public class OntClassImpl
         }
         else {
             // we want the direct, not general relationship
+            // first try to find an inf graph that can do the work for us
+            InfGraph ig = null;
             if (getGraph() instanceof InfGraph) {
-                InfGraph ig = (InfGraph) getGraph();
-                if (ig.getReasoner().supportsProperty( ReasonerVocabulary.directSubClassOf )) {
-                    // we can look this up directly
-                    return hasPropertyValue( ReasonerVocabulary.directSubClassOf, "direct sub-class", cls );
+                ig = (InfGraph) getGraph();
+            }
+            else if (getGraph() instanceof OntModel) {
+                OntModel m = (OntModel) getGraph();
+                if (m.getGraph() instanceof InfGraph) {
+                    ig = (InfGraph) m.getGraph();
                 }
             }
             
+            if (ig != null && ig.getReasoner().supportsProperty( ReasonerVocabulary.directSubClassOf )) {
+                // we can look this up directly
+                return hasPropertyValue( ReasonerVocabulary.directSubClassOf, "direct sub-class", cls );
+            }
+
             // otherwise, not an inf-graph or the given inf-graph does not support direct directly (:-)
             // we manually compute the maximal lower elements - this could be expensive in general
             return ResourceUtils.maximalLowerElements( listSuperClasses(), getProfile().SUB_CLASS_OF(), false ).contains( cls );
