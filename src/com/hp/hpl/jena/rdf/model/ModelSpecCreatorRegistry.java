@@ -15,9 +15,12 @@ import com.hp.hpl.jena.vocabulary.*;
 import java.util.*;
 
 /**
-    The registry of creators appropriate for different ModelSpec types.
+    The registry of creators appropriate for different ModelSpec types; it maps RDF types
+    (subtypes of jms:ModelSpec) to ModelSpecCreators which, when requested, will
+    deliver ModelSpecs.
+    
  	@author hedgehog
- */
+*/
 public class ModelSpecCreatorRegistry
     {
     protected Map creators = new HashMap();     

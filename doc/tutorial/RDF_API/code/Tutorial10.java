@@ -6,6 +6,7 @@
  */
 
 import com.hp.hpl.jena.rdf.model.*;
+import com.hp.hpl.jena.util.FileManager;
 import com.hp.hpl.jena.vocabulary.*;
 
 import java.io.InputStream;
@@ -26,12 +27,9 @@ public class Tutorial10 extends Object {
         Model model = ModelFactory.createDefaultModel();
        
         // use the class loader to find the input file
-        InputStream in = Tutorial10.class
-                                   .getClassLoader()
-                                   .getResourceAsStream(inputFileName);
+        InputStream in = FileManager.get().open( inputFileName );
         if (in == null) {
-            throw new IllegalArgumentException(
-                                   "File: " + inputFileName + " not found");
+            throw new IllegalArgumentException( "File: " + inputFileName + " not found");
         }
         
         // read the RDF/XML file

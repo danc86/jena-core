@@ -395,24 +395,22 @@ the N-Triples specification.</p>
 statements recorded in RDF XML form into a model. With this tutorial,
 we have provided a small database of vcards in RDF/XML form.  The following
 code will read it in and write it out. <em>Note that for this application to
-run, the input file must be in a directory or jar on your classpath.</em></p>
+run, the input file must be in the current directory.</em></p>
 
 <blockquote>
   <pre><code>
  // create an empty model
  Model model = ModelFactory.createDefaultModel();
 
- // use the class loader to find the input file
- InputStream in = Tutorial05.class
-                               .getClassLoader()
-                               .getResourceAsStream(inputFileName);
+ // use the FileManager to find the input file
+ InputStream in = FileManager.get().open( inputFileName );
 if (in == null) {
     throw new IllegalArgumentException(
                                  "File: " + inputFileName + " not found");
 }
 
 // read the RDF/XML file
-model.read(new InputStreamReader(in), "");
+model.read(in, "");
 
 // write it to standard out
 model.write(System.out);

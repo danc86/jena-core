@@ -6,6 +6,7 @@
  */
 
 import com.hp.hpl.jena.rdf.model.*;
+import com.hp.hpl.jena.util.FileManager;
 
 import java.io.*;
 
@@ -22,19 +23,15 @@ public class Tutorial05 extends Object {
         class, must be added to the class-path when running this and
         subsequent examples.
     */    
-    static final String inputFileName 
-                             = "vc-db-1.rdf";
+    static final String inputFileName  = "vc-db-1.rdf";
                               
     public static void main (String args[]) {
         // create an empty model
         Model model = ModelFactory.createDefaultModel();
 
-        InputStream in = Tutorial05.class
-                                   .getClassLoader()
-                                   .getResourceAsStream(inputFileName);
+        InputStream in = FileManager.get().open( inputFileName );
         if (in == null) {
-            throw new IllegalArgumentException(
-                                   "File: " + inputFileName + " not found");
+            throw new IllegalArgumentException( "File: " + inputFileName + " not found");
         }
         
         // read the RDF/XML file
