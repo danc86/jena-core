@@ -84,6 +84,7 @@ import org.apache.xerces.util.EncodingMap;
  * returns false or when the {@link AResource#setUserData} method has been
  * used. In these cases ARP needs to remember the <code>rdf:nodeID</code>
  * usage through the file life time. </p>
+ * <p>See <a href="../../../../../../../ARP/index.html">ARP documentation</a> for more information.</p>
  * @author  Jeremy Carroll with contributions from Simon Raboczi
  *   and Andrew Newman
  */

@@ -29,7 +29,6 @@
    AUTHOR:  Jeremy J. Carroll
 */
 package com.hp.hpl.jena.rdf.arp;
-import com.hp.hpl.jena.rdf.model.Model;
 import org.xml.sax.helpers.*;
 import org.xml.sax.ext.*;
 import org.xml.sax.*;
@@ -60,7 +59,12 @@ import org.xml.sax.*;
  * <p>
  * This class does not support multithreaded SAX sources, nor IO interruption.
  * </p>
- *  
+ * <p>
+ * There is further documentation:
+ * <a href="../../../../../../../ARP/standalone.html#not-jena">here</a>
+ * and
+ * <a href="../../../../../../../ARP/sax.html#sax2rdf">here</a>.
+ * </p>
  * @author Jeremy Carroll
  * */
 public class SAX2RDF extends SAX2RDFImpl
