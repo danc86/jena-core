@@ -56,6 +56,11 @@ public class SimpleXMLPathElement
     // Constructors
     //////////////////////////////////
 
+    /**
+     * <p>Construct a simple XML path component that selects a named
+     * element from the parent.</p>
+     * @param elemName The name of the element to extract
+     */
     public SimpleXMLPathElement( String elemName ) {
         m_elemName = elemName;
     }

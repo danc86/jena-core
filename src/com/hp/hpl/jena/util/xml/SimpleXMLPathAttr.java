@@ -53,6 +53,11 @@ public class SimpleXMLPathAttr
     // Constructors
     //////////////////////////////////
 
+    /**
+     * <p>Construct a simple XML path component that selects the value
+     * of a named attribute.</p>
+     * @param attrName The name of the attribute to select
+     */
     public SimpleXMLPathAttr( String attrName ) {
         m_attrName = attrName;
     }

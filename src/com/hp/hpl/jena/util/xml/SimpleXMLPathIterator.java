@@ -131,10 +131,14 @@ public class SimpleXMLPathIterator
      */
     protected void evaluate() {
         // search for a route through to the end of the path
-        int i = m_len - 1;
+        int i = 0;
         m_result = null;
         
-        while (i >= 0 && i < m_len) {
+        // find the tidemark
+        for (; i < min(m_len, m_stack.size()) && (m_stack.get(i) != null); i++);
+        i--;
+        
+        while (i >= 0 && i < min(m_len, m_stack.size())) {
             Iterator j = (Iterator) m_stack.get( i );
             
             if (j == null) {
@@ -159,6 +163,12 @@ public class SimpleXMLPathIterator
         }
     }
 
+
+    /** Answer the minimum of two ints */
+    private int min( int x, int y ) {
+        return (x < y) ? x : y;
+    }
+    
     //==============================================================================
     // Inner class definitions
     //==============================================================================

@@ -61,6 +61,7 @@ public class SimpleXMLPathDocument
 
     /**
      * Answer an iterator containing only the document element of the given document 
+     * @param node A document node
      */
     public Iterator getAll( Node node ) {
         if (!(node instanceof Document)) {
@@ -73,6 +74,7 @@ public class SimpleXMLPathDocument
 
     /**
      * Answer the document element of the given document
+     * @param node A document node
      */
     public Object getFirst( Node node ) {
         if (!(node instanceof Document)) {
