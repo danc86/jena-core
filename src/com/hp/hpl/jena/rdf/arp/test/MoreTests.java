@@ -21,6 +21,7 @@ public class MoreTests
     
    static public Test suite() {
     TestSuite suite = new TestSuite("ARP Plus");
+    suite.addTest(TestErrorMsg.suite());
     suite.addTest(new MoreTests("testEncodingMismatch1"));
     suite.addTest(new MoreTests("testEncodingMismatch2"));
 	suite.addTest(new MoreTests("testNullBaseParamOK"));
