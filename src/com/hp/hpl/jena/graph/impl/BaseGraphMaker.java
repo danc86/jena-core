@@ -6,25 +6,44 @@
 
 package com.hp.hpl.jena.graph.impl;
 
-import com.hp.hpl.jena.graph.Graph;
-import com.hp.hpl.jena.graph.GraphMaker;
+import com.hp.hpl.jena.graph.*;
 
 /**
+    This base class provides convenience functions for the three "usual" graph
+    makers and a place to hold the reification style for the graphs it constructs.   
+ 
  	@author kers
 */
 public abstract class BaseGraphMaker implements GraphMaker
     {
-    public BaseGraphMaker()
-        { super(); }
+    /**
+        Construct the base level of a graph maker.
+     	@param style the reification style for all the graphs it makes
+     */
+    public BaseGraphMaker( Reifier.Style style )
+        { this.style = style; }
         
     private int counter = 0;
+    protected Reifier.Style style;
     
+    /**
+        [WILL BE OBSOLETE]
+        Make a graph with an irrelevant name
+     */
     public Graph getGraph()
         { return createGraph( "anon_" + counter++ + "", false ); }
          
+     /**
+        A non-strict create.
+      	@see com.hp.hpl.jena.graph.GraphMaker#createGraph(java.lang.String)
+      */
     public Graph createGraph(String name)
         { return createGraph( name, false ); }
         
+    /**
+        A non-strict open.
+     	@see com.hp.hpl.jena.graph.GraphMaker#openGraph(java.lang.String)
+     */
     public Graph openGraph( String name )
         { return openGraph( name, false ); }
     }

@@ -23,7 +23,7 @@ public class TestFileGraphMaker extends AbstractTestGraphMaker
         { return new TestSuite( TestFileGraphMaker.class ); }
 
     public GraphMaker getGraphFactory()
-        { return new FileGraphMaker( getTempDirectory(), true ); } 
+        { return new FileGraphMaker( getTempDirectory(), Reifier.Minimal, true ); } 
     }
 
 

@@ -43,7 +43,7 @@ public class TestGraphRDBMaker extends AbstractTestGraphMaker
         Invent a new factory on the connection, record it, and return it.    
     */
     public GraphMaker getGraphFactory()
-        { return current = new GraphRDBMaker( connection ); }    
+        { return current = new GraphRDBMaker( connection, Reifier.Minimal ); }    
         
     /**
         Run the parent teardown, and then remove all the freshly created graphs.

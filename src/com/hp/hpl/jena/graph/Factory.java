@@ -23,7 +23,7 @@ public class Factory
         { return new GraphMem(); }
         
     public static GraphMaker createRDBGraphFactory( IDBConnection c )
-        { return new GraphRDBMaker( c ); }
+        { return new GraphRDBMaker( c, Reifier.Minimal ); }
               
     private Factory()
         { super(); }

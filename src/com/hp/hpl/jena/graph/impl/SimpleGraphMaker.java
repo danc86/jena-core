@@ -21,6 +21,13 @@ import java.util.*;
 
 public class SimpleGraphMaker extends BaseGraphMaker
 	{
+        
+    public SimpleGraphMaker( Reifier.Style style )
+        { super( style ); }
+        
+    public SimpleGraphMaker()
+        { this( Reifier.Minimal ); }
+        
     private Map graphs = new HashMap();
     
     /**
@@ -31,7 +38,7 @@ public class SimpleGraphMaker extends BaseGraphMaker
         Graph already = (Graph) graphs.get( name );
         if (already == null)
             {
-            Graph result = new GraphMem();
+            Graph result = new GraphMem( style );
             graphs.put( name, result );
             return result;            
             }
