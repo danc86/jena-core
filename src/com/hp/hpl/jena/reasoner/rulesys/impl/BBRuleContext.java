@@ -32,7 +32,7 @@ public class BBRuleContext implements RuleContext {
     protected Rule rule;
     
     /** The enclosing inference graph. */
-    protected InfGraph graph;
+    protected BackwardRuleInfGraphI graph;
     
     /** The set of ground triples to be searched by the find operations */
     protected Finder searchpath;
@@ -41,7 +41,7 @@ public class BBRuleContext implements RuleContext {
      * Construct an empty context. It can't be used until
      * the rule and environment have been set.
      */
-    public BBRuleContext(InfGraph graph, Finder searchpath) {
+    public BBRuleContext(BackwardRuleInfGraphI graph, Finder searchpath) {
         this.graph = graph;
         this.searchpath = searchpath;
     }
@@ -125,6 +125,19 @@ public class BBRuleContext implements RuleContext {
      */
     public void remove(Triple t) {
         graph.delete(t);
+    }
+
+    /**
+     * Retrieve or create a bNode representing an inferred property value.
+     * This is currently only available on backward contexts and not part of the 
+     * normal RuleContext interface.
+     * @param instance the base instance node to which the property applies
+     * @param prop the property node whose value is being inferred
+     * @param pclass the (optional, can be null) class for the inferred value.
+     * @return the bNode representing the property value 
+     */
+    public Node getTemp(Node instance, Node prop, Node pclass) {
+        return graph.getTemp(instance, prop, pclass);
     }
 
 }

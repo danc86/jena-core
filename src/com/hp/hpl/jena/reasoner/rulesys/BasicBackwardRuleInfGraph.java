@@ -52,6 +52,9 @@ public class BasicBackwardRuleInfGraph extends BaseInfGraph implements BackwardR
     /** Single context for the reasoner, used when passing information to builtins */
     protected BBRuleContext context;
     
+    /** Cache of temporary property values inferred through getTemp calls */
+    protected TempNodeCache tempNodecache = new TempNodeCache();
+    
     /** performance stats - number of rules passing initial trigger */
     int nRulesTriggered = 0;
     
@@ -330,8 +333,7 @@ public class BasicBackwardRuleInfGraph extends BaseInfGraph implements BackwardR
      * @return the bNode representing the property value 
      */
     public Node getTemp(Node instance, Node prop, Node pclass) {
-        // TODO implement
-        return null;
+        return tempNodecache.getTemp(instance, prop, pclass);
     }
     
 //  =======================================================================

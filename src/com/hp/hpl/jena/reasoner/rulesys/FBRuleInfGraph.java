@@ -67,6 +67,9 @@ public class FBRuleInfGraph  extends BasicForwardRuleInfGraph implements Backwar
     /** Optional list of preprocessing hooks  to be run in sequence during preparation time */
     protected List preprocessorHooks;
     
+    /** Cache of temporary property values inferred through getTemp calls */
+    protected TempNodeCache tempNodecache = new TempNodeCache();
+    
     /** log4j logger*/
     static Logger logger = Logger.getLogger(FBRuleInfGraph.class);
 
@@ -257,8 +260,7 @@ public class FBRuleInfGraph  extends BasicForwardRuleInfGraph implements Backwar
      * @return the bNode representing the property value 
      */
     public Node getTemp(Node instance, Node prop, Node pclass) {
-        // TODO implement
-        return null;
+        return tempNodecache.getTemp(instance, prop, pclass);
     }
    
 //  =======================================================================
