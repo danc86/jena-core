@@ -199,12 +199,12 @@ IOException {
      * and then using the <code>set..Handler</code> methods
      * in {@link ARPHandlers}.
      * The handlers can be copied onto another ARP instance
-     * using the {@link #setHandlers} method.
+     * using the {@link #setHandlersWith} method.
      * @see ARPHandlers#setStatementHandler(StatementHandler)
      * @see ARPHandlers#setErrorHandler(ErrorHandler)
      * @see ARPHandlers#setExtendedHandler(ExtendedHandler)
      * @see ARPHandlers#setNamespaceHandler(NamespaceHandler)
-     * @see #setHandlers
+     * @see #setHandlersWith
      * @return The handlers used during parsing.
      */
     public ARPHandlers getHandlers() {
@@ -227,7 +227,7 @@ IOException {
      * and then using the <code>set..</code> methods
      * in {@link ARPOptions}.
      * The options can be copied onto another ARP instance
-     * using the {@link #setOptions} method.
+     * using the {@link #setOptionsWith} method.
      * @see ARPOptions#setDefaultErrorMode()
      * @see ARPOptions#setLaxErrorMode()
      * @see ARPOptions#setStrictErrorMode()
@@ -235,7 +235,7 @@ IOException {
      * @see ARPOptions#setEmbedding(boolean)
      * @see ARPOptions#setErrorMode(int, int)
      * 
-     * @see #setOptions
+     * @see #setOptionsWith
      * @return The handlers used during parsing.
      */
     

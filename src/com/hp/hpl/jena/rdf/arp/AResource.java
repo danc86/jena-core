@@ -6,6 +6,7 @@
 package com.hp.hpl.jena.rdf.arp;
 
 /**
+ * A URI or blank node reported to a {@link StatementHandler}.
  * @author <a href="mailto:Jeremy.Carroll@hp.com">Jeremy Carroll</a>
  *
 */
