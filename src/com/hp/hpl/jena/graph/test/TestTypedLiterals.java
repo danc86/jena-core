@@ -11,6 +11,7 @@ package com.hp.hpl.jena.graph.test;
 
 import com.hp.hpl.jena.datatypes.*;
 import com.hp.hpl.jena.datatypes.xsd.*;
+import com.hp.hpl.jena.datatypes.xsd.impl.XMLLiteralType;
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.graph.impl.*;
 import com.hp.hpl.jena.graph.query.*;
@@ -18,6 +19,7 @@ import com.hp.hpl.jena.mem.ModelMem;
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.shared.impl.JenaParameters;
 import com.hp.hpl.jena.vocabulary.XSD;
+import com.hp.hpl.jena.enhanced.EnhNode;
 
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
@@ -138,8 +140,21 @@ public class TestTypedLiterals extends TestCase {
         assertEquals("Extract xml tag", l1.getWellFormed(), false);
     }
 
+    public void testXMLLiteral() {
+    	Literal ll;
+    	
+    	ll = m.createLiteral("<bad",true);
+    	
+    	assertTrue("Error checking must be off.",((EnhNode)ll).asNode().getLiteral().isXML());
+		ll = m.createTypedLiteral("<bad/>",XMLLiteralType.theXMLLiteralType);
+		assertFalse("Error checking must be on.",((EnhNode)ll).asNode().getLiteral().isXML());
+		ll = m.createTypedLiteral("<good></good>",XMLLiteralType.theXMLLiteralType);
+		assertTrue("Well-formed XMLLiteral.",((EnhNode)ll).asNode().getLiteral().isXML());
+    
+    }
+
     /**
-     * Tests basic XSD integer types
+     * Tests basic XSD integer types()
      */
     public void testXSDbasics() {
         String xsdIntURI = "http://www.w3.org/2001/XMLSchema#int";
