@@ -9,13 +9,10 @@
  *****************************************************************/
 package com.hp.hpl.jena.reasoner.test;
 
-//import com.hp.hpl.jena.reasoner.rdfsReasoner1.RDFSReasoner;
-//import com.hp.hpl.jena.reasoner.rdfsReasoner1.RDFSReasonerFactory;
-import com.hp.hpl.jena.reasoner.rdfsReasoner1.RDFSReasonerFactory;
-import com.hp.hpl.jena.reasoner.rulesys.OWLFBRuleReasonerFactory;
 import com.hp.hpl.jena.reasoner.rulesys.RDFSRuleReasonerFactory;
 import com.hp.hpl.jena.reasoner.*;
 import com.hp.hpl.jena.rdf.model.*;
+import com.hp.hpl.jena.shared.impl.JenaParameters;
 import com.hp.hpl.jena.vocabulary.*;
 
 import java.io.IOException;
@@ -83,11 +80,8 @@ public class TestCurrentRDFWG extends ReasonerTestBase {
         TestSuite suite = new TestSuite();
         try {
             Resource config = newResource()
-            .addProperty(ReasonerVocabulary.PROPenableCMPScan, true)
             .addProperty(ReasonerVocabulary.PROPsetRDFSLevel, "full");
-//            config.addProperty(ReasonerVocabulary.PROPtraceOn, true);
             constructRDFWGtests(suite, RDFSRuleReasonerFactory.theInstance(), config);
-//            constructRDFWGtests(suite, RDFSReasonerFactory.theInstance(), config);
                         
         } catch (IOException e) {
             // failed to even built the test harness
@@ -100,6 +94,7 @@ public class TestCurrentRDFWG extends ReasonerTestBase {
      * Build the working group tests for the given reasoner.
      */
     private static void constructRDFWGtests(TestSuite suite, ReasonerFactory rf, Resource config) throws IOException {
+        JenaParameters.enableWhitespaceCheckingOfTypedLiterals = true;
         WGReasonerTester tester = new WGReasonerTester("Manifest.rdf", TEST_DIR);
         for (Iterator i = tester.listTests().iterator(); i.hasNext(); ) {
             String test = (String)i.next();
