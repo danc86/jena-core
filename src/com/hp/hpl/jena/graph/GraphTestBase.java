@@ -32,7 +32,7 @@ public class GraphTestBase extends JenaTestBase
     public static Model modelFor( Graph g )
         { return ModelFactory.createModelForGraph( g ); }
         
-    public static Set iteratorToSet( ClosableIterator L )
+    public static Set iteratorToSet( Iterator L )
         {
         HashSet result = new HashSet();
         while (L.hasNext()) result.add( L.next() );        
