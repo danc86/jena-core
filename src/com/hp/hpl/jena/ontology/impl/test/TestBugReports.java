@@ -27,10 +27,12 @@ package com.hp.hpl.jena.ontology.impl.test;
 import java.io.*;
 import java.util.*;
 
+import com.hp.hpl.jena.enhanced.EnhGraph;
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.graph.impl.*;
 import com.hp.hpl.jena.mem.GraphMem;
 import com.hp.hpl.jena.ontology.*;
+import com.hp.hpl.jena.ontology.impl.OntClassImpl;
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.reasoner.*;
 import com.hp.hpl.jena.reasoner.ReasonerRegistry;
@@ -483,6 +485,21 @@ public class TestBugReports
     }   
     
     
+    /** Bug report by Dave Reynolds - SF bug report 810492 */
+    public void test_der_01() {
+        OntModel m = ModelFactory.createOntologyModel( OntModelSpec.RDFS_MEM_TRANS_INF, null );
+        Resource a = m.createResource( "http://example.org#A" );
+        Resource b = m.createResource( "http://example.org#B" );
+        OntClass A = new OntClassImpl( a.getNode(), (EnhGraph) m ) {
+            protected boolean hasSuperClassDirect(Resource cls) {
+                throw new RuntimeException( "did not find direct reasoner" );
+            }
+        };
+        
+        // will throw an exception if the wrong code path is taken
+        A.hasSuperClass( b, true );
+    }
+     
      
     // Internal implementation methods
     //////////////////////////////////

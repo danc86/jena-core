@@ -228,10 +228,10 @@ public class OntClassImpl
                 // we can look this up directly
                 return hasPropertyValue( ReasonerVocabulary.directSubClassOf, "direct sub-class", cls );
             }
-
-            // otherwise, not an inf-graph or the given inf-graph does not support direct directly (:-)
-            // we manually compute the maximal lower elements - this could be expensive in general
-            return ResourceUtils.maximalLowerElements( listSuperClasses(), getProfile().SUB_CLASS_OF(), false ).contains( cls );
+            else {
+                // otherwise, not an inf-graph or the given inf-graph does not support direct directly (:-)
+                return hasSuperClassDirect(cls);
+            }
         }
     }
     
@@ -773,6 +773,18 @@ public class OntClassImpl
         props.add( m.getProperty( p.getURI() ) );
     }
     
+    /**
+     * <p>Answer true if this class has the given class as a direct super-class, without using
+     * extra help from the reasoner.</p>
+     * @param cls The class to test
+     * @return True if the cls is a direct super-class of this class
+     */
+    protected boolean hasSuperClassDirect(Resource cls) {
+        // we manually compute the maximal lower elements - this could be expensive in general
+        return ResourceUtils.maximalLowerElements( listSuperClasses(), getProfile().SUB_CLASS_OF(), false ).contains( cls );
+    }
+
+
     
     //==============================================================================
     // Inner class definitions
