@@ -15,7 +15,7 @@ import com.hp.hpl.jena.ontology.*;
 import com.hp.hpl.jena.ontology.daml.DAMLModel;
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.reasoner.*;
-//import com.hp.hpl.jena.reasoner.rulesys.FBRuleInfGraph;
+import com.hp.hpl.jena.reasoner.rulesys.FBRuleInfGraph;
 import com.hp.hpl.jena.util.ModelLoader;
 import com.hp.hpl.jena.util.PrintUtil;
 import com.hp.hpl.jena.util.iterator.ExtendedIterator;
@@ -262,6 +262,7 @@ public class TestBugs extends TestCase {
     public void hiddenTestOWLLoop() {
         Model data = ModelLoader.loadModel("file:testing/reasoners/bugs/loop.owl");
         InfModel infmodel = ModelFactory.createInfModel(ReasonerRegistry.getOWLReasoner(), data);
+        ((FBRuleInfGraph)infmodel.getGraph()).setTraceOn(true);
         String baseURI = "http://jena.hpl.hp.com/eg#";
         Resource C = infmodel.getResource(baseURI + "C");
         Resource I = infmodel.getResource(baseURI + "i");
