@@ -8,6 +8,7 @@
  * $Id$
  *****************************************************************/
 package com.hp.hpl.jena.reasoner.rulesys;
+
 import java.io.*;
 import java.util.*;
 

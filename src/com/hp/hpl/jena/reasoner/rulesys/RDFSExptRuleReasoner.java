@@ -1,7 +1,7 @@
 /******************************************************************
- * File:        RDFSBRuleReasoner.java
+ * File:        RDFSExptRuleReasoner.java
  * Created by:  Dave Reynolds
- * Created on:  12-May-2003
+ * Created on:  16-Jun-2003
  * 
  * (c) Copyright 2003, Hewlett-Packard Company, all rights reserved.
  * [See end of file]
@@ -16,16 +16,20 @@ import com.hp.hpl.jena.reasoner.ReasonerException;
 import com.hp.hpl.jena.reasoner.ReasonerFactory;
 
 /**
- * A backward chaining implementation of the RDFS closure rules
- * based upon the basic backward rule interpreter. 
+ * An pure forward chaining implementation of the RDFS closure rules
+ * based upon the basic forward rule interpreter. The normal mixed
+ * forward/backward implementation is generally preferred but this has 
+ * two possible uses. First, it is a test and demonstration of the forward
+ * chainer. Second, if you want all the RDFS entailments for an entire 
+ * dataset the forward chainer will be more efficient.
  * 
  * @author <a href="mailto:der@hplb.hpl.hp.com">Dave Reynolds</a>
  * @version $Revision$ on $Date$
  */
-public class RDFSFBRuleReasoner extends FBRuleReasoner {
+public class RDFSExptRuleReasoner extends GenericRuleReasoner {
     
     /** The location of the OWL rule definitions on the class path */
-    public static final String RULE_FILE = "etc/rdfs-fb.rules";
+    public static final String RULE_FILE = "etc/rdfs-fb-tgc.rules";
     
     /** The parsed rules */
     protected static List ruleSet;
@@ -33,8 +37,10 @@ public class RDFSFBRuleReasoner extends FBRuleReasoner {
     /**
      * Constructor
      */
-    public RDFSFBRuleReasoner(ReasonerFactory parent) {
+    public RDFSExptRuleReasoner(ReasonerFactory parent) {
         super(loadRules(), parent);
+        setMode(HYBRID);
+        setTransitiveClosureCaching(true);
     }
     
     /**
@@ -50,9 +56,8 @@ public class RDFSFBRuleReasoner extends FBRuleReasoner {
         }
         return ruleSet;
     }
-
+        
 }
-
 
 /*
     (c) Copyright Hewlett-Packard Company 2003

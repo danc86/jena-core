@@ -48,6 +48,9 @@ public class TestRDFSRules extends TestCase {
      */
     public static TestSuite suite() {
         return new TestSuite(TestRDFSRules.class);
+//        TestSuite suite = new TestSuite();
+//        suite.addTest(new TestRDFSRules( "testRDFSExptReasoner" ));
+//        return suite;
     }  
 
     /**
@@ -77,6 +80,15 @@ public class TestRDFSRules extends TestCase {
         ReasonerFactory rf = RDFSFBRuleReasonerFactory.theInstance();
         assertTrue("RDFS hybrid reasoner tests", tester.runTests(rf, this, null));
     }
+
+    /**
+     * Test the basic functioning of the hybrid RDFS rule reasoner with TGC cache
+     */
+//    public void testRDFSExptReasoner() throws IOException {
+//        ReasonerTester tester = new ReasonerTester("rdfs/manifest-nodirect-noresource.rdf");
+//        ReasonerFactory rf = RDFSExptRuleReasonerFactory.theInstance();
+//        assertTrue("RDFS experimental (hybrid+tgc) reasoner tests", tester.runTests(rf, this, null));
+//    }
 
     /**
      * Test the capabilities description.

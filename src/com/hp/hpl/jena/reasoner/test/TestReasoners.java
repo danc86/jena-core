@@ -138,7 +138,7 @@ public class TestReasoners extends TestCase {
         ReasonerTester tester = new ReasonerTester("rdfs/manifest.rdf");
         ReasonerFactory rf = RDFSReasonerFactory.theInstance();
         assertTrue("RDFS reasoner tests", tester.runTests(rf, this, null));
-        // Test effect of switching of property scan - should break container property test case
+        // Test effect of switching off property scan - should break container property test case
         Model configuration = new ModelMem();
         configuration.createResource(RDFSReasonerFactory.URI)
                      .addProperty(RDFSReasonerFactory.scanProperties, "false");
