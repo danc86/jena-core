@@ -14,6 +14,7 @@ package com.hp.hpl.jena.graph.test;
 
 import com.hp.hpl.jena.mem.*;
 import com.hp.hpl.jena.graph.*;
+import com.hp.hpl.jena.graph.impl.*;
 
 import junit.framework.*;
 
@@ -21,7 +22,7 @@ public class TestGraph extends GraphTestBase
     { 
 	public TestGraph( String name )
 		{ super( name ); }
-
+        
     public static TestSuite suite()
         { 
         TestSuite result = new TestSuite();
@@ -29,9 +30,27 @@ public class TestGraph extends GraphTestBase
         result.addTest( TestStandardGraph.suite() );
         result.addTest( TestMinimalGraph.suite() );
         result.addTest( TestConvenientGraph.suite() );
+        result.addTest( TestWrappedGraph.suite() );
         return result;
         }
         
+    public static class TestWrappedGraph extends AbstractTestGraph
+        {
+        public TestWrappedGraph( String name ) { super( name ); }
+        public static TestSuite suite() { return new TestSuite( TestWrappedGraph.class ); }
+        public Graph getGraph() { return new WrappedGraph( new GraphMem() ); }
+        
+        public void testSame()
+            {
+            Graph m = new GraphMem();
+            Graph w = new WrappedGraph( m );
+            graphAdd( m, "a trumps b; c eats d" );
+            assertEquals( "", m, w );
+            graphAdd( w, "i write this; you read that" );
+            assertEquals( "", w, m );
+            }
+        }      
+
     public static class TestDefaultGraph extends AbstractTestGraph
         {
         public TestDefaultGraph( String name ) { super( name ); }

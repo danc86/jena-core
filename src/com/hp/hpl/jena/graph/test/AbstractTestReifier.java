@@ -68,7 +68,7 @@ public abstract class AbstractTestReifier extends GraphTestBase
         {
         Graph g = GraphBase.withReification( getGraph() );
         Reifier r = g.getReifier();
-        Node S = node( "SSS" ), P = node( "PPP" ), O = node( "OOO " );
+        Node S = node( "SSS" ), P = node( "PPP" );
         g.add( new Triple( S, RDF.Nodes.predicate, P ) );
         assertEquals( "graph must still be empty", 0, g.size() );
         assertEquals( "reifier must have the triple", 1, r.getHiddenTriples().size() );

@@ -26,7 +26,7 @@ public class TestGraphPrefixMapping extends GraphTestBase
     public void testGraphPrefixMapping()
         { 
         Graph g = Factory.createDefaultGraph();
-        TestPrefixMapping.testUseEasyPrefix
+        AbstractTestPrefixMapping.testUseEasyPrefix
             ( "from Graph", g.getPrefixMapping() ); 
         testSameMapping( g );
         }

@@ -48,14 +48,6 @@ public class TestTriple extends GraphTestBase
               Node.createVariable(N), Node.createVariable(N2)
             };
             
-            String[] types= {
-                "ANY",
-                "blank", "blank", "blank",
-                "literal", "literal", "literal",
-                "uri", "uri", "uri",
-                "variable", "variable", "variable"
-            };
-            
             Triple[] triples = 
                new Triple [nodes.length * nodes.length * nodes.length];
             for (int i=0; i<nodes.length; i++) {
