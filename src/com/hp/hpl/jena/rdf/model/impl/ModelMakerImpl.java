@@ -35,8 +35,11 @@ public class ModelMakerImpl implements ModelMaker
     public Model createModel( String name, boolean strict )
         { return new ModelCom( maker.createGraph( name, strict ) ); }
         
-    public Model createModelOver( String name )
+    public Model createModel( String name )
         { return createModel( name, false ); }
+        
+    public Model createModelOver( String name )
+        { return createModel( name ); }
         
     public Model createModel()
         { return new ModelCom( maker.createGraph() ); }
