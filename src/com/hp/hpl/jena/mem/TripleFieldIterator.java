@@ -39,8 +39,8 @@ public class TripleFieldIterator extends TrackingTripleIterator
         {
         super.remove();     
         triples.remove( current );
-        A.remove( current.getSubject(), current );
-        B.remove( current.getObject(), current );
+        // A.remove( current.getSubject(), current );
+        // B.remove( current.getObject(), current );
         }       
     }
 /*

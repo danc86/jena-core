@@ -155,15 +155,42 @@ public class GraphMem extends GraphBase implements Graph
 
     protected TripleMatchIterator objectIterator(Triple tm, Node o)
         { return new TripleFieldIterator
-            ( tm, objects.iterator( o ), triples, subjects, predicates ); }
+            ( tm, objects.iterator( o ), triples, subjects, predicates ){
+            public void remove()
+                {
+                super.remove();
+                subjects.remove( current.getSubject(), current );
+                predicates.remove( current.getPredicate(), current );
+                }
+            }
+            ; 
+        }
 
     protected TripleMatchIterator subjectIterator(Triple tm, Node ms)
         { return new TripleFieldIterator
-            ( tm, subjects.iterator( ms ), triples, predicates, objects ); }
+            ( tm, subjects.iterator( ms ), triples, predicates, objects )
+            {
+            public void remove()
+                {
+                super.remove();
+                predicates.remove( current.getPredicate(), current );
+                objects.remove( current.getObject(), current );
+                }
+            }
+            ; 
+        }
 
     protected TripleMatchIterator predicateIterator(Triple tm, Node p)
         { return new TripleFieldIterator
-            (tm, predicates.iterator( p ), triples, subjects, objects ); }
+            (tm, predicates.iterator( p ), triples, subjects, objects ){
+            public void remove()
+                {
+                super.remove();
+                subjects.remove( current.getSubject(), current );
+                objects.remove( current.getObject(), current );
+                }
+            };
+        }
 
     protected ExtendedIterator baseIterator( Triple t )
         {

@@ -23,6 +23,7 @@ public class AllCapabilities implements Capabilities
     public boolean deleteAllowed() { return deleteAllowed( false ); }
     public boolean deleteAllowed( boolean every ) { return true; } 
     public boolean canBeEmpty() { return true; }
+    public boolean iteratorRemoveAllowed() { return true; }
     }
 
 /*

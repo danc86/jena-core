@@ -43,6 +43,12 @@ public interface Capabilities
     boolean deleteAllowed( boolean everyTriple );
     
     /**
+    	Answer true iff the iterators returned from <b>find</b> support the .remove()
+        operation. 
+    */
+    boolean iteratorRemoveAllowed();
+    
+    /**
         Answer true iff the graph can be completely empty.
      */
     boolean canBeEmpty();

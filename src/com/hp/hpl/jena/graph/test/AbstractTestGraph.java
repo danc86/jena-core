@@ -272,6 +272,33 @@ public abstract class AbstractTestGraph extends GraphTestBase
     protected void xSPO( Reifier r )
         { r.reifyAs( Node.create( "x" ), Triple.create( "S P O" ) ); }
         
+    public void testRemove()
+        { 
+        testRemove( "S ?? ??", "S ?? ??" );
+        testRemove( "S ?? ??", "?? P ??" );
+        testRemove( "S ?? ??", "?? ?? O" );
+        testRemove( "?? P ??", "S ?? ??" );
+        testRemove( "?? P ??", "?? P ??" );
+        testRemove( "?? P ??", "?? ?? O" );
+        testRemove( "?? ?? O", "S ?? ??" );
+        testRemove( "?? ?? O", "?? P ??" );
+        testRemove( "?? ?? O", "?? ?? O" );
+        }
+    
+    public void testRemove( String findRemove, String findCheck )
+        {
+        Graph g = getGraphWith( "S P O" );
+        ExtendedIterator it = g.find( Triple.create( findRemove ) );
+        try 
+            {
+            it.next(); it.remove();
+            ExtendedIterator ut = g.find( Triple.create( findCheck ) );
+            assertFalse( ut.hasNext() );
+            }
+        catch (UnsupportedOperationException e)
+            { assertFalse( g.getCapabilities().iteratorRemoveAllowed() ); }
+        }
+    
     public void testBulkRemoveWithReification()
         {        
         testBulkUpdateRemoveWithReification( true );

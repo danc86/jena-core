@@ -26,7 +26,15 @@ public class ModelTestBase extends GraphTestBase
     public ModelTestBase(String name)
         { super(name); }
      
-    private static Model aModel = ModelFactory.createDefaultModel();
+    private static Model aModel = standardModel();
+    
+    private static Model standardModel()
+        {
+        Model result = ModelFactory.createDefaultModel();
+        result.setNsPrefixes( PrefixMapping.Standard );
+        return result;
+        }
+    
      /**
         create a Statement in a given Model with (S, P, O) extracted by parsing a string.
         
