@@ -184,7 +184,7 @@ public abstract class ModelSpecImpl implements ModelSpec
     public Model addDescription( Model desc, Resource root )
         {
         Resource makerRoot = desc.createResource();
-        desc.add( root, getMakerProperty(), makerRoot );
+        desc.add( root, JMS.maker, makerRoot );
         maker.addDescription( desc, makerRoot );
         return desc;
         }

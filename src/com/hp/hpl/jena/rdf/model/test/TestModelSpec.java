@@ -14,7 +14,6 @@ import java.io.IOException;
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.util.FileUtils;
 import com.hp.hpl.jena.vocabulary.*;
-import com.hp.hpl.jena.graph.Triple;
 import com.hp.hpl.jena.graph.impl.*;
 import com.hp.hpl.jena.rdf.model.impl.*;
 import com.hp.hpl.jena.reasoner.*;
@@ -196,7 +195,7 @@ public class TestModelSpec extends ModelTestBase
         OntModelSpec oms = OntModelSpec.DAML_MEM_RULE_INF;
         Model d = oms.getDescription();
         Statement s = d.getRequiredProperty( null, JMS.importMaker );
-        Model makerSpec = oms.getModelMaker().getDescription();
+        Model makerSpec = oms.getImportModelMaker().getDescription();
         assertNotNull( s );
         assertIsoModels( makerSpec, subModel( d, s.getObject() ) );
         }
@@ -244,7 +243,7 @@ public class TestModelSpec extends ModelTestBase
         OntModelSpec ms = new OntModelSpec( spec );
         assertEquals( lang, ms.getLanguage() );
         assertEquals( factory.getURI(), ms.getReasonerFactory().getURI() );
-        assertIsoModels( modelMaker, ms.getModelMaker().getDescription() );
+        assertIsoModels( modelMaker, ms.getImportModelMaker().getDescription() );
         assertSame( odm, ms.getDocumentManager() );
         }
     
@@ -290,7 +289,7 @@ public class TestModelSpec extends ModelTestBase
         OntModelSpec ms = new OntModelSpec( spec );
         assertEquals( lang, ms.getLanguage() );
         assertEquals( factory.getURI(), ms.getReasonerFactory().getURI() );
-        assertIsoModels( modelMaker, ms.getModelMaker().getDescription() );
+        assertIsoModels( modelMaker, ms.getImportModelMaker().getDescription() );
         }
     
     public void testCreateOntSpecWithoutReasoner()
@@ -312,7 +311,7 @@ public class TestModelSpec extends ModelTestBase
     /* */
         OntModelSpec ms = new OntModelSpec( spec );
         assertEquals( lang, ms.getLanguage() );
-        assertIsoModels( modelMaker, ms.getModelMaker().getDescription() );
+        assertIsoModels( modelMaker, ms.getImportModelMaker().getDescription() );
         assertSame( odm, ms.getDocumentManager() );
         }
 

@@ -924,7 +924,7 @@ public class OntDocumentManager
             if (in == null) {
                 // create a sub ontology model and load it from the source
                 // note that we do this to ensure we recursively load imports
-                ModelMaker maker = model.getSpecification().getModelMaker();
+                ModelMaker maker = model.getSpecification().getImportModelMaker();
                 boolean loaded = maker.hasModel( importURI );
     
                 in = maker.openModel( importURI );

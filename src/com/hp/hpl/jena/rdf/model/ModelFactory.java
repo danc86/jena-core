@@ -353,7 +353,7 @@ public class ModelFactory extends ModelFactoryBase
      */
     public static OntModel createOntologyModel( OntModelSpec spec, ModelMaker maker, Model base ) {
         OntModelSpec _spec = new OntModelSpec( spec );
-        _spec.setModelMaker( maker );
+        _spec.setImportModelMaker( maker );
         
         return createOntologyModel( _spec, base );
     }
@@ -374,7 +374,14 @@ public class ModelFactory extends ModelFactoryBase
     public static OntModel createOntologyModel( OntModelSpec spec, Model base ) {
         return new OntModelImpl( spec, base );
     }
-    
+
+    /**
+     * Answer a new ontology model constructed according to the specification, which includes
+     * a ModelMaker which will create the necessary base model.
+    */
+    public static OntModel createOntologyModel( OntModelSpec spec )
+        { return new OntModelImpl( spec ); }
+        
     
     /**
      * <p>Answer a model for processing DAML+OIL, using the legacy Jena1 DAML API.  Users are encouraged
@@ -387,6 +394,7 @@ public class ModelFactory extends ModelFactoryBase
     public static DAMLModel createDAMLModel() {
         return new DAMLModelImpl( OntModelSpec.getDefaultSpec( ProfileRegistry.DAML_LANG ), null );
     }
+
 }
     
 

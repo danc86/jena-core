@@ -1257,11 +1257,22 @@ public interface OntModel
      * Answer the model maker associated with this model (used for constructing the
      * constituent models of the imports closure).
      * </p>
+     * @deprecated use getImportModelMaker instead for consistency with name
+     * changes to OntModelSpec to avoid ambiguity with base vs import makers.
      * 
      * @return The local model maker
      */
     public ModelMaker getModelMaker();
-    
+
+    /**
+     * <p>
+     * Answer the model maker associated with this model (used for constructing the
+     * constituent models of the imports closure).
+     * </p> 
+     * 
+     * @return The local model maker
+     */
+    public ModelMaker getImportModelMaker();
     
     /**
      * <p>

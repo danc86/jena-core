@@ -190,11 +190,11 @@ public class JMS
         
         .add( JMS.reificationMode, RDFS.domain, JMS.MakerSpec )
         .add( JMS.maker, RDFS.domain, JMS.PlainModelSpec )
+        
         .add( JMS.importMaker, RDFS.domain, JMS.OntModelSpec )
         .add( JMS.ontLanguage, RDFS.domain, JMS.OntModelSpec )
         .add( JMS.reasonsWith, RDFS.domain, JMS.InfModelSpec )
         
-        .add( JMS.importMaker, RDFS.subPropertyOf, JMS.maker )
         ;
     
     /**
