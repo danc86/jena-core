@@ -614,20 +614,16 @@ public class N3JenaWriterCommon implements RDFWriter
             }
             
             // Characters to literally output.
-            if (c >= 32 && c < 127)
-            {
-                sbuff.append(c) ;
-                continue;
-            }    
+            // This would generate 7-bit safe files 
+//            if (c >= 32 && c < 127)
+//            {
+//                sbuff.append(c) ;
+//                continue;
+//            }    
 
             // Whitespace
-            if ( WS.indexOf(c) > -1 )
+            if ( ! litWS && ( c == '\n' || c == '\r' || c == '\f' ) )
             {
-                if ( litWS )
-                {    
-                    sbuff.append(c);
-                    continue ;
-                }
                 if (c == '\n') sbuff.append("\\n");
                 if (c == '\t') sbuff.append("\\t");
                 if (c == '\r') sbuff.append("\\r");
@@ -635,14 +631,17 @@ public class N3JenaWriterCommon implements RDFWriter
                 continue ;
             }
             
-            // Unicode escapes
-            // c < 32, c >= 127, not whitespace or other specials
-            String hexstr = Integer.toHexString(c).toUpperCase();
-            int pad = 4 - hexstr.length();
-            sbuff.append("\\u");
-            for (; pad > 0; pad--)
-                sbuff.append("0");
-            sbuff.append(hexstr);
+            // Output as is (subject to UTF-8 encoding on output that is)
+            sbuff.append(c) ;
+            
+//            // Unicode escapes
+//            // c < 32, c >= 127, not whitespace or other specials
+//            String hexstr = Integer.toHexString(c).toUpperCase();
+//            int pad = 4 - hexstr.length();
+//            sbuff.append("\\u");
+//            for (; pad > 0; pad--)
+//                sbuff.append("0");
+//            sbuff.append(hexstr);
         }
     }
     
