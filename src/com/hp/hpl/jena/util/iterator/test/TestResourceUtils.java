@@ -168,6 +168,54 @@ public class TestResourceUtils
         assertTrue( "m1 should be isomorphic with the reachable sub-graph from a", m1.isIsomorphicWith( ResourceUtils.reachableClosure(a)));
     }
     
+    public void testRemoveEquiv() {
+        Model m = ModelFactory.createDefaultModel();
+        
+        Resource a = m.createResource( NS + "a" );
+        Resource b = m.createResource( NS + "b" );
+        Resource c = m.createResource( NS + "c" );
+        Resource d = m.createResource( NS + "d" );
+        Resource e = m.createResource( NS + "e" );
+        
+        b.addProperty( RDFS.subClassOf, a );
+        a.addProperty( RDFS.subClassOf, b );  // a,b are equivalent
+        d.addProperty( RDFS.subClassOf, e );
+        e.addProperty( RDFS.subClassOf, d );  // d,e are equivalent
+        
+        // reflexive relations - would be inferred by inf engine
+        a.addProperty( RDFS.subClassOf, a );
+        b.addProperty( RDFS.subClassOf, b );
+        c.addProperty( RDFS.subClassOf, c );
+        d.addProperty( RDFS.subClassOf, d );
+        e.addProperty( RDFS.subClassOf, e );
+        
+        List abcde = Arrays.asList( new Object[] {a,b,c,d,e} );
+        List ab = Arrays.asList( new Object[] {a,b} );
+        List cde = Arrays.asList( new Object[] {c,d,e} );
+        List abde = Arrays.asList( new Object[] {a,b,d,e} );
+        List de = Arrays.asList( new Object[] {d,e} );
+
+        List in = new ArrayList();
+        in.addAll( abcde );
+        List out = null;
+        assertTrue( in.equals( abcde ) );
+        assertFalse( in.equals( cde ));
+        assertNull( out );
+        
+        out = ResourceUtils.removeEquiv( in, RDFS.subClassOf, a );
+
+        assertFalse( in.equals( abcde ) );
+        assertTrue( in.equals( cde ));
+        assertNotNull( out );
+        assertEquals( out, ab );
+        
+        out = ResourceUtils.removeEquiv( in, RDFS.subClassOf, e );
+
+        assertFalse( in.equals( abcde ) );
+        assertTrue( in.equals( Collections.singletonList( c ) ));
+        assertNotNull( out );
+        assertEquals( out, de );
+    }
     
     // Internal implementation methods
     //////////////////////////////////
