@@ -1281,7 +1281,7 @@ public class OntResourceImpl
                 s.add( this );
             }
             
-            return new UniqueExtendedIterator( s.iterator() );
+            return new UniqueExtendedIterator( s.iterator() ).mapWith( mapper );
         }
     }
     
