@@ -5,8 +5,6 @@
 */
 
 package com.hp.hpl.jena.enhanced.test;
-import com.hp.hpl.jena.enhanced.*;
-
 /**
  * An interface for viewing object nodes in the graph.
  * @author  jjc

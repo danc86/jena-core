@@ -4,8 +4,6 @@
   $Id$
 */
 package com.hp.hpl.jena.enhanced.test;
-import com.hp.hpl.jena.enhanced.*;
-
 /**
  * @see TestObject
  * @author  jjc

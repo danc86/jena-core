@@ -10,8 +10,6 @@ package com.hp.hpl.jena.graph.test;
  	@author kers
 */
 
-import com.hp.hpl.jena.mem.*;
-import com.hp.hpl.jena.util.iterator.*;
 import com.hp.hpl.jena.graph.*;
 
 import junit.framework.*;

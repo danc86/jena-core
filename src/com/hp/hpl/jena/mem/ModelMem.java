@@ -9,9 +9,6 @@ package com.hp.hpl.jena.mem;
 import com.hp.hpl.jena.rdf.model.impl.*;
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.enhanced.*;
-import com.hp.hpl.jena.graph.*;
-
-
 /** 
     OBSOLETE. Use the code in ModelFactory.
     @author bwm (original), jjc + kers (for Jena 2)

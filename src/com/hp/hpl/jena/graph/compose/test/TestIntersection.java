@@ -9,8 +9,6 @@ package com.hp.hpl.jena.graph.compose.test;
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.graph.compose.Intersection;
 import com.hp.hpl.jena.rdf.model.*;
-import com.hp.hpl.jena.mem.*;
-
 import junit.framework.*;
 
 public class TestIntersection extends GraphTestBase 

@@ -17,9 +17,6 @@ import com.hp.hpl.jena.vocabulary.*;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
-import java.io.PrintWriter;
-
-
 public class TestSimpleSelector extends TestCase
     {    
         

@@ -10,8 +10,6 @@ package com.hp.hpl.jena.graph.compose.test;
 	@author kers
 */
 
-import com.hp.hpl.jena.mem.ModelMem;
-
 import java.lang.reflect.*;
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.mem.*;
