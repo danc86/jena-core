@@ -71,6 +71,18 @@ public class TestSimpleTripleSorter extends GraphTestBase
         testReordersTo( "S P O; ?s ?p ?o; ?a ?b ?c", "?s ?p ?o; S P O; ?a ?b ?c" );
         }
         
+    public void testBoundFirst()
+        {
+        testReordersTo( "?s R a; ?s ?p ?o", "?s ?p ?o; ?s R a" );    
+        testReordersTo( "?s R a; ?s ?p b;", "?s ?p b; ?s R a" );
+        testReordersTo( "?a P b; ?c Q d; ?a P ?c", "?a P b; ?a P ?c; ?c Q d" );
+        }
+        
+    public void testInteraction()
+        {
+        testReordersTo( "?a P b; ?a Q ?b; ?b R ?c", "?b R ?c; ?a Q ?b; ?a P b" );    
+        }
+        
     public void testReordersTo( String desired, String original )
         {
         Triple [] o = tripleArray( original ), d = tripleArray( desired );    

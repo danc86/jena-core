@@ -627,14 +627,12 @@ public abstract class AbstractTestQuery extends GraphTestBase
         if (already == null) already = new Integer( 0 );
         result.put( key, new Integer( already.intValue() + 1 ) );  
         }
-        
-    TripleSorter optimisedSort = new SimpleTripleSorter();
     
     public void testQueryOptimisation()
         {
         int dontCount = queryCount( Query.dontSort );
-        int optimCount = queryCount( optimisedSort );
-        // System.err.println( ">> dontCount = " + dontCount );
+        int optimCount = queryCount( new SimpleTripleSorter() );
+        // System.err.println( ">> dontCount=" + dontCount + " optimCount=" + optimCount );
         if (optimCount > dontCount) 
             fail( "optimisation " + optimCount + " yet plain " + dontCount );   
         }

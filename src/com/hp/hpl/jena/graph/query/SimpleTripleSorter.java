@@ -6,7 +6,9 @@
 
 package com.hp.hpl.jena.graph.query;
 
-import com.hp.hpl.jena.graph.Triple;
+import com.hp.hpl.jena.graph.*;
+
+import java.util.*;
 
 /**
  	@author kers
@@ -14,24 +16,70 @@ import com.hp.hpl.jena.graph.Triple;
 public class SimpleTripleSorter implements TripleSorter
     {
 
+    private Triple [] triples;
+    private Triple [] copy;
+    private int here;
+    private Set bound;
+    private Set remaining;
+        
     public SimpleTripleSorter()
         {}
+        
+    protected SimpleTripleSorter( Triple [] triples )
+        {
+        this(); 
+        this.triples = triples;
+        this.bound = new HashSet();
+        this.copy = new Triple[triples.length]; 
+        this.remaining = new HashSet( Arrays.asList( triples ) );       
+        }
 
     /**
         Sort the triple array so that more-bound triples come before less-bound triples.
         Preserve the order of the elements unless they <i>have<i> to move. 
     */
-    public Triple [] sort( Triple[] triples )
+    public Triple [] sort( Triple[] ts )
+        { return new SimpleTripleSorter( ts ) .sort(); }        
+        
+    protected Triple [] sort() 
         {
-        Triple [] copy = new Triple[triples.length];
-        int here = 0;
-        for (int i = 0; i < triples.length; i += 1)
-            if (triples[i].isConcrete()) copy[here++] = triples[i];
-        for (int i = 0; i < triples.length; i += 1)
-            if (!triples[i].isConcrete()) copy[here++] = triples[i];
+        int limit = 1;
+        bound.clear();
+        here = 0;
+        while (remaining.size() > 0)
+            {
+            for (int i = 0; i < triples.length; i += 1) consider( triples[i], limit );
+            limit += 1;
+            }
         return copy;
         }
 
+    protected void consider( Triple t, int limit )
+        {     
+        if (remaining.contains( t ) && weight( t ) < limit) accept( t );
+        }
+        
+    protected void accept( Triple t )
+        {
+        copy[here++] = t;
+        bind( t );
+        remaining.remove( t );  
+        }
+        
+    protected void bind( Triple t )
+        {
+        bound.add( t.getSubject() );
+        bound.add( t.getPredicate() );
+        bound.add( t.getObject() );    
+        }
+        
+    protected int weight( Triple t )
+        {
+        return weight( t.getSubject() ) + weight( t.getPredicate() ) + weight( t.getObject() );    
+        }
+        
+    protected int weight( Node n )
+        { return n.isConcrete() ? 0 : bound.contains( n ) ? 1 : 4; }
     }
 
 
