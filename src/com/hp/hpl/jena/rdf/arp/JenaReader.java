@@ -47,9 +47,13 @@ import com.hp.hpl.jena.mem.ModelMem;
 import com.hp.hpl.jena.rdf.model.impl.ResourceImpl;
 import com.hp.hpl.jena.rdf.model.impl.PropertyImpl;
 import com.hp.hpl.jena.rdf.model.impl.LiteralImpl;
+import com.hp.hpl.jena.rdf.model.impl.ModelCom;
 import com.hp.hpl.jena.rdf.model.impl.RDFDefaultErrorHandler;
+
 import java.io.*;
 import java.net.*;
+
+import java.util.*;
 
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXNotSupportedException;
@@ -105,7 +109,16 @@ public class JenaReader implements RDFReader, ARPErrorNumbers {
         } catch (IOException e) {
             throw new RDFException( e);
         }
+        updateModel();
     }
+    
+    /**
+        update the model by informing it of all the namespace declarations that
+        we have seen.
+    */
+    private void updateModel()
+        { ModelCom.addNamespaces( model, arpf.getPrefixes( new HashMap() ) ); }
+        
 
     /** Converts an ARP literal into a Jena Literal.
      * @param lit The ARP literal.
@@ -233,6 +246,7 @@ public class JenaReader implements RDFReader, ARPErrorNumbers {
         } catch (SAXException e) {
             throw new RDFException(e);
         }
+        updateModel();
     }
 
     /**

@@ -32,6 +32,8 @@ import com.hp.hpl.jena.reasoner.*;
 import com.hp.hpl.jena.reasoner.transitiveReasoner.TransitiveReasonerFactory;
 import com.hp.hpl.jena.util.iterator.ExtendedIterator;
 
+import java.util.*;
+
 
 /**
  * <p>

@@ -103,9 +103,11 @@ public class ResourceImpl extends EnhNode implements Resource {
     public ResourceImpl(String uri, Model m) {
        this( fresh( uri ), whereToSplit( uri ), m );
     }
+    
     public ResourceImpl( Resource r, Model m ) {
         this( r.getNode(), m );
     }
+    
     public ResourceImpl(String nameSpace, String localName, Model m) {
         this( Node.createURI( nameSpace + localName ), nameSpace.length(), m );
     }

@@ -31,6 +31,8 @@ package com.hp.hpl.jena.rdf.model;
 
 import java.io.Reader;
 import java.io.InputStream;
+import java.util.*;
+
 /** An <code>RDFReader</code> reads a serialized represenation of RDF,
  * e.g. RDF/XML, n-triple or n3 and adds the statements to a model.
  *
@@ -97,4 +99,5 @@ public interface RDFReader {
 	 * @return the previous error handler
 	 */
 	public RDFErrorHandler setErrorHandler(RDFErrorHandler errHandler);
+    
 }

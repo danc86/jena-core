@@ -40,7 +40,7 @@ import java.io.InputStreamReader;
 import java.io.BufferedReader;
 import java.io.Reader;
 import java.io.IOException;
-import java.util.Hashtable;
+import java.util.*;
 
 /** N-Triple Reader
  *
@@ -436,6 +436,7 @@ public class NTripleReader extends Object implements RDFReader {
             + ": "
             + msg;
     }
+    
 }
 
 class IStream {
@@ -494,4 +495,5 @@ class IStream {
     protected int getCharpos() {
         return charpos;
     }
+    
 }

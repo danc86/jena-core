@@ -9,6 +9,8 @@ package com.hp.hpl.jena.graph;
 import com.hp.hpl.jena.graph.query.*;
 import com.hp.hpl.jena.util.iterator.ExtendedIterator;
 
+import java.util.*;
+
 /**
  * @author Jeremy Carroll
  *
@@ -50,7 +52,7 @@ public interface Graph  {
 	  /** Returns an iterator over Triple.
 	   */
 	ExtendedIterator find(Node s,Node p,Node o);
-	
+    
 	/**
 	 * Compare this graph with another using the method
 	 * described in 
