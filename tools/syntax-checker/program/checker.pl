@@ -485,7 +485,7 @@ getBuiltins(Q) :-
   disallowed(Q,N),
   \+ builtin(Q,N),
   wlist(['       } else if ( uri.equals("',N,'") ) {',nl]),
-  wlist(['           return DisallowedVocab;',nl]),
+  wlist(['           return badID;',nl]),
   fail.
 
 getBuiltins(owl) :-

@@ -39,6 +39,8 @@ class MinimalSubGraph extends AbsChecker {
 	 */
 	MinimalSubGraph(boolean lite, Triple problem, CheckerImpl parent) {
 		super(lite);
+		
+	//	parent.dump();
 		//unionHasBeen = new Union(hasBeenChecked,justForErrorMessages);
 		justForErrorMessages = hasBeenChecked;
 		parentUnion = new Union(parent.hasBeenChecked,parent.justForErrorMessages);

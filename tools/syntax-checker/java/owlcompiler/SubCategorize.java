@@ -8,7 +8,6 @@ package owlcompiler;
 import java.util.*;
 
 import com.hp.hpl.jena.ontology.tidy.impl.CategorySet;
-import com.hp.hpl.jena.ontology.tidy.impl.Constants;
 import com.hp.hpl.jena.ontology.tidy.impl.Lookup;
 import com.hp.hpl.jena.shared.BrokenException;
 
@@ -20,6 +19,7 @@ import com.hp.hpl.jena.shared.BrokenException;
  *
 */
 public class SubCategorize implements Constants,Lookup {
+	static final int ActionMask = (1<<ActionShift)-1;
 	static final private int notType[] =
 		{
 			Grammar.rdfProperty,
@@ -305,7 +305,7 @@ public class SubCategorize implements Constants,Lookup {
 					// if ( !(oks[i]&&okp[j]&&oko[k]) ) - action semantics needs
 					// to check even when we don't really need it.
 					{
-					int w = CategoryShift;
+					int w = WW;
 					int triple =
 						((((s[i] << w) | p[j]) << w) | o[k])
 							<< ActionShift;
