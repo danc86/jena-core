@@ -33,7 +33,7 @@ public class AssertFRule extends BaseFRule {
      */
     void fire(TriplePattern[] body, BoundRDFSReasoner reasoner) {
         for (int i = 0; i < body.length; i++) {
-            reasoner.assert(body[i].asTriple());
+            reasoner.assertTriple(body[i].asTriple());
         }
     }
     
