@@ -403,6 +403,41 @@ public class TestXMLFeatures extends ModelTestBase {
             }
         });
     }
+	public void testNoCookUp()
+		throws IOException, MalformedPatternException {
+		check(
+			"testing/abbreviated/cookup.rdf",
+			null,
+			"j.cook.up",
+			new Change() {
+			public void code(RDFWriter writer) {
+				writer.setProperty("blockrules", "");
+			}
+		});
+	}
+	public void testNoPropAttrs()
+		throws IOException, MalformedPatternException {
+		check(
+			"testing/abbreviated/namespaces.rdf",
+			null,
+			":prop0 *=",
+			new Change() {
+			public void code(RDFWriter writer) {
+			}
+		});
+	}
+	public void testPropAttrs()
+		throws IOException, MalformedPatternException {
+		check(
+			"testing/abbreviated/namespaces.rdf",
+			":prop0 *=",
+			null,
+			new Change() {
+			public void code(RDFWriter writer) {
+				writer.setProperty("blockrules", "");
+			}
+		});
+	}
     public void testNoID()
         throws IOException, MalformedPatternException {
         check(

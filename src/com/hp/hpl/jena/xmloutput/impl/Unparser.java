@@ -1352,12 +1352,19 @@ class Unparser {
 			RDFNode n = s.getObject();
 			return (n instanceof Resource) && !((Resource) n).isAnon();
 		}
+		
 
 		if (s.getObject() instanceof Literal) {
 			Literal l = s.getLiteral();
 			if (l.getDatatypeURI() != null)
 				return false;
+
+			  
 			if (l.getLanguage().equals("")) {
+			// j.cook.up bug fix
+				if ( prettyWriter.isDefaultNamespace( getNameSpace(p)))
+							  return false;
+			
 				String str = l.getString();
 				if (str.length() < 40) {
 					char buf[] = str.toCharArray();

@@ -80,6 +80,7 @@ public class Abbreviated extends BaseXMLWriter implements RDFErrorHandler {
 	}
     {
         unblockAll();
+        blockRule(RDFSyntax.propertyAttr);
     }
     void blockRule(Resource r) {
         if (r.equals(RDFSyntax.sectionReification)) sReification=true;

@@ -631,7 +631,7 @@ abstract public class BaseXMLWriter implements RDFXMLWriterI {
 		return null;
 	}
     
-	private Resource blockedRules[] = new Resource[0];
+	private Resource blockedRules[] = new Resource[]{RDFSyntax.propertyAttr};
     
 	Resource[] setBlockRules(Object o) {
 		Resource rslt[] = blockedRules;

@@ -248,6 +248,12 @@ public class testWriterAndReader
 			/* */
 			langsuite.addTest(
 			    new TestXMLFeatures("testNoReification", lang));
+			langsuite.addTest(
+				new TestXMLFeatures("testNoPropAttrs", lang));
+			langsuite.addTest(
+				new TestXMLFeatures("testNoCookUp", lang));
+			langsuite.addTest(
+				new TestXMLFeatures("testPropAttrs", lang));
 			/* */
 		}
 		return langsuite;
