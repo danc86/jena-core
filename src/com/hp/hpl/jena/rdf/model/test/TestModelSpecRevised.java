@@ -5,6 +5,8 @@
 */
 package com.hp.hpl.jena.rdf.model.test;
 
+import java.net.URL;
+
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.rdf.model.impl.ModelSpecImpl;
 import com.hp.hpl.jena.reasoner.*;
@@ -63,7 +65,25 @@ public class TestModelSpecRevised extends ModelTestBase
         testGetReasoner( RDFSRuleReasonerFactory.URI, RDFSRuleReasoner.class );
         }
     
-    private void testGetReasoner(String uri, Class wantClass)
+    public void testRulesetURLFails()
+        {
+        String uri = GenericRuleReasonerFactory.URI;
+        Model rs = modelWithStatements( "_a jms:reasoner " + uri + "; _a jms:ruleSetURL nowhere:man" );
+        Resource A = resource( "_a" );
+        try { ModelSpecImpl.getReasonerFactory( A, rs ); fail( "should report ruleset failure" ); }
+        catch (RulesetNotFoundException e) { assertEquals( "nowhere:man", e.getURI() ); }
+        }
+    
+    public void testRulesetURLWorks()
+        {
+        String uri = GenericRuleReasonerFactory.URI;
+        URL url = TestModelSpecRevised.class.getResource( "/testing/modelspecs/empty.rules" );
+        Model rs = modelWithStatements( "_a jms:reasoner " + uri + "; _a jms:ruleSetURL " + url );
+        Resource A = resource( "_a" );
+        ModelSpecImpl.getReasonerFactory( A, rs );
+        }
+    
+    protected void testGetReasoner(String uri, Class wantClass)
         {
         Model rs = modelWithStatements( "_a jms:reasoner " + uri );
         Resource A = resource( "_a" );
@@ -72,6 +92,7 @@ public class TestModelSpecRevised extends ModelTestBase
         assertEquals( wantClass, r.getClass() );
         }
 
+    
     protected void assertContains( String x, String y )
         {
         if (y == null) fail( "<null> does not contain anything, especially '" + x + "'" );
