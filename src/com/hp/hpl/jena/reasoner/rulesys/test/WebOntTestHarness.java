@@ -14,6 +14,7 @@ import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.ontology.OntModelSpec;
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.reasoner.*;
+import com.hp.hpl.jena.reasoner.rulesys.FBRuleInfGraph;
 import com.hp.hpl.jena.reasoner.test.WGReasonerTester;
 import com.hp.hpl.jena.vocabulary.*;
 
@@ -38,6 +39,9 @@ public class WebOntTestHarness {
     
     /** Set to true to use approved tests only */
     public static boolean approvedOnly = true;
+    
+    /** Set to true to print LP engine profile information */
+    public static boolean printProfile = false;
     
 //  =======================================================================
 //  Internal state
@@ -235,8 +239,8 @@ public class WebOntTestHarness {
             resultFile = args[0];
         }
         WebOntTestHarness harness = new WebOntTestHarness();
-        harness.runTests();
-//        harness.runTest("http://www.w3.org/2002/03owlt/description-logic/Manifest664#test");
+//        harness.runTests();
+        harness.runTest("http://www.w3.org/2002/03owlt/description-logic/Manifest663#test");
         RDFWriter writer = harness.testResults.getWriter("RDF/XML-ABBREV");
         OutputStream stream = new FileOutputStream(resultFile);
         writer.setProperty("showXmlDeclaration", "true");
@@ -339,10 +343,16 @@ public class WebOntTestHarness {
             comprehensionAxioms(premises, conclusions);
             long t1 = System.currentTimeMillis();
             InfGraph graph = reasoner.bind(premises.getGraph());
+            if (printProfile) {
+                ((FBRuleInfGraph)graph).resetLPProfile(true);
+            }
             Model result = ModelFactory.createModelForGraph(graph);
             boolean correct = testEntailment(conclusions.getGraph(), result.getGraph());
             long t2 = System.currentTimeMillis();
             lastTestDuration = t2 - t1; 
+            if (printProfile) {
+                ((FBRuleInfGraph)graph).printLPProfile();
+            }
             if (test.hasProperty(RDF.type, OWLTest.NegativeEntailmentTest)) {
                 correct = !correct;
             }
