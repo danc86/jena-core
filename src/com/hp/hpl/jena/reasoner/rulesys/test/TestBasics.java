@@ -391,6 +391,31 @@ public class TestBasics extends TestCase  {
             });
         
     }
+    
+    /**
+     * Test the rebind operation.
+     */
+    public void testRebind() {
+        String rules = "[rule1: (?x p ?y) -> (?x q ?y)]";
+        List ruleList = Rule.parseRules(rules);
+        Graph data = new GraphMem();
+        data.add(new Triple(n1, p, n2));
+        InfGraph infgraph = new BasicForwardRuleReasoner(ruleList).bind(data);
+        TestUtil.assertIteratorValues(this, infgraph.find(n1, null, null),
+            new Triple[] {
+                new Triple(n1, p, n2),
+                new Triple(n1, q, n2)
+            });
+        Graph ndata = new GraphMem();
+        ndata.add(new Triple(n1, p, n3));
+        infgraph.rebind(ndata);
+        TestUtil.assertIteratorValues(this, infgraph.find(n1, null, null),
+            new Triple[] {
+                new Triple(n1, p, n3),
+                new Triple(n1, q, n3)
+            });
+    }
+    
 }
 
 /*

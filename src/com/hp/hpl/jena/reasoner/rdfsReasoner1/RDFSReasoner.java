@@ -67,6 +67,18 @@ public class RDFSReasoner extends TransitiveReasoner implements Reasoner {
             if (flag != null) scanProperties = flag.booleanValue();
         }
     }
+    
+    /**
+     * Private constructor used by bindSchema when
+     * returning a partially bound reasoner instance.
+     */
+    protected RDFSReasoner(Finder tbox, 
+                    TransitiveGraphCache subClassCache, 
+                    TransitiveGraphCache subPropertyCache,
+                    boolean scanProperties) {
+        super(tbox, subClassCache, subPropertyCache);
+        this.scanProperties = scanProperties;
+    }
      
     /**
      * Helper method - extracts the truth of a boolean configuration
@@ -95,13 +107,16 @@ public class RDFSReasoner extends TransitiveReasoner implements Reasoner {
      * @param tbox schema containing the property and class declarations
      */
     public Reasoner bindSchema(Graph tbox) throws ReasonerException {
-        super.bindSchema(tbox);
-        subPropertyCache.setCaching(true);
-        
-        // TODO: Extract tbox induced rules
-        // TODO: Extract (x type Property) inferences from tbox
-
-        return this;
+        if (this.tbox != null) {
+            throw new ReasonerException("Attempt to bind multiple rulesets - disallowed for now");
+        }
+        FGraph ftbox = new FGraph(tbox);
+        TransitiveGraphCache sCc = new TransitiveGraphCache(directSubClassOf, subClassOf);
+        TransitiveGraphCache sPc = new TransitiveGraphCache(directSubPropertyOf, subPropertyOf);
+        TransitiveReasoner.cacheSubProp(ftbox, sPc);
+        TransitiveReasoner.cacheSubClass(ftbox, sPc, sCc);
+        sPc.setCaching(true);
+        return new RDFSReasoner(ftbox, sCc, sPc, scanProperties);
     }
     
      
@@ -116,8 +131,7 @@ public class RDFSReasoner extends TransitiveReasoner implements Reasoner {
      * constraints imposed by this reasoner.
      */
     public InfGraph bind(Graph data) throws ReasonerException {
-        return new RDFSInfGraph(tbox, data, subPropertyCache, 
-                                                    subClassCache, this);
+        return new RDFSInfGraph(this, data);
     }   
     
     /**

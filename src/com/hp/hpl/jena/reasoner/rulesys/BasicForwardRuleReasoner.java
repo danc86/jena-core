@@ -100,11 +100,15 @@ public class BasicForwardRuleReasoner implements Reasoner {
         graph.setDerivationLogging(recordDerivations);
         graph.setRuleThreshold(nRulesThreshold);
         graph.setTraceOn(traceOn);
-        if (schemaGraph != null) {
-            graph.preloadDeductions(schemaGraph);
-        }
-        graph.bindData(data);
+        graph.rebind(data);
         return graph;
+    }
+    
+    /**
+     * Make the precomputed schema deductions available to the inf graph constructor.
+     */
+    protected InfGraph getSchemaGraph() {
+        return schemaGraph;
     }
     
     /**

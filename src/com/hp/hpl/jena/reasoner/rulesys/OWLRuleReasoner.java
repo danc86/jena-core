@@ -124,10 +124,7 @@ public class OWLRuleReasoner extends BasicForwardRuleReasoner {
         graph.setDerivationLogging(recordDerivations);
         graph.setRuleThreshold(nRulesThreshold);
         graph.setTraceOn(traceOn);
-        if (schemaGraph != null) {
-            graph.preloadDeductions(schemaGraph);
-        }
-        graph.bindData(data);
+        graph.rebind(data);
         long endTime = System.currentTimeMillis();
         timeCost += (double)(endTime - startTime);
         nRulesFired += graph.getNRulesFired();

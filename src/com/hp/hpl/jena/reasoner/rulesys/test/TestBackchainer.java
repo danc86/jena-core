@@ -460,6 +460,35 @@ public class TestBackchainer extends TestCase {
             } );
     }
 
+    /**
+     * Test rebind operation
+     */
+    public void testRebind() {
+        List rules = Rule.parseRules("[r1: (?a r ?c) <- (?a p ?b),(?b p ?c)]");        
+        Graph data = new GraphMem();
+        data.add(new Triple(a, p, b));
+        data.add(new Triple(b, p, c));
+        data.add(new Triple(b, p, d));
+        Reasoner reasoner =  new BasicBackwardRuleReasoner(rules);
+        InfGraph infgraph = reasoner.bind(data);
+        ((BasicBackwardRuleInfGraph)infgraph).setTraceOn(true);
+        TestUtil.assertIteratorValues(this, 
+            infgraph.find(null, r, null), 
+            new Object[] {
+                new Triple(a, r, c),
+                new Triple(a, r, d)
+            } );
+        Graph ndata = new GraphMem();
+        ndata.add(new Triple(a, p, d));
+        ndata.add(new Triple(d, p, b));
+        infgraph.rebind(ndata);
+        TestUtil.assertIteratorValues(this, 
+            infgraph.find(null, r, null), 
+            new Object[] {
+                new Triple(a, r, b)
+            } );
+
+    }
 }
 
 

@@ -69,6 +69,13 @@ public class BRuleEngine {
     }
     
     /**
+     * Clear the tabled results
+     */
+    public void reset() {
+        goalTable.reset();
+    }
+    
+    /**
      * Find the set of memoized solutions for the given goal
      * and return a GoalState that can traverse all the solutions.
      * 
