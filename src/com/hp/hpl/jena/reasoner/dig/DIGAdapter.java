@@ -73,12 +73,16 @@ public class DIGAdapter
     /** Mark a bNode identifier */
     public static final String ANON_MARKER = "anon:";
     
+    /** Well known concept URI's */
+    public static final List KNOWN_CONCEPTS = Arrays.asList( new Object[] {OWL.Thing.getURI(), OWL.Nothing.getURI(), 
+                                                                           DAML_OIL.Thing.getURI(), DAML_OIL.Thing.getURI() } );
 
+    
     // Static variables
     //////////////////////////////////
 
     /** The table that represents the query translations we know about */
-    protected static DIGQueryTranslator[] s_queryTable = {/*
+    protected static DIGQueryTranslator[] s_queryTable = {
         // subsumes when testing for subsumption between two known class expressions
         new DIGQuerySubsumesTranslator( RDFS.subClassOf.getURI() ),
         new DIGQuerySubsumesTranslator( DAML_OIL.subClassOf.getURI() ),
@@ -131,11 +135,20 @@ public class DIGAdapter
         new DIGQueryInstancesTranslator( RDF.type.getURI() ),
         new DIGQueryInstancesTranslator( DAML_OIL.type.getURI() ),
         new DIGQueryTypesTranslator( RDF.type.getURI() ),
-        new DIGQueryTypesTranslator( DAML_OIL.type.getURI() ),*/
-        new DIGQueryInstanceTranslator( RDF.type.getURI() ),/*
+        new DIGQueryTypesTranslator( DAML_OIL.type.getURI() ),
+        new DIGQueryInstanceTranslator( RDF.type.getURI() ),
         new DIGQueryInstanceTranslator( DAML_OIL.type.getURI() ),
         new DIGQueryRoleFillersTranslator(),
-        */
+        new DIGQueryDifferentFromTranslator( OWL.differentFrom.getURI() ),
+        new DIGQueryDifferentFromTranslator( DAML_OIL.differentIndividualFrom.getURI() ),
+        
+        // specific type tests
+        new DIGQueryIsConceptTranslator(),
+        new DIGQueryIsRoleTranslator(),
+        new DIGQueryIsIndividualTranslator(),
+        
+        // built-in knowledge
+        new DIGQueryBuiltins(),
     };
     
     
@@ -393,6 +406,8 @@ public class DIGAdapter
      */
     public DIGQueryTranslator getQueryTranslator( TriplePattern pattern, Model premises ) {
         for (int i = 0;  i < s_queryTable.length;  i++) {
+            DIGQueryTranslator dqt = s_queryTable[i];
+            
             if (s_queryTable[i].trigger( pattern, this, premises )) {
                 return s_queryTable[i];
             }
@@ -530,8 +545,8 @@ public class DIGAdapter
      */
     public boolean isConcept( com.hp.hpl.jena.graph.Node node, Model premises ) {
         return getKnownConcepts().contains( getNodeID( node ) ) ||
-               ((premises != null) &&
-                 isPremisesClass( node, premises ));
+               ((premises != null) && isPremisesClass( node, premises )) ||
+               KNOWN_CONCEPTS.contains( getNodeID( node ) );
     }
     
     
@@ -1214,8 +1229,8 @@ public class DIGAdapter
      */
     protected Set getKnownIndividuals() {
         if (!m_indNamesAsked) {
-            m_indNames.add( collectNamedTerms( DIGProfile.ALL_INDIVIDUALS,
-                                            new String[] {DIGProfile.INDIVIDUAL_SET, DIGProfile.INDIVIDUAL} ) );
+            m_indNames.addAll( collectNamedTerms( DIGProfile.ALL_INDIVIDUALS,
+                                                  new String[] {DIGProfile.INDIVIDUAL_SET, DIGProfile.INDIVIDUAL} ) );
             m_indNamesAsked = true;
         }
         
@@ -1257,7 +1272,7 @@ public class DIGAdapter
      * <p>Answer an iterator of named terms known to the DIG reasoner, from the cache if possible.</p>
      * @param queryType The query verb for the ask
      * @param path A list of element names to extract the term names from the returned document
-     * @return An iterator of the known individual names
+     * @return An iterator of the known names of a particular type
      */
     protected Set collectNamedTerms( String queryType, String[] path ) {
         Set names = new HashSet();

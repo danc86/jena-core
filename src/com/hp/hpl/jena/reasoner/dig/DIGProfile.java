@@ -101,7 +101,7 @@ public interface DIGProfile
     public static final String RDESCENDANTS      = "rdescendants";
     public static final String INSTANCES         = "instances";
     public static final String TYPES             = "types";
-    public static final String INSTANCE          = "instances";
+    public static final String INSTANCE          = "instance";
     public static final String ROLE_FILLERS      = "roleFillers";
     public static final String RELATED_INDIVIDUALS = "relatedIndividuals";
     public static final String TOLD_VALUES       = "toldValues";

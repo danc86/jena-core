@@ -78,9 +78,9 @@ public class DIGQueryDisjointTranslator
     public Document translatePattern( TriplePattern pattern, DIGAdapter da ) {
         DIGConnection dc = da.getConnection();
         Document query = dc.createDigVerb( DIGProfile.ASKS, da.getProfile() );
-        Element subsumes = da.addElement( query.getDocumentElement(), DIGProfile.DISJOINT );
-        da.addClassDescription( subsumes, pattern.getObject() );
-        da.addClassDescription( subsumes, pattern.getSubject() );
+        Element disjoint = da.addElement( query.getDocumentElement(), DIGProfile.DISJOINT );
+        da.addClassDescription( disjoint, pattern.getObject() );
+        da.addClassDescription( disjoint, pattern.getSubject() );
 
         return query;
     }

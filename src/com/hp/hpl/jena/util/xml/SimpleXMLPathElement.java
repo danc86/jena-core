@@ -43,6 +43,10 @@ public class SimpleXMLPathElement
     // Constants
     //////////////////////////////////
 
+    /** Constant to select all children of a node */
+    public static final String ALL_CHILDREN = "*";
+    
+    
     // Static variables
     //////////////////////////////////
 
@@ -63,6 +67,15 @@ public class SimpleXMLPathElement
      */
     public SimpleXMLPathElement( String elemName ) {
         m_elemName = elemName;
+    }
+    
+    
+    /**
+     * <p>Construct a simple XML path component that selects all child
+     * elements of the parent node.</p>
+     */
+    public SimpleXMLPathElement() {
+        m_elemName = ALL_CHILDREN;
     }
     
     

@@ -2,10 +2,10 @@
  * Source code information
  * -----------------------
  * Original author    Ian Dickinson, HP Labs Bristol
- * Author email       ian.dickinson@hp.com
+ * Author email       Ian.Dickinson@hp.com
  * Package            Jena 2
  * Web                http://sourceforge.net/projects/jena/
- * Created            10-Dec-2003
+ * Created            July 19th 2003
  * Filename           $RCSfile$
  * Revision           $Revision$
  * Release status     $State$
@@ -15,7 +15,7 @@
  *
  * (c) Copyright 2001, 2002, 2003, Hewlett-Packard Development Company, LP
  * [See end of file]
- *****************************************************************************/
+ * ****************************************************************************/
 
 // Package
 ///////////////
@@ -24,25 +24,33 @@ package com.hp.hpl.jena.reasoner.dig;
 
 // Imports
 ///////////////
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
+import java.util.*;
 
+import org.w3c.dom.Document;
+
+import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.reasoner.TriplePattern;
-import com.hp.hpl.jena.util.iterator.ExtendedIterator;
+import com.hp.hpl.jena.util.iterator.*;
+import com.hp.hpl.jena.vocabulary.RDF;
 
 
 /**
  * <p>
- * Translator to map owl:equivalentClass to the DIG &lt;equivalents&gt; query.
+ * Translator that generates a DIG query to test whether a ground name is an role atom
+ * <pre>
+ * x rdf:type owl:ObjectProperty
+ * </pre>
+ * or similar.
  * </p>
  *
- * @author Ian Dickinson, HP Labs (<a  href="mailto:Ian.Dickinson@hp.com" >email</a>)
- * @version CVS $Id$
+ * @author Ian Dickinson, HP Labs (<a href="mailto:Ian.Dickinson@hp.com">email</a>)
+ * @version Release @release@ ($Id$)
  */
-public class DIGQueryEquivalentsTranslator 
+public class DIGQueryIsRoleTranslator 
     extends DIGQueryTranslator
 {
+
     // Constants
     //////////////////////////////////
 
@@ -52,67 +60,78 @@ public class DIGQueryEquivalentsTranslator
     // Instance variables
     //////////////////////////////////
 
-    /** Flag for whether the free variable is on the lhs or the rhs */
-    protected boolean m_subjectFree;
-    
-    
     // Constructors
     //////////////////////////////////
 
     /**
-     * <p>Construct a translator for the DIG query 'equivalents'.</p>
-     * @param predicate The predicate URI to trigger on
-     * @param lhs If true, the free variable is the subject of the triple
+     * <p>Construct a translator for the DIG for a role name.</p>
+     * @param classType denotes a class type (owl:class, daml:class etc)
      */
-    public DIGQueryEquivalentsTranslator( String predicate, boolean subjectFree ) {
-        super( null, predicate, null );
-        m_subjectFree = subjectFree;
+    public DIGQueryIsRoleTranslator() {
+        super( null, RDF.type.getURI(), null );
     }
     
 
     // External signature methods
     //////////////////////////////////
 
-    /**
-     * <p>Answer a query that will generate the class hierachy for a concept</p>
-     */
-    public Document translatePattern( TriplePattern pattern, DIGAdapter da ) {
-        DIGConnection dc = da.getConnection();
-        Document query = dc.createDigVerb( DIGProfile.ASKS, da.getProfile() );
-        
-        Element equivalents = da.addElement( query.getDocumentElement(), DIGProfile.EQUIVALENTS );
-        da.addClassDescription( equivalents, m_subjectFree ? pattern.getObject() : pattern.getSubject() );
-        
-        return query;
-    }
-
 
     /**
-     * <p>Answer an iterator of triples that match the original find query.</p>
+     * <p>Since known concept names are cached by the adapter, we can just look up the
+     * current set and map directly to triples</p>
+     * @param pattern The pattern to translate to a DIG query
+     * @param da The DIG adapter through which we communicate with a DIG reasoner
      */
-    public ExtendedIterator translateResponse( Document response, TriplePattern query, DIGAdapter da ) {
-        return translateConceptSetResponse( response, query, !m_subjectFree );
+    public ExtendedIterator find( TriplePattern pattern, DIGAdapter da ) {
+        List result = new ArrayList();
+        if (da.isRole( pattern.getSubject(), null )) {
+            result.add( pattern.asTriple() );
+        }
+        
+        return WrappedIterator.create( result.iterator() );
     }
     
+    
+    /** For this translation, we ignore premises */
+    public ExtendedIterator find( TriplePattern pattern, DIGAdapter da, Model premises ) {
+        return find( pattern, da );
+    }
+    
+    
+    public Document translatePattern( TriplePattern pattern, DIGAdapter da ) {
+        // not used
+        return null;
+    }
+
+
     public Document translatePattern( TriplePattern pattern, DIGAdapter da, Model premises ) {
         // not used
         return null;
     }
 
-    
-    public boolean checkSubject( com.hp.hpl.jena.graph.Node subject, DIGAdapter da, Model premises ) {
-        return (m_subjectFree && !subject.isConcrete()) || da.isConcept( subject, premises );
-    }
-    
-    public boolean checkObject( com.hp.hpl.jena.graph.Node object, DIGAdapter da, Model premises ) {
-        return (!m_subjectFree && !object.isConcrete()) || da.isConcept( object, premises );
+    public ExtendedIterator translateResponse( Document response, TriplePattern query, DIGAdapter da ) {
+        // not used
+        return null;
     }
 
-    public boolean checkTriple( TriplePattern pattern, DIGAdapter da, Model premises ) {
-        return super.checkTriple( pattern, da, premises ) &&
-               (!pattern.getSubject().isConcrete() || !pattern.getObject().isConcrete());
-
+    /**
+     * <p>Additional test on the object of the incoming find pattern.</p>
+     * @param object The object resource from the incoming pattern
+     * @param da The current dig adapter
+     * @param premises A model that conveys additional information about the premises
+     * of the query, which might assist the check to suceed or fail. By default it
+     * is ignored.
+     * @return True if this object matches the trigger condition expressed by this translator instance
+     */
+    public boolean checkObject( Node object, DIGAdapter da, Model premises ) {
+        return da.getOntLanguage().OBJECT_PROPERTY().getNode().equals( object );
     }
+    
+
+    public boolean checkSubject( Node subject, DIGAdapter da, Model premises ) {
+        return subject instanceof Node_Concrete;
+    }
+    
 
     // Internal implementation methods
     //////////////////////////////////
@@ -125,7 +144,7 @@ public class DIGQueryEquivalentsTranslator
 
 
 /*
- *  (c) Copyright 2001, 2002, 2003 Hewlett-Packard Development Company, LP
+ *  (c) Copyright 2001-2004 Hewlett-Packard Development Company, LP
  *  All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without

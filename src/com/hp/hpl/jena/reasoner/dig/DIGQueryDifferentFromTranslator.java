@@ -5,7 +5,7 @@
  * Author email       ian.dickinson@hp.com
  * Package            Jena 2
  * Web                http://sourceforge.net/projects/jena/
- * Created            10-Dec-2003
+ * Created            09-Dec-2003
  * Filename           $RCSfile$
  * Revision           $Revision$
  * Release status     $State$
@@ -21,28 +21,35 @@
 ///////////////
 package com.hp.hpl.jena.reasoner.dig;
 
+import java.util.*;
+import java.util.List;
 
-// Imports
-///////////////
+import org.w3c.dom.*;
 import org.w3c.dom.Document;
-import org.w3c.dom.Element;
 
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.reasoner.TriplePattern;
+import com.hp.hpl.jena.util.iterator.*;
 import com.hp.hpl.jena.util.iterator.ExtendedIterator;
 
 
+// Imports
+///////////////
+
 /**
  * <p>
- * Translator to map owl:equivalentClass to the DIG &lt;equivalents&gt; query.
+ * Translator for queries as to whether two ground individuals are different-from each other.
+ * This does not have a direct translation in DIG at the moment; instead we ask if the 
+ * class expressions formed from the set of each single individual are disjoint. 
  * </p>
  *
  * @author Ian Dickinson, HP Labs (<a  href="mailto:Ian.Dickinson@hp.com" >email</a>)
  * @version CVS $Id$
  */
-public class DIGQueryEquivalentsTranslator 
+public class DIGQueryDifferentFromTranslator 
     extends DIGQueryTranslator
 {
+
     // Constants
     //////////////////////////////////
 
@@ -52,36 +59,34 @@ public class DIGQueryEquivalentsTranslator
     // Instance variables
     //////////////////////////////////
 
-    /** Flag for whether the free variable is on the lhs or the rhs */
-    protected boolean m_subjectFree;
-    
-    
     // Constructors
     //////////////////////////////////
 
     /**
-     * <p>Construct a translator for the DIG query 'equivalents'.</p>
-     * @param predicate The predicate URI to trigger on
-     * @param lhs If true, the free variable is the subject of the triple
+     * <p>Construct a translator to test whether two individuals are different</p>
+     * @param predicate The predicate we are matching on
      */
-    public DIGQueryEquivalentsTranslator( String predicate, boolean subjectFree ) {
+    public DIGQueryDifferentFromTranslator( String predicate ) {
         super( null, predicate, null );
-        m_subjectFree = subjectFree;
     }
-    
+
 
     // External signature methods
     //////////////////////////////////
 
     /**
-     * <p>Answer a query that will generate the class hierachy for a concept</p>
+     * <p>Answer a query that will test difference between two individuals</p>
      */
     public Document translatePattern( TriplePattern pattern, DIGAdapter da ) {
         DIGConnection dc = da.getConnection();
         Document query = dc.createDigVerb( DIGProfile.ASKS, da.getProfile() );
+        Element disjoint = da.addElement( query.getDocumentElement(), DIGProfile.DISJOINT );
         
-        Element equivalents = da.addElement( query.getDocumentElement(), DIGProfile.EQUIVALENTS );
-        da.addClassDescription( equivalents, m_subjectFree ? pattern.getObject() : pattern.getSubject() );
+        Element ind = da.addElement( disjoint, DIGProfile.ISET );
+        da.addNamedElement( ind, DIGProfile.INDIVIDUAL, da.getNodeID( pattern.getSubject() ) );
+        
+        ind = da.addElement( disjoint, DIGProfile.ISET );
+        da.addNamedElement( ind, DIGProfile.INDIVIDUAL, da.getNodeID( pattern.getObject() ) );
         
         return query;
     }
@@ -91,28 +96,28 @@ public class DIGQueryEquivalentsTranslator
      * <p>Answer an iterator of triples that match the original find query.</p>
      */
     public ExtendedIterator translateResponse( Document response, TriplePattern query, DIGAdapter da ) {
-        return translateConceptSetResponse( response, query, !m_subjectFree );
+        List answer = new ArrayList();
+        if (isTrue( response )) {
+            // if response is true, the subsumption relationship holds
+            answer.add( query.asTriple() );
+        }
+        
+        return WrappedIterator.create( answer.iterator() );
     }
     
     public Document translatePattern( TriplePattern pattern, DIGAdapter da, Model premises ) {
-        // not used
-        return null;
+        // premises not used
+        return translatePattern( pattern, da );
     }
 
-    
     public boolean checkSubject( com.hp.hpl.jena.graph.Node subject, DIGAdapter da, Model premises ) {
-        return (m_subjectFree && !subject.isConcrete()) || da.isConcept( subject, premises );
+        return da.isIndividual( subject );
     }
     
     public boolean checkObject( com.hp.hpl.jena.graph.Node object, DIGAdapter da, Model premises ) {
-        return (!m_subjectFree && !object.isConcrete()) || da.isConcept( object, premises );
+        return da.isIndividual( object );
     }
 
-    public boolean checkTriple( TriplePattern pattern, DIGAdapter da, Model premises ) {
-        return super.checkTriple( pattern, da, premises ) &&
-               (!pattern.getSubject().isConcrete() || !pattern.getObject().isConcrete());
-
-    }
 
     // Internal implementation methods
     //////////////////////////////////
