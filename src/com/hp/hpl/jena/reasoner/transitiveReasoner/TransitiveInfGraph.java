@@ -117,4 +117,22 @@ public class TransitiveInfGraph extends BaseInfGraph {
         }
         return new UniqueExtendedIterator(resultF.find(pattern));
     }
+   
+    /** 
+     * Returns an iterator over Triples.
+     */
+    public ExtendedIterator find(Node subject, Node property, Node object) {
+        return findWithContinuation(new TriplePattern(subject, property, object), fdata);
+    }
+
+    /**
+     * Basic pattern lookup interface.
+     * @param pattern a TriplePattern to be matched against the data
+     * @return a ExtendedIterator over all Triples in the data set
+     *  that match the pattern
+     */
+    public ExtendedIterator find(TriplePattern pattern) {
+        return findWithContinuation(pattern, fdata);
+    }
+
 }
