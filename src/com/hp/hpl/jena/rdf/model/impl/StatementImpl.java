@@ -256,16 +256,23 @@ public class StatementImpl  implements Statement {
     	return new StatementImpl( subject, predicate, n, model );
     }
         
-    public String toString() {
-        String result = "[" + subject.toString() + ", "
-                            + predicate.toString() + ", ";
-        if (object instanceof Resource) {
-            result = result + "Resource<" + ((Resource)object).toString() + ">";
-        } else {
-            result = result + "Literal<" + ((Literal)object).toString() + ">";
+    public String toString() 
+        {
+        return
+            "[" 
+            + subject.toString()
+            + ", " + predicate.toString() 
+            + ", " + objectString()
+            + "]";
         }
-        return result + "]";
-    }
+        
+    private String objectString()
+        {
+        return object instanceof Resource
+            ? "Resource<" + ((Resource)object).toString() + ">"
+            : "Literal<" + ((Literal)object).toString() + ">"
+            ;
+        }
     
     /**
         .equals() defers to .sameAs so we only get the complexity of one cast.

@@ -196,7 +196,7 @@ public class LiteralImpl extends EnhNode implements Literal {
      * Return the lexical form of the literal.
      */
     public String getLexicalForm() {
-        return asNode().getLiteral().toString();
+        return asNode().getLiteral().getLexicalForm();
     }
 
     public boolean getBoolean() throws RDFException {
@@ -286,7 +286,7 @@ public class LiteralImpl extends EnhNode implements Literal {
     }
 
     public String getString() throws RDFException {
-        return asNode().getLiteral().toString();
+        return asNode().getLiteral().getLexicalForm();
     }
     
     public Object getObject(ObjectF f) throws RDFException {

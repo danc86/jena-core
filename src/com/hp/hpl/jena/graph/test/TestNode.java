@@ -133,6 +133,7 @@ public class TestNode extends GraphTestBase
                 }
             }
         }
+        
     private void testEquality( boolean testEq, Object L, Object R )
         {
         String testName = getType( L ) + " " + L + " and " + getType( R ) + " " + R;
