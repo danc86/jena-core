@@ -53,6 +53,9 @@ public class OWLTest  {
     
     /** <p>Indicates the conformance level of a document or test in the OWL test suite.</p> */
     public static final Property level = m_model.createProperty( "http://www.w3.org/2002/03owlt/testOntology#level" );
+
+	/** <p>One of the conformance levels  in the OWL test suite.</p> */
+	public static final Resource Lite = m_model.createResource( "http://www.w3.org/2002/03owlt/testOntology#Lite" );
     
     /** <p>A string valued property that gives a numeral (or some other quasi-numeric 
      *  string) associated with an issue.</p>

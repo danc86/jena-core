@@ -27,10 +27,7 @@ import org.xml.sax.*;
 class WGTestSuite extends TestSuite implements ARPErrorNumbers {
     static public boolean checkMessages = false;
     static private boolean inDevelopment = false;
-    static Reader getReader(String prop) throws IOException {
-        return new InputStreamReader(TestInputStreamFactory.getInputStream(prop), "utf-8");
-    }
-    Model loadRDF(InputStream in, RDFErrorHandler eh, String base)
+     Model loadRDF(InputStream in, RDFErrorHandler eh, String base)
         throws IOException {
         Model model = ModelFactory.createDefaultModel();
         JenaReader jr = new JenaReader();
