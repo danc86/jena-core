@@ -24,7 +24,6 @@ import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.*;
 
 import org.apache.log4j.Logger;
