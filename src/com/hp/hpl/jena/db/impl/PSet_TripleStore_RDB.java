@@ -285,7 +285,7 @@ public  class PSet_TripleStore_RDB implements IPSet {
 			boolean isHuge = false; // true if literal larger than MAX_LITERAL
 /*            // Check if the literal can be translated to an int
             try {
-                val = Integer.parseInt(l.toString());
+                val = Integer.parseInt(l.toString());  note: toString doesn't work here. KW
                 isInt = true;
             } catch (NumberFormatException e) {
                 isInt = false;
@@ -293,8 +293,9 @@ public  class PSet_TripleStore_RDB implements IPSet {
 */
             String opname = "insertLiteral";
             			
-			String lit = l.toString();
 			LiteralLabel ll = l.getLiteral();
+			String lit = ll.getLexicalForm();
+
 
 			int len = lit.length();
 			if (len > MAX_LITERAL) 
