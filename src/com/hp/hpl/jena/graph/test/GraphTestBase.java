@@ -143,7 +143,7 @@ public class GraphTestBase extends JenaTestBase
             b.append( already );
             }
         else
-            b.append( n.toString( PrefixMapping.Extended ) );
+            b.append( n.toString( PrefixMapping.Extended, true ) );
         }
             
     public static void assertIsomorphic( Graph expected, Graph got )

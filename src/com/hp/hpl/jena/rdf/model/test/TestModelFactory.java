@@ -27,6 +27,8 @@ import junit.framework.*;
 
 public class TestModelFactory extends ModelTestBase
     {
+    protected static final Resource DAMLLangResource = resource( ProfileRegistry.DAML_LANG );
+    
     public TestModelFactory(String name)
         { super(name); }
         
@@ -90,12 +92,12 @@ public class TestModelFactory extends ModelTestBase
             .add( baseMaker, JMS.reificationMode, JMS.rsMinimal )
             .add( importsMaker, RDF.type, JMS.MemMakerSpec )
             .add( importsMaker, JMS.reificationMode, JMS.rsMinimal )
-            .add( root, JMS.ontLanguage, ProfileRegistry.DAML_LANG )
+            .add( root, JMS.ontLanguage, DAMLLangResource )
             .add( root, JMS.docManager, ModelSpecImpl.createValue( docManager ) )
             .add( root, JMS.reasonsWith, reasoner )
             .add( reasoner, JMS.reasoner, reasonerURI );
         ModelSpec spec = ModelFactory.createSpec( desc ); 
-        assertTrue( spec instanceof OntModelSpec );           
+        assertTrue( spec instanceof OntModelSpec );         
         assertIsoModels( desc, spec.getDescription() );
         assertTrue( spec.createModel() instanceof OntModel );
         }
@@ -104,7 +106,7 @@ public class TestModelFactory extends ModelTestBase
         {
         Resource root = ResourceFactory.createResource();
         Model desc = ModelFactory.createDefaultModel()
-            .add( root, JMS.ontLanguage, ProfileRegistry.DAML_LANG )
+            .add( root, JMS.ontLanguage, DAMLLangResource )
         	;
         OntModelSpec spec = (OntModelSpec) ModelFactory.createSpec( desc );
         OntModel m = ModelFactory.createOntologyModel( spec );

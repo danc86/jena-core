@@ -483,7 +483,7 @@ public class OntModelSpec extends ModelSpecImpl implements ModelSpec {
     */
     public static String getLanguage( Model description, Resource root ) {
         Statement langStatement = description.getRequiredProperty( root, JMS.ontLanguage );
-        return langStatement.getString();
+        return langStatement.getResource().getURI();
     }
     
     /**
@@ -555,7 +555,7 @@ public class OntModelSpec extends ModelSpecImpl implements ModelSpec {
         @param langURI the language URI 
     */
     protected void addLanguageDescription( Model d, Resource me, String langURI ) {
-        d.add( me, JMS.ontLanguage, d.createLiteral( langURI ) );
+        d.add( me, JMS.ontLanguage, d.createResource( langURI ) );
     }
     
     protected void addImportsDescription( Model d, Resource me, ModelMaker m ) {
