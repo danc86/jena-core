@@ -177,17 +177,14 @@ public abstract class Node {
     */
     public static Node createLiteral( String lit, String lang, boolean isXml )
         {
-        if (lit == null) 
-            {
-            // throw new SomeSuitableException( "null in createLiteral" );
-            System.err.println /* log.warn */ ( "null treated as empty string in createLiteral: this will become illegal." );
-            lit = "";
-            } 
+        if (lit == null) throw new NullPointerException( "null for literals has been illegal since Jena 2.0" );
+//            {
+//            // throw new SomeSuitableException( "null in createLiteral" );
+//            System.err.println /* log.warn */ ( "null treated as empty string in createLiteral: this will become illegal." );
+//            lit = "";
+//            } 
         return createLiteral( new LiteralLabel( lit, lang, isXml ) ); 
         }    
-        
-    public static void nullLiteralsGenerateWarnings()
-        {}  
         
     /**
      * Build a typed literal node from its lexical form. The

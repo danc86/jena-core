@@ -3859,33 +3859,30 @@ public class Regression extends Object {
 //            System.out.println("Beginning " + test);
 
                 /*
-                    the _null_ argument to LiteralImpl is preserved only for backward
-                    compatability. It should be logged and later on become an exception.
+                    the _null_ argument to LiteralImpl was preserved only for backward
+                    compatability. It was be logged and has now become an exception.
                     (Brian and Chris had a discussion about this and agreed).
-
-                    When the method below is deleted, the test code can be installed.
-                    Replace RuntimeException with whatever the appropriate exception
-                    type is. If we can't decide, perhaps we should delete the test entirely ...
                 */
-                Node.nullLiteralsGenerateWarnings();
-//                try
-//                    {
-//                   n=100; m.query(new SimpleSelector(null,
-//                                                   null,
-//                                                   new LiteralImpl( Node.createLiteral( null, "", false ), m)));
-//                    error( test, n );
-//                    }
-//                catch (RuntimeException e)
-//                        {}
-//                try
-//                    {
-//                   n=101; m.query(new SimpleSelector(null,
-//                                                   null,
-//                                                   new LiteralImpl( Node.createLiteral( null, "en", false ), m)));
-//                    error( test, n );
-//                    }
-//                catch (RuntimeException e)
-//                    {}
+                // Node.nullLiteralsGenerateWarnings();
+                try
+                    {
+                   n=100; m.query(new SimpleSelector(null,
+                                                   null,
+                                                   new LiteralImpl( Node.createLiteral( null, "", false ), (ModelCom) m)));
+                    error( test, n );
+                    }
+                catch (NullPointerException e)
+                        {}
+                try
+                    {
+                   n=101; m.query(new SimpleSelector(null,
+                                                   null,
+                                                   new LiteralImpl( Node.createLiteral( null, "en", false ), (ModelCom) m)));
+                    error( test, n );
+                    }
+                catch (NullPointerException e)
+                    {}
+                // end of nullLiteralsGenerateWarnings code
 
                n=102;
                StmtIterator iter
