@@ -18,10 +18,13 @@ import com.hp.hpl.jena.util.iterator.*;
     is augmented by additional classes to handle more complicated matters
     such as reification, query handling, bulk update, event management,
     and transaction handling.
+<p>
+    For <code>add(Triple)</code> see GraphAdd.
     
     @author Jeremy Carroll, Chris Dollin
 */
-public interface Graph  {
+public interface Graph  extends GraphAdd
+    {
 	
     /** 
         true if this graph's content depends on the other graph. May be
@@ -61,15 +64,7 @@ public interface Graph  {
         same PrefixMapping object, which is the one used by the Graph.
     */
     PrefixMapping getPrefixMapping();
-    
-    /** 
-        Add the triple t (if possible) to the set belonging to this graph 
-     
-        @param t the triple to add to the graph
-        @throws AddDeniedException if the triple cannot be added 
-    */
-	void add(Triple t) throws AddDeniedException;
-    
+
     /** 
         Remove the triple t (if possible) from the set belonging to this graph 
     

@@ -192,8 +192,11 @@ public abstract class GraphBase implements Graph {
 	 */
 	public int size() {
         checkOpen();
-		throw new UnsupportedOperationException("GraphBase::size");
-	}
+		ExtendedIterator it = GraphUtil.findAll( this );
+        int result = 0;
+        while (it.hasNext()) { it.next(); result += 1; }
+        return result;    
+        }
 
 	/**
 	 * @see com.hp.hpl.jena.graph.Graph#capabilities()
