@@ -330,11 +330,10 @@ public class Rule implements ClauseEntry {
         Node n = (env == null) ? nIn : env.getGroundVersion(nIn);
         if (n instanceof Node_RuleVariable) {
             Node_RuleVariable nv = (Node_RuleVariable)n;
-            Object rep = nv.getRepresentative();
-            Node c = (Node)vmap.get(rep);
+            Node c = (Node)vmap.get(nv);
             if (c == null) {
                 c = ((Node_RuleVariable)n).cloneNode();
-                vmap.put(rep, c);
+                vmap.put(nv, c);
             }
             return c;
         } else if (Functor.isFunctor(n)) {

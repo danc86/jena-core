@@ -75,7 +75,7 @@ public class TestFBRules extends TestCase {
     public static TestSuite suite() {
         return new TestSuite( TestFBRules.class ); 
 //        TestSuite suite = new TestSuite();
-//        suite.addTest(new TestFBRules( "testDuplicatesEC4" ));
+//        suite.addTest(new TestFBRules( "testHybrid2" ));
 //        return suite;
     }  
 

@@ -84,9 +84,9 @@ public class Node_RuleVariable extends Node_Variable {
      * perverse on Node_RuleVariable so if we want to put then in a Set or Map
      * we need something with a better equals function.
      */
-    public Object getRepresentative() {
-        return label;
-    }
+//    public Object getRepresentative() {
+//        return label;
+//    }
     
     /**
      * Binds a value to the brule version of the variable. Does not follow
@@ -142,16 +142,25 @@ public class Node_RuleVariable extends Node_Variable {
         return ((VarLabel)label).getLabel();
     }
     
-    /** Equality override - all rule variables are treated as equal
-     *  to support easy variant matching. */
-    public boolean equals(Object o) {
+// Obsolete equality override this functionality has been moved into TriplePattern
+    
+//    /** Equality override - all rule variables are treated as equal
+//     *  to support easy variant matching. */
+//    public boolean equals(Object o) {
+//        return o instanceof Node_RuleVariable;
+//    }
+//        
+//    /** hash function override - all vars have same hash code to support fast
+//     *  search of variant tables */
+//    public int hashCode() {
+//        return 0xc3a7;
+//    }
+
+    /**
+     * Test that two nodes are semantically equivalent.
+     */
+    public boolean sameValueAs(Object o) {
         return o instanceof Node_RuleVariable;
-    }
-        
-    /** hash function override - all vars have same hash code to support fast
-     *  search of variant tables */
-    public int hashCode() {
-        return 0xc3a7;
     }
 
     /**

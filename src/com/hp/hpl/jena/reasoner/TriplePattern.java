@@ -175,15 +175,13 @@ public class TriplePattern implements ClauseEntry {
     private boolean variantOf(Node n, Node p, Map vmap) {
         if (n instanceof Node_RuleVariable) {
             if (p instanceof Node_RuleVariable) {
-                Object nRep = ((Node_RuleVariable)n).getRepresentative();
-                Object pRep = ((Node_RuleVariable)p).getRepresentative();
-                Object nMatch = vmap.get(nRep);
+                Object nMatch = vmap.get(n);
                 if (nMatch == null) {
                     // First match of these pairs
-                    vmap.put(nRep, pRep);
+                    vmap.put(n, p);
                     return true;
                 } else {
-                    return nMatch == pRep;
+                    return nMatch == p;
                 }
             } else {
                 return false;
@@ -280,17 +278,37 @@ public class TriplePattern implements ClauseEntry {
         return node.isVariable() ? null : node;
     }
     
-    /** Equality override */
+    /** 
+     * Equality override - used so that TriplePattern variants (same to within variable renaming) test as equals
+     */
     public boolean equals(Object o) {
-        return o instanceof TriplePattern && 
-                subject.equals(((TriplePattern)o).subject) &&
-                predicate.equals(((TriplePattern)o).predicate) &&
-                object.equals(((TriplePattern)o).object);
+//        return o instanceof TriplePattern && 
+//                subject.equals(((TriplePattern)o).subject) &&
+//                predicate.equals(((TriplePattern)o).predicate) &&
+//                object.equals(((TriplePattern)o).object);
+        return o instanceof TriplePattern &&
+                nodeEqual(subject, ((TriplePattern)o).subject) &&
+                nodeEqual(predicate, ((TriplePattern)o).predicate) &&
+                nodeEqual(object, ((TriplePattern)o).object);
+    }
+    
+    /** Helper - equality override on nodes */
+    private boolean nodeEqual(Node n1, Node n2) {
+        if ((n1 instanceof Node_RuleVariable) && (n2 instanceof Node_RuleVariable)) {
+            return true;
+        } else {
+            return n1.equals(n2);
+        }
     }
         
     /** hash function override */
     public int hashCode() {
-        return (subject.hashCode() >> 1) ^ predicate.hashCode() ^ (object.hashCode() << 1);
+        int hash = 0;
+        if (!(subject instanceof Node_RuleVariable)) hash ^= (subject.hashCode() >> 1);
+        if (!(predicate instanceof Node_RuleVariable)) hash ^= predicate.hashCode();
+        if (!(object instanceof Node_RuleVariable)) hash ^= (object.hashCode() << 1);
+        return hash;
+//        return (subject.hashCode() >> 1) ^ predicate.hashCode() ^ (object.hashCode() << 1);
     }
     
     /**
