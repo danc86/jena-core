@@ -102,11 +102,11 @@ public interface Reasoner {
      * by URI and can also be set when the Reasoner instance is created by specifying a
      * configuration in RDF.
      * 
-     * @param parameterUri the uri identifying the parameter to be changed
+     * @param parameterUri the property identifying the parameter to be changed
      * @param value the new value for the parameter, typically this is a wrapped
      * java object like Boolean or Integer.
      */
-    public void setParameter(String parameterUri, Object value);
+    public void setParameter(Property parameterUri, Object value);
 
     /**
      * Return a description of the capabilities of this reasoner encoded in

@@ -40,7 +40,7 @@ public class ManualExample {
                           .createResource()
                           .addProperty(ReasonerVocabulary.PROPsetRDFSLevel, "simple");
         Reasoner reasoner = RDFSRuleReasonerFactory.theInstance().create(config);
-        reasoner.setParameter(ReasonerVocabulary.PROPsetRDFSLevel.getURI(), 
+        reasoner.setParameter(ReasonerVocabulary.PROPsetRDFSLevel, 
                               ReasonerVocabulary.RDFS_SIMPLE);
         InfModel inf = ModelFactory.createInfModel(reasoner, rdfsExample);
         Resource a = inf.getResource(NS+"a");

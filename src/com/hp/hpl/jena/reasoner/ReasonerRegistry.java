@@ -188,7 +188,7 @@ public class ReasonerRegistry {
      public static Reasoner getRDFSSimpleReasoner() {
          if (theRDFSSimpleReasoner == null) {
              theRDFSSimpleReasoner = RDFSRuleReasonerFactory.theInstance().create(null);
-             theRDFSSimpleReasoner.setParameter(ReasonerVocabulary.PROPsetRDFSLevel.getURI(), ReasonerVocabulary.RDFS_SIMPLE);
+             theRDFSSimpleReasoner.setParameter(ReasonerVocabulary.PROPsetRDFSLevel, ReasonerVocabulary.RDFS_SIMPLE);
          } 
          return theRDFSSimpleReasoner;
      }

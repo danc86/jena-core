@@ -84,7 +84,7 @@ public class RDFSRuleReasoner extends GenericRuleReasoner {
             StmtIterator i = configuration.listProperties();
             while (i.hasNext()) {
                 Statement st = i.nextStatement();
-                doSetParameter(st.getPredicate().getURI(), st.getObject().toString());
+                doSetParameter(st.getPredicate(), st.getObject().toString());
             }
         }
     }
@@ -94,16 +94,16 @@ public class RDFSRuleReasoner extends GenericRuleReasoner {
      * exception on parameters it does not reconize.
      * @return false if the parameter was not recognized
      */
-    protected boolean doSetParameter(String parameterUri, Object value) {
-        if (parameterUri.equals(ReasonerVocabulary.PROPenableCMPScan.getURI())) {
-            boolean scanProperties = Util.convertBooleanPredicateArg(parameterUri, value);
+    protected boolean doSetParameter(Property parameter, Object value) {
+        if (parameter.equals(ReasonerVocabulary.PROPenableCMPScan)) {
+            boolean scanProperties = Util.convertBooleanPredicateArg(parameter, value);
             if (scanProperties) {
                 addPreprocessingHook(cmpProcessor);
             } else {
                 removePreprocessingHook(cmpProcessor);
             }
             return true;
-        } else if (parameterUri.equals(ReasonerVocabulary.PROPsetRDFSLevel.getURI())) {
+        } else if (parameter.equals(ReasonerVocabulary.PROPsetRDFSLevel)) {
             String level = ((String)value).toLowerCase();
             setRules(loadRules(level));
             if (level.equals(FULL_RULES)) {
@@ -113,7 +113,7 @@ public class RDFSRuleReasoner extends GenericRuleReasoner {
             }
             return true;
         } else {
-            return super.doSetParameter(parameterUri, value);
+            return super.doSetParameter(parameter, value);
         }
     }
     

@@ -172,15 +172,15 @@ public class RDFSReasoner extends TransitiveReasoner implements Reasoner {
      * enable scanning of all properties looking for container membership properties, default on. </li>
      * </ul>
      * 
-     * @param parameterUri the uri identifying the paramter to be changed
+     * @param parameter the property identifying the parameter to be changed
      * @param value the new value for the parameter, typically this is a wrapped
      * java object like Boolean or Integer.
      */
-    public void setParameter(String parameterUri, Object value) {
-        if (parameterUri.equals(RDFSReasonerFactory.scanProperties.getURI())) {
-            scanProperties = Util.convertBooleanPredicateArg(parameterUri, value);
+    public void setParameter(Property parameter, Object value) {
+        if (parameter.equals(RDFSReasonerFactory.scanProperties)) {
+            scanProperties = Util.convertBooleanPredicateArg(parameter, value);
         } else {
-            throw new IllegalParameterException(parameterUri);
+            throw new IllegalParameterException(parameter.toString());
         }
     }
     

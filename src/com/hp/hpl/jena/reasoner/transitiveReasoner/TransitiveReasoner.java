@@ -188,17 +188,17 @@ public class TransitiveReasoner implements Reasoner {
     }
     
     /**
-     * Set a configuration paramter for the reasoner. In the case of the this
-     * reasoner there are no configuration parameters and this method is simply 
-     * here to meet the interfaces specification
-     * 
-     * @param parameterUri the uri identifying the parameter to be changed
-     * @param value the new value for the parameter, typically this is a wrapped
-     * java object like Boolean or Integer.
-     */
-    public void setParameter(String parameterUri, Object value) {
-        throw new IllegalParameterException(parameterUri);
-    }
+      * Set a configuration paramter for the reasoner. In the case of the this
+      * reasoner there are no configuration parameters and this method is simply 
+      * here to meet the interfaces specification
+      * 
+      * @param parameter the property identifying the parameter to be changed
+      * @param value the new value for the parameter, typically this is a wrapped
+      * java object like Boolean or Integer.
+      */
+     public void setParameter(Property parameter, Object value) {
+         throw new IllegalParameterException(parameter.toString());
+     }
     
     /**
      * Accessor used during infgraph construction - return the cached

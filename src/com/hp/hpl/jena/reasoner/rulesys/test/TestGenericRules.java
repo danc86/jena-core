@@ -193,6 +193,28 @@ public class TestGenericRules extends TestCase {
         assertTrue(d.getRule().getName().equals("r1b"));
         TestUtil.assertIteratorValues(this, d.getMatches().iterator(), new Object[] { new Triple(a, p, b) });
         assertTrue(! di.hasNext());
+        
+        // Check retrieval of configuration
+        Model m2 = ModelFactory.createDefaultModel();
+        Resource newConfig = m2.createResource();
+        reasoner.addDescription(m2, newConfig);
+        TestUtil.assertIteratorValues(this, newConfig.listProperties(), new Statement[] {
+            m2.createStatement(newConfig, ReasonerVocabulary.PROPderivationLogging, "true"),
+            m2.createStatement(newConfig, ReasonerVocabulary.PROPruleMode, "hybrid"),
+            m2.createStatement(newConfig, ReasonerVocabulary.PROPruleSet, "testing/reasoners/genericRuleTest.rules")
+            } );
+       
+        // Manual reconfig and check retrieval of changes
+        reasoner.setParameter(ReasonerVocabulary.PROPderivationLogging, "false");
+        newConfig = m2.createResource();
+        reasoner.addDescription(m2, newConfig);
+        TestUtil.assertIteratorValues(this, newConfig.listProperties(), new Statement[] {
+            m2.createStatement(newConfig, ReasonerVocabulary.PROPderivationLogging, "false"),
+            m2.createStatement(newConfig, ReasonerVocabulary.PROPruleMode, "hybrid"),
+            m2.createStatement(newConfig, ReasonerVocabulary.PROPruleSet, "testing/reasoners/genericRuleTest.rules")
+            } );
+        
+        
     }
 
     /**

@@ -191,12 +191,12 @@ public class LPBackwardRuleReasoner implements Reasoner {
      * reasoner there are no configuration parameters and this method is simply 
      * here to meet the interfaces specification
      * 
-     * @param parameterUri the uri identifying the parameter to be changed
+     * @param parameter the property identifying the parameter to be changed
      * @param value the new value for the parameter, typically this is a wrapped
      * java object like Boolean or Integer.
      */
-    public void setParameter(String parameterUri, Object value) {
-        throw new IllegalParameterException(parameterUri);
+    public void setParameter(Property parameter, Object value) {
+        throw new IllegalParameterException(parameter.toString());
     }
 
 }
