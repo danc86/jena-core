@@ -6,6 +6,8 @@
 
 package com.hp.hpl.jena.graph.test;
 
+import java.io.File;
+
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.graph.impl.*;
 import com.hp.hpl.jena.shared.*;
@@ -49,15 +51,18 @@ public class TestFileGraphMaker extends AbstractTestGraphMaker
 
     public void testDetectsExistingFiles()
         {
-        String scratch = FileUtils.getScratchDirectory( "jena-test-FileGraphMaker-already" ).getPath();
+        File scratch = FileUtils.getScratchDirectory( "jena-test-FileGraphMaker-already" );
         Graph content = graphWith( "something hasProperty someValue" );
-        FileGraphMaker A = new FileGraphMaker( scratch );
-        FileGraphMaker B = new FileGraphMaker( scratch );
-        Graph gA = A.createGraph( "already", true );
+        FileGraphMaker A = new FileGraphMaker( scratch.getPath() );
+        FileGraphMaker B = new FileGraphMaker( scratch.getPath() );
+        FileGraph gA = (FileGraph) A.createGraph( "already", true );
         gA.getBulkUpdateHandler().add( content );
         gA.close();
-        Graph gB = B.openGraph( "already", false );
+        FileGraph gB = (FileGraph) B.openGraph( "already", false );
         assertIsomorphic( content, gB );
+        gB.close();
+        gB.delete();
+        gA.delete();
         }
     }
 
