@@ -500,6 +500,24 @@ public interface OntProperty
      */
     public boolean isSymmetricProperty();
 
+    /**
+     * <p>Answer the property that is the inverse of this property.  If no such property is defined,
+     * return null.  If more than one inverse is defined, return an abritrary selection.</p>
+     * @return The property that is the inverse of this property, or null. 
+     */
+    public OntProperty getInverse();
+    
+    /**
+     * <p>Answer an iterator over the properties that are defined to be inverses of this property.</p>
+     * @return An iterator over the properties that declare themselves the <code>inverseOf</code> this property.
+     */
+    public ExtendedIterator listInverse();
+    
+    /**
+     * <p>Answer true if there is at least one inverse property for this property.</p>
+     * @return True if property has an inverse.
+     */
+    public boolean hasInverse();
 }
 
 

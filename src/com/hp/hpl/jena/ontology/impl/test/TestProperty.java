@@ -518,6 +518,22 @@ public class TestProperty
                     if (m_owlLang) {assertTrue( "isSymmetricProperty not correct", p.isSymmetricProperty() ); } 
                 }
             },
+            new OntTestCase( "OntProperty.inverse", true, true, true ) {
+                public void ontTest( OntModel m ) throws Exception {
+                    ObjectProperty p = m.createObjectProperty( NS + "p" );
+                    ObjectProperty q = m.createObjectProperty( NS + "q" );
+                    ObjectProperty r = m.createObjectProperty( NS + "r" );
+                    
+                    assertFalse( "No inverse of p", p.hasInverse() );
+                    
+                    q.addInverseOf( p );
+                    assertTrue( "Inverse of p", p.hasInverse() );
+                    assertEquals( "inverse of p ", q, p.getInverse() );
+                    
+                    r.addInverseOf( p );
+                    iteratorTest( p.listInverse(), new Object[] {q,r} );
+                }
+            },
         };
     }    
     
