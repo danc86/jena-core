@@ -19,7 +19,10 @@ public class TestVocabularies extends TestCase
 
     public static TestSuite suite()
         {
-        return TestVocabRDF.suite();
+        TestSuite result = new TestSuite();
+        result.addTest( TestVocabRDF.suite() );
+        result.addTest( TestVocabRDFS.suite() );
+        return result;
         }
     }
 

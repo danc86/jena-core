@@ -25,7 +25,7 @@ public class TestVocabRDF extends ModelTestBase
         Tests that the RDF vocabulary identifiers are what they're supposed to be. 
         TODO arrange that we detect if there are any other identifiers in the class.
     */
-    public void testA()
+    public void testRDFVocabulary()
         {
         String ns = "http://www.w3.org/1999/02/22-rdf-syntax-ns#";
         assertEquals( ns, RDF.getURI() );

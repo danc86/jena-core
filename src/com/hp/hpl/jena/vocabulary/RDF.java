@@ -40,21 +40,21 @@ public class RDF{
     	// System.err.println( "constructing RDF.li(" + i + ")" );
         return new PropertyImpl(uri, "_"+Integer.toString(i));}
 
-    public static       Resource Alt = new ResourceImpl(uri+"Alt");
-    public static       Resource Bag = new ResourceImpl(uri+"Bag");
-    public static       Resource Property = new ResourceImpl(uri+"Property");
-    public static       Resource Seq = new ResourceImpl(uri+"Seq");
-    public static       Resource Statement = new ResourceImpl(uri+"Statement");
-    public static       Resource List = new ResourceImpl(uri+"List");
-    public static       Resource nil = new ResourceImpl(uri+"nil");
+    public static final Resource Alt = new ResourceImpl(uri+"Alt");
+    public static final Resource Bag = new ResourceImpl(uri+"Bag");
+    public static final Resource Property = new ResourceImpl(uri+"Property");
+    public static final Resource Seq = new ResourceImpl(uri+"Seq");
+    public static final Resource Statement = new ResourceImpl(uri+"Statement");
+    public static final Resource List = new ResourceImpl(uri+"List");
+    public static final Resource nil = new ResourceImpl(uri+"nil");
 
-    public static       Property first = new PropertyImpl(uri, "first");
-    public static       Property rest = new PropertyImpl(uri, "rest");
-    public static       Property subject = new PropertyImpl(uri, "subject");
-    public static       Property predicate = new PropertyImpl(uri, "predicate");
-    public static       Property object = new PropertyImpl(uri, "object");
-    public static       Property type = new PropertyImpl(uri, "type");
-    public static       Property value = new PropertyImpl(uri, "value");
+    public static final Property first = new PropertyImpl(uri, "first");
+    public static final Property rest = new PropertyImpl(uri, "rest");
+    public static final Property subject = new PropertyImpl(uri, "subject");
+    public static final Property predicate = new PropertyImpl(uri, "predicate");
+    public static final Property object = new PropertyImpl(uri, "object");
+    public static final Property type = new PropertyImpl(uri, "type");
+    public static final Property value = new PropertyImpl(uri, "value");
 
 }
 
