@@ -15,7 +15,6 @@ package com.hp.hpl.jena.graph;
     PRELIMINARY - waiting for the fire.
 */
 
-import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.util.iterator.*;
 import com.hp.hpl.jena.vocabulary.*;
 import com.hp.hpl.jena.shared.*;
