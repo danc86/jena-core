@@ -81,7 +81,7 @@ public class RDFSReasoner extends TransitiveReasoner implements Reasoner {
      */
     private Boolean checkBinaryPredicate(Property predicate, Model configuration) {
         Resource base = configuration.getResource(RDFSReasonerFactory.URI);
-        StmtIterator i = base.listProperties(RDFSReasonerFactory.scanProperties);
+        StmtIterator i = base.listProperties(predicate);
         if (i.hasNext()) {
             return new Boolean(i.nextStatement().getObject().toString().equalsIgnoreCase("true"));
         } else {
