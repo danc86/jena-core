@@ -49,6 +49,22 @@ public class ExpressionSet
             if (((Expression) it.next()).evalBool( vv ) == false) return false;
         return true;
         }
+        
+    public boolean evalBool( IndexValues vv )
+        { 
+        Iterator it = expressions.iterator();
+        while (it.hasNext()) 
+            if (((Expression) it.next()).evalBool( vv ) == false) return false;
+        return true;
+        }
+                
+    public ExpressionSet prepare( VariableIndexes vi )
+        {
+        ExpressionSet result = new ExpressionSet();
+        Iterator it = expressions.iterator();
+        while (it.hasNext()) result.add( ((Expression) it.next()).prepare( vi ) );
+        return result;    
+        }
     }
 
 /*

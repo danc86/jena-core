@@ -24,7 +24,7 @@ public class QueryTest extends AbstractTestQuery
     	{ 
         TestSuite result = new TestSuite();
         result.addTest( new TestSuite( QueryTest.class ) );
-        // result.addTest( new QueryTest( "testQueryConstraintUnbound" ) );
+        // result.addTest( new QueryTest( "testGraphConstraints" ) );
         return result;
         } 
     	

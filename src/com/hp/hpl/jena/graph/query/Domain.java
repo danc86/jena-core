@@ -20,7 +20,7 @@ import java.util.*;
 */
 
 
-public class Domain extends AbstractList
+public class Domain extends AbstractList implements IndexValues
 	{
     /**
         The array holding the bound values. 
