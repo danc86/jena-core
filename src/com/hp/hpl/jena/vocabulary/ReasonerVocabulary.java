@@ -95,7 +95,13 @@ public class ReasonerVocabulary {
     
     /** A namespace used for Rubric specific properties */
     public static final String RBNamespace = "urn:x-hp-jena:rubrik/";
-            
+
+    /** Property used to switch on validation in owl ruleset */
+    public static final Property RB_VALIDATION = ResourceFactory.createProperty(RBNamespace, "validation");
+
+    /** Property used for validation reports in owl ruleset */
+    public static final Property RB_VALIDATION_REPORT = ResourceFactory.createProperty(RBNamespace, "violation");
+                
 //  --------------------------------------------------------------------
 // Method versions of key namespaces which are more initializer friendly
 
