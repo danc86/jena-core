@@ -276,8 +276,11 @@
 #    [some1b: (?T rdf:type ?D) <- (?X rdf:type ?C), bound(?T), makeInstance(?X, ?P, ?D, ?T) ] 
     ]
     
-[someRec: (?C owl:equivalentClass some(?P, ?D)), (?P rdfs:range ?D) ->
-     [someRecb: (?X rdf:type ?C) <- (?X ?P ?A) ] ]
+#[someRec: (?C owl:equivalentClass some(?P, ?D)), (?P rdfs:range ?D) ->
+#     [someRecb: (?X rdf:type ?C) <- (?X ?P ?A) ] ]
+    
+[someRec2: (?C owl:equivalentClass some(?P, ?D)) ->
+     [someRec2b: (?X rdf:type ?C) <- (?X ?P ?A) (?A rdf:type ?D) ] ]
     
 #------------------------------------------------------------------
 # allValuesFrom
