@@ -22,7 +22,7 @@ import org.apache.log4j.Logger;
  * @author <a href="mailto:der@hplb.hpl.hp.com">Dave Reynolds</a>
  * @version $Revision$ on $Date$
  */
-public class RETETerminal implements RETENode {
+public class RETETerminal implements RETESinkNode {
 
     /** Context containing the specific rule and parent graph */
     protected RETERuleContext context;
@@ -93,16 +93,14 @@ public class RETETerminal implements RETENode {
                     // that we can't record in RDF
                     if (isAdd) {
                         if ( ! context.contains(t) ) {
-                            // TODO: Check is this is the right add route
-                            infGraph.add(t);
+                            engine.addTriple(t, true);
                             if (infGraph.shouldLogDerivations()) {
                                 infGraph.logDerivation(t, new RuleDerivation(rule, t, matchList, infGraph));
                             }
                         }
                     } else {
                         // Remove the generated triple
-                        // TODO: Check is this is the right delete route
-                        infGraph.delete(t);
+                        engine.deleteTriple(t, true);
                     }
                 }
             } else if (hClause instanceof Functor) {

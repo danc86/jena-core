@@ -25,7 +25,7 @@ import java.util.*;
  * @author <a href="mailto:der@hplb.hpl.hp.com">Dave Reynolds</a>
  * @version $Revision$ on $Date$
  */
-public class RETEClauseFilter {
+public class RETEClauseFilter implements RETESourceNode {
     
     /** Contains the set of byte-coded instructions and argument pointers */
     protected byte[] instructions;
@@ -34,7 +34,7 @@ public class RETEClauseFilter {
     protected Object[] args;
     
     /** The network node to receive any created tokens */
-    protected RETENode continuation;
+    protected RETESinkNode continuation;
     
     /** Instruction code: Check triple entry (arg1) against literal value (arg2). */
     public static final byte TESTValue = 0x01;
@@ -82,8 +82,9 @@ public class RETEClauseFilter {
      * Clause complexity is limited to less than 50 args in a Functor.
      * @param clause the rule clause
      * @param envLength the size of binding environment that should be created on successful matches
+     * @param varList a list to which all clause variables will be appended
      */
-    public static RETEClauseFilter compile(TriplePattern clause, int envLength) { 
+    public static RETEClauseFilter compile(TriplePattern clause, int envLength, List varList) { 
         byte[] instructions = new byte[300];
         byte[] bindInstructions = new byte[100];
         ArrayList args = new ArrayList();
@@ -105,6 +106,7 @@ public class RETEClauseFilter {
             bindInstructions[bpc++] = BIND;
             bindInstructions[bpc++] = ADDRSubject;
             bindInstructions[bpc++] = (byte)((Node_RuleVariable)n).getIndex();
+            varList.add(n);
         }
         n = clause.getPredicate();
         if ( !n.isVariable() ) {
@@ -116,6 +118,7 @@ public class RETEClauseFilter {
             bindInstructions[bpc++] = BIND;
             bindInstructions[bpc++] = ADDRPredicate;
             bindInstructions[bpc++] = (byte)((Node_RuleVariable)n).getIndex();
+            varList.add(n);
         }
         n = clause.getObject();
         if ( !n.isVariable() ) {
@@ -138,6 +141,7 @@ public class RETEClauseFilter {
                         bindInstructions[bpc++] = BIND;
                         bindInstructions[bpc++] = addr;
                         bindInstructions[bpc++] = (byte)((Node_RuleVariable)fn).getIndex();
+                        varList.add(fn);
                     }
                 }
             } else {
@@ -150,6 +154,7 @@ public class RETEClauseFilter {
             bindInstructions[bpc++] = BIND;
             bindInstructions[bpc++] = ADDRObject;
             bindInstructions[bpc++] = (byte)((Node_RuleVariable)n).getIndex();
+            varList.add(n);
         }
         bindInstructions[bpc++] = END;
         
@@ -158,13 +163,14 @@ public class RETEClauseFilter {
         System.arraycopy(instructions, 0, packed, 0, pc);
         System.arraycopy(bindInstructions, 0, packed, pc, bpc);
         Object[] packedArgs = args.toArray();
+        
         return new RETEClauseFilter(packed, packedArgs);
     }
     
     /**
      * Set the continuation node for this node.
      */
-    public void setContinuation(RETENode continuation) {
+    public void setContinuation(RETESinkNode continuation) {
         this.continuation = continuation;
     }
 

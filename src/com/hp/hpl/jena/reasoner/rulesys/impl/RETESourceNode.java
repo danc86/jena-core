@@ -1,7 +1,7 @@
 /******************************************************************
- * File:        RETENode.java
+ * File:        RETESourceNode.java
  * Created by:  Dave Reynolds
- * Created on:  09-Jun-2003
+ * Created on:  10-Jun-2003
  * 
  * (c) Copyright 2003, Hewlett-Packard Company, all rights reserved.
  * [See end of file]
@@ -10,24 +10,19 @@
 package com.hp.hpl.jena.reasoner.rulesys.impl;
 
 /**
- * Interface for all inner nodes in the RETE network. Tokens are 
- * represented by binding environments. This representation only works
- * if we don't overlap the networks for different rules.
+ * Interface for all non-terminal nodes in the network.
  * 
  * @author <a href="mailto:der@hplb.hpl.hp.com">Dave Reynolds</a>
  * @version $Revision$ on $Date$
  */
-public interface RETENode {
-
-    /** 
-     * Propagate a token to this node.
-     * @param env a set of variable bindings for the rule being processed. 
-     * @param isAdd distinguishes between add and remove operations.
-     */
-    public void fire(BindingVector env, boolean isAdd);
+public interface RETESourceNode {
     
-}
+    /**
+     * Set the continuation node for this node.
+     */
+    public void setContinuation(RETESinkNode continuation);
 
+}
 
 
 /*

@@ -21,7 +21,7 @@ import java.util.*;
  * @author <a href="mailto:der@hplb.hpl.hp.com">Dave Reynolds</a>
  * @version $Revision$ on $Date$
  */
-public class RETEQueue implements RETENode {
+public class RETEQueue implements RETESinkNode, RETESourceNode {
     
     /** A multi-set of partially bound envionments */
     protected HashMap queue = new HashMap();
@@ -33,7 +33,7 @@ public class RETEQueue implements RETENode {
     protected RETEQueue sibling;
     
     /** The node that results should be passed on to */
-    protected RETENode continuation;
+    protected RETESinkNode continuation;
     
     /** 
      * Constructor. The queue is not usable until it has been bound
@@ -65,10 +65,11 @@ public class RETEQueue implements RETENode {
     }
     
     /**
-     * Set the continuation node for this node.
+     * Set the continuation node for this node (and any sibling)
      */
-    public void setContinuation(RETENode continuation) {
+    public void setContinuation(RETESinkNode continuation) {
         this.continuation = continuation;
+        if (sibling != null) sibling.continuation = continuation;
     }
 
     /** 

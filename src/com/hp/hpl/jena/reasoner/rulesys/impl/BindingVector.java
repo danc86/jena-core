@@ -345,7 +345,8 @@ public class BindingVector implements BindingEnvironment {
     public int hashCode() {
         int hash = 0;
         for (int i = 0; i < environment.length; i++) {
-            hash = (hash << 1) ^ environment[i].hashCode();
+            Node n = environment[i];
+            hash = (hash << 1) ^ (n == null ? 0x537c: n.hashCode());
         }
         return hash;
     }
