@@ -504,7 +504,10 @@ public interface OntResource
      *
      * @param direct If true, only answer those resources that are direct types
      * of this resource, not the super-classes of the class etc. 
-     * @return An iterator over the set of this resource's classes
+     * @return An iterator over the set of this resource's classes. Each member
+     * of the iteration will be an {@link Resource}.  Use 
+     * <code>.as(&nbsp;OntClass.class&nbsp;)</code> to map this resource to
+     * an OntClass.
      */
     public ExtendedIterator listRDFTypes( boolean direct );
 
