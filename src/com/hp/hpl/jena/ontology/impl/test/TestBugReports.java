@@ -32,6 +32,8 @@ import com.hp.hpl.jena.graph.impl.*;
 import com.hp.hpl.jena.mem.GraphMem;
 import com.hp.hpl.jena.ontology.*;
 import com.hp.hpl.jena.rdf.model.*;
+import com.hp.hpl.jena.reasoner.*;
+import com.hp.hpl.jena.reasoner.ReasonerRegistry;
 import com.hp.hpl.jena.vocabulary.OWL;
 
 import junit.framework.*;
@@ -272,6 +274,50 @@ public class TestBugReports
         assertTrue( found );
     }
     
+    
+    /** Problem reported by Andy Seaborne - combine abox and tbox in RDFS with ontmodel */
+    public void test_afs_01() {
+        String sourceT = 
+        "<rdf:RDF " +
+        "    xmlns:rdf='http://www.w3.org/1999/02/22-rdf-syntax-ns#'" +
+        "    xmlns:rdfs='http://www.w3.org/2000/01/rdf-schema#'" +
+        "   xmlns:owl=\"http://www.w3.org/2002/07/owl#\">" +
+       "    <owl:Class rdf:about='http://example.org/foo#A'>" +
+        "   </owl:Class>" +
+        "</rdf:RDF>" ;
+        
+        String sourceA = 
+        "<rdf:RDF " +
+        "    xmlns:rdf='http://www.w3.org/1999/02/22-rdf-syntax-ns#'" +
+        "    xmlns:rdfs='http://www.w3.org/2000/01/rdf-schema#' " +
+        "   xmlns:owl=\"http://www.w3.org/2002/07/owl#\">" +
+       "    <rdf:Description rdf:about='http://example.org/foo#x'>" +
+        "    <rdf:type rdf:resource='http://example.org/foo#A' />" +
+        "   </rdf:Description>" +
+        "</rdf:RDF>" ;
+        
+        Model tBox = ModelFactory.createDefaultModel();
+        tBox.read( new ByteArrayInputStream( sourceT.getBytes() ), "http://example.org/foo" );
+        
+        Model aBox = ModelFactory.createDefaultModel();
+        aBox.read( new ByteArrayInputStream( sourceA.getBytes() ), "http://example.org/foo" );
+        
+        Reasoner reasoner = ReasonerRegistry.getOWLReasoner();
+        reasoner = reasoner.bindSchema( tBox );
+        
+        OntModelSpec spec = new OntModelSpec( OntModelSpec.OWL_MEM_RULE_INF );
+        spec.setReasoner( reasoner );
+        
+        OntModel m = ModelFactory.createOntologyModel( spec, aBox );
+        
+        List inds = new ArrayList();
+        for (Iterator i = m.listIndividuals(); i.hasNext(); ) {
+            inds.add( i.next() );
+        }
+        
+        assertTrue( "x should be an individual", inds.contains( m.getResource( "http://example.org/foo#x" ) ) );
+        
+    }
     
     // Internal implementation methods
     //////////////////////////////////
