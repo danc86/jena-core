@@ -15,6 +15,8 @@ import com.hp.hpl.jena.ontology.OntDocumentManager;
 import com.hp.hpl.jena.rdf.arp.*;
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.vocabulary.RDF;
+import com.ibm.icu.text.Normalizer;
+
 import org.xml.sax.*;
 
 import java.io.*;
@@ -34,6 +36,8 @@ public class MoreTests extends TestCase implements RDFErrorHandler,
 		suite.addTest(TestErrorMsg.suite());
 		suite.addTest(TestScope.suite());
 		suite.addTest(ExceptionTests.suite());
+	
+		//suite.addTest(new MoreTests("testIcu"));
 		suite.addTest(new MoreTests("testEncodingMismatch1"));
 		suite.addTest(new MoreTests("testEncodingMismatch2"));
 		suite.addTest(new MoreTests("testNullBaseParamOK"));
@@ -99,6 +103,19 @@ public class MoreTests extends TestCase implements RDFErrorHandler,
 
 	}
 
+	public void testIcu() throws IOException {
+//	  "\u0b87\u0ba8\u0bcd\u0ba4\u0bbf\u0baf\u0bbe"
+	    Normalizer.  isNormalized(
+	            "\u0bcd\u0ba4\u0bbf\u0baf\u0bbe"
+	            ,Normalizer.NFC,0);
+	    
+		Model m = createMemModel();
+		RDFReader rdr = m.getReader();
+		FileInputStream r = new FileInputStream(
+				"testing/arp/i18n/icubug.rdf");
+		rdr.read(m, r, "http://example.org/");
+	
+	}
 	static class ToStringStatementHandler implements StatementHandler {
 		String obj;
 
