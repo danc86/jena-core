@@ -45,7 +45,7 @@ public class PSet_ReifStore_RDB extends PSet_TripleStore_RDB {
 	//=======================================================================
 	// Cutomization variables
 
-	public static String SYS_AS_TNAME = "JENA_StmtReified";
+	public static String SYS_AS_TNAME = "jena_StmtReified";
 
 	//=======================================================================
 	// Internal variables
