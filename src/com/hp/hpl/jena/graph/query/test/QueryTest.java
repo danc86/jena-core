@@ -21,7 +21,12 @@ public class QueryTest extends AbstractTestQuery
 		{ super( name ); }
 		
     public static TestSuite suite()
-    	{ return new TestSuite( QueryTest.class ); }
+    	{ 
+        TestSuite result = new TestSuite();
+        result.addTest( new QueryTest( "testNodeVariablesA" ) );
+        result.addTest( new TestSuite( QueryTest.class ) );
+        return result;
+        } 
     	
     public Graph getGraph()
         { return new GraphMem(); }

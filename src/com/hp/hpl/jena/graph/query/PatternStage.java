@@ -51,7 +51,7 @@ public class PatternStage extends Stage
     protected void nest( Pipe sink, Domain current, int index )
         {
         if (index == compiled.length)
-            sink.put( current.extend() );
+            sink.put( current.copy() );
         else
             {
             Pattern p = compiled[index];

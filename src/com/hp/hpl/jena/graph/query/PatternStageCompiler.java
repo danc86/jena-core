@@ -53,7 +53,7 @@ public final class PatternStageCompiler implements PatternCompiler
         if (X.equals( Query.ANY )) return compiler.any();
         if (X.isVariable()) 
             {
-            if (map.maps( X ))
+            if (map.hasBound( X ))
                 return compiler.bound( X, map.indexOf( X ) );
             else
                 return compiler.bind( X, map.newIndex( X ) );

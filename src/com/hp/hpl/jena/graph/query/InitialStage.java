@@ -37,7 +37,7 @@ public class InitialStage extends Stage
     */
     public Pipe deliver( Pipe result )
         {
-        result.put( new Domain( new Node[count]  ) );
+        result.put( new Domain( count ) );
         result.close();
         return result;
         }

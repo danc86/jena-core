@@ -32,9 +32,10 @@ public class Pattern
         conversions of the constituent elements.
     */	
     public TripleMatch asTripleMatch( Domain d )
-        { return Triple.createMatch( S.asNodeMatch( d ), P.asNodeMatch( d ), O.asNodeMatch( d ) ); }
-          
-    public Element [] getParts() { return new Element[] {S, P, O}; }
+        { 
+        return Triple.createMatch
+            ( S.asNodeMatch( d ), P.asNodeMatch( d ), O.asNodeMatch( d ) ); 
+        }
     
     /**
         Answer true iff this pattern, given the values for variables as found in a given 
