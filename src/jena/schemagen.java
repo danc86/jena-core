@@ -268,7 +268,7 @@ public class schemagen {
     /** List of allowed namespace URI strings for admissible values */
     protected List m_includeURI = new ArrayList();
 
-
+    
     // Constructors
     //////////////////////////////////
 
@@ -951,7 +951,16 @@ public class schemagen {
     protected void writeRDFClasses() {
         String template = hasValue( OPT_CLASS_TEMPLATE ) ?  getValue( OPT_CLASS_TEMPLATE ) : DEFAULT_TEMPLATE;
 
-        for (StmtIterator i = m_source.listStatements( null, RDF.type, RDFS.Class ); i.hasNext(); ) {
+        // make sure we're looking for the appropriate type of class
+        Resource cls = OWL.Class;
+        if (isTrue( OPT_LANG_DAML )) {
+            cls = DAML_OIL.Class;
+        }
+        else if (isTrue( OPT_LANG_RDFS )) {
+            cls = RDFS.Class;
+        }
+        
+        for (StmtIterator i = m_source.listStatements( null, RDF.type, cls ); i.hasNext(); ) {
             writeValue( i.nextStatement().getSubject(), template, "Resource", "createResource", "_CLASS" );
         }
     }
