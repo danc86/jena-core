@@ -161,7 +161,7 @@ public class DBQueryHandler extends SimpleQueryHandler {
 							VarDesc vx = (VarDesc) varList.get(i);
 							// see if any constraints on a result var.
 							// if so, push down constraint.
-/*/ UNCOMMENT THE LINES BELOW TO ENABLE CONSTRAINT EVALUATION WITHIN THE DB.
+/*/ UNCOMMENT THE LINES BELOW TO ENABLE CONSTRAINT EVALUATION WITHIN THE DB. */
 							if ( (vx.isArgVar == false) &&
 								findConstraints(constraints,evalCons,vx) )
 								doQuery = true;
