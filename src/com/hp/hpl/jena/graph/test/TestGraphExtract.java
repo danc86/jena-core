@@ -74,6 +74,15 @@ public class TestGraphExtract extends GraphTestBase
         {
         testExtract( "a R b; b S _c", "a", "a R b; b S _c; _c T d", TripleBoundary.stopAtAnonObject );
         }
+    
+    public void testPartialUpdate()
+        {
+        Graph source = graphWith( "a R b; b S e" );
+        Graph dest = graphWith( "b R d" );
+        GraphExtract e = new GraphExtract( TripleBoundary.stopNowhere );
+        e.extractInto( dest, node( "a" ), source );
+        assertIsomorphic( graphWith( "a R b; b S e; b R d" ), dest );
+        }
 
     public void testExtract( String wanted, String node, String source )
         {
