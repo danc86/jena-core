@@ -118,6 +118,9 @@ public class TestOWLRules extends TestCase {
         
         // Needs prototype creation rule
         suite.addTest(new TestOWLRules("someValuesFrom/Manifest001.rdf")); // bx needs creation rule
+    
+        // New local tests
+        suite.addTest(new TestOWLRules("localtests/Manifest003.rdf"));
         
         // Duplications of tests included earlier
 //        suite.addTest(new TestOWLRules("differentFrom/Manifest002.rdf"));  // Duplication of AllDifferent#1
