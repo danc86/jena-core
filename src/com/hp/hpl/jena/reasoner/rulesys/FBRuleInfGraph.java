@@ -365,11 +365,14 @@ public class FBRuleInfGraph  extends BasicForwardRuleInfGraph implements Backwar
             }
             
             // Call any optional preprocessing hook
+            Finder dataSource = fdata;
             if (preprocessorHooks != null && preprocessorHooks.size() > 0) {
+                Graph inserts = new GraphMem();
                 for (Iterator i = preprocessorHooks.iterator(); i.hasNext(); ) {
                     RulePreprocessHook hook = (RulePreprocessHook)i.next();
-                    hook.run(this, dataFind);
+                    hook.run(this, dataFind, inserts);
                 }
+                dataSource = FinderUtil.cascade(fdata, new FGraph(inserts));
             }
             
             boolean rulesLoaded = false;
@@ -381,11 +384,11 @@ public class FBRuleInfGraph  extends BasicForwardRuleInfGraph implements Backwar
                 rulesLoaded = preloadDeductions(schemaGraph);
             }
             if (rulesLoaded) {
-                engine.fastInit(); 
+                engine.fastInit(dataSource); 
             } else {
                 // No preload so do the rule separation
                 addBRules(extractPureBackwardRules(rules));
-                engine.init(true);
+                engine.init(true, dataSource);
             }
             // Prepare the context for builtins run in backwards engine
             context = new BBRuleContext(this, dataFind);

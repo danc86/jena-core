@@ -12,8 +12,10 @@ package com.hp.hpl.jena.reasoner.rulesys;
 import java.io.*;
 import java.util.*;
 
-import com.hp.hpl.jena.reasoner.ReasonerException;
-import com.hp.hpl.jena.reasoner.ReasonerFactory;
+import com.hp.hpl.jena.rdf.model.*;
+import com.hp.hpl.jena.reasoner.*;
+import com.hp.hpl.jena.reasoner.rulesys.impl.RDFSCMPPreprocessHook;
+import com.hp.hpl.jena.vocabulary.ReasonerVocabulary;
 
 /**
  * An pure forward chaining implementation of the RDFS closure rules
@@ -34,6 +36,9 @@ public class RDFSExptRuleReasoner extends GenericRuleReasoner {
     /** The parsed rules */
     protected static List ruleSet;
     
+    /** The (stateless) preprocessor for container membership properties */
+    protected static RulePreprocessHook cmpProcessor = new RDFSCMPPreprocessHook();
+    
     /**
      * Constructor
      */
@@ -41,6 +46,43 @@ public class RDFSExptRuleReasoner extends GenericRuleReasoner {
         super(loadRules(), parent);
         setMode(HYBRID);
         setTransitiveClosureCaching(true);
+        //addPreprocessingHook(new RDFSCMPPreprocessHook());
+    }
+    
+    /**
+     * Constructor
+     * @param factory the parent reasoner factory which is consulted to answer capability questions
+     * @param configuration RDF model to configure the rule set and mode, can be null
+     */
+    public RDFSExptRuleReasoner(ReasonerFactory factory, Model configuration) {
+        this(factory);
+        if (configuration != null) {
+            Resource base = configuration.getResource(GenericRuleReasonerFactory.URI);
+            StmtIterator i = base.listProperties();
+            while (i.hasNext()) {
+                Statement st = i.nextStatement();
+                doSetParameter(st.getPredicate().getURI(), st.getObject().toString());
+            }
+        }
+    }
+   
+    /**
+     * Internal version of setParameter that does not directly raise an
+     * exception on parameters it does not reconize.
+     * @return false if the parameter was not recognized
+     */
+    protected boolean doSetParameter(String parameterUri, Object value) {
+        if (parameterUri.equals(ReasonerVocabulary.PROPenableCMPScan.getURI())) {
+            boolean scanProperties = Util.convertBooleanPredicateArg(parameterUri, value);
+            if (scanProperties) {
+                addPreprocessingHook(cmpProcessor);
+            } else {
+                removePreprocessingHook(cmpProcessor);
+            }
+            return true;
+        } else {
+            return super.doSetParameter(parameterUri, value);
+        }
     }
     
     /**

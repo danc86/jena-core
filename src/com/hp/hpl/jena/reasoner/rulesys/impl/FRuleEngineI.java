@@ -10,6 +10,7 @@
 package com.hp.hpl.jena.reasoner.rulesys.impl;
 
 import com.hp.hpl.jena.graph.Triple;
+import com.hp.hpl.jena.reasoner.Finder;
 //import java.util.List;
 
 /**
@@ -28,14 +29,18 @@ public interface FRuleEngineI {
      * has be prepared and loaded with any precomputed deductions. It will process
      * the rule axioms and all relevant existing exiting data entries.
      * @param ignoreBrules set to true if rules written in backward notation should be ignored
+     * @param inserts the set of triples to be processed, normally this is the
+     * raw data graph but may include additional deductions made by preprocessing hooks
      */
-    public void init(boolean ignoreBrules);
+    public void init(boolean ignoreBrules, Finder inserts);
     
     /**
      * Process all available data. This version expects that all the axioms 
      * have already be preprocessed and the rules have been compiled
+     * @param inserts the set of triples to be processed, normally this is the
+     * raw data graph but may include additional deductions made by preprocessing hooks
      */
-    public void fastInit();
+    public void fastInit(Finder inserts);
     
     /**
      * Add one triple to the data graph, run any rules triggered by

@@ -229,7 +229,7 @@ public class TestRETE  extends TestCase {
 //        infgraph.setTraceOn(true);
         RETEEngine engine = new RETEEngine(infgraph, ruleList);
         infgraph.prepare();
-        engine.init(true);
+        engine.init(true, new FGraph(new GraphMem()));
         for (int i = 0; i < adds.length; i++) {
             engine.addTriple(adds[i], true);
         }

@@ -1,45 +1,76 @@
 /******************************************************************
- * File:        RuleProprocessHook.java
+ * File:        FGraph.java
  * Created by:  Dave Reynolds
- * Created on:  18-Jun-2003
+ * Created on:  22-Jan-03
  * 
  * (c) Copyright 2003, Hewlett-Packard Company, all rights reserved.
  * [See end of file]
  * $Id$
  *****************************************************************/
-package com.hp.hpl.jena.reasoner.rulesys;
+package com.hp.hpl.jena.reasoner;
 
 import com.hp.hpl.jena.graph.Graph;
-import com.hp.hpl.jena.reasoner.Finder;
+import com.hp.hpl.jena.util.iterator.*;
 
 /**
- * Implementors of this interface can be used as proprocessing passes
- * during intialization of (hybrid) rule systems. They are typically
- * used to generate additional data-dependent rules or additional
- * deductions (normally from comprehension axioms) which are cheaper
- * this way than using the generic rule engines.
+ * Wrapper round a Graph to implement the slighly modified Finder
+ * interface.
  * 
  * @author <a href="mailto:der@hplb.hpl.hp.com">Dave Reynolds</a>
  * @version $Revision$ on $Date$
  */
-public interface RulePreprocessHook {
+public class FGraph implements Finder {
+
+    /** The graph being searched */
+    protected Graph graph;
+    
+    /**
+     * Constructor
+     */
+    public FGraph(Graph graph) {
+        this.graph = graph;
+    }
+    
+    /**
+     * Basic pattern lookup interface.
+     * @param pattern a TriplePattern to be matched against the data
+     * @return a ClosableIterator over all Triples in the data set
+     *  that match the pattern
+     */
+    public ExtendedIterator find(TriplePattern pattern) {
+        if (graph == null) return WrappedIterator.create(new NullIterator());
+        return graph.find(pattern.asTripleMatch());
+    }
+    
+    /**
+     * Extended find interface used in situations where the implementator
+     * may or may not be able to answer the complete query. It will
+     * attempt to answer the pattern but if its answers are not known
+     * to be complete then it will also pass the request on to the nested
+     * Finder to append more results.
+     * @param pattern a TriplePattern to be matched against the data
+     * @param continuation either a Finder or a normal Graph which
+     * will be asked for additional match results if the implementor
+     * may not have completely satisfied the query.
+     */
+    public ExtendedIterator findWithContinuation(TriplePattern pattern, Finder continuation) {
+        if (graph == null) return WrappedIterator.create(new NullIterator());
+        if (continuation == null) {
+            return graph.find(pattern.asTripleMatch());
+        } else {
+            return graph.find(pattern.asTripleMatch()).andThen(continuation.find(pattern));
+        }
+    }
 
     /**
-     * Invoke the preprocessing hook. This will be called during the
-     * preparation time of the hybrid reasoner.
-     * @param infGraph the inference graph which is being prepared,
-     * the hook code can use this to add pure deductions or add additional
-     * rules (using addRuleDuringPrepare).
-     * @param dataFind the finder which packages up the raw data (both
-     * schema and data bind) and any cached transitive closures.
-     * @param inserts a temporary graph into which the hook should insert
-     * all new deductions that should be seen by the rules.
+     * Returns the graph.
+     * @return Graph
      */
-    public void run(FBRuleInfGraph infGraph, Finder dataFind, Graph inserts);
-    
+    public Graph getGraph() {
+        return graph;
+    }
+
 }
-
-
 
 /*
     (c) Copyright Hewlett-Packard Company 2003
@@ -70,3 +101,4 @@ public interface RulePreprocessHook {
     (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
     THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
+

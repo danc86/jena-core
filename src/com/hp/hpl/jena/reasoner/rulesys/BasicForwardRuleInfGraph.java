@@ -170,9 +170,9 @@ public class BasicForwardRuleInfGraph extends BaseInfGraph implements ForwardRul
             rulesLoaded = preloadDeductions(schemaGraph);
         }
         if (rulesLoaded) {
-            engine.fastInit(); 
+            engine.fastInit(fdata); 
         } else {
-            engine.init(true);
+            engine.init(true, fdata);
         }
     }
 
