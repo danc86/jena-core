@@ -26,12 +26,12 @@ public class ModelTestBase extends GraphTestBase
     public ModelTestBase(String name)
         { super(name); }
      
-    private static Model aModel = standardModel();
+    private static Model aModel = extendedModel();
     
-    private static Model standardModel()
+    private static Model extendedModel()
         {
         Model result = ModelFactory.createDefaultModel();
-        result.setNsPrefixes( PrefixMapping.Standard );
+        result.setNsPrefixes( PrefixMapping.Extended );
         return result;
         }
     
@@ -140,8 +140,18 @@ public class ModelTestBase extends GraphTestBase
         @return a model containing those facts
     */        
     public static Model modelWithStatements( ReificationStyle style, String facts )
-        { return modelAdd( ModelFactory.createDefaultModel( style ), facts ); }
+        { return modelAdd( createModel( style ), facts ); }
         
+    /**
+        make a model with a given reification style, give it Extended prefixes
+    */
+    public static Model createModel( ReificationStyle style )
+        {
+    	Model result = ModelFactory.createDefaultModel( style );
+        result.setNsPrefixes( PrefixMapping.Extended );
+        return result;
+        }
+    
     /**
         Answer a default model; it exists merely to abbreviate the rather long explicit
         invocation.

@@ -1,5 +1,5 @@
 /*
-  (c) Copyright 2002, Hewlett-Packard Development Company, LP
+  (c) Copyright 2004, Hewlett-Packard Development Company, LP
   [See end of file]
   $Id$
 */
@@ -165,17 +165,25 @@ public interface PrefixMapping
         .setNsPrefix( "rdfs", RDFS.getURI() )
         .setNsPrefix( "rdf", RDF.getURI() )
         .setNsPrefix( "dc", DC.getURI() )
-        .setNsPrefix( "rss", RSS.getURI() )
         .setNsPrefix( "daml", DAMLVocabulary.NAMESPACE_DAML_2001_03_URI )
-        .setNsPrefix( "vcard", VCARD.getURI() )
         .setNsPrefix( "owl", OWL.getURI() )
+        .lock()
+        ;   
+    
+    /**
+         A PrefixMapping built on Standard with some extras
+    */    
+    public static final PrefixMapping Extended = PrefixMapping.Factory.create()
+        .setNsPrefixes( Standard )
+        .setNsPrefix( "rss", RSS.getURI() )
+        .setNsPrefix( "vcard", VCARD.getURI() )
         .setNsPrefix( "jms", JMS.getURI() )
         .lock()
         ;   
     }
 
 /*
-    (c) Copyright 2003 Hewlett-Packard Development Company, LP
+    (c) Copyright 2004 Hewlett-Packard Development Company, LP
     All rights reserved.
 
     Redistribution and use in source and binary forms, with or without

@@ -14,6 +14,7 @@ import java.io.IOException;
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.util.FileUtils;
 import com.hp.hpl.jena.vocabulary.*;
+import com.hp.hpl.jena.graph.Triple;
 import com.hp.hpl.jena.graph.impl.*;
 import com.hp.hpl.jena.rdf.model.impl.*;
 import com.hp.hpl.jena.reasoner.*;
@@ -38,6 +39,9 @@ public class TestModelSpec extends ModelTestBase
 
     public static TestSuite suite()
         { return new TestSuite( TestModelSpec.class ); }
+//        TestSuite s = new TestSuite();
+//        s.addTest( new TestModelSpec( "testDefaultMaker" ) );
+//        return s; }
         
     protected static Resource resource()
         { return ResourceFactory.createResource(); }
@@ -70,7 +74,7 @@ public class TestModelSpec extends ModelTestBase
     
     public void testDefaultMaker()
         {
-        Model spec = modelWithStatements( "_x jms:maker _y;  _y jms:reificationMode jms:rsMinimal" );
+        Model spec = modelWithStatements( "_x jms:maker _y; _y jms:reificationMode jms:rsMinimal" );
         ModelSpec ms = ModelFactory.createSpec( spec );
         Model m = ModelFactory.createModel( ms ) ;
         assertTrue( m.getGraph() instanceof GraphMem );
