@@ -16,7 +16,8 @@ import com.hp.hpl.jena.enhanced.*;
  *
  * @author  bwm
  * @version  Release='$Name$' Revision='$Revision$' Date='$Date$' 
- */
+*/
+
 public class SeqImpl extends ContainerImpl implements Seq {
 
     final static public Implementation factory = new Implementation() {
@@ -27,11 +28,7 @@ public class SeqImpl extends ContainerImpl implements Seq {
         }
     };
     
-    static NodeIteratorFactory iteratorFactory;
-    
-    static {
-        iteratorFactory = new SeqNodeIteratorFactoryImpl();
-    }
+    static NodeIteratorFactory seqIteratorFactory = new SeqNodeIteratorFactoryImpl();
 
     /** Creates new SeqMem */
     public SeqImpl(Model model)  {
@@ -230,7 +227,7 @@ public class SeqImpl extends ContainerImpl implements Seq {
     }   
         
      public NodeIterator iterator()  
-        { return listContainerMembers( iteratorFactory ); }
+        { return listContainerMembers( seqIteratorFactory ); }
     
     public Container remove(Statement s) {
         getModel().remove(s);

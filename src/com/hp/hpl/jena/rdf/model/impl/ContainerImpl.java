@@ -12,16 +12,16 @@ import com.hp.hpl.jena.vocabulary.RDF;
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.enhanced.*;
 import com.hp.hpl.jena.shared.*;
-import com.hp.hpl.jena.util.iterator.*;
 
 import java.util.*;
 
 /** An internal class not normally of interest to application developers.
  *  A base class on which the other containers are built.
  *
- * @author  bwm
- * @version  Release='$Name$' Revision='$Revision$' Date='$Date$'
- */
+ * @author  bwm, kers
+ * @version  $Id$
+*/
+
 public class ContainerImpl extends ResourceImpl
                            implements Container, ContainerI {
     
@@ -146,19 +146,10 @@ public class ContainerImpl extends ResourceImpl
     public int size()  
         {
         int result = 0;
-        Iterator iter = listBySubject( getModel(), this );
-        Property     predicate;
-        Statement    stmt;
-        while (iter.hasNext()) {
-            stmt = (Statement) iter.next();
-            predicate = stmt.getPredicate();
-            if (stmt.getSubject().equals( this )
-             && predicate.getOrdinal() != 0
-               ) {
-                result++;
-            }
-        }
-        WrappedIterator.close( iter );
+        StmtIterator iter = listProperties();
+        while (iter.hasNext()) 
+            if (iter.nextStatement().getPredicate().getOrdinal() != 0) result += 1;
+        iter.close();
         return result;
         }
         
@@ -181,27 +172,21 @@ public class ContainerImpl extends ResourceImpl
         remove(getModel().createStatement(this, RDF.li(index), object));
         return this;
     }
-    
-    public static StmtIterator listBySubject( Model m, Container cont ) 
-        { return m.listStatements( cont, null, (RDFNode) null ); }
         
    /**
-        Answer an iterator over the members of a container.
-        @param model the model the container statements are in
-        @param cont the container object whose elements are desired
+        Answer an iterator over the members of this container.
         @param f the factory for constructing the final iterator
         @return the member iterator
    */
-   public NodeIterator listContainerMembers
-        ( NodeIteratorFactory f )
+   public NodeIterator listContainerMembers( NodeIteratorFactory f )
         {
-        Iterator iter = listBySubject( getModel(), this );
+        StmtIterator iter = listProperties(); 
         Vector result = new Vector();
         int maxOrdinal = 0;
         while (iter.hasNext()) {
-            Statement stmt = (Statement) iter.next();
+            Statement stmt = iter.nextStatement();
             int ordinal = stmt.getPredicate().getOrdinal();
-            if (stmt.getSubject().equals( this ) && ordinal != 0) {
+            if (ordinal != 0) {
                 if (ordinal > maxOrdinal) {
                     maxOrdinal = ordinal;
                     result.setSize(ordinal);
@@ -209,32 +194,27 @@ public class ContainerImpl extends ResourceImpl
                 result.setElementAt(stmt, ordinal-1);
             }
         }
-        WrappedIterator.close( iter );
-        return f.createIterator(result.iterator(), result, this );
+        iter.close();
+        return f.createIterator( result.iterator(), result, this );
     }  
     
-    public int containerIndexOf( RDFNode n)  {
+    public int containerIndexOf( RDFNode n )  {
         int result = 0;
-        Iterator iter = listBySubject( getModel(), this );
-        Property     predicate;
-        Statement    stmt;
+        StmtIterator iter = listProperties();
         while (iter.hasNext()) {
-            stmt = (Statement) iter.next();
-            predicate = stmt.getPredicate();
-            if (stmt.getSubject().equals( this )
-             && predicate.getOrdinal() != 0
-             && n.equals(stmt.getObject())
-              ) {
-                result = predicate.getOrdinal();
+            Statement stmt = iter.nextStatement();
+            int ordinal = stmt.getPredicate().getOrdinal();
+            if (ordinal != 0 && n.equals( stmt.getObject() )) {
+                result = ordinal;
                 break;
             }
         }
-        WrappedIterator.close( iter );
+        iter.close();
         return result;
     }
     
    public boolean containerContains( RDFNode n)
-     { return containerIndexOf( n ) != 0; }
+        { return containerIndexOf( n ) != 0; }
             
 }
 
