@@ -13,7 +13,7 @@ import com.hp.hpl.jena.vocabulary.*;
 
 /**
     A ModelSpec for InfModels. The description of an InfModel is the description of a 
-    ModelMaker [for the base graph] plus the JMS.reasoner property to give the
+    ModelMaker [for the base graph] plus the JMS.reasonsWith property to give the
     Resource who's URI identifies the reasoner to use [as per the ReasonerRegistry].
     
  	@author kers
@@ -69,7 +69,9 @@ public class InfModelSpec extends ModelSpecImpl
     public Model addDescription( Model desc, Resource self )
         {
         super.addDescription( desc, self );
-        desc.add( self, JMS.reasoner, reasonerResource );
+        Resource r = desc.createResource();
+        desc.add( self, JMS.reasonsWith, r );
+        desc.add( r, JMS.reasoner, reasonerResource );
         return desc;    
         }
     }
