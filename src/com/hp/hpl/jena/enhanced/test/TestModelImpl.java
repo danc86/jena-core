@@ -17,7 +17,7 @@ public class TestModelImpl extends EnhGraph implements TestModel {
     
     /** Creates a new instance of TestModelImpl */
     public TestModelImpl(Graph g, Personality p) {
-        super(g,p,null);
+        super(g,p);
     }
     private Triple aTriple() {
         ClosableIterator it = null;
