@@ -13,6 +13,8 @@ import com.hp.hpl.jena.util.iterator.*;
 import com.hp.hpl.jena.shared.*;
 import com.hp.hpl.jena.shared.impl.PrefixMappingImpl;
 
+import java.util.*;
+
 /**
     GraphBase is an implementation of Graph that provides some convenient
     base functionality for Graph implementations.
@@ -57,13 +59,34 @@ public abstract class GraphBase implements Graph {
     static class SimpleManager implements GraphEventManager
         {
         protected Graph graph;
-        protected GraphListener listener;
-        SimpleManager( Graph graph ) { this.graph = graph; }
-        public Graph register( GraphListener listener ) 
-            { this.listener = listener; return graph; }
-        public void unregister( GraphListener listener ) { listener = null; }
-        public void notifyAdd( Triple t ) { if (listener != null) listener.notifyAdd( t ); }
-        public void notifyDelete( Triple t ) { if (listener != null) listener.notifyDelete( t ); }
+        protected List  listeners;
+        
+        SimpleManager( Graph graph ) 
+            { 
+            this.graph = graph;
+            this.listeners = new ArrayList(); 
+            }
+        
+        public GraphEventManager register( GraphListener listener ) 
+            { 
+            listeners.add( listener );
+            return this; 
+            }
+            
+        public void unregister( GraphListener listener ) 
+            { listeners.remove( listener ); }
+        
+        public void notifyAdd( Triple t ) 
+            {
+            for (int i = 0; i < listeners.size(); i += 1) 
+                ((GraphListener) listeners.get(i)).notifyAdd( t ); 
+            }
+        
+        public void notifyDelete( Triple t ) 
+            { 
+            for (int i = 0; i < listeners.size(); i += 1) 
+                ((GraphListener) listeners.get(i)).notifyDelete( t ); 
+            }
         }
         
     public void notifyAdd( Triple t )

@@ -1441,12 +1441,33 @@ implements Model, ModelI, PrefixMapping, ModelLock
         
     public Model register( ModelChangedListener listener )
         {
-        listeners.add( listener );
+        getGraph().getEventManager().register( adapt( listener ) );
         return this;
         }
         
     public void unregister( ModelChangedListener listener )
         {
-        listeners.remove( listener );
+        getGraph().getEventManager().unregister( adapt( listener ) );
         }
+        
+    static class Adapter implements GraphListener
+        {
+        protected ModelCom m;
+        protected ModelChangedListener L;
+        
+        Adapter( ModelCom m, ModelChangedListener L )
+            { this.m = m; this.L = L; }
+            
+        public void notifyAdd( Triple t )
+            { L.addedStatement( m.asStatement( t ) ); }
+            
+        public void notifyDelete( Triple t )
+            { L.removedStatement( m.asStatement( t ) ); }
+            
+        public boolean equals( Object other )
+            { return other instanceof Adapter && L.equals( ((Adapter) other).L ); }
+        }
+        
+    public GraphListener adapt( final ModelChangedListener L )
+        { return new Adapter( this, L ); }
 }
