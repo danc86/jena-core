@@ -23,10 +23,11 @@ package com.hp.hpl.jena.db.test;
 import com.hp.hpl.jena.db.*;
 import com.hp.hpl.jena.shared.PrefixMapping;
 import com.hp.hpl.jena.shared.impl.PrefixMappingImpl;
+import com.hp.hpl.jena.shared.test.AbstractTestPrefixMapping;
 
 import junit.framework.*;
 
-public class TestNsPrefix extends TestCase {    
+public class TestNsPrefix extends AbstractTestPrefixMapping {    
         
     public TestNsPrefix( String name )
         { super( name ); }
@@ -40,6 +41,12 @@ public class TestNsPrefix extends TestCase {
     protected void tearDown() throws java.lang.Exception {
     }    
         
+    protected PrefixMapping getMapping() 
+        {
+        IDBConnection conn = TestConnection.makeAndCleanTestConnection();
+        return ModelRDB.createModel( conn );
+        }
+    
 	public void testSinglePrefix() throws java.lang.Exception {
 		String testPrefix = "testPrefix";
 		String testURI = "http://someTestURI";
@@ -270,6 +277,7 @@ public class TestNsPrefix extends TestCase {
 		m.close();
 		conn.close();		
 	}
+
 }
     	
 
