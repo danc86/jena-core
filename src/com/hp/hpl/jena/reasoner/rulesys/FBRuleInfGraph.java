@@ -347,6 +347,7 @@ public class FBRuleInfGraph  extends BasicForwardRuleInfGraph implements Backwar
             // initilize the deductions graph
             fdeductions = new FGraph( new GraphMem() );
             dataFind = (data == null) ? fdeductions :  FinderUtil.cascade(fdeductions, fdata);
+            Finder dataSource = fdata;
             
             // Initialize the optional TGC caches
             if (useTGCCaching) {
@@ -385,10 +386,12 @@ public class FBRuleInfGraph  extends BasicForwardRuleInfGraph implements Backwar
                 transitiveEngine.setCaching(true, true);
 //                dataFind = FinderUtil.cascade(subClassCache, subPropertyCache, dataFind);
                 dataFind = FinderUtil.cascade(dataFind, transitiveEngine.getSubClassCache(), transitiveEngine.getSubPropertyCache());
+                
+                // Without the next statement then the transitive closures are not seen by the forward rules
+                dataSource = FinderUtil.cascade(dataSource, transitiveEngine.getSubClassCache(), transitiveEngine.getSubPropertyCache());
             }
             
             // Call any optional preprocessing hook
-            Finder dataSource = fdata;
             if (preprocessorHooks != null && preprocessorHooks.size() > 0) {
                 Graph inserts = new GraphMem();
                 for (Iterator i = preprocessorHooks.iterator(); i.hasNext(); ) {
@@ -411,7 +414,7 @@ public class FBRuleInfGraph  extends BasicForwardRuleInfGraph implements Backwar
                 rulesLoaded = preloadDeductions(schemaGraph);
             }
             if (rulesLoaded) {
-                engine.fastInit(dataSource); 
+                engine.fastInit(dataSource);
             } else {
                 // No preload so do the rule separation
                 addBRules(extractPureBackwardRules(rules));
