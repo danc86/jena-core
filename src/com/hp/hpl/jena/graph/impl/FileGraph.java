@@ -114,7 +114,8 @@ public class FileGraph extends GraphMem
             FileOutputStream out = new FileOutputStream( intermediate );
             model.write( out, lang ); 
             out.close();
-            intermediate.renameTo( name );
+            if (intermediate.renameTo( name ) == false)
+                throw new JenaException( "rename to " + intermediate + " failed" );
             super.close();
             }
         catch (IOException e) 
