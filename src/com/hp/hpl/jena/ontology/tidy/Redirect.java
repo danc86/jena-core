@@ -9,7 +9,7 @@ import java.util.*;
  * This is a simple tility class for permitting local copies
  * of websites to be used instead of remote access.
  * @author <a href="mailto:Jeremy.Carroll@hp.com">Jeremy Carroll</a>
- *
+ * @deprecated Use OntDocumentManager
 */
 public class Redirect {
       private Vector remoteURL = new Vector();

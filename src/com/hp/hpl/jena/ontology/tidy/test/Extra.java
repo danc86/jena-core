@@ -27,6 +27,7 @@ public class Extra extends TestCase {
 	static public Test suite() {
 		TestSuite s = new TestSuite(Extra.class);
 		s.setName("More OWL syntax");
+		s.addTest(CmdLineTidyTest.suite());
 		return s;
    }
    /*
