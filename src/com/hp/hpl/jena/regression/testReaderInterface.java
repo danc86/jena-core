@@ -33,9 +33,9 @@ import com.hp.hpl.jena.util.Log;
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.rdf.model.impl.*;
 
-import java.net.ConnectException;
-import java.net.NoRouteToHostException;
-import java.net.UnknownHostException;
+import java.net.*;
+
+import com.hp.hpl.jena.shared.*;
 
 /**
  *
@@ -106,7 +106,20 @@ public class testReaderInterface extends Object {
                     } else {
                         throw rdfx;
                     }
-                }
+                } catch (JenaException jx)
+                    {
+                    if (jx.getCause() instanceof NoRouteToHostException
+                        || jx.getCause() instanceof UnknownHostException
+                        || jx.getCause() instanceof ConnectException
+                        )
+                        {Log.warning("Cannot access public internet" +
+                            "- part of test not executed",
+                                                "Regression",
+                                                "testReaderInterface");
+                        }
+                    else
+                        throw jx;
+                    }
 
 
             n++; m1.read(ResourceReader.getInputStream(filebase + "1.rdf"), "");
