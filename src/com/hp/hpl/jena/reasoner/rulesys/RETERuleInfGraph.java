@@ -99,6 +99,7 @@ public class RETERuleInfGraph extends BasicForwardRuleInfGraph {
                 data.delete(t);
             }
         }
+        engine.delete(t);
         fdeductions.getGraph().delete(t);
     }
 
