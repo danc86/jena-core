@@ -40,6 +40,13 @@ public class ModelLoader
     public static String basename = null ;
     public static boolean useARP = true ;
 
+    /** Load a model
+     * 
+     * @param urlStr    The URL or file name of the model
+     */
+
+    public static Model loadModel(String urlStr) { return loadModel(urlStr, null) ; } 
+
 	/** Load a model or attached a persistent store.
 	 * 
 	 * @param urlStr	The URL or file name of the model
