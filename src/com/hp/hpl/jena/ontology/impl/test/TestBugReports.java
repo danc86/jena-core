@@ -28,6 +28,7 @@ import java.io.*;
 
 import com.hp.hpl.jena.ontology.*;
 import com.hp.hpl.jena.rdf.model.*;
+import com.hp.hpl.jena.vocabulary.OWL;
 
 import junit.framework.*;
 
@@ -85,8 +86,38 @@ public class TestBugReports
         ByteArrayOutputStream strOut = new ByteArrayOutputStream();
 
         m.write(strOut,"RDF/XML-ABBREV", myDicURI);
-        m.write(System.out,"RDF/XML-ABBREV", myDicURI);
+        //m.write(System.out,"RDF/XML-ABBREV", myDicURI);
         
+    }
+    
+    /** Bug report from Holger Knublauch on July 25th 2003. Cannot convert owl:Class to an OntClass */
+    public void test_hk_01() {
+        // synthesise a mini-document
+        String base = "http://jena.hpl.hp.com/test#";
+        String doc = "<rdf:RDF" +
+        "   xmlns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\"" +
+        "   xmlns:owl=\"http://www.w3.org/2002/07/owl#\">" +
+        "  <owl:Ontology rdf:about=\"\">" +
+        "    <owl:imports rdf:resource=\"http://www.w3.org/2002/07/owl\" />" +
+        "  </owl:Ontology>" +
+        "</rdf:RDF>";
+        
+        // read in the base ontology, which includes the owl language definition
+        // note OWL_MEM => no reasoner is used
+        OntModel m = ModelFactory.createOntologyModel( OntModelSpec.OWL_MEM, null );
+        m.read( new ByteArrayInputStream( doc.getBytes() ), base );
+
+        // we need a resource corresponding to OWL Class but in m
+        Resource owlClassRes = m.getResource( OWL.Class.getURI() );
+        
+        // now can we see this as an OntClass?
+        OntClass c = (OntClass) owlClassRes.as( OntClass.class );
+        assertNotNull( "OntClass c should not be null", c );
+        assertTrue( "c should be an ont class", c instanceof OntClass );
+        
+        //(OntClass) (ontModel.getProfile().CLASS()).as(OntClass.class);
+
+
     }
     
     

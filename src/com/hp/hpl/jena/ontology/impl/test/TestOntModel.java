@@ -270,7 +270,8 @@ public class TestOntModel
     public void testGetOntClass() {
         OntModel m = ModelFactory.createOntologyModel();
         Resource r = m.getResource( NS + "r" );
-        m.add( r, RDF.type, r );
+        Resource r0 = m.getResource( NS + "r0" );
+        m.add( r, RDF.type, r0 );
         Resource s = m.createClass( NS + "s" );
         assertEquals( "Result of get s", s, m.getOntClass( NS + "s" ) );
         assertNull( "result of get q", m.getOntClass( NS+"q") );
