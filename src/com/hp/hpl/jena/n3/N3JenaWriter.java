@@ -4,15 +4,20 @@
  */
 
 // To do:
-//   Choosing prefixes
-//   Printing only in use prefixes.
+//   Choosing prefixes (await nanepsace tracking)
+//   Printing only used prefixes
 //   Options
-//   Deciding on one line or several for:
-//     RDF lists
-//     Object lists
-//     Property lists
+//   Better layout:
+//     Deciding on one line or several for:
+//       RDF lists
+//       Object lists (currently swicthed off)
+//       Property lists
+//     Clustering : rdf:type to front.
+//     Clustering : same namespace together 
+
+// On layout:
 // Better deciding when to use current line
-//   need to look at next items before deciding on a newline of not.
+// need to look at next items before deciding on a newline of not.
 
 package com.hp.hpl.jena.n3;
 
@@ -75,7 +80,7 @@ public class N3JenaWriter implements RDFWriter
 	// Work variables controlling the output
 	IndentedWriter out = null ;
 	String baseName = null ;
-	String indent = pad(4) ;
+	String indent = pad(6) ;
 	int minGap = 1 ;
 	
 	boolean doingBaseHash = false ;

@@ -215,17 +215,20 @@ public class QueryEngineSesame implements QueryExecution
 			firstInRow = true;
 			columnIndex = 0;
 			currentRow = new ResultBinding() ;
+            currentRow.setQuery(query) ;
 		}
 
 		public void endTuple()
 		{
+            
 			// Create the matching statements
-			for ( Iterator iter = query.getTriplePatterns().iterator() ; iter.hasNext() ; )
-			{
-				TriplePattern tp = (TriplePattern)iter.next() ;
-				Statement s = tp.asStatement(currentRow) ;
-				currentRow.addTriple(s) ;
-			}
+            // Now done in ResultBinding.
+//			for ( Iterator iter = query.getTriplePatterns().iterator() ; iter.hasNext() ; )
+//			{
+//				TriplePattern tp = (TriplePattern)iter.next() ;
+//				Statement s = tp.asStatement(currentRow) ;
+//				currentRow.addTriple(s) ;
+//			}
 
 			if (verbose)
 				System.out.println();

@@ -11,8 +11,6 @@ import junit.framework.* ;
 
 import com.hp.hpl.jena.util.tuple.* ;
 
-//@@ToDo: Hunt around for the config file
-
 /**
  * @author		Andy Seaborne
  * @version 	$Id$
