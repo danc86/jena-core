@@ -218,7 +218,7 @@ public class TestOntReasoning
     }
     
     // not in place for now
-    public void blocked_testListDefinedProperties() {
+    public void testListDefinedProperties() {
         OntModel m = ModelFactory.createOntologyModel( OntModelSpec.OWL_MEM_RULE_INF, null );
         
         // a simple class hierarchy  organism -> vertebrate -> mammal -> dog
@@ -253,7 +253,19 @@ public class TestOntReasoning
         iteratorTest( vertebrate.listDeclaredProperties(), new Object[] {limbsCount} );
         iteratorTest( mammal.listDeclaredProperties(), new Object[] {limbsCount, hasCovering, numYoung} );
         iteratorTest( dog.listDeclaredProperties(), new Object[] {limbsCount, hasCovering, numYoung} );
-        iteratorTest( r.listDeclaredProperties(), new Object[] {hasCovering, numYoung} );
+        iteratorTest( r.listDeclaredProperties(), new Object[] {hasCovering} );
+              
+        iteratorTest( organism.listDeclaredProperties(true), new Object[] {} );
+        iteratorTest( vertebrate.listDeclaredProperties(true), new Object[] {limbsCount} );
+        iteratorTest( mammal.listDeclaredProperties(true), new Object[] {limbsCount, hasCovering, numYoung} );
+        iteratorTest( dog.listDeclaredProperties(true), new Object[] {limbsCount, hasCovering, numYoung} );
+        iteratorTest( r.listDeclaredProperties(true), new Object[] {hasCovering} );
+              
+        iteratorTest( organism.listDeclaredProperties(false), new Object[] {} );
+        iteratorTest( vertebrate.listDeclaredProperties(false), new Object[] {limbsCount} );
+        iteratorTest( mammal.listDeclaredProperties(false), new Object[] {numYoung} );
+        iteratorTest( dog.listDeclaredProperties(false), new Object[] {} );
+        iteratorTest( r.listDeclaredProperties(false), new Object[] {hasCovering} );
     }
     
     
@@ -281,7 +293,7 @@ public class TestOntReasoning
         }
         
         if (!(expList.size() == 0)) {
-            logger.debug( getName() + "Expected iterator results not found" );
+            logger.debug( getName() + " Expected iterator results not found" );
             for (Iterator j = expList.iterator(); j.hasNext(); ) {
                 logger.debug( getName() + " - missing: " + j.next() );
             }

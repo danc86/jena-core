@@ -30,7 +30,6 @@ import com.hp.hpl.jena.enhanced.*;
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.graph.query.*;
 import com.hp.hpl.jena.rdf.model.*;
-import com.hp.hpl.jena.rdf.model.impl.ResourceImpl;
 import com.hp.hpl.jena.reasoner.*;
 import com.hp.hpl.jena.util.ResourceUtils;
 import com.hp.hpl.jena.util.iterator.*;
@@ -522,49 +521,66 @@ public class OntClassImpl
         // decide which model to use, based on whether we want entailments
         Model m = all ? getModel() : ((OntModel) getModel()).getBaseModel();
 
-        // list properties that have this class as domain
-        ExtendedIterator results0 = m.listStatements( null, getProfile().DOMAIN(), this )
-                                    .mapWith( new SubjectMapper() );
+        Set supers = new HashSet();
+        Set props= new HashSet();
         
-        // if defined, add the restrictions on this property
-        if (getProfile().ON_PROPERTY() != null) {
-            // a filter for restrictions with an upper cardinality of zero
-            Filter zeroCard = new Filter() {
-                public boolean accept( Object x ) {
-                    Resource subj = nodeAsResource( (Node) ((List) x).get( 0 ) );
-                    return subj.hasProperty( getProfile().MAX_CARDINALITY(), 0 ) || 
-                           subj.hasProperty( getProfile().CARDINALITY(), 0 );
-                }
-            };
-            
-            // partial modality
-            Query q0 = new Query();
-            q0.addMatch( asNode(), getProfile().SUB_CLASS_OF().asNode(), Query.X );
-            q0.addMatch( Query.X, getProfile().ON_PROPERTY().asNode(), Query.Y );
-            
-            // complete modality
-            Query q1 = new Query();
-            q1.addMatch( asNode(), getProfile().EQUIVALENT_CLASS().asNode(), Query.X );
-            q1.addMatch( Query.X, getProfile().ON_PROPERTY().asNode(), Query.Y );
-            
-            // extract the results
-            ExtendedIterator qr0 = m.queryHandler().prepareBindings( q0, new Node[] {Query.X, Query.Y} ).executeBindings();
-            ExtendedIterator qr1 = m.queryHandler().prepareBindings( q1, new Node[] {Query.Y, Query.Y} ).executeBindings();
-            
-            // we rely on the reasoner for sub-class and equivalence reasoning
-            ExtendedIterator results1 = qr0.andThen( qr1 ).filterDrop( zeroCard );
-            
-            Map1 bind1 = new Map1() {public Object map1( Object x ) { return nodeAsResource( (Node) ((List) x).get( 1 ) );} };
-            results0 = results0.andThen( results1.mapWith( bind1 ) );
+        // collect all of the super-classes of this class
+        supers.add( this );
+        for (StmtIterator i = m.listStatements( this, getProfile().SUB_CLASS_OF(), (RDFNode) null ); i.hasNext(); ) {
+             supers.add( i.nextStatement().getObject() );
         }
         
+        // now iterate over the super-classes (all) or just myself (not all)
+        for (Iterator i = all ? supers.iterator() : new SingletonIterator(this); i.hasNext(); ) {
+            // TODO - work around a bug in the RDF reasoner
+            //Resource supClass = (Resource) i.next();
+            Object x = i.next();  if (x instanceof Literal) {continue;}
+            Resource supClass = (Resource) x;
+            
+            // is this super-class a restriction?
+            if (supClass.canAs( Restriction.class )) {
+                // look up the property that this restriction applies to
+                Restriction r = (Restriction) supClass.as( Restriction.class );
+                Property p = r.getOnProperty();
+                
+                if (!props.contains( p )) {
+                    // rule out properties with a cardinality of zero
+                    if (!(r.hasProperty( getProfile().MAX_CARDINALITY(), 0 ) ||
+                          r.hasProperty( getProfile().CARDINALITY(), 0))) {
+                        // p is a property that can apply to this restriction
+                        props.add( p );
+                    }
+                }
+            }
+            else {
+                // for other classes, we check the domain constraints
+                for (StmtIterator j = m.listStatements( null, getProfile().DOMAIN(), supClass ); j.hasNext(); ) {
+                    Resource prop = j.nextStatement().getSubject();
+                    
+                    if (!props.contains( prop )) {
+                        // we need to check that the conjunction of the domains is in the super-classes
+                        StmtIterator k = null;
+                        boolean domainOK = true;
+                        
+                        for (k = m.listStatements( prop, getProfile().DOMAIN(), (RDFNode) null ); domainOK && k.hasNext(); ) {
+                            domainOK = supers.contains( k.nextStatement().getObject() );
+                        }
+                        
+                        if (domainOK) {
+                            props.add( prop );
+                        }
+                        
+                        // we must ensure that the iterator is closed, since we may not have reached the end
+                        k.close();
+                    }
+                }
+            }
+        }
+
         // map each answer value to the appropriate ehnanced node
-        return new UniqueExtendedIterator( results0 );
+        return WrappedIterator.create( props.iterator() ).mapWith( new AsMapper( Property.class ) );
     }
 
-    // TODO: replace this with the new method Chris is going to add to Model
-    private Resource nodeAsResource( Node n ) { return (Resource) ResourceImpl.rdfNodeFactory.wrap( n, (EnhGraph) getModel() ); }
-    
     
     /**
      * <p>Answer an iterator over the individuals in the model that have this

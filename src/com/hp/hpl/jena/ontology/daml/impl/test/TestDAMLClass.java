@@ -356,7 +356,7 @@ public class TestDAMLClass
                     r.prop_domain().add( A );
                     
                     iteratorTest( A.getDefinedProperties(), new Object[] {r} );
-                    iteratorTest( B.getDefinedProperties(), new Object[] {p,q} );   // note no inference
+                    iteratorTest( B.getDefinedProperties(), new Object[] {p,q,r} );   // note no inference
                 }
             },
             new OntTestCase( "DAMLRestriction.prop_onProperty" ) {
