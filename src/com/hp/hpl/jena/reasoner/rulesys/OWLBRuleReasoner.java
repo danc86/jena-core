@@ -70,7 +70,7 @@ public class OWLBRuleReasoner extends BasicBackwardRuleReasoner {
             try {
                 ruleSet = Rule.parseRules(Util.loadResourceFile(RULE_FILE));
             } catch (IOException e) {
-                logger.error("Can't load rules file: " + RULE_FILE);
+                throw new ReasonerException("Can't load rules file: " + RULE_FILE, e);
             }
         }
         return ruleSet;

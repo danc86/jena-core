@@ -9,8 +9,9 @@
  *****************************************************************/
 package com.hp.hpl.jena.reasoner.rulesys;
 import java.io.*;
-import org.apache.log4j.Logger;
 import java.util.*;
+
+import com.hp.hpl.jena.reasoner.ReasonerException;
 /** * An pure forward chaining implementation of the RDFS closure rules
  * based upon the basic forward rule interpreter. The normal mixed
  * forward/backward implementation is generally preferred but this has 
@@ -21,12 +22,10 @@ import java.util.*;
 public class RDFSRuleReasoner extends BasicForwardRuleReasoner {    
     /** The location of the OWL rule definitions on the class path */
     public static final String RULE_FILE = "etc/rdfs.rules";
+//    public static final String RULE_FILE = "etc/rdfs-noresource.rules";
     
     /** The parsed rules */
     protected static List ruleSet;
-    
-    /** log4j logger */
-    protected static Logger logger = Logger.getLogger(RDFSRuleReasoner.class);
     
     /**
      * Constructor
@@ -43,7 +42,7 @@ public class RDFSRuleReasoner extends BasicForwardRuleReasoner {
             try {
                 ruleSet = Rule.parseRules(Util.loadResourceFile(RULE_FILE));
             } catch (IOException e) {
-                logger.error("Can't load rules file: " + RULE_FILE);
+                throw new ReasonerException("Can't load rules file: " + RULE_FILE, e);
             }
         }
         return ruleSet;

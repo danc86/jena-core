@@ -35,7 +35,7 @@ public class TestPackage extends TestSuite {
         
         // Omitted while developing backward version
         addTest( "TestBackchainer", TestBackchainer.suite() );
-        addTest( "TestRDFSRules", TestRDFSRules.suite() );
+        //addTest( "TestRDFSRules", TestRDFSRules.suite() );
         
         addTest( "TestFBRules", TestFBRules.suite() );
     }

@@ -69,11 +69,30 @@ public class BRuleEngine {
     }
     
     /**
+     * Constructor. Creates an empty engine to which rules must be added.
+     * @param infGraph the parent inference graph which is using this engine
+     */
+    public BRuleEngine(BackwardRuleInfGraphI infGraph) {
+        this.infGraph = infGraph;
+        goalTable = new GoalTable(this);
+        ruleStore = new RuleStore();
+    }
+    
+    /**
      * Clear all tabled results.
      */
     public synchronized void reset() {
         agenda.clear();
         goalTable.reset();
+    }
+    
+    /**
+     * Add a single rule to the store.
+     * N.B. This will invalidate current partial results and the engine
+     * should be reset() before future queries. 
+     */
+    public void addRule(Rule rule) {
+        ruleStore.addRule(rule);
     }
     
     /**

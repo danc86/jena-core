@@ -71,6 +71,14 @@ public interface InfGraph extends Graph {
     public void prepare();
     
     /**
+     * Reset any internal caches. Some systems, such as the tabled backchainer, 
+     * retain information after each query. A reset will wipe this information preventing
+     * unbounded memory use at the expense of more expensive future queries. A reset
+     * does not cause the raw data to be reconsulted and so is less expensive than a rebind.
+     */
+    public void reset();
+    
+    /**
      * Test a global boolean property of the graph. This might included
      * properties like consistency, OWLSyntacticValidity etc.
      * It remains to be seen what level of generality is needed here. We could

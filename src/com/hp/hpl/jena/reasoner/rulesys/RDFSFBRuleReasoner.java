@@ -10,8 +10,9 @@
 package com.hp.hpl.jena.reasoner.rulesys;
 
 import java.io.*;
-import org.apache.log4j.Logger;
 import java.util.*;
+
+import com.hp.hpl.jena.reasoner.ReasonerException;
 
 /**
  * A backward chaining implementation of the RDFS closure rules
@@ -20,23 +21,19 @@ import java.util.*;
  * @author <a href="mailto:der@hplb.hpl.hp.com">Dave Reynolds</a>
  * @version $Revision$ on $Date$
  */
-public class RDFSBRuleReasoner extends BasicBackwardRuleReasoner {
+public class RDFSFBRuleReasoner extends FBRuleReasoner {
     
     /** The location of the OWL rule definitions on the class path */
-//    public static final String RULE_FILE = "etc/rdfs-b.rules";
-    public static final String RULE_FILE = "etc/rdfs-b-tuned.rules";
+    public static final String RULE_FILE = "etc/rdfs-fb.rules";
     
     /** The parsed rules */
     protected static List ruleSet;
     
-    /** log4j logger */
-    protected static Logger logger = Logger.getLogger(RDFSRuleReasoner.class);
-    
     /**
      * Constructor
      */
-    public RDFSBRuleReasoner() {
-        super(loadRules(), RDFSBRuleReasonerFactory.theInstance());
+    public RDFSFBRuleReasoner() {
+        super(loadRules(), RDFSFBRuleReasonerFactory.theInstance());
     }
     
     /**
@@ -47,7 +44,7 @@ public class RDFSBRuleReasoner extends BasicBackwardRuleReasoner {
             try {
                 ruleSet = Rule.parseRules(Util.loadResourceFile(RULE_FILE));
             } catch (IOException e) {
-                logger.error("Can't load rules file: " + RULE_FILE);
+                throw new ReasonerException("Can't load rules file: " + RULE_FILE, e);
             }
         }
         return ruleSet;

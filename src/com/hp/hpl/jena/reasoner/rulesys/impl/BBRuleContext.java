@@ -32,7 +32,7 @@ public class BBRuleContext implements RuleContext {
     protected Rule rule;
     
     /** The enclosing inference graph. */
-    protected BasicBackwardRuleInfGraph graph;
+    protected InfGraph graph;
     
     /** The set of ground triples to be searched by the find operations */
     protected Finder searchpath;
@@ -41,7 +41,7 @@ public class BBRuleContext implements RuleContext {
      * Construct an empty context. It can't be used until
      * the rule and environment have been set.
      */
-    public BBRuleContext(BasicBackwardRuleInfGraph graph, Finder searchpath) {
+    public BBRuleContext(InfGraph graph, Finder searchpath) {
         this.graph = graph;
         this.searchpath = searchpath;
     }

@@ -84,6 +84,15 @@ public abstract class BaseInfGraph extends GraphBase implements InfGraph {
     }
     
     /**
+     * Reset any internal caches. Some systems, such as the tabled backchainer, 
+     * retain information after each query. A reset will wipe this information preventing
+     * unbounded memory use at the expense of more expensive future queries. A reset
+     * does not cause the raw data to be reconsulted and so is less expensive than a rebind.
+     */
+    public void reset() {
+    }
+    
+    /**
      * Perform any initial processing and caching. This call is optional. Most
      * engines either have negligable set up work or will perform an implicit
      * "prepare" if necessary. The call is provided for those occasions where

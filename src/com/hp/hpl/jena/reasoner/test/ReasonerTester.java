@@ -237,6 +237,7 @@ public class ReasonerTester {
         // a test failure which would then problem unwanted output.
         /*
         if (!correct) {
+            System.out.println("Reasoner test " + test.getURI() + " - " + description);
             System.out.println("Missing triples:");
             for (Iterator i = correctG.find(null, null, null); i.hasNext(); ) {
                 Triple t = (Triple) i.next();
@@ -251,6 +252,7 @@ public class ReasonerTester {
                     System.out.println("  - " + t);
                 }
             }
+            
         }
         */
         // ... end of debugging hack

@@ -14,14 +14,14 @@ import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.vocabulary.*;
 
 /**
- * Factory class for creating blank instances of the backchaining RDFS reasoner. 
+ * Factory class for creating blank instances of the hybrid rule RDFS reasoner. 
  * @author <a href="mailto:der@hplb.hpl.hp.com">Dave Reynolds</a>
  * @version $Revision$ on $Date$
  */
-public class RDFSBRuleReasonerFactory implements ReasonerFactory {
+public class RDFSFBRuleReasonerFactory implements ReasonerFactory {
     
     /** Single global instance of this factory */
-    private static ReasonerFactory theInstance = new RDFSBRuleReasonerFactory();
+    private static ReasonerFactory theInstance = new RDFSFBRuleReasonerFactory();
     
     /** Static URI for this reasoner type */
     public static final String URI = "http://www.hpl.hp.com/semweb/2003/RDFSBRuleReasoner";
@@ -43,7 +43,7 @@ public class RDFSBRuleReasonerFactory implements ReasonerFactory {
      * is not configurable and will ignore this parameter.
      */
     public Reasoner create(Model configuration) {
-        return new RDFSBRuleReasoner();
+        return new RDFSFBRuleReasoner();
     }
    
     /**

@@ -29,6 +29,15 @@ public class ReasonerException extends JenaException {
     public ReasonerException(String msg) {
         super(msg);
     }
+    
+    /**
+     * Constructor.
+     * @param msg a free-text message describing the problem
+     * @param cause a nested exception which prompted this error
+     */
+    public ReasonerException(String msg, Throwable cause) {
+        super(msg, cause);
+    }
 
 }
 

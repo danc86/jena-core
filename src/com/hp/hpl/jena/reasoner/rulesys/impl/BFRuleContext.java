@@ -175,7 +175,7 @@ public class BFRuleContext implements RuleContext {
      */
     public ClosableIterator find(Node s, Node p, Node o) {
         //return graph.find(s, p, o).andThen(pendingCache.find(s, p, o));
-        return graph.findForward(s, p, o);
+        return graph.findDataMatches(s, p, o);
     }
     
     /**

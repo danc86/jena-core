@@ -65,7 +65,8 @@ public class TestBasics extends TestCase  {
             "(?a rdf:type max(?a,1)) -> (?a rdf:type 'foo').",
             "(?a rdf:type _) -> action(?a).",
             "(?a rdf:type _) -> [(?a rdf:type _) -> action(?a)].",
-            "(?a rdf:type _) -> (?a rdf:type 42).",
+           "(?a rdf:type _) -> (?a rdf:type 42).",
+           "(?a rdf:type _) -> (?a rdf:type ' fool ').",
             "[rule1: (?a rdf:type _) -> (?a rdf:type 42)]"
         };
         String[] testResults = new String[] {
@@ -75,6 +76,7 @@ public class TestBasics extends TestCase  {
             "[ (?a rdf:type *) -> action(?a) ]",
             "[ (?a rdf:type *) -> [ (?a rdf:type *) -> action(?a) ] ]",
             "[ (?a rdf:type *) -> (?a rdf:type 42) ]",
+            "[ (?a rdf:type *) -> (?a rdf:type 'fool') ]",
             "[ rule1: (?a rdf:type *) -> (?a rdf:type 42) ]"
         };
         

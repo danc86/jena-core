@@ -44,7 +44,7 @@ public interface ForwardRuleInfGraphI extends InfGraph {
      * This may different from the normal find operation in the base of hybrid reasoners
      * where we are side-stepping the backward deduction step.
      */
-    public ExtendedIterator findForward(Node subject, Node predicate, Node object);
+    public ExtendedIterator findDataMatches(Node subject, Node predicate, Node object);
 
     /**
      * Log a dervivation record against the given triple.

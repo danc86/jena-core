@@ -33,7 +33,7 @@ public interface BackwardRuleInfGraphI {
 
     /**
      * Match a pattern just against the stored data (raw data, schema,
-     * axioms) but no derivation.
+     * axioms) but no backchaining derivation.
      */
     public ExtendedIterator findDataMatches(TriplePattern pattern);
 
