@@ -21,42 +21,61 @@ public class Free extends Element
 	{
 		
     /**
-        Initialise an unbound (free) variable element: it will later be bound during compilation.
+        Track a (free) variable element: it will later be bound during compilation.
     */
     
 	private Node_Variable var;
-	private int index;  // index of variable in result list of query
-	private boolean isBound;
+	private int listIx;            // index of variable in varList.
+	private int mapIx;            // index of (arg) variable in Mapping	
+	private boolean isListed;  // true when variable is in varList
+	private boolean isArgument;  // true when variable can be bound by an argument
 	
-	public Free( Node n ) { super( ); var = (Node_Variable) n; isBound = false; }
+	public Free( Node n ) {
+		super( );
+		var = (Node_Variable) n;
+		isArgument = false;
+		isListed = false;
+	}
 	
-	public int getIndex()
-		{ if ( isBound ) return index; else throw new JenaException("Unbound variable"); }
+	public int getListing()
+	{
+		if ( isListed ) return listIx;
+		else throw new JenaException("UnListed variable");
+	}
 
-	public void bind ( int i )
+	public void setListing ( int ix )
 		{
-		if ( isBound ) throw new JenaException("Rebinding of variable");
-		isBound = true;
-		index = i;
+		if ( isListed )
+			throw new JenaException("Relisting of variable");
+		isListed = true;
+		listIx = ix;
 		}
 		
+	public void setIsArg ( int ix ) { isArgument = true; mapIx = ix; }
+	public boolean isArg() { return isArgument; }
+	
+	public int getMapping()
+	{
+		if ( isArgument ) return mapIx;
+		else throw new JenaException("Unmapped variable");
+	}
+
+	public boolean isListed() { return isListed; }
+	
 	public Node_Variable var() {
 		return var;
 	}
 
 	public boolean match( Domain d, Node x )
-		{
-		d.setElement( index, x );
-		return true;		
+		{throw new JenaException("Attempt to match a free variable");		
 		}
 	
 	public Node asNodeMatch( Domain d ) {
 		throw new JenaException("asNodeMatch not supported");
 	}
-
-		
+	
 	public String toString()
-		{ return "<Bind " + index + ">"; }
+		{ return "<Free " + listIx + ">"; }
 	}
 
 /*
