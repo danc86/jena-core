@@ -590,7 +590,7 @@ public class OntClassImpl
      *         the classes to which they belong
      */
     public ExtendedIterator listInstances() {
-        return getModel().listStatements( null, RDF.type, this ).mapWith( new SubjectAsMapper( null ) );
+        return getModel().listStatements( null, RDF.type, this ).mapWith( new SubjectAsMapper( Individual.class ) );
     }
 
 
