@@ -32,6 +32,12 @@ public class UniqueExtendedIterator extends WrappedIterator {
     public UniqueExtendedIterator(Iterator underlying) {
         super(underlying);
     }
+    /**
+        factory method for creating a wrapper around _it_. We reserve
+        the right to deliver the argument if it's already an extended iterator.
+    */
+    public static WrappedIterator create( Iterator it )
+        { return new UniqueExtendedIterator( it ); }
     
     /**
      * Fetch the next object to be returned, only if not already seen.
