@@ -176,6 +176,21 @@ public class ReasonerRegistry {
          if (theRDFSReasoner == null) theRDFSReasoner = RDFSRuleReasonerFactory.theInstance().create(null);
          return theRDFSReasoner;
      }
+    
+    
+    /** Prebuilt standard configuration for the default RDFS reasoner. */
+    protected static Reasoner theRDFSSimpleReasoner = null;
+    
+    /**
+     * Return a prebuilt simplified configuration for the default RDFS reasoner
+     */
+     public static Reasoner getRDFSSimpleReasoner() {
+         if (theRDFSSimpleReasoner == null) {
+             theRDFSSimpleReasoner = RDFSRuleReasonerFactory.theInstance().create(null);
+             theRDFSSimpleReasoner.setParameter(ReasonerVocabulary.PROPsetRDFSLevel.getURI(), ReasonerVocabulary.RDFS_SIMPLE);
+         } 
+         return theRDFSSimpleReasoner;
+     }
      
     /** Prebuilt standard configuration for the default subclass/subproperty transitive closure reasoner. */
     protected static Reasoner theTRANSITIVEReasoner;
