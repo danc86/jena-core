@@ -86,10 +86,6 @@ public class GraphMem extends GraphBase implements Graph {
         }
     }
     
-    public Reifier getReifier() {
-        return null;  //@@ not approved or done yet
-    }
-    
     protected class NodeMap {
         HashMap map = new HashMap();
         

@@ -87,7 +87,14 @@ public abstract class GraphBase implements Graph {
 	 */
 	public void close() {
 	}
-
+	
+	private Reifier reifier = null;
+	
+	public Reifier getReifier() {
+		if (reifier == null) reifier = new SimpleReifier( this );
+		return reifier;
+	}
+    
 	/**
 	 * @see com.hp.hpl.jena.graph.Graph#size()
 	 */
