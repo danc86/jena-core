@@ -2229,7 +2229,8 @@ public class OntModelImpl
         }
         
         // map each answer value to the appropriate ehnanced node
-        return mainQuery.mapWith( new SubjectNodeAs( asKey ) );
+        return mainQuery.filterKeep( new SubjectNodeCanAs( asKey ) )
+                        .mapWith( new SubjectNodeAs( asKey ) );
     }
     
     // output operations - delegate to base model
@@ -2632,7 +2633,27 @@ public class OntModelImpl
         
     }
     
-    
+    /** Filter that accepts nodes that can be mapped to the given facet */
+    protected class SubjectNodeCanAs implements Filter
+    {
+        protected Class m_asKey;
+        protected SubjectNodeCanAs( Class asKey ) { m_asKey = asKey; }
+        
+        public boolean accept( Object x ) {
+            Node n = (x instanceof Triple) 
+                    ? ((Triple) x).getSubject() 
+                    : ((x instanceof EnhNode) ? ((EnhNode) x).asNode() :  (Node) x);
+            try {
+                getNodeAs( n, m_asKey );
+            }
+            catch (Exception ignore) {
+                return false;
+            }
+            
+            return true;
+        }
+        
+    }
     
     /** Project out the first element of a list of bindings */
     protected class GetBinding implements Map1

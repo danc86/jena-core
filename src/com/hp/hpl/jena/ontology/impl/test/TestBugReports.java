@@ -81,6 +81,24 @@ public class TestBugReports extends TestCase {
     }
     
     
+    /** Bug report by Danah Nada - listIndividuals returning too many results */
+    public void test_dn_0() {
+        OntModel schema = ModelFactory.createOntologyModel( OntModelSpec.OWL_LITE_MEM_RULES_INF, null );
+        
+        schema.read( "file:doc/inference/data/owlDemoSchema.xml", null );
+
+        for (Iterator i = schema.listIndividuals(); i.hasNext(); ) {
+            Resource r = (Resource) i.next();
+            
+            /* Debugging 
+            for (StmtIterator j = r.listProperties(RDF.type); j.hasNext(); ) {
+                System.out.println( "ind - " + r + " rdf:type = " + j.nextStatement().getObject() );
+            }
+            System.out.println("----------"); */
+        }
+    }
+    
+    
     /**
      * Bug report by Mariano Rico Almodóvar [Mariano.Rico@uam.es] on June 16th.
      * Said to raise exception.
