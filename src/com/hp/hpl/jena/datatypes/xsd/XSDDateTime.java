@@ -77,7 +77,7 @@ public class XSDDateTime extends AbstractDateTime {
             cal.add(Calendar.MILLISECOND, -offset);
         }
         data[AbstractDateTime.CY] = cal.get(Calendar.YEAR);
-        data[AbstractDateTime.M] = cal.get(Calendar.MONTH);
+        data[AbstractDateTime.M] = cal.get(Calendar.MONTH) + 1;
         data[AbstractDateTime.D] = cal.get(Calendar.DAY_OF_MONTH);
         data[AbstractDateTime.h] = cal.get(Calendar.HOUR_OF_DAY);
         data[AbstractDateTime.m] = cal.get(Calendar.MINUTE);
@@ -103,7 +103,7 @@ public class XSDDateTime extends AbstractDateTime {
     public Calendar asCalendar () throws IllegalDateTimeFieldException {
         TimeZone tz = data[utc] == 'Z' ? TimeZone.getTimeZone("GMT") : TimeZone.getDefault();
         Calendar calendar = new GregorianCalendar(tz);
-        calendar.set(data[CY], data[M], data[D], data[h], data[m], data[s]);
+        calendar.set(data[CY], data[M] - 1, data[D], data[h], data[m], data[s]);
         calendar.set(Calendar.MILLISECOND, 0);
         return calendar;
     }
@@ -118,7 +118,7 @@ public class XSDDateTime extends AbstractDateTime {
     }
     
     /**
-     * Return the number of months in the dateTime
+     * Return the month in the dateTime, this is in ISO8601 format so january = 1
      * @throws IllegalDateTimeFieldException if there is no legal month component
      */
     public int getMonths() throws IllegalDateTimeFieldException {
