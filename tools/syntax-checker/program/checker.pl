@@ -189,16 +189,19 @@ gogo :-
 gogo :-
   wActions,
   wGetBuiltinID,
+  wGroups1,
   wInitSingletons,
   wTripleTable,
-  wGroups,
+  wGroups2,
   wlist(['}',nl]),
   copyrightTail,
   told.
   
 wInitSingletons :-
   flag(catID,N,N),
-  wlist(['static {',nl,
+  wlist([
+  'static final int MAX_SINGLETON_SET = ',N,' + 1;',nl,
+  'static {',nl,
   'for (int i=0; i<',N,'; i++) {',nl,
    'if ( i != CategorySet.find(new int[]{i},true) )',nl,
    '      System.err.println("initialization problem");',nl,
@@ -268,17 +271,22 @@ buildChecker :-
   assert(expg(S,disjointWith)).
   
 
-wGroups :-
+wGroups1 :-
   expg(S,N),
   wlist(['static final int ',N,'X[] = new int[]{',nl]),
   (member(M,S),
      gname([M],MM),
      wlist([MM,',',nl]),
      fail;
-   wlist(['};',nl,
-    'static final int ',N,' = CategorySet.find( ',N,'X,false);',nl])),
+   wlist(['};',nl])),
   fail.
-wGroups.
+wGroups1.
+wGroups2 :-
+  expg(_,N),
+  wlist([
+    'static final int ',N,' = CategorySet.find( ',N,'X,false);',nl]),
+  fail.
+wGroups2.
 
 countx(G,_) :-
   flag(count,_,0),

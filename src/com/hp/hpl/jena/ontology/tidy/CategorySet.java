@@ -139,8 +139,8 @@ class CategorySet implements Comparable {
 	public int compareTo(Object o) {
 		CategorySet c = (CategorySet) o;
 		int diff = cats.length - c.cats.length;
-		for (int j = 0; diff != 0 && j < cats.length; j++)
-			diff = cats[j] = c.cats[j];
+		for (int j = 0; diff == 0 && j < cats.length; j++)
+			diff = cats[j] - c.cats[j];
 		return diff;
 	}
 	public boolean equals(Object o) {
@@ -164,9 +164,14 @@ class CategorySet implements Comparable {
 		if (!isSorted)
 			Arrays.sort(s);
 		CategorySet cs = new CategorySet(s);
-		CategorySet close = (CategorySet) sorted.tailSet(cs).first();
-		if (close.equals(cs))
-			return close.id;
+		SortedSet tail = sorted.tailSet(cs);
+		if ( !tail.isEmpty() ) {
+			CategorySet close = (CategorySet) tail.first();
+			if (close.equals(cs)) {
+				System.err.println("Close enough.");
+				return close.id;
+			}
+		}
 		cs.id = unsorted.size();
 		unsorted.add(cs);
 		sorted.add(cs);
