@@ -168,9 +168,9 @@ public class TestSimpleListStatements extends ModelTestBase
     public void testListStatementsSPO()
         {
         Model m = ModelFactory.createDefaultModel();
-        Resource A = m.createResource( "A" ), X = m.createResource( "X" );
-        Property P = m.createProperty( "P" ), P1 = m.createProperty( "P1" );
-        RDFNode O = m.createResource( "O" ), Y = m.createResource( "Y" );
+        Resource A = resource( m, "A" ), X = resource( m, "X" );
+        Property P = property( m, "P" ), P1 = property( m, "P1" );
+        RDFNode O = resource( m, "O" ), Y = resource( m, "Y" );
         String S1 = "S P O; S1 P O; S2 P O";
         String S2 = "A P1 B; A P1 B; A P1 C";
         String S3 = "X P1 Y; X P2 Y; X P3 Y";

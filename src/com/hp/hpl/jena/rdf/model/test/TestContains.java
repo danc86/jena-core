@@ -24,7 +24,7 @@ public class TestContains extends ModelTestBase
     public void testContains( boolean yes, String facts, String resource )
         {
         Model m = modelWithStatements( facts );
-        RDFNode r = m.createResource( resource );
+        RDFNode r = rdfNode( m, resource );
         if (modelWithStatements( facts ).containsResource( r ) != yes)
             fail( "[" + facts + "] should" + (yes ? "" : " not") + " contain " + resource );
         }
