@@ -39,13 +39,13 @@ public class Delta extends Dyadic implements Graph
 		return R;
 		}
 		
-	public void add( Triple t )
+	public void performAdd( Triple t )
 		{
 		L.add( t );
 		R.delete( t );
 		}
 
-	public void delete( Triple t )
+	public void performDelete( Triple t )
 		{
 		L.delete( t );
 		R.add( t );

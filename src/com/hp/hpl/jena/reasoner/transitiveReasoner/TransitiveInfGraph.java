@@ -122,7 +122,7 @@ public class TransitiveInfGraph extends BaseInfGraph {
      * Add one triple to the data graph, run any rules triggered by
      * the new data item, recursively adding any generated triples.
      */
-    public synchronized void add(Triple t) {
+    public synchronized void performAdd(Triple t) {
         if (!isPrepared) prepare();
         fdata.getGraph().add(t);
         transitiveEngine.add(t);
@@ -142,7 +142,7 @@ public class TransitiveInfGraph extends BaseInfGraph {
     /** 
      * Removes the triple t (if possible) from the set belonging to this graph.
      */   
-    public void delete(Triple t) {
+    public void performDelete(Triple t) {
         fdata.getGraph().delete(t);
         if (isPrepared) {
             transitiveEngine.delete(t);

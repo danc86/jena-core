@@ -265,7 +265,7 @@ public class BasicForwardRuleInfGraph extends BaseInfGraph implements ForwardRul
      * Add one triple to the data graph, run any rules triggered by
      * the new data item, recursively adding any generated triples.
      */
-    public synchronized void add(Triple t) {
+    public synchronized void performAdd(Triple t) {
         fdata.getGraph().add(t);
         if (isPrepared) {
             engine.add(t);
@@ -293,7 +293,7 @@ public class BasicForwardRuleInfGraph extends BaseInfGraph implements ForwardRul
     /** 
      * Removes the triple t (if possible) from the set belonging to this graph. 
      */   
-    public void delete(Triple t) {
+    public void performDelete(Triple t) {
         if (fdata != null) {
             Graph data = fdata.getGraph();
             if (data != null) {

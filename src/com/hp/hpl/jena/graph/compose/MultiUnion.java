@@ -106,7 +106,7 @@ public class MultiUnion
      * @param t A triple to add to the union graph
      * @exception JenaException if the union does not contain any sub-graphs yet
      */
-    public void add( Triple t ) {
+    public void performAdd( Triple t ) {
         try {
             getBaseGraph().add( t );
         }
@@ -125,7 +125,7 @@ public class MultiUnion
      * @param t A triple to from the union graph
      * @exception JenaException if the union does not contain any sub-graphs yet
      */
-    public void delete( Triple t ) {
+    public void performDelete( Triple t ) {
         try {
             getBaseGraph().delete( t );
         }

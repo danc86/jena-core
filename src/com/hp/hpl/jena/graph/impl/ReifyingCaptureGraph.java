@@ -39,10 +39,10 @@ public class ReifyingCaptureGraph extends GraphBase
     public boolean contains( Node s, Node p, Node o )
         { return under.contains( s, p, o ); }
         
-    public void add( Triple t )
+    public void performAdd( Triple t )
         { if (getReifier().handledAdd( t ) == false) under.add( t ); }
         
-    public void delete( Triple t )
+    public void performDelete( Triple t )
         { if (getReifier().handledRemove( t ) == false) under.delete( t ); }
         
     public int size()

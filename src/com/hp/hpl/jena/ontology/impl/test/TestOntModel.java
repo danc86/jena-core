@@ -413,8 +413,20 @@ public class TestOntModel
         assertNull( "result of get r", m.getMaxCardinalityRestriction( NS+"r"));
     }
 
-
-
+    /**
+        Added by kers to ensure that bulk update works; should really be a test
+        of the ontology Graph using AbstractTestGraph, but that fails because there
+        are too many things that don't pass those tests.
+    <p>
+        <b>Yet</b>.
+    */
+    public void testBulkAddWorks()
+        {
+        OntModel om1= ModelFactory.createOntologyModel();
+        OntModel om2 = ModelFactory.createOntologyModel();
+        om1.add( om2 );
+        }
+        
     // Internal implementation methods
     //////////////////////////////////
 
