@@ -492,34 +492,37 @@ public class TestXMLFeatures extends TestCase {
 	}
     static String rData1[][] = {
     // http://www.example.org/a/b/c/d/
-     { "", "http://www.example.org/a/b/c/d/", "http://www.example.org/a/b/c/d/e/f/g/", "http://www.example.org/a/b/C/D", "http://www.example.org/A/B#foo/", "http://www.example.org/a/b/c/d/X#bar", "http://example.com/A", "http://www.example.org/a/b/c/d/z[?]x=a", },
-     { "same-document", "", null, null, null, null, null, null, },
-     { "absolute", "/a/b/c/d/", "/a/b/c/d/e/f/g/", "/a/b/C/D", "/A/B#foo/", "/a/b/c/d/X#bar", null, "/a/b/c/d/z[?]x=a", },
-     { "relative", "[.]", "e/f/g/", null, null, "X#bar", null, "z[?]x=a", },
-     { "parent", "[.][.]", "[.][.]/e/f/g/", null, null, "[.][.]/X#bar", null, "[.][.]/z[?]x=a", },
-     { "network", "//www.example.org/a/b/c/d/", "//www.example.org/a/b/c/d/e/f/g/", "//www.example.org/a/b/C/D", "//www.example.org/A/B#foo/", "//www.example.org/a/b/c/d/X#bar", "//example.com/A", "//www.example.org/a/b/c/d/z[?]x=a", },
-     { "grandparent", "[.][.]/[.][.]", "[.][.]/[.][.]/e/f/g/", null, null, "[.][.]/[.][.]/X#bar", null, "[.][.]/[.][.]/z[?]x=a", },
+        { "", "http://www.example.org/a/b/c/d/", "http://www.example.org/a/b/c/d/e/f/g/", "http://www.example.org/a/b/C/D", "http://www.example.org/A/B#foo/", "http://www.example.org/a/b/c/d/X#bar", "http://example.com/A", "http://www.example.org/a/b/c/d/z[?]x=a", },
+        { "same-document", "", null, null, null, null, null, null, },
+        { "absolute", "/a/b/c/d/", "/a/b/c/d/e/f/g/", "/a/b/C/D", "/A/B#foo/", "/a/b/c/d/X#bar", null, "/a/b/c/d/z[?]x=a", },
+        { "relative", "[.]", "e/f/g/", null, null, "X#bar", null, "z[?]x=a", },
+        { "parent", "[.][.]/d/", "[.][.]/d/e/f/g/", null, null, "[.][.]/d/X#bar", null, "[.][.]/d/z[?]x=a", },
+        { "network", "//www.example.org/a/b/c/d/", "//www.example.org/a/b/c/d/e/f/g/", "//www.example.org/a/b/C/D", "//www.example.org/A/B#foo/", "//www.example.org/a/b/c/d/X#bar", "//example.com/A", "//www.example.org/a/b/c/d/z[?]x=a", },
+        { "grandparent", "[.][.]/[.][.]/c/d/", "[.][.]/[.][.]/c/d/e/f/g/", "[.][.]/[.][.]/C/D", null, "[.][.]/[.][.]/c/d/X#bar", null, "[.][.]/[.][.]/c/d/z[?]x=a", },
+
     };
     static String rData2[][] = {
 
     // http://www.example.org/a/b/c/d
-     { "", "http://www.example.org/a/b/c/d/", "http://www.example.org/a/b/c/d/e/f/g/", "http://www.example.org/a/b/C/D", "http://www.example.org/A/B#foo/", "http://www.example.org/a/b/c/d/X#bar", "http://example.com/A", "http://www.example.org/a/b/c/d/z[?]x=a", },
-     { "same-document", null, null, null, null, null, null, null, },
-     { "absolute", "/a/b/c/d/", "/a/b/c/d/e/f/g/", "/a/b/C/D", "/A/B#foo/", "/a/b/c/d/X#bar", null, "/a/b/c/d/z[?]x=a", },
-     { "relative", "d/", "d/e/f/g/", null, null, "d/X#bar", null, "d/z[?]x=a", },
-     { "parent", "[.][.]/d/", "[.][.]/d/e/f/g/", null, null, "[.][.]/d/X#bar", null, "[.][.]/d/z[?]x=a", },
-     { "network", "//www.example.org/a/b/c/d/", "//www.example.org/a/b/c/d/e/f/g/", "//www.example.org/a/b/C/D", "//www.example.org/A/B#foo/", "//www.example.org/a/b/c/d/X#bar", "//example.com/A", "//www.example.org/a/b/c/d/z[?]x=a", },
-     { "grandparent", "[.][.]/[.][.]/d/", "[.][.]/[.][.]/d/e/f/g/", null, null, "[.][.]/[.][.]/d/X#bar", null, "[.][.]/[.][.]/d/z[?]x=a", },
-        };
+        { "", "http://www.example.org/a/b/c/d/", "http://www.example.org/a/b/c/d/e/f/g/", "http://www.example.org/a/b/C/D", "http://www.example.org/A/B#foo/", "http://www.example.org/a/b/c/d/X#bar", "http://example.com/A", "http://www.example.org/a/b/c/d/z[?]x=a", },
+        { "same-document", null, null, null, null, null, null, null, },
+        { "absolute", "/a/b/c/d/", "/a/b/c/d/e/f/g/", "/a/b/C/D", "/A/B#foo/", "/a/b/c/d/X#bar", null, "/a/b/c/d/z[?]x=a", },
+        { "relative", "d/", "d/e/f/g/", null, null, "d/X#bar", null, "d/z[?]x=a", },
+        { "parent", "[.][.]/c/d/", "[.][.]/c/d/e/f/g/", "[.][.]/C/D", null, "[.][.]/c/d/X#bar", null, "[.][.]/c/d/z[?]x=a", },
+        { "network", "//www.example.org/a/b/c/d/", "//www.example.org/a/b/c/d/e/f/g/", "//www.example.org/a/b/C/D", "//www.example.org/A/B#foo/", "//www.example.org/a/b/c/d/X#bar", "//example.com/A", "//www.example.org/a/b/c/d/z[?]x=a", },
+        { "grandparent", "[.][.]/[.][.]/b/c/d/", "[.][.]/[.][.]/b/c/d/e/f/g/", "[.][.]/[.][.]/b/C/D", null, "[.][.]/[.][.]/b/c/d/X#bar", null, "[.][.]/[.][.]/b/c/d/z[?]x=a", },
+
+       };
         static String rData3[][] = {
     // http://www.example.org/A/B#
-     { "", "http://www.example.org/a/b/c/d/", "http://www.example.org/a/b/c/d/e/f/g/", "http://www.example.org/a/b/C/D", "http://www.example.org/A/B#foo/", "http://www.example.org/a/b/c/d/X#bar", "http://example.com/A", "http://www.example.org/a/b/c/d/z[?]x=a", },
-     { "same-document", null, null, null, "#foo/", null, null, null, },
-     { "absolute", "/a/b/c/d/", "/a/b/c/d/e/f/g/", "/a/b/C/D", "/A/B#foo/", "/a/b/c/d/X#bar", null, "/a/b/c/d/z[?]x=a", },
-     { "relative", null, null, null, "B#foo/", null, null, null, },
-     { "parent", null, null, null, "[.][.]/B#foo/", null, null, null, },
-     { "network", "//www.example.org/a/b/c/d/", "//www.example.org/a/b/c/d/e/f/g/", "//www.example.org/a/b/C/D", "//www.example.org/A/B#foo/", "//www.example.org/a/b/c/d/X#bar", "//example.com/A", "//www.example.org/a/b/c/d/z[?]x=a", },
-     { "grandparent", null, null, null, "[.][.]/[.][.]/B#foo/", null, null, null, },
+            { "", "http://www.example.org/a/b/c/d/", "http://www.example.org/a/b/c/d/e/f/g/", "http://www.example.org/a/b/C/D", "http://www.example.org/A/B#foo/", "http://www.example.org/a/b/c/d/X#bar", "http://example.com/A", "http://www.example.org/a/b/c/d/z[?]x=a", },
+             { "same-document", null, null, null, "#foo/", null, null, null, },
+             { "absolute", "/a/b/c/d/", "/a/b/c/d/e/f/g/", "/a/b/C/D", "/A/B#foo/", "/a/b/c/d/X#bar", null, "/a/b/c/d/z[?]x=a", },
+             { "relative", null, null, null, "B#foo/", null, null, null, },
+             { "parent", "[.][.]/a/b/c/d/", "[.][.]/a/b/c/d/e/f/g/", "[.][.]/a/b/C/D", "[.][.]/A/B#foo/", "[.][.]/a/b/c/d/X#bar", null, "[.][.]/a/b/c/d/z[?]x=a", },
+             { "network", "//www.example.org/a/b/c/d/", "//www.example.org/a/b/c/d/e/f/g/", "//www.example.org/a/b/C/D", "//www.example.org/A/B#foo/", "//www.example.org/a/b/c/d/X#bar", "//example.com/A", "//www.example.org/a/b/c/d/z[?]x=a", },
+             { "grandparent", null, null, null, null, null, null, null, },
+
             };
     private void relative(int i, String base, String d[][]) 
          throws IOException, MalformedPatternException{
@@ -541,7 +544,7 @@ public class TestXMLFeatures extends TestCase {
     }
     
     public void testRelative() throws Exception {
-        for (int i=0; i<4; i++) {
+        for (int i=0; i<7; i++) {
             relative(i, "http://www.example.org/a/b/c/d/", rData1);
             relative(i, "http://www.example.org/a/b/c/d", rData2);
             relative(i, "http://www.example.org/A/B#", rData3);
