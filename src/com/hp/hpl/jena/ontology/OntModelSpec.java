@@ -583,8 +583,10 @@ public class OntModelSpec extends ModelSpecImpl implements ModelSpec {
     */        
     protected void addReasonerDescription( Model d, Resource me, ReasonerFactory rf ) {
         Resource reasonerSelf = d.createResource();
-        d.add( me, JMS.reasonsWith, reasonerSelf );  
-        d.add( reasonerSelf, JMS.reasoner, d.createResource( rf.getURI() ) );  
+        d.add( me, JMS.reasonsWith, reasonerSelf );
+        if (rf != null) {
+            d.add( reasonerSelf, JMS.reasoner, d.createResource( rf.getURI() ) );  
+        }
     }
 
     /**

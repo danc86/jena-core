@@ -24,6 +24,8 @@ package com.hp.hpl.jena.ontology.impl.test;
 // Imports
 ///////////////
 import java.io.*;
+import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
 import java.util.*;
 
 import com.hp.hpl.jena.enhanced.EnhGraph;
@@ -1094,6 +1096,20 @@ public class TestBugReports
         r = (Resource) OWL.Nothing.inModel( m );
         OntClass nothingClass = (OntClass) r.as( OntClass.class );
         assertNotNull( nothingClass );
+    }
+    
+    /** Test case for SF bug 937810 - NPE from ModelSpec.getDescription() */
+    public void test_sf_937810() throws IllegalAccessException {
+        Field[] specs = OntModelSpec.class.getDeclaredFields();
+        
+        for (int i = 0;  i < specs.length;  i++) {
+            if (Modifier.isPublic( specs[i].getModifiers()) && 
+                Modifier.isStatic( specs[i].getModifiers()) &&
+                specs[i].getType().equals( OntModelSpec.class )) {
+                OntModelSpec s = (OntModelSpec) specs[i].get( null );
+                assertNotNull( s.getDescription() );
+            }
+        }
     }
     
     
