@@ -259,7 +259,7 @@ public class BRuleEngine {
                             // found next subgoal to try
                             // Push current state onto stack 
                             TriplePattern subgoal = env.partInstantiate((TriplePattern)clause);
-                            if (subgoal.getSubject().isLiteral() || subgoal.getPredicate().isLiteral()) {
+                            if (!subgoal.isLegal()) {
                                 // branch has failed
                                 delayedRSClose = current;
                                 current = current.prev;

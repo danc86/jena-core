@@ -260,6 +260,17 @@ public class BasicBackwardRuleInfGraph extends BaseInfGraph {
     }
             
     /**
+     * Test when the data (and TBD the deductions) contains the
+     * given triple.
+     */
+    public boolean dataContains(Triple t) {
+        ExtendedIterator i = dataFind.find(new TriplePattern(t.getSubject(), t.getPredicate(), t.getObject()));
+        boolean result = i.hasNext();
+        i.close();
+        return result;
+    }
+            
+    /**
      * Process a call to a builtin predicate
      * @param clause the Functor representing the call
      * @param env the BindingEnvironment for this call

@@ -178,6 +178,10 @@ public class GoalResults {
      */
     public boolean addResult(Triple result) {
         if (!isComplete && !resultSetIndex.contains(result)) {
+            // Temp ... replace when we flush results to the deductions graph
+            // TODO remove
+//            if (engine.infGraph.dataContains(result)) return false;
+            // ... end temp
             resultSet.add(result);
             resultSetIndex.add(result);
             if (isSingleton) {

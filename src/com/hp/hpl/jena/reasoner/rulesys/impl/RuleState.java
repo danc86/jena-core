@@ -123,7 +123,9 @@ public class RuleState {
                     for (int i = 0; i < margs.length; i++) {
                         Node match = margs[i];
                         if (match instanceof Node_RuleVariable) {
-                            if (!newenv.bind(match, args[i])) return null;
+                            Node val = args[i];
+                            if (Functor.isFunctor(val)) return null;
+                            if (!newenv.bind(match, val)) return null;
                         }
                     }
                 } else {
@@ -225,10 +227,7 @@ public class RuleState {
                 }
                 // ... end of clause reorder
                 TriplePattern subgoal = env.partInstantiate((TriplePattern)clause);
-                if (subgoal.getSubject().isLiteral() || subgoal.getPredicate().isLiteral()) {
-                    // Illegal goal, could never be satisfied
-                    return null;
-                }
+                if (!subgoal.isLegal()) return null;
                 GoalState gs = generator.getEngine().findGoal(subgoal);
                 RuleState rs = new RuleState(ri, env, gs, clauseIndex);
                 rs.initMapping(subgoal);

@@ -131,6 +131,22 @@ public class TriplePattern {
     }
     
     /**
+     * Check a pattern to see if it is legal, used to exclude backchaining goals that
+     * could never be satisfied. A legal pattern cannot have literals in the subject or
+     * predicate positions and is not allowed nested functors in the object.
+     */
+    public boolean isLegal() {
+        if (subject.isLiteral() || predicate.isLiteral()) return false;
+        if (Functor.isFunctor(object)) {
+            Node[] args = ((Functor)object.getLiteral().getValue()).getArgs();
+            for (int i = 0; i < args.length; i++) {
+                if (Functor.isFunctor(args[i])) return false;  
+            }
+        }
+        return true;
+    }
+    
+    /**
      * Compare two patterns and return true if arg is a more
      * specific (more grounded) version of this one.
      * Does not handle functors.
