@@ -1,5 +1,5 @@
 /*
-  (c) Copyright 2003, Hewlett-Packard Development Company, LP, all rights reserved.
+  (c) Copyright 2004, Hewlett-Packard Development Company, LP, all rights reserved.
   [See end of file]
   $Id$
 */
@@ -26,11 +26,14 @@ public abstract class BaseExampleExpression
                 {
                 public boolean evalBool( IndexValues iv ) 
                     { return L.evalBool( iv ) && R.evalBool( iv ); }
+                
+                public Object evalObject( IndexValues iv ) 
+                    { return L.evalBool( iv ) && R.evalBool( iv ) ? Boolean.TRUE : Boolean.FALSE; }
                 };    
             }
             
         public Object eval( IndexValues iv )
-            { return evalBool( iv ) ? Boolean.TRUE : Boolean.FALSE; }
+            { return evalObject( iv ) ; }
         }    
         
     public Expression and( Expression e ) { return and( this, e ); }
@@ -52,7 +55,7 @@ public abstract class BaseExampleExpression
         }
     }
 /*
-    (c) Copyright 2003, Hewlett-Packard Development Company, LP
+    (c) Copyright 2004, Hewlett-Packard Development Company, LP
     All rights reserved.
 
     Redistribution and use in source and binary forms, with or without

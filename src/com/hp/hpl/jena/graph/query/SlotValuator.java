@@ -12,7 +12,7 @@ package com.hp.hpl.jena.graph.query;
  	@author hedgehog
 */
 
-public class SlotValuator implements ObjectValuator
+public class SlotValuator implements Valuator
 	{
     /**
      	The index in the index values which this SlotValuator
@@ -30,7 +30,7 @@ public class SlotValuator implements ObjectValuator
 	 	Answer the value of the <code>index</code>th element of the
 	 	index values bindings.
 	*/
-	public Object eval( IndexValues iv )
+	public Object evalObject( IndexValues iv )
 	    { return iv.get( index ); }
 	
 	/**
@@ -39,7 +39,7 @@ public class SlotValuator implements ObjectValuator
 	 	<code>Boolean</code> value.
 	*/
 	public boolean evalBool( IndexValues iv )
-	    { return ((Boolean) eval( iv )).booleanValue(); }        
+	    { return ((Boolean) evalObject( iv )).booleanValue(); }        
 	}
 
 /*

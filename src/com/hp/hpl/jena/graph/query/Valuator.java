@@ -7,13 +7,24 @@
 package com.hp.hpl.jena.graph.query;
 
 /**
-	Valuator
+	Valuator - an interface for things that evaluate to some 
+	value, given a binding of variable (inexes) to values. 
 
 	@author kers
 */
 public interface Valuator 
     {
+    /**
+     	Answer the evaluated value as a primitive boolean
+    	@param iv the mapping from variable (indexes) to values
+    */
     boolean evalBool( IndexValues iv );
+    
+    /**
+     	Answer the evaluated value
+    	@param iv the mapping from variable (indexes) to values
+    */
+    Object evalObject( IndexValues iv );
     }
 
 /*

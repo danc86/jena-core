@@ -21,13 +21,14 @@ public class ExampleCreate
     {
     public static abstract class DyadicValuator 
         extends BaseExampleExpression.BaseExampleValuator
-        implements ObjectValuator
+        implements Valuator
         {
-        ObjectValuator L;
-        ObjectValuator R;
-        DyadicValuator( ObjectValuator L, ObjectValuator R ) 
+        Valuator L;
+        Valuator R;
+        DyadicValuator( Valuator L, Valuator R ) 
             { this.L = L; this.R = R; }    
-        public Object eval( IndexValues iv )
+        
+        public Object evalObject( IndexValues iv )
             { return Boolean.valueOf( evalBool( iv ) ); }
         }
     
@@ -88,10 +89,10 @@ public class ExampleCreate
                 
             public Valuator prepare( VariableIndexes vi )
                 {
-                return new DyadicValuator( (ObjectValuator) L.prepare( vi ), (ObjectValuator) R.prepare( vi ) )
+                return new DyadicValuator( L.prepare( vi ), R.prepare( vi ) )
                     {                    
                     public boolean evalBool( IndexValues iv )
-                        { return !L.eval( iv ).equals( R.eval( iv ) ); }
+                        { return !L.evalObject( iv ).equals( R.evalObject( iv ) ); }
                     };    
                 }                
             };    
@@ -106,10 +107,10 @@ public class ExampleCreate
                 
             public Valuator prepare( VariableIndexes vi )
                 {
-                return new DyadicValuator( (ObjectValuator) L.prepare( vi ), (ObjectValuator) R.prepare( vi ) )
+                return new DyadicValuator( L.prepare( vi ), R.prepare( vi ) )
                     {                    
                     public boolean evalBool( IndexValues iv )
-                        { return L.eval( iv ).equals( R.eval( iv ) ); }
+                        { return L.evalObject( iv ).equals( R.evalObject( iv ) ); }
                     };    
                 }
             };    
@@ -134,11 +135,11 @@ public class ExampleCreate
                          
             public Valuator prepare( VariableIndexes vi )
                 {
-                return new DyadicValuator( (ObjectValuator) L.prepare( vi ), (ObjectValuator) R.prepare( vi ) )
+                return new DyadicValuator( L.prepare( vi ), R.prepare( vi ) )
                     {                    
                     public String toString() { return super.toString() + " :: MATCHES()"; }
                     public boolean evalBool( IndexValues iv )
-                        { return matches( L.eval( iv ), R.eval( iv ) ); }
+                        { return matches( L.evalObject( iv ), R.evalObject( iv ) ); }
                     };    
                 }
             };    

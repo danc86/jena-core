@@ -34,9 +34,9 @@ public interface Expression
     { 
     /**
         Answer a Valuator which, when run with a set of index-to-value bindings, 
-        evaluates this expression in the ligh of the given variable-to-index bindings
-        [ie as though the variables were bound to the corresponding values].
-     */
+        evaluates this expression in the light of the given variable-to-index bindings
+        [ie as though the variables were bound to the corresponding values]
+    */
     public Valuator prepare( VariableIndexes vi );
     
     /**
@@ -218,6 +218,7 @@ public interface Expression
         public Valuator prepare( VariableIndexes vi ) { return this; }   
         public boolean evalBool( VariableValues vv ) { return value; }
         public boolean evalBool( IndexValues vv ) { return value; }
+        public Object evalObject( IndexValues iv ) { return getValue(); }
         }    
     }
 
