@@ -66,6 +66,16 @@ public class JMS
     public static final Property ruleSetURL = property( "ruleSetURL" );
     
     /**
+         The property of a reasoner spec that specifies in-line rule-sets.
+    */
+    public static final Property ruleSet = property( "ruleSet" );
+    
+    /**
+         The property of a RuleSet that specifies a rule.
+    */
+    public static final Property hasRule = property( "hasRule" );
+    
+    /**
         The property of a document manager that gives its policy path string.
      */
     public static final Property policyPath = property( "policyPath" );

@@ -316,13 +316,31 @@ public abstract class ModelSpecImpl implements ModelSpec
         if (rf == null) throw new NoSuchReasonerException( rrs );
         // System.err.println( ">> getReasonerFactory " + R );
         StmtIterator rulesets = rs.listStatements( R, JMS.ruleSetURL, (RDFNode) null );
-        if (rulesets.hasNext())
+        StmtIterator others = rs.listStatements( R, JMS.ruleSet, (RDFNode) null );
+        if (rulesets.hasNext() || others.hasNext())
             {
             WrappedRuleReasonerFactory f = new WrappedRuleReasonerFactory( (RuleReasonerFactory) rf );
             while (rulesets.hasNext()) load( f, rulesets.nextStatement().getResource() );
+            while (others.hasNext()) loadInline( f, others.nextStatement().getResource() );
             rf = f;
             }
         return rf;
+        }
+    
+    private static void loadInline( RuleReasonerFactory f, Resource ruleSet )
+        {
+        StmtIterator it = ruleSet.listProperties( JMS.hasRule );
+        while (it.hasNext())
+            {
+            String rule = it.nextStatement().getString();
+            f.addRules( Rule.parseRules( rule ) );
+            }
+        StmtIterator that = ruleSet.listProperties( JMS.ruleSetURL );
+        while (that.hasNext())
+            {
+            Resource u = that.nextStatement().getResource();
+            load( f, u );
+            }
         }
     
     /**
