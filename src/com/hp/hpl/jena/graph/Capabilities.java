@@ -1,5 +1,5 @@
 /*
-  (c) Copyright 2002, Hewlett-Packard Company, all rights reserved.
+  (c) Copyright 2003, Hewlett-Packard Company, all rights reserved.
   [See end of file]
   $Id$
 */
@@ -7,6 +7,8 @@
 package com.hp.hpl.jena.graph;
 
 /**
+    Interface for expressing capabilities; presently empty until tests force something
+    useful into it (the existing capability integers not being used constructively anywhere).
  	@author kers
 */
 public interface Capabilities
