@@ -94,13 +94,9 @@ public class WebOntTestHarness {
         "http://www.w3.org/2002/03owlt/unionOf/Manifest001#test", 
         "http://www.w3.org/2002/03owlt/unionOf/Manifest002#test",
         "http://www.w3.org/2002/03owlt/equivalentClass/Manifest006#test",
-        // Less direct use of non-lite - implement sufficient for these?
-        // These two need singletons defined via oneOf
-        "http://www.w3.org/2002/03owlt/FunctionalProperty/Manifest004#test", 
-        "http://www.w3.org/2002/03owlt/InverseFunctionalProperty/Manifest004#test",
-        // These two need hasValue
-        "http://www.w3.org/2002/03owlt/equivalentProperty/Manifest004#test",
-        "http://www.w3.org/2002/03owlt/equivalentProperty/Manifest005#test",
+        "http://www.w3.org/2002/03owlt/description-logic/Manifest201#test",
+        "http://www.w3.org/2002/03owlt/I5.8/Manifest004#test",
+        "http://www.w3.org/2002/03owlt/I5.2/Manifest004#test",
     };
             
     /** The list of status values to include. If approvedOnly then only the first
@@ -165,6 +161,8 @@ public class WebOntTestHarness {
         runTests(findTestsOfType(OWLTest.PositiveEntailmentTest));
         System.out.println("\nNegative entailment: ");
         runTests(findTestsOfType(OWLTest.NegativeEntailmentTest));
+        System.out.println("\nTrue tests: ");
+        runTests(findTestsOfType(OWLTest.TrueTest));
         System.out.println("\nPassed " + passCount + " out of " + testCount);
     }
     
@@ -187,6 +185,7 @@ public class WebOntTestHarness {
             success = doRunTest(test);
         } catch (Exception e) {
             System.out.print("\nException: " + e);
+            e.printStackTrace();
         }
         testCount++;
         if (success) {
@@ -204,7 +203,8 @@ public class WebOntTestHarness {
      */
     public boolean doRunTest(Resource test) throws IOException {
         if (test.hasProperty(RDF.type, OWLTest.PositiveEntailmentTest) 
-        ||  test.hasProperty(RDF.type, OWLTest.NegativeEntailmentTest)) {
+        ||  test.hasProperty(RDF.type, OWLTest.NegativeEntailmentTest)
+        ||  test.hasProperty(RDF.type, OWLTest.TrueTest) ) {
             // Entailment tests
             Model premises = getDoc(test, RDFTest.premiseDocument);
             Model conclusions = getDoc(test, RDFTest.conclusionDocument);
