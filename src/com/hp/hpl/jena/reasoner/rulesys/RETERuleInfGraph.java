@@ -59,7 +59,7 @@ public class RETERuleInfGraph extends BasicForwardRuleInfGraph {
       * @param reasoner the parent reasoner 
       * @param rules the list of rules to use this time
       * @param schema the (optional) schema or preload data which is being processed
-      * @param the data graph to be processed
+      * @param data the data graph to be processed
       */
      public RETERuleInfGraph(Reasoner reasoner, List rules, Graph schema, Graph data) {
          super(reasoner, rules, schema, data);

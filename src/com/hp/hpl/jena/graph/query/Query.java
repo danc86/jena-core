@@ -91,9 +91,9 @@ public class Query
     /**
         Add an (S, P, O) match to the query's collection of match triples. Return
         this query for cascading.
-        @param S the node to match the subject
-        @param P the node to match the predicate
-        @param O the node to match the object
+        @param s the node to match the subject
+        @param p the node to match the predicate
+        @param o the node to match the object
         @return this Query, for cascading
     */
     public Query addMatch( Node s, Node p, Node o )
@@ -112,9 +112,9 @@ public class Query
         Add an (S, P, O) match triple to this query to match against the graph labelled
         with <code>name</code>. Return this query for cascading.
         @param name the name that will identify the graph in the matching
-        @param S the node to match the subject
-        @param P the node to match the predicate
-        @param O the node to match the object
+        @param s the node to match the subject
+        @param p the node to match the predicate
+        @param o the node to match the object
         @return this Query, for cascading.
     */
     public Query addMatch( String name, Node s, Node p, Node o )
@@ -126,9 +126,9 @@ public class Query
         will be bound to values. <code>P</code> is a constraint predicate name.
         A match fails if the predication (value of S, predicate P, value of O) is false.
         Return this Query for cascading.
-        @param S the node representing the left operand of the predicate
-        @param P the node identifying the predicate
-        @param O the node representing the right operand of the predicate
+        @param s the node representing the left operand of the predicate
+        @param p the node identifying the predicate
+        @param o the node representing the right operand of the predicate
         @return this query, for cascading
     */
     public Query addConstraint( Node s, Node p, Node o )

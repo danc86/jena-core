@@ -102,7 +102,7 @@ public class BasicForwardRuleInfGraph extends BaseInfGraph implements ForwardRul
      * @param reasoner the parent reasoner 
      * @param rules the list of rules to use this time
      * @param schema the (optional) schema or preload data which is being processed
-     * @param the data graph to be processed
+     * @param data the data graph to be processed
      */
     public BasicForwardRuleInfGraph(Reasoner reasoner, List rules, Graph schema, Graph data) {
         this(reasoner, rules, schema);
@@ -124,7 +124,7 @@ public class BasicForwardRuleInfGraph extends BaseInfGraph implements ForwardRul
     
     /**
      * Attach a compiled rule set to this inference graph.
-     * @param rulestore a compiled set of rules (i.e. the result of an FRuleEngine.compile). 
+     * @param ruleStore a compiled set of rules (i.e. the result of an FRuleEngine.compile). 
      */
     public void setRuleStore(Object ruleStore) {
         engine.setRuleStore(ruleStore);

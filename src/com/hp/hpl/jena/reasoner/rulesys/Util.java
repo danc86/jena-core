@@ -113,7 +113,7 @@ public class Util {
     /**
      * Convert an (assumed well formed) RDF list to a java list of Nodes
      * @param root the root node of the list
-     * @param graph the graph containing the list assertions
+     * @param context the graph containing the list assertions
      */
     public static List convertList(Node root, RuleContext context) {
         return convertList(root, context, new LinkedList());
