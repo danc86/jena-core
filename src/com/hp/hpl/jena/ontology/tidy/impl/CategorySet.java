@@ -131,6 +131,9 @@ public class CategorySet implements Comparable, Serializable, Constants {
 	 */
 	public static String catString(int j) {
 		int c[] = getSet(j);
+		return catString(c);
+	}
+	static String catString(int[] c) {
 		StringBuffer rslt = new StringBuffer("{");
 		rslt.append(Grammar.catNames[c[0]]);
 		for (int i=1;i<c.length;i++) {
