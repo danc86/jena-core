@@ -105,7 +105,7 @@ public class StatementImpl  implements Statement {
         if (n instanceof Resource)
             return (Resource) n;
         else
-            throw new RDFException(RDFException.OBJECTNOTRESOURCE);
+            throw new JenaResourceRequiredException( n );
          }
         
     public Resource getResource()
@@ -126,7 +126,7 @@ public class StatementImpl  implements Statement {
         if (object instanceof Literal) {
             return (Literal) object;
         } else {    
-            throw new RDFException(RDFException.OBJECTNOTLITERAL);
+            throw new JenaLiteralRequiredException( object );
         }
     }
     
@@ -249,7 +249,7 @@ public class StatementImpl  implements Statement {
     /** get the Model for this StatementImpl, and die if it doesn't have one */
 	protected Model mustHaveModel()
 		{
-      	if (model == null) throw new RDFException( RDFException.NOTRELATEDTOMODEL );
+      	if (model == null) throw new JenaHasNoModelException( this );
 		return model; 
 		}
         
