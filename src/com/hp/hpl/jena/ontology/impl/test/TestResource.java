@@ -222,7 +222,7 @@ public class TestResource
                     
                     a.addLabel( "more info", null );
                     assertEquals( "Cardinality should be 2", 2, a.getCardinality( prof.LABEL() ) );
-                    iteratorTest( a.listLabels( null ), new Object[] {m.createTypedLiteral( "some info" ), m.createTypedLiteral( "more info" )} );
+                    iteratorTest( a.listLabels( null ), new Object[] {m.createLiteral( "some info" ), m.createLiteral( "more info" )} );
                     
                     assertTrue( "a should have label some info", a.hasLabel( "some info", null ) );
                     assertTrue( "a should have label more info", a.hasLabel( "more info", null ) );
@@ -282,7 +282,7 @@ public class TestResource
                     
                     a.addComment( "more info", null );
                     assertEquals( "Cardinality should be 2", 2, a.getCardinality( prof.COMMENT() ) );
-                    iteratorTest( a.listComments( null ), new Object[] {m.createTypedLiteral( "some info" ), m.createTypedLiteral( "more info" )} );
+                    iteratorTest( a.listComments( null ), new Object[] {m.createLiteral( "some info" ), m.createLiteral( "more info" )} );
                     
                     assertTrue( "a should have comment some info", a.hasComment( "some info", null ) );
                     assertTrue( "a should have comment more info", a.hasComment( "more info", null ) );
