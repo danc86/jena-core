@@ -136,7 +136,7 @@
 <!-- 'd2 pd3 d1' implies that 'd2 pd2 d1' since pd2 is a super-prop of pd3 -->
 <daml:Property rdf:ID="pd2" />
 <daml:Property rdf:ID="pd3">
-    <daml:subPropertyOf rdf:resource="#pd2" />
+    <rdfs:subPropertyOf rdf:resource="#pd2" />
 </daml:Property>
 
 <D1 rdf:about="http://dickinson-i-4/daml/tests/test-cases.daml#d2">
@@ -147,7 +147,7 @@
 <daml:Class rdf:ID="SubClassBug0">
 </daml:Class>
 <daml:Class rdf:ID="SubClassBug1">
-    <daml:subClassOf rdf:resource="#SubClassBug0" />
+    <rdfs:subClassOf rdf:resource="#SubClassBug0" />
 </daml:Class>
 
 <!-- test cases for determining the defined properties of a class -->
@@ -163,11 +163,11 @@
 </daml:Class>
 
 <daml:Property rdf:ID="prop0">
-    <daml:domain rdf:resource="#DefProp0" />
+    <rdfs:domain rdf:resource="#DefProp0" />
 </daml:Property>
 
 <daml:Property rdf:ID="prop2">
-    <daml:domain rdf:resource="#DefProp2" />
+    <rdfs:domain rdf:resource="#DefProp2" />
 </daml:Property>
 
 <!-- Bug reported by Thorsten Liebig -->
@@ -181,10 +181,10 @@
 <!-- Check that getAll(false) on subClassOf is being interpreted correctly -->
 <daml:Class rdf:ID="subClassCheck1" />
 <daml:Class rdf:ID="subClassCheck2">
-    <daml:subClassOf rdf:resource="#subClassCheck1" />
+    <rdfs:subClassOf rdf:resource="#subClassCheck1" />
 </daml:Class>
 <daml:Class rdf:ID="subClassCheck3">
-    <daml:subClassOf rdf:resource="#subClassCheck2" />
+    <rdfs:subClassOf rdf:resource="#subClassCheck2" />
 </daml:Class>
 
 <!-- Test turning on and off equivalence processing - see above for defn of x1 -->

@@ -82,28 +82,28 @@ public class DAMLClassImpl
     //////////////////////////////////
 
     /** Property accessor for onProperty */
-    private PropertyAccessor m_propSubClassOf = new PropertyAccessorImpl( DAML_OIL.subClassOf, this );
+    private PropertyAccessor m_propSubClassOf = new PropertyAccessorImpl( getProfile().SUB_CLASS_OF(), this );
 
     /** Property accessor for disjointWith */
-    private PropertyAccessor m_propDisjointWith = new PropertyAccessorImpl( DAML_OIL.disjointWith, this );
+    private PropertyAccessor m_propDisjointWith = new PropertyAccessorImpl( getProfile().DISJOINT_WITH(), this );
 
     /** Property accessor for disjointUnionOf */
     private PropertyAccessor m_propDisjointUnionOf = new PropertyAccessorImpl( DAML_OIL.disjointUnionOf, this );
 
     /** Property accessor for sameClassAs */
-    private PropertyAccessor m_propSameClassAs = new PropertyAccessorImpl( DAML_OIL.sameClassAs, this );
+    private PropertyAccessor m_propSameClassAs = new PropertyAccessorImpl( getProfile().EQUIVALENT_CLASS(), this );
 
     /** Property accessor for oneOf */
-    private PropertyAccessor m_propOneOf = new PropertyAccessorImpl( DAML_OIL.oneOf, this );
+    private PropertyAccessor m_propOneOf = new PropertyAccessorImpl( getProfile().ONE_OF(), this );
 
     /** Property accessor for unionOf */
-    private PropertyAccessor m_propUnionOf = new PropertyAccessorImpl( DAML_OIL.unionOf, this );
+    private PropertyAccessor m_propUnionOf = new PropertyAccessorImpl( getProfile().UNION_OF(), this );
 
     /** Property accessor for intersectionOf */
-    private PropertyAccessor m_propIntersectionOf = new PropertyAccessorImpl( DAML_OIL.intersectionOf, this );
+    private PropertyAccessor m_propIntersectionOf = new PropertyAccessorImpl( getProfile().INTERSECTION_OF(), this );
 
     /** Property accessor for complementOf */
-    private PropertyAccessor m_propComplementOf = new PropertyAccessorImpl( DAML_OIL.complementOf, this );
+    private PropertyAccessor m_propComplementOf = new PropertyAccessorImpl( getProfile().COMPLEMENT_OF(), this );
 
     /** DAML common delegate */
     protected DAMLCommon m_common = null;

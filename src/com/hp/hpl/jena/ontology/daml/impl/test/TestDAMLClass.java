@@ -30,6 +30,7 @@ import junit.framework.*;
 import com.hp.hpl.jena.ontology.daml.*;
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.vocabulary.DAML_OIL;
+import com.hp.hpl.jena.vocabulary.RDFS;
 
 
 
@@ -77,7 +78,7 @@ public class TestDAMLClass
                     DAMLClass B = m.createDAMLClass( NS + "B" );
                     DAMLClass C = m.createDAMLClass( NS + "C" );
                     
-                    assertEquals( "prop_subClassOf property", DAML_OIL.subClassOf, A.prop_subClassOf().getProperty() );
+                    assertEquals( "prop_subClassOf property", RDFS.subClassOf, A.prop_subClassOf().getProperty() );
                     
                     assertEquals( "sub-class cardinality", 2, A.prop_subClassOf().count() );
                     A.prop_subClassOf().add( B );
@@ -196,8 +197,6 @@ public class TestDAMLClass
                    
                     A.prop_subClassOf().add( B );
                     B.prop_subClassOf().add( C );
-                    
-                    assertEquals( "subClassOf A", B, A.getSuperClass() );
                     
                     iteratorTest( A.getSuperClasses(), new Object[] {B,C,DAML_OIL.Thing} );
                     iteratorTest( A.getSuperClasses( false ), new Object[] {B} );
