@@ -99,6 +99,14 @@ public class PerlPatternParser
         { return pointer; }
     
     /**
+        Answer the character under the pointer, and advance the pointer.
+    */
+    protected char nextChar()
+        { 
+        return toParse.charAt( pointer++ ); 
+        }
+
+    /**
          Parse a single atom and return the tree for it, advancing the pointer. This
          does not deal with quantifiers, for which see parseQuantifier. Unmatched
          right parentheses, unexpected (hence unbound) quantifiers, and those things
@@ -109,16 +117,16 @@ public class PerlPatternParser
         {
         if (pointer < limit)
             {
-            char ch = toParse.charAt( pointer++ );
+            char ch = nextChar();
             switch (ch)
                 {
                 case '.':   return generator.getAnySingle();
                 case '^':   return generator.getStartOfLine();
                 case '$':   return generator.getEndOfLine();
                 case '|':   pointer -= 1; return generator.getNothing();
+                case '[':   return parseClass();
                 case ')':   pointer -= 1; return generator.getNothing(); 
                 case '(':   return parseParens();
-                case '[':   throw new PerlPatternParser.SyntaxException( "can't do [C] yet" );
                 case '\\':  return parseBackslash(); 
                 case '*':
                 case '+':
@@ -133,11 +141,61 @@ public class PerlPatternParser
         }
     
     /**
+         Parse a class expression and answer an appropriate tree.
+    */
+    protected RegexpTree parseClass()
+        {
+        StringBuffer b = new StringBuffer();
+        boolean negated = parseClassNegation();
+        while (true)
+            {
+            int ch = nextClassChar();
+            if (ch == ']') break;
+            if (ch == '-' && b.length() > 0)
+                {
+                char begin = (char) (b.charAt( b.length() - 1 ) + 1);
+                char end = (char) Math.abs( nextClassChar() );
+                for (char i = begin; i <= end; i += 1) b.append( i );
+                }
+            else
+                b.append( (char) Math.abs( ch ) );
+            }
+        pointer += 1;
+        return generator.getClass( b.toString(), negated );
+        }
+
+    /**
+         Answer the next character, if it's suitable for part of a class expression,
+         negated if it's been escaped. Iffy.
+    */
+    private int nextClassChar()
+        {
+        char ch = nextChar();
+        if (ch == '\\')
+            {
+            RegexpTree t = parseAtom();
+            System.err.println( ">> " + t );
+            if (t instanceof Text) return -((Text) t).getString().charAt( 0 );
+            throw new SyntaxException( "not allowed in class" );
+            }
+        else
+            return ch;
+        }
+
+    protected boolean parseClassNegation()
+        {
+        if (toParse.charAt( pointer ) == '^')
+            { pointer += 1; return true; }
+        else
+            return false;
+        }
+
+    /**
     	Parse a parenthesised expression. Throw a SyntaxException if the closing
         bracket is missing. Answer the wrapped sub-expression. Does not cater
         for the (? ...) stuff.
     */
-    private RegexpTree parseParens()
+    protected RegexpTree parseParens()
         {
         RegexpTree operand = parseAlts();
         if (pointer < limit && toParse.charAt( pointer ) == ')') pointer += 1;
@@ -151,7 +209,7 @@ public class PerlPatternParser
     */
     private RegexpTree parseBackslash()
         {
-        char ch = toParse.charAt( pointer++ );
+        char ch = nextChar();
         if ("bBAZnrtfdDwWSsxc0123456789".indexOf( ch ) < 0)
             return generator.getText( ch );
         else if (ch == 'n')

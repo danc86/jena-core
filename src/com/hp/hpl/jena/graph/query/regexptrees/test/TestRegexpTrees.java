@@ -80,6 +80,9 @@ public class TestRegexpTrees extends GraphTestBase
         testExtractFromOptional( RegexpTree.SOL );
         testExtractFromOptional( RegexpTree.ANY );
         }
+    
+    public void testLiteralContents()
+        { assertEquals( "hello", new Text( "hello" ).getString() ); }
 
     protected void testExtractFromOneOrMore( RegexpTree operand )
         { assertSame( operand, new OneOrMore( operand ).getOperand() ); }

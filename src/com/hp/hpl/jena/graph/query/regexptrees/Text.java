@@ -24,6 +24,9 @@ public class Text extends RegexpTree
     public int hashCode()
         { return literal.hashCode(); }
     
+    public String getString()
+        { return literal; }
+    
     public String toString()
         { return "<lit '" + literal + "'>"; }
     }
