@@ -27,15 +27,54 @@ public class FragmentMap extends HashMap
     {
     public FragmentMap() { super(); }
     
+    protected HashMap inverseMap = new HashMap();
+    
     /**
         update the map with (node -> triple); return the triple
     */
     public Triple putTriple( Node key, Triple value )
         {
         put( key, value );
+        inversePut( value, key );
         return value;
         }
+    
+    /**
+     * @param value
+     * @param key
+     */
+    private void inversePut( Triple value, Node key )
+        {
+        Set s = (Set) inverseMap.get( value );
+        if (s == null) inverseMap.put( value, s = new HashSet() );
+        s.add( key );
+        }
+
+    /**
+         remove the binding key -> triple. key *must* be bound to triple - this is a 
+         utility method designed for those circumstances.
+    */
+    public void removeTriple( Node key, Triple value )
+        {
+        remove( key );
+        inverseRemove( value, key );
+        }
         
+    /**
+     * @param value
+     * @param key
+     */
+    private void inverseRemove( Triple value, Node key )
+        {
+        Set s = (Set) inverseMap.get( value );
+        if (s != null)
+            {
+            s.remove( key );
+            if (s.isEmpty()) inverseMap.remove( value );
+            }
+        
+        }
+
     /**
         update the map with (node -> fragment); return the fragment.
     */
@@ -98,6 +137,15 @@ public class FragmentMap extends HashMap
         {
         return new GraphBase()
             { public ExtendedIterator find( TripleMatch tm ) { return allTriples( tm ); } };
+        }
+
+    /**
+     * @param t
+     * @return
+     */
+    public boolean hasTriple( Triple t )
+        {
+        return inverseMap.containsKey( t );
         }
     }
 
