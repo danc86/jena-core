@@ -159,6 +159,9 @@ public class TestTypedLiterals extends TestCase {
         checkIllegalLiteral("zap", XSDDatatype.XSDint);
         checkIllegalLiteral("42.1", XSDDatatype.XSDint);
         
+        Literal l5 = m.createTypedLiteral("42", XSDDatatype.XSDnonNegativeInteger);
+        assertEquals("type coercion", l2, l5);
+        
         // Check float/double
         l1 = m.createTypedLiteral(42.42);  // default map
         l2 = m.createTypedLiteral("42.42", XSDDatatype.XSDfloat);
