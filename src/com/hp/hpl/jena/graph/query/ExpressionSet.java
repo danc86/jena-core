@@ -15,8 +15,6 @@ import java.util.*;
 */
 public class ExpressionSet 
     {
-    private Expression x = Expression.TRUE;
-
     private Set expressions = new HashSet();
     /**
         Initialise an expression set with no members.

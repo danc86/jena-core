@@ -37,9 +37,7 @@ public abstract class Node {
         constructor.
     */       
     public static final Node ANY = new Node_ANY();
-
-
-        
+       
     static final String RDFprefix = "http://www.w3.org/1999/02/22-rdf-syntax-ns#";
     
     /**
@@ -113,7 +111,7 @@ public abstract class Node {
         
     /** make a variable node with a given name */
     public static Node createVariable( String name )
-        { return create( makeVariable, "?" + name ); }
+        { return create( makeVariable, Node_Variable.variable( name ) ); }
         
     /** make a literal with specified language and XMLishness.
         _lit_ must *not* be null. This intermediate implementation logs
