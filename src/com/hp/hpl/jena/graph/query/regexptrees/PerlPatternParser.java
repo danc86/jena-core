@@ -7,15 +7,24 @@ package com.hp.hpl.jena.graph.query.regexptrees;
 
 import java.util.*;
 
+/**
+     Parse Perl5 patterns into RegexpTree structures, or throw an exception for
+     cases that haven't been implemented.
+     
+ 	@author hedgehog
+*/
 public class PerlPatternParser
     {
     final protected String toParse;
     protected int pointer;
+    protected RegexpTreeGenerator gen;
     
     public PerlPatternParser( String toParse )
-        { this.toParse = toParse; }
+        { this( toParse, new SimpleGenerator() ); }
     
-    protected RegexpTreeGenerator gen = new SimpleGenerator();
+    public PerlPatternParser( String toParse, RegexpTreeGenerator gen )
+        { this.toParse = toParse; 
+        this.gen = gen; }
     
     public RegexpTree parseAtom()
         {
@@ -28,10 +37,12 @@ public class PerlPatternParser
                 return gen.getStartOfLine();
             else if (ch == '$')
                 return gen.getEndOfLine();
+            else if (ch == '|' || ch == ')' || ch == ']')
+                return null;
             else if (notSpecial( ch ))
                 return gen.getText( ch );
             else
-                return null;
+                throw new RegexpTree.UnsupportedException();
             }
         return null;
         }

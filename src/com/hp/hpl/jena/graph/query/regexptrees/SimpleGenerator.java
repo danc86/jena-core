@@ -8,6 +8,10 @@ package com.hp.hpl.jena.graph.query.regexptrees;
 
 import java.util.List;
 
+/**
+     The base implementation of <code>RegexpTreeGenerator</code>
+ 	@author hedgehog
+*/
 public class SimpleGenerator implements RegexpTreeGenerator
     {
     public RegexpTree getAnySingle() { return new AnySingle(); }

@@ -15,6 +15,11 @@ package com.hp.hpl.jena.graph.query.regexptrees;
 
 public abstract class RegexpTree
     {
+    public static class UnsupportedException extends RuntimeException
+        {
+
+        }
+    
     public static final RegexpTree EOL = new EndOfLine();
     
     public static final RegexpTree SOL = new StartOfLine();
