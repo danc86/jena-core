@@ -58,9 +58,9 @@
 
 <daml:Class rdf:ID="D">
 	<daml:oneOf rdf:parseType="Collection">
-		<daml:Thing rdf:ID="a0" />
-		<daml:Thing rdf:ID="a1" />
-		<daml:Thing rdf:ID="a2" />
+		<X0 rdf:ID="a0" />
+		<X0 rdf:ID="a1" />
+		<X0 rdf:ID="a2" />
 	</daml:oneOf>
 </daml:Class>
 

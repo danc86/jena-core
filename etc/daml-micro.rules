@@ -73,3 +73,8 @@
 
 -> (daml:Property rdfs:subClassOf rdf:Property).
 -> (rdf:Property rdfs:subClassOf daml:Property).
+
+# need this rule so that improved individual detection code works with DAML sources
+# [thing1: (?x rdf:type ?C), (?C rdf:type daml:Class) -> (?x rdf:type daml:Thing)]
+[thing1: (?C rdf:type daml:Class) -> (?C rdfs:subClassOf daml:Thing)]
+-> (daml:Thing rdf:type daml:Class).

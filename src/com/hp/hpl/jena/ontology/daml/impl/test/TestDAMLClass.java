@@ -79,19 +79,19 @@ public class TestDAMLClass
                     
                     assertEquals( "prop_subClassOf property", DAML_OIL.subClassOf, A.prop_subClassOf().getProperty() );
                     
-                    assertEquals( "sub-class cardinality", 0, A.prop_subClassOf().count() );
-                    A.prop_subClassOf().add( B );
-                    iteratorTest( A.prop_subClassOf().getAll(), new Object[] {A,B} );
                     assertEquals( "sub-class cardinality", 2, A.prop_subClassOf().count() );
-                    A.prop_subClassOf().add( C );
+                    A.prop_subClassOf().add( B );
+                    iteratorTest( A.prop_subClassOf().getAll(), new Object[] {A,B,DAML_OIL.Thing} );
                     assertEquals( "sub-class cardinality", 3, A.prop_subClassOf().count() );
+                    A.prop_subClassOf().add( C );
+                    assertEquals( "sub-class cardinality", 4, A.prop_subClassOf().count() );
                     
-                    iteratorTest( A.prop_subClassOf().getAll(), new Object[] {A,B,C} );
+                    iteratorTest( A.prop_subClassOf().getAll(), new Object[] {A,B,C,DAML_OIL.Thing} );
                     
                     A.prop_subClassOf().remove( C );
-                    assertEquals( "sub-class cardinality", 2, A.prop_subClassOf().count() );
+                    assertEquals( "sub-class cardinality", 3, A.prop_subClassOf().count() );
                     
-                    iteratorTest( A.prop_subClassOf().getAll(), new Object[] {A,B} );
+                    iteratorTest( A.prop_subClassOf().getAll(), new Object[] {A,B,DAML_OIL.Thing} );
                     
                     assertTrue( "hasValue", A.prop_subClassOf().hasValue( B ) );
                     assertTrue( "hasValue", !A.prop_subClassOf().hasValue( C ) );
@@ -199,9 +199,9 @@ public class TestDAMLClass
                     
                     assertEquals( "subClassOf A", B, A.getSuperClass() );
                     
-                    iteratorTest( A.getSuperClasses(), new Object[] {B,C} );
+                    iteratorTest( A.getSuperClasses(), new Object[] {B,C,DAML_OIL.Thing} );
                     iteratorTest( A.getSuperClasses( false ), new Object[] {B} );
-                    iteratorTest( A.getSuperClasses( true ), new Object[] {B,C} );
+                    iteratorTest( A.getSuperClasses( true ), new Object[] {B,C,DAML_OIL.Thing} );
                 }
             },
             new OntTestCase( "DAMLClass.getSameClasses" ) {

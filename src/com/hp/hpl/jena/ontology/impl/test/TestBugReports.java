@@ -87,15 +87,19 @@ public class TestBugReports extends TestCase {
         
         schema.read( "file:doc/inference/data/owlDemoSchema.xml", null );
 
+        int count = 0;
         for (Iterator i = schema.listIndividuals(); i.hasNext(); ) {
-            Resource r = (Resource) i.next();
-            
-            /* Debugging 
+            //Resource r = (Resource) i.next();
+            i.next();
+            count++;
+            /* Debugging * /
             for (StmtIterator j = r.listProperties(RDF.type); j.hasNext(); ) {
                 System.out.println( "ind - " + r + " rdf:type = " + j.nextStatement().getObject() );
             }
-            System.out.println("----------"); */
+            System.out.println("----------"); / **/
         }
+        
+        assertEquals( "Expecting 3 individuals", 6, count );
     }
     
     
