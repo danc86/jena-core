@@ -35,6 +35,9 @@ public class OWLUnitTest extends TestCase {
         OWLMiniReasonerFactory.theInstance()
     };
     
+    /** The names of the reasoner(factories) to report in the test suite */
+    public static final String[] reasonerNames = { "full", "Micro", "Mini" };
+    
     /** bit flag to indicate the test should be passed by the default reasoner */
     public static final int FB = 1;
 
@@ -144,8 +147,8 @@ public class OWLUnitTest extends TestCase {
     /**
      * Boilerplate for junit
      */ 
-    public OWLUnitTest( String manifest, ReasonerFactory rf) {
-        super( manifest ); 
+    public OWLUnitTest( String manifest, String rName, ReasonerFactory rf) {
+        super( rName + ":" + manifest ); 
         this.manifest = manifest;
         this.reasonerFactory = rf;
     }
@@ -157,32 +160,13 @@ public class OWLUnitTest extends TestCase {
     public static TestSuite suite() {
         TestSuite suite = new TestSuite();
         for (int i = 0; i < reasonerFactories.length; i++) {
-            mergeSuite(suite, suite(reasonerFactories[i]));
-        }
-        return suite;
-    }
-    
-    /**
-     * Merge two TestSuites, why isn't this in junit?
-     */
-    public static TestSuite mergeSuite(TestSuite accumulator, TestSuite additions) {
-        int limit = additions.testCount();
-        for (int i = 0; i < limit; i++) {
-            accumulator.addTest(additions.testAt(i));
-        }
-        return accumulator;
-    }
-    
-    /**
-     * Boilerplate for junit.
-     * This is its own test suite
-     */
-    public static TestSuite suite(ReasonerFactory rf) {
-        TestSuite suite = new TestSuite();
-        for (int i = 0; i < testDefs.length; i++) {
-            TestDef test = testDefs[i];
-            if (test.applicableTo(rf)) {
-                suite.addTest(test.getTestCase(rf));
+            String rName = reasonerNames[i];
+            ReasonerFactory rf = reasonerFactories[i];
+            for (int j = 0; j < testDefs.length; j++) {
+                TestDef test = testDefs[j];
+                if (test.applicableTo(rf)) {
+                    suite.addTest(new OWLUnitTest(test.manifest, rName, rf));
+                }
             }
         }
         return suite;
@@ -230,11 +214,6 @@ public class OWLUnitTest extends TestCase {
         /** Return true if the test is relevant to this reasoner factory */
         public boolean applicableTo(ReasonerFactory rf) {
             return (validFor & flagFor(rf)) != 0;
-        }
-        
-        /** Return a TestCase for applying this reasoner to this defined test */
-        public TestCase getTestCase(ReasonerFactory rf) {
-            return new OWLUnitTest(manifest, rf);
         }
     }
     
