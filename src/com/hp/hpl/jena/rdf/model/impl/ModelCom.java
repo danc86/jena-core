@@ -98,7 +98,9 @@ implements Model, PrefixMapping, ModelLock
     
     public Model add(Resource s, Property p, String o, boolean wellFormed)
        {
-        return add( s, p, o, "", wellFormed );
+           add(s, p, literal(o, "", wellFormed));
+           return this;
+//        return add( s, p, o, "", wellFormed );
     }
     
     public Model add(Resource s, Property p, String o, String lang,

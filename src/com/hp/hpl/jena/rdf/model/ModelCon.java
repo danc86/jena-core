@@ -666,7 +666,12 @@ public interface ModelCon {
  */ 
     Model add(Resource s, Property p, String o, String l) ;
 
-/** add a statement to this model.
+/** 
+ * @deprecated since Jena2. It is no longer legal to have a language
+ * tag on a well-formed XMLLiteral. Use the 4-argument form of
+ * {@link #add(Resource, Property, String, boolean) add} instead.
+ * 
+ * add a statement to this model.
  *
  * @return this model
  * @param s the subject of the statement to add
