@@ -119,13 +119,55 @@ public class TestOntDocumentManager
         assertTrue( "Should be no specification loaded", !mgr.listDocuments().hasNext() );
         
         // make sure we don't fail on null
-        mgr = new OntDocumentManager( null );
+        mgr = new OntDocumentManager( (String) null );
         assertTrue( "Should be no specification loaded", !mgr.listDocuments().hasNext() );
         
     }
     
+    public void testReset() {
+        OntDocumentManager mgr = new OntDocumentManager( (String) null );
+        
+        assertTrue( mgr.getProcessImports() );
+        mgr.setProcessImports( false );
+        assertFalse( mgr.getProcessImports() );
+        mgr.reset();
+        assertTrue( mgr.getProcessImports() );
+        
+        assertEquals( OntDocumentManager.DEFAULT_METADATA_PATH, mgr.getMetadataSearchPath() );
+        mgr.setMetadataSearchPath( "file:foo.xml", true );
+        assertEquals( "file:foo.xml", mgr.getMetadataSearchPath() );
+        mgr.reset();
+        assertEquals( OntDocumentManager.DEFAULT_METADATA_PATH, mgr.getMetadataSearchPath() );
+
+        assertTrue( mgr.getCacheModels() );
+        mgr.setCacheModels(false );
+        assertFalse( mgr.getCacheModels() );
+        mgr.reset();
+        assertTrue( mgr.getCacheModels() );
+        
+        assertTrue( mgr.useDeclaredPrefixes() );
+        mgr.setUseDeclaredPrefixes( false );
+        assertFalse( mgr.useDeclaredPrefixes() );
+        mgr.reset();
+        assertTrue( mgr.useDeclaredPrefixes() );
+    }
+    
+    public void testConfigure() {
+        // create a simple policy
+        Model m = ModelFactory.createDefaultModel();
+        Resource policy = m.createResource();
+        m.add( policy, RDF.type, OntDocManagerVocab.DocumentManagerPolicy );
+        m.add( policy, OntDocManagerVocab.cacheModels, false );
+        
+        OntDocumentManager mgr = new OntDocumentManager( (String) null );
+        assertTrue( mgr.getCacheModels() );
+        mgr.configure( m );
+        assertFalse( "Docmgr configure() should have updated cache models flag", mgr.getCacheModels() );
+    }
+    
+    
     public void testManualAssociation() {
-        OntDocumentManager mgr = new OntDocumentManager( null );
+        OntDocumentManager mgr = new OntDocumentManager( (String) null );
  
         mgr.addPrefixMapping( "http://www.w3.org/2002/07/owl#", "owl" );
         assertEquals( "prefix for owl not correct", "owl", mgr.getPrefixForURI( "http://www.w3.org/2002/07/owl#" ));

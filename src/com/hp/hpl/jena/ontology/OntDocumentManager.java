@@ -172,6 +172,18 @@ public class OntDocumentManager
     }
 
 
+    /**
+     * <p>Initialise a document manager with the given configuration model. This model
+     * is used in place of any model that might be 
+     * found by searching the meta-data search path.</p>
+     * @param config An RDF model containing configuration information for this document manager.
+     */
+    public OntDocumentManager( Model config ) {
+        // we don't need to reset first since this is a new doc mgr
+        configure( config, false );
+    }
+    
+    
     // External signature methods
     //////////////////////////////////
 
@@ -218,7 +230,56 @@ public class OntDocumentManager
         initialiseMetadata( path, replace );
     }
 
-
+    
+    /**
+     * <p>Configure this document manager using the given configuration information, after
+     * first resetting the model back to all default values.</p>
+     * @param config Document manager configuration as an RDF model
+     * @see #configure( Model, boolean )
+     */
+    public void configure( Model config ) {
+        configure( config, true );
+    }
+    
+    
+    /**
+     * <p>Configure this document manager according to the configuration options
+     * supplied by the given configuration model. If <code>reset</code> is true, the
+     * document manager is first reset back to all default values.</p>
+     * @param config Document manager configuration as an RDF model
+     * @param reset If true, reset the document manager to default values, before
+     * attempting to configure the document manager using the given model.
+     * @see #reset
+     */
+    public void configure( Model config, boolean reset ) {
+        if (reset) {
+            reset();
+        }
+        
+        loadMetadata( config );
+    }
+    
+    
+    /**
+     * <p>Reset all state in this document manager back to the default
+     * values it would have had when the object was created. This does
+     * <strong>not</strong> reload the configuration information from
+     * the search path.  Note also that the metadata search path is one
+     * of the values that is reset back to its default value.</p>
+     */
+    public void reset() {
+        m_searchPath = DEFAULT_METADATA_PATH;
+        m_altMap.clear();
+        m_modelMap.clear();
+        m_languageMap.clear();
+        m_cacheModels = true;
+        m_processImports = true;
+        m_ignoreImports.clear();
+        m_prefixMap = new PrefixMappingImpl();
+        m_useDeclaredPrefixes = true;
+    }
+    
+    
     /**
      * <p>
      * Answer an iterator over the ontology documents this document mananger is managing.
@@ -873,8 +934,8 @@ public class OntDocumentManager
             // try to use the extension of the url to guess what syntax to use (.n3 => "N3", etc)
             String lang = ModelLoader.guessLang( resolvableURI );
     
-            // see if we can find the file as a system resource
-            InputStream is = ClassLoader.getSystemResourceAsStream( file );
+            // see if we can find the file as a resource
+            InputStream is = getClass().getClassLoader().getResourceAsStream( file );
     
             if (is == null) {
                 // we can't get this URI as a system resource, so just try to read it in the normal way
