@@ -112,6 +112,54 @@ public class TestListSyntaxCategories
                        r instanceof Property;
             }
         },
+        new DoListTest( "OWL list functional properties",  "file:testing/ontology/owl/list-syntax/test-proptypes.rdf",  OntModelSpec.OWL_MEM_TRANS_INF,  1,  
+                        new String[] {NS+"fp"} ) 
+        {
+            public Iterator doList( OntModel m ) {
+                return m.listFunctionalProperties();
+            }
+            public boolean test( Resource r ) {
+                return r instanceof OntProperty &&
+                       r instanceof FunctionalProperty &&
+                       r instanceof Property;
+            }
+        },
+        new DoListTest( "OWL list transitive properties",  "file:testing/ontology/owl/list-syntax/test-proptypes.rdf",  OntModelSpec.OWL_MEM_TRANS_INF,  1,  
+                        new String[] {NS+"tp"} ) 
+        {
+            public Iterator doList( OntModel m ) {
+                return m.listTransitiveProperties();
+            }
+            public boolean test( Resource r ) {
+                return r instanceof OntProperty &&
+                       r instanceof TransitiveProperty &&
+                       r instanceof Property;
+            }
+        },
+        new DoListTest( "OWL list symmetric properties",  "file:testing/ontology/owl/list-syntax/test-proptypes.rdf",  OntModelSpec.OWL_MEM_TRANS_INF,  1,  
+                        new String[] {NS+"sp"} ) 
+        {
+            public Iterator doList( OntModel m ) {
+                return m.listSymmetricProperties();
+            }
+            public boolean test( Resource r ) {
+                return r instanceof OntProperty &&
+                       r instanceof SymmetricProperty &&
+                       r instanceof Property;
+            }
+        },
+        new DoListTest( "OWL list inverse functional properties",  "file:testing/ontology/owl/list-syntax/test-proptypes.rdf",  OntModelSpec.OWL_MEM_TRANS_INF,  1,  
+                        new String[] {NS+"ifp"} ) 
+        {
+            public Iterator doList( OntModel m ) {
+                return m.listInverseFunctionalProperties();
+            }
+            public boolean test( Resource r ) {
+                return r instanceof OntProperty &&
+                       r instanceof InverseFunctionalProperty &&
+                       r instanceof Property;
+            }
+        },
         new DoListTest( "DAML list properties",  "file:testing/ontology/daml/list-syntax/test.rdf",  OntModelSpec.DAML_MEM_RDFS_INF,  15,  
                         null )//new String[] {NS+"rdf-p" /* - will not be recognised without alias processing -, NS+"rdf-p" */} ) 
         {
@@ -142,6 +190,42 @@ public class TestListSyntaxCategories
             }
             public boolean test( Resource r ) {
                 return r instanceof OntProperty &&
+                       r instanceof Property;
+            }
+        },
+        new DoListTest( "DAML list functional properties",  "file:testing/ontology/DAML/list-syntax/test-proptypes.rdf",  OntModelSpec.DAML_MEM_RDFS_INF,  1,  
+                        new String[] {NS+"fp"} ) 
+        {
+            public Iterator doList( OntModel m ) {
+                return m.listFunctionalProperties();
+            }
+            public boolean test( Resource r ) {
+                return r instanceof OntProperty &&
+                       r instanceof FunctionalProperty &&
+                       r instanceof Property;
+            }
+        },
+        new DoListTest( "DAML list transitive properties",  "file:testing/ontology/DAML/list-syntax/test-proptypes.rdf",  OntModelSpec.DAML_MEM_RDFS_INF,  1,  
+                        new String[] {NS+"tp"} ) 
+        {
+            public Iterator doList( OntModel m ) {
+                return m.listTransitiveProperties();
+            }
+            public boolean test( Resource r ) {
+                return r instanceof OntProperty &&
+                       r instanceof TransitiveProperty &&
+                       r instanceof Property;
+            }
+        },
+        new DoListTest( "DAML list inverse functional properties",  "file:testing/ontology/DAML/list-syntax/test-proptypes.rdf",  OntModelSpec.DAML_MEM_RDFS_INF,  1,  
+                        new String[] {NS+"ifp"} ) 
+        {
+            public Iterator doList( OntModel m ) {
+                return m.listInverseFunctionalProperties();
+            }
+            public boolean test( Resource r ) {
+                return r instanceof OntProperty &&
+                       r instanceof InverseFunctionalProperty &&
                        r instanceof Property;
             }
         },
