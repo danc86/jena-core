@@ -17,6 +17,9 @@
 #------------------------------------------------------------------
 
 -> table(rdf:type).
+-> table(rdfs:subClassOf).
+-> table(rdfs:range).
+-> table(rdfs:domain).
 
 #------------------------------------------------------------------
 # RDFS Axioms
@@ -347,12 +350,10 @@
 [sameIndividualAs3: (?X owl:sameAs ?Y), (?X rdf:type owl:Thing), (?Y rdf:type owl:Thing) 
                     -> (?X owl:sameIndividualAs ?Y) ]                    
 
-[sameIndividualAs4: (?Y ?P ?V) <- unbound(?V), (?X owl:sameIndividualAs ?Y), notEqual(?X,?Y), (?X ?P ?V) ]
-[sameIndividualAs4: (?Y ?P ?V) <- bound(?V), unbound(?P), (?X owl:sameIndividualAs ?Y), notEqual(?X,?Y), (?X ?P ?V) ]
-[sameIndividualAs4: (?Y ?P ?V) <- bound(?V), bound(?P), (?X ?P ?V) (?X owl:sameIndividualAs ?Y), notEqual(?X,?Y)  ]
-[sameIndividualAs5: (?V ?P ?Y) <- unbound(?V), (?X owl:sameIndividualAs ?Y), notEqual(?X,?Y), (?V ?P ?X)  ]
-[sameIndividualAs5: (?V ?P ?Y) <- bound(?V), unbound(?P), (?X owl:sameIndividualAs ?Y), notEqual(?X,?Y), (?V ?P ?X)  ]
-[sameIndividualAs5: (?V ?P ?Y) <- bound(?V), bound(?P), (?V ?P ?X), (?X owl:sameIndividualAs ?Y), notEqual(?X,?Y)  ]
+[sameIndividualAs4a: (?Y ?P ?V) <- unbound(?V), (?X owl:sameIndividualAs ?Y), notEqual(?X,?Y), (?X ?P ?V) ]
+[sameIndividualAs4c: (?Y ?P ?V) <- bound(?V), (?X ?P ?V), notEqual(?X,?Y), (?X owl:sameIndividualAs ?Y)  ]
+[sameIndividualAs5a: (?V ?P ?Y) <- unbound(?V), (?X owl:sameIndividualAs ?Y), notEqual(?X,?Y), (?V ?P ?X)  ]
+[sameIndividualAs5c: (?V ?P ?Y) <- bound(?V), (?V ?P ?X), notEqual(?X,?Y), (?X owl:sameIndividualAs ?Y) ]
 
 [sameIndividualAs6: (?X rdf:type owl:Thing) <- (?X owl:sameIndividualAs ?Y) ]
 [sameIndividualAs6: (?Y rdf:type owl:Thing) <- (?X owl:sameIndividualAs ?Y) ]
