@@ -24,7 +24,6 @@ package com.hp.hpl.jena.ontology.path.impl;
 
 // Imports
 ///////////////
-import com.hp.hpl.jena.ontology.*;
 import com.hp.hpl.jena.ontology.path.*;
 import com.hp.hpl.jena.rdf.model.*;
 

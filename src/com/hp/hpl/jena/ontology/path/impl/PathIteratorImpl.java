@@ -26,7 +26,6 @@ package com.hp.hpl.jena.ontology.path.impl;
 // Imports
 ///////////////
 import com.hp.hpl.jena.util.iterator.NiceIterator;
-import com.hp.hpl.jena.ontology.*;
 import com.hp.hpl.jena.ontology.path.*;
 
 
