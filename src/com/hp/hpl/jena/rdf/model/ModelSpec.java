@@ -4,37 +4,18 @@
   $Id$
 */
 
-package com.hp.hpl.jena.rdf.model.test;
-
-import com.hp.hpl.jena.rdf.model.*;
-
-import com.hp.hpl.jena.rdf.model.impl.*;
-
-import com.hp.hpl.jena.rdf.model.*;
-import com.hp.hpl.jena.ontology.*;
-import java.util.*;
-
-import java.util.*;
-
-import junit.framework.*;
+package com.hp.hpl.jena.rdf.model;
 
 /**
+    A ModelSpec allows Models to be created.
+    
  	@author kers
 */
-
-public class TestModelSpec extends ModelTestBase
+public interface ModelSpec
     {
-    public TestModelSpec( String name )
-        { super( name ); }
-
-    public static TestSuite suite()
-        { return new TestSuite( TestModelSpec.class ); }
-        
-    public void testXXX()
-        {
-        assertTrue( OntModelSpec.DAML_MEM_RULE_INF instanceof ModelSpec );
-        }
+    Model createModel();
     }
+
 
 /*
     (c) Copyright Hewlett-Packard Company 2003

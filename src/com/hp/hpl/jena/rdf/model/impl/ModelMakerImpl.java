@@ -36,6 +36,17 @@ public class ModelMakerImpl implements ModelMaker
     public Model createModel( String name )
         { return createModel( name, false ); }
         
+    public Model createModel()
+        { return new ModelCom( maker.createGraph() ); }
+        
+    protected Model defaultModel;
+    
+    public Model getModel()
+        {
+        if (defaultModel == null) defaultModel = createModel();
+        return defaultModel;
+        }
+        
     public void removeModel( String name )
         { maker.removeGraph( name ); }
         

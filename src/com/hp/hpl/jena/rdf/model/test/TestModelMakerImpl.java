@@ -54,6 +54,13 @@ public class TestModelMakerImpl extends ModelTestBase
         
     public void testCreate()
         {
+        maker.createModel();
+        assertEquals( history(), one( "create()" ) );
+        }
+        
+    public void testGet()
+        {
+        assertSame( maker.getModel(), maker.getModel() );    
         }
         
     public void testCreateNamed()

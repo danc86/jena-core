@@ -38,6 +38,7 @@ public class TestPackage extends TestSuite {
         addTest( "TestConcurrency", TestConcurrency.suite() ) ;
         addTest( "TestModelMakerImpl", TestModelMakerImpl.suite() );
         addTest( "TestModelPrefixMapping", TestModelPrefixMapping.suite() );
+        addTest( "TestModelSpec", TestModelSpec.suite() );
         addTest( "TestStandardModels", TestStandardModels.suite() );
         addTest( "TestQuery", TestQuery.suite() );
         addTest( "TestSelectors", TestSelectors.suite() );

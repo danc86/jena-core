@@ -28,6 +28,7 @@ package com.hp.hpl.jena.ontology;
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.reasoner.*;
 import com.hp.hpl.jena.reasoner.rulesys.*;
+import com.hp.hpl.jena.ontology.impl.*;
 import com.hp.hpl.jena.reasoner.transitiveReasoner.TransitiveReasonerFactory;
 
 
@@ -41,7 +42,7 @@ import com.hp.hpl.jena.reasoner.transitiveReasoner.TransitiveReasonerFactory;
  *         (<a  href="mailto:Ian.Dickinson@hp.com" >email</a>)
  * @version CVS $Id$
  */
-public class OntModelSpec {
+public class OntModelSpec implements ModelSpec {
     // Constants
     //////////////////////////////////
 
@@ -337,6 +338,15 @@ public class OntModelSpec {
     public Profile getProfile() {
         return m_profile;
     }
+    
+    /**
+        Satisfy the ModelSpec interface: create an [Ont]Model according to the specification.
+        The base model comes from the underlying ModelMaker.
+    */
+    public Model createModel()
+        {
+        return new OntModelImpl( this, m_maker.createModel() );
+        }
     
     
     // Internal implementation methods
