@@ -10,7 +10,7 @@ import com.hp.hpl.jena.shared.JenaException;
 
 /**
     A base class for dyadic expressions with a built-in Valuator; subclasses must
-    define an evalObject and evalBool method which will be supplied with the
+    define an evalObject or evalBool method which will be supplied with the
     evaluated operands.
     
     @author kers
@@ -37,9 +37,21 @@ public abstract class Dyadic extends Application
     public String getFun()
         { return F; }
     
+    /**
+     	Answer the Object result of evaluating this dyadic expression with 
+     	the given arguments <code>l</code> and <code>r</code>.
+     	Either this method or <code>evalBool</code> <i>must</i> be
+     	over-ridden in concrete sub-classes.
+    */
     public Object evalObject( Object l, Object r )
         { return evalBool( l, r ) ? Boolean.TRUE : Boolean.FALSE; }
     
+    /**
+ 		Answer the boolean result of evaluating this dyadic expression with 
+ 		the given arguments <code>l</code> and <code>r</code>.
+ 		Either this method or <code>evalObject</code> <i>must</i> be
+ 		over-ridden in concrete sub-classes.
+ 	*/
     public boolean evalBool( Object l, Object r )
         { Object x = evalObject( l, r );
         if (x instanceof Boolean) return ((Boolean) x).booleanValue();
@@ -66,6 +78,15 @@ public abstract class Dyadic extends Application
     
     public String toString()
         { return L.toString() + " " + F + " " + R.toString(); }
+
+    public static Expression and( Expression L, Expression R )
+    {
+    return new Dyadic( L, ExpressionFunctionURIs.AND, R )
+    	{
+        public boolean evalBool( Object x, Object y )
+            { return ((Boolean) x).booleanValue() && ((Boolean) y).booleanValue(); }
+    	};
+    }
     }
 
 /*
