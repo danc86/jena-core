@@ -49,9 +49,11 @@ public class BuiltinRegistry {
         theRegistry.register(new IsLiteral());
         theRegistry.register(new NotLiteral());
         
+        theRegistry.register(new MakeInstance());
+        theRegistry.register(new Table());
+        
         // Special purposes support functions for OWL
         theRegistry.register(new AssertDisjointPairs());
-        theRegistry.register(new MakeInstance());
     }
     
     /**
