@@ -56,7 +56,7 @@ public class XSDGenericType extends XSDDatatype {
                     return convertNumeric(xsdValue);
                 } catch (ClassCastException e) {
                     // Rats assume its usable java already
-                    // @TODO add date/time format conversion
+                    // TODO add date/time format conversion
                     return xsdValue;
                 }
             } else {

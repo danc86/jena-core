@@ -127,7 +127,6 @@ public class TestList
         
             Resource listHead = root.getProperty( m.getProperty( NS + "p" ) ).getResource();
         
-            // @todo make this cast go away once the proper connection from model layer -> enhanced layer is defined
             OntList l = (OntList) listHead.as( OntList.class );
             assertNotNull( "as(OntList) should not return null for root", l );
         

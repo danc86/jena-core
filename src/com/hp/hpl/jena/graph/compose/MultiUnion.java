@@ -100,7 +100,7 @@ public class MultiUnion
     /**
      * <p>
      * Add the given triple to the union model; the actual component model to
-     * be updated will be the designated (or default) {@link #getUpdateableGraph updateable} graph. 
+     * be updated will be the designated (or default) {@linkplain #getBaseGraph updateable} graph. 
      * </p>
      * 
      * @param t A triple to add to the union graph
@@ -120,7 +120,7 @@ public class MultiUnion
     /**
      * <p>
      * Delete the given triple from the union model; the actual component model to
-     * be updated will be the designated (or default) {@link #getUpdateableGraph updateable} graph. 
+     * be updated will be the designated (or default) {@linkplain #getBaseGraph updateable} graph. 
      * </p>
      * 
      * @param t A triple to from the union graph

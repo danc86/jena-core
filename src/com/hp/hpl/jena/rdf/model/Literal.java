@@ -189,7 +189,7 @@ public interface Literal extends RDFNode {
      * @throws RDFException Generic RDF Exception
      * @return the literal string
      */
-    // @TODO is this the right approach, could make getString synonomous 
+    // TODO is this the right approach, could make getString synonomous 
     //       with getLexicalForm
     public String getString() throws RDFException;
     

@@ -31,10 +31,9 @@ import com.hp.hpl.jena.util.iterator.*;
 public class GraphMatcher extends java.lang.Object {
     static private Random random = new Random(0);
  /**
- * Are the two models isomorphic.
+ * Are the two models isomorphic?
  * The isomorphism is defined as a bijection between the anonymous
  * variables such that the statements are identical.
- * @see com.hp.hpl.jena.rdf.model.Graph#equals For a less mathematical explanation.
  */
     static public boolean equals(Graph m1,Graph m2)   {
         if ( m1 == m2 )

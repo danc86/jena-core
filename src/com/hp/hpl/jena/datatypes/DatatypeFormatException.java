@@ -15,7 +15,7 @@ import com.hp.hpl.jena.rdf.model.RDFException;
  * Exception thrown when a lexical form does not match the stated
  * datatype.
  * 
- * @TODO could hold the lexical form and datatype in local fields
+ * TODO could hold the lexical form and datatype in local fields
  * 
  * @author <a href="mailto:der@hplb.hpl.hp.com">Dave Reynolds</a>
  * @version $Revision$ on $Date$

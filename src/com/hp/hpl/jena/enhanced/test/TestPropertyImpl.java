@@ -9,7 +9,7 @@ import com.hp.hpl.jena.enhanced.*;
 import com.hp.hpl.jena.graph.*;
 
 /**
- * @see TestObejctImpl
+ * @see TestObjectImpl
  * @author  jjc
  */
 public class TestPropertyImpl  extends TestCommonImpl implements TestProperty {

@@ -21,15 +21,15 @@ final public class LiteralLabel {
 
     /** 
      * Global flag - set to true to switch on eager checking of literal validity.
-     * </ br>@todo - this needs to be connected to or replaced by the global flag
-     * setting mechanism - whatever that is.
+     * <p>TODO - this needs to be connected to or replaced by the global flag
+     * setting mechanism - whatever that is.</p>
      */
     public static boolean enableEagerValidation = false;
 
     /** 
      * Global flag - set to true to treat plain literals and xsd:string literals as semantically equal.
-     * </ br>@todo - this needs to be connected to or replaced by the global flag
-     * setting mechanism - whatever that is.
+     * <p>TODO - this needs to be connected to or replaced by the global flag
+     * setting mechanism - whatever that is.</p>
      */
     public static boolean enablePlainSameAsString = true;
     

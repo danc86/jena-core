@@ -16,7 +16,7 @@ import com.hp.hpl.jena.vocabulary.RDF;
  * Builtin data type to represent XMLLiteral (i.e. items created
  * by use of <code>rdf:parsetype='literal'</code>.
  * 
- * @TODO implement parsing - this is just a dummy implementation at present.
+ * <p>TODO implement parsing - this is just a dummy implementation at present.</p>
  * 
  * @author <a href="mailto:der@hplb.hpl.hp.com">Dave Reynolds</a>
  * @version $Revision$ on $Date$

@@ -101,8 +101,6 @@ public class ConcatenatedIterator
      *              first in the elements read from the concatenation.
      * @param iter1 The second iterator. Elements of this iterator will appear
      *              second in the elements read from the concatenation.
-     * @return An iterator over the concatenation of the elements of the two
-     *         given iterators.
      */
     public ConcatenatedIterator( Object iter0, Object iter1 ) {
         // find out which kind of iterator iter0 is

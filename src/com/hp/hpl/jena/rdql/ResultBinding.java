@@ -42,7 +42,7 @@ public class ResultBinding
      *  This is only needed for testing of parts of the query engine
      *  @param varName String name of the variable to bind
      *  @param value   The value to set
-     *  @returns The index of the added value
+     *  @return The index of the added value
      */
 
     public int add(String varName, Value value)

@@ -37,7 +37,7 @@ import com.hp.hpl.jena.ontology.path.PathSet;
  * Instances of the all different axiom are expected to have a property
  * (e.g. <code>owl:distinctMembers</code> defining the list of distinct
  * individuals in the ontology.  For a given vocabulary, this will be defined by
- * the {@link Profile#distinctMembers distinctMembers} entry.
+ * the {@linkplain Profile#DISTINCT_MEMBERS distinctMembers} entry.
  * </p>
  *
  * @author Ian Dickinson, HP Labs
@@ -56,7 +56,7 @@ public interface AllDifferent
 
     /**
      * <p>
-     * Answer an {@link PathSet accessor} for the 
+     * Answer an {@linkplain PathSet accessor} for the 
      * <code>distinctMembers</code>
      * property of an AllDifferent axiom. The accessor
      * can be used to perform a variety of operations, including getting and setting the value.

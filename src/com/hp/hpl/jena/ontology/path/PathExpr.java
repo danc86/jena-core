@@ -86,7 +86,7 @@ public interface PathExpr {
      * <p>
      * For convenience in accessing the contents of a path expression, answer a path set
      * of the paths defined from the given root.  The {@link PathSet} is really just a 
-     * set of wrapper functions for {@link #evaluate()}. 
+     * set of wrapper functions for {@link #evaluate}. 
      * </p>
      * 
      * @return A set of the paths this path expression defines from the given root.

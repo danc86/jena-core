@@ -92,8 +92,6 @@ public class ConcatenatedNodeIterator
      *              first in the elements read from the concatenation.
      * @param iter1 The second iterator. Elements of this iterator will appear
      *              second in the elements read from the concatenation.
-     * @return An iterator over the concatenation of the elements of the two
-     *         given iterators.
      */
     public ConcatenatedNodeIterator( NodeIterator iter0, NodeIterator iter1 ) {
         m_iter0 = iter0;

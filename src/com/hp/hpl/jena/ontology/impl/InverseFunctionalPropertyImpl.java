@@ -53,7 +53,7 @@ public class InverseFunctionalPropertyImpl
     /**
      * A factory for generating InverseFunctionalProperty facets from nodes in enhanced graphs.
      * Note: should not be invoked directly by user code: use 
-     * {@link com.hp.hpl.jena.rdf.model.RDFNode#as() as()} instead.
+     * {@link com.hp.hpl.jena.rdf.model.RDFNode#as as()} instead.
      */
     public static Implementation factory = new Implementation() {
         public EnhNode wrap( Node n, EnhGraph eg ) { 

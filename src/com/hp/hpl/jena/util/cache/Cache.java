@@ -1,8 +1,8 @@
 /*
  *  (c) Copyright Hewlett-Packard Company 2002
- *  
+ *
  *  All rights reserved.
- * 
+ *
  * See end of file.
  */
 
@@ -24,28 +24,27 @@ package com.hp.hpl.jena.util.cache;
  * associated with a key.</p>
  *
  * @author bwm
- * @version
  */
 public interface Cache extends CacheControl {
     /** Get and object from the cache, if it is there.
      * @param key the key for the object sought
      * @return the object associated with the key, or null if
      * the key is not found in the cache
-     */    
+     */
     public Object get(Object key);
     /** Store an object in the cache
      * @param key the key for the object being stored
      * @param value the object stored under the key
      *
-     */    
+     */
     public void put(Object key, Object value);
 }
 
 /*
  *  (c) Copyright Hewlett-Packard Company 2002
- *  
+ *
  *  All rights reserved.
- * 
+ *
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions

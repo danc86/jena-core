@@ -115,7 +115,6 @@ public class EnhGraph
      * edges as this graph.  The default implementation delegates this to the
      * underlying graph objects.
      * 
-     * @todo - this should not be final should it? -ijd
      * @param eg A graph to test
      * @return True if eg is a graph with the same structure as this.
      */
@@ -169,7 +168,6 @@ public class EnhGraph
      * @return A polymorphic instance, possibly but not necessarily this, that conforms to t.
      */
     protected Polymorphic convertTo(Class t) {
-        // @todo stub
         throw new PersonalityConfigException( "Alternative perspectives on graphs has not been implemented yet" );
     }
     

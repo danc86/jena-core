@@ -82,8 +82,8 @@ public class TypeMapper {
                 // Plain literal
                 return null;
             }
-            // @TODO add log message
-            // @TODO add switch to prevent warning messages
+            // TODO add log message
+            // TODO add switch to prevent warning messages
             dtype = new BaseDatatype(uri);
             registerDatatype(dtype);
         }

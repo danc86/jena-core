@@ -113,7 +113,7 @@ public class QueryResultsStream implements QueryResults
     /** Convenience function to consume a query.
      *  Returns a list of {@link ResultBinding}s.
      *
-     *  @returns List
+     *  @return List
      *  @deprecated  QueryResultsStream do not have all the results at once - {@link QueryResultsMem}
      */
 

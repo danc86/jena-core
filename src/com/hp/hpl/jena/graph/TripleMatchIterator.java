@@ -14,7 +14,6 @@ import java.util.Iterator;
 /** An iterator that selects triples from an underlying iterators of triples
  *
  * @author  bwm
- * @version 
  */
 public class TripleMatchIterator extends FilterIterator
                                                   implements ClosableIterator {
