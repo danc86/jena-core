@@ -8,6 +8,7 @@ package com.hp.hpl.jena.graph.compose.test;
 
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.graph.compose.RDFClosure;
+import com.hp.hpl.jena.graph.test.*;
 
 import junit.framework.*;
 

@@ -15,6 +15,7 @@ import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.util.iterator.*;
 import com.hp.hpl.jena.graph.compose.RDFS;
 import com.hp.hpl.jena.graph.compose.RDFSOld;
+import com.hp.hpl.jena.graph.test.*;
 
 import java.util.*;
 

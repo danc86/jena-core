@@ -12,6 +12,7 @@ package com.hp.hpl.jena.graph.compose.test;
 
 import java.lang.reflect.*;
 import com.hp.hpl.jena.graph.*;
+import com.hp.hpl.jena.graph.test.*;
 import com.hp.hpl.jena.mem.*;
 
 /**

@@ -7,6 +7,7 @@
 package com.hp.hpl.jena.rdf.model.test;
 
 import com.hp.hpl.jena.graph.*;
+import com.hp.hpl.jena.graph.test.*;
 import com.hp.hpl.jena.rdf.model.*;
 
 import junit.framework.TestSuite;

@@ -11,6 +11,8 @@ import java.util.ArrayList;
 import com.hp.hpl.jena.db.GraphRDB;
 import com.hp.hpl.jena.db.IDBConnection;
 import com.hp.hpl.jena.graph.*;
+import com.hp.hpl.jena.graph.test.*;
+
 import junit.framework.*;
 
 /**

@@ -11,7 +11,7 @@ package com.hp.hpl.jena.util.iterator.test;
     some fake base iterator to do the checking, and _close_, ditto.
 */
 
-import com.hp.hpl.jena.graph.GraphTestBase;
+import com.hp.hpl.jena.graph.test.GraphTestBase;
 import com.hp.hpl.jena.util.iterator.*;
 import java.util.*;
 import junit.framework.*;

@@ -4,7 +4,7 @@
   $Id$
 */
 
-package com.hp.hpl.jena.graph;
+package com.hp.hpl.jena.graph.test;
 
 /**
 	@author kers
@@ -13,6 +13,9 @@ package com.hp.hpl.jena.graph;
 */
 
 import com.hp.hpl.jena.util.iterator.*;
+import com.hp.hpl.jena.graph.Graph;
+import com.hp.hpl.jena.graph.Node;
+import com.hp.hpl.jena.graph.Triple;
 import com.hp.hpl.jena.mem.*;
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.shared.*;
