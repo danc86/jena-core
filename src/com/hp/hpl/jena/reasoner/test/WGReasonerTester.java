@@ -77,6 +77,12 @@ public class WGReasonerTester {
     /** The predicate defining the conclusion from the test */
     public static final Property conclusionDocumentP;
     
+    /** List of tests block because they are only intended for non-dt aware processors */
+    public static final String[] blockedTests = {
+        BASE_URI + "datatypes/Manifest.rdf#language-important-for-non-dt-entailment-1",
+        BASE_URI + "datatypes/Manifest.rdf#language-important-for-non-dt-entailment-2"
+    };
+    
     // Static initializer for the predicates
     static {
         PositiveEntailmentTest = new ResourceImpl(NS, "PositiveEntailmentTest");
@@ -157,13 +163,11 @@ public class WGReasonerTester {
         ResIterator tests = testManifest.listSubjectsWithProperty(RDF.type, PositiveEntailmentTest);
         while (tests.hasNext()) {
             String test = tests.next().toString();
-            System.out.println(test);
             if (!runTest(test, reasonerF, testcase, configuration)) return false;
         }
         tests = testManifest.listSubjectsWithProperty(RDF.type, NegativeEntailmentTest);
         while (tests.hasNext()) {
             String test = tests.next().toString();
-            System.out.println(test);
             if (!runTest(test, reasonerF, testcase, configuration)) return false;
         }
         return true;
@@ -191,6 +195,11 @@ public class WGReasonerTester {
         String description = test.getProperty(descriptionP).getObject().toString();
         String status = test.getProperty(statusP).getObject().toString();
         logger.debug("WG test " + test.getURI() + " - " + status);
+        
+        // Skip the test designed for only non-datatype aware processors
+        for (int i = 0; i < blockedTests.length; i++) {
+            if (test.getURI().equals(blockedTests[i])) return true;
+        }
                 
         // Load up the premise documents
         Model premises = new ModelMem();
