@@ -105,7 +105,7 @@ public class TestOntDocumentManager
         
         assertTrue( "Should be at least one specification loaded", mgr.listDocuments().hasNext() );
         assertNotNull( "cache URL for owl should not be null", mgr.getCacheURL( "http://www.w3.org/2002/07/owl" ));
-        assertEquals( "cache URL for owl not correct", "file:etc/schemas/owl.owl", mgr.getCacheURL( "http://www.w3.org/2002/07/owl" ));
+        assertEquals( "cache URL for owl not correct", "file:vocabularies/owl.owl", mgr.getCacheURL( "http://www.w3.org/2002/07/owl" ));
         assertEquals( "prefix for owl not correct", "owl", mgr.getPrefixForURI( "http://www.w3.org/2002/07/owl" ));
         
         mgr = new OntDocumentManager( "" );

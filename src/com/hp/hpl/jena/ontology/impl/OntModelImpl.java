@@ -135,6 +135,7 @@ public class OntModelImpl
         
         // load the imports closure, according to the policies in my document manager
         m_docMgr.loadImports( this, new OntReadState( null, this ) );
+        ((OntologyGraph) graph).bind();
     }
     
     
@@ -778,6 +779,7 @@ public class OntModelImpl
         m_docMgr.addGraph( uri, getGraph() );
         
         m_docMgr.loadImports( this, new OntReadState( null, this ) );
+        ((OntologyGraph) graph).bind();
         return this;
     }
     
@@ -791,6 +793,7 @@ public class OntModelImpl
         super.read( reader, base );
         
         m_docMgr.loadImports( this, new OntReadState( null, this ) );
+        ((OntologyGraph) graph).bind();
         return this;
     }
     
@@ -803,6 +806,7 @@ public class OntModelImpl
     public Model read(InputStream reader, String base) {
         super.read( reader, base );
         m_docMgr.loadImports( this, new OntReadState( null, this ) );
+        ((OntologyGraph) graph).bind();
         return this;
     } 
     
@@ -819,6 +823,7 @@ public class OntModelImpl
         m_docMgr.addGraph( uri, getGraph() );
 
         m_docMgr.loadImports( this, new OntReadState( syntax, this ) );
+        ((OntologyGraph) graph).bind();
         return this;
     }
     
@@ -833,6 +838,7 @@ public class OntModelImpl
         super.read( reader, base, syntax );
         
         m_docMgr.loadImports( this, new OntReadState( syntax, this ) );
+        ((OntologyGraph) graph).bind();
         return this;
     }
     
@@ -847,6 +853,7 @@ public class OntModelImpl
         super.read( reader, base, syntax );
         
         m_docMgr.loadImports( this, new OntReadState( syntax, this ) );
+        ((OntologyGraph) graph).bind();
         return this;
     }
     

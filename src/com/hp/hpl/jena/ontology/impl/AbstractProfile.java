@@ -175,9 +175,3 @@ public abstract class AbstractProfile
     THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-/* TODO delete me
-public class AbstractProfile{
-
-}
-
-*/

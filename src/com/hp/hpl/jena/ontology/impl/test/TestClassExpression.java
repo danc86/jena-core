@@ -85,9 +85,9 @@ public class TestClassExpression
                 ProfileRegistry.OWL_LANG,
                 "file:testing/ontology/owl/ClassExpression/test.rdf",
                 T,
-                new Integer( 1 ),
-                NS + "ClassB",
-                null,
+                new Integer( 2 ), // because A is a sub-class of A in the transitive reasoner
+                null, //NS + "ClassB",
+                OWL.Class,
                 null
             },
             {   
@@ -133,9 +133,9 @@ public class TestClassExpression
                 ProfileRegistry.OWL_LITE_LANG,
                 "file:testing/ontology/owl/ClassExpression/test.rdf",
                 T,
-                new Integer( 1 ),
-                NS + "ClassB",
-                null,
+                new Integer( 2 ),
+                null, //NS + "ClassB",
+                OWL.Class,
                 null
             },
             {   

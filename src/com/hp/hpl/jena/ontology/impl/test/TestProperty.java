@@ -85,9 +85,9 @@ public class TestProperty
                 ProfileRegistry.OWL_LANG,
                 "file:testing/ontology/owl/Property/test.rdf",
                 T,
-                new Integer( 1 ),
-                NS + "q",
-                null,
+                new Integer( 2 ),
+                null,//NS + "q",
+                RDF.Property,
                 null
             },
             {   
