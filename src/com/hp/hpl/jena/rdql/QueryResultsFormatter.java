@@ -435,7 +435,7 @@ public class QueryResultsFormatter
             {
                 Literal l = (Literal)obj ;
                 StringBuffer sb = new StringBuffer() ;
-                sb.append('"').append(l.toString()).append('"') ;
+                sb.append('"').append(l.getLexicalForm()).append('"') ;
                 
                 if ( ! l.getLanguage().equals(""))
                     sb.append("@").append(l.getLanguage()) ;
