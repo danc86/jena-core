@@ -3,23 +3,19 @@
  * [See end of file]
  */
 
+/**
+ * @author     Andy Seaborne
+ * @version    $Id$
+ */
+ 
 package com.hp.hpl.jena.rdql;
 
-import com.hp.hpl.jena.util.Log ;
-
-/** Class to define the operating environment for RDQL.
- *  Provides some utility operations like assert and handling unexpected exceptions
- * @author		Andy Seaborne
- * @version 	$Id$
- */
-
-public class QSys
+public interface QueryResultsRewindable extends QueryResults
 {
-    public static void unhandledException(Throwable t, String className, String methodName)
-    {
-        String tmp = Thread.currentThread().getName() ;
-        Log.severe("("+tmp+") Unhandled exception", className, methodName, t) ;
-    }
+    /** Move back to the start of the iterator for this instance of results of a query.
+     *
+     */
+    public void rewind() ;
 }
 
 /*
@@ -47,8 +43,4 @@ public class QSys
  * THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
  * THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
- *
- * This product includes software developed by the
- * Apache Software Foundation (http://www.apache.org/).
- *
  */

@@ -10,12 +10,12 @@ package com.hp.hpl.jena.rdql.parser;
 import com.hp.hpl.jena.rdql.* ;
 import java.io.PrintWriter ;
 
-class Q_Var extends SimpleNode implements Var, Expr
+public class Q_Var extends SimpleNode implements Var, Expr
 {
     String varName ;
 
-    Q_Var(int id) { super(id); }
-    Q_Var(RDQLParser p, int id) { super(p, id); }
+    public Q_Var(int id) { super(id); }
+    public Q_Var(RDQLParser p, int id) { super(p, id); }
 
     public void jjtClose()
     {
@@ -25,6 +25,7 @@ class Q_Var extends SimpleNode implements Var, Expr
     }
 
     public String getVarName() { return varName ; }
+    public void setVarName(String vn) { varName = vn ; }
 
     public Value eval(Query q, ResultBinding env)
     {

@@ -135,20 +135,24 @@ public class QueryResultsFormatter
                 Resource thisBinding = model.createResource() ;
                 String rVar = (String)iter.next() ;
                 Object tmp = env.get(rVar) ;
-                if ( ! (tmp instanceof RDFNode) )
+                RDFNode n = null ;
+                if ( tmp == null )
+                    //Unbound!
+                    n = ResultSet.undefined ;
+                else if ( ! (tmp instanceof RDFNode) )
                 {
                     System.err.println("Class wrong: "+tmp.getClass().getName()) ;
                     continue ;
                 }
-                
-                RDFNode n = (RDFNode)env.get(rVar) ;
+                else
+                    n = (RDFNode)env.get(rVar) ;
+                    
                 thisBinding.addProperty(ResultSet.variable, rVar) ;
                 thisBinding.addProperty(ResultSet.value, n) ;
                 thisSolution.addProperty(ResultSet.binding, thisBinding) ;
             }
         }
         results.addProperty(ResultSet.size, count) ;
-        queryResults.close() ;
         return results ;
     }
 

@@ -36,12 +36,12 @@ public class SesameQueryMain
 			pw.flush() ;
 			
 			// Now check that producing triples works.
-			System.out.println() ;
-			for ( Iterator iter = q.getTriplePatterns().iterator() ; iter.hasNext() ; )
-			{
-				TriplePattern tp =(TriplePattern)iter.next() ;
-				System.out.println(tp) ;
-			}
+//			System.out.println() ;
+//			for ( Iterator iter = q.getTriplePatterns().iterator() ; iter.hasNext() ; )
+//			{
+//				TriplePattern tp =(TriplePattern)iter.next() ;
+//				System.out.println(tp) ;
+//			}
 			
 			System.out.println() ;
 			for ( Iterator iter = qrm ; iter.hasNext() ; )

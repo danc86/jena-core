@@ -224,7 +224,6 @@ public class QueryEngineSesame implements QueryExecution
 			{
 				TriplePattern tp = (TriplePattern)iter.next() ;
 				Statement s = tp.asStatement(currentRow) ;
-				QSys.assertTrue(s!=null, "QueryEngineSesame.QueryResultsBuilder", "endTuple", "Triple Pattern failed to grouind") ;
 				currentRow.addTriple(s) ;
 			}
 

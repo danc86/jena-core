@@ -1,7 +1,3 @@
-/*
- * $Id$
- */
-
 
 package com.hp.hpl.jena.rdql;
 
