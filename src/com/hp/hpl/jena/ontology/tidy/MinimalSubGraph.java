@@ -128,19 +128,7 @@ class MinimalSubGraph extends AbsChecker {
 		// nothing
 	}
 
-	/* (non-Javadoc)
-	 * @see com.hp.hpl.jena.ontology.tidy.AbsChecker#addProblem(int, com.hp.hpl.jena.graph.Triple)
-	 */
-	void addProblem(int lvl, Triple t) {
-		// nothing
-	}
 
-	/* (non-Javadoc)
-	 * @see com.hp.hpl.jena.ontology.tidy.AbsChecker#addProblem(com.hp.hpl.jena.ontology.tidy.SyntaxProblem)
-	 */
-	void addProblem(SyntaxProblem sp) {
-		// nothing
-	}
 
 }
 
