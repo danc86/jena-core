@@ -379,7 +379,7 @@ public class FileManager
     {
         InputStream in = open(filename) ;
         if ( in == null )
-            throw new JenaException("File not found: "+filename) ;
+            throw new NotFoundException("File not found: "+filename) ;
         return readWholeFileAsUTF8(in) ;
     }
         
