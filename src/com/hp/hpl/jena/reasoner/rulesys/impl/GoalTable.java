@@ -16,7 +16,9 @@ import org.apache.log4j.Logger;
 
 /**
  *  Part of the backwared chaining rule interpreter. The goal table
- *  is a table of partially evaluated goals.
+ *  is a table of partially evaluated goals. This could be done by
+ *  variant-based or sumsumption-based tabling. We currently use variant-based.
+ *  TODO Investigate performance impact of switching to subsumption-based.
  * 
  * @author <a href="mailto:der@hplb.hpl.hp.com">Dave Reynolds</a>
  * @version $Revision$ on $Date$
@@ -54,7 +56,7 @@ public class GoalTable {
 //            logger.debug("findGoal on " + goal.toString());
 //        }
         GoalResults results = (GoalResults) table.get(goal);
-        if (results == null) {
+        if (results == null || !goal.variantOf(results.goal)) {
             results = new GoalResults(goal, ruleEngine);
             table.put(goal, results);
         }

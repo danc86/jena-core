@@ -145,8 +145,8 @@ public class TestOWLRules extends TestCase {
     protected void runTest() throws IOException {
 //        OWLWGTester tester = new OWLWGTester(OWLRuleReasonerFactory.theInstance(), this, null);
         OWLWGTester tester = new OWLWGTester(OWLBRuleReasonerFactory.theInstance(), this, null);
-        tester.runTests(manifest, true);
-//        tester.runTests(manifest, false);    // No tracing/derivation logging
+//        tester.runTests(manifest, true);
+        tester.runTests(manifest, false);    // No tracing/derivation logging
 //        OWLRuleReasoner.printStats();
     }
 

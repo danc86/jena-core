@@ -193,6 +193,11 @@ public class Functor {
         return false;
     }
     
+    /** hash function override */
+    public int hashCode() {
+        return (name.hashCode()) ^ (args.length << 2);
+    }
+    
     /**
      * Create a functor and wrap it up as a Literal node
      * @param name the name of the functor

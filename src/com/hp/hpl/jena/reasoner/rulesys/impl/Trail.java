@@ -210,9 +210,9 @@ public class Trail implements BindingEnvironment {
      */
     public TriplePattern partInstantiate(TriplePattern goal) {
         return new TriplePattern(
-                getGroundVersion(goal.getSubject()),
-                getGroundVersion(goal.getPredicate()),
-                getGroundVersion(goal.getObject())
+            getMostGroundVersion(goal.getSubject()),
+            getMostGroundVersion(goal.getPredicate()),
+            getMostGroundVersion(goal.getObject())
         );
     }
     

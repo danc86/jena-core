@@ -259,6 +259,7 @@ public class BRuleEngine {
                             TriplePattern subgoal = nexttrail.partInstantiate((TriplePattern)clause);
                             if (!subgoal.isLegal()) {
                                 // branch has failed
+                                if (nexttrail != null) nexttrail.unwindBindings();
                                 delayedRSClose = current;
                                 current = current.prev;
                             } else {                                
@@ -268,6 +269,7 @@ public class BRuleEngine {
                         } else {
                             if (!infGraph.processBuiltin(clause, rule, nexttrail)) {
                                 // This branch has failed
+                                if (nexttrail != null) nexttrail.unwindBindings();
                                 delayedRSClose = current;
                                 current = current.prev;
                                 foundGoal = true;
@@ -284,11 +286,14 @@ public class BRuleEngine {
                     // If we get to here then this branch has completed and we have a result
                     GoalResults resultDest = current.ruleInstance.generator;
                     Triple finalResult = current.getResult();
+                    if (nexttrail != null) nexttrail.unwindBindings();
+                    if (finalResult == null) {
+                        continue;
+                    }
                     if (traceOn) {
                         logger.debug("Result:" + finalResult + " <- " + current);
                     }
                     boolean newresult = resultDest.addResult(finalResult);
-                    if (nexttrail != null) nexttrail.unwindBindings();
                     if (delayedRSClose != null) {
                         delayedRSClose.close();
                     }
@@ -296,11 +301,17 @@ public class BRuleEngine {
                     current = continuation;
                     if (newresult && resultDest == topGoal) {
                         // Found a top level goal result so return it now
-                        if (current != null) prependToAgenda(current);
+                        if (current != null) {
+                            current.unwindAllBindings();
+                            prependToAgenda(current);
+                        } 
                         return finalResult;
                     } else if (numResults > batchSize) {
                         // push the current state lower down agenda and try another
-                        if (current != null) appendToAgenda(current);
+                        if (current != null) {
+                            current.unwindAllBindings();
+                            appendToAgenda(current);
+                        } 
                         current = null;
                     }
                 } else {
