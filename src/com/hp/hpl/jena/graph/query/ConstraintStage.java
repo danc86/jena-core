@@ -8,8 +8,6 @@ package com.hp.hpl.jena.graph.query;
 
 import com.hp.hpl.jena.graph.*;
 
-import java.util.*;
-
 /**
     A ConstraintStage implements the constraint evaluation part of a
     query. The constraint, expressed as a graph in which each triple
@@ -81,7 +79,7 @@ public class ConstraintStage extends Stage
 		        while (mine.hasNext())
 		            {
 		            Domain d = mine.get();
-		            if (evalConstraint( d, constraint )) L.put( d );
+		            if (evalConstraint( d, prepared )) L.put( d );
 		            }
 		        L.close();
         		}

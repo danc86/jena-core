@@ -158,7 +158,7 @@ public class TestExpressionConstraints extends GraphTestBase
         {
         IndexValues none = new IndexValues() 
             { public Object get( int i ) { return null; } };
-        Expression t = Expression.TRUE.prepare( new Mapping( new Node[0] ) );  
+        Valuator t = Expression.TRUE.prepare( new Mapping( new Node[0] ) );  
         assertEquals( true, t.evalBool( none ) );    
         }
         
@@ -166,7 +166,7 @@ public class TestExpressionConstraints extends GraphTestBase
         {
         IndexValues none = new IndexValues() 
             { public Object get( int i ) { return null; } };
-        Expression t = Expression.FALSE.prepare( new Mapping( new Node[0] ) );  
+        Valuator t = Expression.FALSE.prepare( new Mapping( new Node[0] ) );  
         assertEquals( false, t.evalBool( none ) );    
         }
         
@@ -174,7 +174,7 @@ public class TestExpressionConstraints extends GraphTestBase
         {
         Expression e = notEqual( X, Y );
         VariableIndexes map = new Mapping( new Node[2] );
-        // Expression ep = e.prepare( map );        
+        // Valuator ep = e.prepare( map );        
         }
     }
 

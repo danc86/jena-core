@@ -7,34 +7,13 @@
 package com.hp.hpl.jena.graph.query;
 
 /**
-	Expression - the interface for expressions that is expected by Query for constraints.
+	Valuator
 
 	@author kers
 */
-public interface Expression 
-    { 
-    public boolean evalBool( VariableValues vv );
-    
-    public Valuator prepare( VariableIndexes vi );
-    
-    public static abstract class EE implements Expression, Valuator
-        {
-        public Valuator prepare( VariableIndexes vi ) { return this; }   
-        public abstract boolean evalBool( VariableValues vv );
-        public abstract boolean evalBool( IndexValues vv );
-        }
-        
-    public static Expression TRUE = new EE() 
-        { 
-        public boolean evalBool( VariableValues vv ) { return true; }
-        public boolean evalBool( IndexValues vv ) { return true; }
-        };
-    
-    public static Expression FALSE = new EE() 
-        { 
-        public boolean evalBool( VariableValues vv ) { return false; }
-        public boolean evalBool( IndexValues vv ) { return false; }
-        };
+public interface Valuator 
+    {
+    boolean evalBool( IndexValues iv );
     }
 
 /*
