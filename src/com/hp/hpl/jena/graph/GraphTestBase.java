@@ -30,32 +30,9 @@ public class GraphTestBase extends JenaTestBase
     	
     public static TestSuite suite()
         { return new TestSuite( GraphTestBase.class ); }   
-
-    static final String RDFprefix = "http://www.w3.org/1999/02/22-rdf-syntax-ns#";
     
     public static Node node( String x )
-        {
-        if (x.equals( "" ))
-            throw new RuntimeException( "GraphTestBase::node does not accept an empty string as argument" );
-        char first = x.charAt( 0 );
-        if (first == '\'')
-            return Node.createLiteral( new LiteralLabel(  x, "en-UK", false ) );
-        if (Character.isDigit( first )) 
-            return Node.createLiteral( new LiteralLabel( x, "nn-NN", false ) );
-        if (first == '_')
-            return Node.createAnon( new AnonId( x ) );
-        if (first == '?')
-            return Node.createVariable( x.substring( 1 ) );
-        if (first == '&')
-            return Node.createURI( "q:" + x.substring( 1 ) );        
-        int colon = x.indexOf( ':' );
-        if (colon < 0)
-            return Node.createURI( "eh:" + x );
-        String prefix = x.substring( 0, colon );
-        if (prefix.equals( "rdf") )
-            return Node.createURI( RDFprefix + x.substring( colon + 1 ) );
-        return Node.createURI( x );
-        }
+        { return Node.create( x ); }
         
     public static Model modelFor( Graph g )
         { return ModelFactory.createModelForGraph( g ); }

@@ -81,7 +81,7 @@ public class FileGraphMaker extends BaseGraphMaker
         File f = withRoot( name );
         return created.containsKey( f )  
             ? (Graph) created.get( f ) 
-            : new FileGraph( f, false, strict, style )
+            : remember( f, new FileGraph( f, false, strict, style ) )
             ;
         }
 
