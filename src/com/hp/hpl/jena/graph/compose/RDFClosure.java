@@ -30,7 +30,7 @@ public class RDFClosure extends Dyadic implements Graph
 	
 	public RDFClosure( Graph base )
 		{
-		super( base, null );
+		super( base, base );
 		}
 		
 	public void add( Triple t )

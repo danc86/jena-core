@@ -32,6 +32,7 @@ public class TestPackage extends TestSuite {
         addTest( "TestReifiedStatements", TestReifiedStatements.suite() );
         addTest( "TestIterators", TestIterators.suite() );
         addTest( "TestContains", TestContains.suite() );
+        addTest( "TestHiddenStatements", TestHiddenStatements.suite() );
         addTest( "TestNamespace", TestNamespace.suite() );
         addTest( "TestModelBulkUpdate", TestModelBulkUpdate.suite() );
         addTest( "TestConcurrency", TestConcurrency.suite() ) ;

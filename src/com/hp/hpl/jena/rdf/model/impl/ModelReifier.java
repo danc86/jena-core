@@ -39,8 +39,9 @@ public class ModelReifier
     */
     public static Model withHiddenStatements( Model m )
         { 
-        Graph hiddenTriples = m.getGraph().getReifier().getHiddenTriples();
-        return new ModelCom( new Union( m.getGraph(), hiddenTriples ) );
+        Graph mGraph = m.getGraph();
+        Graph hiddenTriples = mGraph.getReifier().getHiddenTriples();
+        return new ModelCom( new Union( mGraph, hiddenTriples ) );
         }
         
     public Model getHiddenStatements()
