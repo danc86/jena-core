@@ -572,6 +572,53 @@ public class TestDigReasoner
     }
     
     
+    // User bug reports
+    
+    public void test_bug_codebaker_01() {
+        String NS = "http://www.owl-ontologies.com/pizza.owl#";
+        
+        DIGReasoner r = (DIGReasoner) ReasonerRegistry.theRegistry().create( DIGReasonerFactory.URI, null );
+        
+        OntModelSpec spec = new OntModelSpec( OntModelSpec.OWL_DL_MEM );
+        spec.setReasoner( r );
+        OntModel m = ModelFactory.createOntologyModel( spec, null );
+
+        m.read( "file:testing/ontology/bugs/test_codebaker_01.owl" );
+        
+        OntClass mp = m.getOntClass( NS + "MargheritaPizza" );
+        OntClass cp = m.getOntClass( NS + "CheesyPizza" );
+        
+        assertTrue( "MargheritaPizza should be cheesy", mp.hasSuperClass( cp ) );
+    }
+    
+    public void test_bug_koala_01() {
+        // set up a configuration resource to connect to the reasoner
+        // on port 2004 on the local system
+        Model cModel = ModelFactory.createDefaultModel();
+        Resource conf = cModel.createResource();
+        conf.addProperty( ReasonerVocabulary.EXT_REASONER_URL, cModel.createResource( "http://localhost:8081" ) );
+
+        // create the reasoner factory and the reasoner
+        DIGReasonerFactory drf = (DIGReasonerFactory) ReasonerRegistry.theRegistry()
+                .getFactory( DIGReasonerFactory.URI );
+        DIGReasoner r = (DIGReasoner) drf.create( conf );
+
+        // now make a model
+        OntModelSpec spec = new OntModelSpec( OntModelSpec.OWL_DL_MEM );
+        spec.setReasoner( r );
+        OntModel m = ModelFactory.createOntologyModel( spec, null );
+
+        // load an input document
+        m.read( "http://protege.stanford.edu/plugins/owl/owl-library/koala.owl" );
+
+        // list the inconsistent classes
+        StmtIterator i = m.listStatements( null, OWL.equivalentClass, OWL.Nothing );
+        while (i.hasNext()) {
+            System.out.println( "Class " + i.nextStatement().getSubject() + " is unsatisfiable" );
+        }
+    }
+    
+    
     public void xxtestDebug1() {
         String NS = "http://example.org/foo#";
         
@@ -622,7 +669,7 @@ public class TestDigReasoner
                 i++;
             }
             
-            //s.addTest( new DigTranslationTest( testSource, testTarget, spec ) );
+            s.addTest( new DigTranslationTest( testSource, testTarget, spec ) );
         }
     }
     

@@ -48,7 +48,7 @@ public class TestPackage
         super("reasoner.dig");
         addTestSuite( TestConsistency.class );
         addTestSuite( TestRacer.class );
-        addTestSuite( TestDigReasoner.class );
+        addTest( "TestDigReasoner", TestDigReasoner.suite() );
     }
 
     private void addTest(String name, TestSuite tc) {
