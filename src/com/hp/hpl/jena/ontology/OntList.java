@@ -52,11 +52,6 @@ import java.util.*;
  * be invoked explicitly by clients by calling {@link #isValid}. By default, RDF
  * lists are processed in non-strict mode.
  * </p>
- * <p>
- * TODO Still to investigate: interaction of lists with writers to generate
- * appropriately compact serialisations, such as <code>rdf:parseType=&quot;
- * Collection&quot;</code>
- * </p>
  * 
  * @author Ian Dickinson, HP Labs 
  *         (<a  href="mailto:Ian.Dickinson@hp.com" >email</a>)
