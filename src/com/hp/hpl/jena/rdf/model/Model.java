@@ -91,10 +91,15 @@ public interface Model
 	ResIterator listSubjects() ;
 
 	//* @deprecated Too difficult to implement scalably.
-	/** List all namespaces of predicates in the model.
+	/** 
+        List the namespaces used by predicates and types in the model. This method is
+        really intended for use by the RDF/XML writer, which needs to know these
+        namespaces to generate correct and vaguely pretty XML.
+    <p>
+        The namespaces returned are those of (a) every URI used as a property in the
+        model and (b) those of every URI that appears as the object of an rdf:type statement.
 	 
-	 * @return an iterator over the set of namespaces associated with predicates in 
-	 *         the model.
+	 @return an iterator over every predicate and type namespace
 	 */
 	NsIterator listNameSpaces() ;
     
