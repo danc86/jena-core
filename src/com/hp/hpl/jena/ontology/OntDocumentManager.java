@@ -382,6 +382,7 @@ public class OntDocumentManager
      *
      * @param uri The ontology document to lookup
      * @return The model for the document, or null if the model is not known.
+     * @see #getOntology
      */
     public Model getModel( String uri ) {
         return (Model) m_modelMap.get( uri );
@@ -507,13 +508,9 @@ public class OntDocumentManager
      * @param uri Identifies the model to load.
      * @param spec Specifies the structure of the ontology model to create
      * @return An ontology model containing the statements from the ontology document.
+     * @see #getModel
      */
-    public Model getOntology( String uri, OntModelSpec spec ) {
-        // cached already?
-        if (m_modelMap.containsKey( uri )) {
-            return (Model) m_modelMap.get( uri );
-        }
-
+    public OntModel getOntology( String uri, OntModelSpec spec ) {
         // ensure consistency of document managers (to allow access to cached documents)
         OntModelSpec _spec = spec;
         if (_spec.getDocumentManager() != this) {
@@ -521,7 +518,18 @@ public class OntDocumentManager
             _spec.setDocumentManager( this );
         }
 
-        OntModel m = ModelFactory.createOntologyModel( spec, null );
+        // cached already?
+        if (m_modelMap.containsKey( uri )) {
+            Model cached = (Model) m_modelMap.get( uri );
+            if (cached instanceof OntModel) {
+                return (OntModel) cached;
+            }
+            else {
+                return ModelFactory.createOntologyModel( _spec, cached );
+            }
+        }
+
+        OntModel m = ModelFactory.createOntologyModel( _spec, null );
         read( m, uri, true );
 
         return m;
