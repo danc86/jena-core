@@ -7,6 +7,7 @@ package com.hp.hpl.jena.ontology.tidy.test;
 
 import junit.framework.TestCase;
 import com.hp.hpl.jena.ontology.tidy.*;
+import com.hp.hpl.jena.ontology.tidy.impl.*;
 import com.hp.hpl.jena.ontology.*;
 import java.util.*;
 import java.io.*;

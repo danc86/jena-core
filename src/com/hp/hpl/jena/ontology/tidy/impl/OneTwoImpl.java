@@ -3,7 +3,7 @@
   [See end of file]
   $Id$
 */
-package com.hp.hpl.jena.ontology.tidy;
+package com.hp.hpl.jena.ontology.tidy.impl;
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.rdf.model.*;
 

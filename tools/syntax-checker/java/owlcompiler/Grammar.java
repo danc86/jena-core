@@ -2,9 +2,12 @@
   [See end of file]
   $Id$
 */
-package com.hp.hpl.jena.ontology.tidy;
+package owlcompiler;
 import java.util.Arrays;
-class Triples implements Constants {
+
+import com.hp.hpl.jena.ontology.tidy.impl.CategorySet;
+import com.hp.hpl.jena.ontology.tidy.impl.Constants;
+class Grammar implements Constants {
     static final int orphan = 1;
     static final int notype = 2;
     static final int cyclic = 3;

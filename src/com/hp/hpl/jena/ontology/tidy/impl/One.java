@@ -3,17 +3,19 @@
   [See end of file]
   $Id$
 */
-package com.hp.hpl.jena.ontology.tidy;
+package com.hp.hpl.jena.ontology.tidy.impl;
 import com.hp.hpl.jena.graph.*;
 
 /**
+ * Public by mistake ...., this should be package private really.
  * @author <a href="mailto:Jeremy.Carroll@hp.com">Jeremy Carroll</a>
  *
 */
-interface Two extends CNodeI {
+interface One extends CNodeI {
+	boolean incompleteOne();
+	
 	void first(Triple t);
-	void second(Triple t);
-	boolean incompleteTwo();
+
 }
 
 /*

@@ -3,88 +3,25 @@
   [See end of file]
   $Id$
 */
-package com.hp.hpl.jena.ontology.tidy;
-import com.hp.hpl.jena.rdql.*;
-import java.util.*;
+package com.hp.hpl.jena.ontology.tidy.impl;
+
 /**
  * @author <a href="mailto:Jeremy.Carroll@hp.com">Jeremy Carroll</a>
  *
 */
-abstract class Q {
-	private Vector v = new Vector();
-	private Query rdql = null;
-	private int[] a = null;
-/*
-	Query asRDQL() {
-		if (rdql == null) {
-			StringBuffer b = new StringBuffer(600);
-			b.append("SELECT ?x ");
-			b.append("WHERE ( ?x <");
-			b.append(Vocab.category.getURI());
-			b.append("> ?y ) AND ( ?y eq -2");
-			Iterator it = v.iterator();
-			while (it.hasNext()) {
-
-				b.append(" || ?y eq ");
-				b.append(it.next().toString());
-			}
-			b.append(")");
-			rdql = new Query(b.toString());
-		}
-		return rdql;
-	}
-	*/
-
-	int[] asInt() {
-		if (a == null) {
-			a = new int[v.size()];
-			Iterator it = v.iterator();
-			int i = 0;
-			while (it.hasNext())
-				a[i++] = ((Integer) it.next()).intValue();
-		  Arrays.sort(a);
-		}
-		return a;
-	}
-
-	void add(int c) {
-		v.add(new Integer(c));
-		a = null;
-		rdql = null;
-	}
-	abstract boolean test(int c[]);
-
-	static final boolean member(int m, int a[]) {
-		return Arrays.binarySearch(a, m) >= 0;
-	}
-	/*
-	final boolean subset(int a[], int b[]) {
-		for (int i = 0; i < a.length; i++)
-			if (!member(a[i], b))
-				return false;
-		return true;
-	}
-	*/
-	static final boolean intersect(int a[], int b[]) {
-		for (int i = 0; i < a.length; i++)
-			if (member(a[i], b))
-				return true;
-		return false;
-	}
-	/*
-	final boolean anySubSet(int a[][],int b[]) {
-		for (int i=0;i<a.length;i++)
-		  if (subset(a[i],b))
-		    return true;
-		return false;
-	}
-	*/
-
-	void testAdd(int c, int cat[]) {
-		if (test(cat))
-			add(c);
-	}
-
+class Levels {
+	static public final int Warning = 0;   
+  static public final int Lite = 1;
+  static public final int DL = 2;
+  static public final int Full = 3;
+  static public final int Other = 4; // Bad RDF doc
+  static private String desc[] = {
+  	"Warning", "Lite", "DL", "Full", "Other"
+  	
+  };
+  static public String toString(int i) {
+  	return desc[i];
+  }
 }
 
 /*

@@ -3,15 +3,16 @@
   [See end of file]
   $Id$
 */
-package com.hp.hpl.jena.ontology.tidy;
+package com.hp.hpl.jena.ontology.tidy.impl;
+
 import com.hp.hpl.jena.graph.*;
 
 /**
- * @author <a href="mailto:Jeremy.Carroll@hp.com">Jeremy Carroll</a>
+ * @author jjc
  *
-*/
-interface Blank extends CNodeI {
-  void addObjectTriple(Triple t);
+ */
+interface NodeAction {
+	void apply(Node n);
 }
 
 /*

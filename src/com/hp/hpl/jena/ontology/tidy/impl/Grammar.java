@@ -2,7 +2,7 @@
   [See end of file]
   $Id$
 */
-package com.hp.hpl.jena.ontology.tidy;
+package com.hp.hpl.jena.ontology.tidy.impl;
 class Grammar implements Constants {
     static final int orphan = 1;
     static final int notype = 2;
