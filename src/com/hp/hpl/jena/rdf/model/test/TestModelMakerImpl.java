@@ -54,6 +54,10 @@ public class TestModelMakerImpl extends ModelTestBase
         
     public void testCreate()
         {
+        }
+        
+    public void testCreateNamed()
+        {
         Model m = maker.createModel( "petal" );
         assertEquals( history(), one("create(petal,false)" ) );
         assertTrue( m.getGraph() == graph );
@@ -121,6 +125,12 @@ public class TestModelMakerImpl extends ModelTestBase
             {
             history.add( "get()" );
             return graph;
+            }
+            
+        public Graph createGraph()  
+            {
+            history.add( "create()" );
+            return graph;    
             }
             
         public Graph createGraph( String name, boolean strict )

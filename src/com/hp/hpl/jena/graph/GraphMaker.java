@@ -25,6 +25,15 @@ public interface GraphMaker
     public Graph getGraph();
     
     /**
+        Answer a graph who's name isn't interesting. Each call delivers a different graph.
+        The GraphMaker may reserve a bunch of names for this purpose, of the form
+        "anon_<digits>", if it cannot support truly anonymous graphs.
+        
+        @return a fresh anonymous graph
+    */
+    public Graph createGraph();
+    
+    /**
         Create a new graph associated with the given name. If there is no such
         association, create one and return it. If one exists but <code>strict</code>
         is false, return the associated graph. Otherwise throw an AlreadyExistsException.

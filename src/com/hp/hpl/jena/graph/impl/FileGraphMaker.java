@@ -59,10 +59,10 @@ public class FileGraphMaker extends BaseGraphMaker
         this.root = root;
         this.deleteOnClose = deleteOnClose;       
         }
-        
-    public Graph getGraph()
-        { return FileGraph.create(); }
 
+    public Graph createGraph()
+        { return FileGraph.create(); }
+        
     public Graph createGraph( String name, boolean strict )
         {
         File f = withRoot( name );

@@ -30,6 +30,9 @@ public class SimpleGraphMaker extends BaseGraphMaker
         
     private Map graphs = new HashMap();
     
+    public Graph create()
+        { return new GraphMem(); }
+    
     /**
         Create a graph and record it with the given name in the local map.
      */

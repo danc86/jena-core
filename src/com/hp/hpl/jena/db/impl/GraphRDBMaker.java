@@ -41,6 +41,9 @@ public class GraphRDBMaker extends BaseGraphMaker
         }
      
     public Graph getGraph()
+        { return consGraph( null, true ); }
+        
+    public Graph createGraph()
         { return createGraph( "anon_" + counter++ + "", false ); }
     
     /**

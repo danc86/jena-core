@@ -1,64 +1,30 @@
 /*
-  (c) Copyright 2002, Hewlett-Packard Company, all rights reserved.
+  (c) Copyright 2003, Hewlett-Packard Company, all rights reserved.
   [See end of file]
   $Id$
 */
 
-package com.hp.hpl.jena.graph.impl;
+package com.hp.hpl.jena.rdf.model.test;
 
-import com.hp.hpl.jena.graph.*;
+import com.hp.hpl.jena.rdf.model.*;
+
+import java.util.*;
+
+import junit.framework.*;
 
 /**
-    This base class provides convenience functions for the three "usual" graph
-    makers and a place to hold the reification style for the graphs it constructs.   
- 
  	@author kers
 */
-public abstract class BaseGraphMaker implements GraphMaker
-    {
-    /**
-        Construct the base level of a graph maker.
-     	@param style the reification style for all the graphs it makes
-     */
-    public BaseGraphMaker( Reifier.Style style )
-        { this.style = style; }
-        
-    private int counter = 0;
-    protected Reifier.Style style;
-    
-    /**
-        Answer the default graph for this maker. If we haven't already made it, make it
-        now.
-     */
-    public Graph getGraph()
-        { 
-        if (defaultGraph == null) defaultGraph = createGraph();
-        return defaultGraph;
-        }
-        
-    private Graph defaultGraph;
-    
-    /**
-        Make a fresh anonymous graph.
-    */
-    public Graph createGraph()
-        { return createGraph( "anon_" + counter++ + "", false ); }
-         
-     /**
-        A non-strict create.
-      	@see com.hp.hpl.jena.graph.GraphMaker#createGraph(java.lang.String)
-      */
-    public Graph createGraph(String name)
-        { return createGraph( name, false ); }
-        
-    /**
-        A non-strict open.
-     	@see com.hp.hpl.jena.graph.GraphMaker#openGraph(java.lang.String)
-     */
-    public Graph openGraph( String name )
-        { return openGraph( name, false ); }
-    }
 
+public class TestModelSpec extends ModelTestBase
+    {
+    public TestModelSpec( String name )
+        { super( name ); }
+
+    public static TestSuite suite()
+        { return new TestSuite( TestModelSpec.class ); }
+
+    }
 
 /*
     (c) Copyright Hewlett-Packard Company 2003

@@ -44,7 +44,13 @@ public abstract class AbstractTestGraphMaker extends GraphTestBase
         {
         Graph g1 = gf.getGraph();
         assertFalse( "should deliver a Graph", g1 == null );
+        assertSame( g1, gf.getGraph() );
         g1.close();
+        }
+        
+    public void testCreateGraph()
+        {
+        assertDiffer( "each created graph must differ", gf.createGraph(), gf.createGraph() );    
         }
     
     public void testAnyName()
