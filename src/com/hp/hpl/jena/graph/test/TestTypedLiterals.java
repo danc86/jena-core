@@ -45,7 +45,7 @@ public class TestTypedLiterals extends TestCase {
     /**
      * This is its own test suite
      */
-    public static Test suite() {
+    public static TestSuite suite() {
         return new TestSuite( TestTypedLiterals.class ); 
     }  
     

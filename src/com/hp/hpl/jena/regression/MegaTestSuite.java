@@ -47,7 +47,7 @@ import junit.framework.Test;
 public class MegaTestSuite extends TestSuite {
 
     /** Creates new MegaTestSuite */
-    static public Test suite() {
+    static public TestSuite suite() {
         return new MegaTestSuite();
     }
     private MegaTestSuite() {
@@ -75,9 +75,8 @@ public class MegaTestSuite extends TestSuite {
         else
             System.err.println("WARNING: DAML tests suppressed for the moment");
     }
-    private void addTest(String name, Test tc) {
-        if (tc instanceof TestSuite)
-             ((TestSuite) tc).setName(name);
+    private void addTest(String name, TestSuite tc) {
+        tc.setName(name);
         addTest(tc);
     }
 

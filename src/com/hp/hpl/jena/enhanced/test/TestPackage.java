@@ -75,7 +75,7 @@ public class TestPackage extends GraphTestBase implements SPO {
 		super( name );
 		};
 		
-    public static Test suite()
+    public static TestSuite suite()
         { TestSuite suite = new TestSuite( "Enhanced" ); 
           
   

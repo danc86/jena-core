@@ -29,7 +29,7 @@ public class QueryTest extends GraphTestBase
 	public QueryTest( String name )
 		{ super( name ); }
 		
-    public static Test suite()
+    public static TestSuite suite()
     	{ return new TestSuite( QueryTest.class ); }
     	
     public void setUp()

@@ -25,7 +25,7 @@ public class TestGraph extends GraphTestBase
 		super( name );
 		};
 		
-    public static Test suite()
+    public static TestSuite suite()
         { return new TestSuite( TestGraph.class ); }   
 
     public static void testAGraph( String title, Graph g )

@@ -18,7 +18,7 @@ public class TestReifier extends GraphTestBase
     public TestReifier( String name )
         { super( name ); }
 
-    public static Test suite()
+    public static TestSuite suite()
         { return new TestSuite( TestReifier.class ); }   
                 
     public void testEmptyReifiers()

@@ -35,9 +35,8 @@ public class TestPackage extends TestSuite {
         addTest(com.hp.hpl.jena.rdf.arp.test.TestPackage.suite());
     }
 
-    private void addTest(String name, Test tc) {
-        if (tc instanceof TestSuite)
-             ((TestSuite) tc).setName(name);
+    private void addTest(String name, TestSuite tc) {
+        tc.setName(name);
         addTest(tc);
     }
 

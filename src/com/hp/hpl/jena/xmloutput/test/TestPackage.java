@@ -21,7 +21,7 @@ public class TestPackage {
     /**
      * Answer a suite of all the tests defined here
      */
-    public static Test suite() {
+    public static TestSuite suite() {
         TestSuite suite = new TestSuite();
         String langs[] =
             new String[] { "RDF/XML", "RDF/XML-ABBREV", "N-TRIPLE",

@@ -25,7 +25,7 @@ public class TestNode extends TestCase
     public TestNode( String name )
         { super( name ); }
     
-    public static Test suite()
+    public static TestSuite suite()
         { return new TestSuite( TestNode.class ); }   
             
     public void assertFalse( String name, boolean b )

@@ -24,7 +24,7 @@ public class GraphTestBase extends TestCase
     public GraphTestBase( String name )
     	{ super( name ); }
     	
-    public static Test suite()
+    public static TestSuite suite()
         { return new TestSuite( GraphTestBase.class ); }   
 
     public void testNodeSet()

@@ -15,7 +15,7 @@ import junit.framework.*;
 
 public class TestPackage extends TestSuite {
 
-    static public Test suite() {
+    static public TestSuite suite() {
         return new TestPackage();
     }
     
@@ -24,13 +24,12 @@ public class TestPackage extends TestSuite {
         super("graph");
         addTest( "TestNode", TestNode.suite() );
         addTest( "TestTriple", TestTriple.suite() );
-//        addTest( "TestReifier", TestReifier.suite() );   
+        addTest( "TestReifier", TestReifier.suite() );   
         addTest( "TestTypedLiterals", TestTypedLiterals.suite() );
         }
 
-    private void addTest(String name, Test tc) {
-        if ( tc instanceof TestSuite)
-           ((TestSuite)tc).setName(name);
+    private void addTest(String name, TestSuite tc) {
+        tc.setName(name);
         addTest(tc);
     }
 

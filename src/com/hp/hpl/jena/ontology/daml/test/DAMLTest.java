@@ -106,7 +106,7 @@ public class DAMLTest
     /**
      * Answer a suite of all the tests defined here
      */
-    public static Test suite() {
+    public static TestSuite suite() {
         TestSuite suite = new TestSuite();
 
         // add all the tests defined in this class to the suite
