@@ -14,7 +14,7 @@ package com.hp.hpl.jena.db.impl;
 // Imports
 import java.util.*;
 
-import com.hp.hpl.jena.util.HashUtils;
+import com.hp.hpl.jena.util.CollectionFactory;
 
 
 //=======================================================================
@@ -30,7 +30,7 @@ import com.hp.hpl.jena.util.HashUtils;
 public class SimpleCache implements ICache {
 
     /** The cache itself */
-    protected Map cache = HashUtils.createMap();
+    protected Map cache = CollectionFactory.createHashedMap();
 
     /** The current size limit */
     protected int threshold;
@@ -56,7 +56,7 @@ public class SimpleCache implements ICache {
     public void put(IDBID id, Object val) {
         if (threshold == 0) return;
         if (threshold > 0 && count >= threshold) {
-            cache = HashUtils.createMap();
+            cache = CollectionFactory.createHashedMap();
             count = 0;
         }
         count++;
@@ -83,7 +83,7 @@ public class SimpleCache implements ICache {
     public void setLimit(int threshold) {
         this.threshold = threshold;
         if (threshold >= 0 && count > threshold) {
-            cache = HashUtils.createMap();
+            cache = CollectionFactory.createHashedMap();
             count = 0;
         }
     }

@@ -1,5 +1,5 @@
 /*
-  (c) Copyright 2003, Hewlett-Packard Development Company, LP
+  (c) Copyright 2003, 2004 Hewlett-Packard Development Company, LP
   [See end of file]
   $Id$
 */
@@ -89,21 +89,15 @@ public class WrappedGraph implements GraphWithPerform
         { return base.size(); }
     
     public void performAdd(Triple t)
-        {
-        // TODO Auto-generated method stub
-        
-        }
+        { base.add( t ); }
 
     public void performDelete(Triple t)
-        {
-        // TODO Auto-generated method stub
-        
-        }
+        { base.delete( t ); }
     }
 
 
 /*
-    (c) Copyright 2003 Hewlett-Packard Development Company, LP
+    (c) Copyright 2003, 2004 Hewlett-Packard Development Company, LP
     All rights reserved.
 
     Redistribution and use in source and binary forms, with or without

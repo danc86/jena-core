@@ -200,19 +200,11 @@ final public class LiteralLabel {
 	*/
 	public String toString(boolean quoting) {
 		StringBuffer b = new StringBuffer();
-		if (quoting)
-			b.append('"');
+		if (quoting) b.append('"');
 		b.append(getLexicalForm());
-		if (quoting)
-			b.append('"');
-		if (lang != null && !lang.equals("")) {
-			b.append("~");
-			b.append(lang);
-		}
-		if (dtype != null) {
-			b.append(":");
-			b.append(dtype.getURI());
-		}
+		if (quoting) b.append('"');
+		if (lang != null && !lang.equals( "" )) b.append( "@" ).append(lang);
+		if (dtype != null) b.append( "^^" ).append(dtype.getURI());
 		return b.toString();
 	}
 

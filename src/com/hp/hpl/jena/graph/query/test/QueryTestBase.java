@@ -60,7 +60,10 @@ public abstract class QueryTestBase extends GraphTestBase
 	    return new Dyadic( asExpression( x ), "http://jena.hpl.hp.com/constraints/MATCHES", asExpression( y ) ) 
 	        {
 	        public boolean evalBool( Object L, Object R )
-	            { return L.toString().indexOf( R.toString() ) > -1; }       
+	            {
+                Node l = (Node) L, r = (Node) R;
+                return l.toString( false ).indexOf( r.toString( false ) ) > -1; 
+                }       
 	        };    
 	    }
 

@@ -15,7 +15,7 @@ package com.hp.hpl.jena.db.impl;
 import java.util.*;
 
 import com.hp.hpl.jena.shared.JenaException;
-import com.hp.hpl.jena.util.HashUtils;
+import com.hp.hpl.jena.util.CollectionFactory;
 
 
 //=======================================================================
@@ -65,8 +65,8 @@ public class LRUCache implements ICache {
 	
 	protected void resize ( int max ) {
 		maxCount = max;
-		keyCache = HashUtils.createMap(max);
-		valCache = HashUtils.createMap(max);
+		keyCache = CollectionFactory.createHashedMap(max);
+		valCache = CollectionFactory.createHashedMap(max);
 		Keys = new IDBID[max];
 		count = 0;
 	}

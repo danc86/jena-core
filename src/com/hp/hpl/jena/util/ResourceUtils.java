@@ -217,7 +217,7 @@ public class ResourceUtils {
         Model m = ModelFactory.createDefaultModel();
         
         // set of resources we have passed through already (i.e. the occurs check)
-        Set seen = HashUtils.createSet();
+        Set seen = CollectionFactory.createHashedSet();
         
         // queue of resources we have not yet visited
         List queue = new LinkedList();

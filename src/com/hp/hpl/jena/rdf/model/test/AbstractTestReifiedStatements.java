@@ -7,7 +7,7 @@
 package com.hp.hpl.jena.rdf.model.test;
 
 import com.hp.hpl.jena.rdf.model.*;
-import com.hp.hpl.jena.util.HashUtils;
+import com.hp.hpl.jena.util.CollectionFactory;
 import com.hp.hpl.jena.vocabulary.RDF;
 import com.hp.hpl.jena.graph.test.*;
 
@@ -194,7 +194,7 @@ public abstract class AbstractTestReifiedStatements extends ModelTestBase
     public Set getSetRS( Model m )
         { return GraphTestBase.iteratorToSet( m.listReifiedStatements() ); }
    
-    protected static Set empty = HashUtils.createSet();
+    protected static Set empty = CollectionFactory.createHashedSet();
     
     /**
         test that listReifiedStatements produces an iterator that contains

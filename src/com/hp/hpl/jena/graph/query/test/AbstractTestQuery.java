@@ -8,7 +8,7 @@ package com.hp.hpl.jena.graph.query.test;
 
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.graph.query.*;
-import com.hp.hpl.jena.util.HashUtils;
+import com.hp.hpl.jena.util.CollectionFactory;
 import com.hp.hpl.jena.util.iterator.*;
 import com.hp.hpl.jena.graph.impl.*;
 
@@ -272,7 +272,7 @@ public abstract class AbstractTestQuery extends QueryTestBase
         List bindings = ebList( xxx, Q, justX ); 
         assertEquals( "bindings match (X X X)", bindings.size(), 3 );       
     /* */
-        Set found = HashUtils.createSet();
+        Set found = CollectionFactory.createHashedSet();
         for (int i = 0; i < bindings.size(); i += 1) 
             {
             Domain d = (Domain) bindings.get( i );
@@ -396,7 +396,7 @@ public abstract class AbstractTestQuery extends QueryTestBase
     */
    public void testMatchConstraint()
         {
-        Set expected = HashUtils.createSet();
+        Set expected = CollectionFactory.createHashedSet();
         expected.add( node( "beta" ) );
         Query q = new Query()  
             .addMatch( X, node( "ppp" ), Y ).addConstraint( matches( Y, node( "'ell'" ) ) ) 
@@ -700,7 +700,7 @@ public abstract class AbstractTestQuery extends QueryTestBase
         
     protected Map getAnswer( Graph g, TripleSorter sorter )
         {
-        Map result = HashUtils.createMap();
+        Map result = CollectionFactory.createHashedMap();
         Query q = new Query();
         q.addMatch( triple( "?a ?? ?d " ) ).addMatch( triple( "?a X ?b" ) ).addMatch( triple( "?b Y ?c" ) );
         q.addConstraint( notEqual( node( "?d" ), node( "?b" ) ) );

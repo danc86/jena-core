@@ -10,7 +10,7 @@ import com.hp.hpl.jena.db.impl.DBReifier;
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.graph.impl.GraphBase;
 import com.hp.hpl.jena.shared.*;
-import com.hp.hpl.jena.util.HashUtils;
+import com.hp.hpl.jena.util.CollectionFactory;
 import com.hp.hpl.jena.util.iterator.ExtendedIterator;
 import com.hp.hpl.jena.vocabulary.RDF;
 
@@ -431,7 +431,7 @@ public abstract class AbstractTestReifier extends GraphTestBase
         {
         Graph g = getGraph( Standard );
         Reifier r = g.getReifier();
-        assertEquals( HashUtils.createSet(), iteratorToSet( r.findExposed( triple( "?? ?? ??" ) ) ) );
+        assertEquals( CollectionFactory.createHashedSet(), iteratorToSet( r.findExposed( triple( "?? ?? ??" ) ) ) );
         }
 
     public void testReifierFindSubject()

@@ -542,9 +542,10 @@ public class TestNode extends GraphTestBase
         Node plain = Node.createLiteral( "rhubarb", "", false );    
         Node english = Node.createLiteral( "eccentric", "en_UK", false );
         Node typed = Node.createLiteral( "10", "", dtInt );
-        assertEquals( "rhubarb", plain.toString() );
-        assertEquals( "eccentric~en_UK", english.toString() );
-        assertEquals( "10:http://www.w3.org/2001/XMLSchema#int", typed.toString() );
+        assertEquals( "\"rhubarb\"", plain.toString() );
+        assertEquals( "rhubarb", plain.toString( false ) );
+        assertEquals( "\"eccentric\"@en_UK", english.toString() );
+        assertEquals( "10^^http://www.w3.org/2001/XMLSchema#int", typed.toString( false ) );
         }
         
     public void testConcrete()

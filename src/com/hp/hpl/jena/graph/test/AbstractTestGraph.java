@@ -6,7 +6,7 @@
 
 package com.hp.hpl.jena.graph.test;
 
-import com.hp.hpl.jena.util.HashUtils;
+import com.hp.hpl.jena.util.CollectionFactory;
 import com.hp.hpl.jena.util.iterator.*;
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.graph.query.*;
@@ -186,7 +186,7 @@ public /* abstract */ class AbstractTestGraph extends GraphTestBase
     static final Triple [] setTriples = tripleArray
         ( "scissors cut paper; paper wraps stone; stone breaks scissors" );
         
-    static final Set tripleSet = HashUtils.createSet( Arrays.asList( setTriples ) );
+    static final Set tripleSet = CollectionFactory.createHashedSet( Arrays.asList( setTriples ) );
                 
     public void testBulkUpdate()
         {

@@ -7,7 +7,7 @@
 package com.hp.hpl.jena.graph.query;
 
 import com.hp.hpl.jena.graph.*;
-import com.hp.hpl.jena.util.HashUtils;
+import com.hp.hpl.jena.util.CollectionFactory;
 import com.hp.hpl.jena.util.iterator.*;
 
 import java.util.*;
@@ -39,7 +39,7 @@ public class SimpleQueryHandler implements QueryHandler
     	
 	public ExtendedIterator objectsFor( Node s, Node p )
 		{ 
-        Set objects = HashUtils.createSet();
+        Set objects = CollectionFactory.createHashedSet();
         ClosableIterator it = graph.find( s, p, null );
         while (it.hasNext()) objects.add( ((Triple) it.next()).getObject() );
 		return WrappedIterator.create( objects.iterator() );
@@ -47,7 +47,7 @@ public class SimpleQueryHandler implements QueryHandler
 		
 	public ExtendedIterator subjectsFor( Node p, Node o )
 		{ 
-        Set objects = HashUtils.createSet();
+        Set objects = CollectionFactory.createHashedSet();
         ClosableIterator it = graph.find( null, p, o );
         while (it.hasNext()) objects.add( ((Triple) it.next()).getSubject() );
 		return WrappedIterator.create( objects.iterator() );

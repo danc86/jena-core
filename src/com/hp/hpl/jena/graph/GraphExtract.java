@@ -10,7 +10,7 @@ import java.util.Iterator;
 import java.util.Set;
 
 import com.hp.hpl.jena.mem.GraphMem;
-import com.hp.hpl.jena.util.HashUtils;
+import com.hp.hpl.jena.util.CollectionFactory;
 
 /**
      GraphExtract offers a very simple recursive extraction of a subgraph with a
@@ -61,7 +61,7 @@ public class GraphExtract
             {
             this.toUpdate = toUpdate;
             this.extractFrom = extractFrom;
-            this.active = HashUtils.createSet();
+            this.active = CollectionFactory.createHashedSet();
             this.b = b;
             }
         

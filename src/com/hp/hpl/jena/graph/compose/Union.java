@@ -7,7 +7,7 @@
 package com.hp.hpl.jena.graph.compose;
 
 import com.hp.hpl.jena.graph.*;
-import com.hp.hpl.jena.util.HashUtils;
+import com.hp.hpl.jena.util.CollectionFactory;
 import com.hp.hpl.jena.util.iterator.*;
 
 import java.util.*;
@@ -49,7 +49,7 @@ public class Union extends Dyadic implements Graph
     */
 	public ExtendedIterator graphBaseFind( final TripleMatch t ) 
 	    {
-	    Set seen = HashUtils.createSet();
+	    Set seen = CollectionFactory.createHashedSet();
         return recording( L.find( t ), seen ).andThen( rejecting( R.find( t ), seen ) ); 
 	    // return L.find( t ) .andThen( rejecting( R.find( t ), L ) ); 
 		}

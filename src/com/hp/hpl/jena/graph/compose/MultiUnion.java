@@ -26,7 +26,7 @@ package com.hp.hpl.jena.graph.compose;
 ///////////////
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.shared.JenaException;
-import com.hp.hpl.jena.util.HashUtils;
+import com.hp.hpl.jena.util.CollectionFactory;
 import com.hp.hpl.jena.util.iterator.*;
 
 import java.util.*;
@@ -179,7 +179,7 @@ public class MultiUnion
         }
         else {
             // start building the iterator chain
-            Set seen = HashUtils.createSet();
+            Set seen = CollectionFactory.createHashedSet();
             ExtendedIterator i = null;
             
             // now add the rest of the chain

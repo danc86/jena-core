@@ -1,71 +1,67 @@
 /*
-  (c) Copyright 2003, Hewlett-Packard Company, all rights reserved.
+  (c) Copyright 2004, Hewlett-Packard Development Company, LP, all rights reserved.
   [See end of file]
   $Id$
 */
-
-package com.hp.hpl.jena.graph.query;
-
-import com.hp.hpl.jena.graph.Triple;
-import com.hp.hpl.jena.util.CollectionFactory;
+package com.hp.hpl.jena.util;
 
 import java.util.*;
 
 /**
-    A NamedTripleBunches maps a [graph] name to a bunch of triples associated
-    with that name. 
+    CollectionFactory - a central place for allocating sets and maps, mostly so that
+    it's easy to plug in new implementations (eg trove).
     
- 	@author hedgehog
+ 	@author kers
 */
-public class NamedTripleBunches
+public class CollectionFactory 
     {
-    private Map triples = CollectionFactory.createHashedMap();
-
     /**
-        A more-or-less internal object for referring to the "default" graph in a query.
+         Answer a new Map which uses hashing for lookup.
     */
-    public static final String anon = "<this>";   
+    public static Map createHashedMap() { return new HashMap(); }
     
     /**
-        Initialise an empty set of named bunches.
+         Answer a new Map which uses hashing for lookup and has initial size
+         <code>size</code>.
     */
-    public NamedTripleBunches() 
-        {}
+    public static Map createHashedMap( int size ) { return new HashMap( size ); }
     
     /**
-        Associate another triple with the given name.
-    	@param name the [graph] name for the buinch to add this triple to
-    	@param pattern the triple to add to the bunch
+         Answer a new Map which uses hashing for lookup and is initialised to be
+         a copy of <code>toCopy</code>.
     */
-    public void add( String name, Triple pattern )
-        { triples.put( name, SimpleQueryEngine.cons( pattern, triples.get( name ) ) ); }    
+    public static Map createHashedMap( Map toCopy ) { return new HashMap( toCopy ); }
+        
+    /**
+         Answer a new Set which uses haashing for lookup.
+    */
+    public static Set createHashedSet() { return new HashSet(); }
     
     /**
-        Answer an iterator over the entry set of the associated map: this will be
-        cleaned up as we refactor.
-     */    
-    public Iterator entrySetIterator()
-        { return triples.entrySet().iterator(); }
+         Answer a new Set which uses hashing for lookup and is initialised as a copy
+         of <code>toCopy</code>.
+    */
+    public static Set createHashedSet( Collection  toCopy ) { return new HashSet( toCopy ); }
     }
 
 /*
-    (c) Copyright Hewlett-Packard Company 2003
+    (c) Copyright 2004, Hewlett-Packard Development Company, LP
     All rights reserved.
-
+    
     Redistribution and use in source and binary forms, with or without
     modification, are permitted provided that the following conditions
     are met:
-
+    
     1. Redistributions of source code must retain the above copyright
        notice, this list of conditions and the following disclaimer.
-
+    
     2. Redistributions in binary form must reproduce the above copyright
        notice, this list of conditions and the following disclaimer in the
        documentation and/or other materials provided with the distribution.
-
+    
     3. The name of the author may not be used to endorse or promote products
        derived from this software without specific prior written permission.
-
+    
     THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS OR
     IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
     OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.

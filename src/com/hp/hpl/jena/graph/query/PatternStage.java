@@ -8,7 +8,7 @@ package com.hp.hpl.jena.graph.query;
 
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.graph.query.Expression;
-import com.hp.hpl.jena.util.HashUtils;
+import com.hp.hpl.jena.util.CollectionFactory;
 import com.hp.hpl.jena.util.iterator.*;
 
 import java.util.*;
@@ -44,7 +44,7 @@ public class PatternStage extends Stage
         {
         int length = triples.length;
     	Set [] result = new Set[length];
-        Set prev = HashUtils.createSet();
+        Set prev = CollectionFactory.createHashedSet();
         for (int i = 0; i < length; i += 1) 
             prev = result[i] = Util.union( prev, Util.variablesOf( triples[i] ) );
         return result;

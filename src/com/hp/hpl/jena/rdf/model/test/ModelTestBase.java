@@ -11,7 +11,7 @@ import com.hp.hpl.jena.graph.test.*;
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.rdf.model.impl.*;
 import com.hp.hpl.jena.shared.*;
-import com.hp.hpl.jena.util.HashUtils;
+import com.hp.hpl.jena.util.CollectionFactory;
 
 import java.util.*;
 
@@ -180,7 +180,7 @@ public class ModelTestBase extends GraphTestBase
         {
         if (wanted.isIsomorphicWith( got ) == false)
             {
-            Map map = HashUtils.createMap();
+            Map map = CollectionFactory.createHashedMap();
             fail( title + ": expected " + nice( wanted.getGraph(), map ) + "\n but had " + nice( got.getGraph(), map ) );
             }
         }        

@@ -8,7 +8,7 @@ package com.hp.hpl.jena.graph.query;
 
 import java.util.*;
 
-import com.hp.hpl.jena.util.HashUtils;
+import com.hp.hpl.jena.util.CollectionFactory;
 
 /**
 	ValuatorSet - a set of Valuators, which can be added to and evaluated [only].
@@ -17,7 +17,7 @@ import com.hp.hpl.jena.util.HashUtils;
 */
 public class ValuatorSet 
     {
-    private Set valuators = HashUtils.createSet();
+    private Set valuators = CollectionFactory.createHashedSet();
     
     public ValuatorSet() 
         {}

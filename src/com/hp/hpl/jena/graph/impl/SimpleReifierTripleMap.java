@@ -9,7 +9,7 @@ import java.util.HashSet;
 import java.util.*;
 
 import com.hp.hpl.jena.graph.*;
-import com.hp.hpl.jena.util.HashUtils;
+import com.hp.hpl.jena.util.CollectionFactory;
 import com.hp.hpl.jena.util.iterator.*;
 
 /**
@@ -19,9 +19,9 @@ import com.hp.hpl.jena.util.iterator.*;
 */
 public class SimpleReifierTripleMap implements ReifierTripleMap 
     {
-    protected Map inverseMap = HashUtils.createMap();
+    protected Map inverseMap = CollectionFactory.createHashedMap();
     
-    protected Map forwardMap = HashUtils.createMap();    
+    protected Map forwardMap = CollectionFactory.createHashedMap();    
     
     public Triple getTriple( Node tag )
         { return (Triple) forwardMap.get( tag ); }
@@ -55,7 +55,7 @@ public class SimpleReifierTripleMap implements ReifierTripleMap
     public void removeTriple( Triple t )
         {
         ExtendedIterator it = tagIterator( t );
-        Set nodes = HashUtils.createSet();
+        Set nodes = CollectionFactory.createHashedSet();
         while (it.hasNext()) nodes.add( it.next() );
         Iterator them = nodes.iterator();
         while (them.hasNext()) removeTriple( (Node) them.next() );

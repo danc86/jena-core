@@ -8,7 +8,7 @@ package com.hp.hpl.jena.graph.query;
 
 import java.util.*;
 
-import com.hp.hpl.jena.util.HashUtils;
+import com.hp.hpl.jena.util.CollectionFactory;
 
 /**
 	Expression - the interface for expressions that is expected by Query for 
@@ -176,7 +176,7 @@ public interface Expression
             <code>e</code>.
         */
         public static Set variablesOf( Expression e )
-            { return addVariablesOf( HashUtils.createSet(), e ); }
+            { return addVariablesOf( CollectionFactory.createHashedSet(), e ); }
         
         /**
             Add all the variables of <code>e</code> to <code>s</code>, and answer

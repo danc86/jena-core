@@ -9,7 +9,7 @@ package com.hp.hpl.jena.graph.query;
 import java.util.Set;
 
 import com.hp.hpl.jena.graph.*;
-import com.hp.hpl.jena.util.HashUtils;
+import com.hp.hpl.jena.util.CollectionFactory;
 
 /**
 	Util: some utility code used by graph query that doesn't seem to belong 
@@ -24,7 +24,7 @@ public class Util
 	*/
 	public static Set union( Set x, Set y )
     	{
-    	Set result = HashUtils.createSet( x );
+    	Set result = CollectionFactory.createHashedSet( x );
     	result.addAll( y );
     	return result;
     	}
@@ -35,7 +35,7 @@ public class Util
     */
 	public static Set variablesOf( Triple t )
     	{
-    	Set result = HashUtils.createSet();
+    	Set result = CollectionFactory.createHashedSet();
         addIfVariable( result, t.getSubject() );
         addIfVariable( result, t.getPredicate() );
         addIfVariable( result, t.getObject() );

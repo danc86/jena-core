@@ -27,7 +27,7 @@ public class TestPackage extends TestSuite {
         addTest( "TestCache",             TestCache.suite() );
         addTest( "TestTokenzier",         TestTokenizer.suite());
         addTest( "TestFileUtils",         TestFileUtils.suite() );
-        addTest( "TestHashUtils",         TestHashUtils.suite() );
+        addTest( "TestHashUtils",         TestCollectionFactory.suite() );
         addTest( "TestLocationMapper",    TestLocationMapper.suite() ) ;
         addTest( "TestFileManager",       TestFileManager.suite()) ;
 

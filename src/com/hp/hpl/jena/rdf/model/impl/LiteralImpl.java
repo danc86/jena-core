@@ -45,12 +45,6 @@ import com.hp.hpl.jena.enhanced.*;
  * @version  Release='$Name$' Revision='$Revision$' Date='$Date$'
  */
 public class LiteralImpl extends EnhNode implements Literal {
-//    private Node node;
-//    String  literal;
-//    String  language = "";
-//    boolean wellFormed = false;   // literal is well formed XML which
-                                  // does not need escaping when wriiten
-                                  // as RDF/XML
   
     final static public Implementation factory = new Implementation() {
         public boolean canWrap( Node n, EnhGraph eg )
@@ -160,7 +154,7 @@ public class LiteralImpl extends EnhNode implements Literal {
     }
     
     public String toString() {
-        return asNode().toString();
+        return asNode().toString( PrefixMapping.Standard, false );
     }
     
     /**

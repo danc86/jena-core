@@ -8,7 +8,7 @@ package com.hp.hpl.jena.shared.impl;
 
 import com.hp.hpl.jena.rdf.model.impl.Util;
 import com.hp.hpl.jena.shared.*;
-import com.hp.hpl.jena.util.HashUtils;
+import com.hp.hpl.jena.util.CollectionFactory;
 
 import java.util.*;
 import org.apache.xerces.util.XMLChar;
@@ -27,7 +27,7 @@ public class PrefixMappingImpl implements PrefixMapping
     private boolean locked;
     
     public PrefixMappingImpl()
-        { map = HashUtils.createMap(); }
+        { map = CollectionFactory.createHashedMap(); }
            
     public PrefixMapping lock()
         { 
@@ -125,7 +125,7 @@ public class PrefixMappingImpl implements PrefixMapping
         { return (String) map.get( prefix ); }
         
     public Map getNsPrefixMap()
-        { return HashUtils.createMap( map ); }
+        { return CollectionFactory.createHashedMap( map ); }
         
     public String getNsURIPrefix( String uri )
         {
