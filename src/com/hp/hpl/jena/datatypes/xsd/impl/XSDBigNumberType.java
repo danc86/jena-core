@@ -14,7 +14,6 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 
 import com.hp.hpl.jena.datatypes.*;
-import com.hp.hpl.jena.graph.LiteralLabel;
 
 /**
  * Datatype template used to define those XSD numeric types which might
@@ -64,16 +63,6 @@ public class XSDBigNumberType extends XSDBaseNumericType {
         }
     }
     
-    /**
-     * Compares two instances of values of the given datatype.
-     * This ignores lang tags and just uses the java.lang.Number 
-     * equality.
-     */
-    public boolean isEqual(LiteralLabel value1, LiteralLabel value2) {
-       return value1.getValue().equals(value2.getValue());
-    }
-    
-
 }
 
 /*

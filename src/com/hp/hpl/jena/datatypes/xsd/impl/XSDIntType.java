@@ -10,7 +10,6 @@
 package com.hp.hpl.jena.datatypes.xsd.impl;
 
 import com.hp.hpl.jena.datatypes.*;
-import com.hp.hpl.jena.graph.LiteralLabel;
 
 /**
  * Datatype template used to define XSD int types
@@ -46,15 +45,6 @@ public class XSDIntType extends XSDBaseNumericType {
      */
     public Object parse(String lexicalForm) throws DatatypeFormatException {        
         return new Integer(super.parse(lexicalForm).toString());
-    }
-    
-    /**
-     * Compares two instances of values of the given datatype.
-     * This ignores lang tags and just uses the java.lang.Number 
-     * equality.
-     */
-    public boolean isEqual(LiteralLabel value1, LiteralLabel value2) {
-       return value1.getValue().equals(value2.getValue());
     }
 
 }

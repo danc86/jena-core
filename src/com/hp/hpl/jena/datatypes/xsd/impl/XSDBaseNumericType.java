@@ -9,6 +9,9 @@
  *****************************************************************/
 package com.hp.hpl.jena.datatypes.xsd.impl;
 
+import java.math.BigDecimal;
+import java.math.BigInteger;
+
 import com.hp.hpl.jena.datatypes.*;
 import com.hp.hpl.jena.datatypes.xsd.*;
 import com.hp.hpl.jena.graph.LiteralLabel;
@@ -71,6 +74,26 @@ public class XSDBaseNumericType extends XSDDatatype {
             return isValid(valueForm.toString());
         } else {
             return false;
+        }
+    }
+    
+    /**
+     * Compares two instances of values of the given datatype.
+     * This ignores lang tags and just uses the java.lang.Number 
+     * equality.
+     */
+    public boolean isEqual(LiteralLabel value1, LiteralLabel value2) {
+        Object o1 = value1.getValue();
+        Object o2 = value2.getValue();
+        if (!(o1 instanceof Number) || !(o2 instanceof Number)) {
+            return false;
+        }
+        if (o1 instanceof Float || o1 instanceof Double) {
+            return (((Number)o1).doubleValue() == ((Number)o2).doubleValue());
+        } else if (o1 instanceof BigInteger || o1 instanceof BigDecimal) {
+            return o1.equals(o2);
+        } else {
+            return (((Number)o1).longValue() == ((Number)o2).longValue());
         }
     }
 }

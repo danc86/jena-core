@@ -262,6 +262,13 @@ public class TestTypedLiterals extends TestCase {
         assertSame("Int lex form", l1, l3);
         assertSame("Ignore language in integer", l1, l2);
         assertSame("Ignore language in integer", l1, l4);
+        
+        l1 = m.createTypedLiteral("1", "", XSDDatatype.XSDint);
+        l2 = m.createTypedLiteral("1", "", XSDDatatype.XSDinteger);
+        l3 = m.createTypedLiteral("1", "", XSDDatatype.XSDnonNegativeInteger);
+        
+        assertSame("numeric comparisons", l1, l2);
+        assertSame("numeric comparisons", l3, l2);
     }
     
     /**
