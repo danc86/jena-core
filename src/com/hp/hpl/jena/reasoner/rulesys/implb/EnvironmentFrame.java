@@ -31,11 +31,11 @@ public class EnvironmentFrame extends FrameObject {
     /** The code the the clause currently being processed */
     RuleClauseCode clause;
     
-    /** The program counter offet in the clause's byte code */
-    int pc;
+    /** The continuation program counter offet in the parent clause's byte code */
+    int cpc = 0;
     
-    /** The argument counter offset in the clause's arg stream */
-    int ac;
+    /** The continuation argument counter offset in the parent clause's arg stream */
+    int cac = 0;
     
     /** 
      * Constructor 
@@ -51,7 +51,6 @@ public class EnvironmentFrame extends FrameObject {
      */
     public void init(RuleClauseCode clause) { 
         this.clause = clause;
-        pc = 0;
         // Note that the current fixed-frame implementation is just a short cut 
         // the first implementation and will get relaced by a
         // dynamic (and possibly trimmable) implementation in the future

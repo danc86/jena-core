@@ -41,11 +41,11 @@ public class TripleMatchFrame extends FrameObject {
     /** The variable to the subject of the triple, null if no binding required */
     Node_RuleVariable objectVar;
     
-    /** The program counter offet in the clause's byte code */
-    int pc;
+    /** The continuation program counter offet in the parent clause's byte code */
+    int cpc;
     
-    /** The argument counter offset in the clause's arg stream */
-    int ac;
+    /** The continuation argument counter offset in the parent clause's arg stream */
+    int cac;
     
     /**
      * Constructor.
@@ -78,8 +78,6 @@ public class TripleMatchFrame extends FrameObject {
      */
     public void init(LPInterpreter interpreter) {
         envFrame = interpreter.envFrame;
-        pc = envFrame.pc;
-        ac = envFrame.ac;
         trailIndex = interpreter.trail.size();
         Node s = LPInterpreter.deref(interpreter.argVars[0]);
         subjectVar =   (s instanceof Node_RuleVariable) ? (Node_RuleVariable) s : null;
@@ -89,13 +87,13 @@ public class TripleMatchFrame extends FrameObject {
         objectVar =    (o instanceof Node_RuleVariable) ? (Node_RuleVariable) o : null;
         this.matchIterator = interpreter.engine.getInfGraph().findDataMatches(new TriplePattern(s, p, o));
     }
-    
+
     /**
-     * Reset the environment frame suitable for restarting.
+     * Set the continuation point for this frame.
      */
-    public void reset() {
-        envFrame.pc = pc;
-        envFrame.ac = ac;
+    public void setContinuation(int pc, int ac) {
+        cpc = pc;
+        cac = ac; 
     }
     
     /**

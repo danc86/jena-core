@@ -38,11 +38,11 @@ public class ChoicePointFrame extends FrameObject {
     /** Iterator over the set of clause code objects comprising the set of choices */
     Iterator clauseIterator;
     
-    /** The program counter offet in the clause's byte code */
-    int pc;
+    /** The continuation program counter offet in the parent clause's byte code */
+    int cpc;
     
-    /** The argument counter offset in the clause's arg stream */
-    int ac;
+    /** The continuation argument counter offset in the parent clause's arg stream */
+    int cac;
 
     /**
      * Constructor.
@@ -59,21 +59,19 @@ public class ChoicePointFrame extends FrameObject {
      */
     public void init(LPInterpreter interpreter, List predicateClauses) {
         envFrame = interpreter.envFrame;
-        pc = envFrame.pc;
-        ac = envFrame.ac;
         trailIndex = interpreter.trail.size();
         System.arraycopy(interpreter.argVars, 0, argVars, 0, argVars.length);
         clauseIterator = predicateClauses.iterator();
     }
-    
-    /**
-     * Reset the environment frame suitable for restarting.
-     */
-    public void reset() {
-        envFrame.pc = pc;
-        envFrame.ac = ac;
-    }
 
+    /**
+     * Set the continuation point for this frame.
+     */
+    public void setContinuation(int pc, int ac) {
+        cpc = pc;
+        cac = ac; 
+    }
+    
     /**
      * Override close method to reclaim the environment stack (imporant for
      * closing any embedded triple match iterators)
