@@ -15,7 +15,6 @@ import com.hp.hpl.jena.datatypes.xsd.impl.XMLLiteralType;
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.graph.impl.*;
 import com.hp.hpl.jena.graph.query.*;
-import com.hp.hpl.jena.mem.ModelMem;
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.shared.impl.JenaParameters;
 import com.hp.hpl.jena.vocabulary.XSD;
@@ -38,7 +37,7 @@ import java.io.*;
 public class TestTypedLiterals extends TestCase {
               
     /** dummy model used as a literal factory */
-    private Model m = new ModelMem();
+    private Model m = ModelFactory.createDefaultModel();
     
     // Temporary for debug
     /*
@@ -487,7 +486,7 @@ public class TestTypedLiterals extends TestCase {
      * Test query applied to graphs containing typed values
      */
     public void testTypedQueries() {
-        Model model = new ModelMem();
+        Model model = ModelFactory.createDefaultModel();
         Property p = model.createProperty("urn:x-eg/p");
         Literal l1 = model.createTypedLiteral("10", "http://www.w3.org/2001/XMLSchema#integer");
         Literal l2 = model.createTypedLiteral("010", "http://www.w3.org/2001/XMLSchema#integer");

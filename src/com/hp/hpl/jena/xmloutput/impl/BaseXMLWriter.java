@@ -8,10 +8,7 @@
 package com.hp.hpl.jena.xmloutput.impl;
 
 import com.hp.hpl.jena.xmloutput.RDFXMLWriterI;
-import com.hp.hpl.jena.rdf.model.impl.RDFDefaultErrorHandler;
-import com.hp.hpl.jena.rdf.model.impl.Util;
-import com.hp.hpl.jena.rdf.model.impl.ModelCom;
-import com.hp.hpl.jena.rdf.model.impl.ResourceImpl;
+import com.hp.hpl.jena.rdf.model.impl.*;
 import org.apache.xerces.util.XMLChar;
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.util.FileUtils;

@@ -7,7 +7,6 @@
 package com.hp.hpl.jena.graph;
 
 import com.hp.hpl.jena.shared.*;
-import com.hp.hpl.jena.shared.*;
 
 /**
     A factory for providing instances of named graphs with appropriate storage models.

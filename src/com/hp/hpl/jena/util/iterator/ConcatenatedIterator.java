@@ -25,9 +25,6 @@ package com.hp.hpl.jena.util.iterator;
 ///////////////
 import java.util.*;
 
-import com.hp.hpl.jena.rdf.model.*;
-
-
 /**
  * An iterator that represents the concatenation of two individual iterators.
  * The concatenated iterator will range over the elements of the first iterator,
