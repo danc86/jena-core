@@ -31,7 +31,6 @@ import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.rdf.model.test.*;
 import com.hp.hpl.jena.vocabulary.RDF;
 
-import junit.framework.*;
 
 
 /**
