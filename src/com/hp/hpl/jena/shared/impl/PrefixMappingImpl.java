@@ -16,7 +16,6 @@ import org.apache.xerces.util.XMLChar;
 */
 public class PrefixMappingImpl implements PrefixMapping
     {
-
     private Map map;
     
     public PrefixMappingImpl()
@@ -27,7 +26,20 @@ public class PrefixMappingImpl implements PrefixMapping
         checkLegal( prefix );
         map.put( prefix, uri ); 
         }
+ 
+    public void setNsPrefixes( PrefixMapping other )
+        { map.putAll( other.getNsPrefixMap() ); }
         
+    public void setNsPrefixes( Map other )
+        {
+        Iterator it = other.entrySet().iterator();
+        while (it.hasNext())
+            {
+            Map.Entry e = (Map.Entry) it.next();
+            setNsPrefix( (String) e.getKey(), (String) e.getValue() );
+            }
+        }
+         
     /**
         Checks that a prefix is "legal". This code is probably wrong.
     */
