@@ -174,7 +174,7 @@ public class TestExpressionConstraints extends GraphTestBase
         {
         Expression e = notEqual( X, Y );
         VariableIndexes map = new Mapping( new Node[2] );
-        Expression ep = e.prepare( map );        
+        // Expression ep = e.prepare( map );        
         }
     }
 
