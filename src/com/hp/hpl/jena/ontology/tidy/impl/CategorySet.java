@@ -17,13 +17,13 @@ public class CategorySet implements Comparable, Serializable, Constants {
 	  static final long serialVersionUID = -1280155302467590202L;
 
     static private final int cycles[] = new int[]{
-    	Grammar.cyclic,
-    	Grammar.cyclicFirst,
-    	Grammar.cyclicRest
+    //	Grammar.cyclic,
+    	Grammar.cyclicRest,
+		  Grammar.cyclicFirst
     };
     static private final int untyped[] = new int[]{
-		Grammar.badRestriction,
-		Grammar.notype
+		Grammar.notype,
+		Grammar.badRestriction
     };
 	/**
 	 * 

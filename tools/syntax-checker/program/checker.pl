@@ -16,7 +16,7 @@ grouping([classID,notype],classOnly).
 
 %grouping([orphan, ontologyPropertyID], ontologyPropertyHack ).
 grouping([allDifferent, description, listOfDataLiteral, listOfDescription, 
-listOfIndividualID, orphan, unnamedOntology,cyclic, 
+listOfIndividualID, orphan, unnamedOntology,  % cyclic, 
 cyclicFirst, cyclicRest, restriction, unnamedDataRange, 
 unnamedIndividual,notype, badRestriction ],blank).
 
@@ -106,7 +106,7 @@ pp(_,'').
 
 pcategory(orphan).
 pcategory(notype).
-pcategory(cyclic).
+%pcategory(cyclic).
 pcategory(cyclicRest).
 pcategory(cyclicFirst).
 pcategory(badRestriction).
