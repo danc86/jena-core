@@ -423,9 +423,13 @@ abstract public class BaseXMLWriter implements RDFXMLWriterI {
 				if (!(javaEnc.equals("UTF8") || javaEnc.equals("UTF-16"))) {
 					//		System.out.println(javaEnc);
 					String xEnc = EncodingMap.getJava2IANAMapping(javaEnc);
-					if (xEnc == null)
-						xEnc = javaEnc; // hmm.. incorrect
-					decl = "<?xml version="+q("1.0")+" encoding=" + q(xEnc) + "?>";
+					if (xEnc == null) {
+                        logger.warn("IANA name for Java encoding: "+javaEnc+" is not known. \n"+
+                        "   Not including any encoding declaration in the RDF/XML output.\n" +
+                        "   It is better to use a FileOutputStream, in place of a FileWriter.");
+                    } else {
+					   decl = "<?xml version="+q("1.0")+" encoding=" + q(xEnc) + "?>";
+                    }
 				}
 			}
 			if (decl == null && showXmlDeclaration != null)
