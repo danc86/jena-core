@@ -292,9 +292,12 @@ public class TestBasicOperations extends TestCase {
 		// overflows and then make sure they can be retrieved.
 		IDBConnection conn = TestConnection.makeAndCleanTestConnection();
 		IRDBDriver d = conn.getDriver();
-		int cacheSize = DriverRDB.PREFIX_CACHE_SIZE;
 		d.setDoCompressURI(true);
 		model = ModelRDB.createModel(conn);
+		int cacheSize = model.getCompressCacheSize();
+		cacheSize = 10;
+		model.setCompressCacheSize(cacheSize);
+
 		String pfx = "a123456789";
 		String longPfx = "";
 		long longLen = dbDriver.getLongObjectLength();
@@ -318,7 +321,6 @@ public class TestBasicOperations extends TestCase {
 		}
 
 	}
-
 
 	public void testAddRemoveDatatype() {
 		Resource s = model.createResource("test#subject");

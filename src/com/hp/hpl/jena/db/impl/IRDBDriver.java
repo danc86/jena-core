@@ -452,6 +452,18 @@ public interface IRDBDriver {
 	* @param String
 	*/
 	public void setStoreWithModel( String modelName );
+	
+	/**
+	* Get the value of CompressCacheSize
+	* @return int
+	*/
+	public int getCompressCacheSize();
+
+	/**
+	* Set the value of CompressCacheSize.
+	* @param int
+	*/
+	public void setCompressCacheSize(int count);
 
 }
 

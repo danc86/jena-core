@@ -542,6 +542,23 @@ public class GraphRDB extends GraphBase implements Graph {
 			}
 		}
 	}
+	
+	/**
+	* Get the value of CompressCacheSize
+	* @return int
+	*/
+	public int getCompressCacheSize() {
+		return m_driver.getCompressCacheSize();
+	}
+
+	/**
+	* Set the value of CompressCacheSize.
+	* @param size int
+	*/
+	public void setCompressCacheSize(int max) {
+		m_driver.setCompressCacheSize(max);
+	}
+
 
 }
 
