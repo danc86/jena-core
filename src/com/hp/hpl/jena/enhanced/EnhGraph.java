@@ -9,8 +9,6 @@ package com.hp.hpl.jena.enhanced;
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.util.cache.*;
 
-import java.util.*;
-
 /**
  * <p>
  * A specialisation of Polymorphic that models an extended graph - that is, one that 
