@@ -17,7 +17,6 @@ import com.hp.hpl.jena.reasoner.rulesys.DAMLMicroReasonerFactory;
 import com.hp.hpl.jena.reasoner.rulesys.GenericRuleReasonerFactory;
 import com.hp.hpl.jena.reasoner.rulesys.OWLFBRuleReasonerFactory;
 import com.hp.hpl.jena.reasoner.rulesys.RDFSRuleReasonerFactory;
-import com.hp.hpl.jena.reasoner.rulesys.RDFSFBRuleReasonerFactory;
 import com.hp.hpl.jena.reasoner.transitiveReasoner.TransitiveReasonerFactory;
 
 import java.util.*;
@@ -55,7 +54,6 @@ public class ReasonerRegistry {
         // Preload the known Jena reasoers
         register(TransitiveReasonerFactory.theInstance());
         register(RDFSRuleReasonerFactory.theInstance());
-        register(RDFSFBRuleReasonerFactory.theInstance());
         register(OWLFBRuleReasonerFactory.theInstance());
         register(GenericRuleReasonerFactory.theInstance());
         register(DAMLMicroReasonerFactory.theInstance());
