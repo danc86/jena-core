@@ -279,6 +279,14 @@ public interface IRDBDriver {
 	public String genSQLQualConst ( int alias, char col, Node lit );
 	
 	/**
+	 * Similar to genSQLQualConst except that it generates SQL strings
+	 * for the reification statement table.
+	 *
+	 */
+	public String genSQLReifQualConst ( int alias, char pred, Node lit );
+
+	
+	/**
 	 * Generate an SQL string to match a table column value to a parameter.
 	 * @param alias The table alias for this match.
 	 * @param col The column to match, one of S,P,O,N,T for subject,
