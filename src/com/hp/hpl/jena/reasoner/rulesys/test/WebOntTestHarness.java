@@ -273,9 +273,11 @@ public class WebOntTestHarness {
      */
     public void runTest(Resource test) {
         boolean success = false;
+        boolean fail = false;
         try {
             success = doRunTest(test);
         } catch (Exception e) {
+            fail = true;
             System.out.print("\nException: " + e);
             e.printStackTrace();
         }
@@ -288,11 +290,15 @@ public class WebOntTestHarness {
             System.out.println("\nFAIL: " + test);
         }
         Resource resultType = null;
-        if (test.hasProperty(RDF.type, OWLTest.NegativeEntailmentTest) 
-        ||  test.hasProperty(RDF.type, OWLTest.ConsistencyTest)) {
-            resultType = success ? OWLResults.PassingRun : OWLResults.FailingRun;
+        if (fail) {
+            resultType = OWLResults.FailingRun;
         } else {
-            resultType = success ? OWLResults.PassingRun : OWLResults.IncompleteRun;
+            if (test.hasProperty(RDF.type, OWLTest.NegativeEntailmentTest) 
+            ||  test.hasProperty(RDF.type, OWLTest.ConsistencyTest)) {
+                resultType = success ? OWLResults.PassingRun : OWLResults.FailingRun;
+            } else {
+                resultType = success ? OWLResults.PassingRun : OWLResults.IncompleteRun;
+            }
         }
         // log to the rdf result format
         Resource result = testResults.createResource()
