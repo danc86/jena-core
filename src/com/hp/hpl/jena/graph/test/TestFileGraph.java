@@ -42,19 +42,6 @@ public class TestFileGraph extends GraphTestBase
         return result;
         }
         
-    /**
-        Test that the language code is guessed "correctly".
-    */
-    public void testGuessLang()
-        {
-        assertEquals( "N3", FileGraph.guessLang( "simple.n3") );
-        assertEquals( "N3", FileGraph.guessLang( "hello.there.n3") );
-        assertEquals( "N-TRIPLE", FileGraph.guessLang( "simple.nt" ) );
-        assertEquals( "N-TRIPLE", FileGraph.guessLang( "whats.up.nt" ) );
-        assertEquals( "RDF/XML", FileGraph.guessLang( "poggle.rdf") );
-        assertEquals( "RDF/XML", FileGraph.guessLang( "dotless" ) );
-        }
-
     public void testPlausibleGraphname()
         {
         assertTrue( FileGraph.isPlausibleGraphName( "agnessi.rdf" ) ); 
