@@ -54,7 +54,6 @@ public class MakeTemp extends BaseBuiltin {
      * @param args the array of argument values for the builtin, this is an array 
      * of Nodes.
      * @param context an execution context giving access to other relevant data
-     * @param rule the invoking rule
      */
     public void headAction(Node[] args, RuleContext context) {
         // Can't be used in the head

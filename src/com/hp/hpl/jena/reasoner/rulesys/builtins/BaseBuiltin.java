@@ -71,7 +71,6 @@ public abstract class BaseBuiltin implements Builtin {
      * @param length the length of the argument list, may be less than the length of the args array
      * for some rule engines
      * @param context an execution context giving access to other relevant data
-     * @param rule the invoking rule
      */
     public void headAction(Node[] args, int length, RuleContext context) {
         throw new BuiltinException(this, context, "builtin " + getName() + " not usable in rule heads");
