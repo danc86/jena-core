@@ -79,7 +79,7 @@ public interface OntClass
 
     /**
      * <p>Answer an iterator over all of the classes that are declared to be super-classes of
-     * this class. Each element of the iterator will be an {@link #OntClass}.</p>
+     * this class. Each element of the iterator will be an {@link OntClass}.</p>
      * @return An iterator over the super-classes of this class.
      * @exception OntProfileException If the {@link Profile#SUB_CLASS_OF()} property is not supported in the current language profile.   
      */ 
@@ -87,7 +87,7 @@ public interface OntClass
 
     /**
      * <p>Answer an iterator over all of the classes that are declared to be super-classes of
-     * this class. Each element of the iterator will be an {@link #OntClass}.
+     * this class. Each element of the iterator will be an {@link OntClass}.
      * See {@link #listSubClasses( boolean )} for a full explanation of the <em>direct</em>
      * parameter.
      * </p>
@@ -148,7 +148,7 @@ public interface OntClass
 
     /**
      * <p>Answer an iterator over all of the classes that are declared to be sub-classes of
-     * this class. Each element of the iterator will be an {@link #OntClass}.</p>
+     * this class. Each element of the iterator will be an {@link OntClass}.</p>
      * @return An iterator over the sub-classes of this class.
      * @exception OntProfileException If the {@link Profile#SUB_CLASS_OF()} property is not supported in the current language profile.   
      */ 
@@ -157,7 +157,7 @@ public interface OntClass
     /**
      * <p>
      * Answer an iterator over the classes that are declared to be sub-classes of
-     * this class. Each element of the iterator will be an {@link #OntClass}. The
+     * this class. Each element of the iterator will be an {@link OntClass}. The
      * distinguishing extra parameter for this method is the flag <code>direct<code>
      * that allows some selectivity over the classes that appear in the iterator.
      * Consider the following scenario:
@@ -252,7 +252,7 @@ public interface OntClass
 
     /**
      * <p>Answer an iterator over all of the classes that are declared to be equivalent classes to
-     * this class. Each element of the iterator will be an {@link #OntClass}.</p>
+     * this class. Each element of the iterator will be an {@link OntClass}.</p>
      * @return An iterator over the classes equivalent to this class.
      * @exception OntProfileException If the {@link Profile#EQUIVALENT_CLASS()} property is not supported in the current language profile.   
      */ 
@@ -303,7 +303,7 @@ public interface OntClass
 
     /**
      * <p>Answer an iterator over all of the classes that this class is declared to be disjoint with.
-     * Each element of the iterator will be an {@link #OntClass}.</p>
+     * Each element of the iterator will be an {@link OntClass}.</p>
      * @return An iterator over the classes disjoint with this class.
      * @exception OntProfileException If the {@link Profile#DISJOINT_WITH()} property is not supported in the current language profile.   
      */ 

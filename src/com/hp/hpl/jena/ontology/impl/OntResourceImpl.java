@@ -149,7 +149,7 @@ public class OntResourceImpl
 
     /**
      * <p>Answer an iterator over all of the resources that are declared to be the same as
-     * this resource. Each elemeent of the iterator will be an {@link #OntResource}.</p>
+     * this resource. Each elemeent of the iterator will be an {@link OntResource}.</p>
      * @return An iterator over the resources equivalent to this resource.
      * @exception OntProfileException If the {@link Profile#SAME_AS()} property is not supported in the current language profile.   
      */ 
@@ -208,7 +208,7 @@ public class OntResourceImpl
 
     /**
      * <p>Answer an iterator over all of the resources that are declared to be different from
-     * this resource. Each elemeent of the iterator will be an {@link #OntResource}.</p>
+     * this resource. Each elemeent of the iterator will be an {@link OntResource}.</p>
      * @return An iterator over the resources different from this resource.
      * @exception OntProfileException If the {@link Profile#DIFFERENT_FROM()} property is not supported in the current language profile.   
      */ 

@@ -139,7 +139,7 @@ public class AllDifferentImpl
 
     /**
      * <p>Answer an iterator over all of the individuals that are declared to be distinct by
-     * this AllDifferent declaration. Each element of the iterator will be an {@link #OntResource}.</p>
+     * this AllDifferent declaration. Each element of the iterator will be an {@link OntResource}.</p>
      * @return An iterator over distinct individuals.
      * @exception OntProfileException If the {@link Profile#DISTINCT_MEMBERS()} property is not supported in the current language profile.   
      */ 

@@ -841,7 +841,7 @@ public interface OntModel
      * </p>
      *
      * @param model A sub-model to add 
-     * @see addSubModel( Model, boolean )
+     * @see #addSubModel( Model, boolean )
      */
     public void addSubModel( Model model );
     

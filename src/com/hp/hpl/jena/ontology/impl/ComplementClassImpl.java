@@ -157,7 +157,7 @@ public class ComplementClassImpl
 
 	/**
 	 * <p>Answer an iterator over all of the clases that are the operands of this 
-	 * Boolean class expression. Each element of the iterator will be an {@link #OntClass}.</p>
+	 * Boolean class expression. Each element of the iterator will be an {@link OntClass}.</p>
 	 * @return An iterator over the operands of the expression.
 	 * @exception OntProfileException If the operand property is not supported in the current language profile.   
 	 */ 

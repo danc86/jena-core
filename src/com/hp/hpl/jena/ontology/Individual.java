@@ -82,7 +82,7 @@ public interface Individual
 
     /**
      * <p>Answer an iterator over all of the resources that are declared to be equivalent to
-     * this individual. Each elemeent of the iterator will be an {@link #OntResource}.</p>
+     * this individual. Each elemeent of the iterator will be an {@link OntResource}.</p>
      * <p>Note that <code>sameAs</code> and <code>sameIndividualAs</code> are aliases.</p>
      * @return An iterator over the resources equivalent to this individual.
      * @exception OntProfileException If the sameIndividualAs property is not supported in the current language profile.   

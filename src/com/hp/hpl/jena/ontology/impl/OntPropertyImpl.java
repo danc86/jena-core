@@ -150,7 +150,7 @@ public class OntPropertyImpl
 
     /**
      * <p>Answer an iterator over all of the properties that are declared to be super-properties of
-     * this property. Each elemeent of the iterator will be an {@link #OntProperty}.</p>
+     * this property. Each elemeent of the iterator will be an {@link OntProperty}.</p>
      * @return An iterator over the super-properties of this property.
      * @exception OntProfileException If the {@link Profile#SUB_PROPERTY_OF()} property is not supported in the current language profile.   
      */ 
@@ -160,7 +160,7 @@ public class OntPropertyImpl
 
     /**
      * <p>Answer an iterator over all of the properties that are declared to be super-properties of
-     * this property. Each elemeent of the iterator will be an {@link #OntProperty}.</p>
+     * this property. Each elemeent of the iterator will be an {@link OntProperty}.</p>
      * @param direct If true, only answer the direcly adjacent properties in the
      * property hierarchy: i&#046;e&#046; eliminate any property for which there is a longer route
      * to reach that child under the super-property relation.
@@ -234,7 +234,7 @@ public class OntPropertyImpl
 
     /**
      * <p>Answer an iterator over all of the properties that are declared to be sub-properties of
-     * this property. Each element of the iterator will be an {@link #OntProperty}.</p>
+     * this property. Each element of the iterator will be an {@link OntProperty}.</p>
      * @return An iterator over the sub-properties of this property.
      * @exception OntProfileException If the {@link Profile#SUB_PROPERTY_OF()} property is not supported in the current language profile.   
      */ 
@@ -244,7 +244,7 @@ public class OntPropertyImpl
 
     /**
      * <p>Answer an iterator over all of the properties that are declared to be sub-properties of
-     * this property. Each element of the iterator will be an {@link #OntProperty}.</p>
+     * this property. Each element of the iterator will be an {@link OntProperty}.</p>
      * @param direct If true, only answer the direcly adjacent properties in the
      * property hierarchy: i&#046;e&#046; eliminate any property for which there is a longer route
      * to reach that child under the sub-property relation.
@@ -309,7 +309,7 @@ public class OntPropertyImpl
 
     /**
      * <p>Answer an iterator over all of the declared domain classes of this property.
-     * Each elemeent of the iterator will be an {@link #OntResource}.</p>
+     * Each elemeent of the iterator will be an {@link OntResource}.</p>
      * @return An iterator over the classes that form the domain of this property.
      * @exception OntProfileException If the {@link Profile#DOMAIN()} property is not supported in the current language profile.   
      */ 
@@ -370,7 +370,7 @@ public class OntPropertyImpl
 
     /**
      * <p>Answer an iterator over all of the declared range classes of this property.
-     * Each elemeent of the iterator will be an {@link #OntResource}.</p>
+     * Each elemeent of the iterator will be an {@link OntResource}.</p>
      * @return An iterator over the classes that form the range of this property.
      * @exception OntProfileException If the {@link Profile#RANGE()} property is not supported in the current language profile.   
      */ 
@@ -433,7 +433,7 @@ public class OntPropertyImpl
 
     /**
      * <p>Answer an iterator over all of the properties that are declared to be equivalent properties to
-     * this property. Each elemeent of the iterator will be an {@link #OntProperty}.</p>
+     * this property. Each elemeent of the iterator will be an {@link OntProperty}.</p>
      * @return An iterator over the properties equivalent to this property.
      * @exception OntProfileException If the {@link Profile#EQUIVALENT_PROPERTY()} property is not supported in the current language profile.   
      */ 
@@ -494,7 +494,7 @@ public class OntPropertyImpl
 
     /**
      * <p>Answer an iterator over all of the properties that are declared to be inverse properties of
-     * this property. Each elemeent of the iterator will be an {@link #OntProperty}.</p>
+     * this property. Each elemeent of the iterator will be an {@link OntProperty}.</p>
      * @return An iterator over the properties inverse to this property.
      * @exception OntProfileException If the {@link Profile#INVERSE_OF()} property is not supported in the current language profile.   
      */ 

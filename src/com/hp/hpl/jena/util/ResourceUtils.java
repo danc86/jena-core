@@ -60,7 +60,7 @@ public class ResourceUtils {
     /**
      * <p>
      * Answer the maximal lower elements of the given collection, given the partial
-     * ordering <code>rel</code>. See {@link #maximalLowerElements( Iterator, Property)}
+     * ordering <code>rel</code>. See {@link #maximalLowerElements( Iterator, Property, boolean )}
      * for details.
      * </p>
      * 

@@ -28,7 +28,7 @@ package com.hp.hpl.jena.ontology;
 /**
  * <p>
  * Exception that is thrown when an ontology resource is converted to another
- * facet, using {@link RDFNode#as as()}, and the requested conversion is not
+ * facet, using {@link com.hp.hpl.jena.rdf.model.RDFNode#as as()}, and the requested conversion is not
  * possible. The reasons for the failure may be that the requested term is not
  * in the language {@linkplain Profile profile} of the language attached to the
  * ontology model, or because the pre-conditions for the conversion are not met. 

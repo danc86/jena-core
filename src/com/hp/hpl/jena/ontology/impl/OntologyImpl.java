@@ -131,7 +131,7 @@ public class OntologyImpl
 
     /**
      * <p>Answer an iterator over all of the resources representing ontologies imported by this ontology. 
-     * Each elemeent of the iterator will be an {@link #OntResource}.</p>
+     * Each elemeent of the iterator will be an {@link OntResource}.</p>
      * @return An iterator over the ontology import resources
      * @exception OntProfileException If the {@link Profile#IMPORTS()()} property is not supported in the current language profile.   
      */ 
@@ -194,7 +194,7 @@ public class OntologyImpl
     /**
      * <p>Answer an iterator over all of the resources representing 
      * ontologies that this ontology is backwards compatible with. 
-     * Each element of the iterator will be an {@link #OntResource}.</p>
+     * Each element of the iterator will be an {@link OntResource}.</p>
      * @return An iterator over the ontology resources compatible with this ontology
      * @exception OntProfileException If the {@link Profile#BACKWARD_COMPATIBLE_WITH} property is not supported in the current language profile.   
      */ 
@@ -258,7 +258,7 @@ public class OntologyImpl
     /**
      * <p>Answer an iterator over all of the resources representing 
      * ontologies that this ontology supercedes. 
-     * Each element of the iterator will be an {@link #OntResource}.</p>
+     * Each element of the iterator will be an {@link OntResource}.</p>
      * @return An iterator over the ontology resources superceded by this ontology
      * @exception OntProfileException If the {@link Profile#PRIOR_VERSION} property is not supported in the current language profile.   
      */ 
@@ -321,7 +321,7 @@ public class OntologyImpl
     /**
      * <p>Answer an iterator over all of the resources representing 
      * ontologies that this ontology is incompatible with. 
-     * Each element of the iterator will be an {@link #OntResource}.</p>
+     * Each element of the iterator will be an {@link OntResource}.</p>
      * @return An iterator over the ontology resources that this ontology is incompatible with
      * @exception OntProfileException If the {@link Profile#INCOMPATIBLE_WITH} property is not supported in the current language profile.   
      */ 

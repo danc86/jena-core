@@ -84,7 +84,7 @@ public interface EnumeratedClass
 
     /**
      * <p>Answer an iterator over all of the individuals that are declared to be the class extension for
-     * this class. Each element of the iterator will be an {@link #OntResource}.</p>
+     * this class. Each element of the iterator will be an {@link OntResource}.</p>
      * @return An iterator over the individuals in the class extension
      * @exception OntProfileException If the {@link Profile#ONE_OF()} property is not supported in the current language profile.   
      */ 
