@@ -15,7 +15,11 @@ package com.hp.hpl.jena.n3;
 public class TurtleJenaReader extends N3JenaReader
 {
 	public TurtleJenaReader()
-    { super() ; super.converter.allowPropertySymbols = false ; }
+    {
+	    super() ;
+        super.converter.allowPropertySymbols = false ;
+        super.converter.allowKeywordA = true ;
+    }
 	
 }
 

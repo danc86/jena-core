@@ -34,6 +34,7 @@ public class N3toRDF implements N3ParserEventHandler
     Map myPrefixMapping = new HashMap() ;
     
     boolean allowPropertySymbols = true ;
+    boolean allowKeywordA        = true ;
 	
 	// Well known namespaces
 	
@@ -175,7 +176,7 @@ public class N3toRDF implements N3ParserEventHandler
                     pNode = OWL.sameAs ;
 					break;
 				case N3Parser.KW_A :
-                    if ( ! allowPropertySymbols )
+                    if ( ! allowKeywordA )
                         error("Line "+line+": N3toRDF: Propertry symbol 'a' not allowed") ;
                     pNode = RDF.type ;
 					break ;
