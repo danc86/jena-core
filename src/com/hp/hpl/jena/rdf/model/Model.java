@@ -120,7 +120,7 @@ public interface Model
     
 	/** 
         Return a Resource instance with the given URI in this model. <i>This method
-        behaves identically to <code>createResource(String)</code><i> and exists as
+        behaves identically to <code>createResource(String)</code></i> and exists as
         legacy: createResource is now capable of, and allowed to, reuse existing objects.
     <p>
         Subsequent operations on the returned object may modify this model.
