@@ -89,7 +89,7 @@ public class LPRuleStore extends RuleStore {
      * query pattern. This may use indexing to narrow the rule set more that the predicate-only case. 
      * @param goal the triple pattern that makes up the query
      */
-    public Collection codeFor(TriplePattern goal) {
+    public List codeFor(TriplePattern goal) {
         List allRules = codeFor(goal.getPredicate());
         if (allRules == null) {
             return allRules;

@@ -214,7 +214,7 @@ public class LPBRuleEngine {
      * @param goal the goal whose results are to be generated
      * @param clauses the precomputed set of code blocks used to implement the goal
      */
-    public synchronized Generator generatorFor(TriplePattern goal, Collection clauses) {
+    public synchronized Generator generatorFor(TriplePattern goal, List clauses) {
         Generator generator = (Generator) tabledGoals.get(goal);
         if (generator == null) {
             LPInterpreter interpreter = new LPInterpreter(this, goal, clauses);

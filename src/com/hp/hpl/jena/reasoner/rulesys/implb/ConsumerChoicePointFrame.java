@@ -47,6 +47,9 @@ public class ConsumerChoicePointFrame extends GenericTripleMatchFrame
     /** The length of the preserved trail */
     protected int trailLength;
     
+    /** The stack of preserved choice point status */
+    protected int[] choicePointStates = new int[10];
+    
     /** The generator or top iterator we are producting results for */
     protected LPInterpreterContext context;
         
@@ -117,10 +120,14 @@ public class ConsumerChoicePointFrame extends GenericTripleMatchFrame
     }
     
     /**
-     * Reactivate this choice point to generate new results.
+     * Reactivate this choice point to return new results.
      */
     public void pump() {
-        generator.pump(this);
+        if (context instanceof Generator) {
+            ((Generator)context).pump(this);
+        } else {
+            // The top level iterator is in charge and will restore and run this choice point itself
+        }
     }
     
 }
