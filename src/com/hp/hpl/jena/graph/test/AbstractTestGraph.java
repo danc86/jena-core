@@ -54,6 +54,41 @@ public abstract class AbstractTestGraph extends GraphTestBase
         assertTrue( g.find( triple( "x y ??" ) ).hasNext() );
         }
         
+    public void testContainsConcrete()
+        {
+        Graph g = getGraph();
+        graphAdd( g, "s P o; _x _R _y; x S 0" );
+        assertTrue( g.contains( triple( "s P o" ) ) );
+        assertTrue( g.contains( triple( "_x _R _y" ) ) );
+        assertTrue( g.contains( triple( "x S 0" ) ) );
+    /* */
+        assertFalse( g.contains( triple( "s P Oh" ) ) );
+        assertFalse( g.contains( triple( "S P O" ) ) );
+        assertFalse( g.contains( triple( "s p o" ) ) );
+        assertFalse( g.contains( triple( "_x _r _y" ) ) );
+        assertFalse( g.contains( triple( "x S 1" ) ) );
+        }
+        
+    public void testContainsFluid()
+        {
+        Graph g = getGraph();
+        graphAdd( g, "x R y; a P b" );
+        assertTrue( g.contains( triple( "?? R y" ) ) );
+        assertTrue( g.contains( triple( "x ?? y" ) ) );
+        assertTrue( g.contains( triple( "x R ??" ) ) );
+        assertTrue( g.contains( triple( "?? P b" ) ) );
+        assertTrue( g.contains( triple( "a ?? b" ) ) );
+        assertTrue( g.contains( triple( "a P ??" ) ) );
+        assertTrue( g.contains( triple( "?? R y" ) ) );
+    /* */
+        assertFalse( g.contains( triple( "?? R b" ) ) );
+        assertFalse( g.contains( triple( "a ?? y" ) ) );
+        assertFalse( g.contains( triple( "x P ??" ) ) );
+        assertFalse( g.contains( triple( "?? R x" ) ) );
+        assertFalse( g.contains( triple( "x ?? R" ) ) );
+        assertFalse( g.contains( triple( "a S ??" ) ) );
+        }
+        
     public void testAGraph()
         {
         String title = this.getClass().getName();
