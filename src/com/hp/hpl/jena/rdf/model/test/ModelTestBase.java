@@ -55,7 +55,7 @@ public class ModelTestBase extends GraphTestBase
         
     public static RDFNode rdfNode( Model m, String s, Class c )
         {
-        Node n = Node.create( s );
+        Node n = Node.create( m, s );
         return (RDFNode) ((ModelCom) m).getNodeAs( n, c );
         }
          

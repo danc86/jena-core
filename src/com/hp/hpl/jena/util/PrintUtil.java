@@ -83,11 +83,8 @@ public class PrintUtil {
             }
         } else if (node instanceof Node_Literal) {
             LiteralLabel ll = node.getLiteral();
-            if (ll.getDatatype() == null) {
-                return "'" + ll + "'";
-            } else {
-                return ll.toString();
-            }
+            String lf = ll.getLexicalForm();
+            return ll.getDatatype() == null ? "'" + lf + "'" : lf + "^^" + ll.getDatatypeURI();
         } else if (node instanceof Node_ANY) {
             return "*";
         }

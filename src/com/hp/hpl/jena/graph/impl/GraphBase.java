@@ -217,6 +217,7 @@ public abstract class GraphBase implements Graph {
         
     public static String toString( String prefix, Graph that )
         {
+        PrefixMapping pm = that.getPrefixMapping();
 		StringBuffer b = new StringBuffer( prefix + " {" );
 		String gap = "";
 		ClosableIterator it = GraphUtil.findAll( that );
@@ -224,7 +225,7 @@ public abstract class GraphBase implements Graph {
             {
 			b.append( gap );
 			gap = "; ";
-			b.append( it.next() );
+			b.append( ((Triple) it.next()).toString( pm ) );
 		    } 
 		b.append( "}" );
 		return b.toString();

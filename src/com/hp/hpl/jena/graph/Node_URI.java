@@ -6,6 +6,8 @@
 
 package com.hp.hpl.jena.graph;
 
+import com.hp.hpl.jena.shared.*;
+
 /**
     RDF nodes with a global identity given by a URI.
 	@author kers
@@ -23,6 +25,14 @@ public class Node_URI extends Node_Concrete
         
     public boolean isURI()
         { return true; }
+        
+    /**
+        Answer a String representing the node, taking into account the PrefixMapping.
+        The horrible test against null is a stopgap to avoid a circularity issue.
+        TODO fix the circularity issue
+    */
+    public String toString( PrefixMapping pm, boolean quoting )
+        { return pm == null ? (String) label : pm.usePrefix( (String) label ); }
         
     public boolean equals( Object other )
         { return other instanceof Node_URI && label.equals( ((Node_URI) other).label ); }

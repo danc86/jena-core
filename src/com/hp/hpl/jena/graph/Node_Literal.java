@@ -7,6 +7,7 @@
 package com.hp.hpl.jena.graph;
 
 import com.hp.hpl.jena.graph.impl.*;
+import com.hp.hpl.jena.shared.*;
 
 /**
     An RDF node holding a literal value. Literals may have datatypes.
@@ -20,6 +21,9 @@ public class Node_Literal extends Node_Concrete
     public LiteralLabel getLiteral()
         { return (LiteralLabel) label; }
          
+    public String toString( PrefixMapping pm, boolean quoting )
+        { return ((LiteralLabel) label).toString( quoting ); }
+        
     public boolean isLiteral() 
         { return true; }    
         

@@ -282,10 +282,11 @@ public class StatementImpl  implements Statement {
         
     private String objectString()
         {
-        return object instanceof Resource
-            ? "Resource<" + ((Resource)object).toString() + ">"
-            : "Literal<" + ((Literal)object).toString() + ">"
-            ;
+        return object.asNode().toString( null, true );
+//        return object instanceof Resource
+//            ? "Resource<" + ((Resource)object).toString() + ">"
+//            : "Literal<" + ((Literal)object).toString() + ">"
+//            ;
         }
     
     /**
