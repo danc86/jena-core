@@ -4,30 +4,56 @@
   $Id$
 */
 
-package com.hp.hpl.jena.graph.test;
+package com.hp.hpl.jena.db.test;
 
+import com.hp.hpl.jena.db.*;
+import com.hp.hpl.jena.db.impl.*;
 import com.hp.hpl.jena.graph.*;
-import com.hp.hpl.jena.graph.impl.*;
+import com.hp.hpl.jena.graph.test.*;
+
 import junit.framework.*;
 
 /**
  	@author hedgehog
     
-    Test the SimpleGraphFactory by extending AbstractTestGraphFactory
-    and supplying new SimplGraphFactorys via getGraph.
+    Test the RDB graph factory, based on the abstract test class. We track the
+    current graph factory so that we can discard all the graphs we create during
+    the test.
 */
-public class TestSimpleGraphFactory extends AbstractTestGraphMaker
+
+public class TestGraphRDBMaker extends AbstractTestGraphMaker
     {
-    public TestSimpleGraphFactory( String name )
+    /**
+        A clean test connection for all the graph factories.
+    */
+    IDBConnection connection = TestConnection.makeAndCleanTestConnection();
+    
+    public TestGraphRDBMaker( String name )
         { super( name ); }
 
     public static TestSuite suite()
-        { return new TestSuite( TestSimpleGraphFactory.class ); }
-    
-    public GraphMaker getGraphFactory()
-        { return new SimpleGraphMaker(); }    
-    }
+        { return new TestSuite( TestGraphRDBMaker.class ); }
 
+    /**
+        The current factory object, or null when there isn't one.
+     */
+    private GraphRDBMaker current;
+    
+    /**
+        Invent a new factory on the connection, record it, and return it.    
+    */
+    public GraphMaker getGraphFactory()
+        { return current = new GraphRDBMaker( connection ); }    
+        
+    /**
+        Run the parent teardown, and then remove all the freshly created graphs.
+    */
+    public void tearDown()
+        {
+        super.tearDown();
+        if (current != null) current.removeAll();
+        }
+    }
 
 /*
     (c) Copyright Hewlett-Packard Company 2003

@@ -8,22 +8,24 @@ package com.hp.hpl.jena.graph.test;
 
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.graph.impl.*;
-
 import junit.framework.*;
 
 /**
  	@author hedgehog
+    
+    Test the SimpleGraphFactory by extending AbstractTestGraphFactory
+    and supplying new SimplGraphFactorys via getGraph.
 */
-public class TestFileGraphFactory extends AbstractTestGraphMaker
+public class TestSimpleGraphMaker extends AbstractTestGraphMaker
     {
-    public TestFileGraphFactory( String name )
+    public TestSimpleGraphMaker( String name )
         { super( name ); }
 
     public static TestSuite suite()
-        { return new TestSuite( TestFileGraphFactory.class ); }
-
+        { return new TestSuite( TestSimpleGraphMaker.class ); }
+    
     public GraphMaker getGraphFactory()
-        { return new FileGraphMaker( getTempDirectory(), true ); } 
+        { return new SimpleGraphMaker(); }    
     }
 
 

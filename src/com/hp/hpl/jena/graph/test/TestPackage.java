@@ -29,9 +29,9 @@ public class TestPackage extends TestSuite {
         addTest( "TestTypedLiterals", TestTypedLiterals.suite() );
         addTest( "TestGraphQuery", QueryTest.suite() );
         // addTest( "TestFactory", TestFactory.suite() );
-        addTest( "TestSimpleGraphFactory", TestSimpleGraphFactory.suite() );
+        addTest( "TestSimpleGraphFactory", TestSimpleGraphMaker.suite() );
         addTest( "TestFileGraph", TestFileGraph.suite() );
-        addTest( "TestFileGraphFactory", TestFileGraphFactory.suite() );
+        addTest( "TestFileGraphFactory", TestFileGraphMaker.suite() );
         addTest( "TestCapabilities", TestCapabilities.suite() );
         addTest( "TestGraphPrefixMapping", TestGraphPrefixMapping.suite() );       }
 
