@@ -3,43 +3,32 @@
   [See end of file]
   $Id$
 */
-
 package com.hp.hpl.jena.graph.query.regexptrees;
 
-
 /**
-     Class which represents parenthesised regular expressions. Any parenthesised
-     expression may have a non-zero label, meaning that it may be referred back
-     to by BakReference expressions.
-     
-     @author hedgehog
+     BackReference - class describing back-references in regular expressions.
+     @author kers
 */
-public class Paren extends RegexpTree
+public class BackReference extends RegexpTree
     {
-    protected RegexpTree operand;
     protected int index;
-
-    public Paren( RegexpTree tree ) 
-        { this( tree, 0 ); }
     
-    public Paren( RegexpTree tree, int index ) 
-        { this.operand = tree; this.index = index; }
-    
-    public RegexpTree getOperand()
-        { return operand; }
+    public BackReference( int n )
+        { this.index = n; }
     
     public int getIndex()
-        { return index; };
+        { return index; }
 
     public boolean equals( Object other )
-        { return other instanceof Paren && operand.equals( ((Paren) other).operand ); }
+        { return other instanceof BackReference && index == ((BackReference) other).index; }
 
     public int hashCode()
-        { return operand.hashCode(); }
+        { return index; }
 
     public String toString()
-        { return "(" + operand + ")"; }
+        { return "<back " + index + ">"; }
     }
+
 
 /*
     (c) Copyright 2004, Hewlett-Packard Development Company, LP

@@ -59,7 +59,7 @@ public interface RegexpTreeGenerator
          Answer a RegexpTree which for matching the sequence of operands 
          in the list. Every element must be a RegexpTree. If the list contains
          exactly one element, it is strongly recommended that that element be
-         returned.
+         returned. If the list is empty, it is recommended that Nothing be returned.
     */
     public abstract RegexpTree getSequence( List operands );
 
@@ -84,9 +84,15 @@ public interface RegexpTreeGenerator
     public abstract RegexpTree getClass( String chars, boolean reject );
     
     /**
-         Answer a RegexpTree that wraps parentheses around an operand.
+         Answer a RegexpTree that wraps parentheses around an operand. The
+         index is non-zero if this is a back-reference referrable object.
     */
-    public abstract RegexpTree getParen( RegexpTree operand );
+    public abstract RegexpTree getParen( RegexpTree operand, int index );
+
+    /**
+         Answer a RegexpTree that refers back to noted parenthesisation n.
+    */
+    public abstract RegexpTree getBackReference( int n );
     }
 
 /*

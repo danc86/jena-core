@@ -28,7 +28,7 @@ public class Text extends RegexpTree
         { return literal; }
     
     public String toString()
-        { return "<lit '" + literal + "'>"; }
+        { return "<text '" + literal + "'>"; }
     }
 
 /*

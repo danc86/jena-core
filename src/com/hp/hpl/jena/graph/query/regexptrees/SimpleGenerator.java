@@ -18,15 +18,21 @@ public class SimpleGenerator implements RegexpTreeGenerator
     public RegexpTree getStartOfLine() { return RegexpTree.SOL; }
     public RegexpTree getEndOfLine() { return RegexpTree.EOL; }
     public RegexpTree getNothing() { return RegexpTree.NON; }
+    
     public RegexpTree getText( char ch ) { return new Text( "" + ch ); }
+    
     public RegexpTree getZeroOrMore( RegexpTree d ) { return new ZeroOrMore( d ); }
     public RegexpTree getOneOrMore( RegexpTree d ) { return new OneOrMore( d ); }
     public RegexpTree getOptional( RegexpTree d ) { return new Optional( d ); }
+    
     public RegexpTree getSequence( List operands ) { return Sequence.create( operands ); }
     public RegexpTree getAlternatives( List operands ) { return Alternatives.create( operands ); }
+    
+    public RegexpTree getBackReference( int n ) { return new BackReference( n ); }
     public RegexpTree getClass( String chars, boolean reject ) 
         { return reject ? (RegexpTree) new NoneOf( chars ) : new AnyOf( chars ); }
-    public RegexpTree getParen( RegexpTree operand ) { return new Paren( operand ); }
+    public RegexpTree getParen( RegexpTree operand, int index ) 
+        { return new Paren( operand, index ); }
     }
 
 /*
