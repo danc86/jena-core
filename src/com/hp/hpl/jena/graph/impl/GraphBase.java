@@ -30,15 +30,15 @@ import com.hp.hpl.jena.shared.impl.PrefixMappingImpl;
 
 public abstract class GraphBase implements Graph {
 
-    protected final Reifier.Style style;
+    protected final ReificationStyle style;
     
     protected boolean closed = false;
     
-    public GraphBase( Reifier.Style style )
+    public GraphBase( ReificationStyle style )
         { this.style = style; }
         
     public GraphBase()
-        { this( Reifier.Minimal ); }
+        { this( ReificationStyle.Minimal ); }
         
     protected void checkOpen()
         { if (closed) throw new ClosedException( "already closed", this ); }

@@ -10,6 +10,7 @@ import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.graph.test.*;
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.rdf.model.impl.*;
+import com.hp.hpl.jena.shared.*;
 
 import java.util.*;
 
@@ -113,7 +114,7 @@ public class ModelTestBase extends GraphTestBase
         @return a model containing those facts
     */
     public static Model modelWithStatements( String facts )
-        { return modelWithStatements( Reifier.Standard, facts ); }
+        { return modelWithStatements( ReificationStyle.Standard, facts ); }
 
     /**
         makes a model with a given reiifcation style, initialised with statements parsed 
@@ -123,7 +124,7 @@ public class ModelTestBase extends GraphTestBase
         @param facts a string in semicolon-separated "S P O" format
         @return a model containing those facts
     */        
-    public static Model modelWithStatements( Reifier.Style style, String facts )
+    public static Model modelWithStatements( ReificationStyle style, String facts )
         { return modelAdd( ModelFactory.createDefaultModel( style ), facts ); }
          
      /**

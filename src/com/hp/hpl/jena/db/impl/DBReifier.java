@@ -57,7 +57,7 @@ public class DBReifier implements Reifier
 	public Graph getParentGraph() { 
     	return m_parent; }
         
-    public Style getStyle()
+    public ReificationStyle getStyle()
         { throw new RuntimeException( "NOT YET IMPLEMENTED" ); }
 
 	/* (non-Javadoc)

@@ -8,7 +8,7 @@ package com.hp.hpl.jena.graph.test;
 
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.graph.impl.*;
-
+import com.hp.hpl.jena.shared.*;
 import junit.framework.*;
 
 /**
@@ -23,7 +23,7 @@ public class TestFileGraphMaker extends AbstractTestGraphMaker
         { return new TestSuite( TestFileGraphMaker.class ); }
 
     public GraphMaker getGraphFactory()
-        { return new FileGraphMaker( getTempDirectory(), Reifier.Minimal, true ); } 
+        { return new FileGraphMaker( getTempDirectory(), ReificationStyle.Minimal, true ); } 
     }
 
 

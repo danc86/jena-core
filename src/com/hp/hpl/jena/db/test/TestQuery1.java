@@ -43,10 +43,10 @@ public class TestQuery1 extends AbstractTestQuery1
         }
 
 	public Graph getGraph ( ) {
-		return getGraph(Reifier.Minimal);
+		return getGraph(ReificationStyle.Minimal);
 	}
         
-    public Graph getGraph ( Reifier.Style style )
+    public Graph getGraph ( ReificationStyle style )
         { 
         return new GraphRDB
             (

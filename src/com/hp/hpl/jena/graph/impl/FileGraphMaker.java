@@ -7,6 +7,7 @@
 package com.hp.hpl.jena.graph.impl;
 
 import com.hp.hpl.jena.graph.*;
+
 import java.io.*;
 import java.util.*;
 import com.hp.hpl.jena.shared.*;
@@ -33,7 +34,7 @@ public class FileGraphMaker extends BaseGraphMaker
      	@param root the directory to keep the files in.
      */
     public FileGraphMaker( String root )
-        { this( root, Reifier.Minimal ); }
+        { this( root, ReificationStyle.Minimal ); }
         
     /**
         Construct a file graph factory whose files will appear in root. The files 
@@ -42,7 +43,7 @@ public class FileGraphMaker extends BaseGraphMaker
         @param root the directory to keep the files in.
         @param style the reification style of the resulting graph
      */
-    public FileGraphMaker( String root, Reifier.Style style )
+    public FileGraphMaker( String root, ReificationStyle style )
         { this( root, style, false ); }
  
     /**
@@ -54,7 +55,7 @@ public class FileGraphMaker extends BaseGraphMaker
         @param style the reification style of the graph
      	@param deleteOnClose iff true, delete created files on close
      */
-    public FileGraphMaker( String root, Reifier.Style style, boolean deleteOnClose )
+    public FileGraphMaker( String root, ReificationStyle style, boolean deleteOnClose )
         {
         super( style );
         this.fileBase = root;

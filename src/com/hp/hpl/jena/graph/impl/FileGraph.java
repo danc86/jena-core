@@ -27,10 +27,10 @@ import java.io.*;
 public class FileGraph extends GraphMem
     {
     /**
-        See FileGraph( f, create, strict, Reifier.Style ).
+        See FileGraph( f, create, strict, Reifier.ReificationStyle ).
     */
     public FileGraph( File f, boolean create, boolean strict )
-        { this( f, create, strict, Reifier.Minimal ); }
+        { this( f, create, strict, ReificationStyle.Minimal ); }
         
     /**
         Construct a new FileGraph who's name is given by the specified File,
@@ -43,7 +43,7 @@ public class FileGraph extends GraphMem
         @param strict true to throw exceptions for create: existing, open: not found
         @param style the reification style for the graph
      */
-    public FileGraph( File f, boolean create, boolean strict, Reifier.Style style )
+    public FileGraph( File f, boolean create, boolean strict, ReificationStyle style )
         {
         super( style );
         this.name = f;

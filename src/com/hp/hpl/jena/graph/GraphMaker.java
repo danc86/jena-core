@@ -6,6 +6,9 @@
 
 package com.hp.hpl.jena.graph;
 
+import com.hp.hpl.jena.shared.*;
+import com.hp.hpl.jena.shared.*;
+
 /**
     A factory for providing instances of named graphs with appropriate storage models.
     It represents a directory, or a database, or a mapping: names map to graphs for the
@@ -20,7 +23,7 @@ public interface GraphMaker
         Answer the reification style of all the graphs that this GraphMaker constructs.
         @return the reification style given to all created graphs
     */
-    public Reifier.Style getReificationStyle();
+    public ReificationStyle getReificationStyle();
     
     /**
         Answer the default graph of this ModelMaker. The same graph is returned on

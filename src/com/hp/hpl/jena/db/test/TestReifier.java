@@ -12,6 +12,7 @@ import com.hp.hpl.jena.db.GraphRDB;
 import com.hp.hpl.jena.db.IDBConnection;
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.graph.test.*;
+import com.hp.hpl.jena.shared.*;
 
 import junit.framework.*;
 
@@ -43,7 +44,7 @@ public class TestReifier extends AbstractTestReifier  {
 		theConnection.close();
         }
 
-	public Graph getGraph( Reifier.Style style ) {
+	public Graph getGraph( ReificationStyle style ) {
 		GraphRDB g = new GraphRDB
             (
             theConnection, 
@@ -57,7 +58,7 @@ public class TestReifier extends AbstractTestReifier  {
 	   }
        
     public Graph getGraph()
-        { return getGraph( Reifier.Convenient ); }
+        { return getGraph( ReificationStyle.Convenient ); }
         
     }
 

@@ -774,7 +774,7 @@ public interface Model
         Answer the reification style of the model.
      	@return the reification style
     */
-    Reifier.Style getReificationStyle();
+    ReificationStyle getReificationStyle();
 
 	/** Create a new model containing the statements matching a query.
 	 *

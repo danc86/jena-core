@@ -1,43 +1,43 @@
 /*
-  (c) Copyright 2002, 2003 Hewlett-Packard Development Company, LP
+  (c) Copyright 2003, Hewlett-Packard Company, all rights reserved.
   [See end of file]
   $Id$
 */
 
-package com.hp.hpl.jena.graph.test;
-
-import com.hp.hpl.jena.graph.*;
-import com.hp.hpl.jena.mem.*;
-import com.hp.hpl.jena.shared.*;
-
-import junit.framework.*;
+package com.hp.hpl.jena.shared;
 
 /**
-    Thie class tests the reifiers of ordinary GraphMem graphs.
-	@author kers
+    Reification styles have two boolean components: whether the
+    graph+reifier will intercept reification triples or not [if not, the only
+    in-Jena reification is through the reifyAs operation], and whether or
+    not reification triples will be visible in the graph.
 */
-
-public class TestReifier extends AbstractTestReifier
+public class ReificationStyle
     {
-    public TestReifier( String name )
-        { super( name ); }
-
-    public static TestSuite suite()
-        { 
-        TestSuite result = new TestSuite();
-        result.addTest( new TestSuite( TestReifier.class ) );
-        return result; 
-        }   
+    public static final ReificationStyle Standard = new ReificationStyle( true, false );
+    public static final ReificationStyle Convenient = new ReificationStyle( true, true );
+    public static final ReificationStyle Minimal = new ReificationStyle( false, true );
+    
+    private boolean intercept;
+    private boolean conceal;
+    
+    public ReificationStyle( boolean intercept, boolean conceal )
+        {
+        this.intercept = intercept;
+        this.conceal = conceal;
+        }
         
-    public Graph getGraph()
-        { return getGraph( ReificationStyle.Standard ); }       
+    public boolean intercepts()
+        { return intercept; }
         
-    public Graph getGraph( ReificationStyle style )
-        { return new GraphMem( style ); }
+    public boolean conceals()
+        { return conceal; }
+        
+    public String toString()
+        { return "<style int=" + intercept + ", con=" + conceal + ">"; }
     }
-
 /*
-    (c) Copyright 2002, 2003 Hewlett-Packard Development Company, LP
+    (c) Copyright Hewlett-Packard Company 2003
     All rights reserved.
 
     Redistribution and use in source and binary forms, with or without

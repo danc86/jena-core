@@ -8,6 +8,7 @@ package com.hp.hpl.jena.graph.impl;
 
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.mem.*;
+import com.hp.hpl.jena.shared.*;
 import com.hp.hpl.jena.vocabulary.*;
 
 /**
@@ -22,16 +23,16 @@ public abstract class BaseGraphMaker implements GraphMaker
         Construct the base level of a graph maker.
      	@param style the reification style for all the graphs it makes
      */
-    public BaseGraphMaker( Reifier.Style style )
+    public BaseGraphMaker( ReificationStyle style )
         { this.style = style; }
         
     private int counter = 0;
-    protected Reifier.Style style;
+    protected ReificationStyle style;
     
     /**
         Answer our reification style.
     */
-    public Reifier.Style getReificationStyle()
+    public ReificationStyle getReificationStyle()
         { return style; }
         
     /**

@@ -946,7 +946,7 @@ implements Model, PrefixMapping, ModelLock
         return this;
     }
     
-    public Reifier.Style getReificationStyle()
+    public ReificationStyle getReificationStyle()
         { return modelReifier.getReificationStyle(); }
         
     /**

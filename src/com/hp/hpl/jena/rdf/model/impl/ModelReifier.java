@@ -7,6 +7,7 @@
 package com.hp.hpl.jena.rdf.model.impl;
 
 import com.hp.hpl.jena.rdf.model.*;
+import com.hp.hpl.jena.shared.*;
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.graph.compose.*;
 import com.hp.hpl.jena.util.iterator.*;
@@ -39,7 +40,7 @@ public class ModelReifier
         this.reifier = model.asGraph().getReifier();
         }
         
-    public Reifier.Style getReificationStyle()
+    public ReificationStyle getReificationStyle()
         { return reifier.getStyle(); }
         
     /**

@@ -26,14 +26,14 @@ public class SimpleGraphMaker extends BaseGraphMaker
         Initialise a SimpleGraphMaker with the given style.
         @param style the reification style of all the graphs we create
     */
-    public SimpleGraphMaker( Reifier.Style style )
+    public SimpleGraphMaker( ReificationStyle style )
         { super( style ); }
        
     /**
         Initialise a SimpleGraphMaker with reification style Minimal
     */ 
     public SimpleGraphMaker()
-        { this( Reifier.Minimal ); }
+        { this( ReificationStyle.Minimal ); }
        
     /**
         Answer the RDFS class of this Maker

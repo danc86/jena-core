@@ -8,6 +8,7 @@ package com.hp.hpl.jena.rdf.model.test;
 
 import com.hp.hpl.jena.rdf.model.impl.*;
 import com.hp.hpl.jena.rdf.model.*;
+import com.hp.hpl.jena.shared.*;
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.graph.test.*;
 
@@ -135,7 +136,7 @@ public class TestModelMakerImpl extends ModelTestBase
         public MockGraphMaker( Graph graph )
             { this.graph = graph; }
             
-        public Reifier.Style getReificationStyle()
+        public ReificationStyle getReificationStyle()
             {
             history.add( "getReificationStyle()" );
             return null; 

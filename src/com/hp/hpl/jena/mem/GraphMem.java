@@ -34,9 +34,9 @@ public class GraphMem extends GraphBase implements Graph {
 
     /** Creates new Store */
     public GraphMem() 
-        { this( Reifier.Minimal ); }
+        { this( ReificationStyle.Minimal ); }
     
-    public GraphMem( Reifier.Style style )
+    public GraphMem( ReificationStyle style )
         { 
         super( style );
         count = 1; 
