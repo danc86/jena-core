@@ -607,7 +607,7 @@ public class N3JenaWriterCommon implements RDFWriter
             char c = s.charAt(i);
 
             // Escape escapes and quotes
-            if (c == '\\' || (singleQuoteLiteral && c == '"') )
+            if (c == '\\' || c == '"' )
             {
                 sbuff.append('\\') ;
                 sbuff.append(c) ;
