@@ -15,6 +15,49 @@ import junit.framework.*;
 */
 public class TestCapabilities extends GraphTestBase
     {
+    protected final class AllFalse implements Capabilities
+        {
+        public boolean sizeAccurate()
+            {
+            return false;
+            }
+
+        public boolean addAllowed()
+            {
+            return false;
+            }
+
+        public boolean addAllowed( boolean everyTriple )
+            {
+            return false;
+            }
+
+        public boolean deleteAllowed()
+            {
+            return false;
+            }
+
+        public boolean deleteAllowed( boolean everyTriple )
+            {
+            return false;
+            }
+
+        public boolean iteratorRemoveAllowed()
+            {
+            return false;
+            }
+
+        public boolean canBeEmpty()
+            {
+            return false;
+            }
+
+        public boolean findContractSafe()
+            {
+            return false;
+            }
+        }
+
     public TestCapabilities( String name )
         { super( name ); }
         
@@ -27,7 +70,26 @@ public class TestCapabilities extends GraphTestBase
     public void testTheyreThere()
         {
         Graph g = Factory.createDefaultGraph();
-        /* Capabilities c = */ g.getCapabilities();
+        g.getCapabilities();
+        }
+    
+    public void testCanConstruct()
+        {
+        Capabilities c = new AllFalse();
+        }
+    
+    public void testCanAccess()
+        {
+        Capabilities c = new AllFalse();
+        boolean b = false;
+        b = c.addAllowed();
+        b = c.addAllowed( true );
+        b = c.canBeEmpty();
+        b = c.deleteAllowed();
+        b = c.deleteAllowed( false );
+        b = c.sizeAccurate();
+        b = c.iteratorRemoveAllowed();
+        b = c.findContractSafe();
         }
     }
 

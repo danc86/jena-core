@@ -52,6 +52,12 @@ public interface Capabilities
         Answer true iff the graph can be completely empty.
      */
     boolean canBeEmpty();
+
+    /**
+         Answer true if the find() contract on the associated graph is "safe", ie,
+         can be sued safely by the pretty-printer (we'll tighten up that definition).
+     */
+    boolean findContractSafe();
     }
 
 /*

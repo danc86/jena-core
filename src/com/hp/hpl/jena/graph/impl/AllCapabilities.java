@@ -24,6 +24,7 @@ public class AllCapabilities implements Capabilities
     public boolean deleteAllowed( boolean every ) { return true; } 
     public boolean canBeEmpty() { return true; }
     public boolean iteratorRemoveAllowed() { return true; }
+    public boolean findContractSafe() { return true; }
     }
 
 /*

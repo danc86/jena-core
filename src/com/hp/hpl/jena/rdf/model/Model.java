@@ -460,9 +460,10 @@ public interface Model
 	public Model read(Reader reader, String base, String lang);
 
     /**
-     * @param string
-     * @param string2
-     * @param string3
+        Read into this model the RDF at <code>url</code>, using 
+        <code>baseURI</code> as the base URI if it is non-null. The RDF is assumed
+        to be RDF/XML unless <code>lang</code> is non-null, in which case it names
+        the language to be used. Answer this model.
     */
     Model read( String url, String base, String lang );
     

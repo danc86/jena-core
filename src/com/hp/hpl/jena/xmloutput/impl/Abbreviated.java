@@ -11,6 +11,7 @@ import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.vocabulary.*;
 
 import com.hp.hpl.jena.reasoner.*;
+import com.hp.hpl.jena.shared.JenaException;
 
 import java.io.*;
 //Writer;
@@ -108,12 +109,14 @@ public class Abbreviated extends BaseXMLWriter implements RDFErrorHandler {
 	}
 
 	synchronized public void write(Model baseModel, Writer out, String base)
-			 { 
-			if (baseModel.getGraph() instanceof InfGraph) {
-				logger.warn("Workaround for bugs 803804 and 858163: using RDF/XML (not RDF/XML-ABBREV) writer  for inferred graph");
-			  baseModel.write(out,"RDF/XML",base);
-			} else
-			  super.write(baseModel,out,base);
+	    { 
+		if (baseModel.getGraph().getCapabilities().findContractSafe() == false) 
+            {
+			logger.warn( "Workaround for bugs 803804 and 858163: using RDF/XML (not RDF/XML-ABBREV) writer  for unsafe graph " + baseModel.getGraph().getClass() );
+			baseModel.write( out, "RDF/XML", base );
+            } 
+        else
+            super.write( baseModel, out, base );
 		}
 		
 	void writeBody(

@@ -85,6 +85,7 @@ public abstract class BaseInfGraph extends GraphBase implements InfGraph {
         public boolean sizeAccurate() { return false; }
         public boolean deleteAllowed( boolean every ) { return !every; }    
         public boolean iteratorRemoveAllowed() { return false; }
+        public boolean findContractSafe() { return false; }
         }
     
     public BulkUpdateHandler getBulkUpdateHandler()

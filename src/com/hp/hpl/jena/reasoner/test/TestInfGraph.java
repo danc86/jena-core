@@ -47,6 +47,14 @@ public class TestInfGraph extends AbstractTestGraph
         InfGraph ig = getInfGraph();
         assertSame( ig.getReifier(), ig.getRawGraph().getReifier() );
         }
+    
+    /**
+         Placeholder. Will need revision later.
+    */
+    public void testInfCapabilities()
+        {
+        assertFalse( getInfGraph().getCapabilities().findContractSafe() );
+        }
     }
 
 /*
