@@ -50,7 +50,7 @@ public class ConsumerChoicePointFrame extends GenericTripleMatchFrame {
     public void init(LPInterpreter interpreter) {
         super.init(interpreter);
         generator = interpreter.getEngine().generatorFor(goal);
-        generator.setChoicePoint(this);
+//        generator.setChoicePoint(this);
         resultIndex = 0;
     }
     

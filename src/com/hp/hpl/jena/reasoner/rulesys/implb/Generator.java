@@ -29,8 +29,8 @@ public class Generator {
      *  null if the generator is complete */
     protected LPInterpreter interpreter;
     
-    /** The choice point frame at which the interpreter should restart */
-    protected FrameObject choicePoint;
+//    /** The choice point frame at which the interpreter should restart */
+//    protected FrameObject choicePoint;
     
     /** The ordered set of results available for the goal */
     protected ArrayList results = new ArrayList();
@@ -80,12 +80,12 @@ public class Generator {
         }
     }
     
-    /**
-     * Return the interpeter choice point state at which this generator should resume.
-     */
-    public void setChoicePoint(FrameObject choice) {
-        choicePoint = choice;
-    }
+//    /**
+//     * Return the interpeter choice point state at which this generator should resume.
+//     */
+//    public void setChoicePoint(FrameObject choice) {
+//        choicePoint = choice;
+//    }
     
     /**
      * Signal that the generator that we are blocked on has new results.
@@ -139,7 +139,7 @@ public class Generator {
         boolean finished = false;
         List notifyList = dependents;
         while (!finished) {
-            Object result = interpreter.next(choicePoint);
+            Object result = interpreter.next();
             if (result == StateFlag.FAIL) {
                 setComplete();
                 finished = true;
@@ -198,7 +198,11 @@ public class Generator {
         if (isReady()) {
             return false;
         } else if (visited.add(this)) {
-            return doIsIndirectlyComplete(visited);
+            if (dependsOn == null) {
+                return true;
+            } else {
+                return dependsOn.doIsIndirectlyComplete(visited);
+            }
         } else {
             return true;
         }
