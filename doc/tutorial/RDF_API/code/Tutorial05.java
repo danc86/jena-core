@@ -14,7 +14,13 @@ import java.io.*;
  * @version Release='$Name$' Revision='$Revision$' Date='$Date$'
  */
 public class Tutorial05 extends Object {
-    
+
+    /**
+        NOTE that the file is loaded from the class-path and so requires that
+        the data-directory, as well as the directory containing the compiled
+        class, must be added to the class-path when running this and
+        subsequent examples.
+    */    
     static final String inputFileName 
                              = "vc-db-1.rdf";
                               
