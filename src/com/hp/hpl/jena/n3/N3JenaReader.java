@@ -42,11 +42,16 @@ public class N3JenaReader implements RDFReader
         	else 
                read(model,new InputStreamReader(conn.getInputStream(),encoding), url, url);
         }
-        catch (RDFException e) { throw e; }
+        catch (RDFException e)
+        {
+            if ( errorHandler == null ) 
+                throw e;
+            errorHandler.error(e) ;
+        }
         catch (Exception ex)
         {
- 			if ( errorHandler == null ) throw new RDFException(ex) ;
-			errorHandler.error(ex) ;
+            if ( errorHandler == null ) throw new RDFException(ex) ;
+            errorHandler.error(ex) ;
         }
 	}
 	
@@ -57,22 +62,23 @@ public class N3JenaReader implements RDFReader
 
 		try {
 			N3ParserEventHandler h = new N3toRDF(model, base) ;
-			
-//			N3ParserEventHandler h = 
-//				new ChainedN3EventHandler(new N3EventPrinter(new PrintWriter(System.out)),
-//									      new N3toRDF(model, base)) ;
 			N3Parser p = new N3Parser(r, h) ;
 			p.parse() ;
-		} catch (Exception ex)
-		{
-			if ( errorHandler == null ) throw new RDFException(ex) ;
-			errorHandler.error(ex) ;
-		}
+        }
+        catch (RDFException e)
+        {
+            if ( errorHandler == null ) 
+                throw e;
+            errorHandler.error(e) ;
+        }
+        catch (Exception ex)
+        {
+            if ( errorHandler == null ) throw new RDFException(ex) ;
+            errorHandler.error(ex) ;
+        }
 	}
 	
 
-	// Not the reader interface. yet.
-	
 	public void read(Model model, InputStream in, String base) throws RDFException
 	{
 		read(model, in, base, null) ;
@@ -85,7 +91,14 @@ public class N3JenaReader implements RDFReader
 			N3ParserEventHandler h = new N3toRDF(model, base) ;
 			N3Parser p = new N3Parser(in, h) ;
 			p.parse() ;
-		} catch (Exception ex)
+		}
+        catch (RDFException e)
+        {
+            if ( errorHandler == null ) 
+                throw e;
+            errorHandler.error(e) ;
+        }
+        catch (Exception ex)
 		{
 			if ( errorHandler == null ) throw new RDFException(ex) ;
 			errorHandler.error(ex) ;

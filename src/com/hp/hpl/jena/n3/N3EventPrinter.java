@@ -130,9 +130,12 @@ public class N3EventPrinter implements N3ParserEventHandler
 	
 			int tokenType = ast.getType();
 			String tmp = ast.toString();
-	
-			if (tokenType == N3Parser.LITERAL)
-			{
+            if (tmp.equals(""))
+                tmp = "<empty string>";
+            
+            switch (tokenType)
+            {
+                case N3Parser.LITERAL:
 				out.write('"');
 				printString(out, tmp);
 				out.write('"');
@@ -141,13 +144,25 @@ public class N3EventPrinter implements N3ParserEventHandler
                 AST a2 = (a1==null?null:a1.getNextSibling()) ;
                 printLiteralModifier(out, a1) ;
                 printLiteralModifier(out, a2) ;
-			}
-            else
-            {	
-    			if (tmp.equals(""))
-    				tmp = "<empty string>";
+                break ;
+                
+                case N3Parser.UVAR:
+                // Is this a compound variable (i.e. with datatype condition)?
+                AST ast2 = ast.getFirstChild() ;
+                out.write(tmp) ;
+                if ( ast2 != null )
+                {
+                    out.write("^^") ;
+                    printSlot(out, ast2, false) ;
+                }
+                break ;
+                
+                // Write anything else.
+                default:
     			out.write(tmp) ;
+                break ;
             }
+            
             if ( printType )
             {
     			out.write('(');

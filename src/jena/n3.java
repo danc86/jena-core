@@ -231,7 +231,25 @@ public class n3
 			}
 		} catch (RDFException rdfEx)
 		{
-			rdfEx.printStackTrace(System.err) ;
+            N3Exception n3Ex = null ;
+            // See if we can find the N3Exception
+            if ( rdfEx instanceof N3Exception )
+                n3Ex = (N3Exception)rdfEx ;
+            else
+            {
+                Exception ex = rdfEx.getNestedException() ;
+                if ( n3Ex == null && ex instanceof N3Exception )
+                    n3Ex = (N3Exception)ex ;
+            }
+            
+            if ( n3Ex != null )
+                System.err.println(n3Ex.getMessage()) ;
+            else
+            {
+                System.err.println(rdfEx.getMessage()) ;
+                rdfEx.printStackTrace(System.err) ;
+            }
+            System.exit(7) ;
 		}
 		catch (java.io.IOException ioEx)
 		{

@@ -20,7 +20,11 @@ import com.hp.hpl.jena.util.tuple.* ;
 public abstract class N3ExternalTestsCom extends TestSuite
 {
 	// List of places
-	static protected final String dirbases[] = {".", "Tests", "modules/rdf/regression/testN3"} ;
+	static protected final String dirbases[] = {".", "testN3",
+                                                // Jena2: correct location
+                                                "testing/testN3",
+                                                // Jena1: correct location
+                                                "modules/rdf/regression/testN3"} ;
 	
 	// Record where we find the file in the constructor
 	protected String basedir = null ;

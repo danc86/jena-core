@@ -174,9 +174,9 @@ public class N3InternalTests extends TestSuite
         addTest(new Test("a:subj a:prop '<tag>text</tag>'@fr^^rdf:XMLLiteral .")) ;
         addTest(new Test("a:subj a:prop '<tag>text</tag>'^^rdf:XMLLiteral@fr .")) ;
 
-        //addTest(new Test("a:subj a:prop ?x^^xsd:integer .")) ;
-        //addTest(new Test("a:subj a:prop '123'^^?x .")) ;
-        //addTest(new Test("a:subj a:prop ?x^^?y .")) ;
+        addTest(new Test("a:subj a:prop ?x^^xsd:integer .")) ;
+        addTest(new Test("a:subj a:prop '123'^^?x .")) ;
+        addTest(new Test("a:subj a:prop ?x^^?y .")) ;
 	}
 	
 	class Test extends TestCase
