@@ -100,8 +100,7 @@ public class DIGQueryDisjointTranslator
     }
     
     public Document translatePattern( TriplePattern pattern, DIGAdapter da, Model premises ) {
-        // not used
-        return null;
+        return translatePattern( pattern, da );
     }
 
     public boolean checkSubject( com.hp.hpl.jena.graph.Node subject, DIGAdapter da, Model premises ) {

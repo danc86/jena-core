@@ -155,10 +155,10 @@ public class DIGAdapter
         new DIGQueryTypesTranslator( DAML_OIL.type.getURI() ),
         new DIGQueryInstanceTranslator( RDF.type.getURI() ),
         new DIGQueryInstanceTranslator( DAML_OIL.type.getURI() ),
-        new DIGQueryRoleFillersTranslator(),
-        new DIGQueryRoleFillerTranslator(),
         new DIGQueryDifferentFromTranslator( OWL.differentFrom.getURI() ),
         new DIGQueryDifferentFromTranslator( DAML_OIL.differentIndividualFrom.getURI() ),
+        new DIGQueryRoleFillersTranslator(),
+        new DIGQueryRoleFillerTranslator(),
         
         // specific type tests
         new DIGQueryIsConceptTranslator(),

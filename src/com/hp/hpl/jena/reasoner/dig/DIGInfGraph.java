@@ -146,6 +146,7 @@ public class DIGInfGraph
     public ExtendedIterator find( Node subject, Node property, Node object, Graph param ) {
         OntModel premises = ModelFactory.createOntologyModel( m_adapter.getSourceSpecification(), 
                                                               ModelFactory.createModelForGraph( param ) );
+        premises.setStrictMode( false );
         prepare();
         return m_adapter.find( new TriplePattern( subject, property, object ), premises );
     }
