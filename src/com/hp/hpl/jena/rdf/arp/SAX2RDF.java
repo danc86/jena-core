@@ -29,8 +29,6 @@
    AUTHOR:  Jeremy J. Carroll
 */
 package com.hp.hpl.jena.rdf.arp;
-import org.xml.sax.helpers.*;
-import org.xml.sax.ext.*;
 import org.xml.sax.*;
 
 /**

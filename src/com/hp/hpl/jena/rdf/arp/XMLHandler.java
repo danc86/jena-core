@@ -39,21 +39,12 @@ package com.hp.hpl.jena.rdf.arp;
 
 import java.util.*;
 
-import org.xml.sax.InputSource;
 import org.xml.sax.Locator;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
 
-import org.apache.xerces.parsers.*;
-import org.apache.xerces.xni.parser.*;
-import org.apache.xerces.xni.*;
 
-import org.xml.sax.helpers.DefaultHandler;
-import org.xml.sax.ext.LexicalHandler;
-import java.io.*;
-
-import org.apache.xerces.util.EncodingMap;
 
 /**
  * This class converts SAX events into a stream

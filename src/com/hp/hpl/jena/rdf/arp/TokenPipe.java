@@ -35,11 +35,9 @@
  */
 
 package com.hp.hpl.jena.rdf.arp;
-import java.util.*;
 import org.xml.sax.Locator;
 import org.xml.sax.SAXParseException;
 
-import java.io.*;
 
 /**
  *

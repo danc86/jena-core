@@ -9,12 +9,10 @@ import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.rdf.model.impl.*;
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.shared.*;
-import com.hp.hpl.jena.shared.impl.PrefixMappingImpl;
 import com.hp.hpl.jena.datatypes.*;
 
 import java.io.*;
 import java.net.*;
-import java.util.*;
 
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXNotSupportedException;
