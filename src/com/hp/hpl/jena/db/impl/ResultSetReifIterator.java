@@ -111,19 +111,19 @@ public class ResultSetReifIterator extends ResultSetIterator {
 		
 		m_tripleCount = m_hasType ? 1 : 0;
 		if ( subj == null ) {
-			m_subjNode = Node.ANY;
+			m_subjNode = Node.NULL;
 		} else {
 			m_subjNode = m_pset.driver().RDBStringToNode(subj);
 			m_tripleCount++;
 		}
 		if ( pred == null ) {
-			m_predNode = Node.ANY;
+			m_predNode = Node.NULL;
 		} else {
 			m_predNode = m_pset.driver().RDBStringToNode(pred);
 			m_tripleCount++;
 		}
 		if ( obj == null ) {
-			m_objNode = Node.ANY;
+			m_objNode = Node.NULL;
 		} else {
 			m_objNode = m_pset.driver().RDBStringToNode(obj);
 			m_tripleCount++;
@@ -139,21 +139,21 @@ public class ResultSetReifIterator extends ResultSetIterator {
 			
 			if ( m_getTriples == true ) {
 				if ( m_tripleNum == 0) {
-					if ( !m_subjNode.equals(Node.ANY) ) {
+					if ( !m_subjNode.equals(Node.NULL) ) {
 						t = new Triple(m_stmtURI,RDF.Nodes.subject,m_subjNode);
 						m_tripleCount--;
 					} else
 						m_tripleNum++;
 				}
 				if ( m_tripleNum == 1) {
-					if ( !m_predNode.equals(Node.ANY) ) {
+					if ( !m_predNode.equals(Node.NULL) ) {
 						t = new Triple(m_stmtURI,RDF.Nodes.predicate,m_predNode);
 						m_tripleCount--;
 					} else
 						m_tripleNum++;
 				}
 				if ( m_tripleNum == 2) {
-					if ( !m_objNode.equals(Node.ANY) ) {
+					if ( !m_objNode.equals(Node.NULL) ) {
 						t = new Triple(m_stmtURI,RDF.Nodes.object,m_objNode);
 						m_tripleCount--;
 					} else
