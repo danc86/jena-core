@@ -220,6 +220,17 @@ public class TriplePattern implements ClauseEntry {
     }
     
     /**
+     * Test if the pattern is ground, contains no variables.
+     */
+    public boolean isGround() {
+        if (subject.isVariable() || predicate.isVariable() || object.isVariable()) return false;
+        if (Functor.isFunctor(object)) {
+            return ((Functor)object.getLiteral().getValue()).isGround();
+        }
+        return true;
+    }
+    
+    /**
      * Printable string
      */
     public String toString() {
