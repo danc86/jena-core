@@ -495,7 +495,7 @@ public class DIGAdapter
      * <p>Add a DIG reference to the class identifed in the source graph by the given Jena
      * graph Node to the given XML element.  If the class is a named class, this will be
      * a <code>&lt;catom&gt;</code> element, otherwise it will be a class description axiom.
-     * Assumes that the instance variable {@link #m_sourceData} provides the statements that
+     * Assumes that the instance variable <code>m_sourceData</code> provides the statements that
      * further define the class if it is a description not a name. 
      * </p>
      * @param elem The parent XML element to which the class description will be attached
