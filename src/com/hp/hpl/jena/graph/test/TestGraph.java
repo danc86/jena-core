@@ -91,26 +91,65 @@ public class TestGraph extends GraphTestBase
         try { th.abort(); } catch (UnsupportedOperationException x) {}
         try { th.commit(); } catch (UnsupportedOperationException x) {}
         }
-
-    public void testHasBulkUpdate()
-        { testHasBulkUpdate( Factory.createDefaultGraph() ); }
                     
-    public static void testHasBulkUpdate( Graph g )
+    public void testBulkUpdate()
+        { testBulkUpdate( Factory.createDefaultGraph() ); }
+
+    static final Triple [] tripleArray = tripleArray( "S P O; A R B; X Q Y" );
+
+    static final List tripleList = Arrays.asList( tripleArray( "i lt j; p equals q" ) );
+        
+    static final Triple [] setTriples = tripleArray
+        ( "scissors cut paper; paper wraps stone; stone breaks scissors" );
+        
+    static final Set tripleSet = new HashSet( Arrays.asList( setTriples ) );
+                
+    public void testBulkUpdate( Graph g )
         {
         BulkUpdateHandler bu = g.getBulkUpdateHandler();
-        Graph empty = Factory.createDefaultGraph();
+        Graph items = graphWith( "pigs might fly; dead can dance" );
+        int initialSize = g.size();
     /* */
-        bu.add( new Triple [] {} );
-        bu.add( new ArrayList() );
-        bu.add( new NiceIterator() );
-        bu.add( empty );
+        bu.add( tripleArray );
+        testContains( g, tripleArray );
     /* */
-        bu.delete( new Triple [] {} );
-        bu.delete( new ArrayList() );
-        bu.delete( new NiceIterator() );
-        bu.delete( empty );
+        bu.add( tripleList );
+        testContains( g, tripleList );
+        testContains( g, tripleArray );
+    /* */
+        bu.add( tripleSet.iterator() );
+        testContains( g, tripleSet.iterator() );
+        testContains( g, tripleList );
+        testContains( g, tripleArray );
+    /* */
+        bu.add( items );
+        testContains( g, items );
+        testContains( g, tripleSet.iterator() );
+        testContains( g, tripleArray );
+        testContains( g, tripleList );
+    /* */
+        bu.delete( tripleArray );
+        testOmits( g, tripleArray );
+        testContains( g, tripleList );
+        testContains( g, tripleSet.iterator() );
+        testContains( g, items );
+    /* */
+        bu.delete( tripleSet.iterator() );
+        testOmits( g, tripleSet.iterator() );
+        testOmits( g, tripleArray );
+        testContains( g, tripleList );
+        testContains( g, items );
+    /* */
+        bu.delete( items );
+        testOmits( g, tripleSet.iterator() );
+        testOmits( g, tripleArray );
+        testContains( g, tripleList );
+        testOmits( g, items ); 
+    /* */
+        bu.delete( tripleList );
+        assertEquals( "graph has original size", initialSize, g.size() );
         }
-        
+                    
     public static void testHasCapabilities( Graph g )
         {
         Capabilities c = g.getCapabilities();
