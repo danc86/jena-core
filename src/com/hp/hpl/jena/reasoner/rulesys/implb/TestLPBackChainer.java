@@ -11,6 +11,7 @@ package com.hp.hpl.jena.reasoner.rulesys.implb;
 
 import com.hp.hpl.jena.reasoner.rulesys.test.TestBackchainer;
 import com.hp.hpl.jena.reasoner.*;
+
 import java.util.*;
 
 import junit.framework.TestSuite;
@@ -42,7 +43,14 @@ public class TestLPBackChainer extends TestBackchainer {
      * Override in subclasses to test other reasoners.
      */
     public Reasoner createReasoner(List rules) {
-        return new LPBackwardRuleReasoner(rules);
+        LPBackwardRuleReasoner reasoner = new LPBackwardRuleReasoner(rules);
+        reasoner.tablePredicate(sP);
+        reasoner.tablePredicate(sC);
+        reasoner.tablePredicate(ty);
+        reasoner.tablePredicate(p);
+        reasoner.tablePredicate(a);
+        reasoner.tablePredicate(b);
+        return reasoner;
     }
 
 }

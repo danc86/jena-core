@@ -90,6 +90,15 @@ public class LPBackwardRuleReasoner implements Reasoner {
             return null;
         }
     }
+    
+    /**
+     * Register an RDF predicate as one whose presence in a goal should force
+     * the goal to be tabled.
+     */
+    public synchronized void tablePredicate(Node predicate) {
+        ruleStore.tablePredicate(predicate);
+    }
+    
 
     /**
      * Determine whether the given property is recognized and treated specially

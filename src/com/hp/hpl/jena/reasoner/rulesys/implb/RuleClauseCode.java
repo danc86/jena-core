@@ -566,16 +566,18 @@ public class RuleClauseCode {
                     }
                     if (termNumber > 0 && rule.getBodyElement(termNumber-1) instanceof Functor) {
                         inBuiltin = true;
-                        break;
                     }
                 }
-                if (!isDummy(var)) {
-//                    if (inBuiltin || inLaterBody || !inFirst) {
-                    // No longer need builtin's to use permanent variables
-                    if (inLaterBody || !inFirst) {
-                        permanentVars.add(var);
-                    } else {
-                        tempVars.add(var);
+                if (inBuiltin) {
+                    // inBuiltin case is overkill but safe
+                    permanentVars.add(var);
+                } else {
+                    if (!isDummy(var)) {
+                        if (inLaterBody || !inFirst) {
+                            permanentVars.add(var);
+                        } else {
+                            tempVars.add(var);
+                        }
                     }
                 }
                  
@@ -682,7 +684,9 @@ public class RuleClauseCode {
             String test12 = "(?x p ?y) <- (?x p foo(?z, ?y)).";
             String test13 = "(?x p foo(?y,?z)) <- (?x q ?y), (?x q ?z).";
             String test14 = "(?x p ?z) <- (?x e ?z), (?z q ?z).";
-            store.addRule(Rule.parseRule(test1));
+            String test15 = "(?x p ?y ) <- bound(?x), (?x p ?y).";
+            String test16 = "(a p b ) <- unbound(?x).";
+            store.addRule(Rule.parseRule(test16));
             System.out.println("Code for p:");
             List codeList = store.codeFor(Node.createURI("p"));
             RuleClauseCode code = (RuleClauseCode)codeList.get(0);

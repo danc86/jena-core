@@ -116,6 +116,7 @@ public class ConsumerChoicePointFrame extends GenericTripleMatchFrame
      * the results of a closed generator.
      */
     public void setFinished() {
+//        System.out.println("Consumed " + resultIndex + " from " + goal);
         context.notifyFinished(this);
     }
     
