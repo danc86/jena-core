@@ -170,11 +170,11 @@ public class Query
             String name = (String) e.getKey();
             Cons triples = (Cons) e.getValue();
             Graph g = (Graph) arguments.get( name );
-            int nBlocks = Cons.size( triples ), i = 0;
+            int nBlocks = Cons.size( triples ), i = nBlocks;
             Triple [] nodes = new Triple[nBlocks];
             while (triples != null)
                 {
-                nodes[i++] = triples.head;
+                nodes[--i] = triples.head;
                 triples = triples.tail;
                 }
             Stage next = g.queryHandler().patternStage( map, constraintGraph, nodes );
