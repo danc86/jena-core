@@ -61,6 +61,17 @@ public class ModelFactory extends ModelFactoryBase
     */
     public static Model createModel( ModelSpec desc )
         { return desc.createModel(); }
+        
+    /**
+        Answer a fresh Model created according to the given specifictaion and based on
+        any underlying model with the given name.
+        
+     	@param desc the ModelSpec which describes the kind of model to create
+     	@param name the name of the base model in the underlying ModelMaker
+     	@return a fresh model based over the named model
+     */
+    public static Model createModelOver( ModelSpec desc, String name )
+        { return desc.createModelOver( name ); }
     
     /** 
         Answer a fresh Model with the default specification and Standard reification style

@@ -28,6 +28,8 @@ public class JMS
     public static final Property importMaker = property( "importMaker" );
     public static final Property reasonsWith = property( "reasonsWith" );
     
+    public static final Property policyPath = property( "policyPath" );
+    
     public static final Property dbUser = property( "dbUser" );
     public static final Property dbPassword = property( "dbPassword" );
     public static final Property dbURL = property( "dbURL" );

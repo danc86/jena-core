@@ -353,6 +353,16 @@ public class OntModelSpec extends ModelSpecImpl implements ModelSpec {
     }
     
     /**
+        Satisfy the ModelSpec interface: create an [Ont]Model according to the specification.
+        The base model comes from the underlying ModelMaker and is named by the
+        give name.
+     	@see com.hp.hpl.jena.rdf.model.ModelSpec#createModelOver(java.lang.String)
+     */
+    public Model createModelOver( String name ) {
+        return new OntModelImpl( this, maker.createModel( name, false ) );
+    }
+    
+    /**
         Answer the URI string of the ontology language in this description
      
         @param description the Model from which to extract the description
@@ -368,7 +378,8 @@ public class OntModelSpec extends ModelSpecImpl implements ModelSpec {
     /**
         Answer an OntDocumentManager satisfying the docManager part of this description.
         Currently restricted to one where the object of JMS.docManager is registered with
-        the value table held in ModelSpecImpl.
+        the value table held in ModelSpecImpl. If there's no such property, or if its bnode
+        has no associated value, returns null.
         
          @param description the description of the OntModel
          @param root the root of the description
@@ -377,7 +388,13 @@ public class OntModelSpec extends ModelSpecImpl implements ModelSpec {
     public static OntDocumentManager getDocumentManager( Model description, 
         Resource root ) {
         Statement docStatement = description.getProperty( root, JMS.docManager );
-        return (OntDocumentManager) getValue( docStatement.getObject() );
+        if (docStatement == null) return null;
+        Resource manager = docStatement.getResource();
+        Statement policy = description.getProperty( manager, JMS.policyPath );
+        if (policy == null)
+            return (OntDocumentManager) getValue( manager );
+        else
+            return new OntDocumentManager( policy.getString() );
     }
 
     /**

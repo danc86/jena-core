@@ -81,17 +81,7 @@ public class TestModelFactory extends ModelTestBase
         
     public void testCreateInfSpec()
         {
-        Resource root = ResourceFactory.createResource();
-        Resource maker = ResourceFactory.createResource();
-        Resource reasoner = ResourceFactory.createResource();
-        Resource reasonerURI = ResourceFactory.createResource( DAMLMicroReasonerFactory.URI );
-        Model desc = ModelFactory.createDefaultModel()
-            .add( root, JMS.reasonsWith, reasoner )
-            .add( reasoner, JMS.reasoner, reasonerURI )
-            .add( root, JMS.maker, maker )
-            .add( maker, RDF.type, JMS.MemMakerSpec )
-            .add( maker, JMS.reificationMode, JMS.rsMinimal )
-            ;
+        Model desc = TestModelSpec.createInfModelDesc( DAMLMicroReasonerFactory.URI );
         ModelSpec spec = ModelFactory.createSpec( desc );
         assertTrue( spec instanceof InfModelSpec );    
         assertIsoModels( desc, spec.getDescription() );
@@ -108,6 +98,12 @@ public class TestModelFactory extends ModelTestBase
         Model m = ModelFactory.createModel( spec );    
         }
         
+    public void testMFCreateNamed()
+        {
+        Model desc = TestModelSpec.createPlainModelDesc();
+        ModelSpec spec = ModelFactory.createSpec( desc );
+        Model m = ModelFactory.createModelOver( spec, "aName" );    
+        }        
     }
 
 /*

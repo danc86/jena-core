@@ -66,7 +66,7 @@ public class TestModelMakerImpl extends ModelTestBase
         
     public void testCreateNamed()
         {
-        Model m = maker.createModel( "petal" );
+        Model m = maker.createModelOver( "petal" );
         assertEquals( history(), one("create(petal,false)" ) );
         assertTrue( m.getGraph() == graph );
         }

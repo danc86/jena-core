@@ -11,6 +11,9 @@ import com.hp.hpl.jena.vocabulary.*;
 import com.hp.hpl.jena.graph.impl.*;
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.rdf.model.impl.*;
+import com.hp.hpl.jena.reasoner.*;
+import com.hp.hpl.jena.reasoner.rulesys.*;
+import com.hp.hpl.jena.mem.*;
 import com.hp.hpl.jena.ontology.*;
 
 import junit.framework.*;
@@ -97,12 +100,21 @@ public class TestModelSpec extends ModelTestBase
         assertNotNull( ModelSpecCreatorRegistry.findCreator( JMS.OntModelSpec ) );     
         }
     
-    public void testNamedCreate()
+    public void testNamedCreatePlain()
         {
         ModelSpec ms = ModelSpecImpl.create( createPlainModelDesc() );    
-        Model m = ms.createModel( "aName" );
+        Model m = ms.createModelOver( "aName" );
+        assertTrue( m.getGraph() instanceof GraphMem );
         }   
-             
+
+    public void testNamedCreateInf()
+        {
+        String URI = DAMLMicroReasonerFactory.URI;
+        ModelSpec ms = ModelSpecImpl.create( createInfModelDesc( URI ) );    
+        Model m = ms.createModelOver( "iName" );
+        assertTrue( m.getGraph() instanceof InfGraph );
+        }   
+                          
     public void testOntModeSpecIsaModelSpec()
         {
         assertTrue( OntModelSpec.DAML_MEM_RULE_INF instanceof ModelSpec );
@@ -286,6 +298,20 @@ public class TestModelSpec extends ModelTestBase
 	        .add( maker, JMS.reificationMode, JMS.rsMinimal );
 	    }
         
+    public static Model createInfModelDesc( String URI )
+        {
+        Resource root = ResourceFactory.createResource();
+        Resource maker = ResourceFactory.createResource();
+        Resource reasoner = ResourceFactory.createResource();
+        Resource res = ResourceFactory.createResource( URI );
+        return ModelFactory.createDefaultModel()
+            .add( root, JMS.reasonsWith, reasoner )
+            .add( reasoner, JMS.reasoner, res )
+            .add( root, JMS.maker, maker )
+            .add( maker, RDF.type, JMS.MemMakerSpec )
+            .add( maker, JMS.reificationMode, JMS.rsMinimal )
+            ;
+        }
     }
 
 /*

@@ -64,7 +64,7 @@ public abstract class ModelSpecImpl implements ModelSpec
          
      	@see com.hp.hpl.jena.rdf.model.ModelSpec#createModel(java.lang.String)
      */
-    public Model createModel( String name )  { return null; }
+    public abstract Model createModelOver( String name );
     
     /**
         Answer the JMS subproperty of JMS.maker that describes the relationship 

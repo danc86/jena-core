@@ -19,10 +19,11 @@ public interface ModelSpec
     Model createModel();
     
     /**
-        Answer a Model that fits the specification of this ModelSpec and is known by
-        the given name.
+        Answer a Model that fits the specification of this ModelSpec and is built over some
+        underlying model with the given name. [It is not necessary for the resulting model
+        to be known by that name.]
     */
-    Model createModel( String name );
+    Model createModelOver( String name );
     
     /**
         Answer an RDF description of this ModelSpec using the JMS vocabulary. The
