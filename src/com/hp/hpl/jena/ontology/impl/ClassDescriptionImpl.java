@@ -41,7 +41,7 @@ import com.hp.hpl.jena.graph.*;
  */
 public class ClassDescriptionImpl
     extends OntResourceImpl
-    implements OntClass 
+    implements ClassDescription 
 {
     // Constants
     //////////////////////////////////
@@ -124,7 +124,6 @@ public class ClassDescriptionImpl
         return asPathSet( getProfile().DISJOINT_WITH() );
     }
      
-
     // Internal implementation methods
     //////////////////////////////////
 

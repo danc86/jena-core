@@ -23,8 +23,10 @@ package com.hp.hpl.jena.ontology;
 
 
 
+
 // Imports
 ///////////////
+import com.hp.hpl.jena.ontology.path.PathSet;
 
 
 /**
@@ -46,6 +48,62 @@ public interface OntClass
     // External signature methods
     //////////////////////////////////
 
+    // Boolean class expressions
+    
+    /**
+     * <p>
+     * Answer an {@link PathSet accessor} for the 
+     * <code>intersectionOf</code>
+     * property of a class or class description. The accessor
+     * can be used to perform a variety of operations, including getting and setting the value.
+     * </p>
+     * 
+     * @return An abstract accessor for the intersection class description
+     */
+    public PathSet p_intersectionOf();
+
+
+    /**
+     * <p>
+     * Answer an {@link PathSet accessor} for the 
+     * <code>unionOf</code>
+     * property of a class or class description. The accessor
+     * can be used to perform a variety of operations, including getting and setting the value.
+     * </p>
+     * 
+     * @return An abstract accessor for the union class description
+     */
+    public PathSet p_unionOf();
+
+
+    /**
+     * <p>
+     * Answer an {@link PathSet accessor} for the 
+     * <code>complementOf</code>
+     * property of a class or class description. The accessor
+     * can be used to perform a variety of operations, including getting and setting the value.
+     * </p>
+     * 
+     * @return An abstract accessor for the complement class description
+     */
+    public PathSet p_complementOf();
+
+
+    // Enumerated class constructor
+    
+    /**
+     * <p>
+     * Answer an {@link PathSet accessor} for the 
+     * <code>oneOf</code>
+     * property of an enumerated class. The accessor
+     * can be used to perform a variety of operations, including getting and setting the value.
+     * </p>
+     * 
+     * @return An abstract accessor for the enumerated class constructor
+     */
+    public PathSet p_oneOf();
+    
+         
 }
 
 

@@ -26,6 +26,7 @@ package com.hp.hpl.jena.ontology.impl;
 // Imports
 ///////////////
 import com.hp.hpl.jena.ontology.*;
+import com.hp.hpl.jena.ontology.path.PathSet;
 import com.hp.hpl.jena.enhanced.*;
 import com.hp.hpl.jena.graph.*;
 
@@ -81,6 +82,70 @@ public class OntClassImpl
 
     // External signature methods
     //////////////////////////////////
+
+    // Boolean class expressions
+    
+    /**
+     * <p>
+     * Answer an {@link PathSet accessor} for the 
+     * <code>intersectionOf</code>
+     * property of a class or class description. The accessor
+     * can be used to perform a variety of operations, including getting and setting the value.
+     * </p>
+     * 
+     * @return An abstract accessor for the intersection class description
+     */
+    public PathSet p_intersectionOf() {
+        return asPathSet( getProfile().INTERSECTION_OF() );
+    }
+
+
+    /**
+     * <p>
+     * Answer an {@link PathSet accessor} for the 
+     * <code>unionOf</code>
+     * property of a class or class description. The accessor
+     * can be used to perform a variety of operations, including getting and setting the value.
+     * </p>
+     * 
+     * @return An abstract accessor for the union class description
+     */
+    public PathSet p_unionOf() {
+        return asPathSet( getProfile().UNION_OF() );
+    }
+
+
+    /**
+     * <p>
+     * Answer an {@link PathSet accessor} for the 
+     * <code>complementOf</code>
+     * property of a class or class description. The accessor
+     * can be used to perform a variety of operations, including getting and setting the value.
+     * </p>
+     * 
+     * @return An abstract accessor for the complement class description
+     */
+    public PathSet p_complementOf() {
+        return asPathSet( getProfile().COMPLEMENT_OF() );
+    }
+
+
+    // Enumerated class constructor
+
+    /**
+     * <p>
+     * Answer an {@link PathSet accessor} for the 
+     * <code>oneOf</code>
+     * property of an enumerated class. The accessor
+     * can be used to perform a variety of operations, including getting and setting the value.
+     * </p>
+     * 
+     * @return An abstract accessor for the imports of an ontology element
+     */
+    public PathSet p_oneOf() {
+        return asPathSet( getProfile().ONE_OF() );
+    }
+    
 
      
 

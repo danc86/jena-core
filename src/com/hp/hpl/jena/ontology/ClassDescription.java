@@ -67,7 +67,7 @@ public interface ClassDescription
      * can be used to perform a variety of operations, including getting and setting the value.
      * </p>
      * 
-     * @return An abstract accessor for the imports of an ontology element
+     * @return An abstract accessor for the sub-class class axiom
      */
     public PathSet p_subClassOf();
     
@@ -79,7 +79,7 @@ public interface ClassDescription
      * can be used to perform a variety of operations, including getting and setting the value.
      * </p>
      * 
-     * @return An abstract accessor for the imports of an ontology element
+     * @return An abstract accessor for the class equivalance class axiom
      */
     public PathSet p_equivalentClass();
     
@@ -91,11 +91,11 @@ public interface ClassDescription
      * can be used to perform a variety of operations, including getting and setting the value.
      * </p>
      * 
-     * @return An abstract accessor for the imports of an ontology element
+     * @return An abstract accessor for the disjoint-with class axiom
      */
     public PathSet p_disjointWith();
 
-     
+
 
     // Internal implementation methods
     //////////////////////////////////
