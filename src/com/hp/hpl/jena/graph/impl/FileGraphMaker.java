@@ -7,7 +7,6 @@
 package com.hp.hpl.jena.graph.impl;
 
 import com.hp.hpl.jena.graph.*;
-import com.hp.hpl.jena.graph.impl.*;
 import java.io.*;
 import java.util.*;
 import com.hp.hpl.jena.shared.*;
