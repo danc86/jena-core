@@ -181,12 +181,23 @@ public class ReasonerTester {
      * @throws RDFException if the test can't be found or fails internally
      */
     public boolean runTests(ReasonerFactory reasonerF, TestCase testcase, Model configuration) throws IOException {
-        ResIterator tests = testManifest.listSubjectsWithProperty(RDF.type, testClass);
-        while (tests.hasNext()) {
-            String test = tests.next().toString();
+        for (Iterator i = listTests().iterator(); i.hasNext(); ) {
+            String test = (String)i.next();
             if (!runTest(test, reasonerF, testcase, configuration)) return false;
         }
         return true;
+    }
+    
+    /**
+     * Return a list of all test names defined in the manifest for this test harness.
+     */
+    public List listTests() {
+        List testList = new ArrayList();
+        ResIterator tests = testManifest.listSubjectsWithProperty(RDF.type, testClass);
+        while (tests.hasNext()) {
+            testList.add(tests.next().toString());
+        }
+        return testList;
     }
     
     /**
