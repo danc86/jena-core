@@ -5,7 +5,7 @@
 */
 package com.hp.hpl.jena.ontology.tidy;
 
-import java.util.Iterator;
+//import java.util.Iterator;
 
 import com.hp.hpl.jena.graph.Graph;
 import com.hp.hpl.jena.rdf.model.*;
