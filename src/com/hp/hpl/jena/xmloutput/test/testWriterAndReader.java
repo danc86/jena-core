@@ -221,8 +221,10 @@ public class testWriterAndReader
 			/* */
 			langsuite.addTest(new TestXMLFeatures("testSingleQuote", lang));
 			/* */
+            langsuite.addTest( new TestXMLFeatures("testNullBaseWithAbbrev", lang));
 		}
 		if (lang.equals("RDF/XML-ABBREV")) {
+           
 			langsuite.addTest(
 				new TestXMLFeatures("testNoPropAttr", "RDF/XML-ABBREV"));
 			/* */

@@ -90,7 +90,15 @@ public class TestXMLFeatures extends ModelTestBase {
         assertEquals( first, last );
         System.out.println( sw2.toString() );
         }
-        
+
+    /**
+        Writing a model with the base URI set to null should not throw a nullpointer exception.
+    */
+    public void testNullBaseWithAbbrev()
+        {
+        ModelFactory.createDefaultModel().write( new StringWriter(), lang, null );    
+        }
+                
 	public void testBug696057() throws IOException {
 		File f = File.createTempFile("jena", ".rdf");
 		String fileName = f.getAbsolutePath();

@@ -15,7 +15,7 @@ import com.hp.hpl.jena.graph.*;
     as a linked list [the context allows this].
 
 	@author kers
- */
+*/
 public class NodeToTriplesMap {
     HashMap map = new HashMap();
 
