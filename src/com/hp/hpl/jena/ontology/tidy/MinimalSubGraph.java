@@ -60,6 +60,7 @@ class MinimalSubGraph extends AbsChecker {
 			// todo cannot be empty, because if it were
 			// we would have found a contradiction.
 			Node n = (Node) todo.iterator().next();
+			todo.remove(n);
 			done.add(n);
 			if (unfinished(n)) {
 				if (extend(n))
