@@ -31,7 +31,9 @@ import java.util.*;
 
 /**
  * <p>
- * Simple demonstration program to show how to list a hierarchy of classes
+ * Simple demonstration program to show how to list a hierarchy of classes. This
+ * is not a complete solution to the problem (sub-classes of restrictions, for example,
+ * are not shown).  It is inteded only to be illustrative of the general approach.
  * </p>
  *
  * @author Ian Dickinson, HP Labs
