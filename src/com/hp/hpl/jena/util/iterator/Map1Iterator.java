@@ -41,32 +41,31 @@ import java.util.Iterator;
 public class Map1Iterator extends NiceIterator implements ClosableIterator
 {
 	Map1 map;
-	Iterator enum;
+	Iterator underlying;
         /**
          * Construct a list of the converted.
          * @param m The conversion to apply.
          * @param theDamned An Iterator over the unconverted.
          */
-	public Map1Iterator( Map1 m, Iterator theDamned) {
-		enum = theDamned;
+	public Map1Iterator( Map1 m, Iterator iterator) {
+		underlying = iterator;
 		map = m;
 	}
 	public boolean hasNext() {
-			   return enum.hasNext();
+			   return underlying.hasNext();
 	}
 	public Object next() {
-		return map.map1(enum.next());
+		return map.map1(underlying.next());
 	}
     /**
      * <code>remove()</code> the unconverted object from the underlying Iterator.
      *
      */
     public void remove() {
-      enum.remove();
+      underlying.remove();
     }
     public void close() {
-    	if ( enum instanceof ClosableIterator )
-    	  ((ClosableIterator)enum).close();
+    	WrappedIterator.close( underlying );
     }
 
 }

@@ -8,21 +8,21 @@ package com.hp.hpl.jena.util.iterator;
 import java.util.Iterator;
 /**
     @author jjchplb
+    OBSOLETE: use ClosableWrapper instead.
 */
 
-public class ClosableIteratorImpl extends NiceIterator implements ClosableIterator {
+class ClosableIteratorImpl extends NiceIterator implements ClosableIterator {
     final protected Iterator underlying;
-    public ClosableIteratorImpl(Iterator u) {
+    private ClosableIteratorImpl(Iterator u) {
     	underlying = u;
     }
 	/**
 	 * @see ClosableIterator#close()
 	 */
 	public void close() {
-		if (underlying instanceof ClosableIterator)
-		  ((ClosableIterator)underlying).close();
+		WrappedIterator.close( underlying );
 	}
-
+    
 	/**
 	 * @see Iterator#hasNext()
 	 */
