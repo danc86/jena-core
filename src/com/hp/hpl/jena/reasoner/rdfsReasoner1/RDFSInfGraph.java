@@ -296,16 +296,6 @@ public class RDFSInfGraph extends BaseInfGraph {
     public InfGraph bind(Graph data) throws ReasonerException {
         throw new ReasonerException("Attempt to bind multiple datasets - disallowed for now");
     }
-
-    /**
-     * Basic pattern lookup interface.
-     * @param pattern a TriplePattern to be matched against the data
-     * @return a ExtendedIterator over all Triples in the data set
-     *  that match the pattern
-     */
-    public ExtendedIterator find(TriplePattern pattern) {
-        return findWithContinuation(pattern, null);
-    }
     
     /**
      * Extended find interface used in situations where the implementator
