@@ -252,17 +252,15 @@ public class LPBRuleEngine {
     }
     
     /**
-     * Run the scheduled generators until the given generator is ready to run
-     * then run that generator until it generates some results or closes.
+     * Run the scheduled generators until the given generator is ready to run.
      */
-    public synchronized void pump(LPAgendaEntry gen) {
+    public synchronized void pump(LPInterpreterContext gen) {
         while(!gen.isReady()) {
             if (agenda.isEmpty()) return;
             // TODO: Consider scanning agenda for entries with max # dependents
             LPAgendaEntry next = (LPAgendaEntry) agenda.removeFirst();
             next.pump();
         }
-        gen.pump();
     }
  
 }

@@ -62,11 +62,11 @@ public class TestBasicLP  extends TestCase {
      * This is its own test suite
      */
     public static TestSuite suite() {
-//        return new TestSuite( TestBasicLP.class );
+        return new TestSuite( TestBasicLP.class );
         
-        TestSuite suite = new TestSuite();
-        suite.addTest(new TestBasicLP( "testTabled6" ));
-        return suite;
+//        TestSuite suite = new TestSuite();
+//        suite.addTest(new TestBasicLP( "testTabled6" ));
+//        return suite;
     }  
    
     /**
@@ -700,28 +700,28 @@ public class TestBasicLP  extends TestCase {
                 } );
     }
     
-//    /**
-//     * Test tabled predicates. Simple transitive closure over normal predicates
-//     */
-//    public void testTabled3() {
-//        doTest("[r1: (?x p ?z) <- (?x p ?y), (?y p ?z)]" +
-//               "[r2: (?x p ?z) <- (?x e ?z), (?z q ?z)]",
-//                new Node[] { p },
-//                new Triple[] {
-//                    new Triple(a, e, b),
-//                    new Triple(a, e, d),
-//                    new Triple(b, e, c),
-//                    new Triple(a, q, a),
-//                    new Triple(b, q, b),
-//                    new Triple(c, q, c),
-//                },
-//                new Triple(a, p, Node.ANY),
-//                new Object[] {
-//                    new Triple(a, p, b),
-////                    new Triple(b, p, c),
-//                    new Triple(a, p, c)
-//                } );
-//    }
+    /**
+     * Test tabled predicates. Simple transitive closure over normal predicates
+     */
+    public void testTabled3() {
+        doTest("[r1: (?x p ?z) <- (?x p ?y), (?y p ?z)]" +
+               "[r2: (?x p ?z) <- (?x e ?z), (?z q ?z)]",
+                new Node[] { p },
+                new Triple[] {
+                    new Triple(a, e, b),
+                    new Triple(a, e, d),
+                    new Triple(b, e, c),
+                    new Triple(a, q, a),
+                    new Triple(b, q, b),
+                    new Triple(c, q, c),
+                },
+                new Triple(a, p, Node.ANY),
+                new Object[] {
+                    new Triple(a, p, b),
+//                    new Triple(b, p, c),
+                    new Triple(a, p, c)
+                } );
+    }
     
     /**
      * Test tabled predicates. Co-routining example.
