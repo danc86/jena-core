@@ -30,6 +30,7 @@ public class BuiltinPersonalities {
         // ontology additions
         .add( OntList.class, OntListImpl.factory )
         .add( Ontology.class, OntologyImpl.factory )
+        .add( OntClass.class, OntClassImpl.factory )
         ;		
 }
 

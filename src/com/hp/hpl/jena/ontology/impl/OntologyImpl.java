@@ -46,6 +46,10 @@ public class OntologyImpl
     // Constants
     //////////////////////////////////
 
+
+    // Static variables
+    //////////////////////////////////
+
     /**
      * A factory for generating Ontology facets from nodes in enhanced graphs.
      */
@@ -54,8 +58,6 @@ public class OntologyImpl
     };
 
 
-    // Static variables
-    //////////////////////////////////
 
     // Instance variables
     //////////////////////////////////

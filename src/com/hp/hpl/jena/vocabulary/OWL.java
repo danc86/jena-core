@@ -94,10 +94,10 @@ public class OWL
 
 
     /** Property denoting the OWL predicate that states that two given properties are equivalent */
-    public static final Property samePropertyAs               = m_vocabModel.createProperty( OWL.NAMESPACE, "samePropertyAs"         );
+    public static final Property equivalentProperty           = m_vocabModel.createProperty( OWL.NAMESPACE, "equivalentProperty"         );
 
     /** Property denoting the OWL predicate that states that two given classes are equivalent */
-    public static final Property sameClassAs                  = m_vocabModel.createProperty( OWL.NAMESPACE, "sameClassAs"            );
+    public static final Property equivalentClass              = m_vocabModel.createProperty( OWL.NAMESPACE, "equivalentClass"            );
 
     /** Property denoting the OWL predicate that states that one class has no instances in common with another */
     public static final Property disjointWith                 = m_vocabModel.createProperty( OWL.NAMESPACE, "disjointWith"               );

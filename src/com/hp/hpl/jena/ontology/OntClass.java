@@ -22,6 +22,7 @@
 package com.hp.hpl.jena.ontology;
 
 
+
 // Imports
 ///////////////
 
@@ -44,7 +45,6 @@ public interface OntClass
 
     // External signature methods
     //////////////////////////////////
-
 
 }
 

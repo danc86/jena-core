@@ -226,7 +226,7 @@ public interface Profile
      * 
      * @return The property that denotes equivalence between two property resources.
      */
-    public Property SAME_PROPERTY_AS();
+    public Property EQUIVALENT_PROPERTY();
     
     
     /**
@@ -236,7 +236,7 @@ public interface Profile
      * 
      * @return The property that denotes equivalence between two class expressions.
      */
-    public Property SAME_CLASS_AS();
+    public Property EQUIVALENT_CLASS();
     
     
     /**
@@ -478,6 +478,29 @@ public interface Profile
      * @return The property that denotes ontology element backwards incompatability.
      */
     public Property INCOMPATIBLE_WITH();
+    
+    
+    /**
+     * <p>
+     * Answer the predicate that denotes that one class is a sub-class of another.
+     * </p>
+     * 
+     * @return The property that the sub-class relationship.
+     */
+    public Property SUB_CLASS_OF();
+    
+    
+    /**
+     * <p>
+     * Answer the predicate that denotes that one property is a sub-property of another.
+     * </p>
+     * 
+     * @return The property that denotes the sub-property relationship.
+     */
+    public Property SUB_PROPERTY_OF();
+    
+    
+    
 }
 
 

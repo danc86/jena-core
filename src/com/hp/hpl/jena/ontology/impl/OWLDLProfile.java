@@ -32,14 +32,14 @@ import com.hp.hpl.jena.rdf.model.*;
 
 /**
  * <p>
- * Ontology language profile implementation for the Full variant of the OWL 2002/07 language.
+ * Ontology language profile implementation for the DL variant of the OWL 2002/07 language.
  * </p>
  *
  * @author Ian Dickinson, HP Labs
  *         (<a  href="mailto:Ian.Dickinson@hp.com" >email</a>)
  * @version CVS $Id$
  */
-public class OWLProfile
+public class OWLDLProfile
     implements Profile
 {
     // Constants
