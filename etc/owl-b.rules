@@ -1,5 +1,8 @@
 #------------------------------------------------------------------
 # OWL rule set v0.1
+# This rule set is design to implement owl(f)lite using pure
+# tabled backward chaining. It is experimental and not fully debugged.
+# $Id$
 #------------------------------------------------------------------
 
 #------------------------------------------------------------------

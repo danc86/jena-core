@@ -1,4 +1,11 @@
 #------------------------------------------------------------------
+# RDFS rule set v0.1.
+# This variant has been tweaked slightly to include some explicit
+# clause reordering to improve performance with a backward chainer.
+# $Id$
+#------------------------------------------------------------------
+
+#------------------------------------------------------------------
 # RDFS Axioms
 #------------------------------------------------------------------
 
