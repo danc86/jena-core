@@ -79,7 +79,7 @@ public interface IRDBDriver {
 	 * 
 	 * @since Jena 2.0
 	 */
-	public void removeSpecializedGraphs(DBPropGraph graphProperties);
+	public void removeSpecializedGraphs(DBPropGraph graphProperties, List specializedGraphs);
 	
 	/**
 	 * Test if the database has previously been formatted (there's no other
