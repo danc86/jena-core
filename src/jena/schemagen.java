@@ -730,7 +730,7 @@ public class schemagen {
     protected void writeNamespace() {
         String nsURI = determineNamespaceURI();
         
-        writeln( 1, "/** <p>The namespace of the vocabalary as a string {@value}</p> */" );
+        writeln( 1, "/** <p>The namespace of the vocabalary as a string ({@value})</p> */" );
         writeln( 1, "public static final String NS = \"" + nsURI + "\";" );
         writeln( 1 );
         
@@ -739,7 +739,7 @@ public class schemagen {
         writeln( 1, "public static String getURI() {return NS;}" );
         writeln( 1 );
         
-        writeln( 1, "/** <p>The namespace of the vocabalary as a resource {@value}</p> */" );
+        writeln( 1, "/** <p>The namespace of the vocabalary as a resource</p> */" );
         writeln( 1, "public static final Resource NAMESPACE = m_model.createResource( NS );" );
         writeln( 1 );
     }
