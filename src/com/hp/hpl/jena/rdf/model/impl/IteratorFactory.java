@@ -22,7 +22,7 @@ import com.hp.hpl.jena.graph.*;
  *  Builds Jena Iterators and other things (RDFNode and Statement)
  *  needed in a Model.
  */
-final class IteratorFactory {
+public final class IteratorFactory {
 
     private IteratorFactory(){}
 	/**

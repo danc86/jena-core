@@ -868,28 +868,6 @@ implements Model, PrefixMapping, ModelLock
                 pm.setNsPrefix( key, (String) niceValues.iterator().next() );
             }            
         }
-    
-    public ExtendedIterator queryBindingsWith( Model m, Resource [] variables )
-        {
-        Map1 mm = new Map1()
-            { public Object map1( Object x ) { return mappy( x ); } };
-        QueryMapper qm = new QueryMapper( m, variables );
-        return
-            qm.getQuery().executeBindings( getGraph(), qm.getVariables() )
-            .mapWith( mm )
-            ;
-        }
-        
-    public List mappy( Object x )
-        {
-        List L = (List) x;
-        ArrayList result = new ArrayList( L.size() );
-        for (int i = 0; i < L.size(); i += 1) result.add( asRDF( (Node) L.get( i ) ) );
-        return result;
-        }
-
-    private RDFNode asRDF( Node n )
-        { return IteratorFactory.asRDFNode( n, this ); }
         
     public StmtIterator listStatements()  {
         return IteratorFactory.asStmtIterator( GraphUtil.findAll( graph ), this);

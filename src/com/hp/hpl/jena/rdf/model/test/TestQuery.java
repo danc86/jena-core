@@ -9,6 +9,7 @@ package com.hp.hpl.jena.rdf.model.test;
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.rdf.model.impl.*;
 import com.hp.hpl.jena.util.iterator.*;
+import com.hp.hpl.jena.util.*;
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.graph.test.*;
 
@@ -72,11 +73,11 @@ public class TestQuery extends ModelTestBase
             assertEquals( "variable did not convert", vOut[i], result[i] );
         }
         
-    public void testXXX()
+    public void testModelQuery()
         { 
-        Model m = modelWithStatements( "a R b; b S c; a R p; p T d" );
+        ModelCom m = (ModelCom) modelWithStatements( "a R b; b S c; a R p; p T d" );
         Model q = modelWithStatements( "jqv:x R jqv:y; jqv:y S jqv:z" );
-        ExtendedIterator it = m.queryBindingsWith( q, resources( q, "jqv:x jqv:z") );
+        ExtendedIterator it = ModelQueryUtil.queryBindingsWith( m, q, resources( q, "jqv:x jqv:z") );
         assertTrue( it.hasNext() );
         assertEquals( Arrays.asList( resources( m, "a c" ) ), it.next() );
         assertFalse( "", it.hasNext() );
