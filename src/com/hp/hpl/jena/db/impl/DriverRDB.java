@@ -731,7 +731,7 @@ public abstract class DriverRDB implements IRDBDriver {
 		ResultSetIterator it = null;
 		try {
 			String opname = "SelectJenaSequences";
-			PreparedStatement ps = m_sql.getPreparedSQLStatement(opname);
+			PreparedStatement ps = m_sql.getPreparedSQLStatement(opname, TABLE_NAME_PREFIX);
 		    ResultSet rs = ps.executeQuery();
 		    while (rs.next()) {
 		    	results.add(rs.getString(1));
