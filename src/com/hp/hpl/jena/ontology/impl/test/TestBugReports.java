@@ -144,7 +144,7 @@ public class TestBugReports
         spec.setReasoner(null);
         OntModel ontModel = ModelFactory.createOntologyModel(spec, null);
         OntProperty property = ontModel.createObjectProperty("http://www.aldi.de#property");
-        MinCardinalityRestriction testClass = ontModel.createMinCardinalityRestriction( null, property, 42);
+        /*MinCardinalityRestriction testClass = */ontModel.createMinCardinalityRestriction( null, property, 42);
         
     }
     
