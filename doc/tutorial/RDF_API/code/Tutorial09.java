@@ -4,8 +4,6 @@
   $Id$
 */
 
-package com.hp.hpl.jena.tutorial.rdf;
-
 import com.hp.hpl.jena.rdf.model.*;
 
 import java.io.*;
