@@ -13,8 +13,6 @@ package com.hp.hpl.jena.rdql;
 
 // There is a separate settable interface
 
-import com.hp.hpl.jena.rdf.model.Resource;
-
 public interface Value extends Printable
 {
     public boolean isNumber() ;

@@ -6,7 +6,6 @@
 package com.hp.hpl.jena.rdql;
 
 import java.util.*;
-import java.io.PrintWriter ;
 
 /** The main QueryResults implementation for returning results from queries.
  * This version is "use once" - you can not reset the result set because

@@ -8,17 +8,11 @@ package com.hp.hpl.jena.rdql.test;
 // Unsubtle JUnit-ization of some test code.
 // This will be replaced by a more general testing of queries.
 
-import java.io.* ;
 import junit.framework.* ;
 
 import com.hp.hpl.jena.rdql.* ;
-import com.hp.hpl.jena.rdql.parser.* ;
-
-import java.io.* ;
-import java.util.* ;
 
 import com.hp.hpl.jena.rdf.model.* ;
-import com.hp.hpl.jena.rdf.model.impl.* ;
 import com.hp.hpl.jena.mem.* ;
 
 

@@ -12,7 +12,6 @@
 package com.hp.hpl.jena.rdql;
 
 import com.hp.hpl.jena.rdf.model.* ;
-import java.util.* ;
 
 public class Environment extends ResultBinding
 {

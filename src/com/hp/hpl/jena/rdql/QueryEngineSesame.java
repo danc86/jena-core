@@ -9,7 +9,6 @@ import java.util.*;
 import java.net.*;
 import java.io.*;
 
-import com.hp.hpl.jena.rdf.model.impl.*;
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.mem.*;
 

@@ -7,7 +7,6 @@ package com.hp.hpl.jena.rdql;
 
 import java.util.* ;
 import java.io.* ;
-import com.hp.hpl.jena.rdf.model.* ;
 
 /** <p>Takes a QueryResult object and returns formatted (in various ways)
  *  Useful for the scripting interface.

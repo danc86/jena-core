@@ -6,7 +6,6 @@
 package com.hp.hpl.jena.rdql;
 
 import java.util.*;
-import java.io.PrintWriter ;
 
 /** Results from a query in a "ResultSet"-like manner.
  *  Each row corresponds to a set of bindings which fulfil the conditions
