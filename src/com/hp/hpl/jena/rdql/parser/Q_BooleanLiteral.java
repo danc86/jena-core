@@ -1,5 +1,5 @@
 /*
- * (c) Copyright 2001, 2002, 2003, Hewlett-Packard Development Company, LP
+ * (c) Copyright 2001, 2002, 2003, 2004 Hewlett-Packard Development Company, LP
  * [See end of file]
  * 
  * $Id$
@@ -22,12 +22,12 @@ public class Q_BooleanLiteral extends ParsedLiteral implements ExprBoolean
 
   void set(String s)
   {
-    setBoolean(s.equals("true"));
+    _setBoolean(s.equals("true"));
   }
 }
 
 /*
- *  (c) Copyright 2001, 2002, 2003 Hewlett-Packard Development Company, LP
+ *  (c) Copyright 2001, 2002, 2003, 2004 2004 Hewlett-Packard Development Company, LP
  *  All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without

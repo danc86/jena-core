@@ -1,33 +1,44 @@
 /*
- * (c) Copyright 2001, 2002, 2003, Hewlett-Packard Development Company, LP
+ * (c) Copyright 2004, Hewlett-Packard Development Company, LP
+ * All rights reserved.
  * [See end of file]
  */
 
-package com.hp.hpl.jena.rdql;
+package com.hp.hpl.jena.rdql.parser;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import com.hp.hpl.jena.graph.Node ;
+import com.hp.hpl.jena.rdql.Printable;
 
-/** Class to define the operating environment for RDQL.
- *  Provides some utility operations like assert and handling unexpected exceptions
- * @author		Andy Seaborne
- * @version 	$Id$
+/** A dynamically typed slot 
+ * 
+ * 
+ * @author Andy Seaborne
+ * @version $Id$
  */
 
-public class QSys
+public interface NodeValue extends Printable
 {
-    protected static Log logger = LogFactory.getLog( QSys.class );
+    public boolean isNumber() ;
+    public boolean isInt() ;
+    public boolean isDouble() ;
+    public boolean isBoolean() ;
+    public boolean isString() ;
+    public boolean isURI() ;
+    public boolean isNode() ;
+
+    public long getInt() ;
+    public double getDouble() ;
+    public boolean getBoolean() ;
+    public String getString() ;
+    public String getURI() ;
+    public Node getNode() ;
     
-    public static void unhandledException(Throwable t, String className, String methodName)
-    {
-        String tmp = Thread.currentThread().getName() ;
-        logger.error("("+tmp+") Unhandled exception" + className + "." + methodName, t );
-    }
+    public String valueString() ;
 }
 
 /*
- *  (c) Copyright 2001, 2002, 2003 Hewlett-Packard Development Company, LP
- *  All rights reserved.
+ * (c) Copyright 2004 Hewlett-Packard Development Company, LP
+ * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions

@@ -1,5 +1,5 @@
 /*
- * (c) Copyright 2001, 2002, 2003, Hewlett-Packard Development Company, LP
+ * (c) Copyright 2001, 2002, 2003, 2004 Hewlett-Packard Development Company, LP
  * [See end of file]
  */
 
@@ -9,21 +9,27 @@
  */
 
 
-package com.hp.hpl.jena.rdql;
+package com.hp.hpl.jena.rdql.parser;
 
-import com.hp.hpl.jena.rdql.parser.ParsedLiteral ;
 
 /**  Working variables are settable values for holding intermediate results.
  */
 
-public class WorkingVar extends ParsedLiteral implements Value, Printable, Settable, Cloneable
+public class WorkingVar extends ParsedLiteral implements Cloneable, NodeValueSettable
 {
     public WorkingVar() { super() ; }
-    public WorkingVar(Value v) { super(v) ; } 
+    public WorkingVar(NodeValue v) { super(v) ; } 
+    
+    public void setInt(long i)             { _setInt(i) ; }
+    public void setDouble(double d)        { _setDouble(d) ; }
+    public void setBoolean(boolean b)      { _setBoolean(b) ; }
+    public void setString(String s)        { _setString(s) ; }
+    public void setURI(String uri)         { _setURI(uri) ; }
+    public void setNode(com.hp.hpl.jena.graph.Node n)            { _setNode(n) ; }
 }
 
 /*
- *  (c) Copyright 2001, 2002, 2003 Hewlett-Packard Development Company, LP
+ *  (c) Copyright 2001, 2002, 2003, 2004 2004 Hewlett-Packard Development Company, LP
  *  All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without

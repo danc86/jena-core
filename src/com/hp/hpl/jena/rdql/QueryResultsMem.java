@@ -1,5 +1,5 @@
 /*
- * (c) Copyright 2001, 2002, 2003, Hewlett-Packard Development Company, LP
+ * (c) Copyright 2001, 2002, 2003, 2004 Hewlett-Packard Development Company, LP
  * [See end of file]
  */
 
@@ -130,19 +130,10 @@ public class QueryResultsMem implements QueryResultsRewindable
     public boolean hasNext() { return iterator.hasNext() ; }
 
     /** Moves onto the next result possibility.
-     */
-    
-    public ResultBinding nextResultBinding()
-    {
-        rowNumber++ ;
-        return (ResultBinding)iterator.next() ;
-    }
-    
-    /** Moves onto the next result possibility.
-     *  The returned object should be of class ResultBinding
+     *  The returned object should be of class ResultBindingImpl
      */
 
-    public Object next() { return  nextResultBinding() ; }
+    public Object next() { rowNumber++ ; return iterator.next() ; }
 
     /** Close the results set.
      *  Should be called on all QueryResults objects
@@ -150,8 +141,8 @@ public class QueryResultsMem implements QueryResultsRewindable
 
     public void close()
     {
-        // Free early - may be large
-        rows = null ;
+        // Can be rewound - do do throw away.
+        //rows = null ;
         iterator = null ;
         varNames = null ;
         return ;
@@ -174,7 +165,7 @@ public class QueryResultsMem implements QueryResultsRewindable
     public List getResultVars() { return varNames ; }
 
     /** Convenience function to consume a query.
-     *  Returns a list of {@link ResultBinding}s.
+     *  Returns a list of {@link ResultBindingImpl}s.
      *
      *  @return List
      *  @deprecated   Old QueryResults operation
@@ -209,7 +200,7 @@ public class QueryResultsMem implements QueryResultsRewindable
             for ( ; solnIter.hasNext() ; )
             {
                 // foreach row
-                ResultBinding rb = new ResultBinding() ;
+                ResultBindingImpl rb = new ResultBindingImpl() ;
                 count++ ;
 
                 Resource soln = solnIter.nextStatement().getResource() ;
@@ -237,7 +228,7 @@ public class QueryResultsMem implements QueryResultsRewindable
             {
                 try {
                     int size = root.getRequiredProperty(ResultSet.size).getInt() ;
-                    if ( size < count )
+                    if ( size != count )
                         System.err.println("Warning: Declared size = "+size+" : Count = "+count) ;
                 } catch (JenaException rdfEx) {}
             }
@@ -309,7 +300,7 @@ public class QueryResultsMem implements QueryResultsRewindable
 
 
 /*
- *  (c) Copyright 2001, 2002, 2003 Hewlett-Packard Development Company, LP
+ *  (c) Copyright 2001, 2002, 2003, 2004 Hewlett-Packard Development Company, LP
  *  All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without

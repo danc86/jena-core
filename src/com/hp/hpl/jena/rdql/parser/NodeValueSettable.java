@@ -1,55 +1,30 @@
 /*
- * (c) Copyright 2001, 2002, 2003, Hewlett-Packard Development Company, LP
+ * (c) Copyright 2001, 2002, 2003, 2004 Hewlett-Packard Development Company, LP
  * [See end of file]
+ */
+
+/**
+ * @author   Andy Seaborne
+ * @version  $Id$
  */
 
 package com.hp.hpl.jena.rdql.parser;
 
-import com.hp.hpl.jena.rdql.*;
-//import com.hp.hpl.jena.util.* ;
+import com.hp.hpl.jena.graph.Node;
 
-public class ConstraintExpr implements Constraint
+interface NodeValueSettable extends NodeValue
 {
-    Expr expr ;
-
-    ConstraintExpr(Expr _expr)
-    {
-        expr = _expr ;
-    }
-
-    public boolean isSatisfied(Query q, ResultBinding env)
-    {
-        if ( expr == null )
-            // This expression is in error
-            return false ;
-
-        try {
-            return expr.eval(q, env).getBoolean() ;
-        }
-        catch (EvalFailureException e) //Includes EvalTypeException
-        {
-            // Check all exceptions possible.
-            //expr = null ;
-            return false ;
-        }
-        catch (Exception e)
-        {
-            // Shouldn't happen
-            QSys.unhandledException(e, "ConstraintExpr", "isSatified") ;
-            return false ;
-        }
-    }
-
-    // Used in printing a query - not for getting the string
-    // value of a expression (which itself must be unquoted)
-    public String toString()
-    {
-        return expr.asInfixString() ;
-    }
+    public void setInt(long i) ;
+    public void setDouble(double d) ;
+    public void setBoolean(boolean b) ;
+    public void setString(String s) ;
+    public void setURI(String uri) ;
+    public void setNode(Node n) ;
+    public String valueString() ; 
 }
 
 /*
- *  (c) Copyright 2001, 2002, 2003 Hewlett-Packard Development Company, LP
+ *  (c) Copyright 2001, 2002, 2003, 2004 2004 Hewlett-Packard Development Company, LP
  *  All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
