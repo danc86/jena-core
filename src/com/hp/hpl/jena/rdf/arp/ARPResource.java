@@ -101,6 +101,7 @@ class ARPResource implements  AResource {
     final private int genId = genIdCounter++;
     private int liCounter = 1;
     static String dummy = "http://jena.hpl.hp.com/arp/not/a/real/uri/";
+	static String nullDummy = "nullpointerexception://jena.hpl.hp.com/arp/";
     
     ARPResource(ARPFilter parent) {
         arp = parent;

@@ -626,7 +626,7 @@ URIReference uriReference(XMLContext ctxt)
 String idSymbol(XMLContext ctxt)     : { Token t; 
                                        }
 { t=<AV_STRING>                        { StrToken strtok = (StrToken)t;
-                                         String rslt = ctxt.getBase()+"#"+ strtok.value;
+                                         String rslt = ctxt.resolveSameDocRef(t.location, "#"+ strtok.value);
                                          X.checkIdSymbol(ctxt,strtok,rslt); 
                                          return  rslt;
                                        }

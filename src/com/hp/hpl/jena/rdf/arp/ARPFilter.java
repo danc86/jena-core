@@ -248,19 +248,31 @@ class ARPFilter
 		return pipe == null ? null : pipe.getLocator();
 	}
 	synchronized public void parse(InputSource input)
+	 throws IOException, SAXException  {
+		parse(input,input.getSystemId() );
+	}
+	synchronized public void parse(InputSource input, String base)
 		throws IOException, SAXException {
 		// Make sure we have a sane state for
 		// Namespace processing.
 		nodeIdUserData = new HashMap();
-		String base = input.getSystemId();
-		if (base == null)
+		//String base = input.getSystemId();
+		if (base == null) {
 			warning(
-				WARN_XMLBASE_MISSING,
-				"Base URI not specified for input file; local references will expand incorrectly.");
-		else
+			    IGN_NO_BASE_URI_SPECIFIED,
+				"Base URI not specified for input file; local URI references will be in error.");
+		    documentContext = new XMLNullContext(this, ERR_RESOLVING_URI_AGAINST_NULL_BASE);
+
+		} else if ( base.equals("")) {
+			warning(
+							IGN_NO_BASE_URI_SPECIFIED,
+							"Base URI specified as \"\"; local URI references will not be resolved.");
+						documentContext = new XMLNullContext(this, WARN_RESOLVING_URI_AGAINST_EMPTY_BASE);
+		} else {
 			base = ParserSupport.truncateXMLBase(base);
 
-		documentContext = new XMLContext(base, "");
+		   documentContext = new XMLContext(base);
+		}
 		// Start the RDFParser
 		pipe = new TokenPipe(this);
 		pullParser.setInputSource(convert(input));
@@ -396,7 +408,20 @@ class ARPFilter
 
 	private void warning(int id, String s) {
 		try {
-			getErrorHandler().warning(new ParseException(id, s));
+			switch(errorMode[id]) {
+				case EM_IGNORE:
+				break;
+				case EM_WARNING:
+				 getErrorHandler().warning(new ParseException(id, s));
+				 break;
+				case EM_ERROR:
+				 getErrorHandler().error(new ParseException(id, s));
+				 break;
+				case EM_FATAL:
+				 getErrorHandler().fatalError(new ParseException(id, s));
+				 break;
+			}
+				 
 		} catch (SAXException e) {
 			throw new WrappedException(e);
 		}

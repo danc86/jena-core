@@ -49,21 +49,21 @@ class URIReference  implements AResource
 
     
     /** Creates new URIReference */
-    final private URI uri;
-    URIReference(XMLContext ctxt,String uri) throws MalformedURIException  {
+    final private String uri;
+    URIReference(Location l, XMLContext ctxt,String uri) throws MalformedURIException, ParseException {
         
 //        this.uri = new URI(ctxt.getURI(),URIref.encode(uri));
-        this.uri = new URI(ctxt.getURI(),uri);
+        this.uri = ctxt.resolve(l, uri);
     }
     URIReference(String uri)  throws MalformedURIException  {
 //        this.uri = new URI(URIref.encode(uri));
-        this.uri = new URI(uri);
+        this.uri = new URI(uri).getURIString();
     }
     URIReference() {
         uri = null;
     }
     public String toString() {
-        return uri.toString();
+        return uri;
     }
 
     public boolean isAnonymous() {
@@ -75,7 +75,7 @@ class URIReference  implements AResource
     }
     
     public String getURI() {
-        return uri.getURIString();
+        return uri;
     }
     
     private Object userData;

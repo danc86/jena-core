@@ -264,13 +264,13 @@ class ParserSupport
 
 		checkEncoding(s);
 		try {
-			URIReference rslt = new URIReference(ctxt, val);
+			URIReference rslt = new URIReference(t.location, ctxt, val);
 			if (val.indexOf(':') == -1) {
 				if (!ctxt.isSameAsDocument()) {
 					boolean bad = false;
 					try {
 						URIReference other =
-							new URIReference(ctxt.getDocument(), val);
+							new URIReference(t.location, ctxt.getDocument(), val);
 						bad = !other.equals(rslt);
 					} catch (Exception e) {
 						// Note resolving the URIReference above may not work.

@@ -56,10 +56,10 @@ public class testModelEquals extends Object {
                 empty(m1); empty(m2);
                 m1.read(
                     ResourceReader.getInputStream(filebase + Integer.toString(n) + "-1.rdf"),
-                    "");
+                    "http://www.example.org/");
                 m2.read(
                     ResourceReader.getInputStream(filebase + Integer.toString(n) + "-2.rdf"),
-                    "");
+                    "http://www.example.org/");
                 if (! (m1.isIsomorphicWith(m2) == results[n])) {
                     error(test, n);
                     System.out.println("m1:");

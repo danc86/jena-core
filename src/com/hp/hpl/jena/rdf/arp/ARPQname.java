@@ -66,13 +66,16 @@ class ARPQname extends Token {
         URIReference uri;
         try {
             uri = new URIReference(nameSpace+local);
+            /*
             if (nameSpace.startsWith("#"))
                 System.err.println(nameSpace+local);
+                */
         }
         catch ( MalformedURIException mal ) {
             // Distinguish between relative namespaces and other problems.
             try {
-                new URI(arp.documentContext.getURI(),nameSpace+local);
+            	arp.documentContext.resolve(location, nameSpace+local);
+                //new URI(arp.documentContext.getURI(),nameSpace+local);
                 // May have been relative namespace, since this is now OK.
                 // Or maybe unqualified element.
                 if ( nameSpace.length() == 0 ) {

@@ -107,7 +107,7 @@ public class testReaderInterface extends Object {
                     }
 
 
-            n++; m1.read(ResourceReader.getInputStream(filebase + "1.rdf"), "");
+            n++; m1.read(ResourceReader.getInputStream(filebase + "1.rdf"), "http://example.org/");
 
             n++; m1.read(
                     ResourceReader.getInputStream(filebase + "2.nt"),  "", "N-TRIPLE");

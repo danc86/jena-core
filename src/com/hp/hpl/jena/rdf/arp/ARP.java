@@ -260,7 +260,7 @@ IOException {
         //load(new InputStreamReader(in),xmlBase);
         InputSource inputS = new InputSource(in);
         inputS.setSystemId(xmlBase);
-        arpf.parse(inputS);
+        arpf.parse(inputS, xmlBase);
     }
 /** Load RDF/XML from an InputStream, using base URL http://unknown.org/.
  * @param in The input XML document.
@@ -268,7 +268,7 @@ IOException {
  * @throws IOException Occurring during XML processing.
  */   
     public void load(InputStream in) throws SAXException, IOException {
-        load(in,"http://unknown.org/");
+        load(in,"");
     }
 /** Load RDF/XML from a Reader, using base URL http://unknown.org/.
  * @param in The input XML document.
@@ -276,6 +276,6 @@ IOException {
  * @throws IOException Occurring during XML processing.
  */    
     public void load(Reader in) throws SAXException, IOException {
-        load(in,"http://unknown.org/");
+        load(in,"");
     }
 }
