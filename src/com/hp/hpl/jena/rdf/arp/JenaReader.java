@@ -50,6 +50,8 @@ import com.hp.hpl.jena.rdf.model.impl.LiteralImpl;
 import com.hp.hpl.jena.rdf.model.impl.ModelCom;
 import com.hp.hpl.jena.rdf.model.impl.RDFDefaultErrorHandler;
 
+import com.hp.hpl.jena.util.JenaException;
+
 import java.io.*;
 import java.net.*;
 
@@ -242,7 +244,7 @@ public class JenaReader implements RDFReader, ARPErrorNumbers {
             arpf.setErrorHandler(new ARPSaxErrorHandler(errorHandler));
             arpf.parse(inputS);
         } catch (IOException e) {
-            throw new RDFException(e);
+            throw new JenaException(e);
         } catch (SAXException e) {
             throw new RDFException(e);
         }

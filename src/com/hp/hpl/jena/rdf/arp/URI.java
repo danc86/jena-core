@@ -388,7 +388,7 @@ public class URI implements Serializable {
 			if (p_base == null // del jjc: && fragmentIdx != 0
 			) {
 				// Nothing to be relative against.
-				throw new MalformedURIException("No scheme found in URI.");
+				throw new MalformedURIException("No scheme found in URI." + p_uriSpec );
 			} else {
 				if ((!p_base.isGenericURI()) && fragmentIdx != 0)
 					// Can't be relative against opaque URI (except using the #frag).

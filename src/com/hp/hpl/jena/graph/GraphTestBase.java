@@ -16,6 +16,7 @@ import com.hp.hpl.jena.util.iterator.*;
 import com.hp.hpl.jena.mem.*;
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.test.*;
+import com.hp.hpl.jena.util.*;
 
 import java.util.*;
 import java.io.*;
@@ -120,7 +121,6 @@ public class GraphTestBase extends JenaTestBase
         
     public static void assertEqualsTemplate( String title, Graph g, String template )
         {
-        // one was: assertTrue( title, new ModelMem( g ) .equals( new ModelMem( graphWith( template ) ) ) );
         assertTrue( title, g.isIsomorphicWith( graphWith( template ) ) );
         }
         
@@ -197,6 +197,49 @@ public class GraphTestBase extends JenaTestBase
             System.out.println( "  " + t.getSubject() + " @" + t.getPredicate() + " " + t.getObject() );
             }
         }
+
+    /**
+        create a temporary file that will be deleted on exit, and do something
+        sensible with any IO exceptions - namely, throw them up wrapped in
+        a JenaException.
+    
+        @param prefix the prefix for File.createTempFile
+        @param suffix the suffix for File.createTempFile
+        @return the temporary File
+    */
+    public static  File tempFileName( String prefix, String suffix )
+        {
+        File result = new File( getTempDirectory(), prefix + randomNumber() + suffix );
+        if (result.exists()) return tempFileName( prefix, suffix );
+        result.deleteOnExit();
+        return result;
+        }  
+
+    private static int counter = 0;
+
+    private static int randomNumber()
+        {
+        return ++counter;
+        }
+ 
+    public static String getTempDirectory()
+        { return temp; }
+    
+    private static String temp = constructTempDirectory();
+
+    private static String constructTempDirectory()
+        {
+        try 
+            { 
+            File x = File.createTempFile( "xxx", ".none" );
+            x.delete();
+            return x.getParent(); 
+            }
+        catch (IOException e) 
+            { throw new JenaException( e ); }
+        }
+         
+        
     }
 
 /*
