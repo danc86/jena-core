@@ -501,6 +501,24 @@ public class TestFBRules extends TestCase {
         Node valueType = getValue(infgraph, valueInstance, RDF.type.asNode());
         assertEquals(valueType, C2);
     }
+
+    /**
+     * Test access to makeInstance machinery from a Brule.
+     */
+    public void testMakeInstances() {
+        Graph data = new GraphMem();
+        data.add(new Triple(a, ty, C1));
+        List rules = Rule.parseRules(
+        "[r1:  (?x p ?t) <- (?x rdf:type C1), makeInstance(?x, p, ?t)]" +
+                          "" );        
+        Reasoner reasoner =  new FBRuleReasoner(rules);
+        InfGraph infgraph = reasoner.bind(data);
+        
+        Node valueInstance = getValue(infgraph, a, p);
+        assertNotNull(valueInstance);
+        Node valueInstance2 = getValue(infgraph, a, p);
+        assertEquals(valueInstance, valueInstance2);
+    }
     
     /**
      * Helper - returns the single object value for an s/p pair, asserts an error
@@ -524,7 +542,7 @@ public class TestFBRules extends TestCase {
     public void testDuplicatesEC4() throws IOException {
         Model premisesM = ModelLoader.loadModel("file:testing/wg/equivalentClass/premises004.rdf");
         Graph data = premisesM.getGraph();
-        Reasoner reasoner =  new OWLFBRuleReasoner();
+        Reasoner reasoner =  new OWLFBRuleReasoner(OWLFBRuleReasonerFactory.theInstance());
         InfGraph infgraph = reasoner.bind(data);
         Node rbPrototypeProp = Node.createURI(ReasonerVocabulary.RBNamespace+"prototype");
         int count = 0;
@@ -553,7 +571,7 @@ public class TestFBRules extends TestCase {
     public void temp() {
         Graph data = new GraphMem();
         Graph data2 = new GraphMem();
-        Reasoner reasoner =  new OWLFBRuleReasoner();
+        Reasoner reasoner =  new OWLFBRuleReasoner(OWLFBRuleReasonerFactory.theInstance());
         FBRuleInfGraph infgraph = (FBRuleInfGraph)reasoner.bind(data);
         FBRuleInfGraph infgraph2 = (FBRuleInfGraph)reasoner.bind(data2);
         long t1 = System.currentTimeMillis();

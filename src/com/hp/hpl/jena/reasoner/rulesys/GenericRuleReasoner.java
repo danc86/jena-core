@@ -228,6 +228,11 @@ public class GenericRuleReasoner extends FBRuleReasoner {
             
         } else if (parameterUri.equals(ReasonerVocabulary.PROPenableOWLTranslation.getURI())) {
             enableOWLTranslation =  Util.convertBooleanPredicateArg(parameterUri, value);
+            if (enableOWLTranslation) {
+                addPreprocessingHook(owlTranslator);    
+            } else {
+                removePreprocessingHook(owlTranslator);
+            }
             
         } else if (parameterUri.equals(ReasonerVocabulary.PROPenableTGCCaching.getURI())) {
             enableTGCCaching =  Util.convertBooleanPredicateArg(parameterUri, value);
