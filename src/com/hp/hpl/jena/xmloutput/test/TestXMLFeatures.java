@@ -231,6 +231,78 @@ public class TestXMLFeatures extends TestCase {
 		});
 	}
 
+    public void testTab()
+        throws IOException, MalformedPatternException {
+        check(
+            file1,
+            "          ",
+            //null,
+            new Change() {
+            public void code(RDFWriter writer) {
+                writer.setProperty("tab", "5");
+            }
+        });
+    }
+    public void testNoTab()
+        throws IOException, MalformedPatternException {
+        check(
+            file1,
+            "  ",
+            //null,
+            new Change() {
+            public void code(RDFWriter writer) {
+                writer.setProperty("tab", "0");
+            }
+        });
+    }
+    public void testNoLiteral()
+        throws IOException, MalformedPatternException {
+        check(
+            "file:testing/wg/rdfms-xml-literal-namespaces/test001.rdf",
+            "#XMLLiteral",
+            "[\"']Literal[\"']",
+            new Change() {
+            public void code(RDFWriter writer) {
+                writer.setProperty("blockrules", "parseTypeLiteralPropertyElt");
+            }
+        });
+    }
+    public void testNoPropAttr()
+        throws IOException, MalformedPatternException {
+        check(
+            file1,
+            null,
+            "prop1=",
+            new Change() {
+            public void code(RDFWriter writer) {
+                writer.setProperty("blockrules", "propertyAttr");
+            }
+        });
+    }
+    public void testNoDamlCollection()
+        throws IOException, MalformedPatternException {
+        check(
+            "file:testing/abbreviated/daml.rdf",
+            null,
+            "[\"']daml:collection[\"']",
+            new Change() {
+            public void code(RDFWriter writer) {
+                writer.setProperty("blockrules", "daml:collection");
+            }
+        });
+    }
+    public void testNoRdfCollection()
+        throws IOException, MalformedPatternException {
+        check(
+            "file:testing/abbreviated/collection.rdf",
+            null,
+            "[\"']Collection[\"']",
+            new Change() {
+            public void code(RDFWriter writer) {
+                writer.setProperty("blockrules", "parseTypeCollectionPropertyElt");
+            }
+        });
+    }
 	public void testRDFDefaultNamespace()
 		throws IOException, MalformedPatternException {
 		check(

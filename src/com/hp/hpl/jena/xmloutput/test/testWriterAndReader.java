@@ -172,6 +172,26 @@ public class testWriterAndReader extends TestCase implements RDFErrorHandler {
             langsuite.addTest(
                 new TestXMLFeatures("testStringDeclPresent", lang));
             /* */
+            langsuite.addTest(
+                new TestXMLFeatures("testTab", lang));
+            /* */
+            langsuite.addTest(
+                new TestXMLFeatures("testNoLiteral", lang));
+            /* */
+            langsuite.addTest(
+                new TestXMLFeatures("testNoTab", lang));
+            /* */
+        }
+        if ( lang.equals("RDF/XML-ABBREV") ) {
+        langsuite.addTest(
+            new TestXMLFeatures("testNoPropAttr", "RDF/XML-ABBREV"));
+        /* */
+        langsuite.addTest(
+            new TestXMLFeatures("testNoDamlCollection", "RDF/XML-ABBREV"));
+        /* */
+        langsuite.addTest(
+            new TestXMLFeatures("testNoRdfCollection", "RDF/XML-ABBREV"));
+        /* */
         }
         return langsuite;
     }

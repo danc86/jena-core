@@ -479,7 +479,7 @@ class Unparser {
         wIdAttrReified(s);
         wDatatype(((Literal) r).getDatatypeURI());
         print(">");
-        print(((Literal) r).getLexicalForm());
+        print(Util.substituteEntitiesInElementContent(((Literal) r).getLexicalForm()));
         print("</");
         wt.wTypeEnd(prop);
         print(">");
@@ -558,13 +558,7 @@ class Unparser {
 	 */
 	private void wValueString(Literal lt) throws RDFException {
 		String val = lt.getString();
-		// Personally (jjc), I don't believe this is sufficient.
-		// I have cribbed it from the basicWriter (RDFWriter).
-		// I get the impression that the String processing rules
-		// are a minefield. I might be wrong the XML
-		// reference doesn't make it seem so hard ...
-		//
-		print(Util.substituteStandardEntities(val));
+		print(Util.substituteEntitiesInElementContent(val));
 	}
 
 	/*
@@ -1134,7 +1128,7 @@ class Unparser {
 		return new String(rslt);
 	}
 	private void tab() {
-		int desiredColumn = 4 * indentLevel;
+		int desiredColumn = prettyWriter.tab * indentLevel;
 		if ((desiredColumn == 0 && currentColumn == 0)
 			|| desiredColumn > currentColumn) {
 			String spaces = filler(desiredColumn - currentColumn);

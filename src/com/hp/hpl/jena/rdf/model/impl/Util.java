@@ -86,6 +86,10 @@ public class Util extends Object {
         s = replace(s, "\r", "&#xD;");
         return replace(s, "\"", "&quot;");
     }
+    public static String substituteEntitiesInElementContent(String s) {
+        s = replace(s, "&", "&amp;");
+        return replace(s, "<", "&lt;");
+    }
 
     public static String replace(
         String s,
