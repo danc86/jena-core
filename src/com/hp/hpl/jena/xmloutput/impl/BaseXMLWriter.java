@@ -288,7 +288,7 @@ abstract public class BaseXMLWriter implements RDFXMLWriterI {
 	String splitTag(String uriref, int type) {
 		int split = Util.splitNamespace(uriref);
 		if (split == uriref.length())
-			throw new RDFException(RDFException.INVALIDPROPERTYURI);
+			throw new RDFException(RDFException.INVALIDPROPERTYURI, uriref );
 		return tag(
 			uriref.substring(0, split),
 			uriref.substring(split),

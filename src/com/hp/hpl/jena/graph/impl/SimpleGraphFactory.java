@@ -62,8 +62,7 @@ public class SimpleGraphFactory implements GraphFactory
      */
     public void removeGraph( String name )
         {
-        Graph already = (Graph) graphs.get( name );
-        if (already == null) throw new DoesNotExistException( name );
+        if (!graphs.containsKey( name )) throw new DoesNotExistException( name );
         graphs.remove( name );
         }
      

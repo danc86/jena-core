@@ -11,12 +11,6 @@ package com.hp.hpl.jena.graph.test;
 */
 
 import com.hp.hpl.jena.graph.*;
-import com.hp.hpl.jena.db.*;
-import com.hp.hpl.jena.db.impl.*;
-import com.hp.hpl.jena.db.test.*;
-import com.hp.hpl.jena.shared.*;
-
-import java.util.*;
 
 import junit.framework.*;
 
@@ -31,10 +25,8 @@ public class TestFactory extends GraphTestBase
     public void testFactory()
         {
         Graph g = Factory.createDefaultGraph();
-        }
-        
+        }        
     }
-
 
 /*
     (c) Copyright Hewlett-Packard Company 2003
