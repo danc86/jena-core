@@ -248,6 +248,18 @@ public class FBRuleInfGraph  extends BasicForwardRuleInfGraph implements Backwar
             transitiveEngine.add(t);
         }
     }
+
+    /**
+     * Retrieve or create a bNode representing an inferred property value.
+     * @param instance the base instance node to which the property applies
+     * @param prop the property node whose value is being inferred
+     * @param pclass the (optional, can be null) class for the inferred value.
+     * @return the bNode representing the property value 
+     */
+    public Node getTemp(Node instance, Node prop, Node pclass) {
+        // TODO implement
+        return null;
+    }
    
 //  =======================================================================
 //  Core inf graph methods

@@ -321,6 +321,18 @@ public class BasicBackwardRuleInfGraph extends BaseInfGraph implements BackwardR
     public void silentAdd(Triple t) {
         fdeductions.getGraph().add(t);
     }
+
+    /**
+     * Retrieve or create a bNode representing an inferred property value.
+     * @param instance the base instance node to which the property applies
+     * @param prop the property node whose value is being inferred
+     * @param pclass the (optional, can be null) class for the inferred value.
+     * @return the bNode representing the property value 
+     */
+    public Node getTemp(Node instance, Node prop, Node pclass) {
+        // TODO implement
+        return null;
+    }
     
 //  =======================================================================
 //   Rule engine extras
