@@ -11,7 +11,9 @@ package com.hp.hpl.jena.reasoner;
 
 import com.hp.hpl.jena.graph.Graph;
 import com.hp.hpl.jena.graph.Node;
+import com.hp.hpl.jena.graph.Triple;
 import com.hp.hpl.jena.util.iterator.ExtendedIterator;
+import java.util.Iterator;
 
 /**
  * Extends the Graph interface to give additional means to query an inferred
@@ -80,6 +82,20 @@ public interface InfGraph extends Graph {
      * object nodes refer.
      */
     public ExtendedIterator find(Node subject, Node property, Node object, Graph param);
+    
+    /**
+     * Switch on/off drivation logging
+     */
+    public void setDerivationLogging(boolean logOn);
+   
+    /**
+     * Return the derivation of the given triple (which is the result of
+     * some previous find operation).
+     * Not all reasoneers will support derivations.
+     * @return an iterator over Derivation records or null if there is no derivation information
+     * available for this triple.
+     */
+    public Iterator getDerivation(Triple triple);
     
 }
 

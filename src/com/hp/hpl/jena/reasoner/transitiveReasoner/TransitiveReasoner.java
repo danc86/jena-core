@@ -235,6 +235,18 @@ public class TransitiveReasoner implements Reasoner {
     public InfGraph bind(Graph data) throws ReasonerException {
         return new TransitiveInfGraph(data, this);
     }   
+   
+    /**
+     * Switch on/off drivation logging.
+     * If set to true then the InfGraph created from the bind operation will start
+     * life with recording of derivations switched on. This is currently only of relevance
+     * to rule-based reasoners.
+     * <p>
+     * Default - false.
+     */
+    public void setDerivationLogging(boolean logOn) {
+        // Irrelevant to this reasoner
+    }
     
 }
 
