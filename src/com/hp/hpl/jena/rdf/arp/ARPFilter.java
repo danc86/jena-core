@@ -267,7 +267,7 @@ class ARPFilter
             rdfns,
             rdfns,
             rdfns };
-    static private int A_XMLSPACE = -1;
+  //  static private int A_XMLSPACE = -1;
     static private int specialAttValues[] =
         {
             A_XMLBASE,

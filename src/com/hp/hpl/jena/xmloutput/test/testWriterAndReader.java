@@ -58,8 +58,8 @@ public class testWriterAndReader extends TestCase implements RDFErrorHandler {
         langsuite.addTest(new testWriterInterface("testWriting", lang));
         /* */
         for (int k = firstTest; k <= lastTest; k++) {
-            if ( k==7 )
-              continue;
+          //  if ( k==7 )
+          //    continue;
             /* */
             langsuite.addTest(new testWriterAndReader("testRandom", lang, k));
             /* */
