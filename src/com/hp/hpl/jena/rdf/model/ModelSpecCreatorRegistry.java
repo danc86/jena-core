@@ -28,17 +28,17 @@ public class ModelSpecCreatorRegistry
         
    static class InfSpecCreator implements ModelSpecCreator
         {
-        public ModelSpec create( Model desc ) { return new InfModelSpec( desc ); }    
+        public ModelSpec create( Resource root, Model desc ) { return new InfModelSpec( desc ); }     
         }
         
     static class PlainSpecCreator implements ModelSpecCreator
         {
-        public ModelSpec create( Model desc ) { return new PlainModelSpec( desc ); }    
+        public ModelSpec create( Resource root, Model desc ) { return new PlainModelSpec( root, desc ); }      
         }
             
     static class OntSpecCreator implements ModelSpecCreator
         {
-        public ModelSpec create( Model desc ) { return new OntModelSpec( desc ); }    
+        public ModelSpec create( Resource root, Model desc ) { return new OntModelSpec( desc ); }     
         }
                         
     static

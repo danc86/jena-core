@@ -15,12 +15,14 @@ package com.hp.hpl.jena.rdf.model;
 public interface ModelSpecCreator
     {
     /**
-        create [or find] a ModelSpec that is appropriate for the description.
+        create [or find] a ModelSpec that is appropriate for the description rooted at the
+        given root resource, which must have rdf:type JMS:ModelSpec.
         
-    	@param desc a description who's ModelSpec root is to be created
-    	@return a ModelSpec according to that description
-     */
-    public ModelSpec create( Model desc );    
+        @param root the root of the specification
+        @param desc a description who's ModelSpec root is to be created
+        @return a ModelSpec according to that description
+    */    
+    public ModelSpec create( Resource root, Model desc );
     }
 
 /*

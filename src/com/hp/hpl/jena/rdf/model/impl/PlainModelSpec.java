@@ -33,7 +33,15 @@ public class PlainModelSpec extends ModelSpecImpl implements ModelSpec
     */
     public PlainModelSpec( Model description )
         { super( description ); }
+        
+    public PlainModelSpec( Resource root, Model description )
+        { super( getMaker( root, description ), description ); }
 
+    private static Resource getMaker( Resource root, Model desc )
+        {
+        return desc.listStatements( root, JMS.maker, (RDFNode) null ).nextStatement().getResource();
+        }
+        
     /**
         Answer a Model that satisfies the description that this ModelSpec was constructed
         with.
