@@ -103,6 +103,7 @@ public class JenaReader implements RDFReader, ARPErrorNumbers {
 	}
 	private ARPFilter arpf;
 	private Model model;
+	
 	public void read(Model model, String url) throws JenaException {
 
 		try {
@@ -115,6 +116,8 @@ public class JenaReader implements RDFReader, ARPErrorNumbers {
 					model,
 					new InputStreamReader(conn.getInputStream(), encoding),
 					url);
+		} catch (FileNotFoundException e) {
+		    throw new DoesNotExistException( url );
 		} catch (IOException e) {
 			throw new JenaException(e);
 		}

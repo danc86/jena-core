@@ -17,6 +17,10 @@ import com.hp.hpl.jena.db.RDFRDBException;
 
 public class DoesNotExistException extends RDFRDBException
     {
+    /**
+     	The exception thrown when a persistent model (eg a file or a
+     	database) is not found; eg wraps a FileNotFoundException.
+    */
     public DoesNotExistException( String name )
         { super( name); }
     }

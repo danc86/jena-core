@@ -291,7 +291,7 @@ public class ModelLoader
      * @return String   Guessed syntax - or the default supplied
      */
 
-    public static String guessLang(String urlStr, String defaultLang)
+    public static String guessLang( String urlStr, String defaultLang )
     {
         if ( urlStr.startsWith("jdbc:") || urlStr.startsWith("JDBC:") )
             return langSQL ;

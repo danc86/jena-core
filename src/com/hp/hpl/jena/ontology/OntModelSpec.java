@@ -146,7 +146,7 @@ public class OntModelSpec extends ModelSpecImpl implements ModelSpec {
      * @param languageURI The URI of the ontology language. Required.
      */
     public OntModelSpec( ModelMaker maker, OntDocumentManager docMgr, ReasonerFactory rFactory, String languageURI ) {
-        super( maker );
+        super( maker == null ? ModelFactory.createMemModelMaker(): maker );
         setDocumentManager( docMgr );
         setReasonerFactory( rFactory );
         

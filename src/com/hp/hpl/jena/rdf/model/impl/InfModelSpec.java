@@ -31,7 +31,7 @@ public class InfModelSpec extends ModelSpecImpl
     */
     public InfModelSpec( Resource root, Model description )
         {
-        super( getMaker( root, description ), description );
+        super( root, description );
         Statement st = description.getRequiredProperty( null, JMS.reasoner );
         reasonerResource = st.getResource();
         }   

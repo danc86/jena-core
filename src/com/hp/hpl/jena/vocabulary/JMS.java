@@ -33,6 +33,12 @@ public class JMS
     public static String getURI()
         { return baseURI; }
     
+    /**
+     	The property of a ModelSpec that specifies the URI(s) from which it is
+     	to be loaded when it has been created.
+    */
+    public static final Property loadWith = property( "loadWith" );
+    
     /** 
         The property of an OntModelSpec that gives the language URI string.
     */
