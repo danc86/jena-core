@@ -115,7 +115,8 @@ public class PatternStage extends Stage
         
     protected void run( Pipe source, Pipe sink )
         {
-        while (stillOpen && source.hasNext()) nest( sink, source.get(), 0 );
+        try { while (stillOpen && source.hasNext()) nest( sink, source.get(), 0 ); }
+        catch (Exception e) { sink.close( e ); return; }
         sink.close();
         }        
         
