@@ -44,6 +44,12 @@ public class TestReificationStyle extends ModelTestBase
         assertEquals( false, ReificationStyle.Standard.conceals() );
         assertEquals( true, ReificationStyle.Convenient.intercepts() );
         assertEquals( true, ReificationStyle.Convenient.conceals() ); }
+    
+    public void testPrettyPrinting()
+        { assertEquals( "Minimal", ReificationStyle.Minimal.toString() );
+        assertEquals( "Convenient", ReificationStyle.Convenient.toString() );
+        assertEquals( "Standard", ReificationStyle.Standard.toString() );
+        }
     }
 
 /*

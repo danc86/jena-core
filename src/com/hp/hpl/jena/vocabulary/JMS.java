@@ -233,10 +233,20 @@ public class JMS
         @return the actual Reifier.ReificationStyle value
     */
     public static ReificationStyle findStyle( RDFNode style )
+        { return findStyle( style.asNode() ); }    
+        
+    /**
+        Answer the Reifier.ReificationStyle value named by the argument, which should be a
+        JMS.rs[something] Node
+        
+        @param style the JMS name of the reifier style
+        @return the actual Reifier.ReificationStyle value
+    */
+    public static ReificationStyle findStyle( Node style )
         {
-        if (style.equals(JMS.rsStandard )) return ReificationStyle.Standard;    
-        if (style.equals(JMS.rsMinimal)) return ReificationStyle.Minimal;    
-        if (style.equals( JMS.rsConvenient)) return ReificationStyle.Convenient;
+        if (style.equals(JMS.rsStandard.asNode() )) return ReificationStyle.Standard;    
+        if (style.equals(JMS.rsMinimal.asNode() )) return ReificationStyle.Minimal;    
+        if (style.equals( JMS.rsConvenient.asNode() )) return ReificationStyle.Convenient;
         return null;
         }
     }
