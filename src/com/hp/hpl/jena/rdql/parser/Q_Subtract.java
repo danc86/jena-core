@@ -35,7 +35,7 @@ class Q_Subtract extends SimpleNode implements Expr, ExprNumeric
 
     public Value eval(Query q, ResultBinding env)
     {
-        int n = jjtGetNumChildren() ;
+        //int n = jjtGetNumChildren() ;
 
         Value x = left.eval(q, env) ;
         Value y = right.eval(q, env) ;
