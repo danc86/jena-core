@@ -44,7 +44,7 @@ import com.hp.hpl.jena.reasoner.transitiveReasoner.TransitiveReasonerFactory;
  *         (<a  href="mailto:Ian.Dickinson@hp.com" >email</a>)
  * @version CVS $Id$
  */
-public class OntModelSpec extends PlainModelSpec implements ModelSpec {
+public class OntModelSpec extends ModelSpecImpl implements ModelSpec {
     // Constants
     //////////////////////////////////
 

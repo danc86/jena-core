@@ -42,7 +42,10 @@ public class ModelTestBase extends GraphTestBase
          }    
          
      public static RDFNode rdfNode( Model m, String s )
-        { return rdfNode( m, s, Resource.class ); }
+        { 
+        Node n = Node.create( m, s );    
+        return (RDFNode) ((ModelCom) m).getNodeAs( n, (n.isLiteral() ? Literal.class : Resource.class) );
+        }
         
     public static Resource resource( Model m, String s )
         { return (Resource) rdfNode( m, s ); }

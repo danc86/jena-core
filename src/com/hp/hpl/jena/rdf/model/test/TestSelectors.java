@@ -26,7 +26,7 @@ public class TestSelectors extends ModelTestBase
         check( null, null, null );
         check( resource( m, "A" ), null, null );
         check( null, property( m, "B" ), null );
-        check( null, null, resource( m, "10" ) );
+        check( null, null, literal( m, "10" ) );
         check( resource( m, "C" ), property( m, "D" ), resource( m, "_E" ) );
         }
         

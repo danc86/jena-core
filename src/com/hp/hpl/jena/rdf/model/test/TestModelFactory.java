@@ -6,8 +6,8 @@
 
 package com.hp.hpl.jena.rdf.model.test;
 
-import com.hp.hpl.jena.graph.test.*;
 import com.hp.hpl.jena.rdf.model.*;
+import com.hp.hpl.jena.vocabulary.*;
 
 import junit.framework.*;
 
@@ -35,8 +35,14 @@ public class TestModelFactory extends ModelTestBase
         
     public void testCreateSpec()
         {
-        Model desc = ModelFactory.createDefaultModel();
+        Resource root = ResourceFactory.createResource();
+        Resource maker = ResourceFactory.createResource();
+        Model desc = ModelFactory.createDefaultModel()
+            .add( root, JMS.maker, maker )
+            .add( maker, RDF.type, JMS.MemMakerClass )
+            .add( maker, JMS.reificationMode, JMS.rsMinimal );
         ModelSpec spec = ModelFactory.createSpec( desc ); 
+        
         assertIsoModels( desc, spec.getDescription() );
         }
     }
