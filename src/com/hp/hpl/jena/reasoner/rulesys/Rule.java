@@ -442,9 +442,12 @@ public class Rule {
                 varMap = new HashMap();
                 // Body
                 List body = new ArrayList();
-                while (!peekToken().equals("->")) {
+                token = peekToken();
+                while ( !(token.equals("->") || token.equals("<-")) ) {
                     body.add(parseClause());
+                    token = peekToken();
                 }
+                boolean backwardRule = token.equals("<-");
                 List head = new ArrayList();
                 token = nextToken();   // skip -> token
                 do {
@@ -452,7 +455,11 @@ public class Rule {
                     token = peekToken();
                 } while ( !(token.equals(".") || token.equals("]")) );
                 nextToken();        // consume the terminating token
-                return new Rule(name, head, body);
+                if (backwardRule) {
+                    return new Rule(name, body, head);
+                } else {
+                    return new Rule(name, head, body);
+                }
             } catch (NoSuchElementException e) {
                 throw new ParserException("Malformed rule", this);
             }

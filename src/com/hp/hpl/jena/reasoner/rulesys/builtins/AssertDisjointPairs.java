@@ -1,32 +1,33 @@
 /******************************************************************
- * File:        Remove.java
+ * File:        AssertDisjointPairs.java
  * Created by:  Dave Reynolds
- * Created on:  11-Apr-2003
+ * Created on:  15-Apr-03
  * 
  * (c) Copyright 2003, Hewlett-Packard Company, all rights reserved.
  * [See end of file]
  * $Id$
  *****************************************************************/
-package com.hp.hpl.jena.reasoner.rulesys.impl;
+package com.hp.hpl.jena.reasoner.rulesys.builtins;
 
-import com.hp.hpl.jena.reasoner.TriplePattern;
 import com.hp.hpl.jena.reasoner.rulesys.*;
+import com.hp.hpl.jena.vocabulary.OWL;
 import com.hp.hpl.jena.graph.*;
+import java.util.*;
 
 /**
- * Remove the body clause given by index arguments from the database.
+ * Assert the n^2 differtFrom pairs from a distinctMembers list
  * 
  * @author <a href="mailto:der@hplb.hpl.hp.com">Dave Reynolds</a>
  * @version $Revision$ on $Date$
  */
-public class Remove implements Builtin {
+public class AssertDisjointPairs implements Builtin {
 
     /**
      * Return a name for this builtin, normally this will be the name of the 
      * functor that will be used to invoke it.
      */
     public String getName() {
-        return "remove";
+        return "assertDisjointPairs";
     }
 
     /**
@@ -39,7 +40,7 @@ public class Remove implements Builtin {
      */
     public boolean bodyCall(Node[] args, RuleContext context) {
         // Can't be used in the body
-        throw new BuiltinException(this, context, "can't do remove in rule bodies");
+        throw new BuiltinException(this, context, "can't do " + getName() + " in rule bodies");
     }
     
     
@@ -51,20 +52,17 @@ public class Remove implements Builtin {
      * @param context an execution context giving access to other relevant data
      */
     public void headAction(Node[] args, RuleContext context) {
-        boolean ok = false;
-        for (int i = 0; i < args.length; i++) {
-            Node clauseN = args[i];
-            if (Util.isNumeric(clauseN)) {
-                int clauseIndex = Util.getIntValue(clauseN);
-                Object clause = context.getRule().getBodyElement(clauseIndex);
-                if (clause instanceof TriplePattern) {
-                    Triple t = BasicForwardRuleInfGraph.instantiate((TriplePattern)clause, context.getEnv());
-                    context.getGraph().delete(t);
-                } else {
-                    throw new BuiltinException(this, context, "illegal triple to remove non-triple clause");
+        if (args.length != 1) {
+            throw new BuiltinException(this, context, getName() + " expected single argument");
+        }
+        List l = Util.convertList(args[0], context);
+        for (Iterator i = l.iterator(); i.hasNext(); ) {
+            Node x = (Node)i.next();
+            for (Iterator j = l.iterator(); j.hasNext(); ) {
+                Node y = (Node)j.next();
+                if (!x.equals(y)) {
+                    ((BFRuleContext)context).addPending( new Triple(x, OWL.differentFrom.asNode(), y) );
                 }
-            } else {
-                throw new BuiltinException(this, context, "illegal arg to remove (" + clauseN + "), must be an integer");
             }
         }
     }

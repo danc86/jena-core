@@ -1,7 +1,7 @@
 /******************************************************************
- * File:        addOne.java
+ * File:        GoalTable.java
  * Created by:  Dave Reynolds
- * Created on:  11-Apr-2003
+ * Created on:  03-May-2003
  * 
  * (c) Copyright 2003, Hewlett-Packard Company, all rights reserved.
  * [See end of file]
@@ -9,63 +9,62 @@
  *****************************************************************/
 package com.hp.hpl.jena.reasoner.rulesys.impl;
 
-import com.hp.hpl.jena.reasoner.rulesys.*;
-import com.hp.hpl.jena.graph.*;
+import com.hp.hpl.jena.reasoner.*;
+import com.hp.hpl.jena.reasoner.rulesys.BasicBackwardRuleInfGraph;
+
+import java.util.*;
 
 /**
- * Bind the second argument to 1+ the first argument. Just used for testing builtins.
+ *  Part of the backwared chaining rule interpreter. The goal table
+ *  is a table of partially evaluated goals.
  * 
  * @author <a href="mailto:der@hplb.hpl.hp.com">Dave Reynolds</a>
  * @version $Revision$ on $Date$
  */
-public class AddOne implements Builtin {
+public class GoalTable {
+
+    /** The set of goal entries indexed by goal */
+    protected Map table = new HashMap();
+    
+    /** The parent inference engine for the goal table */
+    BasicBackwardRuleInfGraph ruleEngine;
+        
+    /**
+     * Constructor. Creates a new, empty GoalTable. Any goal search on
+     * this table will include the results from searching the given set of
+     * raw data graphs.
+     * @param ruleEngine the parent inference engine instance for this table
+     */
+    public GoalTable(BasicBackwardRuleInfGraph ruleEngine) {
+        this.ruleEngine = ruleEngine;
+    }
 
     /**
-     * Return a name for this builtin, normally this will be the name of the 
-     * functor that will be used to invoke it.
+     * Find the set of memoized solutions for the given goal
+     * and return a GoalState that can traverse all the solutions.
+     * 
+     * @param goal the goal to be solved
+     * @return a GoalState which can iterate over all of the goal solutions
      */
-    public String getName() {
-        return "addOne";
+    public GoalState findGoal(TriplePattern goal) {
+        GoalResults results = (GoalResults) table.get(goal);
+        if (results == null) {
+            results = new GoalResults(goal, ruleEngine);
+            table.put(goal, results);
+        }
+        return new GoalState(ruleEngine.findDataMatches(goal), results);
     }
-
+        
     /**
-     * This method is invoked when the builtin is called in a rule body.
-     * @param args the array of argument values for the builtin, this is an array 
-     * of Nodes, some of which may be Node_RuleVariables.
-     * @param context an execution context giving access to other relevant data
-     * @return return true if the buildin predicate is deemed to have succeeded in
-     * the current environment
+     * Clear all tabled results. 
      */
-    public boolean bodyCall(Node[] args, RuleContext context) {
-        if (args.length != 2) {
-            throw new BuiltinException(this, context, "must have 2 arguments");
-        }
-        BindingEnvironment env = context.getEnv();
-        boolean ok = false;
-        if (Util.isNumeric(args[0])) {
-            Node newVal = Util.makeIntNode( Util.getIntValue(args[0]) + 1 );
-            ok = env.bind(args[1], newVal);
-        } else if (Util.isNumeric(args[1])) {
-            Node newVal = Util.makeIntNode( Util.getIntValue(args[1]) - 1 );
-            ok = env.bind(args[0], newVal);
-        }
-        return ok;
+    public void reset() {
+        table = new HashMap();
     }
     
-    
-    /**
-     * This method is invoked when the builtin is called in a rule head.
-     * Such a use is only valid in a forward rule.
-     * @param args the array of argument values for the builtin, this is an array 
-     * of Nodes.
-     * @param context an execution context giving access to other relevant data
-     * @param rule the invoking rule
-     */
-    public void headAction(Node[] args, RuleContext context) {
-       // Can't be used in the head
-        throw new BuiltinException(this, context, "can't do addOne in rule heads");
-    }
 }
+
+
 
 /*
     (c) Copyright Hewlett-Packard Company 2003

@@ -1,72 +1,35 @@
 /******************************************************************
- * File:        RuleContext.java
+ * File:        StateFlag.java
  * Created by:  Dave Reynolds
- * Created on:  28-Apr-03
+ * Created on:  03-May-2003
  * 
  * (c) Copyright 2003, Hewlett-Packard Company, all rights reserved.
  * [See end of file]
  * $Id$
  *****************************************************************/
-package com.hp.hpl.jena.reasoner.rulesys;
-
-import com.hp.hpl.jena.reasoner.InfGraph;
-import com.hp.hpl.jena.util.iterator.ClosableIterator;
-import com.hp.hpl.jena.graph.*;
+package com.hp.hpl.jena.reasoner.rulesys.impl;
 
 /**
- * Interface used to convey context information from a rule engine
- * to the stack of procedural builtins. This gives access
- * to the triggering rule, the variable bindings and the set of
- * currently known triples. 
+ * A set of constants used to record state information in the
+ * backchaining rule interepreter. 
  * 
  * @author <a href="mailto:der@hplb.hpl.hp.com">Dave Reynolds</a>
  * @version $Revision$ on $Date$
  */
-public interface RuleContext {
-    /**
-     * Returns the current variable binding environment for the current rule.
-     * @return BindingEnvironment
-     */
-    public BindingEnvironment getEnv();
+public class StateFlag {
 
-    /**
-     * Returns the parent inference graph.
-     * @return InfGraph
-     */
-    public InfGraph getGraph();
+    /** Indicates a goal has failed and return no more answers at this time */
+    public static final StateFlag FAIL = new StateFlag();
     
-    /**
-     * Returns the rule.
-     * @return Rule
-     */
-    public Rule getRule();
-
-    /**
-     * Sets the rule.
-     * @param rule The rule to set
-     */
-    public void setRule(Rule rule);
+    /** Indicates that all currently available results have been returned and
+     *  the goal should be suspended into new subgoal results have been generated */
+    public static final StateFlag SUSPEND = new StateFlag();
     
-    /**
-     * Return true if the triple is already in either the graph or the stack.
-     * I.e. it has already been deduced.
-     */
-    public boolean contains(Triple t);
+    /** Indicates that the goal remains active */
+    public static final StateFlag ACTIVE = new StateFlag();
     
-    /**
-     * Return true if the triple pattern is already in either the graph or the stack.
-     * I.e. it has already been deduced.
-     */
-    public boolean contains(Node s, Node p, Node o);
-    
-    /**
-     * In some formulations the context includes deductions that are not yet
-     * visible to the underlying graph but need to be checked for.
-     * However, currently this calls the graph find directly.
-     */
-    public ClosableIterator find(Node s, Node p, Node o);
-
 }
+
 
 
 /*

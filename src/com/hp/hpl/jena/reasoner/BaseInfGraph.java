@@ -229,7 +229,7 @@ public abstract class BaseInfGraph extends GraphBase implements InfGraph {
      * SIZE.
      */
     public int capabilities() {
-        return ADD | DELETE;
+        return ADD | DELETE | SIZE;
     }
     
     /** 

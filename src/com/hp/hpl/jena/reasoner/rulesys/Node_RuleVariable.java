@@ -43,5 +43,17 @@ public class Node_RuleVariable extends Node_Variable {
     public int getIndex() {
         return index;
     }
+    
+    /** Equality override - all rule variables are treated as equal
+     *  to support easy variant matching. */
+    public boolean equals(Object o) {
+        return o instanceof Node_RuleVariable;
+    }
+        
+    /** hash function override - all vars have same hash code to support fast
+     *  search of variant tables */
+    public int hashCode() {
+        return 0xc3a7;
+    }
 
 }

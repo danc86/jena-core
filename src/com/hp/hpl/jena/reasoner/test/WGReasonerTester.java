@@ -34,7 +34,7 @@ import java.util.*;
  * of data files to load. For normal positive entailment tests we check each
  * triple in the conclusions file to ensure it is included in the inferred
  * graph. For postive entailment tests which are supposed to entail the 
- * false document we run an additional validation check (TODO implement!). For
+ * false document we run an additional validation check. For
  * negative entailment tests which tests all triples in the non-conclusions file 
  * and check that at least one trile is missing. </p>
  * 

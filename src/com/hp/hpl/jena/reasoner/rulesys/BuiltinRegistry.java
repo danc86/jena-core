@@ -9,7 +9,7 @@
  *****************************************************************/
 package com.hp.hpl.jena.reasoner.rulesys;
 
-import com.hp.hpl.jena.reasoner.rulesys.impl.*;
+import com.hp.hpl.jena.reasoner.rulesys.builtins.*;
 import java.util.*;
 
 /**

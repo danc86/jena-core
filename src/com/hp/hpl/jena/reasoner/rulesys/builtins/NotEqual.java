@@ -1,32 +1,31 @@
 /******************************************************************
- * File:        lessThan.java
+ * File:        NotEqual.java
  * Created by:  Dave Reynolds
- * Created on:  11-Apr-2003
+ * Created on:  13-Apr-03
  * 
  * (c) Copyright 2003, Hewlett-Packard Company, all rights reserved.
  * [See end of file]
  * $Id$
  *****************************************************************/
-package com.hp.hpl.jena.reasoner.rulesys.impl;
-
+package com.hp.hpl.jena.reasoner.rulesys.builtins;
 
 import com.hp.hpl.jena.reasoner.rulesys.*;
 import com.hp.hpl.jena.graph.*;
 
 /**
- * Bind the second argument to 1+ the first argument. Just used for testing builtins.
+ * Check that the two args are different. This uses a structural equality test.
  * 
  * @author <a href="mailto:der@hplb.hpl.hp.com">Dave Reynolds</a>
  * @version $Revision$ on $Date$
  */
-public class LessThan implements Builtin {
+public class NotEqual implements Builtin {
 
     /**
      * Return a name for this builtin, normally this will be the name of the 
      * functor that will be used to invoke it.
      */
     public String getName() {
-        return "lessThan";
+        return "notEqual";
     }
 
     /**
@@ -41,11 +40,7 @@ public class LessThan implements Builtin {
         if (args.length != 2) {
             throw new BuiltinException(this, context, "must have 2 arguments");
         }
-        if ( Util.isNumeric(args[0]) && Util.isNumeric(args[1]) ) {
-            return Util.getIntValue(args[0]) < Util.getIntValue(args[1]);
-        } else {
-            return false;
-        }
+        return !(args[0].equals(args[1]));
     }
     
     
@@ -59,7 +54,7 @@ public class LessThan implements Builtin {
      */
     public void headAction(Node[] args, RuleContext context) {
         // Can't be used in the head
-        throw new BuiltinException(this, context, "can't do lessThan in rule heads");
+        throw new BuiltinException(this, context, "can't do " + getName() + " in rule heads");
     }
 }
 

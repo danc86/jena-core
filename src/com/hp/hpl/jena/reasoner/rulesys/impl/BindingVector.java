@@ -7,9 +7,12 @@
  * [See end of file]
  * $Id$
  *****************************************************************/
-package com.hp.hpl.jena.reasoner.rulesys;
+package com.hp.hpl.jena.reasoner.rulesys.impl;
 
 import com.hp.hpl.jena.graph.*;
+import com.hp.hpl.jena.reasoner.*;
+import com.hp.hpl.jena.reasoner.rulesys.*;
+
 import java.util.*;
 
 /**
@@ -20,7 +23,7 @@ import java.util.*;
  * @author <a href="mailto:der@hplb.hpl.hp.com">Dave Reynolds</a>
  * @version $Revision$ on $Date$
  */
-public class BindingVector {
+public class BindingVector implements BindingEnvironment {
     
     /** The current binding set */
     protected Node[] environment;
@@ -33,12 +36,22 @@ public class BindingVector {
     }
     
     /**
+     * Constructor - create a binding environment which is a copy
+     * of the given environment
+     */
+    public BindingVector(BindingVector clone) {
+        Node[] orig = clone.environment;
+        environment = new Node[BindingStack.MAX_VAR];
+        System.arraycopy(orig, 0, environment, 0, BindingStack.MAX_VAR); 
+    }
+    
+    /**
      * Return the current array of bindings
      */
     public Node[] getEnvironment() {
         return environment;
     }
-    
+        
     /**
      * If the node is a variable then return the current binding (null if not bound)
      * otherwise return the node itself.
@@ -123,6 +136,18 @@ public class BindingVector {
         environment[var.getIndex()] = value;
     }
     
+    /**
+     * Instatiate a goal pattern using the binding environment
+     * @param goal the TriplePattern to be instantiated
+     * @return an instantiated Triple
+     */
+    public Triple instantiate(TriplePattern goal) {
+        return new Triple(
+                getGroundVersion(goal.getSubject()),
+                getGroundVersion(goal.getPredicate()),
+                getGroundVersion(goal.getObject())
+        );
+    }
 }
 
 

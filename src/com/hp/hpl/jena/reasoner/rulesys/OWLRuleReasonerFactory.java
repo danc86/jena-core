@@ -100,7 +100,7 @@ public class OWLRuleReasonerFactory implements ReasonerFactory {
             .addProperty(ReasonerRegistry.supportsP, RDFS.member)
             .addProperty(ReasonerRegistry.supportsP, RDFS.range)
             .addProperty(ReasonerRegistry.supportsP, RDFS.domain)
-            // TODO - aadd OWL elements supported
+            // TODO - add OWL elements supported
             .addProperty(ReasonerRegistry.versionP, "0.1");
         return capabilities;
     }

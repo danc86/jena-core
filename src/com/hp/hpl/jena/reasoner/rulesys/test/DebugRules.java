@@ -18,14 +18,10 @@ import com.hp.hpl.jena.util.PrintUtil;
 import java.util.*;
 import java.io.*;
 
-/**
- * Using during debuging of the rule systems.
+/** * Using during debuging of the rule systems.
  * Runs a named set of rules (can contain axioms and rules) and
  * lists all the resulting entailments.
- * 
- * @author <a href="mailto:der@hplb.hpl.hp.com">Dave Reynolds</a>
- * @version $Revision$ on $Date$
- */
+ *  * @author <a href="mailto:der@hplb.hpl.hp.com">Dave Reynolds</a> * @version $Revision$ on $Date$ */
 public class DebugRules {
 
     /** The name of the rule set to load */
