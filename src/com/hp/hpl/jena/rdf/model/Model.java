@@ -11,6 +11,7 @@ import com.hp.hpl.jena.datatypes.*;
 import com.hp.hpl.jena.graph.*;
 
 import java.io.*;
+import java.util.*;
 
 /** An RDF Model.
  *
@@ -234,6 +235,38 @@ public interface Model
 	 * @throws RDFException Generic RDF Exception
 	 */
 	Model add(Statement s) throws RDFException;
+    
+    /**
+        Add all the statements to the Model, using through the bulk update interface.
+
+        @param statements the array of statements to add
+        @return this model, to allow cascading
+    */    
+    Model add( Statement [] statements );
+    
+    /**
+        Remove all the statements from the Model, using the bulk update interface.
+        @param statements the array of statements to be added
+        @return this model, to allow cascading
+    */
+    Model remove( Statement [] statements );
+    
+    /**
+        add all the statements in the List to this Model, going through the bulk
+        update interface (which means turning them into triples in one form or
+        another).
+        @param statements a List of Statements
+        @return this model, to allow cascading
+    */    
+    Model add( List statements );
+    
+    /**
+        Remove all the statements in the list from this model, using the bulk
+        update interface.
+        @param statements a List of Statements to remove
+        @return this model, to allow cascading
+    */
+    Model remove( List statements );
 
 	/** Add all the statements returned by an iterator to this model.
 	 * @return this model

@@ -309,6 +309,19 @@ public class StatementImpl  implements Statement {
     	return new Triple( subject.asNode(), predicate.asNode(), object.asNode() );
     }
     
+    /**
+        returns an array of triples corresponding to the array of statements; ie
+        the i'th element of the result is the i'th element of the input as a triple.
+        @param statements the array of statements to convert
+        @return the corresponding array of triples
+    */
+    public static Triple [] asTriples( Statement [] statements )
+        {        
+        Triple [] triples = new Triple[statements.length];
+        for (int i = 0; i < statements.length; i += 1) triples[i] = statements[i].asTriple();
+        return triples;
+        }
+    
     public boolean isReified() throws RDFException {
         return mustHaveModel().isReified( this );
     }
