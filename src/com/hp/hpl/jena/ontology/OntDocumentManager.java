@@ -32,7 +32,7 @@ import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.graph.compose.MultiUnion;
 import com.hp.hpl.jena.vocabulary.RDF;
-import com.hp.hpl.jena.mem.*;
+import com.hp.hpl.jena.ontology.impl.*;
 import com.hp.hpl.jena.ontology.impl.OntologyGraph;
 
 
@@ -50,10 +50,7 @@ import com.hp.hpl.jena.ontology.impl.OntologyGraph;
  */
 public class OntDocumentManager
 {
-    // Constants
-    //////////////////////////////////
-
-    /** The default path for searching for the metadata on locally cached ontologies */
+	/** The default path for searching for the metadata on locally cached ontologies */
     public static final String DEFAULT_METADATA_PATH = "file:etc/ont-policy.rdf;file:ont-policy.rdf";
 
     /** Delimiter between path entries */
@@ -400,12 +397,7 @@ public class OntDocumentManager
     public GraphFactory getDefaultGraphFactory() {
         if (m_graphFactory == null) {
             // construct the default graph factory
-            m_graphFactory = new GraphFactory() {
-                                 // default is to create a new in-memory graph with rdfs reasoning turned on
-                                 public Graph getGraph() {
-                                     return new GraphMem();
-                                 }
-                             };
+            m_graphFactory = new DefaultGraphFactory();
         }
 
         return m_graphFactory;
