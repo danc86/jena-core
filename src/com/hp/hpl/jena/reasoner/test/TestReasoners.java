@@ -12,6 +12,8 @@ package com.hp.hpl.jena.reasoner.test;
 import com.hp.hpl.jena.reasoner.transitiveReasoner.*;
 import com.hp.hpl.jena.reasoner.rdfsReasoner1.*;
 import com.hp.hpl.jena.reasoner.*;
+import com.hp.hpl.jena.rdf.model.*;
+import com.hp.hpl.jena.mem.ModelMem;
 
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
@@ -50,7 +52,7 @@ public class TestReasoners extends TestCase {
     public void testTransitiveReasoner() throws IOException {
         ReasonerTester tester = new ReasonerTester("transitive/manifest.rdf");
         ReasonerFactory rf = TransitiveReasonerFactory.theInstance();
-        assertTrue("transitive reasoner tests", tester.runTests(rf, this));
+        assertTrue("transitive reasoner tests", tester.runTests(rf, this, null));
     }
     // */
 
@@ -61,7 +63,13 @@ public class TestReasoners extends TestCase {
     public void testRDFSReasoner() throws IOException {
         ReasonerTester tester = new ReasonerTester("rdfs/manifest.rdf");
         ReasonerFactory rf = RDFSReasonerFactory.theInstance();
-        assertTrue("RDFS reasoner tests", tester.runTests(rf, this));
+        assertTrue("RDFS reasoner tests", tester.runTests(rf, this, null));
+        // Test effect of switching of property scan - should break container property test case
+        Model configuration = new ModelMem();
+        configuration.createResource(RDFSReasonerFactory.URI)
+                     .addProperty(RDFSReasonerFactory.scanProperties, "false");
+        assertTrue("RDFS reasoner tests", 
+                    !tester.runTest(NAMESPACE + "rdfs/test17", rf, null, configuration));
     }
     // */
     
@@ -73,7 +81,7 @@ public class TestReasoners extends TestCase {
         ReasonerTester tester = new ReasonerTester("rdfs/manifest.rdf");
         ReasonerFactory rf = RDFSReasonerFactory.theInstance();
         assertTrue("RDFS reasoner tests", 
-                    tester.runTest(NAMESPACE + "rdfs/test19", rf, this));
+                    tester.runTest(NAMESPACE + "rdfs/test17", rf, this, null));
     }
     */
 

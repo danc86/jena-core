@@ -11,6 +11,7 @@ package com.hp.hpl.jena.reasoner.rdfsReasoner1;
 
 import com.hp.hpl.jena.reasoner.*;
 import com.hp.hpl.jena.reasoner.transitiveReasoner.*;
+import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.vocabulary.RDFS;
 
@@ -38,16 +39,35 @@ public class RDFSReasoner extends TransitiveReasoner implements Reasoner {
     /** The range property */
     public static Node rangeP;
     
+    /** Note if the reasoner is configured to scan for member properties */
+    protected boolean scanProperties = true;
+    
     // Static initializer
     static {
         domainP = RDFS.domain.getNode();
         rangeP = RDFS.range.getNode();
     }
     
-    
     /** Constructor */
     public RDFSReasoner() {
         super();
+    }
+     
+    /** 
+     * Constructor 
+     * @param configuration set of configuration information, this should be an RDF Graph
+     * containing a resource corresponding this this reasoner with attached properties. The
+     * only meaningful configuration property at present is scanProperties.
+     */
+    public RDFSReasoner(Model configuration) {
+        super();
+        if (configuration != null) {
+            Resource base = configuration.getResource(RDFSReasonerFactory.URI);
+            StmtIterator i = base.listProperties(RDFSReasonerFactory.scanProperties);
+            if (i.hasNext()) {
+                scanProperties = i.next().getObject().toString().equalsIgnoreCase("true");
+            }
+        }
     }
      
     /**
@@ -59,7 +79,7 @@ public class RDFSReasoner extends TransitiveReasoner implements Reasoner {
      * subClassOf is discovered.
      * @param tbox schema containing the property and class declarations
      */
-    public Reasoner bindSchema(Graph tbox) throws ReasonerException {
+    public Reasoner bindRuleset(Graph tbox) throws ReasonerException {
         super.bindSchema(tbox);
         subPropertyCache.setCaching(true);
         
@@ -81,7 +101,8 @@ public class RDFSReasoner extends TransitiveReasoner implements Reasoner {
      * constraints imposed by this reasoner.
      */
     public InfGraph bind(Graph data) throws ReasonerException {
-        Reasoner bReasoner = new BoundRDFSReasoner(tbox, data, subPropertyCache, subClassCache);
+        Reasoner bReasoner = new BoundRDFSReasoner(tbox, data, subPropertyCache, 
+                                                    subClassCache, scanProperties);
         return new BaseInfGraph(data, bReasoner);
     }   
     

@@ -9,9 +9,10 @@
  *****************************************************************/
 package com.hp.hpl.jena.reasoner.transitiveReasoner;
 
-import com.hp.hpl.jena.reasoner.ReasonerFactory;
-import com.hp.hpl.jena.reasoner.Reasoner;
-import com.hp.hpl.jena.graph.Graph;
+import com.hp.hpl.jena.mem.ModelMem;
+import com.hp.hpl.jena.rdf.model.*;
+import com.hp.hpl.jena.vocabulary.*;
+import com.hp.hpl.jena.reasoner.*;
 
 /**
  * Factory class for creating blank instances of the transitive reasoner.
@@ -23,6 +24,9 @@ public class TransitiveReasonerFactory implements ReasonerFactory {
     
     /** Single global instance of this factory */
     private static ReasonerFactory theInstance = new TransitiveReasonerFactory();
+    
+    /** Static URI for this reasoner type */
+    public static final String URI = "http://www.hpl.hp.com/semweb/2003/TransitiveReasoner";
     
     /**
      * Return the single global instance of this factory
@@ -36,24 +40,33 @@ public class TransitiveReasonerFactory implements ReasonerFactory {
      * @param configuration a set of arbitrary configuration information to be 
      * passed the reasoner encoded within an RDF graph.
      */
-    public Reasoner create(Graph configuration) {
+    public Reasoner create(Model configuration) {
         return new TransitiveReasoner();
     }
    
     /**
      * Return a description of the capabilities of this reasoner encoded in
-     * RDF. For this simple reasoner we have no useful description yet but
-     * could add this later for completeness.
+     * RDF. This method is normally called by the ReasonerRegistry which caches
+     * the resulting information so dynamically creating here is not really an overhead.
      */
-    public Graph getCapabilities() {
-        return null;
+    public Model getCapabilities() {
+        Model capabilities = new ModelMem();
+        Resource base = capabilities.createResource(getURI());
+        base.addProperty(ReasonerRegistry.nameP, "Transitive Reasoner")
+            .addProperty(ReasonerRegistry.descriptionP, "Provides reflexive-transitive closure of subClassOf and subPropertyOf")
+            .addProperty(ReasonerRegistry.supportsP, RDFS.subClassOf)
+            .addProperty(ReasonerRegistry.supportsP, RDFS.subPropertyOf)
+            .addProperty(ReasonerRegistry.supportsP, TransitiveReasoner.directSubClassOf)
+            .addProperty(ReasonerRegistry.supportsP, TransitiveReasoner.directSubPropertyOf)
+            .addProperty(ReasonerRegistry.versionP, "0.1");
+        return capabilities;
     }
     
     /**
      * Return the URI labelling this type of reasoner
      */
     public String getURI() {
-        return "http://www.hpl.hp.com/semweb/2003/TransitiveReasoner";
+        return URI;
     }
     
 }

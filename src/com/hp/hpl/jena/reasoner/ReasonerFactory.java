@@ -9,7 +9,7 @@
  *****************************************************************/
 package com.hp.hpl.jena.reasoner;
 
-import com.hp.hpl.jena.graph.Graph;
+import com.hp.hpl.jena.rdf.model.Model;
 
 /**
  * The interface through which a reasoner (inference engine) can be
@@ -24,9 +24,9 @@ public interface ReasonerFactory {
     /**
      * Constructor method that builds an instance of the associated Reasoner
      * @param configuration a set of arbitrary configuration information to be 
-     * passed the reasoner encoded within an RDF graph.
+     * passed the reasoner encoded within an RDF model.
      */
-    public Reasoner create(Graph configuration);
+    public Reasoner create(Model configuration);
 
     /**
      * Return a description of the capabilities of this reasoner encoded in
@@ -34,7 +34,7 @@ public interface ReasonerFactory {
      * information supplied at construction time. May be null if there are
      * no useful capabilities registered.
      */
-    public Graph getCapabilities();
+    public Model getCapabilities();
     
     /**
      * Return the URI labelling this type of reasoner
