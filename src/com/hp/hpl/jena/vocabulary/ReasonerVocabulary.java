@@ -49,7 +49,7 @@ public class ReasonerVocabulary {
     public static Property directSubPropertyOf; 
 
     /** Base URI used for configuration properties for rule reasoners */
-    public static final String PropURI = "http://www.hpl.hp.com/semweb/2003/RuleReasoner";
+    public static final String PropURI = "http://www.hpl.hp.com/semweb/2003/RuleReasoner/";
 
     /** Property used to configure the derivation logging behaviour of a reasoner.
      *  Set to "true" to enable logging of derivations. */
