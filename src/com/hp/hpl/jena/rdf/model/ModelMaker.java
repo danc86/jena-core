@@ -11,6 +11,8 @@ package com.hp.hpl.jena.rdf.model;
  	@author kers
 */
 
+import com.hp.hpl.jena.graph.*;
+
 public interface ModelMaker
     {
     /**
@@ -71,6 +73,12 @@ public interface ModelMaker
         can be done.
     */
     public void close();
+    
+    /**
+        Answer a GraphMaker that makes graphs the same way this ModelMaker
+        makes models. In general this will be an underlying GraphMaker.
+    */
+    public GraphMaker getGraphMaker();
     }
 
 

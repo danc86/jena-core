@@ -18,6 +18,9 @@ public class ModelMakerImpl implements ModelMaker
     public ModelMakerImpl( GraphMaker maker )
         { this.maker = maker; }
         
+    public GraphMaker getGraphMaker()
+        { return maker; }
+        
     public void close()
         { maker.close(); }
         
