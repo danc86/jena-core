@@ -165,7 +165,8 @@ public class DAMLTest
         Resource pugh = m.getResource( "http://dickinson-i-4/daml/tests/test-instance-load.daml#pugh" );
         assertNotNull( "Resource for officer Pugh should not be null", pugh );
         DAMLInstance pughInst = (DAMLInstance) pugh.as( DAMLInstance.class );
-
+        assertNotNull( pughInst );
+        
         // test case for bug report by Michael Sintek
         // try to ascertain the most specific class we can at load time -
         // case in point is shoesize in standard example ontology
