@@ -229,7 +229,7 @@ public class BRuleEngine {
                 } else if (result == StateFlag.SUSPEND) {
                     // Can do no more with this goal
                     if (traceOn) {
-                        logger.debug("Suspend " + current);
+//                        logger.debug("Suspend " + current);
                     }
                     current.goalState.results.addDependent(current);
                     current.unwindBindings();

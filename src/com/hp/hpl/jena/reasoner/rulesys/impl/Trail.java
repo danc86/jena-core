@@ -182,6 +182,18 @@ public class Trail implements BindingEnvironment {
             return node;
         }
     }
+   
+    /**
+     * Return the most ground version of the functor. Only used for pretty printing.
+     */
+    public Functor getMostGroundVersion(Functor f) {
+            Node[] args = f.getArgs();
+            Node[] cargs = new Node[args.length];
+            for (int i = 0; i < args.length; i++) {
+                cargs[i] = getGroundVersion(args[i]);
+            }
+            return new Functor(f.getName(), cargs);
+    }
     
     /**
      * Bind a variable in the current envionment to the given value.

@@ -31,8 +31,8 @@ import com.hp.hpl.jena.graph.*;
 public class OWLBRuleReasoner extends BasicBackwardRuleReasoner {
     
     /** The location of the OWL rule definitions on the class path */
-//    protected static final String RULE_FILE = "etc/owl-b.rules";
-    protected static final String RULE_FILE = "etc/owl-b-debug.rules";
+    protected static final String RULE_FILE = "etc/owl-b.rules";
+//    protected static final String RULE_FILE = "etc/owl-b-debug.rules";
     
     /** The parsed rules */
     protected static List ruleSet;
