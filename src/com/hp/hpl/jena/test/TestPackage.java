@@ -6,6 +6,8 @@
 
 package com.hp.hpl.jena.test;
 
+import com.hp.hpl.jena.mem.test.TestMemPackage;
+
 import junit.framework.TestSuite;
 import junit.framework.Test;
 
@@ -27,6 +29,7 @@ public class TestPackage extends TestSuite {
         super("jena");
         addTest("Enhanced", com.hp.hpl.jena.enhanced.test.TestPackage.suite());
         addTest("Graph", com.hp.hpl.jena.graph.test.TestPackage.suite());
+        addTest( com.hp.hpl.jena.mem.test.TestMemPackage.suite() );
         addTest("Model", com.hp.hpl.jena.rdf.model.test.TestPackage.suite());
         addTest("N3", com.hp.hpl.jena.n3.test.N3TestSuite.suite());
         addTest("RDQL", com.hp.hpl.jena.rdql.test.RDQLTestSuite.suite());
