@@ -288,6 +288,15 @@ public class TestXMLFeatures extends ModelTestBase {
 			}
 		});
 	}
+    
+    public void testUseUnusedNamespace()
+        throws IOException, MalformedPatternException {
+        check(file1, "xmlns:unused=['\"]http://unused.org/#['\"]", new Change() {
+            public void code( Model m ) {
+                m.setNsPrefix( "unused", "http://unused.org/#");
+            }
+        });
+    }
 
 	public void testRDFNamespace()
 		throws IOException, MalformedPatternException {

@@ -156,6 +156,9 @@ public class testWriterAndReader
 			/* */
 			langsuite.addTest(
 				new TestXMLFeatures("testUseDefaultNamespace", lang));
+            /* */    
+            langsuite.addTest(
+                new TestXMLFeatures("testUseUnusedNamespace", lang));
 			/* */
 			langsuite.addTest(
 				new TestXMLFeatures("testBadPrefixNamespace", lang));
