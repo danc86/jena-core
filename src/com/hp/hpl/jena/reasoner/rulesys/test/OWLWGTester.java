@@ -113,7 +113,6 @@ public class OWLWGTester {
      * @param stats set to true to log performance statistics
      * @return true if all the tests pass
      * @throws IOException if one of the test files can't be found
-     * @throws RDFException if the test can't be found or fails internally
      */
     public boolean runTests(String manifestFile, boolean log, boolean stats) throws IOException {
         // Load up the manifest
@@ -138,7 +137,6 @@ public class OWLWGTester {
      * @param stats set to true to log performance statistics
      * @return true if the test passes
      * @throws IOException if one of the test files can't be found
-     * @throws RDFException if the test can't be found or fails internally
      */
     public boolean runTest(Resource test, boolean log, boolean stats) throws IOException {
         // Find the specification for the named test

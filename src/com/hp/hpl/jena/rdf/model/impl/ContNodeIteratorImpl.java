@@ -35,17 +35,17 @@ public class ContNodeIteratorImpl
         this.size     = cont.size();
     }
 
-    public Object next() throws NoSuchElementException, RDFException {
+    public Object next() throws NoSuchElementException {
         stmt = (Statement) super.next();
         index += 1;
         return stmt.getObject();
     }
     
-    public RDFNode nextNode() throws NoSuchElementException, RDFException {
+    public RDFNode nextNode() throws NoSuchElementException {
         return (RDFNode) next();
     }
             
-    public void remove() throws NoSuchElementException, RDFException {
+    public void remove() throws NoSuchElementException {
         if (stmt == null) throw new NoSuchElementException();
         super.remove();
         

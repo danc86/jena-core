@@ -127,7 +127,7 @@ public class NTripleWriter extends Object implements RDFWriter {
     }
 
     public static void write(Model model, PrintWriter writer)
-        throws java.io.IOException, RDFException {
+        throws java.io.IOException {
         StmtIterator iter = model.listStatements();
         Statement stmt = null;
 

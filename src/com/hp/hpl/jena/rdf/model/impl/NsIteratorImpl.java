@@ -24,7 +24,7 @@ public class NsIteratorImpl extends WrappedIterator implements NsIterator {
         super( iter ); 
     }
 
-    public String nextNs() throws NoSuchElementException, RDFException {
+    public String nextNs() throws NoSuchElementException {
         return (String) next();
     }
     

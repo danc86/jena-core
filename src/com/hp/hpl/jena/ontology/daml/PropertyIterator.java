@@ -51,7 +51,6 @@ import java.util.*;
 import com.hp.hpl.jena.rdf.model.Resource;
 import com.hp.hpl.jena.rdf.model.Property;
 import com.hp.hpl.jena.rdf.model.RDFNode;
-import com.hp.hpl.jena.rdf.model.RDFException;
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.shared.*;
 
@@ -465,10 +464,8 @@ public class PropertyIterator
      *
      * @param res A resource
      * @return An iterator over the object of any statements whose subject is res.
-     * @exception RDFException if an RDF processing error occurs.
      */
     protected Iterator getStatementObjects( Resource res )
-        throws RDFException
     {
         Iterator i = null;
 
@@ -504,10 +501,8 @@ public class PropertyIterator
      *
      * @param res A resource
      * @return An iterator over the subject of any statements whose object is res.
-     * @exception RDFException if an RDF processing error occurs.
      */
     protected Iterator getStatementSubjects( Resource res )
-        throws RDFException
     {
         Iterator i = null;
 
