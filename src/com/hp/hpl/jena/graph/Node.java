@@ -99,7 +99,7 @@ public abstract class Node {
     
     private static LiteralLabel literal( String spelling, String langOrType )
         {
-        String content = escape( spelling );
+        String content = unEscape( spelling );
         int colon = langOrType.indexOf( ':' );
         return colon < 0 
             ? new LiteralLabel( content, langOrType, false )
@@ -107,7 +107,7 @@ public abstract class Node {
             ;
         }
     
-    private static String escape( String spelling )
+    private static String unEscape( String spelling )
         {
         if (spelling.indexOf( '\\' ) < 0) return spelling;
         StringBuffer result = new StringBuffer( spelling.length() );
@@ -117,7 +117,7 @@ public abstract class Node {
             int b = spelling.indexOf( '\\', start );
             if (b < 0) break;
             result.append( spelling.substring( start, b ) );
-            result.append( escape( spelling.charAt( b + 1 ) ) );
+            result.append( unEscape( spelling.charAt( b + 1 ) ) );
             start = b + 2;
             }
         result.append( spelling.substring( start ) );
@@ -125,7 +125,7 @@ public abstract class Node {
         return result.toString();
         }
     
-    private static char escape( char ch )
+    private static char unEscape( char ch )
         {
         switch (ch)
         	{
