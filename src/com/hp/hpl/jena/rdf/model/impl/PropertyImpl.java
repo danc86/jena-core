@@ -83,12 +83,12 @@ public class PropertyImpl extends ResourceImpl implements Property {
         checkOrdinal();
     }
 
-    public PropertyImpl(String uri, Model m)  {
+    public PropertyImpl(String uri, ModelCom m)  {
         super(uri, m);
         checkOrdinal();
     }
 
-    public PropertyImpl(String nameSpace, String localName, Model m)
+    public PropertyImpl(String nameSpace, String localName, ModelCom m)
        {
         super(nameSpace, localName, m);
         checkOrdinal();
@@ -103,7 +103,7 @@ public class PropertyImpl extends ResourceImpl implements Property {
     public PropertyImpl(String nameSpace,
                         String localName,
                         int ordinal,
-                        Model m) {
+                        ModelCom m) {
         super(nameSpace, localName, m);
         checkLocalName();
         this.ordinal = ordinal;

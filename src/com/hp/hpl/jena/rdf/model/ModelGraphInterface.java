@@ -1,61 +1,36 @@
 /*
-  (c) Copyright 2003, Hewlett-Packard Development Company, LP
+  (c) Copyright 2004, Hewlett-Packard Development Company, LP, all rights reserved.
   [See end of file]
   $Id$
 */
 
-package com.hp.hpl.jena.util;
+package com.hp.hpl.jena.rdf.model;
 
-import com.hp.hpl.jena.rdf.model.*;
-import com.hp.hpl.jena.rdf.model.impl.*;
 import com.hp.hpl.jena.graph.*;
-import com.hp.hpl.jena.util.iterator.*;
-
-import java.util.*;
+import com.hp.hpl.jena.graph.query.*;
 
 /**
-    A utility for using the graph query interface from a Model. Queries may be represented
-    as models, where each statement in the model corresponds to a search for matching
-    statements in the model being queried. Variables are represented as resources
-    with URIs using the ficticious "jqv" protocol.
-<p>    
-    See also <code>QueryMapper</code>.
+    ModelGraphInterface - this interface mediates between the API Model level
+    and the SPI Graph level. It may change if the SPI changes, is more fluid than
+    Model and ModelCon, so don't use if it you don't *need* to.
     
- 	@author kers
+    @author kers
 */
-public class ModelQueryUtil
+public interface ModelGraphInterface
     {
-    private ModelQueryUtil()
-        {}
+    Statement asStatement( Triple t );
     
-    public static ExtendedIterator queryBindingsWith
-        ( final Model model, Model query, Resource [] variables )
-        {
-        Map1 mm = new Map1()
-            { public Object map1( Object x ) { return mappy( model, x ); } };
-        QueryMapper qm = new QueryMapper( query, variables );
-        return
-            qm.getQuery().executeBindings( model.getGraph(), qm.getVariables() )
-            .mapWith( mm )
-            ;
-        }
+    /** Every model is based on some Graph */
+    Graph getGraph();
 
-    public static RDFNode asRDF( Model m, Node n )
-        { return m.asRDFNode( n ); }
-        
-    public static List mappy( Model m, Object x )
-        {
-        List L = (List) x;
-        ArrayList result = new ArrayList( L.size() );
-        for (int i = 0; i < L.size(); i += 1) result.add( asRDF( m, (Node) L.get( i ) ) );
-        return result;
-        }
-
+    /** Every Model has a QueryHandler */
+    QueryHandler queryHandler();
+    
+    RDFNode asRDFNode( Node n );
     }
 
-
 /*
-    (c) Copyright 2003 Hewlett-Packard Development Company, LP
+    (c) Copyright 2004, Hewlett-Packard Development Company, LP
     All rights reserved.
 
     Redistribution and use in source and binary forms, with or without

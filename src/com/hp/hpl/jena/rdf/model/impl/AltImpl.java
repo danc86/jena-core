@@ -52,14 +52,14 @@ public class AltImpl extends ContainerImpl implements Alt {
     };
     
     /** Creates new AltMem */
-    public AltImpl(Model model)  
+    public AltImpl( ModelCom model )  
         { super( model ); }
     
-    public AltImpl(String uri, Model model)  {
+    public AltImpl( String uri, ModelCom model )  {
         super( uri, model );
     }
     
-    public AltImpl(Resource r, Model m)  {
+    public AltImpl( Resource r, ModelCom m )  {
         super( r, m );
     }
     
@@ -184,7 +184,7 @@ public class AltImpl extends ContainerImpl implements Alt {
     }    
     
     public Alt setDefault(String o, String l)  {
-        return setDefault( new LiteralImpl( Node.createLiteral( o,l, false ), getModel()) );
+        return setDefault( new LiteralImpl( Node.createLiteral( o,l, false ), getModelCom()) );
     }      
         
     protected Statement getDefaultStatement()  {

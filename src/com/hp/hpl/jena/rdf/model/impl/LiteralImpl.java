@@ -62,12 +62,12 @@ public class LiteralImpl extends EnhNode implements Literal {
         }
     };          
           
-    public LiteralImpl(Node n,Model m) {
-        super(n,(ModelCom)m );
+    public LiteralImpl( Node n, ModelCom m) {
+        super( n, m );
     }
     
     public LiteralImpl( Node n, EnhGraph m ) {
-        this( n, (Model)m );
+        super( n, m );
     }
     
     public Object visitWith( RDFVisitor rv )
@@ -144,7 +144,7 @@ public class LiteralImpl extends EnhNode implements Literal {
      *@deprecated Please use the createLiteral methods on Model.
      *Model implementors should use Literal instructors which include the Model.
      */
-    public LiteralImpl(String s, String l, boolean wellFormed,Model m) {    	
+    public LiteralImpl( String s, String l, boolean wellFormed, ModelCom m ) {    	
         this(Node.createLiteral(s,l,wellFormed),m);
     }
     

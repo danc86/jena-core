@@ -32,15 +32,15 @@ public class ContainerImpl extends ResourceImpl
     }
 
     /** Creates new ContainerImpl */
-    public ContainerImpl(Model model) {
+    public ContainerImpl( ModelCom model ) {
         super(model);
     }
     
-    public ContainerImpl(String uri, Model model){
+    public ContainerImpl( String uri, ModelCom model ){
         super(uri, model);
     }
     
-    public ContainerImpl(Resource r, Model  model) {
+    public ContainerImpl(Resource r, ModelCom  model) {
         super(r.asNode(), model);
     }
     
@@ -49,20 +49,24 @@ public class ContainerImpl extends ResourceImpl
     }
     
     protected ContainerImpl( Resource r )
-        { this( r, r.getModel() ); }
+        { this( r, (ModelCom) r.getModel() ); }
     
     private boolean is( Resource r ) {
         return hasProperty(RDF.type, r);
     }
+    
     public boolean isAlt() {
         return is(RDF.Alt);
     }
+    
     public boolean isBag() {
         return is(RDF.Bag);
     }
+    
     public boolean isSeq() {
         return is(RDF.Seq);
     }
+    
     public Container add(RDFNode n)  {
         int i = size();
         addProperty(RDF.li(i+1), n);
@@ -138,7 +142,7 @@ public class ContainerImpl extends ResourceImpl
     }
 
     private Literal literal( String s, String lang )
-        { return new LiteralImpl( Node.createLiteral( s, lang, false ), getModel() ); }
+        { return new LiteralImpl( Node.createLiteral( s, lang, false ), getModelCom() ); }
             
     public NodeIterator iterator()  
         { return listContainerMembers( iteratorFactory ); }

@@ -263,10 +263,10 @@ public class QueryEngine implements QueryExecution
     static RDFNode convertGraphNodeToRDFNode(Node n, Model model)
     {
         if ( n.isLiteral() )
-            return new LiteralImpl(n, model) ;
+            return new LiteralImpl(n, (ModelCom) model) ;
                 
         if ( n.isURI() || n.isBlank() )
-            return new ResourceImpl(n, model) ;
+            return new ResourceImpl(n, (ModelCom) model) ;
                 
         if ( n.isVariable() )
         {

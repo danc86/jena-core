@@ -52,19 +52,19 @@ public class BagImpl extends ContainerImpl implements Bag {
     };
         
     /** Creates new BagMem */
-    public BagImpl(Model model)  {
+    public BagImpl( ModelCom model )  {
         super(model);
     }
     
-    public BagImpl(String uri, Model model)  {
+    public BagImpl( String uri, ModelCom model )  {
         super(uri, model);
     }
     
-    public BagImpl(Resource r, Model m)  {
-        super(r, m);
+    public BagImpl( Resource r, ModelCom m )  {
+        super( r, m );
     }
     
-    public BagImpl(Node n, EnhGraph g) {
+    public BagImpl( Node n, EnhGraph g ) {
         super(n,g);
     }
     

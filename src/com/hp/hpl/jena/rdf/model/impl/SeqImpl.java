@@ -31,16 +31,16 @@ public class SeqImpl extends ContainerImpl implements Seq {
     static NodeIteratorFactory seqIteratorFactory = new SeqNodeIteratorFactoryImpl();
 
     /** Creates new SeqMem */
-    public SeqImpl(Model model)  {
-        super(model);
+    public SeqImpl( ModelCom model )  {
+        super( model );
     }
     
-    public SeqImpl(String uri, Model model)  {
-        super(uri, model);
+    public SeqImpl( String uri, ModelCom model )  {
+        super( uri, model );
     }
     
-    public SeqImpl(Resource r, Model m)  {
-        super(r, m);
+    public SeqImpl( Resource r, ModelCom m )  {
+        super( r, m );
     }
 
     public SeqImpl(Node n, EnhGraph g) {
@@ -282,7 +282,7 @@ public class SeqImpl extends ContainerImpl implements Seq {
     }
         
     private Literal literal( String s, String lang )
-        { return new LiteralImpl( Node.createLiteral( s, lang, false ), getModel() ); }
+        { return new LiteralImpl( Node.createLiteral( s, lang, false ), getModelCom() ); }
         
     protected void shiftUp(int start, int finish)  {
         Statement stmt = null;

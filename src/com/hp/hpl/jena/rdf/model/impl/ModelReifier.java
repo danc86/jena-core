@@ -188,7 +188,7 @@ public class ModelReifier
     private ReifiedStatement getRS( Node n )
         {
         Triple t = reifier.getTriple( n );
-        Statement s = IteratorFactory.asStatement( t, model );
+        Statement s = model.asStatement( t );
         return ReifiedStatementImpl.create( model, n, s );
         }              
     }

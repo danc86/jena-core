@@ -75,7 +75,7 @@ public class TestQuery extends ModelTestBase
         
     public void testModelQuery()
         { 
-        ModelCom m = (ModelCom) modelWithStatements( "a R b; b S c; a R p; p T d" );
+        Model m = (ModelCom) modelWithStatements( "a R b; b S c; a R p; p T d" );
         Model q = modelWithStatements( "jqv:x R jqv:y; jqv:y S jqv:z" );
         ExtendedIterator it = ModelQueryUtil.queryBindingsWith( m, q, resources( q, "jqv:x jqv:z") );
         assertTrue( it.hasNext() );

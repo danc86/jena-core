@@ -100,6 +100,21 @@ public abstract class AbstractTestModel extends ModelTestBase
         assertTrue( ob.equals( resource( model, "a" ) ) || ob.equals( resource( model, "b" ) ) );
         assertNull( x.getProperty( property( model, "noSuchPropertyHere" ) ) );
         }
+    
+    public void testToStatement()
+        {
+        Triple t = triple( "a P b" );
+        Statement s = model.asStatement( t );
+        assertEquals( node( "a" ), s.getSubject().asNode() );
+        assertEquals( node( "P" ), s.getPredicate().asNode() );
+        assertEquals( node( "b" ), s.getObject().asNode() );
+        }
+    
+    public void testAsRDF()
+        {
+        RDFNode r = model.asRDFNode( node( "a" ) );
+        }
+    
     }
 
 

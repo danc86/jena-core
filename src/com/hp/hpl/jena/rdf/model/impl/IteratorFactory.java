@@ -25,20 +25,18 @@ import com.hp.hpl.jena.graph.*;
 public final class IteratorFactory {
 
     private IteratorFactory(){}
-	/**
-	 * 
-	 */
-	static public RDFNode asRDFNode(Node n, ModelCom m) {
-		if ( n.isLiteral() ) 
-		  return asLiteral(n,m);
-		else
-		  return asResource(n,m);
+	
+    /**
+	     @deprecated use Model::asRDFNode( Node ) instead. 
+	*/
+	static public RDFNode asRDFNode( Node n, Model m ) {
+        return m.asRDFNode( n );
 	}
 		
 	/**
-	 * 
-	 */
-	static public Statement asStatement(Triple t, ModelCom m) {
+	    @deprecated use Model::toStatement( Triple )
+	*/
+	static public Statement asStatement( Triple t, ModelCom m ) {
         return StatementImpl.toStatement( t, m );
 	}
 
@@ -47,9 +45,7 @@ public final class IteratorFactory {
 	 */
 	static public StmtIterator asStmtIterator(Iterator i, final ModelCom m) {
 		return new StmtIteratorImpl(new Map1Iterator(new Map1(){
-			public Object map1(Object o) {
-				return asStatement((Triple)o,m);
-			}
+			public Object map1(Object o) {	return m.asStatement( (Triple) o ); }
 		},i));
 	}
 
@@ -58,9 +54,7 @@ public final class IteratorFactory {
 	 */
 	static public ResIterator asResIterator(Iterator i, final ModelCom m) {
 		return new ResIteratorImpl(new Map1Iterator(new Map1(){
-			public Object map1(Object o) {
-				// return (Resource)asRDFNode((Node)o,m);
-				return asRDFNode((Node)o,m);			}
+			public Object map1(Object o) { return m.asRDFNode( (Node) o ); }
 		},i),null);
 	}
 
@@ -69,9 +63,7 @@ public final class IteratorFactory {
 	 */
 	static public NodeIterator asRDFNodeIterator(Iterator i, final ModelCom m) {
 		return new NodeIteratorImpl(new Map1Iterator(new Map1(){
-			public Object map1(Object o) {
-				return asRDFNode((Node)o,m);
-			}
+			public Object map1(Object o) { return m.asRDFNode( (Node) o ); }
 		},i),null);
 	}
 	    

@@ -6,9 +6,7 @@
 
 package com.hp.hpl.jena.rdf.model;
 
-import com.hp.hpl.jena.graph.query.*;
 import com.hp.hpl.jena.datatypes.*;
-import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.shared.*;
 
 import java.io.*;
@@ -66,14 +64,10 @@ import java.util.*;
  * @version $Name$ $Revision$Date$'
  */
 public interface Model 
-    extends ModelCon, RDFReaderF, RDFWriterF, PrefixMapping, ModelLock
+    extends ModelCon, ModelGraphInterface, 
+        RDFReaderF, RDFWriterF, PrefixMapping, ModelLock
 {
 
-	/** Every model is based on some Graph */
-	Graph getGraph();
-
-	/** Every Model has a QueryHandler */
-	QueryHandler queryHandler();
 
     /** 
      * size will return the number of statements in a concrete model, 
