@@ -134,6 +134,13 @@ public class ConsumerChoicePointFrame extends GenericTripleMatchFrame
     public Generator getGenerator() {
         return generator;
     }
+    
+    /**
+     * Return the interpeter context which is reading the results of this consumer.
+     */
+    public LPInterpreterContext getConsumingContext() {
+        return context;
+    }
 
 }
 

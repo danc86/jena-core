@@ -331,7 +331,10 @@ public class Generator implements LPAgendaEntry, LPInterpreterContext {
             Generator g = (Generator)iv.next();
             if (g.completionState == LFlag.LIVE) {
                 for (Iterator i = g.consumingCPs.iterator(); i.hasNext(); ) {
-                    ((ConsumerChoicePointFrame)i.next()).getGenerator().propagateLive(visited);
+                    LPInterpreterContext link = ((ConsumerChoicePointFrame)i.next()).getConsumingContext();
+                    if (link instanceof Generator) {
+                        ((Generator)link).propagateLive(visited); 
+                    }
                 }
             }
         }
@@ -343,43 +346,7 @@ public class Generator implements LPAgendaEntry, LPInterpreterContext {
             }
         }
         return;
-        
-        // Earlier version. This has the advantage of only propgating more selectively
-        // but has to a lot of hashset turn over.
-        // Current figures suggest negligable difference in cost.
-//        HashSet suspects = new HashSet();
-//        for (Iterator iv = visited.iterator(); iv.hasNext(); ) {
-//            Generator g = (Generator)iv.next();
-//            if (g.completionState == LFlag.UNKNOWN) {
-//                suspects.add(g);
-//            }
-//        }
-//        
-//        Set newLive = visited;
-//        newLive.removeAll(suspects);
-//        while (newLive.size() > 0 && suspects.size() > 0) {
-//            HashSet temp = new HashSet();
-//            for (Iterator il = newLive.iterator(); il.hasNext(); ) {
-//                Generator g = (Generator)il.next();
-//                if (g.completionState == LFlag.LIVE) {
-//                    for (Iterator id = g.consumingCPs.iterator(); id.hasNext(); ) {
-//                        Generator dep = ((ConsumerChoicePointFrame)id.next()).getGenerator();
-//                        if (suspects.contains(dep)) {
-//                            suspects.remove(dep);
-//                            dep.completionState = LFlag.LIVE;
-//                            temp.add(dep);
-//                        }
-//                    }
-//                }
-//            }
-//            newLive = temp;
-//        }
-//        // Any remaining suspects are DEAD, have no indirect live generators
-//        for (Iterator ic = suspects.iterator(); ic.hasNext(); ) {
-//            Generator g = (Generator)ic.next();
-//            g.setComplete();
-//        }
-    }
+     }
     
     /**
      * Propagate liveness state forward to consuming generators, but only those 
@@ -389,16 +356,16 @@ public class Generator implements LPAgendaEntry, LPInterpreterContext {
         if (completionState != LFlag.LIVE) {
             completionState = LFlag.LIVE;
             for (Iterator i = consumingCPs.iterator(); i.hasNext(); ) {
-                Generator g = ((ConsumerChoicePointFrame)i.next()).getGenerator(); 
-                if (filter.contains(g)) {
-                    g.propagateLive(filter);
+                LPInterpreterContext link = ((ConsumerChoicePointFrame)i.next()).getConsumingContext();
+                if (link instanceof Generator) {
+                    ((Generator)link).propagateLive(filter); 
                 }
             }
         }
     }
     
     /**
-     * Inner classes to flag generator states during completeness check.
+     * Inner class used to flag generator states during completeness check.
      */
     private static class LFlag {
     
