@@ -5,7 +5,8 @@
 
 package com.hp.hpl.jena.rdql;
 
-import org.apache.log4j.Logger;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 /** Class to define the operating environment for RDQL.
  *  Provides some utility operations like assert and handling unexpected exceptions
@@ -15,7 +16,7 @@ import org.apache.log4j.Logger;
 
 public class QSys
 {
-    protected static Logger logger = Logger.getLogger( QSys.class );
+    protected static Log logger = LogFactory.getLog( QSys.class );
     
     public static void unhandledException(Throwable t, String className, String methodName)
     {

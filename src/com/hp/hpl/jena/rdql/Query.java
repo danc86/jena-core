@@ -7,7 +7,8 @@ package com.hp.hpl.jena.rdql;
 
 import java.io.* ;
 import java.util.* ;
-import org.apache.log4j.Logger;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.graph.impl.*;
@@ -35,7 +36,7 @@ import com.hp.hpl.jena.rdql.parser.RDQLParser ;
 
 public class Query
 {
-    static Logger logger = Logger.getLogger(Query.class) ;
+    static Log logger = LogFactory.getLog(Query.class) ;
     
     // The names of variables wanted by the caller.
     protected List resultVars = new ArrayList() ;         // Type in list: String name

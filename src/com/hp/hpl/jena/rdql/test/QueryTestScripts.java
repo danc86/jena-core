@@ -20,7 +20,8 @@ import com.hp.hpl.jena.rdql.*;
 
 import com.hp.hpl.jena.vocabulary.*;
 
-import org.apache.log4j.Logger;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 /** Test scripts for RDQL - loads, executes and checks (with JUnit) a collection of
  *  queries.  New tests added as new featues appera and bugs are reported by
@@ -42,7 +43,7 @@ public class QueryTestScripts extends TestSuite
     static public boolean printDetails = false ;
     static public boolean displayTime = false ;
 
-    static protected Logger logger = Logger.getLogger( QueryTestScripts.class );
+    static protected Log logger = LogFactory.getLog( QueryTestScripts.class );
 
     // Instance variables.
     String controlFilename = null ;
