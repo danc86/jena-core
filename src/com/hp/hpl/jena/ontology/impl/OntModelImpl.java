@@ -785,7 +785,7 @@ public class OntModelImpl
     /**
      * <p>Answer a resource representing the class that is the enumeration of the given list of individuals</p>
      * @param uri The URI of the new enumeration class, or null for an anonymous class description.
-     * @param members A list of resources denoting the individuals in the enumeration
+     * @param members An optional list of resources denoting the individuals in the enumeration
      * @return An enumeration class
      */
     public EnumeratedClass createEnumeratedClass( String uri, OntList members ) {
@@ -793,7 +793,7 @@ public class OntModelImpl
         OntClass c = (OntClass) createOntResource( OntClass.class, getProfile().CLASS(), uri );
         
         checkProfileEntry( getProfile().ONE_OF(), "ONE_OF" );
-        c.addProperty( getProfile().ONE_OF(), members );
+        c.addProperty( getProfile().ONE_OF(), (members == null) ? createList() : members );
         
         return (EnumeratedClass) c.as( EnumeratedClass.class );
     }

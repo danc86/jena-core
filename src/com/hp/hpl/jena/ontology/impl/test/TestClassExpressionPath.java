@@ -75,42 +75,6 @@ public class TestClassExpressionPath
     protected Object[][] psTestData() {
         return new Object[][] {
             
-            // Enumerated class
-            {   
-                "OWL ClassDescription.oneOf",
-                new PS() { 
-                    public PathSet ps( OntModel m ) {
-                        return ((EnumeratedClass) m.getResource( NS + "ClassA" )
-                               .as( EnumeratedClass.class )).p_oneOf(); 
-                    } 
-                },
-                OWL.oneOf,
-                ProfileRegistry.OWL_LANG,
-                "file:testing/ontology/owl/ClassExpression/test-enum.rdf",
-                T,
-                new Integer( 1 ),
-                null,
-                RDF.List,
-                null
-            },
-            {   
-                "DAML ClassDescription.oneOf",
-                new PS() { 
-                    public PathSet ps( OntModel m ) {
-                        return ((EnumeratedClass) m.getResource( NS + "ClassA" )
-                               .as( EnumeratedClass.class )).p_oneOf(); 
-                    } 
-                },
-                DAML_OIL.oneOf,
-                ProfileRegistry.DAML_LANG,
-                "file:testing/ontology/daml/ClassExpression/test-enum.rdf",
-                T,
-                new Integer( 1 ),
-                null,
-                DAML_OIL.List,
-                null
-            },
-            
             // Restrictions
             {   
                 "OWL Restriction.onProperty",

@@ -545,7 +545,7 @@ public interface OntModel
     /**
      * <p>Answer a resource representing the class that is the enumeration of the given list of individuals</p>
      * @param uri The URI of the new enumeration class, or null for an anonymous class description.
-     * @param members A list of resources denoting the individuals in the enumeration
+     * @param members An optional list of resources denoting the individuals in the enumeration, or null.
      * @return An enumeration class
      */
     public EnumeratedClass createEnumeratedClass( String uri, OntList members );

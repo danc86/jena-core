@@ -934,7 +934,13 @@ public class OntResourceImpl
         
             // now add our value to the list
             if (!values.contains( value )){
-                values.add( value );
+                OntList newValues = values.add( value );
+                
+                // if the previous values was nil, the return value will be a new list
+                if (newValues != values) {
+                    removeAll( p );
+                    addProperty( p, newValues );
+                }
             }
         }
         else {
