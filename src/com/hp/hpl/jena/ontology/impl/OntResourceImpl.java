@@ -944,22 +944,6 @@ public class OntResourceImpl
     public NodeIterator listPropertyValues( Property property ) {
         return new NodeIteratorImpl( listProperties( property ).mapWith( new ObjectMapper() ), null );
     }
-
-
-    /**
-     * <p>
-     * Remove any values for a given property from this resource.
-     * </p>
-     *
-     * @param property The RDF resource that defines the property to be removed
-     */
-    public void removeAll( Property property ) {
-        for (StmtIterator i = listProperties( property );  i.hasNext();  ) {
-            i.next();
-            i.remove();
-        }
-    }
-
     
     /** 
      * <p>Removes this resource from the ontology by deleting any statements that refer to it.

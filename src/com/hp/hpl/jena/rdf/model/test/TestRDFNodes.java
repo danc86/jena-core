@@ -65,6 +65,24 @@ public class TestRDFNodes extends ModelTestBase
         assertEquals( strings.get(1), "uri" );
         assertEquals( strings.get(2), "literal" );
         }
+        
+    public void testRemoveAllRemoves()
+        {
+        String ps = "x P a; x P b", rest = "x Q c; y P a; y Q b";
+        Model m = modelWithStatements( ps + "; " + rest );
+        Resource r = resource( m, "x" );
+        Resource r2 = r.removeAll( property( m, "P" ) );
+        assertSame( "removeAll should deliver its receiver", r, r2 );
+        assertIsoModels( "x's P-values should go", modelWithStatements( rest ), m );
+        }
+        
+    public void testRemoveAllBoring()
+        {
+        Model m1 = modelWithStatements( "x P a; y Q b" );
+        Model m2 = modelWithStatements( "x P a; y Q b" );
+        resource( m2, "x" ).removeAll( property( m2, "Z" ) );
+        assertIsoModels( "m2 should be unchanged", m1, m2 );
+        }
     }
 
 /*

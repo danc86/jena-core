@@ -252,7 +252,15 @@ public class ResourceImpl extends EnhNode implements Resource {
         while (it.hasNext()) { it.nextStatement(); it.remove(); }
         return this;
     }
-
+    
+    public Resource removeAll( Property p ) {
+        for (StmtIterator i = listProperties( p );  i.hasNext();  ) {
+            i.next();
+            i.remove();
+        }
+        return this;
+    }
+    
     public Resource begin()  {
         mustHaveModel().begin();
         return this;

@@ -628,17 +628,6 @@ public interface OntResource
      * @return An Iterator over the values of the property
      */
     public NodeIterator listPropertyValues( Property property );
-
-
-    /**
-     * <p>
-     * Remove any values for a given property from this resource.
-     * </p>
-     *
-     * @param property The RDF resource that defines the property to be removed
-     */
-    public void removeAll( Property property );
-
     
     /** 
      * <p>Removes this resource from the ontology by deleting any statements that refer to it.
