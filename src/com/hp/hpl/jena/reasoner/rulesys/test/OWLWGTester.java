@@ -70,7 +70,7 @@ public class OWLWGTester {
     protected ReasonerFactory reasonerF;
     
     /** The configuration information for the reasoner */
-    protected Model configuration;
+    protected Resource configuration;
     
     /** The test case which has invoke this test */
     protected TestCase testcase;
@@ -100,7 +100,7 @@ public class OWLWGTester {
      * @param testcase the JUnit test case which is requesting this test
      * @param configuration optional configuration information
      */
-    public OWLWGTester(ReasonerFactory reasonerF, TestCase testcase, Model configuration) {
+    public OWLWGTester(ReasonerFactory reasonerF, TestCase testcase, Resource configuration) {
         this.reasonerF = reasonerF;
         this.testcase = testcase;
         this.configuration = configuration;
@@ -162,11 +162,12 @@ public class OWLWGTester {
         
         // Construct the inferred graph
         // Optional logging
-        Resource configuration = null;
         if (log) {
-            Model m = ModelFactory.createDefaultModel();
-            configuration = m.createResource()
-                         .addProperty(ReasonerVocabulary.PROPtraceOn, "true")
+            if (configuration == null) {
+                Model m = ModelFactory.createDefaultModel();
+                configuration = m.createResource();
+            }
+            configuration.addProperty(ReasonerVocabulary.PROPtraceOn, "true")
                          .addProperty(ReasonerVocabulary.PROPderivationLogging, "true");
         }
         Reasoner reasoner = reasonerF.create(configuration);
