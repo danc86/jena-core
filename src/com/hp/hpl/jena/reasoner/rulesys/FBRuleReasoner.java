@@ -31,9 +31,6 @@ public class FBRuleReasoner implements Reasoner {
     /** The rules to be used by this instance of the forward engine */
     protected List rules;
     
-    /** A compiled version of the rules */
-    protected FBRuleInfGraph.RuleStore ruleStore;
-    
     /** A precomputed set of schema deductions */
     protected Graph schemaGraph;
     
@@ -123,7 +120,6 @@ public class FBRuleReasoner implements Reasoner {
             throw new ReasonerException("Can only bind one schema at a time to an OWLRuleReasoner");
         }
         FBRuleInfGraph graph = new FBRuleInfGraph(this, rules, getPreload(), tbox);
-        if (!cachePreload) graph.setRuleStore(getRuleStore());
         graph.prepare();
         FBRuleReasoner fbr  = new FBRuleReasoner(rules, graph, factory);
         fbr.setDerivationLogging(recordDerivations);
@@ -153,7 +149,6 @@ public class FBRuleReasoner implements Reasoner {
     public InfGraph bind(Graph data) throws ReasonerException {
         Graph schemaArg = schemaGraph == null ? getPreload() : (FBRuleInfGraph)schemaGraph; 
         FBRuleInfGraph graph = new FBRuleInfGraph(this, rules, schemaArg);
-        if (schemaArg == null) graph.setRuleStore(getRuleStore());
         graph.setDerivationLogging(recordDerivations);
         graph.setTraceOn(traceOn);
         graph.rebind(data);
@@ -183,22 +178,11 @@ public class FBRuleReasoner implements Reasoner {
     protected synchronized InfGraph getPreload() {
         if (cachePreload && preload == null) {
             preload = (new FBRuleInfGraph(this, rules, null));
-            ((FBRuleInfGraph)preload).setRuleStore(getRuleStore());
             preload.prepare();
         }
         return preload;
     }
-   
-    /**
-     * Return the prepared rule set.
-     */
-    protected FBRuleInfGraph.RuleStore getRuleStore() {
-        if (ruleStore == null) {
-            ruleStore = FBRuleInfGraph.compile(rules);
-        }
-        return ruleStore;
-    }
-    
+       
     /**
      * Switch on/off drivation logging.
      * If set to true then the InfGraph created from the bind operation will start

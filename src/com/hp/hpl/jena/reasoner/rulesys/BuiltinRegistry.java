@@ -48,7 +48,6 @@ public class BuiltinRegistry {
         
         // Special purposes support functions for OWL
         theRegistry.register(new AssertDisjointPairs());
-        theRegistry.register(new SchedulePrototypeCheck());
         theRegistry.register(new MakeInstance());
     }
     

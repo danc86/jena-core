@@ -47,7 +47,7 @@ public class BasicForwardRuleInfGraph extends BaseInfGraph implements ForwardRul
     protected Graph schemaGraph;
     
     /** The forward rule engine being used */
-    protected FRuleEngine engine;
+    protected FRuleEngineI engine;
     
     /** Flag which, if true, enables tracing of rule actions to logger.info */
     boolean traceOn = false;
@@ -71,6 +71,7 @@ public class BasicForwardRuleInfGraph extends BaseInfGraph implements ForwardRul
    public BasicForwardRuleInfGraph(Reasoner reasoner, Graph schema) {
        super(null, reasoner);
        engine = new FRuleEngine(this);
+//       engine = new RETEEngine(this);
        this.schemaGraph = schema;
    }    
 
@@ -83,11 +84,12 @@ public class BasicForwardRuleInfGraph extends BaseInfGraph implements ForwardRul
     * 
     * @param reasoner the parent reasoner 
     * @param rules the list of rules to use this time
-    * @param schema the (optional) schema data which is being processed
+    * @param schema the (optional) schema or preload data which is being processed
     */
    public BasicForwardRuleInfGraph(Reasoner reasoner, List rules, Graph schema) {
        super(null, reasoner);
        engine = new FRuleEngine(this, rules);
+//       engine = new RETEEngine(this, rules);
        this.schemaGraph = schema;
    }    
 
@@ -97,7 +99,7 @@ public class BasicForwardRuleInfGraph extends BaseInfGraph implements ForwardRul
      * 
      * @param reasoner the parent reasoner 
      * @param rules the list of rules to use this time
-     * @param schema the (optional) schema data which is being processed
+     * @param schema the (optional) schema or preload data which is being processed
      * @param the data graph to be processed
      */
     public BasicForwardRuleInfGraph(Reasoner reasoner, List rules, Graph schema, Graph data) {
@@ -109,7 +111,7 @@ public class BasicForwardRuleInfGraph extends BaseInfGraph implements ForwardRul
      * Attach a compiled rule set to this inference graph.
      * @param rulestore a compiled set of rules (i.e. the result of an FRuleEngine.compile). 
      */
-    public void setRuleStore(FRuleEngine.RuleStore ruleStore) {
+    public void setRuleStore(Object ruleStore) {
         engine.setRuleStore(ruleStore);
     }
     
