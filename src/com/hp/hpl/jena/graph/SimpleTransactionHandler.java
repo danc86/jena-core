@@ -6,7 +6,6 @@
 
 package com.hp.hpl.jena.graph;
 
-import com.hp.hpl.jena.shared.*;
 import com.hp.hpl.jena.graph.impl.*;
 
 /**

@@ -46,7 +46,6 @@ package com.hp.hpl.jena.ontology.daml.impl;
 // Imports
 ///////////////
 
-import com.hp.hpl.jena.rdf.model.RDFException;
 import com.hp.hpl.jena.rdf.model.Resource;
 
 import com.hp.hpl.jena.util.Log;

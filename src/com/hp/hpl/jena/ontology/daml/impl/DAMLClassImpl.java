@@ -47,8 +47,6 @@ package com.hp.hpl.jena.ontology.daml.impl;
 ///////////////
 import java.util.Iterator;
 
-import com.hp.hpl.jena.rdf.model.RDFException;
-
 import com.hp.hpl.jena.ontology.daml.DAMLClass;
 import com.hp.hpl.jena.ontology.daml.DAMLModel;
 import com.hp.hpl.jena.ontology.daml.PropertyAccessor;

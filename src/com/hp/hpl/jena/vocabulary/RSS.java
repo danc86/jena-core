@@ -37,7 +37,6 @@ import com.hp.hpl.jena.rdf.model.impl.ResourceImpl;
 
 import com.hp.hpl.jena.rdf.model.Resource;
 import com.hp.hpl.jena.rdf.model.Property;
-import com.hp.hpl.jena.rdf.model.RDFException;
 import com.hp.hpl.jena.shared.*;
 
 /**

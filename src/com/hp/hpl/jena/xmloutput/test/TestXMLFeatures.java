@@ -15,7 +15,6 @@ import com.hp.hpl.jena.vocabulary.RDF;
 import com.hp.hpl.jena.rdf.arp.*;
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.util.Log;
-import com.hp.hpl.jena.shared.*;
 
 import junit.framework.Test;
 import junit.framework.TestCase;

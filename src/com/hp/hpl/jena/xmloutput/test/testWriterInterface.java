@@ -11,7 +11,6 @@ import com.hp.hpl.jena.mem.ModelMem;
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.xmloutput.impl.*;
 import com.hp.hpl.jena.rdf.model.impl.*;
-import com.hp.hpl.jena.shared.*;
 
 import java.io.File;
 import java.io.FileOutputStream;

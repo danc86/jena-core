@@ -32,7 +32,6 @@ package com.hp.hpl.jena.regression;
 import com.hp.hpl.jena.util.Log;
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.rdf.model.impl.*;
-import com.hp.hpl.jena.shared.*;
 
 import java.net.ConnectException;
 import java.net.NoRouteToHostException;

@@ -97,7 +97,6 @@ import com.hp.hpl.jena.rdf.model.impl.PropertyImpl;
 import com.hp.hpl.jena.rdf.model.impl.Util;
 import com.hp.hpl.jena.rdf.arp.*;
 import org.apache.xerces.util.XMLChar;
-import com.hp.hpl.jena.shared.*;
 
 import java.util.*;
 import java.io.*;

@@ -51,7 +51,6 @@ import com.hp.hpl.jena.ontology.daml.DAMLCommon;
 import com.hp.hpl.jena.rdf.model.NodeIterator;
 import com.hp.hpl.jena.rdf.model.Property;
 import com.hp.hpl.jena.rdf.model.Literal;
-import com.hp.hpl.jena.rdf.model.RDFException;
 import com.hp.hpl.jena.shared.*;
 
 import com.hp.hpl.jena.util.Log;

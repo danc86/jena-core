@@ -28,8 +28,6 @@ import com.hp.hpl.jena.db.impl.DriverRDB;
 import com.hp.hpl.jena.db.impl.Driver_MySQL;
 import com.hp.hpl.jena.rdf.model.*;
 
-import com.hp.hpl.jena.shared.*;
-
 public class TestTransactions extends TestCase
     {    
         
