@@ -26,6 +26,7 @@ package com.hp.hpl.jena.graph.compose;
 ///////////////
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.graph.impl.*;
+import com.hp.hpl.jena.util.IteratorCollection;
 import com.hp.hpl.jena.util.iterator.*;
 
 import java.util.*;
@@ -79,7 +80,7 @@ public abstract class CompositionBase
      */
     public static Filter reject( final ClosableIterator i )
         {
-        final Set suppress = GraphUtil.iteratorToSet( i );
+        final Set suppress = IteratorCollection.iteratorToSet( i );
         return new Filter()
             { public boolean accept( Object o ) { return !suppress.contains( o ); } };
         }
@@ -183,7 +184,7 @@ public abstract class CompositionBase
      */
     public static Filter ifIn( final ClosableIterator i )
         {
-        final Set allow = GraphUtil.iteratorToSet( i );
+        final Set allow = IteratorCollection.iteratorToSet( i );
         return new Filter()
             { public boolean accept( Object x ) { return allow.contains( x ); } };
         }

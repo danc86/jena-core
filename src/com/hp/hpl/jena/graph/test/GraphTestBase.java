@@ -12,6 +12,7 @@ package com.hp.hpl.jena.graph.test;
 */
 
 import com.hp.hpl.jena.util.CollectionFactory;
+import com.hp.hpl.jena.util.IteratorCollection;
 import com.hp.hpl.jena.util.iterator.*;
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.graph.impl.GraphBase;
@@ -35,10 +36,10 @@ public class GraphTestBase extends JenaTestBase
         { return ModelFactory.createModelForGraph( g ); }
         
     public static Set iteratorToSet( Iterator L )
-        { return GraphUtil.iteratorToSet( L ); }
+        { return IteratorCollection.iteratorToSet( L ); }
 
     public static List iteratorToList( Iterator it )
-        { return GraphUtil.iteratorToList( it ); }
+        { return IteratorCollection.iteratorToList( it ); }
                 
     public Set nodeSet( String nodes )
         {

@@ -9,6 +9,7 @@ package com.hp.hpl.jena.graph.impl;
 import java.util.*;
 
 import com.hp.hpl.jena.graph.*;
+import com.hp.hpl.jena.util.IteratorCollection;
 import com.hp.hpl.jena.util.iterator.ExtendedIterator;
 
 /**
@@ -53,7 +54,7 @@ public class SimpleBulkUpdateHandler implements BulkUpdateHandler
 
     public void addIterator( Iterator it, boolean notify )
         { 
-        List s = GraphUtil.iteratorToList( it );
+        List s = IteratorCollection.iteratorToList( it );
         add( s, false );
         if (notify) manager.notifyAddIterator( graph, s );
         }
@@ -110,7 +111,7 @@ public class SimpleBulkUpdateHandler implements BulkUpdateHandler
         
     public void deleteIterator( Iterator it, boolean notify )
         {  
-        List L = GraphUtil.iteratorToList( it );
+        List L = IteratorCollection.iteratorToList( it );
         delete( L, false );
         if (notify) manager.notifyDeleteIterator( graph, L );
          }

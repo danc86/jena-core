@@ -30,7 +30,7 @@ public class TestPackage extends TestSuite {
         addTest( "TestHashUtils",         TestCollectionFactory.suite() );
         addTest( "TestLocationMapper",    TestLocationMapper.suite() ) ;
         addTest( "TestFileManager",       TestFileManager.suite()) ;
-
+        addTest( TestIteratorCollection.suite() );
     }
 
     private void addTest(String name, TestSuite tc) {

@@ -29,7 +29,7 @@ public class WrappedIterator extends NiceIterator
     /** the base iterator that we wrap */  
     private Iterator base;
     
-    /** private constructor: remember the base iterator */
+    /** constructor: remember the base iterator */
     protected WrappedIterator( Iterator base )
         { this.base = base; }
         

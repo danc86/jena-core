@@ -8,6 +8,7 @@ package com.hp.hpl.jena.graph.impl;
 import java.util.*;
 
 import com.hp.hpl.jena.graph.*;
+import com.hp.hpl.jena.util.IteratorCollection;
 
 /**
  	WrappedBulkUpdateHandler - a base class for wrapped bulk update handlers
@@ -45,7 +46,7 @@ public class WrappedBulkUpdateHandler
 
     public void add( Iterator it )
         {
-        List s = GraphUtil.iteratorToList( it );
+        List s = IteratorCollection.iteratorToList( it );
         base.add( s );
         manager.notifyAddIterator( graph, s );
         }
@@ -76,7 +77,7 @@ public class WrappedBulkUpdateHandler
 
     public void delete( Iterator it )
         {
-        List s = GraphUtil.iteratorToList( it );
+        List s = IteratorCollection.iteratorToList( it );
         base.delete( s );
         manager.notifyDeleteIterator( graph, s );
         }
