@@ -91,7 +91,6 @@ public class TestModelSpecRevised extends ModelTestBase
         String rulesA = file( "example.rules" ), rulesB = file( "extra.rules" );
         List rules = append( Rule.rulesFromURL( rulesA ), Rule.rulesFromURL( rulesB ) );
         Model rs = modelWithStatements( "_a jms:reasoner " + factoryURI + "; _a jms:ruleSetURL " + rulesA + "; _a jms:ruleSetURL " + rulesB );
-        Resource A = resource( "_a" );
         ReasonerFactory rf = ModelSpecImpl.getReasonerFactory( A, rs );
         RuleReasoner gr = (RuleReasoner) rf.create( null );
         assertSameRules( rules, gr.getRules() );
