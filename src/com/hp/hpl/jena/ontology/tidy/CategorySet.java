@@ -37,6 +37,17 @@ class CategorySet implements Comparable {
 			return member(Grammar.notype,all);
 		}
 	};
+	/**
+	 * 
+	 * @return The ids of all CategorySet which may be the subject
+	 * or object of disjointWith. 
+	 */
+	static final Q disjointWithSets= new Q() {
+		boolean test(int all[]){
+			return all[0] != Grammar.orphan &&
+			  intersect(Grammar.disjointWithNodes,all);
+		}
+	};
 
     static final private int orphanTypes[] = new int[]{
     	Grammar.owlOntologyProperty,
@@ -105,6 +116,7 @@ class CategorySet implements Comparable {
    	  untypedSets,
    	  structuredOne,
    	  structuredTwo,
+   	  disjointWithSets
    };
    static private Q orphaned[] = new Q[]{
    	orphanSets,
