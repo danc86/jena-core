@@ -306,6 +306,26 @@ public abstract class AbstractTestGraph extends GraphTestBase
         g.getBulkUpdateHandler().delete( triples );
         L.assertHas( new Object[] {"delete[]", triples} );
         }
+        
+    public void testContainsNode()
+        {
+        Graph g = getGraph();
+        graphAdd( g, "a P b; _c _Q _d; 10 11 12" );
+        QueryHandler qh = g.queryHandler();
+        assertTrue( qh.containsNode( node( "a" ) ) );
+        assertTrue( qh.containsNode( node( "P" ) ) );
+        assertTrue( qh.containsNode( node( "b" ) ) );
+        assertTrue( qh.containsNode( node( "_c" ) ) );
+        assertTrue( qh.containsNode( node( "_Q" ) ) );
+        assertTrue( qh.containsNode( node( "_d" ) ) );
+        assertTrue( qh.containsNode( node( "10" ) ) );
+        assertTrue( qh.containsNode( node( "11" ) ) );
+        assertTrue( qh.containsNode( node( "12" ) ) );
+    /* */
+        assertFalse( qh.containsNode( node( "x" ) ) );
+        assertFalse( qh.containsNode( node( "_y" ) ) );
+        assertFalse( qh.containsNode( node( "99" ) ) );
+        }
     }
 
 

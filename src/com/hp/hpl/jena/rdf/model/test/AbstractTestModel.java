@@ -73,6 +73,19 @@ public abstract class AbstractTestModel extends ModelTestBase
         model.remove( S2 );
         assertTrue( model.isEmpty() );
         }
+        
+    public void testContainsResource()
+        {
+        modelAdd( model, "x R y; _a P _b" );
+        assertTrue( model.containsResource( resource( model, "x" ) ) );
+        assertTrue( model.containsResource( resource( model, "R" ) ) );
+        assertTrue( model.containsResource( resource( model, "y" ) ) );
+        assertTrue( model.containsResource( resource( model, "_a" ) ) );
+        assertTrue( model.containsResource( resource( model, "P" ) ) );
+        assertTrue( model.containsResource( resource( model, "_b" ) ) );
+        assertFalse( model.containsResource( resource( model, "i" ) ) );
+        assertFalse( model.containsResource( resource( model, "_j" ) ) );
+        }
     }
 
 

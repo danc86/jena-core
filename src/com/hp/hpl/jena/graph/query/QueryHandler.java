@@ -56,6 +56,8 @@ public interface QueryHandler
     
     /**
         true iff the graph contains a triple in which n appears somewhere.
+        if n is a fluid node, it is not defined whether true or false is returned,
+        so don't do that.
     */
     public boolean containsNode( Node n );
     
