@@ -232,7 +232,7 @@ public class ReasonerTester {
         Graph correctG = loadTestFile(test, resultP);
         boolean correct = correctG.isIsomorphicWith(resultG);
         // Used in debugging the tests ...
-        // /*
+        /*
         if (!correct) {
             System.out.println("Missing triples:");
             for (Iterator i = correctG.find(null, null, null); i.hasNext(); ) {
@@ -249,7 +249,7 @@ public class ReasonerTester {
                 }
             }
         }
-        // */
+        */
         // ... end of debugging hack
         if (testcase != null) {
             testcase.assertTrue(description, correct);
