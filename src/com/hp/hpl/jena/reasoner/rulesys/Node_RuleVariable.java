@@ -22,10 +22,12 @@ import com.hp.hpl.jena.graph.Node_Variable;
  * @version $Revision$ on $Date$
  */
 public class Node_RuleVariable extends Node_Variable {
-
     /** The offset of this variable in the rule's binding table */
     protected int index;
-    
+
+    /** A static wildcard - like Node.ANY but tests equl to other Node_RuleVariables */
+    public static final Node_RuleVariable WILD = new Node_RuleVariable("*", 0);
+         
     /**
      * Constructor
      * @param label the text label for the variable

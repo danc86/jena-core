@@ -137,6 +137,20 @@ public class BindingVector implements BindingEnvironment {
     }
     
     /**
+     * Bind the variables in a goal pattern using the binding environment, to
+     * generate a more specialized goal
+     * @param goal the TriplePattern to be instantiated
+     * @return a TriplePattern obtained from the goal by substituting current bindinds
+     */
+    public TriplePattern bind(TriplePattern goal) {
+        return new TriplePattern(
+                getGroundVersion(goal.getSubject()),
+                getGroundVersion(goal.getPredicate()),
+                getGroundVersion(goal.getObject())
+        );
+    }
+    
+    /**
      * Instatiate a goal pattern using the binding environment
      * @param goal the TriplePattern to be instantiated
      * @return an instantiated Triple
@@ -148,6 +162,7 @@ public class BindingVector implements BindingEnvironment {
                 getGroundVersion(goal.getObject())
         );
     }
+    
 }
 
 

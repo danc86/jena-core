@@ -16,6 +16,7 @@ import com.hp.hpl.jena.rdf.model.impl.ResourceImpl;
 import com.hp.hpl.jena.mem.ModelMem;
 import com.hp.hpl.jena.mem.GraphMem;
 import com.hp.hpl.jena.reasoner.*;
+import com.hp.hpl.jena.reasoner.rulesys.Node_RuleVariable;
 import com.hp.hpl.jena.vocabulary.RDF;
 
 import junit.framework.TestCase;
@@ -162,7 +163,7 @@ public class ReasonerTester {
      */
     public static Node nodeToPattern(Node n) {
         if (n.isURI() && n.toString().startsWith("var:")) {
-            return TriplePattern.nodeWildcard;
+            return Node_RuleVariable.WILD;
         } else {
             return n;
         }

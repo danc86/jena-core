@@ -84,7 +84,7 @@ public class RuleStore {
             for (int i = 0; i < r.headLength(); i++) {
                 Object clause = r.getHeadElement(i);
                 if (clause instanceof TriplePattern) {
-                    if (generator.goal.subsumes((TriplePattern)clause)) {
+                    if ( ((TriplePattern)clause).subsumes(generator.goal) ) {
                         matchingRules.add(new RuleInstance(generator, r));
                     }
                 }

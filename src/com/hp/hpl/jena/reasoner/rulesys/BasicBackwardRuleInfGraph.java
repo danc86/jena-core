@@ -74,8 +74,8 @@ public class BasicBackwardRuleInfGraph extends BaseInfGraph {
     /** Default setting for rules threshold */
     public static final long DEFAULT_RULES_THRESHOLD = 500000;
     
-    /** log4j logger */
-    protected static Logger logger = Logger.getLogger(BasicBackwardRuleInfGraph.class);
+    /** log4j logger*/
+    static Logger logger = Logger.getLogger(BasicBackwardRuleInfGraph.class);
     
 //=======================================================================
 // Core methods
@@ -187,6 +187,13 @@ public class BasicBackwardRuleInfGraph extends BaseInfGraph {
      */
     public void setTraceOn(boolean state) {
         traceOn = state;
+    }
+    
+    /**
+     * Return true if tracing is switched on
+     */
+    public boolean isTraceOn() {
+        return traceOn;
     }
     
 //  =======================================================================

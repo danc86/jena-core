@@ -64,7 +64,9 @@ public class GoalState {
         if (solutionPointer < results.numResults()) {
             return results.getResult(solutionPointer++);
         } else {
-            return results.crank();
+            Object result = results.crank();
+            if (!(result instanceof StateFlag)) solutionPointer++;
+            return result;
         }
     }
     

@@ -14,6 +14,7 @@ import com.hp.hpl.jena.reasoner.*;
 import com.hp.hpl.jena.reasoner.rulesys.BasicBackwardRuleInfGraph;
 
 import java.util.*;
+import org.apache.log4j.Logger;
 
 /**
  * Part of the backward chaining rule interpreter. The goal table
@@ -50,6 +51,9 @@ public class GoalResults {
     
     /** The set of remaining RuleInstances that can generate results for this entry */
     List ruleInstances;
+    
+    /** log4j logger*/
+    static Logger logger = Logger.getLogger(GoalResults.class);
     
 //  =======================================================================
 //   methods
@@ -137,6 +141,9 @@ public class GoalResults {
             } else if (result instanceof Triple) {
                 resultSet.add(result);
                 flushDependents();
+                if (ruleEngine.isTraceOn()) {
+                    logger.debug("Cranking GoalResult on goal (" + goal + ") generated " + result);
+                }
                 return result;
             }
         }
