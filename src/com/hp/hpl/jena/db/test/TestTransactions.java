@@ -22,19 +22,19 @@ package com.hp.hpl.jena.db.test;
  * @author csayers
 */
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
+import junit.framework.TestCase;
+import junit.framework.TestSuite;
 
 import com.hp.hpl.jena.db.DBConnection;
 import com.hp.hpl.jena.db.IDBConnection;
 import com.hp.hpl.jena.db.ModelRDB;
 import com.hp.hpl.jena.db.impl.DriverRDB;
 import com.hp.hpl.jena.db.impl.Driver_MySQL;
-import com.hp.hpl.jena.rdf.model.*;
-import com.hp.hpl.jena.vocabulary.DB;
-
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
+import com.hp.hpl.jena.rdf.model.Literal;
+import com.hp.hpl.jena.rdf.model.Model;
+import com.hp.hpl.jena.rdf.model.Property;
+import com.hp.hpl.jena.rdf.model.Resource;
+import com.hp.hpl.jena.rdf.model.Statement;
 
 
 
