@@ -17,6 +17,9 @@ public interface ModelSpec extends ModelSource
         Answer a Model that fits the specification of this ModelSpec and is built over some
         underlying model with the given name. [It is not necessary for the resulting model
         to be known by that name.]
+        
+        <p>NOTE: this method is likely to become deprecated, and then deleted, absent
+        user pressure to retain it.
     */
     Model createModelOver( String name );
     
