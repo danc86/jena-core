@@ -1,5 +1,5 @@
 /*
- * (c) Copyright 2002, Hewlett-Packard Company, all rights reserved.
+ * (c) Copyright 2001-2003, Hewlett-Packard Company, all rights reserved.
  * [See end of file]
  */
 
@@ -44,8 +44,8 @@ public class Query
     {
 		defaultPrefixMap.put("rdf",  "http://www.w3.org/1999/02/22-rdf-syntax-ns#") ;
 		defaultPrefixMap.put("rdfs", "http://www.w3.org/2000/01/rdf-schema#") ;
-        defaultPrefixMap.put("xsd" , "http://www.w3.org/2001/XMLSchema#") ; 
-        defaultPrefixMap.put("owl" , "http://www.w3.org/2002/07/owl#") ; 
+        defaultPrefixMap.put("xsd" , "http://www.w3.org/2001-2003/XMLSchema#") ; 
+        defaultPrefixMap.put("owl" , "http://www.w3.org/2001-2003/07/owl#") ; 
     }
 
     // Turn logging on and off.
@@ -328,7 +328,7 @@ public class Query
 }
 
 /*
- *  (c) Copyright Hewlett-Packard Company 2001
+ *  (c) Copyright Hewlett-Packard Company 2001-2003
  *  All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
