@@ -95,4 +95,7 @@ class URIReference  implements AResource
         && uri.equals(((URIReference)o).uri );
     }
     
+    public int hashCode() {
+        return uri.hashCode();
+    }
 }

@@ -1156,6 +1156,10 @@ public class URI implements Serializable {
 		return uriSpecString.toString();
 	}
 
+    public int hashCode() {
+        return toString().hashCode();
+    }
+    
 	/**
 	 * Get the indicator as to whether this URI uses the "generic URI"
 	 * syntax.
