@@ -1905,6 +1905,9 @@ public class OntModelImpl
         // cache this model against the public uri (if caching enabled)
         getDocumentManager().addModel( uri, this );
 
+        // we don't want to load this document again if imported by one of the imports
+        addLoadedImport( uri );
+        
         // now load the imported documents
         getDocumentManager().loadImports( this );
         rebind();

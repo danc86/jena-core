@@ -103,6 +103,35 @@ public class TestBugReports extends TestCase {
     }
     
     
+    /* Bug report by Danah Nada - duplicate elements in property domain */
+    public void test_dn_01() {
+        // direct reading for the model method 1
+        OntModel m0 = ModelFactory.createOntologyModel( OntModelSpec.OWL_DL_MEM_RULE_INF, null );
+        m0.read( "file:testing/ontology/bugs/test_hk_07B.owl" );
+
+        OntProperty p0 = m0.getOntProperty( "file:testing/ontology/bugs/test_hk_07B.owl#PropB" );
+        int count = 0;
+        for (Iterator i = p0.listDomain(); i.hasNext();) {
+            count++;
+            i.next();
+        }
+        assertEquals( 3, count );
+
+        // repeat test - thus using previously cached model for import
+
+        OntModel m1 = ModelFactory.createOntologyModel( OntModelSpec.OWL_DL_MEM_RULE_INF, null );
+        m1.read( "file:testing/ontology/bugs/test_hk_07B.owl" );
+
+        OntProperty p1 = m1.getOntProperty( "file:testing/ontology/bugs/test_hk_07B.owl#PropB" );
+        count = 0;
+        for (Iterator i = p1.listDomain(); i.hasNext();) {
+            count++;
+            i.next();
+        }
+        assertEquals( 3, count );
+    }
+    
+    
     /**
      * Bug report by Mariano Rico Almodóvar [Mariano.Rico@uam.es] on June 16th.
      * Said to raise exception.
@@ -248,38 +277,6 @@ public class TestBugReports extends TestCase {
             ontModel.isInBaseModel(ontModel.createStatement(B, RDF.type, OWL.Class)));
     }
 
-    /** Bug report by Holger Knublach - duplicate classes in domain and range */
-    public void test_hk_07() {
-        boolean useInf = false;
-        
-        OntModel a = ModelFactory.createOntologyModel( useInf ? OntModelSpec.OWL_MEM_RULE_INF : OntModelSpec.OWL_MEM, null );
-        a.read( "file:testing/ontology/bugs/test_hk_07A.owl" );
-
-        String NSA = "file:testing/ontology/bugs/test_hk_07A.owl#";
-        String NSB = "file:testing/ontology/bugs/test_hk_07B.owl#";
-        
-        ObjectProperty pA = a.getObjectProperty( NSA + "PropA" );
-        ObjectProperty pB = a.getObjectProperty( NSB + "PropB" );
-
-        int count = 0;
-        for (Iterator i = pA.listDomain();  i.hasNext(); ) {
-            //System.out.println( i.next() );
-            i.next();
-            count++;
-        }
-        
-        // if inferencing, we expect REsource and Thing as domains as well as the union
-        assertEquals( "Too many domain classes listed", (useInf ? 3 : 1), count );
-
-        for (Iterator i = pB.listDomain();  i.hasNext(); ) {
-            i.next();
-            count++;
-        }
-        
-        assertEquals( "Too many domain classes listed", (useInf ? 6 : 2), count );
-    }
-    
-    
     /**
      * Bug report by federico.carbone@bt.com, 30-July-2003. A literal can be
      * turned into an individual.
@@ -798,8 +795,7 @@ public class TestBugReports extends TestCase {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         //writer.write(baseModel, out, BASE );
     }
-    
-    
+
     // Internal implementation methods
     //////////////////////////////////
 
