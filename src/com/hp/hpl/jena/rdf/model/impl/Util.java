@@ -111,11 +111,7 @@ public class Util extends Object {
      *@return The property value, or null if none or there is a SecurityException.
      */
     public static String getProperty(String p) {
-        try {
-            return System.getProperty(p);
-        } catch (SecurityException e) {
-            return null;
-        }
+        return getProperty( p, null );
     }
     /** Call System.getProperty and suppresses SecurityException, (simply returns null).
      *@return The property value, or null if none or there is a SecurityException.

@@ -92,19 +92,18 @@ public class Basic extends BaseXMLWriter {
 		writer.println(">");
 	}
 
-	protected void writePredicate(Statement stmt, PrintWriter writer)
+	protected void writePredicate(Statement stmt, final PrintWriter writer)
 		throws RDFException {
 
-		Property predicate = stmt.getPredicate();
-		RDFNode object = stmt.getObject();
+		final Property predicate = stmt.getPredicate();
+		final RDFNode object = stmt.getObject();
 
 		writer.print(space+space+
 			"<"
 				+ startElementTag(
 					predicate.getNameSpace(),
 					predicate.getLocalName()));
-
-		
+                           
 		if (object instanceof Resource) {
 			writer.print(" ");
 			writeResourceReference(((Resource) object), writer);

@@ -787,11 +787,10 @@ implements Model, ModelI, PrefixMapping, ModelLock
             Node node = (Node) it.next();
             if (node.isURI())
                 {
-                String ns = IteratorFactory.asResource( node, this ).getNameSpace();
-                if (ns == null)
-                    System.err.println( "updateNamespace: null ns for " + node );
-                else
-                    set.add( ns );
+                String uri = node.getURI();
+                String ns = uri.substring( 0, Util.splitNamespace( uri ) );
+                // String ns = IteratorFactory.asResource( node, this ).getNameSpace();
+                set.add( ns );
                 }
             }
         }
