@@ -77,6 +77,7 @@ public class XSDDateTime extends AbstractDateTime {
         TimeZone tz = data[UTC] == 'Z' ? TimeZone.getTimeZone("GMT") : TimeZone.getDefault();
         Calendar calendar = new GregorianCalendar(tz);
         calendar.set(data[CY], data[MONTH], data[DAY], data[HOUR], data[MINUTE], data[SECOND]);
+        calendar.set(Calendar.MILLISECOND, 0);
         return calendar;
     }
     

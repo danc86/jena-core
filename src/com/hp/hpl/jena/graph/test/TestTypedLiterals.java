@@ -325,7 +325,6 @@ public class TestTypedLiterals extends TestCase {
         assertEquals("calendar value", cal.get(Calendar.MINUTE), testCal.get(Calendar.MINUTE) );
         assertEquals("calendar value", cal.get(Calendar.SECOND), testCal.get(Calendar.SECOND) );
         */
-        cal.set(Calendar.MILLISECOND, 0);       // ms field can be undefined on Linux
         testCal.set(Calendar.MILLISECOND, 0);   // ms field can be undefined on Linux
         assertEquals("calendar value", cal, testCal);
         assertEquals("equality test", l1, m.createTypedLiteral("1999-05-31T12:56:32Z", "", XSDDatatype.XSDdateTime));
