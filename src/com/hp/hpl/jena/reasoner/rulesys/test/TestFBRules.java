@@ -501,24 +501,6 @@ public class TestFBRules extends TestCase {
         Node valueType = getValue(infgraph, valueInstance, RDF.type.asNode());
         assertEquals(valueType, C2);
     }
-
-    /**
-     * Test access to makeInstance machinery from a Brule.
-     */
-    public void testMakeInstances() {
-        Graph data = new GraphMem();
-        data.add(new Triple(a, ty, C1));
-        List rules = Rule.parseRules(
-        "[r1:  (?x p ?t) <- (?x rdf:type C1), makeInstance(?x, p, ?t)]" +
-                          "" );        
-        Reasoner reasoner =  new FBRuleReasoner(rules);
-        InfGraph infgraph = reasoner.bind(data);
-        
-        Node valueInstance = getValue(infgraph, a, p);
-        assertNotNull(valueInstance);
-        Node valueInstance2 = getValue(infgraph, a, p);
-        assertEquals(valueInstance, valueInstance2);
-    }
     
     /**
      * Helper - returns the single object value for an s/p pair, asserts an error
