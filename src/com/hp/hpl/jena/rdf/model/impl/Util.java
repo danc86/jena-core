@@ -60,8 +60,7 @@ public class Util extends Object {
         int i;
         for (i = lg - 1; i >= 1; i--) {
             ch = uri.charAt(i);
-            if (!XMLChar.isNCName(ch))
-                break;
+            if (notNameChar(ch)) break;
         }
         for (j = i + 1; j < lg; j++) {
             ch = uri.charAt(j);
@@ -75,6 +74,15 @@ public class Util extends Object {
         }
         return j;
     }
+
+    /**
+	    answer true iff this is not a legal NCName character, ie, is
+	    a possible split-point start.
+    */
+    public static boolean notNameChar(char ch)
+        {
+        return !XMLChar.isNCName(ch);
+        }
 
     public static String substituteStandardEntities(String s) {
         s = replace(s, "&", "&amp;");

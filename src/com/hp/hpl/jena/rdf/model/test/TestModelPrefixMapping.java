@@ -72,7 +72,8 @@ public class TestModelPrefixMapping extends AbstractTestPrefixMapping
        Test that existing prefixes are not over-ridden by the default ones.
     */
     private void doOnlyFreshPrefixes()
-        { String newURI = "abc:def";
+        { 
+        String newURI = "abc:def/";
         Graph g = Factory.createDefaultGraph();
         PrefixMapping pm = g.getPrefixMapping();
         pm.setNsPrefix( alphaPrefix, newURI );
