@@ -281,9 +281,17 @@ public class TestNode extends GraphTestBase
         assertEquals( "?? must denote ANY", Node.ANY, Node.create( "??" ) );
         }
     
-    public void testCreatePlainLiteral()
+    public void testCreatePlainLiteralSIngleQuotes()
         {
         Node n = Node.create( "'xxx'" );
+        assertEquals( "xxx", n.getLiteral().getLexicalForm() );
+        assertEquals( "", n.getLiteral().language() );
+        assertEquals( null, n.getLiteral().getDatatypeURI() );
+        }
+    
+    public void testCreatePlainLiteralDoubleQuotes()
+        {
+        Node n = Node.create( "\"xxx\"" );
         assertEquals( "xxx", n.getLiteral().getLexicalForm() );
         assertEquals( "", n.getLiteral().language() );
         assertEquals( null, n.getLiteral().getDatatypeURI() );
@@ -299,7 +307,7 @@ public class TestNode extends GraphTestBase
     
     public void testCreateLanguagedLiteralXY()
         {
-        Node n = Node.create( "'chat'xy-AB" );
+        Node n = Node.create( "\"chat\"xy-AB" );
         assertEquals( "chat", n.getLiteral().getLexicalForm() );
         assertEquals( "xy-AB", n.getLiteral().language() );
         assertEquals( null, n.getLiteral().getDatatypeURI() );
@@ -312,11 +320,10 @@ public class TestNode extends GraphTestBase
         assertEquals( "", n.getLiteral().language() );
         assertEquals( "xsd:integer", n.getLiteral().getDatatypeURI() );
         }
-        
     
     public void testCreateTypedLiteralBoolean()
         {
-        Node n = Node.create( "'true'xsd:boolean" );
+        Node n = Node.create( "\"true\"xsd:boolean" );
         assertEquals( "true", n.getLiteral().getLexicalForm() );
         assertEquals( "", n.getLiteral().language() );
         assertEquals( "xsd:boolean", n.getLiteral().getDatatypeURI() );

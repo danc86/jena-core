@@ -98,7 +98,15 @@ public class GraphTestBase extends JenaTestBase
     public static void assertIsomorphic( Graph expected, Graph got )
         {
         if (!expected.isIsomorphicWith( got ))
-            fail( "wanted " + expected + " but got " + got );
+            fail( "wanted " + nice(expected) + "\nbut got " + nice(got) );
+        }
+    
+    protected static String nice( Graph g )
+        {
+        StringBuffer b = new StringBuffer( g.size() * 100 );
+        ExtendedIterator it = GraphUtil.findAll( g );
+        while (it.hasNext()) b.append( "\n    " + ((Triple) it.next()).toString( PrefixMapping.Extended ) );
+        return b.toString();
         }
         
     public static void assertIsomorphic( String title, Graph expected, Graph got )
