@@ -28,7 +28,6 @@ import java.util.Iterator;
 
 import com.hp.hpl.jena.ontology.*;
 import com.hp.hpl.jena.rdf.model.*;
-import com.hp.hpl.jena.util.iterator.WrappedIterator;
 import com.hp.hpl.jena.enhanced.*;
 import com.hp.hpl.jena.graph.*;
 
@@ -96,9 +95,7 @@ public class IndividualImpl
      * @exception OntProfileException If the sameIndividualAs property is not supported in the current language profile.   
      */ 
     public void setSameIndividualAs( Resource res ) {
-        checkProfile( getProfile().SAME_INDIVIDUAL_AS(), "SAME_INDIVIDUAL_AS" );
-        removeAll( getProfile().SAME_INDIVIDUAL_AS() );
-        addSameAs( res );
+        setPropertyValue( getProfile().SAME_INDIVIDUAL_AS(), "SAME_INDIVIDUAL_AS", res );
     }
 
     /**
@@ -108,8 +105,7 @@ public class IndividualImpl
      * @exception OntProfileException If the sameIndividualAs property is not supported in the current language profile.   
      */ 
     public void addSameIndividualAs( Resource res ) {
-        checkProfile( getProfile().SAME_INDIVIDUAL_AS(), "SAME_INDIVIDUAL_AS" );
-        addProperty( getProfile().SAME_INDIVIDUAL_AS(), res );
+        addPropertyValue( getProfile().SAME_INDIVIDUAL_AS(), "SAME_INDIVIDUAL_AS", res );
     }
 
     /**
@@ -120,8 +116,7 @@ public class IndividualImpl
      * @exception OntProfileException If the sameIndividualAs property is not supported in the current language profile.   
      */ 
     public OntResource getSameIndividualAs() {
-        checkProfile( getProfile().SAME_INDIVIDUAL_AS(), "SAME_INDIVIDUAL_AS" );
-        return (OntResource) getProperty( getProfile().SAME_INDIVIDUAL_AS() ).getResource().as( OntResource.class );            
+        return objectAsResource( getProfile().SAME_INDIVIDUAL_AS(), "SAME_INDIVIDUAL_AS" );
     }
 
     /**
@@ -132,11 +127,18 @@ public class IndividualImpl
      * @exception OntProfileException If the sameIndividualAs property is not supported in the current language profile.   
      */ 
     public Iterator listSameIndividualAs() {
-        checkProfile( getProfile().SAME_INDIVIDUAL_AS(), "SAME_INDIVIDUAL_AS" );
-        return WrappedIterator.create( listProperties( getProfile().SAME_INDIVIDUAL_AS() ) )
-               .mapWith( new ObjectAsMapper( OntResource.class ) );
+        return listAs( getProfile().SAME_INDIVIDUAL_AS(), "SAME_INDIVIDUAL_AS", OntResource.class );
     }
 
+    /**
+     * <p>Answer true if this individual is the same as the given resource.</p>
+     * @param res A resource to test against
+     * @return True if the resources are declared the same via a <code>sameIndividualAs</code> statement.
+     */
+    public boolean isSameIndividualAs( Resource res ) {
+        return hasPropertyValue( getProfile().SAME_INDIVIDUAL_AS(), "SAME_INDIVIDUAL_AS", res );
+    }
+    
      
     // Internal implementation methods
     //////////////////////////////////

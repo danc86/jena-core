@@ -89,6 +89,13 @@ public interface Individual
      */ 
     public Iterator listSameIndividualAs();
 
+    /**
+     * <p>Answer true if this individual is the same as the given resource.</p>
+     * @param res A resource to test against
+     * @return True if the resources are declared the same via a <code>sameIndividualAs</code> statement.
+     */
+    public boolean isSameIndividualAs( Resource res );
+    
 
 
 }

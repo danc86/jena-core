@@ -31,6 +31,7 @@ public class TestPackage extends TestSuite {
         addTest( "TestProperty", TestProperty.suite() );
         addTest( "TestListSyntaxCategories", TestListSyntaxCategories.suite() );
         addTest( "TestCreate", TestCreate.suite() );
+        addTest( "TestIndividual", TestIndividual.suite() );
     }
 
     private void addTest(String name, TestSuite tc) {
