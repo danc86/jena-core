@@ -12,6 +12,9 @@ package com.hp.hpl.jena.reasoner.rulesys.builtins;
 import com.hp.hpl.jena.reasoner.rulesys.*;
 import com.hp.hpl.jena.graph.*;
 
+//Thanks to Bradley Schatz (Bradley@greystate.com) for code patches
+//to support XSDDateTime comparisons
+
 /**
  * Tests if the first argument is less than or equal to the second.
  * 
@@ -49,6 +52,8 @@ public class LE extends BaseBuiltin {
         Node n1 = getArg(1, args, context);
         if ( Util.isNumeric(n0) && Util.isNumeric(n1) ) {
             return Util.compareNumbers(n0, n1) <= 0;
+        } else if (Util.isInstant(n0) && Util.isInstant(n1)) {
+            return Util.compareInstants(n0, n1) <= 0;
         } else {
             return false;
         }

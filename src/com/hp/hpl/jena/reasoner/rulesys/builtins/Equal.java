@@ -12,6 +12,9 @@ package com.hp.hpl.jena.reasoner.rulesys.builtins;
 import com.hp.hpl.jena.reasoner.rulesys.*;
 import com.hp.hpl.jena.graph.*;
 
+// Thanks to Bradley Schatz (Bradley@greystate.com) for code patches
+// to support XSDDateTime comparisons
+
 /**
  * Check that the two args are semantically equal.
  * 
@@ -51,6 +54,8 @@ public class Equal extends BaseBuiltin {
         Node n2 = getArg(1, args, context);
         if (Util.isNumeric(n1)) {
             return Util.compareNumbers(n1, n2) == 0;
+        } else if (Util.isInstant(n1) && Util.isInstant(n2)) {
+            return Util.compareInstants(n1, n2) == 0;
         } else {
             return n1.sameValueAs(n2);
         }
