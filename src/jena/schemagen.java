@@ -1060,6 +1060,18 @@ public class schemagen {
                         break;
                 }
             }
+            else if (c == '<') {
+                buf.append( "&lt;" );
+                pos += 4;
+            }
+            else if (c == '>') {
+                buf.append( "&gt;" );
+                pos += 4;
+            }
+            else if (c == '&') {
+                buf.append( "&amp;" );
+                pos += 5;
+            }
             else {
                 // add the char
                 buf.append( c );
