@@ -228,9 +228,10 @@
 # and so does not appear in the subject position
 [restrictionSubclass1: (?D owl:equivalentClass ?R), isFunctor(?R) ->
        [restrictionSubclass1b: (?X rdf:type ?D) <- (?X rdf:type ?R)] ]
-       
-[restrictionSubclass2: (?D owl:equivalentClass ?R), isFunctor(?R) ->
-       [restrictionSubclass2b: (?X rdf:type ?R) <- (?X rdf:type ?D)] ]
+ 
+# This is redundant because equivalentClass is symmetric anyway      
+#[restrictionSubclass2: (?D owl:equivalentClass ?R), isFunctor(?R) ->
+#       [restrictionSubclass2b: (?X rdf:type ?R) <- (?X rdf:type ?D)] ]
        
 # Temp trial - might replace above       
 #[restrictionSubclass1: (?D owl:equivalentClass ?R), isFunctor(?R) , (?X rdf:type ?R) -> (?X rdf:type ?D)]
