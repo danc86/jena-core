@@ -33,6 +33,8 @@ public class TestBasics extends TestCase  {
     // Useful constants
     Node p = Node.createURI("p");
     Node q = Node.createURI("q");
+    Node r = Node.createURI("r");
+    Node s = Node.createURI("s");
     Node n1 = Node.createURI("n1");
     Node n2 = Node.createURI("n2");
     Node n3 = Node.createURI("n3");
@@ -438,7 +440,7 @@ public class TestBasics extends TestCase  {
                 new Triple(n1, q, n3)
             });
     }
-    
+        
 }
 
 /*
