@@ -19,7 +19,7 @@ public class SimpleGenerator implements RegexpTreeGenerator
     public RegexpTree getEndOfLine() { return RegexpTree.EOL; }
     public RegexpTree getNothing() { return RegexpTree.NON; }
     
-    public RegexpTree getText( char ch ) { return new Text( "" + ch ); }
+    public RegexpTree getText( char ch ) { return Text.create( ch ); }
     
     public RegexpTree getZeroOrMore( RegexpTree d ) { return new ZeroOrMore( d ); }
     public RegexpTree getOneOrMore( RegexpTree d ) { return new OneOrMore( d ); }
@@ -29,8 +29,10 @@ public class SimpleGenerator implements RegexpTreeGenerator
     public RegexpTree getAlternatives( List operands ) { return Alternatives.create( operands ); }
     
     public RegexpTree getBackReference( int n ) { return new BackReference( n ); }
+    
     public RegexpTree getClass( String chars, boolean reject ) 
         { return reject ? (RegexpTree) new NoneOf( chars ) : new AnyOf( chars ); }
+    
     public RegexpTree getParen( RegexpTree operand, int index ) 
         { return new Paren( operand, index ); }
     }

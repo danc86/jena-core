@@ -7,28 +7,71 @@ package com.hp.hpl.jena.graph.query.regexptrees;
 
 /**
     Text - represents literal text for the match, to be taken as it stands. May
-    include material that was meta-quoted in the original patterm.
+    include material that was meta-quoted in the original patterm. There are
+    two sub-classes, one for strings and one for single characters; the factory
+    methods ensure that there are no single-character TextString instances.
+    
     @author kers
 */
 
-public class Text extends RegexpTree
+public abstract class Text extends RegexpTree
     {
-    protected String literal;
+    public static Text create( String s )
+        { 
+        return s.length() == 1
+            ? (Text) new TextChar( s.charAt( 0 ) )
+            : new TextString( s ); 
+        }
     
-    public Text( String s )
-        { literal = s; }
+    public static Text create( char ch )
+        { return new TextChar( ch ); }
     
-    public boolean equals( Object x )
-        { return x instanceof Text && literal.equals( ((Text) x).literal ); }
+    static class TextString extends Text
+        {
+        protected String literal;
+        
+        TextString( String s ) 
+            { literal = s; }
+        
+        public String getString()
+            { return literal; }
+        
+        public String toString()
+            { return "<text.s '" + literal + "'>"; }
+        
+        public boolean equals( Object x )
+            { return x instanceof TextString && literal.equals( ((TextString) x).literal ); }
+        
+        public int hashCode()
+            { return literal.hashCode(); }
+        }
     
-    public int hashCode()
-        { return literal.hashCode(); }
+    static class TextChar extends Text
+        {
+        protected char ch;
+        
+        TextChar( char ch ) 
+            { this.ch = ch; }
+        
+        public String getString()
+            { return "" + ch; }
+        
+        public String toString()
+            { return "<text.ch '" + ch + "'>"; }
+        
+        public boolean equals( Object x )
+            { return x instanceof TextChar && ch == ((TextChar) x).ch; }
+        
+        public int hashCode()
+            { return ch; }
+        }
     
-    public String getString()
-        { return literal; }
+    public abstract boolean equals( Object x );
     
-    public String toString()
-        { return "<text '" + literal + "'>"; }
+    public abstract int hashCode();
+    
+    public abstract String getString();
+    
     }
 
 /*
