@@ -22,8 +22,9 @@ public class TurtleJenaWriter extends N3JenaWriter
     public TurtleJenaWriter()
     {
         super() ;
-        if ( writer instanceof N3JenaWriterCommon )
-            ((N3JenaWriterCommon)writer).useWellKnownPropertySymbols = false ;
+        writer.useWellKnownPropertySymbols = false ;
+        writer.allowTripleQuotedStrings = false ;
+        writer.allowDoubles = false ;
     }
 }
 

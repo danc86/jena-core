@@ -87,7 +87,10 @@ public class N3JenaWriterCommon implements RDFWriter
     int shortSubject = subjectColumn-minGap;
     
     boolean useWellKnownPropertySymbols = getBooleanValue("usePropertySymbols", true) ;
-
+    
+    boolean allowTripleQuotedStrings = getBooleanValue("useTripleQuotedStrings", true) ;
+    boolean allowDoubles = getBooleanValue("useDoubles", true) ;
+    
     // ----------------------------------------------------
     // Jena RDFWriter interface
 
@@ -491,7 +494,7 @@ public class N3JenaWriterCommon implements RDFWriter
                 // Continuing is always safe.
             }
                 
-            if ( datatype.equals(XSD.xdouble.getURI()) )
+            if ( this.allowDoubles && datatype.equals(XSD.xdouble.getURI()) )
             {
                 // Must have an '.' or 'e' or 'E'
                 if ( s.indexOf('.') >= 0 || 
@@ -513,9 +516,10 @@ public class N3JenaWriterCommon implements RDFWriter
         String quoteMarks = "\"" ;
         
         // Things that force the use of """ strings
-        if ( s.indexOf("\n") != -1 ||
-             s.indexOf("\r") != -1 ||
-             s.indexOf("\f") != -1 )
+        if ( this.allowTripleQuotedStrings &&
+             ( s.indexOf("\n") != -1 ||
+               s.indexOf("\r") != -1 ||
+               s.indexOf("\f") != -1 ) )
         {
             quoteMarks = "\"\"\"" ;
             singleQuoteLiteral = false ;
