@@ -64,7 +64,7 @@ public final class IteratorFactory {
 			public Object map1(Object o) {
 				return asStatement((Triple)o,m);
 			}
-		},i),null);
+		},i));
 	}
 
 	/**

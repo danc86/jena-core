@@ -44,7 +44,7 @@ import java.util.Iterator;
 public class SeqNodeIteratorFactoryImpl extends Object 
   implements NodeIteratorFactory {
 
-    public NodeIterator createIterator(Iterator iter,Object o,Container cont) throws Exception {
-        return new SeqNodeIteratorImpl(iter, o, (Seq) cont);
+    public NodeIterator createIterator(Iterator iter, Object ignored, Container cont) throws Exception {
+        return new SeqNodeIteratorImpl(iter, (Seq) cont);
     }
 }

@@ -157,7 +157,7 @@ public class ResourceImpl extends EnhNode implements Resource, ResourceI {
 
 	protected ModelCom mustHaveModel()
 		{
-                    ModelCom model = (ModelCom)getGraph();
+        ModelCom model = (ModelCom)getGraph();
 		if (model == null) throw new RDFException( RDFException.NOTRELATEDTOMODEL );
 		return model;
 		}
