@@ -95,6 +95,7 @@ class OneTwoImpl extends CGeneral implements One, Two, Blank {
 
 	protected void setCyclicState(int st) {
 		cyclicState = st;
+		checker.cyclicTouched.add(this);
 	}
 
 	public boolean incompleteOne() {
