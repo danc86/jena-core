@@ -64,20 +64,55 @@ public class TestGraphExtract extends ModelTestBase
         testExtract( "a R b; b S c; c T a", "a", "a R b; b S c; c T a; junk P junk" );
         }
     
-    public void testExtract( String wanted, String node, String source )
+    public void testTripleFilter()
         {
-        assertIsomorphic( graphWith( wanted ), extract( node( node ), graphWith( source ) ) );
+        assertTrue( stopAtAnonObject.stopAt( triple( "a R _b" ) ) );
+        assertFalse( stopAtAnonObject.stopAt( triple( "a R b" ) ) );
+        assertFalse( stopAtAnonObject.stopAt( triple( "a _R b" ) ) );
+        assertFalse( stopAtAnonObject.stopAt( triple( "_a R b" ) ) );
         }
     
+    protected static final TripleBoundary stopAtAnonObject = new TripleBoundary()
+        {
+        public boolean stopAt( Triple t ) { return t.getObject().isBlank(); }
+        };
+        
+    protected static final TripleBoundary stopNowhere = new TripleBoundary()
+        {
+        public boolean stopAt( Triple t ) { return false; }
+        };
+    
+    interface TripleBoundary
+        {
+        boolean stopAt( Triple t );
+        }   
+    
+    public void testExtractBoundary()
+        {
+        testExtract( "a R b; b S _c", "a", "a R b; b S _c; _c T d", stopAtAnonObject );
+        }
+
+    public void testExtract( String wanted, String node, String source )
+        {
+        testExtract( wanted, node, source, stopNowhere );
+        }
+        
+    /**
+    */
+    private void testExtract( String wanted, String node, String source, TripleBoundary b )
+        {
+        assertIsomorphic( graphWith( wanted ), extract( node( node ), b, graphWith( source ) ) );
+        }
+
     /**
     	@param node
     	@param graph
     	@return
     */
-    private Graph extract( Node node, Graph graph )
-        { return extractInto( graphWith( "" ), node, graph ); }
+    private Graph extract( Node node, TripleBoundary b, Graph graph )
+        { return extractInto( graphWith( "" ), node, b, graph ); }
     
-    private Graph extractInto( Graph toUpdate, Node root, Graph extractFrom )
+    private Graph extractInto( Graph toUpdate, Node root, TripleBoundary b, Graph extractFrom )
         {
         Iterator it = extractFrom.find( root, Node.ANY, Node.ANY );
         while (it.hasNext())
@@ -85,8 +120,8 @@ public class TestGraphExtract extends ModelTestBase
             Triple t = (Triple) it.next();
             Node subRoot = t.getObject();
             toUpdate.add( t );
-            if (toUpdate.contains( subRoot, Node.ANY, Node.ANY ) == false)
-                extractInto( toUpdate, subRoot, extractFrom );
+            if (toUpdate.contains( subRoot, Node.ANY, Node.ANY ) == false && b.stopAt( t ) == false)
+                extractInto( toUpdate, subRoot, b, extractFrom );
             }
         return toUpdate;
         }
