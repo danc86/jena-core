@@ -231,7 +231,7 @@ public class TestModelEvents extends ModelTestBase
         
     public void testChangeListener()
         {
-        ModelChangedListener CL = new ChangeListener
+        ModelChangedListener CL = null;
         }
  
  public static class TripleListener implements ModelChangedListener
