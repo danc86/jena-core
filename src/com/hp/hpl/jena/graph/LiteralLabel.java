@@ -6,6 +6,9 @@
 
 package com.hp.hpl.jena.graph;
 
+import com.hp.hpl.jena.datatypes.*;
+import com.hp.hpl.jena.datatypes.xsd.*;
+import com.hp.hpl.jena.datatypes.xsd.impl.*;
 import com.hp.hpl.jena.graph.dt.*;
 
 /**

@@ -9,6 +9,8 @@
  *****************************************************************/
 package com.hp.hpl.jena.graph.test;
 
+import com.hp.hpl.jena.datatypes.*;
+import com.hp.hpl.jena.datatypes.xsd.*;
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.graph.dt.*;
 import com.hp.hpl.jena.graph.query.*;

@@ -11,6 +11,7 @@ package com.hp.hpl.jena.reasoner.rdfsReasoner1;
 
 import com.hp.hpl.jena.reasoner.*;
 import com.hp.hpl.jena.reasoner.transitiveReasoner.*;
+import com.hp.hpl.jena.datatypes.*;
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.graph.dt.*;
 import com.hp.hpl.jena.mem.GraphMem;

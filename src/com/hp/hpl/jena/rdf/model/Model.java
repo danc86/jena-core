@@ -7,6 +7,7 @@
 package com.hp.hpl.jena.rdf.model;
 
 import com.hp.hpl.jena.graph.query.*;
+import com.hp.hpl.jena.datatypes.*;
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.graph.dt.*;
 

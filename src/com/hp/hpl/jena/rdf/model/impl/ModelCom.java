@@ -37,6 +37,7 @@ import com.hp.hpl.jena.graph.dt.*;
 
 import com.hp.hpl.jena.util.iterator.*;
 import com.hp.hpl.jena.vocabulary.RDF;
+import com.hp.hpl.jena.datatypes.*;
 import com.hp.hpl.jena.enhanced.*;
 import com.hp.hpl.jena.mem.*;
 
