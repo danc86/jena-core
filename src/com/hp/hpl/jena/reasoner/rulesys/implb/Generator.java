@@ -29,6 +29,9 @@ public class Generator {
      *  null if the generator is complete */
     protected LPInterpreter interpreter;
     
+    /** The choice point frame at which the interpreter should restart */
+    protected FrameObject choicePoint;
+    
     /** The ordered set of results available for the goal */
     protected ArrayList results = new ArrayList();
     
@@ -75,6 +78,13 @@ public class Generator {
             }
             dependents = null;
         }
+    }
+    
+    /**
+     * Return the interpeter choice point state at which this generator should resume.
+     */
+    public void setChoicePoint(FrameObject choice) {
+        choicePoint = choice;
     }
     
     /**
@@ -129,7 +139,7 @@ public class Generator {
         boolean finished = false;
         List notifyList = dependents;
         while (!finished) {
-            Object result = interpreter.next();
+            Object result = interpreter.next(choicePoint);
             if (result == StateFlag.FAIL) {
                 setComplete();
                 finished = true;

@@ -10,8 +10,9 @@
 package com.hp.hpl.jena.reasoner.rulesys.implb;
 
 /**
- * Base class for stack frame objects that
- * we might want to allocate from a pool in the future.
+ * Base class for stack frame objects. Originally this was used to provide
+ * pool-based allocated but it turns out the normal Java GC outperforms
+ * manual pool-based allocation anyway.
  *  
  * @author <a href="mailto:der@hplb.hpl.hp.com">Dave Reynolds</a>
  * @version $Revision$ on $Date$
@@ -20,28 +21,13 @@ public class FrameObject {
 
     /** Used to link the frame to the prior frame in the (tree) stack or the pool */
     FrameObject link;
-    
-//    /** Reference counter */
-//    int refCount = 0;
-    
-//    /** The parent factory to which free frames can be returned */
-//    protected FrameObjectFactory factory;
-    
-    /** 
-     * Constructor The parent factory to which free frames can be returned
-     * @param factory 
-     */
-    public FrameObject(FrameObjectFactory factory) {
-//        this.factory = factory;
-    }
-    
+        
     /**
      * Link this frame to an existing frame. In the future this might do some ref count
      * tricks.
      */
     public void linkTo(FrameObject prior) {
         link = prior;
-//        if (prior != null) prior.incRefCount();
     }
     
     /**
@@ -58,33 +44,11 @@ public class FrameObject {
         return link;
     }
     
-    
-//    /**
-//     * Increment the reference count.
-//     */
-//    public void incRefCount() {
-//        refCount++;
-//    }
-    
     /**
      * Close the frame actively. This frees any internal resources, frees this frame and
      * frees the frame to which this is linked.
      */
     public void close() {
-//        if (--refCount == 0) {
-//            if (link != null) {
-//                link.close();
-//            }
-//            free();
-//        }
-    }
-    
-    /**
-     * Signal that the frame is finished with. If not called the frame will be
-     * reclaimed by garbage collection anyway. Not implemented.
-     */
-    public void free() {
-//        factory.returnFreeFrame(this);
     }
     
 }

@@ -135,6 +135,13 @@ public class FBLPRuleInfGraph  extends FBRuleInfGraph {
         return lpbEngine.getAllRules();
     }
        
+    /**
+     * Set a predicate to be tabled/memoized by the LP engine. 
+     */
+    public void setTabled(Node predicate) {
+        lpbEngine.tablePredicate(predicate);
+    }
+    
 //  =======================================================================
 //  Core inf graph methods
     

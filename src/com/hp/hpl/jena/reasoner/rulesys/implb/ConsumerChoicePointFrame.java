@@ -1,7 +1,7 @@
 /******************************************************************
- * File:        LPEnvironment.java
+ * File:        ConsumerChoicePoint.java
  * Created by:  Dave Reynolds
- * Created on:  22-Jul-2003
+ * Created on:  07-Aug-2003
  * 
  * (c) Copyright 2003, Hewlett-Packard Company, all rights reserved.
  * [See end of file]
@@ -9,12 +9,14 @@
  *****************************************************************/
 package com.hp.hpl.jena.reasoner.rulesys.implb;
 
-import com.hp.hpl.jena.graph.Node;
+import com.hp.hpl.jena.graph.Triple;
+import com.hp.hpl.jena.reasoner.rulesys.impl.StateFlag;
 
 /**
- * Represents a single frame in the LP interpreter's environment stack. The
- * environment stack represents the AND part of the search tree - it is a sequence
- * of nested predicate calls.
+ * Frame in the LPInterpreter's control stack used to represent matching
+ * to the results of a tabled predicate. Conventionally the system state which
+ * finds and tables the goal results is called the generator and states which
+ * require those results are called consumers.
  * <p>
  * This is used in the inner loop of the interpreter and so is a pure data structure
  * not an abstract data type and assumes privileged access to the interpreter state.
@@ -23,53 +25,56 @@ import com.hp.hpl.jena.graph.Node;
  * @author <a href="mailto:der@hplb.hpl.hp.com">Dave Reynolds</a>
  * @version $Revision$ on $Date$
  */
-public class EnvironmentFrame extends FrameObject {
-
-    /** The set of permanent variables Yi) in use by this frame.  */
-    Node[] pVars;
+public class ConsumerChoicePointFrame extends GenericTripleMatchFrame {
+        
+    /** The generator whose tabled results we are selecting over */
+    protected Generator generator;
     
-    /** The code the the clause currently being processed */
-    RuleClauseCode clause;
+    /** The index in the generator's result set that we have reached so far. */
+    protected int resultIndex;
     
-    /** The continuation program counter offet in the parent clause's byte code */
-    int cpc;
-    
-    /** The continuation argument counter offset in the parent clause's arg stream */
-    int cac;
-    
-    /** 
-     * Constructor 
-     * @param clause the compiled code being interpreted by this env frame 
+    /**
+     * Constructor.
+     * @param interpreter the parent interpreter whose state is to be preserved here, its arg stack
+     * defines the parameters for the target goal
      */
-    public EnvironmentFrame(RuleClauseCode clause) {
-        this.clause = clause;
+    public ConsumerChoicePointFrame(LPInterpreter interpreter) {
+        init(interpreter);
     }
     
     /**
-     * Initialize a starting frame.
-     * @param clause the compiled code being interpreted by this env frame 
+     * Initialize the choice point state.
+     * @param interpreter the parent interpreter whose state is to be preserved here, its arg stack
+     * defines the parameters for the target goal
      */
-    public void init(RuleClauseCode clause) { 
-        this.clause = clause;
+    public void init(LPInterpreter interpreter) {
+        super.init(interpreter);
+        generator = interpreter.getEngine().generatorFor(goal);
+        generator.setChoicePoint(this);
+        resultIndex = 0;
     }
     
     /**
-     * Allocate a vector of permanent variables for use in the rule execution.
+     * Find the next result triple and bind the result vars appropriately.
+     * @param interpreter the calling interpreter whose trail should be used
+     * @return FAIL if there are no more matches and the generator is closed, SUSPEND if
+     * there are no more matches but the generator could generate more, SATISFIED if
+     * a match has been found.
      */
-    public void allocate(int n) {
-            pVars = new Node[n];
-    }
-    
-    /**
-     * Printable string for debugging.
-     */
-    public String toString() {
-        if (clause == null || clause.rule == null) {
-            return "null env";
+    public synchronized StateFlag nextMatch(LPInterpreter interpreter) {
+        while (resultIndex < generator.results.size()) {
+            Triple result = (Triple) generator.results.get(resultIndex++);
+            if (bindResult(result, interpreter)) {
+                return StateFlag.SATISFIED;
+            }            
+        }
+        if (generator.isComplete()) {
+            return StateFlag.FAIL;
         } else {
-            return "env(" + clause.rule.toShortString() + ")";
+            return StateFlag.SUSPEND;
         }
     }
+    
 }
 
 

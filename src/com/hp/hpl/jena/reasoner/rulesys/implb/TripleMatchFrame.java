@@ -10,52 +10,32 @@
 package com.hp.hpl.jena.reasoner.rulesys.implb;
 
 import com.hp.hpl.jena.graph.*;
-import com.hp.hpl.jena.reasoner.TriplePattern;
-import com.hp.hpl.jena.reasoner.rulesys.Functor;
-import com.hp.hpl.jena.reasoner.rulesys.Node_RuleVariable;
 import com.hp.hpl.jena.util.iterator.ExtendedIterator;
 
 /**
  * Frame on the choice point stack used to represent the state of a direct
  * graph triple match.
+ * <p>
+ * This is used in the inner loop of the interpreter and so is a pure data structure
+ * not an abstract data type and assumes privileged access to the interpreter state.
+ * </p>
  *  
  * @author <a href="mailto:der@hplb.hpl.hp.com">Dave Reynolds</a>
  * @version $Revision$ on $Date$
  */
-public class TripleMatchFrame extends FrameObject {
+public class TripleMatchFrame extends GenericTripleMatchFrame {
     
-    /** The environment frame describing the state of the AND tree at this choice point */
-    EnvironmentFrame envFrame;
-    
-    /** The top of the trail stack at the time of the call */
-    int trailIndex;
-   
     /** An iterator over triples matching a goal */
     ExtendedIterator matchIterator;
     
-    /** The variable to the subject of the triple, null if no binding required */
-    Node_RuleVariable subjectVar;
-    
-    /** The variable to the predicate of the triple, null if no binding required */
-    Node_RuleVariable predicateVar;
-    
-    /** The variable to the subject of the triple, null if no binding required */
-    Node_RuleVariable objectVar;
-    
-    /** The functor variable structure to explode the object into, null if not required */
-    Functor objectFunctor;
-    
-    /** The continuation program counter offet in the parent clause's byte code */
-    int cpc;
-    
-    /** The continuation argument counter offset in the parent clause's arg stream */
-    int cac;
-    
     /**
      * Constructor.
+     * Initialize the triple match to preserve the current context of the given
+     * LPInterpreter and search for the match defined by the current argument registers
+     * @param intepreter the interpreter instance whose env, trail and arg values are to be preserved
      */
-    public TripleMatchFrame(TripleMatchFactory factory) {
-        super(factory);
+    public TripleMatchFrame(LPInterpreter interpreter) {
+        init(interpreter);
     }
 
     /**
@@ -64,44 +44,12 @@ public class TripleMatchFrame extends FrameObject {
      * @return false if there are no more matches in the iterator.
      */
     public boolean nextMatch(LPInterpreter interpreter) {
-        if (matchIterator.hasNext()) {
-            Triple t = (Triple)matchIterator.next();
-            if (objectVar != null)    interpreter.bind(objectVar,    t.getObject());
-            if (objectFunctor != null) {
-                int mark = interpreter.trail.size();
-                while (! functorMatch(t, interpreter)) {
-                    interpreter.unwindTrail(mark);
-                    if (matchIterator.hasNext()) {
-                        t = (Triple) matchIterator.next();
-                    } else {
-                        return false;
-                    }
-                }
+        while (matchIterator.hasNext()) {
+            if (bindResult((Triple)matchIterator.next(), interpreter)) {
+                return true;
             }
-            if (subjectVar != null)   interpreter.bind(subjectVar,   t.getSubject());
-            if (predicateVar != null) interpreter.bind(predicateVar, t.getPredicate());
-            return true;
-        } else {
-            return false;
         }
-    }
-    
-    /**
-     * Check that the object of a triple match corresponds to the given functor pattern.
-     * Side effects the variable bindings.
-     */
-    public boolean functorMatch(Triple t, LPInterpreter interpreter) {
-        Node o = t.getObject();
-        if (!Functor.isFunctor(o)) return false;
-        Functor f = (Functor)o.getLiteral().getValue();
-        if ( ! f.getName().equals(objectFunctor.getName())) return false;
-        if ( f.getArgLength() != objectFunctor.getArgLength()) return false;
-        Node[] fargs = f.getArgs();
-        Node[] oFargs = objectFunctor.getArgs();
-        for (int i = 0; i < fargs.length; i++) {
-            if (!interpreter.unify(oFargs[i], fargs[i])) return false;
-        }
-        return true;
+        return false;
     }
     
     /**
@@ -110,32 +58,8 @@ public class TripleMatchFrame extends FrameObject {
      * @param intepreter the interpreter instance whose env, trail and arg values are to be preserved
      */
     public void init(LPInterpreter interpreter) {
-        envFrame = interpreter.envFrame;
-//        envFrame.incRefCount();
-        trailIndex = interpreter.trail.size();
-        Node s = LPInterpreter.deref(interpreter.argVars[0]);
-        subjectVar =   (s instanceof Node_RuleVariable) ? (Node_RuleVariable) s : null;
-        Node p = LPInterpreter.deref(interpreter.argVars[1]);
-        predicateVar = (p instanceof Node_RuleVariable) ? (Node_RuleVariable) p : null;
-        Node o = LPInterpreter.deref(interpreter.argVars[2]);
-        objectVar =    (o instanceof Node_RuleVariable) ? (Node_RuleVariable) o : null;
-        TriplePattern query = null;
-        if (Functor.isFunctor(o)) {
-            objectFunctor = (Functor)o.getLiteral().getValue();
-            query = new TriplePattern(s, p, null);
-        } else {
-            objectFunctor = null;
-            query = new TriplePattern(s, p, o);
-        }
-        this.matchIterator = interpreter.getEngine().getInfGraph().findDataMatches(query);
-    }
-
-    /**
-     * Set the continuation point for this frame.
-     */
-    public void setContinuation(int pc, int ac) {
-        cpc = pc;
-        cac = ac; 
+        super.init(interpreter);
+        this.matchIterator = interpreter.getEngine().getInfGraph().findDataMatches(goal);
     }
     
     /**
@@ -143,15 +67,6 @@ public class TripleMatchFrame extends FrameObject {
      */
     public void close() {
         if (matchIterator != null) matchIterator.close();
-//        if (--refCount == 0) {
-//            if (link != null) {
-//                link.close();
-//            }
-//            if (envFrame != null) {
-//                envFrame.close();
-//            }
-//            free();
-//        }
     }
     
 }

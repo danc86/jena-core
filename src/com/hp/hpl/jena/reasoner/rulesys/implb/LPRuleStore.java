@@ -39,6 +39,9 @@ public class LPRuleStore extends RuleStore {
     /** Two level index map - index on predicate then on object */
     protected Map indexPredicateToCodeMap;
         
+    /** Set of predicates which should be tabled */
+    protected HashSet tabledPredicates = new HashSet();
+        
     /** Threshold for number of rule entries in a predicate bucket before second level indexing kicks in */
     private static final int INDEX_THRESHOLD = 20;
     
@@ -56,6 +59,14 @@ public class LPRuleStore extends RuleStore {
     public LPRuleStore() {
         super();
     }
+    
+    /**
+     * Register an RDF predicate as one whose presence in a goal should force
+     * the goal to be tabled.
+     */
+    public synchronized void tablePredicate(Node predicate) {
+        tabledPredicates.add(predicate);
+    }    
     
     /**
      * Return an ordered list of RuleClauseCode objects to implement the given 
@@ -96,8 +107,30 @@ public class LPRuleStore extends RuleStore {
     /**
      * Return true if the given predicate is indexed.
      */
-    public boolean indexedPredicate(Node predicate) {
+    public boolean isIndexedPredicate(Node predicate) {
         return (indexPredicateToCodeMap.get(predicate) != null);
+    }
+    
+    /**
+     * Return true if the given goal is tabled, currently this is true if the
+     * predicate is a tabled predicate or the predicate is a wildcard and some
+     * tabled predictes exist.
+     */
+    public boolean isTabled(TriplePattern goal) {
+        return isTabled(goal.getPredicate());
+    }
+    
+    /**
+     * Return true if the given predicated is tabled, currently this is true if the
+     * predicate is a tabled predicate or the predicate is a wildcard and some
+     * tabled predictes exist.
+     */
+    public boolean isTabled(Node predicate) {
+        if (predicate.isVariable() && !tabledPredicates.isEmpty()) {
+            return true;
+        } else {
+            return tabledPredicates.contains(predicate);
+        }
     }
     
     /**

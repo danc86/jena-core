@@ -14,23 +14,17 @@ import com.hp.hpl.jena.graph.Node;
 import java.util.*;
 
 /**
- * Represents a single frame in the LP interpreter's choice pointt stack,
+ * Represents a single frame in the LP interpreter's choice point stack,
  * represents the OR part of the search tree.
  * <p>
  * This is used in the inner loop of the interpreter and so is a pure data structure
- * not an abstract data type.
+ * not an abstract data type and assumes privileged access to the interpreter state.
  * </p>
  * 
  * @author <a href="mailto:der@hplb.hpl.hp.com">Dave Reynolds</a>
  * @version $Revision$ on $Date$
  */
-public class ChoicePointFrame extends FrameObject {
-
-    /** The environment frame describing the state of the AND tree at this choice point */
-    EnvironmentFrame envFrame;
-
-    /** The top of the trail stack at the time of the call */
-    int trailIndex;
+public class ChoicePointFrame extends GenericChoiceFrame {
 
     /** The set of argument variables for the call */
     Node[] argVars = new Node[RuleClauseCode.MAX_ARGUMENT_VARS];
@@ -38,17 +32,15 @@ public class ChoicePointFrame extends FrameObject {
     /** Iterator over the set of clause code objects comprising the set of choices */
     Iterator clauseIterator;
     
-    /** The continuation program counter offet in the parent clause's byte code */
-    int cpc;
-    
-    /** The continuation argument counter offset in the parent clause's arg stream */
-    int cac;
-
     /**
      * Constructor.
+     * Initialize a choice point to preserve the current context of the given intepreter 
+     * and then call the given set of predicates.
+     * @param interpreter the LPInterpreter whose state is to be preserved
+     * @param predicateClauses the list of predicates for this choice point
      */
-    public ChoicePointFrame(ChoicePointFactory factory) {
-        super(factory);
+    public ChoicePointFrame(LPInterpreter interpreter, Collection predicateClauses) {
+        init(interpreter, predicateClauses);
     }
 
     /**
@@ -58,36 +50,11 @@ public class ChoicePointFrame extends FrameObject {
      * @param predicateClauses the list of predicates for this choice point
      */
     public void init(LPInterpreter interpreter, Collection predicateClauses) {
-        envFrame = interpreter.envFrame;
-//        envFrame.incRefCount();
-        trailIndex = interpreter.trail.size();
+        super.init(interpreter);
         System.arraycopy(interpreter.argVars, 0, argVars, 0, argVars.length);
         clauseIterator = predicateClauses.iterator();
     }
 
-    /**
-     * Set the continuation point for this frame.
-     */
-    public void setContinuation(int pc, int ac) {
-        cpc = pc;
-        cac = ac; 
-    }
-    
-    /**
-     * Override close method to reclaim the environment stack (imporant for
-     * closing any embedded triple match iterators)
-     */
-    public void close() {
-//        if (--refCount == 0) {
-//            if (link != null) {
-//                link.close();
-//            }
-//            if (envFrame != null) {
-//                envFrame.close();
-//            }
-//            free();
-//        }
-    }
 }
 
 /*
