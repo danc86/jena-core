@@ -3,13 +3,13 @@
   [See end of file]
   $Id$
 */
-package com.hp.hpl.jena.ontology.tidy.impl;
+package com.hp.hpl.jena.ontology.tidy;
 
 /**
  * @author <a href="mailto:Jeremy.Carroll@hp.com">Jeremy Carroll</a>
  *
 */
-class Levels {
+public class Levels {
 	static public final int Warning = 0;   
   static public final int Lite = 1;
   static public final int DL = 2;

@@ -7,7 +7,7 @@ package com.hp.hpl.jena.ontology.tidy.test;
 
 import junit.framework.TestCase;
 import com.hp.hpl.jena.ontology.tidy.*;
-import com.hp.hpl.jena.ontology.tidy.impl.*;
+//import com.hp.hpl.jena.ontology.tidy.impl.*;
 import com.hp.hpl.jena.ontology.*;
 import java.util.*;
 import java.io.*;
@@ -104,7 +104,7 @@ class SyntaxTest extends TestCase {
 		//	  return;
 			//(InputStream) inI.next(),
 			//om.read()
-			chk.add(om.getGraph());
+			chk.rawAdd(om.getGraph());
 			
 			String rslt = chk.getSubLanguage();
 			if (!level.getURI().endsWith(rslt)) {

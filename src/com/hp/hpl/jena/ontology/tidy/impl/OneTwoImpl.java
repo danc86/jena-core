@@ -5,6 +5,7 @@
 */
 package com.hp.hpl.jena.ontology.tidy.impl;
 import com.hp.hpl.jena.graph.*;
+import com.hp.hpl.jena.ontology.tidy.*;
 import com.hp.hpl.jena.rdf.model.*;
 
 /**
@@ -55,7 +56,7 @@ class OneTwoImpl extends CGeneral implements One, Two, Blank {
 			problem.add(t);
 			//     getChecker().setMonotoneLevel(Levels.Full);
 			getChecker().addProblem(
-				new SyntaxProblem(shortMsg[i], problem, Levels.DL));
+				new SyntaxProblemImpl(shortMsg[i], problem, Levels.DL));
 
 		} else {
 
