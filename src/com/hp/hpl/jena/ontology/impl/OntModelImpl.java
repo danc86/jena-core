@@ -1050,7 +1050,7 @@ public class OntModelImpl
         AllDifferent ad = (AllDifferent) createOntResource( AllDifferent.class, getProfile().ALL_DIFFERENT(), null );
         
         if (differentMembers != null) {
-            ad.p_distinctMembers().add( differentMembers );
+            ad.setDistinct( differentMembers );
         }
         
         return ad;

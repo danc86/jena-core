@@ -913,6 +913,31 @@ public class OntResourceImpl
         return hasProperty( p, value );
     }
     
+    /** Add the given value to a list which is the value of the given property */
+    protected void addListPropertyValue( Property p, String name, RDFNode value ) {
+        checkProfile( p, name );
+        
+        // get the list value
+        if (hasProperty( p )) {
+            RDFNode cur = getProperty( p ).getObject();
+            if (!cur.canAs( OntList.class )) {
+                throw new OntologyException( "Tried to add a value to a list-valued property " + p + 
+                                             " but the current value is not a list: " + cur ); 
+            }
+            
+            OntList values = (OntList) cur.as( OntList.class );
+        
+            // now add our value to the list
+            if (!values.contains( value )){
+                values.add( value );
+            }
+        }
+        else {
+            // create a new list to hold the only value we know so far
+            addProperty( p, ((OntModel) getModel()).createList( new RDFNode[] {value} ) );
+        }
+    }
+    
     
     //==============================================================================
     // Inner class definitions

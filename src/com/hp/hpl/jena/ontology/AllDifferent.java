@@ -25,7 +25,9 @@ package com.hp.hpl.jena.ontology;
 
 // Imports
 ///////////////
-import com.hp.hpl.jena.ontology.path.PathSet;
+import java.util.Iterator;
+
+import com.hp.hpl.jena.rdf.model.Resource;
 
 
 /**
@@ -55,17 +57,52 @@ public interface AllDifferent
     //////////////////////////////////
 
     /**
-     * <p>
-     * Answer an {@linkplain PathSet accessor} for the 
-     * <code>distinctMembers</code>
-     * property of an AllDifferent axiom. The accessor
-     * can be used to perform a variety of operations, including getting and setting the value.
-     * </p>
-     * 
-     * @return An abstract accessor for the distinct individuals in an AllDifferent axioms
-     */
-    public PathSet p_distinctMembers();
+     * <p>Assert that the list of distinct individuals in this AllDifferent declaration
+     * is the given list. Any existing 
+     * statements for <code>distinctMembers</code> will be removed.</p>
+     * @param members A list of the members that are declared to be distinct.
+     * @exception OntProfileException If the {@link Profile#DISTINCT_MEMBERS()} property is not supported in the current language profile.   
+     */ 
+    public void setDistinct( OntList members );
 
+    /**
+     * <p>Add the given individual to the list of distinct members of this AllDifferent declaration.</p>
+     * @param res A resource that will be added to the list of all different members.
+     * @exception OntProfileException If the {@link Profile#DISTINCT_MEMBERS()} property is not supported in the current language profile.   
+     */ 
+    public void addDistinct( Resource res );
+
+    /**
+     * <p>Add the given individuals to the list of distinct members of this AllDifferent declaration.</p>
+     * @param individuals An iterator over the distinct invididuals that will be added 
+     * @exception OntProfileException If the {@link Profile#DISTINCT_MEMBERS()} property is not supported in the current language profile.   
+     */ 
+    public void addDistinct( Iterator individuals );
+
+    /**
+     * <p>Answer the list of distinct members for this AllDifferent declaration.</p>
+     * @return The list of individuals declared distinct by this AllDifferent declaration.
+     * @exception OntProfileException If the {@link Profile#DISTINCT_MEMBERS()} property is not supported in the current language profile.   
+     */ 
+    public OntList getDistinct();
+
+    /**
+     * <p>Answer an iterator over all of the individuals that are declared to be distinct by
+     * this AllDifferent declaration. Each element of the iterator will be an {@link #OntResource}.</p>
+     * @return An iterator over distinct individuals.
+     * @exception OntProfileException If the {@link Profile#DISTINCT_MEMBERS()} property is not supported in the current language profile.   
+     */ 
+    public Iterator listDistinct();
+
+    /**
+     * <p>Answer true if this AllDifferent declaration includes <code>res</code> as one of the distinct individuals.</p>
+     * @param res A resource to test against
+     * @return True if <code>res</code> is declared to be distinct from the other individuals in this declation.
+     * @exception OntProfileException If the {@link Profile#DISTINCT_MEMBERS()} property is not supported in the current language profile.   
+     */
+    public boolean hasDistinctMember( Resource res );
+    
+    
 
     
 }

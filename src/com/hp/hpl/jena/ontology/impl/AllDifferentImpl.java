@@ -24,10 +24,12 @@ package com.hp.hpl.jena.ontology.impl;
 
 // Imports
 ///////////////
+import java.util.Iterator;
+
 import com.hp.hpl.jena.enhanced.*;
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.ontology.*;
-import com.hp.hpl.jena.ontology.path.PathSet;
+import com.hp.hpl.jena.rdf.model.Resource;
 
 
 /**
@@ -96,18 +98,65 @@ public class AllDifferentImpl
     //////////////////////////////////
 
     /**
-     * <p>
-     * Answer an {@link PathSet accessor} for the 
-     * <code>distinctMembers</code>
-     * property of an AllDifferent axiom. The accessor
-     * can be used to perform a variety of operations, including getting and setting the value.
-     * </p>
-     * 
-     * @return An abstract accessor for the distinct individuals in an AllDifferent axioms
-     */
-    public PathSet p_distinctMembers() {
-        return asPathSet( getProfile().DISTINCT_MEMBERS(), "DISTINCT_MEMBERS" );
+     * <p>Assert that the list of distinct individuals in this AllDifferent declaration
+     * is the given list. Any existing 
+     * statements for <code>distinctMembers</code> will be removed.</p>
+     * @param members A list of the members that are declared to be distinct.
+     * @exception OntProfileException If the {@link Profile#DISTINCT_MEMBERS()} property is not supported in the current language profile.   
+     */ 
+    public void setDistinct( OntList members ) {
+        setPropertyValue( getProfile().DISTINCT_MEMBERS(), "DISTINCT_MEMBERS", members );
     }
+
+    /**
+     * <p>Add the given individual to the list of distinct members of this AllDifferent declaration.</p>
+     * @param res A resource that will be added to the list of all different members.
+     * @exception OntProfileException If the {@link Profile#DISTINCT_MEMBERS()} property is not supported in the current language profile.   
+     */ 
+    public void addDistinct( Resource res ) {
+        addListPropertyValue( getProfile().DISTINCT_MEMBERS(), "DISTINCT_MEMBERS", res );
+    }
+
+    /**
+     * <p>Add the given individuals to the list of distinct members of this AllDifferent declaration.</p>
+     * @param individuals An iterator over the distinct invididuals that will be added 
+     * @exception OntProfileException If the {@link Profile#DISTINCT_MEMBERS()} property is not supported in the current language profile.   
+     */ 
+    public void addDistinct( Iterator individuals ) {
+        while (individuals.hasNext()) {
+            addDistinct( (Resource) individuals.next() );
+        }
+    }
+
+    /**
+     * <p>Answer the list of distinct members for this AllDifferent declaration.</p>
+     * @return The list of individuals declared distinct by this AllDifferent declaration.
+     * @exception OntProfileException If the {@link Profile#DISTINCT_MEMBERS()} property is not supported in the current language profile.   
+     */ 
+    public OntList getDistinct() {
+        return (OntList) objectAsResource( getProfile().DISTINCT_MEMBERS(), "DISTINCT_MEMBERS" ).as( OntList.class );
+    }
+
+    /**
+     * <p>Answer an iterator over all of the individuals that are declared to be distinct by
+     * this AllDifferent declaration. Each element of the iterator will be an {@link #OntResource}.</p>
+     * @return An iterator over distinct individuals.
+     * @exception OntProfileException If the {@link Profile#DISTINCT_MEMBERS()} property is not supported in the current language profile.   
+     */ 
+    public Iterator listDistinct() {
+        return getDistinct().iterator();
+    }
+
+    /**
+     * <p>Answer true if this AllDifferent declaration includes <code>res</code> as one of the distinct individuals.</p>
+     * @param res A resource to test against
+     * @return True if <code>res</code> is declared to be distinct from the other individuals in this declation.
+     * @exception OntProfileException If the {@link Profile#DISTINCT_MEMBERS()} property is not supported in the current language profile.   
+     */
+    public boolean hasDistinctMember( Resource res ) {
+        return getDistinct().contains( res );
+    }
+    
 
 
 

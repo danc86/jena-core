@@ -82,7 +82,7 @@ public interface OntResource
     /**
      * <p>Answer a resource that is declared to be the same as this resource. If there is
      * more than one such resource, an arbitrary selection is made.</p>
-     * @return res An ont resource that declared to be the same as this resource
+     * @return An ont resource that declared to be the same as this resource
      * @exception OntProfileException If the {@link Profile#SAME_AS()} property is not supported in the current language profile.   
      */ 
     public OntResource getSameAs();
