@@ -92,7 +92,7 @@ public abstract class GraphBase implements Graph {
     public TransactionHandler getTransactionHandler()
         { return new SimpleTransactionHandler(); }
         
-    private BulkUpdateHandler bud;
+    protected BulkUpdateHandler bud;
     
     public BulkUpdateHandler getBulkUpdateHandler()
         { 

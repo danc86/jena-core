@@ -86,6 +86,23 @@ public abstract class BaseInfGraph extends GraphBase implements InfGraph {
         public boolean deleteAllowed( boolean every ) { return !every; }    
         public boolean iteratorRemoveAllowed() { return false; }
         }
+    
+    public BulkUpdateHandler getBulkUpdateHandler()
+        { 
+        if (bud == null) bud = new InfBulkUpdateHandler( this ); 
+        return bud;
+        }
+    
+    static class InfBulkUpdateHandler extends SimpleBulkUpdateHandler
+    	{
+        public InfBulkUpdateHandler( BaseInfGraph  graph ) 
+            { super(graph); }
+        
+        public void removeAll()
+            {
+            ((BaseInfGraph) graph).getRawGraph().getBulkUpdateHandler().removeAll();
+            }
+    	}
         
     /**
      * Return the raw RDF data Graph being processed (i.e. the argument

@@ -289,6 +289,12 @@ public class ModelCom
         getBulkUpdateHandler().delete( m.getGraph(), !suppressReifications );
         return this;
         }
+    
+    public Model removeAll()
+        { 
+        getGraph().getBulkUpdateHandler().removeAll();
+        return this; 
+        }
         
     public boolean contains( Resource s, Property p, boolean o )
         { return contains(s, p, String.valueOf( o ) ); }

@@ -152,6 +152,9 @@ public class DBBulkUpdateHandler implements BulkUpdateHandler {
         if (withReifications) SimpleBulkUpdateHandler.deleteReifications( graph, g );
         manager.notifyDeleteGraph( g );
    	}
+    
+    public void removeAll()
+        { SimpleBulkUpdateHandler.removeAll( graph ); }
 }
 
 

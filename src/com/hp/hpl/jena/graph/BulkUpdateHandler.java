@@ -95,6 +95,11 @@ public interface BulkUpdateHandler
         @param withReifications if true, remove g's reifications from this graph
     */
     void delete( Graph g, boolean withReifications );
+
+    /**
+    	Remove all the statements from a graph.
+    */
+    void removeAll();
     }
 
 /*

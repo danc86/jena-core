@@ -9,6 +9,7 @@ package com.hp.hpl.jena.graph.impl;
 import java.util.*;
 
 import com.hp.hpl.jena.graph.*;
+import com.hp.hpl.jena.util.iterator.ExtendedIterator;
 
 /**
     A simple-minded implementation of the bulk update interface. This only
@@ -23,8 +24,8 @@ import com.hp.hpl.jena.graph.*;
 
 public class SimpleBulkUpdateHandler implements BulkUpdateHandler
     {
-    private GraphBase graph;
-    private GraphEventManager manager;
+    protected GraphBase graph;
+    protected GraphEventManager manager;
     
     public SimpleBulkUpdateHandler( GraphBase graph )
         { 
@@ -133,6 +134,16 @@ public class SimpleBulkUpdateHandler implements BulkUpdateHandler
             deleteIterator( GraphUtil.findAll( g ), false );
         if (withReifications) deleteReifications( graph, g );
         manager.notifyDeleteGraph( g );
+        }
+    
+    public void removeAll()
+        { removeAll( graph ); }
+    
+    public static void removeAll( Graph g )
+        {
+        ExtendedIterator it = GraphUtil.findAll( g );
+        try { while (it.hasNext()) { it.next(); it.remove(); } }
+        finally { it.close(); }
         }
     }
 

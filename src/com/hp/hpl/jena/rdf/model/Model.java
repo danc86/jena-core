@@ -930,6 +930,11 @@ public interface Model
 	 	@param e the event that has occurred
 	*/
 	public Model notifyEvent( Object e );
+
+    /**
+    	Remove all the statements from this model.
+    */
+    public Model removeAll();
     
 }
 
