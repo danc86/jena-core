@@ -6,7 +6,6 @@
 
 package com.hp.hpl.jena.db.test;
 
-import com.hp.hpl.jena.graph.query.Query;
 import com.hp.hpl.jena.graph.query.test.*;
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.db.*;
@@ -21,24 +20,18 @@ import junit.framework.*;
 public class TestQueryRDB extends AbstractTestQuery
     {
     public TestQueryRDB( String name )
-        {
-        	super( name );
-        }
-
+        { super( name ); }
 
 	public static TestSuite suite()
         { return new TestSuite( TestQueryRDB.class ); }     
-
-        
+     
     private IDBConnection theConnection;
     private int count = 0;
     
     public void setUp()
         {
         theConnection = TestConnection.makeAndCleanTestConnection();
-		Q = new Query();
-		empty = getGraphWith( "" );
-		single = getGraphWith( "spindizzies drive cities" );
+        super.setUp();
         }
         
     public void tearDown()

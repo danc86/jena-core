@@ -41,12 +41,11 @@ public abstract class AbstractTestQuery extends GraphTestBase
         
     public void setUp()
         {
-			Q = new Query();
-			empty = getGraphWith( "" );
-			single = getGraphWith( "spindizzies drive cities" );
+		Q = new Query();
+		empty = getGraphWith( "" );
+		single = getGraphWith( "spindizzies drive cities" );
 		}
 
-        
     private void testTreeQuery( String title, String content, String pattern, String correct )
         {
         Graph gc = getGraphWith( content ), gp = getGraphWith( pattern );
