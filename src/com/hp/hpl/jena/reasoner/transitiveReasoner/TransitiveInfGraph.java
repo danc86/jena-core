@@ -15,8 +15,6 @@ import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.util.iterator.ExtendedIterator;
 import com.hp.hpl.jena.util.iterator.UniqueExtendedIterator;
 
-import java.util.HashSet;
-
 /**
  * Implementation of InfGraph used by the TransitiveReasoner.
  * This is returned by the TransitiveReasoner when a data graph
@@ -36,17 +34,8 @@ public class TransitiveInfGraph extends BaseInfGraph {
     /** The paire of subclass and subproperty lattices */
     protected TransitiveEngine transitiveEngine;
     
-    /** The precomputed cache of the subClass graph */
-    protected TransitiveGraphCache subClassCache;
-    
-    /** The precomputed cache of the subProperty graph */
-    protected TransitiveGraphCache subPropertyCache;
-    
     /** The graph registered as the schema, if any */
     protected Finder tbox = null;
-    
-    /** The set of predicates handled by this InfGraph */
-    protected static HashSet specialPredicates;
     
     /**
      * Constructor. Called by the TransitiveReasoner when it
@@ -68,37 +57,14 @@ public class TransitiveInfGraph extends BaseInfGraph {
      * this prepration is done.
      */
     public void prepare() {
-        // Initialize the predicate switch table.
-        specialPredicates = new HashSet();
-        specialPredicates.add(TransitiveReasoner.directSubClassOf);
-        specialPredicates.add(TransitiveReasoner.directSubPropertyOf);
-        specialPredicates.add(TransitiveReasoner.subPropertyOf);
-        specialPredicates.add(TransitiveReasoner.subClassOf);
-        
+        tbox = ((TransitiveReasoner)reasoner).getTbox();
         // Initially just point to the reasoner's precached information
-        this.subClassCache = ((TransitiveReasoner)reasoner).getSubClassCache();
-        this.subPropertyCache = ((TransitiveReasoner)reasoner).getSubPropertyCache();
-        this.tbox = ((TransitiveReasoner)reasoner).getTbox();
+        transitiveEngine = new TransitiveEngine(((TransitiveReasoner)reasoner).getSubClassCache(),
+                                                 ((TransitiveReasoner)reasoner).getSubPropertyCache());
 
         // But need to check if the data graph defines schema data as well
-        Graph data = fdata.getGraph();
-        if ((TransitiveEngine.checkOccurance(TransitiveReasoner.subPropertyOf, data, subPropertyCache) ||
-              TransitiveEngine.checkOccurance(TransitiveReasoner.subClassOf, data, subPropertyCache))) {
-            // Need to include data in the tbox so create a new reasoner which
-            // become the parent of this InfGraph
-            if (tbox != null) {
-                tbox = FinderUtil.cascade(tbox, fdata);
-            } else {
-                tbox = fdata;
-            }
-            subClassCache = new TransitiveGraphCache(TransitiveReasoner.directSubClassOf, TransitiveReasoner.subClassOf);
-            subPropertyCache = new TransitiveGraphCache(TransitiveReasoner.directSubPropertyOf, TransitiveReasoner.subPropertyOf);
-            TransitiveEngine.cacheSubProp(tbox, subPropertyCache);
-            TransitiveEngine.cacheSubClass(tbox, subPropertyCache, subClassCache);
-        }            
-        // Cache the closures of subPropertyOf because these are likely to be
-        // small and accessed a lot
-        subPropertyCache.setCaching(true);
+        tbox = transitiveEngine.insert(tbox, fdata);
+        transitiveEngine.setCaching(true, true);
         
         isPrepared = true;
     }
@@ -116,22 +82,8 @@ public class TransitiveInfGraph extends BaseInfGraph {
      */
     public ExtendedIterator findWithContinuation(TriplePattern pattern, Finder continuation) {
         if (!isPrepared) prepare();
-        Node predicate = pattern.getPredicate();
-        Finder resultF = null;
-        if (predicate.isVariable()) {
-            // Want everything in the cache, the tbox and the continuation
-            resultF = FinderUtil.cascade(subPropertyCache, subClassCache, tbox, continuation);
-        } else if (specialPredicates.contains(predicate)) {
-            if (predicate.equals(TransitiveReasoner.directSubPropertyOf) || 
-                 predicate.equals(TransitiveReasoner.subPropertyOf)) {
-                resultF = subPropertyCache;
-            } else {
-                resultF = subClassCache;
-            }
-        } else {
-            resultF = FinderUtil.cascade(continuation, tbox);
-        }
-        return new UniqueExtendedIterator(resultF.find(pattern));
+        Finder cascade = transitiveEngine.getFinder(pattern, FinderUtil.cascade(tbox, continuation));
+        return new UniqueExtendedIterator(cascade.find(pattern));
     }
    
     /** 
@@ -154,20 +106,11 @@ public class TransitiveInfGraph extends BaseInfGraph {
     /**
      * Add one triple to the data graph, run any rules triggered by
      * the new data item, recursively adding any generated triples.
-     * TODO Will not correctly handle subPropertyOf subClassOf/subPropertyOf
      */
     public synchronized void add(Triple t) {
         if (!isPrepared) prepare();
-        Node predicate = t.getPredicate();
-        if (specialPredicates.contains(predicate)) {
-            if (predicate.equals(TransitiveReasoner.directSubClassOf)  
-            || predicate.equals(TransitiveReasoner.subClassOf)) {
-                subClassCache.addRelation(t.getSubject(), t.getObject());
-            } else {
-                subPropertyCache.addRelation(t.getSubject(), t.getObject());
-            }
-        }
         fdata.getGraph().add(t);
+        transitiveEngine.add(t);
     }
     
     /**
@@ -183,21 +126,12 @@ public class TransitiveInfGraph extends BaseInfGraph {
     
     /** 
      * Removes the triple t (if possible) from the set belonging to this graph.
-     * TODO: This will not work on subPropertyOf subClass/subPropertyOf yet. 
      */   
     public void delete(Triple t) {
-        if (isPrepared) {
-            Node predicate = t.getPredicate();
-            if (specialPredicates.contains(predicate)) {
-                if (predicate.equals(TransitiveReasoner.directSubClassOf)  
-                || predicate.equals(TransitiveReasoner.subClassOf)) {
-                    subClassCache.removeRelation(t.getSubject(), t.getObject());
-                } else {
-                    subPropertyCache.removeRelation(t.getSubject(), t.getObject());
-                }
-            }
-        }
         fdata.getGraph().delete(t);
+        if (isPrepared) {
+            transitiveEngine.delete(t);
+        }
     }
 
 }

@@ -28,6 +28,8 @@ public class FinderUtil {
      * @param second the second Graph/Finder to try
      */
     public static Finder cascade(Finder first, Finder second) {
+        if (first == null || (first instanceof FGraph && ((FGraph)first).getGraph() == null)) return second;
+        if (second == null || (second instanceof FGraph && ((FGraph)second).getGraph() == null)) return first;
         return new Cascade(first, second);
     }
     
@@ -39,7 +41,7 @@ public class FinderUtil {
      * @param third the third Graph/Finder to try
      */
     public static Finder cascade(Finder first, Finder second, Finder third) {
-        return new Cascade(first, new Cascade(second, third));
+        return new Cascade(first, cascade(second, third));
     }
     
     /**
@@ -51,7 +53,7 @@ public class FinderUtil {
      * @param fourth the third Graph/Finder to try
      */
     public static Finder cascade(Finder first, Finder second, Finder third, Finder fourth) {
-        return new Cascade(first, new Cascade(second, new Cascade(third, fourth)));
+        return new Cascade(first, cascade(second, cascade(third, fourth)));
     }
     
     /**

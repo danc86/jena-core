@@ -222,18 +222,18 @@ public class RDFSInfGraph extends BaseInfGraph {
        // Check for vocabulary definitions in the data graph
        Graph data = fdata.getGraph();
        if (
-           (TransitiveEngine.checkOccurance(RDFSReasoner.subPropertyOf, data, subPropertyCache) ||
-            TransitiveEngine.checkOccurance(RDFSReasoner.subClassOf, data, subPropertyCache) ||
-            TransitiveEngine.checkOccurance(RDFSReasoner.domainP, data, subPropertyCache) ||
-            TransitiveEngine.checkOccurance(RDFSReasoner.rangeP, data, subPropertyCache) )) {
+           (TransitiveEngine.checkOccuranceUtility(RDFSReasoner.subPropertyOf, data, subPropertyCache) ||
+            TransitiveEngine.checkOccuranceUtility(RDFSReasoner.subClassOf, data, subPropertyCache) ||
+            TransitiveEngine.checkOccuranceUtility(RDFSReasoner.domainP, data, subPropertyCache) ||
+            TransitiveEngine.checkOccuranceUtility(RDFSReasoner.rangeP, data, subPropertyCache) )) {
             
            // The data graph contains some ontology knowledge so split the caches
            // now and rebuild them using merged data
            Finder tempTbox = tbox == null ? fdata : FinderUtil.cascade(tbox, fdata);
 
            splitSubClassCache();
-           TransitiveEngine.cacheSubProp(tempTbox, subPropertyCache);
-           TransitiveEngine.cacheSubClass(tempTbox, subPropertyCache, subClassCache);
+           TransitiveEngine.cacheSubPropUtility(tempTbox, subPropertyCache);
+           TransitiveEngine.cacheSubClassUtility(tempTbox, subPropertyCache, subClassCache);
            // Cache the closures of subPropertyOf because these are likely to be
            // small and accessed a lot
            subPropertyCache.setCaching(true);
@@ -243,7 +243,7 @@ public class RDFSInfGraph extends BaseInfGraph {
        for (int i = 0; i < baseAxioms.length; i++) {
            axioms.getGraph().add(baseAxioms[i]);
        }
-       TransitiveEngine.cacheSubProp(axioms, subPropertyCache);
+       TransitiveEngine.cacheSubPropUtility(axioms, subPropertyCache);
         
        // identify all properties and collection properties
        // This can be disabled in which case queries of the form (*,type,Property) will be

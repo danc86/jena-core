@@ -11,6 +11,7 @@ package com.hp.hpl.jena.reasoner.test;
 
 import com.hp.hpl.jena.reasoner.transitiveReasoner.*;
 import com.hp.hpl.jena.reasoner.rdfsReasoner1.*;
+import com.hp.hpl.jena.reasoner.rulesys.RDFSRuleReasonerFactory;
 import com.hp.hpl.jena.reasoner.*;
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.graph.*;
@@ -184,9 +185,60 @@ public class TestReasoners extends TestCase {
                 new Triple(d, closedP, e)
             });
     }
-
+  
     /**
-     * Test rebind operation for the transitive reasoner
+     * Test  metalevel add/remove subproperty operations for transitive reasoner.
+     */
+    public void testTransitiveMetaLevel() {
+        doTestMetaLevel(TransitiveReasonerFactory.theInstance());
+    }
+  
+    /**
+     * Test  metalevel add/remove subproperty operations for rdsf reasoner.
+     */
+    public void testRDFSMetaLevel() {
+        doTestMetaLevel(RDFSRuleReasonerFactory.theInstance());
+    }
+    
+    /**
+     * Test metalevel add/remove subproperty operations for a reasoner.
+     */
+    public void doTestMetaLevel(ReasonerFactory rf) {
+        Graph data = new GraphMem();
+        Node c1 = Node.createURI("C1");
+        Node c2 = Node.createURI("C2");
+        Node c3 = Node.createURI("C3");
+        Node p = Node.createURI("p");
+        Node q = Node.createURI("q");
+        Node sC = RDFS.subClassOf.asNode();
+        Node sP = RDFS.subPropertyOf.asNode();
+        Node ty = RDF.type.asNode();
+        data.add( new Triple(c2, sC, c3));
+        data.add( new Triple(c1, p, c2));
+        Reasoner reasoner = rf.create(null);
+        InfGraph infgraph = reasoner.bind(data);
+        TestUtil.assertIteratorValues(this, infgraph.find(c1, sC, null),
+            new Object[] {
+            });
+        infgraph.add(new Triple(p, q, sC));
+        TestUtil.assertIteratorValues(this, infgraph.find(c1, sC, null),
+            new Object[] {
+            });
+        infgraph.add(new Triple(q, sP, sP));
+        TestUtil.assertIteratorValues(this, infgraph.find(c1, sC, null),
+            new Object[] {
+                new Triple(c1, sC, c1),
+                new Triple(c1, sC, c2),
+                new Triple(c1, sC, c3)
+            });
+        infgraph.delete(new Triple(p, q, sC));
+        TestUtil.assertIteratorValues(this, infgraph.find(c1, sC, null),
+            new Object[] {
+            });
+    }
+ 
+    /**
+     * Test rebind operation for the RDFS1 reasoner
      */
     public void testRDFSRebind() {
         Graph data = new GraphMem();

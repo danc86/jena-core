@@ -131,8 +131,8 @@ public class RDFSReasoner extends TransitiveReasoner implements Reasoner {
         FGraph ftbox = new FGraph(tbox);
         TransitiveGraphCache sCc = new TransitiveGraphCache(directSubClassOf, subClassOf);
         TransitiveGraphCache sPc = new TransitiveGraphCache(directSubPropertyOf, subPropertyOf);
-        TransitiveEngine.cacheSubProp(ftbox, sPc);
-        TransitiveEngine.cacheSubClass(ftbox, sPc, sCc);
+        TransitiveEngine.cacheSubPropUtility(ftbox, sPc);
+        TransitiveEngine.cacheSubClassUtility(ftbox, sPc, sCc);
         sPc.setCaching(true);
         return new RDFSReasoner(ftbox, sCc, sPc, scanProperties);
     }

@@ -148,8 +148,8 @@ public class TransitiveReasoner implements Reasoner {
         }
         TransitiveGraphCache sCc = new TransitiveGraphCache(directSubClassOf, subClassOf);
         TransitiveGraphCache sPc = new TransitiveGraphCache(directSubPropertyOf, subPropertyOf);
-        TransitiveEngine.cacheSubProp(tbox, sPc);
-        TransitiveEngine.cacheSubClass(tbox, sPc, sCc);
+        TransitiveEngine.cacheSubPropUtility(tbox, sPc);
+        TransitiveEngine.cacheSubClassUtility(tbox, sPc, sCc);
         
         return new TransitiveReasoner(tbox, sCc, sPc);
     }
