@@ -352,22 +352,22 @@ public class FileManager
         return uri ;
     }
     
-    /** Slurp up a whole file: map filename as necessary */
+    /** Slurp up a whole file */
     public String readWholeFileAsUTF8(InputStream in)
     {
         try {
-        Reader r = FileUtils.asBufferedUTF8(in) ;
-        StringWriter sw = new StringWriter(1024);
-        char buff[] = new char[1024];
-        while (r.ready()) {
-            int l = r.read(buff);
-            if (l <= 0)
-                break;
-            sw.write(buff, 0, l);
-        }
-        r.close();
-        sw.close();
-        return sw.toString();
+            Reader r = FileUtils.asBufferedUTF8(in) ;
+            StringWriter sw = new StringWriter(1024);
+            char buff[] = new char[1024];
+            while (r.ready()) {
+                int l = r.read(buff);
+                if (l <= 0)
+                    break;
+                sw.write(buff, 0, l);
+            }
+            r.close();
+            sw.close();
+            return sw.toString();
         } catch (IOException ex)
         {
             throw new WrappedIOException(ex) ;
@@ -378,6 +378,8 @@ public class FileManager
     public String readWholeFileAsUTF8(String filename)
     {
         InputStream in = open(filename) ;
+        if ( in == null )
+            throw new JenaException("File not found: "+filename) ;
         return readWholeFileAsUTF8(in) ;
     }
         
