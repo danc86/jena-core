@@ -48,10 +48,10 @@ public class TestContains extends ModelTestBase
         }
     
     private Resource res( String uri )
-        { return ResourceFactory.createResource( "eh:" + uri ); }
+        { return ResourceFactory.createResource( "eh:/" + uri ); }
     
     private Property prop( String uri )
-        { return ResourceFactory.createProperty( "eh:" + uri ); }
+        { return ResourceFactory.createProperty( "eh:/" + uri ); }
         
     public void testContainsWithNull()
         {

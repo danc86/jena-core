@@ -334,7 +334,7 @@ abstract public class BaseXMLWriter implements RDFXMLWriterI {
 		return tag(uri, local, START, false);
 	}
     
-	String startElementTag(String uriref) {
+	protected String startElementTag(String uriref) {
 		return splitTag(uriref, START);
 	}
     
@@ -354,7 +354,7 @@ abstract public class BaseXMLWriter implements RDFXMLWriterI {
 		return tag(uri, local, END, false);
 	}
     
-	String endElementTag(String uriref) {
+	protected String endElementTag(String uriref) {
 		return splitTag(uriref, END);
 	}
     

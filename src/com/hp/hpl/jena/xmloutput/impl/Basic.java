@@ -25,8 +25,10 @@ public class Basic extends BaseXMLWriter {
 
 	public Basic() {
 	}
+    
     private String space;
-	void writeBody(
+	
+    void writeBody(
 		Model model,
 		PrintWriter pw,
 		String base,
@@ -42,6 +44,9 @@ public class Basic extends BaseXMLWriter {
 		pw.flush();
 		
 	}
+    
+    protected void writeSpace( PrintWriter writer )
+        { writer.print( space ); }
 
 	private void writeRDFHeader(Model model, PrintWriter writer) {
 		String xmlns = xmlnsDecl();
@@ -81,7 +86,7 @@ public class Basic extends BaseXMLWriter {
 		while (sIter.hasNext()) {
 			writePredicate(sIter.nextStatement(), writer);
 		}
-		writeDescriptionTrailer(writer);
+		writeDescriptionTrailer( subject, writer);
 
 	}
 
@@ -130,9 +135,17 @@ public class Basic extends BaseXMLWriter {
            logger.warn("Cannot block rule <"+r.getURI()+">");
     }
 
-	protected void writeDescriptionTrailer(PrintWriter writer) {
+	protected void writeDescriptionTrailer( Resource subject, PrintWriter writer) {
 		writer.println(space + "</" + rdfEl("Description") + ">");
 	}
+    
+    /**
+        @deprecated - use writeDescriptionTrailer( Resource subject, PrintWriter writer )
+        @param writer
+    */
+    protected void writeDescriptionTrailer( PrintWriter writer )
+        { writeDescriptionTrailer( null, writer ); }
+    
 	protected void writeResourceId(Resource r, PrintWriter writer)
 		 {
 		if (r.isAnon()) {

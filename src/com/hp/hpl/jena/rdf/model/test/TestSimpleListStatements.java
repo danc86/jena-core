@@ -194,7 +194,7 @@ public class TestSimpleListStatements extends ModelTestBase
                         st.getSubject().toString().length() 
                         + st.getPredicate().toString().length()
                         + st.getObject().toString().length()
-                        == 12; /* eh:S + eh:P + eh:O */
+                        == 15; /* eh:/S + eh:/P + eh:/O */
                 }
                 
             public boolean isSimple()

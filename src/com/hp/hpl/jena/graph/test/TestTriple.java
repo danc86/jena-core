@@ -250,7 +250,7 @@ public class TestTriple extends GraphTestBase
         PrefixMapping pm = PrefixMapping.Factory.create();
         pm.setNsPrefix( "spoo", "eg://domain.dom/spoo#" );
         Triple t1 = Triple.create( "eg://domain.dom/spoo#a b c" );
-        assertEquals( "spoo:a @eh:b eh:c", t1.toString( pm ) );
+        assertEquals( "spoo:a @eh:/b eh:/c", t1.toString( pm ) );
         }
 
     }

@@ -27,9 +27,9 @@ public class RDBMakerCreator implements ModelMakerCreator
 
     public static IDBConnection createConnection( Model description, Resource root )
         {
-        if (root == null) {
-            root = ModelSpecImpl.findRootByType( description, JMS.RDBMakerSpec );
-        }
+//        if (root == null) {
+//            root = ModelSpecImpl.findRootByType( description, JMS.RDBMakerSpec );
+//        }
         String url = getString( description, root, JMS.dbURL );
         String user = getString( description, root, JMS.dbUser );
         String password = getString( description, root , JMS.dbPassword );

@@ -89,7 +89,7 @@ public abstract class Node {
         int colon = x.indexOf( ':' );
         String d = pm.getNsPrefixURI( "" );
         return colon < 0 
-            ? Node.createURI( (d == null ? "eh:" : d) + x )
+            ? Node.createURI( (d == null ? "eh:/" : d) + x )
             : Node.createURI( pm.expandPrefix( x ) )
             ;
         }
