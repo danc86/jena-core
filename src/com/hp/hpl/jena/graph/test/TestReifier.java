@@ -68,7 +68,7 @@ public class TestReifier extends AbstractTestReifier
         {
         GraphBase parent = new GraphBase() {
 
-            public ExtendedIterator find( TripleMatch m )
+            public ExtendedIterator graphBaseFind( TripleMatch m )
                 {
                 // TODO Auto-generated method stub
                 return null;

@@ -105,7 +105,7 @@ public class TransitiveInfGraph extends BaseInfGraph {
     /** 
      * Returns an iterator over Triples.
      */
-    public ExtendedIterator find(Node subject, Node property, Node object) {
+    public ExtendedIterator graphBaseFind(Node subject, Node property, Node object) {
         return findWithContinuation(new TriplePattern(subject, property, object), fdata);
     }
 

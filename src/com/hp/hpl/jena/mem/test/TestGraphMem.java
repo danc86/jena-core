@@ -82,10 +82,7 @@ public class TestGraphMem extends AbstractTestGraph
     
     protected final class GraphMemWithoutFind extends GraphMem
         {
-        public ExtendedIterator find( Node s, Node p, Node o )
-            { throw new JenaException( "find is Not Allowed" ); }
-
-        public ExtendedIterator find( TripleMatch t )
+        public ExtendedIterator graphBaseFind( TripleMatch t )
             { throw new JenaException( "find is Not Allowed" ); }
         }
     }

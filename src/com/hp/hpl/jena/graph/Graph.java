@@ -28,7 +28,7 @@ public interface Graph  extends GraphAdd
         An immutable empty graph. 
     */
     public static final Graph emptyGraph = new GraphBase()
-        { public ExtendedIterator find( TripleMatch tm ) { return new NiceIterator(); } };
+        { public ExtendedIterator graphBaseFind( TripleMatch tm ) { return NullIterator.instance; } };
     	
     /** 
         true if this graph's content depends on the other graph. May be

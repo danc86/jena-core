@@ -171,7 +171,7 @@ public class MultiUnion
      * @param t The matcher to match against
      * @return An iterator of all triples matching t in the union of the graphs.
      */
-    public ExtendedIterator find( final TripleMatch t ) {
+    public ExtendedIterator graphBaseFind( final TripleMatch t ) {
         // anything in this model?
         if (m_subGraphs.size() == 0) {
             // the default NiceIterator has no elements

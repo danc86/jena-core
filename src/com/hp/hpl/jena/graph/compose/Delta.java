@@ -64,7 +64,7 @@ public class Delta extends Dyadic implements Graph
         Find all the base triples matching tm, exclude the ones that are deleted, add the ones
         that  have been added.
     */
-	public ExtendedIterator find( TripleMatch tm ) 
+	public ExtendedIterator graphBaseFind( TripleMatch tm ) 
 		{
         return base.find( tm ) .filterDrop( ifIn( GraphUtil.findAll( R ) ) ) .andThen( L.find( tm ) );
 		}

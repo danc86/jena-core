@@ -79,9 +79,8 @@ public class SmallGraphMem extends GraphMemBase
         return bulkHandler;
         }
     
-    public ExtendedIterator find( TripleMatch m ) 
+    public ExtendedIterator graphBaseFind( TripleMatch m ) 
         {
-        checkOpen();
         return WrappedIterator.create( triples.iterator() ) .filterKeep ( new TripleMatchFilter( m.asTriple() ) );
         }
     }

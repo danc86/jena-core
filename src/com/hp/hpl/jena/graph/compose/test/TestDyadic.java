@@ -56,7 +56,7 @@ public class TestDyadic extends GraphTestBase
         Graph g = new GraphMem(), h = new GraphMem();
         Dyadic d = new Dyadic( g, h )
             {
-            public ExtendedIterator find( TripleMatch m ) { return null; }
+            public ExtendedIterator graphBaseFind( TripleMatch m ) { return null; }
             };
         assertSame( g, d.getL() );
         assertSame( h, d.getR() );

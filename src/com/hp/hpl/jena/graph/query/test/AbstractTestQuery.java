@@ -474,7 +474,7 @@ public abstract class AbstractTestQuery extends QueryTestBase
         final Triple [][] tripleses = new Triple[1][];
         final Graph g = new GraphBase()
             {
-            public ExtendedIterator find( TripleMatch tm )
+            public ExtendedIterator graphBaseFind( TripleMatch tm )
                 { return new NiceIterator(); }
             public QueryHandler queryHandler()
                 {

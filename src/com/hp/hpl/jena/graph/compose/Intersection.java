@@ -40,7 +40,7 @@ public class Intersection extends Dyadic implements Graph
 		if (this.contains( t )) L.delete( t );
 		}
 		
-	public ExtendedIterator find( TripleMatch s )
+	public ExtendedIterator graphBaseFind( TripleMatch s )
 		{
         return L.find( s ) .filterKeep(  ifIn( R ) );
 		}

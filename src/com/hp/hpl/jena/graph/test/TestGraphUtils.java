@@ -34,16 +34,15 @@ public class TestGraphUtils extends GraphTestBase
         final Bool foundAll = new Bool( false );
         Graph mock = new GraphBase() 
             {
-            public ExtendedIterator find( Node s, Node p, Node o )
+            public ExtendedIterator graphBaseFind( TripleMatch m )
                 { 
-                assertEquals( Node.ANY, s ); 
-                assertEquals( Node.ANY, p );
-                assertEquals( Node.ANY, o );
+                Triple t = m.asTriple();
+                assertEquals( Node.ANY, t.getSubject() ); 
+                assertEquals( Node.ANY, t.getPredicate() );
+                assertEquals( Node.ANY, t.getObject() );
                 foundAll.value = true;
                 return null;
                 }
-            public ExtendedIterator find( TripleMatch tm )
-                { return null; }
             };
         GraphUtil.findAll( mock );
         assertTrue( "find(ANY, ANY, ANY) called", foundAll.value );

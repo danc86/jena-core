@@ -145,20 +145,28 @@ public abstract class GraphBase implements GraphWithPerform
 	}
 
 	/**
-	 * @see com.hp.hpl.jena.graph.Graph#find(TripleMatch)
-	 */
-	public abstract ExtendedIterator find( TripleMatch m );
+	     Answer an (extended) iterator over all the triples in this Graph matching
+         <code>m</code>. Subclasses cannot over-ride this, because it implements
+         the appending of reification quadlets; instead they must implement
+         graphBaseFind(TripleMatch).
+	*/
+	public final ExtendedIterator find( TripleMatch m )
+        { checkOpen(); 
+        return graphBaseFind( m ); }
 
-
+	protected abstract ExtendedIterator graphBaseFind( TripleMatch m );
+    
     /**
      * @see com.hp.hpl.jena.graph.Graph#find(Node, Node, Node)
      */
-    public ExtendedIterator find(Node s, Node p, Node o) {
-        checkOpen();
-        return find( Triple.createMatch( s, p, o ) );
-    }
+    public final ExtendedIterator find(Node s, Node p, Node o) 
+        { checkOpen();
+        return graphBaseFind( s, p, o ); }
     
-	/**
+    protected ExtendedIterator graphBaseFind( Node s, Node p, Node o )
+        { return find( Triple.createMatch( s, p, o ) ); }
+
+    /**
 		Answer <code>true</code> iff <code>t</code> is in the graph as reveal by 
         <code>find(t)</code> being non-empty. <code>t</code> may contain ANY
         wildcards. Sub-classes may over-ride for efficiency.

@@ -86,7 +86,7 @@ public class SimpleReifierFragmentsMap implements ReifierFragmentsMap
     public Graph asGraph()
         {
         return new GraphBase()
-            { public ExtendedIterator find( TripleMatch tm ) { return allTriples( tm ); } };
+            { public ExtendedIterator graphBaseFind( TripleMatch tm ) { return allTriples( tm ); } };
         }
 
     /**

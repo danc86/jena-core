@@ -23,7 +23,7 @@ public class DisjointUnion extends Dyadic
     public DisjointUnion( Graph L, Graph R )
         { super( L, R ); }
 
-    public ExtendedIterator find( TripleMatch m )
+    public ExtendedIterator graphBaseFind( TripleMatch m )
         { return L.find( m ) .andThen( R.find( m ) ); }
     
     public boolean contains( Triple t )

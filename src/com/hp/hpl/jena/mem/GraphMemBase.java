@@ -5,10 +5,8 @@
 */
 package com.hp.hpl.jena.mem;
 
-import com.hp.hpl.jena.graph.TripleMatch;
 import com.hp.hpl.jena.graph.impl.GraphBase;
 import com.hp.hpl.jena.shared.ReificationStyle;
-import com.hp.hpl.jena.util.iterator.ExtendedIterator;
 
 /**
      GraphMemBase - a common base class for GraphMem and SmallGraphMem.
@@ -36,11 +34,6 @@ public abstract class GraphMemBase extends GraphBase
         super( style ); 
         count = 1; 
         }
-    
-    /**
-         Sub-classes must over-ride this method.
-    */
-    public abstract ExtendedIterator find( TripleMatch m );
 
     /**
          Note a re-opening of this graph by incrementing the count. Answer

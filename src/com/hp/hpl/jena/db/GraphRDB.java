@@ -392,7 +392,7 @@ public class GraphRDB extends GraphBase implements Graph {
 	/* (non-Javadoc)
 	 * @see com.hp.hpl.jena.graph.Graph#find(com.hp.hpl.jena.graph.TripleMatch)
 	 */
-	public ExtendedIterator find(TripleMatch m) {
+	public ExtendedIterator graphBaseFind(TripleMatch m) {
 		checkOpen();
         ExtendedIterator result = new NiceIterator();
 		SpecializedGraph.CompletionFlag complete = new SpecializedGraph.CompletionFlag();

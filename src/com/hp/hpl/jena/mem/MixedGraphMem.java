@@ -230,9 +230,8 @@ public class MixedGraphMem extends GraphMemBase implements Graph
         return bulkHandler;
         }
     
-    public ExtendedIterator find( TripleMatch m ) 
+    public ExtendedIterator graphBaseFind( TripleMatch m ) 
         {
-        checkOpen();
         Triple t = m.asTriple();
         Node S = t.getSubject(), P = t.getPredicate(), O = t.getObject();
         return 

@@ -47,7 +47,7 @@ public class Union extends Dyadic implements Graph
         duplicates. That last is a performance penalty, but I see no way to remove it
         unless we know the graphs do not overlap.
     */
-	public ExtendedIterator find( final TripleMatch t ) 
+	public ExtendedIterator graphBaseFind( final TripleMatch t ) 
 	    {
 	    Set seen = HashUtils.createSet();
         return recording( L.find( t ), seen ).andThen( rejecting( R.find( t ), seen ) ); 

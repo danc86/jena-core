@@ -72,7 +72,7 @@ public class GraphMem extends GraphMemBase implements Graph
          Answer an ExtendedIterator over all the triples in this graph that match the
          triple-pattern <code>m</code>. Delegated to the store.
      */
-    public ExtendedIterator find( TripleMatch m ) 
+    public ExtendedIterator graphBaseFind( TripleMatch m ) 
         {
         checkOpen();
         return store.find( m.asTriple() );

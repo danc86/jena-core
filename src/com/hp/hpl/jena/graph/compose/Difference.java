@@ -40,7 +40,7 @@ public class Difference extends Dyadic implements Graph
 	public void performDelete( Triple t )
 		{ L.delete( t ); }
 
-	public ExtendedIterator find( TripleMatch t ) 
+	public ExtendedIterator graphBaseFind( TripleMatch t ) 
 		{ return L.find( t ). filterDrop ( ifIn( R ) ); }
 	}
 

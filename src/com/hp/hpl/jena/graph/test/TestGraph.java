@@ -78,8 +78,8 @@ public class TestGraph extends GraphTestBase
         
         Graph g = new GraphMem()
             {
-            public ExtendedIterator find( Node s, Node p, Node o )
-                { called[0] = true; return super.find( s, p, o ); }
+            public ExtendedIterator graphBaseFind( TripleMatch m )
+                { called[0] = true; return super.find( m ); }
             };
         
         ExtendedIterator subjects = g.queryHandler().subjectsFor( null, null );
@@ -94,8 +94,8 @@ public class TestGraph extends GraphTestBase
         
         Graph g = new GraphMem()
             {
-            public ExtendedIterator find( Node s, Node p, Node o )
-                { called[0] = true; return super.find( s, p, o ); }
+            public ExtendedIterator graphBaseFind( TripleMatch m )
+                { called[0] = true; return super.find( m ); }
             };
         
         ExtendedIterator subjects = g.queryHandler().objectsFor( null, null );

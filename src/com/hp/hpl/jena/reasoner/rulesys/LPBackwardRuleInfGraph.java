@@ -164,7 +164,7 @@ public class LPBackwardRuleInfGraph extends BaseInfGraph implements BackwardRule
      * This implementation assumes that the underlying findWithContinuation 
      * will have also consulted the raw data.
      */
-    public ExtendedIterator find(Node subject, Node property, Node object) {
+    public ExtendedIterator graphBaseFind(Node subject, Node property, Node object) {
         return findWithContinuation(new TriplePattern(subject, property, object), null);
     }
 
