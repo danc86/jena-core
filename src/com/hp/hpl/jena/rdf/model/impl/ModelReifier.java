@@ -37,8 +37,11 @@ public class ModelReifier
         return a version of the model, but with all its reifiying statements
         added.
     */
-    public Model allStatements()
-        { return new ModelCom( new Union( model.getGraph(), reifier.getHiddenTriples() ) ); }
+    public static Model withHiddenStatements( Model m )
+        { 
+        Graph hiddenTriples = m.getGraph().getReifier().getHiddenTriples();
+        return new ModelCom( new Union( m.getGraph(), hiddenTriples ) );
+        }
         
     public Model getHiddenStatements()
         { return new ModelCom( reifier.getHiddenTriples() ); }

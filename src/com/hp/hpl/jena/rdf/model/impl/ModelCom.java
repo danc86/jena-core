@@ -265,7 +265,7 @@ public class ModelCom extends EnhGraph
 	*/
     public static Model withHiddenStatements( Model m )
         {
-        return ((ModelCom) m).modelReifier.allStatements();
+        return ModelReifier.withHiddenStatements( m );
         }
     
     public Model remove(Statement s) throws RDFException {

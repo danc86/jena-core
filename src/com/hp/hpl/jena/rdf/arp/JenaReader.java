@@ -103,7 +103,7 @@ public class JenaReader implements RDFReader, ARPErrorNumbers {
         } catch (RDFException e) {
             throw e;
         } catch (IOException e) {
-            throw new RDFException(e);
+            throw new RDFException( e);
         }
     }
 
