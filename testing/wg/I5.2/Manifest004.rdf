@@ -23,7 +23,7 @@
 >
 <otest:PositiveEntailmentTest rdf:ID='test'>
    <otest:level rdf:resource='http://www.w3.org/2002/03owlt/testOntology#Full' />
-   <rtest:status>PROPOSED</rtest:status> <otest:size rdf:resource='http://www.w3.org/2002/03owlt/testOntology#Large'/>
+   <rtest:status>APPROVED</rtest:status> <rtest:approval rdf:resource="http://www.w3.org/2003/09/11-webont-irc"/> <otest:size rdf:resource='http://www.w3.org/2002/03owlt/testOntology#Large'/>
    <dc:creator>Ian Horrocks</dc:creator>
    <rtest:issue rdf:resource='http://www.w3.org/2001/sw/WebOnt/webont-issues#I5.2-Language-Compliance-Levels' />
    <otest:level rdf:resource='http://www.w3.org/2002/03owlt/testOntology#DL' />

@@ -22,7 +22,7 @@
       xml:base='http://www.w3.org/2002/03owlt/description-logic/Manifest035'
 >
 <otest:InconsistencyTest rdf:ID='test'>
-   <rtest:status>PROPOSED</rtest:status>
+   <rtest:status>APPROVED</rtest:status> <rtest:approval rdf:resource="http://www.w3.org/2003/09/11-webont-irc"/>
    <dc:creator>Sean Bechhofer</dc:creator>
    <otest:issuette rdf:resource='http://www.w3.org/TR/owl-test/#dl-000-satisfiability' />
    <otest:level rdf:resource='http://www.w3.org/2002/03owlt/testOntology#DL' />

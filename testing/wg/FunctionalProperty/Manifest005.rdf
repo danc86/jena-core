@@ -22,7 +22,7 @@
       xml:base='http://www.w3.org/2002/03owlt/FunctionalProperty/Manifest005'
 >
 <otest:PositiveEntailmentTest rdf:ID='test'>
-   <rtest:status>PROPOSED</rtest:status>
+   <rtest:status>APPROVED</rtest:status> <rtest:approval rdf:resource="http://www.w3.org/2003/09/11-webont-irc"/>
    <dc:creator>Peter F. Patel-Schneider</dc:creator>
    <rtest:issue rdf:resource='http://www.w3.org/2001/sw/WebOnt/webont-issues#I4.1-UniqueProp-BadName' />
    <otest:feature rdf:resource='http://www.w3.org/2002/07/owl#FunctionalProperty' />

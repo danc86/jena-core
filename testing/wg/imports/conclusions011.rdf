@@ -22,7 +22,7 @@ A Lite version of test <a href="#imports-001">imports-001</a>.
 
     <rdf:Description rdf:about='http://example.org/data#Socrates'>
         <rdf:type>
-           <owl:Class rdf:about='support001-A#Mortal'/>
+           <owl:Class rdf:about='support011-A#Mortal'/>
         </rdf:type>
     </rdf:Description>
 

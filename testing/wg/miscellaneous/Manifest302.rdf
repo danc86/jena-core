@@ -23,7 +23,7 @@
 >
 <otest:NegativeEntailmentTest rdf:ID='test'>
    <otest:level rdf:resource='http://www.w3.org/2002/03owlt/testOntology#Full' />
-   <rtest:status>PROPOSED</rtest:status>
+   <rtest:status>APPROVED</rtest:status> <rtest:approval rdf:resource="http://www.w3.org/2003/09/11-webont-irc"/>
    <dc:creator>Jeremy J. Carroll</dc:creator>
    <otest:issuette rdf:resource='http://www.w3.org/TR/owl-test/#misc-300-annotations' />
    <otest:level rdf:resource='http://www.w3.org/2002/03owlt/testOntology#Lite' />

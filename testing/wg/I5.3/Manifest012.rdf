@@ -23,7 +23,7 @@
 >
 <otest:NegativeEntailmentTest rdf:ID='test'>
    <otest:level rdf:resource='http://www.w3.org/2002/03owlt/testOntology#Full' />
-   <rtest:status>OBSOLETE</rtest:status>
+   <rtest:status>OBSOLETED</rtest:status>
    <dc:creator>Jeremy J. Carroll</dc:creator>
    <rtest:issue rdf:resource='http://www.w3.org/2001/sw/WebOnt/webont-issues#I5.3-Semantic-Layering' />
    <otest:level rdf:resource='http://www.w3.org/2002/03owlt/testOntology#DL' />

@@ -23,7 +23,7 @@ A Lite version of test <a href="#imports-001">imports-001</a>.
 
     <owl:Ontology rdf:about=''>
         <owl:imports 
-     rdf:resource="http://www.w3.org/2002/03owlt/imports/support001-A"/>
+     rdf:resource="http://www.w3.org/2002/03owlt/imports/support011-A"/>
     </owl:Ontology>
 
     <ont:Man rdf:about='http://example.org/data#Socrates'/>
