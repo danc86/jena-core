@@ -62,9 +62,6 @@ release - Ship the website off to jena.sourceforge.net (if you
 Notes
 -----
 
-Colours:
-
-
 
 ----------------
 $Id$
