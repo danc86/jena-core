@@ -35,6 +35,7 @@ import com.hp.hpl.jena.ontology.impl.OWLDLProfile;
 import com.hp.hpl.jena.ontology.impl.OWLProfile;
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.rdf.model.test.*;
+import com.hp.hpl.jena.shared.PrefixMapping;
 import com.hp.hpl.jena.vocabulary.OWL;
 import com.hp.hpl.jena.vocabulary.RDF;
 
@@ -151,6 +152,26 @@ public class TestOntModel
         assertEquals( om.getNsPrefixMap(), om.getBaseModel().getNsPrefixMap() );    
         }
         
+    /**
+         The prefixes of an OntModel should be the prefixes of its base model,
+         plus any non-clashing ones from the document manager's prefix mapping.
+         (which this test assume includes rdfs and daml).
+    */
+    public void testPrefixDefaulting()
+        {
+        Model base = ModelFactory.createDefaultModel();
+        base.setNsPrefix( "hedgehog", "http://hedgehog.hog/" );
+        base.setNsPrefix( "daml", "not:the-DAML-URI/" );
+        base.setNsPrefix( "mine", RDF.getURI() );
+        OntModel m = new OntModelImpl( OntModelSpec.RDFS_MEM, base );
+        PrefixMapping given = m.getDocumentManager().getDeclaredPrefixMapping();
+        assertEquals( "http://hedgehog.hog/", m.getNsPrefixURI( "hedgehog" ) );
+        assertEquals( "not:the-DAML-URI/", m.getNsPrefixURI( "daml" ) );
+        assertEquals( RDF.getURI(), m.getNsPrefixURI( "mine" ) );
+        assertEquals( null, m.getNsPrefixURI( "rdf" ) );
+        assertEquals( given.getNsPrefixURI( "rdfs" ), m.getNsPrefixURI( "rdfs" ) );
+        }
+    
     public void testWritesPrefixes()
         {
         OntModel om = ModelFactory.createOntologyModel();

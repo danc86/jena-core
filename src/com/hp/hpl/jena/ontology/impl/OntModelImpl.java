@@ -149,7 +149,7 @@ public class OntModelImpl
         
         // add the global prefixes, if required
         if (getDocumentManager().useDeclaredPrefixes()) {
-            setNsPrefixes( getDocumentManager().getDeclaredPrefixMapping() );
+            withDefaultMappings( getDocumentManager().getDeclaredPrefixMapping() );
         }
         
         // load the imports closure, according to the policies in my document manager
