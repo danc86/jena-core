@@ -22,7 +22,8 @@ An <code>owl:cardinality</code> constraint is simply shorthand for a pair of <co
     xmlns:owl="http://www.w3.org/2002/07/owl#"
     xml:base="http://www.w3.org/2002/03owlt/cardinality/premises006" >
     <rdf:Description rdf:ID="c">
-      <rdfs:subClassOf rdf:resource="#c1" />
+<!--      <rdfs:subClassOf rdf:resource="#c1" />  -->
+      <owl:equivalentClass rdf:resource="#c1" />
     </rdf:Description>
 
 </rdf:RDF>
