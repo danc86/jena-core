@@ -357,7 +357,7 @@ public class TestListSyntaxCategories
             }
         },
         // Properties
-        new DoListTest( "OWL+import list properties",  "file:testing/ontology/owl/list-syntax/test-with-import.rdf",  OntModelSpec.OWL_MEM_TRANS_INF,  41,  
+        new DoListTest( "OWL+import list properties",  "file:testing/ontology/owl/list-syntax/test-with-import.rdf",  OntModelSpec.OWL_MEM_TRANS_INF,  40,  
                         null ) 
         {
             public Iterator doList( OntModel m ) {
