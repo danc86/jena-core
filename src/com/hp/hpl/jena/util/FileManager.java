@@ -261,7 +261,7 @@ public class FileManager
         {
             syntax = FileUtils.guessLang(filenameOrURI) ;
             if ( syntax == null || syntax.equals("") )
-                syntax = "RDF/XML" ;
+                syntax = FileUtils.langXML ;
         }
 
         InputStream in = open(filenameOrURI) ;

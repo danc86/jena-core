@@ -130,7 +130,7 @@ public class ModelLoader
         //m.setReaderClassName(langNTriple, com.hp.hpl.jena.rdf.arp.NTriple.class.getName()) ;
 
         try {
-            FileManager.get().readModel(m, urlStr, lang) ;
+            FileManager.get().readModel(m, urlStr, null, lang) ;
         } catch (JenaException rdfEx)
         {
             log.warn("Error loading data source", rdfEx);
@@ -160,7 +160,7 @@ public class ModelLoader
     public static Model loadModel(Model model, String urlStr, String lang)
     {
         try {
-            return FileManager.get().readModel(model, urlStr, lang) ;
+            return FileManager.get().readModel(model, urlStr, null, lang) ;
         }
         catch (Exception e)
         {
