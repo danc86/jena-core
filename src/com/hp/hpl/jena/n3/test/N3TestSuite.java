@@ -19,23 +19,13 @@ public class N3TestSuite extends TestSuite
     }
 	
 	
-	public N3TestSuite()
+	private N3TestSuite()
 	{
 		super("N3 Parser") ;
 		addTest(new N3InternalTests()) ;
 		addTest(new N3ExternalTests()) ;
 		addTest(new N3JenaReaderTests()) ;
 		addTest(new N3JenaWriterTests()) ;
-	}
-	
-	
-	public static void main(String[] args)
-	{
-		boolean verboseTests = false ;
-		N3JenaReaderTests.VERBOSE = verboseTests ;
-		N3ExternalTests.VERBOSE = verboseTests ;
-		
-		junit.textui.TestRunner.run(new N3TestSuite()) ;
 	}
 }
 
