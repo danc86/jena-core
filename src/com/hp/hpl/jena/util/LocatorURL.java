@@ -27,7 +27,7 @@ public class LocatorURL implements Locator
     public InputStream open(String filenameOrURI)
     {
         if ( ! hasScheme(filenameOrURI, "http:") 
-            // && ! hasScheme(filenameOrURI, "file:") // Leave a filelocator to hanlde this. 
+            // && ! hasScheme(filenameOrURI, "file:") // Leave a filelocator to handle this. 
             ) 
         {
             if ( FileManager.logAllLookups && log.isTraceEnabled() )
