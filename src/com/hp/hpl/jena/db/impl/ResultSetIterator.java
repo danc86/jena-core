@@ -14,13 +14,9 @@ package com.hp.hpl.jena.db.impl;
 import java.sql.*;
 import java.util.*;
 import com.hp.hpl.jena.util.Log;
-import com.hp.hpl.jena.util.iterator.ClosableIterator;
-import com.hp.hpl.jena.util.iterator.ExtendedIterator;
-import com.hp.hpl.jena.util.iterator.Filter;
-import com.hp.hpl.jena.util.iterator.FilterIterator;
-import com.hp.hpl.jena.util.iterator.Map1;
-import com.hp.hpl.jena.util.iterator.Map1Iterator;
-import com.hp.hpl.jena.util.iterator.NiceIterator;
+import com.hp.hpl.jena.util.iterator.*;
+
+import com.hp.hpl.jena.shared.*;
 
 //=======================================================================
 /**
@@ -155,7 +151,10 @@ public class ResultSetIterator implements ExtendedIterator {
                 close();
             }
         } catch (Exception e) {
+            //  TODO do we need this catch at all?
             Log.warning("Problem in iterator over db result set, op = " + m_opname, e);
+            // Added by kers for debugging
+            throw new JenaException( e );
         }
     }
 
