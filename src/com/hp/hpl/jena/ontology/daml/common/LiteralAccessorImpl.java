@@ -122,7 +122,7 @@ public class LiteralAccessorImpl
     public Literal getValue() {
         try {
             NodeIterator i = getValues();
-            return (i == null  ||  !i.hasNext()) ? null : ((Literal) i.next());
+            return (i == null  ||  !i.hasNext()) ? null : ((Literal) i.nextNode());
         }
         catch (RDFException e) {
             Log.severe( "RDF exception when getting literal values: " + e, e );

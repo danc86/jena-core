@@ -61,7 +61,7 @@ public class ResIteratorImpl extends Object implements ResIterator {
         }        
     }
     
-    public Resource next() throws NoSuchElementException, RDFException {
+    public Object next() throws NoSuchElementException, RDFException {
         if (iterator != null) {
         	Object it = iterator.next();
         	// System.out.println( it );
@@ -69,6 +69,10 @@ public class ResIteratorImpl extends Object implements ResIterator {
         } else {
             throw new RDFException(RDFException.ITERATORCLOSED);
         }
+    }
+    
+    public Resource nextResource() throws NoSuchElementException, RDFException {
+        return (Resource) next();
     }
     
     public void remove() throws NoSuchElementException, RDFException {

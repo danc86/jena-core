@@ -58,13 +58,17 @@ public class StmtIteratorImpl extends Object implements StmtIterator {
         return iterator.hasNext();
     }
     
-    public Statement next() throws NoSuchElementException, RDFException {
+    public Object next() throws NoSuchElementException, RDFException {
         if (iterator != null) {
             stmt = (Statement) iterator.next();
             return stmt;
         } else {
             throw new RDFException(RDFException.ITERATORCLOSED);
         }
+    }
+    
+    public Statement nextStatement() throws NoSuchElementException, RDFException {
+        return (Statement) next();
     }
     
     public void remove() throws NoSuchElementException, RDFException {

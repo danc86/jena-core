@@ -425,7 +425,7 @@ public class TriplePattern
                         return null ;
                     }
 
-                    Statement stmt = sIter.next() ;
+                    Statement stmt = sIter.nextStatement() ;
                     if ( log != null  )
                         log.debug("Triple: "+stmt) ;
 

@@ -61,12 +61,16 @@ public class NodeIteratorImpl extends Object implements NodeIterator {
         }        
     }
     
-    public RDFNode next() throws NoSuchElementException, RDFException {
+    public Object next() throws NoSuchElementException, RDFException {
         if (iterator != null) {
-            return (RDFNode) iterator.next();
+            return iterator.next();
         } else {
             throw new RDFException(RDFException.ITERATORCLOSED);
         }
+    }
+    
+    public RDFNode nextNode() throws NoSuchElementException, RDFException {
+        return (RDFNode) iterator.next();
     }
     
     public void remove() throws NoSuchElementException, RDFException {

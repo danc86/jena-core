@@ -639,7 +639,7 @@ public class DAMLLoader
 
                 for (NodeIterator i = model.listObjectsOfProperty( ontologyRes, ontologyInstanceType.getVocabulary().imports() ); i.hasNext(); ) {
                     // add the value of each import, as a string, to the collection
-                    imports.add( i.next().toString() );
+                    imports.add( i.nextNode().toString() );
                 }
             }
 
@@ -673,7 +673,7 @@ public class DAMLLoader
             // now replace the actual statements in the main model
             for (StmtIterator i = sourceModel.listStatements();  i.hasNext();  ) {
                 // get the statement in vanilla RDF form
-                Statement sRDF = i.next();
+                Statement sRDF = i.nextStatement();
 
                 // recreate it with DAML objects
                 getDAMLModel().add( (Resource) mapDAMLNode( sRDF.getSubject() ),
@@ -700,7 +700,7 @@ public class DAMLLoader
             // iterate through all the known statements so that we can create the DAML shadow classes
             for (StmtIterator statements = sourceModel.listStatements();  statements.hasNext(); ) {
                 // get the statement, and extract its components
-                Statement s = statements.next();
+                Statement s = statements.nextStatement();
 
                 Resource subj = s.getSubject();
                 Property prop = s.getPredicate();
@@ -897,7 +897,7 @@ public class DAMLLoader
         // first try rdf:type (i.e. the most common occurrence)
         try {
             for (StmtIterator t = res.listProperties( RDF.type );  t.hasNext(); ) {
-                RDFNode typeNode = ((Statement) t.next()).getObject();
+                RDFNode typeNode = ((Statement) t.nextStatement()).getObject();
                 if (typeNode instanceof Resource) {
                     types.add( typeNode );
                 }
@@ -911,7 +911,7 @@ public class DAMLLoader
 
             try {
                 for (StmtIterator t  = res.listProperties( typeAlias );  t.hasNext(); ) {
-                    RDFNode typeNode = ((Statement) t.next()).getObject();
+                    RDFNode typeNode = ((Statement) t.nextStatement()).getObject();
                     if (typeNode instanceof Resource) {
                         types.add( typeNode );
                     }

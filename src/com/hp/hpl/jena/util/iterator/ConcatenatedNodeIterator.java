@@ -124,10 +124,24 @@ public class ConcatenatedNodeIterator
      *         underlying iteration, projected to the range of the projection function.
      * @exception NoSuchElementException - iteration has no more elements.
      */
-    public RDFNode next()
+    public Object next()
         throws RDFException
     {
-        return (m_iter0.hasNext()) ? m_iter0.next() : m_iter1.next();
+        return (m_iter0.hasNext()) ? m_iter0.nextNode() : m_iter1.nextNode();
+    }
+
+
+    /**
+     * Returns the next element in the interation.
+     *
+     * @return The next object in the iteration, which will correspond to the next object in the
+     *         underlying iteration, projected to the range of the projection function.
+     * @exception NoSuchElementException - iteration has no more elements.
+     */
+    public RDFNode nextNode()
+        throws RDFException
+    {
+        return (RDFNode) next();
     }
 
 

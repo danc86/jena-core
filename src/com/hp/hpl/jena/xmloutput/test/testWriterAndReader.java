@@ -270,11 +270,11 @@ public class testWriterAndReader extends TestCase implements RDFErrorHandler {
         StmtIterator ss = m.listStatements();
         try {
             for (int i = 0; i < cnt; i++)
-                die[i] = ss.next();
+                die[i] = ss.nextStatement();
             while (ss.hasNext()) {
                 int ix = random.nextInt(sz);
                 if (ix < cnt)
-                    die[ix] = ss.next();
+                    die[ix] = ss.nextStatement();
             }
         } finally {
             ss.close();
@@ -298,13 +298,13 @@ public class testWriterAndReader extends TestCase implements RDFErrorHandler {
         StmtIterator ss = m.listStatements();
         try {
             for (int i = 0; i < cnt; i++) {
-                Statement s = ss.next();
+                Statement s = ss.nextStatement();
                 subject[i] = s.getSubject();
                 predicate[i] = s.getPredicate();
                 object[i] = s.getObject();
             }
             while (ss.hasNext()) {
-                Statement s = ss.next();
+                Statement s = ss.nextStatement();
                 Resource subj = s.getSubject();
                 RDFNode obj = s.getObject();
                 int ix = random.nextInt(sz);
@@ -355,7 +355,7 @@ public class testWriterAndReader extends TestCase implements RDFErrorHandler {
     static public void empty(Model m) throws RDFException {
         StmtIterator iter = m.listStatements();
         while (iter.hasNext()) {
-            iter.next();
+            iter.nextStatement();
             iter.remove();
         }
     }

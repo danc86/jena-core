@@ -123,7 +123,7 @@ public class NodeIteratorWrapper
         throws NoSuchElementException
     {
         try {
-            return m_nIterator.next();
+            return m_nIterator.nextNode();
         }
         catch (RDFException e) {
             throw new RuntimeException( "RDFException while accessing NodeIterator: " + e );

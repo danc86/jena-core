@@ -123,7 +123,7 @@ public class ResIteratorWrapper
         throws NoSuchElementException
     {
         try {
-            return m_nIterator.next();
+            return m_nIterator.nextResource();
         }
         catch (RDFException e) {
             throw new RuntimeException( "RDFException while accessing ResIterator: " + e );

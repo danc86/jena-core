@@ -118,10 +118,24 @@ public class StatementObjectIterator
      * @throws RDFException Generic RDF exception.
      * @return The next Resource from the iteration.
      */
-    public RDFNode next()
+    public Object next()
         throws  NoSuchElementException, RDFException
     {
-        return m_sIterator.next().getObject();
+        return m_sIterator.nextStatement().getObject();
+    }
+
+
+    /**
+     * Return the next Node of the iteration.
+     *
+     * @throws NoSuchElementException if there are no more to be returned.
+     * @throws RDFException Generic RDF exception.
+     * @return The next Resource from the iteration.
+     */
+    public RDFNode nextNode()
+        throws  NoSuchElementException, RDFException
+    {
+        return (RDFNode) next();
     }
 
 

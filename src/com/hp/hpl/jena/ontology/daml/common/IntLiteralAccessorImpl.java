@@ -118,7 +118,7 @@ public class IntLiteralAccessorImpl
                 throw new RuntimeException( "No value defined for property " + getProperty() );
             }
             else {
-                return ((Literal) i.next()).getInt();
+                return ((Literal) i.nextNode()).getInt();
             }
         }
         catch (RDFException e) {

@@ -732,7 +732,7 @@ public class DAMLModelImpl
         try {
             // currently no better way to do this than search the whole model - yuck!
             for (StmtIterator i = listStatements();  i.hasNext();  ) {
-                Statement s = i.next();
+                Statement s = i.nextStatement();
                 Resource subj = s.getSubject();
                 Property pred = s.getPredicate();
                 RDFNode obj = s.getObject();

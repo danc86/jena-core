@@ -341,7 +341,7 @@ public class QueryTestScripts extends TestSuite
         try {
             StmtIterator sIter = model.listStatements();
             while (sIter.hasNext()) {
-                sIter.next();
+                sIter.nextStatement();
                 sIter.remove();
             }
             sIter.close() ;

@@ -210,6 +210,6 @@ public class AltImpl extends ContainerImpl implements Alt {
         if (!iter.hasNext()) {
             return null;
         }
-        return iter.next();
+        return iter.nextStatement();
     }
 }

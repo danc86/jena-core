@@ -66,7 +66,7 @@ public class SeqNodeIteratorImpl extends Object implements NodeIterator {
         return iterator.hasNext();
     }
     
-    public RDFNode next() throws NoSuchElementException, RDFException {
+    public Object next() throws NoSuchElementException, RDFException {
         if (iterator != null) {
             stmt = (Statement) iterator.next();
             index++;
@@ -74,6 +74,10 @@ public class SeqNodeIteratorImpl extends Object implements NodeIterator {
         } else {
             throw new RDFException(RDFException.ITERATORCLOSED);  
         }
+    }
+    
+    public RDFNode nextNode() throws NoSuchElementException, RDFException {
+        return (RDFNode) next();
     }
             
     public void remove() throws NoSuchElementException, RDFException {

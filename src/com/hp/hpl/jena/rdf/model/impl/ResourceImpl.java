@@ -265,7 +265,7 @@ public class ResourceImpl extends EnhNode implements Resource, ResourceI {
 
     public Resource removeProperties() throws RDFException {
         StmtIterator it  = mustHaveModel().listStatements( new SelectorImpl(this, null, (RDFNode) null) );
-        while (it.hasNext()) { it.next(); it.remove(); }
+        while (it.hasNext()) { it.nextStatement(); it.remove(); }
         return this;
     }
 

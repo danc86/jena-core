@@ -426,7 +426,7 @@ public abstract class DAMLCommonImpl
             int count = 0;
 
             // lookup the super-classes from this model
-            for (NodeIterator i = getPropertyValues( property );  i.hasNext();  i.next()) {
+            for (NodeIterator i = getPropertyValues( property );  i.hasNext();  i.nextNode()) {
                 count++;
             }
 
@@ -570,7 +570,7 @@ public abstract class DAMLCommonImpl
     public void remove() {
         try {
             // first remove all of the statements corresponding to this object
-            for (StmtIterator i = listProperties();  i.hasNext();  i.next().remove() );
+            for (StmtIterator i = listProperties();  i.hasNext();  i.nextStatement().remove() );
 
             // now remove this object from the DAML indexes
             ((DAMLModelImpl) getModel()).unindex( this );
@@ -702,7 +702,7 @@ public abstract class DAMLCommonImpl
 
                 try {
                     for (StmtIterator j = getModel().listStatements( new SelectorImpl( this, p, n ) );  j.hasNext(); ) {
-                        j.next().remove();
+                        j.nextStatement().remove();
                     }
                 }
                 catch (RDFException e) {
@@ -725,7 +725,7 @@ public abstract class DAMLCommonImpl
                 Property p = (Property) preds.next();
 
                 for (StmtIterator i = getModel().listStatements( new SelectorImpl( this, p, (RDFNode) null ) );  i.hasNext(); ) {
-                    i.next().remove();
+                    i.nextStatement().remove();
                 }
             }
         }

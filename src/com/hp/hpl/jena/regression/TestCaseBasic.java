@@ -71,7 +71,7 @@ public class TestCaseBasic extends TestCase {
         try {
             StmtIterator iter = m.listStatements();
             while (iter.hasNext()) {
-                iter.next();
+                iter.nextStatement();
                 iter.remove();
             }
             assertTrue(m.size() == 0);

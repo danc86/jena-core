@@ -299,7 +299,7 @@ public class ModelMatcher extends java.lang.Object {
         int hash = 0;
         try {
             while ( ss.hasNext() ) {
-                Statement s = ss.next();
+                Statement s = ss.nextStatement();
                 AnonStatement ass = new AnonStatement(s);
                 if ( ass.pattern == NOVARS ) {
                     if ( ! otherm.contains(s) )

@@ -71,7 +71,7 @@ public class testMatch extends java.lang.Object {
     static private void empty(Model m) throws RDFException {
         StmtIterator iter = m.listStatements();
         while (iter.hasNext()) {
-            iter.next();
+            iter.nextStatement();
             iter.remove();
         }
     }

@@ -132,7 +132,7 @@ class Unparser {
 		StmtIterator ss = m.listStatements();
 		try {
 			while (ss.hasNext()) {
-				Statement s = ss.next();
+				Statement s = ss.nextStatement();
 				RDFNode rn = s.getObject();
 				if (rn instanceof Resource) {
 					increaseObjectCount((Resource) rn);
@@ -171,7 +171,7 @@ class Unparser {
 				}
 			}, model.listSubjectsWithProperty(RDF.type, RDF.Statement));
 			while (reified.hasNext()) {
-				Resource r = reified.next();
+				Resource r = reified.nextResource();
 				try {
 					/**
 					 *  This block of code assumes that really we
@@ -651,7 +651,7 @@ class Unparser {
 		try {
 			Set seen = new HashSet();
 			while (ss.hasNext()) {
-				Statement s = ss.next();
+				Statement s = ss.nextStatement();
 				RDFNode val = s.getObject();
 				if (canBeAttribute(s, seen)) {
 					done(s);
@@ -756,7 +756,7 @@ class Unparser {
 		try {
 			int greatest = 0;
 			while (ss.hasNext()) {
-				Statement s = ss.next();
+				Statement s = ss.nextStatement();
 				int ix = s.getPredicate().getOrdinal();
 				if (ix != 0) {
 					if (ix > greatest) {
@@ -858,7 +858,7 @@ class Unparser {
 		StmtIterator ss = this.listProperties(r);
 		try {
 			while (ss.hasNext()) {
-				Statement s = ss.next();
+				Statement s = ss.nextStatement();
 				wPropertyElt(wtype,s.getPredicate(), s, s.getObject());
 			}
 		} finally {
@@ -1218,7 +1218,7 @@ class Unparser {
 		NodeIterator nn = model.listObjectsOfProperty(RDF.type);
 		try {
 			while (nn.hasNext()) {
-				RDFNode obj = nn.next();
+				RDFNode obj = nn.nextNode();
 				int split = isOKType(obj);
 				if (split != -1)
 					prettyWriter.addNameSpace(
@@ -1445,7 +1445,7 @@ class Unparser {
 		Set seen = new HashSet();
 		try {
 			while (ss.hasNext()) {
-				Statement s = ss.next();
+				Statement s = ss.nextStatement();
 				if (!canBeAttribute(s, seen))
 					return false;
 			}
@@ -1499,7 +1499,7 @@ class Unparser {
 			StmtIterator ss = res.listProperties();
 			try {
 				while (ss.hasNext()) {
-					Statement s = ss.next();
+					Statement s = ss.nextStatement();
 					Property p = s.getPredicate();
 					int ix;
 					RDFNode obj = s.getObject();
@@ -1596,7 +1596,7 @@ class Unparser {
 		Relation relation = new Relation();
 		try {
 			while (ss.hasNext()) {
-				Statement s = ss.next();
+				Statement s = ss.nextStatement();
 				if (!doneSet.contains(s)) {
 					RDFNode rn = s.getObject();
 					if (rn instanceof Resource) {
@@ -1638,7 +1638,7 @@ class Unparser {
 		ResIterator rs = model.listSubjects();
 		try {
 			while (rs.hasNext()) {
-				Resource r = rs.next();
+				Resource r = rs.nextResource();
 				Statement s = getType(r);
 				if (s != null) {
 					Set bucket = (Set) buckets.get(s.getObject());
@@ -1820,7 +1820,7 @@ class Unparser {
 			if (dead)
 				throw new NoSuchElementException();
 			try {
-				return resIt.next();
+				return resIt.nextResource();
 			} catch (RDFException ee) {
 				throw new RuntimeRDFException(ee);
 			}

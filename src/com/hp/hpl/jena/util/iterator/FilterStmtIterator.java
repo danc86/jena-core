@@ -53,20 +53,23 @@ public class FilterStmtIterator implements StmtIterator {
         if (current != null)
             return true;
         while (enum.hasNext()) {
-            current = enum.next();
+            current = enum.nextStatement();
             if (f.accept(current))
                 return true;
         }
         current = null;
         return false;
     }
-    synchronized public Statement next() throws RDFException {
+    synchronized public Object next() throws RDFException {
         if (hasNext()) {
             Statement r = current;
             current = null;
             return r;
         }
         throw new NoSuchElementException();
+    }
+    synchronized public Statement nextStatement() throws RDFException {
+        return (Statement) next();
     }
     /**
      * This is more restrictive than the usual <CODE>remove()</CODE>

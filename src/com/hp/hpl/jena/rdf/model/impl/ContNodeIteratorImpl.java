@@ -68,7 +68,7 @@ public class ContNodeIteratorImpl
         return iterator.hasNext();
     }
     
-    public RDFNode next() throws NoSuchElementException, RDFException {
+    public Object next() throws NoSuchElementException, RDFException {
         if (iterator != null) {
             stmt = (Statement) iterator.next();
             index++;
@@ -76,6 +76,10 @@ public class ContNodeIteratorImpl
         } else {
             throw new RDFException(RDFException.ITERATORCLOSED);  
         }
+    }
+    
+    public RDFNode nextNode() throws NoSuchElementException, RDFException {
+        return (RDFNode) next();
     }
             
     public void remove() throws NoSuchElementException, RDFException {

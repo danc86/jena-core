@@ -65,7 +65,7 @@ public class Basic extends BaseXMLWriter {
 		throws RDFException {
 		ResIterator rIter = model.listSubjects();
 		while (rIter.hasNext()) {
-			writeRDFStatements(model, rIter.next(), writer);
+			writeRDFStatements(model, rIter.nextResource(), writer);
 		}
 	}
 
@@ -89,7 +89,7 @@ public class Basic extends BaseXMLWriter {
 			writeReifiedProperties((Statement) subject, writer);
 		}
 		while (sIter.hasNext()) {
-			writePredicate(sIter.next(), writer);
+			writePredicate(sIter.nextStatement(), writer);
 		}
 		writeDescriptionTrailer(writer);
 

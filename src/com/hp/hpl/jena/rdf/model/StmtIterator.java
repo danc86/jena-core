@@ -36,21 +36,24 @@ package com.hp.hpl.jena.rdf.model;
  * @author  bwm
  * @version  Release='$Name$' Revision='$Revision$' Date='$Date$'
  */
+
+import com.hp.hpl.jena.util.iterator.ClosableIterator;
+
 import java.util.NoSuchElementException;
 
 
 
 /** An iterator which returns RDF Statements.
  *
- * <p>RDF iterators are similar to standard Java iterators, except that they
- *   return specifically typed objects, in this case RDF Statements
- *   and have a <CODE>close()</CODE> method.
- *   This should be called to free resources
- *   if the application does not complete the iteration.</p>
+ * <p>RDF iterators are standard Java iterators, except that they
+ *   have an extra method to return specifically typed objects,
+ *   in this case RDF Statements and have a <CODE>close()</CODE> method
+ *   that should be called to free resources if the application does 
+ *   not complete the iteration.</p>
  * @author bwm
  * @version Release='$Name$' Revision='$Revision$' Date='$Date$'
  */
-public interface StmtIterator {
+public interface StmtIterator extends ClosableIterator {
     
     /** Determine if there any more Statements in the iteration.
      * @throws RDFException Generic RDF exception.
@@ -64,7 +67,14 @@ public interface StmtIterator {
      * @throws RDFException Generic RDF exception.
      * @return The next Resource from the iteration.
      */
-    public Statement next() throws  NoSuchElementException, RDFException;
+    public Object next() throws  NoSuchElementException, RDFException;
+    
+    /** Return the next Statement of the iteration.
+     * @throws NoSuchElementException if there are no more to be returned.
+     * @throws RDFException Generic RDF exception.
+     * @return The next Resource from the iteration.
+     */
+    public Statement nextStatement() throws  NoSuchElementException, RDFException;
     
     /** Remove the most recently returned Statement from its associated model.
      * @throws NoSuchElementException thrown if no Statement has been returned.

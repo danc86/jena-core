@@ -195,7 +195,7 @@ abstract public class BaseXMLWriter implements RDFWriter {
 		NsIterator nsIter = model.listNameSpaces();
 		String uri;
 		while (nsIter.hasNext()) {
-			this.addNameSpace(nsIter.next());
+			this.addNameSpace(nsIter.nextNs());
 		}
 	}
 

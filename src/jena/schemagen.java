@@ -155,7 +155,7 @@ public class schemagen extends java.lang.Object {
                                  new SelectorImpl(null, RDF.type, type));
         // for each one
         while (iter.hasNext()) {
-            Resource r = iter.next()
+            Resource r = iter.nextStatement()
                              .getSubject();
             // ignore if bNode
             if (! r.isAnon()) {

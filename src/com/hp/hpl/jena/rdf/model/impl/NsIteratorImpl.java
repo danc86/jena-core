@@ -61,12 +61,16 @@ public class NsIteratorImpl extends Object implements NsIterator {
         }        
     }
     
-    public String next() throws NoSuchElementException, RDFException {
+    public Object next() throws NoSuchElementException, RDFException {
         if (iterator != null) {
             return (String) iterator.next();
         } else {
             throw new RDFException(RDFException.ITERATORCLOSED);
         }
+    }
+    
+    public String nextNs() throws NoSuchElementException, RDFException {
+        return (String) next();
     }
     
     public void remove() throws NoSuchElementException, RDFException {

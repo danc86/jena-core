@@ -88,7 +88,7 @@ public class RDFSReasonerFactory implements ReasonerFactory {
         Resource rdfsDescr = ReasonerRegistry.theRegistry().getDescription(URI);
         System.out.println("Reasoner: " + rdfsDescr);
         for (StmtIterator i = rdfsDescr.listProperties(); i.hasNext(); ) {
-            Statement s = i.next();
+            Statement s = i.nextStatement();
             System.out.println(s.getPredicate().getLocalName() + " = " + s.getObject());
         }
     }

@@ -120,10 +120,24 @@ public class StatementPredicateIterator
      * @throws RDFException Generic RDF exception.
      * @return The next Resource from the iteration.
      */
-    public Resource next()
+    public Object next()
         throws  NoSuchElementException, RDFException
     {
-        return m_sIterator.next().getPredicate();
+        return m_sIterator.nextStatement().getPredicate();
+    }
+
+
+    /**
+     * Return the next Resource of the iteration.
+     *
+     * @throws NoSuchElementException if there are no more to be returned.
+     * @throws RDFException Generic RDF exception.
+     * @return The next Resource from the iteration.
+     */
+    public Resource nextResource()
+        throws  NoSuchElementException, RDFException
+    {
+        return (Resource) next();
     }
 
 

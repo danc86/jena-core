@@ -65,7 +65,7 @@ public class RDFSReasoner extends TransitiveReasoner implements Reasoner {
             Resource base = configuration.getResource(RDFSReasonerFactory.URI);
             StmtIterator i = base.listProperties(RDFSReasonerFactory.scanProperties);
             if (i.hasNext()) {
-                scanProperties = i.next().getObject().toString().equalsIgnoreCase("true");
+                scanProperties = i.nextStatement().getObject().toString().equalsIgnoreCase("true");
             }
         }
     }

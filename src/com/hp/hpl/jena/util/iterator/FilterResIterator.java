@@ -54,7 +54,7 @@ public class FilterResIterator implements ResIterator {
         if (current != null)
             return true;
         while (enum.hasNext()) {
-            current = enum.next();
+            current = enum.nextResource();
             try {
                 if (f.accept(current))
                     return true;
@@ -65,13 +65,17 @@ public class FilterResIterator implements ResIterator {
         current = null;
         return false;
     }
-    synchronized public Resource next() throws RDFException {
+    synchronized public Object next() throws RDFException {
         if (hasNext()) {
             Resource r = current;
             current = null;
             return r;
         }
         throw new NoSuchElementException();
+    }
+    
+    synchronized public Resource nextResource() throws RDFException {
+        return (Resource) next();
     }
     /**
      * This is more restrictive than the usual <CODE>remove()</CODE>

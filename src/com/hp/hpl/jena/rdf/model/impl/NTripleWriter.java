@@ -77,7 +77,7 @@ public class NTripleWriter extends Object implements RDFWriter {
             Statement stmt = null;
 
             while (iter.hasNext()) {
-                stmt = iter.next();
+                stmt = iter.nextStatement();
                 writeResource(stmt.getSubject(), pw);
                 pw.print(" ");
                 writeResource(stmt.getPredicate(), pw);
@@ -122,7 +122,7 @@ public class NTripleWriter extends Object implements RDFWriter {
         Statement stmt = null;
 
         while (iter.hasNext()) {
-            stmt = iter.next();
+            stmt = iter.nextStatement();
             writeResource(stmt.getSubject(), writer);
             writer.print(" ");
             writeResource(stmt.getPredicate(), writer);

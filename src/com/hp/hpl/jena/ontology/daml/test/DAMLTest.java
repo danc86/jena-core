@@ -803,7 +803,7 @@ public class DAMLTest
             // pick an arbitrary DAML resource
             Resource r = null;
             for (StmtIterator i = m.listStatements();  i.hasNext();  ) {
-                Resource r0 = i.next().getSubject();
+                Resource r0 = i.nextStatement().getSubject();
 
                 if (r0 instanceof DAMLCommon) {
                     // got one
@@ -1145,7 +1145,7 @@ public class DAMLTest
         int count = 0;
         try {
             for (;  i.hasNext();  count++) {
-                Object x = i.next();
+                Object x = i.nextResource();
 
                 if (doLog) {
                     Log.finest( "counting iteration, " + message + x );

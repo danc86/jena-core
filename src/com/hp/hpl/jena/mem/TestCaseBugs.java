@@ -65,7 +65,7 @@ public class TestCaseBugs
             
             model.add(r, RDF.type, oc);
             RDFNode n = model.listStatements()
-                             .next()
+                             .nextStatement()
                              .getObject();
             assertTrue(n instanceof Resource);
             
