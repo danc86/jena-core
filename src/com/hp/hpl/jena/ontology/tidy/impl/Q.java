@@ -21,6 +21,12 @@ abstract class Q {
 		return false;
 	}
 
+	public static final boolean subset(int a[], int b[]) {
+		for (int i = 0; i < a.length; i++)
+			if (!member(a[i], b))
+				return false;
+		return true;
+	}
 }
 
 /*
