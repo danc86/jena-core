@@ -188,7 +188,7 @@ public class ModelFactory extends ModelFactoryBase
         @param url the URL of the database
         @param user the user name to use to access the database
         @param password the password to use. WARNING: open text.
-        @param dbtype the databate type: currently, "Oracle" or "MySQL".
+        @param dbType the databate type: currently, "Oracle" or "MySQL".
         @return the connection
         @exception quite possibly
     */
