@@ -57,6 +57,15 @@ public class RuleStore {
     }
     
     /**
+     * Add all the rules and  from an existing rulestore into this one.
+     */
+    public void addAll(RuleStore store) {
+        for (Iterator i = store.getAllRules().iterator(); i.hasNext(); ) {
+            addRule( (Rule)i.next() );
+        }
+    }
+    
+    /**
      * Add a single rule to the store. 
      */
     public void addRule(Rule rule) {
