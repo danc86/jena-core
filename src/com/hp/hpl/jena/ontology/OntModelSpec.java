@@ -63,6 +63,12 @@ public class OntModelSpec extends ModelSpecImpl implements ModelSpec {
     /** A specification for OWL models that are stored in memory and use the OWL rules inference engine for additional entailments */
     public static final OntModelSpec OWL_MEM_RULE_INF = new OntModelSpec( ModelFactory.createMemModelMaker(), null, OWLFBRuleReasonerFactory.theInstance(), ProfileRegistry.OWL_LANG );
     
+    /** A specification for OWL models that are stored in memory and use the micro OWL rules inference engine for additional entailments */
+    public static final OntModelSpec OWL_MEM_MICRO_RULE_INF = new OntModelSpec( ModelFactory.createMemModelMaker(), null, OWLMicroReasonerFactory.theInstance(), ProfileRegistry.OWL_LANG );
+    
+    /** A specification for OWL models that are stored in memory and use the mini OWL rules inference engine for additional entailments */
+    public static final OntModelSpec OWL_MEM_MINI_RULE_INF = new OntModelSpec( ModelFactory.createMemModelMaker(), null, OWLMiniReasonerFactory.theInstance(), ProfileRegistry.OWL_LANG );
+    
     /** A specification for OWL DL models that are stored in memory and do no additional entailment reasoning */
     public static final OntModelSpec OWL_DL_MEM = new OntModelSpec( ModelFactory.createMemModelMaker(), null, null, ProfileRegistry.OWL_DL_LANG );
     
