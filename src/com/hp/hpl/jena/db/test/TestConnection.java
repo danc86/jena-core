@@ -116,6 +116,26 @@ public class TestConnection extends TestCase {
 		m.remove();
     	conn.close();
     }
+    
+	public void testReconstructDefaultModel() throws java.lang.Exception {
+		IDBConnection conn = makeAndCleanTestConnection();
+		ModelRDB m = ModelRDB.createModel(conn);
+		m.remove();
+		ModelRDB m1 = ModelRDB.createModel(conn);
+		m1.remove();
+		conn.close();
+	}
+
+    
+	public void testReconstructNamedModel() throws java.lang.Exception {
+		IDBConnection conn = makeAndCleanTestConnection();
+		ModelRDB m = ModelRDB.createModel(conn, "myName");
+		m.remove();
+		ModelRDB m1 = ModelRDB.createModel(conn, "myName");
+		m1.remove();
+		conn.close();
+	}
+
         
     public void testConstructAndOpenNamedModel() throws java.lang.Exception {
         IDBConnection conn = makeAndCleanTestConnection();
