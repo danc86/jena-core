@@ -46,8 +46,8 @@ public class GraphTestBase extends JenaTestBase
         return result;
         }
         
-    public HashSet arrayToSet( Node [] nodes )
-        { return new HashSet( Arrays.asList( nodes ) ); }
+    public Set arrayToSet( Object [] elements )
+        { return new HashSet( Arrays.asList( elements ) ); }
                 
     public static Triple triple( String fact )
         { return Triple.create( fact ); }

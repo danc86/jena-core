@@ -39,11 +39,6 @@ public class TestModelSpec extends ModelTestBase
     public static TestSuite suite()
         { return new TestSuite( TestModelSpec.class ); }
         
-    protected static final Model aModel = ModelFactory.createDefaultModel();
-        
-    protected static Resource resource( String URI )
-        { return aModel.createResource( URI ); }
-        
     protected static Resource resource()
         { return ResourceFactory.createResource(); }
         

@@ -77,9 +77,8 @@ public interface Resource extends RDFNode {
   */  
   public Node getNode();
   
-  /** Return the URI of the resource, or the empty string if it is anonymous.
-   * @return The URI of the resource, or the empty string
-   * if it is anonymous.
+  /** Return the URI of the resource, or null if it's a bnode.
+   * @return The URI of the resource, or null if it's a bnode.
    */
     public String getURI();
     

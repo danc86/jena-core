@@ -26,6 +26,7 @@ public class ModelTestBase extends GraphTestBase
     public ModelTestBase(String name)
         { super(name); }
      
+    private static Model aModel = ModelFactory.createDefaultModel();
      /**
         create a Statement in a given Model with (S, P, O) extracted by parsing a string.
         
@@ -48,9 +49,15 @@ public class ModelTestBase extends GraphTestBase
         return (RDFNode) ((ModelCom) m).getNodeAs( n, (n.isLiteral() ? Literal.class : Resource.class) );
         }
         
+    public static Resource resource( String s )
+        { return resource( aModel, s ); }
+    
     public static Resource resource( Model m, String s )
         { return (Resource) rdfNode( m, s ); }
         
+    public static Property property( String s )
+        { return property( aModel, s ); }
+    
     public static Property property( Model m, String s )
         { return (Property) rdfNode( m, s, Property.class ); }
         
