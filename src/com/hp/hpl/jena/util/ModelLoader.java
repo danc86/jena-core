@@ -8,6 +8,8 @@ package com.hp.hpl.jena.util;
 import java.io.* ;
 import java.net.* ;
 
+import org.apache.log4j.*;
+
 import com.hp.hpl.jena.rdf.model.* ;
 import com.hp.hpl.jena.mem.* ;
 //import com.hp.hpl.jena.bdb.* ;
@@ -23,6 +25,8 @@ import com.hp.hpl.jena.mem.* ;
 
 public class ModelLoader
 {
+    static Logger logger = Logger.getLogger(ModelLoader.class.getName()) ;
+    
     public static final String langXML         = "RDF/XML" ;
     public static final String langXMLAbbrev   = "RDF/XML-ABBREV" ;
     public static final String langNTriple     = "N-TRIPLE" ;
@@ -191,6 +195,11 @@ public class ModelLoader
         if ( rdfReader instanceof com.hp.hpl.jena.rdf.arp.JenaReader )
             rdfReader.setProperty("error-mode", "lax") ;
         rdfReader.read(model, dataReader, base) ;
+        
+        try { dataReader.close() ; }
+        catch (IOException ioEx)
+        { logger.warn("IOException closing reader", ioEx) ; }
+        
         return model ;
     }
     
