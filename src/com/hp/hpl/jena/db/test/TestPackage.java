@@ -80,7 +80,7 @@ public class TestPackage extends TestSuite
 		addTest( "TestCompareToMem", TestCompareToMem.suite() );
 		addTest( "TestGraphRDB", TestGraphRDB.suite());
 		addTest( "TestModelRDB", TestModelRDB.suite());
-		addTest( "TestGraphRDBMaker", TestGraphRDB.suite());
+		addTest( "TestGraphRDBMaker", TestGraphRDBMaker.suite());
 		addTest( "TestMultiModel", TestMultiModel.suite());
 		addTest( "TestNsPrefix", TestNsPrefix.suite());
 		addTest( "TestPrefixMapping", TestPrefixMapping.suite());

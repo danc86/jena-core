@@ -27,7 +27,7 @@ import com.hp.hpl.jena.shared.*;
 public abstract class AbstractTestGraphMaker extends GraphTestBase
     {
     public AbstractTestGraphMaker( String name )
-            { super( name ); }
+        { super( name ); }
             
     public abstract GraphMaker getGraphMaker();
     
@@ -209,11 +209,15 @@ public abstract class AbstractTestGraphMaker extends GraphTestBase
         Test that a maker with no graphs lists no names.
     */
     public void testListNoGraphs()
-        { assertFalse( gf.listGraphs().hasNext() ); }
+        { 
+        Set s = iteratorToSet( gf.listGraphs() );
+        if (s.size() > 0)
+            fail( "found names from 'empty' graph maker: " + s );
+        }
     
     /**
         Test that a maker with three graphs inserted lists those three grapsh; we don't
-        ind what order they appear in. We also use funny names to ensure that the spelling
+        mind what order they appear in. We also use funny names to ensure that the spelling
         that goes in is the one that comes out [should really be in a separate test]. 
     */    
     public void testListThreeGraphs()

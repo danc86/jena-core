@@ -25,9 +25,9 @@ import junit.framework.*;
 public class TestGraphRDBMaker extends AbstractTestGraphMaker
     {
     /**
-        A clean test connection for all the graph factories.
+         The connection for the graph factory.
     */
-    IDBConnection connection = TestConnection.makeAndCleanTestConnection();
+    IDBConnection connection;
     
     public TestGraphRDBMaker( String name )
         { super( name ); }
@@ -36,8 +36,9 @@ public class TestGraphRDBMaker extends AbstractTestGraphMaker
         { return new TestSuite( TestGraphRDBMaker.class ); }
         
     public void setUp()
-        { super.setUp();
-        // assertFalse( connection.getAllModelNames().hasNext() ); 
+        { // order is import - super.setUp grabs a graph 
+        connection = TestConnection.makeAndCleanTestConnection();
+        super.setUp();
         }
 
     /**
