@@ -39,14 +39,15 @@ import java.io.OutputStream;
  * @version $Revision$
  */
 public interface RDFWriter {
-/** Namespace prefixes can be set using a system property of the form<PRE>
- *  NSPREFIXPROPBASE + URI
- * </PRE>.  Such prefixes override the built in ones and those set using
- * <code>setNsPrefix</code>
+/** Namespace prefixes can be set using a system property of the form
+ * <code>NSPREFIXPROPBASE + uri</code>.  
+ * Such prefixes override the built in
+ * ones and those set using 
+ * {@link #setNsPrefix(java.lang.String, java.lang.String)}.
  */
 	public static final String NSPREFIXPROPBASE
 	  = "com.hp.hpl.jena.nsprefix.";
-	/** Serialize Model <code>model</code> to Writer <code>out</out>.
+	/** Caution: Serialize Model <code>model</code> to Writer <code>out</code>.
 	 * It is often better to use an OutputStream and permit Jena
 	 * to choose the character encoding. The charset restrictions
 	 * on the Writer are defined by the different implementations

@@ -43,7 +43,7 @@ public interface RDFReader {
 	 * It is usually a mistake to use this method.
 	 * Read serialized RDF from a <code>Reader</code> and add the statements to a
 	 * <code>Model</code>. It is generally better to use an InputStream if
-	 * possible. {@link Model. read(InputStream,String)}, otherwise there is a
+	 * possible. {@link #read(Model,InputStream,String)}, otherwise there is a
 	 * danger of a mismatch between the character encoding of say the FileReader
 	 * and the character encoding of the data in the file.
 	 * @param model The model to which statements are added.

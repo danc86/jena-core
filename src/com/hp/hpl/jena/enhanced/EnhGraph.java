@@ -86,19 +86,13 @@ public class EnhGraph
 
      
     /**
-     * <p>
-     * An enhanced graph is equal to another graph g iff:
-     * <ul>
-     * <li>g is identical to <i>this</i></li>
-     * <li>the underlying graphs are equal</li>
-     * </ul>
-     * This is deemed to be a complete and correct interpretation of enhanced graph
-     * equality, which is why this method has been marked final.
-     * </p>
-     * <p>
-     * Note that this equality test does not look for correspondance between the 
-     * structures in the two graphs.  To test whether another graph has the same
-     * nodes and edges as this one, use {@link #isIsomorphicWith}.
+     * An enhanced graph is equal to another graph g iff the underlying graphs
+     * are equal.
+     * This  is deemed to be a complete and correct interpretation of enhanced
+     * graph equality, which is why this method has been marked final.
+     * <p> Note that this equality test does not look for correspondance between
+     * the structures in the two graphs.  To test whether another graph has the
+     * same nodes and edges as this one, use {@link #isIsomorphicWith}.
      * </p>
      * @param o An object to test for equality with this node
      * @return True if o is equal to this node.

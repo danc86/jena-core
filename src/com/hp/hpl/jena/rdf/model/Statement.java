@@ -264,7 +264,7 @@ public interface Statement  //extends Resource
      */    
     public Seq getSeq() throws RDFException;
     
-    /** Return the language of the object of the statement
+    /** Return the language of the object of the statement.
      *
      * <p>An exception will be thrown if the object is not a Literal.</p>
      * @throws RDFException Generuc RDF exception.
@@ -273,7 +273,7 @@ public interface Statement  //extends Resource
     public String getLanguage() throws RDFException;
     
     /** Return whether the Literal object is well formed XML as would result
-     *         from parsing a property element with parseType="Literal"
+     *         from parsing a property element with parseType="Literal".
      *
      * <p>An exception will be thrown if the object is not a Literal.</p>
      * @throws RDFException Generuc RDF exception.
