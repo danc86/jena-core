@@ -12,6 +12,7 @@ package com.hp.hpl.jena.reasoner;
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.vocabulary.*;
 import com.hp.hpl.jena.graph.*;
+import com.hp.hpl.jena.reasoner.dig.DIGReasonerFactory;
 import com.hp.hpl.jena.reasoner.rulesys.DAMLMicroReasonerFactory;
 import com.hp.hpl.jena.reasoner.rulesys.GenericRuleReasonerFactory;
 import com.hp.hpl.jena.reasoner.rulesys.OWLFBRuleReasonerFactory;
@@ -56,6 +57,7 @@ public class ReasonerRegistry {
         register(OWLFBRuleReasonerFactory.theInstance());
         register(GenericRuleReasonerFactory.theInstance());
         register(DAMLMicroReasonerFactory.theInstance());
+        register(DIGReasonerFactory.theInstance());
     }
     
     /**
