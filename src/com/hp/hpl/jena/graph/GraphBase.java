@@ -26,11 +26,13 @@ import com.hp.hpl.jena.shared.impl.PrefixMappingImpl;
 
 public abstract class GraphBase implements Graph {
 
+    private Reifier.Style style;
+    
     public GraphBase( Reifier.Style style )
-        {}
+        { this.style = style; }
         
     public GraphBase()
-        {}
+        { this( Reifier.Minimal ); }
         
 	public boolean dependsOn(Graph other) {
 		return this == other;
@@ -110,7 +112,7 @@ public abstract class GraphBase implements Graph {
 	protected Reifier reifier = null;
 	
 	public Reifier getReifier() {
-		if (reifier == null) reifier = new SimpleReifier( this, false );
+		if (reifier == null) reifier = new SimpleReifier( this, style.intercepts() );
 		return reifier;
 	}
     

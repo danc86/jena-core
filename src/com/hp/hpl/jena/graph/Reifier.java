@@ -41,14 +41,20 @@ public interface Reifier extends GetTriple
     */
     public static class Style
         {
-        boolean intercept;
-        boolean conceal;
+        private boolean intercept;
+        private boolean conceal;
         
         Style( boolean intercept, boolean conceal )
             {
             this.intercept = intercept;
             this.conceal = conceal;
             }
+            
+        public boolean intercepts()
+            { return intercept; }
+            
+        public boolean conceals()
+            { return conceal; }
         }
         
     /**

@@ -27,6 +27,8 @@ public class TestGraph extends GraphTestBase
         TestSuite result = new TestSuite();
         result.addTest( TestDefaultGraph.suite() );
         result.addTest( TestStandardGraph.suite() );
+        result.addTest( TestMinimalGraph.suite() );
+        result.addTest( TestConvenientGraph.suite() );
         return result;
         }
         
@@ -44,6 +46,20 @@ public class TestGraph extends GraphTestBase
         public Graph getGraph() { return new GraphMem( Reifier.Standard ); }
         }
         
+    public static class TestMinimalGraph extends AbstractTestGraph
+        {
+        public TestMinimalGraph( String name ) { super( name ); }
+        public static TestSuite suite() { return new TestSuite( TestMinimalGraph.class ); }
+        public Graph getGraph() { return new GraphMem( Reifier.Minimal ); }
+        }
+        
+    public static class TestConvenientGraph extends AbstractTestGraph
+        {
+        public TestConvenientGraph( String name ) { super( name ); }
+        public static TestSuite suite() { return new TestSuite( TestConvenientGraph.class ); }
+        public Graph getGraph() { return new GraphMem( Reifier.Convenient ); }
+        }
+                
     }
 
 /*
