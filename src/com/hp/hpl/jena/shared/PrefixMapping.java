@@ -6,6 +6,8 @@
 
 package com.hp.hpl.jena.shared;
 
+import com.hp.hpl.jena.util.*;
+
 import java.util.*;
 
 /**
@@ -63,6 +65,15 @@ public interface PrefixMapping
         @return the QName form if possible, otherwise the unchanged argument
     */
     String usePrefix( String uri );
+    
+    /**
+        Exception to throw when the prefix argument to setNsPrefix is
+        illegal for some reason.
+    */
+    public static class IllegalPrefixException extends JenaException
+        {
+        public IllegalPrefixException( String prefixName ) { super( prefixName ); }     
+        }
     }
 
 
