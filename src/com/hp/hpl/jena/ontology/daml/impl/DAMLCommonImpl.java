@@ -50,13 +50,13 @@ import com.hp.hpl.jena.rdf.model.RDFException;
 import com.hp.hpl.jena.rdf.model.RDFNode;
 import com.hp.hpl.jena.rdf.model.NodeIterator;
 import com.hp.hpl.jena.rdf.model.Property;
+import com.hp.hpl.jena.rdf.model.SimpleSelector;
 import com.hp.hpl.jena.rdf.model.Statement;
 import com.hp.hpl.jena.rdf.model.StmtIterator;
 
 
 import com.hp.hpl.jena.rdf.model.impl.ResourceImpl;
 import com.hp.hpl.jena.rdf.model.impl.NodeIteratorImpl;
-import com.hp.hpl.jena.rdf.model.impl.SimpleSelector;
 
 import java.util.*;
 
@@ -698,7 +698,7 @@ public abstract class DAMLCommonImpl
                 Property p = (Property) i.next();
 
                 try {
-                    for (StmtIterator j = getModel().listStatements( new SimpleSelector( this, p, n ) );  j.hasNext(); ) {
+                    for (StmtIterator j = getModel().listStatements( this, p, n );  j.hasNext(); ) {
                         j.nextStatement().remove();
                     }
                 }
@@ -721,7 +721,7 @@ public abstract class DAMLCommonImpl
             while (preds.hasNext()) {
                 Property p = (Property) preds.next();
 
-                for (StmtIterator i = getModel().listStatements( new SimpleSelector( this, p, (RDFNode) null ) );  i.hasNext(); ) {
+                for (StmtIterator i = getModel().listStatements( this, p, (RDFNode) null );  i.hasNext(); ) {
                     i.nextStatement().remove();
                 }
             }

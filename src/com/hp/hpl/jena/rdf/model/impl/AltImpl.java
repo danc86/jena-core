@@ -189,8 +189,7 @@ public class AltImpl extends ContainerImpl implements Alt {
     }      
         
     protected Statement getDefaultStatement() throws RDFException {
-        StmtIterator iter = getModel().listStatements(
-                             new SimpleSelector(this, RDF.li(1), (RDFNode) null));
+        StmtIterator iter = getModel().listStatements( this, RDF.li(1), (RDFNode) null );
         if (!iter.hasNext()) {
             return null;
         }

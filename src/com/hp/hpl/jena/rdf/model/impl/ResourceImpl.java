@@ -165,10 +165,10 @@ public class ResourceImpl extends EnhNode implements Resource {
     	{ return mustHaveModel().getProperty( this, p ); }
 
     public StmtIterator listProperties(Property p) throws RDFException
-		{ return mustHaveModel().listStatements( new SimpleSelector(this, p, (RDFNode) null)); }
+		{ return mustHaveModel().listStatements( this, p, (RDFNode) null ); }
 
     public StmtIterator listProperties() throws RDFException
-    	{ return mustHaveModel().listStatements( new SimpleSelector(this, null, (RDFNode) null)); }	
+    	{ return mustHaveModel().listStatements( this, null, (RDFNode) null ); }	
 
     public Resource addProperty(Property p, boolean o) throws RDFException
     	{
@@ -257,7 +257,7 @@ public class ResourceImpl extends EnhNode implements Resource {
     }
 
     public Resource removeProperties() throws RDFException {
-        StmtIterator it  = mustHaveModel().listStatements( new SimpleSelector(this, null, (RDFNode) null) );
+        StmtIterator it  = mustHaveModel().listStatements( this, null, (RDFNode) null );
         while (it.hasNext()) { it.nextStatement(); it.remove(); }
         return this;
     }

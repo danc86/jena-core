@@ -728,24 +728,6 @@ public interface ModelCon {
  */ 
     StmtIterator listStatements(Resource subject,
                                 Property predicate,
-                                RDFNode  object)
-                                           throws RDFException;
-
-/** Find all the statements matching a pattern.
- * <p>Return an iterator over all the statements in a model
- *  that match a pattern.  The statements selected are those
- *  whose subject matches the <code>subject</code> argument,
- *  whose predicate matches the <code>predicate</code> argument
- *  and whose object matchesthe <code>object</code> argument.
- *  If an argument is <code>null</code> it matches anything.</p>
- * @return an iterator over the subjects
- * @param subject   The subject sought
- * @param predicate The predicate sought
- * @param object    The value sought
- * @throws RDFException Generic RDF Exception
- */ 
-    StmtIterator listStatements(Resource subject,
-                                Property predicate,
                                 boolean object)
                                            throws RDFException;
 

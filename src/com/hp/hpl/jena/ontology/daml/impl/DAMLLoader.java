@@ -70,7 +70,6 @@ import com.hp.hpl.jena.util.iterator.ConcatenatedIterator;
 
 import com.hp.hpl.jena.rdf.model.*;
 
-import com.hp.hpl.jena.rdf.model.impl.SimpleSelector;
 import com.hp.hpl.jena.rdf.model.impl.Util;
 
 import com.hp.hpl.jena.mem.ModelMem;

@@ -86,14 +86,6 @@ public interface Model extends ModelCon, RDFReaderF, RDFWriterF {
 	 */
 	NsIterator listNameSpaces() throws RDFException;
 
-	/** List all statements.
-	 *
-	 *  <p>Subsequent operations on those statements may modify this model.</p>
-	 * @throws RDFException Generic RDF Exception
-	 * @return an iterator over all statements in the model.
-	 */
-	StmtIterator listStatements() throws RDFException;
-
 	/** Return a Resource instance in this model.
 	 *
 	 * <p>Subsequent operations on the returned object may modify this model.</p>
@@ -573,6 +565,14 @@ public interface Model extends ModelCon, RDFReaderF, RDFWriterF {
         Remove a particular reificiation.
     */
     void removeReification( ReifiedStatement rs );
+    
+    /** List all statements.
+     *
+     *  <p>Subsequent operations on those statements may modify this model.</p>
+     * @throws RDFException Generic RDF Exception
+     * @return an iterator over all statements in the model.
+     */
+    StmtIterator listStatements() throws RDFException;
 
 	/** List the statements matching a selector.
 	 *
@@ -583,6 +583,21 @@ public interface Model extends ModelCon, RDFReaderF, RDFWriterF {
 	 * @throws RDFException Generic RDF exception.
 	 */
 	StmtIterator listStatements(Selector s) throws RDFException;
+    /** Find all the statements matching a pattern.
+     * <p>Return an iterator over all the statements in a model
+     *  that match a pattern.  The statements selected are those
+     *  whose subject matches the <code>subject</code> argument,
+     *  whose predicate matches the <code>predicate</code> argument
+     *  and whose object matchesthe <code>object</code> argument.
+     *  If an argument is <code>null</code> it matches anything.</p>
+     * @return an iterator over the subjects
+     * @param subject   The subject sought
+     * @param predicate The predicate sought
+     * @param object    The value sought
+     * @throws RDFException Generic RDF Exception
+     */ 
+    
+    StmtIterator listStatements( Resource s, Property p, RDFNode o );
     
     /**
         Answer a ReifiedStatement that encodes _s_ and belongs to this Model.

@@ -487,8 +487,8 @@ public class TestTypedLiterals extends TestCase {
         Iterator qi = model.getGraph().queryHandler().prepareBindings(q, new Node[] {}).executeBindings();
         assertTrue(qi.hasNext());
         // Similar tests at Model API level
-        Selector s1 = new SimpleSelector(a, p, l2);
-        assertTrue(model.listStatements(s1).hasNext());
+        // Selector s1 = new SimpleSelector(a, p, l2);
+        assertTrue(model.listStatements( a, p, l2 ).hasNext());
     }
     
     /**

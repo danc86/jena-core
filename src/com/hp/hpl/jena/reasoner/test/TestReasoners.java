@@ -175,7 +175,7 @@ public class TestReasoners extends TestCase {
         data.add(p, RDFS.range, C)
             .add(a, p, b);
         Model result = ModelFactory.createRDFSModel(data);
-        StmtIterator i = result.listStatements(new SimpleSelector(b, RDF.type, (RDFNode)null));
+        StmtIterator i = result.listStatements( b, RDF.type, (RDFNode)null );
         TestUtil.assertIteratorValues(this, i, new Object[] {
             new StatementImpl(b, RDF.type, RDFS.Resource),
             new StatementImpl(b, RDF.type, C)

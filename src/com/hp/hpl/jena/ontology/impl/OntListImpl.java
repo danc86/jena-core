@@ -800,7 +800,7 @@ public class OntListImpl
     private void checkValidProperty( Property p, RDFNode expected ) {
         int count = 0;
         
-        for (StmtIterator j = getModel().listStatements( new SimpleSelector( this, p, expected ) );  j.hasNext();  j.next()) { 
+        for (StmtIterator j = getModel().listStatements( this, p, expected );  j.hasNext();  j.next()) { 
             count++;
         }
         

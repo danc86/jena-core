@@ -75,9 +75,7 @@ public class Basic extends BaseXMLWriter {
 		Resource subject,
 		PrintWriter writer)
 		throws RDFException {
-		StmtIterator sIter =
-			model.listStatements(
-				new SimpleSelector(subject, null, (RDFNode) null));
+		StmtIterator sIter = model.listStatements( subject, null, (RDFNode) null );
 
 		writeDescriptionHeader(subject, writer);
         

@@ -57,8 +57,7 @@ public class testNTripleReader extends Object {
             n++; m1.read(ResourceReader.getInputStream(filebase + "1.nt"), "", "N-TRIPLE");
                  if (m1.size() != 5) error(test, n);
                  StmtIterator iter = 
-                     m1.listStatements(
-                             new SimpleSelector(null, null, "foo\"\\\n\r\tbar"));
+                     m1.listStatements( null, null, "foo\"\\\n\r\tbar" );
             n++; if (! iter.hasNext()) error(test, n);
         } catch (Exception e) {
             inError = true;

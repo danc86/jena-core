@@ -158,7 +158,7 @@ public class schemagen extends java.lang.Object {
 
         // extract all the resources of the given type in the schema
         StmtIterator iter =
-            schema.listStatements(new SimpleSelector(null, RDF.type, type));
+            schema.listStatements( null, RDF.type, type );
         // for each one
         while (iter.hasNext()) {
             Resource r = iter.nextStatement().getSubject();
