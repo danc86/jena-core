@@ -185,13 +185,15 @@ final public class LiteralLabel {
 	public boolean isXML() {
 		return dtype == XMLLiteralType.theXMLLiteralType && this.wellformed;
 	}
+    
 	/**
 	* Return true if the literal is a typed literal and the
-    * lexicalForm is in the lexical space.
+        * lexicalForm is in the lexical space.
 	*/
 	public boolean isWellFormed() {
 		return dtype != null && this.wellformed;
 	}
+    
 	/**
 	    Answer a human-acceptable representation of this literal value.
 	    This is NOT intended for a machine-processed result. 
