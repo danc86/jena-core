@@ -151,6 +151,7 @@ public class WebOntTestHarness {
         "http://www.w3.org/2002/03owlt/description-logic/Manifest206#test",
         "http://www.w3.org/2002/03owlt/description-logic/Manifest207#test",
         "http://www.w3.org/2002/03owlt/description-logic/Manifest208#test",
+
         "http://www.w3.org/2002/03owlt/description-logic/Manifest209#test",
         
         "http://www.w3.org/2002/03owlt/miscellaneous/Manifest010#test",
@@ -171,8 +172,10 @@ public class WebOntTestHarness {
         "http://www.w3.org/2002/03owlt/description-logic/Manifest623#test",
         "http://www.w3.org/2002/03owlt/description-logic/Manifest626#test",
         "http://www.w3.org/2002/03owlt/description-logic/Manifest627#test",
-        "http://www.w3.org/2002/03owlt/description-logic/Manifest630#test",
+        "http://www.w3.org/2002/03owlt/description-logic/Manifest630#test",        
         "http://www.w3.org/2002/03owlt/description-logic/Manifest668#test",
+        "http://www.w3.org/2002/03owlt/description-logic/Manifest668#test",
+
     };
             
     /** The list of status values to include. If approvedOnly then only the first
