@@ -770,7 +770,7 @@ public class schemagen {
             
             // ensure ends with namespace sep char
             char ch = uri.charAt( uri.length() - 1 );
-            boolean endsWithNCNameCh = XMLChar.isNCNameStart( ch );
+            boolean endsWithNCNameCh = XMLChar.isNCName( ch );
             uri = endsWithNCNameCh ? uri + "#" : uri;
 
             // save the namespace URI as the main included uri for the filter
