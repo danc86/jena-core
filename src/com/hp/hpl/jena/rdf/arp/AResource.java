@@ -1,5 +1,5 @@
 /*
- *  (c) Copyright 2001, 2003 Hewlett-Packard Development Company, LP
+ *  (c) Copyright 2001, 2003,2004 Hewlett-Packard Development Company, LP
   [See end of file]
   $Id$
 */
@@ -7,6 +7,9 @@ package com.hp.hpl.jena.rdf.arp;
 
 /**
  * A URI or blank node reported to a {@link StatementHandler}.
+ * Note: equality (<code>.equals</code>) rather than identity
+ * (<code>==</code>) must be used to compare <code>AResource</code>s.
+ * 
  * @author <a href="mailto:Jeremy.Carroll@hp.com">Jeremy Carroll</a>
  *
 */
@@ -19,9 +22,7 @@ public interface AResource {
 	 * @return A gensym String starting "A", or "U" concatenated with the value of rdf:nodeID.
 	 */    
 	    public String getAnonymousID();
-	    /*  Undefined results (including an exception) if isAnonymous().
-	     *  @ return The URI of this non-anonymous resource.
-	     */
+	    
 	/** If the input file specifies a URI reference for this resource, return it.
 	 * Not defined if <CODE>isAnonymous()</CODE> returns true.
 	 * @return The URI reference of this resource.
@@ -69,7 +70,7 @@ public interface AResource {
 }
 
 /*
-*  (c) Copyright 2001, 2003 Hewlett-Packard Development Company, LP
+*  (c) Copyright 2001, 2003, 2004 Hewlett-Packard Development Company, LP
  	All rights reserved.
 
 	Redistribution and use in source and binary forms, with or without
