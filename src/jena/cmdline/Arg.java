@@ -5,8 +5,6 @@
 
 package jena.cmdline ;
 
-import java.util.* ;
-
 /** A command line argument that has been foundspecification.
  *
  * @author  Andy Seaborne
