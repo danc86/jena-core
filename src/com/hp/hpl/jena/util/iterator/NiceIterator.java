@@ -127,6 +127,17 @@ public class NiceIterator implements ExtendedIterator
     */
     public static void close( Iterator it )
         { if (it instanceof ClosableIterator) ((ClosableIterator) it).close(); }
+   
+    static final private NiceIterator emptyInstance = new NiceIterator();
+    
+    /**
+     * An iterator over no elements.
+     * @return A class singleton which doesn't iterate.
+     */
+    static public ExtendedIterator emptyIterator() {
+        return emptyInstance;
+    }
+  
     }
 
 /*
