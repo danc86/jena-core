@@ -100,6 +100,12 @@ public interface Reifier extends GetTriple
         true iff the Reifier has handled a remove of the triple _t_.
     */
     boolean handledRemove( Triple t );
+
+    /**
+    	The reifier will no longer be used. Further operations on it are not defined
+        by this interface.
+    */
+    void close();
     }
 
 /*

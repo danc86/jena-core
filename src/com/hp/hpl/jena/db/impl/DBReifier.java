@@ -1,5 +1,5 @@
 /*
-  (c) Copyright 2002, Hewlett-Packard Development Company, LP
+  (c) Copyright 2002, 2004, Hewlett-Packard Development Company, LP
   [See end of file]
   $Id$
 */
@@ -165,11 +165,15 @@ public class DBReifier implements Reifier
 	public Triple getTriple(Node n) {
 		return m_reifier.findReifiedTriple(n, newComplete() );
 	}
+    
+    public void close() {
+        // TODO anything useful for a close operation
+    }
         
 }
     
 /*
-    (c) Copyright 200, 2003 Hewlett-Packard Development Company, LP
+    (c) Copyright 2002, 2003, 2004 Hewlett-Packard Development Company, LP
     All rights reserved.
 
     Redistribution and use in source and binary forms, with or without

@@ -70,6 +70,13 @@ public abstract class AbstractTestReifier extends GraphTestBase
         G.add( triple( "x R y" ) );
         assertTrue( "same reifier", R1 == G.getReifier() );
         }
+    
+    public void testReifierClosed()
+        {
+        Graph g = getGraph();
+        Reifier r = g.getReifier();
+        g.close();
+        }
         
     public void testParent()
         {

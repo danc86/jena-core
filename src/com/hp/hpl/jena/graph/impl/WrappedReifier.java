@@ -1,5 +1,5 @@
 /*
-  (c) Copyright 2003, Hewlett-Packard Development Company, LP, all rights reserved.
+  (c) Copyright 2003, 2004, Hewlett-Packard Development Company, LP, all rights reserved.
   [See end of file]
   $Id$
 */
@@ -91,10 +91,15 @@ public class WrappedReifier implements Reifier
 	*/
 	public Triple getTriple( Node n ) { return base.getTriple( n ); }
 
+    /**
+     	@see com.hp.hpl.jena.graph.Reifier#close()
+    */
+    public void close() { base.close(); }
+
     }
 
 /*
-    (c) Copyright 2003, Hewlett-Packard Development Company, LP
+    (c) Copyright 2003, 2004, Hewlett-Packard Development Company, LP
     All rights reserved.
 
     Redistribution and use in source and binary forms, with or without

@@ -28,6 +28,8 @@ public class SimpleReifier implements Reifier
     
     protected ReifierFragmentsMap fragmentsMap;
     protected ReifierTripleMap tripleMap;
+    
+    protected boolean closed = false;
         
     /** 
         construct a simple reifier that is bound to the parent graph .
@@ -236,6 +238,22 @@ public class SimpleReifier implements Reifier
     */
     public String toString()
         { return "<R " + fragmentsMap + "|" + tripleMap + ">"; }
+
+    /**
+         Close this reifier - discard (big) resources.
+    */
+    public void close()
+        {
+        fragmentsMap = null;
+        tripleMap = null;    
+        closed = true;
+        }
+
+    /**
+    	Answer true iff this SImpleReifier has been closed.
+    */
+    public boolean isClosed()
+        { return closed; }
     }
     
 /*

@@ -7,6 +7,7 @@
 package com.hp.hpl.jena.mem.test;
 
 import com.hp.hpl.jena.graph.*;
+import com.hp.hpl.jena.graph.impl.SimpleReifier;
 import com.hp.hpl.jena.graph.test.*;
 import com.hp.hpl.jena.mem.GraphMem;
 import com.hp.hpl.jena.shared.JenaException;
@@ -28,6 +29,14 @@ public class TestGraphMem extends AbstractTestGraph
     public Graph getGraph()
         { return new GraphMem(); }
         
+    public void testClosesReifier()
+        {
+        Graph g = getGraph();
+        SimpleReifier r = (SimpleReifier) g.getReifier();
+        g.close();
+        assertTrue( r.isClosed() );
+        }
+    
     public void testBrokenIndexes()
         {
         Graph g = getGraphWith( "x R y; x S z" );
