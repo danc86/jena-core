@@ -29,7 +29,7 @@ import java.io.InputStream;
 import java.util.*;
 
 import org.apache.log4j.*;
-import org.apache.xml.utils.XMLChar;
+import org.apache.xerces.util.XMLChar;
 
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.util.ModelLoader;
@@ -266,7 +266,7 @@ public class OntDocumentManager
      *          given document's namespace, or null if not known
      */
     public String getPrefixForURI( String uri ) {
-        return m_prefixMap.usePrefix( uri );
+        return m_prefixMap.getNsURIPrefix( uri );
     }
 
 
@@ -700,7 +700,7 @@ public class OntDocumentManager
                     
                     // if the namespace doesn't end with a suitable split point character, add a #
                     boolean endWithNCNameCh = XMLChar.isNCName( publicURI.charAt( publicURI.length() - 1 ) );
-                    String prefixExpansion = endWithNCNameCh ? (publicURI + "ANCHOR") : publicURI;
+                    String prefixExpansion = endWithNCNameCh ? (publicURI + ANCHOR) : publicURI;
                     
                     addPrefixMapping( prefixExpansion, s.getString() );
                 } catch (JenaException ignore) {}

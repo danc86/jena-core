@@ -107,7 +107,7 @@ public class TestOntDocumentManager
         assertTrue( "Should be at least one specification loaded", mgr.listDocuments().hasNext() );
         assertNotNull( "cache URL for owl should not be null", mgr.doAltURLMapping( "http://www.w3.org/2002/07/owl" ));
         assertEquals( "cache URL for owl not correct", "file:vocabularies/owl.owl", mgr.doAltURLMapping( "http://www.w3.org/2002/07/owl" ));
-        assertEquals( "prefix for owl not correct", "owl:", mgr.getPrefixForURI( "http://www.w3.org/2002/07/owl" ));
+        assertEquals( "prefix for owl not correct", "owl", mgr.getPrefixForURI( "http://www.w3.org/2002/07/owl#" ));
         
         mgr = new OntDocumentManager( "" );
         assertTrue( "Should be no specification loaded", !mgr.listDocuments().hasNext() );
@@ -121,9 +121,9 @@ public class TestOntDocumentManager
     public void testManualAssociation() {
         OntDocumentManager mgr = new OntDocumentManager( null );
         
-        mgr.addPrefixMapping( "http://www.w3.org/2002/07/owl", "owl" );
-        assertEquals( "prefix for owl not correct", "owl:", mgr.getPrefixForURI( "http://www.w3.org/2002/07/owl" ));
-        assertEquals( "URI for owl not correct", "http://www.w3.org/2002/07/owl", mgr.getURIForPrefix( "owl" ));
+        mgr.addPrefixMapping( "http://www.w3.org/2002/07/owl#", "owl" );
+        assertEquals( "prefix for owl not correct", "owl", mgr.getPrefixForURI( "http://www.w3.org/2002/07/owl#" ));
+        assertEquals( "URI for owl not correct", "http://www.w3.org/2002/07/owl#", mgr.getURIForPrefix( "owl" ));
         
         mgr.addAltEntry( "http://www.w3.org/2002/07/owl", "file:foo.bar" );
         assertEquals( "Failed to retrieve cache location", "file:foo.bar", mgr.doAltURLMapping( "http://www.w3.org/2002/07/owl" ) ); 
