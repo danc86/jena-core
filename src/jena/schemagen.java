@@ -164,8 +164,11 @@ public class schemagen {
     /** Option for adding a suffix to the generated class name; use <code>--classnamesuffix &lt;uri&gt;</code> on command line; use <code>sgen:classnamesuffix</code> in config file */
     protected static final Object OPT_CLASSNAME_SUFFIX = new Object();
     
-    /** Option for the encoding of the file; use <code>-e <i>enc</i></code> on command line; use <code>sgen:encoding</code> in config file */
-    protected static final Object OPT_ENCODING = new Object();
+    /** Option for the surface syntax of the file; use <code>-s <i>syntax</i></code> on command line; use <code>sgen:syntax</code> in config file */
+    protected static final Object OPT_SYNTAX = new Object();
+    
+    /** Option to show the usage message; use --help on command line */
+    protected static final Object OPT_HELP = new Object();
     
     
     
@@ -222,7 +225,8 @@ public class schemagen {
         {OPT_INCLUDE,             new OptionDefinition( "--include", "include" ) },
         {OPT_CLASSNAME_SUFFIX,    new OptionDefinition( "--classnamesuffix", "classnamesuffix" )},
         {OPT_NOHEADER,            new OptionDefinition( "--noheader", "noheader" )},
-        {OPT_ENCODING,            new OptionDefinition( "-e", "encoding" )},
+        {OPT_SYNTAX,              new OptionDefinition( "-s", "syntax" )},
+        {OPT_HELP,                new OptionDefinition( "--help", null )},
     };
     
     /** Stack of replacements to apply */
@@ -269,6 +273,11 @@ public class schemagen {
     protected void go( String[] args ) {
         // save the command line params
         m_cmdLineArgs = Arrays.asList( args );
+        
+        // check for user requesting help
+        if (m_cmdLineArgs.contains( getOpt( OPT_HELP ).m_cmdLineForm )) {
+            usage();
+        }
         
         // check to see if there's a specified config file
         String configURL = DEFAULT_CONFIG_URI;
@@ -346,14 +355,14 @@ public class schemagen {
         }
         
         String input = urlCheck( getValue( OPT_INPUT ) );
-        String encoding = getValue( OPT_ENCODING );
+        String syntax = getValue( OPT_SYNTAX );
         
         try {
-            if (encoding == null) {
+            if (syntax == null) {
                 m_source.read( input );
             }
             else {
-                m_source.read( input, encoding );
+                m_source.read( input, syntax );
             } 
         }
         catch (RDFException e) {
