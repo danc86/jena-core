@@ -197,7 +197,7 @@ public interface Model
 
 	/** 
         Create an untyped literal from a String value with a specified language. 
-	   @param v the value of the literal
+	   @param v the lexical form of the literal
 	   @param language the language associated with the literal
 	   @return a new literal representing the value v with the given language
 	 */
@@ -211,7 +211,7 @@ public interface Model
      * 
      *   Create a literal from a String value with a specified language. An existing literal
      *   of the right value may be returned, or a fresh one created. 
-     *  @param v the value of the literal
+     *  @param v the lexical form of the literal
      *  @param language the language associated with the literal
      *  @param wellFormed true if the Literal is well formed XML
      *  @return a new literal representing the value v with the given language
@@ -219,11 +219,16 @@ public interface Model
     public Literal createLiteral(String v, String language, boolean wellFormed);
 
     /** 
-        Create a literal from a String value with a specified language. An existing literal
+        Create a literal from a String value. An existing literal
         of the right value may be returned, or a fresh one created. 
-       @param v the value of the literal
-       @param wellFormed true if the Literal is well formed XML
-       @return a new literal representing the value v with the given language
+        The use of the wellFormed flag is to create typed literals of
+        type rdf:XMLLiteral, without error checking. This should
+        only be use when the lexical form is known to already be
+        in exclusive canonical XML.
+        
+       @param v the lexical form of the literal
+       @param wellFormed true if the Literal is well formed XML, in the lexical space of rdf:XMLLiteral
+       @return a new literal 
      */
     public Literal createLiteral(String v, boolean wellFormed);
 	

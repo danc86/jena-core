@@ -128,8 +128,12 @@ public class JenaReader implements RDFReader, ARPErrorNumbers {
         if (dt == null)
             return model.createLiteral(lit.toString(), lit.getLang());
         else {
-         //   System.err.println(lit.getLang());
-            return model.createTypedLiteral(lit.toString(), dt);
+        	if ( lit.isWellFormedXML()) {
+        	   return model.createLiteral(lit.toString(),true);
+        	} else {
+        	
+               return model.createTypedLiteral(lit.toString(), dt);
+            }
         }
     }
     /** Converts an ARP resource into a Jena resource.
