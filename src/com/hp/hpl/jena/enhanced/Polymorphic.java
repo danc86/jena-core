@@ -6,9 +6,6 @@
 
 package com.hp.hpl.jena.enhanced;
 
-import java.util.*;
-
-import com.hp.hpl.jena.util.*;
 
 /**
  * Abstract base class for all polymorphic RDF objects, especially enhanced node and enhanced graph.

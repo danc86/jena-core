@@ -897,7 +897,7 @@ void litContent(StringBuffer val,Map allNs, Map ns)
 
 String litValue(Map allNs, Location wh): { StringBuffer buf = new StringBuffer(); 
                                        }
-{ ( litContent(buf,allNs,X.xmlNameSpace()) ) *                
+{ ( litContent(buf,allNs,ParserSupport.xmlNameSpace()) ) *                
                                        { String r = buf.toString(); 
                                          X.checkEncoding(r,wh);
                                          return r;

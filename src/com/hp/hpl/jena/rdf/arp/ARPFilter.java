@@ -41,14 +41,11 @@ import java.util.HashMap;
 import java.util.BitSet;
 import java.util.Set;
 import java.util.HashSet;
-import org.xml.sax.XMLReader;
-//import org.xml.sax.helpers.XMLReaderFactory;
 import org.xml.sax.InputSource;
 import org.xml.sax.Locator;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
-import org.xml.sax.ErrorHandler;
 
 import org.apache.xerces.parsers.*;
 import org.apache.xerces.xni.parser.*;

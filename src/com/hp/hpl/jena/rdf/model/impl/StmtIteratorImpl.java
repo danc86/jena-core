@@ -10,7 +10,6 @@ import com.hp.hpl.jena.util.iterator.*;
 import com.hp.hpl.jena.rdf.model.*;
 
 import java.util.Iterator;
-import java.util.NoSuchElementException;
 
 /** An implementation of StmtIterator.
  *

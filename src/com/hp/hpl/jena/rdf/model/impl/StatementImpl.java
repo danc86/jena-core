@@ -32,7 +32,6 @@
 package com.hp.hpl.jena.rdf.model.impl;
 
 import com.hp.hpl.jena.rdf.model.*;
-import com.hp.hpl.jena.vocabulary.RDF;
 import com.hp.hpl.jena.enhanced.*;
 
 import com.hp.hpl.jena.graph.*;

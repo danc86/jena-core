@@ -667,10 +667,10 @@ public class TestXMLFeatures extends TestCase {
 		} catch (RDFException e) {
             switch (behaviour)
             { case BadPropURI:
-			if (e.getErrorCode() == e.INVALIDPROPERTYURI )
+			if (e.getErrorCode() == RDFException.INVALIDPROPERTYURI )
               return;
               case BadURI:
-              if (e.getErrorCode() == e.NESTEDEXCEPTION &&
+              if (e.getErrorCode() == RDFException.NESTEDEXCEPTION &&
                   e.getNestedException() instanceof MalformedURIException )
                   return;
             }

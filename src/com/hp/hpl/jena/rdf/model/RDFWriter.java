@@ -30,7 +30,6 @@
 package com.hp.hpl.jena.rdf.model;
 import java.io.Writer;
 import java.io.OutputStream;
-
 /** RDFWriter is an interface to RDF serializers.
  *
  * <p>An <code>RDFWriter</code> is a class which serializes an RDF model
@@ -88,11 +87,16 @@ public interface RDFWriter {
  *
  * <p>No standard properties are defined.  For the properties recognised
  * by any particular writer implementation, see the the documentation for
- * that implementation.  The properties recognised by writers provided in
- * the standard distribution can be found in the description of their
- * setProperty method.  Consult the list of implementors of this interface
- * given above.</p>
- *
+ * that implementation.  </p>
+ * <p>
+ * The built-in RDFWriters have properties as defined by:
+ * <dl>
+ * <dt>N3</dt><dt>N-TRIPLE</dt>
+ * <dd>No properties.</dd>
+ * <dt>RDF/XML</dt><dt>RDF/XML-ABBREV</dt>
+ * <dd>See {@link com.hp.hpl.jena.xmloutput.RDFXMLWriterI#setProperty(String,
+ * Object)}
+ * </dl>
  * @return the old value for this property, or <code>null</code>
  * if no value was set.
  * @param propName The name of the property.
