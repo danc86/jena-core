@@ -596,7 +596,6 @@ public interface OntResource
     public void removeRDFType( Resource cls );
     
 
-
     /**
      * <p>
      * Remove any values for a given property from this resource.
@@ -606,6 +605,14 @@ public interface OntResource
      */
     public void removeAll( Property property );
 
+    
+    /** 
+     * <p>Removes this resource from the ontology by deleting any statements that refer to it.
+     * If this resource is a property, this method will <strong>not</strong> remove instances
+     * of the property from the model.</p>
+     */
+    public void remove();
+    
 
     // Conversion methods
     

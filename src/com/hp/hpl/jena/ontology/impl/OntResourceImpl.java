@@ -900,6 +900,23 @@ public class OntResourceImpl
         }
     }
 
+    
+    /** 
+     * <p>Removes this resource from the ontology by deleting any statements that refer to it.
+     * If this resource is a property, this method will <strong>not</strong> remove instances
+     * of the property from the model.</p>
+     */
+    public void remove() {
+        List stmts = new ArrayList();
+        
+        // collect statements mentioning this object
+        for (StmtIterator i = listProperties();  i.hasNext();  stmts.add( i.next() ) );
+        for (StmtIterator i = getModel().listStatements( null, null, this ); i.hasNext(); stmts.add( i.next() ) );
+        
+        // and then remove them
+        for (Iterator i = stmts.iterator();  i.hasNext();  ((Statement) i.next()).remove() );
+    }
+    
 
     /** 
      * <p>Answer a view of this resource as an annotation property</p>

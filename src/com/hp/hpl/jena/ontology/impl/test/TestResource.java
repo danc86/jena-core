@@ -366,6 +366,28 @@ public class TestResource
                     assertEquals( "Cardinality should be 0", 0, a.getCardinality( RDF.type ) );
                 }
             },
+            new OntTestCase( "OntResource.remove", true, true, true ) {
+                public void ontTest( OntModel m ) throws Exception {
+                    OntClass A = m.createClass( NS + "A" );
+                    OntClass B = m.createClass( NS + "B" );
+                    OntClass C = m.createClass( NS + "C" );
+                    OntClass D = m.createClass( NS + "D" );
+                    OntClass E = m.createClass( NS + "E" );
+                    A.addSubClass( B );
+                    A.addSubClass( C );
+                    C.addSubClass( D );
+                    C.addSubClass( E );
+                    
+                    assertTrue( "super-class of E", E.hasSuperClass( C, false ) );
+                    iteratorTest( A.listSubClasses(), new Object[] {B,C} );
+                    
+                    C.remove();
+                    
+                    assertTrue( "super-class of D", !D.hasSuperClass( C, false ) );
+                    assertTrue( "super-class of E", !E.hasSuperClass( C, false ) );
+                    iteratorTest( A.listSubClasses(), new Object[] {B} );
+                }
+            }
         };
     }
 
