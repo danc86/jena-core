@@ -192,8 +192,8 @@ public class FBRuleInfGraph  extends BasicForwardRuleInfGraph implements Backwar
         if (!isPrepared) {
             isPrepared = true;
             // initilize the deductions graph
-            deductions = new FGraph( new GraphMem() );
-            dataFind = (fdata == null) ? deductions :  FinderUtil.cascade(deductions, fdata);
+            fdeductions = new FGraph( new GraphMem() );
+            dataFind = (fdata == null) ? fdeductions :  FinderUtil.cascade(fdeductions, fdata);
             if (schemaGraph != null) {
                 preloadDeductions(schemaGraph);
                 dataFind = FinderUtil.cascade(dataFind, new FGraph(schemaGraph));
@@ -303,7 +303,7 @@ public class FBRuleInfGraph  extends BasicForwardRuleInfGraph implements Backwar
      * in the parent Reasoner.
      */
     public void preloadDeductions(Graph preloadIn) {
-        Graph d = deductions.getGraph();
+        Graph d = fdeductions.getGraph();
         FBRuleInfGraph preload = (FBRuleInfGraph)preloadIn;
         // Load raw deductions
         for (Iterator i = preload.getDeductionsGraph().find(null, null, null); i.hasNext(); ) {

@@ -283,8 +283,15 @@ public class BasicBackwardRuleInfGraph extends BaseInfGraph implements BackwardR
         }
     }
     
+    /**
+     * Assert a new triple in the deduction graph, bypassing any processing machinery.
+     */
+    public void silentAdd(Triple t) {
+        fdeductions.getGraph().add(t);
+    }
+    
 //  =======================================================================
-//   Rule engine
+//   Rule engine extras
 
     /**
      * Find any axioms (rules with no body) in the rule set and

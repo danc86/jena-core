@@ -66,10 +66,6 @@ public class OWLRuleReasonerFactory implements ReasonerFactory {
             if (doTrace != null) {
                 reasoner.setTraceOn(doTrace.booleanValue());
             }
-            Integer threshold = Util.getIntegerPredicate(URI, BasicForwardRuleReasoner.PROPrulesThreshold, configuration);
-            if (threshold != null) {
-                reasoner.setRulesThreshold(threshold.intValue());
-            }
         }
         return reasoner;
     }

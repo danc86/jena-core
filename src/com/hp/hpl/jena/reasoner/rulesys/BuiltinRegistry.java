@@ -39,14 +39,17 @@ public class BuiltinRegistry {
         theRegistry.register(new NotEqual());
         theRegistry.register(new MakeTemp());
         theRegistry.register(new NoValue());
-        theRegistry.register(new AssertDisjointPairs());
         theRegistry.register(new Remove());
         theRegistry.register(new Sum());
         theRegistry.register(new Bound());
         theRegistry.register(new Unbound());
         theRegistry.register(new IsLiteral());
         theRegistry.register(new NotLiteral());
+        
+        // Special purposes support functions for OWL
+        theRegistry.register(new AssertDisjointPairs());
         theRegistry.register(new SchedulePrototypeCheck());
+        theRegistry.register(new MakeInstance());
     }
     
     /**

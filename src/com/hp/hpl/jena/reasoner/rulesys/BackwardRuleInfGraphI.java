@@ -20,7 +20,7 @@ import com.hp.hpl.jena.util.iterator.ExtendedIterator;
  * @author <a href="mailto:der@hplb.hpl.hp.com">Dave Reynolds</a>
  * @version $Revision$ on $Date$
  */
-public interface BackwardRuleInfGraphI {
+public interface BackwardRuleInfGraphI extends SilentAddI {
             
     /**
      * Process a call to a builtin predicate

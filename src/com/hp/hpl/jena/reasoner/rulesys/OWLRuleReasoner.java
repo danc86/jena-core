@@ -123,7 +123,6 @@ public class OWLRuleReasoner extends BasicForwardRuleReasoner {
         // Now create the inference graph        
         BasicForwardRuleInfGraph graph = new BasicForwardRuleInfGraph(this, rules, schemaGraph);
         graph.setDerivationLogging(recordDerivations);
-        graph.setRuleThreshold(nRulesThreshold);
         graph.setTraceOn(traceOn);
         graph.rebind(data);
         long endTime = System.currentTimeMillis();

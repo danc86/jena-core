@@ -13,7 +13,6 @@ import com.hp.hpl.jena.reasoner.*;
 import com.hp.hpl.jena.reasoner.rulesys.*;
 import com.hp.hpl.jena.reasoner.test.WGReasonerTester;
 import com.hp.hpl.jena.util.ModelLoader;
-import com.hp.hpl.jena.util.PrintUtil;
 //import com.hp.hpl.jena.util.PrintUtil;
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.vocabulary.*;
@@ -74,6 +73,12 @@ public class OWLWGTester {
     
     /** The test case which has invoke this test */
     protected TestCase testcase;
+    
+    /** The processing time used since testcase creation */
+    protected static long timeCost = 0;
+    
+    /** The total number of tests run */
+    protected static int numTests = 0;
     
     /** log4j logger */
     protected static Logger logger = Logger.getLogger(OWLWGTester.class);
@@ -177,19 +182,21 @@ public class OWLWGTester {
             correct = !testConclusions(conclusions.getGraph(), result.getGraph());
         }
         long t2 = System.currentTimeMillis();
+        timeCost += (t2-t1);
+        numTests++;
         logger.info("Time=" + (t2-t1) + "ms for " + test.getURI());
-        //logger.debug("Fired " + ((BasicForwardRuleInfGraph)graph).getNRulesFired() +" rules");
+        printStats();
         
         if (!correct) {
             // List all the forward deductions for debugging
-            if (graph instanceof FBRuleInfGraph) {
-                System.out.println("Error: deductions graph was ...");
-                FBRuleInfGraph fbGraph = (FBRuleInfGraph)graph;
-                Graph deductions = fbGraph.getDeductionsGraph();
-                for (Iterator i = deductions.find(null,null,null); i.hasNext();) {
-                    logger.info(" - " + PrintUtil.print(i.next()));
-                }
-            }
+//            if (graph instanceof FBRuleInfGraph) {
+//                System.out.println("Error: deductions graph was ...");
+//                FBRuleInfGraph fbGraph = (FBRuleInfGraph)graph;
+//                Graph deductions = fbGraph.getDeductionsGraph();
+//                for (Iterator i = deductions.find(null,null,null); i.hasNext();) {
+//                    logger.info(" - " + PrintUtil.print(i.next()));
+//                }
+//            }
         }
         
         // Signal the results        
@@ -232,6 +239,13 @@ public class OWLWGTester {
         Query query = WGReasonerTester.graphToQuery(conclusions);
         Iterator i = qh.prepareBindings(query, new Node[] {}).executeBindings();
         return i.hasNext();
+    }
+    
+    /**
+     * Log (info level) some summary information on the timecost of the tests.
+     */
+    public void printStats() {
+        logger.info("Ran " + numTests +" in " + timeCost +"ms = " + (timeCost/numTests) + "ms/test");
     }
 
 }

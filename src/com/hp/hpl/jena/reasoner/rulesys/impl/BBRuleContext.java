@@ -104,6 +104,13 @@ public class BBRuleContext implements RuleContext {
     public void setRule(Rule rule) {
         this.rule = rule;
     }
+    
+    /**
+     * Assert a new triple in the deduction graph, bypassing any processing machinery.
+     */
+    public void silentAdd(Triple t) {
+        ((SilentAddI)graph).silentAdd(t);
+    }
 
 }
 

@@ -83,7 +83,7 @@ public class TestOWLRules extends TestCase {
         suite.addTest(new TestOWLRules("disjointWith/Manifest002.rdf"));
         suite.addTest(new TestOWLRules("AllDifferent/Manifest001.rdf")); // bx gets lost
 
-        // Restriction tests - ok
+        // Restriction tests
         suite.addTest(new TestOWLRules("allValuesFrom/Manifest001.rdf"));    // bx - long but terminates
         suite.addTest(new TestOWLRules("allValuesFrom/Manifest002.rdf"));   // bx - slow
         suite.addTest(new TestOWLRules("someValuesFrom/Manifest002.rdf"));   // bx - slow
@@ -98,14 +98,12 @@ public class TestOWLRules extends TestCase {
         suite.addTest(new TestOWLRules("cardinality/Manifest003-mod.rdf")); // bx gets lost
         suite.addTest(new TestOWLRules("cardinality/Manifest004-mod.rdf")); // bx gets lost
         suite.addTest(new TestOWLRules("I5.24/Manifest003-mod.rdf"));
-        
-        // Problems
         suite.addTest(new TestOWLRules("cardinality/Manifest005-mod.rdf")); // bx gets lost
         suite.addTest(new TestOWLRules("cardinality/Manifest006-mod.rdf")); // bx gets lost
         suite.addTest(new TestOWLRules("equivalentClass/Manifest004.rdf"));  // bx - timeout
         
         // Needs prototype creation rule
-//        suite.addTest(new TestOWLRules("someValuesFrom/Manifest001.rdf")); // bx needs creation rule
+        suite.addTest(new TestOWLRules("someValuesFrom/Manifest001.rdf")); // bx needs creation rule
         
         // Duplications of tests included earlier
 //        suite.addTest(new TestOWLRules("differentFrom/Manifest002.rdf"));  // Duplication of AllDifferent#1

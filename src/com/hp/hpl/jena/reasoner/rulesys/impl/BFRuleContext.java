@@ -198,7 +198,14 @@ public class BFRuleContext implements RuleContext {
     public void resetEnv() {
         env.reset();
     }
-          
+    
+    /**
+     * Assert a new triple in the deduction graph, bypassing any processing machinery.
+     */
+    public void silentAdd(Triple t) {
+        ((SilentAddI)graph).silentAdd(t);
+    }
+
 }
 
 /*
