@@ -316,13 +316,119 @@ public class TestDigReasoner
         OntClass F2 = m.getOntClass( NS + "F2" );
         OntClass F1 = m.getOntClass( NS + "F1" );
         
-        // note - direct super class
         TestUtil.assertIteratorValues( this, F0.listEquivalentClasses(), 
                                        new Resource[] {F2, F0}, 1 );
         TestUtil.assertIteratorValues( this, F2.listEquivalentClasses(), 
                                        new Resource[] {F0, F2}, 1 );
         TestUtil.assertIteratorValues( this, F1.listEquivalentClasses(), 
                                        new Resource[] {F1}, 1 );
+    }
+
+
+    public void testIsEquivalent() {
+        String NS = "http://example.org/foo#";
+        
+        DIGReasoner r = (DIGReasoner) ReasonerRegistry.theRegistry().create( DIGReasonerFactory.URI, null );
+        
+        OntModelSpec spec = new OntModelSpec( OntModelSpec.OWL_DL_MEM );
+        spec.setReasoner( r );
+        OntModel m = ModelFactory.createOntologyModel( spec, null );
+        m.read( "file:testing/ontology/dig/owl/test1.xml" );
+        
+        OntClass F0 = m.getOntClass( NS + "F0" );
+        OntClass F2 = m.getOntClass( NS + "F2" );
+        OntClass F1 = m.getOntClass( NS + "F1" );
+        
+        assertTrue( "F0 should be equivalent to F2", F0.hasEquivalentClass( F2 ));
+        assertTrue( "F0 should not be equivalent to F1", F1.hasEquivalentClass( F0 ));
+    }
+
+    
+    public void testRAncestors() {
+        String NS = "http://example.org/foo#";
+        
+        DIGReasoner r = (DIGReasoner) ReasonerRegistry.theRegistry().create( DIGReasonerFactory.URI, null );
+        
+        OntModelSpec spec = new OntModelSpec( OntModelSpec.OWL_DL_MEM );
+        spec.setReasoner( r );
+        OntModel m = ModelFactory.createOntologyModel( spec, null );
+        m.read( "file:testing/ontology/dig/owl/test1.xml" );
+        
+        ObjectProperty p0 = m.getObjectProperty( NS + "p0" );
+        ObjectProperty p1 = m.getObjectProperty( NS + "p1" );
+        ObjectProperty p2 = m.getObjectProperty( NS + "p2" );
+        
+        TestUtil.assertIteratorValues( this, p0.listSuperProperties(), 
+                                       new Resource[] {p1, p2} );
+    }
+
+    public void testRDescendants() {
+        String NS = "http://example.org/foo#";
+        
+        DIGReasoner r = (DIGReasoner) ReasonerRegistry.theRegistry().create( DIGReasonerFactory.URI, null );
+        
+        OntModelSpec spec = new OntModelSpec( OntModelSpec.OWL_DL_MEM );
+        spec.setReasoner( r );
+        OntModel m = ModelFactory.createOntologyModel( spec, null );
+        m.read( "file:testing/ontology/dig/owl/test1.xml" );
+        
+        ObjectProperty p0 = m.getObjectProperty( NS + "p0" );
+        ObjectProperty p1 = m.getObjectProperty( NS + "p1" );
+        ObjectProperty p2 = m.getObjectProperty( NS + "p2" );
+        
+        TestUtil.assertIteratorValues( this, p2.listSubProperties(), 
+                                       new Resource[] {p1, p0} );
+    }
+
+    
+    public void testRParents() {
+        String NS = "http://example.org/foo#";
+        
+        DIGReasoner r = (DIGReasoner) ReasonerRegistry.theRegistry().create( DIGReasonerFactory.URI, null );
+        
+        OntModelSpec spec = new OntModelSpec( OntModelSpec.OWL_DL_MEM );
+        spec.setReasoner( r );
+        OntModel m = ModelFactory.createOntologyModel( spec, null );
+        m.read( "file:testing/ontology/dig/owl/test1.xml" );
+        
+        ObjectProperty p0 = m.getObjectProperty( NS + "p0" );
+        ObjectProperty p1 = m.getObjectProperty( NS + "p1" );
+        //ObjectProperty p2 = m.getObjectProperty( NS + "p2" );
+        
+        TestUtil.assertIteratorValues( this, p0.listSuperProperties(true), 
+                                       new Resource[] {p1} );
+    }
+
+    public void testRChildren() {
+        String NS = "http://example.org/foo#";
+        
+        DIGReasoner r = (DIGReasoner) ReasonerRegistry.theRegistry().create( DIGReasonerFactory.URI, null );
+        
+        OntModelSpec spec = new OntModelSpec( OntModelSpec.OWL_DL_MEM );
+        spec.setReasoner( r );
+        OntModel m = ModelFactory.createOntologyModel( spec, null );
+        m.read( "file:testing/ontology/dig/owl/test1.xml" );
+        
+        //ObjectProperty p0 = m.getObjectProperty( NS + "p0" );
+        ObjectProperty p1 = m.getObjectProperty( NS + "p1" );
+        ObjectProperty p2 = m.getObjectProperty( NS + "p2" );
+        
+        TestUtil.assertIteratorValues( this, p2.listSubProperties(true), 
+                                       new Resource[] {p1} );
+    }
+
+    public void xxtestDebug() {
+        String NS = "http://example.org/foo#";
+        
+        OntModelSpec spec = new OntModelSpec( OntModelSpec.OWL_DL_MEM_RULE_INF );
+        OntModel m = ModelFactory.createOntologyModel( spec, null );
+        m.read( "file:testing/ontology/dig/owl/test1.xml" );
+        
+        ObjectProperty p2 = m.getObjectProperty( NS + "p2" );
+        
+        for (StmtIterator i = m.listStatements( null, RDFS.subPropertyOf, p2 );  i.hasNext(); ) {
+            System.err.println( "p2 has sub prop " + i.next() );
+        }
     }
 
 

@@ -108,6 +108,23 @@ public class DIGAdapter
         new DIGQueryEquivalentsTranslator( OWL.equivalentClass.getURI(), false ),
         new DIGQueryEquivalentsTranslator( DAML_OIL.sameClassAs.getURI(), true ),
         new DIGQueryEquivalentsTranslator( DAML_OIL.sameClassAs.getURI(), false ),
+
+        new DIGQueryIsEquivalentTranslator( OWL.equivalentClass.getURI() ),
+        new DIGQueryIsEquivalentTranslator( DAML_OIL.sameClassAs.getURI() ),
+
+        // rancestors and rparents when testing for a named and variable node
+        new DIGQueryRoleAncestorsTranslator( RDFS.subPropertyOf.getURI(), true ),
+        new DIGQueryRoleAncestorsTranslator( RDFS.subPropertyOf.getURI(), false ),
+        new DIGQueryRoleAncestorsTranslator( DAML_OIL.subPropertyOf.getURI(), true ),
+        new DIGQueryRoleAncestorsTranslator( DAML_OIL.subPropertyOf.getURI(), false ),
+        
+        new DIGQueryRoleParentsTranslator( ReasonerVocabulary.directSubPropertyOf.getURI(), true ),
+        new DIGQueryRoleParentsTranslator( ReasonerVocabulary.directSubPropertyOf.getURI(), false ),
+        
+        // the entire role hierarchy
+        new DIGQueryRoleHierarchyTranslator( RDFS.subPropertyOf.getURI() ),
+        new DIGQueryRoleHierarchyTranslator( DAML_OIL.subPropertyOf.getURI() ),
+        
     };
     
     
