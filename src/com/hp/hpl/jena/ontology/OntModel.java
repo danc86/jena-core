@@ -417,6 +417,14 @@ public interface OntModel
     
    
     /**
+     * <p>Answer an iterator over the DataRange objects in this ontology, if there
+     * are any.</p>
+     * @return An iterator, whose values are {@link DataRange} objects.
+     */
+    public ExtendedIterator listDataRanges();
+    
+    
+    /**
      * <p>
      * Answer a resource that represents an ontology description node in this model. If a resource
      * with the given uri exists in the model, and can be viewed as an Ontology, return the

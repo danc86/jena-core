@@ -596,7 +596,18 @@ public class OntModelImpl
             findByTypeAs( getProfile().ALL_DIFFERENT(), AllDifferent.class ) );
     }
     
-   
+    /**
+     * <p>Answer an iterator over the DataRange objects in this ontology, if there
+     * are any.</p>
+     * @return An iterator, whose values are {@link DataRange} objects.
+     */
+    public ExtendedIterator listDataRanges() {
+        checkProfileEntry( getProfile().DATARANGE(), "DATARANGE" );
+        return UniqueExtendedIterator.create( 
+                findByTypeAs( getProfile().DATARANGE(), DataRange.class ) );
+    }
+    
+
     /**
      * <p>
      * Answer an iterator that ranges over the properties in this model that are declared

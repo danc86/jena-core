@@ -724,6 +724,42 @@ public class TestOntModel
         assertNotNull( "Should be a class ns1:A", m.getOntClass( ns1 + "A" ) );
     }
     
+    public void testListDataRange() {
+        String base = "http://jena.hpl.hp.com/test#";
+        String doc =
+                 "<?xml version='1.0'?>" 
+                + "<!DOCTYPE owl [" 
+                + "      <!ENTITY rdf  'http://www.w3.org/1999/02/22-rdf-syntax-ns#' >" 
+                + "      <!ENTITY rdfs 'http://www.w3.org/2000/01/rdf-schema#' >" 
+                + "      <!ENTITY xsd  'http://www.w3.org/2001/XMLSchema#' >" 
+                + "      <!ENTITY owl  'http://www.w3.org/2002/07/owl#' >" 
+                + "      <!ENTITY dc   'http://purl.org/dc/elements/1.1/' >" 
+                + "      <!ENTITY base  'http://jena.hpl.hp.com/test' >" 
+                + "    ]>" 
+                + "<rdf:RDF"
+                + "   xmlns:rdf='http://www.w3.org/1999/02/22-rdf-syntax-ns#'"
+                + "   xmlns:owl='http://www.w3.org/2002/07/owl#'>"
+                + "  <owl:DataRange>"
+                + "    <owl:oneOf>"
+                + "      <rdf:List>"
+                + "        <rdf:first rdf:datatype='&xsd;integer'>0</rdf:first>"
+                + "        <rdf:rest rdf:resource='&rdf;nil' />"
+                + "      </rdf:List>"
+                + "    </owl:oneOf>"
+                + "  </owl:DataRange>"
+                + "</rdf:RDF>";
+
+        OntModel m = ModelFactory.createOntologyModel(OntModelSpec.OWL_MEM, null);
+        m.read(new StringReader(doc), base);
+
+        Iterator i = m.listDataRanges();
+        assertTrue( "Should be at least one DataRange", i.hasNext() );
+        Object dr = i.next();
+        assertTrue( dr instanceof DataRange );
+        assertFalse( "Should no more DataRange", i.hasNext() );
+    }
+    
+    
     // Internal implementation methods
     //////////////////////////////////
 
