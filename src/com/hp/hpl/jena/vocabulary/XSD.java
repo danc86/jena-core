@@ -180,13 +180,10 @@ public class XSD {
         QName = ResourceFactory.createResource(XSDDatatype.XSDQName.getURI());
         language = ResourceFactory.createResource(XSDDatatype.XSDlanguage.getURI());
         NMTOKEN = ResourceFactory.createResource(XSDDatatype.XSDNMTOKEN.getURI());
-        ENTITIES = ResourceFactory.createResource(XSDDatatype.XSDENTITIES.getURI());
-        NMTOKENS = ResourceFactory.createResource(XSDDatatype.XSDNMTOKENS.getURI());
         ENTITY = ResourceFactory.createResource(XSDDatatype.XSDENTITY.getURI());
         ID = ResourceFactory.createResource(XSDDatatype.XSDID.getURI());
         NCName = ResourceFactory.createResource(XSDDatatype.XSDNCName.getURI());
         IDREF = ResourceFactory.createResource(XSDDatatype.XSDIDREF.getURI());
-        IDREFS = ResourceFactory.createResource(XSDDatatype.XSDIDREFS.getURI());
         NOTATION = ResourceFactory.createResource(XSDDatatype.XSDNOTATION.getURI());
         hexBinary = ResourceFactory.createResource(XSDDatatype.XSDhexBinary.getURI());
         base64Binary = ResourceFactory.createResource(XSDDatatype.XSDbase64Binary.getURI());
@@ -199,6 +196,9 @@ public class XSD {
         gYear = ResourceFactory.createResource(XSDDatatype.XSDgYear.getURI());
         gYearMonth = ResourceFactory.createResource(XSDDatatype.XSDgYearMonth.getURI());
         gMonthDay = ResourceFactory.createResource(XSDDatatype.XSDgMonthDay.getURI());
+//        ENTITIES = ResourceFactory.createResource(XSDDatatype.XSDENTITIES.getURI());
+//        NMTOKENS = ResourceFactory.createResource(XSDDatatype.XSDNMTOKENS.getURI());
+//        IDREFS = ResourceFactory.createResource(XSDDatatype.XSDIDREFS.getURI());
     }
 }
 
