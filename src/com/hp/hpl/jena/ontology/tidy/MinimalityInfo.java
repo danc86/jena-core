@@ -5,6 +5,8 @@
 */
 package com.hp.hpl.jena.ontology.tidy;
 
+import com.hp.hpl.jena.graph.Triple;
+
 /**
  * @author <a href="mailto:Jeremy.Carroll@hp.com">Jeremy Carroll</a>
  *
@@ -13,12 +15,15 @@ class MinimalityInfo {
 	int oldCategory;
 	final CNode cn;
 	int distance;
-	int improvement;
+	//int improvement;
+	final Triple oldSeen[] = new Triple[3];
 	
 	MinimalityInfo(CNode x) {
 		cn = x;
 		((MinimalSubGraph)x.getChecker()).add(this);
 		distance = -1;
+		oldCategory = cn.getCategories();
+		cn.getSeen(oldSeen);
 	}
 
 }
