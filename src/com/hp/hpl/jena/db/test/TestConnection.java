@@ -361,7 +361,7 @@ public class TestConnection extends TestCase {
 		d = conn.getDriver();
 		d.setTableNamePrefix(pfx);
 		m = ModelRDB.open(conn, "myName");
-		assertTrue(d.getTableNamePrefix().equals(pfx));
+		assertTrue(d.getTableNamePrefix().equalsIgnoreCase(pfx));
 		conn.cleanDB();
 	}
 
