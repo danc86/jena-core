@@ -122,10 +122,10 @@ public class StreamingChecker extends CheckerImpl implements CheckerResults {
 		}
 	}
 	static Triple convert(AResource s, AResource p, AResource o) {
-		return new Triple(convert(s), convert(p), convert(o));
+	return Triple.create(convert(s), convert(p), convert(o));
 	}
 	static Triple convert(AResource s, AResource p, ALiteral o) {
-		return new Triple(convert(s), convert(p), convert(o));
+		return Triple.create(convert(s), convert(p), convert(o));
 	}
 	private StatementHandler sh = new StatementHandler() {
 

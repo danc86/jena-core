@@ -104,7 +104,7 @@ public class Fragments
         {
         Iterator it = slots[which].iterator();
         while (it.hasNext())
-            g.add( new Triple( anchor, predicate, (Node) it.next() ) );
+            g.add( Triple.create( anchor, predicate, (Node) it.next() ) );
         }
         
     /**
@@ -129,7 +129,7 @@ public class Fragments
         isComplete() is true.    
     */        
     Triple asTriple()
-        { return new Triple( only( slots[SUBJECTS] ), only( slots[PREDICATES] ), only( slots[OBJECTS] ) ); }
+        { return Triple.create( only( slots[SUBJECTS] ), only( slots[PREDICATES] ), only( slots[OBJECTS] ) ); }
                
     /**
         precondition: s.size() == 1

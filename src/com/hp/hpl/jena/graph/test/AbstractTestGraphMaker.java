@@ -152,8 +152,8 @@ public abstract class AbstractTestGraphMaker extends GraphTestBase
     private boolean sameGraph( Graph g1, Graph g2 )
         {
         Node S = node( "S" ), P = node( "P" ), O = node( "O" );
-        g1.add( new Triple( S, P, O ) );
-        g2.add( new Triple( O, P, S ) );
+        g1.add( Triple.create( S, P, O ) );
+        g2.add( Triple.create( O, P, S ) );
         return g2.contains( S, P, O ) && g1.contains( O, P, S );
         }
         

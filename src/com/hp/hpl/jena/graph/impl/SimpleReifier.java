@@ -215,10 +215,10 @@ public class SimpleReifier implements Reifier
     */
     private void parentRemoveQuad( Node n, Triple t )
         {
-        parent.delete( new Triple( n, RDF.Nodes.type, RDF.Nodes.Statement ) );
-        parent.delete( new Triple( n, RDF.Nodes.subject, t.getSubject() ) );
-        parent.delete( new Triple( n, RDF.Nodes.predicate, t.getPredicate() ) );
-        parent.delete( new Triple( n, RDF.Nodes.object, t.getObject() ) ); 
+        parent.delete( Triple.create( n, RDF.Nodes.type, RDF.Nodes.Statement ) );
+        parent.delete( Triple.create( n, RDF.Nodes.subject, t.getSubject() ) );
+        parent.delete( Triple.create( n, RDF.Nodes.predicate, t.getPredicate() ) );
+        parent.delete( Triple.create( n, RDF.Nodes.object, t.getObject() ) ); 
         }        
               
     /**

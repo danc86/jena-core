@@ -295,6 +295,7 @@ public class TestNode extends GraphTestBase
         assertEquals( "en-UK", n.getLiteral().language() );
         assertEquals( null, n.getLiteral().getDatatypeURI() );
         }    
+    
     public void testCreateLanguagedLiteralXY()
         {
         Node n = Node.create( "'chat'xy-AB" );
@@ -502,6 +503,7 @@ public class TestNode extends GraphTestBase
         assertFalse( Node.create( "??" ).isConcrete() );
         assertFalse( Node.create( "?x" ).isConcrete() );
         }
+
     }
 
 /*

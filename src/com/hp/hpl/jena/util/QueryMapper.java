@@ -49,7 +49,7 @@ public class QueryMapper
     
     public Triple toQueryTriple( Statement s )
         {
-        return new Triple
+        return Triple.create
             ( 
             toQueryNode( s.getSubject() ), 
             toQueryNode( s.getPredicate() ), 

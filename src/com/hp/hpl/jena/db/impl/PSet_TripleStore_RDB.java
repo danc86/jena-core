@@ -232,7 +232,7 @@ public  class PSet_TripleStore_RDB implements IPSet {
 		Node predNode = pred == null ? null : m_driver.RDBStringToNode(pred);
 		Node objNode = obj == null ? null : m_driver.RDBStringToNode(obj);
 
-		return (new Triple(subjNode, predNode, objNode));
+		return ( Triple.create(subjNode, predNode, objNode) );
 	}
 
 

@@ -145,28 +145,28 @@ public class ResultSetReifIterator extends ResultSetIterator {
 			if ( m_getTriples == true ) {
 				if ( m_nextFrag == 0) {
 					if ( !m_subjNode.equals(Node.NULL) ) {
-						t = new Triple(m_stmtURI,RDF.Nodes.subject,m_subjNode);
+						t = Triple.create(m_stmtURI,RDF.Nodes.subject,m_subjNode);
 						m_fragRem--;
 					} else
 						m_nextFrag++;
 				}
 				if ( m_nextFrag == 1) {
 					if ( !m_predNode.equals(Node.NULL) ) {
-						t = new Triple(m_stmtURI,RDF.Nodes.predicate,m_predNode);
+						t = Triple.create(m_stmtURI,RDF.Nodes.predicate,m_predNode);
 						m_fragRem--;
 					} else
 						m_nextFrag++;
 				}
 				if ( m_nextFrag == 2) {
 					if ( !m_objNode.equals(Node.NULL) ) {
-						t = new Triple(m_stmtURI,RDF.Nodes.object,m_objNode);
+						t = Triple.create(m_stmtURI,RDF.Nodes.object,m_objNode);
 						m_fragRem--;
 					} else
 						m_nextFrag++;
 				}
 				if ( m_nextFrag >= 3) {
 					if ( m_hasType ) {
-						t = new Triple(m_stmtURI,RDF.Nodes.type,RDF.Nodes.Statement);
+						t = Triple.create(m_stmtURI,RDF.Nodes.type,RDF.Nodes.Statement);
 						m_fragRem--;
 					} else
 						throw new JenaException("Reified triple not found");
@@ -176,7 +176,7 @@ public class ResultSetReifIterator extends ResultSetIterator {
 					m_prefetched = true;
 
 			} else {
-				t = new Triple(m_subjNode, m_predNode, m_objNode);
+				t = Triple.create(m_subjNode, m_predNode, m_objNode);
 			}
 		
 			return t;

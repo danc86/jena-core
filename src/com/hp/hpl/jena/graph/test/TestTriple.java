@@ -252,7 +252,8 @@ public class TestTriple extends GraphTestBase
         Triple t1 = Triple.create( "eg://domain.dom/spoo#a b c" );
         assertEquals( "spoo:a @eh:b eh:c", t1.toString( pm ) );
         }
-}
+
+    }
 /*
     (c) Copyright 2002 Hewlett-Packard Development Company, LP
     All rights reserved.

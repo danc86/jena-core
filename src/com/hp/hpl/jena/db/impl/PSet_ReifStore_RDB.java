@@ -328,7 +328,7 @@ public class PSet_ReifStore_RDB extends PSet_TripleStore_RDB {
 		Node subj = fragMask.hasSubj() ? frag.getObject() : Node.NULL;
 		Node prop = fragMask.hasPred() ? frag.getObject() : Node.NULL;
 		Node obj = fragMask.hasObj() ? frag.getObject() : Node.NULL;
-		Triple t = new Triple(subj, prop, obj);
+		Triple t = Triple.create(subj, prop, obj);
 		storeTripleAR(t, my_GID, stmtURI, fragMask.hasType(), false, null);
 	}
 

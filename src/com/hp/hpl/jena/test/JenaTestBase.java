@@ -30,7 +30,7 @@ public class JenaTestBase extends TestCase
     */
     public static void assertDiffer( String title, Object x, Object y )
         { 
-        if (x.equals( y ))
+        if (x == null ? y == null : x.equals( y ))
             fail( (title == null ? "objects should be different, but both were: " : title) + x );
         }
         

@@ -163,7 +163,7 @@ public class Query
         { return argMap; }
 
     private Query addNamedMatch( String name, Node s, Node p, Node o )
-        { triples.add( name, new Triple( s, p, o ) ); 
+        { triples.add( name, Triple.create( s, p, o ) ); 
         return this; }
 
     public TripleSorter getSorter()

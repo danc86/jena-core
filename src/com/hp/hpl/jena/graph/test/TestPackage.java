@@ -23,6 +23,8 @@ public class TestPackage extends TestSuite {
     /** Creates new TestPackage */
     private TestPackage() {
         super("graph");
+        addTest( TestTripleCache.suite() );
+        addTest( TestNodeCache.suite() );
         addTest( "TestNode", TestNode.suite() );
         addTest( "TestTriple", TestTriple.suite() );
         addTest( "TestReifier", TestReifier.suite() );   

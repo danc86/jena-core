@@ -972,7 +972,7 @@ implements Model, PrefixMapping, ModelLock
            
     public Model add(Resource s,Property p,RDFNode o)  {
         modelReifier.noteIfReified( s, p, o );
-        graph.add( new Triple( s.asNode(), p.asNode(), o.asNode() ) );
+        graph.add( Triple.create( s.asNode(), p.asNode(), o.asNode() ) );
         return this;
     }
     

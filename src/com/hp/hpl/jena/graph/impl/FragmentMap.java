@@ -53,10 +53,10 @@ public class FragmentMap extends HashMap
     */         
     public static void graphAddQuad( GraphAdd g, Node node, Triple t )
         {
-        g.add( new Triple( node, RDF.Nodes.subject, t.getSubject() ) );
-        g.add( new Triple( node, RDF.Nodes.predicate, t.getPredicate() ) );
-        g.add( new Triple( node, RDF.Nodes.object, t.getObject() ) );
-        g.add( new Triple( node, RDF.Nodes.type, RDF.Nodes.Statement ) );
+        g.add( Triple.create( node, RDF.Nodes.subject, t.getSubject() ) );
+        g.add( Triple.create( node, RDF.Nodes.predicate, t.getPredicate() ) );
+        g.add( Triple.create( node, RDF.Nodes.object, t.getObject() ) );
+        g.add( Triple.create( node, RDF.Nodes.type, RDF.Nodes.Statement ) );
         }
                 
     /**

@@ -328,7 +328,7 @@ public class StatementImpl  implements Statement {
     }
     
     public Triple asTriple() {
-    	return new Triple( subject.asNode(), predicate.asNode(), object.asNode() );
+    	return Triple.create( subject.asNode(), predicate.asNode(), object.asNode() );
     }
     
     /**
