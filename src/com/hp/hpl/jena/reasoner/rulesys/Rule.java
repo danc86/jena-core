@@ -572,11 +572,11 @@ public class Rule implements ClauseEntry {
                 LiteralLabel ll = new LiteralLabel(f, null, Functor.FunctorDatatype.theFunctorDatatype);
                 return new Node_Literal(ll);
             } else if (token.equals("'")) {
-                // A literal - either plain or integer
+                // A plain literal
                 String lit = nextToken();
                 // Skip the trailing quote
                 nextToken();
-                return parseNumber(lit);
+                return Node.createLiteral(lit, "", false);
             } else if ( Character.isDigit(token.charAt(0)) ) {
                 // A number literal
                return parseNumber(token);
