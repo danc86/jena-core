@@ -14,7 +14,6 @@ import com.hp.hpl.jena.graph.query.*;
 import com.hp.hpl.jena.util.iterator.*;
 import com.hp.hpl.jena.mem.*;
 
-import java.util.*;
 
 public class RDFS extends Dyadic implements Vocabulary
     {

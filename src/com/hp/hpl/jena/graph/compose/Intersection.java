@@ -13,14 +13,8 @@
 package com.hp.hpl.jena.graph.compose;
 
 import com.hp.hpl.jena.graph.*;
-import com.hp.hpl.jena.rdf.model.impl.*;
-import com.hp.hpl.jena.rdf.model.*;
-import com.hp.hpl.jena.mem.*;
 import com.hp.hpl.jena.util.iterator.*;
-import com.hp.hpl.jena.vocabulary.RDF;
 
-import java.io.*;
-import java.util.*;
 
 /**
     an implementation of a dynamic intersection of two models.
