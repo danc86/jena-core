@@ -406,7 +406,65 @@ public interface OntModel
      */
     public ObjectProperty createObjectProperty( String uri, boolean functional );
     
-   
+    
+    /**
+     * <p>Answer a resource representing a transitive property</p>
+     * @param uri The uri for the property. May not be null.
+     * @return An TransitiveProperty resource
+     * @see #createTransitiveProperty( String, boolean )
+     */
+    public TransitiveProperty createTransitiveProperty( String uri );
+    
+    
+    /**
+     * <p>Answer a resource representing a transitive property, which is optionally
+     * also functional. <strong>Note:</strong> although it is permitted in OWL full
+     * to have functional transitive properties, it makes the language undecideable.
+     * Functional transitive properties are not permitted in OWL Lite or OWL DL.</p>
+     * @param uri The uri for the property. May not be null.
+     * @param functional If true, the property is also functional
+     * @return An TransitiveProperty resource, optionally also functional.
+     */
+    public TransitiveProperty createTransitiveProperty( String uri, boolean functional );
+
+    
+    /**
+     * <p>Answer a resource representing a symmetric property</p>
+     * @param uri The uri for the property. May not be null.
+     * @return An SymmetricProperty resource
+     * @see #createSymmetricProperty( String, boolean )
+     */
+    public SymmetricProperty createSymmetricProperty( String uri );   
+    
+    
+    /**
+     * <p>Answer a resource representing a symmetric property, which is optionally
+     * also functional.</p>
+     * @param uri The uri for the property. May not be null.
+     * @param functional If true, the property is also functional
+     * @return An SymmetricProperty resource, optionally also functional.
+     */
+    public SymmetricProperty createSymmetricProperty( String uri, boolean functional );   
+
+    
+    /**
+     * <p>Answer a resource representing an inverse functional property</p>
+     * @param uri The uri for the property. May not be null.
+     * @return An InverseFunctionalProperty resource
+     * @see #createInverseFunctionalProperty( String, boolean )
+     */
+    public InverseFunctionalProperty createInverseFunctionalProperty( String uri );
+    
+    
+    /**
+     * <p>Answer a resource representing an inverse functional property, which is optionally
+     * also functional.</p>
+     * @param uri The uri for the property. May not be null.
+     * @param functional If true, the property is also functional
+     * @return An InverseFunctionalProperty resource, optionally also functional.
+     */
+    public InverseFunctionalProperty createInverseFunctionalProperty( String uri, boolean functional );
+    
     /**
      * <p>
      * Answer a resource that represents datatype property in this model, and that is
@@ -475,6 +533,42 @@ public interface OntModel
     public OntClass createClass( String uri );
     
    
+    /**
+     * <p>Answer a resource representing the class that is the complement of the given argument class</p>
+     * @param uri The URI of the new complement class, or null for an anonymous class description.
+     * @param cls Resource denoting the class that the new class is a complement of
+     * @return A complement class
+     */
+    public ComplementClass createComplementClass( String uri, Resource cls );
+    
+   
+    /**
+     * <p>Answer a resource representing the class that is the enumeration of the given list of individuals</p>
+     * @param uri The URI of the new enumeration class, or null for an anonymous class description.
+     * @param members A list of resources denoting the individuals in the enumeration
+     * @return An enumeration class
+     */
+    public EnumeratedClass createEnumeratedClass( String uri, OntList members );
+    
+   
+    /**
+     * <p>Answer a resource representing the class that is the union of the given list of class desctiptions</p>
+     * @param uri The URI of the new union class, or null for an anonymous class description.
+     * @param members A list of resources denoting the classes that comprise the union
+     * @return A union class description
+     */
+    public UnionClass createUnionClass( String uri, OntList members );
+    
+   
+    /**
+     * <p>Answer a resource representing the class that is the intersection of the given list of class descriptions.</p>
+     * @param uri The URI of the new intersection class, or null for an anonymous class description.
+     * @param members A list of resources denoting the classes that comprise the intersection
+     * @return An intersection class description
+     */
+    public IntersectionClass createIntersectionClass( String uri, OntList members );
+
+
     /**
      * <p>
      * Answer a resource that represents an anonymous property restriction in this model. A new
