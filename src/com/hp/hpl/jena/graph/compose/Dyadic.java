@@ -1,5 +1,5 @@
 /*
-  (c) Copyright 2002, 2003 Hewlett-Packard Development Company, LP
+  (c) Copyright 2002, 2003, 2004 Hewlett-Packard Development Company, LP
   [See end of file]
   $Id$
 */
@@ -47,11 +47,24 @@ public abstract class Dyadic extends CompositionBase
         { return other == this || L.dependsOn( other ) || R.dependsOn( other ); }
  				
     public Union union( Graph X )
-        { return new Union( this, X ); }    
+        { return new Union( this, X ); }
+
+    /**
+         Answer the left (first) operand of this Dyadic.
+    */
+    public Object getL()
+        { return L; }
+
+    /**
+         Answer the right (second) operand of this Dyadic.
+    */
+    public Object getR()
+        { return R; }
+        
     }
 
 /*
-    (c) Copyright 2002, 2003 Hewlett-Packard Development Company, LP
+    (c) Copyright 2002, 2003, 2004 Hewlett-Packard Development Company, LP
     All rights reserved.
 
     Redistribution and use in source and binary forms, with or without

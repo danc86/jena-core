@@ -12,6 +12,7 @@ import com.hp.hpl.jena.vocabulary.*;
 import com.hp.hpl.jena.ontology.*;
 import com.hp.hpl.jena.reasoner.rulesys.*;
 import com.hp.hpl.jena.shared.*;
+import com.hp.hpl.jena.graph.compose.Union;
 import com.hp.hpl.jena.mem.*;
 
 import junit.framework.*;
@@ -140,6 +141,21 @@ public class TestModelFactory extends ModelTestBase
         Resource root = ResourceFactory.createResource();
         Model desc = TestModelSpec.createPlainModelDesc( root );
         ModelSpec spec = ModelFactory.createSpec( root, desc );    
+        }
+    
+    /**
+         test that a union model is a model over the union of the two underlying
+         graphs. (We don't check that Union works - that's done in the Union
+         tests, we hope.)
+    */
+    public void testCreateUnion()
+        {
+        Model m1 = ModelFactory.createDefaultModel();
+        Model m2 = ModelFactory.createDefaultModel();
+        Model m = ModelFactory.createUnion( m1, m2 );
+        assertTrue( m.getGraph() instanceof Union );
+        assertSame( m1.getGraph(), ((Union) m.getGraph()).getL() );
+        assertSame( m2.getGraph(), ((Union) m.getGraph()).getR() );
         }
     }
 
