@@ -75,7 +75,7 @@ public class TestPath
     // Instance variables
     //////////////////////////////////
     
-    protected OntModel m_model = ModelFactory.createOntologyModel( OWL.NAMESPACE );
+    protected OntModel m_model = ModelFactory.createOntologyModel( OWL.getURI() );
     
     protected Property m_p;
     protected Property m_q;

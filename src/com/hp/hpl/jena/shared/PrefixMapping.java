@@ -157,7 +157,7 @@ public interface PrefixMapping
         .setNsPrefix( "rss", RSS.getURI() )
         .setNsPrefix( "daml", DAMLVocabulary.NAMESPACE_DAML_2001_03_URI )
         .setNsPrefix( "vcard", VCARD.getURI() )
-        .setNsPrefix( "owl", OWL.NAMESPACE )
+        .setNsPrefix( "owl", OWL.getURI() )
         .setNsPrefix( "jms", JMS.getURI() )
         .lock()
         ;   

@@ -45,7 +45,7 @@ public class ProfileRegistry {
     //////////////////////////////////
 
     /** The URI that maps to the language profile for OWL (full) */
-    public static final String OWL_LANG = OWL.NAMESPACE;
+    public static final String OWL_LANG = OWL.getURI();
     
     /** The URI that maps to the language profile for OWL (DL) */
     public static final String OWL_DL_LANG = "http://www.w3.org/TR/owl-features/#term_OWLDL";

@@ -33,7 +33,7 @@ public class TestPrefixMapping extends AbstractTestPrefixMapping
         assertEquals( RDF.getURI(), st.getNsPrefixURI( "rdf" ) );
         assertEquals( RDFS.getURI(), st.getNsPrefixURI( "rdfs" ) );
         assertEquals( DC.getURI(), st.getNsPrefixURI( "dc" ) );
-        assertEquals( OWL.NAMESPACE, st.getNsPrefixURI( "owl" ) );
+        assertEquals( OWL.getURI(), st.getNsPrefixURI( "owl" ) );
         assertEquals( RSS.getURI(), st.getNsPrefixURI( "rss" ) );
         assertEquals( VCARD.getURI(), st.getNsPrefixURI( "vcard" ) );
         assertEquals( JMS.getURI(), st.getNsPrefixURI( "jms" ) );
