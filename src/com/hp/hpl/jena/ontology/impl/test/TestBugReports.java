@@ -355,6 +355,39 @@ public class TestBugReports
         
     }
     
+    
+    /** Bug report by Thorsten Ottmann [Thorsten.Ottmann@rwth-aachen.de] - problem accessing elements of DAML list */
+    public void test_to_01() {
+        String sourceT = 
+        "<rdf:RDF " +
+        "    xmlns:rdf='http://www.w3.org/1999/02/22-rdf-syntax-ns#'" +
+        "    xmlns:rdfs='http://www.w3.org/2000/01/rdf-schema#'" +
+        "    xmlns:daml='http://www.daml.org/2001/03/daml+oil#'>" +
+        "  <daml:Class rdf:about='http://example.org/foo#A'>" +
+        "    <daml:intersectionOf rdf:parseType=\"daml:collection\">" +
+        "       <daml:Class rdf:ID=\"B\" />" +
+        "       <daml:Class rdf:ID=\"C\" />" +
+        "    </daml:intersectionOf>" +
+        "  </daml:Class>" +
+        "</rdf:RDF>" ;
+        
+        OntModel m = ModelFactory.createOntologyModel( OntModelSpec.DAML_MEM, null );
+        m.read( new ByteArrayInputStream( sourceT.getBytes() ), "http://example.org/foo" );
+        
+        OntClass A = m.getOntClass( "http://example.org/foo#A" );
+        assertNotNull( A );
+        
+        IntersectionClass iA = A.asIntersectionClass();
+        assertNotNull( iA );
+        
+        RDFList intersection = iA.getOperands();
+        assertNotNull( intersection );
+        
+        assertEquals( 2, intersection.size() );
+        assertTrue( intersection.contains( m.getOntClass( "http://example.org/foo#B" ) ));
+        assertTrue( intersection.contains( m.getOntClass( "http://example.org/foo#C" ) ));
+    }
+    
     // Internal implementation methods
     //////////////////////////////////
 
