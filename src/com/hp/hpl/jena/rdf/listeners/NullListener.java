@@ -27,7 +27,8 @@ public class NullListener implements ModelChangedListener
     public void removedStatements( Statement [] statements ) {}
     public void removedStatements( List statements ) {}
     public void removedStatements( StmtIterator statements ) {}
-    public void removedStatements( Model m ) {}           
+    public void removedStatements( Model m ) {}            
+    public void notifyEvent( Model m, Object event ) {}
     }
         
 

@@ -504,6 +504,14 @@ public abstract class AbstractTestGraph extends GraphTestBase
         L.assertHas( new Object[] {"deleteGraph", triples} );
         }
     
+    public void testGeneralEvent()
+        {
+        Graph g = getAndRegister( L );
+        Object value = new int[]{};
+        g.getEventManager().notifyEvent( g, value );
+        L.assertHas( new Object[] { "someEvent", g, value } );
+        }
+    
     /**
      * Test nodes can be found in all triple positions.
      * However, testing for literals in subject positions is suppressed

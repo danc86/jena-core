@@ -41,7 +41,9 @@ public class StatementListener implements ModelChangedListener
     public void removedStatements( StmtIterator statements ) 
         { while (statements.hasNext()) removedStatement( statements.nextStatement() ); }
     public void removedStatements( Model m ) 
-        { removedStatements( m.listStatements() ); }           
+        { removedStatements( m.listStatements() ); }            
+    public void notifyEvent( Model m, Object event ) 
+        {}
     }
 
 

@@ -41,7 +41,8 @@ public class ChangedListener implements ModelChangedListener
     public void removedStatements( Statement [] statements ) { setChanged(); }
     public void removedStatements( List statements ) { setChanged(); }
     public void removedStatements( StmtIterator statements ) { setChanged(); }
-    public void removedStatements( Model m ) { setChanged(); }           
+    public void removedStatements( Model m ) { setChanged(); }          
+    public void notifyEvent( Model m, Object event ) {}
     }       
 
 

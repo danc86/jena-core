@@ -112,6 +112,12 @@ public class SimpleEventManager implements GraphEventManager
         for (int i = 0; i < listeners.size(); i += 1) 
             ((GraphListener) listeners.get(i)).notifyDeleteGraph( g ); 
         }
+    
+    public void notifyEvent( Graph source, Object event )
+        {
+        for (int i = 0; i < listeners.size(); i += 1) 
+            ((GraphListener) listeners.get(i)).notifyEvent( source, event ); }
+    
     }
 
 /*

@@ -930,6 +930,12 @@ public interface Model
         @return this model, for cascading
     */
     public Model unregister( ModelChangedListener listener );
+
+	/**
+         Notify any listeners that the event e has occurred.
+	 	@param e the event that has occurred
+	*/
+	public Model notifyEvent( Object e );
     
 }
 

@@ -1364,7 +1364,13 @@ implements Model, PrefixMapping, ModelLock
     */
     public GraphListener adapt( final ModelChangedListener L )
         { return new ModelListenerAdapter( this, L ); }
-}
+    
+    public Model notifyEvent( Object e )
+        {
+        getGraph().getEventManager().notifyEvent( getGraph(), e );
+        return this;
+        }
+    }
 
 /*
  *  (c) Copyright 2001, 2002, 2003 Hewlett-Packard Development Company, LP

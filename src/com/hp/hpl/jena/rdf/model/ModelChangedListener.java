@@ -96,6 +96,8 @@ public interface ModelChangedListener
      */
     
     void removedStatements( Model m );
+    
+    void notifyEvent( Model m, Object event );
     }
 
 

@@ -72,6 +72,12 @@ public interface GraphListener
     	@param g the graph of triples added
      */
     void notifyDeleteGraph( Graph g );
+    
+    /**
+         method to call for a general event
+     	@param value
+     */
+    void notifyEvent( Graph source, Object value );
     }
 
 /*

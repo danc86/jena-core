@@ -48,7 +48,13 @@ public class RecordingListener implements GraphListener
         
     public void notifyDeleteGraph( Graph g )
         { record( "deleteGraph", g ); }
+    
+    public void notifyEvent( Graph source, Object event )
+        { record( "someEvent", source, event ); }
         
+    protected void record( String tag, Object x, Object y )
+        { history.add( tag ); history.add( x ); history.add( y ); }
+    
     protected void record( String tag, Object info )
         { history.add( tag ); history.add( info ); }
         

@@ -62,6 +62,9 @@ public class ModelListenerAdapter implements GraphListener
 
     public void notifyDeleteGraph( Graph g )
         { L.removedStatements( m.asModel( g ) ); }
+    
+    public void notifyEvent( Graph g, Object event )
+        { L.notifyEvent( m, event ); }
         
     public boolean equals( Object other )
         { 

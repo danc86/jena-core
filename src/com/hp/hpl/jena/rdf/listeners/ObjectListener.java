@@ -37,7 +37,8 @@ public class ObjectListener implements ModelChangedListener
     public void removedStatements( Statement [] statements ) { removed( statements ); }
     public void removedStatements( List statements ) { removed( statements ); }
     public void removedStatements( StmtIterator statements ) { removed( statements ); }
-    public void removedStatements( Model m ) { removed( m ); }               
+    public void removedStatements( Model m ) { removed( m ); }       
+    public void notifyEvent( Model m, Object event ) {}         
     }
 
 /*

@@ -67,6 +67,12 @@ public class TestModelEvents extends ModelTestBase
             
         public void removedStatements( Model m )
             { record( "removeModel", m ); }
+        
+        public void notifyEvent( Model m, Object event )
+            { record( "someEvent", m, event ); }
+        
+        protected void record( String tag, Object x, Object y )
+            { history.add( tag ); history.add( x ); history.add( y ); }
             
         protected void record( String tag, Object info )
             { history.add( tag ); history.add( info ); }
@@ -257,6 +263,14 @@ public class TestModelEvents extends ModelTestBase
         model.remove( Arrays.asList( statements( model, "xy wh q" ) ) );
         assertTrue( CL.hasChanged() );
         }
+    
+    public void testGeneralEvent()
+        {
+        model.register( SL );
+        Object e = new int [] {};
+        model.notifyEvent( e );
+        SL.assertHas( new Object[] {"someEvent", model, e} ); 
+        }
 
     /**
         Local test class to see that a StatementListener funnels all the changes through
@@ -286,6 +300,7 @@ public class TestModelEvents extends ModelTestBase
         if (n == null) n = new Integer(0);
         m.put( x, new Integer( n.intValue() + 1 ) ); 
         }
+    
     public Map asBag( List l )
         {
         Map result = new HashMap();
