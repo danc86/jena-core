@@ -152,15 +152,15 @@ public class TestGenericRules extends TestCase {
               } );
               
         // Check derivation tracing as well
-//        Iterator di = infgraph.getDerivation(new Triple(b, p, a));
-//        assertTrue(di.hasNext());
-//        RuleDerivation d = (RuleDerivation)di.next();
+        Iterator di = infgraph.getDerivation(new Triple(b, p, a));
+        assertTrue(di.hasNext());
+        RuleDerivation d = (RuleDerivation)di.next();
 //        java.io.PrintWriter out = new java.io.PrintWriter(System.out); 
 //        d.printTrace(out, true);
 //        out.close();
-//        assertTrue(d.getRule().getName().equals("r1b"));
-//        TestUtil.assertIteratorValues(this, d.getMatches().iterator(), new Object[] { new Triple(a, p, b) });
-//        assertTrue(! di.hasNext());
+        assertTrue(d.getRule().getName().equals("r1b"));
+        TestUtil.assertIteratorValues(this, d.getMatches().iterator(), new Object[] { new Triple(a, p, b) });
+        assertTrue(! di.hasNext());
     }
     
     /**
@@ -187,12 +187,12 @@ public class TestGenericRules extends TestCase {
               } );
               
         // Check derivation tracing as well
-//        Iterator di = infgraph.getDerivation(new Triple(b, p, a));
-//        assertTrue(di.hasNext());
-//        RuleDerivation d = (RuleDerivation)di.next();
-//        assertTrue(d.getRule().getName().equals("r1b"));
-//        TestUtil.assertIteratorValues(this, d.getMatches().iterator(), new Object[] { new Triple(a, p, b) });
-//        assertTrue(! di.hasNext());
+        Iterator di = infgraph.getDerivation(new Triple(b, p, a));
+        assertTrue(di.hasNext());
+        RuleDerivation d = (RuleDerivation)di.next();
+        assertTrue(d.getRule().getName().equals("r1b"));
+        TestUtil.assertIteratorValues(this, d.getMatches().iterator(), new Object[] { new Triple(a, p, b) });
+        assertTrue(! di.hasNext());
     }
 
     /**

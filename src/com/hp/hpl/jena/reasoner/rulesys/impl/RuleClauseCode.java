@@ -18,7 +18,7 @@ import java.util.*;
 
 /**
  * Object used to hold the compiled bytecode stream for a single rule clause.
- * This uses a slighly WAM-like code stream but gluing of the clauses together
+ * This uses a slightly WAM-like code stream but gluing of the clauses together
  * into disjunctions is done in the interpreter loop so a complete predicate is
  * represented as a list of RuleClauseCode objects.
  * 
@@ -39,6 +39,9 @@ public class RuleClauseCode {
     /** Any Object argements needed by the byte codes */
     protected Object[] args;    
     
+    /** starting byte code offset for body terms */
+    protected int[] termStart;
+     
 //  =======================================================================
 //  Instruction set constants
 
@@ -191,7 +194,9 @@ public class RuleClauseCode {
         state.emitHead((TriplePattern)head);
         
         // Compile the body operations
+        termStart = new int[rule.bodyLength()];
         for (int i = skip; i < rule.bodyLength(); i++) {
+            termStart[i] = state.p;
             ClauseEntry entry = rule.getBodyElement(i);
             if (entry instanceof TriplePattern) {
                 state.emitBody((TriplePattern)entry, ruleStore);
@@ -207,6 +212,24 @@ public class RuleClauseCode {
         args = state.getFinalArgs();
     }
             
+    /**
+     * Translate a program counter offset to the index of the corresponding
+     * body term (or -1 if a head term or a dummy rule).
+     */
+    public int termIndex(int pc) {
+        if (rule == null) return -1;
+        int term = 0; 
+        // Trivial linear search because this is only used for logging which is
+        // horribly expensive anyway.
+        while (term < rule.bodyLength()) {
+            if (pc <= termStart[term]) {
+                return term - 1;            
+            }
+            term++;
+        }
+        return term - 1;
+    }
+    
     /**
      * Debug helper - list the code to a stream
      */
@@ -343,6 +366,7 @@ public class RuleClauseCode {
          
         /** The rule being parsed */
         Rule rule;
+
         
         /** 
          * Constructor. 

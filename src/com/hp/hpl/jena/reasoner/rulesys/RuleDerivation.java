@@ -32,7 +32,7 @@ public class RuleDerivation implements Derivation {
     /** The triple which was asserted */
     protected Triple conclusion;
     
-    /** The of triple matches that fired the rule */
+    /** The list of triple matches that fired the rule */
     protected List matches;
 
     /** The InfGraph which produced this derivation */

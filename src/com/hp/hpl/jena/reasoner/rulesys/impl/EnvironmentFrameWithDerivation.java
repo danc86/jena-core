@@ -22,6 +22,12 @@ import java.util.*;
  * @version $Revision$ on $Date$
  */
 public class EnvironmentFrameWithDerivation extends EnvironmentFrame {
+
+    /** The initial starting arguments for the call */
+    Node[] argVars = new Node[RuleClauseCode.MAX_ARGUMENT_VARS];
+        
+    /** The set of instantiated subgoals processed so far */
+    Triple[] matches;
         
     /** 
      * Constructor 
@@ -29,20 +35,20 @@ public class EnvironmentFrameWithDerivation extends EnvironmentFrame {
      */
     public EnvironmentFrameWithDerivation(RuleClauseCode clause) {
         super(clause);
+        if (clause.getRule() != null) {
+            matches = new Triple[clause.getRule().bodyLength()];
+        }
     }
     
-    /** The initial starting arguments for the call */
-    Node[] argVars = new Node[RuleClauseCode.MAX_ARGUMENT_VARS];
-        
-    /** The set of instantiated subgoals processed so far */
-    List matchList = new ArrayList();
-        
     /** Instantiate and record a matched subgoal */
-    public void noteMatch(TriplePattern pattern) {
+    public void noteMatch(TriplePattern pattern, int pc) {
         Triple match = new Triple(LPInterpreter.deref(pattern.getSubject()), 
                                     LPInterpreter.deref(pattern.getPredicate()),
                                     LPInterpreter.deref(pattern.getObject()));
-        matchList.add(match);
+        int term = clause.termIndex(pc);   
+        if (term >= 0) {                                 
+            matches[term] = match;
+        }
     }
 
     /**
@@ -56,9 +62,13 @@ public class EnvironmentFrameWithDerivation extends EnvironmentFrame {
     }
     
     /**
-     * Return the current list of matched subgoals in this subderivation.
+     * Return a safe copy of the list of matched subgoals in this subderivation.
      */
     public List getMatchList() {
+        ArrayList matchList = new ArrayList();
+        for (int i = 0; i < matches.length; i++) {
+            matchList.add(matches[i]);
+        }
         return matchList;
     }
     /**

@@ -218,6 +218,14 @@ public class LPInterpreter {
         return cpFrame;
     }
     
+    /**
+     * Return the context in which this interpreter is running, that is
+     * either the Generator for a tabled goal or a top level iterator.
+     */
+    public LPInterpreterContext getContext() {
+        return iContext;
+    }
+    
     //  =======================================================================
     //  Engine implementation  
  
@@ -298,15 +306,15 @@ public class LPInterpreter {
                     logger.info("TRIPLE match (" + tmFrame.goal +") -> " + getArgTrace());
                     logger.info("RENTER " + clause);
                 }
-                     
-                if (recordDerivations) {
-                    if (envFrame instanceof EnvironmentFrameWithDerivation) {
-                        ((EnvironmentFrameWithDerivation)envFrame).noteMatch(tmFrame.goal);
-                    }
-                }
                 
                 pc = tmFrame.cpc;
                 ac = tmFrame.cac;
+                     
+                if (recordDerivations) {
+                    if (envFrame instanceof EnvironmentFrameWithDerivation) {
+                        ((EnvironmentFrameWithDerivation)envFrame).noteMatch(tmFrame.goal, pc);
+                    }
+                }
 
                 // then fall through to the execution context in which the the match was called
                 
@@ -352,15 +360,15 @@ public class LPInterpreter {
                     if (traceOn)logger.info("SUSPEND " + clause);
                     continue main;
                 }
-                
-                if (recordDerivations) {
-                    if (envFrame instanceof EnvironmentFrameWithDerivation) {
-                        ((EnvironmentFrameWithDerivation)envFrame).noteMatch(ccp.goal);
-                    }
-                }
 
                 pc = ccp.cpc;
                 ac = ccp.cac;
+                
+                if (recordDerivations) {
+                    if (envFrame instanceof EnvironmentFrameWithDerivation) {
+                        ((EnvironmentFrameWithDerivation)envFrame).noteMatch(ccp.goal, pc);
+                    }
+                }
 
                 // then fall through to the execution context in which the the match was called
                 
