@@ -203,6 +203,9 @@ public class RuleState {
      * fails so the rule is not applicable.
      */
     public static RuleState createInitialState(Rule rule, GoalResults generator) {
+        // Axioms are alredy handled by the infGraph so this first guard should be helpful but
+        // in practice it doesn't seem to.
+//        if (rule.bodyLength() == 0) return null;
         TriplePattern goal = generator.goal;
         TriplePattern head = (TriplePattern) rule.getHeadElement(0);
         BindingVector env = BindingVector.unify(goal, head, rule.getNumVars());

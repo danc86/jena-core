@@ -41,14 +41,14 @@ public class TestOWLRules extends TestCase {
     public static TestSuite suite() {
         TestSuite suite = new TestSuite();
         suite.addTest(new TestOWLRules("SymmetricProperty/Manifest001.rdf"));
-//        suite.addTest(new TestOWLRules("allValuesFrom/Manifest001.rdf"));    // bx - long but terminates
+        suite.addTest(new TestOWLRules("allValuesFrom/Manifest001.rdf"));    // bx - long but terminates
 //        suite.addTest(new TestOWLRules("allValuesFrom/Manifest002.rdf"));   // bx - slow
 //        suite.addTest(new TestOWLRules("someValuesFrom/Manifest002.rdf"));   // bx - slow
 //        suite.addTest(new TestOWLRules("someValuesFrom/Manifest001.rdf")); // bx needs creation rule
 //        suite.addTest(new TestOWLRules("FunctionalProperty/Manifest001.rdf"));
 //        suite.addTest(new TestOWLRules("FunctionalProperty/Manifest002.rdf"));
 //        suite.addTest(new TestOWLRules("FunctionalProperty/Manifest003.rdf"));
-//        suite.addTest(new TestOWLRules("FunctionalProperty/Manifest005-mod.rdf"));
+        suite.addTest(new TestOWLRules("FunctionalProperty/Manifest005-mod.rdf"));
 //        suite.addTest(new TestOWLRules("InverseFunctionalProperty/Manifest001.rdf"));
 //        suite.addTest(new TestOWLRules("InverseFunctionalProperty/Manifest002.rdf"));
 //        suite.addTest(new TestOWLRules("InverseFunctionalProperty/Manifest003.rdf"));
@@ -92,7 +92,7 @@ public class TestOWLRules extends TestCase {
 //        suite.addTest(new TestOWLRules("equivalentProperty/Manifest006.rdf"));
 //        suite.addTest(new TestOWLRules("localtests/Manifest001.rdf"));      // bx - long but terminates
 //        suite.addTest(new TestOWLRules("localtests/Manifest002.rdf"));   // bx - long but terminates
-//        suite.addTest(new TestOWLRules("intersectionOf/Manifest001.rdf")); // takes a long time
+        suite.addTest(new TestOWLRules("intersectionOf/Manifest001.rdf")); // takes a long time
 
 //        suite.addTest(new TestOWLRules("cardinality/Manifest001-mod.rdf")); // bx gets lost
 //        suite.addTest(new TestOWLRules("cardinality/Manifest002-mod.rdf")); // bx gets lost
