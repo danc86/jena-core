@@ -64,7 +64,7 @@ public class RecordingListener implements GraphListener
     public boolean has( Object [] things )
         { return history.equals( Arrays.asList( things ) ); } 
         
-    void assertHas( Object [] things )
+    public void assertHas( Object [] things )
         {
         if (has( things ) == false)
             Assert.fail( "expected " + Arrays.asList( things ) + " but got " + history );

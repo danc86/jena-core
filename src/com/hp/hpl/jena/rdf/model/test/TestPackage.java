@@ -45,6 +45,7 @@ public class TestPackage extends TestSuite {
         addTest( "TestQuery", TestQuery.suite() );
         addTest( "TestSelectors", TestSelectors.suite() );
         addTest( "TestModelEvents", TestModelEvents.suite() );
+        addTest( "TestReaderEvents", TestReaderEvents.suite() );
         addTest( "TestList", TestList.suite() );
         addTest( "TestAnonID", TestAnonID.suite() );
         }
