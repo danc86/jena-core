@@ -91,10 +91,6 @@ public class DAMLModelImpl
     /** The loader that will load DAML source documents for this store */
     private DAMLLoader m_loader = new DAMLLoader( this );
 
-    /** A registry for mapping XML data to Java types */
-    protected XMLDatatypeRegistry m_xmlDatatypeRegistry = new XMLDatatypeRegistry();
-
-
 
 
     // Constructors

@@ -28,7 +28,6 @@ import com.hp.hpl.jena.datatypes.TypeMapper;
 import com.hp.hpl.jena.ontology.OntModel;
 import com.hp.hpl.jena.ontology.daml.impl.*;
 import com.hp.hpl.jena.util.iterator.ExtendedIterator;
-import com.hp.hpl.jena.vocabulary.*;
 
 import java.util.*;
 
