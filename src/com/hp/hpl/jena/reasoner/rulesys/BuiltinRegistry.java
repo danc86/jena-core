@@ -72,6 +72,8 @@ public class BuiltinRegistry {
         theRegistry.register(new Table());
         theRegistry.register(new TableAll());
         
+        theRegistry.register(new Hide());
+        
         // Special purposes support functions for OWL
         theRegistry.register(new AssertDisjointPairs());
     }

@@ -16,6 +16,7 @@ import com.hp.hpl.jena.ontology.daml.DAMLModel;
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.reasoner.*;
 import com.hp.hpl.jena.reasoner.rulesys.*;
+import com.hp.hpl.jena.reasoner.test.TestUtil;
 import com.hp.hpl.jena.util.*;
 import com.hp.hpl.jena.util.iterator.ClosableIterator;
 import com.hp.hpl.jena.util.iterator.ExtendedIterator;
@@ -336,6 +337,20 @@ public class TestBugs extends TestCase {
         InfModel infmodel = ModelFactory.createInfModel(r, model);
         ValidityReport validity = infmodel.validate();
         assertTrue (validity.isValid());                
+    }
+    
+    /**
+     * Test that prototype nodes are now hidden
+     */
+    public void testHide() {
+        String NS = "http://jena.hpl.hp.com/bugs#";
+        OntModel m = ModelFactory.createOntologyModel(OntModelSpec.OWL_MEM_RULE_INF, null);
+        OntClass c = m.createClass(NS + "C");
+        OntResource i = m.createIndividual(c);
+        Iterator res = m.listStatements(null, RDF.type, c);
+        TestUtil.assertIteratorValues(this, res, new Statement[] {
+            m.createStatement(i, RDF.type, c)
+        });
     }
     
     // debug assistant

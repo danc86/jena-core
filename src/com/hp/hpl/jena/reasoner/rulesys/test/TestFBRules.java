@@ -18,6 +18,7 @@ import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.graph.impl.LiteralLabel;
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.shared.ClosedException;
+import com.hp.hpl.jena.shared.impl.JenaParameters;
 import com.hp.hpl.jena.util.ModelLoader;
 import com.hp.hpl.jena.util.PrintUtil;
 import com.hp.hpl.jena.util.iterator.ExtendedIterator;
@@ -848,6 +849,8 @@ public class TestFBRules extends TestCase {
      * returning duplicate values?
      */
     public void testDuplicatesEC4() throws IOException {
+        boolean prior = JenaParameters.enableFilteringOfHiddenInfNodes;
+        JenaParameters.enableFilteringOfHiddenInfNodes = false;
         Model premisesM = ModelLoader.loadModel("file:testing/wg/equivalentClass/premises004.rdf");
         Graph data = premisesM.getGraph();
         Reasoner reasoner =  new OWLFBRuleReasoner(OWLFBRuleReasonerFactory.theInstance());
@@ -871,6 +874,7 @@ public class TestFBRules extends TestCase {
         }
 //        listFBGraph("bindSchema case", (FBRuleInfGraph)infgraph);
         assertEquals(6, count);
+        JenaParameters.enableFilteringOfHiddenInfNodes = prior;
     }
     
     /**
