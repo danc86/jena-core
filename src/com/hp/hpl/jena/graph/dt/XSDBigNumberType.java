@@ -24,7 +24,7 @@ import com.hp.hpl.jena.graph.LiteralLabel;
  * @author <a href="mailto:der@hplb.hpl.hp.com">Dave Reynolds</a>
  * @version $Revision$ on $Date$
  */
-public class XSDBigNumberType extends XSDDatatype {
+public class XSDBigNumberType extends XSDBaseNumericType {
     
     static final DecimalDV decimalDV = new DecimalDV();
     

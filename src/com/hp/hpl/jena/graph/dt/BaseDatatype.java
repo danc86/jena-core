@@ -69,6 +69,18 @@ public class BaseDatatype implements RDFDatatype {
     }    
     
     /**
+     * Test whether the given LiteralLabel is a valid instance
+     * of this datatype. This takes into accound typing information
+     * as well as lexical form - for example an xsd:string is
+     * never considered valid as an xsd:integer (even if it is
+     * lexically legal like "1").
+     */
+    public boolean isValidLiteral(LiteralLabel lit) {
+        // default is than only literals with the same type are valid
+        return equals(lit.getDatatype());
+    }
+     
+    /**
      * Test whether the given object is a legal value form
      * of this datatype.
      */

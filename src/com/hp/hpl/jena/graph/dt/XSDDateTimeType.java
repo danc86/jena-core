@@ -9,6 +9,8 @@
  *****************************************************************/
 package com.hp.hpl.jena.graph.dt;
 
+import com.hp.hpl.jena.graph.LiteralLabel;
+
 /**
  * The XSD date/time type, the only job of this extra layer is to
  * wrap the return value in a more convenient accessor type. 
@@ -32,6 +34,15 @@ public class XSDDateTimeType extends XSDDatatype {
      */
     public Object parse(String lexicalForm) throws DatatypeFormatException {
         return new XSDDateTime(super.parse(lexicalForm), typeDeclaration);
+    }
+    
+    /**
+     * Compares two instances of values of the given datatype.
+     * This ignores lang tags and just uses the java.lang.Number 
+     * equality.
+     */
+    public boolean isEqual(LiteralLabel value1, LiteralLabel value2) {
+       return value1.getValue().equals(value2.getValue());
     }
 }
 

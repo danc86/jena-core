@@ -17,7 +17,7 @@ import com.hp.hpl.jena.graph.LiteralLabel;
  * @author <a href="mailto:der@hplb.hpl.hp.com">Dave Reynolds</a>
  * @version $Revision$ on $Date$
  */
-public class XSDLongType extends XSDDatatype {
+public class XSDLongType extends XSDBaseNumericType {
     
     /**
      * Constructor. 

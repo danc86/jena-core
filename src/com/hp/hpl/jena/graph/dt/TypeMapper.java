@@ -62,14 +62,14 @@ public class TypeMapper {
 // Methods
 
     /**
-     * Method getTypeByName.
+     * Method getSafeTypeByName.
      * 
      * @param uri the URI of the desired datatype
      * @return Datatype the datatype definition
      * registered at uri, if there is no such registered type it
      * returns the default datatype implementation.
      */
-    public RDFDatatype getTypeByName(String uri) {
+    public RDFDatatype getSafeTypeByName(String uri) {
         RDFDatatype dtype = (RDFDatatype) uriToDT.get(uri);
         if (dtype == null) {
             // @TODO add log message
@@ -78,6 +78,17 @@ public class TypeMapper {
             registerDatatype(dtype);
         }
         return dtype;
+    }
+    
+    /**
+     * Lookup a known datatype. Differs from getSafeTypeByName in
+     * that it will return null if the datatype is not registered.
+     * 
+     * @param uri the URI of the desired datatype
+     * @return Datatype the datatype definition of null if not known.
+     */
+    public RDFDatatype getTypeByName(String uri) {
+        return (RDFDatatype) uriToDT.get(uri);
     }
     
     /**

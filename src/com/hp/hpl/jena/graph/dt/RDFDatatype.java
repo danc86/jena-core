@@ -51,6 +51,15 @@ public interface RDFDatatype {
     public boolean isValidValue(Object valueForm);
     
     /**
+     * Test whether the given LiteralLabel is a valid instance
+     * of this datatype. This takes into accound typing information
+     * as well as lexical form - for example an xsd:string is
+     * never considered valid as an xsd:integer (even if it is
+     * lexically legal like "1").
+     */
+    public boolean isValidLiteral(LiteralLabel lit);
+    
+    /**
      * Compares two instances of values of the given datatype.
      * This defaults to just testing equality of the java value
      * representation but datatypes can override this. We pass the
