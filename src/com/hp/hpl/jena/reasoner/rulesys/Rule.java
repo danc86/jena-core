@@ -561,7 +561,8 @@ public class Rule implements ClauseEntry {
                 if (exp == token) {
                     // No expansion was possible
                     String prefix = token.substring(0, token.indexOf(':'));
-                    if (prefix.equals("http") || prefix.equals("urn") || prefix.equals("ftp")) {
+                    if (prefix.equals("http") || prefix.equals("urn") 
+                     || prefix.equals("ftp") || prefix.equals("mailto")) {
                         // assume it is all OK and fall through
                     } else {
                         // Likely to be a typo in a qname or failure to register
