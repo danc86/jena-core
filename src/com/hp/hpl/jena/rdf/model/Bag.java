@@ -59,10 +59,9 @@ public interface Bag extends Container {
      * container with a higher ordinal value are renumbered.  The renumbering
      * algorithm is implementation dependent.<p>
      * @param s The statement to be removed from the model.
-     * @throws RDFException Generic RDF Exception
      * @return this container to enable cascading calls.
      */
-    public Container remove(Statement s) throws RDFException;
+    public Container remove(Statement s);
     
     /** Remove a value from the container.
      *
@@ -71,9 +70,8 @@ public interface Bag extends Container {
      * container with a higher ordinal value are renumbered.  The renumbering
      * algorithm is implementation dependent.<p>
      * @param v The value to be removed from the bag.
-     * @throws RDFException Generic RDF Exception
      * @return this container to enable cascading calls.
      */
-//TODO    public Container remove(String v) throws RDFException;
+//TODO    public Container remove(String v) ;
 }
 

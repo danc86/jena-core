@@ -42,8 +42,7 @@ interface ContainerI {
     /** Remove the given value at the given index.
      * @param index The index at which the value should be removed.
      * @param object The object at that index to be removed
-     * @throws RDFException Generic RDF exception
      * @return this object
      */
-    public Container remove(int index, RDFNode object) throws RDFException;
+    public Container remove(int index, RDFNode object) ;
 }

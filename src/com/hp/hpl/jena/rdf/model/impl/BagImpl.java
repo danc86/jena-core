@@ -52,15 +52,15 @@ public class BagImpl extends ContainerImpl implements Bag {
     };
         
     /** Creates new BagMem */
-    public BagImpl(Model model) throws RDFException {
+    public BagImpl(Model model)  {
         super(model);
     }
     
-    public BagImpl(String uri, Model model) throws RDFException {
+    public BagImpl(String uri, Model model)  {
         super(uri, model);
     }
     
-    public BagImpl(Resource r, Model m) throws RDFException {
+    public BagImpl(Resource r, Model m)  {
         super(r, m);
     }
     

@@ -31,9 +31,7 @@
 
 package com.hp.hpl.jena.rdf.model;
 
-import com.hp.hpl.jena.util.iterator.ClosableIterator;
-
-import java.util.NoSuchElementException;
+import com.hp.hpl.jena.util.iterator.*;
 
 /** An iterator which returns namespace URI's.
  *
@@ -45,41 +43,11 @@ import java.util.NoSuchElementException;
  * @author bwm
  * @version Release='$Name$' Revision='$Revision$' Date='$Date$'
  */
-public interface NsIterator extends ClosableIterator {
-    
-    /** Determine if there any more values in the iteration.
-     * @throws RDFException Generic RDF exception.
-     * @return true if and only if there are more values available
-     * from the iteration.
-     */
-    public boolean hasNext() throws RDFException;
+public interface NsIterator extends ExtendedIterator {
     
     /** Return the next namespace name of the iteration.
      * @throws NoSuchElementException if there are no more to be returned.
-     * @throws RDFException Generic RDF exception.
      * @return The next name space URI from the iteration.
      */
-    public Object next() throws  NoSuchElementException, RDFException;
-    
-    /** Return the next namespace name of the iteration.
-     * @throws NoSuchElementException if there are no more to be returned.
-     * @throws RDFException Generic RDF exception.
-     * @return The next name space URI from the iteration.
-     */
-    public String nextNs() throws  NoSuchElementException, RDFException;
-    
-    /** Unsupported Operation.
-     * @throws NoSuchElementException
-     * @throws RDFException
-     */
-    public void remove() throws NoSuchElementException, RDFException;
-    /** Terminate the iteration and free up resources.
-     *
-     * <p>Some implementations, e.g. on relational databases, hold resources while
-     * the iterator still exists.  These will normally be freed when the iteration
-     * completes.  However, if an application wishes to ensure they are freed without
-     * completing the iteration, this method should be called.</p>
-     * @throws RDFException Generic RDF exception.
-     */
-    public void close() throws RDFException;
+    public String nextNs();
 }

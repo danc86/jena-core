@@ -1,5 +1,5 @@
 /*
- *  (c) Copyright Hewlett-Packard Company 2000 
+ *  (c) Copyright Hewlett-Packard Company 2000-2003
  *  All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -45,35 +45,31 @@ public interface ModelI {
 /**
  * @param cont
  * @param f
- * @throws RDFException
  * @return iterator over container members
  */
     public NodeIterator listContainerMembers(Container cont,
                                              NodeIteratorFactory f)
-                                                    throws RDFException;
+                                                    ;
     
 /**
  * @param cont
- * @throws RDFException
  * @return size of container
  */
-    public int containerSize(Container cont) throws RDFException;
+    public int containerSize(Container cont) ;
     
 /**
  * @param cont
  * @param n
- * @throws RDFException
  * @return index of n in container
  */
-    public int containerIndexOf(Container cont, RDFNode n) throws RDFException;
+    public int containerIndexOf(Container cont, RDFNode n) ;
     
 /**
  * @param cont
  * @param n
- * @throws RDFException
  * @return true if containter contains n, false otherwise
  */
     public boolean containerContains(Container cont, RDFNode n) 
-                                        throws RDFException;
+                                        ;
 
 }

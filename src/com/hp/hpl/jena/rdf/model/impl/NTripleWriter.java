@@ -108,8 +108,6 @@ public class NTripleWriter extends Object implements RDFWriter {
      * to be raised.</p>?
      * @param propName The name of the property to be set
      * @param propValue The new value of the property
-     * @throws RDFException Throws <CODE>UNKNOWNPROPERTY RDFException</CODE> if the
-     * property name is not recognised
      * @return the previous value of the property
      */
     public Object setProperty(String propName, Object propValue) {
@@ -145,7 +143,7 @@ public class NTripleWriter extends Object implements RDFWriter {
     }
 
     protected static void writeResource(Resource r, PrintWriter writer)
-        throws RDFException {
+         {
         if (r.isAnon()) {
             writer.print(anonName(r.getId()));
         } else {
@@ -222,7 +220,7 @@ public class NTripleWriter extends Object implements RDFWriter {
     }
 
     protected static void writeNode(RDFNode n, PrintWriter writer)
-        throws RDFException {
+         {
         if (n instanceof Literal) {
             writeLiteral((Literal) n, writer);
         } else {

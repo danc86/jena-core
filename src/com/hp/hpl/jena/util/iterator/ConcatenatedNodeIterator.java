@@ -46,9 +46,7 @@ package com.hp.hpl.jena.util.iterator;
 // Imports
 ///////////////
 
-import com.hp.hpl.jena.rdf.model.NodeIterator;
-import com.hp.hpl.jena.rdf.model.RDFException;
-import com.hp.hpl.jena.rdf.model.RDFNode;
+import com.hp.hpl.jena.rdf.model.*;
 
 
 
@@ -108,8 +106,7 @@ public class ConcatenatedNodeIterator
      *
      * @return true if the iterator has more elements.
      */
-    public boolean hasNext()
-        throws RDFException
+    public boolean hasNext()        
     {
         return m_iter0.hasNext()  ||  m_iter1.hasNext();
     }
@@ -122,8 +119,7 @@ public class ConcatenatedNodeIterator
      *         underlying iteration, projected to the range of the projection function.
      * @exception NoSuchElementException - iteration has no more elements.
      */
-    public Object next()
-        throws RDFException
+    public Object next()        
     {
         return (m_iter0.hasNext()) ? m_iter0.nextNode() : m_iter1.nextNode();
     }
@@ -137,7 +133,6 @@ public class ConcatenatedNodeIterator
      * @exception NoSuchElementException - iteration has no more elements.
      */
     public RDFNode nextNode()
-        throws RDFException
     {
         return (RDFNode) next();
     }
@@ -164,7 +159,6 @@ public class ConcatenatedNodeIterator
      * underlying iterators.
      */
     public void close()
-        throws RDFException
     {
         m_iter0.close();
         m_iter1.close();
