@@ -106,6 +106,9 @@ public class N3JenaWriter implements RDFWriter
 		prefixMap.put(prefix, ns) ;
 	}
 
+    final public String getPrefixFor( String uri )
+        { return null; }
+
 	public Object setProperty(String propName, Object propValue) throws RDFException
 	{
 		Object obj = writerPropertyMap.get(propName) ;

@@ -111,6 +111,14 @@ public interface RDFWriter {
  * @param ns the namespace
  */    
     public void   setNsPrefix(String prefix, String ns);
+    
+    /**
+        return some prefix that maps to the URI ns, null if there are none.
+        @param ns a URI string
+        @return some P such that P mans to ns, null if there isn't one
+    */
+    public String getPrefixFor( String ns );
+    
 /** Set an error handler.
  * @param errHandler The new error handler to be used.
  * @return the old error handler

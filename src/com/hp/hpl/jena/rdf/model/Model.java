@@ -52,7 +52,9 @@ import java.io.*;
  * @author bwm
  * @version $Name$ $Revision$Date$'
  */
-public interface Model extends ModelCon, RDFReaderF, RDFWriterF {
+public interface Model 
+    extends ModelCon, RDFReaderF, RDFWriterF, PrefixMapping
+{
 
 	/** Every model is based on some Graph */
 	Graph getGraph();

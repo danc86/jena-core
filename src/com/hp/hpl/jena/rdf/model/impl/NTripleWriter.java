@@ -118,6 +118,9 @@ public class NTripleWriter extends Object implements RDFWriter {
 
     public void setNsPrefix(String prefix, String ns) {
     }
+    
+    public String getPrefixFor( String uri )
+        { return null; }
 
     public RDFErrorHandler setErrorHandler(RDFErrorHandler errHandler) {
         RDFErrorHandler old = this.errorHandler;
