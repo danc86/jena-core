@@ -26,14 +26,7 @@ public class TestCache extends TestCase
         suite.addTest( new CacheTestCase(CacheManager.RAND));
         return suite;
     }   
-            
-    public void assertFalse( String name, boolean b )
-        { assertTrue( name, !b ); }
-    
-    private void assertDiffer( String title, Object x, Object y )
-        { assertFalse( title, x.equals( y ) ); }
-        
-    
+           
     static class CacheTestCase extends TestCase {
         String cacheType;
         
