@@ -1,5 +1,5 @@
 /*
- *  (c)     Copyright Hewlett-Packard Company 2000, 2001, 2002
+ *  (c)     Copyright Hewlett-Packard Company 2000-2003
  *   All rights reserved.
  * [See end of file]
  *  $Id$
@@ -21,6 +21,7 @@ import com.hp.hpl.jena.vocabulary.VCARD;
 
 import com.hp.hpl.jena.rdf.arp.URI;
 import com.hp.hpl.jena.rdf.arp.MalformedURIException;
+import com.hp.hpl.jena.rdf.arp.ARP;
 
 import org.apache.oro.text.regex.Perl5Compiler;
 import org.apache.oro.text.regex.Perl5Matcher;
@@ -57,36 +58,9 @@ import org.apache.log4j.Logger;
 abstract public class BaseXMLWriter implements RDFWriter {
 	/** log4j logger */
 	protected static Logger logger = Logger.getLogger(BaseXMLWriter.class);
-
-	static private class Fake extends EncodingMap {
-		static {
-			Iterator it = EncodingMap.fJava2IANAMap.entrySet().iterator();
-			while (it.hasNext()) {
-				Map.Entry me = (Map.Entry) it.next();
-				if (!me
-					.getKey()
-					.equals(EncodingMap.fIANA2JavaMap.get(me.getValue()))) {
-				//	System.err.println(
-				//		"?1? " + me.getKey() + " => " + me.getValue());
-				}
-			}
-			it = EncodingMap.fIANA2JavaMap.entrySet().iterator();
-			while (it.hasNext()) {
-				Map.Entry me = (Map.Entry) it.next();
-				if (null == EncodingMap.fJava2IANAMap.get(me.getValue())) {
-				//	System.err.println(
-				//		"?2? " + me.getKey() + " => " + me.getValue());
-                    EncodingMap.fJava2IANAMap.put(me.getValue(),me.getKey());
-				}
-			}
-
-		}
-		static void foo() {
-		}
-	}
-	static {
-		Fake.foo();
-	}
+    static {
+      ARP.initEncoding();
+    }
 
 	private Relation nameSpaces = new Relation();
 	private Map ns;
@@ -678,7 +652,7 @@ abstract public class BaseXMLWriter implements RDFWriter {
 }
 
 /*
-	(c) Copyright Hewlett-Packard Company 200,2001, 2002
+	(c) Copyright Hewlett-Packard Company 2000-2003
 	All rights reserved.
 
 	Redistribution and use in source and binary forms, with or without
