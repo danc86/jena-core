@@ -1,60 +1,41 @@
 /******************************************************************
- * File:        BackwardRuleInfGraphI.java
+ * File:        LPInterpeterContext.java
  * Created by:  Dave Reynolds
- * Created on:  28-May-2003
+ * Created on:  09-Aug-2003
  * 
  * (c) Copyright 2003, Hewlett-Packard Company, all rights reserved.
  * [See end of file]
  * $Id$
  *****************************************************************/
-package com.hp.hpl.jena.reasoner.rulesys;
-
-import com.hp.hpl.jena.graph.Node;
-import com.hp.hpl.jena.graph.Triple;
-import com.hp.hpl.jena.reasoner.InfGraph;
-import com.hp.hpl.jena.reasoner.TriplePattern;
-import com.hp.hpl.jena.util.iterator.ExtendedIterator;
+package com.hp.hpl.jena.reasoner.rulesys.impl;
 
 /**
- * This interface collects together those operations that the backchaining
- * engine needs to invoke in the parent InfGraph. This allows different inf graphs
- * to exploit the same core backchaining engine.
+ * The context in which an LPInterpreter instance is running.
+ * The context the entity that should be notified when a branch has been
+ * suspended awaiting further results for a given generator.
  * 
  * @author <a href="mailto:der@hplb.hpl.hp.com">Dave Reynolds</a>
  * @version $Revision$ on $Date$
  */
-public interface BackwardRuleInfGraphI extends SilentAddI, InfGraph {
-            
-    /**
-     * Process a call to a builtin predicate
-     * @param clause the term representing the call
-     * @param env the BindingEnvironment for this call
-     * @param rule the rule which is invoking this call
-     * @return true if the predicate succeeds
-     */
-    public boolean processBuiltin(ClauseEntry clause, Rule rule, BindingEnvironment env);
+public interface LPInterpreterContext extends LPInterpreterState {
 
-    /**
-     * Match a pattern just against the stored data (raw data, schema,
-     * axioms) but no backchaining derivation.
-     */
-    public ExtendedIterator findDataMatches(TriplePattern pattern);
-
-    /**
-     * Log a dervivation record against the given triple.
-     */
-    public void logDerivation(Triple t, Object derivation);
-
-    /**
-     * Retrieve or create a bNode representing an inferred property value.
-     * @param instance the base instance node to which the property applies
-     * @param prop the property node whose value is being inferred
-     * @param pclass the (optional, can be null) class for the inferred value.
-     * @return the bNode representing the property value 
-     */
-    public Node getTemp(Node instance, Node prop, Node pclass);
+    /** Notify this context that a branch was suspended awaiting futher
+     *  results for the given choice point. */
+    public void notifyBlockedOn(ConsumerChoicePointFrame ccp);
     
+    /** Test if one of our top level choice points is ready to be reactivated */
+    public boolean isReady();
+    
+    /** Notify this context that the given choice point has terminated
+     *  and can be remove from the wait list. */
+    public void notifyFinished(ConsumerChoicePointFrame ccp);
+    
+    /** Called by a generating choice point to indicate we can be run
+     * because the indicated choice point is ready. */
+    public void setReady(ConsumerChoicePointFrame ccp);
+
 }
+
 
 
 /*

@@ -11,6 +11,7 @@ package com.hp.hpl.jena.reasoner.rulesys.test;
 
 import com.hp.hpl.jena.reasoner.ReasonerFactory;
 import com.hp.hpl.jena.reasoner.rulesys.*;
+import com.hp.hpl.jena.reasoner.rulesys.impl.oldCode.*;
 
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
@@ -103,6 +104,10 @@ public class TestOWLRules extends TestCase {
         suite.addTest(new TestOWLRules("localtests/Manifest001.rdf"));      // bx - long but terminates
         suite.addTest(new TestOWLRules("localtests/Manifest002.rdf"));   // bx - long but terminates
         suite.addTest(new TestOWLRules("cardinality/Manifest001-mod.rdf")); // bx gets lost
+        suite.addTest(new TestOWLRules("cardinality/Manifest002-mod.rdf")); // bx gets lost
+        suite.addTest(new TestOWLRules("cardinality/Manifest002-mod.rdf")); // bx gets lost
+        suite.addTest(new TestOWLRules("cardinality/Manifest002-mod.rdf")); // bx gets lost
+        suite.addTest(new TestOWLRules("cardinality/Manifest002-mod.rdf")); // bx gets lost
         suite.addTest(new TestOWLRules("cardinality/Manifest002-mod.rdf")); // bx gets lost
         suite.addTest(new TestOWLRules("cardinality/Manifest003-mod.rdf")); // bx gets lost
         suite.addTest(new TestOWLRules("cardinality/Manifest004-mod.rdf")); // bx gets lost

@@ -1,58 +1,73 @@
 /******************************************************************
- * File:        BackwardRuleInfGraphI.java
+ * File:        EnvironmentFrameWithDerivation.java
  * Created by:  Dave Reynolds
- * Created on:  28-May-2003
+ * Created on:  18-Aug-2003
  * 
  * (c) Copyright 2003, Hewlett-Packard Company, all rights reserved.
  * [See end of file]
  * $Id$
  *****************************************************************/
-package com.hp.hpl.jena.reasoner.rulesys;
+package com.hp.hpl.jena.reasoner.rulesys.impl;
 
-import com.hp.hpl.jena.graph.Node;
-import com.hp.hpl.jena.graph.Triple;
-import com.hp.hpl.jena.reasoner.InfGraph;
+import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.reasoner.TriplePattern;
-import com.hp.hpl.jena.util.iterator.ExtendedIterator;
+
+import java.util.*;
 
 /**
- * This interface collects together those operations that the backchaining
- * engine needs to invoke in the parent InfGraph. This allows different inf graphs
- * to exploit the same core backchaining engine.
+ * Extension of the normal AND-stack environment frame to support
+ * incremental derivation logging.
  * 
  * @author <a href="mailto:der@hplb.hpl.hp.com">Dave Reynolds</a>
  * @version $Revision$ on $Date$
  */
-public interface BackwardRuleInfGraphI extends SilentAddI, InfGraph {
-            
-    /**
-     * Process a call to a builtin predicate
-     * @param clause the term representing the call
-     * @param env the BindingEnvironment for this call
-     * @param rule the rule which is invoking this call
-     * @return true if the predicate succeeds
+public class EnvironmentFrameWithDerivation extends EnvironmentFrame {
+        
+    /** 
+     * Constructor 
+     * @param clause the compiled code being interpreted by this env frame 
      */
-    public boolean processBuiltin(ClauseEntry clause, Rule rule, BindingEnvironment env);
+    public EnvironmentFrameWithDerivation(RuleClauseCode clause) {
+        super(clause);
+    }
+    
+    /** The initial starting arguments for the call */
+    Node[] argVars = new Node[RuleClauseCode.MAX_ARGUMENT_VARS];
+        
+    /** The set of instantiated subgoals processed so far */
+    List matchList = new ArrayList();
+        
+    /** Instantiate and record a matched subgoal */
+    public void noteMatch(TriplePattern pattern) {
+        Triple match = new Triple(LPInterpreter.deref(pattern.getSubject()), 
+                                    LPInterpreter.deref(pattern.getPredicate()),
+                                    LPInterpreter.deref(pattern.getObject()));
+        matchList.add(match);
+    }
 
     /**
-     * Match a pattern just against the stored data (raw data, schema,
-     * axioms) but no backchaining derivation.
+     * Return the final instantiated goal given the current binding state.
      */
-    public ExtendedIterator findDataMatches(TriplePattern pattern);
-
+    public Triple getResult() {
+        return new Triple(
+                    LPInterpreter.deref(argVars[0]),
+                    LPInterpreter.deref(argVars[1]), 
+                    LPInterpreter.derefPossFunctor(argVars[2]));
+    }
+    
     /**
-     * Log a dervivation record against the given triple.
+     * Return the current list of matched subgoals in this subderivation.
      */
-    public void logDerivation(Triple t, Object derivation);
-
+    public List getMatchList() {
+        return matchList;
+    }
     /**
-     * Retrieve or create a bNode representing an inferred property value.
-     * @param instance the base instance node to which the property applies
-     * @param prop the property node whose value is being inferred
-     * @param pclass the (optional, can be null) class for the inferred value.
-     * @return the bNode representing the property value 
+     * Create an initial derivation record for this frame, based on the given
+     * argument registers.
      */
-    public Node getTemp(Node instance, Node prop, Node pclass);
+    public void initDerivationRecord(Node[] args) {
+        System.arraycopy(args, 0, argVars, 0, RuleClauseCode.MAX_ARGUMENT_VARS);
+    }    
     
 }
 

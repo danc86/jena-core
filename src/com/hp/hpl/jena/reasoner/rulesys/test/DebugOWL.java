@@ -21,8 +21,7 @@ import com.hp.hpl.jena.util.PrintUtil;
 import com.hp.hpl.jena.vocabulary.*;
 import com.hp.hpl.jena.reasoner.*;
 import com.hp.hpl.jena.reasoner.rulesys.*;
-import com.hp.hpl.jena.reasoner.rulesys.implb.FBLPRuleInfGraph;
-import com.hp.hpl.jena.reasoner.rulesys.implb.FBLPRuleReasoner;
+import com.hp.hpl.jena.reasoner.rulesys.impl.oldCode.*;
 //import com.hp.hpl.jena.reasoner.transitiveReasoner.TransitiveReasonerFactory;
 
 import org.apache.log4j.Logger;
@@ -134,7 +133,7 @@ public class DebugOWL {
             case RDFSLPExpt:
                 try {
                     List rules = Rule.parseRules(Util.loadResourceFile("etc/expt.rules"));
-                    reasoner = new FBLPRuleReasoner(rules);
+                    reasoner = new FBRuleReasoner(rules);
                 } catch (IOException e) {
                     System.out.println("Failed to open rules file: " + e);
                     System.exit(1);
@@ -243,8 +242,8 @@ public class DebugOWL {
 //            infgraph = reasoner.bindSchema(schema).bind(testdata);
             infgraph = reasoner.bind(new Union(schema, testdata));
         }
-//        if (infgraph instanceof FBLPRuleInfGraph) {
-//            ((FBLPRuleInfGraph)infgraph).resetLPProfile(true);
+//        if (infgraph instanceof FBRuleInfGraph) {
+//            ((FBRuleInfGraph)infgraph).resetLPProfile(true);
 //        }
     }
     
@@ -290,8 +289,8 @@ public class DebugOWL {
         createTest(depth, NS, NI, withProps);
         long t = listC0(false);
         System.out.println("Took " + t + "ms");
-        if (infgraph instanceof FBLPRuleInfGraph) {
-            ((FBLPRuleInfGraph)infgraph).printLPProfile();
+        if (infgraph instanceof FBRuleInfGraph) {
+            ((FBRuleInfGraph)infgraph).printLPProfile();
         }
     }
     

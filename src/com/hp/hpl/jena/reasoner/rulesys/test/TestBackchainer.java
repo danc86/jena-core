@@ -29,6 +29,9 @@ import junit.framework.TestSuite;
 /**
  * Test harness for the backward chainer. 
  * Parameterizable in subclasses by overriding createReasoner.
+ * The original version was developed for the original backchaining interpeter. 
+ * That has now been obsoleted at this is now used to double check the
+ * LP engine, though the bulk of such tests are really done by TestBasicLP.
  * 
  * @author <a href="mailto:der@hplb.hpl.hp.com">Dave Reynolds</a>
  * @version $Revision$ on $Date$
@@ -88,7 +91,14 @@ public class TestBackchainer extends TestCase {
      * Override in subclasses to test other reasoners.
      */
     public Reasoner createReasoner(List rules) {
-        return new BasicBackwardRuleReasoner(rules);
+        LPBackwardRuleReasoner reasoner = new LPBackwardRuleReasoner(rules);
+        reasoner.tablePredicate(sP);
+        reasoner.tablePredicate(sC);
+        reasoner.tablePredicate(ty);
+        reasoner.tablePredicate(p);
+        reasoner.tablePredicate(a);
+        reasoner.tablePredicate(b);
+        return reasoner;
     }
     
     /**

@@ -108,10 +108,11 @@ public class RuleStore {
         if (isAdd && ruleIndex.contains(rule)) return;
         if (isAdd) {
             ruleIndex.add(rule);
+            if (allRules != null) allRules.add(rule);
         } else {
             ruleIndex.remove(rule);
+            if (allRules != null) allRules.remove(rule);
         }
-        if (allRules != null) allRules.add(rule);
         Object headClause = rule.getHeadElement(0);
         if (headClause instanceof TriplePattern) {
             TriplePattern headpattern = (TriplePattern)headClause;

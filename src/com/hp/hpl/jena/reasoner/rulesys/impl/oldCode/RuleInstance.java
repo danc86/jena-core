@@ -1,60 +1,63 @@
 /******************************************************************
- * File:        BackwardRuleInfGraphI.java
+ * File:        RuleInstance.java
  * Created by:  Dave Reynolds
- * Created on:  28-May-2003
+ * Created on:  03-May-2003
  * 
  * (c) Copyright 2003, Hewlett-Packard Company, all rights reserved.
  * [See end of file]
  * $Id$
  *****************************************************************/
-package com.hp.hpl.jena.reasoner.rulesys;
+package com.hp.hpl.jena.reasoner.rulesys.impl.oldCode;
 
-import com.hp.hpl.jena.graph.Node;
-import com.hp.hpl.jena.graph.Triple;
-import com.hp.hpl.jena.reasoner.InfGraph;
-import com.hp.hpl.jena.reasoner.TriplePattern;
-import com.hp.hpl.jena.util.iterator.ExtendedIterator;
+import com.hp.hpl.jena.reasoner.*;
+import com.hp.hpl.jena.reasoner.rulesys.*;
 
 /**
- * This interface collects together those operations that the backchaining
- * engine needs to invoke in the parent InfGraph. This allows different inf graphs
- * to exploit the same core backchaining engine.
+ * Part of the backward chaining rule interpreter. A RuleInstance
+ * links an instance of a rule to the GoalResults object for which it is
+ * generating results. It is a simple data structure which is shared amongst
+ * a set of RuleSets to reduce the store turn over needed for RuleState creation.
+ * <p>
+ * Encapuslation warning: this object is used in the tight inner loop of the engine so we access its
+ * field pointers directly rather than through accessor methods.
+ * </p>
  * 
  * @author <a href="mailto:der@hplb.hpl.hp.com">Dave Reynolds</a>
  * @version $Revision$ on $Date$
  */
-public interface BackwardRuleInfGraphI extends SilentAddI, InfGraph {
-            
-    /**
-     * Process a call to a builtin predicate
-     * @param clause the term representing the call
-     * @param env the BindingEnvironment for this call
-     * @param rule the rule which is invoking this call
-     * @return true if the predicate succeeds
-     */
-    public boolean processBuiltin(ClauseEntry clause, Rule rule, BindingEnvironment env);
+public class RuleInstance {
 
-    /**
-     * Match a pattern just against the stored data (raw data, schema,
-     * axioms) but no backchaining derivation.
-     */
-    public ExtendedIterator findDataMatches(TriplePattern pattern);
-
-    /**
-     * Log a dervivation record against the given triple.
-     */
-    public void logDerivation(Triple t, Object derivation);
-
-    /**
-     * Retrieve or create a bNode representing an inferred property value.
-     * @param instance the base instance node to which the property applies
-     * @param prop the property node whose value is being inferred
-     * @param pclass the (optional, can be null) class for the inferred value.
-     * @return the bNode representing the property value 
-     */
-    public Node getTemp(Node instance, Node prop, Node pclass);
+    /** The rule being processed */
+    protected Rule rule;
     
+    /** The parent goal table entry which contains this continuation point */
+    protected GoalResults generator;
+    
+    /** The enclosing rule engine */
+    protected BRuleEngine engine;
+    
+    /** The head clause whose bindings are being sought */
+    protected TriplePattern head;
+    
+    /** Set to true if the first two body clauses were reordered for performance */
+    protected boolean clausesReordered = false;
+    
+    /** If the clauses are reordered this contains the index of the second clause */
+    protected int secondClause = -1;
+    
+    /**
+     * Constructor. Create a new continuation point for a rule in
+     * the context of a specific goal represented by the table entry.
+     */
+    RuleInstance(GoalResults results, Rule rule, TriplePattern head) {
+        this.generator = results;
+        this.rule = rule;
+        this.engine = results.getEngine();
+        this.head = head;
+    }
+     
 }
+
 
 
 /*

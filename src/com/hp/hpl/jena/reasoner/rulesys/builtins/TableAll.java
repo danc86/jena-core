@@ -11,7 +11,6 @@ package com.hp.hpl.jena.reasoner.rulesys.builtins;
 
 import com.hp.hpl.jena.reasoner.*;
 import com.hp.hpl.jena.reasoner.rulesys.*;
-import com.hp.hpl.jena.reasoner.rulesys.implb.FBLPRuleInfGraph;
 import com.hp.hpl.jena.graph.*;
 
 /**
@@ -43,8 +42,10 @@ public class TableAll extends BaseBuiltin {
      */
     public void headAction(Node[] args, int length, RuleContext context) {
         InfGraph infgraph = context.getGraph();
-        if (infgraph instanceof FBLPRuleInfGraph) {
-            ((FBLPRuleInfGraph)infgraph).setTabled(Node.ANY);
+        if (infgraph instanceof FBRuleInfGraph) {
+            ((FBRuleInfGraph)infgraph).setTabled(Node.ANY);
+        } else if (infgraph instanceof LPBackwardRuleInfGraph) {
+            ((LPBackwardRuleInfGraph)infgraph).setTabled(Node.ANY);
         } else {
             // Quietly ignore as an irrelevant directive
             // Could log or throw exception but currently I want to be able to use

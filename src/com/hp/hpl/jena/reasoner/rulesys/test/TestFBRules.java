@@ -75,7 +75,7 @@ public class TestFBRules extends TestCase {
     public static TestSuite suite() {
         return new TestSuite( TestFBRules.class ); 
 //        TestSuite suite = new TestSuite();
-//        suite.addTest(new TestFBRules( "testHybrid2" ));
+//        suite.addTest(new TestFBRules( "testBackchain1" ));
 //        return suite;
     }  
 
@@ -83,7 +83,11 @@ public class TestFBRules extends TestCase {
      * Override in subclasses to test other reasoners.
      */
     public Reasoner createReasoner(List rules) {
-        return new FBRuleReasoner(rules);
+        FBRuleReasoner reasoner = new FBRuleReasoner(rules); 
+        reasoner.tablePredicate(RDFS.Nodes.subClassOf);
+        reasoner.tablePredicate(RDF.Nodes.type);
+        reasoner.tablePredicate(p);
+        return reasoner;
     }
 
     /**

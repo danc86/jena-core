@@ -1,59 +1,79 @@
 /******************************************************************
- * File:        BackwardRuleInfGraphI.java
+ * File:        LPEnvironment.java
  * Created by:  Dave Reynolds
- * Created on:  28-May-2003
+ * Created on:  22-Jul-2003
  * 
  * (c) Copyright 2003, Hewlett-Packard Company, all rights reserved.
  * [See end of file]
  * $Id$
  *****************************************************************/
-package com.hp.hpl.jena.reasoner.rulesys;
+package com.hp.hpl.jena.reasoner.rulesys.impl;
 
-import com.hp.hpl.jena.graph.Node;
-import com.hp.hpl.jena.graph.Triple;
-import com.hp.hpl.jena.reasoner.InfGraph;
-import com.hp.hpl.jena.reasoner.TriplePattern;
-import com.hp.hpl.jena.util.iterator.ExtendedIterator;
+import com.hp.hpl.jena.graph.*;
+import com.hp.hpl.jena.reasoner.rulesys.Rule;
 
 /**
- * This interface collects together those operations that the backchaining
- * engine needs to invoke in the parent InfGraph. This allows different inf graphs
- * to exploit the same core backchaining engine.
+ * Represents a single frame in the LP interpreter's environment stack. The
+ * environment stack represents the AND part of the search tree - it is a sequence
+ * of nested predicate calls.
+ * <p>
+ * This is used in the inner loop of the interpreter and so is a pure data structure
+ * not an abstract data type and assumes privileged access to the interpreter state.
+ * </p>
  * 
  * @author <a href="mailto:der@hplb.hpl.hp.com">Dave Reynolds</a>
  * @version $Revision$ on $Date$
  */
-public interface BackwardRuleInfGraphI extends SilentAddI, InfGraph {
-            
-    /**
-     * Process a call to a builtin predicate
-     * @param clause the term representing the call
-     * @param env the BindingEnvironment for this call
-     * @param rule the rule which is invoking this call
-     * @return true if the predicate succeeds
-     */
-    public boolean processBuiltin(ClauseEntry clause, Rule rule, BindingEnvironment env);
+public class EnvironmentFrame extends FrameObject {
 
-    /**
-     * Match a pattern just against the stored data (raw data, schema,
-     * axioms) but no backchaining derivation.
-     */
-    public ExtendedIterator findDataMatches(TriplePattern pattern);
-
-    /**
-     * Log a dervivation record against the given triple.
-     */
-    public void logDerivation(Triple t, Object derivation);
-
-    /**
-     * Retrieve or create a bNode representing an inferred property value.
-     * @param instance the base instance node to which the property applies
-     * @param prop the property node whose value is being inferred
-     * @param pclass the (optional, can be null) class for the inferred value.
-     * @return the bNode representing the property value 
-     */
-    public Node getTemp(Node instance, Node prop, Node pclass);
+    /** The set of permanent variables Y(i) in use by this frame.  */
+    Node[] pVars;
     
+    /** The code the the clause currently being processed */
+    RuleClauseCode clause;
+    
+    /** The continuation program counter offet in the parent clause's byte code */
+    int cpc;
+    
+    /** The continuation argument counter offset in the parent clause's arg stream */
+    int cac;
+    
+     /** 
+     * Constructor 
+     * @param clause the compiled code being interpreted by this env frame 
+     */
+    public EnvironmentFrame(RuleClauseCode clause) {
+        this.clause = clause;
+    }
+        
+    /**
+     * Allocate a vector of permanent variables for use in the rule execution.
+     */
+    public void allocate(int n) {
+            pVars = new Node[n];
+    }
+           
+    /**
+     * Return the rule associated with this environment, null if no such rule.
+     */
+    public Rule getRule() {
+        if (clause != null) {
+            return clause.rule;
+        } else {
+            return null;
+        }
+    }
+    
+    /**
+     * Printable string for debugging.
+     */
+    public String toString() {
+        if (clause == null || clause.rule == null) {
+            return "[anon]";
+        } else {
+            return "[" + clause.rule.toShortString() + "]";
+        }
+    }
 }
 
 

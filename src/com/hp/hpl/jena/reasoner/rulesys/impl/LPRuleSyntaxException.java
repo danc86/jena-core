@@ -1,59 +1,45 @@
 /******************************************************************
- * File:        BackwardRuleInfGraphI.java
+ * File:        LPRuleSyntaxException.java
  * Created by:  Dave Reynolds
- * Created on:  28-May-2003
+ * Created on:  25-Jul-2003
  * 
  * (c) Copyright 2003, Hewlett-Packard Company, all rights reserved.
  * [See end of file]
  * $Id$
  *****************************************************************/
-package com.hp.hpl.jena.reasoner.rulesys;
+package com.hp.hpl.jena.reasoner.rulesys.impl;
 
-import com.hp.hpl.jena.graph.Node;
-import com.hp.hpl.jena.graph.Triple;
-import com.hp.hpl.jena.reasoner.InfGraph;
-import com.hp.hpl.jena.reasoner.TriplePattern;
-import com.hp.hpl.jena.util.iterator.ExtendedIterator;
+import com.hp.hpl.jena.reasoner.ReasonerException;
+import com.hp.hpl.jena.reasoner.rulesys.Rule;
 
 /**
- * This interface collects together those operations that the backchaining
- * engine needs to invoke in the parent InfGraph. This allows different inf graphs
- * to exploit the same core backchaining engine.
+ * Exception used to indicate syntactic errors the LP version of the
+ * backward chaining rule engine.
  * 
  * @author <a href="mailto:der@hplb.hpl.hp.com">Dave Reynolds</a>
  * @version $Revision$ on $Date$
  */
-public interface BackwardRuleInfGraphI extends SilentAddI, InfGraph {
-            
-    /**
-     * Process a call to a builtin predicate
-     * @param clause the term representing the call
-     * @param env the BindingEnvironment for this call
-     * @param rule the rule which is invoking this call
-     * @return true if the predicate succeeds
-     */
-    public boolean processBuiltin(ClauseEntry clause, Rule rule, BindingEnvironment env);
+public class LPRuleSyntaxException extends ReasonerException {
 
-    /**
-     * Match a pattern just against the stored data (raw data, schema,
-     * axioms) but no backchaining derivation.
-     */
-    public ExtendedIterator findDataMatches(TriplePattern pattern);
-
-    /**
-     * Log a dervivation record against the given triple.
-     */
-    public void logDerivation(Triple t, Object derivation);
-
-    /**
-     * Retrieve or create a bNode representing an inferred property value.
-     * @param instance the base instance node to which the property applies
-     * @param prop the property node whose value is being inferred
-     * @param pclass the (optional, can be null) class for the inferred value.
-     * @return the bNode representing the property value 
-     */
-    public Node getTemp(Node instance, Node prop, Node pclass);
     
+    /**
+     * Constructor.
+     * @param msg a free-text message describing the problem
+     */
+    public LPRuleSyntaxException(String msg, Rule rule) {
+        super("Syntax error in backward rule: " + rule.toShortString() 
+                +"\n" + msg);
+    }
+    
+    /**
+     * Constructor.
+     * @param msg a free-text message describing the problem
+     * @param cause a nested exception which prompted this error
+     */
+    public LPRuleSyntaxException(String msg, Rule rule, Throwable cause) {
+        super("Syntax error in backward rule: " + rule.toShortString() 
+                +"\n" + msg, cause);
+    }
 }
 
 

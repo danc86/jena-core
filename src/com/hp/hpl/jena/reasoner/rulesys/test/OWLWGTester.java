@@ -10,7 +10,7 @@
 package com.hp.hpl.jena.reasoner.rulesys.test;
 
 import com.hp.hpl.jena.reasoner.*;
-import com.hp.hpl.jena.reasoner.rulesys.implb.FBLPRuleInfGraph;
+import com.hp.hpl.jena.reasoner.rulesys.FBRuleInfGraph;
 import com.hp.hpl.jena.reasoner.test.WGReasonerTester;
 import com.hp.hpl.jena.util.ModelLoader;
 //import com.hp.hpl.jena.util.PrintUtil;
@@ -176,8 +176,8 @@ public class OWLWGTester {
         InfGraph graph = reasoner.bind(premises.getGraph());
         Model result = ModelFactory.createModelForGraph(graph);
         
-        if (stats && graph instanceof FBLPRuleInfGraph) {
-//            ((FBLPRuleInfGraph)graph).resetLPProfile(true);
+        if (stats && graph instanceof FBRuleInfGraph) {
+//            ((FBRuleInfGraph)graph).resetLPProfile(true);
         }
         
         // Check the results against the official conclusions
@@ -195,8 +195,8 @@ public class OWLWGTester {
             logger.info("Time=" + (t2-t1) + "ms for " + test.getURI());
             printStats();
             
-            if (graph instanceof FBLPRuleInfGraph) {
-                ((FBLPRuleInfGraph)graph).printLPProfile();
+            if (graph instanceof FBRuleInfGraph) {
+                ((FBRuleInfGraph)graph).printLPProfile();
             }
         }
         

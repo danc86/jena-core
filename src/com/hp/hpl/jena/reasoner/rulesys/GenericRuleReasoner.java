@@ -10,8 +10,7 @@
 package com.hp.hpl.jena.reasoner.rulesys;
 
 import com.hp.hpl.jena.reasoner.*;
-import com.hp.hpl.jena.reasoner.rulesys.impl.OWLRuleTranslationHook;
-import com.hp.hpl.jena.reasoner.rulesys.impl.RuleStore;
+import com.hp.hpl.jena.reasoner.rulesys.impl.*;
 import com.hp.hpl.jena.vocabulary.ReasonerVocabulary;
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.rdf.model.*;
@@ -33,7 +32,7 @@ import java.util.*;
 public class GenericRuleReasoner extends FBRuleReasoner {
 
     /** Prepared set of rules used for Backward-only mode */
-    protected RuleStore bRuleStore;
+    protected LPRuleStore bRuleStore;
     
     /** the current rule mode */
     protected RuleMode mode = HYBRID;
@@ -326,8 +325,8 @@ public class GenericRuleReasoner extends FBRuleReasoner {
                 graph = new RETERuleInfGraph(this, rules, schemaArg);
                 ((BasicForwardRuleInfGraph)graph).setTraceOn(traceOn);
         } else if (mode == BACKWARD) {
-            graph = new BasicBackwardRuleInfGraph(this, getBruleStore(), data, schemaArg);
-            ((BasicBackwardRuleInfGraph)graph).setTraceOn(traceOn);
+            graph = new LPBackwardRuleInfGraph(this, getBruleStore(), data, schemaArg);
+            ((LPBackwardRuleInfGraph)graph).setTraceOn(traceOn);
         } else {
             List ruleSet = ((FBRuleInfGraph)schemaArg).getRules();
             FBRuleInfGraph fbgraph = new FBRuleInfGraph(this, ruleSet, schemaArg);
@@ -366,9 +365,9 @@ public class GenericRuleReasoner extends FBRuleReasoner {
     /**
      * Return the prepared backward only rules.
      */
-    protected RuleStore getBruleStore() {
+    protected LPRuleStore getBruleStore() {
         if (bRuleStore == null) {
-            bRuleStore = new RuleStore(rules);
+            bRuleStore = new LPRuleStore(rules);
         }
         return bRuleStore;
     }

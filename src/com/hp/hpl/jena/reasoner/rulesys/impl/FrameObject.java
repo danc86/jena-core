@@ -1,58 +1,55 @@
 /******************************************************************
- * File:        BackwardRuleInfGraphI.java
+ * File:        FrameObject.java
  * Created by:  Dave Reynolds
- * Created on:  28-May-2003
+ * Created on:  18-Jul-2003
  * 
  * (c) Copyright 2003, Hewlett-Packard Company, all rights reserved.
  * [See end of file]
  * $Id$
  *****************************************************************/
-package com.hp.hpl.jena.reasoner.rulesys;
-
-import com.hp.hpl.jena.graph.Node;
-import com.hp.hpl.jena.graph.Triple;
-import com.hp.hpl.jena.reasoner.InfGraph;
-import com.hp.hpl.jena.reasoner.TriplePattern;
-import com.hp.hpl.jena.util.iterator.ExtendedIterator;
+package com.hp.hpl.jena.reasoner.rulesys.impl;
 
 /**
- * This interface collects together those operations that the backchaining
- * engine needs to invoke in the parent InfGraph. This allows different inf graphs
- * to exploit the same core backchaining engine.
- * 
+ * Base class for stack frame objects. Originally this was used to provide
+ * pool-based allocated but it turns out the normal Java GC outperforms
+ * manual pool-based allocation anyway.
+ *  
  * @author <a href="mailto:der@hplb.hpl.hp.com">Dave Reynolds</a>
  * @version $Revision$ on $Date$
  */
-public interface BackwardRuleInfGraphI extends SilentAddI, InfGraph {
-            
-    /**
-     * Process a call to a builtin predicate
-     * @param clause the term representing the call
-     * @param env the BindingEnvironment for this call
-     * @param rule the rule which is invoking this call
-     * @return true if the predicate succeeds
-     */
-    public boolean processBuiltin(ClauseEntry clause, Rule rule, BindingEnvironment env);
+public class FrameObject {
 
+    /** Used to link the frame to the prior frame in the (tree) stack or the pool */
+    FrameObject link;
+        
     /**
-     * Match a pattern just against the stored data (raw data, schema,
-     * axioms) but no backchaining derivation.
+     * Link this frame to an existing frame. In the future this might do some ref count
+     * tricks.
      */
-    public ExtendedIterator findDataMatches(TriplePattern pattern);
-
+    public void linkTo(FrameObject prior) {
+        link = prior;
+    }
+    
     /**
-     * Log a dervivation record against the given triple.
+     * Link this frame to an existing frame. This will never do any funny ref count tricks.
      */
-    public void logDerivation(Triple t, Object derivation);
-
+    public void fastLinkTo(FrameObject prior) {
+        link = prior;
+    }
+    
     /**
-     * Retrieve or create a bNode representing an inferred property value.
-     * @param instance the base instance node to which the property applies
-     * @param prop the property node whose value is being inferred
-     * @param pclass the (optional, can be null) class for the inferred value.
-     * @return the bNode representing the property value 
+     * Return the prior frame in the tree.
      */
-    public Node getTemp(Node instance, Node prop, Node pclass);
+    public FrameObject getLink() {
+        return link;
+    }
+    
+    /**
+     * Close the frame actively. This frees any internal resources, frees this frame and
+     * frees the frame to which this is linked.
+     */
+    public void close() {
+    }
     
 }
 
