@@ -26,10 +26,9 @@ package com.hp.hpl.jena.ontology.impl.test;
 ///////////////
 import java.util.*;
 
-import org.apache.log4j.Logger;
-
 import com.hp.hpl.jena.ontology.*;
 import com.hp.hpl.jena.rdf.model.*;
+import com.hp.hpl.jena.reasoner.test.TestUtil;
 
 import junit.framework.*;
 
@@ -155,31 +154,7 @@ public abstract class OntTestBase
     
         /** Test that an iterator delivers the expected values */
         protected void iteratorTest( Iterator i, Object[] expected ) {
-            Logger logger = Logger.getLogger( getClass() );
-            List expList = new ArrayList();
-            for (int j = 0; j < expected.length; j++) {
-                expList.add( expected[j] );
-            }
-        
-            while (i.hasNext()) {
-                Object next = i.next();
-                
-                // debugging
-                if (!expList.contains( next )) {
-                    logger.debug( getName() + " - Unexpected iterator result: " + next );
-                }
-                
-                assertTrue( "Value " + next + " was not expected as a result from this iterator ", expList.contains( next ) );
-                assertTrue( "Value " + next + " was not removed from the list ", expList.remove( next ) );
-            }
-        
-            if (!(expList.size() == 0)) {
-                logger.debug( getName() + "Expected iterator results not found" );
-                for (Iterator j = expList.iterator(); j.hasNext(); ) {
-                    logger.debug( getName() + " - missing: " + j.next() );
-                }
-            }
-            assertEquals( "There were expected elements from the iterator that were not found", 0, expList.size() );
+            TestUtil.assertIteratorValues( this, i, expected );
         }
     }
 }
