@@ -20,7 +20,7 @@ import com.hp.hpl.jena.util.Log;
  *
  * Extends DriverRDB with Oracle-specific parameters.
  */
-public class Driver_Oracle extends DriverRDB {
+public abstract class Driver_Oracle extends DriverRDB {
 	
 	public int MAX_DB_IDENTIFIER_LENGTH = 30;
 	public int m_tablecounter;
