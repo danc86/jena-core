@@ -39,7 +39,7 @@ import junit.framework.TestSuite;
  * @version CVS $Id$
  */
 public class TestAxioms
-    extends PathTestCase 
+    extends OntTestBase 
 {
     // Constants
     //////////////////////////////////
@@ -65,47 +65,14 @@ public class TestAxioms
     }
     
     public static TestSuite suite() {
-        return new TestAxioms( "TestAxioms" ).getSuite();
+        return new TestAxioms( "TestAxioms" );
     }
     
     
-    /** Fields are testID, pathset, property, profileURI, sourceData, expected, count, valueURI, rdfTypeURI, valueLit */
-    protected Object[][] psTestData() {
-        return new Object[][] {
-/*            {   
-                "OWL AllDifferent.distinctMembers",
-                new PS() { 
-                    public PathSet ps( OntModel m ) { 
-                        Resource r = m.listSubjectsWithProperty( RDF.type, m.getProfile().ALL_DIFFERENT() ).nextResource();
-                        return ((AllDifferent) r.as( AllDifferent.class )).p_distinctMembers(); } 
-                },
-                OWL.distinctMembers,
-                ProfileRegistry.OWL_LANG,
-                "file:testing/ontology/owl/Axioms/test.rdf",
-                T,
-                new Integer( 1 ),
-                null,
-                OWL.List,
-                null
-            },
-            {   
-                "DAML AllDifferent.distinctMembers",
-                new PS() { 
-                    public PathSet ps( OntModel m ) { 
-                        Resource r = m.createResource();  // there's no resource of rdf:type AllDifferent in the test file
-                        return ((AllDifferent) r.as( AllDifferent.class )).p_distinctMembers(); } 
-                },
-                OWL.distinctMembers,
-                ProfileRegistry.DAML_LANG,
-                "file:testing/ontology/daml/Axioms/test.rdf",
-                F,
-                null,
-                null,
-                null,
-                null
-            },*/
+    public OntTestCase[] getTests() {
+        return new OntTestCase[] {
         };
-    }
+    }    
     
     
     // Internal implementation methods

@@ -28,6 +28,7 @@ package com.hp.hpl.jena.ontology.impl;
 import com.hp.hpl.jena.enhanced.*;
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.ontology.*;
+import com.hp.hpl.jena.rdf.model.Resource;
 
 
 /**
@@ -94,6 +95,40 @@ public class AllValuesFromRestrictionImpl
 
     // External signature methods
     //////////////////////////////////
+
+    // allValuesFrom
+    
+    /**
+     * <p>Assert that this restriction restricts the property to have all values
+     * be members of the given class. Any existing statements for <code>allValuesFrom</code>
+     * will be removed.</p>
+     * @param cls The class that all values of the property must belong to
+     * @exception OntProfileException If the {@link Profile#ALL_VALUES_FROM()} property is not supported in the current language profile.   
+     */ 
+    public void setAllValuesFrom( Resource cls ) {
+        setPropertyValue( getProfile().ALL_VALUES_FROM(), "ALL_VALUES_FROM", cls );
+    }
+
+    /**
+     * <p>Answer the class that all values of the restricted property must belong to.</p>
+     * @return A class that all values from the restricted property must belong to
+     * @exception OntProfileException If the {@link Profile#ALL_VALUES_FROM()} property is not supported in the current language profile.   
+     */ 
+    public OntClass getAllValuesFrom() {
+        return (OntClass) objectAs( getProfile().ALL_VALUES_FROM(), "ALL_VALUES_FROM", OntClass.class );
+    }
+
+    /**
+     * <p>Answer true if this property restriction has the given class as the class to which all 
+     * values of the restricted property must belong.</p>
+     * @param cls A class to test 
+     * @return True if the given class is the class to which all values must belong
+     * @exception OntProfileException If the {@link Profile#ALL_VALUES_FROM()} property is not supported in the current language profile.   
+     */
+    public boolean hasAllValuesFrom( Resource cls ) {
+        return hasPropertyValue( getProfile().ALL_VALUES_FROM(), "ALL_VALUES_FROM", cls );
+    }
+    
 
     // Internal implementation methods
     //////////////////////////////////
