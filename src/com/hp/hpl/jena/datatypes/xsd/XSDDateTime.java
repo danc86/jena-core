@@ -79,7 +79,7 @@ public class XSDDateTime extends AbstractDateTime {
         data[AbstractDateTime.CY] = cal.get(Calendar.YEAR);
         data[AbstractDateTime.M] = cal.get(Calendar.MONTH);
         data[AbstractDateTime.D] = cal.get(Calendar.DAY_OF_MONTH);
-        data[AbstractDateTime.h] = cal.get(Calendar.HOUR);
+        data[AbstractDateTime.h] = cal.get(Calendar.HOUR_OF_DAY);
         data[AbstractDateTime.m] = cal.get(Calendar.MINUTE);
         data[AbstractDateTime.s] = cal.get(Calendar.SECOND);
         data[AbstractDateTime.ms] = cal.get(Calendar.MILLISECOND);

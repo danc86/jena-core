@@ -423,6 +423,15 @@ public class TestTypedLiterals extends TestCase {
         assertEquals("equality test", l1, m.createTypedLiteral("1999-05-31T02:09:32Z", XSDDatatype.XSDdateTime));
         assertTrue("inequality test", l1 != m.createTypedLiteral("1999-04-31T02:09:32Z", XSDDatatype.XSDdateTime));
         
+        Calendar testCal2 = new GregorianCalendar(TimeZone.getTimeZone("GMT"));
+        testCal2.set(1999, 5, 30, 15, 9, 32);
+        testCal2.set(Calendar.MILLISECOND, 0);   // ms field can be undefined on Linux
+        Literal lc = m.createTypedLiteral(testCal2);
+        assertEquals("calendar 24 hour test", m.createTypedLiteral("1999-05-30T15:09:32Z", XSDDatatype.XSDdateTime), lc );
+        
+        assertEquals("calendar value", cal, testCal);
+        assertEquals("equality test", l1, m.createTypedLiteral("1999-05-31T02:09:32Z", XSDDatatype.XSDdateTime));
+        
         // date
         l1 = m.createTypedLiteral("1999-05-31", XSDDatatype.XSDdate);
         assertEquals("dateTime data type", XSDDatatype.XSDdate, l1.getDatatype());
