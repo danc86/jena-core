@@ -77,6 +77,10 @@ public class testWriterAndReader extends TestCase implements RDFErrorHandler {
                 new TestXMLFeatures("testXMLBase", lang));
             /* */
             langsuite.addTest(
+                new TestXMLFeatures("testBug696057",lang)
+            );
+            /* */
+            langsuite.addTest(
                 new TestXMLFeatures("testPropertyURI", lang));
             /* */
             langsuite.addTest(

@@ -48,6 +48,16 @@ public class TestXMLFeatures extends TestCase {
 		return new TestSuite(TestXMLFeatures.class);
 	}
 
+    public void testBug696057() throws IOException {
+        File f = File.createTempFile("jena",".rdf");
+        String fileName = f.getAbsolutePath();
+        Model m = new ModelMem();
+        m.read(new FileInputStream("testing/wg/rdfms-syntax-incomplete/test001.rdf"), "");
+        m.write(new FileWriter( fileName), lang );
+        Model m1 = new ModelMem();
+        m1.read(new FileInputStream(fileName), "");
+        assertTrue("Use of FileWriter",m.isIsomorphicWith(m1));
+    }
 	public void testXMLBase() throws IOException, MalformedPatternException {
 		check(file1, //any will do
 		"xml:base=['\"]" + base2 + "['\"]", new Change() {
