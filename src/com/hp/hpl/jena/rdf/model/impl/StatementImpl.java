@@ -149,7 +149,7 @@ public class StatementImpl  implements Statement {
     }
     
     public String getString() throws RDFException {
-        return getLiteral().toString();
+        return getLiteral().getLexicalForm();
     }
     
     public Object getObject(ObjectF f) throws RDFException {

@@ -773,7 +773,7 @@ public class N3JenaWriter implements RDFWriter
 	{
         String datatype = literal.getDatatypeURI() ;
         String lang = literal.getLanguage() ;
-		String s = literal.toString() ;
+		String s = literal.getLexicalForm() ;
 
 		int j = 0 ;
 		int i = -1 ;
