@@ -566,26 +566,6 @@ public  class PSet_TripleStore_RDB implements IPSet {
         }
     }
     
-    /**
-     * Lookup Literal in Literals table, and insert it if it is not there.
-     * 
-     * @param rs
-     * @return
-     * @throws SQLException
-     * @throws IOException
-     * @throws RDFException
-     * @throws UnsupportedEncodingException
-     */
-    IDBID lookupOrInsertLiteral(Node_Literal litNode) {
-		IDBID result = getLiteralID(litNode);
-		if (result == null) {
-			  result = addLiteral(litNode);
-		}
-		return (result);
-    }
-			
-
-
 	/**
 	 * Convert the current row of a result set from a ResultSet
 	 * to a literal.
