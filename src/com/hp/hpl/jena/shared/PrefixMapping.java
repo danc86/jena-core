@@ -25,12 +25,12 @@ public interface PrefixMapping
     {
     /**
         Specify the prefix name for a URI prefix string. Any existing use of that prefix
-        name is overwritten. Any existing prefix for the same URI is removed.
-        (We still have to decide what happens if there are *overlapping* URIs.)
-        The result is this same prefixMapping.
+        name is overwritten. Any existing prefix for the same URI is removed, unless
+        the prefix is the empty string.  (We still have to decide what happens if there are 
+        *overlapping* URIs.) The result is this same prefixMapping.
   <p>      
-        The empty string is allowed as a prefix, for internal historical reasons.
-        Do not rely on this continuing.
+        A prefix name must be a valid NCName, or the empty string. The empty string
+        is reserved to mean "the default namespace".
         
         @param prefix the string to be used for the prefix.
         @param uri the URI prefix to be named
