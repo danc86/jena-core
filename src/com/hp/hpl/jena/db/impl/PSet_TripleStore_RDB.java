@@ -640,6 +640,7 @@ public void deleteTripleAR(
 					"SQLException caught during insert"
 						+ e1.getErrorCode(),
 						e1);
+                throw new JenaException( e1 );
 			}
 		}
 	}
