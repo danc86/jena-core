@@ -375,7 +375,10 @@ public interface RDFList
     
     
     /**
-     * Remove all of the elements of this list from the model.
+     * <p>Remove all of the components of this list from the model.  Note that this
+     * is operation is only removing the list cells themselves, not the resources
+     * referenced by the list - unless being the object of an <code>rdf:first</code>
+     * statement is the only mention of that resource in the model. 
      */
     public void removeAll();
     
