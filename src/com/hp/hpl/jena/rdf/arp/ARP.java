@@ -71,8 +71,8 @@ import org.apache.xerces.util.EncodingMap;
  * of how to distinguish between them.
  * <p>
  * For very large files, ARP does not use any additional
- * memory except when either the {@link #setExtendedHandler}
- * method or the {@link AResource#setUserData} method have been
+ * memory except when either the {@link ExtendedHandler#discardNodesWithNodeID}
+ * returns false or when the {@link AResource#setUserData} method has been
  * used. In these cases ARP needs to remember the <code>rdf:nodeID</code>
  * usage through the file life time. 
  * @author  Jeremy Carroll, contribution //TODO sdr, newman

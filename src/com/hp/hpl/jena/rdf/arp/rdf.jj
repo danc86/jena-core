@@ -200,7 +200,9 @@ void rdf(XMLContext ctxt) :            { ARPResource r = null; }
    white() 
    (                      try { (
      r = obj(ctxt)                    
-                          ) } finally { arp.endLocalScope(r); }
+                          ) } finally { arp.endLocalScope(r); 
+                                        r = null;
+                                      }
                             
      white() 
    ) *    
@@ -471,14 +473,10 @@ Object propEltValue(XMLContext ctxt) : { String xml;
    dtURI = datatypeAttr(ctxt)        
    dtLex = string(ctxt)                 { return X.createDatatypeLiteral(dtURI,dtLex); }
  | // OR
-   <A_PARSETYPE> 
-   <AV_RESOURCE> 
-   ( warning() ) *                      { ptr = new ARPResource(arp); }
+                                        { ptr = new ARPResource(arp); }
                          try { (
-   white() 
-   ( propertyElt(ctxt,ptr) 
-     white() 
-   ) *                                  { return ptr; }
+   propEltValueWithRes(ctxt,ptr) 
+                                     { return ptr; }
                         ) }
                         catch (ParseException e) {
                          arp.endLocalScope(ptr);
@@ -488,21 +486,35 @@ Object propEltValue(XMLContext ctxt) : { String xml;
                          arp.endLocalScope(ptr);
                          throw e;
                         }
-
- | // OR 
-                                        { ptr = new ARPResource(arp); } 
-   resourceOrNodeIdAttr(ctxt,ptr)  
-   ( propAttr(ctxt,ptr) ) *
-   empty()                              { return ptr; }
-
- | // OR
-                                        { ptr = new ARPResource(arp); }  
-   ( propAttr(ctxt,ptr) ) +
-   empty()                              { return ptr; }
-
  | // OR    This one last because it can expand to empty.
   v= value(ctxt)                        { return v; }
 }
+
+
+
+void propEltValueWithRes(XMLContext ctxt, ARPResource ptr) 
+                                     : {} 
+{    
+   <A_PARSETYPE> 
+   <AV_RESOURCE> 
+   ( warning() ) *                      
+   white() 
+   ( propertyElt(ctxt,ptr) 
+     white() 
+   ) *                                  
+
+ | // OR 
+                                        
+   resourceOrNodeIdAttr(ctxt,ptr)  
+   ( propAttr(ctxt,ptr) ) *
+   empty()                              
+
+ | // OR
+                                          
+   ( propAttr(ctxt,ptr) ) +
+   empty()                              
+
+ }
 
 
 

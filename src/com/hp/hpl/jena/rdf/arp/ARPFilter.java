@@ -352,6 +352,10 @@ class ARPFilter
 
 		public void endRDF() {
 		}
+
+		public boolean discardNodesWithNodeID() {
+			return true;
+		}
 	};
 	ExtendedHandler scopeHandler = nullScopeHandler;
 
@@ -921,13 +925,14 @@ class ARPFilter
 		    return;
 			if (bn.hasNodeID()) {
 				// save for later end scope
+				if ( scopeHandler.discardNodesWithNodeID())
+				  return;
+				  
 				String bnodeID = bn.nodeID;
 				if (!nodeIdUserData.containsKey(bnodeID))
 					nodeIdUserData.put(bnodeID, null);
 			} else {
 				scopeHandler.endBNodeScope(bn);
-				// TODO this should not be necessary
-				bn.unsetHasBeenUsed();
 				
 			}
 		}
