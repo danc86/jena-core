@@ -27,6 +27,7 @@ package com.hp.hpl.jena.ontology.impl.test;
 import junit.framework.TestSuite;
 
 import com.hp.hpl.jena.ontology.*;
+import com.hp.hpl.jena.vocabulary.RDF;
 
 
 
@@ -283,6 +284,36 @@ public class TestResource
                     a.addComment( "abcdef", "AB-CD" );
                     assertEquals( "wrong comment", "abcdef", a.getComment( "AB" ) );
                     assertEquals( "wrong comment", null, a.getComment( "AB-XY" ) );
+                }
+            },
+            new OntTestCase( "OntResource.type (no inference)", true, true, true ) {
+                public void ontTest( OntModel m ) throws Exception {
+                    OntClass A = m.createClass( NS + "A" );
+                    OntClass B = m.createClass( NS + "B" );
+                    A.addSubClass( B );
+                    
+                    OntResource a = (OntResource) m.getResource( NS + "a" ).as( OntResource.class );
+                    assertEquals( "Cardinality of rdf:type is wrong", 0, a.getCardinality( RDF.type ) );
+                    
+                    a.addRDFType( B );
+                    assertEquals( "rdf:type of a is wrong", B, a.getRDFType() );
+                    assertEquals( "rdf:type of a is wrong", B, a.getRDFType( false ) );
+                    
+                    iteratorTest( a.listRDFTypes( false ), new Object[] {B} );       // only B since we're not using an inference model
+                    iteratorTest( a.listRDFTypes( true ), new Object[] {B} );
+                    
+                    a.addRDFType( A );
+                    iteratorTest( a.listRDFTypes( false ), new Object[] {A,B} );
+                    iteratorTest( a.listRDFTypes( true ), new Object[] {B} ); 
+
+                    assertTrue( "a should not be of class A direct", !a.hasRDFType( A, true ));
+                    assertTrue( "a should not be of class B direct", a.hasRDFType( B, true ));
+
+                    OntClass C = m.createClass( NS + "C" );
+                    a.setRDFType( C );
+                    assertTrue( "a should be of class C", a.hasRDFType( C, false ));
+                    assertTrue( "a should not be of class A", !a.hasRDFType( A, false ));
+                    assertTrue( "a should not be of class B", !a.hasRDFType( B, false ));
                 }
             },
         };

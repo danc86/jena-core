@@ -156,7 +156,7 @@ public class OntClassImpl
      * @exception OntProfileException If the {@link Profile#SUB_CLASS_OF()} property is not supported in the current language profile.   
      */
     public Iterator listSuperClasses( boolean direct ) {
-        return listDirectPropertyValues( getProfile().SUB_CLASS_OF(), "SUB_CLASS_OF", OntClass.class, direct, false );
+        return listDirectPropertyValues( getProfile().SUB_CLASS_OF(), "SUB_CLASS_OF", OntClass.class, getProfile().SUB_CLASS_OF(), direct, false );
     }
 
     /**
@@ -285,7 +285,7 @@ public class OntClassImpl
      * @exception OntProfileException If the {@link Profile#SUB_CLASS_OF()} property is not supported in the current language profile.   
      */
     public Iterator listSubClasses( boolean direct ) {
-        return listDirectPropertyValues( getProfile().SUB_CLASS_OF(), "SUB_CLASS_OF", OntClass.class, direct, true );
+        return listDirectPropertyValues( getProfile().SUB_CLASS_OF(), "SUB_CLASS_OF", OntClass.class, getProfile().SUB_CLASS_OF(), direct, true );
     }
 
 
@@ -555,7 +555,7 @@ public class OntClassImpl
      * @return This ontology class, converted to a restriction on the given property 
      */
     public Restriction convertToRestriction( Property prop ) {
-        if (!hasRDFType( getProfile().RESTRICTION(), "RESTRICTION")) {
+        if (!hasRDFType( getProfile().RESTRICTION(), "RESTRICTION", false )) {
             setRDFType( getProfile().RESTRICTION() );
         }
         setPropertyValue( getProfile().ON_PROPERTY(), "ON_PROPERTY", prop );
