@@ -57,7 +57,8 @@ public class SimpleReifier implements Reifier
         }
         
     private Triple getTriple( Node n, Fragments f )
-        { return f.isComplete() ? nodeMap.putTriple( n, f.asTriple() ) : null; }
+        { // if (f.isComplete()) System.err.println( ">> this is not supposed to happen" );
+            return f.isComplete() ? nodeMap.putTriple( n, f.asTriple() ) : null; }
         
     /** true iff there is a triple bound to _n_ */
     public boolean hasTriple( Node n )

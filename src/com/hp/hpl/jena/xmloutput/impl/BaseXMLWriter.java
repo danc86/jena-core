@@ -212,7 +212,9 @@ abstract public class BaseXMLWriter implements RDFXMLWriterI {
 					val = null;
 			}
 			if (val == null) {
-				val = "j." + (count++);
+                // just in case the prefix has already been used, look for a free one.
+                // (the usual source of such prefixes is reading in a model we wrote out earlier)
+				do { val = "j." + (count++); } while (used.contains( val ));
 			}
 			ns.put(uri, val);
 
