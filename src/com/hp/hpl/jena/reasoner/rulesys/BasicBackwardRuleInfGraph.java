@@ -40,8 +40,8 @@ public class BasicBackwardRuleInfGraph extends BaseInfGraph {
     /** An optional graph of separate schema assertions that should also be processed */
     protected FGraph fschema;
     
-    /** An optional graph of axiomatic assertions added as part of the rule set */
-    protected FGraph faxioms;
+    /** Cache of deductions made from the rules */
+    protected FGraph fdeductions;
      
     /** A finder that searches across the data, schema and axioms */
     protected Finder dataFind;
@@ -103,16 +103,19 @@ public class BasicBackwardRuleInfGraph extends BaseInfGraph {
      * this prepration is done.
      */
     public void prepare() {
-        extractAxioms();
-        dataFind = fdata;
-        if (faxioms != null) {
-            dataFind = FinderUtil.cascade(dataFind, faxioms);
+        if (!isPrepared) {
+            fdeductions = new FGraph( new GraphMem() );
+            extractAxioms();
+            dataFind = fdata;
+            if (fdeductions != null) {
+                dataFind = FinderUtil.cascade(dataFind, fdeductions);
+            }
+            if (fschema != null) {
+                dataFind = FinderUtil.cascade(dataFind, fschema);
+            }
+            
+            context = new BBRuleContext(this, dataFind);
         }
-        if (fschema != null) {
-            dataFind = FinderUtil.cascade(dataFind, fschema);
-        }
-        
-        context = new BBRuleContext(this, dataFind);
         
         isPrepared = true;
     }
@@ -181,6 +184,14 @@ public class BasicBackwardRuleInfGraph extends BaseInfGraph {
         return findWithContinuation(pattern, null);
     }
 
+    /**
+     * Flush out all cached results. Future queries have to start from scratch.
+     */
+    public void reset() {
+        engine.reset();
+        isPrepared = false;
+    }
+    
 //=======================================================================
 // support for proof traces
 
@@ -265,14 +276,11 @@ public class BasicBackwardRuleInfGraph extends BaseInfGraph {
      * add those to the auxilliary graph to be included in searches.
      */
     protected void extractAxioms() {
-        Graph axioms = null;
+        Graph axioms = fdeductions.getGraph();
         for (Iterator i = rules.iterator(); i.hasNext(); ) {
             Rule rule = (Rule)i.next();
             if (rule.bodyLength() == 0) {
                 // An axiom
-                if (axioms == null) {
-                    axioms = new GraphMem();
-                }
                 for (int j = 0; j < rule.headLength(); j++) {
                     Object axiom = rule.getHeadElement(j);
                     if (axiom instanceof TriplePattern) {
@@ -280,9 +288,6 @@ public class BasicBackwardRuleInfGraph extends BaseInfGraph {
                     }
                 }
             }
-        }
-        if (axioms != null) {
-            faxioms = new FGraph(axioms);
         }
     }
     

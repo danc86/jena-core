@@ -50,8 +50,8 @@ public class BindingVector implements BindingEnvironment {
      */
     public BindingVector(BindingVector clone) {
         Node[] orig = clone.environment;
-        environment = new Node[BindingStack.MAX_VAR];
-        System.arraycopy(orig, 0, environment, 0, BindingStack.MAX_VAR); 
+        environment = new Node[orig.length];
+        System.arraycopy(orig, 0, environment, 0, orig.length); 
     }
     
     /**
@@ -70,6 +70,9 @@ public class BindingVector implements BindingEnvironment {
         if (node instanceof Node_RuleVariable) {
             Node val = environment[((Node_RuleVariable)node).getIndex()];
             if (val instanceof Node_RuleVariable) {
+                if (val == node) {
+                    System.out.println("Problem");
+                }
                 return getBinding(val);
             } else {
                 return val;
@@ -192,14 +195,32 @@ public class BindingVector implements BindingEnvironment {
      * Unify a goal with the head of a rule. This is a poor-man's unification,
      * we should try swtiching to a more conventional global-variables-with-trail
      * implementation in the future.
+     * @param goal the goal pattern which it being matched to a rule
+     * @param head the head pattern of the rule which is being instantiated
      * @return An initialized binding environment for the rule variables
      * or null if the unificatin fails. If a variable in the environment becomes
      * aliased to another variable through the unification this is represented
      * by having its value in the environment be the variable to which it is aliased.
      */ 
     public static BindingVector unify(TriplePattern goal, TriplePattern head) {
+        return unify(goal, head, BindingStack.MAX_VAR);
+    }
+        
+    /**
+     * Unify a goal with the head of a rule. This is a poor-man's unification,
+     * we should try swtiching to a more conventional global-variables-with-trail
+     * implementation in the future.
+     * @param goal the goal pattern which it being matched to a rule
+     * @param head the head pattern of the rule which is being instantiated
+     * @param numRuleVars the length of the environment to allocate.
+     * @return An initialized binding environment for the rule variables
+     * or null if the unificatin fails. If a variable in the environment becomes
+     * aliased to another variable through the unification this is represented
+     * by having its value in the environment be the variable to which it is aliased.
+     */ 
+    public static BindingVector unify(TriplePattern goal, TriplePattern head, int numRuleVars) {
         Node[] gEnv = new Node[BindingStack.MAX_VAR];
-        Node[] hEnv = new Node[BindingStack.MAX_VAR];
+        Node[] hEnv = new Node[numRuleVars];
         
         if (!unify(goal.getSubject(), head.getSubject(), gEnv, hEnv)) {
             return null;
@@ -211,7 +232,7 @@ public class BindingVector implements BindingEnvironment {
         Node gObj = goal.getObject();
         Node hObj = head.getObject();
         if (Functor.isFunctor(hObj)) {
-            if (Functor.isFunctor(hObj)) {
+            if (Functor.isFunctor(gObj)) {
                 Functor gFunctor = (Functor)gObj.getLiteral().getValue();
                 Functor hFunctor = (Functor)hObj.getLiteral().getValue();
                 if ( ! gFunctor.getName().equals(hFunctor.getName()) ) {

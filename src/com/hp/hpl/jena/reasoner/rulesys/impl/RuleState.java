@@ -76,6 +76,7 @@ public class RuleState {
         TriplePattern subgoal = env.partInstantiate((TriplePattern)clause);
         goalState = ruleInstance.engine.findGoal(subgoal);
         initMapping(subgoal);
+        ruleInstance.generator.incRefCount();
     }
     
     /**
@@ -88,6 +89,7 @@ public class RuleState {
         this.env = env;
         this.goalState = goalState;
         this.clauseIndex = index;
+        ruleInstance.generator.incRefCount();
     }
     
     /**
@@ -182,7 +184,7 @@ public class RuleState {
     public static RuleState createInitialState(Rule rule, GoalResults generator) {
         TriplePattern goal = generator.goal;
         TriplePattern head = (TriplePattern) rule.getHeadElement(0);
-        BindingVector env = BindingVector.unify(goal, head);
+        BindingVector env = BindingVector.unify(goal, head, rule.getNumVars());
         if (env == null) return null;
         
         // Find the first goal clause
@@ -247,14 +249,17 @@ public class RuleState {
      * Score a node from a pattern as part of scoreClauseBoundedness.
      */
     private static int scoreNodeBoundness(Node n, TriplePattern head, BindingVector env) {
-        if (n.isVariable() &&  (n == head.getSubject() 
-                             || n == head.getPredicate() 
-                             || n == head.getObject()) ) {
-            Node val = env.getBinding(n);
-            if (n == null || n.isVariable()) return -5;
-            return 5;
+        if (n.isVariable()) {
+            if (n == head.getSubject() || n == head.getPredicate() || n == head.getObject() ) {
+                Node val = env.getBinding(n);
+                if (n == null || n.isVariable()) return -5;
+                return 5;
+            } else {
+                return 0;
+            }
+        } else {
+            return 1;
         }
-        return 0;
     }
     
     /**

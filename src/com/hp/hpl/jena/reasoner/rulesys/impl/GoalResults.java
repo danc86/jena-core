@@ -55,6 +55,12 @@ public class GoalResults {
     /** The rule engine which this table entry is part of */
     protected BRuleEngine engine; 
     
+    /** Reference count of the number of rulestates working on values for this entry */
+    protected int refCount = 0;
+    
+    /** Flag to indicate that the goal is a singleton and so should close once one result is in */
+    protected boolean isSingleton = false;
+        
     /** log4j logger*/
     static Logger logger = Logger.getLogger(GoalResults.class);
     
@@ -74,6 +80,7 @@ public class GoalResults {
         isComplete = false;
         dependents = new HashSet();
         engine = ruleEngine;
+        isSingleton = !(goal.getSubject().isVariable() || goal.getPredicate().isVariable() || goal.getObject().isVariable());
     }
     
     /**
@@ -104,7 +111,7 @@ public class GoalResults {
      * results from this subgoal
      */
     public void addDependent(RuleState dependent) {
-        dependents.add(dependent);
+        if (!isComplete) dependents.add(dependent);
     }
     
     /**
@@ -129,6 +136,9 @@ public class GoalResults {
      * Indicate that the goal has completed.
      */
     public void setComplete() {
+        if (engine.isTraceOn()) {
+            logger.debug("Completed " + this);
+        }
         isComplete = true;
         flushDependents();
     }
@@ -163,13 +173,36 @@ public class GoalResults {
      * @return ture if this is a new result for this goal
      */
     public boolean addResult(Triple result) {
-        if (!resultSetIndex.contains(result)) {
+        if (!isComplete && !resultSetIndex.contains(result)) {
             resultSet.add(result);
             resultSetIndex.add(result);
-            flushDependents();
+            if (isSingleton) {
+                setComplete();
+            } else {
+                flushDependents();
+            }
             return true;
         }
         return false;
+    }
+    
+    /**
+     * Increment the reference count, called when a new RuleState refering to this result set
+     * is created.
+     */
+    public void incRefCount() {
+        refCount++;
+    }
+    
+    /**
+     * Decrement the reference count, called when a RuleState for this result set either
+     * fails or completes.
+     */
+    public void decRefCount() {
+        refCount--;
+        if (refCount <= 0) {
+            setComplete();
+        }
     }
     
     /**

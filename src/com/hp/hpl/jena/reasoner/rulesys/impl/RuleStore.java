@@ -46,10 +46,11 @@ public class RuleStore {
             Rule rule = (Rule)i.next();
             if (rule.headLength() != 1) {
                 for (int j = 0; j < rule.headLength(); j++) {
-                    addRule ( new Rule(rule.getName(), 
+                    Rule newRule = new Rule(rule.getName(), 
                                         new Object[] {rule.getHeadElement(j)}, 
-                                        rule.getBody()
-                                        ) );
+                                        rule.getBody() );
+                    newRule.setNumVars(rule.getNumVars());
+                    addRule(newRule);
                 }
                 
             } else {
