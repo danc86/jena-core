@@ -82,7 +82,7 @@ public class GraphRDB extends GraphBase implements Graph {
 		m_driver = con.getDriver();
 		
 		// Look for properties for this graphID
-		m_properties = DBPropGraph.findPropGraph( m_driver.getSystemSpecializedGraph(), graphID );
+		m_properties = DBPropGraph.findPropGraphByName( m_driver.getSystemSpecializedGraph(), graphID );
 		
 		if( m_properties != null) {
 			if( isNew )
