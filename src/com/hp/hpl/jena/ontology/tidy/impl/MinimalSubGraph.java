@@ -103,7 +103,7 @@ class MinimalSubGraph extends AbsChecker {
 				
 				switch ( addX(tryMe, true) ) {
 					case 0:
-					 // hasBeenChecked.add(tryMe);
+					  hasBeenChecked.add(tryMe);
 					  return;
 					case 1:
 					 if (!bestIsTrivial) break;
@@ -143,7 +143,7 @@ class MinimalSubGraph extends AbsChecker {
 			if ( addX( bestTriple, true )==0 ) {
 				System.err.println("Non-fatal logic error");
 				dump();
-				//hasBeenChecked.add(tryMe);
+				hasBeenChecked.add(tryMe);
 				return;
 				
 			} 

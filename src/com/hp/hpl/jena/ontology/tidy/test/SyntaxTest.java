@@ -99,7 +99,7 @@ class SyntaxTest extends TestCase {
 
 			CheckerImpl chk;
 			if (HP) {
-				HPChecker hpchk = new HPChecker(ent.lvl.equals(OWLTest.Lite));
+				StreamingChecker hpchk = new StreamingChecker(ent.lvl.equals(OWLTest.Lite));
 				hpchk.getRedirect().add(
 					"http://www.w3.org/2002/03owlt",
 					"file:testing/wg");

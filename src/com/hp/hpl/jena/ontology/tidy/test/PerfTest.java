@@ -410,7 +410,7 @@ public class PerfTest {
 	 * @param nms
 	 */
 	private void testHPNoOps(String nm, String[] nms) {
-		HPChecker hp = new HPChecker(false);
+		StreamingChecker hp = new StreamingChecker(false);
 		hp.getRedirect().add(
 		"http://www.w3.org/2002/03owlt",
 		"file:testing/wg");
@@ -427,7 +427,7 @@ public class PerfTest {
 	 * @param nms
 	 */
 	private void testHP(String nm, String[] nms) {
-    HPChecker hp = new HPChecker(false);
+    StreamingChecker hp = new StreamingChecker(false);
     hp.getRedirect().add(
 	"http://www.w3.org/2002/03owlt",
 	"file:testing/wg");

@@ -11,6 +11,10 @@ import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.vocabulary.OWLTest;
 import com.hp.hpl.jena.ontology.tidy.*;
 import java.util.*;
+import java.io.*;
+
+import jena.owlsyntax;
+
 //import com.hp.hpl.jena.ontology.tidy.impl.*;
 
 /**
@@ -154,6 +158,31 @@ public class Extra extends TestCase {
    	}
    	assertTrue(rsltx);
    }
+   
+   public void testEMess() {
+   	PrintStream oldOut = System.out;
+   	PrintStream oldErr = System.err;
+   	ByteArrayOutputStream bos = new ByteArrayOutputStream();
+   	try {
+   	System.setOut(new PrintStream(new OutputStream(){
+
+		public void write(int b) throws IOException {
+		}
+   	}));
+   	System.setErr(new PrintStream(bos));
+   	owlsyntax.main(new String[]{"file:testing/ontology/tidy/emess.rdf"});
+   	}
+   	finally {
+   	  System.setOut(oldOut);
+   	  System.setErr(oldErr);
+   	}
+   	String msg = bos.toString();
+   	//System.err.println(msg);
+   	
+   	assertTrue("not enough triples in error message",msg.indexOf("ObjectProperty")!=-1);
+   	assertTrue("not enough triples in error message",msg.indexOf("range")!=-1);
+   	
+   	}
 
 }
 
