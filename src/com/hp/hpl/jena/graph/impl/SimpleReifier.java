@@ -193,10 +193,12 @@ public class SimpleReifier implements Reifier
     private void removeFragment( ReifierFragmentHandler s, Triple fragment )
         {
         Node tag = fragment.getSubject();
-        Triple already = (Triple) tripleMap.getTriple( tag );
+        Triple already = tripleMap.getTriple( tag );
         Triple complete = s.removeFragment( tag, already, fragment );
         if (complete == null)
+            {
             tripleMap.removeTriple( tag );
+            }
         else
             tripleMap.putTriple( tag, complete );
         }        
