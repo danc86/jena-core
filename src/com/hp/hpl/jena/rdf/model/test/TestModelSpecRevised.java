@@ -282,6 +282,14 @@ public class TestModelSpecRevised extends ModelTestBase
         List rules = rr.getRules();
         assertSameRules( wanted, rules );
         }
+   
+    public void testDescription()
+    	{
+        String ruleString = "[rdfs3a: (?x rdfs:range  ?y), (?y rdfs:subClassOf ?z) -> (?x rdfs:range  ?z)]";
+    	Model desc = createInfModelDesc( A, GenericRuleReasonerFactory.URI, ruleString );
+    	ModelSpec s = ModelSpecImpl.create( desc );
+    	// assertIsoModels( desc, s.getDescription() );
+    	}
     
     private ModelSpec createInfModelSpec( String ruleString )
         {
@@ -302,7 +310,7 @@ public class TestModelSpecRevised extends ModelTestBase
             ;
         return modelWithStatements( d, new Object[] {URI, "'" + ruleString + "'"} ); 
         }
-    
+   
     /**
      * @param factoryURI
      * @param rulesURL
