@@ -9,7 +9,6 @@ package com.hp.hpl.jena.graph;
 import com.hp.hpl.jena.graph.query.*;
 import com.hp.hpl.jena.util.iterator.ExtendedIterator;
 
-import java.util.*;
 
 /**
  * @author Jeremy Carroll

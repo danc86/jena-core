@@ -8,7 +8,6 @@ package com.hp.hpl.jena.n3;
 import com.hp.hpl.jena.rdf.model.*;
 import java.net.* ;
 import java.io.* ;
-import java.util.*;
 
 // To do: buffereing version that does the whole file before adding statements (error catcher)
 

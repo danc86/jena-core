@@ -9,7 +9,6 @@ package com.hp.hpl.jena.graph;
 import com.hp.hpl.jena.graph.query.*;
 import com.hp.hpl.jena.util.iterator.*;
 
-import java.util.*;
 
 /**
     GraphBase is an implementation of Graph that provides some convenient
