@@ -12,12 +12,7 @@ package com.hp.hpl.jena.rdf.model;
  	@author kers
 */
 public interface ModelSpec extends ModelSource
-    {
-    /**
-        Answer a new Model which fits the specification of this ModelSpec.
-    */
-    Model createModel();
-    
+    {    
     /**
         Answer a Model that fits the specification of this ModelSpec and is built over some
         underlying model with the given name. [It is not necessary for the resulting model

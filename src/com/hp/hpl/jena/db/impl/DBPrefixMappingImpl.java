@@ -65,7 +65,7 @@ public class DBPrefixMappingImpl extends PrefixMappingImpl {
 	 * @see com.hp.hpl.jena.shared.PrefixMapping#setNsPrefix(java.lang.String, java.lang.String)
 	 */
 	public PrefixMapping setNsPrefix(String prefix, String uri) {
-        // this avoids touching the 
+        // this avoids touching the database for existing maplets.
         if (uri.equals( super.getNsPrefixURI( prefix ) )) return this;
 		// Ordering is important here - we need to add it to the prefixMappingImpl
 		// first since it checks the validity of the prefix (it will throw
