@@ -709,7 +709,7 @@ public class OntDocumentManager
     /**
      * <p>Unload all of the imports in the queue</p>
      * @param model The model to unload the imports from
-     * @param readQueue The queue of imports to unload
+     * @param unloadQueue The queue of imports to unload
      */
     protected void unloadImports( OntModel model, List unloadQueue ) {
         while (!unloadQueue.isEmpty()) {
@@ -913,7 +913,7 @@ public class OntDocumentManager
      *
      * @param model The composite model to load into
      * @param importURI The URI of the document to load
-     * @param readState Cumulate read state for this operation
+     * @param readQueue Cumulative read queue for this operation
      */
     protected void loadImport( OntModel model, String importURI, List readQueue ) {
         if (m_processImports) {

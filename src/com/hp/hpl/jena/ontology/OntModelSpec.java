@@ -486,7 +486,7 @@ public class OntModelSpec extends ModelSpecImpl implements ModelSpec {
         Augment the description with that of our reasoner factory
         @param d the description to augment
         @param me the resource to use to represent this OntModelSpec
-        @param the reasoner factory to describe 
+        @param rf the reasoner factory to describe 
     */        
     protected void addReasonerDescription( Model d, Resource me, ReasonerFactory rf )
         {

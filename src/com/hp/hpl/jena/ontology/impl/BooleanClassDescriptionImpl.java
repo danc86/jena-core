@@ -100,7 +100,7 @@ public abstract class BooleanClassDescriptionImpl
 
 	/**
 	 * <p>Add all of the classes from the given iterator to the operands of this boolean expression.</p>
-	 * @param cls A iterator over classes that will be added to the operands of this Boolean expression
+	 * @param classes A iterator over classes that will be added to the operands of this Boolean expression
 	 * @exception OntProfileException If the operand property is not supported in the current language profile.   
 	 */ 
 	public void addOperands( Iterator classes ) {

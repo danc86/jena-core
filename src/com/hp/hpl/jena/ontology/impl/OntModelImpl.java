@@ -1878,7 +1878,8 @@ public class OntModelImpl
      * <p>Read statements into the model from the given source, and then load
      * imported ontologies (according to the document manager policy).</p>
      * @param uri URI to read from, may be mapped to a local source by the document manager
-     * @param lang The source syntax
+     * @param syntax The source syntax
+     * @return This model, to allow chaining calls
      */
     public Model read( String uri, String syntax ) {
         String sourceURL = getDocumentManager().doAltURLMapping( uri );
@@ -1915,7 +1916,8 @@ public class OntModelImpl
      * imported ontologies (according to the document manager policy).</p>
      * @param reader An input reader
      * @param base The base URI
-     * @param lang The source syntax
+     * @param syntax The source syntax
+     * @return This model, to allow chaining calls
      */
     public Model read(Reader reader, String base, String syntax) {
         super.read( reader, base, syntax );
@@ -1930,7 +1932,8 @@ public class OntModelImpl
      * imported ontologies (according to the document manager policy).</p>
      * @param reader An input stream
      * @param base The base URI
-     * @param lang The source syntax
+     * @param syntax The source syntax
+     * @return This model, to allow chaining calls
      */
     public Model read(InputStream reader, String base, String syntax) {
         super.read( reader, base, syntax );

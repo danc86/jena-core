@@ -743,7 +743,6 @@ public class DAMLTest
 
     /**
      * Testing restrictions
-     * @param m
      */
     public void testRestriction() {
         DAMLModel m = ModelFactory.createDAMLModel();

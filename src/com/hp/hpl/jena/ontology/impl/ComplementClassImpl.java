@@ -139,7 +139,7 @@ public class ComplementClassImpl
 
 	/**
 	 * <p>Add all of the classes from the given iterator to the operands of this boolean expression.</p>
-	 * @param cls A iterator over classes that will be added to the operands of this Boolean expression
+	 * @param classes A iterator over classes that will be added to the operands of this Boolean expression
 	 * @exception Always throws UnsupportedOperationException since a complement expression takes only
 	 * a single argument.    
 	 */ 

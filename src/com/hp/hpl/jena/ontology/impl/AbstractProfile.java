@@ -110,7 +110,7 @@ public abstract class AbstractProfile
         Utility method: answer true iff the enhanced graph contains some triple which
         has n as subject, p.asNode() as predicate, and any object.
         
-         @param an enhanced graph to search for triples
+         @param g an enhanced graph to search for triples
          @param n some node
          @param p a property containing a predicate node
          @return true iff the graph contains (n, p, X) for some X 

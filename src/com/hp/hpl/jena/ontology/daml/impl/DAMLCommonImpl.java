@@ -108,7 +108,7 @@ public class DAMLCommonImpl
      * model it will be attached to.</p>
      *
      * @param n The node that is being presented as a DAMLCommonImpl
-     * @param model Reference to the DAML model that will contain statements about this DAML value.
+     * @param g Reference to the enhanced graph that will contain statements about this DAML value.
      */
     public DAMLCommonImpl( Node n, EnhGraph g )
     {

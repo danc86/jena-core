@@ -427,7 +427,7 @@ public class OntClassImpl
 
     /**
      * <p>Answer true if the given class is equivalent to this class.</p>
-     * @param class A class to test for
+     * @param cls A class to test for
      * @return True if the given property is equivalent to this class.
      * @exception OntProfileException If the {@link Profile#EQUIVALENT_CLASS()} property is not supported in the current language profile.   
      */
