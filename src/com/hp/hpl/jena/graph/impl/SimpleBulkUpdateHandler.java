@@ -138,8 +138,11 @@ public class SimpleBulkUpdateHandler implements BulkUpdateHandler
     
     public void removeAll()
         { removeAll( graph ); 
-        manager.notifyEvent( graph, GraphEvents.removeAll ); }
+        notifyRemoveAll(); }
     
+    protected void notifyRemoveAll()
+        { manager.notifyEvent( graph, GraphEvents.removeAll ); }
+
     public void remove( Node s, Node p, Node o )
         { removeAll( graph, s, p, o ); 
         manager.notifyEvent( graph, GraphEvents.remove( s, p, o ) ); }

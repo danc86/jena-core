@@ -41,6 +41,9 @@ public final class NodeToTriplesMap
         Set s = (Set) map.get( o );
         return s == null ? NullIterator.instance :  s.iterator();
         }
+    
+    public void clear() 
+        { map.clear(); }
     }
 /*
     (c) Copyright 2003, Hewlett-Packard Development Company, LP

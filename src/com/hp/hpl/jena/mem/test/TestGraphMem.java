@@ -9,6 +9,7 @@ package com.hp.hpl.jena.mem.test;
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.graph.test.*;
 import com.hp.hpl.jena.mem.GraphMem;
+import com.hp.hpl.jena.shared.JenaException;
 import com.hp.hpl.jena.util.iterator.ExtendedIterator;
 
 import junit.framework.*;
@@ -59,6 +60,21 @@ public class TestGraphMem extends AbstractTestGraph
         ExtendedIterator it = g.find( Node.ANY, Node.ANY, node( "y" ) );
         it.next(); it.remove();
         assertFalse( g.find( Node.ANY, Node.ANY, Node.ANY ).hasNext() );
+        }
+    
+    public void testRemoveAllDoesntUseFind()
+        {
+        Graph g = new GraphMem()
+        	{
+            public ExtendedIterator find( Node s, Node p, Node o )
+                { throw new JenaException( "find is Not Allowed" ); }
+            
+            public ExtendedIterator find( Triple t )
+                { throw new JenaException( "find is Not Allowed" ); }
+        	};
+        graphAdd( g, "x P y; a Q b" );
+        g.getBulkUpdateHandler().removeAll();
+        assertEquals( 0, g.size() );
         }
     }
 
