@@ -4,7 +4,7 @@
   $Id$
 */
 
-package com.hp.hpl.jena.rdf.model;
+package com.hp.hpl.jena.shared;
 
 import java.util.*;
 

@@ -7,6 +7,8 @@
 package com.hp.hpl.jena.graph;
 
 import com.hp.hpl.jena.graph.query.*;
+import com.hp.hpl.jena.shared.PrefixMapping;
+
 import com.hp.hpl.jena.util.iterator.ExtendedIterator;
 
 
@@ -44,6 +46,12 @@ public interface Graph  {
         Reifier object.
     */
     Reifier getReifier();
+    
+    /**
+        returns this Graph's prefix mapping. Each call on a given Graph gets the
+        same PrefixMapping object, which is the one used by the Graph.
+    */
+    PrefixMapping getPrefixMapping();
     
     /** adds the triple t (if possible) to the set belong to the graph */
 	void add(Triple t) throws UnsupportedOperationException, VirtualTripleException;

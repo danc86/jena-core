@@ -360,6 +360,7 @@ public class DBConnection implements IDBConnection {
 				m_driver.setConnection( this );
 			} 
 		} catch (Exception e) {
+            // e.printStackTrace( System.err );
 			throw new RDFRDBException("Failure to instantiate DB Driver:"+ m_databaseType+ " "+ e.toString());
 		}
 

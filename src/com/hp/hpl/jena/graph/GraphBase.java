@@ -9,6 +9,8 @@ package com.hp.hpl.jena.graph;
 import com.hp.hpl.jena.graph.query.*;
 import com.hp.hpl.jena.util.iterator.*;
 
+import com.hp.hpl.jena.shared.PrefixMapping;
+import com.hp.hpl.jena.shared.impl.PrefixMappingImpl;
 
 /**
     GraphBase is an implementation of Graph that provides some convenient
@@ -44,6 +46,11 @@ public abstract class GraphBase implements Graph {
         
     public Capabilities getCapabilities()
         { return null; }
+        
+    private PrefixMapping pm = new PrefixMappingImpl();
+    
+    public PrefixMapping getPrefixMapping()
+        { return pm; }
 
 	/**
 	 * @see com.hp.hpl.jena.graph.Graph#add(Triple)
@@ -115,8 +122,8 @@ public abstract class GraphBase implements Graph {
 		return 0;
 	}
 
-	public boolean isIsomorphicWith(Graph g) {
-		return g != null && GraphMatcher.equals(this, g);
+	public boolean isIsomorphicWith( Graph g ) {
+		return g != null && GraphMatcher.equals( this, g );
 	}
 
 	/** for little graphs only ... */
