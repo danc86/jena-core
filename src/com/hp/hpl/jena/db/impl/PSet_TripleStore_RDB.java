@@ -485,7 +485,7 @@ public void deleteTripleAR(
 	   * @param tableName
 	   * @param isBatch
 	   * @param batchedPreparedStatements
-	   * @returnthe prepared statement
+	   * @return the prepared statement
 	   * @throws SQLException
 	   */
 	  public PreparedStatement getPreparedStatement(String op, 
