@@ -578,6 +578,46 @@ public abstract class AbstractTestQuery extends GraphTestBase
         for (int i = 0; i < stages.size(); i += 1) assertTrue( ((Stage) stages.get(i)).isClosed() );
         }
         
+    public void testRewriteStartswithExpression()
+        {
+        Query q = new Query();
+        Expression L = constant( "x" );
+        Expression R = constant( "/^begins/" );
+        String F = "Q_StringMatch";
+        Expression provided = dyadic( L, "Q_StringMatch", R );
+        Expression desired = dyadic( L, "J_startsWith", constant( "begins" ) );
+        assertEquals( dyadic( L, F, R ), dyadic( L, F, R ) );
+        q.addConstraint( provided );
+        Expression e2 = (Expression) q.getConstraints().iterator().next();
+        assertEquals( desired, e2 );
+        }
+    
+    public void testRewriteEndswithExpression()
+        {
+        Query q = new Query();
+        Expression L = constant( "x" );
+        Expression R = constant( "/ends$/" );
+        String F = "Q_StringMatch";
+        Expression provided = dyadic( L, "Q_StringMatch", R );
+        Expression desired = dyadic( L, "J_endsWith", constant( "ends" ) );
+        q.addConstraint( provided );
+        Expression e2 = (Expression) q.getConstraints().iterator().next();
+        assertEquals( desired, e2 );
+        }
+    
+    private Expression constant( final String string )
+        { return new Expression.Fixed( string ); }
+
+    private Expression dyadic( Expression l, String op, Expression r )
+        {
+        final String f = ExpressionFunctionURIs.prefix + op;
+        return new Dyadic( l, f, r )
+            {
+            public boolean evalBool( Object l, Object r )
+                { return false; }
+            };
+        }
+
     /**
         Test that a variety of triple-sorters make no difference to the results of a query
         over a moderately interesting graph.

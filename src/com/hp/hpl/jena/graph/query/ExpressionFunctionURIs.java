@@ -14,7 +14,7 @@ package com.hp.hpl.jena.graph.query;
 */
 public interface ExpressionFunctionURIs 
     {
-    public static final String prefix = "http://jena.hpl.hp.com/query/functions#";
+    public static final String prefix = "urn:x-jena:expr:";
     public static final String AND = prefix + "AND"; 
     }
 

@@ -121,7 +121,6 @@ public abstract class Node {
             start = b + 2;
             }
         result.append( spelling.substring( start ) );
-        // System.err.println( ">> escaped => " + result );
         return result.toString();
         }
     

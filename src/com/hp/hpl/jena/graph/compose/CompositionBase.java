@@ -134,7 +134,8 @@ public abstract class CompositionBase
                 { return i.hasNext(); }    
             
             public Object next()
-                { Object x = i.next(); seen.add( x ); return x; }  
+                { Object x = i.next(); 
+                try { seen.add( x ); } catch (OutOfMemoryError e) { throw e; } return x; }  
                 
             public void close()
                 { i.close(); }
