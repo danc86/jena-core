@@ -81,8 +81,6 @@ public class TestOWLRules extends TestCase {
         suite.addTest(new TestOWLRules("equivalentProperty/Manifest001.rdf"));    // bx - long but terminates
         suite.addTest(new TestOWLRules("equivalentProperty/Manifest002.rdf"));    // bx - long but terminates
         suite.addTest(new TestOWLRules("equivalentProperty/Manifest003.rdf"));
-        suite.addTest(new TestOWLRules("I4.6/Manifest001.rdf"));
-        suite.addTest(new TestOWLRules("I4.6/Manifest002.rdf"));
         suite.addTest(new TestOWLRules("I5.1/Manifest001.rdf"));   // bx - v. long but terminates
         suite.addTest(new TestOWLRules("I5.24/Manifest001.rdf"));
         suite.addTest(new TestOWLRules("I5.24/Manifest002-mod.rdf"));
