@@ -1,5 +1,5 @@
 /*
- *  (c) Copyright Hewlett-Packard Company 2002, 2003
+ *  (c) Copyright 2002, 2003 Hewlett-Packard Development Company, LP
  *  
  *  All rights reserved.
  * 
@@ -911,7 +911,7 @@ public class GraphMatcher extends java.lang.Object {
     
 }
 /*
- *  (c) Copyright Hewlett-Packard Company 2002, 2003
+ *  (c) Copyright 2002, 2003 Hewlett-Packard Development Company, LP
  *  
  *  All rights reserved.
  * 

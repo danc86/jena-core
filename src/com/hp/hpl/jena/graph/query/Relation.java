@@ -1,5 +1,5 @@
 /*
-  (c) Copyright 2002, 2003, Hewlett-Packard Company, all rights reserved.
+  (c) Copyright 2002, 2003, Hewlett-Packard Development Company, LP
   [See end of file]
   $Id$
 */
@@ -39,7 +39,7 @@ public abstract class Relation extends PredicateBase implements Predicate
     }
 
 /*
-    (c) Copyright Hewlett-Packard Company 2002, 2003
+    (c) Copyright 2002, 2003 Hewlett-Packard Development Company, LP
     All rights reserved.
 
     Redistribution and use in source and binary forms, with or without

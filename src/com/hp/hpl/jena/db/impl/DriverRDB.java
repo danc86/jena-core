@@ -1,5 +1,5 @@
 /*
-  (c) Copyright 2003, Hewlett-Packard Company, all rights reserved.
+  (c) Copyright 2003, Hewlett-Packard Development Company, LP
   [See end of file]
 */
 
@@ -1901,7 +1901,7 @@ public abstract class DriverRDB implements IRDBDriver {
 	public void setTableNamePrefix ( String prefix ) {
 		if ( (prefix.length() + JENA_LONGEST_TABLE_NAME_LENGTH) >
 										TABLE_NAME_LENGTH_MAX )
-			throw new JenaException("TableNamePrefix exceeds maximum length for database: "				+ TABLE_NAME_LENGTH_MAX);
+			throw new JenaException("TableNamePrefix exceeds maximum length for database: "				+ TABLE_NAME_LENGTH_MAX);
 		if ( dbIsOpen() )
 			throw new JenaException("Table name prefix must be set before opening or connecting to a model.");
 		setTableNames(prefix);
@@ -1942,7 +1942,7 @@ public abstract class DriverRDB implements IRDBDriver {
 
 
 /*
- *  (c) Copyright Hewlett-Packard Company 2000, 2001
+ *  (c) Copyright 2000, 2001 Hewlett-Packard Development Company, LP
  *  All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
