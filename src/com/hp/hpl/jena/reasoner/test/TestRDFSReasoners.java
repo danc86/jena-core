@@ -69,8 +69,11 @@ public class TestRDFSReasoners extends TestCase {
             
             suite.addTest(new TestRDFSMisc(RDFSRuleReasonerFactory.theInstance(), null));
 
-            Resource configFull = new ModelMem().createResource().addProperty(ReasonerVocabulary.PROPenableFullRDFS, true);
+            Resource configFull = new ModelMem().createResource().addProperty(ReasonerVocabulary.PROPsetRDFSLevel, ReasonerVocabulary.RDFS_FULL);
             constructQuerytests(suite, "rdfs/manifest.rdf", RDFSRuleReasonerFactory.theInstance(), configFull);
+
+            Resource configSimple = new ModelMem().createResource().addProperty(ReasonerVocabulary.PROPsetRDFSLevel, ReasonerVocabulary.RDFS_SIMPLE);
+            constructQuerytests(suite, "rdfs/manifest-simple.rdf", RDFSRuleReasonerFactory.theInstance(), configSimple);
             
             // Single test case used in debugging, subsumed by above
 //            constructSingleQuerytests(suite, 
