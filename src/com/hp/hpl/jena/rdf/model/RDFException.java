@@ -178,18 +178,7 @@ public class RDFException extends RuntimeException {
         this.message = errorMessage[this.errorCode];
         nestedException = e;
     }
-    
-    /** Create a new RDFException with a given error code and encapsulate another
-     * exception.
-     * @param errorCode The code number of the error which has occurred.
-     * @param e The exception to be encapsulated.
-     */
-    public RDFException(int errorCode, Exception e) {
-        this.errorCode = errorCode;
-        this.message = errorMessage[NESTEDEXCEPTION];
-        nestedException = e;
-    }
-    
+
     /** Create a new RDFException with a given error code and message
      * @param errorCode The code number of the error which has occurred.
      * @param message The message associated with the error

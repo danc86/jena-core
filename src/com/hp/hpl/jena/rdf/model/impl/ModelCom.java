@@ -481,13 +481,7 @@ implements Model, ModelI, PrefixMapping, ModelLock
         { return new ResourceImpl( id ); }
         
     public Resource createResource(String uri, ResourceF f) throws RDFException {
-        try {
-            return f.createResource(createResource(uri));
-        } catch (Exception e) {
-            e.printStackTrace( System.out );
-           throw new RDFException(RDFException.NESTEDEXCEPTION, e);
-       }
-       
+       return f.createResource( createResource( uri ) );
     }
     
  
