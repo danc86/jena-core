@@ -15,6 +15,7 @@ import com.hp.hpl.jena.ontology.*;
 import com.hp.hpl.jena.ontology.daml.DAMLModel;
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.reasoner.*;
+import com.hp.hpl.jena.util.PrintUtil;
 import com.hp.hpl.jena.util.iterator.ExtendedIterator;
 import com.hp.hpl.jena.vocabulary.*;
 
@@ -45,7 +46,7 @@ public class TestBugs extends TestCase {
     public static TestSuite suite() {
         return new TestSuite( TestBugs.class );
 //        TestSuite suite = new TestSuite();
-//        suite.addTest(new TestBugs( "testSubProperty" ));
+//        suite.addTest(new TestBugs( "testEquivalentClass1" ));
 //        return suite;
     }  
 
@@ -222,8 +223,28 @@ public class TestBugs extends TestCase {
         assertTrue( "a1 p a0", a1.hasProperty( p, a0 ) );   // entailed
     }
 
-}
+    /**
+     * Test  problems with inferring equivalence of some simple class definitions,
+     * reported by Jeffrey Hau.
+     */
+    public void testEquivalentClass1() {
+        Model base = ModelFactory.createDefaultModel();
+        base.read("file:testing/reasoners/bugs/equivalentClassTest.owl");
+        InfModel test = ModelFactory.createInfModel(ReasonerRegistry.getOWLReasoner(), base);
+        String NAMESPACE = "urn:foo#";
+        Resource A = test.getResource(NAMESPACE + "A");
+        Resource B = test.getResource(NAMESPACE + "B");
+        assertTrue("hasValue equiv deduction", test.contains(A, OWL.equivalentClass, B));
+    }
 
+    // debug assistant
+    private void tempList(Model m, Resource s, Property p, RDFNode o) {
+        System.out.println("Listing of " + PrintUtil.print(s) + " " + PrintUtil.print(p) + " " + PrintUtil.print(o));
+        for (StmtIterator i = m.listStatements(s, p, o); i.hasNext(); ) {
+            System.out.println(" - " + i.next());
+        }
+    }    
+}
 
 /*
     (c) Copyright Hewlett-Packard Company 2003
