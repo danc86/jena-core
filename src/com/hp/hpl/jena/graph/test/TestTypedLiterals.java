@@ -536,6 +536,11 @@ public class TestTypedLiterals extends TestCase {
         assertTrue(XSDDatatype.XSDstring.isValidLiteral(ll));
         assertTrue(! XSDDatatype.XSDint.isValidLiteral(ll));
        
+       // Test the isValidValue form which had a problem with numbers
+       assertTrue(XSDDatatype.XSDnonNegativeInteger.isValidValue(new Long(10)));
+       assertTrue(XSDDatatype.XSDnonNegativeInteger.isValidValue(new Integer(10)));
+       assertTrue(!XSDDatatype.XSDnonNegativeInteger.isValidValue(new Long(-10)));
+       assertTrue(!XSDDatatype.XSDnonNegativeInteger.isValidValue("10"));
     }
     
       

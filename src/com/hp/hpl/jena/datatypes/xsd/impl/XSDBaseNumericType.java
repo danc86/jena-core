@@ -61,6 +61,18 @@ public class XSDBaseNumericType extends XSDDatatype {
             return false;
         }
     }
+     
+    /**
+     * Test whether the given object is a legal value form
+     * of this datatype. Brute force implementation.
+     */
+    public boolean isValidValue(Object valueForm) {
+        if (valueForm instanceof Number) {
+            return isValid(valueForm.toString());
+        } else {
+            return false;
+        }
+    }
 }
 
 /*
