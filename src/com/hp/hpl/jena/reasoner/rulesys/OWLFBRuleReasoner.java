@@ -35,7 +35,7 @@ public class OWLFBRuleReasoner extends FBRuleReasoner {
     protected static FBRuleInfGraph preload; 
     
     /** log4j logger */
-    protected static Logger logger = Logger.getLogger(OWLRuleReasoner.class);
+    protected static Logger logger = Logger.getLogger(OWLFBRuleReasoner.class);
     
     /**
      * Constructor
