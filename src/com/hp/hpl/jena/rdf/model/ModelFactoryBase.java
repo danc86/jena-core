@@ -4,53 +4,67 @@
   $Id$
 */
 
-package com.hp.hpl.jena.rdf.model.test;
+package com.hp.hpl.jena.rdf.model;
 
-import com.hp.hpl.jena.graph.*;
-import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.shared.*;
 
-import com.hp.hpl.jena.db.*;
-
-import junit.framework.*;
-
 /**
-    Tests the ModelFactory code. Very skeletal at the moment. It's really
-    testing that the methods actually exists, but it doesn't check much in
-    the way of behaviour.
+    Helper functions for ModelFactory - in here to keep from obtruding on the
+    end-users.
     
-    @author kers
+ 	@author kers
 */
-
-public class TestModelFactory extends GraphTestBase
+public class ModelFactoryBase
     {
-    public static TestSuite suite()
-        { return new TestSuite( TestModelFactory.class ); }   
-        
-    public TestModelFactory(String name)
-        { super(name); }
-
-    public void testCreateDefaultModel()
-        {
-        Model m = ModelFactory.createDefaultModel();
-        m.close();
-        }    
-        
-    public void testRDBStuff()
-        {
-//        try { Class.forName( "com.mysql.jdbc.Driver" ); }
-////        catch (Exception e) { throw new JenaException( e ); }
-//        IDBConnection c = ModelFactory.createSimpleRDBConnection();
-//        assertNotNull( c );
-//        ModelMaker mm = ModelFactory.createModelRDBMaker( c ); 
-//        Model m1 = mm.createModel( "brujo" );
-        
+    protected static String guessDBURL()
+        { return gp( "db.url" ); }
+    
+    protected static String guessDBUser()
+        { return gp( "db.user", "test" ); }
+    
+    protected static String guessDBPassword()
+        { return gp( "db.password", "" ); }
+    
+    protected static String guessDBType()
+        { 
+        String possible = gp( "db.type", null );
+        if (possible == null) possible = extractType( guessDBURL() );    
+        if (possible == null) throw new JenaException( "cannot guess database type" );
+        return possible;
         }
-        
+    
+    /**
+        Guess the database type as the string between the first and second colons of the
+        URL.
+    
+        @param dbURL a string of the form nocolons:somename:somestuff
+        @return somename
+    */
+    protected static String extractType( String dbURL )
+        {
+        int a = dbURL.indexOf( ':' );
+        int b = dbURL.indexOf( ':', a + 1 );
+        return dbURL.substring( a + 1, b );
+        }
+    
+    protected static String gp( String name )
+        {
+        String answer = gp( name, null );
+        if (answer == null) throw new JenaException( "no binding for " + name );
+        return answer;
+        }
+    
+    protected static String gp( String name, String ifAbsent )
+        { 
+        String answer = System.getProperty( "jena." + name ); 
+        return answer == null ? ifAbsent : answer;
+        }
+
     }
 
+
 /*
-    (c) Copyright Hewlett-Packard Company 2002, 2003
+    (c) Copyright Hewlett-Packard Company 2003
     All rights reserved.
 
     Redistribution and use in source and binary forms, with or without
