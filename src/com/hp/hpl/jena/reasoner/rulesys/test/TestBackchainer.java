@@ -660,7 +660,7 @@ public class TestBackchainer extends TestCase {
         List rules = Rule.parseRules(
         "[rdfs8:  (?a rdfs:subClassOf ?b), (?b rdfs:subClassOf ?c) -> (?a rdfs:subClassOf ?c)]" + 
         "[rdfs9:  (?x rdfs:subClassOf ?y), (?a rdf:type ?x) -> (?a rdf:type ?y)]" +
-        "[-> (rdf:type rdfs:range rdfs:Class)]" +
+//        "[-> (rdf:type rdfs:range rdfs:Class)]" +
         "[rdfs3:  (?x ?p ?y), (?p rdfs:range ?c) -> (?y rdf:type ?c)]" +
         "[rdfs7:  (?a rdf:type rdfs:Class) -> (?a rdfs:subClassOf ?a)]"
                         );        
@@ -845,10 +845,11 @@ public class TestBackchainer extends TestCase {
         data.add(new Triple(C1, sC, C2));
         data.add(new Triple(C2, sC, C3));
         data.add(new Triple(a, ty, C1));
+        data.add(new Triple(ty, RDFS.range.asNode(), RDFS.Class.asNode()));
         List rules = Rule.parseRules(
         "[rdfs8:  (?a rdfs:subClassOf ?b), (?b rdfs:subClassOf ?c) -> (?a rdfs:subClassOf ?c)]" + 
         "[rdfs9:  (?x rdfs:subClassOf ?y), (?a rdf:type ?x) -> (?a rdf:type ?y)]" +
-        "[-> (rdf:type rdfs:range rdfs:Class)]" +
+//        "[-> (rdf:type rdfs:range rdfs:Class)]" +
         "[rdfs3:  (?x ?p ?y), (?p rdfs:range ?c) -> (?y rdf:type ?c)]" +
         "[rdfs7:  (?a rdf:type rdfs:Class) -> (?a rdfs:subClassOf ?a)]"
                         );        

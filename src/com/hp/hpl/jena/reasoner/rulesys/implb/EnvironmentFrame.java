@@ -25,7 +25,7 @@ import com.hp.hpl.jena.graph.Node;
  */
 public class EnvironmentFrame extends FrameObject {
 
-    /** The set of permanent variables Yi) in use by this frame.  */
+    /** The set of permanent variables Y(i) in use by this frame.  */
     Node[] pVars;
     
     /** The code the the clause currently being processed */

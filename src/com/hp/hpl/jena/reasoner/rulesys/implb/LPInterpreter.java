@@ -183,6 +183,7 @@ public class LPInterpreter {
             return topTMFrame.lastMatch;
         } else {
             Triple t = new Triple(deref(pVars[0]), deref(pVars[1]), derefPossFunctor(pVars[2]));
+            System.out.println("Ans: " + t);
             return t;
         }
     }
@@ -599,6 +600,11 @@ public class LPInterpreter {
      * Restore the interpter state according to the given consumer choice point.
      */
     public void restoreState(ConsumerChoicePointFrame ccp) {
+        // Temp
+        Node s = ccp.goal.getSubject(); 
+        if (s.isURI() && s.getURI().equals("C1")) {
+            System.out.println("Restore of " + ccp.goal);
+        }
         cpFrame = ccp;
         System.arraycopy(ccp.argVars, 0, argVars, 0, argVars.length);
         unwindTrail(0);
@@ -672,6 +678,11 @@ public class LPInterpreter {
     public static Node derefPossFunctor(Node node) {
         if (node instanceof Node_RuleVariable) {
             Node dnode = ((Node_RuleVariable)node).deref();
+            if (dnode.isVariable()) {
+                // Problem with variable in return result
+                // Temp debug ...
+                System.out.println("Hit problem");
+            }
             if (Functor.isFunctor(dnode)) {
                 Functor f = (Functor) dnode.getLiteral().getValue();
                 Node[] fargs = f.getArgs();

@@ -686,7 +686,8 @@ public class RuleClauseCode {
             String test14 = "(?x p ?z) <- (?x e ?z), (?z q ?z).";
             String test15 = "(?x p ?y ) <- bound(?x), (?x p ?y).";
             String test16 = "(a p b ) <- unbound(?x).";
-            store.addRule(Rule.parseRule(test16));
+            String test17 = "(?a p ?a) <- (?a q class).";
+            store.addRule(Rule.parseRule(test17));
             System.out.println("Code for p:");
             List codeList = store.codeFor(Node.createURI("p"));
             RuleClauseCode code = (RuleClauseCode)codeList.get(0);
