@@ -36,6 +36,7 @@ import com.hp.hpl.jena.vocabulary.RDF;
 
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.enhanced.*;
+import com.hp.hpl.jena.shared.*;
 
 /** An internal class not normally of interest to application developers.
  *  A base class on which the other containers are built.
@@ -180,7 +181,7 @@ public class ContainerImpl extends ResourceImpl
             getModel().remove(last);
         }
         if (size() != (size -1)) 
-            throw new RDFException(RDFException.ASSERTIONFAILURE); 
+            throw new JenaAssertionFailureException( "container size" ); 
         return this;
     }
     

@@ -290,7 +290,7 @@ abstract public class BaseXMLWriter implements RDFXMLWriterI {
 	String splitTag(String uriref, int type) {
 		int split = Util.splitNamespace(uriref);
 		if (split == uriref.length())
-			throw new RDFException(RDFException.INVALIDPROPERTYURI, uriref );
+			throw new JenaInvalidPropertyURIException( uriref );
 		return tag(
 			uriref.substring(0, split),
 			uriref.substring(split),
@@ -314,7 +314,7 @@ abstract public class BaseXMLWriter implements RDFXMLWriterI {
 						"The URI rdf:"
 							+ local
 							+ " cannot be serialized in RDF/XML.");
-					throw new RDFException(RDFException.INVALIDPROPERTYURI);
+					throw new JenaInvalidPropertyURIException( "rdf:" + local );
 				}
 			}
 		}

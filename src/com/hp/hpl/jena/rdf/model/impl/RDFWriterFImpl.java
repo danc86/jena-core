@@ -102,7 +102,7 @@ public class RDFWriterFImpl extends Object implements RDFWriterF {
 
         String className = langToClassName.getProperty(lang);
         if (className == null || className.equals("")) {
-            throw new RDFException(RDFException.NOWRITERFORLANG);
+            throw new JenaNoWriterForLangException( lang );
         }
         try {
             return (RDFWriter) Class.forName(className).newInstance();

@@ -738,7 +738,7 @@ implements Model, ModelI, PrefixMapping, ModelLock
     
     public Property getProperty(String uri)  {
         if ( uri == null )
-             throw new RDFException(RDFException.INVALIDPROPERTYURI);
+             throw new JenaInvalidPropertyURIException( null );
         return IteratorFactory.asProperty(makeURI(uri),this);
     }
     

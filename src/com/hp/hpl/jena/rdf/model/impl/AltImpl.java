@@ -35,6 +35,7 @@ import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.vocabulary.RDF;
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.enhanced.*;
+import com.hp.hpl.jena.shared.*;
 
 /** An implementation of Alt.
  *
@@ -51,23 +52,20 @@ public class AltImpl extends ContainerImpl implements Alt {
         }
     };
     
-    private AltImpl( Resource r )
-        { super( r ); }
-        
     /** Creates new AltMem */
     public AltImpl(Model model) throws RDFException 
-        { super(model); }
+        { super( model ); }
     
     public AltImpl(String uri, Model model) throws RDFException {
-        super(uri, model);
+        super( uri, model );
     }
     
     public AltImpl(Resource r, Model m) throws RDFException {
-        super(r, m);
+        super( r, m );
     }
     
     public AltImpl(Node n, EnhGraph g) {
-        super(n,g);
+        super( n, g );
     }
     
     /** get the default statement, explode if there isn't one */
@@ -75,7 +73,7 @@ public class AltImpl extends ContainerImpl implements Alt {
     private Statement needDefaultStatement() throws RDFException
     	{
         Statement stmt = getDefaultStatement();
-        if (stmt == null) throw new RDFException( RDFException.ALTHASNODEFAULT );
+        if (stmt == null) throw new JenaAltHasNoDefaultException( this );
         return stmt;
     	}
     	
