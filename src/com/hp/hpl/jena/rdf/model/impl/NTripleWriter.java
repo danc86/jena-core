@@ -211,7 +211,7 @@ public class NTripleWriter extends Object implements RDFWriter {
             writer.print("@" + lang);
         String dt = l.getDatatypeURI();
         if (dt != null && !dt.equals(""))
-            writer.print("^^" + dt);
+            writer.print("^^<" + dt+">");
     }
 
     protected static void writeNode(RDFNode n, PrintWriter writer)
