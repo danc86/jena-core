@@ -19,6 +19,7 @@ import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.reasoner.*;
 import com.hp.hpl.jena.reasoner.rulesys.*;
 import com.hp.hpl.jena.reasoner.test.TestUtil;
+import com.hp.hpl.jena.reasoner.transitiveReasoner.TransitiveReasoner;
 import com.hp.hpl.jena.util.*;
 import com.hp.hpl.jena.util.iterator.ClosableIterator;
 import com.hp.hpl.jena.util.iterator.ExtendedIterator;
@@ -51,7 +52,7 @@ public class TestBugs extends TestCase {
     public static TestSuite suite() {
         return new TestSuite( TestBugs.class );
 //        TestSuite suite = new TestSuite();
-//        suite.addTest(new TestBugs( "testRETEInc" ));
+//        suite.addTest(new TestBugs( "testTransitive" ));
 //        return suite;
     }  
 
@@ -490,7 +491,21 @@ public class TestBugs extends TestCase {
         assertTrue( "Should support daml:range", r.supportsProperty( DAML_OIL.range ));
     }
     
-    
+    /**
+     * Utility function.
+     * Create a model from an N3 string with OWL and EG namespaces defined.
+     */
+    public static Model modelFromN3(String src) {
+        String fullSource = "@prefix owl: <http://www.w3.org/2002/07/owl#> .\n" +
+        "@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .\n" +
+        "@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .\n" +
+        "@prefix eg: <http://jena.hpl.hp.com/eg#> .\n" +
+                    "@prefix : <#> .\n"+ src + "\n";
+        Model result = ModelFactory.createDefaultModel();
+        result.read(new StringReader(fullSource), "", "N3");
+        return result;
+    }
+        
     // debug assistant
     private void tempList(Model m, Resource s, Property p, RDFNode o) {
         System.out.println("Listing of " + PrintUtil.print(s) + " " + PrintUtil.print(p) + " " + PrintUtil.print(o));

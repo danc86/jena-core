@@ -36,7 +36,7 @@ public class TestPackage extends TestSuite {
         addTest( "TestGenericRules", TestGenericRules.suite() );
         addTest( "TestRETE", TestRETE.suite() );
         addTest( TestSetRules.suite() );
-//        addTest( "TestOWLRules", TestOWLRules.suite() );
+        addTest( "TestOWLRules", TestOWLRules.suite() );
         addTest( "TestOWLRules", OWLUnitTest.suite() );
         addTest( "TestOWLConsistency", TestOWLRules.suite() );
         addTest( "TestBugs", TestBugs.suite() );

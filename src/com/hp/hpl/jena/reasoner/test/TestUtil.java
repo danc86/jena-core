@@ -73,14 +73,13 @@ public class TestUtil {
             if (!gotit) {
                 logger.debug( testCase.getName() + " found unexpected iterator value: " + n);
             }
-            TestCase.assertTrue( testCase.getName() + " found unexpected iterator value", gotit);
+            TestCase.assertTrue( testCase.getName() + " found unexpected iterator value: " + n, gotit);
         }
         
         // check that no expected values were unfound
         for (int i = 0; i < vals.length; i++) {
             if (!found[i]) {
-
-                for (int j = 0; j < vals.length; j += 1) System.err.println( "#" + j + ": " + vals[j] );
+//                for (int j = 0; j < vals.length; j += 1) System.err.println( "#" + j + ": " + vals[j] );
                 logger.debug( testCase.getName() + " failed to find expected iterator value: " + vals[i]);
             }
             TestCase.assertTrue(testCase.getName() + " failed to find expected iterator value: " + vals[i], found[i]);
