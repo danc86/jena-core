@@ -9,17 +9,12 @@ package com.hp.hpl.jena.graph.query.regexptrees;
     RegexpTree - the abstract base class for trees representing regular 
     expressions, used to communicate between query languages and query
     back ends that need to do interesting compiling.
-    
+        
     @author kers
 */
 
 public abstract class RegexpTree
     {
-    public static class UnsupportedException extends RuntimeException
-        {
-
-        }
-    
     public static final RegexpTree EOL = new EndOfLine();
     
     public static final RegexpTree SOL = new StartOfLine();

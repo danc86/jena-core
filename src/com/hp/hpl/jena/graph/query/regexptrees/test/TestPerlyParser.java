@@ -81,21 +81,19 @@ public class TestPerlyParser extends GraphTestBase
         {
         PerlPatternParser p = new PerlPatternParser( "[" );
         try { p.parseAtom(); fail( "should be unimplemented at the moment" ); }
-        catch (RegexpTree.UnsupportedException e) { pass(); }
+        catch (PerlPatternParser.SyntaxException e) { pass(); }
         }
     
     public void testTerminatorsReturnNull()
         {
         assertEquals( new Nothing(), new PerlPatternParser( "|" ).parseAtom() );
-        assertEquals( new Nothing(), new PerlPatternParser( ")" ).parseAtom() );
-        assertEquals( new Nothing(), new PerlPatternParser( "]" ).parseAtom() );
         }
     
     public void testBackslashedAtomsUnimplemented()
         {
         PerlPatternParser p = new PerlPatternParser( "\\" );
         try { p.parseAtom(); fail( "should be unimplemented at the moment" ); }
-        catch (RegexpTree.UnsupportedException e) { pass(); }
+        catch (PerlPatternParser.SyntaxException e) { pass(); }
         }
     
     public void testNoQuantifier()
@@ -126,6 +124,21 @@ public class TestPerlyParser extends GraphTestBase
         RegexpTree d = RegexpTree.ANY;
         assertEquals( new Optional( d ), new PerlPatternParser( "?" ).parseQuantifier( d ) );
         }
+    
+    public void testUnboundQuantifiers()
+        { testUnboundQuantifier( "*" );
+        testUnboundQuantifier( "+" );
+        testUnboundQuantifier( "?" );
+        testUnboundQuantifier( "{" ); }
+
+    /**
+    	check that the quantifier string <code>q</code>throws a syntax error if it's
+        not preceeded by an atom.
+    */
+    private void testUnboundQuantifier( String q )
+        { PerlPatternParser p = new PerlPatternParser( q ); 
+        try { p.parseElement(); fail( "must trap unbound quantifier " + q ); }
+        catch (PerlPatternParser.SyntaxException e) { pass(); } }
 
     public void testUnitSeq()
         {
@@ -154,6 +167,12 @@ public class TestPerlyParser extends GraphTestBase
     
     protected RegexpTree alt( RegexpTree L, RegexpTree R )
         { return Alternatives.create( Arrays.asList( new RegexpTree[] {L, R} ) ); }
+    
+    public void testPerlParse()
+        {
+        assertTrue( PerlPatternParser.parse( "this is|a pattern" ) instanceof Alternatives );
+        assertTrue( PerlPatternParser.parse( "this is|a pattern", new SimpleGenerator() ) instanceof Alternatives );
+        }
     
     public void testOldSeq()
         {
