@@ -556,7 +556,7 @@ public abstract class DriverRDB implements IRDBDriver {
 			ResultSet alltables = dbmd.getTables(null, null, "JENA%", tableTypes);
 			List tablesPresent = new ArrayList(10);
 			while (alltables.next()) {
-				tablesPresent.add(alltables.getString("TABLE_NAME").toUpperCase());
+				tablesPresent.add(alltables.getString("TABLE_NAME"));
 			}
 			alltables.close();
 			Iterator it = tablesPresent.iterator();

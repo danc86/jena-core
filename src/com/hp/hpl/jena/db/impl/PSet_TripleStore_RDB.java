@@ -173,12 +173,12 @@ public  class PSet_TripleStore_RDB implements IPSet {
 			ResultSet alltables = dbmd.getTables(null, null, "JENA%", tableTypes);
 			List tablesPresent = new ArrayList(10);
 			while (alltables.next()) {
-				tablesPresent.add(alltables.getString("TABLE_NAME").toUpperCase());
+				tablesPresent.add(alltables.getString("TABLE_NAME"));
 			}
 			alltables.close();
 			boolean ok = true;
 			//TODO get these names from someplace
-			ok &= tablesPresent.contains(tName.toUpperCase());
+			ok &= tablesPresent.contains(tName);
 			return ok;
 		} catch (SQLException e1) {
 			throw new RDFRDBException("Internal SQL error in driver", e1);
