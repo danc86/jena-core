@@ -258,11 +258,6 @@ public class N3toRDF implements N3ParserEventHandler
                             return model.createLiteral("Illegal literal: " + text + "^^" + typeURI);
                     }
                 }
-                if ( langTag == null )
-                    langTag = "" ;
-                if ( typeURI == null )
-                    return model.createLiteral(text, langTag) ; 
-                
                 return model.createTypedLiteral(text, langTag, typeURI) ;
                 
 			case N3Parser.QNAME :
