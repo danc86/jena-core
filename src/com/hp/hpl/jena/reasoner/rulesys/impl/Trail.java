@@ -204,6 +204,7 @@ public class Trail implements BindingEnvironment {
      */
     public boolean bind(Node var, Node value) {
         if (var == Node_RuleVariable.WILD || value == Node_RuleVariable.WILD) return true;
+//        if (var == Node.ANY || value == Node.ANY) return true;
         Node dvar = getGroundVersion(var);
         if (dvar instanceof Node_RuleVariable) {
             trail.add(new TrailEntry((Node_RuleVariable)dvar, value));

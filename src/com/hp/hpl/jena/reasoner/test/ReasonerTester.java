@@ -166,6 +166,7 @@ public class ReasonerTester {
     public static Node nodeToPattern(Node n) {
         if (n.isURI() && n.toString().startsWith("var:")) {
             return Node_RuleVariable.WILD;
+//            return Node.ANY;
         } else {
             return n;
         }

@@ -125,7 +125,7 @@ public class TestFBRules extends TestCase {
                         "(?C rb:restriction all(eg:p, eg:D)) -> (?C rb:restriction 'allOK')." +
                        "[ -> (eg:foo eg:prop functor(eg:bar, 1)) ]" +
                        "[ (?x eg:prop functor(eg:bar, ?v)) -> (?x eg:propbar ?v) ]" +
-                       "[ (?x eg:prop functor(?v, *)) -> (?x eg:propfunc ?v) ]" +
+                       "[ (?x eg:prop functor(?v, ?*)) -> (?x eg:propfunc ?v) ]" +
                        "";
         List ruleList = Rule.parseRules(rules);
         

@@ -266,6 +266,7 @@ public class TriplePattern implements ClauseEntry {
      */
     private static Node normalize(Node node) {
         if (node == null || node == Node.ANY) return Node_RuleVariable.WILD;
+//        if (node == null) return Node.ANY;
         return node;
     }
             

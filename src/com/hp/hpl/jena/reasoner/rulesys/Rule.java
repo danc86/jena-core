@@ -552,8 +552,11 @@ public class Rule implements ClauseEntry {
         Node parseNode(String token) {
             if (token.startsWith("?")) {
                 return getNodeVar(token);
+                // Dropped support for anon wildcards until the implementation is better resolved
             } else if (token.equals("*") || token.equals("_")) {
-                return Node_RuleVariable.ANY;
+                throw new ParserException("Wildcard variables no longer supported", this);
+////                return Node_RuleVariable.ANY;
+//                return Node_RuleVariable.WILD;
             } else if (token.indexOf(':') != -1) {
                 String exp = PrintUtil.expandQname(token);
                 if (exp == token) {
@@ -563,7 +566,7 @@ public class Rule implements ClauseEntry {
                         // assume it is all OK and fall through
                     } else {
                         // Likely to be a typo in a qname or failure to register
-                        throw new JenaException("Unrecognized qname prefix (" + prefix + ") in rule");
+                        throw new ParserException("Unrecognized qname prefix (" + prefix + ") in rule", this);
                     }
                 }
                 return Node.createURI(exp);
