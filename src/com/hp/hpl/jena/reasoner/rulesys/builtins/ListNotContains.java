@@ -3,7 +3,7 @@
  * Created by:  Dave Reynolds
  * Created on:  23-Sep-2003
  * 
- * (c) Copyright 2003, Hewlett-Packard Company, all rights reserved.
+ * (c) Copyright 2003, Hewlett-Packard Development Company, LP, all rights reserved.
  * [See end of file]
  * $Id$
  *****************************************************************/
@@ -56,7 +56,7 @@ public class ListNotContains extends BaseBuiltin {
 
 
 /*
-    (c) Copyright Hewlett-Packard Company 2003
+    (c) Copyright Hewlett-Packard Development Company, LP 2003
     All rights reserved.
 
     Redistribution and use in source and binary forms, with or without
