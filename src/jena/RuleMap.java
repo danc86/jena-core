@@ -56,7 +56,10 @@ public class RuleMap {
             fname = fname.substring(8);
         } else if (fname.startsWith("file:/")) {
             fname = fname.substring(6);
+        } else if (fname.startsWith("file:")) {
+            fname = fname.substring(5);
         }
+
         BufferedReader src = FileUtils.openResourceFile(fname);
         return loadRules(src, prefixes);
     }
