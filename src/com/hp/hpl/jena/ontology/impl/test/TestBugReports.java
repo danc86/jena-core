@@ -320,7 +320,7 @@ public class TestBugReports
         assertEquals(oldTripleCount + 1, getTripleCount(oldSubGraph));
 
         // TODO this workaround to be removed
-        SimpleGraphMaker sgm = (SimpleGraphMaker) ((ModelMakerImpl) spec.getModelMaker()).getGraphMaker();
+        SimpleGraphMaker sgm = (SimpleGraphMaker) ((ModelMakerImpl) spec.getImportModelMaker()).getGraphMaker();
         List toGo = new ArrayList();
         for (Iterator i = sgm.listGraphs(); i.hasNext(); toGo.add( i.next() ));
         for (Iterator i = toGo.iterator(); i.hasNext(); sgm.removeGraph( (String) i.next() ));
