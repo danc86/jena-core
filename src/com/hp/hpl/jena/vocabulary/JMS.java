@@ -45,7 +45,8 @@ public class JMS
     public static final Resource MemMakerSpec = resource( "MemMakerSpec" );
     public static final Resource RDBMakerSpec = resource( "RDBMakerSpec" );
     
-    public static final Resource ReasonerSpec = resource( "ReasonerSpec" );
+    public static final Resource PlainModelSpec = resource( "PlainModelSpec" );
+    public static final Resource InfModelSpec = resource( "ReasonerSpec" );
     public static final Resource OntModelSpec = resource( "OntModelSpec" );
     
     public static final Resource rsStandard = resource( "rsStandard" );
@@ -61,9 +62,11 @@ public class JMS
         .add( JMS.MemMakerSpec, RDFS.subClassOf, JMS.MakerSpec )
         .add( JMS.FileMakerSpec, RDFS.subClassOf, JMS.MakerSpec )
         .add( JMS.RDBMakerSpec, RDFS.subClassOf, JMS.MakerSpec )
+        .add( JMS.InfModelSpec, RDFS.subClassOf, JMS.PlainModelSpec )
+        .add( JMS.OntModelSpec, RDFS.subClassOf, JMS.InfModelSpec )
         .add( JMS.reificationMode, RDFS.domain, JMS.MakerSpec )
         .add( JMS.ontLanguage, RDFS.domain, JMS.OntModelSpec )
-        .add( JMS.reasoner, RDFS.domain, JMS.ReasonerSpec )
+        .add( JMS.reasoner, RDFS.domain, JMS.InfModelSpec )
         .add( JMS.importMaker, RDFS.subClassOf, JMS.maker )
         ;
     
