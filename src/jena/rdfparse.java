@@ -6,9 +6,11 @@
 
 package jena;
 
+import java.lang.reflect.Constructor;
+
 import com.hp.hpl.jena.rdf.arp.NTriple;
-import com.hp.hpl.jena.rdf.arp.test.*;
-import junit.swingui.TestRunner;
+import com.hp.hpl.jena.shared.Command;
+
 /** A command line interface into ARP.
  * Creates NTriple's or just error messages.
  * <pre>
@@ -64,23 +66,27 @@ import junit.swingui.TestRunner;
 
 public class rdfparse {
 
-
-
 	/** Either start an RDF/XML to NTriple converter, or run test suite.
 	 * @param args The command-line arguments.
 	 */
-	public static void main(String[] args) {
-		if ( args.length == 1) {
-			if (    args[0].equals("--test") 
-			     || args[0].equals("--internal-test") ) {
-				ARPTests.internet = args[0].equals("--test");
-				TestRunner.main(new String[]{
-					  "-noloading", ARPTests.class.getName()});
-				return;
-			} 
-		}
-		NTriple.main(args);
+	public static void main( String[] args ) throws Exception {
+		if (args.length == 1 && (args[0].equals( "--test" ) || args[0].equals( "--internal-test" ))) 
+            runTests( args[0].equals( "--test" ) );
+        else
+		    NTriple.main( args );
 	}
+
+    /**
+         wrapped this way so JUnit not a compile-time requirement.
+    */
+    protected static void runTests( boolean internetTest ) throws Exception { 
+        Class rdfparse = Class.forName( "jena.test.rdfparse" );
+        Constructor constructor = rdfparse.getConstructor( new Class[] {boolean.class} );
+        Command c = (Command) constructor.newInstance( new Object[] {new Boolean( internetTest ) } );
+        c.execute();
+//        ARPTests.internet = internetTest;
+//        TestRunner.main( new String[] { "-noloading", ARPTests.class.getName()});
+        }
 }
 
 /*
