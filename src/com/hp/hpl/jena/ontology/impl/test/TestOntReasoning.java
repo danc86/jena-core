@@ -26,6 +26,8 @@ package com.hp.hpl.jena.ontology.impl.test;
 ///////////////
 import java.util.*;
 
+import org.apache.log4j.Logger;
+
 import junit.framework.TestCase;
 
 import com.hp.hpl.jena.ontology.*;
@@ -215,12 +217,52 @@ public class TestOntReasoning
         iteratorTest( p.listSubProperties( true ), new Object[] {q,r} );
     }
     
+    // not in place for now
+    public void blocked_testListDefinedProperties() {
+        OntModel m = ModelFactory.createOntologyModel( OntModelSpec.OWL_MEM_RULE_INF, null );
+        
+        // a simple class hierarchy  organism -> vertebrate -> mammal -> dog
+        OntClass organism = m.createClass( NS + "Organism" );
+        OntClass vertebrate = m.createClass( NS + "Vertebrate" );
+        OntClass mammal = m.createClass( NS + "Mammal" );
+        OntClass dog = m.createClass( NS + "Dog" );
+        
+        organism.addSubClass( vertebrate );
+        vertebrate.addSubClass( mammal );
+        mammal.addSubClass( dog );
+        
+        // hair as a covering
+        OntClass covering = m.createClass( NS + "Covering" );
+        Individual hair = m.createIndividual( NS+"hair", covering );
+                 
+        // various properties
+        DatatypeProperty limbsCount = m.createDatatypeProperty( NS + "limbsCount" );
+        DatatypeProperty hasCovering = m.createDatatypeProperty( NS + "hasCovering" );
+        DatatypeProperty numYoung = m.createDatatypeProperty( NS + "numYoung" );
+        
+        // vertebrates have limbs, mammals have live young
+        limbsCount.addDomain( vertebrate );
+        numYoung.addDomain( mammal );
+        
+        // mammals have-covering = hair
+        Restriction r = m.createRestriction( hasCovering );
+        r.convertToHasValueRestriction( hair );
+        mammal.addSuperClass( r );
+              
+        iteratorTest( organism.listDeclaredProperties(), new Object[] {} );
+        iteratorTest( vertebrate.listDeclaredProperties(), new Object[] {limbsCount} );
+        iteratorTest( mammal.listDeclaredProperties(), new Object[] {limbsCount, hasCovering, numYoung} );
+        iteratorTest( dog.listDeclaredProperties(), new Object[] {limbsCount, hasCovering, numYoung} );
+        iteratorTest( r.listDeclaredProperties(), new Object[] {hasCovering, numYoung} );
+    }
+    
     
     // Internal implementation methods
     //////////////////////////////////
 
     /** Test that an iterator delivers the expected values */
     protected void iteratorTest( Iterator i, Object[] expected ) {
+        Logger logger = Logger.getLogger( getClass() );
         List expList = new ArrayList();
         for (int j = 0; j < expected.length; j++) {
             expList.add( expected[j] );
@@ -228,10 +270,22 @@ public class TestOntReasoning
         
         while (i.hasNext()) {
             Object next = i.next();
+                
+            // debugging
+            if (!expList.contains( next )) {
+                logger.debug( getName() + " - Unexpected iterator result: " + next );
+            }
+                
             assertTrue( "Value " + next + " was not expected as a result from this iterator ", expList.contains( next ) );
             assertTrue( "Value " + next + " was not removed from the list ", expList.remove( next ) );
         }
         
+        if (!(expList.size() == 0)) {
+            logger.debug( getName() + "Expected iterator results not found" );
+            for (Iterator j = expList.iterator(); j.hasNext(); ) {
+                logger.debug( getName() + " - missing: " + j.next() );
+            }
+        }
         assertEquals( "There were expected elements from the iterator that were not found", 0, expList.size() );
     }
 

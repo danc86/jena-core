@@ -1306,6 +1306,15 @@ public class OntResourceImpl
         }
     }
     
+    /** Implementation of Map1 that extracts the subject of a statement */
+    protected class SubjectMapper
+        implements Map1
+    {
+        public Object map1( Object x ) { 
+            return (x instanceof Statement) ? ((Statement) x).getSubject() : x; 
+        }
+    }
+    
     /** Implementation of Map1 that performs as( Class ) for a given class, on the object of a statement */
     protected class ObjectAsMapper
         implements Map1

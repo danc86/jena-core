@@ -949,7 +949,11 @@ public class TestClassExpression
                     C.addSuperClass( r0 );
                     
                     iteratorTest( A.listDeclaredProperties(), new Object[] {p, q} );
-                    iteratorTest( C.listDeclaredProperties(), new Object[] {s, r} );
+                    
+                    // no longer counted, since this now relies on inference which is turned off
+                    //iteratorTest( C.listDeclaredProperties(), new Object[] {s, r} );
+                    
+                    iteratorTest( r0.listDeclaredProperties(), new Object[] {r} );
                 }
             },
             
