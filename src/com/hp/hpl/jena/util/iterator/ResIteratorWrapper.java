@@ -56,11 +56,14 @@ import java.util.Iterator;
 
 
 /**
+ * OBSOLETE, since ResIterators are now subclasses of Iterator.
+ * 
  * A wrapper for ResIterator that turns it into a standard Java iterator.  Clumsy name,
  * and anyway the need for it may go away in a future version of Jena.
  *
  * @author Ian Dickinson, HP Labs (<a href="mailto:Ian_Dickinson@hp.com">email</a>)
  * @version CVS info: $Id$
+ * @deprecated
  */
 public class ResIteratorWrapper
     implements Iterator
