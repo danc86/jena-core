@@ -594,7 +594,13 @@ public class OntResourceImpl
         checkProfile( getProfile().COMMENT(), "COMMENT" );
         if (lang == null) {
             // don't care which language version we get
-            return getProperty( getProfile().COMMENT() ).getString();
+            try {
+                return getProperty( getProfile().COMMENT() ).getString();
+            }
+            catch (JenaPropertyNotFoundException ignore) {
+                // no comment :-)
+                return null;
+            }
         }
         else {
             // search for the best match for the specified language
