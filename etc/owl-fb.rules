@@ -80,7 +80,8 @@
 [rdfs2:  (?p rdfs:domain ?c) -> [(?x rdf:type ?c) <- (?x ?p ?y)] ] 
 [rdfs3:  (?p rdfs:range ?c)  -> [(?y rdf:type ?c) <- (?x ?p ?y), notFunctor(?y)] ] 
 [rdfs5a: (?a rdfs:subPropertyOf ?b), (?b rdfs:subPropertyOf ?c) -> (?a rdfs:subPropertyOf ?c)] 
-[rdfs5b: (?a rdf:type rdf:Property) -> (?a rdfs:subPropertyOf ?a)] 
+#[rdfs5b: (?a rdf:type rdf:Property) -> (?a rdfs:subPropertyOf ?a)] 
+[rdfs5b: (?a rdfs:subPropertyOf ?a) <- (?a rdf:type rdf:Property)] 
 [rdfs6:  (?p rdfs:subPropertyOf ?q), notEqual(?p,?q) -> [ (?a ?q ?b) <- (?a ?p ?b)] ] 
 [rdfs7:  (?a rdf:type rdfs:Class) -> (?a rdfs:subClassOf ?a)]
 # omit rdfs8, derivable from rdfs9 and prototype2 
