@@ -79,7 +79,7 @@ public class RuleStore {
         if (rule.headLength() != 1) {
             for (int j = 0; j < rule.headLength(); j++) {
                 Rule newRule = new Rule(rule.getName(), 
-                                    new Object[] {rule.getHeadElement(j)}, 
+                                    new ClauseEntry[] {rule.getHeadElement(j)}, 
                                     rule.getBody() );
                 newRule.setNumVars(rule.getNumVars());
                 doAddRemoveRule(newRule, isAdd);

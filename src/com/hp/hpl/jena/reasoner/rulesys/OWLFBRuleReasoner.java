@@ -157,9 +157,9 @@ public class OWLFBRuleReasoner extends FBRuleReasoner {
         for (Iterator i = elements.iterator(); i.hasNext(); ) {
             Node description = (Node)i.next();
             // Implication rule
-            Rule ir = new Rule("intersectionImplication", new Object[] {
+            Rule ir = new Rule("intersectionImplication", new ClauseEntry[] {
                                 new TriplePattern(className, RDFS.subClassOf.asNode(), description)
-                                }, new Object[0]);
+                                }, new ClauseEntry[0]);
             ir.setBackward(false);
            rules.add(ir);
 //           System.out.println("Adding rule: " + ir.toString());
