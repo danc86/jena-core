@@ -61,17 +61,24 @@ public class TypeMapper {
 //=======================================================================
 // Methods
 
+
     /**
-     * Method getSafeTypeByName.
+     * Version of getTypeByName which will treat unknown URIs as typed
+     * literals but with just the default implementation
      * 
      * @param uri the URI of the desired datatype
      * @return Datatype the datatype definition
      * registered at uri, if there is no such registered type it
-     * returns the default datatype implementation.
+     * returns a new instance of the default datatype implementation, if the
+     * uri is null it returns null (indicating a plain RDF literal).
      */
     public RDFDatatype getSafeTypeByName(String uri) {
         RDFDatatype dtype = (RDFDatatype) uriToDT.get(uri);
         if (dtype == null) {
+            if (uri == null) {
+                // Plain literal
+                return null;
+            }
             // @TODO add log message
             // @TODO add switch to prevent warning messages
             dtype = new BaseDatatype(uri);
@@ -81,8 +88,8 @@ public class TypeMapper {
     }
     
     /**
-     * Lookup a known datatype. Differs from getSafeTypeByName in
-     * that it will return null if the datatype is not registered.
+     * Lookup a known datatype. An unkown datatype or a datatype with uri null
+     * will return null will mean that the value will be treated as a old-style plain literal.
      * 
      * @param uri the URI of the desired datatype
      * @return Datatype the datatype definition of null if not known.

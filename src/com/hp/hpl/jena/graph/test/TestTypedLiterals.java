@@ -269,10 +269,14 @@ public class TestTypedLiterals extends TestCase {
     public void testPlainSameValueAs() {
         Literal lString = m.createTypedLiteral("10", "", XSDDatatype.XSDstring );
         Literal lPlain = m.createTypedLiteral("10", "", (RDFDatatype)null );
+        Literal lPlain3 = m.createTypedLiteral("10", "", (String)null );
         Literal lPlain2 = m.createLiteral("10");
         Literal lInt =  m.createTypedLiteral("10", "", XSDDatatype.XSDint );
         
         assertSame("Null type = plain literal", lPlain, lPlain2);
+        assertSame("Null type = plain literal", lPlain, lPlain3);
+        assertSame("Null type = plain literal", lPlain2, lPlain3);
+        assertTrue("null type", lPlain3.getDatatype() == null);
         assertDiffer("String != int", lString, lInt);
         assertDiffer("Plain != int", lPlain, lInt);
         assertDiffer("Plain != int", lPlain2, lInt);
@@ -285,6 +289,7 @@ public class TestTypedLiterals extends TestCase {
             assertDiffer("String != plain??", lString, lPlain);
             assertDiffer("String != plain??", lString, lPlain2);
         }
+        
     }
     
     /**
