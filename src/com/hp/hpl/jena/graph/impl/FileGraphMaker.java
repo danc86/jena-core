@@ -119,7 +119,7 @@ public class FileGraphMaker extends BaseGraphMaker
         systems will be reasonably liberal. We'll see ...
         
     	@param name
-    	@return
+    	@return name with underbar, slash, and colon escaped as _U, _S, _C
      */
     public static String toFilename( String name )
         {
