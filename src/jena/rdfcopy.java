@@ -29,10 +29,12 @@
 
 package jena;
 
+import com.hp.hpl.jena.shared.JenaException ;
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.mem.ModelMem;
 
-import java.net.URL;
+import java.net.*;
+import java.io.*;
 import java.io.FileInputStream;
 
 /** A program which read an RDF model and copy it to the standard output stream.
@@ -96,6 +98,7 @@ public class rdfcopy extends java.lang.Object {
 
 		try {
 			Model m = new ModelMem();
+            String base = in ;
 			RDFReader rdr = m.getReader(inlang);
 			for (j = 1; j < lastInProp; j++) {
 				int eq = args[j].indexOf("=");
@@ -103,7 +106,20 @@ public class rdfcopy extends java.lang.Object {
 					args[j].substring(0, eq),
 					args[j].substring(eq + 1));
 			}
-			rdr.read(m, in);
+            
+            try {
+                rdr.read(m, in);
+            } catch (JenaException ex)
+            {
+                if ( ! ( ex.getCause() instanceof MalformedURLException ) )
+                    throw ex ;
+                // Tried as a URL.  Try as a file name.
+                // Make absolute
+                File f = new File(in) ;
+                base = "file:///"+f.getCanonicalPath().replace('\\','/') ;
+                rdr.read(m, new FileInputStream(in), base) ;
+            }
+			//rdr.read(m, in);
 			RDFWriter w = m.getWriter(outlang);
 			j++;
 			for (; j < lastOutProp; j++) {
@@ -112,7 +128,7 @@ public class rdfcopy extends java.lang.Object {
 					args[j].substring(0, eq),
 					args[j].substring(eq + 1));
 			}
-            w.write(m,System.out,in);
+            w.write(m,System.out,base);
 			System.exit(0);
 		} catch (Exception e) {
 			System.err.println("Unhandled exception:");
