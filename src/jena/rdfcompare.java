@@ -88,7 +88,7 @@ public class rdfcompare extends java.lang.Object {
             read(m1, in1, lang1);
             read(m2, in2, lang2);
         
-            if (m1.equals(m2)) {
+            if (m1.isIsomorphicWith(m2)) {
                 System.out.println("models are equal");
                 System.out.println();
                 System.exit(0);
