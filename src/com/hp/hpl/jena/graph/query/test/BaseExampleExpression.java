@@ -47,9 +47,6 @@ public abstract class BaseExampleExpression
                 return BaseExampleValuator.and( L.prepare( vi ), R.prepare( vi ) );    
                 }
                 
-            public boolean evalBool( IndexValues iv )
-                { throw new RuntimeException( "argh" ); } // return L.evalBool( iv ) && R.evalBool( iv ); }
-                
             public boolean evalBool( VariableValues vv )
                 { return L.evalBool( vv ) && R.evalBool( vv ); }
                  

@@ -176,6 +176,22 @@ public class TestExpressionConstraints extends GraphTestBase
         VariableIndexes map = new Mapping( new Node[2] );
         // Valuator ep = e.prepare( map );        
         }
+    
+    public void testURIs()
+        {
+        assertEquals( "http://jena.hpl.hp.com/constraints/NE", notEqual( X, Y ).getFun() );
+        assertEquals( "http://jena.hpl.hp.com/constraints/EQ", areEqual( X, Y ).getFun() );
+        assertEquals( "http://jena.hpl.hp.com/constraints/MATCHES", matches( X, Y ).getFun() );
+        }
+    
+    public void testLiterals()
+        {
+        assertTrue( Expression.TRUE.isLiteral() );
+        assertTrue( Expression.FALSE.isLiteral() );
+        assertFalse( notEqual( X, Y ).isLiteral() );
+        assertEquals( Boolean.TRUE, Expression.TRUE.getValue() );
+        assertEquals( Boolean.FALSE, Expression.FALSE.getValue() );
+        }
     }
 
 /*

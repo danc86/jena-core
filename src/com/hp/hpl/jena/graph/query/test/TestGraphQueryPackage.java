@@ -22,6 +22,7 @@ public class TestGraphQueryPackage
         result.addTest( QueryTest.suite() );
         result.addTest( TestSimpleTripleSorter.suite() );
         result.addTest( TestExpressionConstraints.suite() );
+        result.addTest( TestEarlyConstraints.suite() );
         return result;
         }
     }
