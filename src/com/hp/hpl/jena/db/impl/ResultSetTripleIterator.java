@@ -51,7 +51,7 @@ public class ResultSetTripleIterator extends ResultSetIterator {
 	public ResultSetTripleIterator(IPSet p, IDBID graphID) {
 		m_pset = p;
 		setGraphID(graphID);
-		m_isReif = true;
+		m_isReif = false;
 	}
 
 	// Constructor for iterating over reified statements
