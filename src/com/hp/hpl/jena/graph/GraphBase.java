@@ -35,6 +35,15 @@ public abstract class GraphBase implements Graph {
 	public QueryHandler queryHandler() {
 		return new SimpleQueryHandler(this);
 	}
+    
+    public TransactionHandler getTransactionHandler()
+        { return new SimpleTransactionHandler(); }
+        
+    public BulkUpdateHandler getBulkUpdateHandler()
+        { return null; }
+        
+    public Capabilities getCapabilities()
+        { return null; }
 
 	/**
 	 * @see com.hp.hpl.jena.graph.Graph#add(Triple)

@@ -1036,18 +1036,18 @@ implements Model, ModelI, PrefixMapping
         }
         return IteratorFactory.asStmtIterator(iter,this);
     }
-	
-    public Model begin() throws RDFException {
-        throw new RDFException(RDFException.UNSUPPORTEDOPERATION);
-    }
+
+    public boolean supportsTransactions() 
+        { return getGraph().getTransactionHandler().transactionsSupported(); }
+    	
+    public Model begin() 
+        { getGraph().getTransactionHandler().begin(); return this; }
     
-    public Model abort() throws RDFException {
-        throw new RDFException(RDFException.UNSUPPORTEDOPERATION);
-    }
+    public Model abort() 
+        { getGraph().getTransactionHandler().abort(); return this; }
     
-    public Model commit() throws RDFException {
-        throw new RDFException(RDFException.UNSUPPORTEDOPERATION);
-    }
+    public Model commit() 
+        { getGraph().getTransactionHandler().commit(); return this; }
     
     public boolean independent() {
         return true;
@@ -1183,8 +1183,6 @@ implements Model, ModelI, PrefixMapping
     public void close() {
         graph.close();
     }
-    
-    public boolean supportsTransactions() {return false;}
     
     public boolean supportsSetOperations() {return true;}
     

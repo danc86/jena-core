@@ -73,6 +73,32 @@ public class TestGraph extends GraphTestBase
         assertEquals( "", 1, g1.size() );
         assertEquals( "", 1, g2.size() );
         }
+
+    public void testHasTransactions()
+        { testHasTransactions( Factory.createDefaultGraph() ); }
+                
+    /**
+        Test that Graphs have transaction support methods, and that if they fail
+        on some g they fail because they do not support the operation.
+    */
+    public static void testHasTransactions( Graph g )
+        {
+        TransactionHandler th = g.getTransactionHandler();
+        th.transactionsSupported();
+        try { th.begin(); } catch (UnsupportedOperationException x) {}
+        try { th.abort(); } catch (UnsupportedOperationException x) {}
+        try { th.commit(); } catch (UnsupportedOperationException x) {}
+        }
+        
+    public static void testHasBulkUpdates( Graph g )
+        {
+        BulkUpdateHandler bu = g.getBulkUpdateHandler();
+        }
+        
+    public static void testHasCapabilities( Graph g )
+        {
+        Capabilities c = g.getCapabilities();
+        }
     }
 
 /*

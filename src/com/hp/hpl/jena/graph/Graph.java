@@ -30,6 +30,15 @@ public interface Graph  {
     /** returns this Graph's query handler */
     QueryHandler queryHandler();
     
+    /** returns this Graph's transaction handler */
+    TransactionHandler getTransactionHandler();
+    
+    /** returns this Graph's bulk-update handler */
+    BulkUpdateHandler getBulkUpdateHandler();
+    
+    /** returns this Graph's capabilities */
+    Capabilities getCapabilities();
+    
     /** 
         returns this Graph's reifier. Each call on a given Graph gets the same
         Reifier object.
