@@ -56,7 +56,7 @@ import com.hp.hpl.jena.shared.impl.PrefixMappingImpl;
 public class OntDocumentManager
 {
 	/** The default path for searching for the metadata on locally cached ontologies */
-    public static final String DEFAULT_METADATA_PATH = "file:etc/ont-policy.rdf;file:ont-policy.rdf";
+    public static final String DEFAULT_METADATA_PATH = "file:ont-policy.rdf;file:etc/ont-policy.rdf";
 
     /** Delimiter between path entries */
     public static final String PATH_DELIMITER = ";";
@@ -995,8 +995,6 @@ public class OntDocumentManager
                 catch (IOException e) {
                     throw new JenaException( e);
                 }
-    
-                // TODO remove model.read( resolvableURI, lang );
             }
             else {
                 try {
