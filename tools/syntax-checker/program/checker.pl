@@ -215,9 +215,11 @@ gogo(G) :-
   jfile(G,JF),
   tell(JF),
   copyrightHead,
-  wlist(['package com.hp.hpl.jena.ontology.tidy;',nl,
-         'import java.util.Arrays;',nl,
-         'class ',G,' implements Constants {',nl]),
+  wlist(['package com.hp.hpl.jena.ontology.tidy;',nl]),
+  (G=='Triples'->
+  wlist([
+         'import java.util.Arrays;',nl]); true),
+  wlist([ 'class ',G,' implements Constants {',nl]),
   flag(catID,_,1),
   category(C),
   flag(catID,N,N+1),
