@@ -48,12 +48,14 @@ public class RDFReaderFImpl extends Object implements RDFReaderF {
     protected static final String LANGS[] = { "RDF/XML",
                                               "RDF/XML-ABBREV",
                                               "N-TRIPLE",
+                                              "N-TRIPLES",
                                               "N3"};
     // default readers for each language
 
     protected static final String DEFAULTREADERS[] = {
         "com.hp.hpl.jena.rdf.arp.JenaReader",
         "com.hp.hpl.jena.rdf.arp.JenaReader",
+        Jena.PATH + ".rdf.model.impl.NTripleReader",
         Jena.PATH + ".rdf.model.impl.NTripleReader",
         "com.hp.hpl.jena.n3.N3JenaReader"
     };
