@@ -7,11 +7,14 @@
  * [See end of file]
  * $Id$
  *****************************************************************/
-package com.hp.hpl.jena.reasoner.rulesys;
+package com.hp.hpl.jena.reasoner.rulesys.impl;
 
 import com.hp.hpl.jena.mem.GraphMem;
 import com.hp.hpl.jena.reasoner.*;
-import com.hp.hpl.jena.reasoner.rulesys.impl.BindingStack;
+import com.hp.hpl.jena.reasoner.rulesys.BasicForwardRuleInfGraph;
+import com.hp.hpl.jena.reasoner.rulesys.BindingEnvironment;
+import com.hp.hpl.jena.reasoner.rulesys.Rule;
+import com.hp.hpl.jena.reasoner.rulesys.RuleContext;
 import com.hp.hpl.jena.util.PrintUtil;
 import com.hp.hpl.jena.util.iterator.ClosableIterator;
 import com.hp.hpl.jena.graph.*;
@@ -106,7 +109,7 @@ public class BFRuleContext implements RuleContext {
      * Add a triple to the stack of triples to waiting to be processed by the rule engine.
      */
     public void addTriple(Triple t) {
-        if (graph.traceOn && graph.processedAxioms) {
+        if (graph.shouldTrace()) {
             if (rule != null) {
                 logger.debug("Adding to stack (" + rule.toShortString() + "): " + PrintUtil.print(t));
             } else {
@@ -123,7 +126,7 @@ public class BFRuleContext implements RuleContext {
      * the deductions for matches to a given rule.
      */
     public void addPending(Triple t) {
-        if (graph.traceOn && graph.processedAxioms) {
+        if (graph.shouldTrace()) {
             if (rule != null) {
                 logger.debug("Adding to pending (" + rule.toShortString() + "): " + PrintUtil.print(t));
             } else {

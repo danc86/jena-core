@@ -10,6 +10,7 @@
 package com.hp.hpl.jena.reasoner.rulesys.builtins;
 
 import com.hp.hpl.jena.reasoner.rulesys.*;
+import com.hp.hpl.jena.reasoner.rulesys.impl.*;
 import com.hp.hpl.jena.vocabulary.OWL;
 import com.hp.hpl.jena.graph.*;
 import java.util.*;

@@ -11,6 +11,7 @@ package com.hp.hpl.jena.reasoner.rulesys.builtins;
 
 import com.hp.hpl.jena.reasoner.TriplePattern;
 import com.hp.hpl.jena.reasoner.rulesys.*;
+import com.hp.hpl.jena.reasoner.rulesys.impl.*;
 import com.hp.hpl.jena.graph.*;
 
 /**
@@ -58,7 +59,9 @@ public class Remove implements Builtin {
                 int clauseIndex = Util.getIntValue(clauseN);
                 Object clause = context.getRule().getBodyElement(clauseIndex);
                 if (clause instanceof TriplePattern) {
-                    Triple t = BasicForwardRuleInfGraph.instantiate((TriplePattern)clause, context.getEnv());
+                    Triple t = BasicForwardRuleInfGraph.instantiate(
+                                        (TriplePattern)clause, 
+                                        ((BFRuleContext)context).getEnvStack() );
                     context.getGraph().delete(t);
                 } else {
                     throw new BuiltinException(this, context, "illegal triple to remove non-triple clause");
