@@ -604,6 +604,19 @@ public abstract class AbstractTestQuery extends GraphTestBase
         Expression e2 = (Expression) q.getConstraints().iterator().next();
         assertEquals( desired, e2 );
         }
+
+    public void testRewriteContainsExpression()
+        {
+        Query q = new Query();
+        Expression L = constant( "x" );
+        Expression R = constant( "/contains/" );
+        String F = "Q_StringMatch";
+        Expression provided = dyadic( L, "Q_StringMatch", R );
+        Expression desired = dyadic( L, "J_contains", constant( "contains" ) );
+        q.addConstraint( provided );
+        Expression e2 = (Expression) q.getConstraints().iterator().next();
+        assertEquals( desired, e2 );
+        }
     
     private Expression constant( final String string )
         { return new Expression.Fixed( string ); }
