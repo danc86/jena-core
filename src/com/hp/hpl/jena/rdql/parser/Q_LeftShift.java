@@ -17,8 +17,8 @@ import java.io.PrintWriter;
  */
 
 /** 
- * @author: Automatically generated class: Operator: LeftShift
- * @version: $Id$
+ * @author Automatically generated class: Operator: LeftShift
+ * @version $Id$
  */
 
 public class Q_LeftShift extends SimpleNode implements Expr, ExprNumeric

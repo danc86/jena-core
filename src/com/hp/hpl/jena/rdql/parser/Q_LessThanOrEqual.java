@@ -17,8 +17,8 @@ import java.io.PrintWriter;
  */
 
 /** 
- * @author: Automatically generated class: Operator: LessThanOrEqual
- * @version: $Id$
+ * @author Automatically generated class: Operator: LessThanOrEqual
+ * @version $Id$
  */
 
 public class Q_LessThanOrEqual extends SimpleNode implements Expr, ExprBoolean

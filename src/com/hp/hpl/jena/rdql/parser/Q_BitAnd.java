@@ -17,8 +17,8 @@ import java.io.PrintWriter;
  */
 
 /** 
- * @author: Automatically generated class: Operator: BitAnd
- * @version: $Id$
+ * @author Automatically generated class: Operator: BitAnd
+ * @version $Id$
  */
 
 public class Q_BitAnd extends SimpleNode implements Expr, ExprNumeric

@@ -17,8 +17,8 @@ import java.io.PrintWriter;
  */
 
 /** 
- * @author: Automatically generated class: Operator: BitXor
- * @version: $Id$
+ * @author Automatically generated class: Operator: BitXor
+ * @version $Id$
  */
 
 public class Q_BitXor extends SimpleNode implements Expr, ExprNumeric

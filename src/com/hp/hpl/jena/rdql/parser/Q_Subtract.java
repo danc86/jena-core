@@ -17,8 +17,8 @@ import java.io.PrintWriter;
  */
 
 /** 
- * @author: Automatically generated class: Operator: Subtract
- * @version: $Id$
+ * @author Automatically generated class: Operator: Subtract
+ * @version $Id$
  */
 
 public class Q_Subtract extends SimpleNode implements Expr, ExprNumeric

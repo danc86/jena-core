@@ -17,8 +17,8 @@ import java.io.PrintWriter;
  */
 
 /** 
- * @author: Automatically generated class: Operator: LogicalOr
- * @version: $Id$
+ * @author Automatically generated class: Operator: LogicalOr
+ * @version $Id$
  */
 
 public class Q_LogicalOr extends SimpleNode implements Expr, ExprBoolean

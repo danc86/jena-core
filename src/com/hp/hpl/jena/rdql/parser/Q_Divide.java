@@ -17,8 +17,8 @@ import java.io.PrintWriter;
  */
 
 /** 
- * @author: Automatically generated class: Operator: Divide
- * @version: $Id$
+ * @author Automatically generated class: Operator: Divide
+ * @version $Id$
  */
 
 public class Q_Divide extends SimpleNode implements Expr, ExprNumeric

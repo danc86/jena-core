@@ -17,8 +17,8 @@ import java.io.PrintWriter;
  */
 
 /** 
- * @author: Automatically generated class: Operator: NotEqual
- * @version: $Id$
+ * @author Automatically generated class: Operator: NotEqual
+ * @version $Id$
  */
 
 public class Q_NotEqual extends SimpleNode implements Expr, ExprBoolean

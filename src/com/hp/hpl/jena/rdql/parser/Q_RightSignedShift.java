@@ -17,8 +17,8 @@ import java.io.PrintWriter;
  */
 
 /** 
- * @author: Automatically generated class: Operator: RightSignedShift
- * @version: $Id$
+ * @author Automatically generated class: Operator: RightSignedShift
+ * @version $Id$
  */
 
 public class Q_RightSignedShift extends SimpleNode implements Expr, ExprNumeric

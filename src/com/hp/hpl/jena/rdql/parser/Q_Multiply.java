@@ -17,8 +17,8 @@ import java.io.PrintWriter;
  */
 
 /** 
- * @author: Automatically generated class: Operator: Multiply
- * @version: $Id$
+ * @author Automatically generated class: Operator: Multiply
+ * @version $Id$
  */
 
 public class Q_Multiply extends SimpleNode implements Expr, ExprNumeric

@@ -17,8 +17,8 @@ import java.io.PrintWriter;
  */
 
 /** 
- * @author: Automatically generated class: Operator: LogicalAnd
- * @version: $Id$
+ * @author Automatically generated class: Operator: LogicalAnd
+ * @version $Id$
  */
 
 public class Q_LogicalAnd extends SimpleNode implements Expr, ExprBoolean
