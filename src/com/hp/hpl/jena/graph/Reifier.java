@@ -84,8 +84,8 @@ public interface Reifier extends GetTriple
         the exception raised by _reifyAs_ if a node is already bound to
         a reified triple.
     */
-    static class AlreadyReifiedException extends RDFException 
-        { AlreadyReifiedException( Node n ) { super( n.toString() ); } };
+    static public class AlreadyReifiedException extends RDFException 
+        { public AlreadyReifiedException( Node n ) { super( n.toString() ); } };
     }
     
 /*
