@@ -61,10 +61,9 @@ public class DBBulkUpdateHandler implements BulkUpdateHandler {
 		}
 	}
 
-	public void add(Graph g) {
-		ExtendedIterator triplesToAdd = g.find(null, null, null);
-		add(triplesToAdd);
-		triplesToAdd.close();
+	public void add( Graph g ) {
+		ExtendedIterator triplesToAdd = GraphUtil.findAll( g );
+		try { add(triplesToAdd); } finally { triplesToAdd.close(); }
 	}
 
     /**
@@ -99,10 +98,9 @@ public class DBBulkUpdateHandler implements BulkUpdateHandler {
 	}
 
 	public void delete(Graph g) {
-		ExtendedIterator triplesToDelete = g.find(null, null, null);
-		delete(triplesToDelete);
-		triplesToDelete.close();
-	}
+		ExtendedIterator triplesToDelete = GraphUtil.findAll( g );
+		try { delete( triplesToDelete ); } finally { triplesToDelete.close(); }
+   	}
 }
 
 
