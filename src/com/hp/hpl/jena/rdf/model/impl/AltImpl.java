@@ -187,11 +187,11 @@ public class AltImpl extends ContainerImpl implements Alt {
         return setDefault( new LiteralImpl( Node.createLiteral( o,l, false ), getModelCom()) );
     }      
         
-    protected Statement getDefaultStatement()  {
+    protected Statement getDefaultStatement()  
+        {
         StmtIterator iter = getModel().listStatements( this, RDF.li(1), (RDFNode) null );
-        if (!iter.hasNext()) {
-            return null;
+        try { return iter.hasNext() ? iter.nextStatement() : null; }
+        finally { iter.close(); }
         }
-        return iter.nextStatement();
-    }
+
 }

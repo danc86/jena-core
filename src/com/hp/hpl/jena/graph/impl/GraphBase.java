@@ -257,7 +257,8 @@ public abstract class GraphBase implements GraphWithPerform
          probably have specialised reifiers).
     */
     protected boolean reifierContains( Triple t )
-        { return getReifier().findExposed( t ).hasNext(); }
+        { ClosableIterator it = getReifier().findExposed( t );
+        try { return it.hasNext(); } finally { it.close(); } }
 
 	/**
          Answer true if the graph contains any triple matching <code>t</code>.
