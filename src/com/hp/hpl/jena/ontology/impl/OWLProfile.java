@@ -328,48 +328,48 @@ public class OWLProfile
         {  HasValueRestriction.class,   new SupportsCheck() {
                                             public boolean doCheck( Node n, EnhGraph g ) {
                                                 return g.asGraph().contains( n, RDF.type.asNode(), OWL.Restriction.asNode() ) &&
-                                                       g.asGraph().contains( n, OWL.hasValue.asNode(), null ) &&
-                                                       g.asGraph().contains( n, OWL.onProperty.asNode(), null );
+                                                       containsSome( g,n, OWL.hasValue ) &&
+                                                       containsSome( g,n, OWL.onProperty );
                                             }
                                         }
         },
         {  AllValuesFromRestriction.class,   new SupportsCheck() {
                                             public boolean doCheck( Node n, EnhGraph g ) {
                                                 return g.asGraph().contains( n, RDF.type.asNode(), OWL.Restriction.asNode() ) &&
-                                                       g.asGraph().contains( n, OWL.allValuesFrom.asNode(), null ) &&
-                                                       g.asGraph().contains( n, OWL.onProperty.asNode(), null );
+                                                       containsSome( g, n, OWL.allValuesFrom ) &&
+                                                       containsSome( g, n, OWL.onProperty );
                                             }
                                         }
         },
         {  SomeValuesFromRestriction.class,   new SupportsCheck() {
                                             public boolean doCheck( Node n, EnhGraph g ) {
                                                 return g.asGraph().contains( n, RDF.type.asNode(), OWL.Restriction.asNode() ) &&
-                                                       g.asGraph().contains( n, OWL.someValuesFrom.asNode(), null ) &&
-                                                       g.asGraph().contains( n, OWL.onProperty.asNode(), null );
+                                                       containsSome( g,n, OWL.someValuesFrom ) &&
+                                                       containsSome( g,n, OWL.onProperty );
                                             }
                                         }
         },
         {  CardinalityRestriction.class,   new SupportsCheck() {
                                             public boolean doCheck( Node n, EnhGraph g ) {
                                                 return g.asGraph().contains( n, RDF.type.asNode(), OWL.Restriction.asNode() ) &&
-                                                       g.asGraph().contains( n, OWL.cardinality.asNode(), null ) &&
-                                                       g.asGraph().contains( n, OWL.onProperty.asNode(), null );
+                                                      containsSome( g, n, OWL.cardinality ) &&
+                                                       containsSome( g, n, OWL.onProperty );
                                             }
                                         }
         },
         {  MinCardinalityRestriction.class,   new SupportsCheck() {
                                             public boolean doCheck( Node n, EnhGraph g ) {
                                                 return g.asGraph().contains( n, RDF.type.asNode(), OWL.Restriction.asNode() ) &&
-                                                       g.asGraph().contains( n, OWL.minCardinality.asNode(), null ) &&
-                                                       g.asGraph().contains( n, OWL.onProperty.asNode(), null );
+                                                       containsSome( g, n, OWL.minCardinality ) &&
+                                                       containsSome( g, n, OWL.onProperty );
                                             }
                                         }
         },
         {  MaxCardinalityRestriction.class,   new SupportsCheck() {
                                             public boolean doCheck( Node n, EnhGraph g ) {
                                                 return g.asGraph().contains( n, RDF.type.asNode(), OWL.Restriction.asNode() ) &&
-                                                       g.asGraph().contains( n, OWL.maxCardinality.asNode(), null ) &&
-                                                       g.asGraph().contains( n, OWL.onProperty.asNode(), null );
+                                                       containsSome( g, n, OWL.maxCardinality ) &&
+                                                       containsSome( g, n, OWL.onProperty ); 
                                             }
                                         }
         },
@@ -389,7 +389,11 @@ public class OWLProfile
         },
     };
 
-
+    // to allow concise reference in the code above.
+    public static boolean containsSome( EnhGraph g, Node n, Property p ) {
+        return AbstractProfile.containsSome( g, n, p ); 
+        }
+        
     // Static variables
     //////////////////////////////////
 

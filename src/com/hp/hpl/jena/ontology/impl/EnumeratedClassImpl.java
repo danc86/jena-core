@@ -72,7 +72,7 @@ public class EnumeratedClassImpl
             Profile profile = (eg instanceof OntModel) ? ((OntModel) eg).getProfile() : null;
             return (profile != null)  &&  
                    profile.isSupported( node, eg, OntClass.class )  &&
-                   eg.asGraph().contains( node, profile.ONE_OF().asNode(), null );
+                   eg.asGraph().contains( node, profile.ONE_OF().asNode(), Node.ANY );
         }
     };
 

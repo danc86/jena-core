@@ -19,9 +19,9 @@ import java.util.*;
 final public class Triple implements TripleMatch {
 	private final Node subj, pred, obj;
 	public Triple(Node s, Node p, Node o) {
-        if (s == null) throw new UnsupportedOperationException( "subject cannot be null" );
-        if (p == null) throw new UnsupportedOperationException( "predicate cannot be null" );
-        if (o == null) throw new UnsupportedOperationException( "object cannot be null" );
+//        if (s == null) throw new UnsupportedOperationException( "subject cannot be null" );
+//        if (p == null) throw new UnsupportedOperationException( "predicate cannot be null" );
+//        if (o == null) throw new UnsupportedOperationException( "object cannot be null" );
 		subj = s;
 		pred = p;
 		obj = o;
@@ -72,6 +72,9 @@ final public class Triple implements TripleMatch {
         
     public Triple asTriple()
         { return this; }
+        
+    public boolean isConcrete()
+        { return subj.isConcrete() && pred.isConcrete() && obj.isConcrete(); }
         
     /** 
         triples only equal other triples with the same components. 

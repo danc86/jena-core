@@ -44,6 +44,15 @@ public abstract class AbstractTestGraph extends GraphTestBase
         assertTrue( g.find( r, p, Node.ANY ).hasNext() );
         }
         
+    public void testFindByFluidTriple()
+        {
+        Graph g = getGraph();
+        g.add( triple( "x y z ") );
+        assertTrue( g.find( triple( "?? y z" ) ).hasNext() );
+        assertTrue( g.find( triple( "x ?? z" ) ).hasNext() );
+        assertTrue( g.find( triple( "x y ??" ) ).hasNext() );
+        }
+        
     public void testAGraph()
         {
         String title = this.getClass().getName();

@@ -379,48 +379,48 @@ public class DAML_OILProfile
         {  HasValueRestriction.class,   new SupportsCheck() {
                                             public boolean doCheck( Node n, EnhGraph g ) {
                                                 return g.asGraph().contains( n, RDF.type.asNode(), DAML_OIL.Restriction.asNode() ) &&
-                                                       g.asGraph().contains( n, DAML_OIL.hasValue.asNode(), null ) &&
-                                                       g.asGraph().contains( n, DAML_OIL.onProperty.asNode(), null );
+                                                       containsSome( g, n, DAML_OIL.hasValue ) &&
+                                                       containsSome( g, n, DAML_OIL.onProperty );
                                             }
                                         }
         },
         {  AllValuesFromRestriction.class,   new SupportsCheck() {
                                             public boolean doCheck( Node n, EnhGraph g ) {
                                                 return g.asGraph().contains( n, RDF.type.asNode(), DAML_OIL.Restriction.asNode() ) &&
-                                                       g.asGraph().contains( n, DAML_OIL.toClass.asNode(), null ) &&
-                                                       g.asGraph().contains( n, DAML_OIL.onProperty.asNode(), null );
+                                                       containsSome( g, n, DAML_OIL.toClass ) &&
+                                                       containsSome( g, n, DAML_OIL.onProperty );
                                             }
                                         }
         },
         {  SomeValuesFromRestriction.class,   new SupportsCheck() {
                                             public boolean doCheck( Node n, EnhGraph g ) {
                                                 return g.asGraph().contains( n, RDF.type.asNode(), DAML_OIL.Restriction.asNode() ) &&
-                                                       g.asGraph().contains( n, DAML_OIL.hasClass.asNode(), null ) &&
-                                                       g.asGraph().contains( n, DAML_OIL.onProperty.asNode(), null );
+                                                       containsSome( g, n, DAML_OIL.hasClass ) &&
+                                                       containsSome( g, n, DAML_OIL.onProperty );
                                             }
                                         }
         },
         {  CardinalityRestriction.class,   new SupportsCheck() {
                                             public boolean doCheck( Node n, EnhGraph g ) {
                                                 return g.asGraph().contains( n, RDF.type.asNode(), DAML_OIL.Restriction.asNode() ) &&
-                                                       g.asGraph().contains( n, DAML_OIL.cardinality.asNode(), null ) &&
-                                                       g.asGraph().contains( n, DAML_OIL.onProperty.asNode(), null );
+                                                       containsSome( g, n, DAML_OIL.cardinality ) &&
+                                                       containsSome( g, n, DAML_OIL.onProperty );
                                             }
                                         }
         },
         {  MinCardinalityRestriction.class,   new SupportsCheck() {
                                             public boolean doCheck( Node n, EnhGraph g ) {
                                                 return g.asGraph().contains( n, RDF.type.asNode(), DAML_OIL.Restriction.asNode() ) &&
-                                                       g.asGraph().contains( n, DAML_OIL.minCardinality.asNode(), null ) &&
-                                                       g.asGraph().contains( n, DAML_OIL.onProperty.asNode(), null );
+                                                       containsSome( g, n, DAML_OIL.minCardinality ) &&
+                                                       containsSome( g, n, DAML_OIL.onProperty );
                                             }
                                         }
         },
         {  MaxCardinalityRestriction.class,   new SupportsCheck() {
                                             public boolean doCheck( Node n, EnhGraph g ) {
                                                 return g.asGraph().contains( n, RDF.type.asNode(), DAML_OIL.Restriction.asNode() ) &&
-                                                       g.asGraph().contains( n, DAML_OIL.maxCardinality.asNode(), null ) &&
-                                                       g.asGraph().contains( n, DAML_OIL.onProperty.asNode(), null );
+                                                       containsSome( g, n, DAML_OIL.maxCardinality ) && 
+                                                       containsSome( g, n, DAML_OIL.onProperty ); 
                                             }
                                         }
         },
@@ -433,7 +433,12 @@ public class DAML_OILProfile
         },
     };
 
-
+    /* just to avoid having to decorate all the calls above */
+    
+    public static boolean  containsSome( EnhGraph g, Node n, Property p ) {
+        return AbstractProfile.containsSome( g, n, p );
+    }
+    
     // Static variables
     //////////////////////////////////
 

@@ -7,12 +7,7 @@
 package com.hp.hpl.jena.graph;
 
 /**
- * THIS INTERFACE IS BECOMMING OBSOLETE.
- * A TripleMatch evaluates as true against a triple
- * if all four methods evaluate as true.
- * @author Jeremy Carroll
- *
- * 
+ * @author Jeremy Carroll; updated by kers
  */
 public interface TripleMatch {
     

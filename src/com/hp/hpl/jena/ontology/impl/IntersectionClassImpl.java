@@ -69,7 +69,7 @@ public class IntersectionClassImpl
             Profile profile = (eg instanceof OntModel) ? ((OntModel) eg).getProfile() : null;
             return (profile != null)  &&  
                    profile.isSupported( node, eg, OntClass.class )  &&
-                   eg.asGraph().contains( node, profile.INTERSECTION_OF().asNode(), null );
+                   AbstractProfile.containsSome( eg, node, profile.INTERSECTION_OF() ); 
         }
     };
 

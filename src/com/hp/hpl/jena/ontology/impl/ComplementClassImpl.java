@@ -75,7 +75,7 @@ public class ComplementClassImpl
             return (profile != null)  &&  
                    profile.isSupported( node, eg, OntClass.class )  &&
                    comp != null && 
-                   eg.asGraph().contains( node, comp.asNode(), null );
+                   eg.asGraph().contains( node, comp.asNode(), Node.ANY );
         }
     };
 

@@ -217,6 +217,23 @@ public class TestTriple extends GraphTestBase
         assertTrue( Triple.create( "S ?? O" ).predicateMatches( node( "PRED" ) ) );
         assertTrue( Triple.create( "S P ??" ).objectMatches( node( "OBJ" ) ) );    
         }
+        
+    public void testConcrete()
+        {
+        assertTrue( Triple.create( "S P O" ).isConcrete() );
+        assertTrue( Triple.create( "S P 11").isConcrete() );
+        assertTrue( Triple.create( "S P _X").isConcrete() );
+        assertTrue( Triple.create( "S _P 11").isConcrete() );
+        assertTrue( Triple.create( "_S _P _O").isConcrete() );
+        assertTrue( Triple.create( "10 11 12").isConcrete() );
+        assertTrue( Triple.create( "S P 11").isConcrete() );
+        assertFalse( Triple.create( "?? P 11").isConcrete() );
+        assertFalse( Triple.create( "S ?? 11").isConcrete() );
+        assertFalse( Triple.create( "S P ??").isConcrete() );
+        assertFalse( Triple.create( "?S P 11").isConcrete() );
+        assertFalse( Triple.create( "S ?P 11").isConcrete() );
+        assertFalse( Triple.create( "S P ?O").isConcrete() );
+        }
 }
 /*
     (c) Copyright Hewlett-Packard Company 2002

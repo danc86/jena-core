@@ -25,6 +25,8 @@ package com.hp.hpl.jena.ontology.impl;
 // Imports
 ///////////////
 import com.hp.hpl.jena.rdf.model.*;
+import com.hp.hpl.jena.graph.*;
+import com.hp.hpl.jena.enhanced.*;
 import com.hp.hpl.jena.util.*;
 import com.hp.hpl.jena.ontology.*;
 
@@ -104,6 +106,18 @@ public abstract class AbstractProfile
         return aliasMap().getAll( res );
     }
 
+    /**
+        Utility method: answer true iff the enhanced graph contains some triple which
+        has n as subject, p.asNode() as predicate, and any object.
+        
+         @param an enhanced graph to search for triples
+         @param n some node
+         @param p a property containing a predicate node
+         @return true iff the graph contains (n, p, X) for some X 
+    */
+    public static boolean containsSome( EnhGraph g, Node n, Property p )  { 
+        return g.asGraph().contains( n, p.asNode(), Node.ANY ); 
+    }
 
     // Internal implementation methods
     //////////////////////////////////
