@@ -2,10 +2,10 @@
  * Source code information
  * -----------------------
  * Original author    Ian Dickinson, HP Labs Bristol
- * Author email       Ian.Dickinson@hp.com
+ * Author email       ian.dickinson@hp.com
  * Package            Jena 2
  * Web                http://sourceforge.net/projects/jena/
- * Created            July 19th 2003
+ * Created            09-Dec-2003
  * Filename           $RCSfile$
  * Revision           $Revision$
  * Release status     $State$
@@ -15,36 +15,33 @@
  *
  * (c) Copyright 2001, 2002, 2003, Hewlett-Packard Development Company, LP
  * [See end of file]
- * ****************************************************************************/
+ *****************************************************************************/
 
 // Package
 ///////////////
 package com.hp.hpl.jena.reasoner.dig;
 
-import org.w3c.dom.Document;
-
-import com.hp.hpl.jena.reasoner.TriplePattern;
-import com.hp.hpl.jena.util.iterator.*;
-import com.hp.hpl.jena.util.iterator.ExtendedIterator;
-import com.hp.hpl.jena.util.xml.SimpleXMLPath;
 
 
 // Imports
 ///////////////
+import java.util.Iterator;
+
+import org.w3c.dom.Document;
+
+import com.hp.hpl.jena.reasoner.TriplePattern;
+import com.hp.hpl.jena.util.iterator.*;
+
 
 /**
  * <p>
- * Translator that generates DIG allconcepts queries in response to a find query:
- * <pre>
- * * rdf:type owl:Class
- * </pre>
- * or similar.
+ * A specialisation of DIG query translator that aggregates iterated queries
  * </p>
  *
- * @author Ian Dickinson, HP Labs (<a href="mailto:Ian.Dickinson@hp.com">email</a>)
- * @version Release @release@ ($Id$)
+ * @author Ian Dickinson, HP Labs (<a  href="mailto:Ian.Dickinson@hp.com" >email</a>)
+ * @version CVS $Id$
  */
-public class DIGQueryAllConceptsTranslator 
+public abstract class DIGIteratedQueryTranslator 
     extends DIGQueryTranslator
 {
 
@@ -61,47 +58,67 @@ public class DIGQueryAllConceptsTranslator
     //////////////////////////////////
 
     /**
-     * <p>Construct a translator for the DIG query all concepts.</p>
-     * @param predicate The predicate URI to trigger on
-     * @param object The object URI to trigger on
+     * <p>Construct a query translator for the given query parameters.</p>
+     * @param subject Represents the incoming subject to trigger against
+     * @param predicate Represents the incoming predicate to trigger against
+     * @param object Represents the incoming object to trigger against
      */
-    public DIGQueryAllConceptsTranslator( String predicate, String object ) {
-        super( ALL, predicate, object );
+    public DIGIteratedQueryTranslator( String subject, String predicate, String object ) {
+        super( subject, predicate, object );
     }
-    
+
+
 
     // External signature methods
     //////////////////////////////////
 
-
     /**
-     * <p>Answer a query that will list all concept names</p>
+     * <p>Takes the incoming query pattern and expands it out to a series of subsidary
+     * triple patterns that will be taken as queries in their own right.</p> 
+     * @param pattern The incomimg query pattern
+     * @param da The DIG adapter currently being used to communicate with the DIG reasoner
+     * @return An iterator over a series of {@link TriplePattern}'s that represent
+     * the expanded query
      */
-    public Document translatePattern( TriplePattern pattern, DIGAdapter da ) {
-        DIGConnection dc = da.getConnection();
-        Document query = dc.createDigVerb( DIGProfile.ASKS, da.getProfile() );
-        da.addElement( query.getDocumentElement(), DIGProfile.ALL_CONCEPT_NAMES );
-        return query;
-    }
-
-
+    protected abstract Iterator expandQuery( TriplePattern pattern, DIGAdapter da );
+    
+    
     /**
-     * <p>Answer an iterator of triples that match the original find query.</p>
+     * <p>Expand the given pattern to a series of more grounded patterns, and collate
+     * the results of querying with each of these expanded patterns. This is used in
+     * cases where the incoming query is too ungrounded to pass to DIG in one go, e.g. 
+     * <code>*&nbsp;rdfs:subClassOf&nbsp;*</code>. The strategy is to expand one of 
+     * the ungrounded terms to form a series of queries, then solve each of these
+     * queries separately.</p>
+     * @param pattern The pattern to translate to a DIG query
+     * @param da The DIG adapter through which we communicate with a DIG reasoner
      */
-    public ExtendedIterator translateResponse( Document response, TriplePattern query, DIGAdapter da ) {
-        // evaluate a path through the return value to give us an iterator over catom names
-        ExtendedIterator catomNames = new SimpleXMLPath( true )
-                                          .appendElementPath( DIGProfile.CONCEPT_SET )
-                                          .appendElementPath( DIGProfile.SYNONYMS )
-                                          .appendElementPath( DIGProfile.CATOM )
-                                          .appendAttrPath( DIGProfile.NAME )
-                                          .getAll( response );
-        // check for no results
-        catomNames = (catomNames == null) ? new NullIterator() : catomNames;
+    public ExtendedIterator find( TriplePattern pattern, DIGAdapter da ) {
+        ExtendedIterator all = null;
         
-        return catomNames.mapWith( new NameToNodeMapper() )
-                         .mapWith( new TripleSubjectFiller( query.getPredicate(), query.getObject() ) );
+        for (Iterator i = expandQuery( pattern, da );  i.hasNext(); ) {
+            ExtendedIterator results = da.find( (TriplePattern) i.next() );
+            all = (all == null) ? results : all.andThen( results );
+        }
+        
+        return new UniqueExtendedIterator( all );
     }
+    
+    
+    /**
+     * Not needed in this class - delegated to the specific query handlers
+     */
+    public Document translatePattern( TriplePattern query, DIGAdapter da ) {
+        return null;
+    }
+
+    /**
+     * Not needed in this class - delegated to the specific query handlers
+     */
+    public ExtendedIterator translateResponse(Document Response, TriplePattern query, DIGAdapter da) {
+        return null;
+    }
+    
 
     // Internal implementation methods
     //////////////////////////////////

@@ -66,7 +66,7 @@ public class DIGQuerySubsumesTranslator
      * @param predicate The predicate URI to trigger on
      */
     public DIGQuerySubsumesTranslator( String predicate ) {
-        super( ALL, predicate, ALL );
+        super( null, predicate, null );
     }
     
 
@@ -81,8 +81,8 @@ public class DIGQuerySubsumesTranslator
         DIGConnection dc = da.getConnection();
         Document query = dc.createDigVerb( DIGProfile.ASKS, da.getProfile() );
         Element subsumes = da.addElement( query.getDocumentElement(), DIGProfile.SUBSUMES );
-        da.addClassIdentifier( subsumes, pattern.getObject() );
-        da.addClassIdentifier( subsumes, pattern.getSubject() );
+        da.addClassDescription( subsumes, pattern.getObject() );
+        da.addClassDescription( subsumes, pattern.getSubject() );
 
         return query;
     }
@@ -101,6 +101,13 @@ public class DIGQuerySubsumesTranslator
         return WrappedIterator.create( answer.iterator() );
     }
     
+    public boolean checkSubject( com.hp.hpl.jena.graph.Node subject ) {
+        return subject.isConcrete();
+    }
+    
+    public boolean checkObject( com.hp.hpl.jena.graph.Node object ) {
+        return object.isConcrete();
+    }
 
     // Internal implementation methods
     //////////////////////////////////

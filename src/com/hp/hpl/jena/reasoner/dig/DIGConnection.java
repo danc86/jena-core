@@ -32,7 +32,6 @@ import java.util.*;
 
 import javax.xml.parsers.*;
 
-import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.xml.serialize.*;
 import org.w3c.dom.*;
@@ -75,7 +74,10 @@ public class DIGConnection {
     /** List of most recent warnings */
     private List m_warnings = new ArrayList();
     
-
+    /** Flag to control whether we log incoming and outgoing messages */
+    protected boolean m_logCommunications = true;
+    
+    
     // Constructors
     //////////////////////////////////
 
@@ -112,6 +114,9 @@ public class DIGConnection {
             // different varaints on the protocol make different choices here
             conn.setRequestProperty( "Content-Type", profile.getContentType() );
             
+            // log
+            logMessage( true, digVerb );
+            
             // send
             conn.connect();
             PrintStream ps = new PrintStream( conn.getOutputStream() );
@@ -121,6 +126,10 @@ public class DIGConnection {
             
             // and receive
             Document response = getDigResponse( conn );
+
+            // log
+            logMessage( false, response );
+            
             errorCheck( response );
             return response;
         }
@@ -367,7 +376,22 @@ public class DIGConnection {
         }
     }
     
-    
+
+    /**
+     * <p>Log the messages going to and from DIG</p>
+     * @param outgoing True for send, false for receive
+     * @param msg The document sent or received.
+     */    
+    protected void logMessage( boolean outgoing, Document msg ) {
+        if (m_logCommunications) {
+            StringWriter out = new StringWriter();
+            serialiseDocument( msg, out );
+            
+            LogFactory.getLog( getClass() ).debug( outgoing ? "Sending to DIG reasoner ..." : "Received from DIG reasoner ..." );
+            LogFactory.getLog( getClass() ).debug( out );
+        }
+    }
+
 
     //==============================================================================
     // Inner class definitions

@@ -21,22 +21,23 @@
 ///////////////
 package com.hp.hpl.jena.reasoner.dig;
 
-import org.w3c.dom.Document;
-
-import com.hp.hpl.jena.reasoner.TriplePattern;
-import com.hp.hpl.jena.util.iterator.*;
-import com.hp.hpl.jena.util.iterator.ExtendedIterator;
-import com.hp.hpl.jena.util.xml.SimpleXMLPath;
-
 
 // Imports
 ///////////////
+import org.w3c.dom.*;
+
+import com.hp.hpl.jena.reasoner.TriplePattern;
+import com.hp.hpl.jena.util.iterator.*;
+import com.hp.hpl.jena.util.xml.SimpleXMLPath;
+
+
 
 /**
  * <p>
- * Translator that generates DIG allconcepts queries in response to a find query:
+ * Translator that generates DIG ancestors/desendants queries in response to a find queries:
  * <pre>
- * * rdf:type owl:Class
+ * :X rdf:subClassOf *
+ * *  rdf:subClassOf :X
  * </pre>
  * or similar.
  * </p>
@@ -44,7 +45,7 @@ import com.hp.hpl.jena.util.xml.SimpleXMLPath;
  * @author Ian Dickinson, HP Labs (<a href="mailto:Ian.Dickinson@hp.com">email</a>)
  * @version Release @release@ ($Id$)
  */
-public class DIGQueryAllConceptsTranslator 
+public class DIGQueryAncestorsTranslator 
     extends DIGQueryTranslator
 {
 
@@ -57,16 +58,21 @@ public class DIGQueryAllConceptsTranslator
     // Instance variables
     //////////////////////////////////
 
+    /** Flag for querying for ancestors */
+    protected boolean m_ancestors;
+    
+    
     // Constructors
     //////////////////////////////////
 
     /**
-     * <p>Construct a translator for the DIG query all concepts.</p>
+     * <p>Construct a translator for the DIG query 'parents'.</p>
      * @param predicate The predicate URI to trigger on
-     * @param object The object URI to trigger on
+     * @param ancestors If true, we are searching for parents of the class; if false, the descendants
      */
-    public DIGQueryAllConceptsTranslator( String predicate, String object ) {
-        super( ALL, predicate, object );
+    public DIGQueryAncestorsTranslator( String predicate, boolean ancestors ) {
+        super( (ancestors ? null : ALL), predicate, (ancestors ? ALL : null) );
+        m_ancestors = ancestors;
     }
     
 
@@ -75,12 +81,21 @@ public class DIGQueryAllConceptsTranslator
 
 
     /**
-     * <p>Answer a query that will list all concept names</p>
+     * <p>Answer a query that will test subsumption between two classes</p>
      */
     public Document translatePattern( TriplePattern pattern, DIGAdapter da ) {
         DIGConnection dc = da.getConnection();
         Document query = dc.createDigVerb( DIGProfile.ASKS, da.getProfile() );
-        da.addElement( query.getDocumentElement(), DIGProfile.ALL_CONCEPT_NAMES );
+        
+        if (m_ancestors) {
+            Element parents = da.addElement( query.getDocumentElement(), DIGProfile.ANCESTORS );
+            da.addClassDescription( parents, pattern.getSubject() );
+        }
+        else {
+            Element descendants = da.addElement( query.getDocumentElement(), DIGProfile.DESCENDANTS );
+            da.addClassDescription( descendants, pattern.getObject() );
+        }
+        
         return query;
     }
 
@@ -96,12 +111,29 @@ public class DIGQueryAllConceptsTranslator
                                           .appendElementPath( DIGProfile.CATOM )
                                           .appendAttrPath( DIGProfile.NAME )
                                           .getAll( response );
-        // check for no results
-        catomNames = (catomNames == null) ? new NullIterator() : catomNames;
         
-        return catomNames.mapWith( new NameToNodeMapper() )
-                         .mapWith( new TripleSubjectFiller( query.getPredicate(), query.getObject() ) );
+        ExtendedIterator catomNodes = catomNames.mapWith( new NameToNodeMapper() );
+        
+        // to match OWL semantics, we must include this node itself
+        catomNodes = catomNodes.andThen( new SingletonIterator( m_ancestors ? query.getSubject() : query.getObject() ) );
+        
+        // return the results as triples
+        if (m_ancestors) {
+            return catomNodes.mapWith( new TripleObjectFiller( query.getSubject(), query.getPredicate() ) );
+        }
+        else {
+            return catomNodes.mapWith( new TripleSubjectFiller( query.getPredicate(), query.getObject() ) );
+        }
     }
+    
+    public boolean checkSubject( com.hp.hpl.jena.graph.Node subject ) {
+        return !m_ancestors || subject.isConcrete();
+    }
+    
+    public boolean checkObject( com.hp.hpl.jena.graph.Node object ) {
+        return m_ancestors || object.isConcrete();
+    }
+
 
     // Internal implementation methods
     //////////////////////////////////
