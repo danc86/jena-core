@@ -16,6 +16,8 @@ import com.hp.hpl.jena.mem.*;
 import com.hp.hpl.jena.util.iterator.*;
 import com.hp.hpl.jena.graph.*;
 
+import java.util.*;
+
 import junit.framework.*;
 
 public class TestGraph extends GraphTestBase
@@ -89,10 +91,24 @@ public class TestGraph extends GraphTestBase
         try { th.abort(); } catch (UnsupportedOperationException x) {}
         try { th.commit(); } catch (UnsupportedOperationException x) {}
         }
-        
-    public static void testHasBulkUpdates( Graph g )
+
+    public void testHasBulkUpdate()
+        { testHasBulkUpdate( Factory.createDefaultGraph() ); }
+                    
+    public static void testHasBulkUpdate( Graph g )
         {
         BulkUpdateHandler bu = g.getBulkUpdateHandler();
+        Graph empty = Factory.createDefaultGraph();
+    /* */
+        bu.add( new Triple [] {} );
+        bu.add( new ArrayList() );
+        bu.add( new NiceIterator() );
+        bu.add( empty );
+    /* */
+        bu.delete( new Triple [] {} );
+        bu.delete( new ArrayList() );
+        bu.delete( new NiceIterator() );
+        bu.delete( empty );
         }
         
     public static void testHasCapabilities( Graph g )

@@ -40,7 +40,7 @@ public abstract class GraphBase implements Graph {
         { return new SimpleTransactionHandler(); }
         
     public BulkUpdateHandler getBulkUpdateHandler()
-        { return null; }
+        { return new SimpleBulkUpdateHandler( this ); }
         
     public Capabilities getCapabilities()
         { return null; }
