@@ -53,9 +53,9 @@ public class RuleMap {
     public static List loadRules(String filename, Map prefixes) throws IOException {
         String fname = filename;
         if (fname.startsWith("file:///")) {
-            fname = fname.substring(8);
+            fname = File.separator + fname.substring(8);
         } else if (fname.startsWith("file:/")) {
-            fname = fname.substring(6);
+            fname = File.separator + fname.substring(6);
         } else if (fname.startsWith("file:")) {
             fname = fname.substring(5);
         }
