@@ -49,8 +49,8 @@ import com.hp.hpl.jena.rdf.model.impl.PropertyImpl;
 import com.hp.hpl.jena.rdf.model.impl.LiteralImpl;
 import com.hp.hpl.jena.rdf.model.impl.ModelCom;
 import com.hp.hpl.jena.rdf.model.impl.RDFDefaultErrorHandler;
+import com.hp.hpl.jena.shared.JenaException;
 
-import com.hp.hpl.jena.util.JenaException;
 
 import java.io.*;
 import java.net.*;

@@ -24,6 +24,7 @@ import com.hp.hpl.jena.db.*;
 
 import junit.framework.*;
 
+import com.hp.hpl.jena.shared.*;
 import com.hp.hpl.jena.util.*;
 
 public class TestConnection extends TestCase {    

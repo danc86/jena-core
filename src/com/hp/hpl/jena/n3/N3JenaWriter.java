@@ -26,9 +26,9 @@ package com.hp.hpl.jena.n3;
 //import org.apache.log4j.Logger;
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.rdf.model.impl.ModelCom ;
+import com.hp.hpl.jena.shared.JenaException;
 import com.hp.hpl.jena.vocabulary.OWL ;
 import com.hp.hpl.jena.vocabulary.RDF ;
-import com.hp.hpl.jena.util.JenaException ;
 
 import java.util.* ;
 import java.io.* ;

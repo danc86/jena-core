@@ -15,6 +15,7 @@ package com.hp.hpl.jena.graph;
 import com.hp.hpl.jena.util.iterator.*;
 import com.hp.hpl.jena.mem.*;
 import com.hp.hpl.jena.rdf.model.*;
+import com.hp.hpl.jena.shared.*;
 import com.hp.hpl.jena.test.*;
 import com.hp.hpl.jena.util.*;
 

@@ -5,7 +5,8 @@
 
 package com.hp.hpl.jena.rdf.model.impl ;
 import com.hp.hpl.jena.rdf.model.ModelLock ;
-import com.hp.hpl.jena.util.JenaException ;
+import com.hp.hpl.jena.shared.JenaException;
+
 import EDU.oswego.cs.dl.util.concurrent.*;
 import java.util.*;
 

@@ -31,9 +31,8 @@
 
 package com.hp.hpl.jena.rdf.model;
 
-import com.hp.hpl.jena.util.JenaException;
+import com.hp.hpl.jena.shared.JenaException;
 
-import java.lang.Integer;
 
 /** Generic RDF Exception class.
  * @author bwm
