@@ -136,7 +136,7 @@ public class TestConnection extends TestCase {
 		ModelMaker maker = ModelFactory.createModelRDBMaker(conn);
 		Model m = null;
 		try {
-			m  = maker.createModel(DefModel, false);
+			m  = maker.createModelOver(DefModel);
 			assertTrue(false);
 		} catch (Exception e) {
 		}
