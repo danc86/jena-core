@@ -190,16 +190,8 @@ public class WGReasonerTester {
 
         String description = test.getProperty(descriptionP).getObject().toString();
         String status = test.getProperty(statusP).getObject().toString();
-        //logger.info("WG test " + test.getURI() + " - " + description);
         logger.debug("WG test " + test.getURI() + " - " + status);
-        
-        // Skip pending tests for now
-        /*
-        if (status.equalsIgnoreCase("PENDING")) {
-            return true;
-        }
-        */
-        
+                
         // Load up the premise documents
         Model premises = new ModelMem();
         for (StmtIterator premisesI = test.listProperties(premiseDocumentP); premisesI.hasNext(); ) {
