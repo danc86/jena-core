@@ -26,6 +26,7 @@ public class RDQLTestSuite extends TestSuite
         addTest(TestExpressions.suite()) ;
         addTest(QueryTestScripts.suite()) ;
         addTest(QueryTestProgrammatic.suite()) ;
+        addTest(QueryTestsMisc.suite()) ;
     }
 }
 

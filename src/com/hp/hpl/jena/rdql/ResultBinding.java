@@ -111,7 +111,7 @@ public class ResultBinding
                             p = model.createProperty(((Resource)p).getURI()) ;
                         RDFNode o = QueryEngine.convertNodeToRDFNode(t2.getObject(), model) ;
                         Statement stmt = model.createStatement((Resource)s, (Property)p, o) ;
-                        acc.add(stmt) ;
+                        causalTriples.add(stmt) ;
                     }
                 } catch (Exception ex)
                 {
