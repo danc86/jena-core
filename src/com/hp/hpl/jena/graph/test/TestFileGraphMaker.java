@@ -12,6 +12,9 @@ import com.hp.hpl.jena.shared.*;
 import junit.framework.*;
 
 /**
+    Test a FileGraphMaker; use the abstract tests, plus specialised ones for the name
+    conversion routines.
+    
  	@author hedgehog
 */
 public class TestFileGraphMaker extends AbstractTestGraphMaker

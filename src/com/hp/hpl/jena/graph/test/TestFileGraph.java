@@ -72,7 +72,7 @@ public class TestFileGraph extends GraphTestBase
         assertTrue( FileGraph.isPlausibleGraphName( "hedgehog.spine.end.RDF" ) );        
         }
         
-    public void testImisPlausibleGraphName()
+    public void testImPlausibleGraphName()
         {
         assertFalse( FileGraph.isPlausibleGraphName( "undecorated" ) );    
         assertFalse( FileGraph.isPlausibleGraphName( "danger.exe" ) );    

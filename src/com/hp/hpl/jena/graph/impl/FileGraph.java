@@ -97,6 +97,14 @@ public class FileGraph extends GraphMem
         return "RDF/XML";
         }
         
+    /**
+        Answer true iff the filename string given is plausibly the name of a graph, ie, may
+        have RDF content. The current feeble approximation is that the name ends in
+        one of .n3, .nt, or .rdf [in any mixture of cases].
+        
+     	@param name the leaf component of a filename
+     	@return true if it is likely to be an RDF file
+     */
     public static boolean isPlausibleGraphName( String name )
         {
         String suffix = name.substring( name.lastIndexOf( '.' ) + 1 ).toLowerCase();
