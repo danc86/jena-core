@@ -28,7 +28,9 @@ import java.util.*;
 
 import org.apache.log4j.Logger;
 
-import com.hp.hpl.jena.reasoner.dig.DigAdapter;
+import com.hp.hpl.jena.ontology.OntModelSpec;
+import com.hp.hpl.jena.rdf.model.ModelFactory;
+import com.hp.hpl.jena.reasoner.dig.DIGAdapter;
 
 import junit.framework.*;
 
@@ -61,38 +63,38 @@ public class TestRacer
     //////////////////////////////////
 
     public void testRacerName() {
-        DigAdapter r = new DigAdapter(null, null);
+        DIGAdapter r = new DIGAdapter( OntModelSpec.OWL_DL_MEM, ModelFactory.createOntologyModel().getGraph() );
         assertEquals( "Name should be racer", "Racer", r.getDigIdentifier().getName() );
     }
     
     public void testRacerVersion() {
-        DigAdapter r = new DigAdapter(null, null);
+        DIGAdapter r = new DIGAdapter( OntModelSpec.OWL_DL_MEM, ModelFactory.createOntologyModel().getGraph() );
         assertNotNull( "Version should be non-null", r.getDigIdentifier().getVersion() );
     }
     
     public void testRacerMessage() {
-        DigAdapter r = new DigAdapter(null, null);
+        DIGAdapter r = new DIGAdapter( OntModelSpec.OWL_DL_MEM, ModelFactory.createOntologyModel().getGraph() );
         assertNotNull( "Message should be non-null", r.getDigIdentifier().getMessage() );
     }
     
     public void testRacerSupportsLanguage() {
-        DigAdapter r = new DigAdapter(null, null);
+        DIGAdapter r = new DIGAdapter( OntModelSpec.OWL_DL_MEM, ModelFactory.createOntologyModel().getGraph() );
         iteratorTest( r.getDigIdentifier().supportsLanguage(), 
                       new Object[] {"top", "bottom", "catom", "ratom", "and", "or", 
                                     "not", "some", "all", "atmost", "atleast", "inverse", "feature", "attribute", 
-                                    "intmin", "intmax", "intrange", "intequals", "defined", } );
+                                    "intmin", "intmax", "intrange", "intequals", "defined", "stringequals"} );
     }
     
     public void testRacerSupportsTell() {
-        DigAdapter r = new DigAdapter(null, null);
+        DIGAdapter r = new DIGAdapter( OntModelSpec.OWL_DL_MEM, ModelFactory.createOntologyModel().getGraph() );
         iteratorTest( r.getDigIdentifier().supportsTell(), 
                       new Object[] {"defconcept", "defrole", "deffeature", "defattribute", "defindividual", "impliesc", "equalc", 
                                     "disjoint", "impliesr", "domain", "range", "rangeint", "transitive", "functional", 
-                                    "instanceof", "related", "value", } );
+                                    "instanceof", "related", "value", "equalr", "rangestring"} );
     }
     
     public void testRacerSupportsAsk() {
-        DigAdapter r = new DigAdapter(null, null);
+        DIGAdapter r = new DIGAdapter( OntModelSpec.OWL_DL_MEM, ModelFactory.createOntologyModel().getGraph() );
         iteratorTest( r.getDigIdentifier().supportsAsk(), 
                       new Object[] {"allConceptNames", "allRoleNames", "allIndividuals", "satisfiable", "subsumes", 
                                     "disjoint", "parents", "children", "descendants", "ancestors", "equivalents", 
