@@ -103,7 +103,6 @@ public class OntModelImpl
      */
     public OntModelImpl( String languageURI, Model model, OntDocumentManager docMgr, GraphFactory gf ) {
         // all ontologies are defined to be union graphs, to allow us to add the imports to the union
-        //super( new MultiUnion(), BuiltinPersonalities.model );
         super( new OntologyGraph(), BuiltinPersonalities.model );
         
         Profile lang = ProfileRegistry.getInstance().getProfile( languageURI );
@@ -899,6 +898,22 @@ public class OntModelImpl
      */
     public Graph getBaseGraph() {
         return ((MultiUnion) getGraph()).getBaseGraph();
+    }
+    
+    
+    /**
+     * <p>
+     * Answer the base model of this model. The base model is the model wrapping
+     * the graph that contains the triples read from the source document for this 
+     * ontology.  It is therefore the model that will be updated if statements are
+     * added to a model that is built from a union of documents (via the 
+     * <code>imports</code> statements in the source document).
+     * </p>
+     * 
+     * @return The base model for this ontology model
+     */
+    public Model getBaseModel() {
+        return ModelFactory.createModelForGraph( getBaseGraph() );
     }
     
     

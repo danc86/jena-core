@@ -610,6 +610,20 @@ public interface OntModel
     
     /**
      * <p>
+     * Answer the base model of this model. The base model is the model wrapping
+     * the graph that contains the triples read from the source document for this 
+     * ontology.  It is therefore the model that will be updated if statements are
+     * added to a model that is built from a union of documents (via the 
+     * <code>imports</code> statements in the source document).
+     * </p>
+     * 
+     * @return The base model for this ontology model
+     */
+    public Model getBaseModel();
+    
+    
+    /**
+     * <p>
      * Add the given graph as one of the sub-graphs of this ontology union graph
      * </p>
      *
