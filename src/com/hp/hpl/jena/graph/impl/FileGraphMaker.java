@@ -66,13 +66,13 @@ public class FileGraphMaker extends BaseGraphMaker
     public Graph createGraph( String name, boolean strict )
         {
         File f = withRoot( name );
-        Graph already = (Graph) created.get( f );
+        FileGraph already = (FileGraph) created.get( f );
         if (already == null)
             return remember( f, new FileGraph( f, true, strict, style ) ); 
         else
             {
             if (strict) throw new AlreadyExistsException( name );
-            else return already;
+            else return already.openAgain();
             }
         }
 
@@ -80,7 +80,7 @@ public class FileGraphMaker extends BaseGraphMaker
         { 
         File f = withRoot( name );
         return created.containsKey( f )  
-            ? (Graph) created.get( f ) 
+            ? ((FileGraph) created.get( f )).openAgain()
             : remember( f, new FileGraph( f, false, strict, style ) )
             ;
         }

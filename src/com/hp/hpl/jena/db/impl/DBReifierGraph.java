@@ -205,7 +205,7 @@ public class DBReifierGraph implements Graph {
 	}
     
     public String toString()
-        { return GraphBase.toString( this ); }
+        { return GraphBase.toString( "DBReifier ", this ); }
 }
 
 /*

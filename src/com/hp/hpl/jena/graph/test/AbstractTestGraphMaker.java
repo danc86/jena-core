@@ -185,6 +185,16 @@ public abstract class AbstractTestGraphMaker extends GraphTestBase
         assertTrue( "paul still exists", gf.hasGraph( "paul" ) );
         assertFalse( "no such graph", gf.hasGraph( "george" ) );
         }
+        
+    public void testCarefulClose()
+        {
+        Graph x = gf.createGraph( "x" );
+        Graph y = gf.openGraph( "x" );
+        x.add( triple( "a BB c" ) );
+        x.close();
+        y.add( triple( "p RR q" ) );
+        y.close();
+        }
     }
 
 /*

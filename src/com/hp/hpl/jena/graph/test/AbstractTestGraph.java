@@ -488,6 +488,58 @@ public abstract class AbstractTestGraph extends GraphTestBase
         assertFalse( qh.containsNode( node( "_y" ) ) );
         assertFalse( qh.containsNode( node( "99" ) ) );
         }
+        
+    protected Graph getClosed()
+        {
+        Graph result = getGraph();
+        result.close();
+        return result;
+        }
+        
+//    public void testClosedDelete()
+//        {
+//        try { getClosed().delete( triple( "x R y" ) ); fail( "delete when closed" ); }
+//        catch (ClosedException c) { /* as required */ }
+//        }
+//        
+//    public void testClosedAdd()
+//        {
+//        try { getClosed().add( triple( "x R y" ) ); fail( "add when closed" ); }
+//        catch (ClosedException c) { /* as required */ }
+//        }
+//        
+//    public void testClosedContainsTriple()
+//        {
+//        try { getClosed().contains( triple( "x R y" ) ); fail( "contains[triple] when closed" ); }
+//        catch (ClosedException c) { /* as required */ }
+//        }
+//        
+//    public void testClosedContainsSPO()
+//        {
+//        Node a = Node.ANY;
+//        try { getClosed().contains( a, a, a ); fail( "contains[SPO] when closed" ); }
+//        catch (ClosedException c) { /* as required */ }
+//        }
+//        
+//    public void testClosedFindTriple()
+//        {
+//        try { getClosed().find( triple( "x R y" ) ); fail( "find [triple] when closed" ); }
+//        catch (ClosedException c) { /* as required */ }
+//        }
+//        
+//    public void testClosedFindSPO()
+//        {
+//        Node a = Node.ANY;
+//        try { getClosed().find( a, a, a ); fail( "find[SPO] when closed" ); }
+//        catch (ClosedException c) { /* as required */ }
+//        }
+//        
+//    public void testClosedSize()
+//        {
+//        try { getClosed().size(); fail( "size when closed (" + this.getClass() + ")" ); }
+//        catch (ClosedException c) { /* as required */ }
+//        }
+        
     }
 
 
