@@ -556,9 +556,9 @@ public class FRuleEngine implements FRuleEngineI {
             if (!patternF.getName().equals(nodeF.getName())) return false;
             Node[] patternArgs = patternF.getArgs();
             Node[] nodeArgs = nodeF.getArgs();
-            if (patternF.isGround()) {
-                return Arrays.equals(patternArgs, nodeArgs);
-            } else {
+//            if (patternF.isGround()) {
+//                return Arrays.equals(patternArgs, nodeArgs);
+//            } else {
                 if (patternArgs.length != nodeArgs.length) return false;
                 // Compatible functor shapes so bind an embedded variables in the pattern
                 env.push();
@@ -576,7 +576,7 @@ public class FRuleEngine implements FRuleEngineI {
                     env.unwind();
                     return false;
                 }
-            }
+//            }
         } else {
             return pattern.sameValueAs(node);
         }
