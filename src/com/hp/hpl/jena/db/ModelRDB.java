@@ -137,7 +137,7 @@ public class ModelRDB extends ModelCom implements Model, ModelI {
 	 * getDefaultModelProperties, modify it, and then use that as an argument
 	 * in the call.
 	 * 
-    * @param name the name to give the newly created model
+     * @param dbcon a DBConnectionI specifying the database connection
      * @param modelProperties a Model containing customization properties
      * @since Jena 2.0
      */
