@@ -24,18 +24,20 @@ public class TestGraphRDB extends AbstractTestGraph
     public static TestSuite suite()
         { return new TestSuite( TestGraphRDB.class ); }
 
+	private ModelRDB theModel;
     private Graph theGraph;
     private IDBConnection theConnection;
     
     public void setUp()
         {
         theConnection = TestConnection.makeAndCleanTestConnection();
-        theGraph = ModelRDB.createModel( theConnection ).getGraph();
+		theModel = ModelRDB.createModel( theConnection );
+		theGraph = theModel.getGraph();
         }
         
     public void tearDown()
         { 
-        theGraph.close();
+        theModel.close();
         try { theConnection.close(); }
         catch (Exception e) { throw new JenaException( e ); }
         }
