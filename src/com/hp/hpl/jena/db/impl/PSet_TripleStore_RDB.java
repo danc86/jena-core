@@ -348,13 +348,13 @@ public  class PSet_TripleStore_RDB implements IPSet {
             		ops.setObject(1,id.getID());
 					ResultSet rs = ops.executeQuery();
 					rs.next();
-					oracle.sql.BLOB dbBlob = (oracle.sql.BLOB)rs.getBlob(1);
+					// oracle.sql.BLOB dbBlob = (oracle.sql.BLOB)rs.getBlob(1);
 					m_sql.returnPreparedSQLStatement(ops,"lockLiteralwithIdBlob");
 					
 					ops = dbcon.prepareStatement("updateBlobForLiteralID");
-					dbBlob.putBytes(1,litData);
+					//dbBlob.putBytes(1,litData);
 					ops.setObject(2,id.getID());
-					ops.setBlob(1,dbBlob);
+					//ops.setBlob(1,dbBlob);
 					dbcon.commit();
 					dbcon.setAutoCommit(saved);
 					m_sql.returnPreparedSQLStatement(ops, "updateBlobForLiteralID");
