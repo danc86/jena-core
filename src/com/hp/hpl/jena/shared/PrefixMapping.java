@@ -33,7 +33,7 @@ public interface PrefixMapping
         @param uri the URI prefix to be named
         @exception IllegalPrefixException if the prefix is not an XML NCName
     */
-    void setNsPrefix( String prefix, String uri );
+    PrefixMapping setNsPrefix( String prefix, String uri );
     
     /**
         Copies the prefixes from other into this. Any existing binding of the
@@ -41,7 +41,7 @@ public interface PrefixMapping
         
         @param other the PrefixMapping to add
     */
-    void setNsPrefixes( PrefixMapping other );
+    PrefixMapping setNsPrefixes( PrefixMapping other );
     
     /**
         Copies the prefix mapping from other into this. Illegal prefix mappings
@@ -49,7 +49,7 @@ public interface PrefixMapping
         
         @param map the Map whose maplets are to be added
     */
-    void setNsPrefixes( Map map );
+    PrefixMapping setNsPrefixes( Map map );
        
     /**
         Get the URI bound to a specific prefix, null if there isn't one.

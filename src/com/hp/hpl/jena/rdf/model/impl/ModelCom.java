@@ -861,14 +861,23 @@ implements Model, ModelI, PrefixMapping, ModelLock
     private PrefixMapping getPrefixMapping()
         { return getGraph().getPrefixMapping(); }
         
-    public void setNsPrefix( String prefix, String uri )
-        { getPrefixMapping().setNsPrefix( prefix, uri ); }
+    public PrefixMapping setNsPrefix( String prefix, String uri )
+        { 
+        getPrefixMapping().setNsPrefix( prefix, uri ); 
+        return this;
+        }
         
-    public void setNsPrefixes( PrefixMapping pm )
-        { getPrefixMapping().setNsPrefixes( pm ); }
+    public PrefixMapping setNsPrefixes( PrefixMapping pm )
+        { 
+        getPrefixMapping().setNsPrefixes( pm );
+        return this;
+        }
         
-    public void setNsPrefixes( Map map )
-        { getPrefixMapping().setNsPrefixes( map ); }
+    public PrefixMapping setNsPrefixes( Map map )
+        { 
+        getPrefixMapping().setNsPrefixes( map ); 
+        return this;
+        }
         
     public String getNsPrefixURI( String prefix ) 
         { return getPrefixMapping().getNsPrefixURI( prefix ); }

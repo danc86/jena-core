@@ -245,6 +245,14 @@ public abstract class AbstractTestPrefixMapping extends GraphTestBase
         assertEquals( crispURI, A.getNsPrefixURI( "sharp" ) );
         assertEquals( null, A.getNsPrefixURI( "crisp" ) );
         }
+        
+    public void testReturnsSelf()
+        {
+        PrefixMapping A = getMapping();
+        assertSame( A, A.setNsPrefix( "crisp", crispURI ) );
+        assertSame( A, A.setNsPrefixes( A ) );
+        assertSame( A, A.setNsPrefixes( new HashMap() ) );
+        }
     }
 
 /*
