@@ -1,5 +1,35 @@
 /*
- *  (c) Copyright Hewlett-Packard Company 1999-2001 
+  (c) Copyright 2002, Hewlett-Packard Company, all rights reserved.
+  [See end of file]
+  $Id$
+*/
+
+package com.hp.hpl.jena.util.iterator;
+
+/** A boolean function for filtering.
+ * @author jjc
+ * @version Release='$Name$' Revision='$Revision$' Date='$Date$'
+ */
+public interface Filter
+{
+/** The object is wanted.
+ * @param o The object to accept or reject.
+ * @return true if the object is wanted.
+ */    
+	public boolean accept(Object o);
+    
+    /** 
+        a filter that accepts anything.
+        (useful when a general method wants a Filter, but we'll
+        take anything).
+    */
+    public static final Filter any = new Filter()
+        { public final boolean accept( Object o ) { return true; } };
+        
+}
+
+/*
+ *  (c) Copyright Hewlett-Packard Company 1999-2003 
  *  All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -27,18 +57,3 @@
  * $Id$
  *
  */
-
-package com.hp.hpl.jena.util.iterator;
-
-/** A boolean function for filtering.
- * @author jjc
- * @version Release='$Name$' Revision='$Revision$' Date='$Date$'
- */
-public interface Filter
-{
-/** The object is wanted.
- * @param o The object to accept or reject.
- * @return true if the object is wanted.
- */    
-	public boolean accept(Object o);
-}
