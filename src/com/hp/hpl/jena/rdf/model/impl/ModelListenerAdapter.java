@@ -36,10 +36,10 @@ public class ModelListenerAdapter implements GraphListener
         { L.addedStatement( m.asStatement( t ) ); }
         
     public void notifyAdd( Iterator it )
-        {}
+        { L.addedStatements( m.asStatements( it ) ); }
         
     public void notifyDelete( Iterator it )
-        {}
+        { L.removedStatements( m.asStatements( it ) ); }
         
     public void notifyDelete( Triple t )
         { L.removedStatement( m.asStatement( t ) ); }
