@@ -130,7 +130,19 @@ public class TestConnection extends TestCase {
 		}
 		conn.close();
 	}
-    
+	
+	public void testBadNamedFactoryModel() throws java.lang.Exception {
+		IDBConnection conn = makeAndCleanTestConnection();
+		ModelMaker maker = ModelFactory.createModelRDBMaker(conn);
+		Model m = null;
+		try {
+			m  = maker.createModel(DefModel);
+			assertTrue(false);
+		} catch (Exception e) {
+		}
+		conn.close();
+	}
+	
 	public void testReconstructDefaultModel() throws java.lang.Exception {
 		IDBConnection conn = makeAndCleanTestConnection();
 		ModelRDB m = ModelRDB.createModel(conn);
@@ -139,7 +151,6 @@ public class TestConnection extends TestCase {
 		m1.remove();
 		conn.close();
 	}
-
     
 	public void testReconstructNamedModel() throws java.lang.Exception {
 		IDBConnection conn = makeAndCleanTestConnection();
