@@ -76,6 +76,12 @@ public interface RegexpTreeGenerator
          expression, and matching the empty string).
     */
     public abstract RegexpTree getNothing();
+
+    /**
+         Answer a RegexpTree that encodes a match which accepts (reject=false)
+         or rejects (reject=true) any (all) of the characters in <code>chars</code>.
+    */
+    public abstract RegexpTree getClass( String chars, boolean reject );
     }
 
 /*

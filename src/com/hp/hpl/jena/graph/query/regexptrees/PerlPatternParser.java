@@ -18,7 +18,7 @@ public class PerlPatternParser
     /**
          The string being parsed, as supplied to the constructor(s).
     */
-    final protected String toParse;
+    protected final String toParse;
     
     /**
          The index into the string of the next undealt-with character, ie, it starts at 0.
@@ -28,12 +28,22 @@ public class PerlPatternParser
     /**
          The length of the string to parse, used as a limit.
     */
-    protected int limit;
+    protected final int limit;
     
     /**
          The generator for the RegexpTree nodes to be used in the parse.
     */
     protected RegexpTreeGenerator generator;
+    
+    /**
+         The characters that are (non-)matchable by \w[W].
+    */
+    public static final String wordChars =
+        "0123456789"
+        + "abcdefghijklmnopqrstuvwxyz"
+        + "_"
+        + "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        ;
     
     /**
          Initialise this parser with the string to parse and with the default
@@ -109,7 +119,7 @@ public class PerlPatternParser
                 case ')':   throw new PerlPatternParser.SyntaxException( "unmatched bracket " + ch );
                 case '(':   throw new PerlPatternParser.SyntaxException( "can't do (E) yet" );
                 case '[':   throw new PerlPatternParser.SyntaxException( "can't do [C] yet" );
-                case '\\':  throw new PerlPatternParser.SyntaxException( "can't do \\ yet" );
+                case '\\':  return parseBackslash(); 
                 case '*':
                 case '+':
                 case '?':
@@ -120,6 +130,39 @@ public class PerlPatternParser
                 }
             }
         return generator.getNothing();
+        }
+    
+    /**
+         Parse a backslash-escape and answer the appropriate regexp tree.
+         Unhandled escapes throw an exception.
+    */
+    private RegexpTree parseBackslash()
+        {
+        char ch = toParse.charAt( pointer++ );
+        if ("bBAZnrtfdDwWSsxc0123456789".indexOf( ch ) < 0)
+            return generator.getText( ch );
+        else if (ch == 'n')
+            return generator.getText( '\n' );
+        else if (ch == 'r')
+            return generator.getText( '\r' );
+        else if (ch == 'f')
+            return generator.getText( '\f' );
+        else if (ch == 't')
+            return generator.getText( '\t' );
+        else if (ch == 's')
+            return generator.getClass( " \r\n\t\f", false );
+        else if (ch == 'S') 
+            return generator.getClass( " \r\n\t\f", true );
+        else if (ch == 'd')
+            return generator.getClass( "0123456789", false );
+        else if (ch == 'D')
+            return generator.getClass( "0123456789", true );
+        else if (ch == 'w')
+            return generator.getClass( wordChars, false );
+        else if (ch == 'W')
+            return generator.getClass( wordChars, true );
+        else    
+            throw new PerlPatternParser.SyntaxException( "can't do \\" + ch + " yet" );
         }
     
     /**
