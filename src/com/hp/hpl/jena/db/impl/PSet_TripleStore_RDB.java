@@ -1230,10 +1230,7 @@ public void deleteTripleAR(
 	 * @return boolean result to indicte if the tripple was contained
 	 */
 	public boolean statementTableContains(IDBID graphID, Triple t) {
-	   PreparedStatement ps;
-	   StandardTripleMatch tm = new StandardTripleMatch(t.getSubject(), t.getPredicate(), t.getObject());
-			 
-	   ExtendedIterator it = find(tm, graphID);
+	   ExtendedIterator it = find( t,  graphID );
 	   return (it.hasNext());
 	}
 	

@@ -140,6 +140,17 @@ public interface SpecializedGraph {
     public ExtendedIterator find(TripleMatch m, CompletionFlag complete);
     
     /**
+        Finds matching triples contained in the specialized graph
+        @param s the subject of the match
+        @param p the predicate of the match
+        @param o the object of the match
+        @param complete is true if the graph can guarantee that no other specialized graph 
+        could hold any matching triples.
+        @return ExtendedIterator which iterates over any matching triples
+    */
+    public ExtendedIterator find( Node s, Node p, Node o, CompletionFlag complete );
+    
+    /**
      * Clear the specialized graph
      * 
      * This removes any triples stored in the graph.

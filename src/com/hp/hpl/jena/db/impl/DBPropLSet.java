@@ -54,8 +54,7 @@ public class DBPropLSet extends DBProp {
 	
 	public DBPropPSet getPset() {
 		SpecializedGraph.CompletionFlag complete = new SpecializedGraph.CompletionFlag();
-		TripleMatch match = new StandardTripleMatch( self, lSetPSet, null);
-		Iterator matches = graph.find(match, complete);
+		Iterator matches = graph.find(self, lSetPSet, null, complete);
 		if( matches.hasNext() ) {
 			Triple t = (Triple)matches.next();
 			return new DBPropPSet(graph, t.getObject());
