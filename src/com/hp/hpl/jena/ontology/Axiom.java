@@ -22,8 +22,10 @@
 package com.hp.hpl.jena.ontology;
 
 
+
 // Imports
 ///////////////
+import com.hp.hpl.jena.rdf.model.Statement;
 
 
 /**
@@ -37,7 +39,7 @@ package com.hp.hpl.jena.ontology;
  * @version CVS $Id$
  */
 public interface Axiom
-    extends OntResource
+    extends Statement
 {
     // Constants
     //////////////////////////////////

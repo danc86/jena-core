@@ -5,7 +5,7 @@
  * Author email       Ian.Dickinson@hp.com
  * Package            Jena 2
  * Web                http://sourceforge.net/projects/jena/
- * Created            10 Feb 2003
+ * Created            29-Apr-2003
  * Filename           $RCSfile$
  * Revision           $Revision$
  * Release status     $State$
@@ -13,61 +13,97 @@
  * Last modified on   $Date$
  *               by   $Author$
  *
- * (c) Copyright 2002-2003, Hewlett-Packard Company, all rights reserved. 
+ * (c) Copyright 2002-2003, Hewlett-Packard Company, all rights reserved.
  * (see footer for full conditions)
- * ****************************************************************************/
+ *****************************************************************************/
 
 // Package
 ///////////////
-package com.hp.hpl.jena.ontology;
-
+package com.hp.hpl.jena.ontology.impl;
 
 
 // Imports
 ///////////////
-import com.hp.hpl.jena.ontology.path.PathSet;
+import com.hp.hpl.jena.ontology.*;
+import com.hp.hpl.jena.rdf.model.*;
 
 
 /**
  * <p>
- * Interface defining an individual in which all members of a collection are
- * declared pair-wise disjoint.  This allows ontologies that wish to support the
- * unique names assumption to add this condition in languages (like OWL) that
- * do not make the same assumption, with a minimum number of statements.
- * Instances of the all different axiom are expected to have a property
- * (e.g. <code>owl:distinctMembers</code> defining the list of distinct
- * individuals in the ontology.  For a given vocabulary, this will be defined by
- * the {@linkplain Profile#DISTINCT_MEMBERS distinctMembers} entry.
+ * Implementation of the sub-class-of axiom 
  * </p>
  *
  * @author Ian Dickinson, HP Labs
  *         (<a  href="mailto:Ian.Dickinson@hp.com" >email</a>)
  * @version CVS $Id$
  */
-public interface AllDifferent
-    extends OntResource
+public class SubClassAxiomImpl 
+    extends ClassAxiomImpl
+    implements SubClassAxiom
 {
     // Constants
     //////////////////////////////////
+
+    // Static variables
+    //////////////////////////////////
+
+    // Instance variables
+    //////////////////////////////////
+
+    // Constructors
+    //////////////////////////////////
+
+    /**
+     * <p>
+     * Construct a subClassOf axiom.
+     * </p>
+     * 
+     * @param subClass The class resource that is the sub-class in this axiom
+     * @param superClass The class resource that is the super-class in this axiom
+     */
+    public SubClassAxiomImpl(  Resource subClass, Resource superClass ) {
+        super( subClass, ((OntModel) subClass.getModel()).getProfile().SUB_CLASS_OF(), superClass  );
+    }
+
+
+    /**
+     * <p>
+     * Construct a subClassOf axiom more efficiently. Package access only.
+     * </p>
+     * 
+     * @param subClass The class resource that is the sub-class in this axiom
+     * @param subClassP Assumed to be the subClassOf predicate (not tested, taken on faith).
+     * @param superClass The class resource that is the super-class in this axiom
+     */
+    SubClassAxiomImpl(  Resource subClass, Property subClassP, Resource superClass ) {
+        super( subClass, subClassP, superClass  );
+    }
 
 
     // External signature methods
     //////////////////////////////////
 
-    /**
+    /** 
      * <p>
-     * Answer an {@linkplain PathSet accessor} for the 
-     * <code>distinctMembers</code>
-     * property of an AllDifferent axiom. The accessor
-     * can be used to perform a variety of operations, including getting and setting the value.
+     * Answer true if the axiom has modality <i>complete</i>. This is only properly
+     * defined for the distinction between <code>subClassOf</code> and <code>equivalentClass</code>,
+     * but by default is assumed true.
      * </p>
      * 
-     * @return An abstract accessor for the distinct individuals in an AllDifferent axioms
+     * @return False (sub-class is a partial, not complete, modality)
      */
-    public PathSet p_distinctMembers();
+    public boolean isComplete() {
+        return false;
+    }
 
 
-    
+    // Internal implementation methods
+    //////////////////////////////////
+
+    //==============================================================================
+    // Inner class definitions
+    //==============================================================================
+
 }
 
 
@@ -101,3 +137,9 @@ public interface AllDifferent
     THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
+/* TODO delete me
+public class SubClassAxiomImpl{
+
+}
+
+*/

@@ -5,7 +5,7 @@
  * Author email       Ian.Dickinson@hp.com
  * Package            Jena 2
  * Web                http://sourceforge.net/projects/jena/
- * Created            10 Feb 2003
+ * Created            29-Apr-2003
  * Filename           $RCSfile$
  * Revision           $Revision$
  * Release status     $State$
@@ -13,61 +13,99 @@
  * Last modified on   $Date$
  *               by   $Author$
  *
- * (c) Copyright 2002-2003, Hewlett-Packard Company, all rights reserved. 
+ * (c) Copyright 2002-2003, Hewlett-Packard Company, all rights reserved.
  * (see footer for full conditions)
- * ****************************************************************************/
+ *****************************************************************************/
 
 // Package
 ///////////////
-package com.hp.hpl.jena.ontology;
+package com.hp.hpl.jena.ontology.impl;
 
 
 
 // Imports
 ///////////////
-import com.hp.hpl.jena.ontology.path.PathSet;
+import com.hp.hpl.jena.ontology.*;
+import com.hp.hpl.jena.rdf.model.*;
+
 
 
 /**
  * <p>
- * Interface defining an individual in which all members of a collection are
- * declared pair-wise disjoint.  This allows ontologies that wish to support the
- * unique names assumption to add this condition in languages (like OWL) that
- * do not make the same assumption, with a minimum number of statements.
- * Instances of the all different axiom are expected to have a property
- * (e.g. <code>owl:distinctMembers</code> defining the list of distinct
- * individuals in the ontology.  For a given vocabulary, this will be defined by
- * the {@linkplain Profile#DISTINCT_MEMBERS distinctMembers} entry.
+ * Implementation of the axiom denoting equivalence between properties.
  * </p>
  *
  * @author Ian Dickinson, HP Labs
  *         (<a  href="mailto:Ian.Dickinson@hp.com" >email</a>)
  * @version CVS $Id$
  */
-public interface AllDifferent
-    extends OntResource
+public class EquivalentPropertyAxiomImpl
+    extends PropertyAxiomImpl
+    implements EquivalentPropertyAxiom 
 {
     // Constants
     //////////////////////////////////
+
+    // Static variables
+    //////////////////////////////////
+
+    // Instance variables
+    //////////////////////////////////
+
+    // Constructors
+    //////////////////////////////////
+
+    /**
+     * <p>
+     * Construct a property equivalence axiom.
+     * </p>
+     * 
+     * @param subjProperty The subject property in the axiom
+     * @param objProperty The object property in the axiom
+     */
+    public EquivalentPropertyAxiomImpl( Resource subjProperty, Resource objProperty ) {
+        super( subjProperty, ((OntModel) subjProperty.getModel()).getProfile().EQUIVALENT_PROPERTY(), objProperty  );
+    }
+
+
+    /**
+     * <p>
+     * Construct a property equivalence axiom more efficiently. Package access only.
+     * </p>
+     * 
+     * @param subjProperty The subject property in the axiom
+     * @param equivPropertyP Assumed to be the equivalentProperty predicate (not tested, taken on faith).
+     * @param objProperty The object property in the axiom
+     */
+    EquivalentPropertyAxiomImpl(  Resource subjProperty, Property equivPropertyP, Resource objProperty ) {
+        super( subjProperty, equivPropertyP, objProperty  );
+    }
 
 
     // External signature methods
     //////////////////////////////////
 
-    /**
+    /** 
      * <p>
-     * Answer an {@linkplain PathSet accessor} for the 
-     * <code>distinctMembers</code>
-     * property of an AllDifferent axiom. The accessor
-     * can be used to perform a variety of operations, including getting and setting the value.
+     * Answer true if the axiom has modality <i>complete</i>. This is only properly
+     * defined for the distinction between <code>subPropertyOf</code> and <code>equivalentProperty</code>,
+     * but by default is assumed true.
      * </p>
      * 
-     * @return An abstract accessor for the distinct individuals in an AllDifferent axioms
+     * @return True (property equivalence is a complete, not partial, modality)
      */
-    public PathSet p_distinctMembers();
+    public boolean isComplete() {
+        return true;
+    }
 
 
-    
+    // Internal implementation methods
+    //////////////////////////////////
+
+    //==============================================================================
+    // Inner class definitions
+    //==============================================================================
+
 }
 
 
@@ -100,4 +138,5 @@ public interface AllDifferent
     (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
     THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
+
 

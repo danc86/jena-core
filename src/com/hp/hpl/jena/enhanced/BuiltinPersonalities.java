@@ -48,7 +48,6 @@ public class BuiltinPersonalities {
         .add( AllDifferent.class, AllDifferentImpl.factory )
         .add( Individual.class, IndividualImpl.factory )
         .add( AnnotationProperty.class, AnnotationPropertyImpl.factory )
-        .add( Axiom.class, AxiomImpl.factory )
         
         
         // Last and least ?

@@ -278,6 +278,18 @@ public class DAML_OILProfile
     }
 
 
+    /**
+     * <p>
+     * Answer a descriptive string for this profile, for use in debugging and other output.
+     * </p>
+     * @return "DAML+OIL"
+     */
+    public String getLabel() {
+        return "DAML+OIL";
+    }
+    
+    
+    
     // Internal implementation methods
     //////////////////////////////////
 

@@ -191,6 +191,16 @@ public class OWLProfile
         }
     }
 
+    /**
+     * <p>
+     * Answer a descriptive string for this profile, for use in debugging and other output.
+     * </p>
+     * @return "OWL Full"
+     */
+    public String getLabel() {
+        return "OWL Full";
+    }
+    
     // Internal implementation methods
     //////////////////////////////////
 

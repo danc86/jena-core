@@ -665,6 +665,15 @@ public interface Profile
      * viewed according to the facet resource <code>res</code>
      */
     public boolean isSupported( Node n, EnhGraph g, Class type );
+    
+    // Other stuff
+    
+    /**
+     * <p>
+     * Answer a descriptive string for this profile, for use in debugging and other output.
+     * </p>
+     */
+    public String getLabel();
 }
 
 

@@ -5,7 +5,7 @@
  * Author email       Ian.Dickinson@hp.com
  * Package            Jena 2
  * Web                http://sourceforge.net/projects/jena/
- * Created            10 Feb 2003
+ * Created            29-Apr-2003
  * Filename           $RCSfile$
  * Revision           $Revision$
  * Release status     $State$
@@ -13,61 +13,85 @@
  * Last modified on   $Date$
  *               by   $Author$
  *
- * (c) Copyright 2002-2003, Hewlett-Packard Company, all rights reserved. 
+ * (c) Copyright 2002-2003, Hewlett-Packard Company, all rights reserved.
  * (see footer for full conditions)
- * ****************************************************************************/
+ *****************************************************************************/
 
 // Package
 ///////////////
-package com.hp.hpl.jena.ontology;
-
+package com.hp.hpl.jena.ontology.impl;
 
 
 // Imports
 ///////////////
-import com.hp.hpl.jena.ontology.path.PathSet;
+import com.hp.hpl.jena.ontology.*;
+import com.hp.hpl.jena.rdf.model.*;
 
 
 /**
  * <p>
- * Interface defining an individual in which all members of a collection are
- * declared pair-wise disjoint.  This allows ontologies that wish to support the
- * unique names assumption to add this condition in languages (like OWL) that
- * do not make the same assumption, with a minimum number of statements.
- * Instances of the all different axiom are expected to have a property
- * (e.g. <code>owl:distinctMembers</code> defining the list of distinct
- * individuals in the ontology.  For a given vocabulary, this will be defined by
- * the {@linkplain Profile#DISTINCT_MEMBERS distinctMembers} entry.
+ * Implementation of the general abstraction of axioms about classes
  * </p>
  *
  * @author Ian Dickinson, HP Labs
  *         (<a  href="mailto:Ian.Dickinson@hp.com" >email</a>)
  * @version CVS $Id$
  */
-public interface AllDifferent
-    extends OntResource
+public abstract class ClassAxiomImpl 
+    extends AxiomImpl
+    implements ClassAxiom
 {
     // Constants
     //////////////////////////////////
+
+    // Static variables
+    //////////////////////////////////
+
+    // Instance variables
+    //////////////////////////////////
+
+    // Constructors
+    //////////////////////////////////
+
+    /**
+     * <p>
+     * Construct a class axiom of the given predicate over the given subject and object.
+     * </p>
+     * 
+     * @param subj The subject of the class axiom
+     * @param pred The axiom predicate
+     * @param obj The object of the class axiom
+     */
+    public ClassAxiomImpl(  Resource subj, Property pred, Resource obj ) {
+        super( subj, pred, obj  );
+    }
 
 
     // External signature methods
     //////////////////////////////////
 
-    /**
+    /** 
      * <p>
-     * Answer an {@linkplain PathSet accessor} for the 
-     * <code>distinctMembers</code>
-     * property of an AllDifferent axiom. The accessor
-     * can be used to perform a variety of operations, including getting and setting the value.
+     * Answer true if the axiom has modality <i>complete</i>. This is only properly
+     * defined for the distinction between <code>subClassOf</code> and <code>equivalentClass</code>,
+     * but by default is assumed true.
      * </p>
      * 
-     * @return An abstract accessor for the distinct individuals in an AllDifferent axioms
+     * @return True (default value)
      */
-    public PathSet p_distinctMembers();
-
-
+    public boolean isComplete() {
+        return true;
+    }
     
+    
+
+    // Internal implementation methods
+    //////////////////////////////////
+
+    //==============================================================================
+    // Inner class definitions
+    //==============================================================================
+
 }
 
 
@@ -101,3 +125,9 @@ public interface AllDifferent
     THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
+/* TODO delete me
+public class ClassAxiomImpl{
+
+}
+
+*/

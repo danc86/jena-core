@@ -5,7 +5,7 @@
  * Author email       Ian.Dickinson@hp.com
  * Package            Jena 2
  * Web                http://sourceforge.net/projects/jena/
- * Created            10 Feb 2003
+ * Created            29-Apr-2003
  * Filename           $RCSfile$
  * Revision           $Revision$
  * Release status     $State$
@@ -13,61 +13,84 @@
  * Last modified on   $Date$
  *               by   $Author$
  *
- * (c) Copyright 2002-2003, Hewlett-Packard Company, all rights reserved. 
+ * (c) Copyright 2002-2003, Hewlett-Packard Company, all rights reserved.
  * (see footer for full conditions)
- * ****************************************************************************/
+ *****************************************************************************/
 
 // Package
 ///////////////
-package com.hp.hpl.jena.ontology;
+package com.hp.hpl.jena.ontology.impl;
 
 
 
 // Imports
 ///////////////
-import com.hp.hpl.jena.ontology.path.PathSet;
+import com.hp.hpl.jena.ontology.*;
+import com.hp.hpl.jena.rdf.model.*;
 
 
 /**
  * <p>
- * Interface defining an individual in which all members of a collection are
- * declared pair-wise disjoint.  This allows ontologies that wish to support the
- * unique names assumption to add this condition in languages (like OWL) that
- * do not make the same assumption, with a minimum number of statements.
- * Instances of the all different axiom are expected to have a property
- * (e.g. <code>owl:distinctMembers</code> defining the list of distinct
- * individuals in the ontology.  For a given vocabulary, this will be defined by
- * the {@linkplain Profile#DISTINCT_MEMBERS distinctMembers} entry.
+ * Implementation of a disjoint classes axiom.
  * </p>
  *
  * @author Ian Dickinson, HP Labs
  *         (<a  href="mailto:Ian.Dickinson@hp.com" >email</a>)
  * @version CVS $Id$
  */
-public interface AllDifferent
-    extends OntResource
+public class DisjointClassesAxiomImpl 
+    extends ClassAxiomImpl
+    implements DisjointClassesAxiom
 {
     // Constants
     //////////////////////////////////
 
+    // Static variables
+    //////////////////////////////////
 
-    // External signature methods
+    // Instance variables
     //////////////////////////////////
 
     /**
      * <p>
-     * Answer an {@linkplain PathSet accessor} for the 
-     * <code>distinctMembers</code>
-     * property of an AllDifferent axiom. The accessor
-     * can be used to perform a variety of operations, including getting and setting the value.
+     * Construct a disjoint classes axiom.
      * </p>
      * 
-     * @return An abstract accessor for the distinct individuals in an AllDifferent axioms
+     * @param subjClass The subject class in the axiom
+     * @param objClass The object class in the axiom
      */
-    public PathSet p_distinctMembers();
+    public DisjointClassesAxiomImpl( Resource subjClass, Resource objClass ) {
+        super( subjClass, ((OntModel) subjClass.getModel()).getProfile().DISJOINT_WITH(), objClass  );
+    }
 
 
-    
+    /**
+     * <p>
+     * Construct a disjoint class axiom more efficiently. Package access only.
+     * </p>
+     * 
+     * @param subjClass The subject class in the axiom
+     * @param disjClassP Assumed to be the disjointWith predicate (not tested, taken on faith).
+     * @param objClass The object class in the axiom
+     */
+    DisjointClassesAxiomImpl(  Resource subjClass, Property disjClassP, Resource objClass ) {
+        super( subjClass, disjClassP, objClass  );
+    }
+
+
+    // Constructors
+    //////////////////////////////////
+
+    // External signature methods
+    //////////////////////////////////
+
+    // Internal implementation methods
+    //////////////////////////////////
+
+    //==============================================================================
+    // Inner class definitions
+    //==============================================================================
+
 }
 
 
@@ -101,3 +124,9 @@ public interface AllDifferent
     THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
+/* TODO delete me
+public class DisjointClassesAxiomImpl{
+
+}
+
+*/

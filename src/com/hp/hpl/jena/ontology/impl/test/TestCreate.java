@@ -26,7 +26,6 @@ package com.hp.hpl.jena.ontology.impl.test;
 ///////////////
 import com.hp.hpl.jena.rdf.model.ModelFactory;
 import com.hp.hpl.jena.ontology.*;
-import com.hp.hpl.jena.vocabulary.*;
 
 import junit.framework.*;
 
@@ -128,9 +127,9 @@ public class TestCreate
             public boolean test( OntResource r )        { return r instanceof DatatypeProperty;}
         },
 
-        new CreateTestCase( "OWL create axiom", ProfileRegistry.OWL_LANG, null ) {
-            public OntResource doCreate( OntModel m )   { return m.createAxiom( OWL.AllDifferent, null ); }
-            public boolean test( OntResource r )        { return r instanceof Axiom;}
+        new CreateTestCase( "OWL create allDifferent", ProfileRegistry.OWL_LANG, null ) {
+            public OntResource doCreate( OntModel m )   { return m.createAllDifferent(); }
+            public boolean test( OntResource r )        { return r instanceof AllDifferent;}
         },
         
         new CreateTestCase( "OWL create restriction", ProfileRegistry.OWL_LANG, NS + "C" ) {

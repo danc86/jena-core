@@ -68,6 +68,16 @@ public class OWLLiteProfile
     public Property SAME_AS() {                     return null; }
     
 
+    /**
+     * <p>
+     * Answer a descriptive string for this profile, for use in debugging and other output.
+     * </p>
+     * @return "OWL Lite"
+     */
+    public String getLabel() {
+        return "OWL Lite";
+    }
+    
     
     
 

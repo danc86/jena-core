@@ -179,24 +179,6 @@ public interface OntModel
 
     /**
      * <p>
-     * Answer an iterator that ranges over the axiom resources in this model.  Example
-     * axioms include the {@link AllDifferent} axiom in OWL, which allows an ontology
-     * conveniently to express the unique names assumption for a bounded set of class
-     * descriptions.
-     * </p>
-     * <p>
-     * <strong>Note:</strong> the number of nodes returned by this iterator will vary according to
-     * the completeness of the deductive extension of the underlying graph.  See class
-     * overview for more details.
-     * </p>
-     * 
-     * @return An iterator over axiom resources. 
-     */
-    public Iterator listAxioms();
-    
-
-    /**
-     * <p>
      * Answer an iterator that ranges over all of the various forms of class description resource 
      * in this model.  Class descriptions include {@link #listEnumeratedClasses enumerated}
      * classes, {@link #listUnionClasses union} classes, {@link #listComplementClasses complement}
@@ -341,6 +323,22 @@ public interface OntModel
    
     /**
      * <p>
+     * Answer an iterator that ranges over the nodes that denote pair-wise disjointness between
+     * sets of classes.
+     * </p>
+     * <p>
+     * <strong>Note:</strong> the number of nodes returned by this iterator will vary according to
+     * the completeness of the deductive extension of the underlying graph.  See class
+     * overview for more details.
+     * </p>
+     * 
+     * @return An iterator over AllDifferent nodes. 
+     */
+    public Iterator listAllDifferent();
+    
+   
+    /**
+     * <p>
      * Answer a resource that represents an ontology description node in this model. If a resource
      * with the given uri exists in the model, it will be re-used.  If not, a new one is created in
      * the updateable sub-graph of the ontology model. 
@@ -359,10 +357,10 @@ public interface OntModel
      * will be created in the updateable sub-graph of the ontology model. 
      * </p>
      * 
-     * @param cls The ontology class to which the individual belongs
+     * @param cls Resource representing the ontology class to which the individual belongs
      * @return A new anoymous Individual of the given class.
      */
-    public Individual createIndividual( OntClass cls );
+    public Individual createIndividual( Resource cls );
     
    
     /**
@@ -372,10 +370,11 @@ public interface OntModel
      * the updateable sub-graph of the ontology model. 
      * </p>
      * 
+     * @param cls Resource representing the ontology class to which the individual belongs
      * @param uri The uri for the individual, or null for an anonymous individual.
      * @return An Individual resource.
      */
-    public Individual createIndividual( OntClass cls, String uri );
+    public Individual createIndividual( Resource cls, String uri );
     
    
     /**
@@ -419,20 +418,6 @@ public interface OntModel
      * @return An AnnotationProperty resource.
      */
     public AnnotationProperty createAnnotationProperty( String uri );
-    
-   
-    /**
-     * <p>
-     * Answer a resource that represents an axiom in this model. If a resource
-     * with the given uri exists in the model, it will be re-used.  If not, a new one is created in
-     * the updateable sub-graph of the ontology model. 
-     * </p>
-     * 
-     * @param cls The class of axiom (e&#046;g&#046; <code>owl:AllDifferent</code>).
-     * @param uri The uri for the axiom, or null for an anonymous axiom.
-     * @return An Axiom resource.
-     */
-    public Axiom createAxiom( Resource cls, String uri );
     
    
     /**
@@ -485,6 +470,19 @@ public interface OntModel
     public Restriction createRestriction( String uri );
     
    
+    /**
+     * <p>
+     * Answer a new, anonymous node representing the fact that a given set of classes are all
+     * pair-wise distinct.  <code>AllDifferent</code> is a feature of OWL only, and is something
+     * of an anomoly in that it exists only to give a place to anchor the <code>distinctMembers</code>
+     * property, which is the actual expression of the fact. 
+     * </p>
+     * 
+     * @return A new AllDifferent resource
+     */
+    public AllDifferent createAllDifferent();
+    
+    
     /**
      * <p>
      * Answer a resource that represents a generic ontology node in this model. If a resource
