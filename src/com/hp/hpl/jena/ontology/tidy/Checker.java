@@ -76,6 +76,15 @@ public class Checker extends CheckerImpl implements CheckerResults {
 	public void load(String url) {
 		super.load(url);
 	}
+	/**
+	 * Include an ontology and its imports
+	 * in the check.
+	 * @param url Load the ontology from this URL.
+	 * @param lang The language (RDF/XML, N3 or N-TRIPLE) in which the ontology is written.
+	 */
+	public void load(String url,String lang) {
+		super.load(url,lang);
+	}
 
 
 	/**

@@ -102,6 +102,8 @@ public class ExceptionTests
 		  rdr.read(m,"file:testing/arp/error-msgs/test06.rdf");
 		}
 		catch (JenaException e){
+		//	System.err.println(e.getMessage());
+		//	e.printStackTrace();
 			  fail("Demoted fatal error threw an exception");
 		}
 		finally {
