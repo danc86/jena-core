@@ -55,14 +55,37 @@ public interface GraphFactory
         Create a new graph associated with the given name. If this factory
         already knows about a graph with this name, throw an AlreadyExistsException.
         Otherwise create and return the new graph.
+        
+        @param name the name to give to the new graph
+        @exception AlreadyExistsException if that name is already bound.
     */
     public Graph createGraph( String name );
     
     /**
         Find an existing graph that this factory knows about under the given
         name. If no such graph exists, throw a DoesNotExistException.
+        
+        @param name the name of the graph to find and return
+        @exception DoesNotExistException if there's no such named graph
     */
     public Graph openGraph( String name );
+    
+    /**
+        Remove the association between the name and the graph. create
+        will now be able to create a graph with that name, and open will no
+        longer be able to find it. Throws an exception if there's no such graph.
+        The graph itself is not touched.
+        
+        @param name the name to disassociate
+        @exception DoesNotExistException if the name is unbound
+    */
+    public void removeGraph( String name );
+    
+    /**
+        Close the factory - no more requests need be honoured, and any clean-up
+        can be done.
+    */
+    public void close();
 }
 
 

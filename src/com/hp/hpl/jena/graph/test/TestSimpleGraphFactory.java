@@ -12,6 +12,9 @@ import junit.framework.*;
 
 /**
  	@author hedgehog
+    
+    Test the SimpleGraphFactory by extending AbstractTestGraphFactory
+    and supplying new SimplGraphFactorys via getGraph.
 */
 public class TestSimpleGraphFactory extends AbstractTestGraphFactory
     {
@@ -22,7 +25,8 @@ public class TestSimpleGraphFactory extends AbstractTestGraphFactory
         { return new TestSuite( TestSimpleGraphFactory.class ); }
     
     public GraphFactory getGraphFactory()
-        { return new SimpleGraphFactory(); }    }
+        { return new SimpleGraphFactory(); }    
+    }
 
 
 /*
