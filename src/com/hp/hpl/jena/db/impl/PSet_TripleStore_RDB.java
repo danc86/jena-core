@@ -530,7 +530,7 @@ public void deleteTripleAR(
 				ps.addBatch();
 			} else {
 				ps.executeUpdate();
-				ps.close();
+				m_sql.returnPreparedSQLStatement(ps);
 			}
 			//ps.close();
 		} catch (SQLException e1) {
