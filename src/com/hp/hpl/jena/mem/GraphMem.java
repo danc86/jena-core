@@ -122,9 +122,7 @@ public class GraphMem extends GraphMemBase implements Graph
          index graphs -- doesn't matter which one, but we've picked the subjects.
     */
     public boolean contains( Triple t )
-        {
-        return t.isConcrete() ? subjects.contains( t ) : super.contains( t );
-        }
+        { return t.isConcrete() ? subjects.contains( t ) : super.contains( t ); }
     
     /**
          An iterator wrapper for NodeToTriplesMap iterators which ensures that
