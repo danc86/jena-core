@@ -34,12 +34,11 @@ public class GraphTestBase extends JenaTestBase
         { return ModelFactory.createModelForGraph( g ); }
         
     public static Set iteratorToSet( Iterator L )
-        {
-        HashSet result = new HashSet();
-        while (L.hasNext()) result.add( L.next() );        
-        return result;
-        }
-        
+        { return GraphUtil.iteratorToSet( L ); }
+
+    public static List iteratorToList( Iterator it )
+        { return GraphUtil.iteratorToList( it ); }
+                
     public Set nodeSet( String nodes )
         {
         HashSet result = new HashSet();

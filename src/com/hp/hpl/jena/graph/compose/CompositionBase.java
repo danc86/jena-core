@@ -45,51 +45,6 @@ import java.util.*;
 public abstract class CompositionBase
     extends GraphBase
 {
-    // Constants
-    //////////////////////////////////
-
-
-    // Static variables
-    //////////////////////////////////
-
-
-    // Instance variables
-    //////////////////////////////////
-
-
-    // Constructors
-    //////////////////////////////////
-
-
-    // External signature methods
-    //////////////////////////////////
-
-    /**
-     * <p>
-     * Answer the elements of the given closable iterator as a set. As a side-effect,
-     * i will be closed.
-     * </p>
-     * 
-     * @param i A closable iterator, that will be closed when this operation completes
-     * @return A set of the members of i
-     */
-    protected static Set setof( ClosableIterator i )
-        {
-        Set result = new HashSet();
-        while (i.hasNext()) result.add( i.next() );
-        return result;
-        }
-        
-    /**
-     * <p>
-     * Answer an iterator over all of the triples in this graph.
-     * </p>
-     * 
-     * @return A ClosableIterator of all triples in the graph
-     */
-    public ClosableIterator findAll()
-        { return find( null, null, null ); }
-
     /**
      * <p>
      * Answer the number of triples in this graph
@@ -99,7 +54,7 @@ public abstract class CompositionBase
      * @see com.hp.hpl.jena.graph.Graph#size()
      */
     public int size()
-        { return countIterator( findAll() ); }      
+        { return countIterator( GraphUtil.findAll( this ) ); }      
 
     /**
      * <p>
@@ -138,7 +93,7 @@ public abstract class CompositionBase
      */
     public static Filter reject( final ClosableIterator i )
         {
-        final Set suppress = setof( i );
+        final Set suppress = GraphUtil.iteratorToSet( i );
         return new Filter()
             { public boolean accept( Object o ) { return !suppress.contains( o ); } };
         }
@@ -230,7 +185,7 @@ public abstract class CompositionBase
      */
     public static Filter ifIn( final ClosableIterator i )
         {
-        final Set allow = setof( i );
+        final Set allow = GraphUtil.iteratorToSet( i );
         return new Filter()
             { public boolean accept( Object x ) { return allow.contains( x ); } };
         }

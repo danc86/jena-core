@@ -30,6 +30,11 @@ public interface GraphListener
     void notifyAdd( List triples );
     
     /**
+        Method called when an iterator [of triples] has been added to the graph
+    */
+    void notifyAdd( Iterator it );
+    
+    /**
         Method called when a single triple has been deleted from the graph.
     */
     void notifyDelete( Triple t );
@@ -43,6 +48,11 @@ public interface GraphListener
         Method called when an array of triples has been deleted from the graph.
     */
     void notifyDelete( Triple [] triples );
+    
+    /**
+        Method called when an iterator [of triples] has been deleted from the graph.
+    */
+    void notifyDelete( Iterator it );
     }
 
 /*

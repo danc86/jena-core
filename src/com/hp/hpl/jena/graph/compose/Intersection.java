@@ -29,13 +29,13 @@ public class Intersection extends Dyadic implements Graph
 	    super( L, R );
 	    }
 	    
-	public void add( Triple t )
+	public void performAdd( Triple t )
 	    {
 	    L.add( t );
 	    R.add( t );
 	    }
 
-	public void delete( Triple t )
+	public void performDelete( Triple t )
 		{
 		if (this.contains( t )) L.delete( t );
 		}

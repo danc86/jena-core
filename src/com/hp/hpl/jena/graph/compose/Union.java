@@ -23,10 +23,10 @@ public class Union extends Dyadic implements Graph
 	public Union( Graph L, Graph R )
 		{ super( L, R ); }
 		
-	public void add( Triple t )
+	public void performAdd( Triple t )
 		{ L.add( t ); }
 
-	public void delete( Triple t )
+	public void performDelete( Triple t )
 		{
 		L.delete( t );
 		R.delete( t );

@@ -20,13 +20,13 @@ public class Difference extends Dyadic implements Graph
 		super( L, R );
 		}
 		
-	public void add( Triple t )
+	public void performAdd( Triple t )
 		{
 		L.add( t );
 		R.delete( t );
 		}
 
-	public void delete( Triple t )
+	public void performDelete( Triple t )
 		{
 		L.delete( t );
 		// R.add( t ) means the same, but is probably not so good
