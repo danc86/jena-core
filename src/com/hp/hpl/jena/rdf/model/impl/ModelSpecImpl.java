@@ -83,7 +83,7 @@ public abstract class ModelSpecImpl implements ModelSpec
             }
         if (d.listStatements( null, RDF.type, JMS.InfModelSpec).hasNext())
             return new InfModelSpec( desc );
-        if (d.listStatements( null, RDF.type, JMS.MemMakerSpec).hasNext())
+        if (d.listStatements( null, RDF.type, JMS.PlainModelSpec).hasNext())
             return new PlainModelSpec( desc );
         throw new BadDescriptionException( "neither ont nor inf nor mem", desc );
         }
