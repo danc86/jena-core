@@ -388,6 +388,12 @@ public class OWLProfile
                                             }
                                         }
         },
+        {  Individual.class,    new SupportsCheck() {
+                                            public boolean doCheck( Node n, EnhGraph g ) {
+                                                return n instanceof Node_URI || n instanceof Node_Blank;
+                                            }
+                                        }
+        },
     };
 
     // to allow concise reference in the code above.

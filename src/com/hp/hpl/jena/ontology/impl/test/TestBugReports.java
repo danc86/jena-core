@@ -48,6 +48,9 @@ public class TestBugReports
     // Constants
     //////////////////////////////////
 
+    public static String NS = "http://example.org/test#";
+    
+    
     // Static variables
     //////////////////////////////////
 
@@ -118,6 +121,21 @@ public class TestBugReports
         //(OntClass) (ontModel.getProfile().CLASS()).as(OntClass.class);
 
 
+    }
+    
+    /**
+     * Bug report by federico.carbone@bt.com, 30-July-2003.   A literal can be
+     * turned into an individual.
+     */
+    public void test_fc_01() {
+        OntModel m = ModelFactory.createOntologyModel();
+        
+        ObjectProperty p = m.createObjectProperty( NS + "p" ); 
+        Restriction r = m.createRestriction( p );
+        HasValueRestriction hv = r.convertToHasValueRestriction( m.createLiteral( 1 ) );
+        
+        RDFNode n = hv.getHasValue();
+        assertFalse( "Should not be able to convert literal to individual", n.canAs( Individual.class ) );
     }
     
     
