@@ -70,7 +70,30 @@ public class SimpleBulkUpdateHandler implements BulkUpdateHandler
     public void add( Graph g )
         { 
         addIterator( GraphUtil.findAll( g ), false );  
+        addReifications( graph, g );
         manager.notifyAddGraph( g );
+        }
+        
+    public static void addReifications( Graph ours, Graph g )
+        {
+        Reifier r = g.getReifier();
+        Iterator it = r.allNodes();
+        while (it.hasNext())
+            {
+            Node node = (Node) it.next();
+            ours.getReifier().reifyAs( node, r.getTriple( node ) );
+            }
+        }
+        
+    public static void deleteReifications( Graph ours, Graph g )
+        {
+        Reifier r = g.getReifier();
+        Iterator it = r.allNodes();
+        while (it.hasNext())
+            {
+            Node node = (Node) it.next();
+            ours.getReifier().remove( node, r.getTriple( node ) );
+            }
         }
 
     public void delete( Triple [] triples )
@@ -117,6 +140,7 @@ public class SimpleBulkUpdateHandler implements BulkUpdateHandler
             delete( triplesOf( g ) );
         else
             deleteIterator( GraphUtil.findAll( g ), false );
+        deleteReifications( graph, g );
         manager.notifyDeleteGraph( g );
         }
     }

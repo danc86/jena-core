@@ -10,6 +10,7 @@ import java.util.*;
 
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.util.iterator.ExtendedIterator;
+import com.hp.hpl.jena.graph.impl.*;
 import com.hp.hpl.jena.db.*;
 
 /**
@@ -85,6 +86,7 @@ public class DBBulkUpdateHandler implements BulkUpdateHandler {
 	public void add( Graph g ) {
 		ExtendedIterator triplesToAdd = GraphUtil.findAll( g );
 		try { addIterator( triplesToAdd ); } finally { triplesToAdd.close(); }
+        SimpleBulkUpdateHandler.addReifications( graph, g );
         manager.notifyAddGraph( g );
 	}
 
@@ -141,6 +143,7 @@ public class DBBulkUpdateHandler implements BulkUpdateHandler {
 	public void delete(Graph g) {
 		ExtendedIterator triplesToDelete = GraphUtil.findAll( g );
 		try { deleteIterator( triplesToDelete ); } finally { triplesToDelete.close(); }
+        SimpleBulkUpdateHandler.deleteReifications( graph, g );
         manager.notifyDeleteGraph( g );
    	}
 }
