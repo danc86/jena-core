@@ -44,7 +44,7 @@ import com.hp.hpl.jena.util.iterator.ExtendedIterator;
  * @version CVS $Id$
  */
 public class OntologyGraph
-    implements Graph 
+    extends GraphBase 
 {
     // Constants
     //////////////////////////////////
