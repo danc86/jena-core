@@ -93,6 +93,14 @@ public interface ARPErrorNumbers {
      */
     public int IGN_XMLBASE_SIGNIFICANT = 3;
     /**
+     The use of rdf:parseType="daml:collection" does
+     not conform with RDF2003. (W004)
+     This is ignored in default mode and an error in strict mode.
+     Note: strictly speaking the conformant behaviour is to silently
+     treat this as rdf:parseType="Literal".
+   */
+    public int IGN_DAML_COLLECTION = 4;
+    /**
      Indicates that no name is known for the current file being parsed.
     The ARP interface prevents the user from not (at least implicitly)
      specifying a name. 

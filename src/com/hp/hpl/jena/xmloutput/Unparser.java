@@ -925,11 +925,11 @@ class Unparser {
 		//if (isLocalReference(r)) {
 		//	print(quote("#" + getLocalName(r)));
 		//} else 
-		if (r.getURI().equals(this.localName)) {
-			print("''"); // Used particularly in DAML files.
-		} else {
-			print(quote(r.getURI()));
-		}
+		//if (r.getURI().equals(this.localName)) {
+		//	print("''"); // Used particularly in DAML files.
+		//} else {
+			print(quote(prettyWriter.relativize(r.getURI())));
+		//}
 	}
 	/*
 	[6.16] idRefAttr      ::= idAttr | resourceAttr

@@ -1,15 +1,17 @@
 /*
- *  (c)      Copyright Hewlett-Packard Company 2001, 2002   
+ *  (c) Copyright Hewlett-Packard Company 2001-2003    
  * All rights reserved.
-  [See end of file]
+ * [See end of file]
   $Id$
 */
 
 package com.hp.hpl.jena.xmloutput.test;
 
+import com.hp.hpl.jena.xmloutput.BaseXMLWriter;
 import com.hp.hpl.jena.mem.ModelMem;
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.vocabulary.RDF;
+import com.hp.hpl.jena.rdf.arp.URI;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
@@ -21,6 +23,7 @@ import org.apache.oro.text.regex.MalformedPatternException;
 import java.util.Properties;
 
 import java.io.*;
+import com.hp.hpl.jena.util.TestLogger;
 
 /** 
  * @author bwm
@@ -110,9 +113,8 @@ public class TestXMLFeatures extends TestCase {
         boolean errorExpected,
 		Change code)
 		throws IOException, MalformedPatternException {
-		PrintStream oldErr = System.err;
-        ByteArrayOutputStream bosErr = new ByteArrayOutputStream();
-        System.setErr(new PrintStream(bosErr));
+            TestLogger tl = new TestLogger(BaseXMLWriter.class);
+            boolean errorsFound;
         Model m = new ModelMem();
 		m.read(filename);
 		Writer sw;
@@ -149,17 +151,17 @@ public class TestXMLFeatures extends TestCase {
 					!matcher.contains(contents, awk.compile(regexAbsent)));
 			contents = null;
 		} finally {
-            System.setErr(oldErr);
+            errorsFound = !tl.end();
 			System.setProperties(p);
 			if (contents != null) {
 				System.err.println("===================");
-				System.err.println("Offending content");
+				System.err.println("Offending content - " + toString());
 				System.err.println("===================");
 				System.err.println(contents);
 				System.err.println("===================");
 			}
 		}
-        assertEquals("Errors (not) detected.",errorExpected,bosErr.size()!=0);
+        assertEquals("Errors (not) detected.",errorExpected,errorsFound);
         
 	}
 
@@ -415,9 +417,19 @@ public class TestXMLFeatures extends TestCase {
 		});
 	}
 
+   public void testRelativeAPI() {
+       RDFWriter w = new ModelMem().getWriter(lang);
+       String old = (String)w.setProperty("relativeURIs","");
+       assertEquals("default value check",old,"same-document, absolute, relative, parent");
+       w.setProperty("relativeURIs","network, grandparent,relative,  ");
+       w.setProperty("relativeURIs","  parent, same-document, network, parent, absolute ");
+       TestLogger tl = new TestLogger(URI.class);
+        w.setProperty("relativeURIs", "foo"); // will get warning
+      assertTrue("A warning should have been generated.",!tl.end());      
+   }
 }
 /*
- *  (c)   Copyright Hewlett-Packard Company 2001,2002
+ *  (c)   Copyright Hewlett-Packard Company 2001-2003
  *    All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without

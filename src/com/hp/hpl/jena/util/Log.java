@@ -116,7 +116,6 @@ import java.io.IOException;
  *                Frimbler.class.getName(), "countFrimbles" );
  * </pre></code>
  * </p>
- *
  * @author Ian Dickinson, HP Labs (<a href="mailto:Ian_Dickinson@hp.com">email</a>)
  * @version CVS info: $Id$
  */

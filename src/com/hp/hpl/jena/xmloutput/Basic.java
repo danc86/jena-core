@@ -83,11 +83,13 @@ public class Basic extends BaseXMLWriter {
 				new SimpleSelector(subject, null, (RDFNode) null));
 
 		writeDescriptionHeader(subject, writer);
+        /*
 		if ((subject instanceof Statement)
 			&& !model.contains((Statement) subject)) {
 			// an unasserted reified statement
 			writeReifiedProperties((Statement) subject, writer);
 		}
+        */
 		while (sIter.hasNext()) {
 			writePredicate(sIter.nextStatement(), writer);
 		}
@@ -95,6 +97,7 @@ public class Basic extends BaseXMLWriter {
 
 		// if the subject of subject is a reified statement not in the model
 		// need to write it out too
+        /*
 		if (subject instanceof Statement) {
 			Resource innerSubject = ((Statement) subject).getSubject();
 			if (innerSubject instanceof Statement
@@ -107,6 +110,7 @@ public class Basic extends BaseXMLWriter {
 				writeRDFStatements(model, (Resource) innerObject, writer);
 			}
 		}
+        */
 
 	}
 
@@ -151,7 +155,7 @@ public class Basic extends BaseXMLWriter {
 	protected void writeDescriptionTrailer(PrintWriter writer) {
 		writer.println("  </" + rdfEl("Description") + ">");
 	}
-
+/*
 	protected void writeReifiedProperties(Statement stmt, PrintWriter writer)
 		throws RDFException {
 		writer.println(
@@ -182,7 +186,7 @@ public class Basic extends BaseXMLWriter {
 			writer.println("</" + rdfEl("object") + ">");
 		}
 	}
-
+*/
 	protected void writeResourceId(Resource r, PrintWriter writer)
 		throws RDFException {
 		if (r.isAnon()) {
@@ -191,7 +195,7 @@ public class Basic extends BaseXMLWriter {
 			writer.print(
 				rdfAt("about")
 					+ "='"
-					+ Util.substituteStandardEntities(r.getURI()));
+					+ Util.substituteStandardEntities(relativize(r.getURI())));
 		}
 		writer.print("'");
 	}
@@ -204,7 +208,7 @@ public class Basic extends BaseXMLWriter {
 			writer.print(
 				rdfAt("resource")
 					+ "='"
-					+ Util.substituteStandardEntities(r.getURI()));
+					+ Util.substituteStandardEntities(relativize(r.getURI())));
 		}
 		writer.print("'");
 	}
