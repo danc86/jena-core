@@ -121,7 +121,7 @@ public class HasValueRestrictionImpl
         RDFNode n = getPropertyValue( getProfile().HAS_VALUE() );
         
         // map to an individual in the case of a resource value 
-        if (n.canAs( Individual.class )) {
+        if (!(n instanceof Literal) && n.canAs( Individual.class )) {
             n = n.as( Individual.class );
         }
         
