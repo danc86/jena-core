@@ -176,6 +176,8 @@ class ParserSupport
 	}
 	void checkXMLLang(StrToken s) throws ParseException {
 		String lang = s.value;
+		if ( lang.equals(""))
+		  return;
 		try {
 			LanguageTag tag = new LanguageTag(lang);
 			int tagType = tag.tagType();
