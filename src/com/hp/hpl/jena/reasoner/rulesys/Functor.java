@@ -261,7 +261,7 @@ public class Functor implements ClauseEntry {
    public static class FunctorDatatype extends BaseDatatype {
     
         public FunctorDatatype() {
-            super("Functor");
+            super("urn:x-hp-jena:Functor");
         }
         
         public static final RDFDatatype theFunctorDatatype = new FunctorDatatype();
