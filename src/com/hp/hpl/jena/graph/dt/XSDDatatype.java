@@ -29,7 +29,6 @@ import org.apache.xerces.xni.parser.XMLInputSource;
 import org.apache.xerces.impl.xs.psvi.XSModel;
 import org.apache.xerces.impl.xs.psvi.XSTypeDefinition;
 import org.apache.xerces.impl.xs.psvi.XSNamedMap;
-import org.apache.xerces.impl.xs.psvi.XSObject;
 import org.apache.xerces.xni.grammars.XSGrammar;
 
 /**

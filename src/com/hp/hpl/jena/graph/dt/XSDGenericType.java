@@ -12,7 +12,6 @@ package com.hp.hpl.jena.graph.dt;
 import org.apache.xerces.impl.dv.XSSimpleType;
 import org.apache.xerces.impl.dv.xs.DecimalDV;
 import org.apache.xerces.impl.dv.xs.XSSimpleTypeDecl;
-import org.apache.xerces.impl.xs.psvi.XSSimpleTypeDefinition;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
