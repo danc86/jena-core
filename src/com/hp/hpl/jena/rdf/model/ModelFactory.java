@@ -167,10 +167,10 @@ public class ModelFactory extends ModelFactoryBase
      * 
      * @param model the Model containing both instance data and schema assertions to be inferenced over
      */
-    public static Model createRDFSModel(Model model) {
+    public static InfModel createRDFSModel(Model model) {
          Reasoner reasoner = ReasonerRegistry.getRDFSReasoner();
          InfGraph graph     = reasoner.bind(model.getGraph());
-         return createModelForGraph(graph);
+         return new InfModelImpl(graph);
     }
         
     /**
@@ -188,10 +188,10 @@ public class ModelFactory extends ModelFactoryBase
      * @param model a Model containing instance data assertions 
      * @param schema a Model containing RDFS schema data
      */
-    public static Model createRDFSModel(Model schema, Model model) {
+    public static InfModel createRDFSModel(Model schema, Model model) {
          Reasoner reasoner = ReasonerRegistry.getRDFSReasoner();
          InfGraph graph     = reasoner.bindSchema(schema.getGraph()).bind(model.getGraph());
-         return createModelForGraph(graph);
+         return new InfModelImpl(graph);
     }
     
     
