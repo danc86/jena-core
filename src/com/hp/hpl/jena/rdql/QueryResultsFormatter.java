@@ -9,6 +9,7 @@ import java.util.* ;
 import java.io.* ;
 
 import com.hp.hpl.jena.rdf.model.* ;
+import com.hp.hpl.jena.vocabulary.* ;
 
 /** <p>Takes a QueryResult object and returns formatted (in various ways)
  *  Useful for the scripting interface.
@@ -35,6 +36,8 @@ public class QueryResultsFormatter
     int numCols = -2 ;
     int colWidths[] = null ;
     static final String notThere = "<<unset>>" ;
+    
+    public static final String resultsNamespace = "http://jena.hpl.hp.com/2003/03/queryResults#" ;
 
     /** Create a formatter for a QueryResults object */
 
@@ -91,6 +94,65 @@ public class QueryResultsFormatter
         all = null ;
         colWidths = null ;
     }
+
+    /** Encode the result set as RDF.
+     * @return Model       Model contains the results
+     */
+
+    public Model toModel()
+    {
+        Model m = ModelFactory.createDefaultModel() ;
+        asRDF(m) ;
+        return m ;
+    }
+    
+    /** Encode the result set as RDF in the model provided.
+     *  
+     * @param model     The place where to put the RDF.
+     * @return Resource The resource for the result set.
+     */ 
+
+    public Resource asRDF(Model model)
+    {
+        Resource results = model.createResource() ;
+        results.addProperty(RDF.type, ResultSet.ResultSet) ;
+        
+        for (Iterator iter = queryResults.getResultVars().iterator(); iter.hasNext();)
+        {
+            String vName = (String) iter.next();
+            results.addProperty(ResultSet.resultVariable, vName) ;
+        }
+        
+        int count = 0 ;
+        for ( Iterator solutionsIter = queryResults ; solutionsIter.hasNext() ; )
+        {
+            count++ ;
+            ResultBinding env = (ResultBinding)solutionsIter.next() ;
+            Resource thisSolution = model.createResource() ;
+            results.addProperty(ResultSet.solution, thisSolution) ;
+            for (Iterator iter = queryResults.getResultVars().iterator() ; iter.hasNext() ; )
+            {
+                Resource thisBinding = model.createResource() ;
+                String rVar = (String)iter.next() ;
+                Object tmp = env.get(rVar) ;
+                if ( ! (tmp instanceof RDFNode) )
+                {
+                    System.err.println("Class wrong: "+tmp.getClass().getName()) ;
+                    continue ;
+                }
+                
+                RDFNode n = (RDFNode)env.get(rVar) ;
+                thisBinding.addProperty(ResultSet.variable, rVar) ;
+                thisBinding.addProperty(ResultSet.value, n) ;
+                thisSolution.addProperty(ResultSet.binding, thisBinding) ;
+            }
+        }
+        results.addProperty(ResultSet.size, count) ;
+        queryResults.close() ;
+        return results ;
+    }
+
+
 
     // Generalise: there are two algorithms : the one pass and the two pass
 
@@ -379,7 +441,7 @@ public class QueryResultsFormatter
                 s = sb.toString() ;
             }
             else
-                s = obj.toString() ;
+                s = env.getValue(varName).asQuotedString() ;
         }
         return s ;
     }
