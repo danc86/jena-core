@@ -59,7 +59,8 @@ public class TempNodeCache {
         for (Iterator i = ipMap.getAll(ip); i.hasNext(); ) {
             Node t = (Node)i.next();
             if (pclass != null) {
-                if (classMap.get(t).equals(pclass)) {
+                Object tClass = classMap.get(t);
+                if (tClass != null && tClass.equals(pclass)) {
                     result = t;
                     break;
                 }

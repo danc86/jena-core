@@ -63,6 +63,22 @@ public class TestBugs extends TestCase {
         assertTrue("Correctly detected the illegal list", foundBadList);
     }
     
+    /**
+     * Report of problems with cardinality v. maxCardinality usage in classification,
+     * from Hugh Winkler.
+     * 
+     * @author <a href="mailto:der@hplb.hpl.hp.com">Dave Reynolds</a>
+     * @version $Revision$ on $Date$
+     */
+    public void testCardinality1() {
+        Model base = ModelFactory.createDefaultModel();
+        base.read("file:testing/reasoners/bugs/cardFPTest.owl");
+        InfModel test = ModelFactory.createInfModel(ReasonerRegistry.getOWLReasoner(), base);
+        String NAMESPACE = "urn:foo#";
+        Resource aDocument = test.getResource(NAMESPACE + "aDocument");
+        Resource documentType = test.getResource(NAMESPACE + "Document");
+        assertTrue("Cardinality-based classification", test.contains(aDocument, RDF.type, documentType));
+    }
 }
 
 
