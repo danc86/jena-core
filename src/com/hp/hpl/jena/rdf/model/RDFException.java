@@ -236,7 +236,11 @@ public class RDFException extends RuntimeException {
         return errorCode;
     }
     
+    public Throwable getCause() {
+        return nestedException!=null?nestedException:this;
+    }
     public Exception getNestedException() {
+        
         return nestedException;
     }
 }
