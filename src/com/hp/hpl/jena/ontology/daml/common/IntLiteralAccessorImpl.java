@@ -52,7 +52,6 @@ import com.hp.hpl.jena.rdf.model.NodeIterator;
 import com.hp.hpl.jena.rdf.model.Literal;
 
 import com.hp.hpl.jena.ontology.daml.IntLiteralAccessor;
-import com.hp.hpl.jena.ontology.daml.DAMLObjectProperty;
 import com.hp.hpl.jena.ontology.daml.DAMLCommon;
 
 import com.hp.hpl.jena.util.Log;

@@ -48,16 +48,9 @@ package com.hp.hpl.jena.ontology.daml.common;
 import com.hp.hpl.jena.ontology.daml.DAMLDatatypeProperty;
 import com.hp.hpl.jena.ontology.daml.LiteralAccessor;
 import com.hp.hpl.jena.ontology.daml.DAMLModel;
-import com.hp.hpl.jena.ontology.daml.DAMLCommon;
 
 import com.hp.hpl.jena.vocabulary.DAMLVocabulary;
 import com.hp.hpl.jena.vocabulary.DAML_OIL;
-import com.hp.hpl.jena.vocabulary.RDF;
-import com.hp.hpl.jena.vocabulary.RDFS;
-
-import com.hp.hpl.jena.rdf.model.RDFException;
-import com.hp.hpl.jena.rdf.model.Resource;
-
 
 
 

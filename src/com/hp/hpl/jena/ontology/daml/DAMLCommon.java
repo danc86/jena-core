@@ -47,7 +47,6 @@ package com.hp.hpl.jena.ontology.daml;
 ///////////////
 import java.util.Iterator;
 
-import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.Resource;
 import com.hp.hpl.jena.rdf.model.Property;
 import com.hp.hpl.jena.rdf.model.RDFNode;

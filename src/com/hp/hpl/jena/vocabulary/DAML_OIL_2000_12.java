@@ -45,21 +45,17 @@ package com.hp.hpl.jena.vocabulary;
 
 // Imports
 ///////////////
-import com.hp.hpl.jena.rdf.model.impl.PropertyImpl;
 import com.hp.hpl.jena.rdf.model.impl.ResourceImpl;
 
 import com.hp.hpl.jena.ontology.daml.DAMLClass;
-import com.hp.hpl.jena.ontology.daml.DAMLInstance;
 import com.hp.hpl.jena.ontology.daml.DAMLList;
 
 import com.hp.hpl.jena.ontology.daml.common.DAMLClassImpl;
-import com.hp.hpl.jena.ontology.daml.common.DAMLInstanceImpl;
 import com.hp.hpl.jena.ontology.daml.common.DAMLListImpl;
 import com.hp.hpl.jena.ontology.daml.common.DAMLPropertyImpl;
 
 import com.hp.hpl.jena.rdf.model.Property;
 import com.hp.hpl.jena.rdf.model.Resource;
-import com.hp.hpl.jena.rdf.model.RDFException;
 
 
 

@@ -45,14 +45,8 @@ package com.hp.hpl.jena.ontology.daml.common;
 
 // Imports
 ///////////////
-
-import com.hp.hpl.jena.rdf.model.impl.ResourceImpl;
-
-import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.RDFException;
 import com.hp.hpl.jena.rdf.model.Resource;
-import com.hp.hpl.jena.rdf.model.RDFNode;
-
 
 import com.hp.hpl.jena.util.Log;
 
@@ -61,10 +55,7 @@ import com.hp.hpl.jena.ontology.daml.DAMLList;
 import com.hp.hpl.jena.ontology.daml.DAMLCommon;
 
 import com.hp.hpl.jena.vocabulary.DAML_OIL;
-import com.hp.hpl.jena.vocabulary.DAML_OIL_2000_12;
 import com.hp.hpl.jena.vocabulary.DAMLVocabulary;
-import com.hp.hpl.jena.vocabulary.RDF;
-import com.hp.hpl.jena.vocabulary.RDFS;
 
 import java.util.Iterator;
 

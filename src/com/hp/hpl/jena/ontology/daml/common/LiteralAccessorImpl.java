@@ -45,9 +45,6 @@ package com.hp.hpl.jena.ontology.daml.common;
 
 // Imports
 ///////////////
-
-import java.util.Iterator;
-
 import com.hp.hpl.jena.ontology.daml.LiteralAccessor;
 import com.hp.hpl.jena.ontology.daml.DAMLCommon;
 

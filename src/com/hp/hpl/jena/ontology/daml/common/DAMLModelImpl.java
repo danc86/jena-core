@@ -45,19 +45,14 @@ package com.hp.hpl.jena.ontology.daml.common;
 
 // Imports
 ///////////////
-import java.io.InputStreamReader;
-import java.io.IOException;
 import java.io.Reader;
 
 import java.util.ArrayList;
 import java.util.Hashtable;
-import java.util.Map;
 import java.util.Iterator;
-import java.util.Vector;
 
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.RDFException;
-import com.hp.hpl.jena.rdf.model.ResIterator;
 import com.hp.hpl.jena.rdf.model.Resource;
 import com.hp.hpl.jena.rdf.model.StmtIterator;
 import com.hp.hpl.jena.rdf.model.Statement;

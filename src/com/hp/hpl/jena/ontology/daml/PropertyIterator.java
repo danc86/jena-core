@@ -59,16 +59,10 @@ import com.hp.hpl.jena.rdf.model.RDFNode;
 import com.hp.hpl.jena.rdf.model.RDFException;
 import com.hp.hpl.jena.rdf.model.Model;
 
-import com.hp.hpl.jena.rdf.model.StmtIterator;
-import com.hp.hpl.jena.rdf.model.ResIterator;
-import com.hp.hpl.jena.rdf.model.NodeIterator;
-
 import com.hp.hpl.jena.util.Log;
 import com.hp.hpl.jena.util.iterator.ConcatenatedIterator;
 import com.hp.hpl.jena.util.iterator.NodeIteratorWrapper;
 import com.hp.hpl.jena.util.iterator.ResIteratorWrapper;
-import com.hp.hpl.jena.util.iterator.StatementObjectIterator;
-import com.hp.hpl.jena.util.iterator.StatementSubjectIterator;
 
 
 import com.hp.hpl.jena.vocabulary.DAML_OIL;

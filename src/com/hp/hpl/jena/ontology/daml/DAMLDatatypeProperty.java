@@ -45,7 +45,6 @@ package com.hp.hpl.jena.ontology.daml;
 
 // Imports
 ///////////////
-import com.hp.hpl.jena.rdf.model.Property;
 
 
 

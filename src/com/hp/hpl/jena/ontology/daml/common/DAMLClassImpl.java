@@ -45,31 +45,16 @@ package com.hp.hpl.jena.ontology.daml.common;
 
 // Imports
 ///////////////
-import java.util.HashSet;
 import java.util.Iterator;
-import java.util.Vector;
 
-import com.hp.hpl.jena.rdf.model.impl.ResourceImpl;
-import com.hp.hpl.jena.rdf.model.impl.ResIteratorImpl;
-
-import com.hp.hpl.jena.rdf.model.Model;
-import com.hp.hpl.jena.rdf.model.NodeIterator;
-import com.hp.hpl.jena.rdf.model.Property;
 import com.hp.hpl.jena.rdf.model.RDFException;
-import com.hp.hpl.jena.rdf.model.Resource;
-import com.hp.hpl.jena.rdf.model.ResIterator;
-import com.hp.hpl.jena.rdf.model.RDFNode;
-import com.hp.hpl.jena.rdf.model.StmtIterator;
-
 
 import com.hp.hpl.jena.ontology.daml.DAMLClass;
 import com.hp.hpl.jena.ontology.daml.DAMLModel;
 import com.hp.hpl.jena.ontology.daml.PropertyAccessor;
 import com.hp.hpl.jena.ontology.daml.PropertyIterator;
-import com.hp.hpl.jena.ontology.daml.DAMLCommon;
 
 import com.hp.hpl.jena.vocabulary.DAML_OIL;
-import com.hp.hpl.jena.vocabulary.DAML_OIL_2000_12;
 import com.hp.hpl.jena.vocabulary.DAMLVocabulary;
 import com.hp.hpl.jena.vocabulary.RDF;
 import com.hp.hpl.jena.vocabulary.RDFS;

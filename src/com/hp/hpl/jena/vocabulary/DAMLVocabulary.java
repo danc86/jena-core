@@ -49,7 +49,6 @@ import com.hp.hpl.jena.rdf.model.Property;
 import com.hp.hpl.jena.rdf.model.Resource;
 
 import com.hp.hpl.jena.ontology.daml.DAMLClass;
-import com.hp.hpl.jena.ontology.daml.DAMLInstance;
 import com.hp.hpl.jena.ontology.daml.DAMLList;
 
 

@@ -46,14 +46,6 @@ package com.hp.hpl.jena.ontology.daml;
 // Imports
 ///////////////
 
-import com.hp.hpl.jena.rdf.model.impl.ResourceImpl;
-
-import com.hp.hpl.jena.rdf.model.Model;
-import com.hp.hpl.jena.rdf.model.RDFException;
-import com.hp.hpl.jena.rdf.model.Resource;
-import com.hp.hpl.jena.vocabulary.RDF;
-import com.hp.hpl.jena.vocabulary.RDFS;
-
 
 
 

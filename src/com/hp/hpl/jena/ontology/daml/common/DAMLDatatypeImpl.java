@@ -51,8 +51,6 @@ import com.hp.hpl.jena.vocabulary.DAMLVocabulary;
 import com.hp.hpl.jena.ontology.daml.DAMLModel;
 import com.hp.hpl.jena.ontology.daml.DAMLDatatype;
 
-import com.hp.hpl.jena.util.Log;
-
 
 
 /**

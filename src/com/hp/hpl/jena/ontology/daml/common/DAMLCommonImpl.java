@@ -45,8 +45,6 @@ package com.hp.hpl.jena.ontology.daml.common;
 
 // Imports
 ///////////////
-import com.hp.hpl.jena.rdf.model.Literal;
-import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.Resource;
 import com.hp.hpl.jena.rdf.model.RDFException;
 import com.hp.hpl.jena.rdf.model.RDFNode;
@@ -54,12 +52,10 @@ import com.hp.hpl.jena.rdf.model.NodeIterator;
 import com.hp.hpl.jena.rdf.model.Property;
 import com.hp.hpl.jena.rdf.model.Statement;
 import com.hp.hpl.jena.rdf.model.StmtIterator;
-import com.hp.hpl.jena.rdf.model.ResIterator;
 
 
 import com.hp.hpl.jena.rdf.model.impl.ResourceImpl;
 import com.hp.hpl.jena.rdf.model.impl.NodeIteratorImpl;
-import com.hp.hpl.jena.rdf.model.impl.Util;
 import com.hp.hpl.jena.rdf.model.impl.SelectorImpl;
 
 import java.util.Iterator;
@@ -69,8 +65,6 @@ import java.util.Vector;
 
 import com.hp.hpl.jena.util.Log;
 import com.hp.hpl.jena.util.iterator.ConcatenatedIterator;
-import com.hp.hpl.jena.util.iterator.NodeIteratorWrapper;
-import com.hp.hpl.jena.util.iterator.StatementObjectIterator;
 
 import com.hp.hpl.jena.ontology.daml.DAMLModel;
 import com.hp.hpl.jena.ontology.daml.DAMLCommon;
@@ -81,10 +75,8 @@ import com.hp.hpl.jena.ontology.daml.DAMLClass;
 import com.hp.hpl.jena.ontology.daml.DAMLProperty;
 import com.hp.hpl.jena.ontology.daml.DAMLObjectProperty;
 
-import com.hp.hpl.jena.vocabulary.DAML_OIL;
 import com.hp.hpl.jena.vocabulary.DAMLVocabulary;
 import com.hp.hpl.jena.vocabulary.RDF;
-import com.hp.hpl.jena.vocabulary.RDFS;
 
 
 
