@@ -33,6 +33,7 @@ public class TestPackage extends TestSuite {
         addTest( "TestCreate", TestCreate.suite() );
         addTest( "TestIndividual", TestIndividual.suite() );
         addTest( "TestAllDifferent", TestAllDifferent.suite() );
+        addTest( new TestSuite( TestOntReasoning.class  ) );
     }
 
     private void addTest(String name, TestSuite tc) {

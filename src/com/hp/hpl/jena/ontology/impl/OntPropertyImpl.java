@@ -28,7 +28,6 @@ import com.hp.hpl.jena.enhanced.*;
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.ontology.*;
 import com.hp.hpl.jena.rdf.model.*;
-import com.hp.hpl.jena.util.iterator.WrappedIterator;
 
 import java.util.*;
 
@@ -156,15 +155,30 @@ public class OntPropertyImpl
      * @exception OntProfileException If the {@link Profile#SUB_PROPERTY_OF()} property is not supported in the current language profile.   
      */ 
     public Iterator listSuperProperties() {
-        return listAs( getProfile().SUB_PROPERTY_OF(), "SUB_PROPERTY_OF", OntProperty.class );
+        return listSuperProperties( false );
+    }
+
+    /**
+     * <p>Answer an iterator over all of the properties that are declared to be super-properties of
+     * this property. Each elemeent of the iterator will be an {@link #OntProperty}.</p>
+     * @param direct If true, only answer the direcly adjacent properties in the
+     * property hierarchy: i&#046;e&#046; eliminate any property for which there is a longer route
+     * to reach that child under the super-property relation.
+     * @return An iterator over the super-properties of this property.
+     * @exception OntProfileException If the {@link Profile#SUB_PROPERTY_OF()} property is not supported in the current language profile.   
+     */ 
+    public Iterator listSuperProperties( boolean direct ) {
+        return listDirectPropertyValues( getProfile().SUB_PROPERTY_OF(), "SUB_PROPERTY_OF", OntProperty.class, direct, false );
     }
 
     /**
      * <p>Answer true if the given property is a super-property of this property.</p>
      * @param prop A property to test.
+     * @param direct If true, only consider the direcly adjacent properties in the
+     * property hierarchy
      * @return True if the given property is a super-property of this property.
      */
-    public boolean hasSuperProperty( Property prop ) {
+    public boolean hasSuperProperty( Property prop, boolean direct ) {
         return hasPropertyValue( getProfile().SUB_PROPERTY_OF(), "SUB_PROPERTY_OF", prop );
     }
     
@@ -210,23 +224,36 @@ public class OntPropertyImpl
 
     /**
      * <p>Answer an iterator over all of the properties that are declared to be sub-properties of
-     * this property. Each elemeent of the iterator will be an {@link #OntProperty}.</p>
+     * this property. Each element of the iterator will be an {@link #OntProperty}.</p>
      * @return An iterator over the sub-properties of this property.
      * @exception OntProfileException If the {@link Profile#SUB_PROPERTY_OF()} property is not supported in the current language profile.   
      */ 
     public Iterator listSubProperties() {
-        checkProfile( getProfile().SUB_PROPERTY_OF(), "SUB_PROPERTY_OF" );
-        return WrappedIterator.create( getModel().listStatements( null, getProfile().SUB_PROPERTY_OF(), this ) )
-               .mapWith( new SubjectAsMapper( OntProperty.class ) );
+        return listSubProperties( false );
+    }
+
+    /**
+     * <p>Answer an iterator over all of the properties that are declared to be sub-properties of
+     * this property. Each element of the iterator will be an {@link #OntProperty}.</p>
+     * @param direct If true, only answer the direcly adjacent properties in the
+     * property hierarchy: i&#046;e&#046; eliminate any property for which there is a longer route
+     * to reach that child under the sub-property relation.
+     * @return An iterator over the sub-properties of this property.
+     * @exception OntProfileException If the {@link Profile#SUB_PROPERTY_OF()} property is not supported in the current language profile.   
+     */ 
+    public Iterator listSubProperties( boolean direct ) {
+        return listDirectPropertyValues( getProfile().SUB_PROPERTY_OF(), "SUB_PROPERTY_OF", OntProperty.class, direct, true );
     }
 
     /**
      * <p>Answer true if the given property is a sub-property of this property.</p>
      * @param prop A property to test.
+     * @param direct If true, only consider the direcly adjacent properties in the
+     * property hierarchy
      * @return True if the given property is a sub-property of this property.
      */
-    public boolean hasSubProperty( Property prop ) {
-        return ((OntProperty) prop.as( OntProperty.class )).hasSuperProperty( this );
+    public boolean hasSubProperty( Property prop, boolean direct ) {
+        return ((OntProperty) prop.as( OntProperty.class )).hasSuperProperty( this, direct );
     }
     
     // domain

@@ -83,12 +83,25 @@ public interface OntProperty
     public Iterator listSuperProperties();
 
     /**
+     * <p>Answer an iterator over all of the properties that are declared to be super-properties of
+     * this property. Each element of the iterator will be an {@link #OntProperty}.</p>
+     * @param direct If true, only answer the direcly adjacent properties in the
+     * property hierarchy: i&#046;e&#046; eliminate any property for which there is a longer route
+     * to reach that child under the super-property relation.
+     * @return An iterator over the super-properties of this property.
+     * @exception OntProfileException If the {@link Profile#SUB_PROPERTY_OF()} property is not supported in the current language profile.   
+     */ 
+    public Iterator listSuperProperties( boolean direct );
+
+    /**
      * <p>Answer true if the given property is a super-property of this property.</p>
      * @param prop A property to test.
+     * @param direct If true, only consider the direcly adjacent properties in the
+     * property hierarchy
      * @return True if the given property is a super-property of this property.
      * @exception OntProfileException If the {@link Profile#SUB_PROPERTY_OF()} property is not supported in the current language profile.   
      */
-    public boolean hasSuperProperty( Property prop );
+    public boolean hasSuperProperty( Property prop, boolean direct );
     
     /**
      * <p>Assert that this property is super-property of the given property. Any existing 
@@ -122,12 +135,25 @@ public interface OntProperty
     public Iterator listSubProperties();
 
     /**
+     * <p>Answer an iterator over all of the properties that are declared to be sub-properties of
+     * this property. Each element of the iterator will be an {@link #OntProperty}.</p>
+     * @param direct If true, only answer the direcly adjacent properties in the
+     * property hierarchy: i&#046;e&#046; eliminate any property for which there is a longer route
+     * to reach that child under the sub-property relation.
+     * @return An iterator over the sub-properties of this property.
+     * @exception OntProfileException If the {@link Profile#SUB_PROPERTY_OF()} property is not supported in the current language profile.   
+     */ 
+    public Iterator listSubProperties( boolean direct );
+
+    /**
      * <p>Answer true if the given property is a sub-property of this property.</p>
      * @param prop A property to test.
+     * @param direct If true, only consider the direcly adjacent properties in the
+     * property hierarchy
      * @return True if the given property is a sub-property of this property.
      * @exception OntProfileException If the {@link Profile#SUB_PROPERTY_OF()} property is not supported in the current language profile.   
      */
-    public boolean hasSubProperty( Property prop );
+    public boolean hasSubProperty( Property prop, boolean direct );
     
     // domain
     

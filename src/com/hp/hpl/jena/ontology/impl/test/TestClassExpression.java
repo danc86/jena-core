@@ -89,7 +89,7 @@ public class TestClassExpression
                     A.setSuperClass( C );
                     assertEquals( "Cardinality should be 1", 1, A.getCardinality( prof.SUB_CLASS_OF() ) );
                     assertEquals( "A shuold have super-class C", C, A.getSuperClass() );
-                    assertTrue( "A shuold not have super-class B", !A.hasSuperClass( B ) );
+                    assertTrue( "A shuold not have super-class B", !A.hasSuperClass( B, false ) );
                 }
             },
             new OntTestCase( "OntClass.sub-class", true, true, true ) {
@@ -110,7 +110,7 @@ public class TestClassExpression
                     A.setSubClass( C );
                     assertEquals( "Cardinality should be 1", 1, B.getCardinality( prof.SUB_CLASS_OF() ) + C.getCardinality( prof.SUB_CLASS_OF() ) );
                     assertEquals( "A shuold have sub-class C", C, A.getSubClass() );
-                    assertTrue( "A shuold not have sub-class B", !A.hasSubClass( B ) );
+                    assertTrue( "A shuold not have sub-class B", !A.hasSubClass( B, false ) );
                 }
             },
             new OntTestCase( "OntClass.equivalentClass", true, true, true ) {
