@@ -12,7 +12,7 @@ package com.hp.hpl.jena.shared.impl;
 /**
  * This class holds global, static, configuration parameters that
  * affect the behaviour of the Jena API. These should not be changed
- * unless you are sure you know what you are doing and even then then
+ * unless you are sure you know what you are doing and even then 
  * should ideally only be changed before any Models are created or processed.
  * <p>
  * These parameters should not be regarded as a stable part of the API. If
@@ -88,6 +88,12 @@ public class JenaParameters {
      * indirect consequences will, however, still be visible.  
      */
     public static boolean enableFilteringOfHiddenInfNodes = true;    
+    
+    /**
+     * If this flag is true (default) then attmempts to build an OWL inference
+     * graph over another OWL inference graph will log a warning message.
+     */
+    public static boolean enableOWLRuleOverOWLRuleWarnings = true;
 }
 
 

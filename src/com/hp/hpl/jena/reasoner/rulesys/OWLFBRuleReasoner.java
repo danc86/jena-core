@@ -16,6 +16,7 @@ import org.apache.commons.logging.LogFactory;
 
 import com.hp.hpl.jena.reasoner.*;
 import com.hp.hpl.jena.reasoner.rulesys.impl.OWLRuleTranslationHook;
+import com.hp.hpl.jena.shared.impl.JenaParameters;
 import com.hp.hpl.jena.graph.*;
 
 /**
@@ -73,6 +74,7 @@ public class OWLFBRuleReasoner extends FBRuleReasoner {
      * will be combined with the data when the final InfGraph is created.
      */
     public Reasoner bindSchema(Graph tbox) throws ReasonerException {
+        checkArgGraph(tbox);
         if (schemaGraph != null) {
             throw new ReasonerException("Can only bind one schema at a time to an OWLRuleReasoner");
         }
@@ -94,6 +96,7 @@ public class OWLFBRuleReasoner extends FBRuleReasoner {
      * constraints imposed by this reasoner.
      */
     public InfGraph bind(Graph data) throws ReasonerException {
+        checkArgGraph(data);
         FBRuleInfGraph graph =  null;
         InfGraph schemaArg = schemaGraph == null ? getPreload() : (FBRuleInfGraph)schemaGraph; 
         List baseRules = ((FBRuleInfGraph)schemaArg).getRules();
@@ -119,6 +122,19 @@ public class OWLFBRuleReasoner extends FBRuleReasoner {
         }
     }
     
+    /**
+     * Check an argument graph to make sure it is not an OWL rule graph
+     * already and if so log a warning message.
+     */
+    private void checkArgGraph(Graph g) {
+        if (JenaParameters.enableOWLRuleOverOWLRuleWarnings) {
+            if (g instanceof InfGraph) {
+                if (((InfGraph)g).getReasoner() instanceof OWLFBRuleReasoner) {
+                    logger.warn("Creating OWL rule reasoner working over another OWL rule reasoner");
+                }
+            }
+        }
+    }
 }
 
 
