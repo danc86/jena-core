@@ -23,6 +23,7 @@ package com.hp.hpl.jena.reasoner.dig;
 
 import org.w3c.dom.Document;
 
+import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.reasoner.TriplePattern;
 import com.hp.hpl.jena.util.iterator.*;
 import com.hp.hpl.jena.util.iterator.ExtendedIterator;
@@ -41,7 +42,7 @@ import com.hp.hpl.jena.util.iterator.ExtendedIterator;
  * </p>
  *
  * @author Ian Dickinson, HP Labs (<a href="mailto:Ian.Dickinson@hp.com">email</a>)
- * @version Release @release@ ($Id$)
+ * @version $Id$
  */
 public class DIGQueryAllRolesTranslator 
     extends DIGQueryTranslator
@@ -91,6 +92,11 @@ public class DIGQueryAllRolesTranslator
         return null;
     }
 
+
+    public Document translatePattern( TriplePattern pattern, DIGAdapter da, Model premises ) {
+        // not used
+        return null;
+    }
 
     public ExtendedIterator translateResponse( Document response, TriplePattern query, DIGAdapter da ) {
         // not used

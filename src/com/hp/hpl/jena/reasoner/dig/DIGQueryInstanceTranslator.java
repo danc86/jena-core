@@ -26,6 +26,7 @@ package com.hp.hpl.jena.reasoner.dig;
 ///////////////
 import org.w3c.dom.*;
 
+import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.reasoner.TriplePattern;
 import com.hp.hpl.jena.util.iterator.*;
 import com.hp.hpl.jena.util.iterator.ExtendedIterator;
@@ -74,7 +75,8 @@ public class DIGQueryInstanceTranslator
 
 
     /**
-     * <p>Answer a query that will test subsumption between two classes</p>
+     * <p>Answer a query that will test whether an invidividual is a member of 
+     * a given named class</p>
      */
     public Document translatePattern( TriplePattern pattern, DIGAdapter da ) {
         DIGConnection dc = da.getConnection();
@@ -83,6 +85,27 @@ public class DIGQueryInstanceTranslator
         da.addNamedElement( instance, DIGProfile.INDIVIDUAL, da.getNodeID( pattern.getSubject() ) );
         da.addClassDescription( instance, pattern.getObject() );
 
+        return query;
+    }
+
+
+    /**
+     * <p>Answer a query that will test whether an invidividual is a member of 
+     * a given named class or class expression (defined by the premises)</p>
+     */
+    public Document translatePattern( TriplePattern pattern, DIGAdapter da, Model premises ) {
+        DIGConnection dc = da.getConnection();
+        Document query = dc.createDigVerb( DIGProfile.ASKS, da.getProfile() );
+        Element instance = da.addElement( query.getDocumentElement(), DIGProfile.INSTANCE );
+        
+        da.addNamedElement( instance, DIGProfile.INDIVIDUAL, da.getNodeID( pattern.getSubject() ) );
+        
+        if (pattern.getObject().isBlank()) {
+            da.addClassDescription( instance, pattern.getObject(), premises );
+        }
+        else {
+            da.addClassDescription( instance, pattern.getObject() );
+        }
         return query;
     }
 

@@ -121,6 +121,28 @@ public class DIGInfGraph
 
    
     /**
+     * <p>An extension of the {@link Graph#find} interface which allows the caller to 
+     * encode complex expressions in RDF and then refer to those expressions
+     * within the query triple. For example, one might encode a class expression
+     * and then ask if there are any instances of this class expression in the
+     * InfGraph. In the case of the DIGInfGraph, this is exactly the use case we assume.
+     * In particular, we expect that the <code>object</code> node is the subject of
+     * one or more sentences in <code>param</code> which completely define the class
+     * description.<p>
+     * @param subject the subject Node of the query triple, may be a Node in 
+     * the graph or a node in the parameter micro-graph or null
+     * @param property the property to be retrieved or null
+     * @param object the object Node of the query triple, may be a Node in 
+     * the graph or a node in the parameter micro-graph.    
+     * @param param a small graph encoding an expression which the subject and/or
+     * object nodes refer.
+     */
+    public ExtendedIterator find( Node subject, Node property, Node object, Graph param ) {
+        
+        return null;
+    }
+    
+    /**
      * Return the schema graph, if any, bound into this inference graph.
      */
     public Graph getSchemaGraph() {

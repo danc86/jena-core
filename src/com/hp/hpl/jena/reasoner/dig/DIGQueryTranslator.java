@@ -30,6 +30,7 @@ import org.apache.commons.logging.LogFactory;
 import org.w3c.dom.Document;
 
 import com.hp.hpl.jena.graph.*;
+import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.reasoner.TriplePattern;
 import com.hp.hpl.jena.reasoner.rulesys.Node_RuleVariable;
 import com.hp.hpl.jena.util.iterator.ExtendedIterator;
@@ -115,6 +116,38 @@ public abstract class DIGQueryTranslator {
     
     
     /**
+     * <p>Translate the given pattern (with given premises)
+     * to a DIG query, and pass it on to the DIG
+     * adapter as a query.  Translate the results of the query back to a
+     * triple stream via an extended iterator.</p>
+     * @param pattern The pattern to translate to a DIG query
+     * @param da The DIG adapter through which we communicate with a DIG reasoner
+     * @param premises Model conveying additional information about the resources
+     * in the subject or object
+     */
+    public ExtendedIterator find( TriplePattern pattern, DIGAdapter da, Model premises ) {
+        DIGConnection dc = da.getConnection();
+        
+        // pose the query to the dig reasoner
+        Document query = translatePattern( pattern, da, premises );
+        if (query == null) {
+            LogFactory.getLog( getClass() ).warn( "Could not find pattern translator for nested DIG query " + pattern );
+        }
+        Document response = da.getConnection().sendDigVerb( query, da.getProfile() );
+        
+        boolean warn = dc.warningCheck( response );
+        if (warn) {
+            for (Iterator i = dc.getWarnings();  i.hasNext(); ) {
+                LogFactory.getLog( getClass() ).warn( i.next() );
+            }
+        }
+        
+        // translate the response back to triples
+        return translateResponse( response, pattern, da );
+    }
+    
+    
+    /**
      * <p>Answer true if this translator applies to the given triple pattern.</p>
      * @param pattern An incoming patter to match against
      * @param da The current dig adapter
@@ -166,8 +199,22 @@ public abstract class DIGQueryTranslator {
     }
 
 
+    /**
+     * <p>Answer an XML document that presents the translation of the query into DIG query language.</p>
+     */
     public abstract Document translatePattern( TriplePattern query, DIGAdapter da );
     
+    /**
+     * <p>Answer an XML document that presents the translation of the query into DIG query language,
+     * given that either the subject or object may be expressions defined by the statements
+     * in the premises model.</p>
+     */
+    public abstract Document translatePattern( TriplePattern pattern, DIGAdapter da, Model premises );
+
+    /**
+     * <p>Answer an extended iterator over the triples that result from translatig the given DIG response
+     * to RDF.</p>
+     */
     public abstract ExtendedIterator translateResponse( Document Response, TriplePattern query, DIGAdapter da );
    
     

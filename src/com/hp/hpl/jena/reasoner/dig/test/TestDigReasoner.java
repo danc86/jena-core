@@ -81,8 +81,8 @@ public class TestDigReasoner
     public static TestSuite suite() {
         TestSuite s = new TestSuite( "TestDigReasoner" );
         
-        //buildConceptLangSuite( "testing/ontology/dig/owl/cl", OntModelSpec.OWL_MEM, s );
-        //buildBasicQuerySuite( "testing/ontology/dig/owl/basicq", OntModelSpec.OWL_MEM, s );
+        buildConceptLangSuite( "testing/ontology/dig/owl/cl", OntModelSpec.OWL_MEM, s );
+        buildBasicQuerySuite( "testing/ontology/dig/owl/basicq", OntModelSpec.OWL_MEM, s );
 
         // add the standard tests from this class
         s.addTestSuite( TestDigReasoner.class );
@@ -365,7 +365,7 @@ public class TestDigReasoner
         ObjectProperty p2 = m.getObjectProperty( NS + "p2" );
         
         TestUtil.assertIteratorValues( this, p0.listSuperProperties(), 
-                                       new Resource[] {p1, p2} );
+                                       new Resource[] {p1, p2, p0} );
     }
 
     public void testRDescendants() {
@@ -383,7 +383,7 @@ public class TestDigReasoner
         ObjectProperty p2 = m.getObjectProperty( NS + "p2" );
         
         TestUtil.assertIteratorValues( this, p2.listSubProperties(), 
-                                       new Resource[] {p1, p0} );
+                                       new Resource[] {p1, p0, p2} );
     }
 
     

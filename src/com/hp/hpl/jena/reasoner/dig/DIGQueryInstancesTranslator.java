@@ -26,6 +26,7 @@ package com.hp.hpl.jena.reasoner.dig;
 ///////////////
 import org.w3c.dom.*;
 
+import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.reasoner.TriplePattern;
 import com.hp.hpl.jena.util.iterator.*;
 
@@ -41,7 +42,7 @@ import com.hp.hpl.jena.util.iterator.*;
  * </p>
  *
  * @author Ian Dickinson, HP Labs (<a href="mailto:Ian.Dickinson@hp.com">email</a>)
- * @version Release @release@ ($Id$)
+ * @version CVS $Id$
  */
 public class DIGQueryInstancesTranslator 
     extends DIGQueryTranslator
@@ -86,6 +87,25 @@ public class DIGQueryInstancesTranslator
         return query;
     }
 
+    /**
+     * <p>Answer a query that will list the instances of a given concept, optionally defined
+     * as a class expression in the premises.</p>
+     */
+    public Document translatePattern( TriplePattern pattern, DIGAdapter da, Model premises ) {
+        DIGConnection dc = da.getConnection();
+        Document query = dc.createDigVerb( DIGProfile.ASKS, da.getProfile() );
+        
+        Element instances = da.addElement( query.getDocumentElement(), DIGProfile.INSTANCES );
+        
+        if (pattern.getObject().isBlank()) {
+            da.addClassDescription( instances, pattern.getObject(), premises );
+        }
+        else {
+            da.addClassDescription( instances, pattern.getObject() );
+        }
+        
+        return query;
+    }
 
     /**
      * <p>Answer an iterator of triples that match the original find query.</p>

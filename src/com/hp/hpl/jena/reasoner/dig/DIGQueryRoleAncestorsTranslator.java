@@ -26,7 +26,7 @@ package com.hp.hpl.jena.reasoner.dig;
 ///////////////
 import org.w3c.dom.*;
 
-import com.hp.hpl.jena.graph.Triple;
+import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.reasoner.TriplePattern;
 import com.hp.hpl.jena.util.iterator.*;
 
@@ -43,7 +43,7 @@ import com.hp.hpl.jena.util.iterator.*;
  * </p>
  *
  * @author Ian Dickinson, HP Labs (<a href="mailto:Ian.Dickinson@hp.com">email</a>)
- * @version Release @release@ ($Id$)
+ * @version CVS $Id$
  */
 public class DIGQueryRoleAncestorsTranslator 
     extends DIGQueryTranslator
@@ -105,14 +105,15 @@ public class DIGQueryRoleAncestorsTranslator
      */
     public ExtendedIterator translateResponse( Document response, TriplePattern query, DIGAdapter da ) {
         // translate the concept set to triples, but then we must add :a rdfs:subPropertyOf :a to match owl semantics
-        return translateRoleSetResponse( response, query, m_ancestors )
-               .andThen( new SingletonIterator( 
-                            new Triple( m_ancestors ? query.getSubject() : query.getObject(),
-                                        query.getPredicate(),
-                                        m_ancestors ? query.getSubject() : query.getObject() ) ) );
+        return translateRoleSetResponse( response, query, m_ancestors );
     }
     
     
+    public Document translatePattern( TriplePattern pattern, DIGAdapter da, Model premises ) {
+        // not used
+        return null;
+    }
+
     public boolean checkSubject( com.hp.hpl.jena.graph.Node subject, DIGAdapter da ) {
         return !m_ancestors || subject.isConcrete();
     }

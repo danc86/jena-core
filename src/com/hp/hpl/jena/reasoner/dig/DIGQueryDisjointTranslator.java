@@ -27,6 +27,7 @@ import java.util.List;
 import org.w3c.dom.*;
 import org.w3c.dom.Document;
 
+import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.reasoner.TriplePattern;
 import com.hp.hpl.jena.util.iterator.*;
 import com.hp.hpl.jena.util.iterator.ExtendedIterator;
@@ -98,6 +99,11 @@ public class DIGQueryDisjointTranslator
         return WrappedIterator.create( answer.iterator() );
     }
     
+    public Document translatePattern( TriplePattern pattern, DIGAdapter da, Model premises ) {
+        // not used
+        return null;
+    }
+
     public boolean checkSubject( com.hp.hpl.jena.graph.Node subject, DIGAdapter da ) {
         return subject.isConcrete();
     }

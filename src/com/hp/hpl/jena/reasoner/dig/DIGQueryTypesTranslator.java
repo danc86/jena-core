@@ -26,6 +26,7 @@ package com.hp.hpl.jena.reasoner.dig;
 ///////////////
 import org.w3c.dom.*;
 
+import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.reasoner.TriplePattern;
 import com.hp.hpl.jena.util.iterator.*;
 
@@ -41,7 +42,7 @@ import com.hp.hpl.jena.util.iterator.*;
  * </p>
  *
  * @author Ian Dickinson, HP Labs (<a href="mailto:Ian.Dickinson@hp.com">email</a>)
- * @version Release @release@ ($Id$)
+ * @version CVS $Id$
  */
 public class DIGQueryTypesTranslator 
     extends DIGQueryTranslator
@@ -96,6 +97,11 @@ public class DIGQueryTypesTranslator
     }
     
     
+    public Document translatePattern( TriplePattern pattern, DIGAdapter da, Model premises ) {
+        // not used
+        return null;
+    }
+
     public boolean checkSubject( com.hp.hpl.jena.graph.Node subject, DIGAdapter da ) {
         return subject.isConcrete() && da.isIndividual( subject );
     }

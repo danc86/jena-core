@@ -47,7 +47,7 @@ import com.hp.hpl.jena.vocabulary.RDF;
  * </p>
  *
  * @author Ian Dickinson, HP Labs (<a href="mailto:Ian.Dickinson@hp.com">email</a>)
- * @version Release @release@ ($Id$)
+ * @version CVS $Id$
  */
 public class DIGQueryClassHierarchyTranslator 
     extends DIGIteratedQueryTranslator

@@ -27,6 +27,7 @@ package com.hp.hpl.jena.reasoner.dig;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
+import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.reasoner.TriplePattern;
 import com.hp.hpl.jena.util.iterator.ExtendedIterator;
 
@@ -93,6 +94,11 @@ public class DIGQueryEquivalentsTranslator
         return translateConceptSetResponse( response, query, !m_subjectFree );
     }
     
+    public Document translatePattern( TriplePattern pattern, DIGAdapter da, Model premises ) {
+        // not used
+        return null;
+    }
+
     
     public boolean checkSubject( com.hp.hpl.jena.graph.Node subject, DIGAdapter da ) {
         return m_subjectFree || subject.isConcrete();

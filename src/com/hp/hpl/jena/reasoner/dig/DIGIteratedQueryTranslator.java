@@ -29,6 +29,7 @@ import java.util.Iterator;
 
 import org.w3c.dom.Document;
 
+import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.reasoner.TriplePattern;
 import com.hp.hpl.jena.util.iterator.*;
 
@@ -109,6 +110,11 @@ public abstract class DIGIteratedQueryTranslator
      * Not needed in this class - delegated to the specific query handlers
      */
     public Document translatePattern( TriplePattern query, DIGAdapter da ) {
+        return null;
+    }
+
+    public Document translatePattern( TriplePattern pattern, DIGAdapter da, Model premises ) {
+        // not used
         return null;
     }
 
