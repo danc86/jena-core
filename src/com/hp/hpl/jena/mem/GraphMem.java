@@ -68,7 +68,10 @@ public class GraphMem extends GraphBase implements Graph {
 
     public boolean contains(Node s, Node p, Node o) {
         return 
-            s == null || p == null || o == null ? super.contains( s, p, o )
+            s == null || Node.ANY.equals( s ) 
+            || p == null || Node.ANY.equals( p )
+            || o == null || Node.ANY.equals( o )
+            ? super.contains( s, p, o )
             : contains( new Triple(s, p, o) )
             ;
     }

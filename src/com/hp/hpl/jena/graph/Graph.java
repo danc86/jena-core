@@ -7,7 +7,7 @@
 package com.hp.hpl.jena.graph;
 
 import com.hp.hpl.jena.graph.query.*;
-import com.hp.hpl.jena.shared.PrefixMapping;
+import com.hp.hpl.jena.shared.*;
 
 import com.hp.hpl.jena.util.iterator.ExtendedIterator;
 
@@ -54,10 +54,10 @@ public interface Graph  {
     PrefixMapping getPrefixMapping();
     
     /** adds the triple t (if possible) to the set belong to the graph */
-	void add(Triple t) throws UnsupportedOperationException;
+	void add(Triple t) throws JenaAddDeniedException;
     
     /** removes the triple t (if possible) from the set belonging to this graph */   
-	void delete(Triple t) throws UnsupportedOperationException;
+	void delete(Triple t) throws JenaDeleteDeniedException;
       
 	  /** Returns an iterator over Triple.
 	   */
