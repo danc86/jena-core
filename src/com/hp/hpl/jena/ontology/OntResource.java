@@ -405,6 +405,19 @@ public interface OntResource
     
     /**
      * <p>
+     * Answer an {@link PathSet accessor} for the given
+     * property of any ontology value. The accessor
+     * can be used to perform a variety of operations, including getting and setting the value.
+     * </p>
+     * 
+     * @param p A property
+     * @return An abstract accessor for the property p
+     */
+    public PathSet accessor( Property p );
+    
+    
+    /**
+     * <p>
      * Set the value of the given property of this ontology resource to the given
      * value, encoded as an RDFNode.  Maintains the invariant that there is
      * at most one value of the property for a given resource, so existing
