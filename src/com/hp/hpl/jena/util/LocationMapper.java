@@ -81,7 +81,7 @@ public class LocationMapper
         // Make a file manager to look for the location mapping file
         FileManager fm = new FileManager() ;
         fm.addLocatorFile() ;
-        fm.addLocatorSystemClassLoader() ;
+        fm.addLocatorClassLoader(fm.getClass().getClassLoader()) ;
         
         try {
             String uriConfig = null ; 

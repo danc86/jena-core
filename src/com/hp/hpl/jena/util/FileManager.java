@@ -79,7 +79,7 @@ public class FileManager
         FileManager fMgr = new FileManager(LocationMapper.get()) ;
         fMgr.addLocatorFile() ;
         fMgr.addLocatorURL() ;
-        fMgr.addLocatorSystemClassLoader() ;
+        fMgr.addLocatorClassLoader(fMgr.getClass().getClassLoader()) ;
         return fMgr ;
     }
     
@@ -113,12 +113,6 @@ public class FileManager
     {
         LocatorFile fLoc = new LocatorFile(dir) ;
         addLocator(fLoc) ;
-    }
-    
-    /** Add the system class loader */ 
-    public void addLocatorSystemClassLoader()
-    {
-        addLocatorClassLoader(ClassLoader.getSystemClassLoader()) ;
     }
     
     /** Add a class loader locator */ 

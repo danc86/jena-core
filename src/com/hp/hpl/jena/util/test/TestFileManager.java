@@ -69,7 +69,7 @@ public class TestFileManager extends TestCase
     public void testFileManagerLocatorClassLoader()
     {
         FileManager fileManager = new FileManager() ;
-        fileManager.addLocatorSystemClassLoader() ;
+        fileManager.addLocatorClassLoader(fileManager.getClass().getClassLoader()) ;
         InputStream in = fileManager.open("java/lang/String.class") ;
         assertNotNull(in) ;
         closeInputStream(in) ;
@@ -78,7 +78,7 @@ public class TestFileManager extends TestCase
     public void testFileManagerLocatorClassLoaderNotFound()
     {
         FileManager fileManager = new FileManager() ;
-        fileManager.addLocatorSystemClassLoader() ;
+        fileManager.addLocatorClassLoader(fileManager.getClass().getClassLoader()) ;
         InputStream in = fileManager.open("not/java/lang/String.class") ;
         assertNull(in) ;
         closeInputStream(in) ;
@@ -127,7 +127,7 @@ public class TestFileManager extends TestCase
     {
         LocationMapper locMap = new LocationMapper(TestLocationMapper.mapping) ;
         FileManager fileManager = new FileManager(locMap) ;
-        fileManager.addLocatorSystemClassLoader() ;
+        fileManager.addLocatorClassLoader(fileManager.getClass().getClassLoader()) ;
         InputStream in = fileManager.open("http://example.org/file") ;
         assertNull(in) ;
         closeInputStream(in) ;
