@@ -20,7 +20,7 @@ import java.util.*;
 public class SimpleQueryHandler implements QueryHandler
     {
     /** the Graph this handler is working for */
-    private Graph graph;
+    protected Graph graph;
     
     /** make an instance, remember the graph */
     public SimpleQueryHandler( Graph graph )
