@@ -696,6 +696,56 @@ public class TestBugReports extends TestCase {
         assertTrue( "Should be an individual", n instanceof Individual );
     }
     
+    /** Bug report by Zhao Jun [jeff@seu.edu.cn] - throws no such element exception */
+    public void test_zj_0() {
+        String NS = "file:/C:/orel/orel0_5.owl#";
+        String sourceT =
+            "<rdf:RDF " +
+            "    xmlns:rdf='http://www.w3.org/1999/02/22-rdf-syntax-ns#'" +
+            "    xmlns:rdfs='http://www.w3.org/2000/01/rdf-schema#'" +
+            "    xmlns:ex='http://example.org/foo#'" +
+            "    xmlns:owl='http://www.w3.org/2002/07/owl#'" +
+            "      xmlns:orel='file:/C:/orel/orel0_5.owl#'" +
+            "      xml:base='file:/C:/orel/orel0_5.owl#'" +
+            "      xmlns='file:/C:/orel/orel0_5.owl#'>" +
+            " <owl:ObjectProperty rdf:ID='hasAgent' />" +
+            " <owl:ObjectProperty rdf:ID='hasResource' />" +
+            " <owl:Class rdf:ID='MyPlay'>" +
+            "    <rdfs:subClassOf>" +
+            "      <owl:Restriction>" +
+            "        <owl:onProperty rdf:resource='file:/C:/orel/orel0_5.owl#hasResource'/>" +
+            "        <owl:hasValue>" +
+            "          <orel:Resource rdf:ID='myResource'>" +
+            "            <orel:resourceURI>http://mp3.com/newcd/sample.mp3</orel:resourceURI>" +
+            "          </orel:Resource>" +
+            "        </owl:hasValue>" +
+            "      </owl:Restriction>" +
+            "    </rdfs:subClassOf>" +
+            "    <rdfs:subClassOf rdf:resource='http://www.w3.org/2002/07/owl#Thing'/>" +
+            "    <rdfs:subClassOf>" +
+            "      <owl:Restriction>" +
+            "        <owl:onProperty rdf:resource='file:/C:/orel/orel0_5.owl#hasAgent'/>" +
+            "        <owl:hasValue>" +
+            "          <orel:Agent rdf:ID='myAgent'>" +
+            "            <orel:agentPK>123456789</orel:agentPK>" +
+            "          </orel:Agent>" +
+            "        </owl:hasValue>" +
+            "      </owl:Restriction>" +
+            "    </rdfs:subClassOf>" +
+            "    <rdfs:subClassOf rdf:resource='file:/C:/orel/orel0_5.owl#Play'/>" +
+            "  </owl:Class>" +
+            "</rdf:RDF>";
+
+        OntModel m = ModelFactory.createOntologyModel(OntModelSpec.OWL_MEM_RULE_INF, null);
+        m.read(new ByteArrayInputStream(sourceT.getBytes()), "file:/C:/orel/orel0_5.owl");
+        
+        OntClass myPlay = m.getOntClass( NS + "MyPlay");
+        for (Iterator i = myPlay.listDeclaredProperties(); i.hasNext(); ) {
+            //System.err.println( "prop " + i.next() );
+            i.next();
+        }
+    }
+    
     // Internal implementation methods
     //////////////////////////////////
 
