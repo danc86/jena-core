@@ -32,7 +32,6 @@
 package com.hp.hpl.jena.rdf.model;
 
 import com.hp.hpl.jena.graph.FrontsNode;
-import com.hp.hpl.jena.graph.Node;
 /** An RDF Resource or an RDF Literal.
  *
  * <p><CODE>RDFNode</CODE> represents the methods which RDF Resources and RDF
