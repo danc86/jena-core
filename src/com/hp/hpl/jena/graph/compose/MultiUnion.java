@@ -25,7 +25,7 @@ package com.hp.hpl.jena.graph.compose;
 // Imports
 ///////////////
 import com.hp.hpl.jena.graph.*;
-import com.hp.hpl.jena.rdf.model.RDFException;
+import com.hp.hpl.jena.util.JenaException;
 import com.hp.hpl.jena.util.iterator.*;
 
 import java.util.*;
@@ -111,8 +111,7 @@ public class MultiUnion
             getBaseGraph().add( t );
         }
         catch (NullPointerException e) {
-            // TODO: this should be changed to JenaException when it gets done
-            throw new RDFException( "Tried to add to a union graph that has no component graphs." );
+            throw new JenaException( "Tried to add to a union graph that has no component graphs." );
         }
     }
 
@@ -131,8 +130,7 @@ public class MultiUnion
             getBaseGraph().delete( t );
         }
         catch (NullPointerException e) {
-            // TODO: this should be changed to JenaException when it gets done
-            throw new RDFException( "Tried to delete from a union graph that has no component graphs." );
+            throw new JenaException( "Tried to delete from a union graph that has no component graphs." );
         }
     }
 
