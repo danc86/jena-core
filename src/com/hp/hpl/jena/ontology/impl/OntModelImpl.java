@@ -383,7 +383,14 @@ public class OntModelImpl
         // or not a powerful reasoner (i.e. owl:Thing/daml:Thing aware) is being used with this model
         if (!(getGraph() instanceof BasicForwardRuleInfGraph) || (m_individualsQueryInf == null) || getProfile().CLASS().equals( RDFS.Class )) {
             // no inference, or we are in RDFS land, so we pick things that have rdf:type whose rdf:type is Class
-            return UniqueExtendedIterator.create( queryFor( m_individualsQueryNoInf, null, Individual.class ) );
+            ExtendedIterator indivI = queryFor( m_individualsQueryNoInf, null, Individual.class );
+
+            // we also must pick resources that simply have rdf:type owl:Thing, since some individuals are asserted that way
+            if (m_individualsQueryInf != null) {
+                indivI = indivI.andThen( queryFor( m_individualsQueryInf, null, Individual.class ) );
+            }
+            
+            return UniqueExtendedIterator.create( indivI );
         }
         else {
             // inference, so we pick the nodes that are of type Thing
