@@ -89,6 +89,11 @@ public class TestIndividual
                     x.setSameIndividualAs( z );
                     assertEquals( "Cardinality should be 1", 1, x.getCardinality( prof.SAME_INDIVIDUAL_AS() ) );
                     assertEquals( "x should be same indiv. as z", z, x.getSameIndividualAs() );
+                    
+                    x.removeSameIndividualAs( y );
+                    assertEquals( "Cardinality should be 1", 1, x.getCardinality( prof.SAME_INDIVIDUAL_AS() ) );
+                    x.removeSameIndividualAs( z );
+                    assertEquals( "Cardinality should be 0", 0, x.getCardinality( prof.SAME_INDIVIDUAL_AS() ) );
                 }
             },
         };

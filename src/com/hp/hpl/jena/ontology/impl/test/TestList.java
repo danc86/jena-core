@@ -689,6 +689,7 @@ public class TestList
             
             Resource r0 = m.createResource( NS + "x" );
             Resource r1 = m.createResource( NS + "y" );
+            Resource r2 = m.createResource( NS + "z" );
             
             for (int i = 0;  i < 10;  i++) {
                 list0 = list0.cons( r0 );
@@ -707,6 +708,32 @@ public class TestList
             
             // model should now be empty
             assertEquals( "Model should be empty after deleting two lists", 0, m.size() );
+            
+            // selective remove
+            OntList list2 = ((OntList) nil.as( OntList.class ))
+                            .cons( r2 )
+                            .cons( r1 )
+                            .cons( r0 );
+           
+            assertTrue( "list should contain x ", list2.contains( r0 ));
+            assertTrue( "list should contain y ", list2.contains( r1 ));
+            assertTrue( "list should contain z ", list2.contains( r2 ));
+            
+            list2 = list2.remove( r1 );
+            assertTrue( "list should contain x ", list2.contains( r0 ));
+            assertTrue( "list should contain y ", !list2.contains( r1 ));
+            assertTrue( "list should contain z ", list2.contains( r2 ));
+            
+            list2 = list2.remove( r0 );
+            assertTrue( "list should contain x ", !list2.contains( r0 ));
+            assertTrue( "list should contain y ", !list2.contains( r1 ));
+            assertTrue( "list should contain z ", list2.contains( r2 ));
+            
+            list2 = list2.remove( r2 );
+            assertTrue( "list should contain x ", !list2.contains( r0 ));
+            assertTrue( "list should contain y ", !list2.contains( r1 ));
+            assertTrue( "list should contain z ", !list2.contains( r2 ));
+            assertTrue( "list should be empty", list2.isEmpty() );
         }
     }
     

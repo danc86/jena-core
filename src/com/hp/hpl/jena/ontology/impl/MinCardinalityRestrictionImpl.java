@@ -126,6 +126,16 @@ public class MinCardinalityRestrictionImpl
         return hasPropertyValue( getProfile().MIN_CARDINALITY(), "MIN_CARDINALITY", getModel().createTypedLiteral( cardinality ) );
     }
     
+    /**
+     * <p>Remove the statement that this restriction has the given minimum cardinality 
+     * for the restricted property.  If this statement
+     * is not true of the current model, nothing happens.</p>
+     * @param cardinality A min cardinality value to be removed from this restriction
+     */
+    public void removeMinCardinality( int cardinality ) {
+        removePropertyValue( getProfile().MIN_CARDINALITY(), "MIN_CARDINALITY", getModel().createTypedLiteral( cardinality ) );
+    }
+    
 
 
     // Internal implementation methods

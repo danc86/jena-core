@@ -99,6 +99,12 @@ public interface BooleanClassDescription
 	 */
 	public boolean hasOperand( Resource cls );
     
+    /**
+     * <p>Remove the given resource from the operands of this class expression.</p>
+     * @param res An resource to be removed from the operands of this class expression
+     */
+    public void removeOperand( Resource res );
+    
     
  	/**
  	 * <p>Answer the property that is used to construct this boolean expression, for example

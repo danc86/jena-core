@@ -184,6 +184,15 @@ public class ComplementClassImpl
 		return (OntClass) objectAs( getProfile().COMPLEMENT_OF(), "COMPLEMENT_OF", OntClass.class );
 	}
     
+    /**
+     * <p>Remove the given resource from the operands of this class expression.</p>
+     * @param res An resource to be removed from the operands of this class expression
+     */
+    public void removeOperand( Resource res ) {
+        removePropertyValue( getProfile().COMPLEMENT_OF(), "COMPLEMENT_OF", res );
+    }
+    
+    
 	/**
 	 * <p>Answer the property that is used to construct this boolean expression, for example
 	 * {@link Profile#UNION_OF()}.</p>

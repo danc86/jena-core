@@ -130,6 +130,17 @@ public class HasValueRestrictionImpl
         return hasPropertyValue( getProfile().HAS_VALUE(), "HAS_VALUE", individual );
     }
     
+    /**
+     * <p>Remove the statement that this restriction requires the restricted property to have
+     * the given value.  If this statement
+     * is not true of the current model, nothing happens.</p>
+     * @param individual A resource that is to be removed as the required value for the restricted property
+     */
+    public void removeHasValue( Resource individual ) {
+        removePropertyValue( getProfile().HAS_VALUE(), "HAS_VALUE", individual );
+    }
+    
+
     // Internal implementation methods
     //////////////////////////////////
 

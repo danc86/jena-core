@@ -129,6 +129,16 @@ public class AllValuesFromRestrictionImpl
         return hasPropertyValue( getProfile().ALL_VALUES_FROM(), "ALL_VALUES_FROM", cls );
     }
     
+    /**
+     * <p>Remove the statement that this restriction has all values from the given class among
+     * the values for the restricted property.  If this statement
+     * is not true of the current model, nothing happens.</p>
+     * @param cls A Resource the denotes the class to be removed from this restriction
+     */
+    public void removeAllValuesFrom( Resource cls ) {
+        removePropertyValue( getProfile().ALL_VALUES_FROM(), "ALL_VALUES_FROM", cls );
+    }
+    
 
     // Internal implementation methods
     //////////////////////////////////

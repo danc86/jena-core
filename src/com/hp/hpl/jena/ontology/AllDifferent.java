@@ -102,8 +102,12 @@ public interface AllDifferent
      */
     public boolean hasDistinctMember( Resource res );
     
-    
-
+    /**
+     * <p>Remove the given resource from the list of distinct individuals.  If this statement
+     * is not true of the current model, nothing happens.</p>
+     * @param res A resource that is no longer distinct from the other listed individuals
+     */
+    public void removeDistinctMember( Resource res );
     
 }
 

@@ -161,6 +161,16 @@ public class EnumeratedClassImpl
         return getOneOf().contains( res );
     }
     
+    /**
+     * <p>Remove the statement that this enumeration includes <code>res</code> among its members.  If this statement
+     * is not true of the current model, nothing happens.</p>
+     * @param res A resource that may be declared to be part of this enumeration, and which is
+     * no longer one of the enumeration values.
+     */
+    public void removeOneOf( Resource res ) {
+        setOneOf( getOneOf().remove( res ) );
+    }
+    
 
 
     // Internal implementation methods

@@ -72,6 +72,14 @@ public interface CardinalityRestriction
      */
     public boolean hasCardinality( int cardinality );
     
+    /**
+     * <p>Remove the statement that this restriction has the given cardinality 
+     * for the restricted property.  If this statement
+     * is not true of the current model, nothing happens.</p>
+     * @param cardinality A cardinality value to be removed from this restriction
+     */
+    public void removeCardinality( int cardinality );
+    
 
 }
 

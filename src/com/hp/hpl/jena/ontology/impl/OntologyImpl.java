@@ -149,6 +149,15 @@ public class OntologyImpl
         return hasPropertyValue( getProfile().IMPORTS(), "IMPORTS", res );
     }
     
+    /**
+     * <p>Remove the statement that this ontology imports the ontology represented by the given resource.  If this statement
+     * is not true of the current model, nothing happens.</p>
+     * @param res A resource that represents an ontology that is no longer to be imported
+     */
+    public void removeImport( Resource res ) {
+        removePropertyValue( getProfile().IMPORTS(), "IMPORTS", res );
+    }
+    
 
     // backwardCompatibleWith
     
@@ -203,6 +212,17 @@ public class OntologyImpl
         return hasPropertyValue( getProfile().BACKWARD_COMPATIBLE_WITH(), "BACKWARD_COMPATIBLE_WITH", res );
     }
     
+    /**
+     * <p>Remove the statement that this ontology is backwards compatible with
+     * the ontology represented by the given resource.  If this statement
+     * is not true of the current model, nothing happens.</p>
+     * @param res A resource that represents an ontology that is no longer to be imported
+     */
+    public void removeBackwardCompatibleWith( Resource res ) {
+        removePropertyValue( getProfile().BACKWARD_COMPATIBLE_WITH(), "BACKWARD_COMPATIBLE_WITH", res );
+    }
+    
+
     // priorVersion
     
     /**
@@ -256,6 +276,16 @@ public class OntologyImpl
         return hasPropertyValue( getProfile().PRIOR_VERSION(), "PRIOR_VERSION", res );
     }
     
+    /**
+     * <p>Remove the statement that the given ontology is a prior version of this ontology.  If this statement
+     * is not true of the current model, nothing happens.</p>
+     * @param res A resource that represents an ontology that is no longer a prior version of this ontology
+     */
+    public void removePriorVersion( Resource res ) {
+        removePropertyValue( getProfile().PRIOR_VERSION(), "PRIOR_VERSION", res );
+    }
+    
+
     // incompatibleWith
 
     /**
@@ -308,6 +338,16 @@ public class OntologyImpl
     public boolean isIncompatibleWith( Resource res ) {
         return hasPropertyValue( getProfile().INCOMPATIBLE_WITH(), "INCOMPATIBLE_WITH", res );
     }
+    
+    /**
+     * <p>Remove the statement that the given ontology is incompatible with this ontology.  If this statement
+     * is not true of the current model, nothing happens.</p>
+     * @param res A resource that represents an ontology that is no longer incompatible with this ontology
+     */
+    public void removeIncompatibleWith( Resource res ) {
+        removePropertyValue( getProfile().INCOMPATIBLE_WITH(), "INCOMPATIBLE_WITH", res );
+    }
+    
     
     // Internal implementation methods
     //////////////////////////////////

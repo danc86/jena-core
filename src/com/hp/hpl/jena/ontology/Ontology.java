@@ -94,6 +94,13 @@ public interface Ontology
      */
     public boolean imports( Resource res );
     
+    /**
+     * <p>Remove the statement that this ontology imports the ontology represented by the given resource.  If this statement
+     * is not true of the current model, nothing happens.</p>
+     * @param res A resource that represents an ontology that is no longer to be imported
+     */
+    public void removeImport( Resource res );
+    
 
     // backwardCompatibleWith
     
@@ -138,6 +145,15 @@ public interface Ontology
      */
     public boolean isBackwardCompatibleWith( Resource res );
     
+    /**
+     * <p>Remove the statement that this ontology is backwards compatible with
+     * the ontology represented by the given resource.  If this statement
+     * is not true of the current model, nothing happens.</p>
+     * @param res A resource that represents an ontology that is no longer to be imported
+     */
+    public void removeBackwardCompatibleWith( Resource res );
+    
+
     // priorVersion
     
     /**
@@ -181,6 +197,13 @@ public interface Ontology
      */
     public boolean hasPriorVersion( Resource res );
     
+    /**
+     * <p>Remove the statement that the given ontology is a prior version of this ontology.  If this statement
+     * is not true of the current model, nothing happens.</p>
+     * @param res A resource that represents an ontology that is no longer a prior version of this ontology
+     */
+    public void removePriorVersion( Resource res );
+    
     // incompatibleWith
 
     /**
@@ -223,6 +246,13 @@ public interface Ontology
      * @return True if this ontology is incompatible with the ontology represented by <code>res</code>
      */
     public boolean isIncompatibleWith( Resource res );
+    
+    /**
+     * <p>Remove the statement that the given ontology is incompatible with this ontology.  If this statement
+     * is not true of the current model, nothing happens.</p>
+     * @param res A resource that represents an ontology that is no longer incompatible with this ontology
+     */
+    public void removeIncompatibleWith( Resource res );
     
 }
 

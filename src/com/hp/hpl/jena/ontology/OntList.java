@@ -338,6 +338,20 @@ public interface OntList
     
     
     /**
+     * <p>Remove the given value from this list. If <code>val</code> does not occur in
+     * the list, no action is taken.  Since removing the head of the list will invalidate
+     * the list head cell, in general the list must return the list that results from this
+     * operation. However, in many cases the return value will be the same as the object
+     * that this method is invoked on</p>
+     * 
+     * @param val The value to be removed from the list
+     * @return The resulting list, which will be the same as the current list in most
+     * cases, except when <code>val</code> occurs at the head of the list.
+     */
+    public OntList remove( RDFNode val );
+    
+    
+    /**
      * <p>
      * Answer an iterator over the elements of the list. Note that this iterator
      * does not take a snapshot of the list, so changes to the list statements

@@ -126,6 +126,16 @@ public class MaxCardinalityRestrictionImpl
         return hasPropertyValue( getProfile().MAX_CARDINALITY(), "MAX_CARDINALITY", getModel().createTypedLiteral( cardinality ) );
     }
     
+    /**
+     * <p>Remove the statement that this restriction has the given maximum cardinality 
+     * for the restricted property.  If this statement
+     * is not true of the current model, nothing happens.</p>
+     * @param cardinality A max cardinality value to be removed from this restriction
+     */
+    public void removeMaxCardinality( int cardinality ) {
+        removePropertyValue( getProfile().MAX_CARDINALITY(), "MAX_CARDINALITY", getModel().createTypedLiteral( cardinality ) );
+    }
+    
 
     // Internal implementation methods
     //////////////////////////////////

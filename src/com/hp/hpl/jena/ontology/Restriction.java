@@ -75,6 +75,15 @@ public interface Restriction
      */
     public boolean onProperty( Property prop );
     
+    /**
+     * <p>Remove the given property as the property that this restriction applies to.  If this statement
+     * is not true of the current model, nothing happens.</p>
+     * @param prop The property to be removed as a the property that this restriction applies to
+     */
+    public void removeOnProperty( Property prop );
+    
+
+
     // facets
     
     /** 

@@ -94,6 +94,9 @@ public class TestAllDifferent
                     assertEquals( "List size should be 1", 1, a.getDistinct().size() );
                     assertTrue( "a should have b as distinct", a.hasDistinctMember( b ) );
                     assertTrue( "a should not have c as distinct", !a.hasDistinctMember( c ) );
+                    
+                    a.removeDistinctMember( b );
+                    assertTrue( "a should have not b as distinct", !a.hasDistinctMember( b ) );
                 }
             },
         };

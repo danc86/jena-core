@@ -139,6 +139,15 @@ public class IndividualImpl
         return hasPropertyValue( getProfile().SAME_INDIVIDUAL_AS(), "SAME_INDIVIDUAL_AS", res );
     }
     
+    /**
+     * <p>Remove the statement that this individual is the same as the given individual.  If this statement
+     * is not true of the current model, nothing happens.</p>
+     * @param res A resource that may be declared to be the sameIndividualAs this resource
+     */
+    public void removeSameIndividualAs( Resource res ) {
+        removePropertyValue( getProfile().SAME_INDIVIDUAL_AS(), "SAME_INDIVIDUAL_AS", res );
+    }
+    
      
     // Internal implementation methods
     //////////////////////////////////

@@ -74,6 +74,14 @@ public interface HasValueRestriction
      */
     public boolean hasValue( Resource individual );
     
+    /**
+     * <p>Remove the statement that this restriction requires the restricted property to have
+     * the given value.  If this statement
+     * is not true of the current model, nothing happens.</p>
+     * @param res A resource that is to be removed as the required value for the restricted property
+     */
+    public void removeHasValue( Resource res );
+    
 
 }
 

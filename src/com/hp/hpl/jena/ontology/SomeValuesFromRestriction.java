@@ -75,6 +75,14 @@ public interface SomeValuesFromRestriction
      */
     public boolean hasSomeValuesFrom( Resource cls );
     
+    /**
+     * <p>Remove the statement that this restriction has some values from the given class among
+     * the values for the restricted property.  If this statement
+     * is not true of the current model, nothing happens.</p>
+     * @param cls A Resource the denotes the class to be removed from this restriction
+     */
+    public void removeSomeValuesFrom( Resource cls );
+    
 
 }
 
