@@ -539,7 +539,10 @@
 [oneOf1: (?C owl:oneOf ?l) -> listMapAsSubject(?l, rdf:type, ?C) ]
 				
 [oneOf2: (?C owl:oneOf ?l1) (?D owl:oneOf ?l2) notEqual(?l1, ?l2) listEqual(?l1, ?l2) -> (?C owl:equivalentClass ?D) ]
-				
+
+[oneOf3: (?C owl:oneOf ?l) (?l rdf:first ?x) (?l rdf:rest rdf:nil) 	->
+				[ (?Y ?P ?x)  <- (?Y ?P ?I) (?I rdf:type ?C)  ] ]
+					
 #------------------------------------------------------------------
 # Declaration of main XSD datatypes
 #------------------------------------------------------------------

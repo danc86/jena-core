@@ -125,6 +125,7 @@ public class TestOWLRules extends TestCase {
         suite.addTest(new TestOWLRules("localtests/Manifest003.rdf"));
         suite.addTest(new TestOWLRules("localtests/Manifest004.rdf"));
         suite.addTest(new TestOWLRules("localtests/Manifest005.rdf"));
+        suite.addTest(new TestOWLRules("localtests/Manifest006.rdf"));
         
         // Duplications of tests included earlier
 //        suite.addTest(new TestOWLRules("differentFrom/Manifest002.rdf"));  // Duplication of AllDifferent#1
