@@ -58,7 +58,9 @@ public class RDFSRuleInfGraph extends FBRuleInfGraph {
      * @return a ValidityReport structure
      */
     public ValidityReport validate() {
-        StandardValidityReport report = new StandardValidityReport();
+        // The full configuration uses validation rules so check for these
+        StandardValidityReport report = (StandardValidityReport)super.validate();
+        // Also do a hardwired check to handle the simpler configurations
         HashMap dtRange = getDTRange();
         for (Iterator props = dtRange.keySet().iterator(); props.hasNext(); ) {
             Node prop = (Node)props.next();
