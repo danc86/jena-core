@@ -1653,13 +1653,9 @@ public class OntModelImpl
         // list the ontology nodes
         if (getProfile().ONTOLOGY() != null  &&  getProfile().IMPORTS() != null) {
             // for efficiency (specifically, avoiding the reasoner), we do the query directly on the base graph
-            for (StmtIterator i = getBaseModel().listStatements( null, RDF.type, getProfile().ONTOLOGY() );  i.hasNext(); ) {
-                Resource ontology = i.nextStatement().getSubject();
-                
-                for (StmtIterator j = ontology.listProperties( getProfile().IMPORTS() ); j.hasNext();  ) {
-                    // add the imported URI to the list
-                    imports.add( j.nextStatement().getResource().getURI() );
-                }
+            StmtIterator i = getBaseModel().listStatements(null, getProfile().IMPORTS(), (RDFNode)null);
+            while (i.hasNext()) {
+                imports.add( i.nextStatement().getResource().getURI() );
             }
         }
                 
