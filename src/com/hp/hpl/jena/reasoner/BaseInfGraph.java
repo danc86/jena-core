@@ -260,6 +260,25 @@ public abstract class BaseInfGraph extends GraphBase implements InfGraph {
         checkOpen();
         return fdata.getGraph().size();
     }
+    
+    /**
+        Answer true iff this graph is empty. [Used to be in QueryHandler, but moved in
+        here because it's a more primitive operation.]
+    */
+    public boolean isEmpty() {
+        return fdata.getGraph().isEmpty();
+    }
+    
+    /** 
+     * Free all resources, any further use of this Graph is an error.
+     */
+    public void close() {
+        if (!closed) {
+            fdata.getGraph().close();
+            fdata = null;
+            super.close();
+        }
+    }
         
     /**
      * Add one triple to the data graph, run any rules triggered by

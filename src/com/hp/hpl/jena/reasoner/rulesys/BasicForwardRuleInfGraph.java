@@ -309,6 +309,19 @@ public class BasicForwardRuleInfGraph extends BaseInfGraph implements ForwardRul
             fdeductions.getGraph().delete(t);
         }
     }
+   
+    /** 
+     * Free all resources, any further use of this Graph is an error.
+     */
+    public void close() {
+        if (!closed) {
+            engine = null;
+            fdeductions = null;
+            rules = null;
+            schemaGraph = null;
+            super.close();
+        }
+    }
 
 //  =======================================================================
 //   Implementation of ForwardRuleInfGraphI interface which is used by

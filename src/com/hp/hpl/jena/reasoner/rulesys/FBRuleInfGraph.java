@@ -576,6 +576,18 @@ public class FBRuleInfGraph  extends BasicForwardRuleInfGraph implements Backwar
         graph.rebind(premises);
         return graph;
     }
+    
+    /** 
+     * Free all resources, any further use of this Graph is an error.
+     */
+    public void close() {
+        if (!closed) {
+            bEngine.halt();        
+            bEngine = null;
+            transitiveEngine = null;
+            super.close();
+        }
+    }
 
 //  =======================================================================
 //  Helper methods
