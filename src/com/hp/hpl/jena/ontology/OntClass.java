@@ -167,6 +167,45 @@ public interface OntClass
      */
     public boolean hasSuperClass( Resource cls );
     
+    /** 
+     * <p>Answer a view of this class as an enumerated class</p>
+     * @return This class, but viewed as an EnumeratedClass node
+     * @exception ConversionException if the class cannot be converted to an enumerated class
+     * given the lanuage profile and the current state of the underlying model.
+     */
+    public EnumeratedClass asEnumeratedClass();
+         
+    /** 
+     * <p>Answer a view of this class as a union class</p>
+     * @return This class, but viewed as a UnionClass node
+     * @exception ConversionException if the class cannot be converted to a union class
+     * given the lanuage profile and the current state of the underlying model.
+     */
+    public UnionClass asUnionClass();
+         
+    /** 
+     * <p>Answer a view of this class as an intersection class</p>
+     * @return This class, but viewed as an IntersectionClass node
+     * @exception ConversionException if the class cannot be converted to an intersection class
+     * given the lanuage profile and the current state of the underlying model.
+     */
+    public IntersectionClass asIntersectionClass();
+         
+    /** 
+     * <p>Answer a view of this class as a complement class</p>
+     * @return This class, but viewed as a ComplementClass node
+     * @exception ConversionException if the class cannot be converted to a complement class
+     * given the lanuage profile and the current state of the underlying model.
+     */
+    public ComplementClass asComplementClass();
+         
+    /** 
+     * <p>Answer a view of this class as a restriction class expression</p>
+     * @return This class, but viewed as a Restriction node
+     * @exception ConversionException if the class cannot be converted to a restriction
+     * given the lanuage profile and the current state of the underlying model.
+     */
+    public Restriction asRestriction();
          
 }
 

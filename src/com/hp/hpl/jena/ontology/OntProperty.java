@@ -115,6 +115,53 @@ public interface OntProperty
     public PathSet p_inverseOf();
 
 
+    /** 
+     * <p>Answer a view of this property as a functional property</p>
+     * @return This property, but viewed as a FunctionalProperty node
+     * @exception ConversionException if the resource cannot be converted to a functional property
+     * given the lanuage profile and the current state of the underlying model.
+     */
+    public FunctionalProperty asFunctionalProperty();
+
+    /** 
+     * <p>Answer a view of this property as a datatype property</p>
+     * @return This property, but viewed as a DatatypeProperty node
+     * @exception ConversionException if the resource cannot be converted to a datatype property
+     * given the lanuage profile and the current state of the underlying model.
+     */
+    public DatatypeProperty asDatatypeProperty();
+
+    /** 
+     * <p>Answer a view of this property as an object property</p>
+     * @return This property, but viewed as an ObjectProperty node
+     * @exception ConversionException if the resource cannot be converted to an object property
+     * given the lanuage profile and the current state of the underlying model.
+     */
+    public ObjectProperty asObjectProperty();
+    
+    /** 
+     * <p>Answer a view of this property as a transitive property</p>
+     * @return This property, but viewed as a TransitiveProperty node
+     * @exception ConversionException if the resource cannot be converted to a transitive property
+     * given the lanuage profile and the current state of the underlying model.
+     */
+    public TransitiveProperty asTransitiveProperty();
+    
+    /** 
+     * <p>Answer a view of this property as an inverse functional property</p>
+     * @return This property, but viewed as an InverseFunctionalProperty node
+     * @exception ConversionException if the resource cannot be converted to an inverse functional property
+     * given the lanuage profile and the current state of the underlying model.
+     */
+    public InverseFunctionalProperty asInverseFunctionalProperty();
+    
+    /** 
+     * <p>Answer a view of this property as a symmetric property</p>
+     * @return This property, but viewed as a SymmetricProperty node
+     * @exception ConversionException if the resource cannot be converted to a symmetric property
+     * given the lanuage profile and the current state of the underlying model.
+     */
+    public SymmetricProperty asSymmetricProperty();
 }
 
 

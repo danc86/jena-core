@@ -138,7 +138,53 @@ public interface Restriction
      */
     public PathSet p_maxCardinality();
     
+    /** 
+     * <p>Answer a view of this restriction as an all values from  expression</p>
+     * @return This class, but viewed as an AllValuesFromRestriction node
+     * @exception ConversionException if the class cannot be converted to an all values from restriction
+     * given the lanuage profile and the current state of the underlying model.
+     */
+    public AllValuesFromRestriction asAllValuesFromRestriction();
+         
+    /** 
+     * <p>Answer a view of this restriction as a some values from  expression</p>
+     * @return This class, but viewed as a SomeValuesFromRestriction node
+     * @exception ConversionException if the class cannot be converted to an all values from restriction
+     * given the lanuage profile and the current state of the underlying model.
+     */
+    public SomeValuesFromRestriction asSomeValuesFromRestriction();
+         
+    /** 
+     * <p>Answer a view of this restriction as a has value expression</p>
+     * @return This class, but viewed as a HasValueRestriction node
+     * @exception ConversionException if the class cannot be converted to a has value restriction
+     * given the lanuage profile and the current state of the underlying model.
+     */
+    public HasValueRestriction asHasValueRestriction();
+         
+    /** 
+     * <p>Answer a view of this restriction as a cardinality restriction class expression</p>
+     * @return This class, but viewed as a CardinalityRestriction node
+     * @exception ConversionException if the class cannot be converted to a cardinality restriction
+     * given the lanuage profile and the current state of the underlying model.
+     */
+    public CardinalityRestriction asCardinalityRestriction();
 
+    /** 
+     * <p>Answer a view of this restriction as a min cardinality restriction class expression</p>
+     * @return This class, but viewed as a MinCardinalityRestriction node
+     * @exception ConversionException if the class cannot be converted to a min cardinality restriction
+     * given the lanuage profile and the current state of the underlying model.
+     */
+    public MinCardinalityRestriction asMinCardinalityRestriction();
+
+    /** 
+     * <p>Answer a view of this restriction as a max cardinality restriction class expression</p>
+     * @return This class, but viewed as a MaxCardinalityRestriction node
+     * @exception ConversionException if the class cannot be converted to a max cardinality restriction
+     * given the lanuage profile and the current state of the underlying model.
+     */
+    public MaxCardinalityRestriction asMaxCardinalityRestriction();
 
 }
 

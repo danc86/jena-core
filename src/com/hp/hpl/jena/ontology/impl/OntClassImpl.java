@@ -283,6 +283,56 @@ public class OntClassImpl
     }
     
     
+    /** 
+     * <p>Answer a view of this class as an enumerated class</p>
+     * @return This class, but viewed as an EnumeratedClass node
+     * @exception ConversionException if the class cannot be converted to an enumerated class
+     * given the lanuage profile and the current state of the underlying model.
+     */
+    public EnumeratedClass asEnumeratedClass() {
+        return (EnumeratedClass) as( EnumeratedClass.class );
+    }
+         
+    /** 
+     * <p>Answer a view of this class as a union class</p>
+     * @return This class, but viewed as a UnionClass node
+     * @exception ConversionException if the class cannot be converted to a union class
+     * given the lanuage profile and the current state of the underlying model.
+     */
+    public UnionClass asUnionClass()  {
+        return (UnionClass) as( UnionClass.class );
+    }
+         
+    /** 
+     * <p>Answer a view of this class as an intersection class</p>
+     * @return This class, but viewed as an IntersectionClass node
+     * @exception ConversionException if the class cannot be converted to an intersection class
+     * given the lanuage profile and the current state of the underlying model.
+     */
+    public IntersectionClass asIntersectionClass()  {
+        return (IntersectionClass) as( IntersectionClass.class );
+    }
+         
+    /** 
+     * <p>Answer a view of this class as a complement class</p>
+     * @return This class, but viewed as a ComplementClass node
+     * @exception ConversionException if the class cannot be converted to a complement class
+     * given the lanuage profile and the current state of the underlying model.
+     */
+    public ComplementClass asComplementClass() {
+        return (ComplementClass) as( ComplementClass.class );
+    }
+         
+    /** 
+     * <p>Answer a view of this class as a restriction class expression</p>
+     * @return This class, but viewed as a Restriction node
+     * @exception ConversionException if the class cannot be converted to a restriction
+     * given the lanuage profile and the current state of the underlying model.
+     */
+    public Restriction asRestriction() {
+        return (Restriction) as( Restriction.class );
+    }
+         
      
 
     // Internal implementation methods
