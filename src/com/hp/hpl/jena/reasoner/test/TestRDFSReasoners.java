@@ -71,6 +71,10 @@ public class TestRDFSReasoners extends TestCase {
 
             Resource configFull = new ModelMem().createResource().addProperty(ReasonerVocabulary.PROPsetRDFSLevel, ReasonerVocabulary.RDFS_FULL);
             constructQuerytests(suite, "rdfs/manifest.rdf", RDFSRuleReasonerFactory.theInstance(), configFull);
+            
+            // This test was needed for the brief time the rdfs12 rules might have been in the standard
+            // That's no longer true but left comment out because we might want them for OWL someday
+//            constructQuerytests(suite, "rdfs/manifest-rdfs12.rdf", RDFSRuleReasonerFactory.theInstance(), configFull);
 
             Resource configSimple = new ModelMem().createResource().addProperty(ReasonerVocabulary.PROPsetRDFSLevel, ReasonerVocabulary.RDFS_SIMPLE);
             constructQuerytests(suite, "rdfs/manifest-simple.rdf", RDFSRuleReasonerFactory.theInstance(), configSimple);

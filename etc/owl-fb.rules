@@ -77,6 +77,14 @@
 [rdfs2a: (?x rdfs:domain ?y), (?y rdfs:subClassOf ?z) -> (?x rdfs:domain ?z)]
 [rdfs3a: (?x rdfs:range  ?y), (?y rdfs:subClassOf ?z) -> (?x rdfs:range  ?z)]
 
+[rdfs12a: (rdf:type rdfs:subPropertyOf ?z), (?z rdfs:domain ?y) -> (rdfs:Resource rdfs:subClassOf ?y)]
+[rdfs12a: (rdfs:subClassOf rdfs:subPropertyOf ?z), (?z rdfs:domain ?y) -> (rdfs:Class rdfs:subClassOf ?y)]
+[rdfs12a: (rdfs:subPropertyOf rdfs:subPropertyOf ?z), (?z rdfs:domain ?y) -> (rdf:Property rdfs:subClassOf ?y)]
+
+[rdfs12b: (rdfs:subClassOf rdfs:subPropertyOf ?z), (?z rdfs:range ?y) -> (rdfs:Class rdfs:subClassOf ?y)]
+[rdfs12b: (rdfs:subPropertyOf rdfs:subPropertyOf ?z), (?z rdfs:range ?y) -> (rdf:Property rdfs:subClassOf ?y)]
+
+
 #------------------------------------------------------------------
 # OWL axioms
 #------------------------------------------------------------------
