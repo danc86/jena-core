@@ -28,12 +28,6 @@ public interface Reifier extends GetTriple
     public static final Node Statement = RDF.Statement.asNode();
           
     /**
-        return a read-only Graph of the reified triples, allowing them to be
-        queried using the usual Graph operations.
-    */ 
-    Graph getReifiedTriples();
-    
-    /**
          return a read-only Graph of the triples used for reification.
     */    
     Graph getHiddenTriples();
@@ -42,12 +36,6 @@ public interface Reifier extends GetTriple
         get the Graph which uses this reifier.
     */
     Graph getParentGraph();
-    
-    /**
-        note the triple _t_ as reified, and return a Node which represents
-        the reified triple. The Node will be a fresh blank node.
-    */
-    Node reify( Triple t );
     
     /**
         note the triple _t_ as reified using _n_ as its representing node.
