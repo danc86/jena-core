@@ -1,5 +1,5 @@
 /*
-	(c) Copyright 2003, Hewlett-Packard Development Company, LP
+	(c) Copyright 2003, 2004 Hewlett-Packard Development Company, LP
 	[see end of file]
 	$Id$
 */
@@ -102,7 +102,7 @@ public class ModelReifier
         @param s the statement for which a reification is sought
         @return true iff s has a reification in this model
     */
-    public boolean isReified( Statement s ) 
+    public boolean isReified( FrontsTriple s ) 
         { return reifier.hasTriple( s.asTriple() ); }
 
     /**
@@ -110,7 +110,7 @@ public class ModelReifier
         their associated resources.
         @param s the statement whose reifications are to be removed
     */
-    public void removeAllReifications( Statement s ) 
+    public void removeAllReifications( FrontsTriple s ) 
         { reifier.remove( s.asTriple() ); }
       
     /**
@@ -135,7 +135,7 @@ public class ModelReifier
         @param s the statement whose reifications are sought.
         @return an iterator over the reifications of s.
     */
-    public RSIterator listReifiedStatements( Statement s )
+    public RSIterator listReifiedStatements( FrontsTriple s )
         { return new RSIteratorImpl( findReifiedStatements( s.asTriple() ) ); }      
       
     /**
@@ -194,7 +194,7 @@ public class ModelReifier
     }
 
 /*
-    (c) Copyright 2003 Hewlett-Packard Development Company, LP
+    (c) Copyright 2003, 2004 Hewlett-Packard Development Company, LP
     All rights reserved.
 
     Redistribution and use in source and binary forms, with or without

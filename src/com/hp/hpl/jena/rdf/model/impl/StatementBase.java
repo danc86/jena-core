@@ -193,6 +193,28 @@ public abstract class StatementBase
 		return getLiteral().getWellFormed();
 		}
 
+	/**
+	 	Answer a string describing this Statement in a vagely pretty way, with the 
+	 	representations of the subject, predicate, and object in that order.
+	*/
+	public String toString()
+		{
+		return
+		    "[" 
+		    + getSubject().toString()
+		    + ", " + getPredicate().toString() 
+		    + ", " + objectString( getObject() )
+		    + "]";
+		}
+
+	/**
+	 	Answer a string describing <code>object</code>, quoting it if it is a literal.
+	*/
+	protected String objectString( RDFNode object )
+		{
+		return object.asNode().toString( null, true );
+		}
+
 	}
 
 /*

@@ -131,25 +131,6 @@ public class StatementImpl  extends StatementBase implements Statement {
         return s;
     }
         
-    public String toString() 
-        {
-        return
-            "[" 
-            + subject.toString()
-            + ", " + predicate.toString() 
-            + ", " + objectString()
-            + "]";
-        }
-        
-    private String objectString()
-        {
-        return object.asNode().toString( null, true );
-//        return object instanceof Resource
-//            ? "Resource<" + ((Resource)object).toString() + ">"
-//            : "Literal<" + ((Literal)object).toString() + ">"
-//            ;
-        }
-    
     /**
         .equals() defers to .sameAs so we only get the complexity of one cast.
     */
