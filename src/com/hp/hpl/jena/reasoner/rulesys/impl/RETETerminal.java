@@ -97,7 +97,7 @@ public class RETETerminal implements RETESinkNode {
         RETEEngine engine = context.getEngine();
         engine.incRuleCount();
         List matchList = null;
-        if (infGraph.shouldLogDerivations()) {
+        if (infGraph.shouldLogDerivations() && isAdd) {
             // Create derivation record
             matchList = new ArrayList(rule.bodyLength());
             for (int i = 0; i < rule.bodyLength(); i++) {
@@ -135,10 +135,14 @@ public class RETETerminal implements RETESinkNode {
                 } else {
                     throw new ReasonerException("Invoking undefined Functor " + f.getName() +" in " + rule.toShortString());
                 }
-            } else if (hClause instanceof Rule && isAdd) {
+            } else if (hClause instanceof Rule) {
                 Rule r = (Rule)hClause;
                 if (r.isBackward()) {
-                    infGraph.addBRule(r.instantiate(env));
+                    if (isAdd) {
+                        infGraph.addBRule(r.instantiate(env));
+                    } else {
+                        infGraph.deleteBRule(r.instantiate(env));
+                    }
                 } else {
                     throw new ReasonerException("Found non-backward subrule : " + r); 
                 }

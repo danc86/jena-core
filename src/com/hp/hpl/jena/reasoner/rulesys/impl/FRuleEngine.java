@@ -140,6 +140,16 @@ public class FRuleEngine implements FRuleEngineI {
     }
     
     /**
+     * Remove one triple to the data graph.
+     * @return true if the effects could be correctly propagated or
+     * false if not (in which case the entire engine should be restarted).
+     */
+    public synchronized boolean delete(Triple t) {
+        // Incremental delete not supported
+        return false;
+    }
+    
+    /**
      * Return the number of rules fired since this rule engine instance
      * was created and initialized
      */

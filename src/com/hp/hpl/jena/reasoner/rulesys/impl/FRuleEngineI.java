@@ -36,11 +36,19 @@ public interface FRuleEngineI {
      * have already be preprocessed and the rules have been compiled
      */
     public void fastInit();
+    
     /**
      * Add one triple to the data graph, run any rules triggered by
      * the new data item, recursively adding any generated triples.
      */
     public void add(Triple t);
+    
+    /**
+     * Remove one triple to the data graph.
+     * @return true if the effects could be correctly propagated or
+     * false if not (in which case the entire engine should be restarted).
+     */
+    public boolean delete(Triple t);
     
     /**
      * Return the number of rules fired since this rule engine instance

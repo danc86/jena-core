@@ -188,9 +188,17 @@ public class FBRuleInfGraph  extends BasicForwardRuleInfGraph implements Backwar
      * infgraphs support this.
      */
     public void addBRule(Rule brule) {
-        logger.debug("Adding rule " + brule);
+        // logger.debug("Adding rule " + brule);
         bEngine.addRule(brule);
         bEngine.reset();
+    }
+       
+    /**
+     * Deletes a new Backward rule as a rules of a forward rule process. Only some
+     * infgraphs support this.
+     */
+    public void deleteBRule(Rule brule) {
+        // TODO: Implement
     }
     
     /**

@@ -194,6 +194,23 @@ public class BasicBackwardRuleInfGraph extends BaseInfGraph implements BackwardR
         engine.reset();
         isPrepared = false;
     }
+        
+    /**
+     * Add one triple to the data graph, run any rules triggered by
+     * the new data item, recursively adding any generated triples.
+     */
+    public synchronized void add(Triple t) {
+        fdata.getGraph().add(t);
+        reset();
+    }
+     
+    /** 
+     * Removes the triple t (if possible) from the set belonging to this graph. 
+     */   
+    public void delete(Triple t) {
+        fdata.getGraph().delete(t);
+        reset();
+    }
     
 //=======================================================================
 // support for proof traces

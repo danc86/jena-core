@@ -33,6 +33,12 @@ public interface ForwardRuleInfGraphI extends InfGraph, SilentAddI {
      * infgraphs support this.
      */
     public void addBRule(Rule brule);
+        
+    /**
+     * Deletes a new Backward rule as a rules of a forward rule process. Only some
+     * infgraphs support this.
+     */
+    public void deleteBRule(Rule brule);
     
     /**
      * Return the Graph containing all the static deductions available so far.

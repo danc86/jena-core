@@ -257,9 +257,10 @@ public class BasicForwardRuleInfGraph extends BaseInfGraph implements ForwardRul
      * the new data item, recursively adding any generated triples.
      */
     public synchronized void add(Triple t) {
-        if (!isPrepared) prepare();
         fdata.getGraph().add(t);
-        engine.add(t);
+        if (isPrepared) {
+            engine.add(t);
+        }
     }
     
     /**
@@ -284,14 +285,15 @@ public class BasicForwardRuleInfGraph extends BaseInfGraph implements ForwardRul
      * Removes the triple t (if possible) from the set belonging to this graph. 
      */   
     public void delete(Triple t) {
-        if (!isPrepared) prepare();
         if (fdata != null) {
             Graph data = fdata.getGraph();
             if (data != null) {
                 data.delete(t);
             }
         }
-        fdeductions.getGraph().delete(t);
+        if (isPrepared) {
+            fdeductions.getGraph().delete(t);
+        }
     }
 
 //  =======================================================================
@@ -303,6 +305,14 @@ public class BasicForwardRuleInfGraph extends BaseInfGraph implements ForwardRul
      * infgraphs support this.
      */
     public void addBRule(Rule brule) {
+        throw new ReasonerException("Forward reasoner does not support hybrid rules - " + brule.toShortString());
+    }
+        
+    /**
+     * Deletes a new Backward rule as a rules of a forward rule process. Only some
+     * infgraphs support this.
+     */
+    public void deleteBRule(Rule brule) {
         throw new ReasonerException("Forward reasoner does not support hybrid rules - " + brule.toShortString());
     }
     
