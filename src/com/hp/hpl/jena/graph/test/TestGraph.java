@@ -15,8 +15,11 @@ package com.hp.hpl.jena.graph.test;
 
 import com.hp.hpl.jena.mem.*;
 import com.hp.hpl.jena.shared.ReificationStyle;
+import com.hp.hpl.jena.util.iterator.ExtendedIterator;
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.graph.impl.*;
+
+import java.util.*;
 
 import junit.framework.*;
 
@@ -64,7 +67,39 @@ public class TestGraph extends GraphTestBase
         {
         public WrappedGraphMem( ReificationStyle style ) 
             { super( new GraphMem( style ) ); }  
-        }
+        }    
+    
+    public void testListSubjectsDoesntUseFind()
+        {
+        final boolean [] called = {false};
+        
+        Graph g = new GraphMem()
+            {
+            public ExtendedIterator find( Node s, Node p, Node o )
+                { called[0] = true; return super.find( s, p, o ); }
+            };
+        
+        ExtendedIterator subjects = g.queryHandler().subjectsFor( null, null );
+        Set s = new HashSet();
+        while (subjects.hasNext()) s.add( subjects.next() );
+        assertFalse( "find should not have been called", called[0] );
+        }   
+    
+    public void testListObjectsDoesntUseFind()
+        {
+        final boolean [] called = {false};
+        
+        Graph g = new GraphMem()
+            {
+            public ExtendedIterator find( Node s, Node p, Node o )
+                { called[0] = true; return super.find( s, p, o ); }
+            };
+        
+        ExtendedIterator subjects = g.queryHandler().objectsFor( null, null );
+        Set s = new HashSet();
+        while (subjects.hasNext()) s.add( subjects.next() );
+        assertFalse( "find should not have been called", called[0] );
+        }   
     }
 
 /*
