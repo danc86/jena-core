@@ -164,7 +164,7 @@ public class QueryEngine implements QueryExecution
                 for (Iterator cIter = query.constraints.iterator(); cIter.hasNext();)
                 {
                     Constraint constraint = (Constraint) cIter.next();
-                    if (!constraint.isSatified(query, nextBinding))
+                    if (!constraint.isSatisfied(query, nextBinding))
                     {
                         passesTests = false;
                         break;

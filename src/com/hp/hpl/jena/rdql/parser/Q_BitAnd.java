@@ -21,7 +21,7 @@ import java.io.PrintWriter;
  * @version: $Id$
  */
 
-class Q_BitAnd extends SimpleNode implements Expr, ExprNumeric
+public class Q_BitAnd extends SimpleNode implements Expr, ExprNumeric
 {
     Expr left ;
     Expr right ;

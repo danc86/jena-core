@@ -13,7 +13,7 @@ package com.hp.hpl.jena.rdql;
 
 public interface Constraint
 {
-    public boolean isSatified(Query q, ResultBinding env) ;
+    public boolean isSatisfied(Query q, ResultBinding env) ;
 }
 
 /*

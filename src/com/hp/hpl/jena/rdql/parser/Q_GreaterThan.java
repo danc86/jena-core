@@ -21,7 +21,7 @@ import java.io.PrintWriter;
  * @version: $Id$
  */
 
-class Q_GreaterThan extends SimpleNode implements Expr, ExprBoolean
+public class Q_GreaterThan extends SimpleNode implements Expr, ExprBoolean
 {
     Expr left ;
     Expr right ;

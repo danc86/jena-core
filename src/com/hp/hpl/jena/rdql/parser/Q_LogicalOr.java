@@ -21,7 +21,7 @@ import java.io.PrintWriter;
  * @version: $Id$
  */
 
-class Q_LogicalOr extends SimpleNode implements Expr, ExprBoolean
+public class Q_LogicalOr extends SimpleNode implements Expr, ExprBoolean
 {
     Expr left ;
     Expr right ;
