@@ -106,7 +106,10 @@ public class N3JenaWriter implements RDFWriter
 		if ( prefix.endsWith(":") )
 			prefix = prefix.substring(0,prefix.length()-1) ;
 		if ( prefix.indexOf('.') != -1 )
-            throw new JenaException("N3JenaWriter.setNsPrefix: N3 prefixes can't contain a '.':: "+prefix) ;
+        {
+            prefix = prefix.replace('.', '_') ;
+            //throw new JenaException("N3JenaWriter.setNsPrefix: N3 prefixes can't contain a '.':: "+prefix) ;
+        }
 		prefixMap.put(prefix, ns) ;
 	}
 
