@@ -46,6 +46,9 @@ public class WrappedReifier implements Reifier
     
     public ExtendedIterator find( TripleMatch m ) { return base.find( m ); }
     
+    public ExtendedIterator find( TripleMatch m, boolean showHidden ) 
+        { return base.find( m, showHidden ); }
+    
     public int size() { return base.size(); }
 
 	/** 

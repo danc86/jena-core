@@ -75,6 +75,9 @@ public class DBReifier implements Reifier
     public ExtendedIterator find( TripleMatch m )
         { return getReificationTriples().find( m ); }
     
+    public ExtendedIterator find( TripleMatch m, boolean showHidden )
+        { return showHidden ? getHiddenTriples().find( m ) : NullIterator.instance; }
+
     public int size() 
         { return getHiddenTriples().size(); }
     

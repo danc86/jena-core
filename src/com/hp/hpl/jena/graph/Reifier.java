@@ -35,6 +35,13 @@ public interface Reifier extends GetTriple
     ExtendedIterator find( TripleMatch m );
     
     /**
+         Answer an iterator over the reification triples of this Reifier, or an empty 
+         iterator - if showHidden is false, only the exposed triples, otherwise only
+         the concealed ones.
+    */
+    ExtendedIterator find( TripleMatch m, boolean showHidden );
+    
+    /**
          Answer the number of reification quadlets held in this reifier.
     */
     int size();

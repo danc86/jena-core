@@ -212,6 +212,9 @@ public class SimpleReifier implements Reifier
     
     public ExtendedIterator find( TripleMatch m )
         { return concealing ? NullIterator.instance : tripleMap.find( m ).andThen( fragmentsMap.find( m ) ); }
+    
+    public ExtendedIterator find( TripleMatch m, boolean showHidden )
+        { return showHidden != concealing ? NullIterator.instance : tripleMap.find( m ).andThen( fragmentsMap.find( m ) ); }
         
     public int size()
         { return concealing ? 0 : tripleMap.size() + fragmentsMap.size(); }
