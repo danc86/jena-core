@@ -938,14 +938,18 @@ public class schemagen {
             Statement candidate = i.nextStatement();
 
             if (candidate.getObject() instanceof Resource) {
-                String uri = ((Resource) candidate.getObject()).getURI();
-
-                for (Iterator j = m_includeURI.iterator();  j.hasNext(); ) {
-                    if (uri.startsWith( (String) j.next() )) {
-                        // the subject of the sentence has a type that's on our include list
-                        writeValue( candidate.getSubject(), template, "Resource", "createResource", "_INSTANCE" );
-
-                        break;
+                Resource candObj = candidate.getResource();
+                
+                if (!candObj.isAnon()) {
+                    String uri = candObj.getURI();
+                    
+                    for (Iterator j = m_includeURI.iterator();  j.hasNext(); ) {
+                        if (uri.startsWith( (String) j.next() )) {
+                            // the subject of the sentence has a type that's on our include list
+                            writeValue( candidate.getSubject(), template, "Resource", "createResource", "_INSTANCE" );
+    
+                            break;
+                        }
                     }
                 }
             }
