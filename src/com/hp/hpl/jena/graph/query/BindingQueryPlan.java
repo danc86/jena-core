@@ -1,5 +1,5 @@
 /*
-  (c) Copyright 2002, Hewlett-Packard Company, all rights reserved.
+  (c) Copyright 2002, 2003, Hewlett-Packard Company, all rights reserved.
   [See end of file]
   $Id$
 */
@@ -9,6 +9,9 @@ package com.hp.hpl.jena.graph.query;
 import com.hp.hpl.jena.util.iterator.*;
 
 /**
+    A BindingQueryPlan is something that can run executeBindings() to get back an
+    ExtendedIterator over Domains, ie, Lists.
+    
 	@author kers
 */
 public interface BindingQueryPlan
@@ -17,7 +20,7 @@ public interface BindingQueryPlan
     }
 
 /*
-    (c) Copyright Hewlett-Packard Company 2002
+    (c) Copyright Hewlett-Packard Company 2002, 2003
     All rights reserved.
 
     Redistribution and use in source and binary forms, with or without

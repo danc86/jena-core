@@ -1,5 +1,5 @@
 /*
-  (c) Copyright 2002, Hewlett-Packard Company, all rights reserved.
+  (c) Copyright 2002, 2003 Hewlett-Packard Company, all rights reserved.
   [See end of file]
   $Id$
 */
@@ -7,9 +7,8 @@
 package com.hp.hpl.jena.graph.query;
 
 /**
-	@author kers
-<br>
 	A TreeQueryPlan allows for the execution of a tree-match query.
+    <i>Tentative</i>. Do not use.
 */
 
 import com.hp.hpl.jena.graph.*;
@@ -18,8 +17,9 @@ public interface TreeQueryPlan
 	{
 	Graph executeTree();
 	}
+    
 /*
-    (c) Copyright Hewlett-Packard Company 2002
+    (c) Copyright Hewlett-Packard Company 2002, 2003
     All rights reserved.
 
     Redistribution and use in source and binary forms, with or without

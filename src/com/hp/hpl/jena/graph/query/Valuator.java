@@ -1,5 +1,5 @@
 /*
-  (c) Copyright 2002, Hewlett-Packard Company, all rights reserved.
+  (c) Copyright 2002, 2003, Hewlett-Packard Company, all rights reserved.
   [See end of file]
   $Id$
 */
@@ -7,8 +7,6 @@
 package com.hp.hpl.jena.graph.query;
 
 /**
-	@author kers
-<br>
     A Valuator is something that can return a Node as a value, given
     a domain _d_ to look in if necessary.
 */
@@ -22,7 +20,7 @@ public interface Valuator
     }
 
 /*
-    (c) Copyright Hewlett-Packard Company 2002
+    (c) Copyright Hewlett-Packard Company 2002, 2003
     All rights reserved.
 
     Redistribution and use in source and binary forms, with or without
