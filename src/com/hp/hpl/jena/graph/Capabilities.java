@@ -7,13 +7,46 @@
 package com.hp.hpl.jena.graph;
 
 /**
-    Interface for expressing capabilities; presently empty until tests force something
-    useful into it (the existing capability integers not being used constructively anywhere).
+    Interface for expressing capabilities.
  	@author kers
 */
 public interface Capabilities
-{}
-
+    {
+    /**
+        Answer true iff Graph::size() is accurate.
+     */
+    boolean sizeAccurate();
+    
+    /**
+        Answer true if Graph::add() can be used to add at least some triples to
+        the graph.
+     */
+    boolean addAllowed();
+    
+    /**
+        Answer true if Graph::add() can be used to add at least some triples to the
+        graph. If everyTriple is true, answer true iff *any* triple can be added (ie the
+        graph places no special restrictions on triples).
+     */
+    boolean addAllowed( boolean everyTriple );
+    
+    /**
+        Answer true iff Graph::delete() can be used to remove at least some triples
+        from the graph.
+     */
+    boolean deleteAllowed();
+    
+    /**
+        Answer true if Graph::delete() can be used to remove at least some triples 
+        from the graph. If everyTriple is true, any such triple may be removed.
+     */
+    boolean deleteAllowed( boolean everyTriple );
+    
+    /**
+        Answer true iff the graph can be completely empty.
+     */
+    boolean canBeEmpty();
+    }
 
 /*
     (c) Copyright Hewlett-Packard Company 2003

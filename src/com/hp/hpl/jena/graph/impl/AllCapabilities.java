@@ -1,57 +1,32 @@
 /*
-  (c) Copyright 2002, 2003 Hewlett-Packard Company, all rights reserved.
+  (c) Copyright 2003, Hewlett-Packard Company, all rights reserved.
   [See end of file]
   $Id$
 */
 
-package com.hp.hpl.jena.graph.compose;
+package com.hp.hpl.jena.graph.impl;
 
-import com.hp.hpl.jena.graph.*;
+import com.hp.hpl.jena.graph.Capabilities;
 
 /**
-    Base class for the two-operand composition operations; has two graphs L and R
-    @author kers
-    @author Ian Dickinson - refactored most of the content to {@link CompositionBase}.
-*/
+    A default implementation of capabilities, in which everything is allowed,
+    size is accurate, and graphs may be completely empty.
+    
+ 	@author hedgehog
+ */
 
-public abstract class Dyadic extends CompositionBase
-	{
-	protected Graph L;
-	protected Graph R;
-	
-    /**
-        When the graph is constructed, copy the prefix mappings of both components
-        into this prefix mapping. The prefix mapping doesn't change afterwards with the
-        components, which might be regarded as a bug.
-    */
-	public Dyadic( Graph L, Graph R )
-		{
-		this.L = L;
-		this.R = R;
-        getPrefixMapping()
-            .setNsPrefixes( L.getPrefixMapping() )
-            .setNsPrefixes( R.getPrefixMapping() )
-            ;
-		}
-
-    public void close()
-    	{
-    	L.close();
-    	R.close();
-        }
-        
-    /**
-        Generic dependsOn, true iff it depends on either of the subgraphs.
-    */
-    public boolean dependsOn( Graph other )
-        { return other == this || L.dependsOn( other ) || R.dependsOn( other ); }
- 				
-    public Union union( Graph X )
-        { return new Union( this, X ); }    
+public class AllCapabilities implements Capabilities
+    {
+    public boolean sizeAccurate() { return true; }
+    public boolean addAllowed() { return addAllowed( false ); }
+    public boolean addAllowed( boolean every ) { return true; } 
+    public boolean deleteAllowed() { return deleteAllowed( false ); }
+    public boolean deleteAllowed( boolean every ) { return true; } 
+    public boolean canBeEmpty() { return true; }
     }
 
 /*
-    (c) Copyright Hewlett-Packard Company 2002, 2003
+    (c) Copyright Hewlett-Packard Company 2003
     All rights reserved.
 
     Redistribution and use in source and binary forms, with or without

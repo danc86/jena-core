@@ -100,8 +100,13 @@ public abstract class GraphBase implements Graph {
         return bud;
         }
         
+    private Capabilities capabilities = null;
+    
     public Capabilities getCapabilities()
-        { return null; }
+        { 
+        if (capabilities == null) capabilities = new AllCapabilities();
+        return capabilities;
+        }
         
     private PrefixMapping pm = new PrefixMappingImpl();
     

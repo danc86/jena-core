@@ -272,17 +272,6 @@ public class BasicForwardRuleInfGraph extends BaseInfGraph implements ForwardRul
             engine.add(t);
         }
     }
-    
-    /**
-     * Returns the bitwise or of ADD, DELETE, SIZE and ORDERED,
-     * to show the capabilities of this implementation of Graph.
-     * So a read-only graph that finds in an unordered fashion,
-     * but can tell you how many triples are in the graph returns
-     * SIZE.
-     */
-    public int capabilities() {
-        return ADD | SIZE | DELETE;
-    }
 
     /**
      * Return the number of triples in the inferred graph

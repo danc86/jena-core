@@ -300,7 +300,13 @@ public abstract class AbstractTestGraph extends GraphTestBase
     public void testHasCapabilities()
         {
         Graph g = getGraph();
-        /* Capabilities c = */ g.getCapabilities();
+        Capabilities c = g.getCapabilities();
+        boolean sa = c.sizeAccurate();
+        boolean aaSome = c.addAllowed();
+        boolean aaAll = c.addAllowed( true );
+        boolean daSome = c.deleteAllowed();
+        boolean daAll = c.deleteAllowed( true );
+        boolean cbe = c.canBeEmpty();
         }
         
     public void testFind()

@@ -302,18 +302,7 @@ public abstract class BaseInfGraph extends GraphBase implements InfGraph {
         if (!isPrepared) prepare();
         fdata.getGraph().add(t);
     }
-    
-    /**
-     * Returns the bitwise or of ADD, DELETE, SIZE and ORDERED,
-     * to show the capabilities of this implementation of Graph.
-     * So a read-only graph that finds in an unordered fashion,
-     * but can tell you how many triples are in the graph returns
-     * SIZE.
-     */
-    public int capabilities() {
-        return ADD | DELETE | SIZE;
-    }
-    
+
     /** 
      * Removes the triple t (if possible) from the set belonging to this graph. 
      */   
