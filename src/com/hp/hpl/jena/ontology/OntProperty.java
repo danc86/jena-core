@@ -341,9 +341,12 @@ public interface OntProperty
     public void addInverseOf( Property prop );
 
     /**
-     * <p>Answer a property of which this property is the inverse. If there is
+     * <p>Answer a property of which this property is the inverse, if known,
+     * or null if there is no such property. If there is
      * more than one such property, an arbitrary selection is made.</p>
-     * @return A property inverse to this property
+     * <p>Note that this method is slightly different to {@link #getInverse}. See
+     * the Javadoc on {@link #getInverse} for a detailed explanation.</p>
+     * @return A property which this property is the inverse of, or null.
      * @exception OntProfileException If the {@link Profile#INVERSE_OF()} property is not supported in the current language profile.   
      */ 
     public OntProperty getInverseOf();
@@ -501,8 +504,28 @@ public interface OntProperty
     public boolean isSymmetricProperty();
 
     /**
-     * <p>Answer the property that is the inverse of this property.  If no such property is defined,
+     * <p>Answer the property that has declared itself to be the inverse of this property,
+     * if any such property is defined.  
+     * If no such property is defined,
      * return null.  If more than one inverse is defined, return an abritrary selection.</p>
+     * <p>Note that this method is slightly different from {@link #getInverseOf}. Suppose that
+     * we have:</p>
+     * <pre>
+     * :p an owl:ObjectProperty.
+     * :q an owl:ObjectProperty.
+     * :p owl:inverseOf :q.
+     * </pre> 
+     * <p>Then, <code>getInverse()</code> called on the <code>OntProperty</code>
+     * corresponding to <code>q</code> will return <code>p</code>, since <code>q</code>
+     * declares itself to be <code>p</code>'s inverse.  However, <em>unless an OWL
+     * reasoner is used</em>, calling <code>getInverse()</code> on <code>p</code>
+     * will return <code>null</code>. Conversely, absent a reasoner,  
+     * <code>{@link #getInverseOf}</code> on <code>p</code> will return <code>q</code>,
+     * but will return null when called on <code>q</code>.  In the presence of an OWL
+     * reasoner, <code>getInverse()</code> and <code>getInverseOf()</code> are 
+     * equivalent, since <code>owl:inverseOf</code> is a symmetric property.
+     * </p>
+     * 
      * @return The property that is the inverse of this property, or null. 
      */
     public OntProperty getInverse();
