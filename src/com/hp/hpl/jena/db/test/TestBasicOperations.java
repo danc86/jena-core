@@ -150,6 +150,7 @@ public class TestBasicOperations extends TestCase
 			stmt = model.createStatement(s,p,l);
 			model.add(stmt);
 			assertTrue(model.contains(stmt));
+			assertTrue(stmt.getObject().equals(l));
 			buffer.append(base);
 		}
 		assertTrue ( model.size() == (modelSizeBeg + maxMaxLit - minMaxLit) ); 
