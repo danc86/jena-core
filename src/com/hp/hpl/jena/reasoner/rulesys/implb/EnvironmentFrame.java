@@ -9,7 +9,8 @@
  *****************************************************************/
 package com.hp.hpl.jena.reasoner.rulesys.implb;
 
-import com.hp.hpl.jena.graph.Node;
+import com.hp.hpl.jena.graph.*;
+import com.hp.hpl.jena.reasoner.rulesys.Rule;
 
 /**
  * Represents a single frame in the LP interpreter's environment stack. The
@@ -37,6 +38,9 @@ public class EnvironmentFrame extends FrameObject {
     /** The continuation argument counter offset in the parent clause's arg stream */
     int cac;
     
+    /** A derivation record for this frame, only used if recording derivations. */
+    LPPartialDerivation derivation;
+        
     /** 
      * Constructor 
      * @param clause the compiled code being interpreted by this env frame 
@@ -44,20 +48,38 @@ public class EnvironmentFrame extends FrameObject {
     public EnvironmentFrame(RuleClauseCode clause) {
         this.clause = clause;
     }
-    
-    /**
-     * Initialize a starting frame.
-     * @param clause the compiled code being interpreted by this env frame 
-     */
-    public void init(RuleClauseCode clause) { 
-        this.clause = clause;
-    }
-    
+        
     /**
      * Allocate a vector of permanent variables for use in the rule execution.
      */
     public void allocate(int n) {
             pVars = new Node[n];
+    }
+           
+    /**
+     * Return the rule associated with this environment, null if no such rule.
+     */
+    public Rule getRule() {
+        if (clause != null) {
+            return clause.rule;
+        } else {
+            return null;
+        }
+    }
+    
+    /**
+     * Create an initial derivation record for this frame, based on the given
+     * argument registers.
+     */
+    public void initDerivationRecord(Node[] args) {
+        derivation = new LPPartialDerivation(args);
+    }
+    
+    /**
+     * Return the derivation record for this frame.
+     */
+    public LPPartialDerivation getDerivationRecord() {
+        return derivation;
     }
     
     /**

@@ -216,16 +216,18 @@ public class Generator implements LPAgendaEntry, LPInterpreterContext {
 
     /**
      * Start this generator running for the first time.
+     * Should be called from within an appropriately synchronized block.
      */
-    public synchronized void pump() {
+    public void pump() {
         pump(this);
     }
     
     /**
      * Start this generator running from the given previous blocked generating
      * choice point.
+     * Should be called from within an appropriately synchronized block.
      */
-    public synchronized void pump(LPInterpreterState context) {
+    public void pump(LPInterpreterState context) {
         if (isComplete()) return;
         interpreter.setState(context);
         int priorNresults = results.size();

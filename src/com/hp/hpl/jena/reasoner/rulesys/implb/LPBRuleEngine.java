@@ -177,6 +177,13 @@ public class LPBRuleEngine {
     public void setDerivationLogging(boolean recordDerivations) {
         this.recordDerivations = recordDerivations;
     }
+    
+    /**
+     * Return true in derivations should be logged.
+     */
+    public boolean getDerivationLogging() {
+        return recordDerivations;
+    }
 
     /** Return the rule store associated with the inference graph */
     public LPRuleStore getRuleStore() {

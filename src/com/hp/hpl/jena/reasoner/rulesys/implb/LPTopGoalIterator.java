@@ -60,7 +60,7 @@ public class LPTopGoalIterator implements ClosableIterator, LPInterpreterContext
      * lookahead buffer.
      */
     private void moveForward() {
-        synchronized (interpreter.getEngine().getInfGraph()) {
+        synchronized (interpreter.getEngine()) {
             started = true;
             lookAhead = interpreter.next();
             if (lookAhead == StateFlag.FAIL) {
@@ -134,7 +134,7 @@ public class LPTopGoalIterator implements ClosableIterator, LPInterpreterContext
      */
     public void close() {
         if (interpreter != null) {
-            synchronized (interpreter.getEngine().getInfGraph()) {
+            synchronized (interpreter.getEngine()) {
                 lookAhead = null;
                 interpreter.close();
                 interpreter = null;

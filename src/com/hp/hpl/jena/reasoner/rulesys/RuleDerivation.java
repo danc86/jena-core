@@ -56,7 +56,11 @@ public class RuleDerivation implements Derivation {
      * Return a short-form description of this derivation.
      */
     public String toString() {
-        return "Rule " + rule.toShortString();
+        if (rule == null) {
+            return "DUMMY";
+        } else {
+            return "Rule " + rule.toShortString();
+        }
     }
     
     /**
