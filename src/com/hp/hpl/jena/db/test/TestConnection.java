@@ -42,7 +42,7 @@ public class TestConnection extends TestCase {
     
 	public void testNoClass() throws java.lang.Exception {
 		/*
-		IDBConnection conn = new DBConnection(TestPackage.MYSQL_URL, TestPackage.MYSQL_USER, TestPackage.MYSQL_PASSWD);
+		IDBConnection conn = new DBConnection(TestPackage.M_DB_URL, TestPackage.MYSQL_USER, TestPackage.MYSQL_PASSWD);
 		conn.cleanDB();
 		ModelRDB m = ModelRDB.createModel(conn);
 		m.remove();
@@ -52,7 +52,7 @@ public class TestConnection extends TestCase {
         
 	public void testNoConnection() throws java.lang.Exception {
 		/*
-		Class.forName("com.mysql.jdbc.Driver");
+		Class.forName(TestPackage.M_DBDRIVER_CLASS);
 		IDBConnection conn = new DBConnection("Bad_URI", TestPackage.MYSQL_USER, TestPackage.MYSQL_PASSWD);
 		ModelRDB m = ModelRDB.open(conn);
 		m.remove();
@@ -62,7 +62,7 @@ public class TestConnection extends TestCase {
     
     private static void loadClass()
         {
-        try { Class.forName("com.mysql.jdbc.Driver"); }
+        try { Class.forName(TestPackage.M_DBDRIVER_CLASS); }
         catch (Exception e) { throw new JenaException( e ); }
         }
         
@@ -71,10 +71,10 @@ public class TestConnection extends TestCase {
         loadClass();
         return new DBConnection
             (
-            TestPackage.MYSQL_URL, 
-            TestPackage.MYSQL_USER, 
-            TestPackage.MYSQL_PASSWD, 
-            TestPackage.MYDB
+            TestPackage.M_DB_URL, 
+            TestPackage.M_DB_USER, 
+            TestPackage.M_DB_PASSWD, 
+            TestPackage.M_DB
             );
         }
         
