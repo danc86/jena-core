@@ -181,7 +181,27 @@ public abstract class AbstractTestReifier extends GraphTestBase
             fail( "X already has subject Y: cannot make it a" );
             }
         catch (Reifier.CannotReifyException e)
-            { /* as requried */ }
+            { /* as required */ }
+        }
+        
+    /**
+        Test that the hidden triples graph is dynamic, not static.
+    */
+    public void testDynamicHiddenTriples()
+        {
+        Graph g = getGraph();
+        Reifier r = g.getReifier();
+        Graph h = r.getHiddenTriples();
+        Graph wanted = graphWith
+            ( 
+            "x rdf:type rdf:Statement" 
+            + "; x rdf:subject a"
+            + "; x rdf:predicate B"
+            + "; x rdf:object c"
+            );
+        assertEquals( "", graphWith( "" ), h );
+        r.reifyAs( node( "x" ), triple( "a B c" ) );
+        assertEquals( "", wanted, h );
         }
 
 //    public void testKevinCaseC()

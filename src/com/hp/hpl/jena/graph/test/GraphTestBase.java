@@ -91,8 +91,9 @@ public class GraphTestBase extends JenaTestBase
         
     public static void assertEquals( String name, Graph wanted, Graph obtained )
         {
-        Model mWanted = modelFor( wanted ), mObtained = modelFor( obtained );
-        assertTrue( name + ": wanted " + wanted + " got " + obtained, mWanted.isIsomorphicWith( mObtained ) );
+        if (!wanted.isIsomorphicWith( obtained ))
+            fail( name + ": wanted " + wanted + " but got " + obtained );
+        // assertTrue( wanted.isIsomorphicWith( obtained ) );
         }
     
     public static void assertContains( String name, String s, Graph g )

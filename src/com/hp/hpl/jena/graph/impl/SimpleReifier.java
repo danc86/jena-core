@@ -178,11 +178,12 @@ public class SimpleReifier implements Reifier
         
     public Graph getHiddenTriples()
         { // TODO: turn into a dynamic graph
-        Graph result = new GraphMem();
-        ((SimpleReifier) result.getReifier()).passing = true;
-        Iterator it = nodeMap.keySet().iterator();
-        while (it.hasNext()) include( result, (Node) it.next() );
-        return result;
+//        Graph result = new GraphMem();
+//        ((SimpleReifier) result.getReifier()).passing = true;
+//        Iterator it = nodeMap.keySet().iterator();
+//        while (it.hasNext()) include( result, (Node) it.next() );
+//        return result;
+        return nodeMap.asGraph();
         }
     
     /**
