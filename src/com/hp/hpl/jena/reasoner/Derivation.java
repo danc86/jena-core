@@ -16,6 +16,9 @@ import java.io.PrintWriter;
  * was derived from a set of source triples and a reasoner. SubClasses
  * provide more specific information.
  * 
+ * TODO Consider replacing this with methods than can generate RDF models
+ * of the derivation tree.
+ * 
  * @author <a href="mailto:der@hplb.hpl.hp.com">Dave Reynolds</a>
  * @version $Revision$ on $Date$
  */

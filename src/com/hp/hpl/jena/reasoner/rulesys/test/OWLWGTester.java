@@ -165,11 +165,13 @@ public class OWLWGTester {
         }
         Reasoner reasoner = reasonerF.create(configuration);
         // Temp ...
+            /*
             Graph data = premises.getGraph();
             logger.debug("Initial graph state");
             for (Iterator i = data.find(null, null, null); i.hasNext(); ) {
                 logger.debug(i.next().toString());
             }
+            */
         // ... end temp
         InfGraph graph = reasoner.bind(premises.getGraph());
         Model result = ModelFactory.createModelForGraph(graph);
@@ -204,11 +206,13 @@ public class OWLWGTester {
                 }
             }
             // Temp ...
+            /*
             data = graph.getRawGraph();
             logger.debug("Final graph state");
             for (Iterator i = data.find(null, null, null); i.hasNext(); ) {
                 logger.debug(PrintUtil.print((Triple)i.next()));
             }
+            */
             // ... end temp
         }
         
