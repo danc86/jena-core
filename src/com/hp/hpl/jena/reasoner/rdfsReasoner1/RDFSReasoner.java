@@ -18,6 +18,9 @@ import com.hp.hpl.jena.vocabulary.RDFS;
 import com.hp.hpl.jena.vocabulary.ReasonerVocabulary;
 
 /**
+ * @deprecated Obsoleted at jena2p4, replaced by 
+ * {@link com.hp.hpl.jena.reasoner.rulesys.RDFSRuleReasoner}.
+ * 
  * An RDFS reasoner suited to modest vocabularies but large instance
  * data. It does eager processing on the class and property declarations
  * and caches the results. This means that the initial creation can
@@ -57,11 +60,12 @@ public class RDFSReasoner extends TransitiveReasoner implements Reasoner {
      
     /** 
      * Constructor 
-     * @param configuration set of configuration information, this should be an RDF Graph
-     * containing a resource corresponding this this reasoner with attached properties. The
+     * @param configuration a set of arbitrary configuration information to be 
+     * passed the reasoner, encoded as RDF properties of a base configuration resource,
+     * can be null in no custom configuration is required. The
      * only meaningful configuration property at present is scanProperties.
      */
-    public RDFSReasoner(Model configuration) {
+    public RDFSReasoner(Resource configuration) {
         super();
         if (configuration != null) {
             Boolean flag = checkBinaryPredicate(RDFSReasonerFactory.scanProperties, configuration);
@@ -99,12 +103,11 @@ public class RDFSReasoner extends TransitiveReasoner implements Reasoner {
      * Helper method - extracts the truth of a boolean configuration
      * predicate.
      * @param pred the predicate to be tested
-     * @param configuration the configuration model
+     * @param configuration the configuration node
      * @return null if there is no setting otherwise a Boolean giving the setting value
      */
-    private Boolean checkBinaryPredicate(Property predicate, Model configuration) {
-        Resource base = configuration.getResource(RDFSReasonerFactory.URI);
-        StmtIterator i = base.listProperties(predicate);
+    private Boolean checkBinaryPredicate(Property predicate, Resource configuration) {
+        StmtIterator i = configuration.listProperties(predicate);
         if (i.hasNext()) {
             return new Boolean(i.nextStatement().getObject().toString().equalsIgnoreCase("true"));
         } else {

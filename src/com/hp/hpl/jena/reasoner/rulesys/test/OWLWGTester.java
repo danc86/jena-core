@@ -162,10 +162,10 @@ public class OWLWGTester {
         
         // Construct the inferred graph
         // Optional logging
-        Model configuration = null;
+        Resource configuration = null;
         if (log) {
-            configuration = ModelFactory.createDefaultModel();
-            configuration.createResource(reasonerF.getURI())
+            Model m = ModelFactory.createDefaultModel();
+            configuration = m.createResource()
                          .addProperty(ReasonerVocabulary.PROPtraceOn, "true")
                          .addProperty(ReasonerVocabulary.PROPderivationLogging, "true");
         }

@@ -41,9 +41,10 @@ public class TransitiveReasonerFactory implements ReasonerFactory {
     /**
      * Constructor method that builds an instance of the associated Reasoner
      * @param configuration a set of arbitrary configuration information to be 
-     * passed the reasoner encoded within an RDF graph.
+     * passed the reasoner encoded within an RDF graph. This reasoner has no
+     * configuration parameters so this arg is always ignored.
      */
-    public Reasoner create(Model configuration) {
+    public Reasoner create(Resource configuration) {
         return new TransitiveReasoner();
     }
    

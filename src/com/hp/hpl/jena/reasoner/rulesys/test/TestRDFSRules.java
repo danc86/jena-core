@@ -27,6 +27,9 @@ import java.util.Iterator;
 import org.apache.log4j.Logger;
 
 /** * Test suite to test the production rule version of the RDFS implementation.
+ * <p> The tests themselves have been replaced by an updated version
+ * of the top level TestRDFSReasoners but this file is maintained for now since
+ * the top level timing test can sometimes be useful. </p>
  *  * @author <a href="mailto:der@hplb.hpl.hp.com">Dave Reynolds</a> * @version $Revision$ on $Date$ */
 public class TestRDFSRules extends TestCase {   
     /** Base URI for the test names */
@@ -54,20 +57,11 @@ public class TestRDFSRules extends TestCase {
     }  
 
     /**
-     * Test the basic functioning of the forward RDFS rule reasoner
-     */
-    public void testRDFSReasoner() throws IOException {
-        ReasonerTester tester = new ReasonerTester("rdfs/manifest-nodirect.rdf");
-        ReasonerFactory rf = RDFSRuleReasonerFactory.theInstance();
-        assertTrue("RDFS forward reasoner tests", tester.runTests(rf, this, null));
-    }
-
-    /**
      * Test a single RDFS case.
      */
     public void hiddenTestRDFSReasonerDebug() throws IOException {
         ReasonerTester tester = new ReasonerTester("rdfs/manifest-nodirect-noresource.rdf");
-        ReasonerFactory rf = RDFSExptRuleReasonerFactory.theInstance();
+        ReasonerFactory rf = RDFSRuleReasonerFactory.theInstance();
         
         assertTrue("RDFS hybrid-tgc reasoner test", tester.runTest("http://www.hpl.hp.com/semweb/2003/query_tester/rdfs/test11", rf, this, null));
     }
@@ -86,7 +80,7 @@ public class TestRDFSRules extends TestCase {
      */
     public void testRDFSExptReasoner() throws IOException {
         ReasonerTester tester = new ReasonerTester("rdfs/manifest-nodirect-noresource.rdf");
-        ReasonerFactory rf = RDFSExptRuleReasonerFactory.theInstance();
+        ReasonerFactory rf = RDFSRuleReasonerFactory.theInstance();
         assertTrue("RDFS experimental (hybrid+tgc) reasoner tests", tester.runTests(rf, this, null));
     }
 
@@ -141,16 +135,16 @@ public class TestRDFSRules extends TestCase {
         try {
             Model tbox = ModelLoader.loadModel("testing/reasoners/rdfs/timing-tbox.rdf");
             Model data = ModelLoader.loadModel("testing/reasoners/rdfs/timing-data.rdf");
-            Reasoner rdfsRule = RDFSRuleReasonerFactory.theInstance().create(null);
             Reasoner rdfsFBRule = RDFSFBRuleReasonerFactory.theInstance().create(null);
             Reasoner rdfs1    = RDFSReasonerFactory.theInstance().create(null);
+            Reasoner rdfsFinal    = RDFSRuleReasonerFactory.theInstance().create(null);
         
             doTiming(rdfs1, tbox, data, "RDFS1", 1);    
-            doTiming(rdfsRule, tbox, data, "RDFS F rule", 1);    
             doTiming(rdfsFBRule, tbox, data, "RDFS FB rule", 1);    
+            doTiming(rdfsFinal, tbox, data, "RDFS final rule", 1);    
             doTiming(rdfs1, tbox, data, "RDFS1", 50);    
-            doTiming(rdfsRule, tbox, data, "RDFS F rule", 10);    
             doTiming(rdfsFBRule, tbox, data, "RDFS FB rule", 50);    
+            doTiming(rdfsFinal, tbox, data, "RDFS final rule", 50);    
  
         } catch (Exception e) {
             System.out.println("Problem: " + e.toString());

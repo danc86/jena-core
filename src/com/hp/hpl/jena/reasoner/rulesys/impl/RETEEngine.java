@@ -113,13 +113,13 @@ public class RETEEngine implements FRuleEngineI {
         if (infGraph.getRawGraph() != null) {
             // Insert the data
             if (wildcardRule) {
-                for (Iterator i = infGraph.getRawGraph().find(null, null, null); i.hasNext(); ) {
+                for (Iterator i = inserts.find(new TriplePattern(null, null, null)); i.hasNext(); ) {
                     addTriple((Triple)i.next(), false);
                 }
             } else {
                 for (Iterator p = predicatesUsed.iterator(); p.hasNext(); ) {
                     Node predicate = (Node)p.next();
-                    for (Iterator i = infGraph.getRawGraph().find(null, predicate, null); i.hasNext(); ) {
+                    for (Iterator i = inserts.find(new TriplePattern(null, predicate, null)); i.hasNext(); ) {
                         addTriple((Triple)i.next(), false);
                     }
                 }
@@ -127,20 +127,6 @@ public class RETEEngine implements FRuleEngineI {
         }
         // Run the engine
         runAll();
-//        if (wildcardRule) {
-//            for (Iterator i = inserts.find(new TriplePattern(null, null, null)); i.hasNext(); ) {
-//                addTriple((Triple)i.next(), false);
-//            }
-//        } else {
-//            for (Iterator p = predicatesUsed.iterator(); p.hasNext(); ) {
-//                Node predicate = (Node)p.next();
-//                for (Iterator i = inserts.find(new TriplePattern(null, predicate, null)); i.hasNext(); ) {
-//                    addTriple((Triple)i.next(), false);
-//                }
-//            }
-//        }
-//        // Run the engine
-//        runAll();
     }
 
     /**

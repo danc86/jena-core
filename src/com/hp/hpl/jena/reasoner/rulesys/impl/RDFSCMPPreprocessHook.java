@@ -39,7 +39,7 @@ public class RDFSCMPPreprocessHook implements RulePreprocessHook {
      * all new deductions that should be seen by the rules.
      */
     public void run(FBRuleInfGraph infGraph, Finder dataFind, Graph inserts) {
-        ExtendedIterator it = dataFind.findWithContinuation(new TriplePattern(null, null, null), null);
+        ExtendedIterator it = dataFind.find(new TriplePattern(null, null, null));
         HashSet properties = new HashSet();
         String memberPrefix = RDF.getURI() + "_";
         while (it.hasNext()) {

@@ -70,6 +70,13 @@ public class FGraph implements Finder {
         return graph;
     }
 
+    /**
+     * Return true if the given pattern occurs somewhere in the find sequence.
+     */
+    public boolean contains(TriplePattern pattern) {
+        return graph.contains(pattern.getSubject(), pattern.getPredicate(), pattern.getObject());
+    }
+
 }
 
 /*

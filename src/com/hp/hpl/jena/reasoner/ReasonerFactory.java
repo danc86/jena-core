@@ -24,9 +24,10 @@ public interface ReasonerFactory {
     /**
      * Constructor method that builds an instance of the associated Reasoner
      * @param configuration a set of arbitrary configuration information to be 
-     * passed the reasoner encoded within an RDF model, can be null.
+     * passed the reasoner, encoded as RDF properties of a base configuration resource,
+     * can be null in no custom configuration is required.
      */
-    public Reasoner create(Model configuration);
+    public Reasoner create(Resource configuration);
 
     /**
      * Return a description of the capabilities of this reasoner encoded in

@@ -75,7 +75,7 @@ public class TestFBRules extends TestCase {
     public static TestSuite suite() {
         return new TestSuite( TestFBRules.class ); 
 //        TestSuite suite = new TestSuite();
-//        suite.addTest(new TestFBRules( "testEmbeddedFunctors" ));
+//        suite.addTest(new TestFBRules( "testDuplicatesEC4" ));
 //        return suite;
     }  
 
@@ -521,7 +521,7 @@ public class TestFBRules extends TestCase {
 
     /**
      * Investigate a suspicious case in the OWL ruleset, is the backchainer 
-     * returning duplication values?
+     * returning duplicate values?
      */
     public void testDuplicatesEC4() throws IOException {
         Model premisesM = ModelLoader.loadModel("file:testing/wg/equivalentClass/premises004.rdf");

@@ -183,6 +183,16 @@ public class TransitiveGraphCache implements Finder {
             return new NiceIterator();
         }
     }
+
+    /**
+     * Return true if the given pattern occurs somewhere in the find sequence.
+     */
+    public boolean contains(TriplePattern pattern) {
+        ClosableIterator it = find(pattern);
+        boolean result = it.hasNext();
+        it.close();
+        return result;
+    }
     
     /**
      * Return an iterator over all registered property nodes

@@ -180,7 +180,7 @@ public class ReasonerTester {
      * @throws IOException if one of the test files can't be found
      * @throws RDFException if the test can't be found or fails internally
      */
-    public boolean runTests(ReasonerFactory reasonerF, TestCase testcase, Model configuration) throws IOException {
+    public boolean runTests(ReasonerFactory reasonerF, TestCase testcase, Resource configuration) throws IOException {
         for (Iterator i = listTests().iterator(); i.hasNext(); ) {
             String test = (String)i.next();
             if (!runTest(test, reasonerF, testcase, configuration)) return false;
@@ -210,7 +210,7 @@ public class ReasonerTester {
      * @throws IOException if one of the test files can't be found
      * @throws RDFException if the test can't be found or fails internally
      */
-    public boolean runTest(String uri, ReasonerFactory reasonerF, TestCase testcase, Model configuration) throws IOException {
+    public boolean runTest(String uri, ReasonerFactory reasonerF, TestCase testcase, Resource configuration) throws IOException {
         // Find the specification for the named test
         Resource test = testManifest.getResource(uri);
         if (!test.hasProperty(RDF.type, testClass)) {

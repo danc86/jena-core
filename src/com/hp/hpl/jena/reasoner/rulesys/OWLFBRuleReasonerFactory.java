@@ -54,14 +54,14 @@ public class OWLFBRuleReasonerFactory implements ReasonerFactory {
      * @param configuration a set of arbitrary configuration information to be 
      * passed the reasoner encoded within an RDF graph
      */
-    public Reasoner create(Model configuration) {
+    public Reasoner create(Resource configuration) {
         OWLFBRuleReasoner reasoner = new OWLFBRuleReasoner();
         if (configuration != null) {
-            Boolean doLog = Util.checkBinaryPredicate(URI, ReasonerVocabulary.PROPderivationLogging, configuration);
+            Boolean doLog = Util.checkBinaryPredicate(ReasonerVocabulary.PROPderivationLogging, configuration);
             if (doLog != null) {
                 reasoner.setDerivationLogging(doLog.booleanValue());
             }
-            Boolean doTrace = Util.checkBinaryPredicate(URI, ReasonerVocabulary.PROPtraceOn, configuration);
+            Boolean doTrace = Util.checkBinaryPredicate(ReasonerVocabulary.PROPtraceOn, configuration);
             if (doTrace != null) {
                 reasoner.setTraceOn(doTrace.booleanValue());
             }

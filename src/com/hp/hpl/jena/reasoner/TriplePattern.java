@@ -267,7 +267,8 @@ public class TriplePattern implements ClauseEntry {
      * Convert any null wildcards to Node_Variable wildcards.
      */
     private static Node normalize(Node node) {
-        return node == null ? Node_RuleVariable.WILD : node;
+        if (node == null || node == Node.ANY) return Node_RuleVariable.WILD;
+        return node;
     }
             
     /**

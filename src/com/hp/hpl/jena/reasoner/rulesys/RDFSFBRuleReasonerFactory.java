@@ -42,7 +42,7 @@ public class RDFSFBRuleReasonerFactory implements ReasonerFactory {
      * passed the reasoner encoded within an RDF graph, the current implemenation
      * is not configurable and will ignore this parameter.
      */
-    public Reasoner create(Model configuration) {
+    public Reasoner create(Resource configuration) {
         return new RDFSFBRuleReasoner(this);
     }
    
