@@ -7,7 +7,6 @@
 package com.hp.hpl.jena.mem;
 
 import com.hp.hpl.jena.graph.*;
-import com.hp.hpl.jena.graph.impl.*;
 import com.hp.hpl.jena.graph.query.*;
 import com.hp.hpl.jena.shared.*;
 import com.hp.hpl.jena.util.iterator.*;
