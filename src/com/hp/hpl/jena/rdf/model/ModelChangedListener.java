@@ -13,6 +13,7 @@ package com.hp.hpl.jena.rdf.model;
 public interface ModelChangedListener
     {
     void addedStatement( Statement s );
+    void removedStatement( Statement s );
     }
 
 

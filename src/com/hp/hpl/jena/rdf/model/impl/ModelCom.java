@@ -283,6 +283,7 @@ implements Model, ModelI, PrefixMapping, ModelLock
     
     public Model remove(Statement s)  {
         graph.delete(s.asTriple());
+        listenersRemove( s );
         return this;
     }
     
@@ -1424,20 +1425,28 @@ implements Model, ModelI, PrefixMapping, ModelLock
         this.getModelLock().leaveCriticalSection() ;
     }
         
-    protected ModelChangedListener listener;
+    protected List listeners = new ArrayList();
         
     protected void listenersAdd( Statement s )
         {
-        if (listener != null) listener.addedStatement( s );
+        for (int i = 0; i < listeners.size(); i += 1)
+            ((ModelChangedListener) listeners.get(i)).addedStatement( s );
+        }
+        
+    protected void listenersRemove( Statement s )
+        {
+        for (int i = 0; i < listeners.size(); i += 1)
+            ((ModelChangedListener) listeners.get(i)).removedStatement( s );
         }
         
     public Model register( ModelChangedListener listener )
         {
-        this.listener = listener;
+        listeners.add( listener );
         return this;
         }
         
     public void unregister( ModelChangedListener listener )
         {
+        listeners.remove( listener );
         }
 }
