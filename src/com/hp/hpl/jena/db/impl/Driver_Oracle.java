@@ -6,9 +6,12 @@
 
 package com.hp.hpl.jena.db.impl;
 
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.Properties;
 
 import com.hp.hpl.jena.db.IDBConnection;
+import com.hp.hpl.jena.db.RDFRDBException;
 import com.hp.hpl.jena.util.Log;
 
 
@@ -18,6 +21,9 @@ import com.hp.hpl.jena.util.Log;
  * Extends DriverRDB with Oracle-specific parameters.
  */
 public class Driver_Oracle extends DriverRDB {
+	
+	public int MAX_DB_IDENTIFIER_LENGTH = 30;
+	public int m_tablecounter;
 	
 	/** 
 	 * Constructor
@@ -33,15 +39,19 @@ public class Driver_Oracle extends DriverRDB {
 		EMPTY_LITERAL_MARKER = "EmptyLiteral";
 		ID_SQL_TYPE = "INTEGER";
 		INSERT_BY_PROCEDURE = false;
-		MAX_LITERAL = 250;
+		MAX_LITERAL = 4000;
 		SKIP_ALLOCATE_ID = false;
 		SKIP_DUPLICATE_CHECK = true;
 		EMPTY_LITERAL_MARKER = "EmptyLiteral";
 		SQL_FILE = "etc/oracle.sql";
 		
 		m_psetClassName = myPackageName + ".PSet_TripleStore_RDB";
+		m_psetReifierClassName = myPackageName + ".PSet_ReifStore_RDB";
 		
 		m_lsetClassName = myPackageName + ".SpecializedGraph_TripleStore_RDB";						
+		m_lsetReifierClassName = myPackageName + ".SpecializedGraphReifier_RDB";	
+		
+		m_tablecounter = 1;											
 	}
 	
 	/**
@@ -58,6 +68,49 @@ public class Driver_Oracle extends DriverRDB {
 			Log.severe("Unable to set connection for Driver:" + e);
 		}
 	}
+	
+	/**
+	 * Convert a string into a form suitable for a legal identifier
+	 * name for the database type.
+	 * @author hkuno
+	 *
+	 */
+	public String toDBIdentifier(String aString) {
+		String newString = super.toDBIdentifier(aString);
+		if (m_tablecounter > 999) {
+			Log.severe("Driver_Oracle m_tablecounter exceeded 999");
+		}
+		
+		// 11 characters for index name, 3 chars for counter
+		if (newString.length() > MAX_DB_IDENTIFIER_LENGTH) 
+			newString = newString.substring(0,MAX_DB_IDENTIFIER_LENGTH - 14) + m_tablecounter++;
+		return newString;
+	}
+
+	/**
+	 * If the underlying database connection supports transactions,
+	 * call commit(), then turn autocommit on.
+	 */
+	public void commit() throws RDFRDBException{
+		if (transactionsSupported()) {
+			try {
+				  if (inTransaction) {
+					Connection c = m_sql.getConnection();
+					c.commit();
+					c.setAutoCommit(true);
+					c.setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE);
+					inTransaction =  false;
+				   }
+				} catch (SQLException e) {
+						throw new RDFRDBException("Transaction support failed: ", e);
+				}
+		} 
+	}
+        
+
+
+
+
 
 }
 
