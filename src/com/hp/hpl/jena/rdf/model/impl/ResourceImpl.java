@@ -49,6 +49,15 @@ public class ResourceImpl extends EnhNode implements Resource {
             return new ResourceImpl(n,eg);
         }
     };
+    final static public Implementation rdfNodeFactory = new Implementation() {
+	public EnhNode wrap(Node n,EnhGraph eg) {
+		if ( n.isURI() || n.isBlank() )
+		  return new ResourceImpl(n,eg);
+		if ( n.isLiteral() )
+		  return new LiteralImpl(n,eg);
+		return null;
+	}
+};
     private int splitHere = 0;
 
     private ResourceImpl( Resource r )

@@ -46,6 +46,10 @@ public class BuiltinPersonalities {
         .add( Individual.class, IndividualImpl.factory )
         .add( AnnotationProperty.class, AnnotationPropertyImpl.factory )
         .add( Axiom.class, AxiomImpl.factory )
+        
+        
+        // Last and least ?
+        .add( RDFNode.class, ResourceImpl.rdfNodeFactory )
         ;	
         
         
