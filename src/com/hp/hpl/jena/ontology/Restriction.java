@@ -208,12 +208,12 @@ public interface Restriction
          
     /** 
      * <p>Convert this restriction to a has value class expression</p>
-     * @param individual The value which the restricted property must have, for resource to be
-     * in the extension of this restriction
+     * @param value The value which the restricted property must have, for resource to be
+     * in the extension of this restriction. Can be a resource or a literal.
      * @return This class, but converted to a HasValueRestriction
      * @exception ProfileException if {@link Profile#HAS_VALUE()} is not supported in the current profile
      */
-    public HasValueRestriction convertToHasValueRestriction( Resource individual );
+    public HasValueRestriction convertToHasValueRestriction( RDFNode value );
          
     /** 
      * <p>Convert this restriction to a cardinality restriction class expression</p>
