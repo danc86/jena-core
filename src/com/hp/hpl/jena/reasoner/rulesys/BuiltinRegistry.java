@@ -58,7 +58,8 @@ public class BuiltinRegistry {
         theRegistry.register(new IsDType());
         theRegistry.register(new NotDType());
         theRegistry.register(new CountLiteralValues());
-        
+        theRegistry.register(new Max());
+        theRegistry.register(new Min());
         theRegistry.register(new MakeInstance());
         theRegistry.register(new Table());
         theRegistry.register(new TableAll());

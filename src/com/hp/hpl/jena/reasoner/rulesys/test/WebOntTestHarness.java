@@ -219,9 +219,15 @@ public class WebOntTestHarness {
             resultFile = args[0];
         }
         WebOntTestHarness harness = new WebOntTestHarness();
-        harness.runTests();
-//        harness.runTest("http://www.w3.org/2002/03owlt/description-logic/Manifest630#test");
-        harness.testResults.write(new FileOutputStream(resultFile), "RDF/XML-ABBREV", BASE_RESULTS_URI);
+//        harness.runTests();
+//        harness.runTest("http://www.w3.org/2002/03owlt/I5.8/Manifest006#test");
+//        harness.runTest("http://www.w3.org/2002/03owlt/I5.8/Manifest008#test");
+//        harness.runTest("http://www.w3.org/2002/03owlt/I5.8/Manifest009#test");
+//        harness.runTest("http://www.w3.org/2002/03owlt/I5.3/Manifest015#test");
+        RDFWriter writer = harness.testResults.getWriter("RDF/XML-ABBREV");
+        OutputStream stream = new FileOutputStream(resultFile);
+        writer.setProperty("showXmlDeclaration", "true");
+        writer.write(harness.testResults, stream, BASE_RESULTS_URI);
     }
     
     /**

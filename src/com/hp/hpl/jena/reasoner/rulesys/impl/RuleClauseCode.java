@@ -127,14 +127,14 @@ public class RuleClauseCode {
     
     /** The maximum number of permanent variables allowed in a single rule clause. 
      *   Future refactorings will remove this restriction. */
-    public static final int MAX_PERMANENT_VARS = 6;
+    public static final int MAX_PERMANENT_VARS = 12;
     
     /** The maximum number of argument variables allowed in a single goal 
      *   Future refactorings will remove this restriction. */
-    public static final int MAX_ARGUMENT_VARS = 8;
+    public static final int MAX_ARGUMENT_VARS = 12;
     
     /** The maximum number of temporary variables allowed in a single rule clause. */
-    public static final int MAX_TEMPORARY_VARS = 10;
+    public static final int MAX_TEMPORARY_VARS = 12;
     
     /** Dummy code block which just returns */
     public static RuleClauseCode returnCodeBlock;
