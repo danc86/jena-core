@@ -35,7 +35,7 @@ public interface IPSet {
 	 * Pass the SQL cache to the IPSet
 	 */
 	public void setSQLCache(SQLCache cache);
-
+	public SQLCache getSQLCache();
 	public void setMaxLiteral(int value);
 	public void setSQLType(String value);
 	public void setSkipDuplicateCheck(boolean value);
@@ -157,9 +157,14 @@ public interface IPSet {
 	public int tripleCount();
 
 	/**
-	 * @param SYSTEM_PROP_TNAME
+	 * @param tblName
 	 */
-	public void setASTname(String SYSTEM_PROP_TNAME);
+	public void setTblName(String tblName);
+	
+	/**
+	 * @return String the name of the table that stores the PSet.
+	 */
+	public String getTblName();
 
 	/**
 	 * @return the driver for the PSet
