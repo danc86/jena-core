@@ -36,6 +36,22 @@ public class testWriterInterface extends ModelTestBase {
         //this.
     }
 
+    /**
+         Introduced to cope with bug 832682: double spacing on windows platforms.
+         Make sure the xmlns prefixes are introduced by the correct line separator.
+         (Java doesn't appear to understand that the notion of "line separator" should
+         be portable ... come back C, all is forgiven. Well, not *all* ...)
+    */
+    public void testLineSeparator() {
+        String newline = System.getProperty( "line.separator" );
+        String newline_XMLNS = newline + "    xmlns";
+        Model m = modelWithStatements( "http://eh/spoo thingies something" );
+        m.setNsPrefix( "eh", "http://eh/" );
+        StringWriter sos = new StringWriter();
+        m.write( sos );
+        assertTrue( sos.toString().indexOf( newline_XMLNS ) > -1 );
+    }
+    
     public void testInterface() {
         Model m1 = createMemModel();
         assertTrue( "Default writer should be Basic.",  m1.getWriter() instanceof Basic );

@@ -52,6 +52,12 @@ import org.apache.commons.logging.LogFactory;
 */
 abstract public class BaseXMLWriter implements RDFXMLWriterI {
 	
+    /**
+         Introduced to cope with bug 832682: double spacing on windows platforms
+    */
+    private static final String newline_XMLNS = 
+        System.getProperty( "line.separator" ) + "    xmlns";
+    
     public BaseXMLWriter() {
         setupMaps();
     }
@@ -306,7 +312,7 @@ abstract public class BaseXMLWriter implements RDFXMLWriterI {
 			Map.Entry ent = (Map.Entry) it.next();
 			String prefix = (String) ent.getValue();
 			String uri = (String) ent.getKey();
-            rslt.append( "\n    xmlns" );
+            rslt.append( newline_XMLNS );
 			if (prefix.length() > 0) rslt.append( ':' ).append( prefix );
 			rslt.append( '=' ).append( qq( checkURI( uri ) ) );
 		}

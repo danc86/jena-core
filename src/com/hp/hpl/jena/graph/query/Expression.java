@@ -16,7 +16,7 @@ import java.util.*;
 <p>
     An Expression can be a variable, an application, or a literal value. If an access
     method (eg getName) is applied to an Expression for which it is not appropriate
-    (eg an application), <em>the result is unspecified</code>; an implementation is
+    (eg an application), <em>the result is unspecified</em>; an implementation is
     free to throw an exception, deliver a null result, deliver a misleading value,
     whatever is convenient.
 <p>

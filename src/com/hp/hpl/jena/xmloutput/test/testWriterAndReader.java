@@ -95,6 +95,8 @@ public class testWriterAndReader
 		}
 		/* */
 		langsuite.addTest(new testWriterInterface("testWriting", lang));
+        
+        langsuite.addTest( new testWriterInterface( "testLineSeparator", lang ) );
 		/* */
 		for (int k = firstTest; k <= lastTest; k++) {
 			//  if ( k==7 )
