@@ -146,7 +146,7 @@ public class Log
     public static final int FINEST = 1;
 
     /** Message level used to suppress all messages. */
-    public static final int OFF = 0;
+    public static final int OFF = 8;
 
     /** Convenience alias for FINE */
     public static final int DEBUG = FINE;
