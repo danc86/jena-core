@@ -71,6 +71,8 @@ public interface Graph  {
 	 * Compare this graph with another using the method
 	 * described in 
 	 * <a href="http://www.w3.org/TR/rdf-concepts#section-Graph-syntax">
+     * http://www.w3.org/TR/rdf-concepts#section-Graph-syntax
+     * </a>
 	 * @param g Compare against this.
 	 * @return boolean True if the two graphs are isomorphic.
 	 */

@@ -297,6 +297,12 @@ public class TestNode extends GraphTestBase
             }
         }
         
+    public void testCreatePrefixed()
+        {
+        PrefixMapping pm = PrefixMapping.Factory.create();
+        // Node n = Node.create( pm, "xyz" );
+        }
+        
     public void testNodeHelp()
         {
         assertTrue( "node() making URIs", node( "hello" ).isURI() );
