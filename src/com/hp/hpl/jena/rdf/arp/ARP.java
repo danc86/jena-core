@@ -100,7 +100,8 @@ public class ARP implements ARPErrorNumbers {
         }
     }
     /**
-     * This method is a work-around for Xerces bug
+     * This method is a work-around for a Xerces bug.
+     * Speicifically
      * <a href="http://nagoya.apache.org/bugzilla/show_bug.cgi?id=18551">bug
      * 18551</a>. It should be called before using the EncodingMap from Xerces,
      * typically in a static initializer. This is done within Jena code, and is 

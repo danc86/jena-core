@@ -335,7 +335,7 @@ public interface ARPErrorNumbers {
      * an encoding differnt from that in the XML declaration. The usual fix
      * is to use an InputStream or a FileInputStream instead. (W129).  
      * A warning in default mode, an error in strict mode.
-     * @see ERR_ENCODING_MISMATCH
+     * @see #ERR_ENCODING_MISMATCH
      */
     public int WARN_ENCODING_MISMATCH = 129;
 
@@ -406,7 +406,7 @@ public interface ARPErrorNumbers {
      * was detected as probably significant (i.e. the document includes
      * characters outside the ascii range). The usual fix is to use an
      * InputStream or a FileInputStream instead. (E210).
-     * @see WARN_ENCODING_MISMATCH
+     * @see #WARN_ENCODING_MISMATCH
      */
     public int ERR_ENCODING_MISMATCH = 210;
     /**   The error recovery code failed; this can occur. (E300)

@@ -33,7 +33,7 @@ package com.hp.hpl.jena.rdf.model;
 
 import com.hp.hpl.jena.util.Log;
 
-/** A Class for configuring Jena's behaviour
+/** A Class for configuring Jena's behaviour.
  *
  * <p>It is sometimes necessary to configure Jena's behaviour.  For example
  * when external functionality has changed, it may, for a time be desirable
