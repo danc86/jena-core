@@ -14,7 +14,10 @@ public class TestReifiedStatements extends TestCase
         { super( name ); }
     
     public static TestSuite suite()
-        { return new TestSuite( TestSimpleSelector.class ); }   
+        { return new TestSuite( TestReifiedStatements.class ); }   
+        
+    public void testNuffin()
+        {}
 
     }
 
