@@ -511,10 +511,14 @@ public abstract class DriverRDB implements IRDBDriver {
 				m_sql.runSQLGroup("dropTable", (String) it.next());
 			}
 			if (!SKIP_ALLOCATE_ID) {
+				removeSequence("JENA_LITERALS_GEN");
+				removeSequence("JENA_GRAPHS_GEN");
+				/*
 				Iterator seqIt = getSequences().iterator();
 				while (seqIt.hasNext()) {
 					removeSequence((String)seqIt.next());
 				}
+				*/
 			}
 		} catch (SQLException e1) {
 			throw new RDFRDBException("Internal SQL error in driver", e1);
@@ -549,6 +553,7 @@ public abstract class DriverRDB implements IRDBDriver {
 		if (it != null) {
 			return (it.hasNext());
 		}		
+		it.close();
 		return false;
 	}
 
