@@ -30,7 +30,7 @@ public class N3JenaWriterPP extends N3JenaWriterCommon
 	// written to extract information that is going to be specially formatted
 	// (RDF lists, small anon nodes) and to calculate the prefixes that will be used.
 
-    static final private boolean doObjectListsAsLists = true ;
+    static final private boolean doObjectListsAsLists = getBooleanValue("objectLists", true) ;
     
 	// Data structures used in controlling the formatting
 
