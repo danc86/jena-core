@@ -10,8 +10,7 @@
 package com.hp.hpl.jena.reasoner;
 
 import com.hp.hpl.jena.graph.Graph;
-import com.hp.hpl.jena.rdf.model.Model;
-import com.hp.hpl.jena.rdf.model.Property;
+import com.hp.hpl.jena.rdf.model.*;
 
 /**
  * The minimal interface to which all reasoners (or reasoner adaptors) conform. 
@@ -116,6 +115,14 @@ public interface Reasoner {
      * no useful capabilities registered.
      */
     public Model getCapabilities();
+    
+    /**
+     * Add a configuration description for this reasoner into a partial
+     * configuration specification model.
+     * @param configSpec a Model into which the configuration information should be placed
+     * @param base the Resource to which the configuration parameters should be added.
+     */
+    public void addDescription(Model configSpec, Resource base);
 
     /**
      * Determine whether the given property is recognized and treated specially

@@ -103,6 +103,16 @@ public class FBLPRuleReasoner implements Reasoner {
             return null;
         }
     }
+    
+    /**
+     * Add a configuration description for this reasoner into a partial
+     * configuration specification model.
+     * @param configSpec a Model into which the configuration information should be placed
+     * @param base the Resource to which the configuration parameters should be added.
+     */
+    public void addDescription(Model configSpec, Resource base) {
+        // No configuration
+    }
 
     /**
      * Determine whether the given property is recognized and treated specially

@@ -93,6 +93,16 @@ public class LPBackwardRuleReasoner implements Reasoner {
     }
     
     /**
+     * Add a configuration description for this reasoner into a partial
+     * configuration specification model.
+     * @param configSpec a Model into which the configuration information should be placed
+     * @param base the Resource to which the configuration parameters should be added.
+     */
+    public void addDescription(Model configSpec, Resource base) {
+        // No configuration
+    }
+    
+    /**
      * Register an RDF predicate as one whose presence in a goal should force
      * the goal to be tabled.
      */
