@@ -1,5 +1,5 @@
 /*
-  (c) Copyright 2002, Hewlett-Packard Company, all rights reserved.
+  (c) Copyright 2002, 2003, Hewlett-Packard Company, all rights reserved.
   [See end of file]
   $Id$
 */
@@ -7,6 +7,9 @@
 package com.hp.hpl.jena.util.iterator;
 
 /**
+    Combines the actions of <code>Map</code> and <code>Filter</code>, mapping
+    unacceptable objects to <code>null</code> and acceptable ones to their mapped
+    value.
 	@author kers
 */
 public interface MapFilter 
@@ -20,7 +23,7 @@ public interface MapFilter
     }
 
 /*
-    (c) Copyright Hewlett-Packard Company 2002
+    (c) Copyright Hewlett-Packard Company 2002, 2003
     All rights reserved.
 
     Redistribution and use in source and binary forms, with or without

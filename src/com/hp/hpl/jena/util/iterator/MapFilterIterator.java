@@ -9,14 +9,13 @@ package com.hp.hpl.jena.util.iterator;
 import java.util.*;
 
 /**
-	@author kers
-    
-    A MapFilterIterator takes an Iterator and returns a new Iterator which
-    delivers the sequence of all non-null elements MapFilter(X) for X
-    from the base iterator. 
+    A MapFilterIterator takes a MapFilter and an [Extended]Iterator and returns a new 
+    ExtendedIterator which delivers the sequence of all non-null elements MapFilter(X) 
+    for X from the base iterator. 
+    @author kers
 */
 
-public class MapFilterIterator extends NiceIterator implements ClosableIterator
+public class MapFilterIterator extends NiceIterator implements ExtendedIterator
     {
     MapFilter f;
     Object current;
@@ -27,7 +26,7 @@ public class MapFilterIterator extends NiceIterator implements ClosableIterator
  * @param fl An object is included if it is accepted by this Filter.
  * @param e The parent Iterator.
  */        
-    public MapFilterIterator( MapFilter fl, ClosableIterator e) {
+    public MapFilterIterator( MapFilter fl, ExtendedIterator e) {
         f = fl;
         current = null;
         dead = false;
