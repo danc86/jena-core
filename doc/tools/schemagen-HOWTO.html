@@ -22,7 +22,7 @@ that may be used to control the output.
 Schemagen is typeically invoked from the command line or from a built script (such as Ant).
 Synopsis of the command:<br />
 <code><pre>
-java jena.schemagen -i &lt;input&gt; [-b &lt;baseURI&gt;] [-o &lt;output file&gt;] [-c &lt;config uri&gt;] [-s &lt;syntax&gt;] ...
+java jena.schemagen -i &lt;input&gt; [-a &lt;namespaceURI&gt;] [-o &lt;output file&gt;] [-c &lt;config uri&gt;] [-s &lt;syntax&gt;] ...
 </pre></code>
 Schemagen is highly configurable, either with command line options or by RDF information read from a configuration file.
 <b>Many</b> other options are defined, and these are described in detail below.  Note that the <code>CLASSPATH</code> environment variable must
@@ -33,7 +33,7 @@ be set to include the Jena <code>.jar</code> libraries.
 <table width="800" border="1" cellspacing="0" cellpadding="1">
 <caption align="bottom">Table 1: schemagen options</caption>
   <tr align="left"><th width="190">Command line option</th><th width="180">RDF config file property</th><th width="430">Meaning</th></tr>
-  <tr> <td>-b &lt;uri&gt;</td> <td>sgen:base</td> <td>The base URI for the vocabulary. Names with this URI as prefix are automatically included in the generated vocabulary.</td> </tr>
+  <tr> <td>-a &lt;uri&gt;</td> <td>sgen:namespace</td> <td>The namespace URI for the vocabulary. Names with this URI as prefix are automatically included in the generated vocabulary.</td> </tr>
   <tr> <td>-c &lt;filename&gt;<br>-c &lt;url&gt;</td> <td>&nbsp;</td> <td>Specify an alternative config file.</td> </tr>
   <tr> <td>--classdec &lt;string&gt;</td> <td>sgen:classdec</td> <td>Additional decoration for class header (such as <code>implements</code>)</td> </tr>
   <tr> <td>--classnamesuffix &lt;string&gt;</td> <td>sgen:classnamesuffix</td> <td>Option for adding a suffix to the generated class name, e.g. "Vocab".</td> </tr>
