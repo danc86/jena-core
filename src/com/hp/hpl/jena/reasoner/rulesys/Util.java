@@ -181,17 +181,23 @@ public class Util {
      * Open an resource file for reading.
      */
     public static BufferedReader openResourceFile(String filename) throws IOException {
-        InputStream is = ClassLoader.getSystemResourceAsStream(filename);
-        if (is == null) {
-            // Try local loader with absolute path
-            is = Util.class.getResourceAsStream("/" + filename);
-            if (is == null) {
-                // Can't find it on classpath, so try relative to current directory
-                is = new FileInputStream(filename);
-            }
-        }
+       	InputStream is = openResourceFileAsStream(filename);
         return new BufferedReader(new InputStreamReader(is, "UTF-8"));
     }
+
+	public static InputStream openResourceFileAsStream(String filename)
+		throws FileNotFoundException {
+		 InputStream is = ClassLoader.getSystemResourceAsStream(filename);
+		    if (is == null) {
+		        // Try local loader with absolute path
+		        is = Util.class.getResourceAsStream("/" + filename);
+		        if (is == null) {
+		            // Can't find it on classpath, so try relative to current directory
+		            is = new FileInputStream(filename);
+		        }
+		    }
+		return is;
+	}
     
     /**
      * Open a resource file and read it all into a single string.
