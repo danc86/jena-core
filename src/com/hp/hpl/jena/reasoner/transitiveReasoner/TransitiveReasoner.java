@@ -26,9 +26,6 @@ import com.hp.hpl.jena.vocabulary.ReasonerVocabulary;
  * <p>
  * The triples in the tbox (if present) will also be included
  * in any query. Any of tbox or data graph are allowed to be null.</p>
- * <p>
- * TODO: Add switch (in configuration code) to turn off meta-level enablement
- * of RDFS processing.</p>
  * 
  * @author <a href="mailto:der@hplb.hpl.hp.com">Dave Reynolds</a>
  * @version $Revision$ on $Date$
