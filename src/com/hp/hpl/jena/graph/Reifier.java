@@ -81,20 +81,20 @@ public interface Reifier extends GetTriple
     boolean handledRemove( Triple t );
     
     /**
-        The exception raised by reifyAs if a node is already bound to
-        a reified triple.
-    */
-    static public class AlreadyReifiedException extends JenaException 
-        { public AlreadyReifiedException( Node n ) { super( n.toString() ); } };
-        
-    /**
         The exception thrown by reifyAs if a node is bound to bits and
-        pieces of another triple.
+        pieces of (an)other triple(s).
     */
     static public class CannotReifyException extends JenaException
         { public CannotReifyException( Node n ) { super( n.toString() ); } };    
-    }
     
+    /**
+        The exception raised by reifyAs if a node is already bound to
+        a single reified triple.
+    */
+    static public class AlreadyReifiedException extends CannotReifyException 
+        { public AlreadyReifiedException( Node n ) { super( n ); } };
+    }
+
 /*
     (c) Copyright Hewlett-Packard Company 2002
     All rights reserved.
