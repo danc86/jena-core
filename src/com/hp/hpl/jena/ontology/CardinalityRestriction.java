@@ -5,7 +5,7 @@
  * Author email       Ian.Dickinson@hp.com
  * Package            Jena 2
  * Web                http://sourceforge.net/projects/jena/
- * Created            01-Apr-2003
+ * Created            08-May-2003
  * Filename           $RCSfile$
  * Revision           $Revision$
  * Release status     $State$
@@ -19,88 +19,33 @@
 
 // Package
 ///////////////
-package com.hp.hpl.jena.ontology.impl;
-
+package com.hp.hpl.jena.ontology;
 
 
 // Imports
 ///////////////
-import com.hp.hpl.jena.enhanced.*;
-import com.hp.hpl.jena.graph.*;
-import com.hp.hpl.jena.ontology.*;
-
-
 
 /**
  * <p>
- * Implementation of the functional property abstraction
+ * A property restriction that requires the named property to have have exactly
+ * the given number of values for a given instance to be a member of the class defined
+ * by the restriction.
  * </p>
  *
  * @author Ian Dickinson, HP Labs
  *         (<a  href="mailto:Ian.Dickinson@hp.com" >email</a>)
  * @version CVS $Id$
  */
-public class InverseFunctionalPropertyImpl
-    extends ObjectPropertyImpl
-    implements InverseFunctionalProperty 
+public interface CardinalityRestriction
+    extends Restriction 
 {
     // Constants
     //////////////////////////////////
-
-    // Static variables
-    //////////////////////////////////
-
-    /**
-     * A factory for generating InverseFunctionalProperty facets from nodes in enhanced graphs.
-     * Note: should not be invoked directly by user code: use 
-     * {@link com.hp.hpl.jena.rdf.model.RDFNode#as as()} instead.
-     */
-    public static Implementation factory = new Implementation() {
-        public EnhNode wrap( Node n, EnhGraph eg ) { 
-            if (canWrap( n, eg )) {
-                return new InverseFunctionalPropertyImpl( n, eg );
-            }
-            else {
-                throw new ConversionException( "Cannot convert node " + n + " to InverseFunctionalProperty");
-            } 
-        }
-            
-        public boolean canWrap( Node node, EnhGraph eg ) {
-            // node will support being an InverseFunctionalProperty facet if it has rdf:type owl:InverseFunctionalProperty or equivalent
-            Profile profile = (eg instanceof OntModel) ? ((OntModel) eg).getProfile() : null;
-            return (profile != null)  &&  profile.isSupported( node, eg, InverseFunctionalProperty.class );
-        }
-    };
-
-
-    // Instance variables
-    //////////////////////////////////
-
-    // Constructors
-    //////////////////////////////////
-
-    /**
-     * <p>
-     * Construct an inverse functional property node represented by the given node in the given graph.
-     * </p>
-     * 
-     * @param n The node that represents the resource
-     * @param g The enh graph that contains n
-     */
-    public InverseFunctionalPropertyImpl( Node n, EnhGraph g ) {
-        super( n, g );
-    }
 
 
     // External signature methods
     //////////////////////////////////
 
-    // Internal implementation methods
-    //////////////////////////////////
-
-    //==============================================================================
-    // Inner class definitions
-    //==============================================================================
 
 }
 

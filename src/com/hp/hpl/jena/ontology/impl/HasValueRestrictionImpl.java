@@ -60,7 +60,7 @@ public class HasValueRestrictionImpl
                 return new HasValueRestrictionImpl( n, eg );
             }
             else {
-                throw new OntologyException( "Cannot convert node " + n + " to HasValueRestriction");
+                throw new ConversionException( "Cannot convert node " + n + " to HasValueRestriction");
             } 
         }
             

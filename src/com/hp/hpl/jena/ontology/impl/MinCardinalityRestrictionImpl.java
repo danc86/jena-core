@@ -5,7 +5,7 @@
  * Author email       Ian.Dickinson@hp.com
  * Package            Jena 2
  * Web                http://sourceforge.net/projects/jena/
- * Created            28-Apr-2003
+ * Created            08-May-2003
  * Filename           $RCSfile$
  * Revision           $Revision$
  * Release status     $State$
@@ -22,26 +22,26 @@
 package com.hp.hpl.jena.ontology.impl;
 
 
+
 // Imports
 ///////////////
 import com.hp.hpl.jena.enhanced.*;
-import com.hp.hpl.jena.graph.Node;
+import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.ontology.*;
-import com.hp.hpl.jena.ontology.path.PathSet;
 
 
 /**
  * <p>
- * Implementation of a node representing an intersection class description.
+ * Implementation of the min cardinality restriction abstraction.
  * </p>
  *
  * @author Ian Dickinson, HP Labs
  *         (<a  href="mailto:Ian.Dickinson@hp.com" >email</a>)
  * @version CVS $Id$
  */
-public class IntersectionClassImpl 
-    extends OntClassImpl
-    implements IntersectionClass
+public class MinCardinalityRestrictionImpl 
+    extends RestrictionImpl
+    implements MinCardinalityRestriction
 {
     // Constants
     //////////////////////////////////
@@ -50,26 +50,25 @@ public class IntersectionClassImpl
     //////////////////////////////////
 
     /**
-     * A factory for generating IntersectionClass facets from nodes in enhanced graphs.
+     * A factory for generating MinCardinalityRestriction facets from nodes in enhanced graphs.
      * Note: should not be invoked directly by user code: use 
      * {@link com.hp.hpl.jena.rdf.model.RDFNode#as as()} instead.
      */
     public static Implementation factory = new Implementation() {
         public EnhNode wrap( Node n, EnhGraph eg ) { 
             if (canWrap( n, eg )) {
-                return new IntersectionClassImpl( n, eg );
+                return new MinCardinalityRestrictionImpl( n, eg );
             }
             else {
-                throw new ConversionException( "Cannot convert node " + n + " to IntersectionClass");
+                throw new ConversionException( "Cannot convert node " + n + " to MinCardinalityRestriction");
             } 
         }
             
         public boolean canWrap( Node node, EnhGraph eg ) {
-            // node will support being an IntersectionClass facet if it has rdf:type owl:Class and an owl:intersectionOf statement (or equivalents) 
+            // node will support being a MinCardinalityRestriction facet if it has rdf:type owl:Restriction or equivalent
+            // and the combination of owl:onProperty and owl:cardinality (or equivalents) 
             Profile profile = (eg instanceof OntModel) ? ((OntModel) eg).getProfile() : null;
-            return (profile != null)  &&  
-                   profile.isSupported( node, eg, OntClass.class )  &&
-                   eg.asGraph().contains( node, profile.INTERSECTION_OF().asNode(), null );
+            return (profile != null)  &&  profile.isSupported( node, eg, MinCardinalityRestriction.class );
         }
     };
 
@@ -82,36 +81,18 @@ public class IntersectionClassImpl
 
     /**
      * <p>
-     * Construct an intersection class node represented by the given node in the given graph.
+     * Construct a min cardinality restriction node represented by the given node in the given graph.
      * </p>
      * 
      * @param n The node that represents the resource
      * @param g The enh graph that contains n
      */
-    public IntersectionClassImpl( Node n, EnhGraph g ) {
+    public MinCardinalityRestrictionImpl( Node n, EnhGraph g ) {
         super( n, g );
     }
 
-
     // External signature methods
     //////////////////////////////////
-
-    /**
-     * <p>
-     * Answer an {@link PathSet accessor} for the 
-     * <code>intersectionOf</code>
-     * property of a class or class description. The accessor
-     * can be used to perform a variety of operations, including getting and setting the value.
-     * </p>
-     * 
-     * @return An abstract accessor for the intersection class description
-     */
-    public PathSet p_intersectionOf() {
-        return asPathSet( getProfile().INTERSECTION_OF() );
-    }
-
-
-    
 
     // Internal implementation methods
     //////////////////////////////////

@@ -66,7 +66,7 @@ public class OntClassImpl
                 return new OntClassImpl( n, eg );
             }
             else {
-                throw new OntologyException( "Cannot convert node " + n.toString() + " to OntClass");
+                throw new ConversionException( "Cannot convert node " + n.toString() + " to OntClass");
             } 
         }
             

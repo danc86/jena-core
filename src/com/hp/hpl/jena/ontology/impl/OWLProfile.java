@@ -345,6 +345,30 @@ public class OWLProfile
                                             }
                                         }
         },
+        {  CardinalityRestriction.class,   new SupportsCheck() {
+                                            public boolean doCheck( Node n, EnhGraph g ) {
+                                                return g.asGraph().contains( n, RDF.type.asNode(), OWL.Restriction.asNode() ) &&
+                                                       g.asGraph().contains( n, OWL.cardinality.asNode(), null ) &&
+                                                       g.asGraph().contains( n, OWL.onProperty.asNode(), null );
+                                            }
+                                        }
+        },
+        {  MinCardinalityRestriction.class,   new SupportsCheck() {
+                                            public boolean doCheck( Node n, EnhGraph g ) {
+                                                return g.asGraph().contains( n, RDF.type.asNode(), OWL.Restriction.asNode() ) &&
+                                                       g.asGraph().contains( n, OWL.minCardinality.asNode(), null ) &&
+                                                       g.asGraph().contains( n, OWL.onProperty.asNode(), null );
+                                            }
+                                        }
+        },
+        {  MaxCardinalityRestriction.class,   new SupportsCheck() {
+                                            public boolean doCheck( Node n, EnhGraph g ) {
+                                                return g.asGraph().contains( n, RDF.type.asNode(), OWL.Restriction.asNode() ) &&
+                                                       g.asGraph().contains( n, OWL.maxCardinality.asNode(), null ) &&
+                                                       g.asGraph().contains( n, OWL.onProperty.asNode(), null );
+                                            }
+                                        }
+        },
         {  SymmetricProperty.class,     new SupportsCheck() {
                                             public boolean doCheck( Node n, EnhGraph g ) {
                                                 return g.asGraph().contains( n, RDF.type.asNode(), OWL.SymmetricProperty.asNode() ) &&

@@ -5,7 +5,7 @@
  * Author email       Ian.Dickinson@hp.com
  * Package            Jena 2
  * Web                http://sourceforge.net/projects/jena/
- * Created            28-Apr-2003
+ * Created            07-May-2003
  * Filename           $RCSfile$
  * Revision           $Revision$
  * Release status     $State$
@@ -19,60 +19,33 @@
 
 // Package
 ///////////////
-package com.hp.hpl.jena.ontology.impl;
+package com.hp.hpl.jena.ontology;
 
 
 // Imports
 ///////////////
-import com.hp.hpl.jena.enhanced.*;
-import com.hp.hpl.jena.graph.Node;
-import com.hp.hpl.jena.ontology.*;
-import com.hp.hpl.jena.ontology.path.PathSet;
-
 
 /**
  * <p>
- * Implementation of a node representing an intersection class description.
+ * Exception that is thrown when an ontology resource is converted to another
+ * facet, using {@link RDFNode#as as()}, and the requested conversion is not
+ * possible. The reasons for the failure may be that the requested term is not
+ * in the language {@linkplain Profile profile} of the language attached to the
+ * ontology model, or because the pre-conditions for the conversion are not met. 
  * </p>
  *
  * @author Ian Dickinson, HP Labs
  *         (<a  href="mailto:Ian.Dickinson@hp.com" >email</a>)
  * @version CVS $Id$
  */
-public class IntersectionClassImpl 
-    extends OntClassImpl
-    implements IntersectionClass
+public class ConversionException 
+    extends OntologyException
 {
     // Constants
     //////////////////////////////////
 
     // Static variables
     //////////////////////////////////
-
-    /**
-     * A factory for generating IntersectionClass facets from nodes in enhanced graphs.
-     * Note: should not be invoked directly by user code: use 
-     * {@link com.hp.hpl.jena.rdf.model.RDFNode#as as()} instead.
-     */
-    public static Implementation factory = new Implementation() {
-        public EnhNode wrap( Node n, EnhGraph eg ) { 
-            if (canWrap( n, eg )) {
-                return new IntersectionClassImpl( n, eg );
-            }
-            else {
-                throw new ConversionException( "Cannot convert node " + n + " to IntersectionClass");
-            } 
-        }
-            
-        public boolean canWrap( Node node, EnhGraph eg ) {
-            // node will support being an IntersectionClass facet if it has rdf:type owl:Class and an owl:intersectionOf statement (or equivalents) 
-            Profile profile = (eg instanceof OntModel) ? ((OntModel) eg).getProfile() : null;
-            return (profile != null)  &&  
-                   profile.isSupported( node, eg, OntClass.class )  &&
-                   eg.asGraph().contains( node, profile.INTERSECTION_OF().asNode(), null );
-        }
-    };
-
 
     // Instance variables
     //////////////////////////////////
@@ -81,37 +54,17 @@ public class IntersectionClassImpl
     //////////////////////////////////
 
     /**
-     * <p>
-     * Construct an intersection class node represented by the given node in the given graph.
-     * </p>
+     * Construct an ontology exception with a given message.
      * 
-     * @param n The node that represents the resource
-     * @param g The enh graph that contains n
+     * @param msg The exception message.
      */
-    public IntersectionClassImpl( Node n, EnhGraph g ) {
-        super( n, g );
+    public ConversionException( String msg ) {
+        super( msg );
     }
 
 
     // External signature methods
     //////////////////////////////////
-
-    /**
-     * <p>
-     * Answer an {@link PathSet accessor} for the 
-     * <code>intersectionOf</code>
-     * property of a class or class description. The accessor
-     * can be used to perform a variety of operations, including getting and setting the value.
-     * </p>
-     * 
-     * @return An abstract accessor for the intersection class description
-     */
-    public PathSet p_intersectionOf() {
-        return asPathSet( getProfile().INTERSECTION_OF() );
-    }
-
-
-    
 
     // Internal implementation methods
     //////////////////////////////////
@@ -152,3 +105,4 @@ public class IntersectionClassImpl
     (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
     THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
+

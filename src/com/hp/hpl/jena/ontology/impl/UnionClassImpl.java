@@ -61,7 +61,7 @@ public class UnionClassImpl
                 return new UnionClassImpl( n, eg );
             }
             else {
-                throw new OntologyException( "Cannot convert node " + n + " to UnionClass");
+                throw new ConversionException( "Cannot convert node " + n + " to UnionClass");
             } 
         }
             

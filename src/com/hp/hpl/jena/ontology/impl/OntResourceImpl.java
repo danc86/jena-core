@@ -371,6 +371,70 @@ public abstract class OntResourceImpl
     }
 
     
+    /** 
+     * <p>Answer a view of this resource as an annotation property</p>
+     * @return This resource, but viewed as an AnnotationProperty
+     * @exception ConversionException if the resource cannot be converted to an annotation property
+     */
+    public AnnotationProperty asAnnotationProperty() {
+        return (AnnotationProperty) as( AnnotationProperty.class );
+    }
+    
+    /** 
+     * <p>Answer a view of this resource as a list </p>
+     * @return This resource, but viewed as an OntList
+     * @exception ConversionException if the resource cannot be converted to a list
+     */
+    public OntList asList() {
+        return (OntList) as( OntList.class );
+    }
+    
+    /** 
+     * <p>Answer a view of this resource as a property</p>
+     * @return This resource, but viewed as an OntProperty
+     * @exception ConversionException if the resource cannot be converted to a property
+     */
+    public OntProperty asProperty() {
+        return (OntProperty) as( OntProperty.class );
+    }
+    
+    /** 
+     * <p>Answer a view of this resource as an individual</p>
+     * @return This resource, but viewed as an Individual
+     * @exception ConversionException if the resource cannot be converted to an individual
+     */
+    public Individual asIndividual() {
+        return (Individual) as( Individual.class );
+    }
+    
+    /** 
+     * <p>Answer a view of this resource as a class</p>
+     * @return This resource, but viewed as an OntClass
+     * @exception ConversionException if the resource cannot be converted to a class
+     */
+    public OntClass asClass() {
+        return (OntClass) as( OntClass.class );
+    }
+    
+    /** 
+     * <p>Answer a view of this resource as an ontology description node</p>
+     * @return This resource, but viewed as an Ontology
+     * @exception ConversionException if the resource cannot be converted to an ontology description node
+     */
+    public Ontology asOntology() {
+        return (Ontology) as( Ontology.class );
+    }
+    
+    /** 
+     * <p>Answer a view of this resource as an 'all different' declaration</p>
+     * @return This resource, but viewed as an AllDifferent node
+     * @exception ConversionException if the resource cannot be converted to an all different declaration
+     */
+    public AllDifferent asAllDifferent() {
+        return (AllDifferent) as( AllDifferent.class );
+    }
+    
+
 
     // Internal implementation methods
     //////////////////////////////////

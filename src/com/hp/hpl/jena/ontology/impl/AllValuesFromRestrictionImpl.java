@@ -60,7 +60,7 @@ public class AllValuesFromRestrictionImpl
                 return new AllValuesFromRestrictionImpl( n, eg );
             }
             else {
-                throw new OntologyException( "Cannot convert node " + n + " to AllValuesFromRestriction");
+                throw new ConversionException( "Cannot convert node " + n + " to AllValuesFromRestriction");
             } 
         }
             

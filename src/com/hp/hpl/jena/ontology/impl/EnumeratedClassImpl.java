@@ -60,7 +60,7 @@ public class EnumeratedClassImpl
                 return new EnumeratedClassImpl( n, eg );
             }
             else {
-                throw new OntologyException( "Cannot convert node " + n + " to EnumeratedClass");
+                throw new ConversionException( "Cannot convert node " + n + " to EnumeratedClass");
             } 
         }
             

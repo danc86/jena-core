@@ -60,7 +60,7 @@ public class AnnotationPropertyImpl
                 return new AnnotationPropertyImpl( n, eg );
             }
             else {
-                throw new OntologyException( "Cannot convert node " + n + " to AnnotationProperty");
+                throw new ConversionException( "Cannot convert node " + n + " to AnnotationProperty");
             } 
         }
         

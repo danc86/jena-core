@@ -61,7 +61,7 @@ public class ObjectPropertyImpl
                 return new ObjectPropertyImpl( n, eg );
             }
             else {
-                throw new OntologyException( "Cannot convert node " + n + " to ObjectProperty");
+                throw new ConversionException( "Cannot convert node " + n + " to ObjectProperty");
             } 
         }
             

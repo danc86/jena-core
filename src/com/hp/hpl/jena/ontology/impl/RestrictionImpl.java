@@ -61,7 +61,7 @@ public class RestrictionImpl
                 return new RestrictionImpl( n, eg );
             }
             else {
-                throw new OntologyException( "Cannot convert node " + n + " to Restriction");
+                throw new ConversionException( "Cannot convert node " + n + " to Restriction");
             } 
         }
             

@@ -61,7 +61,7 @@ public class TransitivePropertyImpl
                 return new TransitivePropertyImpl( n, eg );
             }
             else {
-                throw new OntologyException( "Cannot convert node " + n + " to TransitiveProperty");
+                throw new ConversionException( "Cannot convert node " + n + " to TransitiveProperty");
             } 
         }
             

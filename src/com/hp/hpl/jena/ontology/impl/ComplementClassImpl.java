@@ -61,7 +61,7 @@ public class ComplementClassImpl
                 return new ComplementClassImpl( n, eg );
             }
             else {
-                throw new OntologyException( "Cannot convert node " + n + " to ComplementClass");
+                throw new ConversionException( "Cannot convert node " + n + " to ComplementClass");
             } 
         }
             

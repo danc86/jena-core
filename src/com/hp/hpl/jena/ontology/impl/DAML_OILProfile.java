@@ -404,6 +404,30 @@ public class DAML_OILProfile
                                             }
                                         }
         },
+        {  CardinalityRestriction.class,   new SupportsCheck() {
+                                            public boolean doCheck( Node n, EnhGraph g ) {
+                                                return g.asGraph().contains( n, RDF.type.asNode(), DAML_OIL.Restriction.asNode() ) &&
+                                                       g.asGraph().contains( n, DAML_OIL.cardinality.asNode(), null ) &&
+                                                       g.asGraph().contains( n, DAML_OIL.onProperty.asNode(), null );
+                                            }
+                                        }
+        },
+        {  MinCardinalityRestriction.class,   new SupportsCheck() {
+                                            public boolean doCheck( Node n, EnhGraph g ) {
+                                                return g.asGraph().contains( n, RDF.type.asNode(), DAML_OIL.Restriction.asNode() ) &&
+                                                       g.asGraph().contains( n, DAML_OIL.minCardinality.asNode(), null ) &&
+                                                       g.asGraph().contains( n, DAML_OIL.onProperty.asNode(), null );
+                                            }
+                                        }
+        },
+        {  MaxCardinalityRestriction.class,   new SupportsCheck() {
+                                            public boolean doCheck( Node n, EnhGraph g ) {
+                                                return g.asGraph().contains( n, RDF.type.asNode(), DAML_OIL.Restriction.asNode() ) &&
+                                                       g.asGraph().contains( n, DAML_OIL.maxCardinality.asNode(), null ) &&
+                                                       g.asGraph().contains( n, DAML_OIL.onProperty.asNode(), null );
+                                            }
+                                        }
+        },
         {  TransitiveProperty.class,    new SupportsCheck() {
                                             public boolean doCheck( Node n, EnhGraph g ) {
                                                 return g.asGraph().contains( n, RDF.type.asNode(), DAML_OIL.TransitiveProperty.asNode() ) &&

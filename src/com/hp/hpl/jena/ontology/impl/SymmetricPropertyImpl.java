@@ -61,7 +61,7 @@ public class SymmetricPropertyImpl
                 return new SymmetricPropertyImpl( n, eg );
             }
             else {
-                throw new OntologyException( "Cannot convert node " + n + " to SymmetricProperty");
+                throw new ConversionException( "Cannot convert node " + n + " to SymmetricProperty");
             } 
         }
             

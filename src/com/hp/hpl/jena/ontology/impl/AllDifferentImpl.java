@@ -60,7 +60,7 @@ public class AllDifferentImpl
                 return new AllDifferentImpl( n, eg );
             }
             else {
-                throw new OntologyException( "Cannot convert node " + n + " to AllDifferent");
+                throw new ConversionException( "Cannot convert node " + n + " to AllDifferent");
             } 
         }
         

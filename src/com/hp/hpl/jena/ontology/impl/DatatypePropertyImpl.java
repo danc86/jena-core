@@ -61,7 +61,7 @@ public class DatatypePropertyImpl
                 return new DatatypePropertyImpl( n, eg );
             }
             else {
-                throw new OntologyException( "Cannot convert node " + n + " to DatatypeProperty");
+                throw new ConversionException( "Cannot convert node " + n + " to DatatypeProperty");
             } 
         }
             

@@ -277,6 +277,56 @@ public interface OntResource
     public Iterator getRDFTypes( boolean closed );
 
 
+    // Conversion methods
+    
+    /** 
+     * <p>Answer a view of this resource as an annotation property</p>
+     * @return This resource, but viewed as an AnnotationProperty
+     * @exception ConversionException if the resource cannot be converted to an annotation property
+     */
+    public AnnotationProperty asAnnotationProperty();
+    
+    /** 
+     * <p>Answer a view of this resource as a list </p>
+     * @return This resource, but viewed as an OntList
+     * @exception ConversionException if the resource cannot be converted to a list
+     */
+    public OntList asList();
+    
+    /** 
+     * <p>Answer a view of this resource as a property</p>
+     * @return This resource, but viewed as an OntProperty
+     * @exception ConversionException if the resource cannot be converted to a property
+     */
+    public OntProperty asProperty();
+    
+    /** 
+     * <p>Answer a view of this resource as an individual</p>
+     * @return This resource, but viewed as an Individual
+     * @exception ConversionException if the resource cannot be converted to an individual
+     */
+    public Individual asIndividual();
+    
+    /** 
+     * <p>Answer a view of this resource as a class</p>
+     * @return This resource, but viewed as an OntClass
+     * @exception ConversionException if the resource cannot be converted to a class
+     */
+    public OntClass asClass();
+    
+    /** 
+     * <p>Answer a view of this resource as an ontology description node</p>
+     * @return This resource, but viewed as an Ontology
+     * @exception ConversionException if the resource cannot be converted to an ontology description node
+     */
+    public Ontology asOntology();
+    
+    /** 
+     * <p>Answer a view of this resource as an 'all different' declaration</p>
+     * @return This resource, but viewed as an AllDifferent node
+     * @exception ConversionException if the resource cannot be converted to an all different declaration
+     */
+    public AllDifferent asAllDifferent();
 
 
 }

@@ -61,7 +61,7 @@ public class FunctionalPropertyImpl
                 return new FunctionalPropertyImpl( n, eg );
             }
             else {
-                throw new OntologyException( "Cannot convert node " + n + " to FunctionalProperty");
+                throw new ConversionException( "Cannot convert node " + n + " to FunctionalProperty");
             } 
         }
             

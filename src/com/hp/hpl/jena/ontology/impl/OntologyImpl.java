@@ -59,7 +59,7 @@ public class OntologyImpl
                 return new OntologyImpl( n, eg );
             }
             else {
-                throw new OntologyException( "Cannot convert node " + n + " to Ontology");
+                throw new ConversionException( "Cannot convert node " + n + " to Ontology");
             } 
         }
             

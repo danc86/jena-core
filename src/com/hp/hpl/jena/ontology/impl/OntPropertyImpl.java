@@ -62,7 +62,7 @@ public class OntPropertyImpl
                 return new OntPropertyImpl( n, eg );
             }
             else {
-                throw new OntologyException( "Cannot convert node " + n + " to OntProperty");
+                throw new ConversionException( "Cannot convert node " + n + " to OntProperty");
             } 
         }
             

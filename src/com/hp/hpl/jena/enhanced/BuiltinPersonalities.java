@@ -42,6 +42,9 @@ public class BuiltinPersonalities {
         .add( HasValueRestriction.class, HasValueRestrictionImpl.factory )
         .add( AllValuesFromRestriction.class, AllValuesFromRestrictionImpl.factory )
         .add( SomeValuesFromRestriction.class, SomeValuesFromRestrictionImpl.factory )
+        .add( CardinalityRestriction.class, CardinalityRestrictionImpl.factory )
+        .add( MinCardinalityRestriction.class, MinCardinalityRestrictionImpl.factory )
+        .add( MaxCardinalityRestriction.class, MaxCardinalityRestrictionImpl.factory )
     
         .add( OntProperty.class, OntPropertyImpl.factory )
         .add( ObjectProperty.class, ObjectPropertyImpl.factory )

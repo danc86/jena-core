@@ -376,6 +376,23 @@ public class TestClassExpression
                 new Long( 1 )
             },
             {   
+                "OWL MinCardinalityRestriction.minCardinality",
+                new PS() { 
+                    public PathSet ps( OntModel m ) {
+                        return ((MinCardinalityRestriction) m.getResource( NS + "ClassD" )
+                               .as( MinCardinalityRestriction.class )).p_minCardinality(); 
+                    } 
+                },
+                OWL.minCardinality,
+                ProfileRegistry.OWL_LANG,
+                "file:testing/ontology/owl/ClassExpression/test-restriction.rdf",
+                T,
+                new Integer( 1 ),
+                null,
+                null,
+                new Long( 1 )
+            },
+            {   
                 "OWL Restriction.maxCardinality",
                 new PS() { 
                     public PathSet ps( OntModel m ) {
@@ -393,11 +410,45 @@ public class TestClassExpression
                 new Long( 2 )
             },
             {   
+                "OWL MaxCardinalityRestriction.maxCardinality",
+                new PS() { 
+                    public PathSet ps( OntModel m ) {
+                        return ((MaxCardinalityRestriction) m.getResource( NS + "ClassE" )
+                               .as( MaxCardinalityRestriction.class )).p_maxCardinality(); 
+                    } 
+                },
+                OWL.maxCardinality,
+                ProfileRegistry.OWL_LANG,
+                "file:testing/ontology/owl/ClassExpression/test-restriction.rdf",
+                T,
+                new Integer( 1 ),
+                null,
+                null,
+                new Long( 2 )
+            },
+            {   
                 "OWL Restriction.cardinality",
                 new PS() { 
                     public PathSet ps( OntModel m ) {
                         return ((Restriction) m.getResource( NS + "ClassF" )
                                .as( Restriction.class )).p_cardinality(); 
+                    } 
+                },
+                OWL.cardinality,
+                ProfileRegistry.OWL_LANG,
+                "file:testing/ontology/owl/ClassExpression/test-restriction.rdf",
+                T,
+                new Integer( 1 ),
+                null,
+                null,
+                new Long( 0 )
+            },
+            {   
+                "OWL CardinalityRestriction.cardinality",
+                new PS() { 
+                    public PathSet ps( OntModel m ) {
+                        return ((CardinalityRestriction) m.getResource( NS + "ClassF" )
+                               .as( CardinalityRestriction.class )).p_cardinality(); 
                     } 
                 },
                 OWL.cardinality,
@@ -546,6 +597,23 @@ public class TestClassExpression
                 new Long( 1 )
             },
             {   
+                "DAML MinCardinalityRestriction.minCardinality",
+                new PS() { 
+                    public PathSet ps( OntModel m ) {
+                        return ((MinCardinalityRestriction) m.getResource( NS + "ClassD" )
+                               .as( MinCardinalityRestriction.class )).p_minCardinality(); 
+                    } 
+                },
+                DAML_OIL.minCardinality,
+                ProfileRegistry.DAML_LANG,
+                "file:testing/ontology/daml/ClassExpression/test-restriction.rdf",
+                T,
+                new Integer( 1 ),
+                null,
+                null,
+                new Long( 1 )
+            },
+            {   
                 "DAML Restriction.maxCardinality",
                 new PS() { 
                     public PathSet ps( OntModel m ) {
@@ -563,11 +631,45 @@ public class TestClassExpression
                 new Long( 2 )
             },
             {   
+                "DAML MaxCardinalityRestriction.maxCardinality",
+                new PS() { 
+                    public PathSet ps( OntModel m ) {
+                        return ((MaxCardinalityRestriction) m.getResource( NS + "ClassE" )
+                               .as( MaxCardinalityRestriction.class )).p_maxCardinality(); 
+                    } 
+                },
+                DAML_OIL.maxCardinality,
+                ProfileRegistry.DAML_LANG,
+                "file:testing/ontology/daml/ClassExpression/test-restriction.rdf",
+                T,
+                new Integer( 1 ),
+                null,
+                null,
+                new Long( 2 )
+            },
+            {   
                 "DAML Restriction.cardinality",
                 new PS() { 
                     public PathSet ps( OntModel m ) {
                         return ((Restriction) m.getResource( NS + "ClassF" )
                                .as( Restriction.class )).p_cardinality(); 
+                    } 
+                },
+                DAML_OIL.cardinality,
+                ProfileRegistry.DAML_LANG,
+                "file:testing/ontology/daml/ClassExpression/test-restriction.rdf",
+                T,
+                new Integer( 1 ),
+                null,
+                null,
+                new Long( 0 )
+            },
+            {   
+                "DAML CardinalityRestriction.cardinality",
+                new PS() { 
+                    public PathSet ps( OntModel m ) {
+                        return ((CardinalityRestriction) m.getResource( NS + "ClassF" )
+                               .as( CardinalityRestriction.class )).p_cardinality(); 
                     } 
                 },
                 DAML_OIL.cardinality,

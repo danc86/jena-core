@@ -64,7 +64,7 @@ public class OntListImpl
                 return new OntListImpl( n, eg );
             }
             else {
-                throw new OntologyException( "Cannot convert node " + n + " to OntList");
+                throw new ConversionException( "Cannot convert node " + n + " to OntList");
             } 
         }
             
