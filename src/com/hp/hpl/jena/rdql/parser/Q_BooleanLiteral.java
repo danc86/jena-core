@@ -27,7 +27,7 @@ public class Q_BooleanLiteral extends ParsedLiteral implements ExprBoolean
 }
 
 /*
- *  (c) Copyright 2001, 2002, 2003, 2004 2004 Hewlett-Packard Development Company, LP
+ *  (c) Copyright 2001, 2002, 2003, 2004 Hewlett-Packard Development Company, LP
  *  All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
