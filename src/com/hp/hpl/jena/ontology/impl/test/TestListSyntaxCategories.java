@@ -232,8 +232,8 @@ public class TestListSyntaxCategories
         },
         
         // individuals
-        new DoListTest( "OWL list individuals",  "file:testing/ontology/owl/list-syntax/test.rdf",  OntModelSpec.OWL_MEM_TRANS_INF,  3,  
-                        new String[] {NS+"A0", NS+"A1", NS+"C0"} ) 
+        new DoListTest( "OWL list individuals",  "file:testing/ontology/owl/list-syntax/test.rdf",  OntModelSpec.OWL_MEM_TRANS_INF,  8,  
+                        new String[] {NS+"A0", NS+"A1", NS+"C0", NS+"a0", NS+"a1", NS+"a2", NS+"z0", NS+"z1"} ) 
         {
             public Iterator doList( OntModel m ) {
                 return m.listIndividuals();
