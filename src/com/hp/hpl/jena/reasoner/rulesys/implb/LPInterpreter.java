@@ -105,10 +105,6 @@ public class LPInterpreter {
         tmFrame.linkTo(cpFrame);
         tmFrame.setContinuation(0, 0);
         cpFrame = tmFrame;
-        
-        BBRuleContext bbcontext = new BBRuleContext(engine.getInfGraph());
-        bbcontext.setEnv(new LPBindingEnvironment(this));
-        context = bbcontext;
     }
 
     //  =======================================================================
@@ -224,7 +220,6 @@ public class LPInterpreter {
                     unwindTrail(trailMark);
                 }
                 pc = ac = 0;
-                context.setRule(clause.getRule());
                 // then fall through into the recreated execution context for the new call
                 
             } else if (cpFrame instanceof TripleMatchFrame) {
@@ -461,6 +456,12 @@ public class LPInterpreter {
                         
                         case RuleClauseCode.CALL_BUILTIN:
                             Builtin builtin = (Builtin)args[ac++];
+                            if (context == null) {
+                                BBRuleContext bbcontext = new BBRuleContext(engine.getInfGraph());
+                                bbcontext.setEnv(new LPBindingEnvironment(this));
+                                context = bbcontext;
+                            }
+                            context.setRule(clause.getRule());
                             if (!builtin.bodyCall(argVars, code[pc++], context)) {
 //                                logger.debug("FAIL: " + envFrame.clause.rule.toShortString());
                                 continue main;  
