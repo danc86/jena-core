@@ -37,6 +37,8 @@ import com.hp.hpl.jena.vocabulary.*;
 
 import java.util.*;
 
+import org.apache.commons.logging.LogFactory;
+
 
 /**
  * <p>
@@ -555,7 +557,15 @@ public class OntClassImpl
                 Restriction r = (Restriction) supClass.as( Restriction.class );
                 Property p = r.getOnProperty();
                 
-                if (!props.contains( p )) {
+                if (p == null) {
+                    // A restriction that is not on a property - bad
+                    String id = r.getURI();
+                    if (id == null) {
+                        id = "[anon restriction with anonID " + r.getId().toString() + "]";
+                    }
+                    LogFactory.getLog( getClass() ).warn( "Found restriction " + id + " with no onProperty declaration" );
+                }
+                else if (!props.contains( p )) {
                     // rule out properties with a cardinality of zero
                     if (!(r.hasProperty( getProfile().MAX_CARDINALITY(), 0 ) ||
                           r.hasProperty( getProfile().CARDINALITY(), 0))) {
