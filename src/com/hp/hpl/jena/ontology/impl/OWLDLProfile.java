@@ -246,7 +246,15 @@ public class OWLDLProfile
                     }
                 }
             }
-            }};
+            },
+            {  DataRange.class,    new SupportsCheck() {
+                public boolean doCheck( Node n, EnhGraph g ) {
+                    return n instanceof Node_Blank  &&
+                           g.asGraph().contains( n, RDF.type.asNode(), OWL.DataRange.asNode() );
+                }
+            }
+            }
+            };
     
 
     // to allow concise reference in the code above.

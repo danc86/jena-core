@@ -1225,6 +1225,20 @@ public class TestBugReports
         assertTrue( "Should be an ObjectProperty facet", invQ1 instanceof ObjectProperty );
     }
     
+    /** Test case for SF bug 978259 - missing supports() checks in OWL DL and Lite profiles */
+    public void test_sf_978259() {
+        OntModel md = ModelFactory.createOntologyModel( OntModelSpec.OWL_DL_MEM );
+        OntModel ml = ModelFactory.createOntologyModel( OntModelSpec.OWL_LITE_MEM );
+        
+        DataRange drd = md.createDataRange( md.createList( new Resource[] {OWL.Thing}) );
+        
+        assertNotNull( drd );
+        
+        HasValueRestriction hvrd = md.createHasValueRestriction( null, RDFS.seeAlso, OWL.Thing );
+        
+        assertNotNull( hvrd );
+    }
+    
     
     // Internal implementation methods
     //////////////////////////////////

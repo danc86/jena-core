@@ -254,7 +254,8 @@ public class OWLLiteProfile
                     }
                 }
             }
-            }};
+            },
+            };
     
 
     // to allow concise reference in the code above.
