@@ -6,6 +6,7 @@
 
 package com.hp.hpl.jena.db.impl;
 
+import java.io.PrintStream;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.List;
@@ -61,6 +62,7 @@ public class DBQueryStage extends Stage
 			useme = current.copy();
 			try {
 				ps = conn.getConnection().prepareStatement(compiled.stmt);
+// System.out.println(compiled.stmt);
 				setArgs(useme, ps);
 			} catch (Exception e) {
 				throw new JenaException("Query prepare failed: " + e);
@@ -80,8 +82,8 @@ public class DBQueryStage extends Stage
 						Node n = compiled.driver.RDBStringToNode(o);
 						useme.setElement(j,n);
 					}
+					sink.put(useme);
 				}
-				sink.put(useme);
 			} catch (Exception e) {
 				throw new JenaException("Query execute failed: " + e);
 			}
