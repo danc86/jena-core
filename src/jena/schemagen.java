@@ -226,7 +226,7 @@ public class schemagen {
         {OPT_INCLUDE,             new OptionDefinition( "--include", "include" ) },
         {OPT_CLASSNAME_SUFFIX,    new OptionDefinition( "--classnamesuffix", "classnamesuffix" )},
         {OPT_NOHEADER,            new OptionDefinition( "--noheader", "noheader" )},
-        {OPT_SYNTAX,              new OptionDefinition( "-s", "syntax" )},
+        {OPT_SYNTAX,              new OptionDefinition( "-e", "encoding" )},
         {OPT_HELP,                new OptionDefinition( "--help", null )},
     };
 
