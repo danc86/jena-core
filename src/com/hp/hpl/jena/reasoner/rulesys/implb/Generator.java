@@ -202,10 +202,6 @@ public class Generator implements LPAgendaEntry, LPInterpreterContext {
                 checkReadyNeeded = true;
                 break;
             } else {
-                // TEmp ...
-                // TODO: remove
-                System.out.println("Result " + result + " returned to generator for " + goal);
-                // ... end temp
                 // Simple triple result
                 if (resultSet.add(result)) {
                     results.add(result);

@@ -48,15 +48,26 @@ public class GenericTripleMatchFrame extends GenericChoiceFrame {
      */
     public boolean bindResult(Triple triple, LPInterpreter interpreter) {
         if (objectVar != null)    interpreter.bind(objectVar,    triple.getObject());
+        int mark = interpreter.trail.size();
         if (objectFunctor != null) {
-            int mark = interpreter.trail.size();
             if (! functorMatch(triple, interpreter)) {
                 interpreter.unwindTrail(mark);
                 return false;
             }
         }
-        if (subjectVar != null)   interpreter.bind(subjectVar,   triple.getSubject());
-        if (predicateVar != null) interpreter.bind(predicateVar, triple.getPredicate());
+        if (subjectVar != null) {
+            if (! interpreter.unify(subjectVar,   triple.getSubject()) ) {
+                interpreter.unwindTrail(mark);
+                return false;
+            }
+        } 
+        if (predicateVar != null) {
+            if (! interpreter.unify(predicateVar, triple.getPredicate()) ) {
+                interpreter.unwindTrail(mark);
+                return false;
+            }
+                
+        } 
         return true;
     }
     
