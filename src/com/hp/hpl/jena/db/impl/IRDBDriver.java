@@ -135,6 +135,26 @@ public interface IRDBDriver {
      */
 
     public void formatDB() throws RDFRDBException;
+    
+    /**
+     * Aborts the open transaction, then turns autocommit on.
+     */
+	public void abort();
+        
+	/**
+	 * Turns autocommit off, then opens a new transaction.	 *
+	 */
+	public void begin();
+        
+	/**
+	 * Commits the open transaction, then turns autocommit on.
+	 */
+	public void commit();
+
+	/**
+	 * Returns true if the underlying database supports transactions.
+	 */
+	public boolean transactionsSupported();    
 
     /**
      * Returns true if the database layout supports multiple RDF models in the same database.
