@@ -72,7 +72,7 @@
 <A NAME="55"></A></FONT>
 <A NAME="56"></A>    <FONT ID="Public">public</FONT> <FONT ID="Static">static</FONT> <FONT ID="Void">void</FONT> main( String[] args ) {
 <A NAME="57"></A>        <FONT ID="SingleLineComment">// read the argument file, or the default
-<A NAME="58"></A></FONT>        String source = (args.length == <FONT ID="IntegerLiteral">0</FONT>) ? <FONT ID="StringLiteral">"http://www.w3.org/2001/sw/WebOnt/guide-src/wine"</FONT> : args[<FONT ID="IntegerLiteral">0</FONT>];
+<A NAME="58"></A></FONT>        String source = (args.length == <FONT ID="IntegerLiteral">0</FONT>) ? <FONT ID="StringLiteral">"http://www.w3.org/TR/2003/CR-owl-guide-20030818/wine"</FONT> : args[<FONT ID="IntegerLiteral">0</FONT>];
 <A NAME="59"></A>        
 <A NAME="60"></A>        <FONT ID="SingleLineComment">// guess if we're using a daml source
 <A NAME="61"></A></FONT>        <FONT ID="Boolean">boolean</FONT> isDAML = source.endsWith( <FONT ID="StringLiteral">".daml"</FONT> );
@@ -82,10 +82,10 @@
 <A NAME="65"></A>                     );
 <A NAME="66"></A>
 <A NAME="67"></A>        <FONT ID="SingleLineComment">// we have a local copy of the wine ontology
-<A NAME="68"></A></FONT>        m.getDocumentManager().addAltEntry( <FONT ID="StringLiteral">"http://www.w3.org/2001/sw/WebOnt/guide-src/wine"</FONT>,
-<A NAME="69"></A>                                            <FONT ID="StringLiteral">"file:doc/ontology/examples/describe-class/wine.owl"</FONT> );
-<A NAME="70"></A>        m.getDocumentManager().addAltEntry( <FONT ID="StringLiteral">"http://www.w3.org/2001/sw/WebOnt/guide-src/food"</FONT>,
-<A NAME="71"></A>                                            <FONT ID="StringLiteral">"file:doc/ontology/examples/describe-class/food.owl"</FONT> );
+<A NAME="68"></A></FONT>        m.getDocumentManager().addAltEntry( <FONT ID="StringLiteral">"http://www.w3.org/TR/2003/CR-owl-guide-20030818/wine"</FONT>,
+<A NAME="69"></A>                                            <FONT ID="StringLiteral">"file:wine.owl"</FONT> );
+<A NAME="70"></A>        m.getDocumentManager().addAltEntry( <FONT ID="StringLiteral">"http://www.w3.org/TR/2003/CR-owl-guide-20030818/food"</FONT>,
+<A NAME="71"></A>                                            <FONT ID="StringLiteral">"file:food.owl"</FONT> );
 <A NAME="72"></A>
 <A NAME="73"></A>        <FONT ID="SingleLineComment">// read the source document
 <A NAME="74"></A></FONT>        m.read( source );

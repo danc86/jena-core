@@ -55,7 +55,7 @@ public class Main {
 
     public static void main( String[] args ) {
         // read the argument file, or the default
-        String source = (args.length == 0) ? "http://www.w3.org/2001/sw/WebOnt/guide-src/wine" : args[0];
+        String source = (args.length == 0) ? "http://www.w3.org/TR/2003/CR-owl-guide-20030818/wine" : args[0];
         
         // guess if we're using a daml source
         boolean isDAML = source.endsWith( ".daml" );
@@ -65,10 +65,10 @@ public class Main {
                      );
 
         // we have a local copy of the wine ontology
-        m.getDocumentManager().addAltEntry( "http://www.w3.org/2001/sw/WebOnt/guide-src/wine",
-                                            "file:doc/ontology/examples/describe-class/wine.owl" );
-        m.getDocumentManager().addAltEntry( "http://www.w3.org/2001/sw/WebOnt/guide-src/food",
-                                            "file:doc/ontology/examples/describe-class/food.owl" );
+        m.getDocumentManager().addAltEntry( "http://www.w3.org/TR/2003/CR-owl-guide-20030818/wine",
+                                            "file:wine.owl" );
+        m.getDocumentManager().addAltEntry( "http://www.w3.org/TR/2003/CR-owl-guide-20030818/food",
+                                            "file:food.owl" );
 
         // read the source document
         m.read( source );
