@@ -238,8 +238,8 @@ public class ReasonerTester {
         // Can't just leave it as a logger.debug because there are unit tests to which are supposed to given
         // a test failure which would then problem unwanted output.
         /*
+        System.out.println("Reasoner test " + test.getURI() + " - " + description);
         if (!correct) {
-            System.out.println("Reasoner test " + test.getURI() + " - " + description);
             System.out.println("Missing triples:");
             for (Iterator i = correctG.find(null, null, null); i.hasNext(); ) {
                 Triple t = (Triple) i.next();

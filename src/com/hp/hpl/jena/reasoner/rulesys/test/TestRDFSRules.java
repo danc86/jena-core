@@ -84,11 +84,11 @@ public class TestRDFSRules extends TestCase {
     /**
      * Test the basic functioning of the hybrid RDFS rule reasoner with TGC cache
      */
-//    public void testRDFSExptReasoner() throws IOException {
-//        ReasonerTester tester = new ReasonerTester("rdfs/manifest-nodirect-noresource.rdf");
-//        ReasonerFactory rf = RDFSExptRuleReasonerFactory.theInstance();
-//        assertTrue("RDFS experimental (hybrid+tgc) reasoner tests", tester.runTests(rf, this, null));
-//    }
+    public void testRDFSExptReasoner() throws IOException {
+        ReasonerTester tester = new ReasonerTester("rdfs/manifest-nodirect-noresource.rdf");
+        ReasonerFactory rf = RDFSExptRuleReasonerFactory.theInstance();
+        assertTrue("RDFS experimental (hybrid+tgc) reasoner tests", tester.runTests(rf, this, null));
+    }
 
     /**
      * Test the capabilities description.

@@ -35,8 +35,6 @@ import java.util.*;
  * be more efficient but require more space unless we have a good sparse binary
  * matrix package.</p>
  * <p>
- * TODO - this file has got much too long, pull out the graph and
- * iterator machinery as separate top level classes. </p>
  * 
  * @author <a href="mailto:der@hplb.hpl.hp.com">Dave Reynolds</a>
  * @version $Revision$ on $Date$
@@ -466,7 +464,6 @@ public class TransitiveGraphCache implements Finder {
      * Inner class used to walk to forward or backward links 
      * of the graph.
      * <p> The triples are dynamically allocated which is costly. 
-     * TODO - think about caching solutions.</p>
      * <p>I justify the direct accesses to GraphNode fields on the grounds
      * that this is a private inner class ...</p>
      */

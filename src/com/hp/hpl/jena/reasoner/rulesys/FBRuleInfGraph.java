@@ -268,11 +268,31 @@ public class FBRuleInfGraph  extends BasicForwardRuleInfGraph implements Backwar
                         TransitiveReasoner.cacheSubClass(tempTbox, subPropertyCache, subClassCache);
                     }     
                 } else {
-                    if (fdata != null) {
+                    if (data != null) {
                         TransitiveReasoner.cacheSubProp(fdata, subPropertyCache);
                         TransitiveReasoner.cacheSubClass(fdata, subPropertyCache, subClassCache);
                     }
                 }
+                // Insert any axiomatic statements into the caches
+                for (Iterator i = rules.iterator(); i.hasNext(); ) {
+                    Rule r = (Rule)i.next();
+                    if (r.bodyLength() == 0) {
+                        // An axiom
+                        for (int j = 0; j < r.headLength(); j++) {
+                            Object head = r.getHeadElement(j);
+                            if (head instanceof TriplePattern) {
+                                TriplePattern h = (TriplePattern) head;
+                                Node pred = h.getPredicate();
+                                if (pred.equals(RDFS.subClassOf.asNode())) {
+                                    subClassCache.addRelation(h.getSubject(), h.getObject());
+                                } else if (pred.equals(RDFS.subPropertyOf.asNode())) {
+                                    subPropertyCache.addRelation(h.getSubject(), h.getObject());
+                                }
+                            }
+                        }
+                    }
+                }
+
                 subPropertyCache.setCaching(true);
                 subClassCache.setCaching(true);
                 dataFind = FinderUtil.cascade(subClassCache, subPropertyCache, dataFind);

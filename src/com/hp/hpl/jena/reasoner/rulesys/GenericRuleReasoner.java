@@ -258,6 +258,7 @@ public class GenericRuleReasoner extends FBRuleReasoner {
         GenericRuleReasoner grr = new GenericRuleReasoner(rules, graph, factory, mode);
         grr.setDerivationLogging(recordDerivations);
         grr.setTraceOn(traceOn);
+        grr.setTransitiveClosureCaching(enableTGCCaching);
         return grr;
     }
     
