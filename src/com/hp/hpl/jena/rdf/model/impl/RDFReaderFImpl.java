@@ -89,7 +89,7 @@ public class RDFReaderFImpl extends Object implements RDFReaderF {
 
         String className = langToClassName.getProperty(lang);
         if (className == null || className.equals("")) {
-            throw new JenaNoReaderForLangException( lang );
+            throw new NoReaderForLangException( lang );
         }
         try {
           return (RDFReader) Class.forName(className)

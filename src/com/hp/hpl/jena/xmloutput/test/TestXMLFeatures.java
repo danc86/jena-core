@@ -222,7 +222,7 @@ public class TestXMLFeatures extends TestCase {
 			m.write(fwriter, lang);
 			fwriter.close();
 			fail("Writer did not detect bad property URI");
-        } catch (JenaInvalidPropertyURIException je) {
+        } catch (InvalidPropertyURIException je) {
                 // as required, so nowt to do.
 		}
 		file.delete();
@@ -675,7 +675,7 @@ public class TestXMLFeatures extends TestCase {
         } catch (BadURIException e) {
             if (behaviour == BadURI) return;
             throw e;
-        } catch (JenaInvalidPropertyURIException je) {
+        } catch (InvalidPropertyURIException je) {
             if (behaviour == BadPropURI) return;
             throw je;
         } catch (JenaException e) {

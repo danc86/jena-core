@@ -72,7 +72,7 @@ public class PropertyImpl extends ResourceImpl implements Property {
         {
         String localName = getLocalName();
         if (localName == null || localName.equals( "" )) 
-            throw new JenaInvalidPropertyURIException( getURI() );
+            throw new InvalidPropertyURIException( getURI() );
         }
 
     public PropertyImpl(String nameSpace, String localName)

@@ -78,7 +78,7 @@ public class testReaderInterface extends Object {
                     m1.setReaderClassName("foobar", "");
                     reader = m1.getReader("foobar");
                     error(test, n);
-                 } catch (JenaNoReaderForLangException jx) {
+                 } catch (NoReaderForLangException jx) {
                      // that's what we expect
                  }
 

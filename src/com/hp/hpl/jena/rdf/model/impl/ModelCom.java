@@ -745,7 +745,7 @@ implements Model, ModelI, PrefixMapping, ModelLock
     
     public Property getProperty(String uri)  {
         if ( uri == null )
-             throw new JenaInvalidPropertyURIException( null );
+             throw new InvalidPropertyURIException( null );
         return IteratorFactory.asProperty(makeURI(uri),this);
     }
     
@@ -1064,7 +1064,7 @@ implements Model, ModelI, PrefixMapping, ModelLock
     public Statement getRequiredProperty( Resource s, Property p )  
         {
         Statement st = getProperty( s, p );
-        if (st == null) throw new JenaPropertyNotFoundException( p );
+        if (st == null) throw new PropertyNotFoundException( p );
         return st;
         }
     

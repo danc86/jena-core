@@ -118,7 +118,7 @@ public abstract class GraphBase implements Graph {
         }
         
 	public void performDelete( Triple t ) {
-		throw new JenaDeleteDeniedException( "GraphBase::delete" );
+		throw new DeleteDeniedException( "GraphBase::delete" );
 	}
 
 	/**

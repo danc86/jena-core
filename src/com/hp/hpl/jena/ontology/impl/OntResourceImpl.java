@@ -394,7 +394,7 @@ public class OntResourceImpl
         try {
             return getRequiredProperty( getProfile().VERSION_INFO() ).getString();
         }
-        catch (JenaPropertyNotFoundException ignore) {
+        catch (PropertyNotFoundException ignore) {
             return null;
         }
     }
@@ -486,7 +486,7 @@ public class OntResourceImpl
             try {
                 return getRequiredProperty( getProfile().LABEL() ).getString();
             }
-            catch (JenaPropertyNotFoundException ignore) {
+            catch (PropertyNotFoundException ignore) {
                 return null;
             }
         }
@@ -607,7 +607,7 @@ public class OntResourceImpl
             try {
                 return getRequiredProperty( getProfile().COMMENT() ).getString();
             }
-            catch (JenaPropertyNotFoundException ignore) {
+            catch (PropertyNotFoundException ignore) {
                 // no comment :-)
                 return null;
             }
@@ -927,7 +927,7 @@ public class OntResourceImpl
         try {
             return getRequiredProperty( property ).getObject();
         }
-        catch (JenaPropertyNotFoundException ignore) {
+        catch (PropertyNotFoundException ignore) {
             return null;
         }
     }
@@ -1118,7 +1118,7 @@ public class OntResourceImpl
         try {
             return getRequiredProperty( p ).getObject().as( asClass );
         }
-        catch (JenaPropertyNotFoundException e) {
+        catch (PropertyNotFoundException e) {
             return null;
         }
     }

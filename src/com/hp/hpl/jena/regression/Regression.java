@@ -461,7 +461,7 @@ public class Regression extends Object {
 
                 try {
                     n++; p = m.createProperty(null); error(test, n);
-                } catch (JenaInvalidPropertyURIException jx) {
+                } catch (InvalidPropertyURIException jx) {
                     // as expected.
 
                 }
@@ -1404,7 +1404,7 @@ public class Regression extends Object {
 
             n++; try {
                 stmt = m.getRequiredProperty(subject[1], RDF.value); error(test,n);
-            } catch (JenaPropertyNotFoundException jx) {
+            } catch (PropertyNotFoundException jx) {
                 // as required
             }
 
@@ -2564,7 +2564,7 @@ public class Regression extends Object {
                        error(test,n);
             n++; try {
                      r.getRequiredProperty(RDF.type); error(test, n);
-                } catch (JenaPropertyNotFoundException e) { // as expected
+                } catch (PropertyNotFoundException e) { // as expected
                 }
             n++; iter = r.listProperties(RDF.value);
                  int count = 0;
@@ -3987,7 +3987,7 @@ public class Regression extends Object {
             n++;Property p = m.createProperty("foo/", "bar");
                 try {
                      r.getRequiredProperty(p); error(test, n);
-                } catch (JenaPropertyNotFoundException e) {
+                } catch (PropertyNotFoundException e) {
                     // as required
                 }
             n++; iter = r.listProperties(RDF.value);

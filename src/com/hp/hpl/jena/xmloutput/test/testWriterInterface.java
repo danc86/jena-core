@@ -64,7 +64,7 @@ public class testWriterInterface extends TestCase {
             m1.setWriterClassName("foobar", "");
             m1.getWriter("foobar");
             fail("Missing Writer undetected.");
-        } catch (JenaNoWriterForLangException jx) {
+        } catch (NoWriterForLangException jx) {
             // that's what we expected
         }
     }

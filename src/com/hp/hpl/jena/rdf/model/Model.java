@@ -532,7 +532,7 @@ public interface Model
 	 * @return A statement from the model with the given subject and property.
 	 * @param s The subject of the statement to be returned.
 	 * @param p The property of the statement to be returned.
-	 * @throws JenaPropertyNotFoundException
+	 * @throws PropertyNotFoundException
 	 */
 	Statement getRequiredProperty(Resource s, Property p) ;
     

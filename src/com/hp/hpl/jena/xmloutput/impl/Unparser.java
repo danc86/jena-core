@@ -1436,7 +1436,7 @@ class Unparser {
 			} else {
 				rslt = r.getRequiredProperty(RDF.type);
 			}
-		} catch (JenaPropertyNotFoundException rdfe) {
+		} catch (PropertyNotFoundException rdfe) {
 			if (r instanceof Statement) error( "Statement type problem" ) ;
 			rslt = null;
 		}

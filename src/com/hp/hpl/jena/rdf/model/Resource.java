@@ -127,7 +127,7 @@ public interface Resource extends RDFNode {
      * be returned.  If no such statements are found, an exception is thrown.</p>
      * @param p The property sought.
      * @return some (this, p, ?O) statement if one exists
-     * @throws JenaPropertyNotFoundException if no such statement found
+     * @throws PropertyNotFoundException if no such statement found
      */
     public Statement  getRequiredProperty(Property p) ;
     
