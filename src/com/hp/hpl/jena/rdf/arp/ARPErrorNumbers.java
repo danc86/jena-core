@@ -154,7 +154,7 @@ public interface ARPErrorNumbers {
      and subsequent occurrences.
      This check is expensive in memory. When processing very large files,
      it may be sensible to switch the check off by using
-     {@link ARP.setErrorMode(int,int)} to ignore this condition.
+     {@link ARP#setErrorMode(int,int)} to ignore this condition.
      * (W105).
      @see #WARN_LEGAL_REUSE_OF_ID
     
