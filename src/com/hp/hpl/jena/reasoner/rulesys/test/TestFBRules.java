@@ -183,7 +183,8 @@ public class TestFBRules extends TestCase {
     public void testSchemaBinding() {
         String rules = "[testRule1: (n1 p ?a) -> (n2, p, ?a)]" +
                        "[testRule2: (n1 q ?a) -> (n2, q, ?a)]" +
-                       "[testRule3: (n2 p ?a), (n2 q ?a) -> (res p ?a)]";
+                       "[testRule3: (n2 p ?a), (n2 q ?a) -> (res p ?a)]" +
+                       "[testBRule4: (n3 p ?a) <- (n1, p, ?a)]";
         List ruleList = Rule.parseRules(rules);
         Graph schema = new GraphMem();
         schema.add(new Triple(n1, p, n3));
@@ -199,6 +200,7 @@ public class TestFBRules extends TestCase {
             new Triple[] {
                 new Triple(n1, p, n3),
                 new Triple(n2, p, n3),
+                new Triple(n3, p, n3),
                 new Triple(n1, q, n4),
                 new Triple(n2, q, n4),
                 new Triple(n1, q, n3),
@@ -515,6 +517,7 @@ public class TestFBRules extends TestCase {
 //            System.out.println(" - " + PrintUtil.print(t));
             count++;
         }
+        
         assertTrue(count == 7);
     }
     

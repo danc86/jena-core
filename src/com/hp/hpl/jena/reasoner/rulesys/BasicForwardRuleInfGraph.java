@@ -135,12 +135,14 @@ public class BasicForwardRuleInfGraph extends BaseInfGraph implements ForwardRul
      * fire any rules but provide additional axioms that might enable future rule
      * firing when real data is added. Used to implement bindSchema processing
      * in the parent Reasoner.
+     * @return return true if the rule set has also been loaded, will always be false for this case but subclasses do more
      */
-    public void preloadDeductions(Graph preload) {
+    public boolean preloadDeductions(Graph preload) {
         Graph d = fdeductions.getGraph();
         for (Iterator i = preload.find(null, null, null); i.hasNext(); ) {
             d.add((Triple)i.next());
         }
+        return false;
     }
    
     /**

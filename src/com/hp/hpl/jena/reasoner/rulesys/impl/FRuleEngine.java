@@ -85,6 +85,15 @@ public class FRuleEngine {
         findAndProcessAxioms();
         nAxiomRulesFired = nRulesFired;
         logger.debug("Axioms fired " + nAxiomRulesFired + " rules");
+        fastInit();
+    }
+    
+    /**
+     * Process all available data. This version expects that all the axioms 
+     * have already be preprocessed and the clause index already exists.
+     */
+    public void fastInit() {
+        if (infGraph.getRawGraph() == null) return; 
         // Create the reasoning context
         BFRuleContext context = new BFRuleContext(infGraph);
         // Insert the data
@@ -127,6 +136,21 @@ public class FRuleEngine {
      */
     public void setDerivationLogging(boolean recordDerivations) {
         this.recordDerivations = recordDerivations;
+    }
+    
+    /**
+     * Access the precomputed internal rule form. Used when precomputing the
+     * internal axiom closures.
+     */
+    public Object getRuleStore() {
+        return clauseIndex;
+    }
+    
+    /**
+     * Set the internal rule from from a precomputed state.
+     */
+    public void setRuleStore(Object ruleStore) {
+        clauseIndex = (OneToManyMap)ruleStore;
     }
     
 //  =======================================================================
@@ -173,20 +197,22 @@ public class FRuleEngine {
      * @param ignoreBrules set to true if rules written in backward notation should be ignored
      */
     protected void buildClauseIndex(boolean ignoreBrules) {
-        clauseIndex = new OneToManyMap();
-        
-        for (Iterator i = rules.iterator(); i.hasNext(); ) {
-            Rule r = (Rule)i.next();
-            if (ignoreBrules && r.isBackward()) continue;
-            Object[] body = r.getBody();
-            for (int j = 0; j < body.length; j++) {
-                if (body[j] instanceof TriplePattern) {
-                    Node predicate = ((TriplePattern) body[j]).getPredicate();
-                    ClausePointer cp = new ClausePointer(r, j);
-                    if (predicate instanceof Node_ANY || predicate instanceof Node_RuleVariable) {
-                        clauseIndex.put(Node.ANY, cp);
-                    } else {
-                        clauseIndex.put(predicate, cp);
+        if (clauseIndex == null) {
+            clauseIndex = new OneToManyMap();
+            
+            for (Iterator i = rules.iterator(); i.hasNext(); ) {
+                Rule r = (Rule)i.next();
+                if (ignoreBrules && r.isBackward()) continue;
+                Object[] body = r.getBody();
+                for (int j = 0; j < body.length; j++) {
+                    if (body[j] instanceof TriplePattern) {
+                        Node predicate = ((TriplePattern) body[j]).getPredicate();
+                        ClausePointer cp = new ClausePointer(r, j);
+                        if (predicate instanceof Node_ANY || predicate instanceof Node_RuleVariable) {
+                            clauseIndex.put(Node.ANY, cp);
+                        } else {
+                            clauseIndex.put(predicate, cp);
+                        }
                     }
                 }
             }

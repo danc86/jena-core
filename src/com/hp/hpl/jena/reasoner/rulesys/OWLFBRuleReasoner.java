@@ -34,6 +34,9 @@ public class OWLFBRuleReasoner extends FBRuleReasoner {
     /** The parsed rules */
     protected static List ruleSet;
     
+    /** The precomputed axiom closure and compiled rule set */
+    protected static FBRuleInfGraph preload; 
+    
     /** log4j logger */
     protected static Logger logger = Logger.getLogger(OWLRuleReasoner.class);
     
@@ -73,7 +76,10 @@ public class OWLFBRuleReasoner extends FBRuleReasoner {
      * will be combined with the data when the final InfGraph is created.
      */
     public Reasoner bindSchema(Graph tbox) throws ReasonerException {
-        FBRuleInfGraph graph = new FBRuleInfGraph(this, rules, null, tbox);
+        if (schemaGraph != null) {
+            throw new ReasonerException("Can only bind one schema at a time to an OWLRuleReasoner");
+        }
+        FBRuleInfGraph graph = new FBRuleInfGraph(this, rules, getPreload(), tbox);
         graph.prepare();
         return new OWLFBRuleReasoner(this, graph);
     }
@@ -91,18 +97,19 @@ public class OWLFBRuleReasoner extends FBRuleReasoner {
      */
     public InfGraph bind(Graph data) throws ReasonerException {
         FBRuleInfGraph graph =  null;
+        InfGraph schemaArg = schemaGraph == null ? getPreload() : schemaGraph; 
         
         // Process the  data looking for any intersection declarations
         // that we translate into addtiional rules procedurally (for now at least)
-        Iterator i = data.find(null, OWL.intersectionOf.asNode(), null); 
+        Iterator i = data.find(null, OWL.intersectionOf.asNode(), null);
         if (i.hasNext()) {
             List newrules = (List) ((ArrayList) rules).clone();
             while(i.hasNext()) {
                 translateIntersectionOf((Triple)i.next(), newrules, data);
             }
-            graph = new FBRuleInfGraph(this, newrules, schemaGraph);
+            graph = new FBRuleInfGraph(this, newrules, schemaArg);
         } else {
-            graph = new FBRuleInfGraph(this, rules, schemaGraph);
+            graph = new FBRuleInfGraph(this, rules, schemaArg);
         }
         
         graph.setDerivationLogging(recordDerivations);
@@ -110,6 +117,20 @@ public class OWLFBRuleReasoner extends FBRuleReasoner {
         graph.rebind(data);
                 
         return graph;
+    }
+    
+    /**
+     * Get the single static precomputed rule closure.
+     */
+    public FBRuleInfGraph getPreload() {
+        return null;        // Disable preload for now, causes problems
+//        synchronized (OWLFBRuleReasoner.class) {
+//            if (preload == null) {
+//                preload = new FBRuleInfGraph(this, rules, null);
+//                preload.prepare();
+//            }
+//            return preload;
+//        }
     }
     
     /**
