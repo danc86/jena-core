@@ -79,7 +79,7 @@ public class N3JenaWriterCommon implements RDFWriter
     // Require propertyWidth < propertyCol (strict less than)
     int propertyWidth = propertyCol-minGap ;
 
-    //  Gap from property object
+    //  Gap from property to object when object on a new line.
     int indentObject = propertyCol ;
     
     // If a subject is shorter than this, the first property may go on same line.
