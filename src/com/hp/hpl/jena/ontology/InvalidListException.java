@@ -19,7 +19,9 @@
 
 // Package
 ///////////////
-package com.hp.hpl.jena.rdf.model;
+package com.hp.hpl.jena.ontology;
+
+import com.hp.hpl.jena.rdf.model.RDFException;
 
 
 // Imports
@@ -28,15 +30,15 @@ package com.hp.hpl.jena.rdf.model;
 
 /**
  * <p>
- * A exception that is thrown when an operation attempts to access an indexed
- * list element beyond the length of the list.
+ * A exception that is thrown when an operation is attempted on a list that is
+ * not well-formed, and is being processed in strict mode.
  * </p>
  *
  * @author Ian Dickinson, HP Labs
  *         (<a href="mailto:Ian.Dickinson@hp.com">email</a>)
  * @version Release ($Id$)
  */
-public class ListIndexException
+public class InvalidListException
     extends RDFException
 {
     // Constants
@@ -55,18 +57,18 @@ public class ListIndexException
     //////////////////////////////////
 
     /**
-     * Construct a list index exception with a default message.
+     * Construct an invalid list exception with a default message.
      */
-    public ListIndexException() {
-        super( "Tried to index beyond the length of a list" );
+    public InvalidListException() {
+        super( "Tried to operate on a list that is not well-formed" );
     }
 
     /**
-     * Construct a list index exception with a given message.
+     * Construct an invalid list exception with a given message.
      * 
      * @param msg The exception message.
      */
-    public ListIndexException( String msg ) {
+    public InvalidListException( String msg ) {
         super( msg );
     }
 

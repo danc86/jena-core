@@ -19,7 +19,9 @@
 
 // Package
 ///////////////
-package com.hp.hpl.jena.rdf.model;
+package com.hp.hpl.jena.ontology;
+
+import com.hp.hpl.jena.rdf.model.RDFException;
 
 
 // Imports
