@@ -119,7 +119,7 @@ public class SimpleBulkUpdateHandler implements BulkUpdateHandler
     private List triplesOf( Graph g )
         {
         ArrayList L = new ArrayList();
-        Iterator it = g.find( null, null, null );
+        Iterator it = g.find( Triple.ANY );
         while (it.hasNext()) L.add( it.next() );
         return L;
         }

@@ -25,34 +25,29 @@ public class GraphMemQueryHandler extends SimpleQueryHandler
 	    }
 	
 	public ExtendedIterator objectsFor( Node p, Node o )
-	    {
-	    return p == null && o == null ? findObjects() : super.objectsFor( p, o );
-	    }
+	    { return bothANY( p, o ) ? findObjects() : super.objectsFor( p, o ); }
 
     public ExtendedIterator predicatesFor( Node s, Node o )
-        {
-        return s == null && o == null ? findPredicates() : super.predicatesFor( s, o );
-        }
+        { return bothANY( s, o ) ? findPredicates() : super.predicatesFor( s, o ); }
     
     public ExtendedIterator subjectsFor( Node p, Node o )
-	    {
-	    return p == null && o == null ? findSubjects() : super.subjectsFor( p, o );
-	    }   
+	    { return bothANY( p, o ) ? findSubjects() : super.subjectsFor( p, o ); }   
+
+    /**
+         Answer true iff both <code>a</code> and <code>b</code> are ANY wildcards
+         or are null (legacy). 
+    */
+    private boolean bothANY( Node a, Node b )
+        { return (a == null || a.equals( Node.ANY )) && (b == null || b.equals( Node.ANY )); }
 
     public ExtendedIterator findPredicates()
-        {
-        return ((GraphMem) graph).store.listPredicates();
-        }
+        { return ((GraphMem) graph).store.listPredicates(); }
 
 	public ExtendedIterator findObjects()
-	    {
-	    return ((GraphMem) graph).store.listObjects();
-	    }
+	    { return ((GraphMem) graph).store.listObjects(); }
 	
 	public ExtendedIterator findSubjects()
-	    {
-	    return ((GraphMem) graph).store.listSubjects();
-	    }
+	    { return ((GraphMem) graph).store.listSubjects(); }
 	}
 
 /*

@@ -49,7 +49,7 @@ public class SimpleQueryHandler implements QueryHandler
     public static ExtendedIterator objectsFor( Graph g, Node s, Node p )
         { 
         Set objects = CollectionFactory.createHashedSet();
-        ClosableIterator it = g.find( s, p, null );
+        ClosableIterator it = g.find( s, p, Node.ANY );
         while (it.hasNext()) objects.add( ((Triple) it.next()).getObject() );
         return WrappedIterator.create( objects.iterator() );
         }
@@ -57,7 +57,7 @@ public class SimpleQueryHandler implements QueryHandler
     public static ExtendedIterator subjectsFor( Graph g, Node p, Node o )
         { 
         Set objects = CollectionFactory.createHashedSet();
-        ClosableIterator it = g.find( null, p, o );
+        ClosableIterator it = g.find( Node.ANY, p, o );
         while (it.hasNext()) objects.add( ((Triple) it.next()).getSubject() );
         return WrappedIterator.create( objects.iterator() );
         }

@@ -28,7 +28,7 @@ public class GraphUtil
     	@return an iterator over all the graph's triples
     */
     public static ExtendedIterator findAll( Graph g )
-        { return g.find( Node.ANY, Node.ANY, Node.ANY ); }
+        { return g.find( Triple.ANY ); }
                 
     }
 

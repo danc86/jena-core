@@ -47,7 +47,7 @@ public class GraphMatcher extends java.lang.Object {
     }  
     
     static public int hashCode(Graph g) {
-    	ClosableIterator ci = g.find(null,null,null);
+    	ClosableIterator ci = GraphUtil.findAll( g );
     	int hash = 0;
     	GraphMatcher gm = new GraphMatcher(g);
     	while ( ci.hasNext() ) {
@@ -268,7 +268,7 @@ public class GraphMatcher extends java.lang.Object {
         in(HASH_BAD);
     }
     private int prepare(Graph otherm)  {
-        ClosableIterator ss = m.find(null,null,null);
+        ClosableIterator ss = GraphUtil.findAll( m );
         myHashLevel = 0;
         int hash = 0;
         try {
