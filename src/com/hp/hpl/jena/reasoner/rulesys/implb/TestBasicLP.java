@@ -58,7 +58,7 @@ public class TestBasicLP  extends TestCase {
     public static TestSuite suite() {
         return new TestSuite( TestBasicLP.class ); 
 //        TestSuite suite = new TestSuite();
-//        suite.addTest(new TestBasicLP( "testNamed" ));
+//        suite.addTest(new TestBasicLP( "testBaseRules5" ));
 //        return suite;
     }  
    

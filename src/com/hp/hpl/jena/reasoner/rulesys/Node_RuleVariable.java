@@ -139,7 +139,8 @@ public class Node_RuleVariable extends Node_Variable {
     
     /** printable form */        
     public String toString() {
-        return ((VarLabel)label).getLabel();
+        String l = ((VarLabel)label).getLabel();
+        return (l == null) ? "*" : l;
     }
     
 // Obsolete equality override this functionality has been moved into TriplePattern

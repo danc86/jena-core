@@ -1,7 +1,7 @@
 /******************************************************************
- * File:        FrameObject.java
+ * File:        TripleMatchFactory.java
  * Created by:  Dave Reynolds
- * Created on:  18-Jul-2003
+ * Created on:  23-Jul-2003
  * 
  * (c) Copyright 2003, Hewlett-Packard Company, all rights reserved.
  * [See end of file]
@@ -10,69 +10,40 @@
 package com.hp.hpl.jena.reasoner.rulesys.implb;
 
 /**
- * Base class for stack frame objects that
- * we might want to allocate from a pool in the future.
- *  
+ * Factory for triple match frames.
+ * 
  * @author <a href="mailto:der@hplb.hpl.hp.com">Dave Reynolds</a>
  * @version $Revision$ on $Date$
  */
-public class FrameObject {
+public class TripleMatchFactory extends FrameObjectFactory {
 
-    /** Used to link the frame to the prior frame in the (tree) stack or the pool */
-    FrameObject link;
+    /** The single instance of the factory */
+    protected static final TripleMatchFactory theFactory = new TripleMatchFactory();
     
-    /** The parent factory to which free frames can be returned */
-    protected FrameObjectFactory factory;
+    /** Private factory constructor */
+    private TripleMatchFactory() {}
     
-    /** 
-     * Constructor The parent factory to which free frames can be returned
-     * @param factory 
+    /**
+     * Return a newly constructed or cached environment frame.
      */
-    public FrameObject(FrameObjectFactory factory) {
-        this.factory = factory;
+    public static TripleMatchFrame create() {
+        return theFactory.getFrame();
     }
     
     /**
-     * Link this frame to an existing frame. In the future this might do some ref count
-     * tricks.
+     * Find or allocate a new frame.
      */
-    public void linkTo(FrameObject prior) {
-        link = prior;
-    }
-    
-    /**
-     * Link this frame to an existing frame. This will never do any funny ref count tricks.
-     */
-    public void fastLinkTo(FrameObject prior) {
-        link = prior;
-    }
-    
-    /**
-     * Return the prior frame in the tree.
-     */
-    public FrameObject getLink() {
-        return link;
-    }
-    
-    /**
-     * Close the frame actively. This frees any internal resources, frees this frame and
-     * frees the frame to which this is linked.
-     */
-    public void close() {
-        if (link != null) link.close();
-        free();
-    }
-    
-    /**
-     * Signal that the frame is finished with. If not called the frame will be
-     * reclaimed by garbage collection anyway. Not implemented.
-     */
-    public void free() {
-        factory.returnFreeFrame(this);
+    private TripleMatchFrame getFrame() {
+        TripleMatchFrame env = (TripleMatchFrame)getFree();
+        if (env == null) {
+            env = new TripleMatchFrame(this);
+        } else {
+            env.fastLinkTo(null);
+        }
+        return env;
     }
     
 }
-
 
 /*
     (c) Copyright Hewlett-Packard Company 2003

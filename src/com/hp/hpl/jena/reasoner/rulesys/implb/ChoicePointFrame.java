@@ -10,6 +10,7 @@
 package com.hp.hpl.jena.reasoner.rulesys.implb;
 
 import com.hp.hpl.jena.graph.Node;
+
 import java.util.*;
 
 /**
@@ -27,28 +28,49 @@ public class ChoicePointFrame extends FrameObject {
 
     /** The environment frame describing the state of the AND tree at this choice point */
     EnvironmentFrame envFrame;
-    
+
     /** The top of the trail stack at the time of the call */
     int trailIndex;
-    
+
     /** The set of argument variables for the call */
     Node[] argVars;
-    
-    /** The list of clause code objects comprising the set of choices */
-    List clauses;
-    
-    /** The current position in the clause list */
-    int clauseIndex;
-    
+
+    /** Iterator over the set of clause code objects comprising the set of choices */
+    Iterator clauseIterator;
+
     /**
      * Constructor.
      */
     public ChoicePointFrame(ChoicePointFactory factory) {
         super(factory);
     }
+
+    /**
+     * Initialize a choice point to preserve the current context of the given intepreter 
+     * and then call the given set of predicates.
+     * @param interpreter the LPInterpreter whose state is to be preserved
+     * @param predicateClauses the list of predicates for this choice point
+     */
+    public void init(LPInterpreter interpreter, List predicateClauses) {
+        envFrame = interpreter.envFrame;
+        trailIndex = interpreter.trail.size();
+        argVars = new Node[interpreter.argVars.length];
+        System.arraycopy(interpreter.argVars, 0, argVars, 0, argVars.length);
+        clauseIterator = predicateClauses.iterator();
+    }
+
+    /**
+     * Override close method to reclaim the environment stack (imporant for
+     * closing any embedded triple match iterators)
+     */
+    public void close() {
+        if (envFrame != null)
+            envFrame.close();
+        if (link != null)
+            link.close();
+        free();
+    }
 }
-
-
 
 /*
     (c) Copyright Hewlett-Packard Company 2003

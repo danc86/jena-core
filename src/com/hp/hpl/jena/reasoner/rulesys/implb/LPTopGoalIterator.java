@@ -9,6 +9,8 @@
  *****************************************************************/
 package com.hp.hpl.jena.reasoner.rulesys.implb;
 
+import java.util.NoSuchElementException;
+
 import com.hp.hpl.jena.reasoner.rulesys.impl.StateFlag;
 import com.hp.hpl.jena.util.iterator.ClosableIterator;
 
@@ -71,6 +73,9 @@ public class LPTopGoalIterator implements ClosableIterator {
      */
     public Object next() {
         if (!started) moveForward();
+        if (lookAhead == null) {
+            throw new NoSuchElementException("Overran end of LP result set");
+        }
         Object result = lookAhead;
         moveForward();
         return result;

@@ -26,7 +26,7 @@ public class ChoicePointFactory extends FrameObjectFactory {
     /**
      * Return a newly constructed or cached environment frame.
      */
-    public static ChoicePointFrame createEnvironment() {
+    public static ChoicePointFrame create() {
         return theFactory.getFrame();
     }
     
