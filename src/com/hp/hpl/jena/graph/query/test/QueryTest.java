@@ -42,12 +42,6 @@ public class QueryTest extends GraphTestBase
         single = graphWith( "spindizzies drive cities" );
         }
         
-	public void assertEquals( String name, Graph wanted, Graph obtained )
-		{
-		Model mWanted = new ModelMem( wanted ), mObtained = new ModelMem( obtained );
-		assertTrue( name, mWanted.isIsomorphicWith( mObtained ) );
-		}
-		
     private void checkQueryVariables()
         {
         assertEquals( X, Query.X );
