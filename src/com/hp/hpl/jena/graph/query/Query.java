@@ -140,9 +140,11 @@ public class Query
         {
         SimpleQueryEngine e = new SimpleQueryEngine( triples, sortMethod, constraint );
         ExtendedIterator result = e.executeBindings( outStages, args, nodes );
-        variableCount = e.getVariableCount();
+        lastQueryEngine = e;
         return result;
         }
+    
+    private SimpleQueryEngine lastQueryEngine = null;
     
     /** The named bunches of triples for graph matching */
     
@@ -174,10 +176,8 @@ public class Query
         
     private TripleSorter sortMethod = TripleSorter.dontSort;
     
-    private int variableCount = -1;
-    
     public int getVariableCount()
-        { return variableCount; }
+        { return lastQueryEngine.getVariableCount(); }
 	}
 
 /*
