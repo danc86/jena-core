@@ -59,8 +59,8 @@ public class DebugOWL {
     /** log4j logger*/
     static Logger logger = Logger.getLogger(DebugOWL.class);
     
-    /** reasoner config: experimental RDFS using backchainer for closure finding */
-    public static final int EXPT_RDFS = 1;
+    /** reasoner config: experimental ruleset and config */
+    public static final int EXPT = 1;
     
     /** reasoner config: normal OWL-FB */
     public static final int OWLFB = 2;
@@ -84,7 +84,7 @@ public class DebugOWL {
         
         switch(config) {
             
-        case EXPT_RDFS:
+        case EXPT:
             reasoner = GenericRuleReasonerFactory.theInstance().create(null);
             GenericRuleReasoner grr = (GenericRuleReasoner)reasoner;
             grr.setMode(GenericRuleReasoner.HYBRID);
@@ -94,7 +94,9 @@ public class DebugOWL {
                 System.out.println("Failed to open rules file: " + e);
                 System.exit(1);
             }
-            ((GenericRuleReasoner)reasoner).setTraceOn(true);
+            grr.setTransitiveClosureCaching(true);
+            grr.setOWLTranslation(true);
+//            grr.setTraceOn(true);
             break;
             
             case OWLFB:
@@ -316,7 +318,7 @@ public class DebugOWL {
 //            long t = tester.list(null, RDF.type.asNode(), RDFS.Class.asNode(), false);
 //            System.out.println("Took " + t + "ms");
 
-            DebugOWL tester = new DebugOWL(RDFSExpt);
+            DebugOWL tester = new DebugOWL(EXPT);
             tester.runListClassesTest(1,4,10,false);
             tester.runListClassesTest(1,4,10,false);
             tester.runListClassesTest(2,4,10,false);
