@@ -16,7 +16,7 @@ import java.util.*;
 import junit.framework.*;
 
 /**
-    Abstract tests for garph query, parameterised on getGraph().
+    Abstract tests for graph query, parameterised on getGraph().
  	@author kers
 */
 public abstract class AbstractTestQuery extends GraphTestBase

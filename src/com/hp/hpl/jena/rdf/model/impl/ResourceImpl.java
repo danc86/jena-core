@@ -47,7 +47,7 @@ public class ResourceImpl extends EnhNode implements Resource {
     private ResourceImpl( Node n, int split, Model m )
         {
         super( n, (ModelCom)m );
-        this.splitHere = split;
+        this.splitHere = split; // whereToSplit( n.toString() );
         }
 
     /** Creates new ResourceImpl */
