@@ -80,12 +80,16 @@ public class SimpleReifier implements Reifier
     public Node reifyAs( Node tag, Triple t )
     	{
         Object partial = nodeMap.get( tag );
-        if (partial == null)
+        if (partial instanceof Triple)
+            { if (!t.equals( partial )) throw new Reifier.AlreadyReifiedException( tag ); }
+        else if (partial == null)
             nodeMap.putTriple( tag, t );
-        else if (partial instanceof Fragments)
+        else
+            {
             graphAddQuad( parent, tag, t );
-        else if (!t.equals( partial )) 
-            throw new Reifier.AlreadyReifiedException( tag );
+            Triple t2 = getTriple( tag );
+            if (t2 == null) throw new CannotReifyException( tag );
+            }
         return tag; 
     	}
         
