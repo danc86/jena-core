@@ -967,7 +967,8 @@ public class OntModelImpl
     // Internal implementation methods
     //////////////////////////////////
 
-    protected MultiUnion getUnionGraph() {
+// jjc - want access for Syntax checker ....
+    public MultiUnion getUnionGraph() {
         return ((OntologyGraph) graph).getUnion();
     }
     
