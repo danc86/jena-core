@@ -322,7 +322,10 @@ public class DAML_OILProfile
                                             public boolean doCheck( Node n, EnhGraph g ) {
                                                 return g.asGraph().contains( n, RDF.type.asNode(), DAML_OIL.Class.asNode() ) ||
                                                        g.asGraph().contains( n, RDF.type.asNode(), DAML_OIL.Restriction.asNode() ) || 
-                                                       g.asGraph().contains( n, RDF.type.asNode(), RDFS.Class.asNode() );
+                                                       g.asGraph().contains( n, RDF.type.asNode(), RDFS.Class.asNode() ) ||
+                                                       n.equals( DAML_OIL.Thing.asNode() ) ||
+                                                       n.equals( DAML_OIL.Nothing.asNode() )
+                                                       ;
                                             }
                                         }
         },

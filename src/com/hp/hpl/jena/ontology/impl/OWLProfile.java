@@ -257,10 +257,7 @@ public class OWLProfile
                                                        g.asGraph().contains( n, RDF.type.asNode(), RDFS.Class.asNode() ) ||
                                                        // These are common cases that we should support
                                                        n.equals( OWL.Thing.asNode() ) ||
-                                                       n.equals( OWL.Nothing.asNode() ) ||
-                                                       n.equals( DAML_OIL.Thing.asNode() ) ||
-                                                       n.equals( DAML_OIL.Nothing.asNode() ) ||
-                                                       n.equals( RDFS.Resource.asNode() )
+                                                       n.equals( OWL.Nothing.asNode() )
                                                        ;
                                             }
                                         }

@@ -29,8 +29,7 @@ import com.hp.hpl.jena.enhanced.*;
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.ontology.*;
 import com.hp.hpl.jena.rdf.model.*;
-import com.hp.hpl.jena.vocabulary.RDFS;
-import com.hp.hpl.jena.vocabulary.RDF;
+import com.hp.hpl.jena.vocabulary.*;
 
 import java.util.*;
 
@@ -233,7 +232,9 @@ public class RDFSProfile
         // Resource (key),              check method
         {  OntClass.class,              new SupportsCheck() {
                                             public boolean doCheck( Node n, EnhGraph g ) {
-                                                return g.asGraph().contains( n, RDF.type.asNode(), RDFS.Class.asNode() );
+                                                return g.asGraph().contains( n, RDF.type.asNode(), RDFS.Class.asNode() ) ||
+                                                       n.equals( RDFS.Resource.asNode() )
+                                                       ;
                                             }
                                         }
         },
