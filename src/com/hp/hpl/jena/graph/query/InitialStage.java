@@ -9,13 +9,16 @@ package com.hp.hpl.jena.graph.query;
 import com.hp.hpl.jena.graph.*;
 
 /**
+    The initial stage of a query, responsible for dropping the no-variables-bound seed
+    binding domain into the remaining stages of the query pipeline.
+    
 	@author kers
 */
 public class InitialStage extends Stage
     {
     /**
         The value passed in is the computed width of the result array(s); this
-        is ued to allocate the seeding node array.
+        is used to allocate the seeding node array.
         
      	@param count the width of the result binding array
      */
@@ -27,6 +30,11 @@ public class InitialStage extends Stage
     public void close()
         { markClosed(); }
 
+    /**
+        To deliver value into the Pipe result, we drop in a binding array of the correct
+        width in which all the elements are null, then we close the pipe. Everything else
+        is spawned by the following stages.
+    */
     public Pipe deliver( Pipe result )
         {
         result.put( new Domain( new Node[count]  ) );

@@ -9,8 +9,6 @@ package com.hp.hpl.jena.graph.query;
 import com.hp.hpl.jena.graph.Node;
 
 /**
-	@author kers
-<br>
     A Valuator that returns the same Node every time, as specified
     in its constructor.
 */

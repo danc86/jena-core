@@ -6,29 +6,38 @@
 
 package com.hp.hpl.jena.graph.query;
 import com.hp.hpl.jena.graph.*;
+
 /**
+    An Element that matches a single specified value.
+    
 	@author hedgehog
 */
 public class Fixed extends Element 
 	{
 	private Node value;
 	
+    /**
+        Initialise this element with its single matching value: remember that value.
+    */
 	public Fixed( Node x ) 
         { this.value = x; }
-	
+        
 	public Node getValue() 
         { return value; }
 	
 	public String toString() 
         { return "<fixed " + value + ">"; }
 			
+    /**
+        Accept a node <code>x</code> iff it is value-equal to the fixed value of this element.
+        Equality is determined by Node::sameValueAs.
+    */
 	public boolean accepts( Domain d, Node x ) 
-        // { return value.equals( x ); }
-        // Modified by der to move to value semantics
-        {
-            return x.sameValueAs(value);
-        }
+        { return x.sameValueAs(value); }
     
+    /**
+        This element represents the fixed value it is initialised with.
+    */
     public Node asNode( Domain d ) 
         { return value; }
 	}

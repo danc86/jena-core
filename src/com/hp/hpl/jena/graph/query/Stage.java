@@ -11,7 +11,7 @@ package com.hp.hpl.jena.graph.query;
 	gets connected to its predecessor in the pipeline, and
 	mangles the contents before handing them on to the next
 	stage.
-<br>
+
 	@author hedgehog
 */
 

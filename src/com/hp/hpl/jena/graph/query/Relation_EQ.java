@@ -7,8 +7,6 @@
 package com.hp.hpl.jena.graph.query;
 
 /**
-	@author kers
-<br>
     The relational test for (node) equality.
 */
 

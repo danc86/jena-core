@@ -9,12 +9,23 @@ package com.hp.hpl.jena.graph.query;
 import com.hp.hpl.jena.graph.*;
 
 /**
+    A binding instance of a variable. It accepts any node and records it in the supplied
+    Domain at the index allocated to it when it is created.
+    
 	@author hedgehog
 */
 public class Bind extends Element 
 	{	
+    /**
+        Initialise a Bind element: remember the index <code>n</code> which is the
+        place in Domain's where it may store its value.
+    */
 	public Bind( int n ) { super( n ); }
 	
+    /**
+        accept any node, rememver its value by storing it in d[index].
+        @return true
+    */
 	public boolean accepts( Domain d, Node x )
 		{
 		d.setElement( index, x );

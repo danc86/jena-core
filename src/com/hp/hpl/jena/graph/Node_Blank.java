@@ -6,12 +6,12 @@
 
 package com.hp.hpl.jena.graph;
 
+import com.hp.hpl.jena.rdf.model.*;
+
 /**
     RDF blank nodes, ie nodes with identity but without URIs.
 	@author kers
 */
-
-import com.hp.hpl.jena.rdf.model.*;
 
 public class Node_Blank extends Node_Concrete
     {    

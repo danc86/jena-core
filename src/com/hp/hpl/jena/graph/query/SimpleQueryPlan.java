@@ -10,6 +10,9 @@ import com.hp.hpl.jena.util.iterator.*;
 import com.hp.hpl.jena.graph.*;
 
 /**
+    SimpleQueryPlan is an implementation of QueryPlan which uses the engine defined
+    in Query to do the work.
+    
 	@author kers
 */
 public class SimpleQueryPlan implements BindingQueryPlan
@@ -26,9 +29,7 @@ public class SimpleQueryPlan implements BindingQueryPlan
         }
         
     public ExtendedIterator executeBindings()
-        {
-        return query.executeBindings( graph, variables );
-        }
+        { return query.executeBindings( graph, variables ); }
     }
 
 /*

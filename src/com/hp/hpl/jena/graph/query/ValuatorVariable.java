@@ -9,8 +9,6 @@ package com.hp.hpl.jena.graph.query;
 import com.hp.hpl.jena.graph.Node;
 
 /**
-	@author kers
-<br>
     A valuator that represents a variable; it obtains its value from
     the environment Domain.
 */

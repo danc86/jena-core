@@ -6,16 +6,17 @@
 
 package com.hp.hpl.jena.graph.query;
 
-/**
-    A SimpleQueryHandler is a more-or-less straightforward implementation of QueryHandler
-    suitable for use on graphs with no special query engines.
-	@author kers
-*/
-
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.util.iterator.*;
 
 import java.util.*;
+
+/**
+    A SimpleQueryHandler is a more-or-less straightforward implementation of QueryHandler
+    suitable for use on graphs with no special query engines.
+    
+	@author kers
+*/
 
 public class SimpleQueryHandler implements QueryHandler
     {

@@ -10,6 +10,9 @@ import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.util.iterator.*;
 
 /**
+    A PatternStage is a Stage that handles some bunch of related patterns; those patterns
+    are encoed as Triples.
+    
     @author hedgehog
 */
 
@@ -27,9 +30,9 @@ public class PatternStage extends Stage
     protected Pattern [] compile( Mapping map, Triple [] triples )
         { return compile( compiler, map, triples ); }
         
-    protected Pattern [] compile( PatternCompiler compiler, Mapping map, Triple [] source )
+    protected Pattern [] compile( PatternCompiler pc, Mapping map, Triple [] source )
         {
-        return PatternStageCompiler.compile( compiler, map, source );
+        return PatternStageCompiler.compile( pc, map, source );
         }
         
     private static final PatternCompiler compiler = new PatternStageCompiler();

@@ -7,8 +7,6 @@
 package com.hp.hpl.jena.graph.query;
 
 /**
-	@author kers
-<br>
     Encodes the unequal (Node) relation.
 */
 public class Relation_NE extends Relation

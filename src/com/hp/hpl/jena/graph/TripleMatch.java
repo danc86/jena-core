@@ -7,8 +7,13 @@
 package com.hp.hpl.jena.graph;
 
 /**
- * @author Jeremy Carroll; updated by kers
- */
+    Interface for triple matching; may become obsolete. <i>do not assume this is
+    stable</i>. Triple matches are defined by subject, predicate, and object, and
+    may be converted to triples [which in fact subsume the work of TripleMatch].
+    
+    @author Jeremy Carroll
+    @author kers
+*/
 public interface TripleMatch {
     
     /** If it is known that all triples selected by this filter will

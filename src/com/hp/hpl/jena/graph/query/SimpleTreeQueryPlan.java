@@ -11,6 +11,9 @@ import com.hp.hpl.jena.util.iterator.*;
 import com.hp.hpl.jena.mem.*;
 import java.util.*;
 
+/**
+    Incomplete class. Do not use.
+*/
 public class SimpleTreeQueryPlan implements TreeQueryPlan
 	{
 	private Graph pattern;

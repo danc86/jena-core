@@ -7,11 +7,11 @@
 package com.hp.hpl.jena.graph.query;
 
 /**
-	@author kers
-<br>
     A Relation is a predicate that relates two Valuators; the abstract
-    class captures the commonality of "has two operands" and
+    class captures the commonality of <i>has two operands</i> and
     methods for evaluating them.
+    
+    @author kers
 */
 
 import com.hp.hpl.jena.graph.*;
