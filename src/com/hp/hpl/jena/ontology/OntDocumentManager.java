@@ -913,8 +913,14 @@ public class OntDocumentManager
         }
         catch (JenaException e) {
             if (warn) {
+                String u = "<" + resolvableURI + ">";
+                if (!uri.equals( u )) {
+                    u = u + " (re-directed via the document mgr from <" + uri + ">)"; 
+                }
+                
                 Logger.getLogger( OntDocumentManager.class )
-                      .warn( "JenaException while reading model from " + resolvableURI + ", with message: " + e.getMessage(), e );
+                      .warn( "An error occurred while attempting to read from " + u + 
+                             ". Error was '" + e.getMessage() + "'.", e );
             }
             return false;
         }
