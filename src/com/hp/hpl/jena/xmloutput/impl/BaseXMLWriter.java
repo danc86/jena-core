@@ -25,7 +25,7 @@ import java.util.*;
 
 import org.apache.xerces.util.*;
 import org.apache.oro.text.regex.*;
-//import org.apache.log4j.Logger;
+import org.apache.log4j.Logger;
 
 /** 
  * This is not part of the public API.
