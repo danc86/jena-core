@@ -284,23 +284,26 @@ final public class LiteralLabel {
 	 * dealt with by {@link #sameValueAs}.
 	 */
 	public boolean equals(Object other) {
-		if (other == null || !(other instanceof LiteralLabel)) {
-			return false;
-		}
-		LiteralLabel otherLiteral = (LiteralLabel) other;
-		boolean typeEqual =
-			(dtype == null
-				? otherLiteral.dtype == null
-				: dtype.equals(otherLiteral.dtype));
-		boolean langEqual =
-			(dtype == null ? lang.equalsIgnoreCase(otherLiteral.lang) : true);
-		if (wellformed) {
-			return typeEqual && langEqual && value.equals(otherLiteral.value);
-		} else {
-			return typeEqual
-				&& langEqual
-				&& lexicalForm.equals(otherLiteral.lexicalForm);
-		}
+            if (other == null || !(other instanceof LiteralLabel)) {
+            	return false;
+            }
+            LiteralLabel otherLiteral = (LiteralLabel) other;
+            boolean typeEqual =
+            	(dtype == null
+            		? otherLiteral.dtype == null
+            		: dtype.equals(otherLiteral.dtype));
+            boolean langEqual =
+            	(dtype == null ? lang.equalsIgnoreCase(otherLiteral.lang) : true);
+            return typeEqual
+                && langEqual
+                && getLexicalForm().equals(otherLiteral.getLexicalForm());
+//            if (wellformed) {
+//            	return typeEqual && langEqual && value.equals(otherLiteral.value);
+//            } else {
+//            	return typeEqual
+//            		&& langEqual
+//            		&& lexicalForm.equals(otherLiteral.lexicalForm);
+//            }
 	}
 
 	/**
