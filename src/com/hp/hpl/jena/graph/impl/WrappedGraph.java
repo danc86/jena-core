@@ -58,11 +58,11 @@ public class WrappedGraph implements GraphWithPerform
 
     public void add( Triple t ) 
         { base.add( t );
-        getEventManager().notifyAddTriple( t ); }
+        getEventManager().notifyAddTriple( this, t ); }
 
     public void delete( Triple t ) 
         { base.delete( t ); 
-        getEventManager().notifyDeleteTriple( t ); }
+        getEventManager().notifyDeleteTriple( this, t ); }
 
     public ExtendedIterator find( TripleMatch m )
         { return base.find( m ); }

@@ -81,14 +81,14 @@ public abstract class GraphBase implements GraphWithPerform
         Tell the event manager that the triple <code>t</code> has been added to the graph.
     */
     public void notifyAdd( Triple t )
-        { getEventManager().notifyAddTriple( t ); }
+        { getEventManager().notifyAddTriple( this, t ); }
         
     /**
         Tell the event manager that the triple <code>t</code> has been deleted from the
         graph.
     */
     public void notifyDelete( Triple t )
-        { getEventManager().notifyDeleteTriple( t ); }
+        { getEventManager().notifyDeleteTriple( this, t ); }
         
     public TransactionHandler getTransactionHandler()
         { return new SimpleTransactionHandler(); }
