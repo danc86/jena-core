@@ -98,7 +98,7 @@ public class TransitiveGraphCache implements Finder {
     /**
      * Clear the closure cache, if any.
      */
-    private void clearClosureCache() {
+    private synchronized void clearClosureCache() {
         if (cacheOn) {
             // blow away the cache, don't try to do incremental updates
             if (cacheClosureBackward.size() > 0) cacheClosureBackward.clear();
@@ -112,7 +112,7 @@ public class TransitiveGraphCache implements Finder {
      * will be cached for future reuse.
      * @param cacheOn set to true to start cache, to false to stop caching
      */
-    public void setCaching(boolean cacheOn) {
+    public synchronized void setCaching(boolean cacheOn) {
         if (this.cacheOn != cacheOn) {
             this.cacheOn = cacheOn;
             if (cacheOn) {
@@ -235,7 +235,7 @@ public class TransitiveGraphCache implements Finder {
      * Return an iterator over all the forward or backward links to 
      * a given node. May be cached.
      */
-    private ExtendedIterator walk(GraphNode node, boolean forward, boolean closed, Node predicate) {
+    private synchronized ExtendedIterator walk(GraphNode node, boolean forward, boolean closed, Node predicate) {
         if (cacheOn && closed) {
             // Check cache
             Map cache = forward ? cacheClosureForward : cacheClosureBackward;
