@@ -39,7 +39,7 @@ public class TestReifier extends GraphTestBase {
 			theConnection.cleanDB();
 			theGraphs.clear();
 			theConnection.close();
-		} catch (Exception e) { throw new RuntimeException(e);}
+		} catch (Exception e) { throw new RuntimeException(e.toString());}
 	}
 
 	public Graph getGraph() {
