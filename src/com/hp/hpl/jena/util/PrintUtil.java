@@ -89,7 +89,7 @@ public class PrintUtil {
             return "*";
         }
         if (node == null) {
-            return "Null";
+            return "null";
         }
         return node.toString();
     }
@@ -98,6 +98,7 @@ public class PrintUtil {
      * Return a simplified print string for an RDFNode. 
      */
     public static String print(RDFNode node) {
+        if (node == null) return "null";
         return print(node.asNode());
     }
     
@@ -130,6 +131,7 @@ public class PrintUtil {
      * Default print which just uses tostring
      */
     public static String print(Object obj) {
+        if (obj == null) return "null";
         if (obj instanceof Triple) {
             return print((Triple)obj);
         } else if (obj instanceof TriplePattern) {
