@@ -483,7 +483,7 @@ public class OntResourceImpl
      */ 
     public String getLabel( String lang ) {
         checkProfile( getProfile().LABEL(), "LABEL" );
-        if (lang == null) {
+        if (lang == null || lang.length() == 0) {
             // don't care which language version we get
             try {
                 return getRequiredProperty( getProfile().LABEL() ).getString();
@@ -1245,7 +1245,7 @@ public class OntResourceImpl
                     found = l.getString();
                     break;
                 }
-                else if (lang.equalsIgnoreCase( lLang.substring( 0, 2 ) )) {
+                else if (lLang != null && lLang.length() > 1 && lang.equalsIgnoreCase( lLang.substring( 0, 2 ) )) {
                     // partial match - want EN, found EN-GB
                     // keep searching in case there's a better
                     found = l.getString();
