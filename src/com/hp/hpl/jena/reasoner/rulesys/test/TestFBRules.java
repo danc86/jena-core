@@ -806,7 +806,7 @@ public class TestFBRules extends TestCase {
             count++;
         }
 //        listFBGraph("direct databind case", (FBRuleInfGraph)infgraph);
-        assertTrue(count == 5);
+        assertEquals(6, count);
         
         infgraph = reasoner.bindSchema(data).bind(new GraphMem());
         count = 0;
@@ -816,7 +816,7 @@ public class TestFBRules extends TestCase {
             count++;
         }
 //        listFBGraph("bindSchema case", (FBRuleInfGraph)infgraph);
-        assertTrue(count == 5);
+        assertEquals(6, count);
     }
     
     /**
