@@ -73,7 +73,7 @@ public class ModelSpecCreatorRegistry
         try
             {
             Model m = FileManager.get().loadModel( name ); 
-            StmtIterator it = m.listStatements( null, m.createProperty( JMS.baseURI + "typeCreatedBy" ), (RDFNode) null ); 
+            StmtIterator it = m.listStatements( null, JMS.typeCreatedBy, (RDFNode) null ); 
             while (it.hasNext()) addFromStatement( it.nextStatement() );
             }
         catch (NotFoundException e)

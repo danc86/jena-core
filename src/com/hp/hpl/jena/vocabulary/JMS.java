@@ -138,6 +138,12 @@ public class JMS
     public static final Property fileBase = property( "fileBase" );
     
     /**
+        The property of some subclass of jms:ModelSpec that specifies the name of the
+        Java class that implements that ModelSpec.
+    */
+    public static final Property typeCreatedBy = property( "typeCreatedBy" );
+    
+    /**
         The class of MakerSpec resources.
     */
     public static final Resource MakerSpec = resource( "MakerSpec" );
