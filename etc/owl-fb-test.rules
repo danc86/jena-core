@@ -128,6 +128,7 @@
 -> (owl:equivalentProperty rdf:type owl:TransitiveProperty).
 -> (owl:equivalentClass rdf:type owl:SymmetricProperty).
 -> (owl:equivalentClass rdf:type owl:TransitiveProperty).
+-> (owl:sameAs rdf:type owl:SymmetricProperty).
 -> (owl:sameIndividualAs rdf:type owl:SymmetricProperty).
 -> (owl:sameIndividualAs rdf:type owl:TransitiveProperty).
 -> (owl:sameIndividualAs owl:equivalentProperty owl:sameAs).

@@ -47,7 +47,7 @@ public class FBLPRuleInfGraph  extends FBRuleInfGraph {
      */
     public FBLPRuleInfGraph(Reasoner reasoner, Graph schema) {
         super(reasoner, schema);
-        lpbEngine = new LPBRuleEngine(this);
+        initLP(schema);
     }
 
     /**
@@ -58,7 +58,7 @@ public class FBLPRuleInfGraph  extends FBRuleInfGraph {
      */
     public FBLPRuleInfGraph(Reasoner reasoner, List rules, Graph schema) {
         super(reasoner, rules, schema);
-        lpbEngine = new LPBRuleEngine(this);
+        initLP(schema);
     }
 
     /**
@@ -70,7 +70,18 @@ public class FBLPRuleInfGraph  extends FBRuleInfGraph {
      */
     public FBLPRuleInfGraph(Reasoner reasoner, List rules, Graph schema, Graph data) {
         super(reasoner, rules, schema, data);
-        lpbEngine = new LPBRuleEngine(this);
+        initLP(schema);
+    }
+
+    /**
+     * Initialize the LP engine, based on an optional schema graph.
+     */    
+    private void initLP(Graph schema) {
+        if (schema != null && schema instanceof FBLPRuleInfGraph) {
+            lpbEngine = new LPBRuleEngine(this, ((FBLPRuleInfGraph)schema).lpbEngine.getRuleStore());
+        } else {
+            lpbEngine = new LPBRuleEngine(this);
+        }
     }
     
 //  =======================================================================
@@ -140,6 +151,9 @@ public class FBLPRuleInfGraph  extends FBRuleInfGraph {
      */
     public void setTabled(Node predicate) {
         lpbEngine.tablePredicate(predicate);
+        if (traceOn) {
+            logger.info("LP TABLE " + predicate);
+        }
     }
     
 //  =======================================================================

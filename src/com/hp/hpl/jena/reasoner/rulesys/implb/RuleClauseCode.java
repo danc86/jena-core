@@ -284,6 +284,17 @@ public class RuleClauseCode {
     }
     
     /**
+     * Print clause as rule for tracing.
+     */
+    public String toString() {
+        if (rule == null) {
+            return "[anon]";
+        } else {
+            return "[" + rule.toShortString() + "]";
+        }
+    }
+    
+    /**
      * Inner class - compiler state.
      */
     static class CompileState {
@@ -395,6 +406,8 @@ public class RuleClauseCode {
             if (predicateCode == null || predicateCode.size() == 0) {
                 code[p++] = CALL_TRIPLE_MATCH;
             } else {
+//                if (goal.getPredicate().isVariable()) {
+//                    code[p++] = CALL_WILD_TABLED; // experimental at this stage ...
                 if (store.isTabled(goal)) {
                     code[p++] = goal.getPredicate().isVariable() ? CALL_WILD_TABLED : CALL_TABLED;
                 } else {

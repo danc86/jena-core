@@ -102,7 +102,7 @@ public class OWLExptRuleReasoner extends FBLPRuleReasoner  {
         graph = new FBLPRuleInfGraph(this, baseRules, schemaArg);
         graph.addPreprocessingHook(new OWLRuleTranslationHook());
         graph.setDerivationLogging(recordDerivations);
-//        graph.setTraceOn(traceOn);
+        graph.setTraceOn(traceOn);
         graph.rebind(data);
                 
         return graph;
@@ -112,7 +112,7 @@ public class OWLExptRuleReasoner extends FBLPRuleReasoner  {
      * Get the single static precomputed rule closure.
      */
     public InfGraph getPreload() {
-        synchronized (OWLFBRuleReasoner.class) {
+        synchronized (OWLExptRuleReasoner.class) {
             if (preload == null) {
                 preload = new FBLPRuleInfGraph(this, rules, null);
                 preload.prepare();

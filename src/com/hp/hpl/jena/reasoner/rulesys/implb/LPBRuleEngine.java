@@ -109,7 +109,6 @@ public class LPBRuleEngine {
      */
     public synchronized void addRule(Rule rule) {
         checkSafeToUpdate();
-//        System.out.println("Adding rule: " + rule);
         ruleStore.addRule(rule);
     }
     

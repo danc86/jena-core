@@ -46,7 +46,7 @@ public class FBLPRuleReasoner implements Reasoner {
     protected boolean recordDerivations = false;
 
     /** Flag which, if true, enables tracing of rule actions to logger.info */
-    boolean traceOn = false;
+    protected boolean traceOn = false;
 //    boolean traceOn = true;
 
     /** Flag, if true we cache the closure of the pure rule set with its axioms */

@@ -65,9 +65,9 @@ public class EnvironmentFrame extends FrameObject {
      */
     public String toString() {
         if (clause == null || clause.rule == null) {
-            return "null env";
+            return "[anon]";
         } else {
-            return "env(" + clause.rule.toShortString() + ")";
+            return "[" + clause.rule.toShortString() + "]";
         }
     }
 }

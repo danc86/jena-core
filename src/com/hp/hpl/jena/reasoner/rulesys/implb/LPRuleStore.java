@@ -80,7 +80,12 @@ public class LPRuleStore extends RuleStore {
         if (predicate.isVariable()) {
             return allRuleClauseCodes;
         } else {
-            return (List) predicateToCodeMap.get(predicate);
+            List codeList = (List) predicateToCodeMap.get(predicate);
+            if (codeList == null) {
+                // Uknown predicate, so only the wildcard rules apply
+                codeList = (List) predicateToCodeMap.get(Node_RuleVariable.WILD);
+            }
+            return codeList;
         }
     }
     
@@ -177,20 +182,15 @@ public class LPRuleStore extends RuleStore {
                 }
             }
         }
-        
-        // Now we change the semantics of the wildcard entry in the code map table
-        // to be used for any wildcard query. Doing it now enables us to easily include
-        // the allRules case in the subsequent indexing stage
-        predicateToCodeMap.put(Node_RuleVariable.WILD, allRuleClauseCodes);
         indexPredicateToCodeMap.put(Node_RuleVariable.WILD, new HashMap());
-        
+                
         // Now built any required two level indices
         for (Iterator i = indexPredicateToCodeMap.entrySet().iterator(); i.hasNext(); ) {
             Map.Entry entry = (Map.Entry)i.next();
             Node predicate = (Node) entry.getKey();
             HashMap predicateMap = (HashMap) entry.getValue();
             List wildRulesForPredicate = new ArrayList();
-            List allRulesForPredicate = (List) predicateToCodeMap.get(predicate);
+            List allRulesForPredicate =  predicate.isVariable() ? allRuleClauseCodes : (List) predicateToCodeMap.get(predicate);
             for (Iterator j = allRulesForPredicate.iterator(); j.hasNext(); ) {
                 RuleClauseCode code = (RuleClauseCode)j.next();
                 ClauseEntry head = code.getRule().getHeadElement(0);

@@ -70,7 +70,8 @@ public class TestBasicLP  extends TestCase {
         return new TestSuite( TestBasicLP.class );
         
 //        TestSuite suite = new TestSuite();
-//        suite.addTest(new TestBasicLP( "testRDFSProblem20" ));
+//        suite.addTest(new TestBasicLP( "testBaseRules9" ));
+//        suite.addTest(new TestBasicLP( "testBacktrack4" ));
 //        return suite;
     }  
    
@@ -83,6 +84,7 @@ public class TestBasicLP  extends TestCase {
     public InfGraph makeInfGraph(List rules, Graph data) {
         FBLPRuleReasoner reasoner = new FBLPRuleReasoner(rules);
         FBLPRuleInfGraph infgraph = (FBLPRuleInfGraph) reasoner.bind(data);
+//        infgraph.setTraceOn(true);
         return infgraph;
     }
    
