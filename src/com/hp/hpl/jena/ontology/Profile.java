@@ -452,6 +452,49 @@ public interface Profile
     
     /**
      * <p>
+     * Answer the predicate that denotes a qualified restriction on a given property to 
+     * have at least a certain number of values
+     * </p>
+     * 
+     * @return The property that denotes a local property cardinality lower bound.
+     */
+    public Property MIN_CARDINALITY_Q();
+    
+    
+    /**
+     * <p>
+     * Answer the predicate that denotes a qualified restriction on a given property to 
+     * have at most a certain number of values
+     * </p>
+     * 
+     * @return The property that denotes a local property cardinality upper bound.
+     */
+    public Property MAX_CARDINALITY_Q();
+    
+    
+    /**
+     * <p>
+     * Answer the predicate that denotes a qualified restriction on a given property to 
+     * have exactly a certain number of values
+     * </p>
+     * 
+     * @return The property that denotes a local property cardinality.
+     */
+    public Property CARDINALITY_Q();
+    
+    
+    /**
+     * <p>
+     * Answer the predicate that denotes a the class in a qualified restriction.
+     * </p>
+     * 
+     * @return The property that denotes the class of all values in a qualified restriction.
+     */
+    public Property HAS_CLASS_Q();
+    
+    
+    /**
+     * <p>
      * Answer the predicate that denotes that one property is the inverse of another
      * </p>
      * 

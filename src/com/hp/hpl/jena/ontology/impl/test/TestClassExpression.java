@@ -617,6 +617,95 @@ public class TestClassExpression
                     assertEquals( "cardinality should be 0 ", 0, A.getCardinality( prof.MAX_CARDINALITY() ));
                 }
             },
+            new OntTestCase( "QualifiedRestriction.hasClassQ", false, false, true, false ) {
+                public void ontTest( OntModel m ) throws Exception {
+                    OntProperty p = m.createObjectProperty( NS + "p" );
+                    OntClass c = m.createClass( NS + "C" );
+                    OntClass d = m.createClass( NS + "D" );
+                    
+                    QualifiedRestriction A = m.createMaxCardinalityQRestriction( NS + "A", p, 3, c  );
+                    
+                    assertEquals( "Restriction should hasClassQ c", c, A.getHasClassQ() );
+                    assertTrue( "Restriction should be hasClassQ c", A.hasHasClassQ( c ) );
+                    assertFalse( "Restriction should not be hasClassQ d", A.hasHasClassQ( d ) );
+                    
+                    A.setHasClassQ( d );
+
+                    assertEquals( "Restriction should hasClassQ d", d, A.getHasClassQ() );
+                    assertTrue( "Restriction should be hasClassQ d", A.hasHasClassQ( d ) );
+                    assertFalse( "Restriction should not be hasClassQ c", A.hasHasClassQ( c ) );
+                    
+                    assertTrue( "Should be a qualified restriction", m.getResource( NS + "A" ).canAs( QualifiedRestriction.class ) );
+                    A.removeHasClassQ( d );
+                    assertFalse( "Should not be a qualified restriction", m.getResource( NS + "A" ).canAs( QualifiedRestriction.class ) );
+                }
+            },
+            new OntTestCase( "CardinalityQRestriction.cardinality", false, false, true, false ) {
+                public void ontTest( OntModel m ) throws Exception {
+                    OntProperty p = m.createObjectProperty( NS + "p" );
+                    OntClass c = m.createClass( NS + "C" );
+                    
+                    CardinalityQRestriction A = m.createCardinalityQRestriction( NS + "A", p, 3, c  );
+                    
+                    assertEquals( "Restriction should cardinality 3", 3, A.getCardinalityQ() );
+                    assertTrue( "Restriction should be cardinality 3", A.hasCardinalityQ( 3 ) );
+                    assertFalse( "Restriction should not be cardinality 1", A.hasCardinalityQ( 1 ) );
+                    
+                    A.setCardinalityQ( 1 );
+
+                    assertEquals( "Restriction should cardinality 1", 1, A.getCardinalityQ() );
+                    assertFalse( "Restriction should not be cardinality 3", A.hasCardinalityQ( 3 ) );
+                    assertTrue( "Restriction should be cardinality 1", A.hasCardinalityQ( 1 ) );
+                    
+                    assertTrue( "Should be a qualified cardinality restriction", m.getResource( NS + "A" ).canAs( CardinalityQRestriction.class ) );
+                    A.removeCardinalityQ( 1 );
+                    assertFalse( "Should not be a qualified cardinality restriction", m.getResource( NS + "A" ).canAs( CardinalityQRestriction.class ) );
+                }
+            },
+            new OntTestCase( "MinCardinalityQRestriction.minCardinality", false, false, true, false ) {
+                public void ontTest( OntModel m ) throws Exception {
+                    OntProperty p = m.createObjectProperty( NS + "p" );
+                    OntClass c = m.createClass( NS + "C" );
+                    
+                    MinCardinalityQRestriction A = m.createMinCardinalityQRestriction( NS + "A", p, 3, c  );
+                    
+                    assertEquals( "Restriction should min cardinality 3", 3, A.getMinCardinalityQ() );
+                    assertTrue( "Restriction should be min cardinality 3", A.hasMinCardinalityQ( 3 ) );
+                    assertFalse( "Restriction should not be min cardinality 1", A.hasMinCardinalityQ( 1 ) );
+                    
+                    A.setMinCardinalityQ( 1 );
+
+                    assertEquals( "Restriction should min cardinality 1", 1, A.getMinCardinalityQ() );
+                    assertFalse( "Restriction should not be min cardinality 3", A.hasMinCardinalityQ( 3 ) );
+                    assertTrue( "Restriction should be min cardinality 1", A.hasMinCardinalityQ( 1 ) );
+                    
+                    assertTrue( "Should be a qualified min cardinality restriction", m.getResource( NS + "A" ).canAs( MinCardinalityQRestriction.class ) );
+                    A.removeMinCardinalityQ( 1 );
+                    assertFalse( "Should not be a qualified min cardinality restriction", m.getResource( NS + "A" ).canAs( MinCardinalityQRestriction.class ) );
+                }
+            },
+            new OntTestCase( "MaxCardinalityQRestriction.maxCardinality", false, false, true, false ) {
+                public void ontTest( OntModel m ) throws Exception {
+                    OntProperty p = m.createObjectProperty( NS + "p" );
+                    OntClass c = m.createClass( NS + "C" );
+                    
+                    MaxCardinalityQRestriction A = m.createMaxCardinalityQRestriction( NS + "A", p, 3, c  );
+                    
+                    assertEquals( "Restriction should max cardinality 3", 3, A.getMaxCardinalityQ() );
+                    assertTrue( "Restriction should be max cardinality 3", A.hasMaxCardinalityQ( 3 ) );
+                    assertFalse( "Restriction should not be max cardinality 1", A.hasMaxCardinalityQ( 1 ) );
+                    
+                    A.setMaxCardinalityQ( 1 );
+
+                    assertEquals( "Restriction should max cardinality 1", 1, A.getMaxCardinalityQ() );
+                    assertFalse( "Restriction should not be max cardinality 3", A.hasMaxCardinalityQ( 3 ) );
+                    assertTrue( "Restriction should be max cardinality 1", A.hasMaxCardinalityQ( 1 ) );
+                    
+                    assertTrue( "Should be a qualified max cardinality restriction", m.getResource( NS + "A" ).canAs( MaxCardinalityQRestriction.class ) );
+                    A.removeMaxCardinalityQ( 1 );
+                    assertFalse( "Should not be a qualified max cardinality restriction", m.getResource( NS + "A" ).canAs( MaxCardinalityQRestriction.class ) );
+                }
+            },
             
             // from file
             new OntTestCase( "OntClass.subclass.fromFile", true, true, true, true ) {

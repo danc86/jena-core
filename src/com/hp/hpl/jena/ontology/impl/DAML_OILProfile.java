@@ -111,7 +111,10 @@ public class DAML_OILProfile
     private Property m_range                        = m_vocabModel.createProperty( DAML_OIL.subClassOf.getNameSpace(),              DAML_OIL.range.getLocalName() );
     private Property m_first                        = m_vocabModel.createProperty( DAML_OIL.first.getNameSpace(),                   DAML_OIL.first.getLocalName() );
     private Property m_rest                         = m_vocabModel.createProperty( DAML_OIL.rest.getNameSpace(),                    DAML_OIL.rest.getLocalName() );
-
+    private Property m_minCardinalityQ              = m_vocabModel.createProperty( DAML_OIL.minCardinalityQ.getNameSpace(),         DAML_OIL.minCardinalityQ.getLocalName() );
+    private Property m_maxCardinalityQ              = m_vocabModel.createProperty( DAML_OIL.maxCardinalityQ.getNameSpace(),         DAML_OIL.maxCardinalityQ.getLocalName() );
+    private Property m_cardinalityQ                 = m_vocabModel.createProperty( DAML_OIL.cardinalityQ.getNameSpace(),            DAML_OIL.cardinalityQ.getLocalName() );
+    private Property m_hasClassQ                    = m_vocabModel.createProperty( DAML_OIL.hasClassQ.getNameSpace(),               DAML_OIL.hasClassQ.getLocalName() );
 
     // Constructors
     //////////////////////////////////
@@ -181,6 +184,10 @@ public class DAML_OILProfile
     public Property RANGE() {                       return m_range; }
     public Property FIRST() {                       return m_first; }
     public Property REST() {                        return m_rest; }
+    public Property MIN_CARDINALITY_Q() {           return m_minCardinalityQ; }
+    public Property MAX_CARDINALITY_Q() {           return m_maxCardinalityQ; }
+    public Property CARDINALITY_Q() {               return m_cardinalityQ; }
+    public Property HAS_CLASS_Q() {                 return m_hasClassQ; }
     
 
     // Annotations    
@@ -430,6 +437,34 @@ public class DAML_OILProfile
                                             public boolean doCheck( Node n, EnhGraph g ) {
                                                 return g.asGraph().contains( n, RDF.type.asNode(), DAML_OIL.TransitiveProperty.asNode() ) &&
                                                        !g.asGraph().contains( n, RDF.type.asNode(), DAML_OIL.DatatypeProperty.asNode() );
+                                            }
+                                        }
+        },
+        {  QualifiedRestriction.class,  new SupportsCheck() {
+                                            public boolean doCheck( Node n, EnhGraph g ) {
+                                                return g.asGraph().contains( n, RDF.type.asNode(), DAML_OIL.Restriction.asNode() ) &&
+                                                       g.asGraph().contains( n, DAML_OIL.hasClassQ.asNode(), Node.ANY );
+                                            }
+                                        }
+        },
+        {  CardinalityQRestriction.class,  new SupportsCheck() {
+                                            public boolean doCheck( Node n, EnhGraph g ) {
+                                                return g.asGraph().contains( n, RDF.type.asNode(), DAML_OIL.Restriction.asNode() ) &&
+                                                       g.asGraph().contains( n, DAML_OIL.cardinalityQ.asNode(), Node.ANY );
+                                            }
+                                        }
+        },
+        {  MinCardinalityQRestriction.class,  new SupportsCheck() {
+                                            public boolean doCheck( Node n, EnhGraph g ) {
+                                                return g.asGraph().contains( n, RDF.type.asNode(), DAML_OIL.Restriction.asNode() ) &&
+                                                       g.asGraph().contains( n, DAML_OIL.minCardinalityQ.asNode(), Node.ANY );
+                                            }
+                                        }
+        },
+        {  MaxCardinalityQRestriction.class,  new SupportsCheck() {
+                                            public boolean doCheck( Node n, EnhGraph g ) {
+                                                return g.asGraph().contains( n, RDF.type.asNode(), DAML_OIL.Restriction.asNode() ) &&
+                                                       g.asGraph().contains( n, DAML_OIL.maxCardinalityQ.asNode(), Node.ANY );
                                             }
                                         }
         },

@@ -115,6 +115,10 @@ public class RDFSProfile
     public Property RANGE() {                       return RDFS.range; }
     public Property FIRST() {                       return RDF.first; }
     public Property REST() {                        return RDF.rest; }
+    public Property MIN_CARDINALITY_Q() {           return null; }
+    public Property MAX_CARDINALITY_Q() {           return null; }
+    public Property CARDINALITY_Q() {               return null; }
+    public Property HAS_CLASS_Q() {                 return null; }
 
     // Annotations    
     public Property VERSION_INFO() {                return null; }
