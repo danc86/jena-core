@@ -42,8 +42,7 @@ public interface BindingEnvironment {
     /**
       * Instantiate a triple pattern against the current environment.
       * This version handles unbound varibles by turning them into bNodes.
-      * @param clause the triple pattern to match
-      * @param env the current binding environment
+      * @param pattern the triple pattern to match
       * @return a new, instantiated triple
       */
      public Triple instantiate(TriplePattern pattern);
