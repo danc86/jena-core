@@ -88,13 +88,21 @@ public class TransitiveGraphCache implements Finder {
     }
     
     /**
+     * Clear the entire cache contents. 
+     */
+    public void clear() {
+        clearClosureCache();
+        nodeMap.clear();
+    }
+    
+    /**
      * Clear the closure cache, if any.
      */
     private void clearClosureCache() {
         if (cacheOn) {
             // blow away the cache, don't try to do incremental updates
-            if (cacheClosureBackward.size() > 0) cacheClosureBackward = new HashMap();
-            if (cacheClosureForward.size() > 0) cacheClosureForward = new HashMap();
+            if (cacheClosureBackward.size() > 0) cacheClosureBackward.clear();
+            if (cacheClosureForward.size() > 0) cacheClosureForward.clear();
         }
     }
     

@@ -11,8 +11,7 @@ package com.hp.hpl.jena.reasoner.rulesys;
 
 import com.hp.hpl.jena.mem.GraphMem;
 import com.hp.hpl.jena.reasoner.rulesys.impl.*;
-import com.hp.hpl.jena.reasoner.transitiveReasoner.TransitiveGraphCache;
-import com.hp.hpl.jena.reasoner.transitiveReasoner.TransitiveReasoner;
+import com.hp.hpl.jena.reasoner.transitiveReasoner.*;
 import com.hp.hpl.jena.reasoner.*;
 import com.hp.hpl.jena.graph.*;
 import java.util.*;
@@ -321,22 +320,22 @@ public class FBRuleInfGraph  extends BasicForwardRuleInfGraph implements Backwar
                 if (schemaGraph != null) {
                     // Check if we can just reuse the copy of the raw 
                     if (
-                        (TransitiveReasoner.checkOccurance(TransitiveReasoner.subPropertyOf, data, subPropertyCache) ||
-                         TransitiveReasoner.checkOccurance(TransitiveReasoner.subClassOf, data, subPropertyCache) ||
-                         TransitiveReasoner.checkOccurance(RDFS.domain.asNode(), data, subPropertyCache) ||
-                         TransitiveReasoner.checkOccurance(RDFS.range.asNode(), data, subPropertyCache) )) {
+                        (TransitiveEngine.checkOccurance(TransitiveReasoner.subPropertyOf, data, subPropertyCache) ||
+                         TransitiveEngine.checkOccurance(TransitiveReasoner.subClassOf, data, subPropertyCache) ||
+                         TransitiveEngine.checkOccurance(RDFS.domain.asNode(), data, subPropertyCache) ||
+                         TransitiveEngine.checkOccurance(RDFS.range.asNode(), data, subPropertyCache) )) {
                 
                         // The data graph contains some ontology knowledge so split the caches
                         // now and rebuild them using merged data
                         Finder tempTbox = schemaGraph == null ? fdata : FinderUtil.cascade(new FGraph(schemaGraph), fdata);
     
-                        TransitiveReasoner.cacheSubProp(tempTbox, subPropertyCache);
-                        TransitiveReasoner.cacheSubClass(tempTbox, subPropertyCache, subClassCache);
+                        TransitiveEngine.cacheSubProp(tempTbox, subPropertyCache);
+                        TransitiveEngine.cacheSubClass(tempTbox, subPropertyCache, subClassCache);
                     }     
                 } else {
                     if (data != null) {
-                        TransitiveReasoner.cacheSubProp(fdata, subPropertyCache);
-                        TransitiveReasoner.cacheSubClass(fdata, subPropertyCache, subClassCache);
+                        TransitiveEngine.cacheSubProp(fdata, subPropertyCache);
+                        TransitiveEngine.cacheSubClass(fdata, subPropertyCache, subClassCache);
                     }
                 }
                 // Insert any axiomatic statements into the caches

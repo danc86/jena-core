@@ -33,6 +33,9 @@ import java.util.HashSet;
  */
 public class TransitiveInfGraph extends BaseInfGraph {
 
+    /** The paire of subclass and subproperty lattices */
+    protected TransitiveEngine transitiveEngine;
+    
     /** The precomputed cache of the subClass graph */
     protected TransitiveGraphCache subClassCache;
     
@@ -79,8 +82,8 @@ public class TransitiveInfGraph extends BaseInfGraph {
 
         // But need to check if the data graph defines schema data as well
         Graph data = fdata.getGraph();
-        if ((TransitiveReasoner.checkOccurance(TransitiveReasoner.subPropertyOf, data, subPropertyCache) ||
-              TransitiveReasoner.checkOccurance(TransitiveReasoner.subClassOf, data, subPropertyCache))) {
+        if ((TransitiveEngine.checkOccurance(TransitiveReasoner.subPropertyOf, data, subPropertyCache) ||
+              TransitiveEngine.checkOccurance(TransitiveReasoner.subClassOf, data, subPropertyCache))) {
             // Need to include data in the tbox so create a new reasoner which
             // become the parent of this InfGraph
             if (tbox != null) {
@@ -90,8 +93,8 @@ public class TransitiveInfGraph extends BaseInfGraph {
             }
             subClassCache = new TransitiveGraphCache(TransitiveReasoner.directSubClassOf, TransitiveReasoner.subClassOf);
             subPropertyCache = new TransitiveGraphCache(TransitiveReasoner.directSubPropertyOf, TransitiveReasoner.subPropertyOf);
-            TransitiveReasoner.cacheSubProp(tbox, subPropertyCache);
-            TransitiveReasoner.cacheSubClass(tbox, subPropertyCache, subClassCache);
+            TransitiveEngine.cacheSubProp(tbox, subPropertyCache);
+            TransitiveEngine.cacheSubClass(tbox, subPropertyCache, subClassCache);
         }            
         // Cache the closures of subPropertyOf because these are likely to be
         // small and accessed a lot
