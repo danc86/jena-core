@@ -226,12 +226,12 @@ public class CategorySet implements Comparable, Serializable, Constants {
 	public static String catString(int j) {
 		int c[] = getSet(j);
 		StringBuffer rslt = new StringBuffer("{");
-		rslt.append(c[0]);
+		rslt.append(Grammar.catNames[c[0]]);
 		for (int i=1;i<c.length;i++) {
-			rslt.append(",");
-			rslt.append(c[i]);
+			rslt.append(" ,");
+			rslt.append(Grammar.catNames[c[i]]);
 		}		
-		return rslt + "}";
+		return rslt + " }";
 	}
 	/**
 	 * 

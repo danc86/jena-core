@@ -559,6 +559,7 @@ individualID,
 notype,
 objectPropID,
 ontologyID,
+ontologyPropertyID,
 transitivePropID,
 };
 static final int propertyOnlyX[] = new int[]{
@@ -649,6 +650,19 @@ static final int restrictions = CategorySet.find( restrictionsX,false);
 static final int descriptions = CategorySet.find( descriptionsX,false);
 static final int lists = CategorySet.find( listsX,false);
 static final int disjointWith = CategorySet.find( disjointWithX,false);
+ static boolean isPseudoCategory(int x) {
+     switch ( x ) {
+      case orphan:
+      case notype:
+      case cyclic:
+      case cyclicRest:
+      case cyclicFirst:
+      case badRestriction:
+        return true;
+      default:
+        return false;
+     }
+  }
 }
  /*
 	(c) Copyright Hewlett-Packard Company 2003
