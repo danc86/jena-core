@@ -174,6 +174,49 @@ public class ResourceUtils {
     }
     
 
+    /**
+     * <p>Answer a model that contains all of the resources reachable from a given 
+     * resource by any property, transitively.  The returned graph is the sub-graph
+     * of the parent graph of root, whose root node is the given root. Cycles are
+     * permitted in the sub-graph.</p>
+     * @param root The root node of the sub-graph to extract
+     * @return A model containing all reachable RDFNodes from root by any property.
+     */
+    public static Model reachableClosure( Resource root ) {
+        Model m = ModelFactory.createDefaultModel();
+        
+        // set of resources we have passed through already (i.e. the occurs check)
+        HashSet seen = new HashSet();
+        
+        // queue of resources we have not yet visited
+        List queue = new LinkedList();
+        queue.add( root );
+        
+        while (!queue.isEmpty()) {
+            Resource r = (Resource) queue.remove( 0 );
+            
+            // check for multiple paths arriving at this queue node
+            if (!seen.contains( r )) {
+                seen.add( r );
+
+                // add the statements to the output model, and queue any new resources 
+                for (StmtIterator i = r.listProperties(); i.hasNext(); ) {
+                    Statement s = i.nextStatement();
+                    
+                    // don't do the occurs check now in case of reflexive statements
+                    m.add( s );
+
+                    if (s.getObject() instanceof Resource) {
+                        queue.add( s.getObject() );
+                    }
+                }
+            }
+        }
+        
+        return m;
+    }
+    
+    
     // Internal implementation methods
     //////////////////////////////////
 

@@ -145,6 +145,30 @@ public class TestResourceUtils
         assertTrue( "f1 has p f1", f1.hasProperty( p, f1 ) );
     }
     
+    public void testReachableGraphClosure() {
+        Model m0 = ModelFactory.createDefaultModel();
+        Resource a = m0.createResource( "a" );
+        Resource b = m0.createResource( "b" );
+        Resource c = m0.createResource( "c" );
+        Resource d = m0.createResource( "d" );
+        Property p = m0.createProperty( "p" );
+        
+        m0.add( a, p, b );
+        m0.add( a, p, c );
+        m0.add( b, p, b );  // unit loop
+        m0.add( b, p, a );  // loop
+        m0.add( d, p, a );  // not reachable from a
+        
+        Model m1 = ModelFactory.createDefaultModel();
+        m1.add( a, p, b );
+        m1.add( a, p, c );
+        m1.add( b, p, b );
+        m1.add( b, p, a );
+        
+        assertTrue( "m1 should be isomorphic with the reachable sub-graph from a", m1.isIsomorphicWith( ResourceUtils.reachableClosure(a)));
+    }
+    
+    
     // Internal implementation methods
     //////////////////////////////////
 
