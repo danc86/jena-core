@@ -86,7 +86,24 @@ public class FileGraphMaker extends BaseGraphMaker
         }
 
     private File withRoot( String name )
-        { return new File( root, name ); }
+        { return new File( root, makeSafe( name ) ); }
+        
+    /**
+        Make <code>name</name> safe for use as a filename. "safe" is a bit weak
+        here; we want to allow URIs as graph names and assume that our filing
+        systems will be reasonably liberal. We'll see ...
+        
+    	@param name
+    	@return
+     */
+    private String makeSafe( String name )
+        {
+        return name
+            .replaceAll( "_", "_U" )
+            .replaceAll( "/", "_S" )
+            .replaceAll( ":", "_C" )
+            ;    
+        }
         
     public void removeGraph( String name )
         { forget( withRoot( name ) ).delete(); }

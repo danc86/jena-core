@@ -51,7 +51,7 @@ public abstract class AbstractTestGraphMaker extends GraphTestBase
         {
         gf.createGraph( "plain" ).close();
         gf.createGraph( "with.dot" ).close();
-        gf.createGraph( "http://electric-hedgehog.net/topic#marker" );
+        gf.createGraph( "http://electric-hedgehog.net/topic#marker" ).close();
         }
         
     /**

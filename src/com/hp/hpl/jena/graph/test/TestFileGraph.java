@@ -40,7 +40,7 @@ public class TestFileGraph extends GraphTestBase
         result.addTest( new Case( "http://domain/S ftp:ftp/P O", "xxxI", ".n3" ) );
         return result;
         }
-
+        
     /**
         Test that the language code is guessed "correctly".
     */

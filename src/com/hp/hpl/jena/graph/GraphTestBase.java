@@ -21,8 +21,6 @@ import com.hp.hpl.jena.test.*;
 import java.util.*;
 import java.io.*;
 
-import junit.framework.*;
-
 public class GraphTestBase extends JenaTestBase
     {
     public GraphTestBase( String name )
