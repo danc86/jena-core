@@ -58,7 +58,7 @@ public abstract class GraphBase implements Graph {
 		contains( t ) - return true iff the triple t is in this graph
 	*/
 	public boolean contains(Triple t) {
-		return contains(t.getSubject(), t.getPredicate(), t.getObject());
+		return contains( t.getSubject(), t.getPredicate(), t.getObject() );
 	}
 
 	/**
@@ -68,11 +68,7 @@ public abstract class GraphBase implements Graph {
 	*/
 	public boolean contains(Node s, Node p, Node o) {
 		ClosableIterator it = find(s, p, o);
-		try {
-			return it.hasNext();
-		} finally {
-			it.close();
-		}
+		try { return it.hasNext(); } finally { it.close(); }
 	}
 
 	/**

@@ -70,7 +70,10 @@ public class GraphMem extends GraphBase implements Graph {
     }
 
     public boolean contains(Node s, Node p, Node o) {
-        return contains(new Triple(s, p, o));
+        return 
+            s == null || p == null || o == null ? super.contains( s, p, o )
+            : contains( new Triple(s, p, o) )
+            ;
     }
 
     /** Returns an iterator over Triple.
