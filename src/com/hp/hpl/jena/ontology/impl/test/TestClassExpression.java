@@ -274,11 +274,11 @@ public class TestClassExpression
                 null
             },
             {   
-                "OWL Restriction.allValuesFrom",
+                "OWL AllValuesFromRestriction.allValuesFrom",
                 new PS() { 
                     public PathSet ps( OntModel m ) {
-                        return ((Restriction) m.getResource( NS + "ClassA" )
-                               .as( Restriction.class )).p_allValuesFrom(); 
+                        return ((AllValuesFromRestriction) m.getResource( NS + "ClassA" )
+                               .as( AllValuesFromRestriction.class )).p_allValuesFrom(); 
                     } 
                 },
                 OWL.allValuesFrom,
@@ -308,11 +308,45 @@ public class TestClassExpression
                 null
             },
             {   
+                "OWL SomeValuesFromRestriction.someValuesFrom",
+                new PS() { 
+                    public PathSet ps( OntModel m ) {
+                        return ((SomeValuesFromRestriction) m.getResource( NS + "ClassB" )
+                               .as( SomeValuesFromRestriction.class )).p_someValuesFrom(); 
+                    } 
+                },
+                OWL.someValuesFrom,
+                ProfileRegistry.OWL_LANG,
+                "file:testing/ontology/owl/ClassExpression/test-restriction.rdf",
+                T,
+                new Integer( 1 ),
+                NS + "ClassC",
+                null,
+                null
+            },
+            {   
                 "OWL Restriction.hasValue",
                 new PS() { 
                     public PathSet ps( OntModel m ) {
                         return ((Restriction) m.getResource( NS + "ClassC" )
                                .as( Restriction.class )).p_hasValue(); 
+                    } 
+                },
+                OWL.hasValue,
+                ProfileRegistry.OWL_LANG,
+                "file:testing/ontology/owl/ClassExpression/test-restriction.rdf",
+                T,
+                new Integer( 1 ),
+                null,
+                null,
+                new Integer( 42 )
+            },
+            {   
+                "OWL HasValueRestriction.hasValue",
+                new PS() { 
+                    public PathSet ps( OntModel m ) {
+                        return ((HasValueRestriction) m.getResource( NS + "ClassC" )
+                               .as( HasValueRestriction.class )).p_hasValue(); 
                     } 
                 },
                 OWL.hasValue,
@@ -410,6 +444,23 @@ public class TestClassExpression
                 null
             },
             {   
+                "DAML AllValuesFromRestriction.allValuesFrom",
+                new PS() { 
+                    public PathSet ps( OntModel m ) {
+                        return ((AllValuesFromRestriction) m.getResource( NS + "ClassA" )
+                               .as( AllValuesFromRestriction.class )).p_allValuesFrom(); 
+                    } 
+                },
+                DAML_OIL.toClass,
+                ProfileRegistry.DAML_LANG,
+                "file:testing/ontology/daml/ClassExpression/test-restriction.rdf",
+                T,
+                new Integer( 1 ),
+                NS + "ClassB",
+                null,
+                null
+            },
+            {   
                 "DAML Restriction.someValuesFrom",
                 new PS() { 
                     public PathSet ps( OntModel m ) {
@@ -427,11 +478,45 @@ public class TestClassExpression
                 null
             },
             {   
+                "DAML SomeValuesFromRestriction.someValuesFrom",
+                new PS() { 
+                    public PathSet ps( OntModel m ) {
+                        return ((SomeValuesFromRestriction) m.getResource( NS + "ClassB" )
+                               .as( SomeValuesFromRestriction.class )).p_someValuesFrom(); 
+                    } 
+                },
+                DAML_OIL.hasClass,
+                ProfileRegistry.DAML_LANG,
+                "file:testing/ontology/daml/ClassExpression/test-restriction.rdf",
+                T,
+                new Integer( 1 ),
+                NS + "ClassC",
+                null,
+                null
+            },
+            {   
                 "DAML Restriction.hasValue",
                 new PS() { 
                     public PathSet ps( OntModel m ) {
                         return ((Restriction) m.getResource( NS + "ClassC" )
                                .as( Restriction.class )).p_hasValue(); 
+                    } 
+                },
+                DAML_OIL.hasValue,
+                ProfileRegistry.DAML_LANG,
+                "file:testing/ontology/daml/ClassExpression/test-restriction.rdf",
+                T,
+                new Integer( 1 ),
+                null,
+                null,
+                new Integer( 42 )
+            },
+            {   
+                "DAML HasValueRestriction.hasValue",
+                new PS() { 
+                    public PathSet ps( OntModel m ) {
+                        return ((HasValueRestriction) m.getResource( NS + "ClassC" )
+                               .as( HasValueRestriction.class )).p_hasValue(); 
                     } 
                 },
                 DAML_OIL.hasValue,
