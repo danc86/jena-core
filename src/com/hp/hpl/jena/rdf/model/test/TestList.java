@@ -748,7 +748,7 @@ public class TestList
             
             
             // delete all of list1 in one go
-            list1.removeAll();
+            list1.removeList();
             
             // model should now be empty
             assertEquals( "Model should be empty after deleting two lists", 0, m.size() );
