@@ -191,6 +191,7 @@ public class ResultSetIterator implements ExtendedIterator {
             if (m_resultSet != null) {
                 try {
                     m_resultSet.close();
+                    m_resultSet = null;
                 } catch (SQLException e) {
                     Log.warning("Error while finalizing result set iterator", e);
                 }
