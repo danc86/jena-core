@@ -155,6 +155,8 @@ public class TestBackchainer extends TestCase {
         doTestUnify(gf, hf1, true, new Node[] {null, null, yh});
         doTestUnify(gf, hf2, false, null);
         doTestUnify(gf, hf3, true, new Node[] {null, b});
+        doTestUnify(new TriplePattern(xg, p, Functor.makeFunctorNode("all", new Node[] {xg, yg })),
+                    new TriplePattern(xh, p, yh), true, new Node[]{null, null});
         
         // Check binding environment use
         BindingVector env = BindingVector.unify(g2, h1);
