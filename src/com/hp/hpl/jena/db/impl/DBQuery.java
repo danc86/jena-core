@@ -78,6 +78,15 @@ public class DBQuery
 	public VarDesc getBinding ( int i ) {
 		return vars[i];
 	}
+
+	public VarDesc findBinding ( String v ) {
+		int i;
+		for ( i=0; i<vars.length; i++ ) {
+			if ( vars[i].var.getName().equals(v) )
+				return vars[i];
+		}
+		return null;
+	}
 		
 	public void newAlias() {
 		aliasCnt++;
