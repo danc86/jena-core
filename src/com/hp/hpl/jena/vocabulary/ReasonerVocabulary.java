@@ -84,16 +84,16 @@ public class ReasonerVocabulary {
      * legal levels are "default", "simple", and "full". */
     public static Property PROPsetRDFSLevel;
     
-    /** Constant for PROPsetRDFSLevel default */
+    /** Constant for PROPsetRDFSLevel - default behaviour */
     public static String RDFS_DEFAULT = RDFSRuleReasoner.DEFAULT_RULES;
     
-    /** Constant for PROPsetRDFSLevel default */
+    /** Constant for PROPsetRDFSLevel - fullest implementation supported. */
     public static String RDFS_FULL = RDFSRuleReasoner.FULL_RULES;
     
-    /** Constant for PROPsetRDFSLevel default */
+    /** Constant for PROPsetRDFSLevel - simplified, higher performance rules. */
     public static String RDFS_SIMPLE = RDFSRuleReasoner.SIMPLE_RULES;
     
-    /** A namespace used for Rubric specific properties */
+    /** A namespace used for Rubrik specific properties */
     public static final String RBNamespace = "urn:x-hp-jena:rubrik/";
 
     /** Property used to switch on validation in owl ruleset */
