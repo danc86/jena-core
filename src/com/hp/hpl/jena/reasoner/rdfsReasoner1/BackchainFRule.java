@@ -31,7 +31,7 @@ public class BackchainFRule extends BaseFRule {
      * Assert each of the instantiated Triples into the reasoner
      * triple cache.
      */
-    void fire(TriplePattern[] body, BoundRDFSReasoner reasoner) {
+    void fire(TriplePattern[] body, RDFSInfGraph reasoner) {
         reasoner.addBRule(new BRWRule(body[0], body[1]));
     }
     

@@ -56,7 +56,7 @@ public class BaseFRule {
      * Match the rule against a single triple.
      * Instantiating the variables then firing the consequent action.
      */
-    public void bindAndFire(Triple value, BoundRDFSReasoner reasoner) {
+    public void bindAndFire(Triple value, RDFSInfGraph reasoner) {
         // special case filter of reflexive subClass/subProp cases
         // somewhat hacky doing it here ...
         if ((value.getPredicate().equals(TransitiveReasoner.subPropertyOf) ||
@@ -84,7 +84,7 @@ public class BaseFRule {
      * Called when the rule fires.
      * Subclasses should override.
      */
-    void fire(TriplePattern[] body, BoundRDFSReasoner reasoner) {
+    void fire(TriplePattern[] body, RDFSInfGraph reasoner) {
     }
                     
     /**

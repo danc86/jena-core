@@ -58,6 +58,14 @@ public interface InfGraph extends Graph {
     public boolean testGlobalProperty(Node property);
     
     /**
+     * Test the consistency of the bound data. This normally tests
+     * the validity of the bound instance data against the bound
+     * schema data. 
+     * @return a ValidityReport structure
+     */
+    public ValidityReport validate();
+    
+    /**
      * An extension of the Graph.find interface which allows the caller to 
      * encode complex expressions in RDF and then refer to those expressions
      * within the query triple. For example, one might encode a class expression

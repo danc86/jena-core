@@ -103,7 +103,9 @@ public class ReasonerRegistry {
     public void register(ReasonerFactory factory) {
         reasonerFactories.put(factory.getURI(), factory);
         Model description = factory.getCapabilities();
-        allDescriptions.add(description);
+        if (description != null) {
+            allDescriptions.add(description);
+        }
         allDescriptions.createResource(factory.getURI())
                         .addProperty(RDF.type, ReasonerClass);
     }

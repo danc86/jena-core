@@ -34,6 +34,10 @@ public class RDFSReasonerFactory implements ReasonerFactory {
      *  Set to "true" to enable scanning of triples looking for rdf:_1 assertions. */
     public static final Property scanProperties = new PropertyImpl(URI+"#", "scanProperties");
     
+    /** Property used to configure the checking of ranges of datatype properties
+     *  Set to "true" to enable eager range checking on add. */
+    public static final Property checkDTRange = new PropertyImpl(URI+"#", "checkDTRange");
+    
     /**
      * Return the single global instance of this factory
      */

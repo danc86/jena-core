@@ -31,7 +31,7 @@ public class AssertFRule extends BaseFRule {
      * Assert each of the instantiated Triples into the reasoner
      * triple cache.
      */
-    void fire(TriplePattern[] body, BoundRDFSReasoner reasoner) {
+    void fire(TriplePattern[] body, RDFSInfGraph reasoner) {
         for (int i = 0; i < body.length; i++) {
             reasoner.assertTriple(body[i].asTriple());
         }
