@@ -391,7 +391,12 @@ public class OntResourceImpl
      */ 
     public String getVersionInfo() {
         checkProfile( getProfile().VERSION_INFO(), "VERSION_INFO" );
-        return getProperty( getProfile().VERSION_INFO() ).getString();
+        try {
+            return getProperty( getProfile().VERSION_INFO() ).getString();
+        }
+        catch (JenaPropertyNotFoundException ignore) {
+            return null;
+        }
     }
 
     /**
@@ -478,7 +483,12 @@ public class OntResourceImpl
         checkProfile( getProfile().LABEL(), "LABEL" );
         if (lang == null) {
             // don't care which language version we get
-            return getProperty( getProfile().LABEL() ).getString();
+            try {
+                return getProperty( getProfile().LABEL() ).getString();
+            }
+            catch (JenaPropertyNotFoundException ignore) {
+                return null;
+            }
         }
         else {
             // search for the best match for the specified language
@@ -914,7 +924,12 @@ public class OntResourceImpl
      *         returns null.
      */
     public RDFNode getPropertyValue( Property property ) {
-        return getProperty( property ).getObject();
+        try {
+            return getProperty( property ).getObject();
+        }
+        catch (JenaPropertyNotFoundException ignore) {
+            return null;
+        }
     }
 
 
