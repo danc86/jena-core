@@ -65,7 +65,6 @@ public interface NodeIterator extends ClosableIterator {
     public RDFNode nextNode() throws  NoSuchElementException;
     /** Unsupported Operation.
      * @throws NoSuchElementException
-     * @
      */
     public void remove() throws NoSuchElementException;
     /** Terminate the iteration and free up resources.

@@ -168,7 +168,7 @@ public interface DAMLModel
     /**
      * <p>Create a new DAML value that is a member of the given class.  The appropriate
      * {@link DAMLCommon} sub-class will be instantiated, so, for example, if the <code>damlClass</code>
-     * is {@link DAML_OIL#Restriction}, a {@link DAMLRestriction}
+     * is <code>daml:Restriction</code>, a {@link DAMLRestriction}
      * object will be returned.  Note that if a URI is given, and a value with that
      * URI already exists in the model, that instance will be returned instead of
      * creating a new DAML value. This is necessary to maintain consistency of the model.</p>

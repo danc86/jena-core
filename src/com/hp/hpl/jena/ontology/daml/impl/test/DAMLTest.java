@@ -836,7 +836,6 @@ public class DAMLTest
 
     /**
      * Test adding a model to an existing model
-     * @
      */
     public void testModelAdd()
         

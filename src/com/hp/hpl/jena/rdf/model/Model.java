@@ -327,7 +327,6 @@ public interface Model
 	/** Add statements from an RDF/XML serialization.
 	 * @param in the source of the RDF/XML
 	 * @param base the base to use when converting relative to absolute uri's
-	 * @ a generic RDF exception
 	 * @return the current model
 	 */
 	public Model read(InputStream in, String base) ;
@@ -344,7 +343,6 @@ public interface Model
 	 * @param lang the langauge of the serialization <code>null<code>
 	 * selects the default
 	 * @param in the source of the input serialization
-	 * @ generic exception
 	 */
 	public Model read(InputStream in, String base, String lang)
 		;
@@ -357,7 +355,6 @@ public interface Model
      * character encoding of the data in the file.
 	 * @param reader the source of the RDF/XML
 	 * @param base the base to use when converting relative to absolute uri's
-	 * @ a generic RDF exception
 	 * @return the current model
 	 */
 	public Model read(Reader reader, String base) ;
@@ -395,7 +392,6 @@ public interface Model
 	 * @param lang the langauge of the serialization <code>null<code>
 	 * selects the default
 	 * @param reader the source of the input serialization
-	 * @ generic exception
 	 */
 	public Model read(Reader reader, String base, String lang)
 		;
@@ -421,7 +417,6 @@ public interface Model
 	 * represented by <code>null<code> is "RDF/XML".</p>
 	 * @param writer the output writer
 	 * @param lang the output langauge
-	 * @ generic exception
 	 * @return this model
 	 */
 	public Model write(Writer writer, String lang) ;
@@ -466,7 +461,6 @@ public interface Model
 	 * represented by <code>null<code> is "RDF/XML".</p>
 	 * @param out where the RDF is written
 	 * @param lang the output langauge
-	 * @ generic exception
 	 * @return this model
 	 */
 	public Model write(OutputStream out, String lang) ;

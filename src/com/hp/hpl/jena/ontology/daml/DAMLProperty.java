@@ -169,7 +169,8 @@ public interface DAMLProperty
      * <p><strong>Note:</strong> In a change to the Jena 1 DAML API, whether
      * this iterator includes <em>inferred</em> super-properties is determined
      * not by a flag at the API level, but by the construction of the DAML
-     * model itself.  See {@link ModelFactory} for details. The boolean parameter
+     * model itself.  See {@linkplain com.hp.hpl.jena.rdf.model.ModelFactory the model factory} 
+     * for details. The boolean parameter
      * <code>closed</code> is now re-interpreted to mean the inverse of <code>
      * direct</code>, see {@link OntClass#listSubClasses(boolean)} for more details.
      * </p>
@@ -194,7 +195,8 @@ public interface DAMLProperty
      * <p><strong>Note:</strong> In a change to the Jena 1 DAML API, whether
      * this iterator includes <em>inferred</em> sub-properties is determined
      * not by a flag at the API level, but by the construction of the DAML
-     * model itself.  See {@link ModelFactory} for details. The boolean parameter
+     * model itself.  See {@linkplain com.hp.hpl.jena.rdf.model.ModelFactory the model factory} 
+     * for details. The boolean parameter
      * <code>closed</code> is now re-interpreted to mean the inverse of <code>
      * direct</code>, see {@link OntClass#listSubClasses(boolean)} for more details.
      * </p>
