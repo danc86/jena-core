@@ -399,6 +399,29 @@ public class TestBasicLP  extends TestCase {
                     new Triple(b, s, D2),
                 } );
     }
+   
+    /**
+     * Test backtracking - multiple triple matches
+     */
+    public void testBacktrack10() {
+        doTest("[r1: (?x s ?y) <- (?x r ?y) (?x q ?z), equal(?y, ?z)(?x, p, ?y)]" +
+        "[(a p D1) <- ]" +
+        "[(a p D2) <- ]" +
+        "[(b p D1) <- ]",
+                new Triple[] {
+                    new Triple(a, r, D1),
+                    new Triple(a, r, D2),
+                    new Triple(a, r, D3),
+                    new Triple(b, r, D2),
+                    new Triple(a, q, D2),
+                    new Triple(b, q, D2),
+                    new Triple(b, q, D3),
+                },
+                new Triple(Node.ANY, s, Node.ANY),
+                new Object[] {
+                    new Triple(a, s, D2),
+                } );
+    }
     
     /**
      * Test clause order is right
