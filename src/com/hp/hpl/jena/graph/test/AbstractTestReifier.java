@@ -171,6 +171,35 @@ public abstract class AbstractTestReifier extends GraphTestBase
             }
         }
     
+    public void testReificationSubjectClash()
+        {
+        testReificationClash( "x rdf:subject SS" );
+        }    
+    
+    public void testReificationPredicateClash()
+        {
+        testReificationClash( "x rdf:predicate PP" );
+        }    
+    
+    public void testReificationObjectClash()
+        {
+        testReificationClash( "x rdf:object OO" );
+        }
+        
+    /**
+     * @param clashingStatement
+     */
+    protected void testReificationClash( String clashingStatement )
+        {
+        Graph g = getGraph( Standard );
+        Triple SPO = Triple.create( "S P O" );
+        g.getReifier().reifyAs( node( "x" ), SPO );
+        assertTrue( g.getReifier().hasTriple( SPO ) );
+        graphAdd( g,  clashingStatement );
+        assertEquals( null, g.getReifier().getTriple( node( "x" ) ) );
+        assertFalse( g.getReifier().hasTriple( SPO ) );
+        }
+
     public void testManifestQuadsStandard()
         { testManifestQuads( Standard ); }
         
@@ -323,7 +352,7 @@ public abstract class AbstractTestReifier extends GraphTestBase
         catch (CannotReifyException e)
             { pass(); }
         }
-        
+
     /**
         Test that the hidden triples graph is dynamic, not static.
     */

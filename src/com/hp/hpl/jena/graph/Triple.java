@@ -16,7 +16,7 @@ import java.util.*;
     
     @author Jeremy Carroll
  */
-final public class Triple implements TripleMatch {
+public class Triple implements TripleMatch {
 	private final Node subj, pred, obj;
     
 	public Triple(Node s, Node p, Node o) {
@@ -119,9 +119,7 @@ final public class Triple implements TripleMatch {
         together: see hashCode(S, P, O).
     */
     public int hashCode() 
-        { return hashCode( subj, pred, obj );
-    	// return (subj.hashCode() >> 1) ^ pred.hashCode() ^ (obj.hashCode() << 1);
-        }
+        { return hashCode( subj, pred, obj ); }
     
     /**
         Return the munged hashCodes of the specified nodes, an exclusive-or of 
