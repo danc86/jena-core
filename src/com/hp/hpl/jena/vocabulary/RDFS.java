@@ -19,25 +19,25 @@ public class RDFS {
     
     private static Model m = ModelFactory.createDefaultModel();
     
-    public static final Resource Class     = m.createResource(uri+"Class");
-    public static final Resource Datatype            = m.createResource(uri+"Datatype");
+    public static final Resource Class = m.createResource(uri+"Class");
+    public static final Resource Datatype = m.createResource(uri+"Datatype");
     public static final Resource ConstraintProperty  =  m.createResource(uri+"ConstraintProperty");
-    public static final Resource Container           = m.createResource(uri+"Container");
+    public static final Resource Container  = m.createResource(uri+"Container");
     public static final Resource ContainerMembershipProperty
                                                      = m.createResource(uri+"ContainerMembershipProperty");
     public static final Resource ConstraintResource  = m.createResource(uri+"ConstraintResource");
-    public static final Resource Literal             = m.createResource(uri+"Literal");
-    public static final Resource Resource            = m.createResource(uri+"Resource");
+    public static final Resource Literal = m.createResource(uri+"Literal");
+    public static final Resource Resource = m.createResource(uri+"Resource");
     
-    public static final Property comment             = m.createProperty(uri, "comment");
-    public static final Property domain              = m.createProperty(uri, "domain");
-    public static final Property label               = m.createProperty(uri, "label");
-    public static final Property isDefinedBy         = m.createProperty(uri, "isDefinedBy");
-    public static final Property range               = m.createProperty(uri, "range");
-    public static final Property seeAlso             = m.createProperty(uri, "seeAlso");
-    public static final Property subClassOf          = m.createProperty(uri, "subClassOf");
-    public static final Property subPropertyOf       = m.createProperty(uri, "subPropertyOf");
-    public static final Property member             = m.createProperty(uri, "member"); 
+    public static final Property comment = m.createProperty(uri, "comment");
+    public static final Property domain = m.createProperty(uri, "domain");
+    public static final Property label = m.createProperty(uri, "label");
+    public static final Property isDefinedBy = m.createProperty(uri, "isDefinedBy");
+    public static final Property range = m.createProperty(uri, "range");
+    public static final Property seeAlso = m.createProperty(uri, "seeAlso");
+    public static final Property subClassOf  = m.createProperty(uri, "subClassOf");
+    public static final Property subPropertyOf  = m.createProperty(uri, "subPropertyOf");
+    public static final Property member  = m.createProperty(uri, "member"); 
 
 /** returns the URI for this schema
  * @return the URI for this schema

@@ -6,29 +6,52 @@
 
 package com.hp.hpl.jena.vocabulary.test;
 
+import com.hp.hpl.jena.vocabulary.*;
 import junit.framework.*;
 
 /**
-    Collect together all the vocabulary tests.
  	@author kers
 */
-public class TestVocabularies extends TestCase
+public class TestVocabDB extends VocabTestBase
     {
-    public TestVocabularies( String name )
-        { super( name ); }
+    public TestVocabDB(String name)
+        { super(name); }
 
     public static TestSuite suite()
+        { return new TestSuite( TestVocabDB.class ); }
+
+    public void testXX()
         {
-        TestSuite result = new TestSuite();
-        result.addTest( TestVocabRDF.suite() );
-        result.addTest( TestVocabRDFS.suite() );
-        result.addTest( TestVocabVCARD.suite() );
-        result.addTest( TestVocabTestQuery.suite() );
-        result.addTest( TestVocabTestManifest.suite() );
-        result.addTest( TestVocabDB.suite() );
-        result.addTest( TestVocabRSS.suite() );
-        result.addTest( TestVocabResultSet.suite() );
-        return result;
+		String ns = "http://jena.hpl.hp.com/2003/04/DB#";
+    /* */
+        assertResource( ns + "SystemGraph", DB.systemGraphName );
+        assertProperty( ns + "EngineType", DB.engineType );
+        assertProperty( ns + "DriverVersion", DB.driverVersion );
+        assertProperty( ns + "FormatDate", DB.formatDate );
+        assertProperty( ns + "Graph", DB.graph );
+        assertProperty( ns + "MaxLiteral", DB.maxLiteral );
+    /* */
+        assertProperty( ns + "GraphName", DB.graphName );
+        assertProperty( ns + "GraphType", DB.graphType );
+        assertProperty( ns + "GraphLSet", DB.graphLSet );
+        assertProperty( ns + "GraphPrefix", DB.graphPrefix );
+        assertProperty( ns + "GraphId", DB.graphId );
+        assertProperty( ns + "GraphDBSchema", DB.graphDBSchema );
+        assertProperty( ns + "StmtTable", DB.stmtTable );
+        assertProperty( ns + "ReifTable", DB.reifTable );
+    /* */
+        assertProperty( ns + "PrefixValue", DB.prefixValue );
+        assertProperty( ns + "PrefixURI", DB.prefixURI );
+    /* */
+        assertProperty( ns + "LSetName", DB.lSetName );
+        assertProperty( ns + "LSetType", DB.lSetType );
+        assertProperty( ns + "LSetPSet", DB.lSetPSet );
+    /* */
+        assertProperty( ns + "PSetName", DB.pSetName );
+        assertProperty( ns + "PSetType", DB.pSetType );
+        assertProperty( ns + "PSetTable", DB.pSetTable );
+    /* */
+        assertResource( ns + "undefined", DB.undefined );
         }
     }
 
