@@ -575,10 +575,10 @@ public interface OntModel
      * anonymous resource of <code>rdf:type R</code>, where R is the restriction type from the
      * language profile.
      * </p>
-     * 
+     * @param p The property that is restricted by this restriction, or null to omit from the restriction
      * @return An anonymous Restriction resource.
      */
-    public Restriction createRestriction();
+    public Restriction createRestriction( Property p );
     
    
     /**
@@ -589,9 +589,10 @@ public interface OntModel
      * </p>
      * 
      * @param uri The uri for the restriction node, or null for an anonymous restriction.
+     * @param p The property that is restricted by this restriction, or null to omit from the restriction
      * @return A Restriction resource.
      */
-    public Restriction createRestriction( String uri );
+    public Restriction createRestriction( String uri, Property p );
     
     
     /**

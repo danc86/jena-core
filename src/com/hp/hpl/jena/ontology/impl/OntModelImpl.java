@@ -841,11 +841,17 @@ public class OntModelImpl
      * language profile.
      * </p>
      * 
+     * @param p The property that is restricted by this restriction
      * @return An anonymous Restriction resource.
      */
-    public Restriction createRestriction() {
+    public Restriction createRestriction( Property p ) {
         checkProfileEntry( getProfile().RESTRICTION(), "RESTRICTION" );
-        return (Restriction) createOntResource( Restriction.class, getProfile().RESTRICTION(), null );
+        Restriction r = (Restriction) createOntResource( Restriction.class, getProfile().RESTRICTION(), null );
+        if (p != null) {
+            r.setOnProperty( p );
+        } 
+        
+        return r;
     }
     
    
@@ -857,11 +863,17 @@ public class OntModelImpl
      * </p>
      * 
      * @param uri The uri for the restriction node, or null for an anonymous restriction.
+     * @param p The property that is restricted by this restriction
      * @return A Restriction resource.
      */
-    public Restriction createRestriction( String uri ) {
+    public Restriction createRestriction( String uri, Property p ) {
         checkProfileEntry( getProfile().RESTRICTION(), "RESTRICTION" );
-        return (Restriction) createOntResource( Restriction.class, getProfile().RESTRICTION(), uri );
+        Restriction r = (Restriction) createOntResource( Restriction.class, getProfile().RESTRICTION(), uri );
+        if (p != null) {
+            r.setOnProperty( p );
+        } 
+        
+        return r;
     }
     
     

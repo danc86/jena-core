@@ -356,11 +356,11 @@ public class TestCreate
         // Restrictions
         
         new CreateTestCase( "OWL create restriction", ProfileRegistry.OWL_LANG, NS + "C" ) {
-            public OntResource doCreate( OntModel m )   { return m.createRestriction( NS + "C" ); }
+            public OntResource doCreate( OntModel m )   { return m.createRestriction( NS + "C", null ); }
             public boolean test( OntResource r )        { return r instanceof Restriction;}
         },
         new CreateTestCase( "OWL create anon restriction", ProfileRegistry.OWL_LANG, null ) {
-            public OntResource doCreate( OntModel m )   { return m.createRestriction(); }
+            public OntResource doCreate( OntModel m )   { return m.createRestriction( null ); }
             public boolean test( OntResource r )        { return r instanceof Restriction;}
         },
         
@@ -419,11 +419,11 @@ public class TestCreate
         },
         
         new CreateTestCase( "DAML create restriction", ProfileRegistry.DAML_LANG, NS + "C" ) {
-            public OntResource doCreate( OntModel m )   { return m.createRestriction( NS + "C" ); }
+            public OntResource doCreate( OntModel m )   { return m.createRestriction( NS + "C", null ); }
             public boolean test( OntResource r )        { return r instanceof Restriction;}
         },
         new CreateTestCase( "DAML create anon restriction", ProfileRegistry.DAML_LANG, null ) {
-            public OntResource doCreate( OntModel m )   { return m.createRestriction(); }
+            public OntResource doCreate( OntModel m )   { return m.createRestriction( null ); }
             public boolean test( OntResource r )        { return r instanceof Restriction;}
         },
         
