@@ -155,14 +155,14 @@ class SyntaxTest extends TestCase {
 				fail(msg);
 			}
 			if (level.equals(OWLTest.Full)
-			        && !HP
+			 //       && !HP
 			        ) {
 				Iterator it = chk.getProblems();
 				while (it.hasNext()) {
 					SyntaxProblem sp = (SyntaxProblem) it.next();
-				    Graph g = sp.problemSubGraph();
-				    if (g==null)
+					if (sp.problemNode()!=null)
 				        continue;
+				    Graph g = sp.problemSubGraph();
 				    Iterator ii = g.find(Node.ANY,Node.ANY,Node.ANY);
 				    Set s = new HashSet();
 				    while (ii.hasNext())
@@ -173,11 +173,13 @@ class SyntaxTest extends TestCase {
 				        g.delete(t);
 				        chk = new Checker(false);
 				        chk.addRaw(g);
-				        if (chk.getSubLanguage().equals("Full"))
+				        if (chk.getMonotoneLevel()==Levels.Full)
 				            fail("Non-minimal solution");
 				        g.add(t);
 				    }
-				    
+				    chk = new Checker(false);
+				    chk.addRaw(g);
+				    assertEquals(chk.getSubLanguage(),"Full");
 				    
 				}
 			}

@@ -62,6 +62,8 @@ class MinimalSubGraph extends AbsChecker {
 
 	Graph getContradiction() {
 		return hasBeenChecked;
+
+//		return Factory.createDefaultGraph(ReificationStyle.Minimal);
 	}
 
 	private void todo(Triple t) {
