@@ -91,14 +91,11 @@ public class WGReasonerTester {
         BASE_URI + "datatypes/Manifest.rdf#language-important-for-non-dt-entailment-1",
         BASE_URI + "datatypes/Manifest.rdf#language-important-for-non-dt-entailment-2",
     // Additional blocked tests, because we do not implement them ... jjc
+        BASE_URI + "pfps-10/Manifest.rdf#non-well-formed-literal-1",
         BASE_URI + "xmlsch-02/Manifest.rdf#whitespace-facet-3",
-		    BASE_URI + "xmlsch-02/Manifest.rdf#whitespace-facet-2",
-		    BASE_URI + "xmlsch-02/Manifest.rdf#whitespace-facet-1",
-		    BASE_URI + "pfps-10/Manifest.rdf#non-well-formed-literal-1",
-		    BASE_URI + "rdfms-seq-representation/Manifest.rdf#test003",
-		    BASE_URI + "datatypes-intensional/Manifest.rdf#xsd-integer-string-incompatible",
-    
-    
+//	BASE_URI + "xmlsch-02/Manifest.rdf#whitespace-facet-2",
+//	BASE_URI + "xmlsch-02/Manifest.rdf#whitespace-facet-1",
+//	BASE_URI + "datatypes-intensional/Manifest.rdf#xsd-integer-string-incompatible",
     };
     
     // Static initializer for the predicates
