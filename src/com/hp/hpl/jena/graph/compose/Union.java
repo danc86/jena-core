@@ -50,7 +50,8 @@ public class Union extends Dyadic implements Graph
 	public ExtendedIterator find( final TripleMatch t ) 
 	    {
 	    Set seen = HashUtils.createSet();
-	    return recording( L.find( t ), seen ).andThen( rejecting( R.find( t ), seen ) ); 
+        return recording( L.find( t ), seen ).andThen( rejecting( R.find( t ), seen ) ); 
+	    // return L.find( t ) .andThen( rejecting( R.find( t ), L ) ); 
 		}
 	}
 

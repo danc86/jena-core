@@ -161,6 +161,17 @@ public abstract class CompositionBase
         }
         
     /**
+         Answer an iterator over the elements of <code>i</code> that are not in
+         the graph <code>seen</code>.
+    */
+    public static ExtendedIterator rejecting( final ExtendedIterator i, final Graph seen )
+        {
+        Filter seenFilter = new Filter()
+            { public boolean accept( Object x ) { return seen.contains( (Triple) x ); } };
+        return i.filterDrop( seenFilter );
+        }
+    
+    /**
      * <p>
      * Answer the number of items in the closable iterator i. As a side effect, i
      * is closed.
