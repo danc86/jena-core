@@ -20,7 +20,7 @@ public interface Pipe
     public boolean hasNext();
     
     /**
-        Answer the next element if there is one, otherwise throw an exception.
+        Answer the next element if there is one, otherwise throw a NoSuchElementException.
      */
     public Domain get();
     

@@ -89,6 +89,20 @@ public abstract class AbstractTestQuery extends GraphTestBase
         testTreeQuery( "a pings b; b pings c; c pings d", "a pings b; b pings c", "a pings b; b pings c" );
         }
         
+    public void testEmptyIterator()
+        {
+        Graph empty = getGraph();
+        Query q = new Query().addMatch( X, Y, Z );
+        BindingQueryPlan bqp = empty.queryHandler().prepareBindings( q, new Node[]{X} );
+        try
+            {
+            bqp.executeBindings().next();
+            fail( "there are no bindings; next() should fail" );    
+            }    
+        catch (NoSuchElementException e)
+            { pass(); }
+        }
+        
     public void testBinding1( )
         {
         Graph single = getGraphWith( "rice grows quickly" );

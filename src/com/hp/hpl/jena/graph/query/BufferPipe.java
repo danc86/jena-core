@@ -9,6 +9,8 @@ package com.hp.hpl.jena.graph.query;
 import EDU.oswego.cs.dl.util.concurrent.*;
 import com.hp.hpl.jena.shared.*;
 
+import java.util.*;
+
 /**
     This class is a pipe between query threads, implemented as a bounded buffer.
 	@author kers
@@ -61,7 +63,10 @@ public class BufferPipe implements Pipe
         }
         
     public Domain get()
-        { hasNext(); try { return (Domain) pending; } finally { pending = null; } }
+        {
+        if (hasNext() == false) throw new NoSuchElementException(); 
+        try { return (Domain) pending; } finally { pending = null; } 
+        }
 
     /**
         Exception to throw if a <code>take</code> throws an exception.
