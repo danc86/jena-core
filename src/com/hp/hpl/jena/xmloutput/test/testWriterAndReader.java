@@ -32,7 +32,6 @@ import org.apache.commons.logging.LogFactory;
 public class testWriterAndReader 
     extends ModelTestBase implements RDFErrorHandler {
 	static private boolean showProgress = false;
-	static private boolean keepFiles = false;
 	static private boolean errorDetail = false;
 	static private int firstTest = 5;
 	static private int lastTest = 9;
@@ -327,8 +326,8 @@ public class testWriterAndReader
 		if (showProgress)
 			System.out.println("Beginning " + test);
 		Random random = new Random(seed);
-		File tmpFile1;
-		RDFReader rdfRdr = m1.getReader(rwLang);
+
+        RDFReader rdfRdr = m1.getReader(rwLang);
 		RDFWriter rdfWtr = m1.getWriter(rwLang);
 
 		// set any writer options
@@ -342,7 +341,6 @@ public class testWriterAndReader
 		rdfRdr.setErrorHandler(this);
 		rdfWtr.setErrorHandler(this);
 		for (int jjj = 0; jjj < jjjMax; jjj++) {
-			//  System.out.println(tmpFile1.toString());
 			String fileName = "t" + (fileNumber * 1000) + ".rdf";
 			m1 = createMemModel();
 			String baseUriRead;
@@ -355,27 +353,23 @@ public class testWriterAndReader
 			rdr.close();
 			boolean problem = false;
 			for (int j = 0; j < repetitionsJ; j++) {
-				tmpFile1 =
-					File.createTempFile(
-						"j"
-							+ lang.substring(0, 2)
-							+ lang.substring(lang.length() - 2)
-							+ j
-							+ "t",
-						".txt");
-				String baseUriWrite =
+
+                String baseUriWrite =
 					j % 2 == 0 ? baseUriRead : "http://bar.com/irrelevant";
 				int cn = (int) m1.size();
 				if ((j % 2) == 0 && j > 0)
 					prune(m1, random, 1 + cn / 10);
 				if ((j % 2) == 0 && j > 0)
 					expand(m1, random, 1 + cn / 10);
-				OutputStream pw = new FileOutputStream(tmpFile1);
-				rdfWtr.write(m1, pw, baseUriWrite);
-				pw.close();
+                
+                ByteArrayOutputStream tmpOut = new ByteArrayOutputStream() ;
+                rdfWtr.write(m1, tmpOut, baseUriWrite);
+                tmpOut.flush() ;
+                tmpOut.close() ;
 				m2 = createMemModel();
 				//empty(m2);
-				InputStream in = new FileInputStream(tmpFile1);
+                
+                InputStream in = new ByteArrayInputStream(tmpOut.toByteArray()) ;
 				rdfRdr.read(m2, in, baseUriWrite);
 				in.close();
 				Model s1 = m1;
@@ -389,30 +383,11 @@ public class testWriterAndReader
 				System.err.println("=");
 				*/
 				assertTrue(
-					"Comparison of file written out, and file read in. See "
-						+ tmpFile1.getAbsolutePath(),
-					s1.isIsomorphicWith(s2));
-				//       System.err.println("OK");
-
-				if (!keepFiles) {
-					try {
-				  	tmpFile1.delete();
-					}
-					catch (RuntimeException e) {
-						// Avoid 1.4 dependency for catching java.nio.BufferOverflowException
-						if (e.getClass().getName().endsWith("BufferOverflowException")) {
-						  if (!linuxFileDeleteErrorFlag) {
-							    linuxFileDeleteErrorFlag = true;
-							    logger.error(tmpFile1.getAbsolutePath() + " File deletion problem - known to occur on RedHat 9 with Java 1.4.1_03",e);
-							    logger.error("Further occurrences will be ignored.");
-						  }
-						  // else nothing.
-						} else {
-							throw e;
-						}
-					}
-				}
-
+                        "Comparison of file written out, and file read in.",
+                        s1.isIsomorphicWith(s2));
+                // Free resources explicitily.
+                tmpOut.reset() ;
+                tmpOut = null ;
 			}
 			if (showProgress) {
 				System.out.print("+");

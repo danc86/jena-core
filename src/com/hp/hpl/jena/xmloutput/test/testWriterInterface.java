@@ -68,24 +68,24 @@ public class testWriterInterface extends ModelTestBase {
     }
 
     public void testWriting() {
+        // Changed to use "in-memory files" (ByteArrayOutputStream)
+        // Used to use temporary file. 
         //System.err.println(lang);
-        File file = null;
         OutputStream output = null;
         Model m1 = createMemModel();
         try {
-            file = File.createTempFile("~jena", ".rdf");
-            output = new FileOutputStream(file);
+            ByteArrayOutputStream out = new ByteArrayOutputStream() ;
+            output = out ;
             m1.write(output, lang);
+            out.reset() ;
+            output.close() ;
         } catch (Exception e) {
             fail(e.getMessage());
         } finally {
             if (output != null)
                 try {
                     output.close();
-                } catch (Exception e) {
-                }
-            if (file != null)
-                file.delete();
+                } catch (Exception e) { }
         }
     }
 
