@@ -133,7 +133,7 @@ public  class PSet_TripleStore_RDB implements IPSet {
 	
 	/**
 	 * Accessor for m_ASTName.
-	 * @returns name of the Statement table.
+	 * @return name of the Statement table.
 	 */
 	protected String getASTname() {
 		return m_ASTName;
