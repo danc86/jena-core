@@ -1,10 +1,11 @@
+<!-- tested using ant 1.5 -->
 <project name="jena" default="main" basedir=".">
 
     <property name="Name"            value="Jena"/>
     <property name="name"            value="jena"/>
-    <property name="version"         value="j2p1-rc2"/>
+    <property name="version"         value="j2p1"/>
 
-    <property name="dist.name"       value="${Name}-${version}"/>
+    <property name="dist.name"       value="${name}-${version}"/>
 
     <property name="debug"           value="false"/>
     <property name="deprecation"     value="true"/>
@@ -175,6 +176,7 @@
                  overview="src/link2readme.html"
                  bottom="Copyright &#169; 2001-2003 Hewlett-Packard. All Rights Reserved.">
             <classpath refid="classpath"/>
+                <package name="com.hp.hpl.jena.enhanced"/>
                 <package name="com.hp.hpl.jena.graph"/>
                 <package name="com.hp.hpl.jena.rdf.model"/>
                 <package name="com.hp.hpl.jena.rdql"/>
@@ -189,6 +191,7 @@
                 <package name="com.hp.hpl.jena.vocabulary"/>
             </group>
             <group title="SPI - System Programming Interface">
+                <package name="com.hp.hpl.jena.enhanced"/>
                 <package name="com.hp.hpl.jena.graph"/>
                 <package name="com.hp.hpl.jena.reasoner.rdfsReasoner1"/>
                 <package name="com.hp.hpl.jena.reasoner.transitiveReasoner"/>
@@ -225,8 +228,9 @@
         <copy todir="${dist.dir}" file="build.xml"/>
         <copy todir="${dist.dir}" file="copyright.txt"/>
         <copy todir="${dist.dir}" file="ReleaseNotes.txt"/>
+        <copy todir="${dist.dir}" file="test.bat"/>
+        <copy todir="${dist.dir}" file="test.sh"/>
         <copy todir="${dist.dir}" file="readme.html"/>
-<!--        <copy todir="${dist.dir}" file="JenaTutorial.html"/> -->
 
         <!-- RDQL support files : scripts to build the Java
         <copy todir="${dist.dir}" file="doExprNodes"/>
@@ -302,7 +306,7 @@
     
     <target name="test">
         <echo>install test</echo>
-        <junit fork="yes">
+        <junit fork="yes" printsummary="yes">
         <classpath>
             <fileset dir="${lib.dir}" includes="*.jar"/>
         </classpath>  
@@ -313,7 +317,7 @@
  <!-- uses the latest built jena code - not the jar in the lib -->   
     <target name="dev-test">
         <echo>developer test</echo>
-        <junit fork="yes">
+        <junit fork="yes" printsummary="yes">
         <classpath>
             <fileset dir="${lib.dir}" includes="*.jar" excludes="${jarfile}"/>
             <pathelement location="${classes.dir}"/>
@@ -322,9 +326,11 @@
       </junit>    
     </target>
 
+
     <target name="clean">
-        <delete includeEmptyDir="true">
-            <fileset dir="${lib.dir}" includes="*.jar" excludes="${jarfile}"/>
+        <delete includeEmptyDirs="true">
+            <fileset dir="${dist.dir}"/>
         </delete>
     </target>
+
 </project>
