@@ -62,7 +62,7 @@ public abstract class ModelSpecImpl implements ModelSpec
         Answer a Model created according to this ModelSpec and based on an underlying
         Model with the given name.
          
-     	@see com.hp.hpl.jena.rdf.model.ModelSpec#createModel(java.lang.String)
+     	@see com.hp.hpl.jena.rdf.model.ModelSpec#createModelOver(java.lang.String)
      */
     public abstract Model createModelOver( String name );
     

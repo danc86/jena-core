@@ -30,7 +30,7 @@ import com.hp.hpl.jena.shared.impl.PrefixMappingImpl;
 
 public abstract class GraphBase implements Graph {
 
-    private Reifier.Style style;
+    protected final Reifier.Style style;
     
     protected boolean closed = false;
     

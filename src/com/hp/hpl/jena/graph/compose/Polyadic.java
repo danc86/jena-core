@@ -25,6 +25,7 @@ package com.hp.hpl.jena.graph.compose;
 // Imports
 ///////////////
 import com.hp.hpl.jena.graph.*;
+import com.hp.hpl.jena.graph.impl.SimpleReifier;
 import com.hp.hpl.jena.shared.*;
 import com.hp.hpl.jena.util.iterator.*;
 
@@ -244,8 +245,11 @@ public abstract class Polyadic
     public GraphEventManager getEventManager()
         { return (getBaseGraph() == null) ? super.getEventManager() : getBaseGraph().getEventManager(); }
 
-    public Reifier getReifier()
-        {return (getBaseGraph() == null) ? super.getReifier() : getBaseGraph().getReifier(); }
+//    public Reifier getReifier()
+//        { 
+//        if (reifier == null) reifier = new SimpleReifier( this, style );
+//        return reifier;
+//        }
 
     public PrefixMapping getPrefixMapping()
         { return (getBaseGraph() == null) ? super.getPrefixMapping() : getBaseGraph().getPrefixMapping(); }
