@@ -59,9 +59,6 @@ public class LiteralImpl extends EnhNode implements Literal {
             return new LiteralImpl(n,eg);
         }
     };          
-                          
-    private LiteralImpl( Resource r )
-        { this( r.asNode(), r.getModel() ); }
           
     public LiteralImpl(Node n,Model m) {
         super(n,(ModelCom)m );
@@ -214,7 +211,7 @@ public class LiteralImpl extends EnhNode implements Literal {
             } else if (value.equals("false")) {
                 return false;
             } else {
-                throw new RDFException(RDFException.INVALIDBOOLEANFORMAT);
+                throw new JenaBadBooleanException( value.toString() );
             }
         } else {
             // typed literal
@@ -263,7 +260,7 @@ public class LiteralImpl extends EnhNode implements Literal {
             if (getString().length()==1) {
                 return (getString().charAt(0));
             } else {
-                throw new RDFException(RDFException.LITERALNOTCHAR);
+                throw new JenaBadCharLiteralException( getString() );
             }
         } else {
             Object value = getValue();

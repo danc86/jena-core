@@ -592,7 +592,7 @@ abstract public class BaseXMLWriter implements RDFXMLWriterI {
 					showXmlDeclaration = Boolean.FALSE;
 				else
 					// Also overloading the error condition.
-					throw new RDFException(RDFException.INVALIDBOOLEANFORMAT);
+					throw new JenaBadBooleanException( propValueStr );
 			}
 			return oldValue;
 		} else if (propName.equalsIgnoreCase("xmlbase")) {

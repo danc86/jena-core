@@ -81,7 +81,7 @@ public class NTripleReader extends Object implements RDFReader {
         in = new IStream(reader);
         readRDF();
         if (errCount != 0) {
-            throw new RDFException(RDFException.SYNTAXERROR);
+            throw new JenaSyntaxError( "unknown" );
         }
     }
 
@@ -95,7 +95,7 @@ public class NTripleReader extends Object implements RDFReader {
             throw new JenaException(e);
         } finally {
             if (errCount != 0) {
-                throw new RDFException(RDFException.SYNTAXERROR);
+                throw new JenaSyntaxError( "unknown" );
             }
         }
     }
@@ -310,8 +310,7 @@ public class NTripleReader extends Object implements RDFReader {
     }
     private void deprecated(String s) {
         errorHandler.warning(
-            new RDFException(
-                RDFException.SYNTAXERROR,
+            new JenaSyntaxError(
                 syntaxErrorMessage(
                     "Deprecation warning",
                     s,
@@ -321,8 +320,7 @@ public class NTripleReader extends Object implements RDFReader {
 
     private void syntaxError(String s) {
         errorHandler.error(
-            new RDFException(
-                RDFException.SYNTAXERROR,
+            new JenaSyntaxError(
                 syntaxErrorMessage(
                     "Syntax error",
                     s,

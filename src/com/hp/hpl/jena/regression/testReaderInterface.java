@@ -93,19 +93,6 @@ public class testReaderInterface extends Object {
                 n++; m1.read("http://www.w3.org/2000/10/rdf-tests/rdfcore/"
                           +  "rdf-containers-syntax-vs-schema/test001.nt",
                              "N-TRIPLE");
-
-                } catch (RDFException rdfx) {
-                    if (rdfx.getErrorCode() == RDFException.NESTEDEXCEPTION &&
-                  ( rdfx.getNestedException() instanceof NoRouteToHostException
-                 ||rdfx.getNestedException() instanceof UnknownHostException
-                 ||rdfx.getNestedException() instanceof ConnectException)) {
-                    Log.warning("Cannot access public internet" +
-                                 "- part of test not executed",
-                                                     "Regression",
-                                                     "testReaderInterface");
-                    } else {
-                        throw rdfx;
-                    }
                 } catch (JenaException jx)
                     {
                     if (jx.getCause() instanceof NoRouteToHostException

@@ -1019,7 +1019,7 @@ implements Model, ModelI, PrefixMapping, ModelLock
             if (iter.hasNext()) {
                 return iter.nextStatement();
             } else {
-                throw new RDFException(RDFException.PROPERTYNOTFOUND);
+                throw new JenaPropertyNotFoundException( p );
             }
         } finally {
             iter.close();
