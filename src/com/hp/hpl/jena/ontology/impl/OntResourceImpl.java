@@ -704,7 +704,7 @@ public class OntResourceImpl
 
     /**
      * <p>
-     * Answer the <code>rdf:type<code> (ie the class) of this resource. If there
+     * Answer the <code>rdf:type</code> (ie the class) of this resource. If there
      * is more than one type for this resource, the return value will be one of 
      * the values, but it is not specified which one (nor that it will consistently
      * be the same one each time). Equivalent to <code>getRDFType( false )</code>.
@@ -719,7 +719,7 @@ public class OntResourceImpl
 
     /**
      * <p>
-     * Answer the <code>rdf:type<code> (ie the class) of this resource. If there
+     * Answer the <code>rdf:type</code> (ie the class) of this resource. If there
      * is more than one type for this resource, the return value will be one of 
      * the values, but it is not specified which one (nor that it will consistently
      * be the same one each time).

@@ -164,7 +164,7 @@ public interface OntClass
      * <p>
      * Answer an iterator over the classes that are declared to be sub-classes of
      * this class. Each element of the iterator will be an {@link OntClass}. The
-     * distinguishing extra parameter for this method is the flag <code>direct<code>
+     * distinguishing extra parameter for this method is the flag <code>direct</code>
      * that allows some selectivity over the classes that appear in the iterator.
      * Consider the following scenario:
      * <code><pre>
