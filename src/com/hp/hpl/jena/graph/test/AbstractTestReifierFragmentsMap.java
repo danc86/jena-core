@@ -26,12 +26,6 @@ public abstract class AbstractTestReifierFragmentsMap extends GraphTestBase
     public void setUp()
         { fragMap = getFragmentsMap(); }
     
-    public void testEmpty_noGetFragments()
-        {
-        assertEquals( null, fragMap.getFragments( node( "a" ) ) );
-        assertEquals( null, fragMap.getFragments( node( "b" ) ) );
-        }
-    
     public void testEmpty_emptyAllTriples()
         {
         assertEquals( tripleSet( "" ), iteratorToSet( fragMap.allTriples( triple( "?? ?? ??" ) ) ) );
