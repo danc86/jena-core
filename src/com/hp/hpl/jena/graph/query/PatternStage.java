@@ -7,6 +7,7 @@
 package com.hp.hpl.jena.graph.query;
 
 import com.hp.hpl.jena.graph.*;
+import com.hp.hpl.jena.graph.query.Expression;
 import com.hp.hpl.jena.util.iterator.*;
 
 import java.util.*;
@@ -92,8 +93,8 @@ public class PatternStage extends Stage
         has been matched, ie, all the variables of the expression have been bound.
     */
     protected boolean canEval( Expression e, int index )
-        { return boundVariables[index].containsAll( Expression.Util.variablesOf( e ) ); }
-
+        { return Expression.Util.containsAllVariablesOf( boundVariables[index], e ); }
+    
     protected Pattern [] compile( Mapping map, Triple [] triples )
         { return compile( compiler, map, triples ); }
         

@@ -8,6 +8,7 @@ package com.hp.hpl.jena.graph.query.test;
 
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.graph.query.*;
+import com.hp.hpl.jena.graph.query.Expression.Util;
 import com.hp.hpl.jena.graph.test.*;
 
 import com.hp.hpl.jena.util.iterator.Map1;
@@ -217,6 +218,20 @@ public class TestExpressionConstraints extends GraphTestBase
         Set eBoth = new HashSet(); eBoth.add( e1 ); eBoth.add( e2 );
         Set s = iteratorToSet( q.getConstraints().iterator() );
         assertEquals( eBoth, s );
+        }
+    
+    /**
+        check that an expression which does not admit to being a constant,
+        variable, or application, fails the "containsAllVariableOf" test [and hence will
+        not be evaluated early by the evaluator]. 
+    */
+    public void testUnknownExpression()
+        {
+        Expression eOpaque = new Expression.Base()
+            { public Valuator prepare(VariableIndexes vi) 
+                { return null; }
+            };
+        assertFalse( Util.containsAllVariablesOf( new HashSet(), eOpaque ) );
         }
     }
 
