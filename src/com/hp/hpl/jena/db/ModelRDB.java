@@ -426,6 +426,15 @@ public class ModelRDB extends ModelCom implements Model {
 		return ((DBQueryHandler)m_graphRDB.queryHandler()).getQueryFullReified();
 	}
 	
+	/**
+	 * Set the value of DoImplicitJoin.
+	 * @param val boolean
+	 */
+	public void setDoImplicitJoin ( boolean val ) {
+		((DBQueryHandler)m_graphRDB.queryHandler()).setDoImplicitJoin(val);
+	}
+
+	
 }
 
 /*
