@@ -44,6 +44,8 @@ import com.hp.hpl.jena.enhanced.*;
 public class AltImpl extends ContainerImpl implements Alt {
     
     final static public Implementation factory = new Implementation() {
+        public boolean canWrap( Node n, EnhGraph eg )
+            { return true; }
         public EnhNode wrap(Node n,EnhGraph eg) {
             return new AltImpl(n,eg);
         }

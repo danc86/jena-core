@@ -52,6 +52,8 @@ public class LiteralImpl extends EnhNode implements Literal {
                                   // as RDF/XML
   
     final static public Implementation factory = new Implementation() {
+        public boolean canWrap( Node n, EnhGraph eg )
+            { return true; }
         public EnhNode wrap(Node n,EnhGraph eg) {
             return new LiteralImpl(n,eg);
         }

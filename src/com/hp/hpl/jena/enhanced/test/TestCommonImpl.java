@@ -16,7 +16,7 @@ import com.hp.hpl.jena.util.iterator.*;
 class TestCommonImpl extends EnhNode implements TestNode {
 
     /** Creates new TestCommonImpl */
-    TestCommonImpl(Node n,EnhGraph m,Class myTypes[]) {
+    TestCommonImpl(Node n, EnhGraph m ) {
         super(n,m);
     }
     TestModel getModel() {

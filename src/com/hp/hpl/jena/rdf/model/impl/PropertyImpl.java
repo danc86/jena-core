@@ -42,11 +42,11 @@ import com.hp.hpl.jena.enhanced.*;
  * @version  Release='$Name$' Revision='$Revision$' Date='$Date$'
  */
 
-// next free error code = 2
-
 public class PropertyImpl extends ResourceImpl implements Property {
 
     final static public Implementation factory = new Implementation() {
+        public boolean canWrap( Node n, EnhGraph eg )
+            { return n.isURI(); }
         public EnhNode wrap(Node n,EnhGraph eg) {
             return new PropertyImpl(n,eg);
         }

@@ -22,7 +22,9 @@ class TwoImpl extends OneTwoImpl implements Two {
 	final static public Implementation factory = new Implementation() {
 	public EnhNode wrap(Node n, EnhGraph eg) {
 					return new TwoImpl(n, eg);
-	}
+	}    
+    public boolean canWrap( Node n, EnhGraph eg )
+        { return true; }
 	};
 	public TwoImpl(Node n, EnhGraph g) {
 		super(n, g);

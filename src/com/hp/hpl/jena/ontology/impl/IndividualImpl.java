@@ -55,7 +55,10 @@ public class IndividualImpl
      */
     public static Implementation factory = new Implementation() {
         public EnhNode wrap( Node n, EnhGraph eg ) { return new IndividualImpl( n, eg ); }
+        public boolean canWrap( Node n, EnhGraph eg ) { return true; }
     };
+    
+    
 
 
 

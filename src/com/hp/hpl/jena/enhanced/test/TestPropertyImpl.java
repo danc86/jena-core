@@ -13,21 +13,18 @@ import com.hp.hpl.jena.graph.*;
  * @author  jjc
  */
 public class TestPropertyImpl  extends TestCommonImpl implements TestProperty {
-    private static Class [] myTypes = new Class []{
-       TestProperty.class
-    };
+
     public static final Implementation factory = new Implementation() {
-    public Class [] implementedTypes() {
-        return myTypes;
-    }
     public EnhNode wrap(Node n,EnhGraph eg) {
         return new TestPropertyImpl(n,eg);
-    }
+    }    
+    public boolean canWrap( Node n, EnhGraph eg )
+        { return true; }
 };
     
     /** Creates a new instance of TestAllImpl */
     private TestPropertyImpl(Node n,EnhGraph eg) {
-        super(n,eg,myTypes);
+        super( n, eg );
     }
     
     public boolean supports( Class t )

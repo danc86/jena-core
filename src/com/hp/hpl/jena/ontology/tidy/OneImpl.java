@@ -20,7 +20,9 @@ import com.hp.hpl.jena.graph.Node;
 */
 class OneImpl extends OneTwoImpl implements One {
 	final static public Implementation factory = new Implementation() {
-	public EnhNode wrap(Node n, EnhGraph eg) {
+        public boolean canWrap( Node n, EnhGraph eg )
+            { return true; }
+        public EnhNode wrap(Node n, EnhGraph eg) {
 					return new OneImpl(n, eg);
 	}
 	};

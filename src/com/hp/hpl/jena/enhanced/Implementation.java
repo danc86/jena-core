@@ -35,8 +35,7 @@ public abstract class Implementation {
         @param eg the enhanced graph the node appears in
         @return true iff the node can represent our type in that graph
      */
-     public boolean canWrap( Node node, EnhGraph eg )
-        { return true; }
+     public abstract boolean canWrap( Node node, EnhGraph eg );
      
 }
 
