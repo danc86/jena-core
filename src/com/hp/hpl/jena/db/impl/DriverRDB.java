@@ -29,7 +29,6 @@ import com.hp.hpl.jena.graph.Node_Variable;
 import com.hp.hpl.jena.graph.impl.LiteralLabel;
 
 import com.hp.hpl.jena.rdf.model.AnonId;
-import com.hp.hpl.jena.rdf.model.impl.Util;
 import com.hp.hpl.jena.shared.*;
 
 import org.apache.log4j.Logger;
