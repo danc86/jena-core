@@ -60,7 +60,7 @@ public class TestCaseBugs
             Statement s = model.createStatement(r, RDF.type, oc);
             assertTrue(s.getObject() instanceof Resource);
             
-            s.set(op);
+            s.changeObject(op);
             assertTrue(s.getObject() instanceof Resource);
             
             model.add(r, RDF.type, oc);

@@ -176,7 +176,7 @@ public class ContainerImpl extends ResourceImpl
             getModel().remove(s);
         } else {
             last = getModel().getProperty(this, RDF.li(size));
-            s.set(last.getObject());
+            s.changeObject(last.getObject());
             getModel().remove(last);
         }
         if (size() != (size -1)) 
