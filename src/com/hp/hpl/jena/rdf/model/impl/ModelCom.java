@@ -52,14 +52,9 @@ public class ModelCom
     
     public ModelCom( Graph base, Personality personality )
         { super( base, personality ); 
-        addDefaultPrefixMapping(); }
+        withDefaultMappings( defaultPrefixMapping ); }
     
     private static PrefixMapping defaultPrefixMapping = PrefixMapping.Factory.create();
-    
-    protected void addDefaultPrefixMapping()
-        { Map temp = defaultPrefixMapping.getNsPrefixMap();
-        temp.putAll( this.getNsPrefixMap() );
-        this.setNsPrefixes( temp ); }
     
     public static PrefixMapping getDefaultModelPrefixes()
         { return defaultPrefixMapping; }

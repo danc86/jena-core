@@ -213,7 +213,9 @@ public class FileManager
             return (Model)modelCache.get(filenameOrURI) ;
         }
         
-        Model m = uncachedLoadModel( filenameOrURI, baseURI, rdfSyntax );
+        Model m = ModelFactory.createDefaultModel() ;
+        readModel(m, filenameOrURI, baseURI, rdfSyntax) ;
+        
         if ( this.cacheModelLoads )
         {
             if ( modelCache == null )
@@ -222,20 +224,6 @@ public class FileManager
         }
         return m ;
     }
-
-    /**
-     * load/create a model, ignoring the cache.
-     * @param filenameOrURI
-     * @param baseURI
-     * @param rdfSyntax
-     * @return
-     */
-    protected Model uncachedLoadModel(String filenameOrURI, String baseURI, String rdfSyntax)
-        {
-        Model m = ModelFactory.createDefaultModel() ;
-        readModel(m, filenameOrURI, baseURI, rdfSyntax) ;
-        return m;
-        }
     
     /**
      * Read a file of RDF into a model.

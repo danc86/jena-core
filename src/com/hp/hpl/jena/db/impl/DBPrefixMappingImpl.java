@@ -66,7 +66,7 @@ public class DBPrefixMappingImpl extends PrefixMappingImpl {
 	 */
 	public PrefixMapping setNsPrefix(String prefix, String uri) {
         // this avoids touching the database for existing maplets.
-        if (uri.equals( super.getNsPrefixURI( prefix ) )) return this;
+        // if (uri.equals( super.getNsPrefixURI( prefix ) )) return this;
 		// Ordering is important here - we need to add it to the prefixMappingImpl
 		// first since it checks the validity of the prefix (it will throw
 		// an exception if there's any problem).
