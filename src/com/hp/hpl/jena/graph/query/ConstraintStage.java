@@ -20,7 +20,7 @@ public class ConstraintStage extends Stage
     /**
         The set of prepared Valuators representing the constraint.
     */
-    protected ExpressionSet prepared;
+    protected ValuatorSet prepared;
 
     /**
         Initialise this ConstraintStage with the mapping [from names to indexes] and
@@ -35,7 +35,7 @@ public class ConstraintStage extends Stage
         Answer true if the constraint evaluates to true, and false if it evaluates to
         false or throws an exception.
     */
-   private boolean evalConstraint( Domain d, ExpressionSet e )
+   private boolean evalConstraint( Domain d, ValuatorSet e )
         { try 
             { return e.evalBool( d ); } 
         catch (Exception ex) 
