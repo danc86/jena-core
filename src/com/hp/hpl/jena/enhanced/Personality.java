@@ -10,8 +10,9 @@ import java.util.*;
 import com.hp.hpl.jena.graph.*;
 
 /**
- * Defines a set of permitted mappings from {@link Type} identifiers to {@link Implementation}
- * factories that can generate instances of the facet represented by the Type.
+ * Defines a set of permitted mappings from [interface] Class objects to 
+ * {@link Implementation} factories that can generate instances of the facet represented 
+ * by the Class.
  * 
  * @author <a href="mailto:Jeremy.Carroll@hp.com">Jeremy Carroll</a> (original code)<br>
  *         <a href="mailto:Chris.Dollin@hp.com">Chris Dollin</a> (original code)

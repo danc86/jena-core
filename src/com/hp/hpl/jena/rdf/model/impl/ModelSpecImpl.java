@@ -47,7 +47,7 @@ public abstract class ModelSpecImpl implements ModelSpec
         Initialise this ModelSpec from the supplied description, which is used to construct
         a ModelMaker. 
         
-        @description an RDF description including that of the necessary ModelMaker
+        @param description an RDF description including that of the necessary ModelMaker
     */
     public ModelSpecImpl( Model description )
         { this( createMaker( description ) ); }
@@ -57,6 +57,14 @@ public abstract class ModelSpecImpl implements ModelSpec
         to implement.
     */
     public abstract Model createModel();
+    
+    /**
+        Answer a Model created according to this ModelSpec and based on an underlying
+        Model with the given name.
+         
+     	@see com.hp.hpl.jena.rdf.model.ModelSpec#createModel(java.lang.String)
+     */
+    public Model createModel( String name )  { return null; }
     
     /**
         Answer the JMS subproperty of JMS.maker that describes the relationship 
@@ -143,7 +151,7 @@ public abstract class ModelSpecImpl implements ModelSpec
         regarded as a bug].
         
         @param value a Java value to be remembered 
-        @answer a fresh bnode bound to <code>value</code>
+        @return a fresh bnode bound to <code>value</code>
     */
     public static Resource createValue( Object value )
         {

@@ -19,6 +19,12 @@ public interface ModelSpec
     Model createModel();
     
     /**
+        Answer a Model that fits the specification of this ModelSpec and is known by
+        the given name.
+    */
+    Model createModel( String name );
+    
+    /**
         Answer an RDF description of this ModelSpec using the JMS vocabulary. The
         description root will be a freshly-created bnode.
     */

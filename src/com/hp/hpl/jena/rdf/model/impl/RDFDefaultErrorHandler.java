@@ -1,4 +1,46 @@
 /*
+  (c) Copyright 2003, Hewlett-Packard Company, all rights reserved.
+  [See end of file]
+  $Id$
+*/
+
+package com.hp.hpl.jena.rdf.model.impl;
+
+import com.hp.hpl.jena.rdf.arp.ParseException;
+import com.hp.hpl.jena.rdf.model.*;
+import com.hp.hpl.jena.shared.*;
+
+import org.apache.log4j.*;
+/**
+ * The default error handler for I/O.
+ * This uses log4j as its utility.
+ * @author  jjc,bwm
+ * @version $Revision$ $Date$
+ */
+public class RDFDefaultErrorHandler extends Object implements RDFErrorHandler {
+
+    public static final Logger logger = Logger.getLogger( RDFDefaultErrorHandler.class );
+    
+    /** Creates new RDFDefaultErrorHandler */
+    public RDFDefaultErrorHandler() {
+    }
+
+    public void warning(Exception e) {
+        logger.warn(ParseException.formatMessage(e));
+    }
+
+    public void error(Exception e) {
+        logger.error(ParseException.formatMessage(e));
+    }
+
+    public void fatalError(Exception e) {
+        logger.error(ParseException.formatMessage(e));
+        throw e instanceof RuntimeException 
+            ? (RuntimeException) e
+            : new JenaException( e );
+    }
+}
+/*
  *  (c) Copyright Hewlett-Packard Company 2001
  *  All rights reserved.
  *
@@ -26,41 +68,3 @@
  *
  * $Id$
  */
-
-package com.hp.hpl.jena.rdf.model.impl;
-
-import com.hp.hpl.jena.rdf.arp.ParseException;
-import com.hp.hpl.jena.rdf.model.*;
-import com.hp.hpl.jena.shared.*;
-
-import org.apache.log4j.*;
-/**
- * The default error handler for I/O.
- * This uses log4j as its utility.
- * @see     com.hp.hpl.jena.util.Log
- * @author  jjc,bwm
- * @version $Revision$ $Date$
- */
-public class RDFDefaultErrorHandler extends Object implements RDFErrorHandler {
-
-    public static final Logger logger = Logger.getLogger( RDFDefaultErrorHandler.class );
-    
-    /** Creates new RDFDefaultErrorHandler */
-    public RDFDefaultErrorHandler() {
-    }
-
-    public void warning(Exception e) {
-        logger.warn(ParseException.formatMessage(e));
-    }
-
-    public void error(Exception e) {
-        logger.error(ParseException.formatMessage(e));
-    }
-
-    public void fatalError(Exception e) {
-        logger.error(ParseException.formatMessage(e));
-        throw e instanceof RuntimeException 
-            ? (RuntimeException) e
-            : new JenaException( e );
-    }
-}

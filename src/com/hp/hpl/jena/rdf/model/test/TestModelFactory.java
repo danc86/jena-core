@@ -51,7 +51,7 @@ public class TestModelFactory extends ModelTestBase
         
     public void testCreatePlainSpec()
         {
-        Model desc = createPlainModelDesc();
+        Model desc = TestModelSpec.createPlainModelDesc();
         ModelSpec spec = ModelFactory.createSpec( desc ); 
         assertIsoModels( desc, spec.getDescription() );
         assertTrue( spec instanceof PlainModelSpec );
@@ -103,22 +103,9 @@ public class TestModelFactory extends ModelTestBase
     */
     public void testMFCreate()
         {
-        Model desc = createPlainModelDesc();
+        Model desc = TestModelSpec.createPlainModelDesc();
         ModelSpec spec = ModelFactory.createSpec( desc );
         Model m = ModelFactory.createModel( spec );    
-        }
-        
-    /**
-        Answer a description of a plain memory Model with Minimal reification.
-     */
-    public Model createPlainModelDesc()
-        {
-        Resource root = ResourceFactory.createResource();
-        Resource maker = ResourceFactory.createResource();
-        return ModelFactory.createDefaultModel()
-            .add( root, JMS.maker, maker )
-            .add( maker, RDF.type, JMS.MemMakerSpec )
-            .add( maker, JMS.reificationMode, JMS.rsMinimal );
         }
         
     }

@@ -208,13 +208,6 @@ public abstract class GraphBase implements Graph {
     */
     public boolean isEmpty()
         { return size() == 0; }
-        
-	/**
-	 * @see com.hp.hpl.jena.graph.Graph#capabilities()
-	 */
-	public int capabilities() {
-		return 0;
-	}
 
 	public boolean isIsomorphicWith( Graph g ) {
         checkOpen();

@@ -16,6 +16,9 @@ import com.hp.hpl.jena.ontology.*;
 import junit.framework.*;
 
 /**
+    Testing ModelSpec. The code is horrid and needs considerable tidying-up, as the
+    essence of the tests is not obvious.
+    
  	@author kers
 */
 
@@ -93,7 +96,13 @@ public class TestModelSpec extends ModelTestBase
         assertNotNull( ModelSpecCreatorRegistry.findCreator( JMS.PlainModelSpec ) );   
         assertNotNull( ModelSpecCreatorRegistry.findCreator( JMS.OntModelSpec ) );     
         }
-            
+    
+    public void testNamedCreate()
+        {
+        ModelSpec ms = ModelSpecImpl.create( createPlainModelDesc() );    
+        Model m = ms.createModel( "aName" );
+        }   
+             
     public void testOntModeSpecIsaModelSpec()
         {
         assertTrue( OntModelSpec.DAML_MEM_RULE_INF instanceof ModelSpec );
@@ -263,6 +272,19 @@ public class TestModelSpec extends ModelTestBase
         assertTrue( mm.getGraphMaker() instanceof FileGraphMaker );
         assertEquals( Reifier.Minimal , mm.getGraphMaker().getReificationStyle() );
         }
+
+	/**
+	    Answer a description of a plain memory Model with Minimal reification.
+	 */
+	public static Model createPlainModelDesc()
+	    {
+	    Resource root = ResourceFactory.createResource();
+	    Resource maker = ResourceFactory.createResource();
+	    return ModelFactory.createDefaultModel()
+	        .add( root, JMS.maker, maker )
+	        .add( maker, RDF.type, JMS.MemMakerSpec )
+	        .add( maker, JMS.reificationMode, JMS.rsMinimal );
+	    }
         
     }
 
