@@ -10,11 +10,18 @@ package com.hp.hpl.jena.graph;
     A factory for providing instances of named graphs with appropriate storage models.
     It represents a directory, or a database, or a mapping: names map to graphs for the
     lifetime of the GraphMaker. Names can be "arbitrary" character sequences.
+<p>
+    A GraphMaker has a reification style which is shared by all the graphs it creates.
 */
 
 public interface GraphMaker 
 {
-
+    /**
+        Answer the reification style of all the graphs that this GraphMaker constructs.
+        @return the reification style given to all created graphs
+    */
+    public Reifier.Style getReificationStyle();
+    
     /**
         Answer the default graph of this ModelMaker. The same graph is returned on
         each call. It may only be constructed on the first call of getGraph(), or at any

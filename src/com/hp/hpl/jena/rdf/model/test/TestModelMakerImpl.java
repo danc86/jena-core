@@ -116,7 +116,7 @@ public class TestModelMakerImpl extends ModelTestBase
         maker.getDescription();
         assertEquals( history(), one( "getDescription()" ) ); 
         }
-        
+
     private List history()
         { return ((MockGraphMaker) maker.getGraphMaker()).history; }
         
@@ -134,6 +134,12 @@ public class TestModelMakerImpl extends ModelTestBase
         
         public MockGraphMaker( Graph graph )
             { this.graph = graph; }
+            
+        public Reifier.Style getReificationStyle()
+            {
+            history.add( "getReificationStyle()" );
+            return null; 
+            }
             
         public Graph getGraph()
             {

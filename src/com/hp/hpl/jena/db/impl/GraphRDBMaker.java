@@ -10,6 +10,7 @@ import com.hp.hpl.jena.db.GraphRDB;
 import com.hp.hpl.jena.db.IDBConnection;
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.graph.impl.*;
+import com.hp.hpl.jena.vocabulary.*;
 
 import java.util.*;
 
@@ -39,7 +40,10 @@ public class GraphRDBMaker extends BaseGraphMaker
         this.c = c; 
         this.reificationStyle = GraphRDB.styleRDB( style );
         }
-     
+
+    public Node getMakerClass()
+        { return JMS.RDBMakerClass.asNode(); }
+             
     public Graph getGraph()
         { return consGraph( null, true ); }
         

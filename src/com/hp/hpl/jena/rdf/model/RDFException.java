@@ -179,25 +179,19 @@ public class RDFException extends JenaException {
      * @return the error message
      */
     public String toString() {
-        String message = getMessage();
-        if (message == null) {
-            return this.getClass().getName();
-        } else {
-            return this.getClass().getName() + ": " + message;
-        }
+        String m = getMessage(), name = this.getClass().getName();
+        return m == null ? name : name + ": " + m;
     }
     
     public String getMessage() {
-        String message;
-        
-        message = Integer.toString(errorCode) + " " + this.message;
+        String result = Integer.toString(errorCode) + " " + this.message;
         if (errorCode == INVALIDERRORCODE) {
-            message = message + " = " + Integer.toString(otherCode);
+            result = result + " = " + Integer.toString(otherCode);
         } else if (errorCode == NESTEDEXCEPTION
                 || errorCode == SELECTOREXCEPTION) {
-            message = this.message + " = " + nestedException.toString();
+            result = this.message + " = " + nestedException.toString();
         }
-        return message;
+        return result;
     }
     
     public int getErrorCode() {

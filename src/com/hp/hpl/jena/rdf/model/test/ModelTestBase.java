@@ -137,6 +137,12 @@ public class ModelTestBase extends GraphTestBase
             fail( title + ": expected " + wanted + " but had " + got );
         }
         
+    /**
+        Fail if the two models are not isomorphic. See assertIsoModels(String,Model,Model).
+    */
+    public void assertIsoModels( Model wanted, Model got )
+        { assertIsoModels( "models must be isomorphic", wanted, got ); }
+        
     }
 
 

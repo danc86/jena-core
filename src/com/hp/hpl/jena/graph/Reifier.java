@@ -44,6 +44,9 @@ public interface Reifier extends GetTriple
             
         public boolean conceals()
             { return conceal; }
+            
+        public String toString()
+            { return "<style int=" + intercept + ", con=" + conceal + ">"; }
         }
         
     /**

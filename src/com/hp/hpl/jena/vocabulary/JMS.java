@@ -26,10 +26,18 @@ public class JMS
     
     public static final Property reificationMode = property( "reificationMode" );
     public static final Property reasoner = property( "reasoner" );
+    public static final Property fileBase = property( "fileBase" );
     
     public static final Resource TypeMemMaker = resource( "type/MemMaker");
     
+    public static final Resource MakerClass = resource( "class/ModelMaker" );
+    public static final Resource FileMakerClass = resource( "class/FileModelMaker" );
+    public static final Resource MemMakerClass = resource( "class/MemModelMaker" );
+    public static final Resource RDBMakerClass = resource( "class/RDBModelMaker" );
+    
     public static final Literal rsStandard = literal( "Standard" );
+    public static final Literal rsMinimal = literal( "Minimal" );
+    public static final Literal rsConvenient = literal( "Convenient" );
     
     public static Literal literal( String lex )
         { return ResourceFactory.createPlainLiteral( lex ); }
