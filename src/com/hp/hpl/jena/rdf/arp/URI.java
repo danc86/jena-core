@@ -885,7 +885,7 @@ public class URI implements Serializable {
 			throw new MalformedURIException("Cannot set scheme from null string!");
 		}
 		if (!isConformantSchemeName(p_scheme)) {
-			throw new MalformedURIException("The scheme is not conformant.");
+			throw new MalformedURIException("The scheme '" + p_scheme + "' is not conformant.");
 		}
 
 		m_scheme = p_scheme; //.toLowerCase();
