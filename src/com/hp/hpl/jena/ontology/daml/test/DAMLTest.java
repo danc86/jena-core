@@ -52,7 +52,7 @@ import com.hp.hpl.jena.mem.*;
 import com.hp.hpl.jena.rdf.model.impl.*;
 
 import com.hp.hpl.jena.ontology.daml.*;
-import com.hp.hpl.jena.ontology.daml.common.*;
+import com.hp.hpl.jena.ontology.daml.impl.*;
 import com.hp.hpl.jena.util.*;
 import com.hp.hpl.jena.util.iterator.*;
 import com.hp.hpl.jena.vocabulary.*;

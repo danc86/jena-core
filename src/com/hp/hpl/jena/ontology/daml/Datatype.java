@@ -46,7 +46,7 @@ package com.hp.hpl.jena.ontology.daml;
 // Imports
 ///////////////
 
-import com.hp.hpl.jena.ontology.daml.common.DatatypeTranslator;
+import com.hp.hpl.jena.ontology.daml.impl.DatatypeTranslator;
 
 
 

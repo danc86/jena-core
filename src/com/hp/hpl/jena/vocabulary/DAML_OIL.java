@@ -52,9 +52,9 @@ import com.hp.hpl.jena.rdf.model.Resource;
 
 import com.hp.hpl.jena.util.Log;
 
-import com.hp.hpl.jena.ontology.daml.common.DAMLClassImpl;
-import com.hp.hpl.jena.ontology.daml.common.DAMLPropertyImpl;
-import com.hp.hpl.jena.ontology.daml.common.DAMLListImpl;
+import com.hp.hpl.jena.ontology.daml.impl.DAMLClassImpl;
+import com.hp.hpl.jena.ontology.daml.impl.DAMLPropertyImpl;
+import com.hp.hpl.jena.ontology.daml.impl.DAMLListImpl;
 
 import com.hp.hpl.jena.ontology.daml.DAMLClass;
 import com.hp.hpl.jena.ontology.daml.DAMLList;

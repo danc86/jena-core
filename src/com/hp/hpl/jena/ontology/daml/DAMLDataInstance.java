@@ -50,7 +50,7 @@ import com.hp.hpl.jena.ontology.daml.PropertyAccessor;
 
 import java.util.Iterator;
 
-import com.hp.hpl.jena.ontology.daml.common.DatatypeTranslator;
+import com.hp.hpl.jena.ontology.daml.impl.DatatypeTranslator;
 
 
 /**

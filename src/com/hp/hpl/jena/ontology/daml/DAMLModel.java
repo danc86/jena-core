@@ -48,8 +48,8 @@ package com.hp.hpl.jena.ontology.daml;
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.Resource;
 
-import com.hp.hpl.jena.ontology.daml.common.DAMLLoader;
-import com.hp.hpl.jena.ontology.daml.common.XMLDatatypeRegistry;
+import com.hp.hpl.jena.ontology.daml.impl.DAMLLoader;
+import com.hp.hpl.jena.ontology.daml.impl.XMLDatatypeRegistry;
 
 import java.util.Iterator;
 

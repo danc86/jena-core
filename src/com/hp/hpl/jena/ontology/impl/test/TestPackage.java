@@ -23,6 +23,7 @@ public class TestPackage extends TestSuite {
     private TestPackage() {
         super("ontology.impl");
         addTest( "TestList", TestList.suite() );
+        addTest( "TestDocumentManager", TestOntDocumentManager.suite() );
     }
 
     private void addTest(String name, TestSuite tc) {

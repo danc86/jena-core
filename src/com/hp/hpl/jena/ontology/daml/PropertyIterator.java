@@ -89,7 +89,7 @@ import com.hp.hpl.jena.vocabulary.DAML_OIL;
  *
  * @author Ian Dickinson, HP Labs (<a href="mailto:Ian_Dickinson@hp.com">email</a>)
  * @version CVS info: $Id$
- * @since Jena 1.3.0 (was previously in package com.hp.hpl.jena.ontology.daml.common).
+ * @since Jena 1.3.0 (was previously in package com.hp.hpl.jena.ontology.daml.impl).
  */
 public class PropertyIterator
     implements Iterator

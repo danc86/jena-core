@@ -21,8 +21,6 @@
 ///////////////
 package com.hp.hpl.jena.ontology;
 
-import com.hp.hpl.jena.rdf.model.RDFException;
-
 
 // Imports
 ///////////////
@@ -39,7 +37,7 @@ import com.hp.hpl.jena.rdf.model.RDFException;
  * @version Release ($Id$)
  */
 public class InvalidListException
-    extends RDFException
+    extends OntologyException
 {
     // Constants
     //////////////////////////////////

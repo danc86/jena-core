@@ -27,6 +27,7 @@ package com.hp.hpl.jena.graph.compose.test;
 
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.graph.compose.*;
+import com.hp.hpl.jena.rdf.model.*;
 
 import java.util.*;
 
@@ -72,7 +73,7 @@ public class TestMultiUnion
         { return new TestSuite( TestMultiUnion.class ); }   
 
 
-    public void testEmptyModel() {
+    public void testEmptyGraph() {
         Graph m = new MultiUnion();
         Graph g0 = graphWith( "x p y");
         
@@ -81,7 +82,7 @@ public class TestMultiUnion
     }
     
 
-    public void testModelSize1() {
+    public void testGraphSize1() {
         Graph g0 = graphWith( "x p y" );
         Graph g1 = graphWith( "x p z; z p zz" );        // disjoint with g0
         Graph g2 = graphWith( "x p y; z p a" );         // intersects with g1
@@ -112,7 +113,7 @@ public class TestMultiUnion
     }
     
     
-    public void testModelSize2() {
+    public void testGraphSize2() {
         Graph g0 = graphWith( "x p y" );
         Graph g1 = graphWith( "x p z; z p zz" );        // disjoint with g0
         Graph g2 = graphWith( "x p y; z p a" );         // intersects with g1
@@ -143,7 +144,7 @@ public class TestMultiUnion
     }
     
     
-    public void testModelAddSize() {
+    public void testGraphAddSize() {
         Graph g0 = graphWith( "x p y" );
         Graph g1 = graphWith( "x p z; z p zz" );        // disjoint with g0
         Graph g2 = graphWith( "x p y; z p a" );         // intersects with g1
@@ -197,7 +198,7 @@ public class TestMultiUnion
         assertEquals( "g1 size should be constant", s1, g1.size() );
         
         // change the designated receiver and try again
-        m.setUpdateableGraph( g1 );
+        m.setBaseGraph( g1 );
         
         s0 = g0.size();
         s1 = g1.size();
@@ -213,7 +214,7 @@ public class TestMultiUnion
         // check that we can't make g2 the designated updater
         boolean expected = false;
         try {
-            m.setUpdateableGraph( g2 );
+            m.setBaseGraph( g2 );
         }
         catch (IllegalArgumentException e) {
             expected = true;
@@ -236,7 +237,7 @@ public class TestMultiUnion
         m.delete( triple( "x p y") );
         checkDeleteSizes( 0, 2, 2, g0, g1, m );
 
-        m.setUpdateableGraph( g1 );
+        m.setBaseGraph( g1 );
 
         m.delete( triple( "x p z") );
         checkDeleteSizes( 0, 1, 1, g0, g1, m );
@@ -257,6 +258,28 @@ public class TestMultiUnion
         assertTrue( "m should contain triple", m.contains( triple( "z p zz ")));       
         
         assertFalse( "m should not contain triple", m.contains( triple( "zz p z ")));       
+    }
+    
+    
+    /* Test using a model to wrap a multi union */
+    public void testModel() {
+        Graph g0 = graphWith( "x p y" );
+        MultiUnion u = new MultiUnion( new Graph[] {g0} );
+        
+        Model m = ModelFactory.createModelForGraph( u );
+        
+        assertEquals( "Model size not correct", 1, m.size() );
+        
+        Graph g1 = graphWith( "x p z; z p zz" );        // disjoint with g0
+        u.addGraph( g1 );        
+        
+        assertEquals( "Model size not correct", 3, m.size() );
+        
+        // adds one more statement to the model
+        m.read( "file:testing/ontology/list0.rdf" );
+        assertEquals( "Model size not correct", 4, m.size() );
+        
+        // debug m.write( System.out );
     }
     
     

@@ -35,7 +35,7 @@ package com.hp.hpl.jena.ontology;
  * Instances of the all different axiom are expected to have a property
  * (e.g. <code>owl:distinctMembers</code> defining the list of distinct
  * individuals in the ontology.  For a given vocabulary, this will be defined by
- * the {@link OntVocabulary#distinctMembers distinctMembers} entry.
+ * the {@link Profile#distinctMembers distinctMembers} entry.
  * </p>
  *
  * @author Ian Dickinson, HP Labs
@@ -43,35 +43,14 @@ package com.hp.hpl.jena.ontology;
  * @version CVS $Id$
  */
 public interface AllDifferent
-    extends OntResource
+    extends Axiom
 {
     // Constants
     //////////////////////////////////
 
 
-    // Static variables
-    //////////////////////////////////
-
-
-    // Instance variables
-    //////////////////////////////////
-
-
-    // Constructors
-    //////////////////////////////////
-
-
     // External signature methods
     //////////////////////////////////
-
-
-    // Internal implementation methods
-    //////////////////////////////////
-
-
-    //==============================================================================
-    // Inner class definitions
-    //==============================================================================
 
 
 }

@@ -37,6 +37,7 @@ public class TestPackage extends TestSuite {
         addTest( com.hp.hpl.jena.rdf.arp.test.TestPackage.suite());
         addTest("Reasoners", com.hp.hpl.jena.reasoner.test.TestPackage.suite());
         addTest("Composed graphs", com.hp.hpl.jena.graph.compose.test.TestPackage.suite() );
+        addTest( "Ontology", com.hp.hpl.jena.ontology.impl.test.TestPackage.suite() );
     }
 
     private void addTest(String name, TestSuite tc) {

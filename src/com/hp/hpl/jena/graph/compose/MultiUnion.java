@@ -108,7 +108,7 @@ public class MultiUnion
      */
     public void add( Triple t ) {
         try {
-            getUpdateableGraph().add( t );
+            getBaseGraph().add( t );
         }
         catch (NullPointerException e) {
             // TODO: this should be changed to JenaException when it gets done
@@ -128,7 +128,7 @@ public class MultiUnion
      */
     public void delete( Triple t ) {
         try {
-            getUpdateableGraph().delete( t );
+            getBaseGraph().delete( t );
         }
         catch (NullPointerException e) {
             // TODO: this should be changed to JenaException when it gets done
@@ -187,7 +187,6 @@ public class MultiUnion
             return i;
         }
     }
-
 
 
     // Internal implementation methods
