@@ -63,7 +63,9 @@ public class Util {
             if (v1 instanceof Number && v2 instanceof Number) {
                 if (v1 instanceof Float || v1 instanceof Double 
                         || v1 instanceof Float || v2 instanceof Double) {
-                            return Double.compare(((Number)v1).doubleValue(), ((Number)v2).doubleValue());                            
+                            double d1 = ((Number)v1).doubleValue();
+                            double d2 = ((Number)v2).doubleValue();
+                            return (d1 < d2) ? -1 : ( (d1 == d2) ? 0 : +1 );
                 } else {
                     long l1 = ((Number)v1).longValue();
                     long l2 = ((Number)v2).longValue();
