@@ -255,7 +255,7 @@ public class OntClassImpl
         // first we have to remove all of the inverse sub-class links
         checkProfile( getProfile().SUB_CLASS_OF(), "SUB_CLASS_OF" );
         for (StmtIterator i = getModel().listStatements( null, getProfile().SUB_CLASS_OF(), this );  i.hasNext(); ) {
-            i.nextStatement().remove();
+            i.removeNext(); 
         }
         
         ((OntClass) cls.as( OntClass.class )).addSuperClass( this );

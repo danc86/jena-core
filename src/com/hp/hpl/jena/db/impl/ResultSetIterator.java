@@ -120,6 +120,9 @@ public class ResultSetIterator implements ExtendedIterator {
         if (!m_finished && !m_prefetched) moveForward();
         return !m_finished;
     }
+    
+    public Object removeNext()
+        { cantRemove(); return null; }
 
     /**
      * Return the current row
@@ -137,6 +140,10 @@ public class ResultSetIterator implements ExtendedIterator {
      * Delete the current row entry
      */
     public void remove() {
+        cantRemove();
+    }
+    
+    protected void cantRemove() {
         throw new UnsupportedOperationException("ResultSetIterator can't remove database rows");
     }
 

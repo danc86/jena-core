@@ -202,7 +202,7 @@ public class OntPropertyImpl
         // first we have to remove all of the inverse sub-prop links
         checkProfile( getProfile().SUB_PROPERTY_OF(), "SUB_PROPERTY_OF" );
         for (StmtIterator i = getModel().listStatements( null, getProfile().SUB_PROPERTY_OF(), this );  i.hasNext(); ) {
-            i.nextStatement().remove();
+            i.removeNext();
         }
         
         ((OntProperty) prop.as( OntProperty.class )).addSuperProperty( this );

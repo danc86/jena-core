@@ -24,6 +24,11 @@ package com.hp.hpl.jena.util.iterator;
 public interface ExtendedIterator extends ClosableIterator
     {
     /**
+         Answer the next object, and remove it. Equivalent to next(); remove().
+    */
+    public Object removeNext();
+    
+    /**
          return a new iterator which delivers all the elements of this iterator and
          then all the elements of the other iterator. Does not copy either iterator;
          they are consumed as the result iterator is consumed.

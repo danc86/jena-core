@@ -40,6 +40,7 @@ import java.util.NoSuchElementException ;
  */
 public class NullIterator implements Iterator
 {
+    public static NullIterator instance = new NullIterator();
     /** No.
      *
      */

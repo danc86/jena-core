@@ -60,7 +60,7 @@ public class TestGraphMem extends AbstractTestGraph
         it.next(); it.remove();
         assertFalse( g.find( Node.ANY, Node.ANY, Node.ANY ).hasNext() );
         }
-}
+    }
 
 
 /*

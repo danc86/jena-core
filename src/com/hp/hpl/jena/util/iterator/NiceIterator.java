@@ -57,6 +57,12 @@ public class NiceIterator implements ExtendedIterator
         { 
         throw new UnsupportedOperationException( "remove not supported for this iterator" ); 
         }
+    
+    /**
+         Answer the next object, and remove it.
+    */
+    public Object removeNext()
+        { Object result = next(); remove(); return result; }
         
     /**
         concatenate two closable iterators.
