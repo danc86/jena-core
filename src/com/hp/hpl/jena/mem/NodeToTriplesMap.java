@@ -10,8 +10,7 @@ import java.util.*;
 
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.util.HashUtils;
-import com.hp.hpl.jena.util.iterator.NiceIterator;
-import com.hp.hpl.jena.util.iterator.NullIterator;
+import com.hp.hpl.jena.util.iterator.*;
 
 /**
 	NodeToTriplesMap: a map from nodes to sets of triples.
@@ -43,13 +42,13 @@ public final class NodeToTriplesMap
         	}
         }
 
-    public Iterator iterator(Node o) 
+    public Iterator iterator( Node o ) 
         {
         Set s = (Set) map.get( o );
         return s == null ? NullIterator.instance :  s.iterator();
         }
     
-    public Iterator iterator()
+    public ExtendedIterator iterator()
         {
         final Iterator nodes = domain();
         return new NiceIterator()
@@ -88,6 +87,25 @@ public final class NodeToTriplesMap
     
     public boolean isEmpty()
         { return size == 0; }
+
+    /**
+     * @param triple
+     * @return
+     */
+    public ExtendedIterator iterator( Triple triple )
+        {
+        return  iterator() .filterKeep ( new TripleMatchFilter( triple ) );
+        }
+
+    /**
+     * @param x
+     * @param triple
+     * @return
+     */
+    public ExtendedIterator iterator( Node x, Triple triple )
+        {
+        return new FilterIterator( new TripleMatchFilter( triple ), iterator( x ) );
+        }
     }
 /*
     (c) Copyright 2003, 2004 Hewlett-Packard Development Company, LP

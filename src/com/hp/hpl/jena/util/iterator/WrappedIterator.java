@@ -54,7 +54,7 @@ public class WrappedIterator extends NiceIterator
         tests [that were] scattered through the code.
     */
     public static void close( Iterator it )
-        { if (it instanceof ClosableIterator) ((ClosableIterator) it).close(); }
+        { NiceIterator.close( it ); }
     }
 
 /*

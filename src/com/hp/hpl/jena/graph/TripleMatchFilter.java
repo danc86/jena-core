@@ -28,6 +28,7 @@ public class TripleMatchFilter implements Filter {
      * @return true if the object is wanted.
      */
     public boolean accept(Object t) {
+        // System.err.println( ">> " + tMatch + " matches " + t + (tMatch.matches( (Triple) t ) ? "yes" : "no" ) );
         return tMatch.matches((Triple) t);
     }
     

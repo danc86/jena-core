@@ -68,7 +68,7 @@ public class NiceIterator implements ExtendedIterator
         concatenate two closable iterators.
     */
     
-    public static ExtendedIterator andThen( final ClosableIterator a, final ClosableIterator b )
+    public static ExtendedIterator andThen( final Iterator a, final Iterator b )
         {
         return new NiceIterator()
             {
@@ -82,8 +82,8 @@ public class NiceIterator implements ExtendedIterator
                 
             public void close()
                 {
-                a.close();
-                b.close();
+                close( a );
+                close( b );
                 }
                 
             public void remove()
@@ -117,6 +117,14 @@ public class NiceIterator implements ExtendedIterator
     */     
     public ExtendedIterator mapWith( Map1 map1 )
         { return new Map1Iterator( map1, this ); }
+    
+
+    /**
+        If <code>it</code> is a Closableiterator, close it. Abstracts away from
+        tests [that were] scattered through the code.
+    */
+    public static void close( Iterator it )
+        { if (it instanceof ClosableIterator) ((ClosableIterator) it).close(); }
     }
 
 /*
