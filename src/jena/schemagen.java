@@ -985,11 +985,11 @@ public class schemagen {
 
         // collect any RDFS or DAML comments attached to the node
         for (NodeIterator ni = m_source.listObjectsOfProperty( r, RDFS.comment );  ni.hasNext(); ) {
-            comment.append( ni.next().toString().trim() );
+            comment.append( ((Literal) ni.nextNode()).getLexicalForm().trim() );
         }
 
         for (NodeIterator ni = m_source.listObjectsOfProperty( r, DAML_OIL.comment );  ni.hasNext(); ) {
-            comment.append( ni.next().toString().trim() );
+            comment.append( ((Literal) ni.nextNode()).getLexicalForm().trim() );
         }
 
         return comment.toString();
