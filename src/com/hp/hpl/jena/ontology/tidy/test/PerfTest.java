@@ -356,8 +356,8 @@ public class PerfTest {
 	 * @param nms
 	 */
 	private void testWW(String nm, String[] nms) {
-	//	uk.ac.man.cs.img.owl.validation.SpeciesValidator.main(new String[]{"-q","-d",nm});
- //   runtime.gc();
+//		uk.ac.man.cs.img.owl.validation.SpeciesValidator.main(new String[]{"-q","-d",nm});
+ //  runtime.gc();
  //   System.err.println(runtime.totalMemory()-runtime.freeMemory());
 	}
 //	OWLSpeciesValidator owlTest = new OWLSpeciesValidator();
@@ -465,6 +465,7 @@ public class PerfTest {
 	}
 	void go() {
 		
+		if ( DoMem )
 		new Thread() {
 			public void run() {
 				while (true) {
