@@ -42,8 +42,15 @@ public interface ForwardRuleInfGraphI extends InfGraph, SilentAddI {
     
     /**
      * Return the Graph containing all the static deductions available so far.
+     * Triggers a prepare if the graph has not been prepared already.
      */
     public Graph getDeductionsGraph();
+    
+    /**
+     * Return the Graph containing all the static deductions available so far.
+     * Does not trigger a prepare action.
+     */
+    public Graph getCurrentDeductionsGraph();
     
     /**
      * Add a new deduction to the deductions graph.

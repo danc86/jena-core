@@ -302,7 +302,7 @@ public class RETEEngine implements FRuleEngineI {
         addsPending.remove(triple);
         deletesPending.add(triple);
         if (deduction) {
-            infGraph.getDeductionsGraph().delete(triple);
+            infGraph.getCurrentDeductionsGraph().delete(triple);
             Graph raw = infGraph.getRawGraph();
             // deduction retractions should not remove asserted facts, so commented out next line
             // raw.delete(triple);

@@ -13,6 +13,7 @@ import com.hp.hpl.jena.mem.GraphMem;
 import com.hp.hpl.jena.reasoner.*;
 import com.hp.hpl.jena.reasoner.rulesys.impl.*;
 import com.hp.hpl.jena.graph.*;
+
 import java.util.*;
 
 import com.hp.hpl.jena.util.OneToManyMap;
@@ -338,6 +339,14 @@ public class BasicForwardRuleInfGraph extends BaseInfGraph implements ForwardRul
      */
     public Graph getDeductionsGraph() {
         prepare();
+        return fdeductions.getGraph();
+    }
+    
+    /**
+     * Return the Graph containing all the static deductions available so far.
+     * Does not trigger a prepare action.
+     */
+    public Graph getCurrentDeductionsGraph() {
         return fdeductions.getGraph();
     }
     

@@ -296,7 +296,7 @@ public class FBRuleInfGraph  extends BasicForwardRuleInfGraph implements Backwar
      * Add a new deduction to the deductions graph.
      */
     public void addDeduction(Triple t) {
-        getDeductionsGraph().add(t);
+        getCurrentDeductionsGraph().add(t);
         if (useTGCCaching) {
             transitiveEngine.add(t);
         }
