@@ -37,6 +37,11 @@ public class TestModelRead extends ModelTestBase
         assertIsoModels( expected, m );
         }    
     
+    /*
+         Suppressed, since the other Model::read(String url) operations apparently
+         don't retry failing URLs as filenames. But the code text remains, so that
+         when-and-if, we have a basis.
+     */
     public void testLoadsSimpleModelWithoutProtocol()
         {
 //        Model expected = ModelFactory.createDefaultModel();
