@@ -196,7 +196,7 @@ class Unparser {
 				u.setFragment(null);
 				localName = u.getURIString();
 			} catch (MalformedURIException e) {
-				throw new JenaBadURIException( "", e );
+				throw new BadURIException( "", e );
 			}
 	}
 	/** Should be called exactly once for each Unparser.
@@ -1114,7 +1114,7 @@ class Unparser {
 	 */
 	private void error(String msg) {
 		JenaException e =
-			new JenaBrokenException( "Internal error in Unparser: " + msg );
+			new BrokenException( "Internal error in Unparser: " + msg );
 		this.prettyWriter.fatalError(e);
 		throw e; // Just in case.
 	}
@@ -1138,7 +1138,7 @@ class Unparser {
 	private String getNameSpace(Resource r) {
 		if (r.isAnon()) {
 			logger.error( "Internal error - Unparser.getNameSpace; giving up" );
-			throw new JenaBrokenException( "Internal error: getNameSpace(bNode)" );
+			throw new BrokenException( "Internal error: getNameSpace(bNode)" );
 		} else {
 			String uri = r.getURI();
 			int split = Util.splitNamespace(uri);
@@ -1182,7 +1182,7 @@ class Unparser {
 	private String getLocalName(Resource r)  {
 		if (r.isAnon()) {
 			logger.error( "Internal error - giving up - Unparser.getLocalName" );
-			throw new JenaBrokenException( "Internal error: getLocalName(bNode)" );
+			throw new BrokenException( "Internal error: getLocalName(bNode)" );
 		} else {
 			String uri = r.getURI();
 			int split = Util.splitNamespace(uri);

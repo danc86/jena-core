@@ -181,7 +181,7 @@ public class ContainerImpl extends ResourceImpl
             getModel().remove(last);
         }
         if (size() != (size -1)) 
-            throw new JenaAssertionFailureException( "container size" ); 
+            throw new AssertionFailureException( "container size" ); 
         return this;
     }
     

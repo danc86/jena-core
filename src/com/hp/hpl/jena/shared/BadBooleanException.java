@@ -6,19 +6,18 @@
 
 package com.hp.hpl.jena.shared;
 
+import com.hp.hpl.jena.rdf.model.RDFException;
+
 /**
-    A Jena exception for malformed URIs. (This one is an unchecked
-    exception, so we don't litter our code with try-catch blocks or throws
-    declarations.)
-    
+    Exception to throw when a string cannot be converted to a Boolean
+    value.
  	@author kers
 */
-public class JenaBadURIException extends JenaException
+public class BadBooleanException extends RDFException
     {
-    public JenaBadURIException( String message, Throwable e )
-        { super( message, e ); }
+    public BadBooleanException( String spelling )
+        { super( INVALIDBOOLEANFORMAT, spelling ); }
     }
-
 
 /*
     (c) Copyright Hewlett-Packard Company 2003

@@ -672,7 +672,7 @@ public class TestXMLFeatures extends TestCase {
 					break;
 
 			}
-        } catch (JenaBadURIException e) {
+        } catch (BadURIException e) {
             if (behaviour == BadURI) return;
             throw e;
         } catch (JenaInvalidPropertyURIException je) {

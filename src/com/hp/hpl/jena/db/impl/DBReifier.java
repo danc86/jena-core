@@ -47,7 +47,7 @@ public class DBReifier implements Reifier
 		
 		// For now, just take the first specializedGraphReifier
 		if (m_reifiers.size() != 1)
-			throw new JenaBrokenException("Internal error - DBReifier requires exactly one SpecializedGraphReifier");
+			throw new BrokenException("Internal error - DBReifier requires exactly one SpecializedGraphReifier");
 		m_reifier = (SpecializedGraphReifier) m_reifiers.get(0);
 	}
             

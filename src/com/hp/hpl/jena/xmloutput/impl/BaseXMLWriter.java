@@ -240,7 +240,7 @@ abstract public class BaseXMLWriter implements RDFXMLWriterI {
 				try {
 					new URI(uri);
 				} catch (MalformedURIException e) {
-					throw new JenaBadURIException( "", e );
+					throw new BadURIException( "", e );
 				}
 			if (prefix.length() > 0) {
 				rslt.append(":" + prefix);
@@ -330,7 +330,7 @@ abstract public class BaseXMLWriter implements RDFXMLWriterI {
 				"Internal error: unexpected QName URI: <"
 					+ uri
 					+ ">.  Fixing up with j.cook.up code.",
-				new JenaBrokenException( "unexpected QName URI " + uri ));
+				new BrokenException( "unexpected QName URI " + uri ));
 			cookUp = true;
 		} else if (prefix.length() == 0) {
 			if (type == ATTR || type == FASTATTR)
@@ -363,7 +363,7 @@ abstract public class BaseXMLWriter implements RDFXMLWriterI {
 					break;
 				case FAST :
 					logger.fatal("Unreachable code - reached.");
-					throw new JenaBrokenException( "cookup reached final FAST" );
+					throw new BrokenException( "cookup reached final FAST" );
 			}
 		}
 		return prefix + ":" + local;
@@ -467,7 +467,7 @@ abstract public class BaseXMLWriter implements RDFXMLWriterI {
 				writeBody(model, pw, xmlBase, true);
 			}
 		} catch (MalformedURIException e) {
-			throw new JenaBadURIException( "", e);
+			throw new BadURIException( "", e);
 		}
 		pw.flush();
 	}
@@ -590,7 +590,7 @@ abstract public class BaseXMLWriter implements RDFXMLWriterI {
 					showXmlDeclaration = Boolean.FALSE;
 				else
 					// Also overloading the error condition.
-					throw new JenaBadBooleanException( propValueStr );
+					throw new BadBooleanException( propValueStr );
 			}
 			return oldValue;
 		} else if (propName.equalsIgnoreCase("xmlbase")) {

@@ -9,13 +9,14 @@ package com.hp.hpl.jena.shared;
 import com.hp.hpl.jena.rdf.model.RDFException;
 
 /**
-    Exception to throw when a literal required to be a single character isn't.
+    Exception to throw when an assertion fails. Probably obsolete in 
+    Java's with the assert statement ...
  	@author kers
 */
-public class JenaBadCharLiteralException extends RDFException
+public class AssertionFailureException extends RDFException
     {
-    public JenaBadCharLiteralException( String spelling )
-        { super( LITERALNOTCHAR, spelling ); }
+    public AssertionFailureException( String message )
+        { super( ASSERTIONFAILURE, message ); }
     }
 
 

@@ -6,20 +6,16 @@
 
 package com.hp.hpl.jena.shared;
 
+import com.hp.hpl.jena.rdf.model.RDFException;
+
 /**
-    An exception to throw if an internal error is detected.
+    Exception to throw when a literal required to be a single character isn't.
  	@author kers
 */
-public class JenaBrokenException extends JenaException
+public class BadCharLiteralException extends RDFException
     {
-    public JenaBrokenException( String message )
-            { super( message ); }
-
-    public JenaBrokenException( Throwable cause )
-        { super( cause ); }
-
-    public JenaBrokenException( String message, Throwable cause )
-        { super( message, cause ); }
+    public BadCharLiteralException( String spelling )
+        { super( LITERALNOTCHAR, spelling ); }
     }
 
 

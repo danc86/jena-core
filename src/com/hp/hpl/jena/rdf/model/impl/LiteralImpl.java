@@ -211,7 +211,7 @@ public class LiteralImpl extends EnhNode implements Literal {
             } else if (value.equals("false")) {
                 return false;
             } else {
-                throw new JenaBadBooleanException( value.toString() );
+                throw new BadBooleanException( value.toString() );
             }
         } else {
             // typed literal
@@ -260,7 +260,7 @@ public class LiteralImpl extends EnhNode implements Literal {
             if (getString().length()==1) {
                 return (getString().charAt(0));
             } else {
-                throw new JenaBadCharLiteralException( getString() );
+                throw new BadCharLiteralException( getString() );
             }
         } else {
             Object value = getValue();
