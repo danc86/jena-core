@@ -245,6 +245,11 @@ public class DebugOWL {
 //        if (infgraph instanceof FBRuleInfGraph) {
 //            ((FBRuleInfGraph)infgraph).resetLPProfile(true);
 //        }
+        if (infgraph instanceof FBRuleInfGraph) {
+            System.out.println("Starting prepare");
+            ((FBRuleInfGraph)infgraph).prepare();
+            System.out.println(".. finished");
+        }
     }
     
     /**
@@ -341,22 +346,23 @@ public class DebugOWL {
 //            new DebugOWL(OWLExpt).runVolz();
             
             // Test volz examples on RDFS config
-            System.out.println("Volz tests on normal RDFS, tgc + type rules");
-            new DebugOWL(RDFSFinal).runVolz();
+//            System.out.println("Volz tests on normal RDFS, tgc + type rules");
+//            new DebugOWL(RDFSFinal).runVolz();
+//            System.out.println("Volz tests on lp + expt RDFS rules");
+//            new DebugOWL(RDFSLPExpt).runVolz();
+            
 //            System.out.println("Volz tests on normal RDFS fb rules");
 //            new DebugOWL(RDFSFB).runVolz();
-            System.out.println("Volz tests on lp + expt RDFS rules");
-            new DebugOWL(RDFSLPExpt).runVolz();
 //            System.out.println("Volz tests on lp + expt owl rules");
 //            new DebugOWL(OWLExpt).runVolz();
 //            System.out.println("Volz tests on normal OWL-FB");
 //            new DebugOWL(OWLFB).runVolz();
                         
-//            DebugOWL tester = new DebugOWL(OWLFB);
-//            tester.load(dataFile2);
-//            System.out.println("Test schema + data  started ...");
-//            long t = tester.list(null, RDF.type.asNode(), RDFS.Class.asNode(), false);
-//            System.out.println("Took " + t + "ms");
+            DebugOWL tester = new DebugOWL(OWLFB);
+            tester.load(dataFile2);
+            System.out.println("Test schema + data  started ...");
+            long t = tester.list(null, RDF.type.asNode(), RDFS.Class.asNode(), false);
+            System.out.println("Took " + t + "ms");
 
 //            DebugOWL tester = new DebugOWL(EXPT);
 //            tester.runListClassesTest(1,4,10,false);
