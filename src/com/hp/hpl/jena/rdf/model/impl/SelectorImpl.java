@@ -60,7 +60,7 @@ import com.hp.hpl.jena.rdf.model.*;
  * @version Release='$Name$ $Revision$ $Date$
  */
 
-public class SelectorImpl extends SimpleSelector  {
+public final class SelectorImpl extends SimpleSelector  {
 
     /** Create a selector.  Since no subject, predicate or object constraints are
      * specified a model will test all statements.
@@ -214,5 +214,12 @@ public class SelectorImpl extends SimpleSelector  {
     public SelectorImpl(Resource subject, Property predicate, Object object) {
         super( subject, predicate, object );
     }
+        
+    /**
+        Answer true to the question "is this a simple selector". Otherwise the default for
+        SimpleSelector subclasses, false, would apply.
+    */
+    public boolean isSimple()
+        { return true; }
     
 }

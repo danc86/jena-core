@@ -33,6 +33,7 @@ import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.rdf.model.impl.*;
 
 import java.net.*;
+import java.io.*;
 
 import com.hp.hpl.jena.shared.*;
 
@@ -99,6 +100,7 @@ public class testReaderInterface extends Object {
                     if (jx.getCause() instanceof NoRouteToHostException
                         || jx.getCause() instanceof UnknownHostException
                         || jx.getCause() instanceof ConnectException
+                        || jx.getCause() instanceof IOException
                         )
                         {logger.warn("Cannot access public internet - part of test not executed" );
                         }

@@ -224,13 +224,14 @@ public class SimpleSelector extends Object implements Selector {
     
     /**
         Answer true iff this Selector is completely characterised by its
-        S/P/O triple. Subclasses that implement more complex tests *must*
-        over-ride this to return false.
+        S/P/O triple. Subclasses will by default return false, so this method need not
+        be over-ridden (the only reason for subclassing SimpleSelector is to make
+        a test not dependent only on the S/P/O identity).
         
         @return true iff this selector only depends on S/P/O identity.
     */
     public boolean isSimple()
-        { return true; }
+        { return this.getClass() == SimpleSelector.class; }
         
     /** Test whether a statement should be included in a selection.  This method
      * tests whether the supplied statement satisfies the subject, predicate and
