@@ -1083,6 +1083,19 @@ public class TestBugReports
     }
     
     
+    /** Test case for SF bug 934528 - conversion exception with owl:Thing and owl:Nothing when no reasoner */
+    public void test_sf_934528() {
+        OntModel m = ModelFactory.createOntologyModel( OntModelSpec.OWL_MEM );
+        
+        Resource r = (Resource) OWL.Thing.inModel( m );
+        OntClass thingClass = (OntClass) r.as( OntClass.class );
+        assertNotNull( thingClass );
+        
+        r = (Resource) OWL.Nothing.inModel( m );
+        OntClass nothingClass = (OntClass) r.as( OntClass.class );
+        assertNotNull( nothingClass );
+    }
+    
     
     // Internal implementation methods
     //////////////////////////////////

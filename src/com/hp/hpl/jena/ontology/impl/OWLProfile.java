@@ -254,7 +254,14 @@ public class OWLProfile
                                             public boolean doCheck( Node n, EnhGraph g ) {
                                                 return g.asGraph().contains( n, RDF.type.asNode(), OWL.Class.asNode() ) ||
                                                        g.asGraph().contains( n, RDF.type.asNode(), OWL.Restriction.asNode() ) || 
-                                                       g.asGraph().contains( n, RDF.type.asNode(), RDFS.Class.asNode() );
+                                                       g.asGraph().contains( n, RDF.type.asNode(), RDFS.Class.asNode() ) ||
+                                                       // These are common cases that we should support
+                                                       n.equals( OWL.Thing.asNode() ) ||
+                                                       n.equals( OWL.Nothing.asNode() ) ||
+                                                       n.equals( DAML_OIL.Thing.asNode() ) ||
+                                                       n.equals( DAML_OIL.Nothing.asNode() ) ||
+                                                       n.equals( RDFS.Resource.asNode() )
+                                                       ;
                                             }
                                         }
         },
