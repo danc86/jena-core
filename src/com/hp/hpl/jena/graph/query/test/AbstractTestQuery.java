@@ -51,7 +51,7 @@ public abstract class AbstractTestQuery extends GraphTestBase
         Graph gc = getGraphWith( content ), gp = getGraphWith( pattern );
         Graph answer = gc.queryHandler().prepareTree( gp ).executeTree();
         if (title.equals( "" )) title = "checking {" + content + "} against {" + pattern + "} should give {" + correct + "}" + " not " + answer;
-        assertEquals( title, getGraphWith( correct ), answer );
+        assertIsomorphic( title, getGraphWith( correct ), answer );
         }
         
     private void testTreeQuery( String content, String pattern, String answer )

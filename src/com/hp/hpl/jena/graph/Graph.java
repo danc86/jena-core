@@ -6,11 +6,10 @@
 
 package com.hp.hpl.jena.graph;
 
+import com.hp.hpl.jena.graph.impl.GraphBase;
 import com.hp.hpl.jena.graph.query.*;
 import com.hp.hpl.jena.shared.*;
-
 import com.hp.hpl.jena.util.iterator.*;
-
 
 /**
     The interface to be satisfied by implementations maintaining collections
@@ -25,7 +24,12 @@ import com.hp.hpl.jena.util.iterator.*;
 */
 public interface Graph  extends GraphAdd
     {
-	
+    /**
+        An immutable empty graph. 
+    */
+    public static final Graph emptyGraph = new GraphBase()
+        { public ExtendedIterator find( TripleMatch tm ) { return new NiceIterator(); } };
+    	
     /** 
         true if this graph's content depends on the other graph. May be
         pessimistic (ie return true if it's not sure). Typically true when a

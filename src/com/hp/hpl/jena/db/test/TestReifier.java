@@ -55,9 +55,6 @@ public class TestReifier extends AbstractTestReifier  {
 		theGraphs.add( g );
 		return g;		
 	   }
-       
-    public Graph getGraph()
-        { return getGraph( ReificationStyle.Convenient ); }
         
     }
 

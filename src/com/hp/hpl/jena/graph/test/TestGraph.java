@@ -43,9 +43,9 @@ public class TestGraph extends GraphTestBase
             Graph m = new GraphMem();
             Graph w = new WrappedGraph( m );
             graphAdd( m, "a trumps b; c eats d" );
-            assertEquals( "", m, w );
+            assertIsomorphic( m, w );
             graphAdd( w, "i write this; you read that" );
-            assertEquals( "", w, m );
+            assertIsomorphic( w, m );
             }
         }      
 

@@ -60,7 +60,7 @@ public class TestQuery extends ModelTestBase
         Model m = modelWithStatements( model );
         Graph g = GraphTestBase.graphWith( graph );
         QueryMapper qm = new QueryMapper( m, new Resource[0] );
-        GraphTestBase.assertEquals( title, g,  qm.getGraph() );
+        GraphTestBase.assertIsomorphic( title, g,  qm.getGraph() );
         }
     
     public void testVariablesTranslate( Resource [] vIn, Node [] vOut )

@@ -109,7 +109,7 @@ public class TestFileGraph extends GraphTestBase
             g.getBulkUpdateHandler().add( original );
             g.close();
             Graph g2 = new FileGraph( foo, false, true );
-            assertEquals( "", original, g2 );
+            assertIsomorphic( original, g2 );
             g2.close();
             }
         }

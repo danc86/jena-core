@@ -19,7 +19,7 @@ import com.hp.hpl.jena.shared.*;
 
 	@author kers
 */
-public class MetaTestGraph extends AbstractTestGraph 
+public class MetaTestGraph extends GraphTestBase 
     {
     protected final Class graphClass;
     protected final ReificationStyle style;

@@ -1,6 +1,6 @@
 /*
   (c) Copyright 2002, Hewlett-Packard Development Company, LP
-  [See end of file]
+  [See end of file]ispo
   $Id$
 */
 
@@ -82,13 +82,19 @@ public class GraphTestBase extends JenaTestBase
         {
         assertTrue( title, g.isIsomorphicWith( graphWith( template ) ) );
         }
-        
-    public static void assertEquals( String name, Graph wanted, Graph obtained )
+                
+    public static void assertIsomorphic( Graph expected, Graph got )
         {
-        if (!wanted.isIsomorphicWith( obtained ))
-            fail( name + ": wanted " + wanted + " but got " + obtained );
+        if (!expected.isIsomorphicWith( got ))
+            fail( "wanted " + expected + " but got " + got );
         }
-    
+        
+    public static void assertIsomorphic( String title, Graph expected, Graph got )
+        {
+        if (!expected.isIsomorphicWith( got ))
+            fail( title + ": wanted " + expected + " but got " + got );
+        }
+
     public static void assertContains( String name, String s, Graph g )
         {
         assertTrue( name + " must contain " + s, g.contains( triple( s ) ) );

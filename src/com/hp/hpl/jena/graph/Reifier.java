@@ -24,6 +24,11 @@ public interface Reifier extends GetTriple
     Graph getHiddenTriples();
     
     /**
+        Answer a read-only graph of all the reification quadlets in this reifier. 
+    */
+    Graph getReificationTriples();
+    
+    /**
         Answer this reifier's style.
     */
     ReificationStyle getStyle();
