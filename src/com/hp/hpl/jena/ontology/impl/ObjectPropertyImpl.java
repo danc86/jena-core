@@ -122,7 +122,8 @@ public class ObjectPropertyImpl
      * @return The property that is the inverse of this property, or null. 
      */
     public OntProperty getInverse() {
-        return super.getInverse().asObjectProperty();
+        OntProperty inv = super.getInverse();
+        return (inv != null) ? inv.asObjectProperty() : null;
     }
     
 
