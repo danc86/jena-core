@@ -706,7 +706,9 @@ public void deleteTripleAR(
 	 */
 	public boolean statementTableContains(IDBID graphID, Triple t) {
 	   ExtendedIterator it = find( t,  graphID );
-	   return (it.hasNext());
+	   boolean res = it.hasNext();
+	   it.close();
+	   return res;
 	}
 	
 	/* (non-Javadoc)
