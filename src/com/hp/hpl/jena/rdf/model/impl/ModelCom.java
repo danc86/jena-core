@@ -857,6 +857,12 @@ implements Model, ModelI, PrefixMapping
     public Map getNsPrefixMap()
         { return pm.getNsPrefixMap(); }
         
+    public String expandPrefix( String prefixed )
+        { return pm.expandPrefix( prefixed ); }
+        
+    public String usePrefix( String uri )
+        { return pm.usePrefix( uri ); }
+        
     /**
         Service method to update the namespaces of  a Model given the
         mappings from prefix names to sets of URIs.
