@@ -400,7 +400,7 @@ public class JenaReader implements RDFReader, ARPErrorNumbers {
                 } catch (SAXNotSupportedException ns) {
                     old = null;
                 } catch (SAXNotRecognizedException nr) {
-                    errorHandler.error( new JenaUnknownPropertyException( str ) );
+                    errorHandler.error( new UnknownPropertyException( str ) );
                     return null;
                 }
                 try {
@@ -408,7 +408,7 @@ public class JenaReader implements RDFReader, ARPErrorNumbers {
                 } catch (SAXNotSupportedException ns) {
                     errorHandler.error(new JenaException(ns));
                 } catch (SAXNotRecognizedException nr) {
-                    errorHandler.error( new JenaUnknownPropertyException( str ) );
+                    errorHandler.error( new UnknownPropertyException( str ) );
                     return null;
                 }
                 return old;
@@ -422,7 +422,7 @@ public class JenaReader implements RDFReader, ARPErrorNumbers {
                 } catch (SAXNotSupportedException ns) {
                     old = null;
                 } catch (SAXNotRecognizedException nr) {
-                    errorHandler.error( new JenaUnknownPropertyException( str ) );
+                    errorHandler.error( new UnknownPropertyException( str ) );
                     return null;
                 }
                 try {
@@ -430,7 +430,7 @@ public class JenaReader implements RDFReader, ARPErrorNumbers {
                 } catch (SAXNotSupportedException ns) {
                     errorHandler.error(new JenaException(ns));
                 } catch (SAXNotRecognizedException nr) {
-                    errorHandler.error( new JenaUnknownPropertyException( str ) );
+                    errorHandler.error( new UnknownPropertyException( str ) );
                     return null;
                 } catch (ClassCastException cc) {
                     errorHandler.error(
@@ -578,7 +578,7 @@ public class JenaReader implements RDFReader, ARPErrorNumbers {
                 return new Integer(old);
             }
         }
-        errorHandler.error(new JenaUnknownPropertyException( str ));
+        errorHandler.error(new UnknownPropertyException( str ));
         return null;
     }
 

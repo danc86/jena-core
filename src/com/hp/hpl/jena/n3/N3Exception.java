@@ -14,7 +14,7 @@ package com.hp.hpl.jena.n3;
 
 import com.hp.hpl.jena.shared.*;
 
-public class N3Exception extends JenaSyntaxError
+public class N3Exception extends SyntaxError
 {
     public N3Exception(String message) { super( message ) ; }
     

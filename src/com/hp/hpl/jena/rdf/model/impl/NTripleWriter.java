@@ -99,14 +99,14 @@ public class NTripleWriter extends Object implements RDFWriter {
     /** Set a property to control the writer's behaviour.
      *
      * <p>This writer currently recognises no properties.  Invoking this
-     * method always causes an <CODE>JenaUnknownPropertyException</CODE>
+     * method always causes an <CODE>UnknownPropertyException</CODE>
      * to be raised.</p>?
      * @param propName The name of the property to be set
      * @param propValue The new value of the property
      * @return the previous value of the property
      */
     public Object setProperty(String propName, Object propValue) {
-        throw new JenaUnknownPropertyException( propName );
+        throw new UnknownPropertyException( propName );
     }
 
     public void setNsPrefix(String prefix, String ns) {

@@ -12,7 +12,7 @@ import com.hp.hpl.jena.graph.Triple;
     Exception to throw if a delete is denied.
  	@author kers
 */
-public class DeleteDeniedException extends JenaUpdateDeniedException
+public class DeleteDeniedException extends UpdateDeniedException
     {
     public DeleteDeniedException( String message )
         { super( message ); }

@@ -12,7 +12,7 @@ import com.hp.hpl.jena.graph.Triple;
     Exception to throw for a denied add operation
  	@author kers
 */
-public class AddDeniedException extends JenaUpdateDeniedException
+public class AddDeniedException extends UpdateDeniedException
     {
     public AddDeniedException(String message)
         { super( message ); }
