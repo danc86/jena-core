@@ -20,14 +20,17 @@ public class ReifyingCaptureGraph extends WrappedGraph
     /**
         The capturing reifier that this graph uses instead of the base.
     */
-    protected Reifier reifier = new SimpleReifier( this, Reifier.Standard );
+    protected Reifier reifier;
     
     /**
         Initialise the capture graph with the base graph.
         @param base the graph to which all real work is deferred
     */
     ReifyingCaptureGraph( Graph base, Reifier.Style style )
-        { super( base ); }
+        { 
+        super( base ); 
+        reifier = new SimpleReifier( this, style );
+        }
         
     /**
         Answer the reifier that is bound into this Graph

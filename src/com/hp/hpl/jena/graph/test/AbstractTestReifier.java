@@ -52,7 +52,7 @@ public abstract class AbstractTestReifier extends GraphTestBase
         
     public void testIntercept()
         {
-        Graph g = GraphBase.withReification( getGraph(), Reifier.Standard );
+        Graph g = GraphBase.withReification( getGraph(), Reifier.Convenient );
         Reifier r = g.getReifier();
         Node S = node( "sub" ), O = node( "obj" );
         Node RS = node( "http://example.org/type" );
@@ -67,7 +67,7 @@ public abstract class AbstractTestReifier extends GraphTestBase
         
     public void testHiddenTriples()
         {
-        Graph g = GraphBase.withReification( getGraph(), Reifier.Standard );
+        Graph g = GraphBase.withReification( getGraph(), Reifier.Convenient );
         Reifier r = g.getReifier();
         Node S = node( "SSS" ), P = node( "PPP" );
         g.add( new Triple( S, RDF.Nodes.predicate, P ) );

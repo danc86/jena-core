@@ -38,7 +38,7 @@ public class SimpleReifier implements Reifier
         this.parent = parent;
         this.nodeMap = new FragmentMap();
         this.intercepting = style.intercepts();
-        this.concealing = true; // style.conceals();
+        this.concealing = style.conceals();
         }
             
     /** return the parent graph we are bound to */

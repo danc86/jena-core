@@ -52,14 +52,16 @@ final public class LiteralLabel {
 
     /**
      * The type of the literal. A null type indicates a classic "plain" literal.
+     * The type of a literal is fixed when it is created.
      */
-    private RDFDatatype dtype;
+    final private RDFDatatype dtype;
 
     /**
      * The xml:lang tag. For xsd literals this is ignored and not part of
-     * equality. For xml and plain literals it is not ignored.
+     * equality. For xml and plain literals it is not ignored. The lang of a
+     * literal is fixed when it is created.
      */
-    private String lang;
+    final private String lang;
 
     /**
      * Indicates whether this is a legal literal. The working groups requires
@@ -192,8 +194,14 @@ final public class LiteralLabel {
         This is NOT intended for a machine-processed result. 
     */
     public String toString() {
-        String lf = getLexicalForm();
-        return dtype == null ? lf : lf + "^^" + dtype.getURI();
+        StringBuffer b = new StringBuffer();
+        // b.append( '"' );
+        b.append( getLexicalForm() );
+        // b.append( '"' );
+        if (lang != null && !lang.equals( "" )) { b.append( "@" ); b.append( lang ); }
+        if (dtype != null) { b.append( "^^" ); b.append( dtype.getURI()); }
+        return b.toString();
+            
     }
     
     /**
