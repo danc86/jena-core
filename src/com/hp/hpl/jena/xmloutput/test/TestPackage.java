@@ -36,7 +36,7 @@ public class TestPackage {
         suite.addTest(new PrettyWriterTest("testLi"));
 
     	//if ( true ) return suite;
-        /* TODO xmloutput LIST * /
+        /* */
         suite.addTest(new PrettyWriterTest("testRDFCollection"));
         /* */
         suite.addTest(new PrettyWriterTest("testOWLPrefix"));
