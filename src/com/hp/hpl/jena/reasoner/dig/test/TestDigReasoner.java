@@ -48,7 +48,7 @@ import javax.xml.parsers.DocumentBuilder;
 
 /**
  * <p>
- * Abstract test harness for DIG reasoners 
+ * Unit tests for DIG reasoners 
  * </p>
  *
  * @author Ian Dickinson, HP Labs (<a href="mailto:Ian.Dickinson@hp.com">email</a>)
@@ -529,7 +529,7 @@ public class TestDigReasoner
                                        new Resource[] {q1, q2}, 0 );
     }
 
-    public void testDebug1() {
+    public void xxtestDebug1() {
         String NS = "http://example.org/foo#";
         
         OntModel base = ModelFactory.createOntologyModel( OntModelSpec.OWL_DL_MEM, null );

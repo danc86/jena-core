@@ -27,12 +27,16 @@ package com.hp.hpl.jena.reasoner.dig;
 
 // Imports
 ///////////////
+import java.util.Iterator;
+
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.graph.compose.MultiUnion;
 import com.hp.hpl.jena.ontology.OntModel;
-import com.hp.hpl.jena.rdf.model.ModelFactory;
+import com.hp.hpl.jena.ontology.Profile;
+import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.reasoner.*;
 import com.hp.hpl.jena.util.iterator.ExtendedIterator;
+import com.hp.hpl.jena.vocabulary.RDF;
 
 
 /**
@@ -181,6 +185,60 @@ public class DIGInfGraph
         throw new UnsupportedOperationException( "Cannot set derivation logging on DIG reasoner" );
     }
    
+    
+    /**
+     * <p>Test the consistency of the model. This looks for overall inconsistency,
+     * and for any unsatisfiable classes.</p>
+     * @return a ValidityReport structure
+     */
+    public ValidityReport validate() {
+        checkOpen();
+        prepare();
+        StandardValidityReport report = new StandardValidityReport();
+        
+        // look for incoherent KB by listing the individuals
+        try {
+            m_adapter.collectNamedTerms( DIGProfile.ALL_INDIVIDUALS,
+                                         new String[] {DIGProfile.INDIVIDUAL_SET, DIGProfile.INDIVIDUAL} );
+        }
+        catch (DIGErrorResponseException e) {
+            report.add( true, "DIG KB incoherent", e.getMessage() );
+        }
+        
+        // now look for unsatisfiable classes
+        Profile p = m_adapter.getOntLanguage();
+        Property equivClass = p.EQUIVALENT_CLASS();
+        DIGQueryEquivalentsTranslator q = new DIGQueryEquivalentsTranslator( equivClass.getURI(), true );
+        ExtendedIterator i = q.find( new TriplePattern( null, equivClass.asNode(), p.NOTHING().asNode() ), m_adapter );
+        
+        while (i.hasNext()) {
+            Triple t = (Triple) i.next();
+            Node subj = t.getSubject();
+            report.add( true, "unsatisfiable class", (subj.isBlank() ? subj.getBlankNodeId().toString() : subj.getURI()), t.getSubject() );
+        }
+        
+        // look for incoherent instances
+        Node nothing = p.NOTHING().asNode();
+        DIGQueryTypesTranslator q1 = new DIGQueryTypesTranslator( RDF.type.getURI() );
+        DIGValueToNodeMapper vMap = new DIGValueToNodeMapper();
+        for (Iterator j = m_adapter.getKnownIndividuals().iterator(); j.hasNext(); ) {
+            String ind = (String) j.next();
+            Node indNode = (Node) vMap.map1( ind );
+            
+            try {
+                ExtendedIterator i1 = q1.find( new TriplePattern( indNode, RDF.type.asNode(), null ), m_adapter );
+            }
+            catch (DIGErrorResponseException e) {
+                // we assume this is an incoherent KB exception - should check
+                report.add( true, "meaningless individual", (indNode.isBlank() ? indNode.getBlankNodeId().toString() : indNode.getURI()), ind );
+            }
+        }
+        
+        return report;
+    }
+    
+
+    
     // Internal implementation methods
     //////////////////////////////////
 

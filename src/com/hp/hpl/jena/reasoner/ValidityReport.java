@@ -63,9 +63,7 @@ public interface ValidityReport {
          * @param description a textual description of the problem
          */
         public Report(boolean error, String type, String description) {
-            this.isError = error;
-            this.type = type;
-            this.description = description;
+            this( error, type, description, null );
         }
         
         /**
@@ -80,6 +78,7 @@ public interface ValidityReport {
             this.isError = error;
             this.type = type;
             this.description = description;
+            this.extension = extension;
         }
         
          /**
