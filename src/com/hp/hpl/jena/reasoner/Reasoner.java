@@ -9,6 +9,7 @@
  *****************************************************************/
 package com.hp.hpl.jena.reasoner;
 
+import com.hp.hpl.jena.graph.Capabilities;
 import com.hp.hpl.jena.graph.Graph;
 import com.hp.hpl.jena.rdf.model.*;
 
@@ -114,7 +115,7 @@ public interface Reasoner {
      * information supplied at construction time. May be null if there are
      * no useful capabilities registered.
      */
-    public Model getCapabilities();
+    public Model getReasonerCapabilities();
     
     /**
      * Add a configuration description for this reasoner into a partial
@@ -131,6 +132,12 @@ public interface Reasoner {
      * @return true if the given property is handled specially by the reasoner.
      */
     public boolean supportsProperty(Property property);
+
+    /**
+     * Return the Jena Graph Capabilties that the inference graphs generated
+     * by this reasoner are expected to conform to.
+     */
+    public Capabilities getGraphCapabilities();
 }
 
 

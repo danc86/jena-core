@@ -138,6 +138,14 @@ public class TransitiveInfGraph extends BaseInfGraph {
             transitiveEngine.delete(t);
         }
     }
+    /**
+    Answer the InfCapabilities of this InfGraph.
+ */
+public Capabilities getCapabilities()
+    {
+    if (capabilities == null) capabilities = new InfFindSafeCapabilities();
+    return capabilities;
+    }
 
 }
 

@@ -40,6 +40,7 @@ public class TestPackage extends TestSuite {
         addTest( "TestOWLRules", OWLUnitTest.suite() );
         addTest( "TestOWLConsistency", TestOWLRules.suite() );
         addTest( "TestBugs", TestBugs.suite() );
+        addTest( "TestCapabilities", TestCapabilities.suite() );
     }
 
     // helper method

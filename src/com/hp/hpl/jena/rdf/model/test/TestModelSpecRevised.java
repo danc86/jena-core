@@ -241,7 +241,7 @@ public class TestModelSpecRevised extends ModelTestBase
 		public void setParameter( Property parameterUri, Object value )
 			{ throw new JenaException( "fakes don't do this" ); }
 		
-		public Model getCapabilities()
+		public Model getReasonerCapabilities()
 			{ throw new JenaException( "fakes don't do this" ); }
 
 		public void addDescription( Model configSpec, Resource base )
@@ -249,6 +249,10 @@ public class TestModelSpecRevised extends ModelTestBase
 
 		public boolean supportsProperty( Property property )
 			{ throw new JenaException( "fakes don't do this" ); }
+
+        public Capabilities getGraphCapabilities() {
+            return new BaseInfGraph.InfCapabilities();
+        }
 
 		}
     
@@ -344,6 +348,7 @@ public class TestModelSpecRevised extends ModelTestBase
         if (y == null) fail( "<null> does not contain anything, especially '" + x + "'" );
         if (y.indexOf( x ) < 0) fail( "'" + y + "' does not contain '" + x + "'" );
         }
+    
     }
 
 

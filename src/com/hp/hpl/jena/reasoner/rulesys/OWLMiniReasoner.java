@@ -9,6 +9,7 @@
  *****************************************************************/
 package com.hp.hpl.jena.reasoner.rulesys;
 
+import com.hp.hpl.jena.graph.Capabilities;
 import com.hp.hpl.jena.reasoner.*;
 
 import java.util.*;
@@ -52,6 +53,17 @@ public class OWLMiniReasoner extends GenericRuleReasoner implements Reasoner {
 //        setTransitiveClosureCaching(true);
     }
     
+
+    /**
+     * Return the Jena Graph Capabilties that the inference graphs generated
+     * by this reasoner are expected to conform to.
+     */
+    public Capabilities getGraphCapabilities() {
+        if (capabilities == null) {
+            capabilities = new BaseInfGraph.InfFindSafeCapabilities();
+        }
+        return capabilities;
+    }
 
 }
 

@@ -66,26 +66,41 @@ public abstract class BaseInfGraph extends GraphBase implements InfGraph {
     /**
         Answer the InfCapabilities of this InfGraph.
      */
-    public Capabilities getCapabilities()
-        {
-        if (capabilities == null) capabilities = new InfCapabilities();    
-        return capabilities;
+    public Capabilities getCapabilities() {
+        if (capabilities == null) {
+            return getReasoner().getGraphCapabilities();
+        } else {
+            return capabilities;
         }
-        
+    }
+    
     /**
         An InfCapabilities notes that size may not be accurate, and some
         triples may be irremovable.
         
         TODO accomodate the properties of the base graph, too.
     
-     	@author hedgehog
+        @author hedgehog
     */
-    static class InfCapabilities extends AllCapabilities
+    public static class InfCapabilities extends AllCapabilities
         {
         public boolean sizeAccurate() { return false; }
         public boolean deleteAllowed( boolean every ) { return !every; }    
         public boolean iteratorRemoveAllowed() { return false; }
         public boolean findContractSafe() { return false; }
+        }
+    
+    /**
+        An InfCapabilities notes that size may not be accurate, and some
+        triples may be irremovable.
+        
+        TODO accomodate the properties of the base graph, too.
+    
+        @author hedgehog
+    */
+    public static class InfFindSafeCapabilities extends InfCapabilities
+        {
+        public boolean findContractSafe() { return true; }
         }
     
     public BulkUpdateHandler getBulkUpdateHandler()

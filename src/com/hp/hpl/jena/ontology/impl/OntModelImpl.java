@@ -390,7 +390,7 @@ public class OntModelImpl
         boolean supportsIndAsThing = false;
         if (getGraph() instanceof InfGraph) {
             supportsIndAsThing = ((InfGraph) getGraph()).getReasoner()
-                                                        .getCapabilities()
+                                                        .getReasonerCapabilities()
                                                         .contains( null, ReasonerVocabulary.supportsP, ReasonerVocabulary.individualAsThingP );
         }
         if (!supportsIndAsThing || (getProfile().THING() == null) || getProfile().CLASS().equals( RDFS.Class )) {

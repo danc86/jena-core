@@ -11,6 +11,8 @@ package com.hp.hpl.jena.reasoner.rulesys;
 
 import java.util.*;
 
+import com.hp.hpl.jena.graph.Capabilities;
+import com.hp.hpl.jena.reasoner.BaseInfGraph;
 import com.hp.hpl.jena.reasoner.ReasonerFactory;
 
 /**
@@ -41,6 +43,17 @@ public class RDFSFBRuleReasoner extends FBRuleReasoner {
     public static List loadRules() {
         if (ruleSet == null) ruleSet = loadRules( RULE_FILE );
         return ruleSet;
+    }
+
+    /**
+     * Return the Jena Graph Capabilties that the inference graphs generated
+     * by this reasoner are expected to conform to.
+     */
+    public Capabilities getGraphCapabilities() {
+        if (capabilities == null) {
+            capabilities = new BaseInfGraph.InfFindSafeCapabilities();
+        }
+        return capabilities;
     }
 
 }

@@ -53,7 +53,8 @@ public class TestInfGraph extends AbstractTestGraph
     */
     public void testInfCapabilities()
         {
-        assertFalse( getInfGraph().getCapabilities().findContractSafe() );
+        // The default Ontology inference model is RDFS which is safe
+        assertTrue( getInfGraph().getCapabilities().findContractSafe() );
         }
     }
 
