@@ -182,13 +182,13 @@ public class FileManager
      *  defaulting to RDF/XML.
      * 
      *  @param filenameOrURI The filename or a URI (file:, http:)
-     *  @param baseURI  Base URI for loading the RDF model.
+     *  @param rdfSyntax  RDF Serialization syntax. 
      *  @return a new model
      */
 
-    public Model loadModel(String filenameOrURI, String baseURI)
+    public Model loadModel(String filenameOrURI, String rdfSyntax)
     {
-        return loadModel(filenameOrURI, baseURI, null) ;
+        return loadModel(filenameOrURI, null, rdfSyntax) ;
     }
     
     /** Load a model from a file (local or remote).
@@ -197,11 +197,11 @@ public class FileManager
      * 
      *  @param filenameOrURI The filename or a URI (file:, http:)
      *  @param baseURI  Base URI for loading the RDF model.
-     *  @param lang  Base URI for loading the RDF model.
+     *  @param rdfSyntax  RDF Serialization syntax. 
      *  @return a new model
      */
 
-    public Model loadModel(String filenameOrURI, String baseURI, String lang)
+    public Model loadModel(String filenameOrURI, String baseURI, String rdfSyntax)
     {
         if ( modelCache != null && modelCache.containsKey(filenameOrURI) )
         {
@@ -210,7 +210,7 @@ public class FileManager
         }
         
         Model m = ModelFactory.createDefaultModel() ;
-        readModel(m, filenameOrURI, baseURI, lang) ;
+        readModel(m, filenameOrURI, baseURI, rdfSyntax) ;
         if ( this.cacheModelLoads )
         {
             if ( modelCache == null )
@@ -234,13 +234,13 @@ public class FileManager
      * Read a file of RDF into a model.
      * @param model
      * @param filenameOrURI
-     * @param baseURI
+     * @param rdfSyntax RDF Serialization syntax.
      * @return The model or null, if there was an error.
      */    
 
-    public Model readModel(Model model, String filenameOrURI, String baseURI)
+    public Model readModel(Model model, String filenameOrURI, String rdfSyntax)
     {
-        return readModel(model, filenameOrURI, baseURI, null);
+        return readModel(model, filenameOrURI, null, rdfSyntax);
     }
 
     /**
@@ -248,6 +248,7 @@ public class FileManager
      * @param model
      * @param filenameOrURI
      * @param baseURI
+     * @param syntax
      * @return The model
      * @exception If syntax error in file.
      */    
