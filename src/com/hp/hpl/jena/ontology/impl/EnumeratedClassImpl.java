@@ -148,7 +148,7 @@ public class EnumeratedClassImpl
      * @exception OntProfileException If the {@link Profile#ONE_OF()} property is not supported in the current language profile.   
      */ 
     public ExtendedIterator listOneOf() {
-        return getOneOf().iterator();
+        return getOneOf().iterator().mapWith( new AsMapper( OntResource.class ) );
     }
 
     /**
