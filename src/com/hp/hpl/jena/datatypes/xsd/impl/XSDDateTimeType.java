@@ -25,6 +25,7 @@ public class XSDDateTimeType extends XSDAbstractDateTimeType {
      */
     public XSDDateTimeType(String typename) {
         super(typename);
+        javaClass = XSDDateTime.class;
     }
 
     /**

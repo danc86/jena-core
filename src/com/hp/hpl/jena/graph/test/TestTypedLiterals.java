@@ -482,6 +482,15 @@ public class TestTypedLiterals extends TestCase {
             assertTrue("Failed to prevent illegal access", false);
         } catch (IllegalDateTimeFieldException e) {}
         
+        // Creation of datetime from a date object
+        Calendar ncal = new GregorianCalendar(TimeZone.getTimeZone("GMT"));
+        ncal.set(2003, 11, 8, 10, 50, 42);
+        ncal.set(Calendar.MILLISECOND, 0);
+        l1 = m.createTypedLiteral(ncal);
+        assertEquals("DateTime from date", XSDDatatype.XSDdateTime, l1.getDatatype());
+        assertEquals("DateTime from date", XSDDateTime.class, l1.getValue().getClass());
+        assertEquals("DateTime from date", "2003-11-08T10:50:42Z", l1.getValue().toString());
+        
     }
       
     /**

@@ -54,6 +54,39 @@ public class XSDDateTime extends AbstractDateTime {
         this.mask = (short)mask;
     }
     
+    
+    /**
+     * Constructor - create a full DateTime object from a java calendar instance.
+     * 
+     * @param date java calendar instance
+     */
+    public XSDDateTime(Calendar date) {
+        super(convertCalendar(date));
+        this.mask = FULL_MASK;
+    }
+    
+    /**
+     * Convert a java calendar object to a new int[] in the format used by XSDAbstractDateTime
+     */
+    private static int[] convertCalendar(Calendar date) {
+        int[] data = new int[TOTAL_SIZE];
+        int offset = date.get(Calendar.ZONE_OFFSET);
+        Calendar cal = date;
+        if (offset != 0) {
+            cal = (Calendar)date.clone();
+            cal.add(Calendar.MILLISECOND, -offset);
+        }
+        data[AbstractDateTime.CY] = cal.get(Calendar.YEAR);
+        data[AbstractDateTime.M] = cal.get(Calendar.MONTH);
+        data[AbstractDateTime.D] = cal.get(Calendar.DAY_OF_MONTH);
+        data[AbstractDateTime.h] = cal.get(Calendar.HOUR);
+        data[AbstractDateTime.m] = cal.get(Calendar.MINUTE);
+        data[AbstractDateTime.s] = cal.get(Calendar.SECOND);
+        data[AbstractDateTime.ms] = cal.get(Calendar.MILLISECOND);
+        data[AbstractDateTime.utc] = 'Z';
+        return data;
+    }
+
     /**
      * Return the date time as a java Calendar object. 
      * If the timezone has been specified then the object is normalized to GMT.

@@ -32,6 +32,7 @@ public class XSDDurationType extends XSDAbstractDateTimeType {
      */
     public XSDDurationType() {
         super("duration");
+        javaClass = XSDDuration.class;
     }
         
     /**

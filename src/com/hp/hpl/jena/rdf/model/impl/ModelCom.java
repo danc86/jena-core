@@ -16,6 +16,8 @@ import com.hp.hpl.jena.graph.query.*;
 import com.hp.hpl.jena.util.iterator.*;
 import com.hp.hpl.jena.vocabulary.RDF;
 import com.hp.hpl.jena.datatypes.*;
+import com.hp.hpl.jena.datatypes.xsd.XSDDatatype;
+import com.hp.hpl.jena.datatypes.xsd.XSDDateTime;
 import com.hp.hpl.jena.enhanced.*;
 
 import java.io.*;
@@ -508,7 +510,16 @@ implements Model, PrefixMapping, ModelLock
         return new LiteralImpl(Node.createLiteral(ll), (Model)this);
     }
 
+    /**
+     * Create a typed literal xsd:dateTime from a Calendar object. 
+     */
+    public Literal createTypedLiteral(Calendar cal) {
+        Object value = new XSDDateTime(cal);
+        LiteralLabel ll = new LiteralLabel(value, "", XSDDatatype.XSDdateTime);
+        return new LiteralImpl(Node.createLiteral(ll), (Model)this);
         
+    }
+    
     /**
      * Build a typed literal from its lexical form. The
      * lexical form will be parsed now and the value stored. If
