@@ -13,7 +13,7 @@ import antlr.TokenStreamException;
  * @author		Andy Seaborne
  * @version 	$Id$
  */
-public class N3Parser /*extends N3AntlrParser*/ implements N3AntlrParserTokenTypes
+public class N3Parser implements N3AntlrParserTokenTypes
 {
 	N3AntlrLexer lexer = null ;
 	N3AntlrParser parser = null ;
@@ -33,11 +33,16 @@ public class N3Parser /*extends N3AntlrParser*/ implements N3AntlrParserTokenTyp
 		parser.setEventHandler(h) ;
 		parser.setLexer(lexer) ;
     }
-
+    
 	public N3Parser(InputStream in, N3ParserEventHandler h)
 	{
-		lexer = new N3AntlrLexer(in) ;
-		parser = new N3AntlrParser(lexer) ;
+        Reader r = null ;
+        try { 
+            // UTF-8 always exists.
+            r = new InputStreamReader(in, "UTF-8") ;
+        } catch (UnsupportedEncodingException ex) {}
+        lexer = new N3AntlrLexer(r) ;
+        parser = new N3AntlrParser(lexer) ;
 		parser.setEventHandler(h) ;
 		parser.setLexer(lexer) ;
     }

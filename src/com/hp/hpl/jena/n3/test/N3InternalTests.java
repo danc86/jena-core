@@ -219,27 +219,43 @@ public class N3InternalTests extends TestSuite
         addTest(new Test("a:subj a:prop ?x^^xsd:integer .")) ;
         addTest(new Test("a:subj a:prop '123'^^?x .")) ;
         addTest(new Test("a:subj a:prop ?x^^?y .")) ;
+        
+        // Unicode 00E9 is e-acute
+        // Unicode 03B1 is alpha
+        addTest(new Test("a:subj a:prop '\u00E9'.")) ;
+        addTest(new Test("a:subj a:prop '\u003B1'.")) ;
+        
+        addTest(new Test("\u00E9:subj a:prop '\u00E9'.")) ;
+        addTest(new Test("a:subj-\u00E9 a:prop '\u00E9'.")) ;
+        
+        addTest(new Test("\u03B1:subj a:prop '\u03B1'.")) ;
+        addTest(new Test("a:subj-\u03B1 a:prop '\u03B1'.")) ;
 	}
 	
 	class Test extends TestCase
 	{
 		N3ParserEventHandler handler ;
 		String testString ;
+        boolean stoppingPoint = false ;
+        
 		Test(String s)
 		{
-            // JUnit in Eclipse (2.1) had problems with test names with commas in.
-            // No idea why. They fixed it after bug reported
-            // Effect is JUnit does not run.
-            
-			super("N3 Internal test: "+(s!=null?s.replace(',','_'):"<skipped test>")) ;
-            //super("N3 Internal test: "+(s!=null?s:"<skipped test>")) ;
+		    this(s, false) ;
+        }
+        
+        Test(String s, boolean leaveStoppingPoint)
+        {
+			//super("N3 Internal test: "+(s!=null?s.replace(',','_'):"<skipped test>")) ;
+            super("N3 Internal test: "+(s!=null?s:"<skipped test>")) ;
 			testString = s ; 
 			if ( VERBOSE )
 				handler = new N3EventPrinter(pw) ;
 			else
 				handler = new NullN3EventHandler() ;
+            stoppingPoint = leaveStoppingPoint ;
 		}
 	
+        
 		
 		protected void runTest() throws Throwable
 		{
@@ -250,6 +266,10 @@ public class N3InternalTests extends TestSuite
 					return ;
 			}
 			
+            if ( stoppingPoint )
+                // No-op that will not be removed.
+                // i.e. it does nothing really but the compiler does not know.
+                stoppingPoint = false ;
 			
 			if ( pw != null )
 				pw.println("Input: "+testString) ;
