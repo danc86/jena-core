@@ -29,6 +29,7 @@ public class TestPackage extends TestSuite {
         addTest( "TestOntology", TestOntology.suite() );
         addTest( "TestProperty", TestProperty.suite() );
         addTest( "TestListSyntaxCategories", TestListSyntaxCategories.suite() );
+        addTest( "TestCreate", TestCreate.suite() );
     }
 
     private void addTest(String name, TestSuite tc) {
