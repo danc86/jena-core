@@ -286,7 +286,7 @@ public class TestBasicOperations extends TestCase {
 		addRemove(model.createStatement(s, p, o));
 	}
 	
-	public void testPerfixCache() throws java.lang.Exception {
+	public void testPrefixCache() throws java.lang.Exception {
 		// in this test, add a number of long prefixes until the cache
 		// overflows and then make sure they can be retrieved.
 		IDBConnection conn = TestConnection.makeAndCleanTestConnection();
