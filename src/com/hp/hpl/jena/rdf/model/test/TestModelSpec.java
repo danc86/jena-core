@@ -50,9 +50,6 @@ public class TestModelSpec extends ModelTestBase
             ( JMS.current, JMS.docManager, 
             d.createTypedLiteral( oms.getDocumentManager(), "", "jms:types/DocumentManager" )
             );
-        System.err.println( ">> langDaml = " + langDaml );
-        System.err.println( ">> description = " + d );
-        
         assertTrue( "spec must specify DAML", d.contains( langDaml ) ); 
         assertTrue( "spec must have document manager", d.contains( docManager ) );
         
@@ -63,7 +60,7 @@ public class TestModelSpec extends ModelTestBase
         OntModelSpec oms = OntModelSpec.DAML_MEM_RULE_INF;
         Model d = oms.getDescription();
         Statement s = d.getProperty( JMS.current, JMS.importMaker );
-        Model makerSpec = memMakerSpec( d.createResource() );
+        Model makerSpec = oms.getModelMaker().getDescription();
         assertNotNull( s );
         assertIsoModels( "", makerSpec, subModel( d, s.getObject() ) );
         }
@@ -92,6 +89,12 @@ public class TestModelSpec extends ModelTestBase
         if (root instanceof Resource)
             result.add( m.listStatements( (Resource) root, null, (RDFNode) null ) );
         return result;    
+        }
+        
+    public void testCreateOntSpec()
+        {
+        Model spec = ModelFactory.createDefaultModel();
+        // OntModelSpec ms = new OntModelSpec( spec );
         }
     }
 

@@ -13,7 +13,7 @@ package com.hp.hpl.jena.rdf.model;
 
 import com.hp.hpl.jena.graph.*;
 
-public interface ModelMaker
+public interface ModelMaker extends ModelSpec
     {
     /**
         Create a new Model associated with the given name. If there is no such
@@ -33,7 +33,7 @@ public interface ModelMaker
     public Model createModel( String name );
     
     /**
-        Create a new anonymous Model.
+        Create a new anonymous Model, as per ModelSpec.
         
         @return a fresh Model, not accessible under a[nother] name.
     */

@@ -174,6 +174,8 @@ public class OntModelSpec implements ModelSpec {
         setLanguage( spec.getLanguage() );
     }
     
+    public OntModelSpec( Model description )
+        { this( createSpec( description ) ); }
     
     
     // External signature methods
@@ -348,12 +350,23 @@ public class OntModelSpec implements ModelSpec {
         return new OntModelImpl( this, m_maker.createModel() );
     }
     
+    public static OntModelSpec createSpec( Model description ) {
+        Statement langStatement = description.getProperty( JMS.current, JMS.ontLanguage );
+        Statement manStatement = description.getProperty( JMS.current, JMS.docManager );
+        Statement factStatement = description.getProperty( JMS.current, JMS.reasonsWith );
+        ModelMaker maker = ModelFactory.createMemModelMaker();
+        OntDocumentManager manager = null;
+        String factoryURI = null;
+        ReasonerFactory factory = ReasonerRegistry.theRegistry().getFactory( factoryURI );
+        String language = null;
+        return new OntModelSpec( maker, manager, factory, language );
+    }
+    
     /**
         Answer an RDF description of this OntModelSpec, faking a few things for the 
         moment (MakerSpecs).
     */
-    public Model getDescription()
-        {
+    public Model getDescription() {
         Model d = ModelFactory.createDefaultModel();
         d.add
             ( JMS.current, JMS.ontLanguage, d.createLiteral( m_languageURI ) );
@@ -363,19 +376,9 @@ public class OntModelSpec implements ModelSpec {
             JMS.docManager,
             d.createTypedLiteral( getDocumentManager(),  "", "jms:types/DocumentManager" )
             );
-        Resource im = d.createResource();
-        d.add
-            (
-            JMS.current,
-            JMS.importMaker,
-            im 
-            );
-        d.add
-            (
-            im,
-            RDF.type,
-            JMS.TypeMemMaker
-            );
+        Model makerSpec = m_maker.getDescription();
+        d.add( JMS.current, JMS.importMaker, subject( makerSpec ) );
+        d.add( makerSpec );
         Resource r = d.createResource();
         d.add
             (
@@ -390,7 +393,13 @@ public class OntModelSpec implements ModelSpec {
             d.createResource( getReasonerFactory().getURI() )
             );
         return d;
-        }
+    }
+        
+    /**
+        temporray helper: get "the" subject of a Model
+    */
+    Resource subject( Model m )
+        { return m.listSubjects().nextResource(); }
     
     // Internal implementation methods
     //////////////////////////////////

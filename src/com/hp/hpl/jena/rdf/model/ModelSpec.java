@@ -13,8 +13,14 @@ package com.hp.hpl.jena.rdf.model;
 */
 public interface ModelSpec
     {
+    /**
+        Answer a new Model which fits the specification of this ModelSpec.
+    */
     Model createModel();
     
+    /**
+        Answer an RDF description of this Model using the JMS vocabulary.
+    */
     Model getDescription();
     }
 

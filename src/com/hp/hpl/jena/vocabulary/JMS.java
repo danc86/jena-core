@@ -9,6 +9,8 @@ package com.hp.hpl.jena.vocabulary;
 import com.hp.hpl.jena.rdf.model.*;
 
 /**
+    The Jena Model Specification vocabulary.
+    
  	@author kers
 */
 public class JMS
@@ -22,6 +24,7 @@ public class JMS
     public static final Property importMaker = property( "importMaker" );
     public static final Property reasonsWith = property( "reasonsWith" );
     
+    public static final Property reificationMode = property( "reificationMode" );
     public static final Property reasoner = property( "reasoner" );
     
     public static final Resource TypeMemMaker = resource( "type/MemMaker");

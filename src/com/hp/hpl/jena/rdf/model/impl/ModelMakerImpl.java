@@ -10,10 +10,13 @@ import com.hp.hpl.jena.graph.GraphMaker;
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelMaker;
 
-
+/**
+    A ModelMakerImpl implements a ModelMaker over a GraphMaker.
+*/
 public class ModelMakerImpl implements ModelMaker
     {
-    private GraphMaker maker;
+    protected GraphMaker maker;
+    protected Model description;
     
     public ModelMakerImpl( GraphMaker maker )
         { this.maker = maker; }
@@ -39,12 +42,13 @@ public class ModelMakerImpl implements ModelMaker
     public Model createModel()
         { return new ModelCom( maker.createGraph() ); }
         
-    protected Model defaultModel;
-    
     public Model getModel()
-        {
-        if (defaultModel == null) defaultModel = createModel();
-        return defaultModel;
+        { return new ModelCom( maker.getGraph() ); }
+        
+    public Model getDescription()
+        { 
+        if (description == null) description = new ModelCom( maker.getDescription() );    
+        return description; 
         }
         
     public void removeModel( String name )

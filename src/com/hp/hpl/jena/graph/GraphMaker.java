@@ -87,6 +87,13 @@ public interface GraphMaker
     public boolean hasGraph( String name );
     
     /**
+        Answer a Graph describing this GraphMaker using the vocabulary of
+        JMS.
+        
+        @return a Graph describing this Maker.
+    */
+    public Graph getDescription();
+    /**
         Close the factory - no more requests need be honoured, and any clean-up
         can be done.
     */

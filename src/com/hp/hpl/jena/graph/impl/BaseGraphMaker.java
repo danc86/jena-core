@@ -7,6 +7,8 @@
 package com.hp.hpl.jena.graph.impl;
 
 import com.hp.hpl.jena.graph.*;
+import com.hp.hpl.jena.mem.*;
+import com.hp.hpl.jena.vocabulary.*;
 
 /**
     This base class provides convenience functions for the three "usual" graph
@@ -57,6 +59,15 @@ public abstract class BaseGraphMaker implements GraphMaker
      */
     public Graph openGraph( String name )
         { return openGraph( name, false ); }
+        
+    public Graph getDescription()
+        {
+        Graph result = new GraphMem();
+        Node self = Node.createAnon();
+        Node mode = Node.createLiteral( style.toString(), "", false );
+        result.add( Triple.create( self, JMS.reificationMode.asNode(), mode ) );
+        return result;    
+        }
     }
 
 
