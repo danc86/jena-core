@@ -325,7 +325,6 @@ public class GraphRDB extends GraphBase implements Graph {
     		throw new RDFRDBException("Error - attempt to call remove on a Graph that has already been closed");
     	// First we ask the driver to remove the specialized graphs
     	m_driver.removeSpecializedGraphs( m_properties, m_specializedGraphs );
-    	m_properties.remove();
     	m_properties = null;
     	m_specializedGraphs = null;
     }
