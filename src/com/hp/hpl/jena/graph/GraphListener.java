@@ -10,7 +10,7 @@ import java.util.*;
 
 /**
     Interface for listening to graph-level update events. Each time the graph is
-    oked to add or remove some triples, and after that poke has completed
+    poked to add or remove some triples, and after that poke has completed
     without throwing an exception, all the listeners attached to the Graph are
     informed about the poke.
     

@@ -51,6 +51,9 @@ public class GraphTestBase extends JenaTestBase
                 
     public static Triple triple( String fact )
         { return Triple.create( fact ); }
+    
+    public static Triple triple( PrefixMapping pm, String fact )
+        { return Triple.create( pm, fact ); }
         
     public static Triple [] tripleArray( String facts )
         {
@@ -71,13 +74,20 @@ public class GraphTestBase extends JenaTestBase
     public static Graph graphAdd( Graph g, String s )
         {
         StringTokenizer semis = new StringTokenizer( s, ";" );
-        while (semis.hasMoreTokens()) g.add( triple( semis.nextToken() ) );     
+        while (semis.hasMoreTokens()) g.add( triple( PrefixMapping.Extended, semis.nextToken() ) );     
         return g;
         }
         
+    public static Graph newGraph()
+        {
+        Graph result = new GraphMem();
+        result.getPrefixMapping().setNsPrefixes( PrefixMapping.Extended );
+        return result;
+        }
+    
     public static Graph graphWith( String s )
         {
-        return graphAdd( new GraphMem(), s );
+        return graphAdd( newGraph(), s );
         }
         
     public static void assertEqualsTemplate( String title, Graph g, String template )

@@ -79,7 +79,7 @@ public interface Resource extends RDFNode {
   
   /**
         Answer true iff this Resource is a URI resource with the given URI; otherwise
-        answer false.
+        answer false. Using this is preferred to using getURI() and .equals().
   */
   public boolean hasURI( String uri );
   
