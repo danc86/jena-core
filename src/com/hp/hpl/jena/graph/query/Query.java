@@ -111,7 +111,10 @@ public class Query
         
     public Query addConstraint( Expression e )
         { 
-        constraint.add( e );
+        if (e.isApply() && e.getFun().equals( ExpressionFunctionURIs.AND ))
+           for (int i = 0; i < e.argCount(); i += 1) addConstraint( e.getArg( i ) ); 
+        else
+            constraint.add( e );
         return this;    
         }
                 

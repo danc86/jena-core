@@ -42,6 +42,11 @@ public abstract class BaseExampleExpression
         {
         return new BaseExampleExpression()
             {                
+            public String getFun() { return ExpressionFunctionURIs.AND; }
+            public boolean isApply() { return true; }
+            public Expression getArg( int i ) { return i == 0 ? L : R; }
+            public int argCount() { return 2; }
+            
             public Valuator prepare( VariableIndexes vi )
                 {
                 return BaseExampleValuator.and( L.prepare( vi ), R.prepare( vi ) );    

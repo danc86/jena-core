@@ -56,17 +56,17 @@ public class TestExpressionConstraints extends GraphTestBase
         assertTrue( q.executeBindings( g, new Node[] {X} ).hasNext() ); 
         }
         
-    private Expression notEqual( Node x, Node y )
+    private BaseExampleExpression notEqual( Node x, Node y )
         {
         return ExampleCreate.NE( x, y );
         }
 
-    private Expression areEqual( Node x, Node y )
+    private BaseExampleExpression areEqual( Node x, Node y )
         {
         return ExampleCreate.EQ( x, y );
         }
         
-    protected Expression matches( Node x, Node y )
+    protected BaseExampleExpression matches( Node x, Node y )
         { return ExampleCreate.MATCHES( x, y ); }
 
     public void testConstraintNE1()
@@ -191,6 +191,15 @@ public class TestExpressionConstraints extends GraphTestBase
         assertFalse( notEqual( X, Y ).isLiteral() );
         assertEquals( Boolean.TRUE, Expression.TRUE.getValue() );
         assertEquals( Boolean.FALSE, Expression.FALSE.getValue() );
+        }
+    
+    public void testDetectAnd()
+        {
+        BaseExampleExpression e1 = notEqual( X, Y ), e2 = notEqual( X, Z );
+        Query q = new Query().addConstraint( e1.and( e2 ) );
+        Set eBoth = new HashSet(); eBoth.add( e1 ); eBoth.add( e2 );
+        Set s = iteratorToSet( q.getConstraints().iterator() );
+        assertEquals( eBoth, s );
         }
     }
 

@@ -7,18 +7,15 @@
 package com.hp.hpl.jena.graph.query;
 
 /**
-	VariableIndexes: a mapping from variable names to their offsets in some
-    table of variable values.
+	ExpressionFunctionURIs: constants expressing the URIs for functions that
+    may be recognised by expression constructors and analysers.
 
 	@author kers
 */
-public interface VariableIndexes 
+public interface ExpressionFunctionURIs 
     {
-    /**
-       Answer the index of <code>name</code>, or throw an exception if that
-       name is not bound in this mapping.
-    */
-    int indexOf( String name );
+    public static final String prefix = "http://jena.hpl.hp.com/query/functions#";
+    public static final String AND = prefix + "AND"; 
     }
 
 /*
