@@ -135,7 +135,7 @@ public class ModelLoader
         }
         catch (FileNotFoundException e)
         {
-            logger.warn("No such data source: "+urlStr, e);
+            logger.warn("No such data source: "+urlStr);
             return null ;
         }
         return m ;
@@ -185,7 +185,7 @@ public class ModelLoader
         }
         catch (java.io.IOException ioEx)
         {
-            logger.fatal("IOException: "+ioEx, ioEx) ;
+            logger.fatal("IOException: "+ioEx) ;
             return null ;
         }
         //model.read(urlStr, base, lang) ;
