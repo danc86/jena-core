@@ -211,7 +211,7 @@ public class BindingVector implements BindingEnvironment {
      * @param head the head pattern of the rule which is being instantiated
      * @param numRuleVars the length of the environment to allocate.
      * @return An initialized binding environment for the rule variables
-     * or null if the unificatin fails. If a variable in the environment becomes
+     * or null if the unification fails. If a variable in the environment becomes
      * aliased to another variable through the unification this is represented
      * by having its value in the environment be the variable to which it is aliased.
      */ 
@@ -245,6 +245,10 @@ public class BindingVector implements BindingEnvironment {
                 }
             } else if (hObj instanceof Node_RuleVariable) {
                 // No extra biding to do, success
+                // Temp debug
+                // TODO remove
+                if (!unify(gObj, hObj, gEnv, hEnv)) return null;
+                // end temp
             } else {
                 // unifying simple ground object with functor, failure
                 return null;

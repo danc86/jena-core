@@ -45,8 +45,7 @@ public class RuleState {
     /** Flag to indicate that rule state is scheduled on the agenda */
     protected boolean isScheduled = false;
     
-    /** The clause number in the rule to be processed next.
-     *  TODO this needs revising if we enable clause reordering */
+    /** The clause number in the rule to be processed next. */
     int clauseIndex;
     
     /** binding offset for subject field, -1 if none */
@@ -64,7 +63,7 @@ public class RuleState {
     /**
      * Normal constructor. Creates a new RuleState as an extension to an existing one.
      * @param parent the parent RuleState being expanded, can't be null
-     * @param clause the TriplePattern which forms to goal for this state
+     * @param clause the TriplePattern which forms the goal for this state
      * @param index the index of the clause in the parent rule
      * @param env the prebound enviornment to use
      */
