@@ -119,6 +119,11 @@ public interface Graph  extends GraphAdd
     */
     boolean isEmpty();
     
+    /**
+     * For a concrete graph this returns the number of triples in the graph. For graphs which
+     * might infer additional triples it results an estimated lower bound of the number of triples.
+     * For example, an inference graph might return the number of triples in the raw data graph. 
+     */
 	 int size() throws UnsupportedOperationException;
 	 
 	 int ADD     = 1;

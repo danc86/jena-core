@@ -75,11 +75,15 @@ public interface Model
 	/** Every Model has a QueryHandler */
 	QueryHandler queryHandler();
 
-	/** (Unwise) Computes the number of statements in the model.
-	 * Many implementations cannot do this efficiently.
-	 
-	 * @return the number of statements in the model
-	 */
+    /** 
+     * size will return the number of statements in a concrete model, 
+     * for a virtualized model such as one created by an inference engine, 
+     * it will return an estimated lower bound for the numberof statements 
+     * in the model but it is possible for a subsequent listStatements on 
+     * such a model to discover more statements than size() indicated.
+     * @return the number of statements in a concrete model or an estimated
+     * lower bound on the number of statements in an virtualized model
+     */
 	long size() ;
 
     /**
