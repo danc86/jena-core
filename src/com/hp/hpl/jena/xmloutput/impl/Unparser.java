@@ -190,7 +190,7 @@ class Unparser {
 			try {
 				URI u = new URI(uri);
 				u.setFragment(null);
-				localName = u.toString();
+				localName = u.getURIString();
 			} catch (MalformedURIException e) {
 				throw new RDFException(e);
 			}
@@ -399,7 +399,7 @@ class Unparser {
 		wParseLiteral();
 		maybeNewline();
 		print(">");
-		print(r.toString());
+		print( ((Literal) r).getLexicalForm());
 		print("</");
 		wt.wTypeEnd(prop);
 		print(">");

@@ -1139,12 +1139,19 @@ public class URI implements Serializable {
 		return false;
 	}
 
-	/**
-	 * Get the URI as a string specification. See RFC 2396 Section 5.2.
-	 *
-	 * @return the URI string specification
-	 */
-	public String toString() {
+
+    /**
+        produce a human-consumable string for the URI
+    */
+	public String toString() 
+        { return getURIString(); }
+    
+    /**
+     * Get the URI as a string specification. See RFC 2396 Section 5.2.
+     *
+     * @return the URI string specification
+     */
+    public String getURIString() {
 		StringBuffer uriSpecString = new StringBuffer();
 
 		if (m_scheme != null) {

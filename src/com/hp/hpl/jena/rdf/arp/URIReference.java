@@ -75,7 +75,7 @@ class URIReference  implements AResource
     }
     
     public String getURI() {
-        return uri.toString();
+        return uri.getURIString();
     }
     
     private Object userData;
