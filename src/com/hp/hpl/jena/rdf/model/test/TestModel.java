@@ -20,7 +20,7 @@ public class TestModel extends GraphTestBase
 
     public void testCreateDefaultModel()
         {
-        Model m = Factory.createDefaultModel();
+        Model m = ModelFactory.createDefaultModel();
         }    
     }
 
