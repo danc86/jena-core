@@ -1135,7 +1135,7 @@ public class schemagen {
         
         // is it a URI already?  to check, we make a URL and see what happens!
         try {
-            URL u = new URL( url );
+            new URL( url );
         }
         catch (MalformedURLException ignore) {
             legal = false;
@@ -1148,7 +1148,7 @@ public class schemagen {
             url = "file:" + (uriOrFile.startsWith( slash ) ? (slash + slash) : "") + uriOrFile;
             
             try {
-                URL u = new URL( url );
+                new URL( url );
             }
             catch (MalformedURLException ignore) {
                 legal = false;

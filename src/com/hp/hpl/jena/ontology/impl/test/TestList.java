@@ -422,7 +422,7 @@ public class TestList
             // now test we get an exception for going beyong the end of the list
             boolean gotEx = false;
             try {
-                RDFNode n = l1.get( toGet.length + 1 );
+                l1.get( toGet.length + 1 );
             }
             catch (ListIndexException e) {
                 gotEx = true;
@@ -463,7 +463,7 @@ public class TestList
             // now test we get an exception for going beyong the end of the list
             boolean gotEx = false;
             try {
-                RDFNode n = l1.replace( toSet.length + 1, toSet[0] );
+                l1.replace( toSet.length + 1, toSet[0] );
             }
             catch (ListIndexException e) {
                 gotEx = true;

@@ -584,10 +584,6 @@ public class OntDocumentManager
                 // this will be the key in the mappings
                 String publicURI = s.getResource().getURI();
 
-                Resource cacheURL = null;
-                String prefix = null;
-                Resource language = null;
-
                 // there may be a cached copy for this ontology
                 try {
                     s = root.getProperty( ALT_URL );

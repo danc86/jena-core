@@ -266,7 +266,6 @@ public class PathImpl
     {
         private int i = 0;
         private StmtIterator si;
-        private Statement s;
         
         protected PathStmtIterator() {
             if (m_prePath != null) {

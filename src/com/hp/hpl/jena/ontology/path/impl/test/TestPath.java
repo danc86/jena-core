@@ -147,7 +147,7 @@ public class TestPath
         boolean ex = false;
         try {
             // should cause an exception as the path is empty
-            RDFNode n = ps.getValue();
+            ps.getValue();
         }
         catch (PathException e) {
             ex = true;

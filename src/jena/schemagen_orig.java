@@ -133,7 +133,7 @@ public class schemagen_orig extends java.lang.Object {
     protected static void read(Model model, String in, String lang)
         throws RDFException, java.io.FileNotFoundException {
         try {
-            URL url = new URL(in);
+            new URL(in);
             model.read(in, lang);
         } catch (java.net.MalformedURLException e) {
             model.read(new FileReader(in), "", lang);
