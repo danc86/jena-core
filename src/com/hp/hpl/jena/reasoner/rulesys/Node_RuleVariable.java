@@ -72,7 +72,7 @@ public class Node_RuleVariable extends Node_Variable {
     /**
      * Return an indexable object for this Node. This is actually the 
      * rule label. This is weird but needed because equals is (deliberately)
-     * perverse on Node_Rulelabel so if we want to put then in a Set or Map
+     * perverse on Node_RuleVariable so if we want to put then in a Set or Map
      * we need something with a better equals function.
      */
     public Object getRepresentative() {
@@ -81,7 +81,7 @@ public class Node_RuleVariable extends Node_Variable {
     
     /**
      * Binds a value to the brule version of the variable. Does not follow
-     * any reference trail, assues we have already be derefenced.
+     * any reference trail, assues we have already been derefenced.
      * @param node a concrete Node value or another Node_RuleVariable
      * to alias to
      */
