@@ -2,10 +2,10 @@
  * Source code information
  * -----------------------
  * Original author    Ian Dickinson, HP Labs Bristol
- * Author email       ian.dickinson@hp.com
+ * Author email       Ian.Dickinson@hp.com
  * Package            Jena 2
  * Web                http://sourceforge.net/projects/jena/
- * Created            04-Dec-2003
+ * Created            July 19th 2003
  * Filename           $RCSfile$
  * Revision           $Revision$
  * Release status     $State$
@@ -15,32 +15,38 @@
  *
  * (c) Copyright 2001, 2002, 2003, Hewlett-Packard Development Company, LP
  * [See end of file]
- *****************************************************************************/
+ * ****************************************************************************/
 
 // Package
 ///////////////
 package com.hp.hpl.jena.reasoner.dig;
 
 
-
 // Imports
 ///////////////
-import com.hp.hpl.jena.graph.Node;
-import com.hp.hpl.jena.rdf.model.AnonId;
-import com.hp.hpl.jena.util.iterator.Map1;
+import org.w3c.dom.*;
+
+import com.hp.hpl.jena.reasoner.TriplePattern;
+import com.hp.hpl.jena.util.iterator.*;
+
 
 
 /**
  * <p>
- * Mapper to map DIG identifier names to Jena graph nodes.
+ * Translator that generates DIG instances queries in response to a find queries:
+ * <pre>
+ * * rdf:type :C
+ * </pre>
+ * or similar.
  * </p>
  *
- * @author Ian Dickinson, HP Labs (<a  href="mailto:Ian.Dickinson@hp.com" >email</a>)
- * @version CVS $Id$
+ * @author Ian Dickinson, HP Labs (<a href="mailto:Ian.Dickinson@hp.com">email</a>)
+ * @version Release @release@ ($Id$)
  */
-public class NameToNodeMapper 
-    implements Map1
+public class DIGQueryInstancesTranslator 
+    extends DIGQueryTranslator
 {
+
     // Constants
     //////////////////////////////////
 
@@ -50,26 +56,48 @@ public class NameToNodeMapper
     // Instance variables
     //////////////////////////////////
 
+    
     // Constructors
     //////////////////////////////////
+
+    /**
+     * <p>Construct a translator for the DIG query 'instances'.</p>
+     * @param predicate The predicate URI to trigger on
+     */
+    public DIGQueryInstancesTranslator( String predicate ) {
+        super( ALL, predicate, null );
+    }
+    
 
     // External signature methods
     //////////////////////////////////
 
 
     /**
-     * <p>Return the node corresponding to the given name string
+     * <p>Answer a query that will list the instances of a concept</p>
      */
-    public Object map1( Object o ) {
-        String name = (String) o;
+    public Document translatePattern( TriplePattern pattern, DIGAdapter da ) {
+        DIGConnection dc = da.getConnection();
+        Document query = dc.createDigVerb( DIGProfile.ASKS, da.getProfile() );
         
-        if (name.startsWith( DIGAdapter.ANON_MARKER )) {
-            String anonID = name.substring( DIGAdapter.ANON_MARKER.length() );
-            return Node.createAnon( new AnonId( anonID ) );
-        }
-        else {
-            return Node.createURI( name );
-        }
+        Element instances = da.addElement( query.getDocumentElement(), DIGProfile.INSTANCES );
+        da.addClassDescription( instances, pattern.getObject() );
+        
+        return query;
+    }
+
+
+    /**
+     * <p>Answer an iterator of triples that match the original find query.</p>
+     */
+    public ExtendedIterator translateResponse( Document response, TriplePattern query, DIGAdapter da ) {
+        // translate the concept set to triples, but then we must add :a rdfs:subClassOf :a to match owl semantics
+        return translateIndividualSetResponse( response, query, false );
+    }
+    
+    
+    public boolean checkObject( com.hp.hpl.jena.graph.Node object, DIGAdapter da ) {
+        return object.isConcrete() && da.isConcept( object );
     }
 
 
@@ -109,4 +137,3 @@ public class NameToNodeMapper
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
  * THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-

@@ -105,7 +105,7 @@ public class DIGQueryRoleAncestorsTranslator
      */
     public ExtendedIterator translateResponse( Document response, TriplePattern query, DIGAdapter da ) {
         // translate the concept set to triples, but then we must add :a rdfs:subPropertyOf :a to match owl semantics
-        return translateRoleSetResponse( response, query, da, m_ancestors )
+        return translateRoleSetResponse( response, query, m_ancestors )
                .andThen( new SingletonIterator( 
                             new Triple( m_ancestors ? query.getSubject() : query.getObject(),
                                         query.getPredicate(),
@@ -113,11 +113,11 @@ public class DIGQueryRoleAncestorsTranslator
     }
     
     
-    public boolean checkSubject( com.hp.hpl.jena.graph.Node subject ) {
+    public boolean checkSubject( com.hp.hpl.jena.graph.Node subject, DIGAdapter da ) {
         return !m_ancestors || subject.isConcrete();
     }
     
-    public boolean checkObject( com.hp.hpl.jena.graph.Node object ) {
+    public boolean checkObject( com.hp.hpl.jena.graph.Node object, DIGAdapter da ) {
         return m_ancestors || object.isConcrete();
     }
 

@@ -21,21 +21,23 @@
 ///////////////
 package com.hp.hpl.jena.reasoner.dig;
 
-import org.w3c.dom.Document;
-
-import com.hp.hpl.jena.reasoner.TriplePattern;
-import com.hp.hpl.jena.util.iterator.*;
-import com.hp.hpl.jena.util.iterator.ExtendedIterator;
-
 
 // Imports
 ///////////////
+import org.w3c.dom.*;
+
+import com.hp.hpl.jena.rdf.model.Resource;
+import com.hp.hpl.jena.reasoner.TriplePattern;
+import com.hp.hpl.jena.util.iterator.*;
+import com.hp.hpl.jena.vocabulary.RDF;
+
+
 
 /**
  * <p>
- * Translator that generates DIG allconcepts queries in response to a find query:
+ * Translator that generates DIG roleFillers queries in response to a find queries:
  * <pre>
- * * rdf:type owl:Class
+ * :a :r *
  * </pre>
  * or similar.
  * </p>
@@ -43,7 +45,7 @@ import com.hp.hpl.jena.util.iterator.ExtendedIterator;
  * @author Ian Dickinson, HP Labs (<a href="mailto:Ian.Dickinson@hp.com">email</a>)
  * @version Release @release@ ($Id$)
  */
-public class DIGQueryAllConceptsTranslator 
+public class DIGQueryRoleFillersTranslator 
     extends DIGQueryTranslator
 {
 
@@ -56,16 +58,16 @@ public class DIGQueryAllConceptsTranslator
     // Instance variables
     //////////////////////////////////
 
+    
     // Constructors
     //////////////////////////////////
 
     /**
-     * <p>Construct a translator for the DIG query all concepts.</p>
+     * <p>Construct a translator for the DIG query 'roleFillers'.</p>
      * @param predicate The predicate URI to trigger on
-     * @param object The object URI to trigger on
      */
-    public DIGQueryAllConceptsTranslator( String predicate, String object ) {
-        super( ALL, predicate, object );
+    public DIGQueryRoleFillersTranslator() {
+        super( null, null, ALL );
     }
     
 
@@ -74,27 +76,42 @@ public class DIGQueryAllConceptsTranslator
 
 
     /**
-     * <p>Since known concept names are cached by the adapter, we can just look up the
-     * current set and map directly to triples</p>
-     * @param pattern The pattern to translate to a DIG query
-     * @param da The DIG adapter through which we communicate with a DIG reasoner
+     * <p>Answer a query that will list the role fillers for an individual-role pair</p>
      */
-    public ExtendedIterator find( TriplePattern pattern, DIGAdapter da ) {
-        return WrappedIterator.create( da.getKnownConcepts().iterator() )
-                              .mapWith( new DIGValueToNodeMapper() )
-                              .mapWith( new TripleSubjectFiller( pattern.getPredicate(), pattern.getObject() ) );
-    }
-    
-    
     public Document translatePattern( TriplePattern pattern, DIGAdapter da ) {
-        // not used
-        return null;
+        DIGConnection dc = da.getConnection();
+        Document query = dc.createDigVerb( DIGProfile.ASKS, da.getProfile() );
+        
+        Element instances = da.addElement( query.getDocumentElement(), DIGProfile.ROLE_FILLERS );
+        da.addNamedElement( instances, DIGProfile.INDIVIDUAL, da.getNodeID( pattern.getSubject() ) );
+        da.addNamedElement( instances, DIGProfile.RATOM, da.getNodeID( pattern.getPredicate() ) );
+        
+        return query;
     }
 
 
+    /**
+     * <p>Answer an iterator of triples that match the original find query.</p>
+     */
     public ExtendedIterator translateResponse( Document response, TriplePattern query, DIGAdapter da ) {
-        // not used
-        return null;
+        // translate the concept set to triples, but then we must add :a rdfs:subClassOf :a to match owl semantics
+        return translateIndividualSetResponse( response, query, true );
+    }
+    
+    
+    public boolean checkSubject( com.hp.hpl.jena.graph.Node subject, DIGAdapter da ) {
+        return subject.isConcrete() && da.isIndividual( subject );
+    }
+
+    public boolean checkPredicate( com.hp.hpl.jena.graph.Node predicate, DIGAdapter da ) {
+        // check that the predicate is not a datatype property
+        if (predicate.isConcrete()) {
+            Resource p = (Resource) da.m_sourceData.getRDFNode( predicate );
+            return !da.m_sourceData.contains( p, RDF.type, da.m_sourceData.getProfile().DATATYPE_PROPERTY() );
+        }
+        else {
+            return false;
+        }
     }
 
 

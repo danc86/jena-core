@@ -2,10 +2,10 @@
  * Source code information
  * -----------------------
  * Original author    Ian Dickinson, HP Labs Bristol
- * Author email       Ian.Dickinson@hp.com
+ * Author email       ian.dickinson@hp.com
  * Package            Jena 2
  * Web                http://sourceforge.net/projects/jena/
- * Created            July 19th 2003
+ * Created            04-Dec-2003
  * Filename           $RCSfile$
  * Revision           $Revision$
  * Release status     $State$
@@ -15,38 +15,35 @@
  *
  * (c) Copyright 2001, 2002, 2003, Hewlett-Packard Development Company, LP
  * [See end of file]
- * ****************************************************************************/
+ *****************************************************************************/
 
 // Package
 ///////////////
 package com.hp.hpl.jena.reasoner.dig;
 
-import org.w3c.dom.Document;
-
-import com.hp.hpl.jena.reasoner.TriplePattern;
-import com.hp.hpl.jena.util.iterator.*;
-import com.hp.hpl.jena.util.iterator.ExtendedIterator;
 
 
 // Imports
 ///////////////
+import org.w3c.dom.Element;
+
+import com.hp.hpl.jena.datatypes.xsd.XSDDatatype;
+import com.hp.hpl.jena.graph.Node;
+import com.hp.hpl.jena.rdf.model.AnonId;
+import com.hp.hpl.jena.util.iterator.Map1;
+
 
 /**
  * <p>
- * Translator that generates DIG allconcepts queries in response to a find query:
- * <pre>
- * * rdf:type owl:Class
- * </pre>
- * or similar.
+ * Mapper to map DIG identifier names and concrete value elements to Jena graph nodes.
  * </p>
  *
- * @author Ian Dickinson, HP Labs (<a href="mailto:Ian.Dickinson@hp.com">email</a>)
- * @version Release @release@ ($Id$)
+ * @author Ian Dickinson, HP Labs (<a  href="mailto:Ian.Dickinson@hp.com" >email</a>)
+ * @version CVS $Id$
  */
-public class DIGQueryAllConceptsTranslator 
-    extends DIGQueryTranslator
+public class DIGValueToNodeMapper 
+    implements Map1
 {
-
     // Constants
     //////////////////////////////////
 
@@ -59,47 +56,54 @@ public class DIGQueryAllConceptsTranslator
     // Constructors
     //////////////////////////////////
 
-    /**
-     * <p>Construct a translator for the DIG query all concepts.</p>
-     * @param predicate The predicate URI to trigger on
-     * @param object The object URI to trigger on
-     */
-    public DIGQueryAllConceptsTranslator( String predicate, String object ) {
-        super( ALL, predicate, object );
-    }
-    
-
     // External signature methods
     //////////////////////////////////
 
 
     /**
-     * <p>Since known concept names are cached by the adapter, we can just look up the
-     * current set and map directly to triples</p>
-     * @param pattern The pattern to translate to a DIG query
-     * @param da The DIG adapter through which we communicate with a DIG reasoner
+     * <p>Return the node corresponding to the given element; either a literal
+     * node for ival and sval values, or a URI node for named elements.</p>
+     * @param o An object, expected to be an XML element
      */
-    public ExtendedIterator find( TriplePattern pattern, DIGAdapter da ) {
-        return WrappedIterator.create( da.getKnownConcepts().iterator() )
-                              .mapWith( new DIGValueToNodeMapper() )
-                              .mapWith( new TripleSubjectFiller( pattern.getPredicate(), pattern.getObject() ) );
-    }
-    
-    
-    public Document translatePattern( TriplePattern pattern, DIGAdapter da ) {
-        // not used
-        return null;
-    }
+    public Object map1( Object o ) {
+        if (o instanceof Element) {
+            // we know that this mapper is applied to lists of Elements
+            Element elem = (Element) o;
+            
+            if (elem.getNodeName().equals( DIGProfile.IVAL )) {
+                // this is an integer element
+                return Node.createLiteral( elem.getNodeValue(), null, XSDDatatype.XSDint );
+            }
+            else if (elem.getNodeName().equals( DIGProfile.SVAL )) {
+                // this is an integer element
+                return Node.createLiteral( elem.getNodeValue(), null, XSDDatatype.XSDstring );
+            }
+            else if (elem.hasAttribute( DIGProfile.NAME )) {
+                return convertNameToNode( elem.getAttribute( DIGProfile.NAME ) );
+            }
+        }
+        else if (o instanceof String) {
+            return convertNameToNode( (String) o );
+        }
 
-
-    public ExtendedIterator translateResponse( Document response, TriplePattern query, DIGAdapter da ) {
-        // not used
-        return null;
+        throw new IllegalArgumentException( "Cannot map value " + o + " to an RDF node because it is not a recognised type" );
     }
 
 
     // Internal implementation methods
     //////////////////////////////////
+
+    /** Answer the node with the given name. It may be the node ID of a bNode */
+    private Object convertNameToNode( String name ) {
+        if (name.startsWith( DIGAdapter.ANON_MARKER )) {
+            String anonID = name.substring( DIGAdapter.ANON_MARKER.length() );
+            return Node.createAnon( new AnonId( anonID ) );
+        }
+        else {
+            return Node.createURI( name );
+        }
+    }
+
 
     //==============================================================================
     // Inner class definitions
@@ -134,3 +138,4 @@ public class DIGQueryAllConceptsTranslator
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
  * THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+

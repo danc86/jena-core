@@ -30,7 +30,6 @@ import com.hp.hpl.jena.reasoner.TriplePattern;
 import com.hp.hpl.jena.util.iterator.*;
 import com.hp.hpl.jena.util.iterator.ExtendedIterator;
 
-import java.util.*;
 
 
 /**
@@ -92,20 +91,14 @@ public class DIGQuerySubsumesTranslator
      * <p>Answer an iterator of triples that match the original find query.</p>
      */
     public ExtendedIterator translateResponse( Document response, TriplePattern query, DIGAdapter da ) {
-        List answer = new ArrayList();
-        if (isTrue( response )) {
-            // if response is true, the subsumption relationship holds
-            answer.add( query.asTriple() );
-        }
-        
-        return WrappedIterator.create( answer.iterator() );
+        return isTrue( response ) ? (ExtendedIterator) new SingletonIterator( query.asTriple() ) : NullIterator.instance;
     }
     
-    public boolean checkSubject( com.hp.hpl.jena.graph.Node subject ) {
+    public boolean checkSubject( com.hp.hpl.jena.graph.Node subject, DIGAdapter da ) {
         return subject.isConcrete();
     }
     
-    public boolean checkObject( com.hp.hpl.jena.graph.Node object ) {
+    public boolean checkObject( com.hp.hpl.jena.graph.Node object, DIGAdapter da ) {
         return object.isConcrete();
     }
 

@@ -90,15 +90,15 @@ public class DIGQueryEquivalentsTranslator
      * <p>Answer an iterator of triples that match the original find query.</p>
      */
     public ExtendedIterator translateResponse( Document response, TriplePattern query, DIGAdapter da ) {
-        return translateConceptSetResponse( response, query, da, !m_subjectFree );
+        return translateConceptSetResponse( response, query, !m_subjectFree );
     }
     
     
-    public boolean checkSubject( com.hp.hpl.jena.graph.Node subject ) {
+    public boolean checkSubject( com.hp.hpl.jena.graph.Node subject, DIGAdapter da ) {
         return m_subjectFree || subject.isConcrete();
     }
     
-    public boolean checkObject( com.hp.hpl.jena.graph.Node object ) {
+    public boolean checkObject( com.hp.hpl.jena.graph.Node object, DIGAdapter da ) {
         return !m_subjectFree || object.isConcrete();
     }
 

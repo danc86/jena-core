@@ -24,6 +24,7 @@ package com.hp.hpl.jena.reasoner.dig;
 import org.w3c.dom.Document;
 
 import com.hp.hpl.jena.reasoner.TriplePattern;
+import com.hp.hpl.jena.util.iterator.*;
 import com.hp.hpl.jena.util.iterator.ExtendedIterator;
 
 
@@ -73,21 +74,27 @@ public class DIGQueryAllRolesTranslator
 
 
     /**
-     * <p>Answer a query that will list all concept names</p>
+     * <p>Since known role names are cached by the adapter, we can just look up the
+     * current set and map directly to triples</p>
+     * @param pattern The pattern to translate to a DIG query
+     * @param da The DIG adapter through which we communicate with a DIG reasoner
      */
+    public ExtendedIterator find( TriplePattern pattern, DIGAdapter da ) {
+        return WrappedIterator.create( da.getKnownRoles().iterator() )
+                              .mapWith( new DIGValueToNodeMapper() )
+                              .mapWith( new TripleSubjectFiller( pattern.getPredicate(), pattern.getObject() ) );
+    }
+    
+    
     public Document translatePattern( TriplePattern pattern, DIGAdapter da ) {
-        DIGConnection dc = da.getConnection();
-        Document query = dc.createDigVerb( DIGProfile.ASKS, da.getProfile() );
-        da.addElement( query.getDocumentElement(), DIGProfile.ALL_ROLE_NAMES );
-        return query;
+        // not used
+        return null;
     }
 
 
-    /**
-     * <p>Answer an iterator of triples that match the original find query.</p>
-     */
     public ExtendedIterator translateResponse( Document response, TriplePattern query, DIGAdapter da ) {
-        return translateRoleSetResponse( response, query, da, false );
+        // not used
+        return null;
     }
 
     // Internal implementation methods

@@ -21,21 +21,22 @@
 ///////////////
 package com.hp.hpl.jena.reasoner.dig;
 
-import org.w3c.dom.Document;
+
+// Imports
+///////////////
+import org.w3c.dom.*;
 
 import com.hp.hpl.jena.reasoner.TriplePattern;
 import com.hp.hpl.jena.util.iterator.*;
 import com.hp.hpl.jena.util.iterator.ExtendedIterator;
 
 
-// Imports
-///////////////
 
 /**
  * <p>
- * Translator that generates DIG allconcepts queries in response to a find query:
+ * Translator that generates DIG 'instance' queries in response to a find query:
  * <pre>
- * * rdf:type owl:Class
+ * :x rdf:type :A
  * </pre>
  * or similar.
  * </p>
@@ -43,7 +44,7 @@ import com.hp.hpl.jena.util.iterator.ExtendedIterator;
  * @author Ian Dickinson, HP Labs (<a href="mailto:Ian.Dickinson@hp.com">email</a>)
  * @version Release @release@ ($Id$)
  */
-public class DIGQueryAllConceptsTranslator 
+public class DIGQueryInstanceTranslator 
     extends DIGQueryTranslator
 {
 
@@ -60,12 +61,11 @@ public class DIGQueryAllConceptsTranslator
     //////////////////////////////////
 
     /**
-     * <p>Construct a translator for the DIG query all concepts.</p>
+     * <p>Construct a translator for the DIG query 'subsumes'.</p>
      * @param predicate The predicate URI to trigger on
-     * @param object The object URI to trigger on
      */
-    public DIGQueryAllConceptsTranslator( String predicate, String object ) {
-        super( ALL, predicate, object );
+    public DIGQueryInstanceTranslator( String predicate ) {
+        super( null, predicate, null );
     }
     
 
@@ -74,29 +74,33 @@ public class DIGQueryAllConceptsTranslator
 
 
     /**
-     * <p>Since known concept names are cached by the adapter, we can just look up the
-     * current set and map directly to triples</p>
-     * @param pattern The pattern to translate to a DIG query
-     * @param da The DIG adapter through which we communicate with a DIG reasoner
+     * <p>Answer a query that will test subsumption between two classes</p>
      */
-    public ExtendedIterator find( TriplePattern pattern, DIGAdapter da ) {
-        return WrappedIterator.create( da.getKnownConcepts().iterator() )
-                              .mapWith( new DIGValueToNodeMapper() )
-                              .mapWith( new TripleSubjectFiller( pattern.getPredicate(), pattern.getObject() ) );
-    }
-    
-    
     public Document translatePattern( TriplePattern pattern, DIGAdapter da ) {
-        // not used
-        return null;
+        DIGConnection dc = da.getConnection();
+        Document query = dc.createDigVerb( DIGProfile.ASKS, da.getProfile() );
+        Element instance = da.addElement( query.getDocumentElement(), DIGProfile.INSTANCE );
+        da.addNamedElement( instance, DIGProfile.INDIVIDUAL, da.getNodeID( pattern.getSubject() ) );
+        da.addClassDescription( instance, pattern.getObject() );
+
+        return query;
     }
 
 
+    /**
+     * <p>Answer an iterator of triples that match the original find query.</p>
+     */
     public ExtendedIterator translateResponse( Document response, TriplePattern query, DIGAdapter da ) {
-        // not used
-        return null;
+        return isTrue( response ) ? (ExtendedIterator) new SingletonIterator( query.asTriple() ) : NullIterator.instance;
     }
-
+    
+    public boolean checkSubject( com.hp.hpl.jena.graph.Node subject, DIGAdapter da ) {
+        return subject.isConcrete();
+    }
+    
+    public boolean checkObject( com.hp.hpl.jena.graph.Node object, DIGAdapter da ) {
+        return object.isConcrete() && da.isConcept( object );
+    }
 
     // Internal implementation methods
     //////////////////////////////////

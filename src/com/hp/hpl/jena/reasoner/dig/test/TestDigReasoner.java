@@ -417,6 +417,83 @@ public class TestDigReasoner
                                        new Resource[] {p1} );
     }
 
+    public void testInstances() {
+        String NS = "http://example.org/foo#";
+        
+        DIGReasoner r = (DIGReasoner) ReasonerRegistry.theRegistry().create( DIGReasonerFactory.URI, null );
+        
+        OntModelSpec spec = new OntModelSpec( OntModelSpec.OWL_DL_MEM );
+        spec.setReasoner( r );
+        OntModel m = ModelFactory.createOntologyModel( spec, null );
+        m.read( "file:testing/ontology/dig/owl/test1.xml" );
+        
+        OntClass F0 = m.getOntClass( NS + "F0" );
+        Resource i0 = m.getResource( NS + "i0" );
+        Resource i1 = m.getResource( NS + "i1" );
+        Resource i2 = m.getResource( NS + "i2" );
+        Resource q0 = m.getResource( NS + "q0" );
+        Resource q1 = m.getResource( NS + "q1" );
+        Resource q2 = m.getResource( NS + "q2" );
+
+        TestUtil.assertIteratorValues( this, F0.listInstances(), 
+                                       new Resource[] {i0, i1, i2, q0, q2, q1} );
+    }
+
+    public void testTypes() {
+        String NS = "http://example.org/foo#";
+        
+        DIGReasoner r = (DIGReasoner) ReasonerRegistry.theRegistry().create( DIGReasonerFactory.URI, null );
+        
+        OntModelSpec spec = new OntModelSpec( OntModelSpec.OWL_DL_MEM );
+        spec.setReasoner( r );
+        OntModel m = ModelFactory.createOntologyModel( spec, null );
+        m.read( "file:testing/ontology/dig/owl/test1.xml" );
+        
+        OntClass F0 = m.getOntClass( NS + "F0" );
+        OntClass F2 = m.getOntClass( NS + "F2" );
+        Individual i0 = m.getIndividual( NS + "i0" );
+
+        TestUtil.assertIteratorValues( this, i0.listRDFTypes(false), 
+                                       new Resource[] {F0, F2}, 1 );
+    }
+
+    public void testInstance() {
+        String NS = "http://example.org/foo#";
+        
+        DIGReasoner r = (DIGReasoner) ReasonerRegistry.theRegistry().create( DIGReasonerFactory.URI, null );
+        
+        OntModelSpec spec = new OntModelSpec( OntModelSpec.OWL_DL_MEM );
+        spec.setReasoner( r );
+        OntModel m = ModelFactory.createOntologyModel( spec, null );
+        m.read( "file:testing/ontology/dig/owl/test1.xml" );
+        
+        OntClass F0 = m.getOntClass( NS + "F0" );
+        OntClass F1 = m.getOntClass( NS + "F1" );
+        Individual i0 = m.getIndividual( NS + "i0" );
+
+        assertTrue( "i0 should be an instance of F0", i0.hasRDFType( F0 ));
+        assertFalse( "i0 should not be an instance of F1", i0.hasRDFType( F1 ));
+    }
+
+    public void testRoleFillers() {
+        String NS = "http://example.org/foo#";
+        
+        DIGReasoner r = (DIGReasoner) ReasonerRegistry.theRegistry().create( DIGReasonerFactory.URI, null );
+        
+        OntModelSpec spec = new OntModelSpec( OntModelSpec.OWL_DL_MEM );
+        spec.setReasoner( r );
+        OntModel m = ModelFactory.createOntologyModel( spec, null );
+        m.read( "file:testing/ontology/dig/owl/test1.xml" );
+        
+        Individual q0 = m.getIndividual( NS + "q0" );
+        Individual q1 = m.getIndividual( NS + "q1" );
+        Individual q2 = m.getIndividual( NS + "q2" );
+        Property q = m.getProperty( NS + "q" );
+        
+        TestUtil.assertIteratorValues( this, q0.listPropertyValues( q ), 
+                                       new Resource[] {q1, q2}, 0 );
+    }
+
     public void xxtestDebug() {
         String NS = "http://example.org/foo#";
         

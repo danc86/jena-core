@@ -33,17 +33,12 @@ import com.hp.hpl.jena.util.iterator.ExtendedIterator;
 
 /**
  * <p>
- * Translator that generates DIG allconcepts queries in response to a find query:
- * <pre>
- * * rdf:type owl:Class
- * </pre>
- * or similar.
- * </p>
+ * Translator that generates DIG allIndividualNames queries </p>
  *
  * @author Ian Dickinson, HP Labs (<a href="mailto:Ian.Dickinson@hp.com">email</a>)
  * @version Release @release@ ($Id$)
  */
-public class DIGQueryAllConceptsTranslator 
+public class DIGQueryAllIndividualsTranslator 
     extends DIGQueryTranslator
 {
 
@@ -60,11 +55,11 @@ public class DIGQueryAllConceptsTranslator
     //////////////////////////////////
 
     /**
-     * <p>Construct a translator for the DIG query all concepts.</p>
+     * <p>Construct a translator for the DIG query all role names.</p>
      * @param predicate The predicate URI to trigger on
      * @param object The object URI to trigger on
      */
-    public DIGQueryAllConceptsTranslator( String predicate, String object ) {
+    public DIGQueryAllIndividualsTranslator( String predicate, String object ) {
         super( ALL, predicate, object );
     }
     
@@ -74,13 +69,13 @@ public class DIGQueryAllConceptsTranslator
 
 
     /**
-     * <p>Since known concept names are cached by the adapter, we can just look up the
+     * <p>Since known role names are cached by the adapter, we can just look up the
      * current set and map directly to triples</p>
      * @param pattern The pattern to translate to a DIG query
      * @param da The DIG adapter through which we communicate with a DIG reasoner
      */
     public ExtendedIterator find( TriplePattern pattern, DIGAdapter da ) {
-        return WrappedIterator.create( da.getKnownConcepts().iterator() )
+        return WrappedIterator.create( da.getKnownIndividuals().iterator() )
                               .mapWith( new DIGValueToNodeMapper() )
                               .mapWith( new TripleSubjectFiller( pattern.getPredicate(), pattern.getObject() ) );
     }
@@ -96,7 +91,6 @@ public class DIGQueryAllConceptsTranslator
         // not used
         return null;
     }
-
 
     // Internal implementation methods
     //////////////////////////////////
