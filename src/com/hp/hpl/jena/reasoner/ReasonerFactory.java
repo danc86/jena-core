@@ -1,7 +1,7 @@
 /******************************************************************
- * File:        Derivation.java
+ * File:        ReasonerFactory.java
  * Created by:  Dave Reynolds
- * Created on:  06-Apr-03
+ * Created on:  09-Jan-2003
  * 
  * (c) Copyright 2003, Hewlett-Packard Company, all rights reserved.
  * [See end of file]
@@ -9,34 +9,37 @@
  *****************************************************************/
 package com.hp.hpl.jena.reasoner;
 
-import java.io.PrintWriter;
+import com.hp.hpl.jena.rdf.model.Model;
 
 /**
- * Derivation records are used to determine how an inferred triple
- * was derived from a set of source triples and a reasoner. SubClasses
- * provide more specific information.
- * 
- * TODO replace this with methods than can generate RDF models
- * of the derivation tree.
+ * The interface through which a reasoner (inference engine) can be
+ * instantiated. Instances of this are registered with the global
+ * ReasonerRegistry.
  * 
  * @author <a href="mailto:der@hplb.hpl.hp.com">Dave Reynolds</a>
  * @version $Revision$ on $Date$
  */
-public interface Derivation {
+public interface ReasonerFactory {
 
     /**
-     * Return a short-form description of this derivation.
+     * Constructor method that builds an instance of the associated Reasoner
+     * @param configuration a set of arbitrary configuration information to be 
+     * passed the reasoner encoded within an RDF model, can be null.
      */
-    public String toString();
+    public Reasoner create(Model configuration);
+
+    /**
+     * Return a description of the capabilities of this reasoner encoded in
+     * RDF. These capabilities may be static or may depend on configuration
+     * information supplied at construction time. May be null if there are
+     * no useful capabilities registered.
+     */
+    public Model getCapabilities();
     
     /**
-     * Print a deep traceback of this derivation back to axioms and 
-     * source assertions.
-     * @param out the stream to print the trace out to
-     * @param bindings set to true to print intermediate variable bindings for
-     * each stage in the derivation
+     * Return the URI labelling this type of reasoner
      */
-    public void printTrace(PrintWriter out, boolean bindings);
+    public String getURI();
 }
 
 /*
@@ -68,3 +71,4 @@ public interface Derivation {
     (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
     THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
+

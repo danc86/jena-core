@@ -11,6 +11,7 @@ package com.hp.hpl.jena.reasoner.rulesys;
 
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.rdf.model.*;
+import com.hp.hpl.jena.reasoner.IllegalParameterException;
 import com.hp.hpl.jena.vocabulary.RDF;
 
 import java.io.*;
@@ -160,5 +161,44 @@ public class Util {
         return null;
     }
 
+    /**
+     * Convert the value of a boolean configuration parameter to a boolean value.
+     * Allows the value to be specified using a String or Boolean.
+     * @param the uri of the configuration property being set (to help with error messages)
+     * @param value the parameter value
+     * @return the converted value
+     * @throws IllegalParameterException if the value can't be converted
+     */
+    public static boolean convertBooleanPredicateArg(String parameterUri, Object value) {
+        if (value instanceof Boolean) {
+            return ((Boolean)value).booleanValue();
+        } else if (value instanceof String) {
+            return ((String)value).equalsIgnoreCase("true");
+        } else {
+            throw new IllegalParameterException("Illegal type for " + parameterUri + " setting - use a Boolean");
+        }
+        
+    }
 
+    /**
+     * Convert the value of an integer configuration parameter to an int value.
+     * Allows the value to be specified using a String or Number.
+     * @param the uri of the configuration property being set (to help with error messages)
+     * @param value the parameter value
+     * @return the converted value
+     * @throws IllegalParameterException if the value can't be converted
+     */
+    public static int convertIntegerPredicateArg(String parameterUri, Object value) {
+        if (value instanceof Number) {
+            return ((Number)value).intValue();
+        } else if (value instanceof String) {
+            try {
+                return Integer.parseInt((String)value);
+            } catch (NumberFormatException e) {
+                throw new IllegalParameterException("Illegal type for " + parameterUri + " setting - use an integer");
+            }
+        } else {
+            throw new IllegalParameterException("Illegal type for " + parameterUri + " setting - use an integer");
+        }            
+    }
 }

@@ -68,9 +68,6 @@ public class RDFSInfGraph extends BaseInfGraph {
     /** Flag to control whether properties are eagerly scanned */
     protected boolean scanProperties = true;
     
-    /** Note if datatype range checking is enabled for adds */
-    protected boolean checkDTRange = false;
-    
 //=======================================================================
 // static rules and axioms
         
@@ -162,7 +159,6 @@ public class RDFSInfGraph extends BaseInfGraph {
         this.subPropertyCache = sPropertyCache.deepCopy();
         this.subClassCache = sClassCache;
         this.scanProperties = reasoner.scanProperties;
-        this.checkDTRange = reasoner.checkDTRange;
         
         // Combine a place to hold axioms and local deductions and the tbox into single cache
         if (tbox == null) {
