@@ -651,6 +651,25 @@ public class OntClassImpl
     }
 
 
+    /**
+     * <p>Answer a new individual that has this class as its <code>rdf:type</code></p>
+     * @return A new anonymous individual that is an instance of this class
+     */
+    public Individual createIndividual() {
+        return ((OntModel) getModel()).createIndividual( this );
+    }
+    
+    
+    /**
+     * <p>Answer a new individual that has this class as its <code>rdf:type</code></p>
+     * @param uri The URI of the new individual
+     * @return A new named individual that is an instance of this class
+     */
+    public Individual createIndividual( String uri ) {
+        return ((OntModel) getModel()).createIndividual( uri, this );
+    }
+    
+    
     // access to facets
     /** 
      * <p>Answer a view of this class as an enumerated class</p>

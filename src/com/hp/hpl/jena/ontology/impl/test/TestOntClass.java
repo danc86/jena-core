@@ -78,6 +78,17 @@ public class TestOntClass
         assertFalse( a.hasSubClass() );
     }
     
+    public void testCreateIndividual() {
+        OntModel m = ModelFactory.createOntologyModel( OntModelSpec.OWL_MEM );
+        OntClass a = m.createClass( NS + "A" );
+        Individual i = a.createIndividual( NS + "i" );
+        assertTrue( i.hasRDFType(a) );
+    
+        Individual j = a.createIndividual();
+        assertTrue( j.hasRDFType(a) );
+    }
+    
+    
     // Internal implementation methods
     //////////////////////////////////
 

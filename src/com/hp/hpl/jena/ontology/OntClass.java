@@ -394,6 +394,21 @@ public interface OntClass
     public ExtendedIterator listInstances();
 
 
+    /**
+     * <p>Answer a new individual that has this class as its <code>rdf:type</code></p>
+     * @return A new anonymous individual that is an instance of this class
+     */
+    public Individual createIndividual();
+    
+    
+    /**
+     * <p>Answer a new individual that has this class as its <code>rdf:type</code></p>
+     * @param uri The URI of the new individual
+     * @return A new named individual that is an instance of this class
+     */
+    public Individual createIndividual( String uri );
+    
+    
     // access to facets
 
     /** 
