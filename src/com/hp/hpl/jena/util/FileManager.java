@@ -295,7 +295,7 @@ public class FileManager
         {
             if ( scheme.equals("file") )
             {
-                if ( ! baseURI.startsWith("file:/") )
+                if ( ! baseURI.startsWith("file:///") )
                 {
                     try {
                         // Fix up file URIs.  Yuk.
@@ -304,6 +304,7 @@ public class FileManager
                         baseURI = "file:///"+f.getCanonicalPath() ;
                         baseURI = baseURI.replace('\\','/') ;
                         // Convert to URI.  Except that it removes ///
+                        // Could do that and fix up (again)
                         //java.net.URL u = new java.net.URL(baseURI) ;
                         //baseURI = u.toExternalForm() ;
                     } catch (Exception ex) {}
