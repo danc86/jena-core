@@ -12,6 +12,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 import com.hp.hpl.jena.rdf.model.*;
+import com.hp.hpl.jena.util.FileUtils;
 import com.hp.hpl.jena.vocabulary.*;
 import com.hp.hpl.jena.graph.impl.*;
 import com.hp.hpl.jena.rdf.model.impl.*;
@@ -240,7 +241,7 @@ public class TestModelSpec extends ModelTestBase
         
     public void testCreateFromResource() throws FileNotFoundException, IOException
         {
-        File temp = tempFileName( "pre", ".rdf" );   
+        File temp = FileUtils.tempFileName( "pre", ".rdf" );   
         Model desc = createPlainModelDesc();
         writeModel( temp, desc );
         ModelSpec ms = ModelSpecImpl.create( resource( "file:" + temp ) );
@@ -249,7 +250,7 @@ public class TestModelSpec extends ModelTestBase
     
     public void testCreateRootedFromResource() throws FileNotFoundException, IOException
         {
-        File temp = tempFileName( "pre", ".rdf" );  
+        File temp = FileUtils.tempFileName( "pre", ".rdf" );  
         Resource root = resource( "eh:gibberish" ); 
         Model desc = createPlainModelDesc( root );
         writeModel( temp, desc );

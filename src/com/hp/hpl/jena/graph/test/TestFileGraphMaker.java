@@ -9,6 +9,8 @@ package com.hp.hpl.jena.graph.test;
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.graph.impl.*;
 import com.hp.hpl.jena.shared.*;
+import com.hp.hpl.jena.util.FileUtils;
+
 import junit.framework.*;
 
 /**
@@ -26,7 +28,7 @@ public class TestFileGraphMaker extends AbstractTestGraphMaker
         { return new TestSuite( TestFileGraphMaker.class ); }
 
     public GraphMaker getGraphMaker()
-        { String scratch = getScratchDirectory( "jena-test-FileGraphMaker" ).toString();
+        { String scratch = FileUtils.getScratchDirectory( "jena-test-FileGraphMaker" ).toString();
         return new FileGraphMaker( scratch, ReificationStyle.Minimal, true ); } 
         
     public void testToFilename()

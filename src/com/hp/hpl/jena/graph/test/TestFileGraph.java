@@ -8,6 +8,7 @@ package com.hp.hpl.jena.graph.test;
 
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.graph.impl.*;
+import com.hp.hpl.jena.util.FileUtils;
 
 import java.io.*;
 
@@ -103,7 +104,7 @@ public class TestFileGraph extends GraphTestBase
             
         public void runTest()
             {
-            File foo = tempFileName( prefix, suffix );
+            File foo = FileUtils.tempFileName( prefix, suffix );
             Graph original = graphWith( content );
             Graph g = new FileGraph( foo, true, true );
             g.getBulkUpdateHandler().add( original );
