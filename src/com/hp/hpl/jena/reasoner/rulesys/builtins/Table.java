@@ -47,7 +47,10 @@ public class Table extends BaseBuiltin {
                 ((FBLPRuleInfGraph)infgraph).setTabled(args[i]);
             }
         } else {
-            throw new BuiltinException(this, context, "builtin " + getName() + " only usable in LP hybrid rule sets");
+            // Quietly ignore as an irrelevant directive
+            // Could log or throw exception but currently I want to be able to use
+            // the same rule base from different contexts which do and do not need
+            // to know about this.
         }
     }
  
