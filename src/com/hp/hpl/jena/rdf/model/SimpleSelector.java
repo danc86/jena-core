@@ -9,28 +9,41 @@ package com.hp.hpl.jena.rdf.model;
 import com.hp.hpl.jena.rdf.model.impl.*;
 import com.hp.hpl.jena.graph.*;
 
-/** A general selector class for use when querying models.
- * <p>An instance of this class is passed with query calls to models.  The model
- * will use the <CODE>test</CODE> method of this class to decide whether
- * a statement should be included in the selection.</p>
- * <p>Instances of this class can be provided with subject, predicate and object
- *   constraints.  If a subject, a predicate or an object are provided,
- *   the model implementation <b>may</b> restrict the statements that it tests
- *   to statements whose subject, predicate and object match those provided in
- *   the constructor.  This can provide for considerably more efficient
- * searching.  However, the model implementation is not required to do this.
- *  If no subject, predicate or object are provided in
- * the constructor, then all statements in the model must be tested.</p>
- * <p>This class is designed to be subclassed by the application, defining
- * defining further selection criteria of its own by providing its own
- * <CODE>selects</CODE> method.</p>
- * <p>The <CODE>test</CODE> method first verifies that a statement satisfies
- * any subject, predicate or object constraints and the calls the <CODE>
- * selects</CODE> method to test for any application supplied constraint.  The
- * default <CODE>selects</CODE> method simply returns true.</p>
- * @author bwm
- * @version Release='$Name$ $Revision$ $Date$
- */
+/** 
+    A general selector class for use when querying models.
+ 
+    <p>An instance of this class is passed with query calls to models.  The model
+    will use the <CODE>test</CODE> method of this class to decide whether
+    a statement should be included in the selection.
+    
+    <p>Instances of this class can be provided with subject, predicate and object
+    constraints.  If a subject, a predicate or an object are provided,
+    the model implementation <b>may</b> restrict the statements that it tests
+    to statements whose subject, predicate and object match those provided in
+    the constructor.  This can provide for considerably more efficient
+    searching.  However, the model implementation is not required to do this.
+    If no subject, predicate or object are provided in
+    the constructor, then all statements in the model must be tested.
+ 
+    <p>This class is designed to be subclassed by the application, defining
+    defining further selection criteria of its own by providing its own
+    <CODE>selects</CODE> method.
+    
+    <p>A direct instance of SimpleSelector returns <code>true</code> for the
+    Selector::isSimple() predicate. Instances of subclasses of SimpleSelector
+    return <code>false</code>, since the only reason to have such subclasses
+    is to provide a non-trivial <code>test</code> predicate or S/P/O tests other
+    than equality.
+ 
+    <p>The <CODE>test</CODE> method first verifies that a statement satisfies
+    any subject, predicate or object constraints and the calls the <CODE>
+    selects</CODE> method to test for any application supplied constraint.  The
+    default <CODE>selects</CODE> method simply returns true.
+    
+    @author bwm
+    @version Release='$Name$ $Revision$ $Date$
+*/
+
 public class SimpleSelector extends Object implements Selector {
 
     protected Resource subject;

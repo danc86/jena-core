@@ -21,7 +21,6 @@ package com.hp.hpl.jena.db.test;
 */
 
 import com.hp.hpl.jena.db.*;
-import com.hp.hpl.jena.db.impl.DBPropGraph;
 
 import junit.framework.*;
 
