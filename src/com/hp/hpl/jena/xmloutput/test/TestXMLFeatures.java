@@ -35,8 +35,15 @@ import com.hp.hpl.jena.util.TestLogger;
 public class TestXMLFeatures extends TestCase {
 	static AwkCompiler awk = PrettyWriterTest.awk;
 	static AwkMatcher matcher = PrettyWriterTest.matcher;
-	static private interface Change {
-		void code(RDFWriter w);
+	static private class Change {
+		void code(RDFWriter w) {
+        }
+        void code(Model m){
+        }
+        void code(Model m, RDFWriter w){
+            code(m);
+            code(w);
+        }
 	}
 	private String base1 = "http://example/foobar";
 	private String base2 = "http://example/barfoo";
@@ -158,8 +165,8 @@ public class TestXMLFeatures extends TestCase {
 		}
 		Properties p = (Properties) System.getProperties().clone();
 		RDFWriter writer = m.getWriter(lang);
-		code.code(writer);
-		writer.write(m, sw, base);
+		code.code( m, writer );
+		writer.write( m, sw, base );
 		sw.close();
 
 		String contents;
@@ -228,11 +235,11 @@ public class TestXMLFeatures extends TestCase {
 
 	public void testUseNamespace()
 		throws IOException, MalformedPatternException {
-//		check(file1, "xmlns:eg=['\"]http://example.org/#['\"]", new Change() {
-//			public void code(RDFWriter writer) {
-//				writer.setNsPrefix("eg", "http://example.org/#");
-//			}
-//		});
+		check(file1, "xmlns:eg=['\"]http://example.org/#['\"]", new Change() {
+			public void code(Model m) {
+				m.setNsPrefix("eg", "http://example.org/#");
+			}
+		});
 	}
     
     public void testSingleQuote()
@@ -254,24 +261,24 @@ public class TestXMLFeatures extends TestCase {
 
 	public void testUseDefaultNamespace()
 		throws IOException, MalformedPatternException {
-//		check(file1, "xmlns=['\"]http://example.org/#['\"]", new Change() {
-//			public void code(RDFWriter writer) {
-//				writer.setNsPrefix("", "http://example.org/#");
-//			}
-//		});
+		check(file1, "xmlns=['\"]http://example.org/#['\"]", new Change() {
+			public void code( Model m ) {
+				m.setNsPrefix("", "http://example.org/#");
+			}
+		});
 	}
 
 	public void testRDFNamespace()
 		throws IOException, MalformedPatternException {
-//		check(
-//			file1,
-//			"xmlns:r=['\"]" + RDF.getURI() + "['\"]",
-//			"rdf:",
-//			new Change() {
-//			public void code(RDFWriter writer) {
-//				writer.setNsPrefix("r", RDF.getURI());
-//			}
-//		});
+		check(
+			file1,
+			"xmlns:r=['\"]" + RDF.getURI() + "['\"]",
+			"rdf:",
+			new Change() {
+			public void code( Model m ) {
+				m.setNsPrefix("r", RDF.getURI());
+			}
+		});
 	}
 
     public void testTab()
@@ -431,57 +438,57 @@ public class TestXMLFeatures extends TestCase {
     
 	public void testRDFDefaultNamespace()
 		throws IOException, MalformedPatternException {
-//		check(
-//			file1,
-//			"xmlns=['\"]"
-//				+ RDF.getURI()
-//				+ "['\"].*"
-//				+ "xmlns:j.cook.up=['\"]"
-//				+ RDF.getURI()
-//				+ "['\"]",
-//			new Change() {
-//			public void code(RDFWriter writer) {
-//				writer.setNsPrefix("", RDF.getURI());
-//			}
-//		});
+		check(
+			file1,
+			"xmlns=['\"]"
+				+ RDF.getURI()
+				+ "['\"].*"
+				+ "xmlns:j.cook.up=['\"]"
+				+ RDF.getURI()
+				+ "['\"]",
+			new Change() {
+			public void code( Model m ) {
+				m.setNsPrefix("", RDF.getURI());
+			}
+		});
 	}
     
 	public void testBadPrefixNamespace()
 		throws IOException, MalformedPatternException {
-//		// Trying to set the prefix should generate a warning.
+		// Trying to set the prefix should generate a warning.
 //		check(file1, null, null, "xmlns:3", true, new Change() {
-//			public void code(RDFWriter writer) {
-//				writer.setNsPrefix("3", "http://example.org/#");
+//			public void code( RDFWriter w ) {
+//				w.setNsPrefix("3", "http://example.org/#");
 //			}
 //		});
 	}
 
 	public void testDuplicateNamespace()
 		throws IOException, MalformedPatternException {
-//		check(
-//			file1,
-//			"xmlns:eg[12]=['\"]http://example.org/#['\"]",
-//			"xmlns:eg[12]=['\"]http://example.org/#['\"].*xmlns:eg[12]=['\"]http://example.org/#['\"]",
-//			new Change() {
-//			public void code(RDFWriter writer) {
-//				writer.setNsPrefix("eg1", "http://example.org/#");
-//				writer.setNsPrefix("eg2", "http://example.org/#");
-//			}
-//		});
+		check(
+			file1,
+			"xmlns:eg[12]=['\"]http://example.org/#['\"]",
+			"xmlns:eg[12]=['\"]http://example.org/#['\"].*xmlns:eg[12]=['\"]http://example.org/#['\"]",
+			new Change() {
+			public void code( Model m ) {
+				m.setNsPrefix("eg1", "http://example.org/#");
+				m.setNsPrefix("eg2", "http://example.org/#");
+			}
+		});
 	}
 
 	public void testDuplicatePrefix()
 		throws IOException, MalformedPatternException {
-//		check(
-//			file1,
-//			"xmlns:eg=['\"]http://example.org/file[12]#['\"]",
-//			null,
-//			new Change() {
-//			public void code(RDFWriter writer) {
-//				writer.setNsPrefix("eg", "http://example.org/file1#");
-//				writer.setNsPrefix("eg", "http://example.org/file2#");
-//			}
-//		});
+		check(
+			file1,
+			"xmlns:eg=['\"]http://example.org/file[12]#['\"]",
+			null,
+			new Change() {
+			public void code( Model m ) {
+				m.setNsPrefix("eg", "http://example.org/file1#");
+				m.setNsPrefix("eg", "http://example.org/file2#");
+			}
+		});
 	}
 
 	void setNsPrefixSysProp(String prefix, String uri) {

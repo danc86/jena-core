@@ -161,8 +161,8 @@ public class TestSimpleListStatements extends ModelTestBase
         {
         Model wanted = modelWithStatements( things );
         Model got = modelWithStatements( it );
-        // System.err.println( "| wanted " + wanted + " got " + got );
-        assertTrue( "equals", wanted.isIsomorphicWith( got ) );
+        if (wanted.isIsomorphicWith( got ) == false)
+            fail( "wanted " + wanted + " got " + got );
         }
         
     public void testListStatementsSPO()
@@ -181,6 +181,26 @@ public class TestSimpleListStatements extends ModelTestBase
         checkReturns( S2, m.listStatements( A, P1, (RDFNode) null ) );
         checkReturns( S3, m.listStatements( X, null, Y ) );
         m.close();
+        }
+        
+    public void testListStatementsClever()
+        {
+        Model m = ModelFactory.createDefaultModel();
+        modelAdd( m, "S P O; S P O2; S P2 O; S2 P O" );
+        Selector sel = new SimpleSelector( null, null, (RDFNode) null )
+            {
+            public boolean test( Statement st )
+                { return 
+                        st.getSubject().toString().length() 
+                        + st.getPredicate().toString().length()
+                        + st.getObject().toString().length()
+                        == 12; /* eh:S + eh:P + eh:O */
+                }
+                
+            public boolean isSimple()
+                { return false; }
+            };
+        checkReturns( "S P O", m.listStatements( sel ) );
         }
 }
     	
