@@ -335,6 +335,7 @@ public class TestBasics extends TestCase  {
      */
     public void testEmbeddedFunctors() {
         String rules = "(?C rdf:type owl:Restriction), (?C owl:onProperty ?P), (?C owl:allValuesFrom ?D) -> (?C rb:restriction all(?P, ?D))." +
+                       "(?C rb:restriction all(eg:p, eg:D)) -> (?C rb:restriction 'allOK')." +
                        "[ -> (eg:foo eg:prop functor(eg:bar, '1')) ]" +
                        "[ (?x eg:prop functor(eg:bar, ?v)) -> (?x eg:propbar ?v) ]" +
                        "[ (?x eg:prop functor(?v, *)) -> (?x eg:propfunc ?v) ]" +
@@ -361,11 +362,12 @@ public class TestBasics extends TestCase  {
         
         RDFNode flit = infModel.getResource(R1.getURI()).getProperty(rbr).getObject();
         assertNotNull(flit);
-        assertTrue(flit instanceof Literal);
-        Functor func = (Functor)((Literal)flit).getValue();
-        assertEquals("all", func.getName());
-        assertEquals(p.getNode(), func.getArgs()[0]);
-        assertEquals(D.getNode(), func.getArgs()[1]);
+        assertEquals(flit.toString(), "allOK");
+//        assertTrue(flit instanceof Literal);
+//        Functor func = (Functor)((Literal)flit).getValue();
+//        assertEquals("all", func.getName());
+//        assertEquals(p.getNode(), func.getArgs()[0]);
+//        assertEquals(D.getNode(), func.getArgs()[1]);
         
         Literal one = (Literal)foo.getProperty(propbar).getObject();
         assertEquals(new Integer(1), one.getValue());

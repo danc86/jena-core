@@ -219,15 +219,17 @@ public class BasicForwardRuleInfGraph extends BaseInfGraph implements ForwardRul
      */
     public ExtendedIterator findWithContinuation(TriplePattern pattern, Finder continuation) {
         if (!isPrepared) prepare();
+        ExtendedIterator result = null;
         if (fdata == null) {
-            return fdeductions.findWithContinuation(pattern, continuation);
+            result = fdeductions.findWithContinuation(pattern, continuation);
         } else {
             if (continuation == null) {
-                return fdata.findWithContinuation(pattern, fdeductions);
+                result = fdata.findWithContinuation(pattern, fdeductions);
             } else {
-                return fdata.findWithContinuation(pattern, FinderUtil.cascade(fdeductions, continuation) );
+                result = fdata.findWithContinuation(pattern, FinderUtil.cascade(fdeductions, continuation) );
             }
         }
+        return result.filterDrop(Functor.acceptFilter);
     }
    
     /** 

@@ -157,13 +157,14 @@ public class BasicBackwardRuleInfGraph extends BaseInfGraph implements BackwardR
      */
     public ExtendedIterator findWithContinuation(TriplePattern pattern, Finder continuation) {
         if (!isPrepared) prepare();
+        ExtendedIterator result = null;
         if (continuation == null) {
-            return WrappedIterator.create( new TopGoalIterator(engine, pattern) );
+            result = WrappedIterator.create( new TopGoalIterator(engine, pattern) );
         } else {
-            return WrappedIterator.create( new TopGoalIterator(engine, pattern) )
+            result = WrappedIterator.create( new TopGoalIterator(engine, pattern) )
                             .andThen(continuation.find(pattern));
         }
-
+        return result.filterDrop(Functor.acceptFilter);
     }
    
     /** 

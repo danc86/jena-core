@@ -12,6 +12,7 @@ package com.hp.hpl.jena.reasoner.rulesys;
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.graph.impl.*;
 import com.hp.hpl.jena.util.PrintUtil;
+import com.hp.hpl.jena.util.iterator.Filter;
 import com.hp.hpl.jena.datatypes.*;
 import org.apache.log4j.Logger;
 
@@ -38,6 +39,14 @@ public class Functor implements ClauseEntry {
     
     /** A built in that implements the functor */
     protected Builtin implementor;
+    
+    /** A static Filter instance that detects triples with Functor objects */
+    public static final Filter acceptFilter = new Filter() {
+                public boolean accept(Object t) {
+                    Node n = ((Triple)t).getObject();
+                    return n.isLiteral() && n.getLiteral().getDatatype() == FunctorDatatype.theFunctorDatatype;
+                }
+            };
     
     /** log4j logger */
     protected static Logger logger = Logger.getLogger(Functor.class);

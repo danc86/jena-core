@@ -461,12 +461,14 @@ public class FBRuleInfGraph  extends BasicForwardRuleInfGraph implements Backwar
     public ExtendedIterator findWithContinuation(TriplePattern pattern, Finder continuation) {
         if (!isPrepared) prepare();
         
+        ExtendedIterator result = null;
         if (continuation == null) {
-            return WrappedIterator.create( new TopGoalIterator(bEngine, pattern) );
+            result = WrappedIterator.create( new TopGoalIterator(bEngine, pattern) );
         } else {
-            return WrappedIterator.create( new TopGoalIterator(bEngine, pattern) )
+            result = WrappedIterator.create( new TopGoalIterator(bEngine, pattern) )
                             .andThen(continuation.find(pattern));
         }
+        return result.filterDrop(Functor.acceptFilter);
     }
    
     /** 
