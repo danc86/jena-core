@@ -193,7 +193,7 @@ public class OneToManyMap
      * that t1.hashCode()==t2.hashCode() for any two maps t1 and t2,
      * as required by the general contract of Object.hashCode
      */
-    public int hashcode() {
+    public int hashCode() {
         int hc = 0;
 
         for (Iterator i = entrySet().iterator();  i.hasNext(); ) {
