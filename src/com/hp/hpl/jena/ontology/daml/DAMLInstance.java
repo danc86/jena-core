@@ -24,11 +24,9 @@ package com.hp.hpl.jena.ontology.daml;
 // Imports
 ///////////////
 
-import com.hp.hpl.jena.ontology.daml.PropertyAccessor;
 
 import com.hp.hpl.jena.rdf.model.Property;
-
-import java.util.Iterator;
+import com.hp.hpl.jena.util.iterator.ExtendedIterator;
 
 
 
@@ -64,7 +62,7 @@ public interface DAMLInstance
      *
      * @return an iterator whose values will all be DAMLInstance objects
      */
-    public Iterator getSameInstances();
+    public ExtendedIterator getSameInstances();
 
 
     /**
@@ -75,7 +73,7 @@ public interface DAMLInstance
      * @return an iterator ranging over every equivalent DAML instance - each value of
      *         the iteration should be a DAMLInstance object.
      */
-    public Iterator getEquivalentValues();
+    public ExtendedIterator getEquivalentValues();
 
 
     /**

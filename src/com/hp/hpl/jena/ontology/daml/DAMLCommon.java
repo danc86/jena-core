@@ -23,11 +23,10 @@ package com.hp.hpl.jena.ontology.daml;
 
 // Imports
 ///////////////
-import java.util.Iterator;
-
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.ontology.*;
 
+import com.hp.hpl.jena.util.iterator.ExtendedIterator;
 import com.hp.hpl.jena.vocabulary.*;
 
 
@@ -88,7 +87,7 @@ public interface DAMLCommon
      * types.
      * @return an iterator over the set of this value's classes
      */
-    public Iterator getRDFTypes( boolean complete );
+    public ExtendedIterator getRDFTypes( boolean complete );
 
 
     /**
@@ -111,7 +110,7 @@ public interface DAMLCommon
      *
      * @return An iterator ranging over every equivalent DAML value
      */
-    public Iterator getEquivalentValues();
+    public ExtendedIterator getEquivalentValues();
 
 
     /**
@@ -122,7 +121,7 @@ public interface DAMLCommon
      * @return An iteration ranging over the set of values that are equivalent to this
      *         value, but not itself.
      */
-    public Iterator getEquivalenceSet();
+    public ExtendedIterator getEquivalenceSet();
 
 
     // Properties

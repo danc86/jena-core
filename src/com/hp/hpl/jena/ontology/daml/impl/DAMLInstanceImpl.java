@@ -31,8 +31,6 @@ import com.hp.hpl.jena.ontology.*;
 import com.hp.hpl.jena.ontology.daml.*;
 import com.hp.hpl.jena.vocabulary.*;
 
-import java.util.Iterator;
-
 
 
 /**
@@ -135,9 +133,8 @@ public class DAMLInstanceImpl
      *
      * @return an iterator whose values will all be DAMLInstance objects
      */
-    public Iterator getSameInstances() {
-        return new PropertyIterator( this, getVocabulary().sameIndividualAs(),
-                                     getVocabulary().sameIndividualAs(), true, true );
+    public ExtendedIterator getSameInstances() {
+        return listAs( getProfile().SAME_INDIVIDUAL_AS(), "SAME_INDIVIDUAL_AS", DAMLInstance.class );
     }
 
 
@@ -150,17 +147,8 @@ public class DAMLInstanceImpl
      * @return an iterator ranging over every equivalent DAML instance - each value of
      *         the iteration should be a DAMLInstance object.
      */
-    public Iterator getEquivalentValues() {
-        ConcatenatedIterator i = new ConcatenatedIterator(
-                       // first the iterator over the equivalentTo values
-                       super.getEquivalentValues(),
-                       // followed by the sameClassAs values
-                       new PropertyIterator( this, getVocabulary().sameIndividualAs(), getVocabulary().sameIndividualAs(), true, false, false ) );
-
-        // ensure that the iteration includes self
-        i.setDefaultValue( this );
-
-        return i;
+    public ExtendedIterator getEquivalentValues() {
+        return new UniqueExtendedIterator( listAs( getProfile().SAME_AS(), "SAME_AS", DAMLInstance.class ).andThen( getSameInstances() ) );
     }
 
 

@@ -23,9 +23,8 @@ package com.hp.hpl.jena.ontology.daml;
 
 // Imports
 ///////////////
-import java.util.Iterator;
-
 import com.hp.hpl.jena.ontology.OntClass;
+import com.hp.hpl.jena.util.iterator.ExtendedIterator;
 
 
 
@@ -128,7 +127,7 @@ public interface DAMLClass
      * of the iterator will be {@link DAMLClass} objects.</p>
      * @return An iterator over all available sub-classes of this class
      */
-    public Iterator getSubClasses();
+    public ExtendedIterator getSubClasses();
 
 
     /**
@@ -149,7 +148,7 @@ public interface DAMLClass
      * only local (direct) sub-classes. See note for details.
      * @return An iterator over this class's sub-classes.
      */
-    public Iterator getSubClasses( boolean closed );
+    public ExtendedIterator getSubClasses( boolean closed );
 
 
     /**
@@ -160,7 +159,7 @@ public interface DAMLClass
      * of the iterator will be {@link DAMLClass} objects.</p>
      * @return An iterator over all available super-classes of this class
      */
-    public Iterator getSuperClasses();
+    public ExtendedIterator getSuperClasses();
 
 
     /**
@@ -181,7 +180,7 @@ public interface DAMLClass
      * only local (direct) super-classes. See note for details.
      * @return an iterator over this class's super-classes.
      */
-    public Iterator getSuperClasses( boolean closed );
+    public ExtendedIterator getSuperClasses( boolean closed );
 
 
     /**
@@ -196,7 +195,7 @@ public interface DAMLClass
      *
      * @return an iterator ranging over every equivalent DAML classes
      */
-    public Iterator getSameClasses();
+    public ExtendedIterator getSameClasses();
 
 
     /**
@@ -206,7 +205,7 @@ public interface DAMLClass
      *
      * @return an iterator ranging over every equivalent DAML class
      */
-    public Iterator getEquivalentValues();
+    public ExtendedIterator getEquivalentValues();
 
 
     /**
@@ -217,7 +216,7 @@ public interface DAMLClass
      *         the classes to which they belong
      * @see com.hp.hpl.jena.ontology.daml.DAMLCommon#getRDFTypes
      */
-    public Iterator getInstances();
+    public ExtendedIterator getInstances();
 
 
     /**
@@ -227,7 +226,7 @@ public interface DAMLClass
      *
      * @return An iteration of the properties that have this class in the domain
      */
-    public Iterator getDefinedProperties();
+    public ExtendedIterator getDefinedProperties();
 
 
     /**
@@ -248,7 +247,7 @@ public interface DAMLClass
      * if false, only use local properties.
      * @return An iteration of the properties that have this class as domain
      */
-    public Iterator getDefinedProperties( boolean closed );
+    public ExtendedIterator getDefinedProperties( boolean closed );
     
     
     /**

@@ -90,7 +90,7 @@ public interface OntModel
      * 
      * @return An iterator over ontology resources. 
      */
-    public Iterator listOntologies();
+    public ExtendedIterator listOntologies();
     
 
     /**
@@ -113,7 +113,7 @@ public interface OntModel
      * 
      * @return An iterator over property resources. 
      */
-    public Iterator listOntProperties();
+    public ExtendedIterator listOntProperties();
     
 
     /**
@@ -136,7 +136,7 @@ public interface OntModel
      * 
      * @return An iterator over object property resources. 
      */
-    public Iterator listObjectProperties();
+    public ExtendedIterator listObjectProperties();
     
 
     /**
@@ -159,7 +159,7 @@ public interface OntModel
      * 
      * @return An iterator over datatype property resources. 
      */
-    public Iterator listDatatypeProperties();
+    public ExtendedIterator listDatatypeProperties();
     
 
     /**
@@ -176,7 +176,7 @@ public interface OntModel
      * 
      * @return An iterator over individual resources. 
      */
-    public Iterator listIndividuals();
+    public ExtendedIterator listIndividuals();
     
 
     /**
@@ -195,7 +195,7 @@ public interface OntModel
      * 
      * @return An iterator over class description resources. 
      */
-    public Iterator listClasses();
+    public ExtendedIterator listClasses();
     
 
     /**
@@ -213,7 +213,7 @@ public interface OntModel
      * @return An iterator over enumerated class resources. 
      * @see Profile#ONE_OF
      */
-    public Iterator listEnumeratedClasses();
+    public ExtendedIterator listEnumeratedClasses();
     
 
     /**
@@ -231,7 +231,7 @@ public interface OntModel
      * @return An iterator over union class resources. 
      * @see Profile#UNION_OF
      */
-    public Iterator listUnionClasses();
+    public ExtendedIterator listUnionClasses();
     
 
     /**
@@ -249,7 +249,7 @@ public interface OntModel
      * @return An iterator over complement class resources. 
      * @see Profile#COMPLEMENT_OF
      */
-    public Iterator listComplementClasses();
+    public ExtendedIterator listComplementClasses();
     
 
     /**
@@ -267,7 +267,7 @@ public interface OntModel
      * @return An iterator over complement class resources. 
      * @see Profile#INTERSECTION_OF
      */
-    public Iterator listIntersectionClasses();
+    public ExtendedIterator listIntersectionClasses();
     
 
     /**
@@ -284,7 +284,7 @@ public interface OntModel
      * 
      * @return An iterator over named class resources. 
      */
-    public Iterator listNamedClasses();
+    public ExtendedIterator listNamedClasses();
     
 
     /**
@@ -302,7 +302,7 @@ public interface OntModel
      * @return An iterator over restriction class resources. 
      * @see Profile#RESTRICTION
      */
-    public Iterator listRestrictions();
+    public ExtendedIterator listRestrictions();
     
     
     /**
@@ -320,7 +320,7 @@ public interface OntModel
      * @return An iterator over annotation properties. 
      * @see Profile#getAnnotationProperties()
      */
-    public Iterator listAnnotationProperties();
+    public ExtendedIterator listAnnotationProperties();
     
    
     /**
@@ -336,7 +336,7 @@ public interface OntModel
      * 
      * @return An iterator over AllDifferent nodes. 
      */
-    public Iterator listAllDifferent();
+    public ExtendedIterator listAllDifferent();
     
    
     /**

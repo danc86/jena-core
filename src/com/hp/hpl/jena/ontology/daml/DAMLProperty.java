@@ -24,8 +24,7 @@ package com.hp.hpl.jena.ontology.daml;
 // Imports
 ///////////////
 import com.hp.hpl.jena.ontology.*;
-
-import java.util.Iterator;
+import com.hp.hpl.jena.util.iterator.ExtendedIterator;
 
 
 /**
@@ -116,7 +115,7 @@ public interface DAMLProperty
      *
      * @return an iterator ranging over every equivalent DAML property.
      */
-    public Iterator getSameProperties();
+    public ExtendedIterator getSameProperties();
 
 
     /**
@@ -126,7 +125,7 @@ public interface DAMLProperty
      *
      * @return an iterator ranging over every equivalent DAML property.
      */
-    public Iterator getEquivalentValues();
+    public ExtendedIterator getEquivalentValues();
 
 
     /**
@@ -138,7 +137,7 @@ public interface DAMLProperty
      * @return an iterator whose values will be the DAML classes that define the domain
      *         of the relation
      */
-    public Iterator getDomainClasses();
+    public ExtendedIterator getDomainClasses();
 
 
     /**
@@ -150,7 +149,7 @@ public interface DAMLProperty
      * @return an iterator whose values will be the DAML classes that define the range
      *         of the relation
      */
-    public Iterator getRangeClasses();
+    public ExtendedIterator getRangeClasses();
 
 
     /**
@@ -161,7 +160,7 @@ public interface DAMLProperty
      * @return An iterator over the super-properties of this property,
      *         whose values will be DAMLProperties.
      */
-    public Iterator getSuperProperties();
+    public ExtendedIterator getSuperProperties();
 
 
     /**
@@ -179,7 +178,7 @@ public interface DAMLProperty
      * only local (direct) super-properties. See note for details.
      * @return An iterator over this property's super-properties.
      */
-    public Iterator getSuperProperties( boolean closed );
+    public ExtendedIterator getSuperProperties( boolean closed );
 
 
     /**
@@ -187,7 +186,7 @@ public interface DAMLProperty
      *
      * @return An iterator over the sub-properties of this property.
      */
-    public Iterator getSubProperties();
+    public ExtendedIterator getSubProperties();
 
 
     /**
@@ -205,7 +204,7 @@ public interface DAMLProperty
      * only local (direct) sub-properties. See note for details.
      * @return An iterator over this property's sub-properties.
      */
-    public Iterator getSubProperties( boolean closed );
+    public ExtendedIterator getSubProperties( boolean closed );
 }
 
 

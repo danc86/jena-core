@@ -24,10 +24,9 @@ package com.hp.hpl.jena.ontology.impl;
 
 // Imports
 ///////////////
-import java.util.Iterator;
-
 import com.hp.hpl.jena.ontology.*;
 import com.hp.hpl.jena.rdf.model.*;
+import com.hp.hpl.jena.util.iterator.ExtendedIterator;
 import com.hp.hpl.jena.enhanced.*;
 import com.hp.hpl.jena.graph.*;
 
@@ -126,7 +125,7 @@ public class IndividualImpl
      * @return An iterator over the resources equivalent to this individual.
      * @exception OntProfileException If the sameIndividualAs property is not supported in the current language profile.   
      */ 
-    public Iterator listSameIndividualAs() {
+    public ExtendedIterator listSameIndividualAs() {
         return listAs( getProfile().SAME_INDIVIDUAL_AS(), "SAME_INDIVIDUAL_AS", OntResource.class );
     }
 

@@ -31,6 +31,7 @@ import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.ontology.*;
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.rdf.model.Resource;
+import com.hp.hpl.jena.util.iterator.ExtendedIterator;
 
 
 /**
@@ -144,7 +145,7 @@ public class AllDifferentImpl
      * @return An iterator over distinct individuals.
      * @exception OntProfileException If the {@link Profile#DISTINCT_MEMBERS()} property is not supported in the current language profile.   
      */ 
-    public Iterator listDistinct() {
+    public ExtendedIterator listDistinct() {
         return getDistinct().iterator();
     }
 

@@ -28,8 +28,7 @@ import com.hp.hpl.jena.enhanced.*;
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.ontology.*;
 import com.hp.hpl.jena.rdf.model.*;
-
-import java.util.*;
+import com.hp.hpl.jena.util.iterator.ExtendedIterator;
 
 
 
@@ -154,7 +153,7 @@ public class OntPropertyImpl
      * @return An iterator over the super-properties of this property.
      * @exception OntProfileException If the {@link Profile#SUB_PROPERTY_OF()} property is not supported in the current language profile.   
      */ 
-    public Iterator listSuperProperties() {
+    public ExtendedIterator listSuperProperties() {
         return listSuperProperties( false );
     }
 
@@ -167,7 +166,7 @@ public class OntPropertyImpl
      * @return An iterator over the super-properties of this property.
      * @exception OntProfileException If the {@link Profile#SUB_PROPERTY_OF()} property is not supported in the current language profile.   
      */ 
-    public Iterator listSuperProperties( boolean direct ) {
+    public ExtendedIterator listSuperProperties( boolean direct ) {
         return listDirectPropertyValues( getProfile().SUB_PROPERTY_OF(), "SUB_PROPERTY_OF", OntProperty.class, getProfile().SUB_PROPERTY_OF(), direct, false );
     }
 
@@ -238,7 +237,7 @@ public class OntPropertyImpl
      * @return An iterator over the sub-properties of this property.
      * @exception OntProfileException If the {@link Profile#SUB_PROPERTY_OF()} property is not supported in the current language profile.   
      */ 
-    public Iterator listSubProperties() {
+    public ExtendedIterator listSubProperties() {
         return listSubProperties( false );
     }
 
@@ -251,7 +250,7 @@ public class OntPropertyImpl
      * @return An iterator over the sub-properties of this property.
      * @exception OntProfileException If the {@link Profile#SUB_PROPERTY_OF()} property is not supported in the current language profile.   
      */ 
-    public Iterator listSubProperties( boolean direct ) {
+    public ExtendedIterator listSubProperties( boolean direct ) {
         return listDirectPropertyValues( getProfile().SUB_PROPERTY_OF(), "SUB_PROPERTY_OF", OntProperty.class, getProfile().SUB_PROPERTY_OF(), direct, true );
     }
 
@@ -313,7 +312,7 @@ public class OntPropertyImpl
      * @return An iterator over the classes that form the domain of this property.
      * @exception OntProfileException If the {@link Profile#DOMAIN()} property is not supported in the current language profile.   
      */ 
-    public Iterator listDomain() {
+    public ExtendedIterator listDomain() {
         return listAs( getProfile().DOMAIN(), "DOMAIN", OntResource.class );
     }
 
@@ -374,7 +373,7 @@ public class OntPropertyImpl
      * @return An iterator over the classes that form the range of this property.
      * @exception OntProfileException If the {@link Profile#RANGE()} property is not supported in the current language profile.   
      */ 
-    public Iterator listRange() {
+    public ExtendedIterator listRange() {
         return listAs( getProfile().RANGE(), "RANGE", OntResource.class );
     }
 
@@ -437,7 +436,7 @@ public class OntPropertyImpl
      * @return An iterator over the properties equivalent to this property.
      * @exception OntProfileException If the {@link Profile#EQUIVALENT_PROPERTY()} property is not supported in the current language profile.   
      */ 
-    public Iterator listEquivalentProperties() {
+    public ExtendedIterator listEquivalentProperties() {
         return listAs( getProfile().EQUIVALENT_PROPERTY(), "EQUIVALENT_PROPERTY", OntProperty.class );
     }
 
@@ -498,7 +497,7 @@ public class OntPropertyImpl
      * @return An iterator over the properties inverse to this property.
      * @exception OntProfileException If the {@link Profile#INVERSE_OF()} property is not supported in the current language profile.   
      */ 
-    public Iterator listInverseOf() {
+    public ExtendedIterator listInverseOf() {
         return listAs( getProfile().INVERSE_OF(), "INVERSE_OF", OntProperty.class );
     }
 

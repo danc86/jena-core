@@ -29,6 +29,7 @@ package com.hp.hpl.jena.ontology;
 import java.util.Iterator;
 
 import com.hp.hpl.jena.rdf.model.*;
+import com.hp.hpl.jena.util.iterator.ExtendedIterator;
 
 
 /**
@@ -87,7 +88,7 @@ public interface Individual
      * @return An iterator over the resources equivalent to this individual.
      * @exception OntProfileException If the sameIndividualAs property is not supported in the current language profile.   
      */ 
-    public Iterator listSameIndividualAs();
+    public ExtendedIterator listSameIndividualAs();
 
     /**
      * <p>Answer true if this individual is the same as the given resource.</p>

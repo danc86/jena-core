@@ -31,6 +31,7 @@ import com.hp.hpl.jena.enhanced.EnhGraph;
 import com.hp.hpl.jena.graph.Node;
 import com.hp.hpl.jena.ontology.*;
 import com.hp.hpl.jena.rdf.model.*;
+import com.hp.hpl.jena.util.iterator.ExtendedIterator;
 
 
 
@@ -123,7 +124,7 @@ public abstract class BooleanClassDescriptionImpl
 	 * @return An iterator over the operands of the expression.
 	 * @exception OntProfileException If the operand property is not supported in the current language profile.   
 	 */ 
-	public Iterator listOperands() {
+	public ExtendedIterator listOperands() {
 		return getOperands().iterator();
 	}
 

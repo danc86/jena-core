@@ -391,8 +391,8 @@ public class DAMLTest
         // get the root object
         DAMLInstance root = m.getDAMLInstance( ns + "x0" );
         assertNotNull( "Instance x0 should not be null", root );
-        // should really be 4 under daml rules, but only 2 under rdfs
-        assertEquals( "Number of elements in equivalence class should be 2", 2,
+        // should really be 4 under daml rules, but only 1 under rdfs with no support for daml entailments
+        assertEquals( "Number of elements in equivalence class should be 1", 1,
                       countIteration( root.getEquivalentValues(), true, "Member of equivalence class to x0: " ) );
 
         // now it's the classes' turn ...

@@ -343,10 +343,8 @@ public class DAMLModelImpl
      * @return An iterator over all currently defined DAML instances.
      */
     public ExtendedIterator listDAMLInstances() {
-        return new UniqueExtendedIterator(
-             ((ExtendedIterator) listIndividuals()).mapWith( 
-                    new Map1() {public Object map1(Object x){ return ((Resource) x).as( DAMLInstance.class );} } 
-                ) );
+        return new UniqueExtendedIterator( listIndividuals().mapWith( new Map1() {
+                        public Object map1(Object x){ return ((Resource) x).as( DAMLInstance.class );} } ) );
     }
 
 

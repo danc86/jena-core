@@ -30,6 +30,7 @@ import com.hp.hpl.jena.enhanced.*;
 import com.hp.hpl.jena.graph.Node;
 import com.hp.hpl.jena.ontology.*;
 import com.hp.hpl.jena.rdf.model.*;
+import com.hp.hpl.jena.util.iterator.ExtendedIterator;
 
 
 /**
@@ -161,7 +162,7 @@ public class ComplementClassImpl
 	 * @return An iterator over the operands of the expression.
 	 * @exception OntProfileException If the operand property is not supported in the current language profile.   
 	 */ 
-	public Iterator listOperands() {
+	public ExtendedIterator listOperands() {
 		return listAs( getProfile().COMPLEMENT_OF(), "COMPLEMENT_OF", OntClass.class );
 	}
 

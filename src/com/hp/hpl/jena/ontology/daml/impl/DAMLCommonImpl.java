@@ -166,7 +166,7 @@ public class DAMLCommonImpl
      * types.
      * @return an iterator over the set of this value's classes
      */
-    public Iterator getRDFTypes( boolean complete ) {
+    public ExtendedIterator getRDFTypes( boolean complete ) {
         return listRDFTypes( !complete );
     }
 
@@ -198,14 +198,13 @@ public class DAMLCommonImpl
      *
      * @return An iterator ranging over every equivalent DAML value
      */
-    public Iterator getEquivalentValues() {
-        ExtendedIterator i = (ExtendedIterator) listPropertyValues( getProfile().SAME_AS() );
-        
+    public ExtendedIterator getEquivalentValues() {
         // iterator of myself
         List me = new LinkedList();
         me.add( this );
         
-        return new UniqueExtendedIterator( WrappedIterator.create( me.iterator() ).andThen( i ) );
+        return new UniqueExtendedIterator( WrappedIterator.create( me.iterator() )
+                   .andThen( listPropertyValues( getProfile().SAME_AS() ) ) );
     }
 
 
@@ -217,14 +216,14 @@ public class DAMLCommonImpl
      * @return An iteration ranging over the set of values that are equivalent to this
      *         value, but not itself.
      */
-    public Iterator getEquivalenceSet() {
+    public ExtendedIterator getEquivalenceSet() {
         Set s = new HashSet();
 
         s.add( this );
         for (Iterator i = getEquivalentValues();  i.hasNext();  s.add( i.next() ) );
         s.remove( this );
         
-        return s.iterator();
+        return WrappedIterator.create( s.iterator() );
     }
 
 

@@ -25,9 +25,8 @@ package com.hp.hpl.jena.ontology;
 
 // Imports
 ///////////////
-import java.util.Iterator;
-
 import com.hp.hpl.jena.rdf.model.*;
+import com.hp.hpl.jena.util.iterator.ExtendedIterator;
 
 
 /**
@@ -84,7 +83,7 @@ public interface Ontology
      * @return An iterator over the ontology import resources
      * @exception OntProfileException If the {@link Profile#IMPORTS()()} property is not supported in the current language profile.   
      */ 
-    public Iterator listImports();
+    public ExtendedIterator listImports();
 
     /**
      * <p>Answer true if this ontology (the ontology represented by this 
@@ -135,7 +134,7 @@ public interface Ontology
      * @return An iterator over the ontology resources compatible with this ontology
      * @exception OntProfileException If the {@link Profile#BACKWARD_COMPATIBLE_WITH} property is not supported in the current language profile.   
      */ 
-    public Iterator listBackwardCompatibleWith();
+    public ExtendedIterator listBackwardCompatibleWith();
 
     /**
      * <p>Answer true if this ontology (the ontology represented by this 
@@ -187,7 +186,7 @@ public interface Ontology
      * @return An iterator over the ontology resources superceded by this ontology
      * @exception OntProfileException If the {@link Profile#PRIOR_VERSION} property is not supported in the current language profile.   
      */ 
-    public Iterator listPriorVersion();
+    public ExtendedIterator listPriorVersion();
 
     /**
      * <p>Answer true if this ontology (the ontology represented by this 
@@ -237,7 +236,7 @@ public interface Ontology
      * @return An iterator over the ontology resources that this ontology is incompatible with
      * @exception OntProfileException If the {@link Profile#INCOMPATIBLE_WITH} property is not supported in the current language profile.   
      */ 
-    public Iterator listIncompatibleWith();
+    public ExtendedIterator listIncompatibleWith();
 
     /**
      * <p>Answer true if this ontology (the ontology represented by this 

@@ -29,6 +29,7 @@ import java.util.Iterator;
 
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.rdf.model.Resource;
+import com.hp.hpl.jena.util.iterator.ExtendedIterator;
 
 
 /**
@@ -89,7 +90,7 @@ public interface EnumeratedClass
      * @return An iterator over the individuals in the class extension
      * @exception OntProfileException If the {@link Profile#ONE_OF()} property is not supported in the current language profile.   
      */ 
-    public Iterator listOneOf();
+    public ExtendedIterator listOneOf();
 
     /**
      * <p>Answer true if the given individual is one of the enumerated individuals in the class extension

@@ -30,6 +30,7 @@ import com.hp.hpl.jena.enhanced.*;
 import com.hp.hpl.jena.graph.Node;
 import com.hp.hpl.jena.ontology.*;
 import com.hp.hpl.jena.rdf.model.*;
+import com.hp.hpl.jena.util.iterator.ExtendedIterator;
 
 
 /**
@@ -146,7 +147,7 @@ public class EnumeratedClassImpl
      * @return An iterator over the individuals in the class extension
      * @exception OntProfileException If the {@link Profile#ONE_OF()} property is not supported in the current language profile.   
      */ 
-    public Iterator listOneOf() {
+    public ExtendedIterator listOneOf() {
         return getOneOf().iterator();
     }
 

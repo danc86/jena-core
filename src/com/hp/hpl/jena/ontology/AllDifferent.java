@@ -29,6 +29,7 @@ import java.util.Iterator;
 
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.rdf.model.Resource;
+import com.hp.hpl.jena.util.iterator.ExtendedIterator;
 
 
 /**
@@ -93,7 +94,7 @@ public interface AllDifferent
      * @return An iterator over distinct individuals.
      * @exception OntProfileException If the {@link Profile#DISTINCT_MEMBERS()} property is not supported in the current language profile.   
      */ 
-    public Iterator listDistinct();
+    public ExtendedIterator listDistinct();
 
     /**
      * <p>Answer true if this AllDifferent declaration includes <code>res</code> as one of the distinct individuals.</p>
