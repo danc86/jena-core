@@ -32,8 +32,8 @@ public class JenaRuntime
             features.put(featureNoCharset, "true") ;
     }
     
-    static boolean runUnder(String featureName) { return true ; }
-    static boolean runNotUnder(String featureName) { return true ; }
+    static boolean runUnder(String featureName) { return features.containsKey(featureName) ; }
+    static boolean runNotUnder(String featureName) { return ! features.containsKey(featureName) ; }
     
     
     static final String lineSeparator = getSystemProperty("line.separator", "\n") ; 
