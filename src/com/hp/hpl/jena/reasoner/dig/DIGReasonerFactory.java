@@ -173,6 +173,8 @@ public class DIGReasonerFactory
                 .addProperty( ReasonerVocabulary.supportsP, ReasonerVocabulary.directSubClassOf )
                 .addProperty( ReasonerVocabulary.supportsP, ReasonerVocabulary.directSubPropertyOf )
                 
+                .addProperty( ReasonerVocabulary.supportsP, ReasonerVocabulary.individualAsThingP )
+                
                 // TODO - add OWL elements supported
                 .addProperty(ReasonerVocabulary.versionP, "0.1");
         }

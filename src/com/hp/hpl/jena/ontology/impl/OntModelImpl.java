@@ -82,9 +82,6 @@ public class OntModelImpl
     /** Query that will access nodes with types whose type is Restriction */
     protected BindingQueryPlan m_individualsQueryNoInf1;
     
-    /** Query that will access nodes that are sub-classes of Thing in this profile */
-    protected BindingQueryPlan m_individualsQueryInf;
-    
     /** Mode switch for strict checking mode */
     protected boolean m_strictMode = true;
     
@@ -149,11 +146,6 @@ public class OntModelImpl
         // cache the query plan for individuals
         m_individualsQueryNoInf0 = queryXTypeOfType( getProfile().CLASS() );
         m_individualsQueryNoInf1 = queryXTypeOfType( getProfile().RESTRICTION() );
-        
-        if (getProfile().THING() != null) {
-            Query q = new Query().addMatch( Query.X, RDF.type.asNode(), getProfile().THING().asNode() );
-            m_individualsQueryInf = queryHandler().prepareBindings( q, new Node[] {Query.X} );
-        }
         
         // add the global prefixes, if required
         if (getDocumentManager().useDeclaredPrefixes()) {
@@ -401,7 +393,7 @@ public class OntModelImpl
                                                         .getCapabilities()
                                                         .contains( null, ReasonerVocabulary.supportsP, ReasonerVocabulary.individualAsThingP );
         }
-        if (!supportsIndAsThing || (m_individualsQueryInf == null) || getProfile().CLASS().equals( RDFS.Class )) {
+        if (!supportsIndAsThing || (getProfile().THING() == null) || getProfile().CLASS().equals( RDFS.Class )) {
             // no inference, or we are in RDFS land, so we pick things that have rdf:type whose rdf:type is Class
             ExtendedIterator indivI = queryFor( m_individualsQueryNoInf0, null, Individual.class );
 
@@ -411,15 +403,16 @@ public class OntModelImpl
             }
             
             // we also must pick resources that simply have rdf:type owl:Thing, since some individuals are asserted that way
-            if (m_individualsQueryInf != null) {
-                indivI = indivI.andThen( queryFor( m_individualsQueryInf, null, Individual.class ) );
+            if (getProfile().THING() != null) {
+                indivI = indivI.andThen( findByTypeAs( getProfile().THING(), Individual.class ) );
             }
             
             return UniqueExtendedIterator.create( indivI );
         }
         else {
             // inference, so we pick the nodes that are of type Thing
-            return UniqueExtendedIterator.create( queryFor( m_individualsQueryInf, null, Individual.class ) );
+            return UniqueExtendedIterator.create(
+                    findByTypeAs( getProfile().THING(), Individual.class ) );
         }
     }
     
