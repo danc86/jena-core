@@ -63,7 +63,7 @@ class TokenPipe implements TokenManager {
 	}
 
 	void putNextToken(Token t) {
-     //  System.err.print(t.toString()+", ");
+   //    System.err.print(t.toString()+", ");
 		pipe.add(t);
 	}
 

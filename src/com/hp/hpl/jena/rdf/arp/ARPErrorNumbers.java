@@ -446,10 +446,19 @@ public interface ARPErrorNumbers {
     /**
      * A base URI was required but not given. The 
      * RDF/XML input includes a relative URI, an rdf:ID or
-     * some other same document reference. (E201).
+     * some other same document reference. (E211).
      */
     public int ERR_RESOLVING_URI_AGAINST_NULL_BASE = 211;
-    /**   The error recovery code failed; this can occur. (E300)
+    /**
+     * The document claimed to be UTF-8 but was not.
+     * It probably needs an xml declaration with
+     * an encoding attribute. (E212).
+     */
+    public int ERR_UTF_ENCODING = 212;/**
+     * An IOException occurred. (E213).
+     */
+    public int ERR_GENERIC_IO = 213;
+   /**   The error recovery code failed; this can occur. (E300)
     **/
     public int ERR_UNABLE_TO_RECOVER = 300;
 

@@ -175,7 +175,7 @@ class ParserSupport
 			+(maybeMissingPT?" Maybe a missing rdf:parseType='Literal'":""));
 	}
 	void saxException(Token t) throws ParseException {
-		SaxExceptionToken sax = (SaxExceptionToken) t;
+		ExceptionToken sax = (ExceptionToken) t;
 		arp.parseWarning(sax.errorCode, t.location, sax.toString());
 	}
 	CollectionAction collectionAction(AResource rslt[]){

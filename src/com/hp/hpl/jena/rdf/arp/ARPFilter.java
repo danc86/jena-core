@@ -199,8 +199,11 @@ class ARPFilter
 	boolean parseSome() {
 		try {
 			return pullParser.parse(false);
-		} catch (IOException e) {
-			System.err.println(e.getMessage());
+		} catch (UTFDataFormatException e) { 
+		    generalError(ERR_UTF_ENCODING,  e);
+		    return false;
+	    }  catch (IOException e) {
+		    generalError(ERR_GENERIC_IO,  e);
 			return false;
 		} catch (DontDieYetException e) {
 			return false;
@@ -854,6 +857,12 @@ class ARPFilter
 		saxError(ERR_SAX_FATAL_ERROR, e);
 		throw new DontDieYetException();
 	}
+	private void generalError(int i,Exception e) {
+		Location where = new Location(locator);
+     //   System.err.println(e.getMessage());
+		pipe.putNextToken(new ExceptionToken(i, where, e));
+
+	}
 	private void saxError(int i, SAXParseException e) {
 		Location where =
 			new Location(
@@ -861,7 +870,7 @@ class ARPFilter
 				e.getLineNumber(),
 				e.getColumnNumber());
 
-		pipe.putNextToken(new SaxExceptionToken(i, where, e));
+		pipe.putNextToken(new ExceptionToken(i, where, e));
 
 	}
 

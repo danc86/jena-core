@@ -1969,6 +1969,12 @@ Notice the action within the kleene star.
        failure.setFatal(true);
        throw failure;
      case E_END: needed--; break;
+     case X_SAX_EX:
+        X.saxException(t);
+        break;
+     case X_WARNING:
+        arp.parseWarning((Warn)t);
+        break;
      case E_LI:
      case E_RDF:
      case E_RDF_N:
