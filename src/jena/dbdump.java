@@ -1,8 +1,8 @@
 /*
- * (c) Copyright 2003, Hewlett-Packard Company, all rights reserved.
+ * (c) Copyright 2003, Hewlett-Packard Development Company, LP
  * [See end of file]
  */
- 
+
 package jena;
 import jena.cmdline.* ;
 

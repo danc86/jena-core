@@ -1,7 +1,8 @@
 /*
- * (c) Copyright 2003, Hewlett-Packard Company, all rights reserved.
+ * (c) Copyright 2003, Hewlett-Packard Development Company, LP
  * [See end of file]
  */
+
  
 package jena;
 import jena.cmdline.* ;
@@ -285,10 +286,9 @@ abstract class DBcmd
     }
 }
 
-
 /*
- * (c) Copyright 2003 Hewlett-Packard Development Company, LP
- * All rights reserved.
+ *  (c) Copyright 2003 Hewlett-Packard Development Company, LP
+ *  All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
