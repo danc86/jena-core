@@ -134,17 +134,6 @@ public abstract class AbstractTestGraph extends GraphTestBase
 ////        assertOmitsAll( "modified simple graph", g, "x R y; a T b" );
 //        }
                                       
-    public void testReificationControl()
-        {
-        Graph g1 = graphWith( "x rdf:subject S" );
-        Graph g2 = GraphBase.withReification( g1, Reifier.Convenient );
-        assertEquals( "should not hide reification triple", 1, g1.size() );
-        assertEquals( "should not hide reification triple", 1, g2.size() );
-        g2.add( triple( "x rdf:object O" ) );
-        assertEquals( "", 1, g1.size() );
-        assertEquals( "", 1, g2.size() );
-        }
-
     /**
         Test that Graphs have transaction support methods, and that if they fail
         on some g they fail because they do not support the operation.

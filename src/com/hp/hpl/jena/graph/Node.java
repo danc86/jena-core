@@ -131,7 +131,7 @@ public abstract class Node {
         if (lit == null) 
             {
             // throw new SomeSuitableException( "null in createLiteral" );
-            log.warn( "null treated as empty string in createLiteral: this will become illegal." );
+            System.err.println /* log.warn */ ( "null treated as empty string in createLiteral: this will become illegal." );
             lit = "";
             } 
         return createLiteral( new LiteralLabel( lit, lang, isXml ) ); 

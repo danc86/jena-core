@@ -230,17 +230,7 @@ public abstract class GraphBase implements Graph {
 		b.append( "}" );
 		return b.toString();
 	   }
-    
-    /**
-        return a dynamic copy of G with full reification (ie captures
-        inbound reification triples)
-    */
-    public static Graph withReification( Graph g )
-        { return withReification( g, Reifier.Standard ); }
-        
-    public static Graph withReification( Graph g, Reifier.Style style )
-        { return new ReifyingCaptureGraph( g, style ); }
-        
+
 }
 
 /*
