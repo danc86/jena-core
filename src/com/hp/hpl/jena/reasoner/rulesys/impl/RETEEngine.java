@@ -110,6 +110,7 @@ public class RETEEngine implements FRuleEngineI {
      * raw data graph but may include additional deductions made by preprocessing hooks
      */
     public void fastInit(Finder inserts) {
+        findAndProcessActions();
         if (infGraph.getRawGraph() != null) {
             // Insert the data
             if (wildcardRule) {
@@ -399,6 +400,31 @@ public class RETEEngine implements FRuleEngineI {
             }
         }
         processedAxioms = true;
+    }
+    
+    /**
+     * Scan the rules for any run actions and run those
+     */
+    protected void findAndProcessActions() {
+        RuleContext tempContext = new RETERuleContext(infGraph, this);
+        for (Iterator i = rules.iterator(); i.hasNext(); ) {
+            Rule r = (Rule)i.next();
+            if (r.bodyLength() == 0) {
+                // An axiom
+                for (int j = 0; j < r.headLength(); j++) {
+                    Object head = r.getHeadElement(j);
+                    if (head instanceof Functor) {
+                        Functor f = (Functor)head;
+                        Builtin imp = f.getImplementor();
+                        if (imp != null) {
+                            imp.headAction(f.getArgs(), f.getArgLength(), tempContext);
+                        } else {
+                            throw new ReasonerException("Invoking undefined Functor " + f.getName() +" in " + r.toShortString());
+                        }
+                    }
+                }
+            }
+        }
     }
  
 //=======================================================================

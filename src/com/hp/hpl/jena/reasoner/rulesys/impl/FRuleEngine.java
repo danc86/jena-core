@@ -113,6 +113,7 @@ public class FRuleEngine implements FRuleEngineI {
      * raw data graph but may include additional deductions made by preprocessing hooks
      */
     public void fastInit(Finder inserts) {
+        findAndProcessActions();
         // Create the reasoning context
         BFRuleContext context = new BFRuleContext(infGraph);
         // Insert the data
@@ -290,6 +291,31 @@ public class FRuleEngine implements FRuleEngineI {
         }
         addSet(context);
         processedAxioms = true;
+    }
+        
+    /**
+     * Scan the rules for any actions and run those
+     */
+    protected void findAndProcessActions() {
+        BFRuleContext context = new BFRuleContext(infGraph);
+        for (Iterator i = rules.iterator(); i.hasNext(); ) {
+            Rule r = (Rule)i.next();
+            if (r.bodyLength() == 0) {
+                // An axiom
+                for (int j = 0; j < r.headLength(); j++) {
+                    Object head = r.getHeadElement(j);
+                    if (head instanceof Functor) {
+                        Functor f = (Functor)head;
+                        Builtin imp = f.getImplementor();
+                        if (imp != null) {
+                            imp.headAction(f.getArgs(), f.getArgLength(), context);
+                        } else {
+                            throw new ReasonerException("Invoking undefined Functor " + f.getName() +" in " + r.toShortString());
+                        }
+                    }
+                }
+            }
+        }
     }
     
     /**
