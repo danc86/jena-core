@@ -169,6 +169,7 @@ public class BasicForwardRuleInfGraph extends BaseInfGraph implements ForwardRul
      * this prepration is done.
      */
     public synchronized void prepare() {
+        if (isPrepared) return;
         isPrepared = true;
         // initilize the deductions graph
         fdeductions = new FGraph( new GraphMem() );
