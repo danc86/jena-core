@@ -146,8 +146,6 @@ public class TestCompareToMem extends TestCase
     	addRemove( modelrdf.createStatement(s,p,l));    	
     } 
     
-    // TODO add this back once datatype support added
-    /**
     public void testAddRemoveDatatype() {
     	Resource s = modelrdf.createResource("test#subject");
     	Property p = modelrdf.createProperty("test#predicate");
@@ -167,7 +165,6 @@ public class TestCompareToMem extends TestCase
     	
 		addRemove( modelrdf.createStatement(s,p,l2));    	
 	} 
-	**/
     
 	public void testAddRemoveHugeLiteral2() {
 		String base = "This is a huge string that repeats.";
