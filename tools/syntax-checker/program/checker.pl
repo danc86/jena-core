@@ -105,7 +105,7 @@ propertyNumber(owl:cardinality, 3):-!.
 propertyNumber(owl:hasValue, 3):-!.
 propertyNumber(owl:maxCardinality, 3):-!.
 propertyNumber(owl:minCardinality, 3):-!.
-propertyNumber(owl:oneOf, 3):-!.
+propertyNumber(owl:oneOf, 1):-!.
 propertyNumber(owl:someValuesFrom, 3):-!.
 propertyNumber(rdf:first, 3):-!.
 propertyNumber(P,_) :- throw(propertyNumber(P)).
