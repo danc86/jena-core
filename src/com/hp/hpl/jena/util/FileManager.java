@@ -99,7 +99,10 @@ public class FileManager
     public Iterator locators() { return handlers.listIterator() ; }
 
     /** Add a locator to the end of the locators list */ 
-    public void addLocator(Locator loc) { handlers.add(loc) ; }
+    public void addLocator(Locator loc)
+    {
+        log.debug("Add location: "+loc.getName()) ;
+        handlers.add(loc) ; }
 
     /** Add a file locator */ 
     public void addLocatorFile() { addLocatorFile(null) ; } 

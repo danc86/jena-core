@@ -122,7 +122,13 @@ public class LocatorFile implements Locator
             return null ;
         }
     }
-    public String getName() { return "LocatorFile" ; } 
+    public String getName()
+    {
+        String tmp = "LocatorFile" ;
+        if ( altDir != null )
+            tmp = tmp+"("+altDir+")" ;
+        return tmp ;
+    }
 }
 /*
  * (c) Copyright 2004 Hewlett-Packard Development Company, LP
