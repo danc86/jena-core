@@ -124,6 +124,9 @@ public class FBRuleInfGraph  extends BasicForwardRuleInfGraph implements Backwar
         tempNodecache = new TempNodeCache(this);
         if (JenaParameters.enableFilteringOfHiddenInfNodes) {
             hiddenNodes = new HashSet();
+            if (schema != null && schema instanceof FBRuleInfGraph) {
+                hiddenNodes.addAll(((FBRuleInfGraph)schema).hiddenNodes);
+            }
         }
     }
     

@@ -399,6 +399,16 @@ public class TestBugs extends TestCase {
         TestUtil.assertIteratorLength(inf.listStatements(y, null, (RDFNode)null), 0);
     }
     
+    /**
+     * Bug that exposed prototypes of owl:Thing despite hiding being switched on.
+     */
+    public void testHideOnOWLThing() {
+        Reasoner r = ReasonerRegistry.getOWLReasoner();
+        Model data = ModelFactory.createDefaultModel();
+        InfModel inf = ModelFactory.createInfModel(r, data);
+        StmtIterator things = inf.listStatements(null, RDF.type, OWL.Thing);
+        TestUtil.assertIteratorLength(things, 0);
+    }
     
     // debug assistant
     private void tempList(Model m, Resource s, Property p, RDFNode o) {
