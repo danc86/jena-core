@@ -91,7 +91,7 @@ public class BRWRule {
         BRWRule iRule = new BRWRule(head, iBody);
         if (firedRules.contains(iRule)) {
             // No additional answers to be found
-            return new NiceIterator();
+            return NullIterator.instance;
         } 
         firedRules.add(iRule);
         Iterator it = ((RDFSInfGraph) infGraph).findNested(iBody, data, firedRules);

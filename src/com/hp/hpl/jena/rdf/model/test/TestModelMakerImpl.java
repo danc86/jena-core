@@ -249,7 +249,7 @@ public class TestModelMakerImpl extends ModelTestBase
         public ExtendedIterator listGraphs()
             {
             history.add( "listModels()" );
-            return new NiceIterator();    
+            return NullIterator.instance;    
             }
         }        
     }

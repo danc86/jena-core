@@ -475,7 +475,7 @@ public abstract class AbstractTestQuery extends QueryTestBase
         final Graph g = new GraphBase()
             {
             public ExtendedIterator graphBaseFind( TripleMatch tm )
-                { return new NiceIterator(); }
+                { return NullIterator.instance; }
             public QueryHandler queryHandler()
                 {
                 return new SimpleQueryHandler( this )

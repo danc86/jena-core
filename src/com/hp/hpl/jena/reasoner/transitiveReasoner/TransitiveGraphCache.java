@@ -166,29 +166,29 @@ public class TransitiveGraphCache implements Finder {
                 } else {
                     // list all backwards from o
                     GraphNode gn_o = (GraphNode)nodeMap.get(o);
-                    if (gn_o == null) return new NiceIterator();
+                    if (gn_o == null) return NullIterator.instance;
                     return new GraphWalker(gn_o, false, closed, pred);
                 }
             } else {
                 GraphNode gn_s = (GraphNode)nodeMap.get(s);
-                if (gn_s == null) return new NiceIterator();
+                if (gn_s == null) return NullIterator.instance;
                 if (o.isVariable()) {
                     // list forward from s
                     return new GraphWalker(gn_s, true, closed, pred);
                 } else {
                     // Singleton test
                     GraphNode gn_o = (GraphNode)nodeMap.get(o);
-                    if (gn_o == null) return new NiceIterator();
+                    if (gn_o == null) return NullIterator.instance;
                     if (gn_s.linksTo(gn_o)) {
                         return new SingletonIterator(new Triple(s, pred, o));
                     } else {
-                        return new NiceIterator();
+                        return NullIterator.instance;
                     }
                 }
             }
         } else {
             // No matching triples in this cache
-            return new NiceIterator();
+            return NullIterator.instance;
         }
     }
 

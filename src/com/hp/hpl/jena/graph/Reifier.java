@@ -34,6 +34,9 @@ public interface Reifier extends GetTriple
     */
     ExtendedIterator find( TripleMatch m );
     
+    /**
+         Answer the number of reification quadlets held in this reifier.
+    */
     int size();
     
     /**

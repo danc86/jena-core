@@ -175,7 +175,7 @@ public class MultiUnion
         // anything in this model?
         if (m_subGraphs.size() == 0) {
             // the default NiceIterator has no elements
-            return new NiceIterator();
+            return NullIterator.instance;
         }
         else {
             // start building the iterator chain
