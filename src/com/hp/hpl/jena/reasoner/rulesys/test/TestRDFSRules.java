@@ -3,7 +3,7 @@
  * Created by:  Dave Reynolds
  * Created on:  08-Apr-03
  * 
- * (c) Copyright 2003, Hewlett-Packard Company, all rights reserved.
+ * (c) Copyright 2003, Hewlett-Packard Development Company, LP
  * [See end of file]
  * $Id$
  *****************************************************************/
@@ -26,12 +26,12 @@ import java.io.IOException;
 import java.util.Iterator;
 import org.apache.log4j.Logger;
 
-/** * Test suite to test the production rule version of the RDFS implementation.
+/** * Test suite to test the production rule version of the RDFS implementation.
  * <p> The tests themselves have been replaced by an updated version
  * of the top level TestRDFSReasoners but this file is maintained for now since
  * the top level timing test can sometimes be useful. </p>
- *  * @author <a href="mailto:der@hplb.hpl.hp.com">Dave Reynolds</a> * @version $Revision$ on $Date$ */
-public class TestRDFSRules extends TestCase {   
+ *  * @author <a href="mailto:der@hplb.hpl.hp.com">Dave Reynolds</a> * @version $Revision$ on $Date$ */
+public class TestRDFSRules extends TestCase {   
     /** Base URI for the test names */
     public static final String NAMESPACE = "http://www.hpl.hp.com/semweb/2003/query_tester/";
     
@@ -155,7 +155,7 @@ public class TestRDFSRules extends TestCase {
 }
 
 /*
-    (c) Copyright Hewlett-Packard Company 2003
+    (c) Copyright 2003 Hewlett-Packard Development Company, LP
     All rights reserved.
 
     Redistribution and use in source and binary forms, with or without

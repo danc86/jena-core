@@ -1,5 +1,5 @@
 /*
- *  (c) Copyright Hewlett-Packard Company 2001 
+ *  (c) Copyright 2001  Hewlett-Packard Development Company, LP
  *  All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -29,7 +29,7 @@
    AUTHOR:  Jeremy J. Carroll
 */
 /*
- *  (c) Copyright Hewlett-Packard Company 2001 
+ *  (c) Copyright 2001  Hewlett-Packard Development Company, LP
  *  All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without

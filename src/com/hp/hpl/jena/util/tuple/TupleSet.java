@@ -1,5 +1,5 @@
 /*
- * (c) Copyright 2002, Hewlett-Packard Company, all rights reserved.
+ * (c) Copyright 2002, Hewlett-Packard Development Company, LP
  * [See end of file]
  */
  
@@ -288,7 +288,7 @@ public class TupleSet implements Iterator
 }
 
 /*
- *  (c) Copyright Hewlett-Packard Company 2001
+ *  (c) Copyright 2001 Hewlett-Packard Development Company, LP
  *  All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without

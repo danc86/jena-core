@@ -1,5 +1,5 @@
 /*
-  (c) Copyright 2002, 2003, Hewlett-Packard Company, all rights reserved.
+  (c) Copyright 2000, 2001, 2002, 2003, Hewlett-Packard Development Company, LP
   [See end of file]
   $Id$
 */
@@ -33,7 +33,7 @@ public class Map1Iterator extends WrappedIterator implements ClosableIterator
         { return map.map1( super.next() ); }
     }
 /*
- *  (c) Copyright Hewlett-Packard Company 1999-2003 
+ * (c) Copyright 2000, 2001, 2002, 2003, Hewlett-Packard Development Company, LP
  *  All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without

@@ -1,5 +1,5 @@
 /*
- *  (c)     Copyright Hewlett-Packard Company 2000-2003
+ *  (c)     Copyright 2000, 2001, 2002, 2003 Hewlett-Packard Development Company, LP
  *   All rights reserved.
  * [See end of file]
  *  $Id$
@@ -1693,7 +1693,7 @@ class Unparser {
 }
 
 /*
-    (c) Copyright Hewlett-Packard Company 2000-2003
+    (c) Copyright 2000, 2001, 2002, 2003 Hewlett-Packard Development Company, LP
     All rights reserved.
 
     Redistribution and use in source and binary forms, with or without

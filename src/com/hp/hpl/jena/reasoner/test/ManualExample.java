@@ -3,7 +3,7 @@
  * Created by:  Dave Reynolds
  * Created on:  26-Jun-2003
  * 
- * (c) Copyright 2003, Hewlett-Packard Company, all rights reserved.
+ * (c) Copyright 2003, Hewlett-Packard Development Company, LP
  * [See end of file]
  * $Id$
  *****************************************************************/
@@ -126,7 +126,7 @@ public class ManualExample {
         
         // Rule example for
         String rules = 
-            "[r1: (?c eg:concatFirst ?p), (?c eg:concatSecond ?q) -> " +            "     [r1b: (?x ?c ?y) <- (?x ?p ?z) (?z ?q ?y)] ]";        Reasoner reasoner = new GenericRuleReasoner(Rule.parseRules(rules));
+            "[r1: (?c eg:concatFirst ?p), (?c eg:concatSecond ?q) -> " +            "     [r1b: (?x ?c ?y) <- (?x ?p ?z) (?z ?q ?y)] ]";        Reasoner reasoner = new GenericRuleReasoner(Rule.parseRules(rules));
 //        reasoner.setParameter(ReasonerVocabulary.PROPtraceOn, Boolean.TRUE);
         InfModel inf = ModelFactory.createInfModel(reasoner, rawData);
 //        System.out.println("OK = " + inf.contains(A, r, C));
@@ -154,7 +154,7 @@ public class ManualExample {
 
 
 /*
-    (c) Copyright Hewlett-Packard Company 2003
+    (c) Copyright 2003 Hewlett-Packard Development Company, LP
     All rights reserved.
 
     Redistribution and use in source and binary forms, with or without

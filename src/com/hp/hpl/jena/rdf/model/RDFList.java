@@ -13,7 +13,7 @@
  * Last modified on   $Date$
  *               by   $Author$
  *
- * (c) Copyright 2003, Hewlett-Packard Company, all rights reserved.
+ * (c) Copyright 2003, Hewlett-Packard Development Company, LP
  * (see footer for full conditions)
  *****************************************************************************/
 
@@ -528,7 +528,7 @@ public interface RDFList
 
 
 /*
-    (c) Copyright Hewlett-Packard Company 2003
+    (c) Copyright 2003 Hewlett-Packard Development Company, LP
     All rights reserved.
 
     Redistribution and use in source and binary forms, with or without

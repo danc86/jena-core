@@ -1,8 +1,8 @@
 /*
-  (c) Copyright 2002, Hewlett-Packard Company, all rights reserved.
-  [See end of file]
-  $Id$
-*/
+ * (c) Copyright 2000, 2001, 2002, 2003 Hewlett-Packard Development Company, LP
+ * [See end of file]
+ * $Id$
+ */
 
 package com.hp.hpl.jena.util.iterator;
 
@@ -29,7 +29,7 @@ public interface Filter
 }
 
 /*
- *  (c) Copyright Hewlett-Packard Company 1999-2003 
+ *  (c) Copyright 2000, 2001, 2002, 2003 Hewlett-Packard Development Company, LP
  *  All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without

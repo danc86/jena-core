@@ -12,7 +12,7 @@
  * Last modified on   $Date$
  *               by   $Author$
  *
- * (c) Copyright Hewlett-Packard Company 2001-2003
+ * (c) Copyright 2001, 2002, 2003 Hewlett-Packard Development Company, LP
  * See end of file for details
  *****************************************************************************/
 

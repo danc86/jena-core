@@ -1,5 +1,5 @@
 /*
- *  (c) Copyright Hewlett-Packard Company 2002
+ *  (c) Copyright 2002 Hewlett-Packard Development Company, LP
  *
  *  All rights reserved.
  *
@@ -41,7 +41,7 @@ public interface Cache extends CacheControl {
 }
 
 /*
- *  (c) Copyright Hewlett-Packard Company 2002
+ *  (c) Copyright 2002 Hewlett-Packard Development Company, LP
  *
  *  All rights reserved.
  *

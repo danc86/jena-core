@@ -3,22 +3,22 @@
  * Created by:  Dave Reynolds
  * Created on:  30-Mar-03
  * 
- * (c) Copyright 2003, Hewlett-Packard Company, all rights reserved.
+ * (c) Copyright 2003, Hewlett-Packard Development Company, LP
  * [See end of file]
  * $Id$
  *****************************************************************/
 package com.hp.hpl.jena.reasoner.rulesys;
-import com.hp.hpl.jena.rdf.model.*;
+import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.reasoner.*;
 import com.hp.hpl.jena.vocabulary.ReasonerVocabulary;
 import com.hp.hpl.jena.graph.*;
 import java.util.*;
 
-/** * Reasoner implementation which augments or transforms an RDF graph
+/** * Reasoner implementation which augments or transforms an RDF graph
  * according to a set of rules. This trivial version does not support
  * separate schema processing. The actual work is done in the inference
  * graph implementation.
- *  * @author <a href="mailto:der@hplb.hpl.hp.com">Dave Reynolds</a> * @version $Revision$ on $Date$ */
+ *  * @author <a href="mailto:der@hplb.hpl.hp.com">Dave Reynolds</a> * @version $Revision$ on $Date$ */
 public class BasicForwardRuleReasoner implements Reasoner {
     
     /** The parent reasoner factory which is consulted to answer capability questions */
@@ -193,7 +193,7 @@ public class BasicForwardRuleReasoner implements Reasoner {
 }
 
 /*
-    (c) Copyright Hewlett-Packard Company 2003
+    (c) Copyright 2003 Hewlett-Packard Development Company, LP
     All rights reserved.
 
     Redistribution and use in source and binary forms, with or without
