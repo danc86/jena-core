@@ -13,6 +13,8 @@ import com.hp.hpl.jena.reasoner.InfGraph;
 import com.hp.hpl.jena.graph.compose.MultiUnion;
 import com.hp.hpl.jena.ontology.tidy.impl.CheckerImpl;
 
+import com.hp.hpl.jena.ontology.*;
+
 
 /**
  * 
@@ -22,7 +24,14 @@ import com.hp.hpl.jena.ontology.tidy.impl.CheckerImpl;
  * and to add one or more Models, OntModels or Graphs.
  * It tries to do the right thing, vis-a-vis
  * imports, without duplicating imports processing 
- * already performed by an OntModel.
+ * already performed by an {@link OntModel};
+ * in particular, to use a specific 
+ * {@link OntDocumentManager}
+ * create an {@link OntModel} using that document
+ * manager. Any imports that are processed by
+ * this class, a private document manager is used,
+ * constructed from the default profile
+ * (with imports processing explicitly on).
  * The three methods {@link #getProblems()}
  * {@link #getErrors()} and {@link #getSubLanguage()}
  * can all be used repeatedly and at any point. They
