@@ -25,21 +25,21 @@ public interface Lookup {
 	  * @param subj The old subcategory for the subject.
 	  * @return The new subcategory for the subject.
 	  */
-	public abstract int subject(int refinement);
+	public abstract int subject(int old, int refinement);
 	/**
 	  * 
 	  * @param refinement The result of {@link #refineTriple(int,int,int)}
 	  * @param prop The old subcategory for the property.
 	  * @return The new subcategory for the property.
 	  */
-	public abstract int prop(int refinement);
+	public abstract int prop(int old, int refinement);
 	/**
 	  * 
 	  * @param refinement The result of {@link #refineTriple(int,int,int)}
 	  * @param obj The old subcategory for the object.
 	  * @return The new subcategory for the object.
 	  */
-	public abstract int object(int refinement);
+	public abstract int object(int old, int refinement);
 	/**
 	  * 
 	  * @param refinement The result of {@link #refineTriple(int,int,int)}
