@@ -126,6 +126,18 @@ public class TestBugReports
 
     }
     
+    /** Bug report from Hoger Knublauch on Aug 19th 2003. NPE when setting all distinct members */
+    public void test_hk_02() {
+        OntModelSpec spec = new OntModelSpec(OntModelSpec.OWL_MEM);
+        spec.setReasoner(null);
+        OntModel ontModel = ModelFactory.createOntologyModel(spec, null); // ProfileRegistry.OWL_LANG);
+        ontModel.createAllDifferent();
+        assertTrue(ontModel.listAllDifferent().hasNext());
+        AllDifferent allDifferent = (AllDifferent)ontModel.listAllDifferent().next();
+        //allDifferent.setDistinct(ontModel.createList());
+        assertFalse(allDifferent.listDistinct().hasNext());
+    }
+    
     /**
      * Bug report by federico.carbone@bt.com, 30-July-2003.   A literal can be
      * turned into an individual.
