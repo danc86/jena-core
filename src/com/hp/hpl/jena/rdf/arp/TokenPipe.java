@@ -71,8 +71,12 @@ class TokenPipe implements TokenManager {
 	private boolean atEOF = false;
 	public Token getNextToken() {
 		while (true) {
-			if (position < pipe.size())
-				return (Token) pipe.get(position++);
+			if (position < pipe.size()) {
+				int p = position++;
+				Token rslt = (Token) pipe.get(p);
+				pipe.set(p,null);
+				return rslt;
+			}
 			if (atEOF)
 				return new Token(RDFParserConstants.EOF, null);
 		  if (Thread.interrupted())

@@ -229,6 +229,37 @@ public class NTriple implements ARPErrorNumbers {
 				usedNext = true;
 			}
 			switch (opt) {
+				case 'D':
+				arp.setStatementHandler(new StatementHandler(){
+int debugC = 0;
+
+Runtime rt = Runtime.getRuntime();
+{ rt.gc(); rt.gc(); }
+int startMem = (int)(rt.totalMemory()-rt.freeMemory());
+					public void statement(AResource subj, AResource pred, AResource obj) {
+						statement(null,null,(ALiteral)null);
+						
+					}
+
+					public void statement(AResource subj, AResource pred, ALiteral lit) {
+						if (++debugC%100 == 0) {
+							System.out.println(debugC);
+							rt.gc();
+							System.out.println(rt.totalMemory()-rt.freeMemory()-startMem);
+						  rt.gc();
+							System.out.println(rt.totalMemory()-rt.freeMemory()-startMem);
+						  if (debugC == 500 && false) 
+						  try {
+						    Thread.sleep(20000);
+						  }
+						  catch (Exception e){
+						  }
+						}
+							
+						
+					}
+				});
+				  break;
 				case 'x' :
 					arp.setLaxErrorMode();
 					break;
