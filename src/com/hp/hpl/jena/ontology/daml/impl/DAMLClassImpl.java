@@ -310,7 +310,7 @@ public class DAMLClassImpl
      *         {@link com.hp.hpl.jena.ontology.daml.DAMLRestriction}).
      */
     public boolean isRestriction() {
-        return false;
+        return hasProperty( RDF.type, getProfile().RESTRICTION() );
     }
 
 

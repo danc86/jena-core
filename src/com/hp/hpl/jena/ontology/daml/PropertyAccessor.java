@@ -85,6 +85,18 @@ public interface PropertyAccessor
 
 
     /**
+     * <p>Answer the value of the encapsulated property, presented as a DAML list. If it has no values, answer
+     * null. If it has one value, answer that value (as a list). Otherwise, answer an undetermined
+     * member of the set of values. See also {@link #getDAMLValue}.
+     *
+     * @return A value for the encapsulated property in the RDF model, or null
+     *         if the property has no value.
+     * @exception com.hp.hpl.jena.ontology.ConversionException if the value is not a list
+     */
+    public DAMLList getList();
+
+
+    /**
      * <p>Answer a value of the encapsulated property, converted to a DAML common value</p>
      *
      * @return A DAML value for the encapsulated property in the RDF model, or null
