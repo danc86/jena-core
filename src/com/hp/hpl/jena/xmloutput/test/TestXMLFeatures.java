@@ -549,8 +549,8 @@ public class TestXMLFeatures extends TestCase {
 			"xmlns:eg=['\"]http://example.org/file[12]#['\"]",
 			null,
 			new Change() {
-			public void code(RDFWriter writer) {
-				writer.setNsPrefix("eg", "http://example.org/file1#");
+			public void code( Model m ) {
+				m.setNsPrefix("eg", "http://example.org/file1#");
 				setNsPrefixSysProp("eg", "http://example.org/file2#");
 			}
 		});

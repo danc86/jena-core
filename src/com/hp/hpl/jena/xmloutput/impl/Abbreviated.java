@@ -138,14 +138,14 @@ public class Abbreviated extends BaseXMLWriter implements RDFErrorHandler {
 			new FileInputStream("modules/rdf/regression/arp/bug51_0.rdf"),
 			"http://example.org/file");
 		RDFWriter pw = m.getWriter("RDF/XML-ABBREV");
-		pw.setNsPrefix("eg", "http://example.org/");
-		pw.setNsPrefix("eg2", "http://example.org/foo#");
+		m.setNsPrefix("eg", "http://example.org/");
+		m.setNsPrefix("eg2", "http://example.org/foo#");
 		pw.write(m, System.out, "http://example.org/file");
 	}
 
 }
 /*
-	(c) Copyright Hewlett-Packard Company 2002
+	(c) Copyright Hewlett-Packard Company 200, 2003
 	All rights reserved.
 
 	Redistribution and use in source and binary forms, with or without

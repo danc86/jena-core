@@ -481,7 +481,7 @@ public class rdfquery
             {
                 Model m = fmt.toModel() ;
                 RDFWriter rdfw = m.getWriter("N3") ;
-                rdfw.setNsPrefix("rs", ResultSet.getURI()) ;
+                m.setNsPrefix("rs", ResultSet.getURI()) ;
                 rdfw.write(m, System.out, null) ;
             }
             else

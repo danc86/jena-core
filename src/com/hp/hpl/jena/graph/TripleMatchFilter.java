@@ -33,7 +33,7 @@ public class TripleMatchFilter implements Filter {
     
 }
 /*
- *  (c) Copyright Hewlett-Packard Company 2000, 2001
+ *  (c) Copyright Hewlett-Packard Company 2000-2003
  *  All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without

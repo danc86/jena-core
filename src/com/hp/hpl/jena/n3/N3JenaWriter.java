@@ -155,23 +155,6 @@ public class N3JenaWriter implements RDFWriter
     }
 
     /**
-     * @see com.hp.hpl.jena.rdf.model.RDFWriter#setNsPrefix(java.lang.String, java.lang.String)
-     */
-    public void setNsPrefix(String prefix, String ns)
-    {
-        writer.setNsPrefix(prefix, ns) ;
-        
-    }
-
-    /**
-     * @see com.hp.hpl.jena.rdf.model.RDFWriter#getPrefixFor(java.lang.String)
-     */
-    public String getPrefixFor(String ns)
-    {
-        return writer.getPrefixFor(ns) ;
-    }
-
-    /**
      * @see com.hp.hpl.jena.rdf.model.RDFWriter#setErrorHandler(com.hp.hpl.jena.rdf.model.RDFErrorHandler)
      */
     public RDFErrorHandler setErrorHandler(RDFErrorHandler errHandler)
