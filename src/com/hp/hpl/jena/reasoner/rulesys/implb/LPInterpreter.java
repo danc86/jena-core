@@ -516,13 +516,14 @@ public class LPInterpreter {
                             continue main;
                                             
                         case RuleClauseCode.CALL_WILD_TABLED:
-                            if (engine.getRuleStore().isTabled(argVars[1])) {
+                            Node predicate = deref(argVars[1]);
+                            if (engine.getRuleStore().isTabled(predicate)) {
                                 setupTabledCall(pc, ac);
                             } else {
                                 // normal call set up
                                 clauses = engine.getRuleStore().codeFor(
-                                    new TriplePattern(argVars[0], argVars[1], argVars[2]));
-                                setupClauseCall(pc, ac, clauses);
+                                    new TriplePattern(argVars[0], predicate, argVars[2]));
+                                if (clauses != null) setupClauseCall(pc, ac, clauses);
                                 setupTripleMatchCall(pc, ac);
                             }
                             continue main;
