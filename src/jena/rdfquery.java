@@ -354,7 +354,7 @@ public class rdfquery
         if ( queryFile != null )
         {
             try {
-                queryString = FileUtils.readWholeFile(queryFile) ;
+                queryString = FileUtils.readWholeFileAsUTF8(queryFile) ;
             } catch (Exception e)
             {
                 System.err.println("Error: failed to read file: "+e) ;
