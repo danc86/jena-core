@@ -228,7 +228,7 @@ public class QueryResultsMem implements QueryResultsRewindable
             {
                 try {
                     int size = root.getRequiredProperty(ResultSet.size).getInt() ;
-                    if ( size != count )
+                    if ( size < count )
                         System.err.println("Warning: Declared size = "+size+" : Count = "+count) ;
                 } catch (JenaException rdfEx) {}
             }
