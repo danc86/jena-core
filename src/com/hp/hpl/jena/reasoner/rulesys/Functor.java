@@ -43,6 +43,7 @@ public class Functor implements ClauseEntry {
     /** A static Filter instance that detects triples with Functor objects */
     public static final Filter acceptFilter = new Filter() {
                 public boolean accept(Object t) {
+                    if (((Triple)t).getSubject().isLiteral()) return true;
                     Node n = ((Triple)t).getObject();
                     return n.isLiteral() && n.getLiteral().getDatatype() == FunctorDatatype.theFunctorDatatype;
                 }

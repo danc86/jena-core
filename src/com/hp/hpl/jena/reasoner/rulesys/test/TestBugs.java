@@ -9,6 +9,8 @@
  *****************************************************************/
 package com.hp.hpl.jena.reasoner.rulesys.test;
 
+import com.hp.hpl.jena.ontology.*;
+import com.hp.hpl.jena.ontology.daml.DAMLModel;
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.reasoner.*;
 import com.hp.hpl.jena.util.iterator.ExtendedIterator;
@@ -78,6 +80,53 @@ public class TestBugs extends TestCase {
         Resource aDocument = test.getResource(NAMESPACE + "aDocument");
         Resource documentType = test.getResource(NAMESPACE + "Document");
         assertTrue("Cardinality-based classification", test.contains(aDocument, RDF.type, documentType));
+    }
+    
+    /**
+     * Report of functor literals leaking out of inference graphs and raising CCE
+     * in iterators.
+     */
+    public void testFunctorCCE() {
+        Model base = ModelFactory.createDefaultModel();
+        base.read("file:testing/reasoners/bugs/cceTest.owl");
+        InfModel test = ModelFactory.createInfModel(ReasonerRegistry.getOWLReasoner(), base);
+
+        boolean b = anyInstancesOfNothing(test);
+        ResIterator rIter = test.listSubjects();
+        while (rIter.hasNext()) { 
+            Resource res = rIter.nextResource();
+        }
+    }
+    
+    /** Helper function used in testFunctorCCE */
+    private boolean anyInstancesOfNothing(Model model) { 
+        boolean hasAny = false;
+        try {
+            ExtendedIterator it = model.listStatements(null, RDF.type, OWL.Nothing);
+            hasAny = it.hasNext();
+            it.close();
+        } catch (ConversionException x) {
+            hasAny = false;
+        }
+        return hasAny;
+    }
+    
+    /**
+     * Report of functor literals leaking out in DAML processing as well.
+     */
+    public void testDAMLCCE() {
+        DAMLModel m = ModelFactory.createDAMLModel();
+        m.read( "file:testing/reasoners/bugs/literalLeak.daml", 
+                "http://www.daml.org/2001/03/daml+oil-ex",  null );
+        ResIterator rIter = m.listSubjects();
+        while (rIter.hasNext()) { 
+            Resource res = rIter.nextResource();
+            if (res.getNode().isLiteral()) {
+                System.out.println("ERROR: " + res);
+            }
+        }
+
+//        m.writeAll( System.err, "RDF/XML-ABBREV", "http://www.daml.org/2001/03/daml+oil-ex" );        
     }
 }
 
