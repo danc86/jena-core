@@ -15,12 +15,10 @@ import java.util.List;
      
      @author hedgehog
 */
-public class Sequence extends RegexpTree
+public class Sequence extends MultiOperandTree
     {
-    protected RegexpTree [] operands;
-    
     protected Sequence( RegexpTree [] operands )
-        { this.operands = operands; }
+        { super( operands ); }
     
     public static RegexpTree create( List operands )
         {
@@ -32,32 +30,14 @@ public class Sequence extends RegexpTree
     
     public boolean equals( Object other )
         {
-        return other instanceof Sequence && same( (Sequence) other );
+        return other instanceof Sequence && sameOperands( (MultiOperandTree) other );
         }
 
-    protected boolean same( Sequence other )
-        {
-        if (other.operands.length == operands.length)
-            {
-            for (int i = 0; i < operands.length; i += 1)
-                if (operands[i].equals( other.operands[i] ) == false) return false;
-            return true;
-            }
-        else
-            return false;
-        }
-    
     public int hashCode()
-        { 
-        int result = 0;
-        for (int i = 0; i < operands.length; i += 1) 
-            result = (result << 1) ^ operands[i].hashCode();
-        return result;
-        }
-
+        { return hashCode( 0 ); }
+    
     public String toString()
-        { return "<seq ...>";
-        }
+        { return toString( "seq" ); }
 
     }
 

@@ -21,7 +21,8 @@ public class SimpleGenerator implements RegexpTreeGenerator
     public RegexpTree getZeroOrMore( RegexpTree d ) { return new ZeroOrMore( d ); }
     public RegexpTree getOneOrMore( RegexpTree d ) { return new OneOrMore( d ); }
     public RegexpTree getOptional( RegexpTree d ) { return new Optional( d ); }
-    public Object getSequence( List operands ) { return Sequence.create( operands ); }
+    public RegexpTree getSequence( List operands ) { return Sequence.create( operands ); }
+    public RegexpTree getAlternatives( List operands ) { return Alternatives.create( operands ); }
     }
 
 /*

@@ -56,12 +56,20 @@ public interface RegexpTreeGenerator
     public abstract RegexpTree getOptional( RegexpTree d );
 
     /**
-         Answer a RegExpTree which for matching the sequence of operands 
+         Answer a RegexpTree which for matching the sequence of operands 
          in the list. Every element must be a RegexpTree. If the list contains
          exactly one element, it is strongly recommended that that element be
          returned.
     */
-    public abstract Object getSequence( List operands );
+    public abstract RegexpTree getSequence( List operands );
+
+    /**
+         Answer a RegexpTree for matching one of a set of alternative operand
+         expressions from the list. Every element must be a RegexpTree. If the
+         list has exactly one element, it is recommended that that element be 
+         returned.
+    */
+    public abstract RegexpTree getAlternatives( List operands );
     }
 
 /*
