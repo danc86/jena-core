@@ -80,7 +80,7 @@ public interface DAMLList
      * given value and whose rest is the current list.  This is the 'cons' operator
      * familiar from other list processing languages.</p>
      *
-     * @param The new value to be added to the head of the list
+     * @param value The new value to be added to the head of the list
      * @return a new list whose <code>daml:first</code> is the value, and whose
      *         <code>daml:rest</code> is this list.
      */
@@ -124,7 +124,7 @@ public interface DAMLList
      * <p>Set the property <code>daml:rest</code> for the given list element. This is a single
      * value that denotes the tail of the list.</p>
      *
-     * @param value The value to be assigned to the tail of the list.
+     * @param tail The value to be assigned to the tail of the list.
      */
     public void setRest( DAMLList tail );
 
