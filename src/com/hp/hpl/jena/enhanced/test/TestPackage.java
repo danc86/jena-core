@@ -74,7 +74,7 @@ public class TestPackage extends GraphTestBase  {
    	public TestPackage(String name)
 		{
 		super( name );
-		};
+		}
 		
     public static TestSuite suite()
         { TestSuite suite = new TestSuite( "Enhanced" ); 

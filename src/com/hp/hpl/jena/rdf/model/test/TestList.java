@@ -670,7 +670,7 @@ public class TestList
                public void apply( RDFNode n ) {
                    collect = collect + ((Resource) n).getLocalName();  
                } 
-            };
+            }
             
             MyApply f = new MyApply();
             root.apply( f );

@@ -25,7 +25,7 @@ import com.hp.hpl.jena.shared.*;
 public abstract class AbstractTestGraphMaker extends GraphTestBase
     {
     public AbstractTestGraphMaker( String name )
-            { super( name ); };
+            { super( name ); }
             
     public abstract GraphMaker getGraphFactory();
     

@@ -550,7 +550,7 @@ public abstract class DriverRDB implements IRDBDriver {
 					result = alltables.next();
 					alltables.close();
 			} catch (Exception e1) {
-					;// if anything goes wrong, the database is not formatted correctly;
+					// if anything goes wrong, the database is not formatted correctly;
 			}
 			return result;
 	}

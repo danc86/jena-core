@@ -16,7 +16,7 @@ import junit.framework.*;
 public class TestCapabilities extends GraphTestBase
     {
     public TestCapabilities( String name )
-        { super( name ); };
+        { super( name ); }
         
     public static TestSuite suite()
         { return new TestSuite( TestCapabilities.class ); }   
@@ -27,7 +27,7 @@ public class TestCapabilities extends GraphTestBase
     public void testTheyreThere()
         {
         Graph g = Factory.createDefaultGraph();
-        Capabilities c = g.getCapabilities();
+        /* Capabilities c = */ g.getCapabilities();
         }
     }
 

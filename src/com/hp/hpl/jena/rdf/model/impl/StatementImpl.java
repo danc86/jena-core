@@ -259,10 +259,10 @@ public class StatementImpl  implements Statement {
         data-types are put properly into Jena, it will likely disappear. 
     */
     protected StatementImpl stringReplace( String s )
-        { return stringReplace( s, "", false ); };
+        { return stringReplace( s, "", false ); }
 
     protected StatementImpl stringReplace( String s, String lang, boolean wellFormed )
-        { return replace( new LiteralImpl( Node.createLiteral( s, lang, wellFormed ), model ) ); };
+        { return replace( new LiteralImpl( Node.createLiteral( s, lang, wellFormed ), model ) ); }
             
     /** it turns out to be handy to return this StatementImpl as the result */ 
     protected StatementImpl replace(RDFNode n)  {

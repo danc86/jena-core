@@ -21,7 +21,7 @@ import junit.framework.*;
 public class TestModelBulkUpdate extends ModelTestBase
     {
     public TestModelBulkUpdate( String name )
-        { super( name ); };
+        { super( name ); }
         
     public static TestSuite suite()
         { return new TestSuite( TestModelBulkUpdate.class ); }   

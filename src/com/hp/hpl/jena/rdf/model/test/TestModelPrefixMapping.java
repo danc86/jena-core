@@ -19,7 +19,7 @@ import junit.framework.*;
 public class TestModelPrefixMapping extends AbstractTestPrefixMapping
     {
     public TestModelPrefixMapping( String name )
-        { super( name ); };
+        { super( name ); }
     
     public static TestSuite suite()
         { return new TestSuite( TestModelPrefixMapping.class ); }   

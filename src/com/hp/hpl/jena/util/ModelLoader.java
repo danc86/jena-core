@@ -300,7 +300,7 @@ public class ModelLoader
 	 * This is a global change when the ModelLoader is used.
 	 */
 
-    public static void setFileBase(String _basename) { basename = _basename ; } ;
+    public static void setFileBase(String _basename) { basename = _basename ; } 
 
     private static String getFilenameExt(String filename)
     {

@@ -17,7 +17,7 @@ import junit.framework.*;
 public class TestFactory extends GraphTestBase
     {
     public TestFactory( String name )
-        { super( name ); };
+        { super( name ); }
         
     public static TestSuite suite()
         { return new TestSuite( TestFactory.class ); }   

@@ -21,8 +21,7 @@ import java.util.*;
 public abstract class AbstractTestPrefixMapping extends GraphTestBase
     {
     public AbstractTestPrefixMapping( String name )
-         { super( name ); };
-
+         { super( name ); }
 
     abstract protected PrefixMapping getMapping();
         

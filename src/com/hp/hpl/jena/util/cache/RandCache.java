@@ -34,7 +34,7 @@ public class RandCache implements Cache, CacheControl {
     RandCache(String name, int size) {
         this.size = size;
         map = new HashMap(size * 100 / 75);  // based on .75 loadfactor
-        threshhold = size;;
+        threshhold = size;
         if (threshhold < 2) {
             throw new Error("Cache size too small: " + size);
         }

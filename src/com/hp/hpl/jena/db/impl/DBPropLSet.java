@@ -50,7 +50,7 @@ public class DBPropLSet extends DBProp {
 	}
 	
 	public String getName() { return self.getURI().substring(DB.getURI().length()); }
-	public String getType() { return getPropString( lSetType); };
+	public String getType() { return getPropString( lSetType); }
 	
 	public DBPropPSet getPset() {
 		Iterator matches = graph.find(self, lSetPSet, null, newComplete() );

@@ -91,7 +91,7 @@ public class TestTypedLiterals extends TestCase {
         try {
             int i = l3.getInt();
             assertTrue("Allowed int conversion", false);
-        } catch (DatatypeFormatException e) {};
+        } catch (DatatypeFormatException e) {}
         assertEquals("Extract value", l1.getValue(), "foo");
         assertEquals("Extract lang", l1.getLanguage(), "lang1");
         assertEquals("Extract xml tag", l1.getWellFormed(), false);
@@ -129,7 +129,7 @@ public class TestTypedLiterals extends TestCase {
         try {
             int i = l1.getInt();
             assertTrue("Allowed int conversion", false);
-        } catch (DatatypeFormatException e) {};
+        } catch (DatatypeFormatException e) {}
         assertEquals("Extract lang", l1.getLanguage(), "lang1");
         assertEquals("Extract xml tag", l1.getWellFormed(), false);
     }

@@ -48,8 +48,8 @@ public class DBPropPSet extends DBProp {
 	}	
 	
 	public String getName() { return getPropString( pSetName); }
-	public String getType() { return getPropString( pSetType); };
-	public String getTable() { return getPropString( pSetTable); };
+	public String getType() { return getPropString( pSetType); }
+	public String getTable() { return getPropString( pSetTable); }
 }
 
 /*

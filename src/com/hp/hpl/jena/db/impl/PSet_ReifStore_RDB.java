@@ -418,7 +418,7 @@ public class PSet_ReifStore_RDB extends PSet_TripleStore_RDB {
 		StmtMask fragMask,
 		IDBID my_GID) {
 			
-			String stmtStr = null;;
+			String stmtStr = null;
 			Node val = null;
 			int argc = 1;
 			ResultSetTripleIterator result =

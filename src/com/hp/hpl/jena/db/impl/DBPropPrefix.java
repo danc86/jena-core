@@ -43,7 +43,7 @@ public class DBPropPrefix extends DBProp {
 	}	
 		
 	public String getValue() { return getPropString( prefixValue); }
-	public String getURI() { return getPropString( prefixURI); };
+	public String getURI() { return getPropString( prefixURI); }
 	
 
 	public ExtendedIterator listTriples() {
