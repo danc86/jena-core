@@ -30,6 +30,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 
+import org.apache.commons.logging.LogFactory;
 import org.apache.oro.text.regex.*;
 import org.apache.xerces.util.XMLChar;
 
@@ -178,6 +179,9 @@ public class schemagen {
     /** Option to generate an output file with DOS (\r\n) line endings. Default is Unix line endings. */
     protected static final Object OPT_DOS = new Object();
 
+    /** Option to generate to force the model to perform inference, off by default. */
+    protected static final Object OPT_USE_INF = new Object();
+
 
 
     // Static variables
@@ -237,6 +241,7 @@ public class schemagen {
         {OPT_ENCODING,            new OptionDefinition( "-e", "encoding" )},
         {OPT_HELP,                new OptionDefinition( "--help", null )},
         {OPT_DOS,                 new OptionDefinition( "--dos", "dos" )},
+        {OPT_USE_INF,             new OptionDefinition( "--inference", "inference" )},
     };
 
     /** Stack of replacements to apply */
@@ -357,16 +362,33 @@ public class schemagen {
         OntModelSpec s = null;
         if (isTrue( OPT_LANG_DAML )) {
             // daml language specified
-            s = OntModelSpec.getDefaultSpec( ProfileRegistry.DAML_LANG );
+            if (isTrue( OPT_USE_INF )) {
+                s = OntModelSpec.DAML_MEM_RULE_INF;
+            }
+            else {
+                s = OntModelSpec.DAML_MEM;
+            }
         }
         else if (isTrue( OPT_LANG_RDFS )) {
             // rdfs language specified
-            s = OntModelSpec.getDefaultSpec( ProfileRegistry.RDFS_LANG );
+            if (isTrue( OPT_USE_INF )) {
+                s = OntModelSpec.RDFS_MEM_RDFS_INF;
+            }
+            else {
+                s = OntModelSpec.RDFS_MEM;
+            }
         }
         else {
             // owl is the default
-            s = OntModelSpec.getDefaultSpec( ProfileRegistry.OWL_LANG );
+            // s = OntModelSpec.getDefaultSpec( ProfileRegistry.OWL_LANG );
+            if (isTrue( OPT_USE_INF )) {
+                s = OntModelSpec.OWL_MEM_RULE_INF;
+            }
+            else {
+                s = OntModelSpec.OWL_MEM;
+            }
         }
+        
         m_source = ModelFactory.createOntologyModel( s, null );
         m_source.getDocumentManager().setProcessImports( false );
     }
@@ -1046,7 +1068,14 @@ public class schemagen {
 
         // collect any RDFS or DAML comments attached to the node
         for (NodeIterator ni = m_source.listObjectsOfProperty( r, RDFS.comment );  ni.hasNext(); ) {
-            comment.append( ((Literal) ni.nextNode()).getLexicalForm().trim() );
+            //comment.append( ((Literal) ni.nextNode()).getLexicalForm().trim() );
+            RDFNode n = ni.nextNode();
+            if (n instanceof Literal) {
+                comment.append( ((Literal) n).getLexicalForm().trim() );
+            }
+            else {
+                LogFactory.getLog( getClass() ).debug( "Not a literal: " + n );
+            }
         }
 
         for (NodeIterator ni = m_source.listObjectsOfProperty( r, DAML_OIL.comment );  ni.hasNext(); ) {
