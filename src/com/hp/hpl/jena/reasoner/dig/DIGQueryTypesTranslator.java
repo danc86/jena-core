@@ -102,7 +102,7 @@ public class DIGQueryTypesTranslator
         return null;
     }
 
-    public boolean checkSubject( com.hp.hpl.jena.graph.Node subject, DIGAdapter da ) {
+    public boolean checkSubject( com.hp.hpl.jena.graph.Node subject, DIGAdapter da, Model premises ) {
         return subject.isConcrete() && da.isIndividual( subject );
     }
 

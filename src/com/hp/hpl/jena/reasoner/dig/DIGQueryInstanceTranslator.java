@@ -62,7 +62,7 @@ public class DIGQueryInstanceTranslator
     //////////////////////////////////
 
     /**
-     * <p>Construct a translator for the DIG query 'subsumes'.</p>
+     * <p>Construct a translator for the DIG query 'instance'.</p>
      * @param predicate The predicate URI to trigger on
      */
     public DIGQueryInstanceTranslator( String predicate ) {
@@ -114,15 +114,11 @@ public class DIGQueryInstanceTranslator
      * <p>Answer an iterator of triples that match the original find query.</p>
      */
     public ExtendedIterator translateResponse( Document response, TriplePattern query, DIGAdapter da ) {
-        return isTrue( response ) ? (ExtendedIterator) new SingletonIterator( query.asTriple() ) : NullIterator.instance;
+        return isFalse( response ) ? NullIterator.instance : (ExtendedIterator) new SingletonIterator( query.asTriple() );
     }
     
-    public boolean checkSubject( com.hp.hpl.jena.graph.Node subject, DIGAdapter da ) {
-        return subject.isConcrete();
-    }
-    
-    public boolean checkObject( com.hp.hpl.jena.graph.Node object, DIGAdapter da ) {
-        return object.isConcrete() && da.isConcept( object );
+    public boolean checkObject( com.hp.hpl.jena.graph.Node object, DIGAdapter da, Model premises ) {
+        return da.isConcept( object, premises );
     }
 
     // Internal implementation methods

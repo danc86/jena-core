@@ -116,12 +116,12 @@ public class DIGQueryIsEquivalentTranslator
         return null;
     }
 
-    public boolean checkSubject( com.hp.hpl.jena.graph.Node subject, DIGAdapter da ) {
-        return subject.isConcrete();
+    public boolean checkSubject( com.hp.hpl.jena.graph.Node subject, DIGAdapter da, Model premises ) {
+        return da.isConcept( subject, premises );
     }
     
-    public boolean checkObject( com.hp.hpl.jena.graph.Node object, DIGAdapter da ) {
-        return object.isConcrete();
+    public boolean checkObject( com.hp.hpl.jena.graph.Node object, DIGAdapter da, Model premises ) {
+        return da.isConcept( object, premises );
     }
 
 

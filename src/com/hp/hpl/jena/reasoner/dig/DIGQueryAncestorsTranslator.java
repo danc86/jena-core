@@ -119,12 +119,12 @@ public class DIGQueryAncestorsTranslator
         return null;
     }
 
-    public boolean checkSubject( com.hp.hpl.jena.graph.Node subject, DIGAdapter da ) {
-        return !m_ancestors || subject.isConcrete();
+    public boolean checkSubject( com.hp.hpl.jena.graph.Node subject, DIGAdapter da, Model premises ) {
+        return !m_ancestors || da.isConcept( subject, premises );
     }
     
-    public boolean checkObject( com.hp.hpl.jena.graph.Node object, DIGAdapter da ) {
-        return m_ancestors || object.isConcrete();
+    public boolean checkObject( com.hp.hpl.jena.graph.Node object, DIGAdapter da, Model premises ) {
+        return m_ancestors || da.isConcept( object, premises );
     }
 
 

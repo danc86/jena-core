@@ -151,15 +151,17 @@ public abstract class DIGQueryTranslator {
      * <p>Answer true if this translator applies to the given triple pattern.</p>
      * @param pattern An incoming patter to match against
      * @param da The current dig adapter
+     * @param premises An optional Model that is used to convey the statements in the additional
+     * premises to the query
      * @return True if this translator applies to the pattern.
      */
-    public boolean trigger( TriplePattern pattern, DIGAdapter da ) {
-        return trigger( m_subject, pattern.getSubject() ) &&
-               trigger( m_object, pattern.getObject() )   &&
-               trigger( m_pred, pattern.getPredicate() )  &&
-               checkSubject( pattern.getSubject(), da )       &&
-               checkObject( pattern.getObject(), da )         &&
-               checkPredicate( pattern.getPredicate(), da );
+    public boolean trigger( TriplePattern pattern, DIGAdapter da, Model premises ) {
+        return trigger( m_subject, pattern.getSubject(), premises ) &&
+               trigger( m_object, pattern.getObject(), premises )   &&
+               trigger( m_pred, pattern.getPredicate(), premises )  &&
+               checkSubject( pattern.getSubject(), da, premises )       &&
+               checkObject( pattern.getObject(), da, premises )         &&
+               checkPredicate( pattern.getPredicate(), da, premises );
     }
     
     
@@ -168,9 +170,12 @@ public abstract class DIGQueryTranslator {
      * is to always match</p>
      * @param subject The subject resource from the incoming pattern
      * @param da The current dig adapter
+     * @param premises A model that conveys additional information about the premises
+     * of the query, which might assist the check to suceed or fail. By default it
+     * is ignored.
      * @return True if this subject matches the trigger condition expressed by this translator instance
      */
-    public boolean checkSubject( Node subject, DIGAdapter da ) {
+    public boolean checkSubject( Node subject, DIGAdapter da, Model premises ) {
         return true;
     }
     
@@ -180,9 +185,12 @@ public abstract class DIGQueryTranslator {
      * is to always match</p>
      * @param object The object resource from the incoming pattern
      * @param da The current dig adapter
+     * @param premises A model that conveys additional information about the premises
+     * of the query, which might assist the check to suceed or fail. By default it
+     * is ignored.
      * @return True if this object matches the trigger condition expressed by this translator instance
      */
-    public boolean checkObject( Node object, DIGAdapter da ) {
+    public boolean checkObject( Node object, DIGAdapter da, Model premises ) {
         return true;
     }
     
@@ -192,9 +200,12 @@ public abstract class DIGQueryTranslator {
      * is to always match</p>
      * @param pred The predicate resource from the incoming pattern
      * @param da The current dig adapter
+     * @param premises A model that conveys additional information about the premises
+     * of the query, which might assist the check to suceed or fail. By default it
+     * is ignored.
      * @return True if this predicate matches the trigger condition expressed by this translator instance
      */
-    public boolean checkPredicate( Node pred, DIGAdapter da ) {
+    public boolean checkPredicate( Node pred, DIGAdapter da, Model premises ) {
         return true;
     }
 
@@ -241,9 +252,12 @@ public abstract class DIGQueryTranslator {
      * the nodes are equal. Note: not matching in the same sense as triple patterns.</p>
      * @param lhs The trigger node to match against
      * @param rhs The incoming pattern node
+     * @param premises A model that conveys additional information about the premises
+     * of the query, which might assist the trigger to suceed or fail. By default it
+     * is ignored.
      * @return True if match
      */
-    protected boolean trigger( Node lhs, Node rhs ) {
+    protected boolean trigger( Node lhs, Node rhs, Model premises ) {
         return (lhs == null) || lhs.equals( rhs );
     }
     
@@ -351,7 +365,6 @@ public abstract class DIGQueryTranslator {
         }
     }
     
-
 
     //==============================================================================
     // Inner class definitions

@@ -66,7 +66,7 @@ public class DIGQueryRoleAncestorsTranslator
     //////////////////////////////////
 
     /**
-     * <p>Construct a translator for the DIG query 'parents'.</p>
+     * <p>Construct a translator for the DIG query 'rparents'.</p>
      * @param predicate The predicate URI to trigger on
      * @param ancestors If true, we are searching for parents of the class; if false, the descendants
      */
@@ -114,12 +114,12 @@ public class DIGQueryRoleAncestorsTranslator
         return null;
     }
 
-    public boolean checkSubject( com.hp.hpl.jena.graph.Node subject, DIGAdapter da ) {
-        return !m_ancestors || subject.isConcrete();
+    public boolean checkSubject( com.hp.hpl.jena.graph.Node subject, DIGAdapter da, Model premises ) {
+        return !m_ancestors || da.isRole( subject, premises );
     }
     
-    public boolean checkObject( com.hp.hpl.jena.graph.Node object, DIGAdapter da ) {
-        return m_ancestors || object.isConcrete();
+    public boolean checkObject( com.hp.hpl.jena.graph.Node object, DIGAdapter da, Model premises ) {
+        return m_ancestors || da.isRole( object, premises );
     }
 
 

@@ -29,6 +29,8 @@ package com.hp.hpl.jena.reasoner.dig;
 ///////////////
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.graph.compose.MultiUnion;
+import com.hp.hpl.jena.ontology.OntModel;
+import com.hp.hpl.jena.rdf.model.ModelFactory;
 import com.hp.hpl.jena.reasoner.*;
 import com.hp.hpl.jena.util.iterator.ExtendedIterator;
 
@@ -138,8 +140,10 @@ public class DIGInfGraph
      * object nodes refer.
      */
     public ExtendedIterator find( Node subject, Node property, Node object, Graph param ) {
-        
-        return null;
+        OntModel premises = ModelFactory.createOntologyModel( m_adapter.getSourceSpecification(), 
+                                                              ModelFactory.createModelForGraph( param ) );
+        prepare();
+        return m_adapter.find( new TriplePattern( subject, property, object ), premises );
     }
     
     /**
