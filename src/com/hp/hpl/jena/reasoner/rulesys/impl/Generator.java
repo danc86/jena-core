@@ -180,9 +180,9 @@ public class Generator implements LPAgendaEntry, LPInterpreterContext {
     public void removeConsumer(ConsumerChoicePointFrame ccp) {
         consumingCPs.remove(ccp);
         // We used to set it complete if there were no consumers left.
-        // However, a generator might be part of one query, in completely consumed
-        // and then opened again on a different query it seems safe to omit this
-        // TODO review
+        // However, a generator might be part of one query, incompletely consumed
+        // and then opened again on a different query,
+        // it seems better to omit this. TODO review
 //        if (!isComplete() &&consumingCPs.isEmpty()) {
 //            setComplete();
 //        }

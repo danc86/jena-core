@@ -208,7 +208,7 @@ public class LPBRuleEngine {
      * an unclosed iterator. So instead we try to close the iterators and assume the
      * rest of the context will be reset by the add call.
      * 
-     * <p>Should be called from with a synchronized block.
+     * <p>Should be called from within a synchronized block.
      */
     public void checkSafeToUpdate() {
         if (!activeInterpreters.isEmpty()) {

@@ -143,6 +143,7 @@ public class LPTopGoalIterator implements ClosableIterator, LPInterpreterContext
                 // Close this top goal
                 lookAhead = null;
                 interpreter.close();
+                // was TEMP experiment: interpreter.getEngine().detach(interpreter);
                 interpreter = null;
                 isReady = false;
                 checkReadyNeeded = false;
