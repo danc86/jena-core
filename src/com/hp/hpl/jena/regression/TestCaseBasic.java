@@ -29,7 +29,6 @@
 
 package com.hp.hpl.jena.regression;
 
-import com.hp.hpl.jena.regression.*;
 import com.hp.hpl.jena.rdf.model.*;
 
 import junit.framework.TestCase;
