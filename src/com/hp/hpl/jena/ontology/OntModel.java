@@ -63,7 +63,8 @@ import java.util.*;
  * wraps an inference graph, and we want to make the special capabilities of the
  * <code>InfModel</code>, for example global consistency checking, accessible to 
  * client programs.  Since not all ont models use a reasoner, using these methods
- * may result in a {@link RequiresReasonerException}.
+ * may result in a runtime exception, though the typical behaviour is that such
+ * calls will be silently ignored.
  * </p>
  * 
  * @author Ian Dickinson, HP Labs

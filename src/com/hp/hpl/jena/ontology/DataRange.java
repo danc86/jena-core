@@ -56,7 +56,7 @@ public interface DataRange
     /**
      * <p>Assert that this data range is exactly the enumeration of the given individuals. Any existing 
      * statements for <code>oneOf</code> will be removed.</p>
-     * @param emum A list of literals that defines the permissible values for this datarange
+     * @param enum A list of literals that defines the permissible values for this datarange
      * @exception OntProfileException If the {@link Profile#ONE_OF()} property is not supported in the current language profile.   
      */ 
     public void setOneOf( RDFList enum );
@@ -103,7 +103,7 @@ public interface DataRange
     /**
      * <p>Remove the statement that this enumeration includes <code>lit</code> among its members.  If this statement
      * is not true of the current model, nothing happens.</p>
-     * @param res A literal that may be declared to be part of this data range, and which is
+     * @param lit A literal that may be declared to be part of this data range, and which is
      * no longer to be one of the data range values.
      */
     public void removeOneOf( Literal lit );
