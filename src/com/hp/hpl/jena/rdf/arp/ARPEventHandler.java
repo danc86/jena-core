@@ -18,10 +18,9 @@ package com.hp.hpl.jena.rdf.arp;
  *    arp.setNamespaceHandler(h);
  * </pre>
  * @author <a href="mailto:Jeremy.Carroll@hp.com">Jeremy Carroll</a>
- * @deprecated Renamed as {@link ARPEventHandler}.
  * 
 */
-public interface ARPHandler extends StatementHandler, ExtendedHandler, NamespaceHandler {
+public interface ARPEventHandler extends StatementHandler, ExtendedHandler, NamespaceHandler {
   // deliberately empty - add by adding additional super-interfaces.
 }
 

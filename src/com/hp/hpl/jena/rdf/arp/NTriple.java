@@ -106,7 +106,7 @@ public class NTriple implements ARPErrorNumbers {
 	 * @param eh Can be null.
 	 * @param ap Can be null.
 	 */
-	static public void mainEh(String args[], ErrorHandler eh, ARPHandler ap) {
+	static public void mainEh(String args[], ErrorHandler eh, ARPEventHandler ap) {
 		boolean doneOne = false;
 		startMem = -1;
 		andMeToo = ap;

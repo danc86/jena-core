@@ -126,7 +126,6 @@ implements ARPConfig {
 
     SAX2RDF(String base,  String lang) throws MalformedURIException {
     	super(base,lang);
-    	// TODO something with lang
     	initParse(base);
     }
 	/** This is used when configuring a parser that
