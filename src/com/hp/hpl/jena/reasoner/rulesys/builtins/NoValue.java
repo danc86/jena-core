@@ -13,8 +13,10 @@ import com.hp.hpl.jena.reasoner.rulesys.*;
 import com.hp.hpl.jena.graph.*;
 
 /**
- * Checks that resource given by the first arg has no current value for
- * the predicate given by the second arg.
+ * Can be used in two arg form (X, P) or three arg form (X, P, V). 
+ * In three arg form it succeeds if the triple  (X, P, V) is not
+ * currently present, in two arg form it succeeds if there is not value
+ * for (X, P, *).
  * 
  * @author <a href="mailto:der@hplb.hpl.hp.com">Dave Reynolds</a>
  * @version $Revision$ on $Date$
@@ -30,13 +32,6 @@ public class NoValue extends BaseBuiltin {
     }
     
     /**
-     * Return the expected number of arguments for this functor or 0 if the number is flexible.
-     */
-    public int getArgLength() {
-        return 2;
-    }
-
-    /**
      * This method is invoked when the builtin is called in a rule body.
      * @param args the array of argument values for the builtin, this is an array 
      * of Nodes, some of which may be Node_RuleVariables.
@@ -47,8 +42,14 @@ public class NoValue extends BaseBuiltin {
      * the current environment
      */
     public boolean bodyCall(Node[] args, int length, RuleContext context) {
-        checkArgs(length, context);
-        return !context.contains(args[0], args[1], null);
+        if (length !=2 && length != 3) {
+            throw new BuiltinException(this, context, "builtin " + getName() + " requires 2 or 3 arguments but saw " + length);
+        }
+        Node obj = null;
+        if (length == 3) {
+            obj = args[2];
+        }
+        return !context.contains(args[0], args[1], obj);
     }
     
 }
