@@ -75,7 +75,7 @@ public class TestAnonID extends TestCase {
 
 
 /*
-    (c) Copyright Hewlett-Packard Development Company, LP 2004
+    (c) Copyright 2004 Hewlett-Packard Development Company, LP
     All rights reserved.
 
     Redistribution and use in source and binary forms, with or without

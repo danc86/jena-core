@@ -13,7 +13,7 @@
  * Last modified on   $Date$
  *               by   $Author$
  *
- * (c) Copyright 2002, 2003, Hewlett-Packard Development Company, LP
+ * (c) Copyright 2002, 2003, 2004 Hewlett-Packard Development Company, LP
  * (see footer for full conditions)
  *****************************************************************************/
 
@@ -104,11 +104,11 @@ public class EnumeratedClassImpl
     /**
      * <p>Assert that this class is exactly the enumeration of the given individuals. Any existing 
      * statements for <code>oneOf</code> will be removed.</p>
-     * @param enum A list of individuals that defines the class extension for this class
+     * @param en A list of individuals that defines the class extension for this class
      * @exception OntProfileException If the {@link Profile#ONE_OF()} property is not supported in the current language profile.   
      */ 
-    public void setOneOf( RDFList enum ) {
-        setPropertyValue( getProfile().ONE_OF(), "ONE_OF", enum );
+    public void setOneOf( RDFList en ) {
+        setPropertyValue( getProfile().ONE_OF(), "ONE_OF", en );
     }
 
     /**
@@ -185,7 +185,7 @@ public class EnumeratedClassImpl
 
 
 /*
-    (c) Copyright 2002, 2003 Hewlett-Packard Development Company, LP
+    (c) Copyright 2002, 2003, 2004 Hewlett-Packard Development Company, LP
     All rights reserved.
 
     Redistribution and use in source and binary forms, with or without

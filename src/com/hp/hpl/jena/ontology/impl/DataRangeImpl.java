@@ -13,7 +13,7 @@
  * Last modified on   $Date$
  *               by   $Author$
  *
- * (c) Copyright 2002, 2003, Hewlett-Packard Development Company, LP
+ * (c) Copyright 2002, 2003, 2004 Hewlett-Packard Development Company, LP
  * (see footer for full conditions)
  *****************************************************************************/
 
@@ -109,8 +109,8 @@ public class DataRangeImpl
      * @param enum A list of literals that defines the permissible values for this datarange
      * @exception OntProfileException If the {@link Profile#ONE_OF()} property is not supported in the current language profile.   
      */ 
-    public void setOneOf( RDFList enum ) {
-        setPropertyValue( getProfile().ONE_OF(), "ONE_OF", enum );
+    public void setOneOf( RDFList en ) {
+        setPropertyValue( getProfile().ONE_OF(), "ONE_OF", en );
     }
 
     /**
@@ -186,7 +186,7 @@ public class DataRangeImpl
 
 
 /*
-    (c) Copyright 2002, 2003 Hewlett-Packard Development Company, LP
+    (c) Copyright 2002, 2003, 2004 Hewlett-Packard Development Company, LP
     All rights reserved.
 
     Redistribution and use in source and binary forms, with or without
