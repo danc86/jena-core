@@ -18,7 +18,7 @@ import java.io.*;
  *
 */
 public class SyntaxProblem {
-	static private Model emptyModel = ModelFactory.createDefaultModel();
+	static Model emptyModel = ModelFactory.createDefaultModel();
 	private Graph pgraph;
 	private EnhNode pnode;
 	final int level;

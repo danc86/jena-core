@@ -14,7 +14,7 @@ abstract class Q {
 	private Vector v = new Vector();
 	private Query rdql = null;
 	private int[] a = null;
-
+/*
 	Query asRDQL() {
 		if (rdql == null) {
 			StringBuffer b = new StringBuffer(600);
@@ -33,6 +33,7 @@ abstract class Q {
 		}
 		return rdql;
 	}
+	*/
 
 	int[] asInt() {
 		if (a == null) {
@@ -41,6 +42,7 @@ abstract class Q {
 			int i = 0;
 			while (it.hasNext())
 				a[i++] = ((Integer) it.next()).intValue();
+		  Arrays.sort(a);
 		}
 		return a;
 	}

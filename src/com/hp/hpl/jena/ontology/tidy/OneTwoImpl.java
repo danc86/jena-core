@@ -5,21 +5,22 @@
 */
 package com.hp.hpl.jena.ontology.tidy;
 import com.hp.hpl.jena.graph.*;
-import com.hp.hpl.jena.enhanced.*;
 import com.hp.hpl.jena.rdf.model.*;
-import com.hp.hpl.jena.util.iterator.*;
 
 /**
  * @author <a href="mailto:Jeremy.Carroll@hp.com">Jeremy Carroll</a>
  *
 */
-class OneTwoImpl extends CGeneral {
+class OneTwoImpl extends CGeneral
+ implements One,Two, Blank {
 	// local *cache*, on cache miss must always go to graph.
 
 	private Triple seen[] = new Triple[3];
 
-	OneTwoImpl(Node n, EnhGraph g) {
+	OneTwoImpl(Node n, AbsChecker g) {
 		super(n, g);
+		if ( getCategories() == -1 )
+			  setCategories(Grammar.blank,false);
 	}
 
 	public void first(Triple t) {
@@ -46,30 +47,11 @@ class OneTwoImpl extends CGeneral {
 
 		} else {
 
-			Graph G = getGraph().asGraph();
-			Reifier R = G.getReifier();
-			Node n = Node.createAnon();
-			R.reifyAs(n, t);
-			getGraph().asGraph().add(
-				new Triple(asNode(), gProp[i], n));
 			seen[i] = t;
 
 		}
 	}
-    static private Node gProp[] = {
-    	Vocab.firstPart,
-    	Vocab.secondPart,
-    	Vocab.objectOfTriple
-    };
 	Triple get(int i) {
-		if (seen[i] == null) {
-			Graph G = getGraph().asGraph();
-			ClosableIterator it = G.find(asNode(), gProp[i], null);
-			if (it.hasNext())
-				seen[i] =
-					G.getReifier().getTriple(((Triple) it.next()).getObject());
-			it.close();
-		}
 		return seen[i];
 	}
 
@@ -78,6 +60,36 @@ class OneTwoImpl extends CGeneral {
 			if (get(j) == null)
 				return true;
 		return false;
+	}
+
+	protected int cyclicState = Undefined;
+
+	public void addObjectTriple(Triple t) {
+		check(2, t);
+	}
+
+	protected int getCyclicState() {
+		return this.cyclicState;
+	}
+
+	protected static final int Checking = 1;
+
+	protected static final int Undefined = 0;
+
+	protected static final int IsCyclic = 2;
+
+	protected static final int NonCyclic = 3;
+
+	protected void setCyclicState(int st) {
+		cyclicState = st;
+	}
+
+	public boolean incompleteOne() {
+		return incomplete(1);
+	}
+
+	public boolean incompleteTwo() {
+		return incomplete(2);
 	}
 
 }

@@ -12,7 +12,7 @@ import com.hp.hpl.jena.graph.*;
  *
 */
 interface One extends CNodeI {
-	boolean incomplete();
+	boolean incompleteOne();
 	
 	void first(Triple t);
 
