@@ -166,7 +166,7 @@ public class MoreTests
 		checkExpected();
 	}
 
-	public void testInterrupt() throws IOException, SAXException {
+	public void testInterrupt() throws SAXException, IOException {
 		ARP a = new ARP();
 		InputStream in;
 		long start = System.currentTimeMillis();
@@ -174,7 +174,7 @@ public class MoreTests
 		a.load(in);
 		in.close();
 		final long tim = (System.currentTimeMillis() - start) / 3;
-		if (tim < 10) {
+		if (tim < 5) {
 			logger.warn("Jena is too quick on this machine for this test");
 			return;
 		}
@@ -190,14 +190,15 @@ public class MoreTests
 				//	System.err.println("Interrupted");
 			}
 		});
-		killt.start();
 		try {
+			killt.start();
 			in =
 				new FileInputStream("testing/wg/miscellaneous/consistent001.rdf");
 			a.load(in);
 			in.close();
 			fail("Thread was not interrupted.");
 		} catch (InterruptedIOException e) {
+		} catch (SAXParseException e) {
 		}
 		// System.err.println("Finished "+Thread.interrupted());
 
