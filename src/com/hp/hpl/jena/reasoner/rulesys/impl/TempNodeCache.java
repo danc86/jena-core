@@ -44,7 +44,7 @@ public class TempNodeCache {
      * @param pclass the (optional, can be null) class for the inferred value.
      * @return the bNode representing the property value 
      */
-    public Node getTemp(Node instance, Node prop, Node pclass) {
+    public synchronized Node getTemp(Node instance, Node prop, Node pclass) {
         NodePair ip = new NodePair(instance, prop);
         Node result = null;
         for (Iterator i = ipMap.getAll(ip); i.hasNext(); ) {

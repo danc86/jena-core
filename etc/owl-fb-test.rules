@@ -248,8 +248,8 @@
 					notEqual(?P, rdfs:subClassOf), notEqual(?P, rdfs:subPropertyOf), 
 					notEqual(?P, owl:equivalentProperty), notEqual(?P, owl:equivalentClass),
    ->
-    [some1b: (?X ?P ?T) <- (?X rdf:type ?C), noValue(?X, ?P), makeInstance(?X, ?P, ?D, ?T) ] 
-    [some1b: (?T rdf:type ?D) <- (?X rdf:type ?C), noValue(?X, ?P), makeInstance(?X, ?P, ?D, ?T) ] 
+    [some1b: (?X ?P ?T) <- (?X rdf:type ?C), noValue(?X, ?P), print('some1b1', ?X, ?C), makeInstance(?X, ?P, ?D, ?T) ] 
+    [some1b: (?T rdf:type ?D) <- (?X rdf:type ?C), print('some1bb',?X, ?C, ?T), noValue(?X, ?P), makeInstance(?X, ?P, ?D, ?T) ] 
     ]
     
 [someRec: (?C owl:equivalentClass some(?P, ?D)), (?P rdfs:range ?D) ->
