@@ -175,14 +175,8 @@ public class ParseException
 				case A_ABOUT :
 					rslt += ", rdf:about";
 					break;
-				case A_ABOUTEACH :
-					rslt += ", rdf:aboutEach";
-					break;
 				case A_DATATYPE :
 					rslt += ", rdf:datatype";
-					break;
-				case A_BAGID :
-					rslt += ", rdf:bagID";
 					break;
 				case A_NODEID :
 					rslt += ", rdf:nodeID";
@@ -317,8 +311,6 @@ public class ParseException
 					}
 				}
 			case A_ABOUT :
-			case A_ABOUTEACH :
-			case A_BAGID :
 			case A_ID :
 			case A_PARSETYPE :
 			case A_RESOURCE :

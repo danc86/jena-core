@@ -1,5 +1,5 @@
 /*
-  (c) Copyright 2003 "sdr"
+  ???? (c) Copyright 2003, Plugged In Software ????
   (c) Copyright 2003, Hewlett-Packard Development Company, LP
   [See end of file]
   $Id$
@@ -12,7 +12,7 @@ package com.hp.hpl.jena.rdf.arp;
  * <li> when a blank node goes out of scope, allowing its anonymous
  * ID to be freed by external applications.
  * <li> when a rdf:RDF start and end tag is seen
- * @author sdr,jjc
+ * @author Simon Raboczi,Jeremy Carroll
  *
  * 
  */

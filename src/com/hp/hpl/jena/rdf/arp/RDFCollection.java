@@ -21,11 +21,11 @@ class RDFCollection extends CollectionAction {
     RDFCollection(ParserSupport x){
     	super(x);
     }
-    RDFCollection(ParserSupport x, AResource r[]){
+    RDFCollection(ParserSupport x, AResourceInternal r[]){
     	super(x);
     	rslt = r;
     }
-    private AResource rslt[];
+    private AResourceInternal rslt[];
 	static {
 		try {
      		nil        = new URIReference(ARPFilter.rdfns+"nil");
@@ -48,9 +48,10 @@ class RDFCollection extends CollectionAction {
 	/* (non-Javadoc)
 	 * @see com.hp.hpl.jena.rdf.arp.CollectionAction#next(com.hp.hpl.jena.rdf.arp.AResource)
 	 */
-	CollectionAction next(AResource head) {
+	CollectionAction next(AResourceInternal head) {
 		ARPResource cell= new ARPResource(X.arp); 
 		cell.setPredicateObject( first,head, null );
+		X.arp.endLocalScope(head);
 		//cell.setPredicateObject( rest, tail, null );
 		//cell.setType(DAML.List);
 												 

@@ -178,10 +178,10 @@ class ParserSupport
 		ExceptionToken sax = (ExceptionToken) t;
 		arp.parseWarning(sax.errorCode, t.location, sax.toString());
 	}
-	CollectionAction collectionAction(AResource rslt[]){
+	CollectionAction collectionAction(AResourceInternal rslt[]){
 		return new RDFCollection(this,rslt);
 	}
-	CollectionAction damlCollectionAction(AResource rslt[]){
+	CollectionAction damlCollectionAction(AResourceInternal rslt[]){
 		return new DAMLCollection(this,rslt);
 	}
 	void checkXMLLang(StrToken s) throws ParseException {

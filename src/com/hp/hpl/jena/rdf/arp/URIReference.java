@@ -44,7 +44,7 @@ package com.hp.hpl.jena.rdf.arp;
  * @author  jjc
  
  */
-class URIReference  implements AResource 
+class URIReference  implements AResourceInternal 
 {
 
     
@@ -78,13 +78,12 @@ class URIReference  implements AResource
         return uri;
     }
     
-    private Object userData;
     public Object getUserData() {
-        return userData;
+		throw new IllegalStateException("User data only supported on blank nodes");
     }
     
     public void setUserData(Object d) {
-        userData = d;
+		throw new IllegalStateException("User data only supported on blank nodes");     
     }
     /**
      * Does not compare userData field, only URI.
@@ -103,5 +102,16 @@ class URIReference  implements AResource
 	 */
 	public boolean hasNodeID() {
 		return false;
+	}
+	/* (non-Javadoc)
+	 * @see com.hp.hpl.jena.rdf.arp.AResourceInternal#setHasBeenUsed()
+	 */
+	public void setHasBeenUsed() {
+	}
+	/* (non-Javadoc)
+	 * @see com.hp.hpl.jena.rdf.arp.AResourceInternal#getHasBeenUsed()
+	 */
+	public boolean getHasBeenUsed() {
+		throw new UnsupportedOperationException("Internal error");
 	}
 }
