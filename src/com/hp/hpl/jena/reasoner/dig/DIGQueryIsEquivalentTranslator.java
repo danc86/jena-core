@@ -128,7 +128,7 @@ public class DIGQueryIsEquivalentTranslator
             }
         }
         
-        Element equivalents = da.addElement( query.getDocumentElement(), DIGProfile.EQUIVALENTS );
+        Element equivalents = da.createQueryElement( query, DIGProfile.EQUIVALENTS );
         da.addClassDescription( equivalents, m_qSubject, premises );
         
         return query;

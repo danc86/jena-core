@@ -81,7 +81,7 @@ public class DIGQueryInstanceTranslator
     public Document translatePattern( TriplePattern pattern, DIGAdapter da ) {
         DIGConnection dc = da.getConnection();
         Document query = dc.createDigVerb( DIGProfile.ASKS, da.getProfile() );
-        Element instance = da.addElement( query.getDocumentElement(), DIGProfile.INSTANCE );
+        Element instance = da.createQueryElement( query, DIGProfile.INSTANCE );
         da.addNamedElement( instance, DIGProfile.INDIVIDUAL, da.getNodeID( pattern.getSubject() ) );
         da.addClassDescription( instance, pattern.getObject() );
 
@@ -96,7 +96,7 @@ public class DIGQueryInstanceTranslator
     public Document translatePattern( TriplePattern pattern, DIGAdapter da, Model premises ) {
         DIGConnection dc = da.getConnection();
         Document query = dc.createDigVerb( DIGProfile.ASKS, da.getProfile() );
-        Element instance = da.addElement( query.getDocumentElement(), DIGProfile.INSTANCE );
+        Element instance = da.createQueryElement( query, DIGProfile.INSTANCE );
         
         da.addNamedElement( instance, DIGProfile.INDIVIDUAL, da.getNodeID( pattern.getSubject() ) );
         

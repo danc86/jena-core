@@ -81,7 +81,7 @@ public class DIGQueryInstancesTranslator
         DIGConnection dc = da.getConnection();
         Document query = dc.createDigVerb( DIGProfile.ASKS, da.getProfile() );
         
-        Element instances = da.addElement( query.getDocumentElement(), DIGProfile.INSTANCES );
+        Element instances = da.createQueryElement( query, DIGProfile.INSTANCES );
         da.addClassDescription( instances, pattern.getObject() );
         
         return query;
@@ -95,7 +95,7 @@ public class DIGQueryInstancesTranslator
         DIGConnection dc = da.getConnection();
         Document query = dc.createDigVerb( DIGProfile.ASKS, da.getProfile() );
         
-        Element instances = da.addElement( query.getDocumentElement(), DIGProfile.INSTANCES );
+        Element instances = da.createQueryElement( query, DIGProfile.INSTANCES );
         
         if (pattern.getObject().isBlank()) {
             da.addClassDescription( instances, pattern.getObject(), premises );

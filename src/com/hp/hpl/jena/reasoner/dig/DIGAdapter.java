@@ -95,6 +95,9 @@ public class DIGAdapter
     // Static variables
     //////////////////////////////////
 
+    /** Query ID counter */
+    private static int s_queryID = 0;
+    
     /** The table that represents the query translations we know about */
     protected static DIGQueryTranslator[] s_queryTable = {
         // subsumes when testing for subsumption between two known class expressions
@@ -586,6 +589,21 @@ public class DIGAdapter
     }
     
     
+    /**
+     * <p>Create a new element to represent a query, adding to it a unique query
+     * ID.</p>
+     * @param da The DIG adapter
+     * @param query The query document
+     * @param elemName The string name of the query element
+     * @return The new query element
+     */
+    public Element createQueryElement( Document query, String elemName ) {
+        Element qElem = addElement( query.getDocumentElement(), elemName );
+        qElem.setAttribute( DIGProfile.ID, "q" + s_queryID++ );
+        return qElem;
+    }
+
+
     // Internal implementation methods
     //////////////////////////////////
 
@@ -1313,7 +1331,7 @@ public class DIGAdapter
         
         // query the DIG ks for the currently known individuals
         Document query = getConnection().createDigVerb( DIGProfile.ASKS, getProfile() );
-        addElement( query.getDocumentElement(), queryType );
+        createQueryElement( query, queryType );
         Document response = getConnection().sendDigVerb( query, getProfile() );
 
         // build the path to extract the names        

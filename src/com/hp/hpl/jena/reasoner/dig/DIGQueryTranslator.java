@@ -58,6 +58,7 @@ public abstract class DIGQueryTranslator {
     // Static variables
     //////////////////////////////////
 
+    
     // Instance variables
     //////////////////////////////////
 

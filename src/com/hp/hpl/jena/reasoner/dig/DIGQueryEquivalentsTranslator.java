@@ -80,7 +80,7 @@ public class DIGQueryEquivalentsTranslator
         DIGConnection dc = da.getConnection();
         Document query = dc.createDigVerb( DIGProfile.ASKS, da.getProfile() );
         
-        Element equivalents = da.addElement( query.getDocumentElement(), DIGProfile.EQUIVALENTS );
+        Element equivalents = da.createQueryElement( query, DIGProfile.EQUIVALENTS );
         da.addClassDescription( equivalents, m_subjectFree ? pattern.getObject() : pattern.getSubject() );
         
         return query;

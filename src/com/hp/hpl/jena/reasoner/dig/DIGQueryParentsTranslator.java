@@ -83,11 +83,11 @@ public class DIGQueryParentsTranslator
         Document query = dc.createDigVerb( DIGProfile.ASKS, da.getProfile() );
         
         if (m_ancestors) {
-            Element parents = da.addElement( query.getDocumentElement(), DIGProfile.PARENTS );
+            Element parents = da.createQueryElement( query, DIGProfile.PARENTS );
             da.addClassDescription( parents, pattern.getSubject() );
         }
         else {
-            Element descendants = da.addElement( query.getDocumentElement(), DIGProfile.CHILDREN );
+            Element descendants = da.createQueryElement( query, DIGProfile.CHILDREN );
             da.addClassDescription( descendants, pattern.getObject() );
         }
         

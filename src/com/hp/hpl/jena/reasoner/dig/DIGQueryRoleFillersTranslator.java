@@ -83,7 +83,7 @@ public class DIGQueryRoleFillersTranslator
         DIGConnection dc = da.getConnection();
         Document query = dc.createDigVerb( DIGProfile.ASKS, da.getProfile() );
         
-        Element instances = da.addElement( query.getDocumentElement(), DIGProfile.ROLE_FILLERS );
+        Element instances = da.createQueryElement( query, DIGProfile.ROLE_FILLERS );
         da.addNamedElement( instances, DIGProfile.INDIVIDUAL, da.getNodeID( pattern.getSubject() ) );
         da.addNamedElement( instances, DIGProfile.RATOM, da.getNodeID( pattern.getPredicate() ) );
         

@@ -81,8 +81,8 @@ public class DIGQueryTypesTranslator
         DIGConnection dc = da.getConnection();
         Document query = dc.createDigVerb( DIGProfile.ASKS, da.getProfile() );
         
-        Element instances = da.addElement( query.getDocumentElement(), DIGProfile.TYPES );
-        da.addNamedElement( instances, DIGProfile.INDIVIDUAL, da.getNodeID( pattern.getSubject() ) );
+        Element types = da.createQueryElement( query, DIGProfile.TYPES );
+        da.addNamedElement( types, DIGProfile.INDIVIDUAL, da.getNodeID( pattern.getSubject() ) );
         
         return query;
     }

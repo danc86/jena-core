@@ -80,7 +80,7 @@ public class DIGQuerySubsumesTranslator
     public Document translatePattern( TriplePattern pattern, DIGAdapter da ) {
         DIGConnection dc = da.getConnection();
         Document query = dc.createDigVerb( DIGProfile.ASKS, da.getProfile() );
-        Element subsumes = da.addElement( query.getDocumentElement(), DIGProfile.SUBSUMES );
+        Element subsumes = da.createQueryElement( query, DIGProfile.SUBSUMES );
         
         // note reversal of subject-object: x rdfs:subClassOf y --> y dig:subsumes x
         da.addClassDescription( subsumes, pattern.getObject() );
@@ -97,7 +97,7 @@ public class DIGQuerySubsumesTranslator
     public Document translatePattern( TriplePattern pattern, DIGAdapter da, Model premises ) {
         DIGConnection dc = da.getConnection();
         Document query = dc.createDigVerb( DIGProfile.ASKS, da.getProfile() );
-        Element subsumes = da.addElement( query.getDocumentElement(), DIGProfile.SUBSUMES );
+        Element subsumes = da.createQueryElement( query, DIGProfile.SUBSUMES );
         
         // note reversal of subject-object: x rdfs:subClassOf y --> y dig:subsumes x
         if (pattern.getObject().isBlank()) {

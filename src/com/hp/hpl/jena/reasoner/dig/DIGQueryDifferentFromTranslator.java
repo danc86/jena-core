@@ -80,7 +80,7 @@ public class DIGQueryDifferentFromTranslator
     public Document translatePattern( TriplePattern pattern, DIGAdapter da ) {
         DIGConnection dc = da.getConnection();
         Document query = dc.createDigVerb( DIGProfile.ASKS, da.getProfile() );
-        Element disjoint = da.addElement( query.getDocumentElement(), DIGProfile.DISJOINT );
+        Element disjoint = da.createQueryElement( query, DIGProfile.DISJOINT );
         
         Element ind = da.addElement( disjoint, DIGProfile.ISET );
         da.addNamedElement( ind, DIGProfile.INDIVIDUAL, da.getNodeID( pattern.getSubject() ) );
