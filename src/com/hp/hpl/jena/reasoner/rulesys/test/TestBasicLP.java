@@ -1144,7 +1144,8 @@ public class TestBasicLP  extends TestCase {
     /**
      * A suspect problem, originally derived from the OWL rules - risk of unbound variables escaping.
      * Not managed to isolate are reproduce the problem yet.
-     */
+     */ 
+    /** !!!!!!!!!! TODO commented out - ijd - sameIndividualAs no longer in OWL
     public void testProblem9() {
         String ruleSrc = 
         "[test:   (?x owl:sameIndividualAs ?x) <- (?x rdf:type owl:Thing) ]" +
@@ -1168,7 +1169,7 @@ public class TestBasicLP  extends TestCase {
 //                    new Triple(a, ty, OWL.Thing.asNode()),
 //                    new Triple(b, ty, OWL.Thing.asNode())
 //                } );
-    }
+    } end ijd edit */
     
     /**
      * Test 3-arg builtins such as arithmetic.
