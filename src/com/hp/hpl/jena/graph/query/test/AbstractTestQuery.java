@@ -629,7 +629,7 @@ public abstract class AbstractTestQuery extends GraphTestBase
         result.put( key, new Integer( already.intValue() + 1 ) );  
         }
         
-    TripleSorter optimisedSort = Query.dontSort;
+    TripleSorter optimisedSort = new SimpleTripleSorter();
     
     public void testQueryOptimisation()
         {
