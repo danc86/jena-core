@@ -41,9 +41,8 @@ class OneTwoImpl extends CGeneral {
 			Graph problem = ModelFactory.createDefaultModel().getGraph();
 			problem.add(old);
 			problem.add(t);
-
-			Checker chk = (Checker) getGraph();
-			chk.addProblem(new SyntaxProblem(shortMsg[i], problem, Levels.DL));
+            getChecker().setMonotoneLevel(Levels.Full);
+			getChecker().addProblem(new SyntaxProblem(shortMsg[i], problem, Levels.DL));
 
 		} else {
 
