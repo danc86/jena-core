@@ -103,7 +103,7 @@ public class SyntaxProblem {
 	 * Sets the writer used for creation of the 
 	 * {@link #longDescription()}.
 	 * @param w
-	 * @return
+	 * @return the old writer
 	 */
 	public RDFWriter setWriter(RDFWriter w){
 		RDFWriter old = wtr;
@@ -176,7 +176,7 @@ public class SyntaxProblem {
 	 * At least one of probelmSubGraph() and problemNode()
 	 * is non-null. If both are non-null then the problemSubGraph()
 	 * is the graph underlying the problemNode().
-	 * @return
+	 * @return the problem sub-graph
 	 */
 	public Graph problemSubGraph() {
 		return pgraph;
