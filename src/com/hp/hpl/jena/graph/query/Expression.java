@@ -226,7 +226,8 @@ public interface Expression
         private boolean value;
         public BoolConstant( boolean value ) { this.value = value; }
         public boolean isLiteral() { return true; }
-        public Object getValue() { return Boolean.valueOf( value ); }
+        // TODO when moving to Jave 1.4 can use Boolean.valueOf( value )
+        public Object getValue() { return value ? Boolean.TRUE : Boolean.FALSE; }
         public Valuator prepare( VariableIndexes vi ) { return this; }   
         public boolean evalBool( VariableValues vv ) { return value; }
         public boolean evalBool( IndexValues vv ) { return value; }
