@@ -57,7 +57,8 @@ public abstract class FragmentTripleIterator extends NiceIterator
         
     /**
         Add all the [implied, matching] triples from the Object into the GraphAdd
-        entity (which will be our list).
+        entity (which will be our list). It would be nice if we could create an interface
+        for the fragmentObject's type.
     */
     protected abstract void fill( GraphAdd ga, Node n, Object fragmentsObject );
         
