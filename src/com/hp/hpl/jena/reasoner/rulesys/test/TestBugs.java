@@ -53,9 +53,6 @@ public class TestBugs extends TestCase {
     /**
      * Report of NPE during processing on an ontology with a faulty intersection list,
      * from Hugh Winkler.
-     * 
-     * @author <a href="mailto:der@hplb.hpl.hp.com">Dave Reynolds</a>
-     * @version $Revision$ on $Date$
      */
     public void testIntersectionNPE() {
         Model base = ModelFactory.createDefaultModel();
@@ -74,9 +71,6 @@ public class TestBugs extends TestCase {
     /**
      * Report of problems with cardinality v. maxCardinality usage in classification,
      * from Hugh Winkler.
-     * 
-     * @author <a href="mailto:der@hplb.hpl.hp.com">Dave Reynolds</a>
-     * @version $Revision$ on $Date$
      */
     public void testCardinality1() {
         Model base = ModelFactory.createDefaultModel();
