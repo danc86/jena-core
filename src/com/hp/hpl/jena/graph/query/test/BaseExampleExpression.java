@@ -8,7 +8,7 @@ package com.hp.hpl.jena.graph.query.test;
 
 import com.hp.hpl.jena.graph.Node;
 import com.hp.hpl.jena.graph.query.Expression;
-import com.hp.hpl.jena.graph.query.VariableValues;
+import com.hp.hpl.jena.graph.query.*;
 
 /**
 	BaseExampleExpression - simple expressions
@@ -31,6 +31,11 @@ public abstract class BaseExampleExpression implements Expression
         {
         return new BaseExampleExpression()
             {                
+            public Expression prepare( VariableIndexes vi )
+                {
+                return and( L.prepare( vi ), R.prepare( vi ) );    
+                }
+                
             public boolean evalBool( VariableValues vv )
                 { return L.evalBool( vv ) && R.evalBool( vv ); }
                  

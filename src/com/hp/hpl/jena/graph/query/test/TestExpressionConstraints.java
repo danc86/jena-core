@@ -153,6 +153,13 @@ public class TestExpressionConstraints extends GraphTestBase
     public void testVVMatches()
         { VariableValues vv = new VV().set( "X", "hello" ).set( "Y", "ell" );
         assertEquals( true, matches( X, Y ).evalBool( vv ) );  }
+        
+    public void testPrepare()
+        {
+        Expression e = notEqual( X, Y );
+        VariableIndexes map = new Mapping( new Node[2] );
+        Expression ep = e.prepare( map );        
+        }
     }
 
 /*

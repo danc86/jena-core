@@ -7,27 +7,13 @@
 package com.hp.hpl.jena.graph.query;
 
 /**
-	Expression - the interface for expressions that is expected by Query for constraints.
+	VariableIndexes
 
 	@author kers
 */
-public interface Expression 
-    { 
-    public boolean evalBool( VariableValues vv );
-    
-    public Expression prepare( VariableIndexes vi );
-    
-    public static Expression TRUE = new Expression() 
-        { 
-        public boolean evalBool( VariableValues vv ) { return true; }
-        public Expression prepare( VariableIndexes vi ) { return this; }
-        };
-    
-    public static Expression FALSE = new Expression() 
-        { 
-        public boolean evalBool( VariableValues vv ) { return false; }
-        public Expression prepare( VariableIndexes vi ) { return this; }
-        };
+public interface VariableIndexes 
+    {
+    int indexOf( String name );
     }
 
 /*

@@ -7,7 +7,7 @@
 package com.hp.hpl.jena.graph.query.test;
 
 import com.hp.hpl.jena.graph.*;
-import com.hp.hpl.jena.graph.query.VariableValues;
+import com.hp.hpl.jena.graph.query.*;
 
 /**
     Test code for creating some expressions.
@@ -21,6 +21,9 @@ public class ExampleCreate
         {
         return new BaseExampleExpression() 
             {
+            public Expression prepare( VariableIndexes vi )
+                { return null; }
+                
             public boolean evalBool( VariableValues vv )
                 { return !eval( x, vv ).equals( eval( y, vv ) ); }
             };    
@@ -30,6 +33,9 @@ public class ExampleCreate
         {
         return new BaseExampleExpression() 
             {
+            public Expression prepare( VariableIndexes vi )
+                { return null; }
+                
             public boolean evalBool( VariableValues vv )
                 { return eval( x, vv ).equals( eval( y, vv ) ); }
             };    
@@ -39,6 +45,9 @@ public class ExampleCreate
         {
         return new BaseExampleExpression() 
             {
+            public Expression prepare( VariableIndexes vi )
+                { return null; }
+                
             private String asString( Object n )
                 {
                 if (n instanceof Node_Literal) return ((Node) n).getLiteral().getLexicalForm();

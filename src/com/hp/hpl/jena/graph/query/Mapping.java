@@ -15,7 +15,7 @@ import java.util.*;
     are predeclared; the negative value is converted on index allocation.
 */
 
-public class Mapping 
+public class Mapping implements VariableIndexes
 	{
 	private HashMap map;
 	
@@ -51,6 +51,9 @@ public class Mapping
         if (res < 0) throw new Query.UnboundVariableException( v );
         return res;
         }
+        
+    public int indexOf( String name )
+        { return indexOf( Node.createVariable( name ) ); }
 
 	/**
 		get the index of a node in the mapping; return -1
