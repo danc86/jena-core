@@ -326,7 +326,7 @@ implements Model, ModelI, PrefixMapping, ModelLock
     */
     public Model remove( Model m ) 
         {
-        BulkUpdateHandler bu = this.getGraph().getBulkUpdateHandler();
+        BulkUpdateHandler bu = getBulkUpdateHandler();
         if (m.getGraph().dependsOn( this.getGraph() ))
             bu.delete( triplesOf( m ) );
         else
@@ -979,9 +979,12 @@ implements Model, ModelI, PrefixMapping, ModelLock
     */
     public Model add( Statement [] statements )
         {
-        getGraph().getBulkUpdateHandler().add( StatementImpl.asTriples( statements ) );
+        getBulkUpdateHandler().add( StatementImpl.asTriples( statements ) );
         return this;
         }
+        
+    protected BulkUpdateHandler getBulkUpdateHandler()
+        { return getGraph().getBulkUpdateHandler(); }
         
     /**
         Add all the statements to the model by converting the list to an array of
@@ -989,7 +992,16 @@ implements Model, ModelI, PrefixMapping, ModelLock
     */
     public Model add( List statements )
         {
-        return add( (Statement []) statements.toArray( new Statement[statements.size()] ) );
+        getBulkUpdateHandler().add( asTriples( statements ) );
+        return this;
+        }
+        
+    private List asTriples( List statements )
+        {
+        List L = new ArrayList( statements.size() );
+        for (int i = 0; i < statements.size(); i += 1) 
+            L.add( ((Statement) statements.get(i)).asTriple() );
+        return L;
         }
         
     /**
@@ -998,7 +1010,7 @@ implements Model, ModelI, PrefixMapping, ModelLock
     */ 
     public Model remove( Statement [] statements )
         {
-        getGraph().getBulkUpdateHandler().delete( StatementImpl.asTriples( statements ) );        
+        getBulkUpdateHandler().delete( StatementImpl.asTriples( statements ) );        
         return this;
         }
      
@@ -1008,7 +1020,8 @@ implements Model, ModelI, PrefixMapping, ModelLock
      */
     public Model remove( List statements )
         {
-        return remove(  (Statement []) statements.toArray( new Statement[statements.size()] ) );
+        getBulkUpdateHandler().delete( asTriples( statements ) );
+        return this;
         }
            
     public Model add(Resource s,Property p,RDFNode o)  {
@@ -1287,6 +1300,13 @@ implements Model, ModelI, PrefixMapping, ModelLock
         Statement [] result = new Statement [triples.length];
         for (int i = 0; i < triples.length; i += 1) result[i] = asStatement( triples[i] );
         return result;    
+        }
+        
+    public List asStatements( List triples )
+        {
+        List L = new ArrayList( triples.size() );
+        for (int i = 0; i < triples.size(); i += 1) L.add( asStatement( (Triple) triples.get(i) ) );
+        return L;
         }
         
 	private Iterator asStatements( final Iterator it ) {

@@ -39,10 +39,10 @@ public class ModelListenerAdapter implements GraphListener
         { L.removedStatement( m.asStatement( t ) ); }
         
     public void notifyAdd( List triples )
-        {}
+        { L.addedStatements( m.asStatements( triples ) ); }
         
     public void notifyDelete( List triples )
-        {}
+        { L.removedStatements( m.asStatements( triples ) ); }
 
     public boolean equals( Object other )
         { 

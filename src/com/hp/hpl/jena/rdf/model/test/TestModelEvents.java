@@ -37,16 +37,25 @@ public class TestModelEvents extends ModelTestBase
         List history = new ArrayList();
         
         public void addedStatement( Statement s )
-            { history.add( "add" ); history.add( s ); }
+            { record( "add", s ); }
             
         public void addedStatements( Statement [] statements )
-            { history.add( "add[]" ); history.add( Arrays.asList( statements ) ); }
+            { record( "add[]", Arrays.asList( statements ) ); }
+            
+        public void addedStatements( List statements )
+            { record( "addList", statements ); }
             
         public void removedStatements( Statement [] statements )
-            { history.add( "remove[]" ); history.add( Arrays.asList( statements ) ); }
+            { record( "remove[]", Arrays.asList( statements ) ); }
         
        public void removedStatement( Statement s )
-            { history.add( "remove" ); history.add( s ); }
+            { record( "remove", s ); }
+            
+        public void removedStatements( List statements )
+            { record( "removeList", statements ); }
+            
+        protected void record( String tag, Object info )
+            { history.add( tag ); history.add( info ); }
             
         boolean has( Object [] things ) 
             { return history.equals( Arrays.asList( things ) ); }
@@ -132,7 +141,22 @@ public class TestModelEvents extends ModelTestBase
         model.remove( s );
         SL.assertHas( new Object[] {"remove[]", Arrays.asList( s )} );            
         }
-    }
+        
+    public void testAddStatementList()
+        {
+        model.register( SL );
+        List L = Arrays.asList( statements( model, "b I g; m U g" ) );
+        model.add( L );
+        SL.assertHas( new Object[] {"addList", L} );
+        }
+        
+    public void testDeleteStatementList()
+        {
+        model.register( SL );
+        List L = Arrays.asList( statements( model, "b I g; m U g" ) );
+        model.remove( L );
+        SL.assertHas( new Object[] {"removeList", L} );        }
+        }
 
 
 /*
