@@ -19,7 +19,6 @@ package com.hp.hpl.jena.db.test;
  * @author csayers
 */
 
-import com.hp.hpl.jena.db.DBConnection;
 import com.hp.hpl.jena.db.IDBConnection;
 import com.hp.hpl.jena.db.ModelRDB;
 import com.hp.hpl.jena.rdf.model.*;
@@ -47,9 +46,7 @@ public class TestSimpleSelector extends TestCase
 	   
     protected void setUp() throws java.lang.Exception {
     	
-        Class.forName(TestPackage.M_DBDRIVER_CLASS);
-		conn = new DBConnection(TestPackage.M_DB_URL, TestPackage.M_DB_USER, TestPackage.M_DB_PASSWD, TestPackage.M_DB);
-		conn.cleanDB();
+		conn = TestConnection.makeAndCleanTestConnection();
 		model = ModelRDB.createModel(conn, TestPackage.M_DB); 
 		
     	model.createResource()

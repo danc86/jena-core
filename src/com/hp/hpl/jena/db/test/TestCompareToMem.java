@@ -24,7 +24,6 @@ package com.hp.hpl.jena.db.test;
 
 import java.util.Iterator;
 
-import com.hp.hpl.jena.db.DBConnection;
 import com.hp.hpl.jena.db.IDBConnection;
 import com.hp.hpl.jena.db.ModelRDB;
 import com.hp.hpl.jena.mem.ModelMem;
@@ -51,10 +50,7 @@ public class TestCompareToMem extends TestCase
 	IDBConnection conn = null;
 	
     protected void setUp() throws java.lang.Exception {
-    	
-        Class.forName(TestPackage.M_DBDRIVER_CLASS);
-		conn = new DBConnection(TestPackage.M_DB_URL, TestPackage.M_DB_USER, TestPackage.M_DB_PASSWD, TestPackage.M_DB);
-		conn.cleanDB(); // start with a fresh slate.
+		conn = TestConnection.makeAndCleanTestConnection();
 		modelrdf = ModelRDB.createModel(conn);
 		modelmem = new ModelMem();
     }
