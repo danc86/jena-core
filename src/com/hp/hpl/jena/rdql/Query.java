@@ -31,7 +31,7 @@ import com.hp.hpl.jena.rdf.model.* ;
 
 public class Query
 {
-    static Logger logger = Logger.getLogger("com.hp.hpl.jena.rdql") ;
+    static Logger logger = Logger.getLogger(Query.class) ;
     
     // The names of variables wanted by the caller.
     protected List resultVars = new ArrayList() ;         // Type in list: String name
