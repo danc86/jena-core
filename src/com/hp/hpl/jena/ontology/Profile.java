@@ -245,6 +245,15 @@ public interface Profile
     
     /**
      * <p>
+     * Answer the class that denotes an ontology property
+     * </p>
+     * 
+     * @return The OntologyProperty class
+     */
+    public Resource ONTOLOGY_PROPERTY();
+    
+    /**
+     * <p>
      * Answer the class that defines a closed range of concrete data values.
      * </p>
      * @return The DataRange class

@@ -77,6 +77,7 @@ public class DAML_OILProfile
     private Resource m_deprecatedClass              = null;
     private Resource m_deprecatedProperty           = null;
     private Resource m_annotationProperty           = null;
+    private Resource m_ontologyProperty             = null;
     private Resource m_list                         = m_vocabModel.createResource( DAML_OIL.List.getURI()                      );                     
     private Resource m_nil                          = m_vocabModel.createResource( DAML_OIL.nil.getURI()                       );
     private Resource m_datarange                    = null;
@@ -151,6 +152,7 @@ public class DAML_OILProfile
     public Resource DEPRECATED_CLASS() {            return m_deprecatedClass; }
     public Resource DEPRECATED_PROPERTY() {         return m_deprecatedProperty; }
     public Resource ANNOTATION_PROPERTY() {         return m_annotationProperty; }
+    public Resource ONTOLOGY_PROPERTY() {           return m_ontologyProperty; }
     public Resource LIST() {                        return m_list; }
     public Resource NIL() {                         return m_nil; }
     public Resource DATARANGE() {                   return m_datarange; }

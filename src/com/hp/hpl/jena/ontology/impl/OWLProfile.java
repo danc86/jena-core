@@ -61,7 +61,7 @@ public class OWLProfile
     // External signature methods
     //////////////////////////////////
 
-    public String   NAMESPACE() {                   return OWL.NAMESPACE; }
+    public String   NAMESPACE() {                   return OWL.getURI(); }
 
     public Resource CLASS() {                       return OWL.Class; }
     public Resource RESTRICTION() {                 return OWL.Restriction; }
@@ -79,6 +79,7 @@ public class OWLProfile
     public Resource DEPRECATED_CLASS() {            return OWL.DeprecatedClass; }
     public Resource DEPRECATED_PROPERTY() {         return OWL.DeprecatedProperty; }
     public Resource ANNOTATION_PROPERTY() {         return OWL.AnnotationProperty; }
+    public Resource ONTOLOGY_PROPERTY() {           return OWL.OntologyProperty; }
     public Resource LIST() {                        return RDF.List; }
     public Resource NIL() {                         return RDF.nil; }
     public Resource DATARANGE() {                   return OWL.DataRange; }
@@ -87,7 +88,7 @@ public class OWLProfile
     public Property EQUIVALENT_PROPERTY() {         return OWL.equivalentProperty; }
     public Property EQUIVALENT_CLASS() {            return OWL.equivalentClass; }
     public Property DISJOINT_WITH() {               return OWL.disjointWith; }
-    public Property SAME_INDIVIDUAL_AS() {          return OWL.sameIndividualAs; }
+    public Property SAME_INDIVIDUAL_AS() {          return null; }
     public Property SAME_AS() {                     return OWL.sameAs; }
     public Property DIFFERENT_FROM() {              return OWL.differentFrom; }
     public Property DISTINCT_MEMBERS() {            return OWL.distinctMembers; }
@@ -128,7 +129,6 @@ public class OWLProfile
     
     protected Resource[][] aliasTable() {
         return new Resource[][] {
-            { OWL.sameAs, OWL.sameIndividualAs }
         };
     }
     
@@ -148,7 +148,7 @@ public class OWLProfile
                 OWL.versionInfo,
                 RDFS.label, 
                 RDFS.seeAlso,
-                OWL.comment,
+                RDFS.comment,
                 RDFS.isDefinedBy
             }
         ).iterator();

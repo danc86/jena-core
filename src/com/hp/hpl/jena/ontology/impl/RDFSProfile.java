@@ -81,6 +81,7 @@ public class RDFSProfile
     public Resource DEPRECATED_CLASS() {            return null; }
     public Resource DEPRECATED_PROPERTY() {         return null; }
     public Resource ANNOTATION_PROPERTY() {         return null; }
+    public Resource ONTOLOGY_PROPERTY() {           return null; }
     public Resource LIST() {                        return RDF.List; }
     public Resource NIL() {                         return RDF.nil; }
     public Resource DATARANGE() {                   return null; }
