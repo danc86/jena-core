@@ -333,6 +333,14 @@ public abstract class AbstractTestGraph extends GraphTestBase
         g.getBulkUpdateHandler().add( triples );
         L.assertHas( new Object[] {"add[]", triples} );
         }
+        
+    public void testBulkAddList()
+        {
+        Graph g = getAndRegister( L );
+        List elems = Arrays.asList( tripleArray( "bells ring loudly; pigs might fly" ) );
+        g.getBulkUpdateHandler().add( elems );
+        L.assertHas( new Object[] {"addList", elems} );
+        }
     
     public void testBulkDeleteArray()
         {
@@ -342,6 +350,14 @@ public abstract class AbstractTestGraph extends GraphTestBase
         L.assertHas( new Object[] {"delete[]", triples} );
         }
         
+    public void testBulkDeleteList()
+        {
+        Graph g = getAndRegister( L );
+        List elems = Arrays.asList( tripleArray( "bells ring loudly; pigs might fly" ) );
+        g.getBulkUpdateHandler().delete( elems );
+        L.assertHas( new Object[] {"deleteList", elems} );
+        }
+    
     public void testContainsNode()
         {
         Graph g = getGraph();

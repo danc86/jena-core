@@ -51,7 +51,13 @@ public class SimpleEventManager implements GraphEventManager
         for (int i = 0; i < listeners.size(); i += 1) 
             ((GraphListener) listeners.get(i)).notifyAdd( ts ); 
         }
-    
+        
+    public void notifyAdd( List L )
+        {
+        for (int i = 0; i < listeners.size(); i += 1) 
+            ((GraphListener) listeners.get(i)).notifyAdd( L);      
+        }
+        
     public void notifyDelete( Triple t ) 
         { 
         for (int i = 0; i < listeners.size(); i += 1) 
@@ -63,6 +69,13 @@ public class SimpleEventManager implements GraphEventManager
         for (int i = 0; i < listeners.size(); i += 1) 
             ((GraphListener) listeners.get(i)).notifyDelete( ts ); 
         }
+        
+    public void notifyDelete( List L )
+        {
+        for (int i = 0; i < listeners.size(); i += 1) 
+            ((GraphListener) listeners.get(i)).notifyDelete( L);      
+        }
+        
     
     }
 

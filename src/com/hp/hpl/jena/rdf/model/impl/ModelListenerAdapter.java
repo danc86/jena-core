@@ -9,6 +9,8 @@ package com.hp.hpl.jena.rdf.model.impl;
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.rdf.model.*;
 
+import java.util.*;
+
 /**
     Adapter class that converts a ModelChangedListener into a GraphListener.
     The only tricky bit is that we have to implement equality as equality of the
@@ -35,6 +37,12 @@ public class ModelListenerAdapter implements GraphListener
 
     public void notifyDelete( Triple t )
         { L.removedStatement( m.asStatement( t ) ); }
+        
+    public void notifyAdd( List triples )
+        {}
+        
+    public void notifyDelete( List triples )
+        {}
 
     public boolean equals( Object other )
         { 

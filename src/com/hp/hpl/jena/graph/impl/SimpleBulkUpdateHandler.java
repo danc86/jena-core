@@ -36,7 +36,10 @@ public class SimpleBulkUpdateHandler implements BulkUpdateHandler
         }
         
     public void add( List triples )
-        { for (int i = 0; i < triples.size(); i += 1) graph.add( (Triple) triples.get(i) ); }
+        {
+        for (int i = 0; i < triples.size(); i += 1) graph.performAdd( (Triple) triples.get(i) ); 
+        manager.notifyAdd( triples );
+        }
         
     public void add( Iterator it )
         { while (it.hasNext()) graph.add( (Triple) it.next() ); }
@@ -51,7 +54,10 @@ public class SimpleBulkUpdateHandler implements BulkUpdateHandler
         }
     
     public void delete( List triples )
-        { for (int i = 0; i < triples.size(); i += 1) graph.delete( (Triple) triples.get(i) );}
+        { 
+        for (int i = 0; i < triples.size(); i += 1) graph.performDelete( (Triple) triples.get(i) );
+        manager.notifyDelete( triples );
+        }
     
     public void delete( Iterator it )
         {  while (it.hasNext()) graph.delete( (Triple) it.next() ); }

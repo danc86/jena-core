@@ -6,6 +6,8 @@
 
 package com.hp.hpl.jena.graph;
 
+import java.util.*;
+
 /**
     Interface for listening to graph-level update events.
     @author Jeremy Carroll, extensions by kers
@@ -23,9 +25,19 @@ public interface GraphListener
     void notifyAdd( Triple [] triples );
     
     /**
+        Method called when a list [of triples] has been added to the graph.
+    */
+    void notifyAdd( List triples );
+    
+    /**
         Method called when a single triple has been deleted from the graph.
     */
     void notifyDelete( Triple t );
+    
+    /**
+        Method called when a list [of triples] has been deleted from the graph.
+    */
+    void notifyDelete( List L );
     
     /**
         Method called when an array of triples has been deleted from the graph.

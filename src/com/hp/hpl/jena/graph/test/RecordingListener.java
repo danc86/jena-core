@@ -22,14 +22,20 @@ class RecordingListener implements GraphListener
     public void notifyAdd( Triple t )
         { record( "add", t ); }
         
-    public void notifyAdd( Triple [] ts )
-        { record( "add[]", ts ); }
+    public void notifyAdd( Triple [] triples )
+        { record( "add[]", triples ); }
+        
+    public void notifyAdd( List triples )
+        { record( "addList", triples ); }
         
     public void notifyDelete( Triple t )
         { record( "delete", t ); }
         
     public void notifyDelete( Triple [] triples )
         { record( "delete[]", triples ); }
+        
+    public void notifyDelete( List triples )
+        { record( "deleteList", triples ); }
         
     protected void record( String tag, Object info )
         { history.add( tag ); history.add( info ); }

@@ -31,12 +31,16 @@ public class DBBulkUpdateHandler implements BulkUpdateHandler {
 	}
 
 	public void add(Triple[] triples) {
-		add(Arrays.asList(triples));
+		add( Arrays.asList(triples), false );
         manager.notifyAdd( triples );
 	}
 
-	public void add(List triples) {
+	public void add( List triples ) 
+        { add( triples, true ); }
+        
+    protected void add( List triples, boolean notify ) {
 		graph.add(triples);
+        if (notify) manager.notifyAdd( triples );
 	}
 
 	public void add(Iterator it) {
@@ -56,13 +60,17 @@ public class DBBulkUpdateHandler implements BulkUpdateHandler {
 		triplesToAdd.close();
 	}
 
-	public void delete(Triple[] triples) {
-		delete(Arrays.asList(triples));
+	public void delete( Triple[] triples ) {
+		delete( Arrays.asList(triples), false );
         manager.notifyDelete( triples );
 	}
 
-	public void delete(List triples) {
-		graph.delete(triples);
+    public void delete( List triples )
+        { delete( triples, true ); }
+        
+	protected void delete(List triples, boolean notify ) {
+		graph.delete( triples );
+        if (notify) manager.notifyDelete( triples );
 	}
 
 	public void delete(Iterator it) {

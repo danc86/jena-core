@@ -18,6 +18,12 @@ public interface ModelChangedListener
     */
     void addedStatement( Statement s );
     
+    /**
+        Method to call when an array of statements has been added to the attached model.
+        NOTE. This array need not be == to the array added using Model::add(Statement[]).
+        
+        @param statements the array of added statements
+    */
     void addedStatements( Statement [] statements );
     
     /**
@@ -26,6 +32,13 @@ public interface ModelChangedListener
     */
     void removedStatement( Statement s );
     
+    /**
+        Method to call when an array of statements has been removed from the attached 
+        model. NOTE. This array need not be == to the array added using 
+        Model::remove(Statement[]).
+        
+        @param statements the array of removed statements
+    */    
     void removedStatements( Statement [] statements );
     }
 
