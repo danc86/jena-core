@@ -59,7 +59,6 @@ public class Util {
     /**
      * Helper - returns the (singleton) value for the given property on the given
      * root node in the data graph.
-     * Temporary hack for context usage - TODO: replace.
      */
     public static Node getPropValue(Node root, Node prop, RuleContext context) {
         Iterator i = context.find(root, prop, null);
@@ -72,7 +71,6 @@ public class Util {
     
     /**
      * Convert an (assumed well formed) RDF list to a java list of Nodes
-     * Temporary hack for context usage - TODO: replace.
      * @param root the root node of the list
      * @param graph the graph containing the list assertions
      */
@@ -82,7 +80,6 @@ public class Util {
     
     /**
      * Convert an (assumed well formed) RDF list to a java list of Nodes
-     * Temporary hack for context usage - TODO: replace.
      */
     private static List convertList(Node node, RuleContext context, List sofar) {
         if (node == null || node.equals(RDF.nil.asNode())) return sofar;

@@ -252,7 +252,7 @@ public class ReasonerTester {
         */
         // ... end of debugging hack
         if (testcase != null) {
-            testcase.assertTrue(description, correct);
+            TestCase.assertTrue(description, correct);
         }
         return correct;
     }

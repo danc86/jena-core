@@ -214,7 +214,7 @@ public class OWLWGTester {
         
         // Signal the results        
         if (testcase != null) {
-            testcase.assertTrue("Test: " + test + "\n" +  description, correct);
+            TestCase.assertTrue("Test: " + test + "\n" +  description, correct);
         }
         return correct;
     }
