@@ -9,8 +9,17 @@
  *****************************************************************/
 package com.hp.hpl.jena.reasoner.rulesys.test;
 
+import java.util.Iterator;
+
 import com.hp.hpl.jena.graph.*;
-//import com.hp.hpl.jena.reasoner.*;
+//import com.hp.hpl.jena.graph.compose.Union;
+import com.hp.hpl.jena.rdf.model.*;
+import com.hp.hpl.jena.util.ModelLoader;
+import com.hp.hpl.jena.util.PrintUtil;
+import com.hp.hpl.jena.vocabulary.RDF;
+import com.hp.hpl.jena.vocabulary.RDFS;
+import com.hp.hpl.jena.reasoner.*;
+import com.hp.hpl.jena.reasoner.rulesys.*;
 
 /**
  * Test harnness for investigating OWL reasoner correctness and performance
@@ -22,31 +31,73 @@ import com.hp.hpl.jena.graph.*;
  */
 public class DebugOWL {
 
-    /** The trial file to be loaded and processed */
-    public String testFile;
+    /** The base reasoner being tested */
+    Reasoner reasoner = OWLFBRuleReasonerFactory.theInstance().create(null);
     
     /** The raw tests data as a Graph */
     Graph testdata;
     
+    /** The inference graph under test */
+    InfGraph infgraph;
+    
     /**
-     * Construct a test harness.
+     * Construct a test harness on a given source file.
      */
     public DebugOWL(String testFile) {
-        this.testFile = testFile;
+        Model data = ModelLoader.loadModel(testFile);
+        testdata = data.getGraph();
+        infgraph = reasoner.bind(testdata);
     }
     
     /**
-     * Load the named file into the harness.
+     * Construct a test harness on a schema + data file
      */
-    void setUp() {
-        
+    public DebugOWL(String schemaFile, String testFile) {
+        testdata = ModelLoader.loadModel(testFile).getGraph();
+        Graph schema = ModelLoader.loadModel(schemaFile).getGraph();
+        infgraph = reasoner.bindSchema(schema).bind(testdata);
+//        infgraph = reasoner.bind(new Union(schema, testdata));
+    }
+    
+    /**
+     * Test and time an access operation.
+     */
+    long list(Node s, Node p, Node o, boolean print) {
+        long t1 = System.currentTimeMillis();
+        int count = 0;
+        for (Iterator i = infgraph.find(s,p,o); i.hasNext(); ) {
+            Triple t = (Triple)i.next();
+            count++;
+            if (print) {
+                System.out.println(" - " + PrintUtil.print(t));
+            }
+        }
+        long t2 = System.currentTimeMillis();
+        System.out.println("Found " + count + " results");
+        return (t2 - t1);
     }
     
     public static void main(String[] args) {
         try {
-            DebugOWL tester = new DebugOWL("file:testing/ontology/owl/list-syntax/test-with-import.rdf");
-            tester.setUp();
+            String dataFile = "file:testing/ontology/owl/list-syntax/test-with-import.rdf";
+            String schemaFile = "file:vocabularies/owl.owl";
             
+            DebugOWL tester = new DebugOWL(dataFile);
+            System.out.println("Test data only started ...");
+            long t = tester.list(null, RDF.type.asNode(), RDFS.Class.asNode(), false);
+            System.out.println("Took " + t + "ms");
+            t = tester.list(null, RDF.type.asNode(), null, false);
+            System.out.println("Took " + t + "ms");
+            
+            tester = new DebugOWL(schemaFile);
+            System.out.println("Test schema only started ...");
+            t = tester.list(null, RDF.type.asNode(), RDFS.Class.asNode(), false);
+            System.out.println("Took " + t + "ms");
+            
+            tester = new DebugOWL(schemaFile, dataFile);
+            System.out.println("Test schema + data  started ...");
+            t = tester.list(null, RDF.type.asNode(), RDFS.Class.asNode(), false);
+            System.out.println("Took " + t + "ms");
         } catch (Exception e) {
             System.out.println("Problem: " + e);
             e.printStackTrace();
