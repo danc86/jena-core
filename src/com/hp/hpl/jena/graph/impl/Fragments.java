@@ -155,18 +155,6 @@ public class Fragments
     public String toString()
         { return anchor + " s:" + slots[SUBJECTS.which] + " p:" + slots[PREDICATES.which] + " o:" + slots[OBJECTS.which] + " t:" + slots[TYPES.which]; }
        
-    /**
-        given a triple t, see if it's a reification triple and if so return the internal seelctor;
-        oterwise return -1.
-    */ 
-    public static Slot getFragmentSelector( Triple t )
-        {
-        Node p = t.getPredicate();
-        Slot x = (Slot) selectors.get( p );
-        if (x == null || (p.equals( RDF.Nodes.type ) && !t.getObject().equals( RDF.Nodes.Statement ) ) ) return null;
-        return x;
-        }
-        
     /*
         the magic numbers for the slots. The order doesn't matter, but that they're
         some permutation of {0, 1, 2, 3} does. 
@@ -176,7 +164,7 @@ public class Fragments
     private static final Slot PREDICATES = new Slot(2) { public boolean clashesWith( Node n, Triple reified ) { return !n.equals( reified.getPredicate() ); } };
     private static final Slot OBJECTS = new Slot(3) { public boolean clashesWith( Node n, Triple reified ) { return !n.equals( reified.getObject() ); } };
 
-    private static final Map selectors = makeSelectors();
+    public static final Map selectors = makeSelectors();
           
     /**
         make the selector mapping.

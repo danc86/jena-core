@@ -8,7 +8,9 @@ package com.hp.hpl.jena.graph.impl;
 
 import com.hp.hpl.jena.graph.Graph;
 import com.hp.hpl.jena.graph.Node;
+import com.hp.hpl.jena.graph.Triple;
 import com.hp.hpl.jena.graph.TripleMatch;
+import com.hp.hpl.jena.graph.impl.Fragments.Slot;
 import com.hp.hpl.jena.util.iterator.ExtendedIterator;
 
 /**
@@ -43,9 +45,14 @@ public interface ReifierFragmentsMap
     public abstract ExtendedIterator allTriples( TripleMatch tm );
 
     /**
-         Answer eturn the fragment map as a read-only Graph of quadlets. 
+         Answer the fragment map as a read-only Graph of quadlets. 
     */
     public abstract Graph asGraph();
+
+    /**
+         Answer a Slot which can handle this fragment, or null if it isn't a quadlet.
+    */
+    public abstract Slot getFragmentSelector( Triple fragment );
     }
 
 /*
