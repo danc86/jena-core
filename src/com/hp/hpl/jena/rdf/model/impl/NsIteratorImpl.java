@@ -24,13 +24,8 @@ public class NsIteratorImpl extends ClosableWrapper implements NsIterator {
         super( iter ); 
     }
 
-    /** the cast is probably unnecessary */
-    public Object next() {
-        return (String) super.next();
-    }
-    
     public String nextNs() throws NoSuchElementException, RDFException {
-        return (String) super.next();
+        return (String) next();
     }
     
 }

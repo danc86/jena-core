@@ -26,6 +26,13 @@ public class StmtIteratorImpl extends ClosableWrapper implements StmtIterator
     public StmtIteratorImpl( Iterator iterator )
         { super( iterator ); }
 
+    /**
+        return *and remember* the next element. It must be remembered
+        so that remove works whichever next-method is called.
+    */
+    public Object next()
+        { return current = (Statement) super.next(); }
+        
     public void remove()
         {
         super.remove();
@@ -33,7 +40,7 @@ public class StmtIteratorImpl extends ClosableWrapper implements StmtIterator
         }
         
     public Statement nextStatement()
-        { return current = (Statement) next(); }
+        { return (Statement) next(); }
     }
 
 /*

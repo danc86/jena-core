@@ -57,8 +57,6 @@ import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.util.Log;
 import com.hp.hpl.jena.util.iterator.ConcatenatedIterator;
 import com.hp.hpl.jena.util.iterator.NodeIteratorWrapper;
-import com.hp.hpl.jena.util.iterator.ResIteratorWrapper;
-
 
 import com.hp.hpl.jena.vocabulary.DAML_OIL;
 
@@ -527,7 +525,7 @@ public class PropertyIterator
             // don't use equivalents
             if (m_model != null) {
                 // we have a model to query, so use it to get the subject of the triple
-                i = new ResIteratorWrapper( m_model.listSubjectsWithProperty( m_inverse, res ) );
+                i = m_model.listSubjectsWithProperty( m_inverse, res );
             }
             else {
                 // no model (can occur when using built-in constants from vocab)

@@ -111,7 +111,7 @@ public class ConcatenatedIterator
             m_iter0 = new NodeIteratorWrapper( (NodeIterator) iter0 );
         }
         else if (iter0 instanceof ResIterator) {
-            m_iter0 = new ResIteratorWrapper( (ResIterator) iter0 );
+            m_iter0 = (ResIterator) iter0; 
         }
         else {
             throw new IllegalArgumentException( "Found a non-iterator when constructing ConcatenatedIterator: " + iter0 );
@@ -125,7 +125,7 @@ public class ConcatenatedIterator
             m_iter1 = new NodeIteratorWrapper( (NodeIterator) iter1 );
         }
         else if (iter1 instanceof ResIterator) {
-            m_iter1 = new ResIteratorWrapper( (ResIterator) iter1 );
+            m_iter1 = (ResIterator) iter1;
         }
         else {
             throw new IllegalArgumentException( "Found a non-iterator when constructing ConcatenatedIterator: " + iter1 );

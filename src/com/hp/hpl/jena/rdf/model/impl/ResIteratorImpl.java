@@ -27,14 +27,8 @@ public class ResIteratorImpl extends ClosableWrapper implements ResIterator {
     public ResIteratorImpl( Iterator iter )
         { super( iter ); }
 
-    /** the cast was in the pre-Wrapper code, it's probably unnecessary;
-        we can delete the method entirely.
-    */
-    public Object next() 
-        { return (Resource) super.next(); }
-        
     public Resource nextResource() {
-        return (Resource) super.next();
+        return (Resource) next();
     }
     
 }
