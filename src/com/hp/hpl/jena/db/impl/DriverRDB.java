@@ -192,7 +192,7 @@ public abstract class DriverRDB implements IRDBDriver {
 		IPSet pSet = createIPSetInstanceFromName(m_psetClassName);
 		pSet.setASTname(SYSTEM_PROP_TNAME);
 		m_sysProperties = createLSetInstanceFromName(m_lsetClassName, pSet);
-		
+		m_dbProps = new DBPropDatabase(m_sysProperties);
 		return m_sysProperties;		
 	}
 	
