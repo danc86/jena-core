@@ -34,13 +34,15 @@ public class ChoicePointFactory extends FrameObjectFactory {
      * Find or allocate a new frame.
      */
     private ChoicePointFrame getFrame() {
-        ChoicePointFrame env = (ChoicePointFrame)getFree();
-        if (env == null) {
-            env = new ChoicePointFrame(this);
-        } else {
-            env.fastLinkTo(null);
-        }
-        return env;
+        return new ChoicePointFrame(this);
+        // Disable pool management - not enough performance benefit
+//        ChoicePointFrame env = (ChoicePointFrame)getFree();
+//        if (env == null) {
+//            env = new ChoicePointFrame(this);
+//        } else {
+//            env.fastLinkTo(null);
+//        }
+//        return env;
     }
     
 }

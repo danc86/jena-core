@@ -18,12 +18,19 @@ package com.hp.hpl.jena.reasoner.rulesys.implb;
  * @version $Revision$ on $Date$
  */
 public class FrameObjectFactory {
+    
+    /** The memory pool for frame objects of this class */
+    protected FrameObject pool = null;
 
     /**
      * Return a free frame object if there is one in the pool, otherwise null.
      */
     public FrameObject getFree() {
-        return null;
+        FrameObject result = pool;
+        if (result != null)  {
+            pool = result.link;
+        } 
+        return result;
     }
     
     /**
@@ -31,6 +38,8 @@ public class FrameObjectFactory {
      * Not implemented.
      */
     public void returnFreeFrame(FrameObject frame) {
+        frame.fastLinkTo(pool);
+        pool = frame;
     }
 }
 

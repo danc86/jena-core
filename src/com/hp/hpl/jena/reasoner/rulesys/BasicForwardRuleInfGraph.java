@@ -53,7 +53,7 @@ public class BasicForwardRuleInfGraph extends BaseInfGraph implements ForwardRul
     protected List rules;
     
     /** Flag which, if true, enables tracing of rule actions to logger.info */
-    boolean traceOn = false;
+    protected boolean traceOn = false;
     
     /** log4j logger */
     protected static Logger logger = Logger.getLogger(BasicForwardRuleInfGraph.class);

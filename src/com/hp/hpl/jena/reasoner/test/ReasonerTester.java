@@ -189,6 +189,22 @@ public class ReasonerTester {
     }
     
     /**
+     * Run all the tests in the manifest
+     * @param reasoner the reasoner to be tested
+     * @param testcase the JUnit test case which is requesting this test
+     * @return true if all the tests pass
+     * @throws IOException if one of the test files can't be found
+     * @throws RDFException if the test can't be found or fails internally
+     */
+    public boolean runTests(Reasoner reasoner, TestCase testcase) throws IOException {
+        for (Iterator i = listTests().iterator(); i.hasNext(); ) {
+            String test = (String)i.next();
+            if (!runTest(test, reasoner, testcase)) return false;
+        }
+        return true;
+    }
+    
+    /**
      * Return a list of all test names defined in the manifest for this test harness.
      */
     public List listTests() {
@@ -199,6 +215,7 @@ public class ReasonerTester {
         }
         return testList;
     }
+    
     
     /**
      * Run a single designated test.
@@ -211,6 +228,20 @@ public class ReasonerTester {
      * @throws RDFException if the test can't be found or fails internally
      */
     public boolean runTest(String uri, ReasonerFactory reasonerF, TestCase testcase, Resource configuration) throws IOException {
+        Reasoner reasoner = reasonerF.create(configuration);
+        return runTest(uri, reasoner, testcase);
+    }
+    
+    /**
+     * Run a single designated test.
+     * @param uri the uri of the test, as defined in the manifest file
+     * @param reasoner the reasoner to be tested
+     * @param testcase the JUnit test case which is requesting this test
+     * @return true if the test passes
+     * @throws IOException if one of the test files can't be found
+     * @throws RDFException if the test can't be found or fails internally
+     */
+    public boolean runTest(String uri, Reasoner reasoner, TestCase testcase) throws IOException {
         // Find the specification for the named test
         Resource test = testManifest.getResource(uri);
         if (!test.hasProperty(RDF.type, testClass)) {
@@ -223,7 +254,6 @@ public class ReasonerTester {
         // Construct the inferred graph
         Graph tbox = loadTestFile(test, tboxP);
         Graph data = loadTestFile(test, dataP);
-        Reasoner reasoner = reasonerF.create(configuration);
         InfGraph graph = reasoner.bindSchema(tbox).bind(data);
         
         // Run each query triple and accumulate the results
@@ -248,7 +278,7 @@ public class ReasonerTester {
         // Used in debugging the tests ...
         // Can't just leave it as a logger.debug because there are unit tests to which are supposed to given
         // a test failure which would then problem unwanted output.
-        /*
+        // /*
         System.out.println("Reasoner test " + test.getURI() + " - " + description);
         if (!correct) {
             System.out.println("Missing triples:");
@@ -267,7 +297,7 @@ public class ReasonerTester {
             }
             
         }
-        */
+        // */
         // ... end of debugging hack
         if (testcase != null) {
             TestCase.assertTrue(description, correct);

@@ -59,6 +59,7 @@ public class ChoicePointFrame extends FrameObject {
      */
     public void init(LPInterpreter interpreter, List predicateClauses) {
         envFrame = interpreter.envFrame;
+//        envFrame.incRefCount();
         trailIndex = interpreter.trail.size();
         System.arraycopy(interpreter.argVars, 0, argVars, 0, argVars.length);
         clauseIterator = predicateClauses.iterator();
@@ -77,11 +78,15 @@ public class ChoicePointFrame extends FrameObject {
      * closing any embedded triple match iterators)
      */
     public void close() {
-        if (envFrame != null)
-            envFrame.close();
-        if (link != null)
-            link.close();
-        free();
+//        if (--refCount == 0) {
+//            if (link != null) {
+//                link.close();
+//            }
+//            if (envFrame != null) {
+//                envFrame.close();
+//            }
+//            free();
+//        }
     }
 }
 

@@ -34,13 +34,15 @@ public class TripleMatchFactory extends FrameObjectFactory {
      * Find or allocate a new frame.
      */
     private TripleMatchFrame getFrame() {
-        TripleMatchFrame env = (TripleMatchFrame)getFree();
-        if (env == null) {
-            env = new TripleMatchFrame(this);
-        } else {
-            env.fastLinkTo(null);
-        }
-        return env;
+        return new TripleMatchFrame(this);
+        // Disable pool management - not enough performance benefit
+//        TripleMatchFrame env = (TripleMatchFrame)getFree();
+//        if (env == null) {
+//            env = new TripleMatchFrame(this);
+//        } else {
+//            env.fastLinkTo(null);
+//        }
+//        return env;
     }
     
 }

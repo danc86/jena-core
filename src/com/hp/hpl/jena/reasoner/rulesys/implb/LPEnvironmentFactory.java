@@ -34,13 +34,15 @@ public class LPEnvironmentFactory extends FrameObjectFactory {
      * Find or allocate a new frame.
      */
     private EnvironmentFrame getFrame() {
-        EnvironmentFrame env = (EnvironmentFrame)getFree();
-        if (env == null) {
-            env = new EnvironmentFrame(this);
-        } else {
-            env.fastLinkTo(null);
-        }
-        return env;
+        return  new EnvironmentFrame(this);
+        // Disable pool management - not enough performance benefit
+//        EnvironmentFrame env = (EnvironmentFrame)getFree();
+//        if (env == null) {
+//            env = new EnvironmentFrame(this);
+//        } else {
+//            env.fastLinkTo(null);
+//        }
+//        return env;
     }
     
 }

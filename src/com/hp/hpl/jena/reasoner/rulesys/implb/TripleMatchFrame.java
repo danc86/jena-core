@@ -78,6 +78,7 @@ public class TripleMatchFrame extends FrameObject {
      */
     public void init(LPInterpreter interpreter) {
         envFrame = interpreter.envFrame;
+//        envFrame.incRefCount();
         trailIndex = interpreter.trail.size();
         Node s = LPInterpreter.deref(interpreter.argVars[0]);
         subjectVar =   (s instanceof Node_RuleVariable) ? (Node_RuleVariable) s : null;
@@ -101,8 +102,15 @@ public class TripleMatchFrame extends FrameObject {
      */
     public void close() {
         if (matchIterator != null) matchIterator.close();
-        if (link != null) link.close();
-        free();
+//        if (--refCount == 0) {
+//            if (link != null) {
+//                link.close();
+//            }
+//            if (envFrame != null) {
+//                envFrame.close();
+//            }
+//            free();
+//        }
     }
     
 }

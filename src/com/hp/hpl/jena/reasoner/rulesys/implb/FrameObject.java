@@ -21,15 +21,18 @@ public class FrameObject {
     /** Used to link the frame to the prior frame in the (tree) stack or the pool */
     FrameObject link;
     
-    /** The parent factory to which free frames can be returned */
-    protected FrameObjectFactory factory;
+//    /** Reference counter */
+//    int refCount = 0;
+    
+//    /** The parent factory to which free frames can be returned */
+//    protected FrameObjectFactory factory;
     
     /** 
      * Constructor The parent factory to which free frames can be returned
      * @param factory 
      */
     public FrameObject(FrameObjectFactory factory) {
-        this.factory = factory;
+//        this.factory = factory;
     }
     
     /**
@@ -38,6 +41,7 @@ public class FrameObject {
      */
     public void linkTo(FrameObject prior) {
         link = prior;
+//        if (prior != null) prior.incRefCount();
     }
     
     /**
@@ -54,13 +58,25 @@ public class FrameObject {
         return link;
     }
     
+    
+//    /**
+//     * Increment the reference count.
+//     */
+//    public void incRefCount() {
+//        refCount++;
+//    }
+    
     /**
      * Close the frame actively. This frees any internal resources, frees this frame and
      * frees the frame to which this is linked.
      */
     public void close() {
-        if (link != null) link.close();
-        free();
+//        if (--refCount == 0) {
+//            if (link != null) {
+//                link.close();
+//            }
+//            free();
+//        }
     }
     
     /**
@@ -68,7 +84,7 @@ public class FrameObject {
      * reclaimed by garbage collection anyway. Not implemented.
      */
     public void free() {
-        factory.returnFreeFrame(this);
+//        factory.returnFreeFrame(this);
     }
     
 }
