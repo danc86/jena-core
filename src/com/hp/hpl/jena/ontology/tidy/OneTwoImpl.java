@@ -61,7 +61,7 @@ class OneTwoImpl extends CGeneral {
     	Vocab.secondPart,
     	Vocab.objectOfTriple
     };
-	private Triple get(int i) {
+	Triple get(int i) {
 		if (seen[i] == null) {
 			Graph G = getGraph().asGraph();
 			ClosableIterator it = G.find(asNode(), gProp[i], null);

@@ -79,6 +79,13 @@ class CategorySet implements Comparable {
 		  && ( intersect(Grammar.restrictionsX,all)
 		  || intersect(Grammar.descriptionsX,all) );
 	} 
+};	
+
+   static final Q descSets = new Q() {
+	boolean test(int all[]){
+		return ( intersect(Grammar.restrictionsX,all)
+		  || intersect(Grammar.descriptionsX,all) );
+	} 
 };
 	/**
 	 * The ids of all orphaned unnamed individuals, which are

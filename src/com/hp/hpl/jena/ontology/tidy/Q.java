@@ -52,7 +52,7 @@ abstract class Q {
 	}
 	abstract boolean test(int c[]);
 
-	final boolean member(int m, int a[]) {
+	static final boolean member(int m, int a[]) {
 		return Arrays.binarySearch(a, m) >= 0;
 	}
 	final boolean subset(int a[], int b[]) {
@@ -61,7 +61,7 @@ abstract class Q {
 				return false;
 		return true;
 	}
-	final boolean intersect(int a[], int b[]) {
+	static final boolean intersect(int a[], int b[]) {
 		for (int i = 0; i < a.length; i++)
 			if (member(a[i], b))
 				return true;
