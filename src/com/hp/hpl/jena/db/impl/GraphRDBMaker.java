@@ -11,6 +11,7 @@ import com.hp.hpl.jena.db.IDBConnection;
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.graph.impl.*;
 import com.hp.hpl.jena.shared.*;
+import com.hp.hpl.jena.util.HashUtils;
 import com.hp.hpl.jena.util.iterator.*;
 import com.hp.hpl.jena.vocabulary.*;
 
@@ -29,7 +30,7 @@ public class GraphRDBMaker extends BaseGraphMaker
     {
     private IDBConnection c;
     private int counter = 0;
-    private Set created = new HashSet();
+    private Set created = HashUtils.createSet();
     int reificationStyle;
     
     /**
@@ -131,7 +132,7 @@ public class GraphRDBMaker extends BaseGraphMaker
     */
     public void removeAll()
         {
-        Iterator it = new HashSet( created ).iterator();
+        Iterator it = HashUtils.createSet( created ).iterator();
         while (it.hasNext()) removeGraph( (String) it.next() );
         }
         

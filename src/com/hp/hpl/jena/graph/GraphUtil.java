@@ -6,6 +6,7 @@
 
 package com.hp.hpl.jena.graph;
 
+import com.hp.hpl.jena.util.HashUtils;
 import com.hp.hpl.jena.util.iterator.*;
 import java.util.*;
 
@@ -39,7 +40,7 @@ public class GraphUtil
     */
     public static Set iteratorToSet( Iterator i )
         {
-        Set result = new HashSet();
+        Set result = HashUtils.createSet();
         while (i.hasNext()) result.add( i.next() );
         return result;
         }

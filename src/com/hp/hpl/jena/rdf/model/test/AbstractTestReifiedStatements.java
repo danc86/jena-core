@@ -7,6 +7,7 @@
 package com.hp.hpl.jena.rdf.model.test;
 
 import com.hp.hpl.jena.rdf.model.*;
+import com.hp.hpl.jena.util.HashUtils;
 import com.hp.hpl.jena.vocabulary.RDF;
 import com.hp.hpl.jena.graph.test.*;
 
@@ -33,7 +34,7 @@ public abstract class AbstractTestReifiedStatements extends ModelTestBase
     
     private static final String aURI = "jena:test/reifying#someURI";
     private static final String anotherURI = "jena:test/reifying#anotherURI";
-    private static final String anchor = "jena:test/Reifying#";    
+    private static final String anchor = "jena:test/Reifying#";
     
     public void setUp()
         {
@@ -193,7 +194,7 @@ public abstract class AbstractTestReifiedStatements extends ModelTestBase
     public Set getSetRS( Model m )
         { return GraphTestBase.iteratorToSet( m.listReifiedStatements() ); }
    
-    protected static Set empty = new HashSet();
+    protected static Set empty = HashUtils.createSet();
     
     /**
         test that listReifiedStatements produces an iterator that contains

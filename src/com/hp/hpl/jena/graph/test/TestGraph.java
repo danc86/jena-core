@@ -15,6 +15,7 @@ package com.hp.hpl.jena.graph.test;
 
 import com.hp.hpl.jena.mem.*;
 import com.hp.hpl.jena.shared.ReificationStyle;
+import com.hp.hpl.jena.util.HashUtils;
 import com.hp.hpl.jena.util.iterator.ExtendedIterator;
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.graph.impl.*;
@@ -80,7 +81,7 @@ public class TestGraph extends GraphTestBase
             };
         
         ExtendedIterator subjects = g.queryHandler().subjectsFor( null, null );
-        Set s = new HashSet();
+        Set s = HashUtils.createSet();
         while (subjects.hasNext()) s.add( subjects.next() );
         assertFalse( "find should not have been called", called[0] );
         }   
@@ -96,7 +97,7 @@ public class TestGraph extends GraphTestBase
             };
         
         ExtendedIterator subjects = g.queryHandler().objectsFor( null, null );
-        Set s = new HashSet();
+        Set s = HashUtils.createSet();
         while (subjects.hasNext()) s.add( subjects.next() );
         assertFalse( "find should not have been called", called[0] );
         }   

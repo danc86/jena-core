@@ -8,6 +8,7 @@ package com.hp.hpl.jena.enhanced;
 
 import java.util.*;
 import com.hp.hpl.jena.graph.*;
+import com.hp.hpl.jena.util.HashUtils;
 
 /**
  * Defines a set of permitted mappings from [interface] Class objects to 
@@ -21,7 +22,7 @@ public class Personality {
 
     // Instance variables
     /** Records the bindings from type specifications to implementations.  */
-    private HashMap types = new HashMap();
+    private Map types = HashUtils.createMap();
     
     // Constructors
     

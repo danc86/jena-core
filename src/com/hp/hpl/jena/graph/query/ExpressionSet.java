@@ -8,6 +8,8 @@ package com.hp.hpl.jena.graph.query;
 
 import java.util.*;
 
+import com.hp.hpl.jena.util.HashUtils;
+
 /**
 	ExpressionSet: represent a set of (boolean) expressions ANDed together.
 
@@ -15,7 +17,7 @@ import java.util.*;
 */
 public class ExpressionSet 
     {
-    private Set expressions = new HashSet();
+    private Set expressions = HashUtils.createSet();
     /**
         Initialise an expression set with no members.
     */

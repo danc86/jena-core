@@ -12,6 +12,7 @@ import java.io.*;
 import java.util.*;
 
 import com.hp.hpl.jena.shared.*;
+import com.hp.hpl.jena.util.HashUtils;
 import com.hp.hpl.jena.util.iterator.*;
 import com.hp.hpl.jena.vocabulary.*;
 
@@ -27,7 +28,7 @@ public class FileGraphMaker extends BaseGraphMaker
     {
     private String fileBase;
     private boolean deleteOnClose;
-    private Map created = new HashMap();
+    private Map created = HashUtils.createMap();
     
     /**
         Construct a file graph factory whose files will appear in root. The reifier
@@ -238,7 +239,7 @@ public class FileGraphMaker extends BaseGraphMaker
      */
     public ExtendedIterator listGraphs()
         { String [] fileNames = new File( fileBase ).list( graphName() );
-        Set allNames = new HashSet( Arrays.asList( fileNames ) );
+        Set allNames = HashUtils.createSet( Arrays.asList( fileNames ) );
         Iterator it = created.keySet().iterator();
         while (it.hasNext()) allNames.add( ((File) it.next()).getName() ); 
 		return WrappedIterator.create( allNames.iterator() ) .mapWith( unconvert ); }

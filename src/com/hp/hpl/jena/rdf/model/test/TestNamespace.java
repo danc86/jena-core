@@ -9,6 +9,7 @@ package com.hp.hpl.jena.rdf.model.test;
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.rdf.model.impl.*;
 import com.hp.hpl.jena.shared.test.*;
+import com.hp.hpl.jena.util.HashUtils;
 
 import java.util.*;
 import java.io.*;
@@ -94,7 +95,7 @@ public class TestNamespace extends ModelTestBase
     */
     private Set set( String element )
         {
-        Set s = new HashSet();
+        Set s = HashUtils.createSet();
         s.add( element );
         return s;
         }

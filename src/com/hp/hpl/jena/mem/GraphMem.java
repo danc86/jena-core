@@ -10,6 +10,7 @@ import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.graph.impl.*;
 import com.hp.hpl.jena.graph.query.*;
 import com.hp.hpl.jena.shared.*;
+import com.hp.hpl.jena.util.HashUtils;
 import com.hp.hpl.jena.util.iterator.ExtendedIterator;
 import com.hp.hpl.jena.util.iterator.WrappedIterator;
 
@@ -28,7 +29,7 @@ import java.util.*;
 public class GraphMem extends GraphBase implements Graph 
     {
     /** the set storing all the triples in this GraphMem */
-    Set triples = new HashSet();
+    Set triples = HashUtils.createSet();
 
     NodeToTriplesMap subjects = new NodeToTriplesMap();
     NodeToTriplesMap predicates = new NodeToTriplesMap();

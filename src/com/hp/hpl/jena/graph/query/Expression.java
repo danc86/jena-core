@@ -8,6 +8,8 @@ package com.hp.hpl.jena.graph.query;
 
 import java.util.*;
 
+import com.hp.hpl.jena.util.HashUtils;
+
 /**
 	Expression - the interface for expressions that is expected by Query for 
     constraints. An Expression can be evaluated (given a name->value mapping);
@@ -150,7 +152,7 @@ public interface Expression
             <code>e</code>.
         */
         public static Set variablesOf( Expression e )
-            { return addVariablesOf( new HashSet(), e ); }
+            { return addVariablesOf( HashUtils.createSet(), e ); }
         
         /**
             Add all the variables of <code>e</code> to <code>s</code>, and answer

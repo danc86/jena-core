@@ -23,10 +23,11 @@ public class TestPackage extends TestSuite {
     
     /** Creates new TestPackage */
     private TestPackage() {
-        super("util");
-        addTest( "TestCache",   com.hp.hpl.jena.util.test.TestCache.suite() );
+        super( "util" );
+        addTest( "TestCache",  TestCache.suite() );
         addTest( "TestTokenzier", TestTokenizer.suite());
         addTest( "TestFileUtils", TestFileUtils.suite() );
+        addTest( "TestHashUtils", TestHashUtils.suite() );
     }
 
     private void addTest(String name, TestSuite tc) {

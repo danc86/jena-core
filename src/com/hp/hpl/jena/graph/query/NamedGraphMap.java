@@ -6,9 +6,10 @@
 
 package com.hp.hpl.jena.graph.query;
 
-import java.util.HashMap;
+import java.util.*;
 
 import com.hp.hpl.jena.graph.Graph;
+import com.hp.hpl.jena.util.HashUtils;
 
 /**
     a mapping from from names to Graphs.
@@ -17,7 +18,7 @@ public class NamedGraphMap
     {
     NamedGraphMap() {}      
     
-    private HashMap map = new HashMap();    
+    private Map map = HashUtils.createMap();    
     
     /**
         Add a named graph to the map and return this map.

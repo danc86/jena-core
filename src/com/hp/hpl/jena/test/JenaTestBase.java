@@ -10,6 +10,8 @@ import java.lang.reflect.*;
 import junit.framework.*;
 import java.util.*;
 
+import com.hp.hpl.jena.util.HashUtils;
+
 /**
     A basis for Jena test cases which provides assertFalse and assertDiffer.
     Often the logic of the names is clearer than using a negation (well, Chris
@@ -46,7 +48,7 @@ public class JenaTestBase extends TestCase
     	Answer a Set formed from the elements of the List <code>L</code>.
     */
     public static Set listToSet( List L )
-        { return new HashSet( L ); }
+        { return HashUtils.createSet( L ); }
     
     /**
         Do nothing; a way of notating that a test has succeeded, useful in the body of a

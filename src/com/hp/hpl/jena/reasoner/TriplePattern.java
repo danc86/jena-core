@@ -16,6 +16,7 @@ import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.reasoner.rulesys.ClauseEntry;
 import com.hp.hpl.jena.reasoner.rulesys.Functor;
 import com.hp.hpl.jena.reasoner.rulesys.Node_RuleVariable;
+import com.hp.hpl.jena.util.HashUtils;
 import com.hp.hpl.jena.vocabulary.RDF;
 import com.hp.hpl.jena.vocabulary.RDFS;
 
@@ -152,7 +153,7 @@ public class TriplePattern implements ClauseEntry {
      * of the same variable.
      */
     public boolean variantOf(TriplePattern pattern) {
-        HashMap vmap = new HashMap();
+        Map vmap = HashUtils.createMap();
         if ( ! variantOf(subject, pattern.subject, vmap) ) return false;
         if ( ! variantOf(predicate, pattern.predicate, vmap) ) return false;
         if (Functor.isFunctor(object) && Functor.isFunctor(pattern.object)) {

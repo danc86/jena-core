@@ -6,8 +6,6 @@
 
 package com.hp.hpl.jena.graph.impl;
 
-import java.util.HashMap;
-
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.util.iterator.*;
 import com.hp.hpl.jena.vocabulary.*;

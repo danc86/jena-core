@@ -11,6 +11,7 @@ package com.hp.hpl.jena.graph.test;
 	@author kers
 */
 
+import com.hp.hpl.jena.util.HashUtils;
 import com.hp.hpl.jena.util.iterator.*;
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.mem.*;
@@ -40,14 +41,14 @@ public class GraphTestBase extends JenaTestBase
                 
     public Set nodeSet( String nodes )
         {
-        HashSet result = new HashSet();
+        Set result = HashUtils.createSet();
         StringTokenizer st = new StringTokenizer( nodes );
         while (st.hasMoreTokens()) result.add( node( st.nextToken() ) );
         return result;
         }
         
     public Set arrayToSet( Object [] elements )
-        { return new HashSet( Arrays.asList( elements ) ); }
+        { return HashUtils.createSet( Arrays.asList( elements ) ); }
                 
     public static Triple triple( String fact )
         { return Triple.create( fact ); }
@@ -100,7 +101,7 @@ public class GraphTestBase extends JenaTestBase
         {
         if (!expected.isIsomorphicWith( got ))
             {
-            Map map = new HashMap();
+            Map map = HashUtils.createMap();
             fail( title + ": wanted " + nice( expected, map ) + "\nbut got " + nice( got, map ) );
             }
         }

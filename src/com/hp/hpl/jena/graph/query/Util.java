@@ -6,11 +6,10 @@
 
 package com.hp.hpl.jena.graph.query;
 
-import java.util.HashSet;
 import java.util.Set;
 
-import com.hp.hpl.jena.graph.Node;
-import com.hp.hpl.jena.graph.Triple;
+import com.hp.hpl.jena.graph.*;
+import com.hp.hpl.jena.util.HashUtils;
 
 /**
 	Util: some utility code used by graph query that doesn't seem to belong 
@@ -25,7 +24,7 @@ public class Util
 	*/
 	public static Set union( Set x, Set y )
     	{
-    	Set result = new HashSet( x );
+    	Set result = HashUtils.createSet( x );
     	result.addAll( y );
     	return result;
     	}
@@ -36,7 +35,7 @@ public class Util
     */
 	public static Set variablesOf( Triple t )
     	{
-    	Set result = new HashSet();
+    	Set result = HashUtils.createSet();
         addIfVariable( result, t.getSubject() );
         addIfVariable( result, t.getPredicate() );
         addIfVariable( result, t.getObject() );

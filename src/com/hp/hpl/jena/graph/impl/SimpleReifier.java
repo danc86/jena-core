@@ -15,6 +15,7 @@ package com.hp.hpl.jena.graph.impl;
 
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.shared.*;
+import com.hp.hpl.jena.util.HashUtils;
 import com.hp.hpl.jena.util.iterator.*;
 import java.util.*;
 
@@ -191,7 +192,7 @@ public class SimpleReifier implements Reifier
     public void remove( Triple t )
         {     
         // horrid code. we don't likes it, my precious.
-        Set nodes = new HashSet();
+        Set nodes = HashUtils.createSet();
         Iterator it = allNodes();
         while (it.hasNext())
             {

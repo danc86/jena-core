@@ -106,7 +106,7 @@ public class OneToManyMap
      * @return A Set of the mappings as Map.Entry values.
      */
     public Set entrySet() {
-        Set s = new HashSet();
+        Set s = HashUtils.createSet();
 
         for (Iterator e0 = m_table.keySet().iterator();  e0.hasNext(); ) {
             Object key = e0.next();
@@ -309,7 +309,7 @@ public class OneToManyMap
      * @return A collection view of the values contained in this map.
      */
     public Collection values() {
-        HashSet s = new HashSet();
+        Set s = HashUtils.createSet();
 
         for (Iterator e = m_table.keySet().iterator();  e.hasNext();  ) {
             s.addAll( (ArrayList) m_table.get(e.next()) );

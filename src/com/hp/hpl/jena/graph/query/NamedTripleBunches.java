@@ -7,6 +7,8 @@
 package com.hp.hpl.jena.graph.query;
 
 import com.hp.hpl.jena.graph.Triple;
+import com.hp.hpl.jena.util.HashUtils;
+
 import java.util.*;
 
 /**
@@ -17,7 +19,7 @@ import java.util.*;
 */
 public class NamedTripleBunches
     {
-    private HashMap triples = new HashMap();
+    private Map triples = HashUtils.createMap();
 
     /**
         A more-or-less internal object for referring to the "default" graph in a query.
