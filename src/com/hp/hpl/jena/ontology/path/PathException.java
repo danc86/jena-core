@@ -5,7 +5,7 @@
  * Author email       Ian.Dickinson@hp.com
  * Package            Jena 2
  * Web                http://sourceforge.net/projects/jena/
- * Created            11-Mar-2003
+ * Created            14-Mar-2003
  * Filename           $RCSfile$
  * Revision           $Revision$
  * Release status     $State$
@@ -19,25 +19,26 @@
 
 // Package
 ///////////////
-package com.hp.hpl.jena.ontology;
+package com.hp.hpl.jena.ontology.path;
+
+import com.hp.hpl.jena.ontology.OntologyException;
 
 
 // Imports
 ///////////////
-import java.util.*;
-
-
 
 /**
  * <p>
- * Helper class to hold state during ontology read operations
+ * Exception that arises when processing path expressions
  * </p>
  *
  * @author Ian Dickinson, HP Labs
  *         (<a  href="mailto:Ian.Dickinson@hp.com" >email</a>)
  * @version CVS $Id$
  */
-public class OntReadState {
+public class PathException
+    extends OntologyException 
+{
     // Constants
     //////////////////////////////////
 
@@ -47,44 +48,21 @@ public class OntReadState {
     // Instance variables
     //////////////////////////////////
 
-    /** The queue of uri's to load */    
-    private List m_queue;
-    
-    /** The ont model we're reading in to */
-    private OntModel m_model;
-    
-    /** The ontology serialisation syntax */
-    private String m_syntax;
-    
     // Constructors
     //////////////////////////////////
 
-    public OntReadState( String syntax, OntModel m ) {
-        m_syntax = syntax; 
-        m_model = m;
+    /**
+     * Construct a path exception with a given message.
+     * 
+     * @param msg The exception message.
+     */
+    public PathException( String msg ) {
+        super( msg );
     }
-
 
     // External signature methods
     //////////////////////////////////
-        
-    public String getSyntax() {
-        return m_syntax;
-    }
 
-    public void setQueue( List q ) {
-        m_queue = q;
-    }
-    
-    public List getQueue() {
-        return m_queue;
-    }
-    
-    public OntModel getModel() {
-        return m_model;
-    }
-    
-    
     // Internal implementation methods
     //////////////////////////////////
 

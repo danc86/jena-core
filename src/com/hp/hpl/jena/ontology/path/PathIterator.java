@@ -5,7 +5,7 @@
  * Author email       Ian.Dickinson@hp.com
  * Package            Jena 2
  * Web                http://sourceforge.net/projects/jena/
- * Created            11-Mar-2003
+ * Created            14-Mar-2003
  * Filename           $RCSfile$
  * Revision           $Revision$
  * Release status     $State$
@@ -19,79 +19,43 @@
 
 // Package
 ///////////////
-package com.hp.hpl.jena.ontology;
+package com.hp.hpl.jena.ontology.path;
+
 
 
 // Imports
 ///////////////
-import java.util.*;
-
+import com.hp.hpl.jena.util.iterator.*;
 
 
 /**
  * <p>
- * Helper class to hold state during ontology read operations
+ * Class comment
  * </p>
  *
  * @author Ian Dickinson, HP Labs
  *         (<a  href="mailto:Ian.Dickinson@hp.com" >email</a>)
  * @version CVS $Id$
  */
-public class OntReadState {
+public interface PathIterator
+    extends ExtendedIterator 
+{
     // Constants
     //////////////////////////////////
-
-    // Static variables
-    //////////////////////////////////
-
-    // Instance variables
-    //////////////////////////////////
-
-    /** The queue of uri's to load */    
-    private List m_queue;
-    
-    /** The ont model we're reading in to */
-    private OntModel m_model;
-    
-    /** The ontology serialisation syntax */
-    private String m_syntax;
-    
-    // Constructors
-    //////////////////////////////////
-
-    public OntReadState( String syntax, OntModel m ) {
-        m_syntax = syntax; 
-        m_model = m;
-    }
 
 
     // External signature methods
     //////////////////////////////////
-        
-    public String getSyntax() {
-        return m_syntax;
-    }
 
-    public void setQueue( List q ) {
-        m_queue = q;
-    }
-    
-    public List getQueue() {
-        return m_queue;
-    }
-    
-    public OntModel getModel() {
-        return m_model;
-    }
-    
-    
-    // Internal implementation methods
-    //////////////////////////////////
-
-    //==============================================================================
-    // Inner class definitions
-    //==============================================================================
-
+    /**
+     * <p>
+     * Answer the next path in the iteration.
+     * </p>
+     * 
+     * @return A path object
+     * @exception java.util.NoSuchElementException if the iterator has no more entries.
+     */
+    public Path nextPath();
 }
 
 

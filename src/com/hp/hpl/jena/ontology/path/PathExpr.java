@@ -5,7 +5,7 @@
  * Author email       Ian.Dickinson@hp.com
  * Package            Jena 2
  * Web                http://sourceforge.net/projects/jena/
- * Created            11-Mar-2003
+ * Created            14-Mar-2003
  * Filename           $RCSfile$
  * Revision           $Revision$
  * Release status     $State$
@@ -19,79 +19,79 @@
 
 // Package
 ///////////////
-package com.hp.hpl.jena.ontology;
+package com.hp.hpl.jena.ontology.path;
+
 
 
 // Imports
 ///////////////
-import java.util.*;
+import com.hp.hpl.jena.rdf.model.*;
+
 
 
 
 /**
  * <p>
- * Helper class to hold state during ontology read operations
+ * Represents a potential path through the triple graph, from some given node. Different
+ * path operators encode different constructors for paths, such as:
+ * <ul>
+ *  <li>a single property</li>
+ *  <li>the composition of two properties</li>
+ *  <li>the closure of a transitive property</li>
+ *  <li>an arbitrary unit edge</li>
+ *  <li>any annotation property</li>
+ * </ul>
  * </p>
- *
+ * <p>
+ * When a path is evaluated against a given resource in an ontology, it corresponds to a
+ * collection of statements. A {@link PathSet} represents this abstract collection.
+ * </p>
+ * 
  * @author Ian Dickinson, HP Labs
  *         (<a  href="mailto:Ian.Dickinson@hp.com" >email</a>)
  * @version CVS $Id$
  */
-public class OntReadState {
+public interface PathExpr {
     // Constants
     //////////////////////////////////
 
-    // Static variables
-    //////////////////////////////////
-
-    // Instance variables
-    //////////////////////////////////
-
-    /** The queue of uri's to load */    
-    private List m_queue;
-    
-    /** The ont model we're reading in to */
-    private OntModel m_model;
-    
-    /** The ontology serialisation syntax */
-    private String m_syntax;
-    
-    // Constructors
-    //////////////////////////////////
-
-    public OntReadState( String syntax, OntModel m ) {
-        m_syntax = syntax; 
-        m_model = m;
-    }
-
-
     // External signature methods
     //////////////////////////////////
-        
-    public String getSyntax() {
-        return m_syntax;
-    }
 
-    public void setQueue( List q ) {
-        m_queue = q;
-    }
+    /**
+     * <p>
+     * Add the given value to the given root, using this path (if possible).  Not
+     * all paths evaluate to a form that makes add possible; in this case an
+     * exception is thrown.
+     * </p>
+     * 
+     * @param root The resource that the path is to start from
+     * @param value The value to add to the root
+     * @exception PathException if this path expression cannot perform an add operation
+     */
+    public void add( Resource root, RDFNode value );
     
-    public List getQueue() {
-        return m_queue;
-    }
+    /**
+     * <p>
+     * Evaluate the path expression against the given root, which will result in a set of paths
+     * that can be iterated through
+     * </p>
+     * 
+     * @param root The root resource to evaluate the path from
+     * @return A path iterator
+     */
+    public PathIterator evaluate( Resource root );
     
-    public OntModel getModel() {
-        return m_model;
-    }
-    
-    
-    // Internal implementation methods
-    //////////////////////////////////
-
-    //==============================================================================
-    // Inner class definitions
-    //==============================================================================
-
+    /**
+     * <p>
+     * For convenience in accessing the contents of a path expression, answer a path set
+     * of the paths defined from the given root.  The {@link PathSet} is really just a 
+     * set of wrapper functions for {@link #evaluate()}. 
+     * </p>
+     * 
+     * @return A set of the paths this path expression defines from the given root.
+     */
+    public PathSet asPathSet( Resource root );
 }
 
 
@@ -124,4 +124,3 @@ public class OntReadState {
     (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
     THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
-
