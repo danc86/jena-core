@@ -1311,10 +1311,10 @@ implements Model, PrefixMapping, ModelLock
         Answer whether or not these two graphs are isomorphic, taking the
         hidden (reification) statements into account.
     */
-    public boolean isIsomorphicWith(Model m)
+    public boolean isIsomorphicWith( Model m )
         {
-        ModelCom L = (ModelCom) ModelFactory.withHiddenStatements( this );            
-        EnhGraph R = (EnhGraph) ModelFactory.withHiddenStatements( m );
+        Graph L = ModelFactory.withHiddenStatements( this ).getGraph();            
+        Graph R = ModelFactory.withHiddenStatements( m ).getGraph();
         return L.isIsomorphicWith( R );
         }
         
