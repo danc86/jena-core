@@ -23,18 +23,15 @@ public abstract class AbstractTestModel extends ModelTestBase
     private Model model;
     
     public void setUp()
-        {
-        model = getModel();
-        }
+        { model = getModel(); }
         
     public void tearDown()
-        {
-        model.close();
-        } 
+        { model.close(); } 
        
     public void testTransactions()
         { 
-        Command cmd = null;
+        Command cmd = new Command() 
+        	{ public Object execute() { return null; } };
         if (model.supportsTransactions()) model.executeInTransaction( cmd );
         }
         
