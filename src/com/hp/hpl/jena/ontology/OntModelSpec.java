@@ -202,6 +202,13 @@ public class OntModelSpec extends ModelSpecImpl implements ModelSpec {
     /**
      * <p>Answer a default specification for the given language URI. This default
      * will typically use a memory model and have minimal inferencing capabilities.
+     * Specifically, OWL and RDFS languages will have RDFS level inferencing 
+     * capability (chosen to give a reasonable balance between power and efficiency
+     * of computation), and DAML language will have the minimal DAML rule reasoner.
+     * To get other (more powerful or less powerful) reasoning capabilities, users 
+     * should create ontology models by passing an explicit <code>OntModelSpec</code>
+     * parameter to the 
+     * {@link ModelFactory#createOntologyModel( OntModelSpec, Model ) model factory}.
      * </p>
      * @param languageURI The ontology language we want a default model spec for
      * @return The default model spec for that language
