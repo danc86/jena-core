@@ -1,5 +1,5 @@
 /*
-  (c) Copyright 2002, Hewlett-Packard Development Company, LP
+  (c) Copyright 2002, 2004 Hewlett-Packard Development Company, LP
   [See end of file]
   $Id$
 */
@@ -36,6 +36,7 @@ public class TestPackage extends TestSuite {
         addTest( "TestSimpleGraphMaker", TestSimpleGraphMaker.suite() );
         addTest( "TestFileGraph", TestFileGraph.suite() );
         addTest( "TestFileGraphMaker", TestFileGraphMaker.suite() );
+        addTest( TestGraphExtract.suite() );
         addTest( "TestCapabilities", TestCapabilities.suite() );
         addTest( "TestGraphUtils", TestGraphUtils.suite() );
         addTest( "TestGraphPrefixMapping", TestGraphPrefixMapping.suite() );       }
@@ -48,7 +49,7 @@ public class TestPackage extends TestSuite {
 }
 
 /*
-    (c) Copyright 2002 Hewlett-Packard Development Company, LP
+    (c) Copyright 2002, 2004 Hewlett-Packard Development Company, LP
     All rights reserved.
 
     Redistribution and use in source and binary forms, with or without

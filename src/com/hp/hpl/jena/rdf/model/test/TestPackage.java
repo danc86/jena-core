@@ -50,6 +50,7 @@ public class TestPackage extends TestSuite {
         addTest( "TestReaderEvents", TestReaderEvents.suite() );
         addTest( "TestList", TestList.suite() );
         addTest( "TestAnonID", TestAnonID.suite() );
+        addTest( TestModelExtract.suite() );
         }
 
     private void addTest(String name, TestSuite tc) {

@@ -7,7 +7,6 @@
 package com.hp.hpl.jena.rdf.model;
 
 import com.hp.hpl.jena.datatypes.*;
-import com.hp.hpl.jena.graph.Node;
 import com.hp.hpl.jena.shared.*;
 
 import java.io.*;
