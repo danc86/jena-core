@@ -49,8 +49,14 @@ public class LPInterpreter {
         new Node[RuleClauseCode.MAX_TEMPORARY_VARS];
 
     /** The current environment frame */
-    protected LPEnvironment envFrame;
+    protected EnvironmentFrame envFrame;
 
+    /** The current choice point frame */
+    protected FrameObject cpFrame;
+    
+    /** The trail of variable bindings that have to be unwound on backtrack */
+    protected ArrayList trail = new ArrayList();
+    
     /** TEMP: The singleton result triple */
     protected Object answer;
 
@@ -215,7 +221,7 @@ public class LPInterpreter {
                     envFrame.ac = ac;
                     envFrame.pc = pc;
                     // Create the new state
-                    LPEnvironment newframe = LPEnvironmentFactory.createEnvironment();
+                    EnvironmentFrame newframe = LPEnvironmentFactory.createEnvironment();
                     newframe.init(clause);
                     newframe.linkTo(envFrame);
                     envFrame = newframe;
@@ -269,7 +275,7 @@ public class LPInterpreter {
                     break;
                     
                 case RuleClauseCode.PROCEED:
-                    envFrame = (LPEnvironment) envFrame.link;
+                    envFrame = (EnvironmentFrame) envFrame.link;
                     if (envFrame != null) {
                         pc = envFrame.pc;
                         ac = envFrame.ac;
@@ -324,7 +330,18 @@ public class LPInterpreter {
      */
     public void bind(Node var, Node val) {
         ((Node_RuleVariable)var).simpleBind(val);
-        // TODO: trail
+        trail.add(var);
+    }
+    
+    /**
+     * Unwind the trail to given low water mark
+     */
+    public void unwindTrail(int mark) {
+        for (int i = trail.size()-1; i >= mark; i--) {
+            Node_RuleVariable var = (Node_RuleVariable)trail.get(i);
+            var.unbind();
+            trail.remove(i);
+        }
     }
     
     /**

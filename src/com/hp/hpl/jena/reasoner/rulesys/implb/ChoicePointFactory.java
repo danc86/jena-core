@@ -1,5 +1,5 @@
 /******************************************************************
- * File:        LPEnvironmentFactory.java
+ * File:        ChoicePointFactory.java
  * Created by:  Dave Reynolds
  * Created on:  22-Jul-2003
  * 
@@ -15,28 +15,28 @@ package com.hp.hpl.jena.reasoner.rulesys.implb;
  * @author <a href="mailto:der@hplb.hpl.hp.com">Dave Reynolds</a>
  * @version $Revision$ on $Date$
  */
-public class LPEnvironmentFactory extends FrameObjectFactory {
+public class ChoicePointFactory extends FrameObjectFactory {
 
     /** The single instance of the factory */
-    protected static final LPEnvironmentFactory theFactory = new LPEnvironmentFactory();
+    protected static final ChoicePointFactory theFactory = new ChoicePointFactory();
     
     /** Private factory constructor */
-    private LPEnvironmentFactory() {}
+    private ChoicePointFactory() {}
     
     /**
      * Return a newly constructed or cached environment frame.
      */
-    public static EnvironmentFrame createEnvironment() {
+    public static ChoicePointFrame createEnvironment() {
         return theFactory.getFrame();
     }
     
     /**
      * Find or allocate a new frame.
      */
-    private EnvironmentFrame getFrame() {
-        EnvironmentFrame env = (EnvironmentFrame)getFree();
+    private ChoicePointFrame getFrame() {
+        ChoicePointFrame env = (ChoicePointFrame)getFree();
         if (env == null) {
-            env = new EnvironmentFrame(this);
+            env = new ChoicePointFrame(this);
         } else {
             env.fastLinkTo(null);
         }
@@ -44,7 +44,6 @@ public class LPEnvironmentFactory extends FrameObjectFactory {
     }
     
 }
-
 
 /*
     (c) Copyright Hewlett-Packard Company 2003
