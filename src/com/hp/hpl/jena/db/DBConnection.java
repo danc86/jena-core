@@ -154,13 +154,15 @@ public class DBConnection implements IDBConnection {
 	 * @see com.hp.hpl.jena.db.IDBConnection#isFormatOK()
 	 */
 	public boolean isFormatOK() {
-		try {
+// Removed exception trap, an exception might be a connection
+// failure on a well formated database - der 24/7/04        
+//		try {
 			if( m_driver == null )
 				m_driver = getDriver();
 			return m_driver.isDBFormatOK();
-		} catch (Exception e) {
-			return false;
-		}
+//		} catch (Exception e) {
+//			return false;
+//		}
 	}
 
 	/* (non-Javadoc)
