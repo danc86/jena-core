@@ -26,11 +26,9 @@ package com.hp.hpl.jena.ontology.impl.test;
 ///////////////
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.ontology.*;
-import com.hp.hpl.jena.vocabulary.*;
 
 import junit.framework.*;
 
-import java.util.*;
 
 
 /**
@@ -78,7 +76,7 @@ public class TestCreate
                 Individual a0 = m.createIndividual( A );
                 Individual a1 = m.createIndividual( A );
                 Individual a2 = m.createIndividual( A );
-                OntList l = m.createList( new OntResource[] {a0, a1, a2} );
+                RDFList l = m.createList( new OntResource[] {a0, a1, a2} );
                 return m.createEnumeratedClass( null, l ); 
             }
             public boolean test( OntResource r )        { return r instanceof OntClass && r instanceof EnumeratedClass; }
@@ -89,7 +87,7 @@ public class TestCreate
                 Individual a0 = m.createIndividual( A );
                 Individual a1 = m.createIndividual( A );
                 Individual a2 = m.createIndividual( A );
-                OntList l = m.createList( new OntResource[] {a0, a1, a2} );
+                RDFList l = m.createList( new OntResource[] {a0, a1, a2} );
                 return m.createUnionClass( null, l ); 
             }
             public boolean test( OntResource r )        { return r instanceof OntClass && r instanceof UnionClass; }
@@ -100,7 +98,7 @@ public class TestCreate
                 Individual a0 = m.createIndividual( A );
                 Individual a1 = m.createIndividual( A );
                 Individual a2 = m.createIndividual( A );
-                OntList l = m.createList( new OntResource[] {a0, a1, a2} );
+                RDFList l = m.createList( new OntResource[] {a0, a1, a2} );
                 return m.createIntersectionClass( null, l ); 
             }
             public boolean test( OntResource r )        { return r instanceof OntClass && r instanceof IntersectionClass; }
@@ -130,7 +128,7 @@ public class TestCreate
                 Individual a0 = m.createIndividual( A );
                 Individual a1 = m.createIndividual( A );
                 Individual a2 = m.createIndividual( A );
-                OntList l = m.createList( new OntResource[] {a0, a1, a2} );
+                RDFList l = m.createList( new OntResource[] {a0, a1, a2} );
                 return m.createEnumeratedClass( null, l ); 
             }
             public boolean test( OntResource r )        { return r instanceof OntClass && r instanceof EnumeratedClass; }
@@ -141,7 +139,7 @@ public class TestCreate
                 Individual a0 = m.createIndividual( A );
                 Individual a1 = m.createIndividual( A );
                 Individual a2 = m.createIndividual( A );
-                OntList l = m.createList( new OntResource[] {a0, a1, a2} );
+                RDFList l = m.createList( new OntResource[] {a0, a1, a2} );
                 return m.createUnionClass( null, l ); 
             }
             public boolean test( OntResource r )        { return r instanceof OntClass && r instanceof UnionClass; }
@@ -152,7 +150,7 @@ public class TestCreate
                 Individual a0 = m.createIndividual( A );
                 Individual a1 = m.createIndividual( A );
                 Individual a2 = m.createIndividual( A );
-                OntList l = m.createList( new OntResource[] {a0, a1, a2} );
+                RDFList l = m.createList( new OntResource[] {a0, a1, a2} );
                 return m.createIntersectionClass( null, l ); 
             }
             public boolean test( OntResource r )        { return r instanceof OntClass && r instanceof IntersectionClass; }
@@ -481,60 +479,6 @@ public class TestCreate
             public boolean test( OntResource r )        { return r instanceof MaxCardinalityRestriction;}
         },
         
-        // Lists
-        new CreateTestCase( "OWL empty list", ProfileRegistry.OWL_LANG, OWL.nil.getURI() ) {
-            public OntResource doCreate( OntModel m )   { return m.createList(); }
-            public boolean test( OntResource r )        { return r instanceof OntList && ((OntList) r).size() == 0;}
-        },
-        new CreateTestCase( "OWL list from iterator", ProfileRegistry.OWL_LANG, null ) {
-            public OntResource doCreate( OntModel m )   {
-                OntClass a = m.createClass( NS + "A" ); 
-                OntClass b = m.createClass( NS + "B" ); 
-                OntClass c = m.createClass( NS + "C" );
-                List l = new ArrayList();
-                l.add( a );  l.add( b );  l.add( c );
-                
-                return m.createList( l.iterator() ); 
-            }
-            public boolean test( OntResource r )        { return r instanceof OntList && ((OntList) r).size() == 3;}
-        },
-        new CreateTestCase( "OWL list from array", ProfileRegistry.OWL_LANG, null ) {
-            public OntResource doCreate( OntModel m )   {
-                OntClass a = m.createClass( NS + "A" ); 
-                OntClass b = m.createClass( NS + "B" ); 
-                OntClass c = m.createClass( NS + "C" );
-                
-                return m.createList( new Resource[] {a, b, c} ); 
-            }
-            public boolean test( OntResource r )        { return r instanceof OntList && ((OntList) r).size() == 3;}
-        },
-        
-        new CreateTestCase( "DAML empty list", ProfileRegistry.DAML_LANG, DAML_OIL.nil.getURI() ) {
-            public OntResource doCreate( OntModel m )   { return m.createList(); }
-            public boolean test( OntResource r )        { return r instanceof OntList && ((OntList) r).size() == 0;}
-        },
-        new CreateTestCase( "DAML list from iterator", ProfileRegistry.DAML_LANG, null ) {
-            public OntResource doCreate( OntModel m )   {
-                OntClass a = m.createClass( NS + "A" ); 
-                OntClass b = m.createClass( NS + "B" ); 
-                OntClass c = m.createClass( NS + "C" );
-                List l = new ArrayList();
-                l.add( a );  l.add( b );  l.add( c );
-                
-                return m.createList( l.iterator() ); 
-            }
-            public boolean test( OntResource r )        { return r instanceof OntList && ((OntList) r).size() == 3;}
-        },
-        new CreateTestCase( "DAML list from array", ProfileRegistry.DAML_LANG, null ) {
-            public OntResource doCreate( OntModel m )   {
-                OntClass a = m.createClass( NS + "A" ); 
-                OntClass b = m.createClass( NS + "B" ); 
-                OntClass c = m.createClass( NS + "C" );
-                
-                return m.createList( new Resource[] {a, b, c} ); 
-            }
-            public boolean test( OntResource r )        { return r instanceof OntList && ((OntList) r).size() == 3;}
-        }
     };
     
     // Instance variables

@@ -111,7 +111,7 @@ public class ComplementClassImpl
 	 * @exception Always throws UnsupportedOperationException since a complement expression takes only
 	 * a single argument.    
 	 */ 
-	public void setOperands( OntList operands ) {
+	public void setOperands( RDFList operands ) {
 		throw new UnsupportedOperationException( "ComplementClass takes a single operand, not a list.");
 	}
 	
@@ -151,7 +151,7 @@ public class ComplementClassImpl
 	 * @return A list of the operands of this expression.
 	 * @exception OntProfileException If the operand property is not supported in the current language profile.   
 	 */ 
-	public OntList getOperands() {
+	public RDFList getOperands() {
 		throw new UnsupportedOperationException( "ComplementClass takes a single operand, not a list.");
 	}
 

@@ -6,6 +6,7 @@
 
 package com.hp.hpl.jena.ontology.impl.test;
 
+
 import junit.framework.*;
 
 /**
@@ -25,7 +26,6 @@ public class TestPackage extends TestSuite {
         addTest( "TestResource", TestResource.suite() );
         addTest( "TestAxioms", TestAxioms.suite() );
         addTest( "TestClassExpression", TestClassExpression.suite() );
-        addTest( "TestList", TestList.suite() );
         addTest( "TestOntDocumentManager", TestOntDocumentManager.suite() );
         addTest( "TestOntology", TestOntology.suite() );
         addTest( "TestProperty", TestProperty.suite() );

@@ -29,6 +29,7 @@ import java.util.Iterator;
 import com.hp.hpl.jena.enhanced.*;
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.ontology.*;
+import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.rdf.model.Resource;
 
 
@@ -104,7 +105,7 @@ public class AllDifferentImpl
      * @param members A list of the members that are declared to be distinct.
      * @exception OntProfileException If the {@link Profile#DISTINCT_MEMBERS()} property is not supported in the current language profile.   
      */ 
-    public void setDistinct( OntList members ) {
+    public void setDistinct( RDFList members ) {
         setPropertyValue( getProfile().DISTINCT_MEMBERS(), "DISTINCT_MEMBERS", members );
     }
 
@@ -133,8 +134,8 @@ public class AllDifferentImpl
      * @return The list of individuals declared distinct by this AllDifferent declaration.
      * @exception OntProfileException If the {@link Profile#DISTINCT_MEMBERS()} property is not supported in the current language profile.   
      */ 
-    public OntList getDistinct() {
-        return (OntList) objectAs( getProfile().DISTINCT_MEMBERS(), "DISTINCT_MEMBERS", OntList.class );
+    public RDFList getDistinct() {
+        return (RDFList) objectAs( getProfile().DISTINCT_MEMBERS(), "DISTINCT_MEMBERS", RDFList.class );
     }
 
     /**

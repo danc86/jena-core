@@ -5,90 +5,83 @@
  * Author email       Ian.Dickinson@hp.com
  * Package            Jena 2
  * Web                http://sourceforge.net/projects/jena/
- * Created            24 Jan 2003
+ * Created            16-Jun-2003
  * Filename           $RCSfile$
  * Revision           $Revision$
- * Release status     @releaseStatus@ $State$
+ * Release status     $State$
  *
  * Last modified on   $Date$
  *               by   $Author$
  *
- * (c) Copyright 2003, Hewlett-Packard Company, all rights reserved.
+ * (c) Copyright 2002-2003, Hewlett-Packard Company, all rights reserved.
  * (see footer for full conditions)
  *****************************************************************************/
 
 // Package
 ///////////////
-package com.hp.hpl.jena.ontology;
+package com.hp.hpl.jena.rdf.model;
+
 
 
 // Imports
 ///////////////
+import com.hp.hpl.jena.shared.JenaException;
 
 
 /**
  * <p>
- * A exception that is thrown when an operation attempts to access an indexed
- * list element beyond the length of the list.
+ * Exception that is thrown when an attept is made to perform a side-effectful
+ * operation on an {@link RDFList} that is the empty list, or <code>rdf:nil</code>.
+ * This is not permissible, since it would cause the URI of the RDFList to change
+ * from <code>rdf:nil</code> to a new bNode, and in Jena the URI of a node is
+ * invariant.  To avoid this operation, when extending an empty list use operations
+ * that return the updated list (such as {@link RDFList#cons}, or {@link RDFList#with},
+ * or check first to see if the list {@linkplain RDFList#isEmpty is empty}, and replace
+ * it with a non-null list.
  * </p>
  *
  * @author Ian Dickinson, HP Labs
- *         (<a href="mailto:Ian.Dickinson@hp.com">email</a>)
- * @version Release ($Id$)
+ *         (<a  href="mailto:Ian.Dickinson@hp.com" >email</a>)
+ * @version CVS $Id$
  */
-public class ListIndexException
-    extends OntologyException
+public class EmptyListUpdateException 
+    extends JenaException
 {
     // Constants
     //////////////////////////////////
 
-
     // Static variables
     //////////////////////////////////
-
 
     // Instance variables
     //////////////////////////////////
 
-
     // Constructors
     //////////////////////////////////
 
-    /**
-     * Construct a list index exception with a default message.
-     */
-    public ListIndexException() {
-        super( "Tried to index beyond the length of a list" );
+    public EmptyListUpdateException() {
     }
-
-    /**
-     * Construct a list index exception with a given message.
-     * 
-     * @param msg The exception message.
-     */
-    public ListIndexException( String msg ) {
-        super( msg );
+    
+    public EmptyListUpdateException( String message ) {
+        super( message );
     }
-
-
+    
+    
     // External signature methods
     //////////////////////////////////
 
-
     // Internal implementation methods
     //////////////////////////////////
-
 
     //==============================================================================
     // Inner class definitions
     //==============================================================================
 
-
 }
 
 
 /*
-    (c) Copyright Hewlett-Packard Company 2003
+    (c) Copyright Hewlett-Packard Company 2002-2003
     All rights reserved.
 
     Redistribution and use in source and binary forms, with or without

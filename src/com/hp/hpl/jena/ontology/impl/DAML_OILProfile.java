@@ -346,7 +346,7 @@ public class DAML_OILProfile
                                             }
                                         }
         },
-        {  OntList.class,               new SupportsCheck() {
+        {  RDFList.class,               new SupportsCheck() {
                                             public boolean doCheck( Node n, EnhGraph g ) {
                                                 return n.equals( DAML_OIL.nil.asNode() )  ||
                                                        g.asGraph().contains( n, RDF.type.asNode(), DAML_OIL.List.asNode() );

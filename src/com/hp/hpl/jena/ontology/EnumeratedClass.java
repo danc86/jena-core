@@ -27,6 +27,7 @@ package com.hp.hpl.jena.ontology;
 ///////////////
 import java.util.Iterator;
 
+import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.rdf.model.Resource;
 
 
@@ -58,7 +59,7 @@ public interface EnumeratedClass
      * @param A list of individuals that defines the class extension for this class
      * @exception OntProfileException If the {@link Profile#ONE_OF()} property is not supported in the current language profile.   
      */ 
-    public void setOneOf( OntList enum );
+    public void setOneOf( RDFList enum );
 
     /**
      * <p>Add an individual to the enumeration that defines the class extension of this class.</p>
@@ -80,7 +81,7 @@ public interface EnumeratedClass
      * @return A list of individuals that is the class extension
      * @exception OntProfileException If the {@link Profile#ONE_OF()} property is not supported in the current language profile.   
      */ 
-    public OntList getOneOf();
+    public RDFList getOneOf();
 
     /**
      * <p>Answer an iterator over all of the individuals that are declared to be the class extension for

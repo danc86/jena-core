@@ -30,10 +30,10 @@ public class BuiltinPersonalities {
         .add( Bag.class, BagImpl.factory )
         .add( Seq.class, SeqImpl.factory )
         .add( ReifiedStatement.class, ReifiedStatementImpl.factory )
+        .add( RDFList.class, RDFListImpl.factory )
         
         // ontology additions
         .add( OntResource.class, OntResourceImpl.factory )
-        .add( OntList.class, OntListImpl.factory )
         .add( Ontology.class, OntologyImpl.factory )
         .add( OntClass.class, OntClassImpl.factory )
         .add( EnumeratedClass.class, EnumeratedClassImpl.factory )

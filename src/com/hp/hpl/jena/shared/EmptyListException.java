@@ -19,7 +19,9 @@
 
 // Package
 ///////////////
-package com.hp.hpl.jena.ontology;
+package com.hp.hpl.jena.shared;
+
+import com.hp.hpl.jena.ontology.OntologyException;
 
 
 
@@ -38,7 +40,7 @@ package com.hp.hpl.jena.ontology;
  * @version Release ($Id$)
  */
 public class EmptyListException
-    extends OntologyException
+    extends JenaException
 {
     // Constants
     //////////////////////////////////

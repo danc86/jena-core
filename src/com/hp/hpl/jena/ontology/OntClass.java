@@ -458,21 +458,21 @@ public interface OntClass
      * class converted to an enumeration
      * @return This ontology class, converted to an enumeration of the given individuals 
      */
-    public EnumeratedClass convertToEnumeratedClass( OntList individuals );
+    public EnumeratedClass convertToEnumeratedClass( RDFList individuals );
 
     /** 
      * <p>Answer a view of this class as an intersection of the given classes.</p>
      * @param classes A list of the classes that will comprise the operands of the intersection
      * @return This ontology class, converted to an intersection of the given classes 
      */
-    public IntersectionClass convertToIntersectionClass( OntList classes );
+    public IntersectionClass convertToIntersectionClass( RDFList classes );
 
     /** 
      * <p>Answer a view of this class as a union of the given classes.</p>
      * @param classes A list of the classes that will comprise the operands of the union
      * @return This ontology class, converted to an union of the given classes 
      */
-    public UnionClass convertToUnionClass( OntList classes );
+    public UnionClass convertToUnionClass( RDFList classes );
 
     /** 
      * <p>Answer a view of this class as an complement of the given class.</p>

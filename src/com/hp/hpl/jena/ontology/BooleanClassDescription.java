@@ -60,7 +60,7 @@ public interface BooleanClassDescription
 	 * @param operands The list of operands to this expression.
 	 * @exception OntProfileException If the operand property is not supported in the current language profile.   
 	 */ 
-	public void setOperands( OntList operands );
+	public void setOperands( RDFList operands );
 
 	/**
 	 * <p>Add a class the operands of this boolean expression.</p>
@@ -81,7 +81,7 @@ public interface BooleanClassDescription
 	 * @return A list of the operands of this expression.
 	 * @exception OntProfileException If the operand property is not supported in the current language profile.   
 	 */ 
-	public OntList getOperands();
+	public RDFList getOperands();
 
 	/**
 	 * <p>Answer an iterator over all of the clases that are the operands of this 

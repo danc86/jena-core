@@ -238,6 +238,30 @@ public interface Model
 	public Statement createStatement(Resource s, Property p, RDFNode o)
 		throws RDFException;
 
+    /**
+     * <p>Answer a new empty list. This is equivalent to a list consisting only 
+     * of <code>rdf:nil</code>.</p>
+     * @return An RDF-encoded list of no elements
+     */
+    public RDFList createList();
+    
+    
+    /**
+     * <p>Answer a new list containing the resources from the given iterator, in order.</p>
+     * @param members An iterator, each value of which is expected to be an RDFNode
+     * @return An RDF-encoded list of the elements of the iterator
+     */
+    public RDFList createList( Iterator members );
+    
+    
+    /**
+     * <p>Answer a new list containing the nodes from the given array, in order</p>
+     * @param members An array of RDF nodes that will be the members of the list
+     * @return An RDF-encoded list 
+     */
+    public RDFList createList( RDFNode[] members );
+    
+    
 	/** Add a statement to this model.
 	 * @return This model.
 	 * @param s The statement to be added.

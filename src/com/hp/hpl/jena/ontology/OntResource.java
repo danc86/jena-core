@@ -669,10 +669,10 @@ public interface OntResource
     
     /** 
      * <p>Answer a view of this resource as a list </p>
-     * @return This resource, but viewed as an OntList
+     * @return This resource, but viewed as an RDFList
      * @exception ConversionException if the resource cannot be converted to a list
      */
-    public OntList asList();
+    public RDFList asList();
     
     /** 
      * <p>Answer a view of this resource as a property</p>

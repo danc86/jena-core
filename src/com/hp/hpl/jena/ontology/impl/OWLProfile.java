@@ -297,7 +297,7 @@ public class OWLProfile
                                             }
                                         }
         },
-        {  OntList.class,               new SupportsCheck() {
+        {  RDFList.class,               new SupportsCheck() {
                                             public boolean doCheck( Node n, EnhGraph g ) {
                                                 return n.equals( RDF.nil.asNode() )  ||
                                                        g.asGraph().contains( n, RDF.type.asNode(), RDF.List.asNode() );

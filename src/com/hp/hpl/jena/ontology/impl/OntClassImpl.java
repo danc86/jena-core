@@ -648,7 +648,7 @@ public class OntClassImpl
      * class converted to an enumeration
      * @return This ontology class, converted to an enumeration of the given individuals 
      */
-    public EnumeratedClass convertToEnumeratedClass( OntList individuals ) {
+    public EnumeratedClass convertToEnumeratedClass( RDFList individuals ) {
         setPropertyValue( getProfile().ONE_OF(), "ONE_OF", individuals );
         return (EnumeratedClass) as( EnumeratedClass.class );
     }
@@ -658,7 +658,7 @@ public class OntClassImpl
      * @param classes A list of the classes that will comprise the operands of the intersection
      * @return This ontology class, converted to an intersection of the given classes 
      */
-    public IntersectionClass convertToIntersectionClass( OntList classes ) {
+    public IntersectionClass convertToIntersectionClass( RDFList classes ) {
         setPropertyValue( getProfile().INTERSECTION_OF(), "INTERSECTION_OF", classes );
         return (IntersectionClass) as( IntersectionClass.class );
     }
@@ -668,7 +668,7 @@ public class OntClassImpl
      * @param classes A list of the classes that will comprise the operands of the union
      * @return This ontology class, converted to an union of the given classes 
      */
-    public UnionClass convertToUnionClass( OntList classes ) {
+    public UnionClass convertToUnionClass( RDFList classes ) {
         setPropertyValue( getProfile().UNION_OF(), "UNION_OF", classes );
         return (UnionClass) as( UnionClass.class );
     }

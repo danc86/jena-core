@@ -84,7 +84,7 @@ public abstract class BooleanClassDescriptionImpl
 	 * @param operands The list of operands to this expression.
 	 * @exception OntProfileException If the operand property is not supported in the current language profile.   
 	 */ 
-	public void setOperands( OntList operands ) {
+	public void setOperands( RDFList operands ) {
 		setPropertyValue( operator(), getOperatorName(), operands );
 	}
 
@@ -113,8 +113,8 @@ public abstract class BooleanClassDescriptionImpl
 	 * @return A list of the operands of this expression.
 	 * @exception OntProfileException If the operand property is not supported in the current language profile.   
 	 */ 
-	public OntList getOperands() {
-		return (OntList) objectAs( operator(), getOperatorName(), OntList.class );
+	public RDFList getOperands() {
+		return (RDFList) objectAs( operator(), getOperatorName(), RDFList.class );
 	}
 
 	/**

@@ -106,7 +106,7 @@ public class EnumeratedClassImpl
      * @param A list of individuals that defines the class extension for this class
      * @exception OntProfileException If the {@link Profile#ONE_OF()} property is not supported in the current language profile.   
      */ 
-    public void setOneOf( OntList enum ) {
+    public void setOneOf( RDFList enum ) {
         setPropertyValue( getProfile().ONE_OF(), "ONE_OF", enum );
     }
 
@@ -136,8 +136,8 @@ public class EnumeratedClassImpl
      * @return A list of individuals that is the class extension
      * @exception OntProfileException If the {@link Profile#ONE_OF()} property is not supported in the current language profile.   
      */ 
-    public OntList getOneOf() {
-        return (OntList) objectAs( getProfile().ONE_OF(), "ONE_OF", OntList.class );
+    public RDFList getOneOf() {
+        return (RDFList) objectAs( getProfile().ONE_OF(), "ONE_OF", RDFList.class );
     }
 
     /**

@@ -989,11 +989,11 @@ public class OntResourceImpl
     
     /** 
      * <p>Answer a view of this resource as a list </p>
-     * @return This resource, but viewed as an OntList
+     * @return This resource, but viewed as an RDFList
      * @exception ConversionException if the resource cannot be converted to a list
      */
-    public OntList asList() {
-        return (OntList) as( OntList.class );
+    public RDFList asList() {
+        return (RDFList) as( RDFList.class );
     }
     
     /** 
@@ -1179,16 +1179,16 @@ public class OntResourceImpl
         // get the list value
         if (hasProperty( p )) {
             RDFNode cur = getProperty( p ).getObject();
-            if (!cur.canAs( OntList.class )) {
+            if (!cur.canAs( RDFList.class )) {
                 throw new OntologyException( "Tried to add a value to a list-valued property " + p + 
                                              " but the current value is not a list: " + cur ); 
             }
             
-            OntList values = (OntList) cur.as( OntList.class );
+            RDFList values = (RDFList) cur.as( RDFList.class );
         
             // now add our value to the list
             if (!values.contains( value )){
-                OntList newValues = values.add( value );
+                RDFList newValues = values.with( value );
                 
                 // if the previous values was nil, the return value will be a new list
                 if (newValues != values) {

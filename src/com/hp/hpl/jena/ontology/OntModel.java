@@ -550,7 +550,7 @@ public interface OntModel
      * @param members An optional list of resources denoting the individuals in the enumeration, or null.
      * @return An enumeration class
      */
-    public EnumeratedClass createEnumeratedClass( String uri, OntList members );
+    public EnumeratedClass createEnumeratedClass( String uri, RDFList members );
     
    
     /**
@@ -559,7 +559,7 @@ public interface OntModel
      * @param members A list of resources denoting the classes that comprise the union
      * @return A union class description
      */
-    public UnionClass createUnionClass( String uri, OntList members );
+    public UnionClass createUnionClass( String uri, RDFList members );
     
    
     /**
@@ -568,7 +568,7 @@ public interface OntModel
      * @param members A list of resources denoting the classes that comprise the intersection
      * @return An intersection class description
      */
-    public IntersectionClass createIntersectionClass( String uri, OntList members );
+    public IntersectionClass createIntersectionClass( String uri, RDFList members );
 
 
     /**
@@ -698,30 +698,7 @@ public interface OntModel
      * @param differentMembers A list of the class expressions that denote a set of mutually disjoint classes
      * @return A new AllDifferent resource
      */
-    public AllDifferent createAllDifferent( OntList differentMembers );
-    
-    
-    /**
-     * <p>Answer a new empty list</p>
-     * @return An RDF-encoded list of no elements
-     */
-    public OntList createList();
-    
-    
-    /**
-     * <p>Answer a new list containing the resources from the given iterator, in order.</p>
-     * @param members An iterator, each value of which is expected to be an RDFNode
-     * @return An RDF-encoded list of the elements of the iterator
-     */
-    public OntList createList( Iterator members );
-    
-    
-    /**
-     * <p>Answer a new list containing the nodes from the given array, in order</p>
-     * @param members An array of RDF nodes that will be the members of the list
-     * @return An RDF-encoded list 
-     */
-    public OntList createList( RDFNode[] members );
+    public AllDifferent createAllDifferent( RDFList differentMembers );
     
     
     /**
