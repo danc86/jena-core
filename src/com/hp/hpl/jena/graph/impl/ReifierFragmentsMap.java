@@ -25,7 +25,7 @@ public interface ReifierFragmentsMap
          Answer a FragmentHandler which can handle this fragment, or null if it isn't a
          reification fragment.
     */
-    public abstract ReifierFragmentHandler getFragmentSelector( Triple fragment );
+    public abstract ReifierFragmentHandler getFragmentHandler( Triple fragment );
 
     /**
          Answer true iff this map has fragments associated with <code>tag</code>.

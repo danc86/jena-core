@@ -130,7 +130,7 @@ public class SimpleReifier implements Reifier
         {
         if (intercepting)
             {
-            ReifierFragmentHandler s = fragmentsMap.getFragmentSelector( fragment );  
+            ReifierFragmentHandler s = fragmentsMap.getFragmentHandler( fragment );  
             if (s == null)
                 return false;
             else     
@@ -175,7 +175,7 @@ public class SimpleReifier implements Reifier
         {
         if (intercepting)
             {
-            ReifierFragmentHandler s = fragmentsMap.getFragmentSelector( fragment );  
+            ReifierFragmentHandler s = fragmentsMap.getFragmentHandler( fragment );  
             if (s == null)
                 return false;
             else     
