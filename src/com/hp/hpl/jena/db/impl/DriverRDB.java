@@ -371,8 +371,8 @@ public abstract class DriverRDB implements IRDBDriver {
 		// adds them to the m_sysProperties specialized graph.
 		m_dbProps = new DBPropDatabase( m_sysProperties, m_dbcon.getDatabaseType(), 
 		        VERSION, LAYOUT_VERSION,String.valueOf(LONG_OBJECT_LENGTH), 
-		        String.valueOf(INDEX_KEY_LENGTH), Boolean.toString(IS_XACT_DB), 
-				Boolean.toString(URI_COMPRESS), String.valueOf(URI_COMPRESS_LENGTH),
+		        String.valueOf(INDEX_KEY_LENGTH), String.valueOf(IS_XACT_DB), 
+                        String.valueOf(URI_COMPRESS), String.valueOf(URI_COMPRESS_LENGTH),
 				TABLE_NAME_PREFIX);
 		
 		// Now we also need to construct the parameters that will be the
