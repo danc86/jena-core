@@ -378,7 +378,7 @@ class WGTestSuite extends TestSuite implements ARPErrorNumbers {
                 super.runTest();
                 if (!m1.equals(m2)) {
                     save(output);
-                    assertEquals(m1, m2);
+                    assertTrue(m1.isIsomorphicWith( m2 ) );
                 }
             } catch (RuntimeException e) {
                 throw e;
