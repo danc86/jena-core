@@ -37,7 +37,7 @@ public class Node_RuleVariable extends Node_Variable {
     protected boolean isRef = true;
     
     /** A static wildcard - like Node.ANY but tests equl to other Node_RuleVariables */
-    public static final Node_RuleVariable WILD = new Node_RuleVariable("*", 0);
+    public static final Node_RuleVariable WILD = new Node_RuleVariable("*", -1);
          
     /**
      * Constructor

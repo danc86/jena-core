@@ -44,6 +44,8 @@ public class BuiltinRegistry {
         theRegistry.register(new Sum());
         theRegistry.register(new Bound());
         theRegistry.register(new Unbound());
+        theRegistry.register(new IsLiteral());
+        theRegistry.register(new NotLiteral());
     }
     
     /**

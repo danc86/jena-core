@@ -233,6 +233,8 @@ public class ReasonerTester {
         Graph correctG = loadTestFile(test, resultP);
         boolean correct = correctG.isIsomorphicWith(resultG);
         // Used in debugging the tests ...
+        // Can't just leave it as a logger.debug because there are unit tests to which are supposed to given
+        // a test failure which would then problem unwanted output.
         /*
         if (!correct) {
             System.out.println("Missing triples:");

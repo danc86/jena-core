@@ -10,6 +10,7 @@
 package com.hp.hpl.jena.reasoner;
 
 import com.hp.hpl.jena.graph.*;
+import com.hp.hpl.jena.reasoner.rulesys.Functor;
 import com.hp.hpl.jena.reasoner.rulesys.Node_RuleVariable;
 import com.hp.hpl.jena.vocabulary.RDF;
 import com.hp.hpl.jena.vocabulary.RDFS;
@@ -104,22 +105,35 @@ public class TriplePattern {
     }
     
     /**
-     * Compare two patterns for compatibility.
+     * Compare two patterns for compatibility - i.e. potentially unifiable.
      * Two patterns are "compatible" in the sense we mean here
      * if all their ground terms match. A variable in either pattern
      * can match a ground term or a variable in the other. We are not,
-     * current checking for multiple occurances of the same variable.
+     * currently, checking for multiple occurances of the same variable.
+     * Functor-valued object literals are treated as a special case which 
+     * are only checked for name/arity matching.
      */
     public boolean compatibleWith(TriplePattern pattern) {
-        return (subject.isVariable() || pattern.subject.isVariable() || subject.equals(pattern.subject))
-            && (predicate.isVariable() || pattern.predicate.isVariable() || predicate.equals(pattern.predicate))
-            && (object.isVariable() || pattern.object.isVariable() || object.equals(pattern.object));
+        boolean ok = subject.isVariable() || pattern.subject.isVariable() || subject.equals(pattern.subject);
+        if (!ok) return false;
+        ok =  predicate.isVariable() || pattern.predicate.isVariable() || predicate.equals(pattern.predicate);
+        if (!ok) return false;
+        if (object.isVariable() || pattern.object.isVariable()) return true;
+        // Left with checking compatibility of ground literals
+        if (Functor.isFunctor(object) && Functor.isFunctor(pattern.object)) {
+            Functor functor = (Functor)object.getLiteral().getValue();
+            Functor pFunctor = (Functor)pattern.object.getLiteral().getValue();
+            return (functor.getName().equals(pFunctor.getName()) 
+                            && functor.getArgs().length == pFunctor.getArgs().length);
+        } else {
+            return object.sameValueAs(pattern.object);
+        } 
     }
     
     /**
      * Compare two patterns and return true if arg is a more
      * specific (more grounded) version of this one.
-     * This implies compatibleWith.
+     * Does not handle functors.
      */
     public boolean subsumes(TriplePattern arg) {
         return (subject.isVariable()  || subject.equals(arg.subject))

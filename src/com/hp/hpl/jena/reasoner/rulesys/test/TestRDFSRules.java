@@ -61,7 +61,7 @@ public class TestRDFSRules extends TestCase {
      * Test the basic functioning of an RDFS reasoner
      */
     public void testRDFSBReasoner() throws IOException {
-        ReasonerTester tester = new ReasonerTester("rdfs/manifest-debug.rdf");
+        ReasonerTester tester = new ReasonerTester("rdfs/manifest-nodirect.rdf");
         ReasonerFactory rf = RDFSBRuleReasonerFactory.theInstance();
         assertTrue("RDFS reasoner tests", tester.runTests(rf, this, null));
     }
