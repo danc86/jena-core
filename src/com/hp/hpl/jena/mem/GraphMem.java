@@ -36,22 +36,31 @@ public class GraphMem extends GraphBase implements Graph {
     /** Creates new Store */
     public GraphMem() {}
 
-    public void add(Triple t) {
-        if (triples.contains(t)) {
+    public void add( Triple t ) 
+        {
+        if (getReifier().handledAdd( t ) || triples.contains( t ))
             return;
+        else
+            {
+            triples.add( t );
+            subjects.add( t.getSubject(), t );
+            predicates.add( t.getPredicate(), t );
+            objects.add( t.getObject(), t );
+            }
         }
-        triples.add(t);
-        subjects.add(t.getSubject(), t);
-        predicates.add(t.getPredicate(), t);
-        objects.add(t.getObject(), t);
-    }
     
-    public void delete(Triple t) {
-        triples.remove(t);
-        subjects.remove(t.getSubject(),t);
-        predicates.remove(t.getPredicate(), t);
-        objects.remove(t.getObject(), t);
-    }
+    public void delete( Triple t ) 
+        {
+        if (getReifier().handledRemove( t ))
+            return;
+        else
+            {
+            triples.remove( t );
+            subjects.remove( t.getSubject(),t );
+            predicates.remove( t.getPredicate(), t );
+            objects.remove( t.getObject(), t );
+            }
+        }
     
     public int size() throws UnsupportedOperationException {
         return triples.size();
