@@ -1733,7 +1733,17 @@ public class OntModelImpl
         return (OntResource) getResourceWithType( uri, rdfType ).as( javaClass );
     }
     
+    /**
+     * <p>Answer a resource presenting the {@link OntResource} facet, which has the
+     * given URI.</p>
+     * @param uri The URI of the resource, or null for an anonymous resource (aka bNode)
+     * @return An OntResource with the given URI
+     */
+    public OntResource createOntResource( String uri ) {
+        return (OntResource) getResource( uri ).as( OntResource.class );
+    }
     
+
     /**
      * <p>Answer a new empty list.  This method overrides the list create method in ModelCom,
      * to allow both DAML and RDFS lists to be created.</p>
@@ -2751,6 +2761,31 @@ public class OntModelImpl
     }
     
     
+    /**
+     * <p>Answer a resource presenting the {@link OntResource} facet, which has the given
+     * URI. If no such resource is currently present in the model, return null.</p>
+     * @param uri The URI of a resource
+     * @return An OntResource with the given URI, or null
+     */
+    public OntResource getOntResource( String uri ) {
+        Resource r = getResource( uri );
+        if (containsResource( r )) {
+            return (OntResource) r.as( OntResource.class );
+        }
+        return null;
+    }
+   
+    /**
+     * <p>Answer a resource presenting the {@link OntResource} facet, which 
+     * corresponds to the given resource but attached to this model.</p>
+     * @param resource An existing resource
+     * @return An OntResource attached to this model that has the same URI
+     * or anonID as the given resource
+     */
+    public OntResource getOntResource( Resource res ) {
+        return (OntResource) res.inModel( this ).as( OntResource.class );
+    }
+   
     /**
      * <p>Throw an OntologyException if the term is not in language profile</p>
      * 

@@ -532,6 +532,22 @@ public interface OntModel
      */
     public AnnotationProperty getAnnotationProperty( String uri );
     
+    /**
+     * <p>Answer a resource presenting the {@link OntResource} facet, which has the given
+     * URI. If no such resource is currently present in the model, return null.</p>
+     * @param uri The URI of a resource
+     * @return An OntResource with the given URI, or null
+     */
+    public OntResource getOntResource( String uri );
+   
+    /**
+     * <p>Answer a resource presenting the {@link OntResource} facet, which 
+     * corresponds to the given resource but attached to this model.</p>
+     * @param resource An existing resource
+     * @return An OntResource attached to this model that has the same URI
+     * or anonID as the given resource
+     */
+    public OntResource getOntResource( Resource res );
    
     /**
      * <p>
@@ -1180,6 +1196,13 @@ public interface OntModel
      */
     public OntResource createOntResource( Class javaClass, Resource rdfType, String uri );
 
+    /**
+     * <p>Answer a resource presenting the {@link OntResource} facet, which has the
+     * given URI.</p>
+     * @param uri The URI of the resource, or null for an anonymous resource (aka bNode)
+     * @return An OntResource with the given URI
+     */
+    public OntResource createOntResource( String uri );
     
     /**
      * <p>

@@ -321,6 +321,21 @@ public class TestOntModel
         assertNull( "result of get r", m.getAnnotationProperty( NS+"r"));
     }
     
+    public void testGetOntResource() {
+        OntModel m = ModelFactory.createOntologyModel();
+        OntResource r0 = m.getOntResource( NS + "a" );
+        assertNull( r0 );
+        OntResource r1 = m.createOntResource( NS + "aaa" );
+        assertTrue( r1 instanceof OntResource );
+        Resource r2a = m.getResource( NS + "a" );
+        Resource r2b = m.getResource( NS + "b" );
+        Property p = m.getProperty( NS + "p" );
+        m.add( r2a, p, r2b );
+        r0 = m.getOntResource( NS + "a" );
+        assertTrue( r0 instanceof OntResource );
+        OntResource r3 = m.getOntResource( r2b );
+        assertTrue( r3 instanceof OntResource );
+    }
    
     public void testGetOntClass() {
         OntModel m = ModelFactory.createOntologyModel();
