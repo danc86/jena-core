@@ -10,8 +10,7 @@ import com.hp.hpl.jena.n3.* ;
 import junit.framework.* ;
 
 import com.hp.hpl.jena.rdf.model.* ;
-import com.hp.hpl.jena.util.ModelLoader;
-
+import com.hp.hpl.jena.util.FileManager;
 /**
  * @author		Andy Seaborne
  * @version 	$Id$
@@ -67,7 +66,7 @@ public class N3JenaReaderTests extends N3ExternalTestsCom
 				
 				if ( resultsFile != null && !resultsFile.equals("") )
 				{
-					rModel = ModelLoader.loadModel(resultsFile, null) ;
+					rModel = FileManager.get().loadModel(resultsFile, null) ;
 					if ( rModel == null )
 						System.err.println("Failed to find results file "+resultsFile) ;
 				}

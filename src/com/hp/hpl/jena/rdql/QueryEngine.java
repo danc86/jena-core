@@ -10,8 +10,8 @@ import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.graph.query.*;
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.rdf.model.impl.*;
+import com.hp.hpl.jena.util.FileManager;
 import com.hp.hpl.jena.util.iterator.*;
-import com.hp.hpl.jena.util.ModelLoader ;
 
 /**
  * @author     Andy Seaborne
@@ -54,7 +54,7 @@ public class QueryEngine implements QueryExecution
                 throw new QueryException("No model for query");
             }
             long startTime = System.currentTimeMillis();
-            Model src = ModelLoader.loadModel(query.sourceURL, null) ;
+            Model src = FileManager.get().loadModel(query.sourceURL, null) ;
             if ( src == null )
                 throw new QueryException("Failed to load data source") ;
             query.setSource(src);

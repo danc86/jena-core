@@ -41,7 +41,7 @@ import com.hp.hpl.jena.rdf.model.impl.ModelMakerImpl;
 import com.hp.hpl.jena.reasoner.*;
 import com.hp.hpl.jena.reasoner.ReasonerRegistry;
 import com.hp.hpl.jena.reasoner.test.TestUtil;
-import com.hp.hpl.jena.util.ModelLoader;
+import com.hp.hpl.jena.util.FileUtils;
 import com.hp.hpl.jena.util.iterator.ExtendedIterator;
 import com.hp.hpl.jena.vocabulary.*;
 import com.hp.hpl.jena.vocabulary.OWL;
@@ -312,7 +312,7 @@ public class TestBugReports
         spec.setDocumentManager(dm);
 
         OntModel oldOntModel = ModelFactory.createOntologyModel(spec, null);
-        oldOntModel.read(BASE + "Import-normalizerBug.owl", ModelLoader.langXMLAbbrev);
+        oldOntModel.read(BASE + "Import-normalizerBug.owl", FileUtils.langXMLAbbrev);
         Graph oldSubGraph = (Graph) oldOntModel.getSubGraphs().iterator().next();
         final int oldTripleCount = getTripleCount(oldSubGraph);
         OntClass ontClass = oldOntModel.getOntClass(BASE + "normalizerBug.owl#SuperClass");
@@ -327,7 +327,7 @@ public class TestBugReports
         dm.clearCache();
         
         OntModel newOntModel = ModelFactory.createOntologyModel(spec, null);
-        newOntModel.read(BASE + "Import-normalizerBug.owl", ModelLoader.langXMLAbbrev);
+        newOntModel.read(BASE + "Import-normalizerBug.owl", FileUtils.langXMLAbbrev);
         Graph newSubGraph = (Graph) newOntModel.getSubGraphs().iterator().next();
         assertFalse(newOntModel == oldOntModel);  // OK!
         assertFalse(newSubGraph == oldSubGraph);  // FAILS!

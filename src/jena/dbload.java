@@ -5,7 +5,7 @@
 
 package jena;
 
-import com.hp.hpl.jena.util.* ;
+import com.hp.hpl.jena.util.FileUtils; 
  
  /** Load data files into a Jena model in a database.
   * 
@@ -63,7 +63,7 @@ public class dbload extends DBcmd
         if ( arg.indexOf(':') == -1 )
             arg = "file:"+arg ;
 
-        String lang = ModelLoader.guessLang(arg) ;
+        String lang = FileUtils.guessLang(arg) ;
         getRDBModel().read(arg, lang) ;
         return true ;
     }

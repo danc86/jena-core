@@ -12,7 +12,7 @@ import com.hp.hpl.jena.rdf.model.* ;
 import com.hp.hpl.jena.vocabulary.* ;
 import com.hp.hpl.jena.shared.*;
 
-import com.hp.hpl.jena.util.*;
+import com.hp.hpl.jena.util.FileManager;
 
 /**
  * @author      Andy Seaborne
@@ -108,7 +108,7 @@ public class QueryResultsMem implements QueryResultsRewindable
     public QueryResultsMem(String urlStr)
         throws java.io.FileNotFoundException
     {
-        Model m = ModelLoader.loadModel(urlStr) ;
+        Model m = FileManager.get().loadModel(urlStr) ;
         buildFromDumpFormat(m);
     }
 

@@ -14,7 +14,7 @@ import com.hp.hpl.jena.rdf.model.impl.*;
 import com.hp.hpl.jena.reasoner.*;
 import com.hp.hpl.jena.reasoner.rulesys.*;
 import com.hp.hpl.jena.shared.*;
-import com.hp.hpl.jena.util.FileUtils;
+import com.hp.hpl.jena.util.FileManager;
 import com.hp.hpl.jena.vocabulary.*;
 
 import junit.framework.TestSuite;
@@ -203,8 +203,8 @@ public class TestModelSpecRevised extends ModelTestBase
      */
     private Graph loadBoth( String x, String y )
         {
-        Model schema = FileUtils.loadModel( file( x ) );
-        Model schema2 = FileUtils.loadModel( file( y ) );
+        Model schema = FileManager.get().loadModel( file( x ) );
+        Model schema2 = FileManager.get().loadModel( file( y ) );
         schema.add( schema2 );
         return schema.getGraph();
         }

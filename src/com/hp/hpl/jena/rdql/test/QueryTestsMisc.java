@@ -22,9 +22,6 @@ import com.hp.hpl.jena.rdql.*;
 public class QueryTestsMisc extends TestSuite
 {
 	static final String testSetName = "RDQL - Query - Other" ;
-	
-    
-    
     public static String baseURI = "http://rdql/" ;
 
     public static TestSuite suite()

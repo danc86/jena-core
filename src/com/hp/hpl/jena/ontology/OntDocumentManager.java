@@ -36,7 +36,7 @@ import org.apache.commons.logging.LogFactory;
 import org.apache.xerces.util.XMLChar;
 
 import com.hp.hpl.jena.rdf.model.*;
-import com.hp.hpl.jena.util.ModelLoader;
+import com.hp.hpl.jena.util.FileUtils;
 import com.hp.hpl.jena.vocabulary.RDF;
 import com.hp.hpl.jena.shared.*;
 import com.hp.hpl.jena.shared.impl.PrefixMappingImpl;
@@ -979,7 +979,7 @@ public class OntDocumentManager
         // try to load the URI
         try {
             // try to use the extension of the url to guess what syntax to use (.n3 => "N3", etc)
-            String lang = ModelLoader.guessLang( resolvableURI );
+            String lang = FileUtils.guessLang( resolvableURI );
     
             // see if we can find the file as a resource
             InputStream is = getClass().getClassLoader().getResourceAsStream( file );

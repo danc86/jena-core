@@ -16,8 +16,8 @@ import com.hp.hpl.jena.reasoner.Reasoner;
 import com.hp.hpl.jena.reasoner.rulesys.*;
 import com.hp.hpl.jena.reasoner.rulesys.builtins.BaseBuiltin;
 import com.hp.hpl.jena.shared.JenaException;
+import com.hp.hpl.jena.util.FileManager;
 import com.hp.hpl.jena.util.FileUtils;
-import com.hp.hpl.jena.util.ModelLoader;
 import com.hp.hpl.jena.util.PrintUtil;
 
 import jena.cmdline.*;
@@ -167,7 +167,7 @@ public class RuleMap {
             // Load the input data
             Arg il = cl.getArg("il");
             String inLang = (il == null) ? null : il.getValue();
-            Model inModel = ModelLoader.loadModel((String)cl.items().get(1), inLang);
+            Model inModel = FileManager.get().loadModel((String)cl.items().get(1), inLang);
             
             // Determine the type of the output
             Arg ol = cl.getArg("ol");

@@ -7,7 +7,7 @@
 package com.hp.hpl.jena.rdf.model.impl;
 
 import com.hp.hpl.jena.rdf.model.*;
-import com.hp.hpl.jena.util.FileUtils;
+import com.hp.hpl.jena.util.FileManager;
 import com.hp.hpl.jena.vocabulary.*;
 import com.hp.hpl.jena.shared.*;
 
@@ -288,13 +288,13 @@ public abstract class ModelSpecImpl implements ModelSpec
     public static Model readModel( Resource source )
         {
         String uri = source.getURI();
-        return FileUtils.loadModel( uri );
+        return FileManager.get().loadModel( uri );
         }
 
     protected Model loadFiles(Model m)
         {
         StmtIterator it = description.listStatements( root, JMS.loadWith, (RDFNode) null );
-        while (it.hasNext()) FileUtils.loadModel( m, it.nextStatement().getResource().getURI() );
+        while (it.hasNext()) FileManager.get().readModel( m, it.nextStatement().getResource().getURI() );
         return m;
         }
                 

@@ -8,7 +8,9 @@ package com.hp.hpl.jena.util.test;
 
 import junit.framework.*;
 import java.io.* ;
-import com.hp.hpl.jena.util.file.* ;
+
+import com.hp.hpl.jena.util.FileManager;
+import com.hp.hpl.jena.util.LocationMapper;
 
 import org.apache.commons.logging.*;
 

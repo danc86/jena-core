@@ -14,7 +14,7 @@ import com.hp.hpl.jena.reasoner.*;
 import com.hp.hpl.jena.reasoner.rulesys.*;
 import com.hp.hpl.jena.reasoner.rulesys.impl.WrappedReasonerFactory;
 import com.hp.hpl.jena.shared.*;
-import com.hp.hpl.jena.util.FileUtils;
+import com.hp.hpl.jena.util.FileManager;
 import com.hp.hpl.jena.vocabulary.*;
 
 /**
@@ -169,7 +169,7 @@ public class InfModelSpec extends ModelSpecImpl
 			{
 			Statement s = schemas.nextStatement();
 			Resource sc = s.getResource();
-			f.bindSchema( FileUtils.loadModel( sc.getURI() ).getGraph() );
+			f.bindSchema( FileManager.get().loadModel( sc.getURI() ).getGraph() );
 			}
 		}
 

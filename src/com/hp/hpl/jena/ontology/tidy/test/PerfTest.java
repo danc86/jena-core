@@ -11,7 +11,7 @@ import com.hp.hpl.jena.ontology.tidy.*;
 import org.apache.xerces.parsers.*;
 import com.hp.hpl.jena.rdf.arp.*;
 import java.net.URL;
-import java.io.*;
+
 /**
  * Computes the cost of OWL Syntax checking
  * @author <a href="mailto:Jeremy.Carroll@hp.com">Jeremy Carroll</a>
