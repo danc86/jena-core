@@ -162,7 +162,7 @@ public class TestOntReasoning
         r.addSubProperty( s );
         
         iteratorTest( p.listSubProperties(), new Object[] {p,q,r,s} );
-        iteratorTest( p.listSubProperties( true ), new Object[] {p,q,r} );
+        iteratorTest( p.listSubProperties( true ), new Object[] {q,r} );
     }
     
     public void testSubPropertyDirectTransInf1b() {
@@ -179,7 +179,7 @@ public class TestOntReasoning
         p.addSubProperty( s );     // directly asserts a link that could be inferred
         
         iteratorTest( p.listSubProperties(), new Object[] {p,q,r,s} );
-        iteratorTest( p.listSubProperties( true ), new Object[] {p,q,r} );
+        iteratorTest( p.listSubProperties( true ), new Object[] {q,r} );
     }
     
     public void testSubPropertyDirectTransInf2a() {

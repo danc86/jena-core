@@ -31,7 +31,6 @@ import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.graph.query.*;
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.reasoner.*;
-import com.hp.hpl.jena.util.ResourceUtils;
 import com.hp.hpl.jena.util.iterator.*;
 import com.hp.hpl.jena.vocabulary.*;
 
@@ -795,7 +794,22 @@ public class OntClassImpl
      */
     protected boolean hasSuperClassDirect(Resource cls) {
         // we manually compute the maximal lower elements - this could be expensive in general
-        return ResourceUtils.maximalLowerElements( listSuperClasses(), getProfile().SUB_CLASS_OF(), false ).contains( cls );
+        //return ResourceUtils.maximalLowerElements( listSuperClasses(), getProfile().SUB_CLASS_OF(), false ).contains( cls );
+        
+        ExtendedIterator i = listDirectPropertyValues( getProfile().SUB_CLASS_OF(), "subClassOf", OntClass.class, 
+                                                       getProfile().SUB_CLASS_OF(), true, false );
+        try {
+            while (i.hasNext()) {
+                if (cls.equals( i.next() )) {
+                    return true;
+                }
+            }
+        }
+        finally {
+            i.close();
+        }
+        
+        return false;
     }
 
 

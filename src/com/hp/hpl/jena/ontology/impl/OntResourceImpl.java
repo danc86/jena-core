@@ -1369,9 +1369,20 @@ public class OntResourceImpl
         return as( cls );
     }
     
-    /** Return an iterator of values, respecting the 'direct' modifier */
+    /**
+     * <p>Return an iterator of values, respecting the 'direct' modifier</p>
+     * @param p The property whose values are required
+     * @param name The short name of the property (for generating error messages)
+     * @param cls Class object denoting the facet to map the returned values to
+     * @param orderRel If direct, and we are not using an inference engine, this is the property
+     *                 to use to define the maximal lower elements of the partial order
+     * @param direct If true, only return the direct (adjacent) values
+     * @param inverse If true, use the inverse of p rather than p
+     * @return An iterator of nodes that are in relation p to this resource (possibly inverted), which
+     * have been mapped to the facet denoted by cls.
+     */
     protected ExtendedIterator listDirectPropertyValues( Property p, String name, Class cls, Property orderRel, boolean direct, boolean inverse ) {
-        ExtendedIterator i = null;
+        Iterator i = null;
         checkProfile( p, name );
         
         Property sc = p;
@@ -1397,34 +1408,55 @@ public class OntResourceImpl
         if (!direct || ((ig != null) && ig.getReasoner().supportsProperty( sc ))) {
             // either not direct, or the direct sc property is supported
             // ensure we have an extended iterator of statements  this rdfs:subClassOf _x
-            i = getModel().listStatements( subject, sc, object );
-    
-            // we only want the subjects or objects of the statements
-            return UniqueExtendedIterator.create( i ).mapWith( mapper );
+            // NB we only want the subjects or objects of the statements
+            i = getModel().listStatements( subject, sc, object ).mapWith( mapper );
         }
         else {
-            // graph does not support direct directly
-            i = getModel().listStatements( subject, p, object );
-            
-            // we need to keep this node out of the iterator for now, else it will spoil the maximal 
-            // generator compression (since all the (e.g.) sub-classes will be sub-classes of this node
-            // and so will be excluded from the maximal lower elements calculation)
-            Collection s = new ArrayList();
-            for( i = i.mapWith( mapper ); i.hasNext();  s.add( i.next() ) );
-            boolean withheld = s.remove( this );
-            
-            // generate the short list as the maximal bound under the given partial order
-            s = ResourceUtils.maximalLowerElements( s, orderRel, inverse );
-            
-            // put myself back if needed
-            if (withheld) {
-                s.add( this );
-            }
-            
-            return UniqueExtendedIterator.create( s.iterator() ).mapWith( mapper );
+            i = computeDirectValues( p, orderRel, inverse, subject, object, mapper );
         }
+        
+        return UniqueExtendedIterator.create( i );
     }
     
+    
+    /**
+     * <p>In the absence of a reasoner that can compute direct (adjacent) property values,
+     * we must perform the calculation of the direct values computationally here.</p>
+     * @param p
+     * @param orderRel
+     * @param inverse
+     * @param subject
+     * @param object
+     * @param mapper
+     * @return
+     */
+    private Iterator computeDirectValues( Property p, Property orderRel, boolean inverse, Resource subject, Resource object, Map1 mapper ) {
+        // graph does not support direct directly
+        ExtendedIterator j = getModel().listStatements( subject, p, object )
+                                       .mapWith( mapper );
+        
+        // we need to keep this node out of the iterator for now, else it will spoil the maximal 
+        // generator compression (since all the (e.g.) sub-classes will be sub-classes of this node
+        // and so will be excluded from the maximal lower elements calculation)
+        List s = new ArrayList();
+        for( ; j.hasNext();  s.add( j.next() ) );
+        
+        // remove any nodes that are equivalent to this one
+        ResourceUtils.removeEquiv( s, orderRel, this );
+        boolean withheld = s.remove( this );
+        
+        // generate the short list as the maximal bound under the given partial order
+        s = ResourceUtils.maximalLowerElements( s, orderRel, inverse );
+        
+        // put myself back if needed
+        if (withheld) {
+            s.add( this );
+        }
+        
+        return s.iterator();
+    }
+
+
     /** Remove a specified property-value pair, if it exists */
     protected void removePropertyValue( Property prop, String name, RDFNode value ) {
         checkProfile( prop, name );
