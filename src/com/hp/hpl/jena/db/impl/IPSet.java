@@ -36,7 +36,6 @@ public interface IPSet {
 	 */
 	public void setSQLCache(SQLCache cache);
 	public SQLCache getSQLCache();
-	public void setMaxLiteral(int value);
 	public void setSQLType(String value);
 	public void setSkipDuplicateCheck(boolean value);
 	public void setCachePreparedStatements(boolean value);
@@ -58,22 +57,8 @@ public interface IPSet {
      * the specified triple for the specified graph.
      */
     public boolean statementTableContains(IDBID graphID, Triple t);
-
-    /**
-     * Return boolean indicating whether or not the given table
-     * exists in the database.
-     */
-    public boolean tableExists(String tName);
     	
     
-	/**
-	 * General ID allocate stub.
-	 * Calls the given SQL operation to perform the allocation.
-	 */
-	public IDBID allocateID(String opname);
-
-		
-
 	/**
 	 * @param t the triple to be added
 	 * @param gid the id of the graph

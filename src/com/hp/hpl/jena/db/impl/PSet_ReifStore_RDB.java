@@ -45,11 +45,6 @@ import org.apache.log4j.Logger;
 public class PSet_ReifStore_RDB extends PSet_TripleStore_RDB {
 
 	//=======================================================================
-	// Cutomization variables
-
-	public static String SYS_AS_TNAME = "jena_StmtReified";
-
-	//=======================================================================
 	// Internal variables
     
     protected static Logger logger = Logger.getLogger( PSet_ReifStore_RDB.class );
