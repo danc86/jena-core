@@ -31,7 +31,6 @@ import java.util.*;
  *
  * @author bwm
  * hacked by Jeremy, tweaked by Chris (May 2002 - October 2002)
- * @version Release='$Name$' Revision='$Revision$' Date='$Date$'
  */
 
 public class ModelCom 
@@ -870,6 +869,12 @@ implements Model, PrefixMapping, ModelLock
         
     public String usePrefix( String uri )
         { return getPrefixMapping().usePrefix( uri ); }
+    
+    public String qnameFor( String uri )
+        { return getPrefixMapping().qnameFor( uri ); }
+    
+    public String shortForm( String uri )
+        { return getPrefixMapping().shortForm( uri ); }
         
     /**
         Service method to update the namespaces of  a Model given the

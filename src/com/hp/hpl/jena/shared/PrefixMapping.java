@@ -124,7 +124,19 @@ public interface PrefixMapping
         @param uri the URI string to try and prefix-compress
         @return the shortened form if possible, otherwise the unchanged argument
     */
+    String shortForm( String uri );
+    
+    /**
+        Old name for shortForm.
+        @deprecated - use shortForm
+    */
     String usePrefix( String uri );
+    
+    /**
+        Answer a qname with the expansion of the given uri, or null if no such qname
+        can be constructed using the mapping's prefixes.
+    */
+    String qnameFor( String uri );
     
     /**
         Lock the PrefixMapping so that changes can no longer be made to it.
