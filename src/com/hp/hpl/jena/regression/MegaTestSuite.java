@@ -52,7 +52,6 @@ public class MegaTestSuite extends TestSuite {
     }
     private MegaTestSuite() {
         super("Jena");
-        addTest("GraphTestBase", com.hp.hpl.jena.graph.GraphTestBase.suite());
         /* redundant ? */
         addTest("basic Node tests", com.hp.hpl.jena.graph.test.TestNode.suite());
         /* redundant ? */

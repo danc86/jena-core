@@ -114,7 +114,10 @@ public class EnhNode
      */
     protected Polymorphic convertTo( Class t ) 
         {
-        Polymorphic result = getPersonality().getImplementation( t ).wrap( asNode(), getGraph() );          
+        EnhGraph eg = getGraph();
+        Implementation imp = getPersonality().getImplementation( t );
+        if (imp == null) throw new UnsupportedPolymorphismException( eg, t );
+        Polymorphic result = imp.wrap( asNode(), eg );          
         this.addView( result );
         return result;
         }

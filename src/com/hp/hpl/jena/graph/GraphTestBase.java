@@ -28,9 +28,6 @@ public class GraphTestBase extends JenaTestBase
     public GraphTestBase( String name )
     	{ super( name ); }
     	
-    public static TestSuite suite()
-        { return new TestSuite( GraphTestBase.class ); }   
-    
     public static Node node( String x )
         { return Node.create( x ); }
         
