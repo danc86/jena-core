@@ -236,8 +236,12 @@ public class RDFException extends RuntimeException {
         return errorCode;
     }
     
+    /**
+        changed by Chris, because "use this if we haven't one" caused
+        a recursive failure of test cases that exported DoesNotReifyException.
+    */
     public Throwable getCause() {
-        return nestedException!=null?nestedException:this;
+        return nestedException ; // was: !=null?nestedException:this;
     }
     public Exception getNestedException() {
         
