@@ -5,7 +5,8 @@
 
 package com.hp.hpl.jena.n3;
 
-import org.apache.log4j.*; 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 import com.hp.hpl.jena.util.iterator.* ;
 import com.hp.hpl.jena.rdf.model.*;
@@ -25,7 +26,7 @@ import java.io.* ;
 
 public class N3JenaWriterCommon implements RDFWriter
 {
-    static Logger logger = Logger.getLogger(N3JenaWriterCommon.class) ;
+    static Log logger = LogFactory.getLog(N3JenaWriterCommon.class) ;
     
 	// N3 writing proceeds in 2 stages.
     // First, it analysis the model to be written to extract information

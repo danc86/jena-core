@@ -5,7 +5,7 @@
 
 package com.hp.hpl.jena.n3;
 
-//import org.apache.log4j.Logger;
+//import org.apache.commons.logging.*;
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.shared.JenaException;
 import com.hp.hpl.jena.vocabulary.RDF ;

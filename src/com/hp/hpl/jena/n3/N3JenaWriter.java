@@ -8,7 +8,7 @@
 
 package com.hp.hpl.jena.n3;
 
-//import org.apache.log4j.Logger;
+//import org.apache.commons.logging.*;
 import java.io.OutputStream;
 import java.io.Writer;
 
@@ -35,7 +35,7 @@ import com.hp.hpl.jena.rdf.model.*;
 
 public class N3JenaWriter implements RDFWriter
 {
-    //static Logger logger = Logger.getLogger(N3JenaWriter.class) ;
+    //static Log logger = LogFactory.getLog(N3JenaWriter.class) ;
     static public boolean DEBUG = false ;
     
     // Note: properties are URIs, not java convention package/class names.
