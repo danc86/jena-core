@@ -75,7 +75,7 @@ public class Abbreviated extends BaseXMLWriter implements RDFErrorHandler {
     void blockRule(Resource r) {
         if (r.equals(RDFSyntax.sectionReification)) sReification=true;
        // else if (r.equals(RDFSyntax.resourcePropertyElt)) sResourcePropertyElt=true;
-else if (r.equals(RDFSyntax.sectionListExpand)) sListExpand=true;
+        else if (r.equals(RDFSyntax.sectionListExpand)) sListExpand=true;
         else if (r.equals(RDFSyntax.parseTypeLiteralPropertyElt)) sParseTypeLiteralPropertyElt=true;
         else if (r.equals(RDFSyntax.parseTypeResourcePropertyElt)) sParseTypeResourcePropertyElt=true;
         else if (r.equals(RDFSyntax.parseTypeCollectionPropertyElt)) sParseTypeCollectionPropertyElt=true;

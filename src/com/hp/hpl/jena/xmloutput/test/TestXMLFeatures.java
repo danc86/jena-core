@@ -397,19 +397,19 @@ public class TestXMLFeatures extends TestCase {
     }
     public void testNoReification()
         throws IOException, MalformedPatternException {
-            System.err.println("WARNING: reification output tests suppressed.");
-            /*
-        check(
-            "testing/abbreviated/reification.rdf",
-            null, //"rdf:ID",
+           // System.err.println("WARNING: reification output tests suppressed.");
+         String filename = "testing/abbreviated/reification.rdf";
+         String base = "http://example.org/foo";
+         check(filename,null,null,"rdf:subject",false,new Change(){
+                    public void code(RDFWriter w){}
+                },base);
+        check(filename, null, "rdf:subject",null,  false, 
             new Change() {
             public void code(RDFWriter writer) {
                 writer.setProperty("blockrules", "section-reification");
             }
-            },
-            "http://example.org/foo"
-        );
-        */
+            }, base);
+        
     }
     public void testNoStripes()
         throws IOException, MalformedPatternException {
