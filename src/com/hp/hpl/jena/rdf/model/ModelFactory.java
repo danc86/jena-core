@@ -86,7 +86,7 @@ public class ModelFactory extends ModelFactoryBase
         description rooted at the given root.
     */
     public static ModelSpec createSpec( Resource root, Model desc )
-        { return ModelSpecImpl.create( root, desc ); }
+        { return ModelSpecFactory.createSpec( ModelSpecFactory.withSchema( desc ), root ); }
         
     /**
         Answer a fresh Model created according to the ModelSpec argument.

@@ -157,7 +157,7 @@ public class TestModelSpec extends ModelTestBase
         {
         Resource plain = resource();
         Model desc = createPlainModelDesc( plain );
-        ModelSpec ms = ModelSpecImpl.create( plain, desc );  
+        ModelSpec ms = ModelSpecFactory.createSpec( ModelSpecFactory.withSchema( desc ), plain );  
         assertTrue( ms.createModel().getGraph() instanceof GraphMem );  
         }
         
@@ -167,7 +167,7 @@ public class TestModelSpec extends ModelTestBase
         Resource inf = resource();
         String URI = DAMLMicroReasonerFactory.URI;
         Model desc = createPlainModelDesc( plain ).add( createInfModelDesc( inf, URI ) );
-        ModelSpec ms = ModelSpecImpl.create( plain, desc );  
+        ModelSpec ms = ModelSpecFactory.createSpec( ModelSpecFactory.withSchema( desc ), plain );  
         assertTrue( ms.createModel().getGraph() instanceof GraphMem );  
         }
                           
