@@ -8,11 +8,7 @@ package com.hp.hpl.jena.util;
 import java.io.* ;
 import java.net.* ;
 
-import com.hp.hpl.jena.rdql.QueryException;
-import com.hp.hpl.jena.rdql.QSys ;
-
 import com.hp.hpl.jena.rdf.model.* ;
-import com.hp.hpl.jena.rdf.model.impl.* ;
 import com.hp.hpl.jena.mem.* ;
 //import com.hp.hpl.jena.bdb.* ;
 //import com.hp.hpl.jena.rdb.* ;
