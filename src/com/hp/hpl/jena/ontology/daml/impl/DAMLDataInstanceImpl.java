@@ -161,7 +161,7 @@ public class DAMLDataInstanceImpl
      * @param value The value to be encoded as a typed literal
      */
     public void setValue( Object value ) {
-        setPropertyValue( RDF.value, "", getModel().createTypedLiteral( value, null, getDatatype() ) );
+        setPropertyValue( RDF.value, "", getModel().createTypedLiteral( value, getDatatype() ) );
     }
 
 
