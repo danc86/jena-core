@@ -17,24 +17,18 @@ public interface Expression
     
     public Valuator prepare( VariableIndexes vi );
     
-    public static abstract class EE implements Expression, Valuator
+    public static class EE implements Expression, Valuator
         {
+        private boolean value;
+        public EE( boolean value ) { this.value = value; }
         public Valuator prepare( VariableIndexes vi ) { return this; }   
-        public abstract boolean evalBool( VariableValues vv );
-        public abstract boolean evalBool( IndexValues vv );
+        public boolean evalBool( VariableValues vv ) { return value; }
+        public boolean evalBool( IndexValues vv ) { return value; }
         }
         
-    public static Expression TRUE = new EE() 
-        { 
-        public boolean evalBool( VariableValues vv ) { return true; }
-        public boolean evalBool( IndexValues vv ) { return true; }
-        };
+    public static Expression TRUE = new EE( true );
     
-    public static Expression FALSE = new EE() 
-        { 
-        public boolean evalBool( VariableValues vv ) { return false; }
-        public boolean evalBool( IndexValues vv ) { return false; }
-        };
+    public static Expression FALSE = new EE( false );
     }
 
 /*
