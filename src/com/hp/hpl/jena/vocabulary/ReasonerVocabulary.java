@@ -105,7 +105,16 @@ public class ReasonerVocabulary {
 
     /** Property used for validation reports in owl ruleset */
     public static final Property RB_VALIDATION_REPORT = ResourceFactory.createProperty(RBNamespace, "violation");
+    
                 
+    /** Property to denote the URL of an external reasoner. Default is http://localhost:8081 */
+    public static final Property EXT_REASONER_URL = ResourceFactory.createProperty( JenaReasonerNS, "extReasonerURL" );
+    
+    /** Property to denote the ontology language (OWL, DAML, RDFS) an external reasoner will process. 
+     *  Values are URI's, see {@link com.hp.hpl.jena.ontology.ProfileRegistry}. Default is OWL. */
+    public static final Property EXT_REASONER_ONT_LANG = ResourceFactory.createProperty( JenaReasonerNS, "extReasonerOntologyLang" );
+    
+    
 //  --------------------------------------------------------------------
 // Method versions of key namespaces which are more initializer friendly
 

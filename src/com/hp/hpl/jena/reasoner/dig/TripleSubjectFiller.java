@@ -5,7 +5,7 @@
  * Author email       ian.dickinson@hp.com
  * Package            Jena 2
  * Web                http://sourceforge.net/projects/jena/
- * Created            11-Sep-2003
+ * Created            04-Dec-2003
  * Filename           $RCSfile$
  * Revision           $Revision$
  * Release status     $State$
@@ -25,63 +25,73 @@ package com.hp.hpl.jena.reasoner.dig;
 
 // Imports
 ///////////////
-import java.util.Iterator;
+import com.hp.hpl.jena.graph.*;
+import com.hp.hpl.jena.rdf.model.*;
+import com.hp.hpl.jena.util.iterator.Map1;
+
 
 
 /**
  * <p>
- * A structure that presents identification information about the attached DIG reasoner.
+ * Mapper to create triples from a given predicate and object
  * </p>
  *
- * @author Ian Dickinson, HP Labs (<a href="mailto:Ian.Dickinson@hp.com">email</a>)
- * @version Release @release@ ($Id$)
+ * @author Ian Dickinson, HP Labs (<a  href="mailto:Ian.Dickinson@hp.com" >email</a>)
+ * @version CVS $Id$
  */
-public interface DIGIdentifier 
+public class TripleSubjectFiller 
+    implements Map1
 {
     // Constants
     //////////////////////////////////
 
-    // External signature methods
+    // Static variables
+    //////////////////////////////////
+
+    // Instance variables
+    //////////////////////////////////
+
+    private Node m_predicate;
+    private Node m_object;
+    
+    // Constructors
     //////////////////////////////////
 
     /**
-     * <p>Answer the name of the attached reasoner, as a string.</p>
-     * @return The name of the DIG reasoner.
+     * Construct a mapper to create triples from the given predicate and object,
+     * with a subject supplied by the iterator being mapped.
      */
-    public String getName();
+    public TripleSubjectFiller( Resource predicate, Resource object ) {
+        this( predicate.asNode(), object.asNode() );
+    }
     
+
     /**
-     * <p>Answer the version string of the attached reasoner.</p>
-     * @return The version string for the reasoner.
+     * Construct a mapper to create triples from the given predicate and object,
+     * with a subject supplied by the iterator being mapped.
      */
-    public String getVersion();
+    public TripleSubjectFiller( Node predicate, Node object ) {
+        m_predicate = predicate;
+        m_object = object;
+    }
     
-    /**
-     * <p>Answer the message string from the DIG identifier element.</p>
-     * @return The identification message
-     */
-    public String getMessage();
     
-    /**
-     * <p>Answer an iterator over the language elements that this reasoner supports.</p>
-     * @return An iterator, each element of which is a string denoting a DIG language
-     * term that the attached reasoner supports.
-     */
-    public Iterator supportsLanguage();
+    // External signature methods
+    //////////////////////////////////
+
+    public Object map1( Object x ) {
+        return new Triple( (Node) x, m_predicate, m_object );
+    }
     
-    /**
-     * <p>Answer an iterator over the TELL verbs that this reasoner supports.</p>
-     * @return An iterator, each element of which is a string denoting a DIG TELL
-     * verb that the attached reasoner supports.
-     */
-    public Iterator supportsTell();
     
-    /**
-     * <p>Answer an iterator over the ASK verbs that this reasoner supports.</p>
-     * @return An iterator, each element of which is a string denoting a DIG ASK
-     * verb that the attached reasoner supports.
-     */
-    public Iterator supportsAsk();
+    
+    // Internal implementation methods
+    //////////////////////////////////
+
+    //==============================================================================
+    // Inner class definitions
+    //==============================================================================
+
 }
 
 

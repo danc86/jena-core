@@ -2,10 +2,10 @@
  * Source code information
  * -----------------------
  * Original author    Ian Dickinson, HP Labs Bristol
- * Author email       ian.dickinson@hp.com
+ * Author email       Ian.Dickinson@hp.com
  * Package            Jena 2
  * Web                http://sourceforge.net/projects/jena/
- * Created            11-Sep-2003
+ * Created            July 19th 2003
  * Filename           $RCSfile$
  * Revision           $Revision$
  * Release status     $State$
@@ -15,31 +15,34 @@
  *
  * (c) Copyright 2001, 2002, 2003, Hewlett-Packard Development Company, LP
  * [See end of file]
- *****************************************************************************/
+ * ****************************************************************************/
 
 // Package
 ///////////////
 package com.hp.hpl.jena.reasoner.dig;
 
+import org.w3c.dom.Document;
+
+import com.hp.hpl.jena.reasoner.TriplePattern;
+import com.hp.hpl.jena.util.iterator.ExtendedIterator;
+import com.hp.hpl.jena.util.xml.SimpleXMLPath;
 
 
 // Imports
 ///////////////
-import com.hp.hpl.jena.shared.JenaException;
-
 
 /**
  * <p>
- * Exception indicating that a problem has arisen in the interface to the DIG
- * reasoner.
+ * Translator that generates DIG allconcepts queries
  * </p>
  *
  * @author Ian Dickinson, HP Labs (<a href="mailto:Ian.Dickinson@hp.com">email</a>)
  * @version Release @release@ ($Id$)
  */
-public class DIGReasonerException 
-    extends JenaException
+public class DIGQueryAllConceptsTranslator 
+    extends DIGQueryTranslator
 {
+
     // Constants
     //////////////////////////////////
 
@@ -52,16 +55,45 @@ public class DIGReasonerException
     // Constructors
     //////////////////////////////////
 
-    /** 
-     * Create a new exception with the given message 
+    /**
+     * <p>Construct a translator for the DIG query all concepts.</p>
+     * @param predicate The predicate URI to trigger on
+     * @param object The object URI to trigger on
+     * @param ontLang Profile denoting the language we're dealing with
      */
-    public DIGReasonerException( String message ) {
-        super( message );
+    public DIGQueryAllConceptsTranslator( String predicate, String object ) {
+        super( ALL, predicate, object );
     }
     
-    
+
     // External signature methods
     //////////////////////////////////
+
+
+    /**
+     * <p>Answer a query that will list all concept names</p>
+     */
+    public Document translatePattern( TriplePattern query, DIGAdapter da ) {
+        return da.getConnection().createDigVerb( DIGProfile.ALL_CONCEPT_NAMES, da.getProfile() );
+    }
+
+
+    /**
+     * <p>Answer an iterator of triples that match the original find query.</p>
+     */
+    public ExtendedIterator translateResponse( Document response, TriplePattern query, DIGAdapter da ) {
+        // evaluate a path through the return value to give us an iterator over catom names
+        ExtendedIterator catomNames = new SimpleXMLPath( true )
+                                          .appendElementPath( DIGProfile.RESPONSE )
+                                          .appendElementPath( DIGProfile.CONCEPT_SET )
+                                          .appendElementPath( DIGProfile.SYNONYMS )
+                                          .appendElementPath( DIGProfile.CATOM )
+                                          .appendAttrPath( DIGProfile.NAME )
+                                          .getAll( response );
+        
+        return catomNames.mapWith( new NameToNodeMapper() )
+                         .mapWith( new TripleSubjectFiller( query.getPredicate(), query.getObject() ) );
+    }
 
     // Internal implementation methods
     //////////////////////////////////

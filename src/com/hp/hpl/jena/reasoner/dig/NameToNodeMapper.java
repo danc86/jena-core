@@ -5,7 +5,7 @@
  * Author email       ian.dickinson@hp.com
  * Package            Jena 2
  * Web                http://sourceforge.net/projects/jena/
- * Created            11-Sep-2003
+ * Created            04-Dec-2003
  * Filename           $RCSfile$
  * Revision           $Revision$
  * Release status     $State$
@@ -25,63 +25,61 @@ package com.hp.hpl.jena.reasoner.dig;
 
 // Imports
 ///////////////
-import java.util.Iterator;
+import com.hp.hpl.jena.graph.Node;
+import com.hp.hpl.jena.rdf.model.AnonId;
+import com.hp.hpl.jena.util.iterator.Map1;
 
 
 /**
  * <p>
- * A structure that presents identification information about the attached DIG reasoner.
+ * Mapper to map DIG identifier names to Jena graph nodes.
  * </p>
  *
- * @author Ian Dickinson, HP Labs (<a href="mailto:Ian.Dickinson@hp.com">email</a>)
- * @version Release @release@ ($Id$)
+ * @author Ian Dickinson, HP Labs (<a  href="mailto:Ian.Dickinson@hp.com" >email</a>)
+ * @version CVS $Id$
  */
-public interface DIGIdentifier 
+public class NameToNodeMapper 
+    implements Map1
 {
     // Constants
+    //////////////////////////////////
+
+    // Static variables
+    //////////////////////////////////
+
+    // Instance variables
+    //////////////////////////////////
+
+    // Constructors
     //////////////////////////////////
 
     // External signature methods
     //////////////////////////////////
 
+
     /**
-     * <p>Answer the name of the attached reasoner, as a string.</p>
-     * @return The name of the DIG reasoner.
+     * <p>Return the node corresponding to the given name string
      */
-    public String getName();
-    
-    /**
-     * <p>Answer the version string of the attached reasoner.</p>
-     * @return The version string for the reasoner.
-     */
-    public String getVersion();
-    
-    /**
-     * <p>Answer the message string from the DIG identifier element.</p>
-     * @return The identification message
-     */
-    public String getMessage();
-    
-    /**
-     * <p>Answer an iterator over the language elements that this reasoner supports.</p>
-     * @return An iterator, each element of which is a string denoting a DIG language
-     * term that the attached reasoner supports.
-     */
-    public Iterator supportsLanguage();
-    
-    /**
-     * <p>Answer an iterator over the TELL verbs that this reasoner supports.</p>
-     * @return An iterator, each element of which is a string denoting a DIG TELL
-     * verb that the attached reasoner supports.
-     */
-    public Iterator supportsTell();
-    
-    /**
-     * <p>Answer an iterator over the ASK verbs that this reasoner supports.</p>
-     * @return An iterator, each element of which is a string denoting a DIG ASK
-     * verb that the attached reasoner supports.
-     */
-    public Iterator supportsAsk();
+    public Object map1( Object o ) {
+        String name = (String) o;
+        
+        if (name.startsWith( DIGAdapter.ANON_MARKER )) {
+            String anonID = name.substring( DIGAdapter.ANON_MARKER.length() );
+            return Node.createAnon( new AnonId( anonID ) );
+        }
+        else {
+            return Node.createURI( name );
+        }
+    }
+
+
+    // Internal implementation methods
+    //////////////////////////////////
+
+    //==============================================================================
+    // Inner class definitions
+    //==============================================================================
+
 }
 
 
@@ -111,3 +109,4 @@ public interface DIGIdentifier
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
  * THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+
