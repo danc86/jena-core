@@ -232,16 +232,14 @@ public class ModelLoader
 //        System.out.println("driver     = "+driverName) ;
             
         try {
-            // Hack
             IDBConnection conn = 
                 ModelFactory.createSimpleRDBConnection(urlStr, dbUser, dbPassword, dbType) ;
             return ModelRDB.open(conn, modelName) ;
         } catch (JenaException rdfEx)
         {
             Log.severe("Failed to open SQL database", "ModelLoader", "loadModel", rdfEx) ;
-            System.exit(1) ;
+            throw rdfEx ;
         }
-        return null ;
     }
 
     private static FileReader tryFile( String baseName, String fileName ) throws FileNotFoundException
