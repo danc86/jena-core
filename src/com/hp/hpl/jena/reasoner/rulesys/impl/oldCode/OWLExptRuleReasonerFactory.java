@@ -40,7 +40,7 @@ public class OWLExptRuleReasonerFactory implements ReasonerFactory {
     private static ReasonerFactory theInstance = new OWLExptRuleReasonerFactory();
     
     /** Static URI for this reasoner type */
-    public static final String URI = "http://www.hpl.hp.com/semweb/2003/OWLExptRuleReasoner";
+    public static final String URI = "http://jena.hpl.hp.com/2003/OWLExptRuleReasoner";
     
     /** Cache of the capabilities description */
     protected Model capabilities;

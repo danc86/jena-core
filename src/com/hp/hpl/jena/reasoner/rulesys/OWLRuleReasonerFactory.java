@@ -38,7 +38,7 @@ public class OWLRuleReasonerFactory implements ReasonerFactory {
     private static ReasonerFactory theInstance = new OWLRuleReasonerFactory();
     
     /** Static URI for this reasoner type */
-    public static final String URI = "http://www.hpl.hp.com/semweb/2003/OWLRuleReasoner";
+    public static final String URI = "http://jena.hpl.hp.com/2003/OWLRuleReasoner";
     
     /** Cache of the capabilities description */
     protected Model capabilities;

@@ -22,7 +22,7 @@ import com.hp.hpl.jena.graph.*;
 public abstract class BaseBuiltin implements Builtin {
 
     /** Base URI for jena builtins */
-    public static final String BASE_URI = "http://www.hpl.hp.com/semweb/2003/RuleBuiltin/";
+    public static final String BASE_URI = "http://jena.hpl.hp.com/2003/RuleBuiltin/";
     
     /**
      * Return the full URI which identifies this built in.

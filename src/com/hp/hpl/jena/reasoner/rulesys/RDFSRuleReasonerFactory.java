@@ -27,7 +27,7 @@ public class RDFSRuleReasonerFactory implements ReasonerFactory {
     private static ReasonerFactory theInstance = new RDFSRuleReasonerFactory();
     
     /** Static URI for this reasoner type */
-    public static final String URI = "http://www.hpl.hp.com/semweb/2003/RDFSExptRuleReasoner";
+    public static final String URI = "http://jena.hpl.hp.com/2003/RDFSExptRuleReasoner";
     
     /** Cache of the capabilities description */
     protected Model capabilities;

@@ -29,7 +29,7 @@ public class TransitiveReasonerFactory implements ReasonerFactory {
     protected Model capabilities;
     
     /** Static URI for this reasoner type */
-    public static final String URI = "http://www.hpl.hp.com/semweb/2003/TransitiveReasoner";
+    public static final String URI = "http://jena.hpl.hp.com/2003/TransitiveReasoner";
     
     /**
      * Return the single global instance of this factory
