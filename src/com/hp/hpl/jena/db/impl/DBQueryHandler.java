@@ -153,7 +153,7 @@ public class DBQueryHandler extends SimpleQueryHandler {
 								vx.bindToVarMap(varMap);						
 						}
 						stages[stageCnt] =
-							new DBQueryStage(graph,src.singleSource(),varList,qryPat);
+							new DBQueryStage(graph,src.singleSource(),varList,qryPat, constraints);
 					} else
 						stages[stageCnt] =
 							super.patternStage(varMap,constraints, new Triple[]{ptn[src.index]});

@@ -29,20 +29,20 @@ public class DBQueryStage extends Stage
     protected DBQuery compiled;
             
 	public DBQueryStage( GraphRDB graph, SpecializedGraph sg, 
-					List varList, List dbPat )
+					List varList, List dbPat, Graph constraints )
 		{
 		this.graph = graph;
-		this.compiled = compile (sg, varList, dbPat);
+		this.compiled = compile (sg, varList, dbPat, constraints);
 		}
 
-	protected DBQuery compile( SpecializedGraph sg, List varList, List dbPat )
-        { return compile( compiler, sg, varList, dbPat ); }
+	protected DBQuery compile( SpecializedGraph sg, List varList, List dbPat, Graph constraints )
+        { return compile( compiler, sg, varList, dbPat, constraints ); }
         
     protected DBQuery compile( DBQueryStageCompiler compiler, SpecializedGraph sg,
-    			List varList, List dbPat )
+    			List varList, List dbPat, Graph constraints )
         {
         return DBQueryStageCompiler.compile( compiler, (DBQueryHandler) graph.queryHandler(),
-        			sg, varList, dbPat );
+        			sg, varList, dbPat, constraints );
         }
                  
     private static final DBQueryStageCompiler compiler = new DBQueryStageCompiler();
