@@ -170,23 +170,14 @@ public class TestBugReports
         String ns = "http://foo.bar/fu#";
         OntClass a = ontModel.createClass(ns+"A");
         OntClass b = ontModel.createClass(ns+"B");
-        System.err.println( "--------------------------------------------------");
-        System.err.println( "Stage 1");
-        ontModel.write( System.err, "RDF/XML-ABBREV" );
         
         int oldCount = getStatementCount( ontModel );
         
         RDFList members = ontModel.createList(new RDFNode[] {a, b});
         IntersectionClass intersectionClass =
-            ontModel.createIntersectionClass(null, members);
-        System.err.println( "--------------------------------------------------");
-        System.err.println( "Stage 2");
-        ontModel.write( System.err, "RDF/XML" );
+        ontModel.createIntersectionClass(null, members);
         intersectionClass.remove();
-        System.err.println( "--------------------------------------------------");
-        System.err.println( "Stage 3");
-        
-        ontModel.write( System.err, "RDF/XML-ABBREV" );
+
         assertEquals("Before and after statement counts are different", oldCount, getStatementCount( ontModel ));
     }
     
