@@ -30,7 +30,12 @@ import java.io.*;
  * @version $Revision$ on $Date$
  */
 public class TestTypedLiterals extends TestCase {
-      
+    
+    // Temporary debug - to be integrated into tests
+    static {
+        // Locale.setDefault(Locale.ITALY);
+    }
+          
     /** dummy model used as a literal factory */
     private Model m = new ModelMem();
     
@@ -225,6 +230,8 @@ public class TestTypedLiterals extends TestCase {
         checkLegalLiteral("12345", XSDDatatype.XSDdecimal, Long.class, new Long("12345"));
         checkLegalLiteral("42.45", XSDDatatype.XSDdecimal, BigDecimal.class, new BigDecimal("42.45"));
         checkLegalLiteral("9223372036854775808.1234", XSDDatatype.XSDdecimal, BigDecimal.class, new BigDecimal("9223372036854775808.1234"));
+        checkLegalLiteral("123.4", XSDDatatype.XSDdecimal, BigDecimal.class, new BigDecimal("123.4"));
+        checkIllegalLiteral("123,4", XSDDatatype.XSDdecimal);
         
         // Booleans
         checkLegalLiteral("true", XSDDatatype.XSDboolean, Boolean.class, new Boolean(true));

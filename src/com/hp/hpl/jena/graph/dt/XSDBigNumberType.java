@@ -54,7 +54,7 @@ public class XSDBigNumberType extends XSDDatatype {
      */
     public Object parse(String lexicalForm) throws DatatypeFormatException {
         Object xsdValue = super.parse(lexicalForm);
-        if (decimalDV.getFractionDigits(xsdValue) > 1) {
+        if (decimalDV.getFractionDigits(xsdValue) >= 1) {
             return new BigDecimal(xsdValue.toString());
         } else if (decimalDV.getTotalDigits(xsdValue) > 18) {
             return new BigInteger(xsdValue.toString());
