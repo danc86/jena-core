@@ -17,6 +17,7 @@ import com.hp.hpl.jena.graph.*;
 import java.util.*;
 
 //import com.hp.hpl.jena.util.PrintUtil;
+import com.hp.hpl.jena.util.OneToManyMap;
 import com.hp.hpl.jena.util.iterator.*;
 import com.hp.hpl.jena.vocabulary.RDF;
 
@@ -255,7 +256,29 @@ public class FBRuleInfGraph  extends BasicForwardRuleInfGraph implements Backwar
         super.setTraceOn(state);
         bEngine.setTraceOn(state);
     }
+
+    /**
+     * Set to true to enable derivation caching
+     */
+    public void setDerivationLogging(boolean recordDerivations) {
+        this.recordDerivations = recordDerivations;
+        engine.setDerivationLogging(recordDerivations);
+        bEngine.setDerivationLogging(recordDerivations);
+        if (recordDerivations) {
+            derivations = new OneToManyMap();
+        } else {
+            derivations = null;
+        }
+    }
    
+    /**
+     * Return the number of rules fired since this rule engine instance
+     * was created and initialized
+     */
+    public long getNRulesFired() {
+        return engine.getNRulesFired() + bEngine.getNRulesFired();
+    }
+    
     /**
      * Extended find interface used in situations where the implementator
      * may or may not be able to answer the complete query. It will

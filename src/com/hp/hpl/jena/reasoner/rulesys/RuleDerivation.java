@@ -107,6 +107,27 @@ public class RuleDerivation implements Derivation {
     }
     
 
+    /**
+     * @return the triple concluded by the derivation
+     */
+    public Triple getConclusion() {
+        return conclusion;
+    }
+
+    /**
+     * @return the set of triples which were used in firing this rule derivation
+     */
+    public List getMatches() {
+        return matches;
+    }
+
+    /**
+     * @return the rule which fired to create this derivation
+     */
+    public Rule getRule() {
+        return rule;
+    }
+
 }
 
 /*

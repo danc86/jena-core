@@ -9,6 +9,8 @@
  *****************************************************************/
 package com.hp.hpl.jena.reasoner.rulesys;
 
+import com.hp.hpl.jena.graph.Triple;
+import com.hp.hpl.jena.reasoner.InfGraph;
 import com.hp.hpl.jena.reasoner.TriplePattern;
 import com.hp.hpl.jena.util.iterator.ExtendedIterator;
 
@@ -20,7 +22,7 @@ import com.hp.hpl.jena.util.iterator.ExtendedIterator;
  * @author <a href="mailto:der@hplb.hpl.hp.com">Dave Reynolds</a>
  * @version $Revision$ on $Date$
  */
-public interface BackwardRuleInfGraphI extends SilentAddI {
+public interface BackwardRuleInfGraphI extends SilentAddI, InfGraph {
             
     /**
      * Process a call to a builtin predicate
@@ -36,6 +38,11 @@ public interface BackwardRuleInfGraphI extends SilentAddI {
      * axioms) but no backchaining derivation.
      */
     public ExtendedIterator findDataMatches(TriplePattern pattern);
+
+    /**
+     * Log a dervivation record against the given triple.
+     */
+    public void logDerivation(Triple t, Object derivation);
 
 }
 

@@ -259,6 +259,13 @@ public class BasicBackwardRuleInfGraph extends BaseInfGraph implements BackwardR
 //   Interface between infGraph and the goal processing machinery
 
     /**
+     * Log a dervivation record against the given triple.
+     */
+    public void logDerivation(Triple t, Object derivation) {
+        derivations.put(t, derivation);
+    }
+
+    /**
      * Match a pattern just against the stored data (raw data, schema,
      * axioms) but no derivation.
      */
