@@ -95,7 +95,7 @@ public class RuleStore {
      * @param rule the rule, single headed only
      * @param isAdd true to add, false to remove 
      */
-    private void doAddRemoveRule(Rule rule, boolean isAdd) {
+    protected void doAddRemoveRule(Rule rule, boolean isAdd) {
         if (isAdd && ruleIndex.contains(rule)) return;
         if (isAdd) {
             ruleIndex.add(rule);
