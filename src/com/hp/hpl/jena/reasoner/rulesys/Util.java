@@ -156,6 +156,28 @@ public class Util {
     }
     
     /**
+     * Construct an RDF list from the given array of nodes and assert it
+     * in the graph returning the head of the list.
+     */
+    public static Node makeList(Node[] nodes, Graph graph) {
+        return doMakeList(nodes, 0, graph);
+    }
+    
+    /**
+     * Internals of makeList.
+     */
+    private static Node doMakeList(Node[] nodes, int next, Graph graph) {
+        if (next < nodes.length) {
+            Node listNode = Node.createAnon();
+            graph.add(new Triple(listNode, RDF.Nodes.first, nodes[next]));
+            graph.add(new Triple(listNode, RDF.Nodes.rest, doMakeList(nodes, next+1, graph)));
+            return listNode;
+        } else {
+            return RDF.Nodes.nil;
+        }
+    }
+    
+    /**
      * Open an resource file for reading.
      */
     public static BufferedReader openResourceFile(String filename) throws IOException {

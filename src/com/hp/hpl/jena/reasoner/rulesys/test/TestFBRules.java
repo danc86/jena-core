@@ -765,12 +765,27 @@ public class TestFBRules extends TestCase {
         data.add(new Triple(n1, p, Util.makeIntNode(3)) );
         data.add(new Triple(n1, p, n2) );
         infgraph = createReasoner(ruleList).bind(data);
-        
         TestUtil.assertIteratorValues(this, infgraph.find(n1, s, null),
             new Triple[] {
                 new Triple(n1, s, Util.makeIntNode(2)),
             });
-            
+        
+        // Map list operation
+        rules = "[r1: (n1 p ?l) -> listMapAsSubject(?l, q, C1)]" +
+                "[r2: (n1 p ?l) -> listMapAsObject ( a, q, ?l)]";
+        ruleList = Rule.parseRules(rules);
+        data = new GraphMem();
+        data.add(new Triple(n1, p, Util.makeList(new Node[]{b, c, d}, data) ));
+        infgraph = createReasoner(ruleList).bind(data);
+        TestUtil.assertIteratorValues(this, infgraph.find(null, q, null),
+            new Triple[] {
+                new Triple(b, q, C1),
+                new Triple(c, q, C1),
+                new Triple(d, q, C1),
+                new Triple(a, q, b),
+                new Triple(a, q, c),
+                new Triple(a, q, d),
+            });
     }
          
     

@@ -60,6 +60,14 @@ public class BuiltinRegistry {
         theRegistry.register(new CountLiteralValues());
         theRegistry.register(new Max());
         theRegistry.register(new Min());
+        theRegistry.register(new ListLength());
+        theRegistry.register(new ListEqual());
+        theRegistry.register(new ListNotEqual());
+        theRegistry.register(new ListContains());
+        theRegistry.register(new ListNotContains());
+        theRegistry.register(new ListMapAsSubject());
+        theRegistry.register(new ListMapAsObject());
+        
         theRegistry.register(new MakeInstance());
         theRegistry.register(new Table());
         theRegistry.register(new TableAll());
