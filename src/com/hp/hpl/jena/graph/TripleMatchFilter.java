@@ -24,7 +24,7 @@ public class TripleMatchFilter implements Filter {
     }
 
     /** The object is wanted.
-     * @param o The object to accept or reject.  Must be a Triple
+     * @param t The object to accept or reject.  Must be a Triple
      * @return true if the object is wanted.
      */
     public boolean accept(Object t) {

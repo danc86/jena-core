@@ -112,7 +112,7 @@ public class EnhGraph
      * interface type.
      * 
      * @param n A node (assumed to be in this graph)
-     * @param t A type denoting the enhanced facet desired
+     * @param interf A type denoting the enhanced facet desired
      * @return An enhanced node
      */
     public EnhNode getNodeAs(Node n,Class interf) {
