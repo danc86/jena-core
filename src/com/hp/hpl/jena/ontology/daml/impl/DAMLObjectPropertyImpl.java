@@ -84,7 +84,7 @@ public class DAMLObjectPropertyImpl
     public static Implementation factory = new Implementation() {
         public EnhNode wrap( Node n, EnhGraph eg ) { 
             if (canWrap( n, eg )) {
-                return new DAMLClassImpl( n, eg );
+                return new DAMLObjectPropertyImpl( n, eg );
             }
             else {
                 throw new ConversionException( "Cannot convert node " + n.toString() + " to DAMLOntology" );

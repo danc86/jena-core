@@ -399,7 +399,7 @@ public class DAMLClassImpl
      * @return an iterator over this class's super-classes.
      */
     public Iterator getSuperClasses( boolean closed ) {
-        return ((ExtendedIterator) super.listSuperClasses( !closed )).mapWith( new AsMapper( DAMLClass.class ) );
+        return WrappedIterator.create( super.listSuperClasses( !closed ) ).mapWith( new AsMapper( DAMLClass.class ) );
     }
 
 
@@ -416,7 +416,7 @@ public class DAMLClassImpl
      * @return an iterator ranging over every equivalent DAML classes
      */
     public Iterator getSameClasses() {
-        return ((ExtendedIterator) super.listEquivalentClasses()).mapWith( new AsMapper( DAMLClass.class ) );
+        return WrappedIterator.create( super.listEquivalentClasses() ).mapWith( new AsMapper( DAMLClass.class ) );
     }
 
 
@@ -467,7 +467,7 @@ public class DAMLClassImpl
      * @see com.hp.hpl.jena.ontology.daml.DAMLCommon#getRDFTypes
      */
     public Iterator getInstances() {
-        return ((ExtendedIterator) listInstances()).mapWith( new AsMapper( DAMLInstance.class ) );
+        return WrappedIterator.create( listInstances() ).mapWith( new AsMapper( DAMLInstance.class ) );
     }
 
 
@@ -501,7 +501,7 @@ public class DAMLClassImpl
      * @return An iteration of the properties that have this class as domain
      */
     public Iterator getDefinedProperties( boolean closed ) {
-        return ((ExtendedIterator) listDeclaredProperties( closed )).mapWith( new AsMapper( DAMLProperty.class ) );
+        return WrappedIterator.create( listDeclaredProperties( closed ) ).mapWith( new AsMapper( DAMLProperty.class ) );
     }
 
 

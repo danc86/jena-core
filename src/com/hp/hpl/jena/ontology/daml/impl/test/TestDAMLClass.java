@@ -197,6 +197,68 @@ public class TestDAMLClass
                     iteratorTest( A.getSubClasses( true ), new Object[] {B,C} );
                 }
             },
+            new OntTestCase( "DAMLClass.getSuperClasses" ) {
+                public void doTest( DAMLModel m ) throws Exception {
+                    DAMLClass A = m.createDAMLClass( NS + "A" );
+                    DAMLClass B = m.createDAMLClass( NS + "B" );
+                    DAMLClass C = m.createDAMLClass( NS + "C" );
+                   
+                    A.prop_subClassOf().add( B );
+                    B.prop_subClassOf().add( C );
+                    
+                    assertEquals( "subClassOf A", B, A.getSuperClass() );
+                    
+                    // no inference
+                    iteratorTest( A.getSuperClasses(), new Object[] {B} );
+                    iteratorTest( A.getSuperClasses( false ), new Object[] {B} );
+                    iteratorTest( A.getSuperClasses( true ), new Object[] {B} );
+                    
+                    A.prop_subClassOf().add( C );   // could be inferred
+                    
+                    iteratorTest( A.getSuperClasses(), new Object[] {B,C} );
+                    iteratorTest( A.getSuperClasses( false ), new Object[] {B} );
+                    iteratorTest( A.getSuperClasses( true ), new Object[] {B,C} );
+                }
+            },
+            new OntTestCase( "DAMLClass.getSameClasses" ) {
+                public void doTest( DAMLModel m ) throws Exception {
+                    DAMLClass A = m.createDAMLClass( NS + "A" );
+                    DAMLClass B = m.createDAMLClass( NS + "B" );
+                    DAMLClass C = m.createDAMLClass( NS + "C" );
+                   
+                    A.prop_sameClassAs().add( B );
+                    B.prop_sameClassAs().add( C );
+                    
+                    // no inference
+                    iteratorTest( A.getSameClasses(), new Object[] {B} );
+                    
+                    A.prop_sameClassAs().add( C );   // could be inferred
+                    
+                    iteratorTest( A.getSameClasses(), new Object[] {B,C} );
+                }
+            },
+            new OntTestCase( "DAMLClass.getInstances" ) {
+                public void doTest( DAMLModel m ) throws Exception {
+                    DAMLClass A = m.createDAMLClass( NS + "A" );
+                    DAMLInstance a = m.createDAMLInstance( A, NS + "a" );
+                    DAMLInstance b = m.createDAMLInstance( A, NS + "b" );
+                    DAMLInstance c = m.createDAMLInstance( A, NS + "c" );
+                   
+                    iteratorTest( A.getInstances(), new Object[] {a,b,c} );
+                }
+            },
+            new OntTestCase( "DAMLClass.getDefinedProperties" ) {
+                public void doTest( DAMLModel m ) throws Exception {
+                    DAMLClass A = m.createDAMLClass( NS + "A" );
+                    DAMLObjectProperty p = m.createDAMLObjectProperty( NS + "p" );
+                    DAMLObjectProperty q = m.createDAMLObjectProperty( NS + "q" );
+                    DAMLObjectProperty r = m.createDAMLObjectProperty( NS + "r" );
+
+                    // TODO once daml property has been migrated          
+                             
+                    iteratorTest( A.getDefinedProperties(), new Object[] {} );
+                }
+            },
         };
     }
 

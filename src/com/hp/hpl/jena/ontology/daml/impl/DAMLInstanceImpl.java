@@ -82,7 +82,7 @@ public class DAMLInstanceImpl
     public static Implementation factory = new Implementation() {
         public EnhNode wrap( Node n, EnhGraph eg ) { 
             if (canWrap( n, eg )) {
-                return new DAMLClassImpl( n, eg );
+                return new DAMLInstanceImpl( n, eg );
             }
             else {
                 throw new ConversionException( "Cannot convert node " + n.toString() + " to DAMLDatatype" );

@@ -1117,7 +1117,13 @@ public class OntResourceImpl
     /** Answer the object of a statement with the given property, .as() the given class */
     protected Object objectAs( Property p, String name, Class asClass ) {
         checkProfile( p, name );
-        return getProperty( p ).getObject().as( asClass );
+        try {
+            return getProperty( p ).getObject().as( asClass );
+        }
+        catch (RDFException e) {
+            // subject does not have that property exception - TODO implement a more specific check here
+            return null;
+        }
     }
 
     
