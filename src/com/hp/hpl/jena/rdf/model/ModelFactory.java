@@ -33,7 +33,7 @@ public class ModelFactory
         (but still handles reifyAs() and .as(ReifiedStatement).
     */
     public static Model createNonreifyingModel()
-        { return new ModelCom( GraphBase.withReification( new GraphMem() ), BuiltinPersonalities.model );}
+        { return new ModelCom( new GraphMem(), BuiltinPersonalities.model );}
         
     /** 
      * <p>

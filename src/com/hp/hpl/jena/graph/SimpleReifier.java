@@ -22,14 +22,20 @@ import java.util.*;
 public class SimpleReifier implements Reifier
     {
     private Graph parent;
-    public boolean passing = false;
+    private boolean passing = false;
     private FragmentMap nodeMap;
     
-    /** construct a simple reifier that is bound to the parent graph */
-    public SimpleReifier( Graph parent )
+    /** 
+        construct a simple reifier that is bound to the parent graph .
+        
+        @param parent the Graph which we're reifiying for
+        @param intercepting true iff this reifier should capture reification triples
+    */
+    public SimpleReifier( Graph parent, boolean intercepting )
         {
         this.parent = parent;
         this.nodeMap = new FragmentMap();
+        this.passing = !intercepting;
         }
             
     /** return the parent graph we are bound to */
