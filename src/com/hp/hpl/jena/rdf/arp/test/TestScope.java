@@ -58,7 +58,7 @@ public class TestScope extends TestCase {
 	};
 	private void check(final String fn) throws IOException {
 		
-		NTripleTestSuite.loadRDFx(new InFactory(){
+		NTripleTestSuite.loadRDFx(new InFactoryX(){
 
 			public InputStream open() throws IOException {
 				return new FileInputStream(fn);
