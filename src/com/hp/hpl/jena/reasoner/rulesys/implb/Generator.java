@@ -11,6 +11,7 @@ package com.hp.hpl.jena.reasoner.rulesys.implb;
 
 import java.util.*;
 
+import com.hp.hpl.jena.reasoner.TriplePattern;
 import com.hp.hpl.jena.reasoner.rulesys.impl.StateFlag;
 
 /**
@@ -54,6 +55,9 @@ public class Generator implements LPAgendaEntry, LPInterpreterContext {
     
     /** Flags whether the generator is live/dead/unknown during completion checking */
     protected LFlag completionState;
+    
+    /** The goal the generator is satisfying - just used in debugging */
+    protected TriplePattern goal;
     
     /**
      * Constructor.
@@ -198,6 +202,10 @@ public class Generator implements LPAgendaEntry, LPInterpreterContext {
                 checkReadyNeeded = true;
                 break;
             } else {
+                // TEmp ...
+                // TODO: remove
+                System.out.println("Result " + result + " returned to generator for " + goal);
+                // ... end temp
                 // Simple triple result
                 if (resultSet.add(result)) {
                     results.add(result);

@@ -47,9 +47,6 @@ public class ConsumerChoicePointFrame extends GenericTripleMatchFrame
     /** The length of the preserved trail */
     protected int trailLength;
     
-    /** The stack of preserved choice point status */
-    protected int[] choicePointStates = new int[10];
-    
     /** The generator or top iterator we are producting results for */
     protected LPInterpreterContext context;
         

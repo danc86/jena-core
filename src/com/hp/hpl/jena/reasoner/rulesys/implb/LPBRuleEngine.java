@@ -220,6 +220,7 @@ public class LPBRuleEngine {
             LPInterpreter interpreter = new LPInterpreter(this, goal, clauses, false);
             activeInterpreters.add(interpreter);
             generator = new Generator(interpreter);
+            generator.goal = goal;      // Debug aid
             schedule(generator);
             tabledGoals.put(goal, generator);
         }
@@ -237,6 +238,7 @@ public class LPBRuleEngine {
             LPInterpreter interpreter = new LPInterpreter(this, goal, false);
             activeInterpreters.add(interpreter);
             generator = new Generator(interpreter);
+            generator.goal = goal;      // Debug aid
             schedule(generator);
             tabledGoals.put(goal, generator);
         }

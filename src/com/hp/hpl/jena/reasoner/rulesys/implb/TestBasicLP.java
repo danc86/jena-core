@@ -70,6 +70,7 @@ public class TestBasicLP  extends TestCase {
 //        return new TestSuite( TestBasicLP.class );
         
         TestSuite suite = new TestSuite();
+        suite.addTest(new TestBasicLP( "testProblem2" ));
         suite.addTest(new TestBasicLP( "testProblem7" ));
         return suite;
     }  
