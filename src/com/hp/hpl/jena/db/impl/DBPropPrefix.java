@@ -11,8 +11,6 @@ import com.hp.hpl.jena.vocabulary.DB;
 
 /**
  *
- * DBPropPrefix
- * 
  * A wrapper to assist in getting and setting DB information from 
  * a persistent store.
  * 

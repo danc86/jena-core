@@ -13,8 +13,6 @@ import java.util.*;
 
 /**
  *
- * DBStoreDesc
- * 
  * A wrapper to assist in getting and setting DB information from 
  * a persistent store.
  * 
