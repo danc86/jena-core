@@ -235,7 +235,7 @@ public class N3toRDF implements N3ParserEventHandler
                 if ( text.indexOf('.') >= 0 )
                     // The choice of XSD:double is for compatibility with N3/cwm.
                     xsdType = XSD.xdouble ;
-                if ( text.indexOf('e') >= 0 )
+                if ( text.indexOf('e') >= 0 || text.indexOf('E') >= 0 )
                     xsdType = XSD.xdouble ;
                 return model.createTypedLiteral(text, xsdType.getURI());
                 
