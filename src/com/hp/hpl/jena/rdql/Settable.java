@@ -9,6 +9,8 @@
  */
 
 package com.hp.hpl.jena.rdql;
+//import com.hp.hpl.jena.rdf.model.Resource ; 
+//import com.hp.hpl.jena.rdf.model.Literal ; 
 
 public interface Settable extends Value
 {
@@ -17,6 +19,9 @@ public interface Settable extends Value
     public void setBoolean(boolean b) ;
     public void setString(String s) ;
     public void setURI(String uri) ;
+    // These are not needed because intermediate result are not RDF values.
+    //public void setRDFLiteral(Literal l) ;
+    //public void setRDFResource(Resource r) ;
 }
 
 /*

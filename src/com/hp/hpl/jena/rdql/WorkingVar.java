@@ -13,16 +13,12 @@ package com.hp.hpl.jena.rdql;
 
 import java.io.PrintWriter ;
 
+import com.hp.hpl.jena.rdf.model.Literal;
+import com.hp.hpl.jena.rdf.model.Resource;
+
 /** Query engine working variable - different from variables in the query language.
  *  Working variables are settable values for holding intermediate results.
  */
-
-// WorkingVar are polymorphic in that the value they are can change.
-// In RDF, there is no support in the language itself for distinguishing
-// strings from ints from booleans.  Hence all literals are strings
-// which can be interpreted in the context of, say, a number.
-
-// Settable extends Value
 
 public class WorkingVar implements /*Value,*/ Printable, Settable, Cloneable
 {
@@ -183,6 +179,28 @@ public class WorkingVar implements /*Value,*/ Printable, Settable, Cloneable
     public String asUnquotedString()  { return getString() ; }
     public String valueString()       { return getString() ; }
     public String toString()          { return getString() ; }
+
+    public boolean isRDFLiteral()
+    {
+        return false;
+    }
+
+    public boolean isRDFResource()
+    {
+        return false;
+    }
+
+    public Literal getRDFLiteral()
+    {
+        throw new RDQL_InternalErrorException("A WorkingVar is never an RDF Literal") ;
+        //return null;
+    }
+
+    public Resource getRDFResource()
+    {
+        throw new RDQL_InternalErrorException("A WorkingVar is never an RDF Resource") ;
+        //return null;
+    }
 }
 
 /*

@@ -33,7 +33,7 @@ public class QueryTestScripts extends TestSuite
 	static final String testSetName = "RDQL - Query - Scripts" ;
 
     static final public String defaultControlFilename = "_control_" ;
-    static final public String defaultTestDirectory = "modules/rdf/regression/testRDQL" ;
+    static final public String defaultTestDirectory = "testing/RDQL" ;
     
     public String basename = null ;
     static public boolean printDetails = false ;

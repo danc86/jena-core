@@ -14,7 +14,7 @@ import java.util.*;
 import java.io.*;
 import java.net.*;
 
-import com.hp.hpl.jena.rdql.parser.Literal; 
+import com.hp.hpl.jena.rdql.parser.ParsedLiteral; 
 import com.hp.hpl.jena.rdql.* ;
 
 import com.hp.hpl.jena.util.tuple.*;
@@ -240,11 +240,11 @@ public class QueryResultsMem implements QueryResults
 				}
 				// Maybe should try to create "real" Jena objects
 				// Query literal - not a Jena RDf Literal
-				Literal l = null;
+				ParsedLiteral l = null;
 				if (value.isURI())
-					l = Literal.makeURI(value.get());
+					l = ParsedLiteral.makeURI(value.get());
 				else
-					l = Literal.makeString(value.get());
+					l = ParsedLiteral.makeString(value.get());
 				thisRow.add(var, l);
 				//System.err.println("This row: "+thisRow) ;
 			}

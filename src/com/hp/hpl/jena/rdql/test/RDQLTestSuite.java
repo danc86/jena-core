@@ -13,8 +13,6 @@ import junit.framework.*;
  * @version 	$Id$
  */
 
-// Modelled after the MegaTestSuite.
-
 public class RDQLTestSuite extends TestSuite
 {
     /** Creates new RDQLTestSuite */

@@ -10,7 +10,7 @@
 
 package com.hp.hpl.jena.rdql;
 
-public class RDQL_InternalErrorException extends com.hp.hpl.jena.rdql.QueryException
+public class RDQL_InternalErrorException extends QueryException
 {
     public RDQL_InternalErrorException() { super() ; }
     public RDQL_InternalErrorException (String msg) { super(msg) ; }

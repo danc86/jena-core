@@ -71,6 +71,12 @@ public class Slot
         property = p;
     }
 
+    public void set(Literal l)
+    {
+        unset() ;
+        literal = l ;
+    }
+
     public boolean isValue() { return value != null ; }
     public boolean isVar()   { return variable != null ; }
     public boolean isResource() { return resource != null ; }
@@ -100,6 +106,20 @@ public class Slot
             return "<"+property.toString()+">" ;
         if ( resource != null )
             return "<"+resource.toString()+">" ;
+        if ( literal != null )
+        {
+            String s = literal.toString() ;
+            if ( literal.getLanguage().equals("") && literal.getDatatype() == null )
+                return s ;
+            
+            StringBuffer sb = new StringBuffer(s) ;
+            if ( !literal.getLanguage().equals("") )
+                sb.append("@").append(literal.getLanguage()) ;
+            if ( literal.getDatatype() != null)
+                sb.append("^^").append(literal.getDatatypeURI()) ;
+            return sb.toString() ;
+        }
+
         return "slot:unset" ;
     }
 }
