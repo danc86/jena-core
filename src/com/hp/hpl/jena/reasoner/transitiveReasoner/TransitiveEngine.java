@@ -53,7 +53,8 @@ public class TransitiveEngine {
     private static final int SUBPROPERTY = 4;
     
     /** Mask for the lattice update cases */
-    private static final int UPDATE_MASK = SUBCLASS | SUBPROPERTY;
+//    private static final int UPDATE_MASK = SUBCLASS | SUBPROPERTY;
+    private static final int UPDATE_MASK = SUBCLASS | SUBPROPERTY | NOT_RELEVANT;
     
     /** Classification flag: subProperty of subClass */
     private static final int REBUILD_SUBCLASS = 8;
