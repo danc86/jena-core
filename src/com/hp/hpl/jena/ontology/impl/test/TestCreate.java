@@ -353,6 +353,8 @@ public class TestCreate
             public boolean test( OntResource r )        { return r instanceof AllDifferent;}
         },
         
+        // Restrictions
+        
         new CreateTestCase( "OWL create restriction", ProfileRegistry.OWL_LANG, NS + "C" ) {
             public OntResource doCreate( OntModel m )   { return m.createRestriction( NS + "C" ); }
             public boolean test( OntResource r )        { return r instanceof Restriction;}
@@ -361,6 +363,61 @@ public class TestCreate
             public OntResource doCreate( OntModel m )   { return m.createRestriction(); }
             public boolean test( OntResource r )        { return r instanceof Restriction;}
         },
+        
+        new CreateTestCase( "OWL create has value restriction", ProfileRegistry.OWL_LANG, null ) {
+            public OntResource doCreate( OntModel m )   { 
+                Property p = m.createObjectProperty( NS + "p" );
+                Resource x = m.createResource( NS + "x" );
+                return m.createHasValueRestriction( null, p,  x ); 
+            }
+            public boolean test( OntResource r )        { return r instanceof HasValueRestriction;}
+        },
+        new CreateTestCase( "OWL create has value restriction (literal)", ProfileRegistry.OWL_LANG, null ) {
+            public OntResource doCreate( OntModel m )   { 
+                Property p = m.createDatatypeProperty( NS + "p" );
+                Literal x = m.createTypedLiteral( new Integer( 42 ) );
+                return m.createHasValueRestriction( null, p,  x ); 
+            }
+            public boolean test( OntResource r )        { return r instanceof HasValueRestriction;}
+        },
+        new CreateTestCase( "OWL create all values from restriction", ProfileRegistry.OWL_LANG, null ) {
+            public OntResource doCreate( OntModel m )   { 
+                Property p = m.createObjectProperty( NS + "p" );
+                OntClass c = m.createClass( NS + "C" );
+                return m.createAllValuesFromRestriction( null, p,  c ); 
+            }
+            public boolean test( OntResource r )        { return r instanceof AllValuesFromRestriction;}
+        },
+        new CreateTestCase( "OWL create some values from restriction", ProfileRegistry.OWL_LANG, null ) {
+            public OntResource doCreate( OntModel m )   { 
+                Property p = m.createObjectProperty( NS + "p" );
+                OntClass c = m.createClass( NS + "C" );
+                return m.createSomeValuesFromRestriction( null, p,  c ); 
+            }
+            public boolean test( OntResource r )        { return r instanceof SomeValuesFromRestriction;}
+        },
+        new CreateTestCase( "OWL create cardinality restriction", ProfileRegistry.OWL_LANG, null ) {
+            public OntResource doCreate( OntModel m )   { 
+                Property p = m.createObjectProperty( NS + "p" );
+                return m.createCardinalityRestriction( null, p,  17 ); 
+            }
+            public boolean test( OntResource r )        { return r instanceof CardinalityRestriction;}
+        },
+        new CreateTestCase( "OWL create min cardinality restriction", ProfileRegistry.OWL_LANG, null ) {
+            public OntResource doCreate( OntModel m )   { 
+                Property p = m.createObjectProperty( NS + "p" );
+                return m.createMinCardinalityRestriction( null, p,  1 ); 
+            }
+            public boolean test( OntResource r )        { return r instanceof MinCardinalityRestriction;}
+        },
+        new CreateTestCase( "OWL create max cardinality restriction", ProfileRegistry.OWL_LANG, null ) {
+            public OntResource doCreate( OntModel m )   { 
+                Property p = m.createObjectProperty( NS + "p" );
+                return m.createMaxCardinalityRestriction( null, p,  4 ); 
+            }
+            public boolean test( OntResource r )        { return r instanceof MaxCardinalityRestriction;}
+        },
+        
         new CreateTestCase( "DAML create restriction", ProfileRegistry.DAML_LANG, NS + "C" ) {
             public OntResource doCreate( OntModel m )   { return m.createRestriction( NS + "C" ); }
             public boolean test( OntResource r )        { return r instanceof Restriction;}
@@ -368,6 +425,60 @@ public class TestCreate
         new CreateTestCase( "DAML create anon restriction", ProfileRegistry.DAML_LANG, null ) {
             public OntResource doCreate( OntModel m )   { return m.createRestriction(); }
             public boolean test( OntResource r )        { return r instanceof Restriction;}
+        },
+        
+        new CreateTestCase( "DAML create has value restriction", ProfileRegistry.DAML_LANG, null ) {
+            public OntResource doCreate( OntModel m )   { 
+                Property p = m.createObjectProperty( NS + "p" );
+                Resource x = m.createResource( NS + "x" );
+                return m.createHasValueRestriction( null, p,  x ); 
+            }
+            public boolean test( OntResource r )        { return r instanceof HasValueRestriction;}
+        },
+        new CreateTestCase( "DAML create has value restriction (literal)", ProfileRegistry.DAML_LANG, null ) {
+            public OntResource doCreate( OntModel m )   { 
+                Property p = m.createDatatypeProperty( NS + "p" );
+                Literal x = m.createTypedLiteral( new Integer( 42 ) );
+                return m.createHasValueRestriction( null, p,  x ); 
+            }
+            public boolean test( OntResource r )        { return r instanceof HasValueRestriction;}
+        },
+        new CreateTestCase( "DAML create all values from restriction", ProfileRegistry.DAML_LANG, null ) {
+            public OntResource doCreate( OntModel m )   { 
+                Property p = m.createObjectProperty( NS + "p" );
+                OntClass c = m.createClass( NS + "C" );
+                return m.createAllValuesFromRestriction( null, p,  c ); 
+            }
+            public boolean test( OntResource r )        { return r instanceof AllValuesFromRestriction;}
+        },
+        new CreateTestCase( "DAML create some values from restriction", ProfileRegistry.DAML_LANG, null ) {
+            public OntResource doCreate( OntModel m )   { 
+                Property p = m.createObjectProperty( NS + "p" );
+                OntClass c = m.createClass( NS + "C" );
+                return m.createSomeValuesFromRestriction( null, p,  c ); 
+            }
+            public boolean test( OntResource r )        { return r instanceof SomeValuesFromRestriction;}
+        },
+        new CreateTestCase( "DAML create cardinality restriction", ProfileRegistry.DAML_LANG, null ) {
+            public OntResource doCreate( OntModel m )   { 
+                Property p = m.createObjectProperty( NS + "p" );
+                return m.createCardinalityRestriction( null, p,  17 ); 
+            }
+            public boolean test( OntResource r )        { return r instanceof CardinalityRestriction;}
+        },
+        new CreateTestCase( "DAML create min cardinality restriction", ProfileRegistry.DAML_LANG, null ) {
+            public OntResource doCreate( OntModel m )   { 
+                Property p = m.createObjectProperty( NS + "p" );
+                return m.createMinCardinalityRestriction( null, p,  1 ); 
+            }
+            public boolean test( OntResource r )        { return r instanceof MinCardinalityRestriction;}
+        },
+        new CreateTestCase( "DAML create max cardinality restriction", ProfileRegistry.DAML_LANG, null ) {
+            public OntResource doCreate( OntModel m )   { 
+                Property p = m.createObjectProperty( NS + "p" );
+                return m.createMaxCardinalityRestriction( null, p,  4 ); 
+            }
+            public boolean test( OntResource r )        { return r instanceof MaxCardinalityRestriction;}
         },
         
         // Lists

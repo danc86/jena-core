@@ -593,7 +593,85 @@ public interface OntModel
      */
     public Restriction createRestriction( String uri );
     
-   
+    
+    /**
+     * <p>Answer a class description defined as the class of those individuals that have the given
+     * resource as the value of the given property</p>
+     * 
+     * @param uri The optional URI for the restriction, or null for an anonymous restriction (which 
+     * should be the normal case)
+     * @param prop The property the restriction applies to
+     * @param value The value of the property, as a resource or RDF literal
+     * @return A new resource representing a has-value restriction
+     */
+    public HasValueRestriction createHasValueRestriction( String uri, Property prop, RDFNode value );
+    
+    
+    /**
+     * <p>Answer a class description defined as the class of those individuals that have at least
+     * one property with a value belonging to the given class</p>
+     * 
+     * @param uri The optional URI for the restriction, or null for an anonymous restriction (which 
+     * should be the normal case)
+     * @param prop The property the restriction applies to
+     * @param cls The class to which at least one value of the property belongs
+     * @return A new resource representing a some-values-from restriction
+     */
+    public SomeValuesFromRestriction createSomeValuesFromRestriction( String uri, Property prop, Resource cls );
+    
+    
+    /**
+     * <p>Answer a class description defined as the class of those individuals for which all values
+     * of the given property belong to the given class</p>
+     * 
+     * @param uri The optional URI for the restriction, or null for an anonymous restriction (which 
+     * should be the normal case)
+     * @param prop The property the restriction applies to
+     * @param cls The class to which any value of the property belongs
+     * @return A new resource representing an all-values-from restriction
+     */
+    public AllValuesFromRestriction createAllValuesFromRestriction( String uri, Property prop, Resource cls );
+    
+    
+    /**
+     * <p>Answer a class description defined as the class of those individuals that have exactly
+     * the given number of values for the given property.</p>
+     * 
+     * @param uri The optional URI for the restriction, or null for an anonymous restriction (which 
+     * should be the normal case)
+     * @param prop The property the restriction applies to
+     * @param cardinality The exact cardinality of the property
+     * @return A new resource representing a has-value restriction
+     */
+    public CardinalityRestriction createCardinalityRestriction( String uri, Property prop, int cardinality );
+    
+    
+    /**
+     * <p>Answer a class description defined as the class of those individuals that have at least
+     * the given number of values for the given property.</p>
+     * 
+     * @param uri The optional URI for the restriction, or null for an anonymous restriction (which 
+     * should be the normal case)
+     * @param prop The property the restriction applies to
+     * @param cardinality The minimum cardinality of the property
+     * @return A new resource representing a min-cardinality restriction
+     */
+    public MinCardinalityRestriction createMinCardinalityRestriction( String uri, Property prop, int cardinality );
+    
+    
+    /**
+     * <p>Answer a class description defined as the class of those individuals that have at most
+     * the given number of values for the given property.</p>
+     * 
+     * @param uri The optional URI for the restriction, or null for an anonymous restriction (which 
+     * should be the normal case)
+     * @param prop The property the restriction applies to
+     * @param cardinality The maximum cardinality of the property
+     * @return A new resource representing a mas-cardinality restriction
+     */
+    public MaxCardinalityRestriction createMaxCardinalityRestriction( String uri, Property prop, int cardinality );
+
+
     /**
      * <p>
      * Answer a new, anonymous node representing the fact that a given set of classes are all
