@@ -326,6 +326,12 @@
 [allRec3: (?C owl:equivalentClass all(?P, ?D)), (?P rdfs:range ?D) ->
     [ (?X rdf:type ?C) <- (?X rdf:type owl:Thing)] ]
 
+[allRec4: (?P rdf:type owl:FunctionalProperty), (?C owl:equivalentClass all(?P, ?D))
+                         -> [ (?X rdf:type ?C) <- (?X ?P ?Y) (?Y rdf:type ?D) ] ]
+    
+[allRec5: (?C rdfs:subClassOf max(?P, 1)) (?C owl:equivalentClass all(?P, ?D))
+                         -> [ (?X rdf:type ?C) <- (?X ?P ?Y) (?Y rdf:type ?D) ] ]
+    
 [restriction-inter-RA-T: (?P rdfs:range ?C), (?D owl:equivalentClass all(?P, ?C)) 
 						-> (owl:Thing rdfs:subClassOf ?D) ]
 						
