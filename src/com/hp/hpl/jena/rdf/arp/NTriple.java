@@ -290,14 +290,22 @@ public class NTriple implements ARPErrorNumbers {
 		String xmlBase;
 
 		URL url;
+		String baseURL;
+		
 		try {
 			File ff = new File(surl);
 			in = new FileInputStream(ff);
 			url = ff.toURL();
+			baseURL  = url.toExternalForm();
+			if (baseURL.startsWith("file:/")
+			    && !baseURL.startsWith("file://")) {
+				baseURL = "file://" + baseURL.substring(5);
+			}
 		} catch (Exception ignore) {
 			try {
 				url = new URL(surl);
 				in = url.openStream();
+				baseURL = url.toExternalForm();
 			} catch (Exception e) {
 				System.err.println("ARP: Failed to open: " + surl);
 				System.err.println("    " + ParseException.formatMessage(ignore));
@@ -305,7 +313,7 @@ public class NTriple implements ARPErrorNumbers {
 				return;
 			}
 		}
-		process(in, url.toExternalForm(), surl);
+		process(in, baseURL, surl);
 	}
 	static private void process(InputStream in, String xmlBasex, String surl) {
 		String xmlBasey = xmlBase == null ? xmlBasex : xmlBase;
