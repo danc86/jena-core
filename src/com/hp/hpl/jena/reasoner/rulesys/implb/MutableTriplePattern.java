@@ -1,7 +1,7 @@
 /******************************************************************
- * File:        FrameObjectFactory.java
+ * File:        MutableTriplePattern.java
  * Created by:  Dave Reynolds
- * Created on:  18-Jul-2003
+ * Created on:  22-Jul-2003
  * 
  * (c) Copyright 2003, Hewlett-Packard Company, all rights reserved.
  * [See end of file]
@@ -9,29 +9,34 @@
  *****************************************************************/
 package com.hp.hpl.jena.reasoner.rulesys.implb;
 
+import com.hp.hpl.jena.reasoner.TriplePattern;
+import com.hp.hpl.jena.graph.*;
+
 /**
- * Base class for factories that create stack frames. This is 
- * pointless at the moment but in the future would be the basis for
- * a shared pool of reusable frames.
+ * Variant of the normal TriplePattern object which can be updated in place
+ * to avoid store turn over. This is specific to the LP system.
  * 
  * @author <a href="mailto:der@hplb.hpl.hp.com">Dave Reynolds</a>
  * @version $Revision$ on $Date$
  */
-public class FrameObjectFactory {
+public class MutableTriplePattern extends TriplePattern {
 
     /**
-     * Return a free frame object if there is one in the pool, otherwise null.
+     * Constructor.
      */
-    public FrameObject getFree() {
-        return null;
+    public MutableTriplePattern() {
+        super(null, null, null);
     }
     
     /**
-     * Return a frame to the pool.
-     * Not implemented.
+     * Set the subject,predicate, object components of the pattern.
      */
-    public void returnFreeFrame(FrameObject frame) {
+    public void setPattern(Node subject, Node predicate, Node object) {
+        this.subject = subject;
+        this.predicate = predicate;
+        this.object = object;
     }
+    
 }
 
 

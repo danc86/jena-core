@@ -21,6 +21,17 @@ public class FrameObject {
     /** Used to link the frame to the prior frame in the (tree) stack or the pool */
     protected FrameObject link;
     
+    /** The parent factory to which free frames can be returned */
+    protected FrameObjectFactory factory;
+    
+    /** 
+     * Constructor The parent factory to which free frames can be returned
+     * @param factory 
+     */
+    public FrameObject(FrameObjectFactory factory) {
+        this.factory = factory;
+    }
+    
     /**
      * Link this frame to an existing frame. In the future this might do some ref count
      * tricks.
@@ -41,6 +52,7 @@ public class FrameObject {
      * reclaimed by garbage collection anyway. Not implemented.
      */
     public void free() {
+        factory.returnFreeFrame(this);
     }
     
 }

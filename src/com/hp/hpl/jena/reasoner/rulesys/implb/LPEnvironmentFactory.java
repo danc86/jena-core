@@ -1,7 +1,7 @@
 /******************************************************************
- * File:        FrameObjectFactory.java
+ * File:        LPEnvironmentFactory.java
  * Created by:  Dave Reynolds
- * Created on:  18-Jul-2003
+ * Created on:  22-Jul-2003
  * 
  * (c) Copyright 2003, Hewlett-Packard Company, all rights reserved.
  * [See end of file]
@@ -10,28 +10,39 @@
 package com.hp.hpl.jena.reasoner.rulesys.implb;
 
 /**
- * Base class for factories that create stack frames. This is 
- * pointless at the moment but in the future would be the basis for
- * a shared pool of reusable frames.
+ * Factory for Environment frames. 
  * 
  * @author <a href="mailto:der@hplb.hpl.hp.com">Dave Reynolds</a>
  * @version $Revision$ on $Date$
  */
-public class FrameObjectFactory {
+public class LPEnvironmentFactory extends FrameObjectFactory {
 
+    /** The single instance of the factory */
+    protected static final LPEnvironmentFactory theFactory = new LPEnvironmentFactory();
+    
+    /** Private factory constructor */
+    private LPEnvironmentFactory() {}
+    
     /**
-     * Return a free frame object if there is one in the pool, otherwise null.
+     * Return a newly constructed or cached environment frame.
      */
-    public FrameObject getFree() {
-        return null;
+    public static LPEnvironment createEnvironment() {
+        return theFactory.getFrame();
     }
     
     /**
-     * Return a frame to the pool.
-     * Not implemented.
+     * Find or allocate a new frame.
      */
-    public void returnFreeFrame(FrameObject frame) {
+    private LPEnvironment getFrame() {
+        LPEnvironment env = (LPEnvironment)getFree();
+        if (env == null) {
+            env = new LPEnvironment(this);
+        } else {
+            env.fastLinkTo(null);
+        }
+        return env;
     }
+    
 }
 
 
