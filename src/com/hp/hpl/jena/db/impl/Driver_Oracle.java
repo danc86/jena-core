@@ -1,9 +1,8 @@
 /*
- *  (c) Copyright Hewlett-Packard Company 2003
- *  All rights reserved.
- *
- *
- */
+  (c) Copyright 2003, Hewlett-Packard Company, all rights reserved.
+  [See end of file]
+  $Id$
+*/
 
 package com.hp.hpl.jena.db.impl;
 
@@ -16,7 +15,7 @@ import com.hp.hpl.jena.util.Log;
 /**
  * @author hkuno based on code by Dave Reynolds
  *
- * Extends DriverRDB with MySQL-specific parameters.
+ * Extends DriverRDB with Oracle-specific parameters.
  */
 public class Driver_Oracle extends DriverRDB {
 	
