@@ -1,41 +1,67 @@
 /******************************************************************
- * File:        XSDDurationType.java
+ * File:        XSDBigNumberType.java
  * Created by:  Dave Reynolds
- * Created on:  16-Dec-02
+ * Created on:  10-Dec-2002
  * 
  * (c) Copyright 2002, Hewlett-Packard Company, all rights reserved.
  * [See end of file]
  * $Id$
  *****************************************************************/
-package com.hp.hpl.jena.graph.dt;
+package com.hp.hpl.jena.datatypes.xsd.impl;
 
+import org.apache.xerces.impl.dv.xs.DecimalDV;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+
+import com.hp.hpl.jena.datatypes.*;
 import com.hp.hpl.jena.graph.LiteralLabel;
 
 /**
- * The XSD duration type, the only job of this extra layer is to
- * wrap the return value in a more convenient accessor type. We could
- * avoid this proliferation of trivial types by use of reflection but
- * since that causes allergic reactions in some we use brute force.
+ * Datatype template used to define those XSD numeric types which might
+ * require BigDecimal or BigNumber support. For performance, rather than
+ * always use the math package we check the number of digits involved
+ * and default to a Long when possible.
  * 
  * @author <a href="mailto:der@hplb.hpl.hp.com">Dave Reynolds</a>
  * @version $Revision$ on $Date$
  */
-public class XSDDurationType extends XSDDatatype {
+public class XSDBigNumberType extends XSDBaseNumericType {
+    
+    static final DecimalDV decimalDV = new DecimalDV();
     
     /**
-     * Constructor
+     * Constructor. 
+     * @param typeName the name of the XSD type to be instantiated, this is 
+     * used to lookup a type definition from the Xerces schema factory.
      */
-    public XSDDurationType() {
-        super("duration");
+    public XSDBigNumberType(String typeName) {
+        super(typeName);
     }
-        
+    
+    /**
+     * Constructor. 
+     * @param typeName the name of the XSD type to be instantiated, this is 
+     * used to lookup a type definition from the Xerces schema factory.
+     * @param javaClass the java class for which this xsd type is to be
+     * treated as the cannonical representation
+     */
+    public XSDBigNumberType(String typeName, Class javaClass) {
+        super(typeName, javaClass);
+    }
+    
     /**
      * Parse a lexical form of this datatype to a value
-     * @return a Duration value
      * @throws DatatypeFormatException if the lexical form is not legal
      */
     public Object parse(String lexicalForm) throws DatatypeFormatException {
-        return new XSDDuration(super.parse(lexicalForm), typeDeclaration);
+        Object xsdValue = super.parse(lexicalForm);
+        if (decimalDV.getFractionDigits(xsdValue) >= 1) {
+            return new BigDecimal(xsdValue.toString());
+        } else if (decimalDV.getTotalDigits(xsdValue) > 18) {
+            return new BigInteger(xsdValue.toString());
+        } else {
+            return new Long(xsdValue.toString());
+        }
     }
     
     /**
@@ -46,6 +72,8 @@ public class XSDDurationType extends XSDDatatype {
     public boolean isEqual(LiteralLabel value1, LiteralLabel value2) {
        return value1.getValue().equals(value2.getValue());
     }
+    
+
 }
 
 /*

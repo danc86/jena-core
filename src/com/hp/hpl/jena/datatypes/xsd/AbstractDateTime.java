@@ -7,7 +7,7 @@
  * [See end of file]
  * $Id$
  *****************************************************************/
-package com.hp.hpl.jena.graph.dt;
+package com.hp.hpl.jena.datatypes.xsd;
 
 import org.apache.xerces.impl.dv.xs.XSSimpleTypeDecl;
 import org.apache.xerces.impl.dv.XSSimpleType;

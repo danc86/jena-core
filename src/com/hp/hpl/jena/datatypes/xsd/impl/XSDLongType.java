@@ -1,39 +1,31 @@
 /******************************************************************
- * File:        XSDBigNumberType.java
+ * File:        XSDLongType.java
  * Created by:  Dave Reynolds
- * Created on:  10-Dec-2002
+ * Created on:  10-Dec-02
  * 
  * (c) Copyright 2002, Hewlett-Packard Company, all rights reserved.
  * [See end of file]
  * $Id$
  *****************************************************************/
-package com.hp.hpl.jena.graph.dt;
+package com.hp.hpl.jena.datatypes.xsd.impl;
 
-import org.apache.xerces.impl.dv.xs.DecimalDV;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-
+import com.hp.hpl.jena.datatypes.*;
 import com.hp.hpl.jena.graph.LiteralLabel;
 
 /**
- * Datatype template used to define those XSD numeric types which might
- * require BigDecimal or BigNumber support. For performance, rather than
- * always use the math package we check the number of digits involved
- * and default to a Long when possible.
+ * Datatype template used to define XSD long types
  * 
  * @author <a href="mailto:der@hplb.hpl.hp.com">Dave Reynolds</a>
  * @version $Revision$ on $Date$
  */
-public class XSDBigNumberType extends XSDBaseNumericType {
-    
-    static final DecimalDV decimalDV = new DecimalDV();
+public class XSDLongType extends XSDBaseNumericType {
     
     /**
      * Constructor. 
      * @param typeName the name of the XSD type to be instantiated, this is 
      * used to lookup a type definition from the Xerces schema factory.
      */
-    public XSDBigNumberType(String typeName) {
+    public XSDLongType(String typeName) {
         super(typeName);
     }
     
@@ -44,7 +36,7 @@ public class XSDBigNumberType extends XSDBaseNumericType {
      * @param javaClass the java class for which this xsd type is to be
      * treated as the cannonical representation
      */
-    public XSDBigNumberType(String typeName, Class javaClass) {
+    public XSDLongType(String typeName, Class javaClass) {
         super(typeName, javaClass);
     }
     
@@ -52,15 +44,8 @@ public class XSDBigNumberType extends XSDBaseNumericType {
      * Parse a lexical form of this datatype to a value
      * @throws DatatypeFormatException if the lexical form is not legal
      */
-    public Object parse(String lexicalForm) throws DatatypeFormatException {
-        Object xsdValue = super.parse(lexicalForm);
-        if (decimalDV.getFractionDigits(xsdValue) >= 1) {
-            return new BigDecimal(xsdValue.toString());
-        } else if (decimalDV.getTotalDigits(xsdValue) > 18) {
-            return new BigInteger(xsdValue.toString());
-        } else {
-            return new Long(xsdValue.toString());
-        }
+    public Object parse(String lexicalForm) throws DatatypeFormatException {        
+        return new Long(super.parse(lexicalForm).toString());
     }
     
     /**
@@ -71,7 +56,6 @@ public class XSDBigNumberType extends XSDBaseNumericType {
     public boolean isEqual(LiteralLabel value1, LiteralLabel value2) {
        return value1.getValue().equals(value2.getValue());
     }
-    
 
 }
 

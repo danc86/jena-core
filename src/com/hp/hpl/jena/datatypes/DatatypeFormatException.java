@@ -1,59 +1,52 @@
 /******************************************************************
- * File:        XSDShortType.java
+ * File:        DatatypeFormatException.java
  * Created by:  Dave Reynolds
- * Created on:  10-Dec-02
+ * Created on:  07-Dec-02
  * 
  * (c) Copyright 2002, Hewlett-Packard Company, all rights reserved.
  * [See end of file]
  * $Id$
  *****************************************************************/
-package com.hp.hpl.jena.graph.dt;
+package com.hp.hpl.jena.datatypes;
 
-import com.hp.hpl.jena.graph.LiteralLabel;
+import com.hp.hpl.jena.rdf.model.RDFException;
 
 /**
- * Datatype template used to define XSD int types
- *
+ * Exception thrown when a lexical form does not match the stated
+ * datatype.
+ * 
+ * @TODO could hold the lexical form and datatype in local fields
+ * 
  * @author <a href="mailto:der@hplb.hpl.hp.com">Dave Reynolds</a>
  * @version $Revision$ on $Date$
  */
-public class XSDShortType extends XSDBaseNumericType {
-
+public class DatatypeFormatException extends RDFException 
+{
     /**
-     * Constructor. 
-     * @param typeName the name of the XSD type to be instantiated, this is 
-     * used to lookup a type definition from the Xerces schema factory.
+     * Preferred constructor.
+     * @param lexicalForm the illegal string discovered
+     * @param dtype the datatype that found the problem
+     * @param msg additional context for the error
      */
-    public XSDShortType(String typeName) {
-        super(typeName);
+    public DatatypeFormatException(String lexicalForm, RDFDatatype dtype, String msg) {
+        super("Lexical form '" + lexicalForm +
+               "' is not a legal instance of " + dtype + " " + msg);
+    }
+                  
+    /**
+     * Creates a new instance of <code>DatatypeFormatException</code> 
+     * without detail message.
+     */
+    public DatatypeFormatException() {
     }
     
     /**
-     * Constructor. 
-     * @param typeName the name of the XSD type to be instantiated, this is 
-     * used to lookup a type definition from the Xerces schema factory.
-     * @param javaClass the java class for which this xsd type is to be
-     * treated as the cannonical representation
+     * Constructs an instance of <code>DatatypeFormatException</code> 
+     * with the specified detail message.
+     * @param msg the detail message.
      */
-    public XSDShortType(String typeName, Class javaClass) {
-        super(typeName, javaClass);
-    }
-    
-    /**
-     * Parse a lexical form of this datatype to a value
-     * @throws DatatypeFormatException if the lexical form is not legal
-     */
-    public Object parse(String lexicalForm) throws DatatypeFormatException {        
-        return new Short(super.parse(lexicalForm).toString());
-    }
-    
-    /**
-     * Compares two instances of values of the given datatype.
-     * This ignores lang tags and just uses the java.lang.Number 
-     * equality.
-     */
-    public boolean isEqual(LiteralLabel value1, LiteralLabel value2) {
-       return value1.getValue().equals(value2.getValue());
+    public DatatypeFormatException(String msg) {
+        super(msg);
     }
 
 }

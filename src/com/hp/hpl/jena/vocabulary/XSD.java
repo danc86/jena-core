@@ -11,7 +11,7 @@ package com.hp.hpl.jena.vocabulary;
 
 import com.hp.hpl.jena.rdf.model.Resource;
 import com.hp.hpl.jena.rdf.model.ResourceFactory;
-import com.hp.hpl.jena.graph.dt.XSDDatatype;
+import com.hp.hpl.jena.datatypes.xsd.XSDDatatype;
 
 /**
  * Defines Jena resources corresponding to the URIs for 

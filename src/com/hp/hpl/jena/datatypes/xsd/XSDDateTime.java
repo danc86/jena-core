@@ -7,7 +7,7 @@
  * [See end of file]
  * $Id$
  *****************************************************************/
-package com.hp.hpl.jena.graph.dt;
+package com.hp.hpl.jena.datatypes.xsd;
 
 import org.apache.xerces.impl.dv.XSSimpleType;
 import java.util.*;
@@ -56,12 +56,13 @@ public class XSDDateTime extends AbstractDateTime {
     protected short mask;
     
     /**
-     * Constructor - only used internally to the package
+     * Constructor - should only be used by the internals but public scope because
+     * the internals spread across multiple packages.
      * 
      * @param value the date/time value returned by the parsing
      * @param dtype the XSD type representation
      */
-    XSDDateTime(Object value, XSSimpleType dtype) {
+    public XSDDateTime(Object value, XSSimpleType dtype) {
         super(value, dtype);
         mask = ((Integer)maskMap.get(dtype.getName())).shortValue();
     }

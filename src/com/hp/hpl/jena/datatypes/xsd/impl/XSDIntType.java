@@ -1,30 +1,62 @@
 /******************************************************************
- * File:        IllegalDateTimeField.java
+ * File:        XSDIntType.java
  * Created by:  Dave Reynolds
- * Created on:  17-Dec-2002
+ * Created on:  10-Dec-02
  * 
  * (c) Copyright 2002, Hewlett-Packard Company, all rights reserved.
  * [See end of file]
  * $Id$
  *****************************************************************/
-package com.hp.hpl.jena.graph.dt;
+package com.hp.hpl.jena.datatypes.xsd.impl;
 
-import com.hp.hpl.jena.rdf.model.RDFException;
+import com.hp.hpl.jena.datatypes.*;
+import com.hp.hpl.jena.graph.LiteralLabel;
 
 /**
- * Exception thrown when attempting to access a field of an XSDDateTime 
- * object that is not legal for the current date/time type. For example,
- * accessing the day from a gYearMonth object.
- * 
+ * Datatype template used to define XSD int types
+ *
  * @author <a href="mailto:der@hplb.hpl.hp.com">Dave Reynolds</a>
  * @version $Revision$ on $Date$
  */
-public class IllegalDateTimeFieldException extends RDFException {
-    
-    /** Constructor */
-    public IllegalDateTimeFieldException(String msg) {
-        super(msg);
+public class XSDIntType extends XSDBaseNumericType {
+
+    /**
+     * Constructor. 
+     * @param typeName the name of the XSD type to be instantiated, this is 
+     * used to lookup a type definition from the Xerces schema factory.
+     */
+    public XSDIntType(String typeName) {
+        super(typeName);
     }
+    
+    /**
+     * Constructor. 
+     * @param typeName the name of the XSD type to be instantiated, this is 
+     * used to lookup a type definition from the Xerces schema factory.
+     * @param javaClass the java class for which this xsd type is to be
+     * treated as the cannonical representation
+     */
+    public XSDIntType(String typeName, Class javaClass) {
+        super(typeName, javaClass);
+    }
+    
+    /**
+     * Parse a lexical form of this datatype to a value
+     * @throws DatatypeFormatException if the lexical form is not legal
+     */
+    public Object parse(String lexicalForm) throws DatatypeFormatException {        
+        return new Integer(super.parse(lexicalForm).toString());
+    }
+    
+    /**
+     * Compares two instances of values of the given datatype.
+     * This ignores lang tags and just uses the java.lang.Number 
+     * equality.
+     */
+    public boolean isEqual(LiteralLabel value1, LiteralLabel value2) {
+       return value1.getValue().equals(value2.getValue());
+    }
+
 }
 
 /*

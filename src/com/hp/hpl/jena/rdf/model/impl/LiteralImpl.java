@@ -33,9 +33,9 @@ package com.hp.hpl.jena.rdf.model.impl;
 
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.graph.*;
-import com.hp.hpl.jena.graph.dt.RDFDatatype;
-import com.hp.hpl.jena.graph.dt.DatatypeFormatException;
 
+import com.hp.hpl.jena.datatypes.DatatypeFormatException;
+import com.hp.hpl.jena.datatypes.RDFDatatype;
 import com.hp.hpl.jena.enhanced.*;
 
 /** An implementation of Literal.

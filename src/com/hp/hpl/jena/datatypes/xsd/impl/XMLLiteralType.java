@@ -1,49 +1,61 @@
 /******************************************************************
- * File:        XSDDateTimeType.java
+ * File:        XMLLiteralType.java
  * Created by:  Dave Reynolds
- * Created on:  16-Dec-2002
+ * Created on:  08-Dec-02
  * 
  * (c) Copyright 2002, Hewlett-Packard Company, all rights reserved.
  * [See end of file]
  * $Id$
  *****************************************************************/
-package com.hp.hpl.jena.graph.dt;
+package com.hp.hpl.jena.datatypes.xsd.impl;
 
-import com.hp.hpl.jena.graph.LiteralLabel;
+import com.hp.hpl.jena.datatypes.*;
+import com.hp.hpl.jena.vocabulary.RDF;
 
 /**
- * The XSD date/time type, the only job of this extra layer is to
- * wrap the return value in a more convenient accessor type. 
+ * Builtin data type to represent XMLLiteral (i.e. items created
+ * by use of <code>rdf:parsetype='literal'</code>.
+ * 
+ * @TODO implement parsing - this is just a dummy implementation at present.
  * 
  * @author <a href="mailto:der@hplb.hpl.hp.com">Dave Reynolds</a>
  * @version $Revision$ on $Date$
  */
-public class XSDDateTimeType extends XSDDatatype {
-
+public class XMLLiteralType extends BaseDatatype implements RDFDatatype {
+    /** Singleton instance */
+    public static final RDFDatatype theXMLLiteralType = new XMLLiteralType(RDF.getURI() + "XMLLiteral");
+    
     /**
-     * Constructor
+     * Private constructor.
      */
-    public XSDDateTimeType(String typename) {
-        super(typename);
-    }
-
-    /**
-     * Parse a lexical form of this datatype to a value
-     * @return a Duration value
-     * @throws DatatypeFormatException if the lexical form is not legal
-     */
-    public Object parse(String lexicalForm) throws DatatypeFormatException {
-        return new XSDDateTime(super.parse(lexicalForm), typeDeclaration);
+    private XMLLiteralType(String uri) {
+        super(uri);
     }
     
     /**
-     * Compares two instances of values of the given datatype.
-     * This ignores lang tags and just uses the java.lang.Number 
-     * equality.
+     * Convert a serialize a value of this datatype out
+     * to lexical form.
      */
-    public boolean isEqual(LiteralLabel value1, LiteralLabel value2) {
-       return value1.getValue().equals(value2.getValue());
+    public String unparse(Object value) {
+        return value.toString();
     }
+    
+    /**
+     * Parse a lexical form of this datatype to a value
+     * @throws DatatypeFormatException if the lexical form is not legal
+     */
+    public Object parse(String lexicalForm) throws DatatypeFormatException {
+        return lexicalForm;
+    }
+    
+    /**
+     * Test whether the given string is a legal lexical form
+     * of this datatype.
+     */
+    public boolean isValid(String lexicalForm) {
+        return true;
+    }    
+
 }
 
 /*

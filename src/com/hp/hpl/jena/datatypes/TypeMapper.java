@@ -7,10 +7,13 @@
  * [See end of file]
  * $Id$
  *****************************************************************/
-package com.hp.hpl.jena.graph.dt;
+package com.hp.hpl.jena.datatypes;
 
 import java.util.HashMap;
 import java.util.Iterator;
+
+import com.hp.hpl.jena.datatypes.xsd.XSDDatatype;
+import com.hp.hpl.jena.datatypes.xsd.impl.XMLLiteralType;
 
 /**
  * The TypeMapper provides a global registry of known datatypes.

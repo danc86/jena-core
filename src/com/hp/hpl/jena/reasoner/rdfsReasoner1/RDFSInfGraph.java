@@ -13,7 +13,6 @@ import com.hp.hpl.jena.reasoner.*;
 import com.hp.hpl.jena.reasoner.transitiveReasoner.*;
 import com.hp.hpl.jena.datatypes.*;
 import com.hp.hpl.jena.graph.*;
-import com.hp.hpl.jena.graph.dt.*;
 import com.hp.hpl.jena.mem.GraphMem;
 import com.hp.hpl.jena.vocabulary.*;
 import com.hp.hpl.jena.util.iterator.ExtendedIterator;

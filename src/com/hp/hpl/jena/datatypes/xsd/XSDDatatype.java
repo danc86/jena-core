@@ -8,7 +8,7 @@
  * $Id$
  *****************************************************************/
 
-package com.hp.hpl.jena.graph.dt;
+package com.hp.hpl.jena.datatypes.xsd;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -16,6 +16,16 @@ import java.io.Reader;
 import java.util.List;
 import java.util.ArrayList;
 
+import com.hp.hpl.jena.datatypes.*;
+import com.hp.hpl.jena.datatypes.xsd.impl.XSDBaseStringType;
+import com.hp.hpl.jena.datatypes.xsd.impl.XSDBigNumberType;
+import com.hp.hpl.jena.datatypes.xsd.impl.XSDByteType;
+import com.hp.hpl.jena.datatypes.xsd.impl.XSDDateTimeType;
+import com.hp.hpl.jena.datatypes.xsd.impl.XSDDurationType;
+import com.hp.hpl.jena.datatypes.xsd.impl.XSDGenericType;
+import com.hp.hpl.jena.datatypes.xsd.impl.XSDIntType;
+import com.hp.hpl.jena.datatypes.xsd.impl.XSDLongType;
+import com.hp.hpl.jena.datatypes.xsd.impl.XSDShortType;
 import com.hp.hpl.jena.graph.LiteralLabel;
 
 import org.apache.xerces.impl.dv.xs.XSSimpleTypeDecl;
@@ -215,11 +225,14 @@ public class XSDDatatype extends BaseDatatype {
     }
     
     /**
-     * Hidden constructor used when loading in external user defined XSD types
+     * Constructor used when loading in external user defined XSD types -
+     * should only be used by the internals but public scope because
+     * the internals spread across multiple packages.
+     * 
      * @param xstype the XSSimpleType definition to be wrapped
      * @param namespace the namespace for the type (used because the grammar loading doesn't seem to keep that)
      */
-    XSDDatatype(XSSimpleType xstype, String namespace) {
+    public XSDDatatype(XSSimpleType xstype, String namespace) {
         super("");
         typeDeclaration = xstype;
         this.uri = namespace + "#" + typeDeclaration.getName();

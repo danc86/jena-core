@@ -9,7 +9,6 @@ package com.hp.hpl.jena.graph;
 import com.hp.hpl.jena.datatypes.*;
 import com.hp.hpl.jena.datatypes.xsd.*;
 import com.hp.hpl.jena.datatypes.xsd.impl.*;
-import com.hp.hpl.jena.graph.dt.*;
 
 /**
  * Represents the "contents" of a Node_Literal.

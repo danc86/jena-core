@@ -1,61 +1,96 @@
 /******************************************************************
- * File:        XSDLongType.java
+ * File:        Duration.java
  * Created by:  Dave Reynolds
- * Created on:  10-Dec-02
+ * Created on:  16-Dec-02
  * 
  * (c) Copyright 2002, Hewlett-Packard Company, all rights reserved.
  * [See end of file]
  * $Id$
  *****************************************************************/
-package com.hp.hpl.jena.graph.dt;
+package com.hp.hpl.jena.datatypes.xsd;
 
-import com.hp.hpl.jena.graph.LiteralLabel;
+import org.apache.xerces.impl.dv.XSSimpleType;
 
 /**
- * Datatype template used to define XSD long types
+ * Represent an XSD duration value. We use a seven dimensional space
+ * with years, months, days, hours, minutes, seconds and fractional seconds.
+ * This deviates from the spec which allows arbitrary position 
+ * decimals for seconds.
  * 
  * @author <a href="mailto:der@hplb.hpl.hp.com">Dave Reynolds</a>
  * @version $Revision$ on $Date$
  */
-public class XSDLongType extends XSDBaseNumericType {
-    
-    /**
-     * Constructor. 
-     * @param typeName the name of the XSD type to be instantiated, this is 
-     * used to lookup a type definition from the Xerces schema factory.
-     */
-    public XSDLongType(String typeName) {
-        super(typeName);
-    }
-    
-    /**
-     * Constructor. 
-     * @param typeName the name of the XSD type to be instantiated, this is 
-     * used to lookup a type definition from the Xerces schema factory.
-     * @param javaClass the java class for which this xsd type is to be
-     * treated as the cannonical representation
-     */
-    public XSDLongType(String typeName, Class javaClass) {
-        super(typeName, javaClass);
-    }
-    
-    /**
-     * Parse a lexical form of this datatype to a value
-     * @throws DatatypeFormatException if the lexical form is not legal
-     */
-    public Object parse(String lexicalForm) throws DatatypeFormatException {        
-        return new Long(super.parse(lexicalForm).toString());
-    }
-    
-    /**
-     * Compares two instances of values of the given datatype.
-     * This ignores lang tags and just uses the java.lang.Number 
-     * equality.
-     */
-    public boolean isEqual(LiteralLabel value1, LiteralLabel value2) {
-       return value1.getValue().equals(value2.getValue());
-    }
+public class XSDDuration extends AbstractDateTime {
 
+    /**
+     * Constructor - should only be used by the internals but public scope because
+     * the internals spread across multiple packages.
+     * 
+     * @param value the date/time value returned by the parsing
+     * @param dtype the XSD type representation
+     */
+    public XSDDuration(Object value, XSSimpleType dtype) {
+        super(value, dtype);
+    }
+    
+    /**
+     * Return the number of years in the duration
+     */
+    public int getYears() {
+        return data[CY];
+    }
+    
+    /**
+     * Return the number of months in the duration
+     */
+    public int getMonths() {
+        return data[MONTH];
+    }
+    
+    /**
+     * Return the number of years in the duration
+     */
+    public int getDays() {
+        return data[DAY];
+    }
+    
+    /**
+     * Return the number of hours in the duration
+     */
+    public int getHours() {
+        return data[HOUR];
+    }
+    
+    /**
+     * Return the number of minutes in the duration
+     */
+    public int getMinutes() {
+        return data[MINUTE];
+    }
+    
+    /**
+     * Return the number of full seconds in the duration
+     */
+    public int getFullSeconds() {
+        return data[SECOND];
+    }
+    
+    /**
+     * Return the number of seconds in the duration, including fractional part
+     */
+    public double getSeconds() {
+        return data[SECOND] + fractionalSeconds;
+    }
+    
+    /**
+     * Return the time component of the duration - i.e. just the hours/mins/seconds,
+     * and returns the values in seconds.
+     */
+    public double getTimePart() {
+        return ((data[HOUR]) * 60l + data[MINUTE]) * 60l + getSeconds();
+    }
+    
+    
 }
 
 /*

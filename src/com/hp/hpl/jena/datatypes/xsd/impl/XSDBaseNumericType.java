@@ -1,60 +1,66 @@
 /******************************************************************
- * File:        XMLLiteralType.java
+ * File:        XSDBaseNumericType.java
  * Created by:  Dave Reynolds
- * Created on:  08-Dec-02
+ * Created on:  09-Feb-03
  * 
- * (c) Copyright 2002, Hewlett-Packard Company, all rights reserved.
+ * (c) Copyright 2003, Hewlett-Packard Company, all rights reserved.
  * [See end of file]
  * $Id$
  *****************************************************************/
-package com.hp.hpl.jena.graph.dt;
+package com.hp.hpl.jena.datatypes.xsd.impl;
 
-import com.hp.hpl.jena.vocabulary.RDF;
+import com.hp.hpl.jena.datatypes.*;
+import com.hp.hpl.jena.datatypes.xsd.*;
+import com.hp.hpl.jena.graph.LiteralLabel;
 
 /**
- * Builtin data type to represent XMLLiteral (i.e. items created
- * by use of <code>rdf:parsetype='literal'</code>.
- * 
- * @TODO implement parsing - this is just a dummy implementation at present.
+ * Base implementation for all numeric datatypes derinved from
+ * xsd:decimal. The only purpose of this place holder is
+ * to support the isValidLiteral tests across numeric types. Note
+ * that float and double are not included in this set.
  * 
  * @author <a href="mailto:der@hplb.hpl.hp.com">Dave Reynolds</a>
  * @version $Revision$ on $Date$
  */
-public class XMLLiteralType extends BaseDatatype implements RDFDatatype {
-    /** Singleton instance */
-    public static final RDFDatatype theXMLLiteralType = new XMLLiteralType(RDF.getURI() + "XMLLiteral");
-    
-    /**
-     * Private constructor.
-     */
-    private XMLLiteralType(String uri) {
-        super(uri);
-    }
-    
-    /**
-     * Convert a serialize a value of this datatype out
-     * to lexical form.
-     */
-    public String unparse(Object value) {
-        return value.toString();
-    }
-    
-    /**
-     * Parse a lexical form of this datatype to a value
-     * @throws DatatypeFormatException if the lexical form is not legal
-     */
-    public Object parse(String lexicalForm) throws DatatypeFormatException {
-        return lexicalForm;
-    }
-    
-    /**
-     * Test whether the given string is a legal lexical form
-     * of this datatype.
-     */
-    public boolean isValid(String lexicalForm) {
-        return true;
-    }    
+public class XSDBaseNumericType extends XSDDatatype {
 
+    /**
+     * Constructor. 
+     * @param typeName the name of the XSD type to be instantiated, this is 
+     * used to lookup a type definition from the Xerces schema factory.
+     */
+    public XSDBaseNumericType(String typeName) {
+        super(typeName);
+    }
+    
+    /**
+     * Constructor. 
+     * @param typeName the name of the XSD type to be instantiated, this is 
+     * used to lookup a type definition from the Xerces schema factory.
+     * @param javaClass the java class for which this xsd type is to be
+     * treated as the cannonical representation
+     */
+    public XSDBaseNumericType(String typeName, Class javaClass) {
+        super(typeName, javaClass);
+    }
+
+    
+    /**
+     * Test whether the given LiteralLabel is a valid instance
+     * of this datatype. This takes into accound typing information
+     * as well as lexical form - for example an xsd:string is
+     * never considered valid as an xsd:integer (even if it is
+     * lexically legal like "1").
+     */
+    public boolean isValidLiteral(LiteralLabel lit) {
+        RDFDatatype dt = lit.getDatatype();
+        if (this.equals(dt)) return true;
+        if (dt instanceof XSDBaseNumericType) {
+            return isValid(lit.toString());
+        } else {
+            return false;
+        }
+    }
 }
 
 /*

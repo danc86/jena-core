@@ -1,54 +1,30 @@
 /******************************************************************
- * File:        DatatypeFormatException.java
+ * File:        IllegalDateTimeField.java
  * Created by:  Dave Reynolds
- * Created on:  07-Dec-02
+ * Created on:  17-Dec-2002
  * 
  * (c) Copyright 2002, Hewlett-Packard Company, all rights reserved.
  * [See end of file]
  * $Id$
  *****************************************************************/
-package com.hp.hpl.jena.graph.dt;
+package com.hp.hpl.jena.datatypes.xsd;
 
 import com.hp.hpl.jena.rdf.model.RDFException;
 
 /**
- * Exception thrown when a lexical form does not match the stated
- * datatype.
- * 
- * @TODO could hold the lexical form and datatype in local fields
+ * Exception thrown when attempting to access a field of an XSDDateTime 
+ * object that is not legal for the current date/time type. For example,
+ * accessing the day from a gYearMonth object.
  * 
  * @author <a href="mailto:der@hplb.hpl.hp.com">Dave Reynolds</a>
  * @version $Revision$ on $Date$
  */
-public class DatatypeFormatException extends RDFException 
-{
-    /**
-     * Preferred constructor.
-     * @param lexicalForm the illegal string discovered
-     * @param dtype the datatype that found the problem
-     * @param msg additional context for the error
-     */
-    public DatatypeFormatException(String lexicalForm, RDFDatatype dtype, String msg) {
-        super("Lexical form '" + lexicalForm +
-               "' is not a legal instance of " + dtype + " " + msg);
-    }
-                  
-    /**
-     * Creates a new instance of <code>DatatypeFormatException</code> 
-     * without detail message.
-     */
-    public DatatypeFormatException() {
-    }
+public class IllegalDateTimeFieldException extends RDFException {
     
-    /**
-     * Constructs an instance of <code>DatatypeFormatException</code> 
-     * with the specified detail message.
-     * @param msg the detail message.
-     */
-    public DatatypeFormatException(String msg) {
+    /** Constructor */
+    public IllegalDateTimeFieldException(String msg) {
         super(msg);
     }
-
 }
 
 /*

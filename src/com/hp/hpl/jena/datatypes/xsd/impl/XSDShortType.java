@@ -1,95 +1,62 @@
 /******************************************************************
- * File:        Duration.java
+ * File:        XSDShortType.java
  * Created by:  Dave Reynolds
- * Created on:  16-Dec-02
+ * Created on:  10-Dec-02
  * 
  * (c) Copyright 2002, Hewlett-Packard Company, all rights reserved.
  * [See end of file]
  * $Id$
  *****************************************************************/
-package com.hp.hpl.jena.graph.dt;
+package com.hp.hpl.jena.datatypes.xsd.impl;
 
-import org.apache.xerces.impl.dv.XSSimpleType;
+import com.hp.hpl.jena.datatypes.*;
+import com.hp.hpl.jena.graph.LiteralLabel;
 
 /**
- * Represent an XSD duration value. We use a seven dimensional space
- * with years, months, days, hours, minutes, seconds and fractional seconds.
- * This deviates from the spec which allows arbitrary position 
- * decimals for seconds.
- * 
+ * Datatype template used to define XSD int types
+ *
  * @author <a href="mailto:der@hplb.hpl.hp.com">Dave Reynolds</a>
  * @version $Revision$ on $Date$
  */
-public class XSDDuration extends AbstractDateTime {
+public class XSDShortType extends XSDBaseNumericType {
 
     /**
-     * Constructor - only used internally to the package
-     * 
-     * @param value the date/time value returned by the parsing
-     * @param dtype the XSD type representation
+     * Constructor. 
+     * @param typeName the name of the XSD type to be instantiated, this is 
+     * used to lookup a type definition from the Xerces schema factory.
      */
-    XSDDuration(Object value, XSSimpleType dtype) {
-        super(value, dtype);
+    public XSDShortType(String typeName) {
+        super(typeName);
     }
     
     /**
-     * Return the number of years in the duration
+     * Constructor. 
+     * @param typeName the name of the XSD type to be instantiated, this is 
+     * used to lookup a type definition from the Xerces schema factory.
+     * @param javaClass the java class for which this xsd type is to be
+     * treated as the cannonical representation
      */
-    public int getYears() {
-        return data[CY];
+    public XSDShortType(String typeName, Class javaClass) {
+        super(typeName, javaClass);
     }
     
     /**
-     * Return the number of months in the duration
+     * Parse a lexical form of this datatype to a value
+     * @throws DatatypeFormatException if the lexical form is not legal
      */
-    public int getMonths() {
-        return data[MONTH];
+    public Object parse(String lexicalForm) throws DatatypeFormatException {        
+        return new Short(super.parse(lexicalForm).toString());
     }
     
     /**
-     * Return the number of years in the duration
+     * Compares two instances of values of the given datatype.
+     * This ignores lang tags and just uses the java.lang.Number 
+     * equality.
      */
-    public int getDays() {
-        return data[DAY];
+    public boolean isEqual(LiteralLabel value1, LiteralLabel value2) {
+       return value1.getValue().equals(value2.getValue());
     }
-    
-    /**
-     * Return the number of hours in the duration
-     */
-    public int getHours() {
-        return data[HOUR];
-    }
-    
-    /**
-     * Return the number of minutes in the duration
-     */
-    public int getMinutes() {
-        return data[MINUTE];
-    }
-    
-    /**
-     * Return the number of full seconds in the duration
-     */
-    public int getFullSeconds() {
-        return data[SECOND];
-    }
-    
-    /**
-     * Return the number of seconds in the duration, including fractional part
-     */
-    public double getSeconds() {
-        return data[SECOND] + fractionalSeconds;
-    }
-    
-    /**
-     * Return the time component of the duration - i.e. just the hours/mins/seconds,
-     * and returns the values in seconds.
-     */
-    public double getTimePart() {
-        return ((data[HOUR]) * 60l + data[MINUTE]) * 60l + getSeconds();
-    }
-    
-    
+
 }
 
 /*

@@ -7,11 +7,14 @@
  * [See end of file]
  * $Id$
  *****************************************************************/
-package com.hp.hpl.jena.graph.dt;
+package com.hp.hpl.jena.datatypes.xsd.impl;
 
 import org.apache.xerces.impl.dv.XSSimpleType;
 import org.apache.xerces.impl.dv.xs.DecimalDV;
 import org.apache.xerces.impl.dv.xs.XSSimpleTypeDecl;
+
+import com.hp.hpl.jena.datatypes.*;
+import com.hp.hpl.jena.datatypes.xsd.*;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
