@@ -49,8 +49,15 @@ public interface OntResource
     // External signature methods
     //////////////////////////////////
 
-
-
+    /**
+     * <p>
+     * Answer the ontology language profile that governs the ontology model to which
+     * this ontology resource is attached.  
+     * </p>
+     * 
+     * @return The language profile for this ontology resource
+     */
+    public Profile getProfile();
 }
 
 

@@ -100,7 +100,7 @@ public class OWLProfile
     public Property IMPORTS() {                     return OWL.imports; }
     public Property VERSION_INFO() {                return OWL.versionInfo; }
     public Property PRIOR_VERSION() {               return OWL.priorVersion; }
-    public Property BACKWARDS_COMPATIBLE_WITH() {   return OWL.backwardCompatibleWith; }
+    public Property BACKWARD_COMPATIBLE_WITH() {    return OWL.backwardCompatibleWith; }
     public Property INCOMPATIBLE_WITH() {           return OWL.incompatibleWith; }
     
     

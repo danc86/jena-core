@@ -228,6 +228,19 @@ public class PathSet {
     }
     
     
+    /**
+     * <p>
+     * Answer the path expression underlying this set
+     * </p>
+     * 
+     * @return A path expression
+     */
+    public PathExpr getExpression() {
+        return m_expr;
+    }
+
+
+    
     // Internal implementation methods
     //////////////////////////////////
 

@@ -22,8 +22,10 @@
 package com.hp.hpl.jena.ontology;
 
 
+
 // Imports
 ///////////////
+import com.hp.hpl.jena.ontology.path.PathSet;
 
 
 /**
@@ -48,7 +50,77 @@ public interface Ontology
     // External signature methods
     //////////////////////////////////
 
+    /**
+     * <p>
+     * Answer an {@link PathSet accessor} for the 
+     * <code>imports</code>
+     * property of an ontology. The accessor
+     * can be used to perform a variety of operations, including getting and setting the value.
+     * </p>
+     * 
+     * @return An abstract accessor for the imports of an ontology element
+     */
+    public PathSet p_imports();
+    
 
+    /**
+     * <p>
+     * Answer an {@link PathSet accessor} for the 
+     * <code>backwardCompatibleWith</code>
+     * property of an ontology. The accessor
+     * can be used to perform a variety of operations, including getting and setting the value.
+     * </p>
+     * 
+     * @return An abstract accessor for the imports of an ontology element
+     * @exception {@link OntologyException} if language profile for the ontology model that this
+     * resource is attached to does not support this property.
+     */
+    public PathSet p_backwardCompatibleWith();
+    
+
+    /**
+     * <p>
+     * Answer an {@link PathSet accessor} for the 
+     * <code>priorVersion</code>
+     * property of an ontology. The accessor
+     * can be used to perform a variety of operations, including getting and setting the value.
+     * </p>
+     * 
+     * @return An abstract accessor for the imports of an ontology element
+     * @exception {@link OntologyException} if language profile for the ontology model that this
+     * resource is attached to does not support this property.
+     */
+    public PathSet p_priorVersion();
+    
+
+    /**
+     * <p>
+     * Answer an {@link PathSet accessor} for the 
+     * <code>incompatibleWith</code>
+     * property of an ontology. The accessor
+     * can be used to perform a variety of operations, including getting and setting the value.
+     * </p>
+     * 
+     * @return An abstract accessor for the imports of an ontology element
+     * @exception {@link OntologyException} if language profile for the ontology model that this
+     * resource is attached to does not support this property.
+     */
+    public PathSet p_incompatibleWith();
+    
+
+    /**
+     * <p>
+     * Answer an {@link PathSet accessor} for the 
+     * <code>versionInfo</code>
+     * property of an ontology. The accessor
+     * can be used to perform a variety of operations, including getting and setting the value.
+     * </p>
+     * 
+     * @return An abstract accessor for the imports of an ontology element
+     * @exception {@link OntologyException} if language profile for the ontology model that this
+     * resource is attached to does not support this property.
+     */
+    public PathSet p_versionInfo();
 }
 
 

@@ -5,7 +5,7 @@
  * Author email       Ian.Dickinson@hp.com
  * Package            Jena 2
  * Web                http://sourceforge.net/projects/jena/
- * Created            06-Mar-2003
+ * Created            25-Mar-2003
  * Filename           $RCSfile$
  * Revision           $Revision$
  * Release status     $State$
@@ -19,122 +19,89 @@
 
 // Package
 ///////////////
-package com.hp.hpl.jena.ontology;
+package com.hp.hpl.jena.ontology.impl;
 
 
 // Imports
 ///////////////
-import com.hp.hpl.jena.ontology.impl.DAML_OILProfile;
-import com.hp.hpl.jena.ontology.impl.OWLProfile;
-import com.hp.hpl.jena.vocabulary.*;
-
-import java.util.*;
+import com.hp.hpl.jena.enhanced.*;
+import com.hp.hpl.jena.graph.*;
+import com.hp.hpl.jena.ontology.*;
+import com.hp.hpl.jena.ontology.path.*;
+import com.hp.hpl.jena.rdf.model.Property;
+import com.hp.hpl.jena.rdf.model.impl.ResourceImpl;
 
 
 /**
  * <p>
- * Provides a means to map between the URI's that represent ontology languages
- * and their language profiles.
+ * Abstract base class to provide shared implementation for implementations of ontology
+ * resources.
  * </p>
  *
  * @author Ian Dickinson, HP Labs
  *         (<a  href="mailto:Ian.Dickinson@hp.com" >email</a>)
  * @version CVS $Id$
  */
-public class ProfileRegistry {
+public abstract class OntResourceImpl
+    extends ResourceImpl
+    implements OntResource 
+{
     // Constants
     //////////////////////////////////
 
-    /** The URI that maps to the language profile for OWL (full) */
-    public static final String OWL_LANG = OWL.NAMESPACE;
-    
-    /** The URI that maps to the language profile for DAML+OIL */
-    public static final String DAML_LANG = DAML_OIL.NAMESPACE_DAML_2001_03_URI;
-    
-    /** The URI that maps to the language profile for RDFS */
-    public static final String RDFS_LANG = RDFS.getURI();
-    
-    
-    
     // Static variables
     //////////////////////////////////
 
-    private static Object[][] s_initData = new Object[][] {
-        {OWL_LANG,      new OWLProfile()},
-        {DAML_LANG,     new DAML_OILProfile()}
-    };
-    
-    
-    /** Singleton instance */
-    private static ProfileRegistry s_instance = new ProfileRegistry();
-    
-    
     // Instance variables
     //////////////////////////////////
-    
-    /** Maps from public URI's to language profiles */
-    private Map m_registry = new HashMap();
-
 
     // Constructors
     //////////////////////////////////
 
     /**
      * <p>
-     * Singleton constructor
+     * Construct an ontology resource represented by the given node in the given graph.
      * </p>
+     * 
+     * @param n The node that represents the resource
+     * @param g The enh graph that contains n
      */
-    private ProfileRegistry() {
-        for (int i = 0;  i < s_initData.length;  i++) {
-            registerProfile( (String) s_initData[i][0], (Profile) s_initData[i][1] );
-        }
+    public OntResourceImpl( Node n, EnhGraph g ) {
+        super( n, g );
     }
-    
-    
+
+
     // External signature methods
     //////////////////////////////////
 
     /**
      * <p>
-     * Answer the singleton instance
+     * Answer the ontology language profile that governs the ontology model to which
+     * this ontology resource is attached.  
      * </p>
      * 
-     * @return The singleton registry
+     * @return The language profile for this ontology resource
      */
-    public static ProfileRegistry getInstance() {
-        return s_instance;
+    public Profile getProfile() {
+        return ((OntModel) getModel()).getProfile();
     }
-    
-    
-    /**
-     * <p>
-     * Add a language profile with the given URI key
-     * </p>
-     * 
-     * @param uri The URI denoting the language
-     * @param profile The language profile for the language
-     */
-    public void registerProfile( String uri, Profile profile ) {
-        m_registry.put( uri, profile );
-    }
-    
-    
-    /**
-     * <p>
-     * Answer the language profile for the given language URI, or null if not known.
-     * </p>
-     * 
-     * @param uri A URI denoting an ontology language
-     * @return An ontology langugae profile for that language
-     */
-    public Profile getProfile( String uri ) {
-        return (Profile) m_registry.get( uri );        
-    }
-    
-    
+
+
     // Internal implementation methods
     //////////////////////////////////
 
+
+    protected PathSet asPathSet( Property p ) {
+        if (p == null) {
+            // TODO ideally should name the property to be helpful here
+            throw new OntologyException( "This property is not defined in the current language profile" );
+        }
+        else {
+            return new PathSet( this, PathFactory.unit( p ) );
+        }
+    }
+    
+    
     //==============================================================================
     // Inner class definitions
     //==============================================================================
@@ -171,4 +138,3 @@ public class ProfileRegistry {
     (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
     THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
-

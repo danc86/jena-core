@@ -466,7 +466,7 @@ public interface Profile
      * 
      * @return The property that denotes ontology element backwards compatability.
      */
-    public Property BACKWARDS_COMPATIBLE_WITH();
+    public Property BACKWARD_COMPATIBLE_WITH();
     
     
     /**

@@ -68,16 +68,6 @@ public interface OntList
     // Constants
     //////////////////////////////////
 
-    /**
-     * This type value defines the polymorphic type of OntList, which is
-     * used to generate list facets of resources.
-     */
-//    public static final Type type = new Type() {
-//        public Class represents() { return OntList.class; }
-//        public String toString()                    { return "OntList.type"; }
-//    };
-//    
-    public static final Class type = OntList.class;
 
     // External signature methods
     //////////////////////////////////

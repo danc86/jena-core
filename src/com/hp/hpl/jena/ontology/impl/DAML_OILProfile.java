@@ -19,7 +19,7 @@
 
 // Package
 ///////////////
-package com.hp.hpl.jena.ontology.daml.impl;
+package com.hp.hpl.jena.ontology.impl;
 
 
 // Imports
@@ -153,7 +153,7 @@ public class DAML_OILProfile
     public Property IMPORTS() {                     return m_imports; }
     public Property VERSION_INFO() {                return m_versionInfo; }
     public Property PRIOR_VERSION() {               return m_priorVersion; }
-    public Property BACKWARDS_COMPATIBLE_WITH() {   return m_backwardsCompatibleWith; }
+    public Property BACKWARD_COMPATIBLE_WITH() {    return m_backwardsCompatibleWith; }
     public Property INCOMPATIBLE_WITH() {           return m_incompatibleWith; }
     
     

@@ -25,7 +25,6 @@ package com.hp.hpl.jena.ontology.path.impl;
 // Imports
 ///////////////
 import com.hp.hpl.jena.rdf.model.*;
-import com.hp.hpl.jena.ontology.*;
 import com.hp.hpl.jena.ontology.path.*;
 
 
@@ -101,6 +100,18 @@ public class NamedUnitPathExpr
     }
 
 
+    /**
+     * <p>
+     * Answer the named predicate in this path
+     * </p>
+     * 
+     * @return The property that labels this unit path expression
+     */
+    public Property getProperty() {
+        return m_predicate;
+    }
+    
+    
     // Internal implementation methods
     //////////////////////////////////
 
