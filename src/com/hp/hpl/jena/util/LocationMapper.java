@@ -194,6 +194,24 @@ public class LocationMapper
         return s_globalMapperPath ;
     }
     
+    public String toString()
+    {
+        String s = "" ;
+        for ( Iterator iter = altLocations.keySet().iterator() ; iter.hasNext() ; )
+        {
+            String k = (String)iter.next() ;
+            String v = (String)altLocations.get(k) ;
+            s = s+"(Loc:"+k+"=>"+v+") " ;
+        }
+
+        for ( Iterator iter = altPrefixes.keySet().iterator() ; iter.hasNext() ; )
+        {
+            String k = (String)iter.next() ;
+            String v = (String)altLocations.get(k) ;
+            s = s+"(Prefix:"+k+"=>"+v+") " ;
+        }
+        return s ;
+    }
     
     private void processConfig(Model m)
     {
