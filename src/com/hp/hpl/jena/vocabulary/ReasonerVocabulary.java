@@ -79,6 +79,11 @@ public class ReasonerVocabulary {
      * properties in RDFS preprocessing. */
     public static Property PROPenableCMPScan;
     
+    /** Property used to switch on/off full RDFS processing. This subsumes
+     *  the enableCMPScan property and also switches to a rule set that 
+     *  includes the explicit "everything is a Resource rules. */
+    public static Property PROPenableFullRDFS;
+    
     /** A namespace used for Rubric specific properties */
     public static final String RBNamespace = "urn:x-hp-jena:rubrik/";
             
@@ -114,6 +119,7 @@ public class ReasonerVocabulary {
             PROPenableOWLTranslation = ResourceFactory.createProperty(PropURI+"#", "enableOWLTranslation");
             PROPenableTGCCaching = ResourceFactory.createProperty(PropURI+"#", "enableTGCCaching");
             PROPenableCMPScan = ResourceFactory.createProperty(PropURI+"#", "enableCMPScan");
+            PROPenableFullRDFS = ResourceFactory.createProperty(PropURI+"#", "enableFullRDFS");
         } catch (Exception e) {
             System.err.println("Initialization error: " + e);
             e.printStackTrace(System.err);
