@@ -82,6 +82,8 @@ public class RDFS {
     public static       Property subClassOf          = null;
            static final String   nsubPropertyOf      = "subPropertyOf";
     public static       Property subPropertyOf       = null;
+           static final String   nmember             = "member";
+    public static       Property member             = null;
     
     static {
         try {
@@ -102,6 +104,7 @@ public class RDFS {
             seeAlso = new PropertyImpl(uri, nseeAlso);
             subClassOf = new PropertyImpl(uri, nsubClassOf);
             subPropertyOf = new PropertyImpl(uri, nsubPropertyOf);
+            member = new PropertyImpl(uri, nmember);
         } catch (Exception e) {
             ErrorHelper.logInternalError("RDFS", 1, e);
         }
