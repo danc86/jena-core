@@ -16,7 +16,11 @@ public class Bound extends Element
 	public Bound( int n ) { super( n ); }
 	
 	public boolean accepts( Domain d, Node x )
-		{ return d.get( index ).equals( x ); }
+	//	{ return d.get( index ).equals( x ); }
+        // Modified by der to move to value semantics
+        {
+            return x.sameValueAs(d.get( index ) );
+        }
         
     public Node asNode( Domain d ) 
         { return (Node) d.get( index ); }

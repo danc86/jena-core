@@ -23,7 +23,11 @@ public class Fixed extends Element
         { return "<fixed " + value + ">"; }
 			
 	public boolean accepts( Domain d, Node x ) 
-        { return value.equals( x ); }
+        // { return value.equals( x ); }
+        // Modified by der to move to value semantics
+        {
+            return x.sameValueAs(value);
+        }
     
     public Node asNode( Domain d ) 
         { return value; }

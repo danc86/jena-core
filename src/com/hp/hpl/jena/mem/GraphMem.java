@@ -75,7 +75,8 @@ public class GraphMem extends GraphBase implements Graph {
         // @@ some redundant compares in this code which could be improved
         if (s != null) {
             return new TripleMatchIterator(m, subjects.iterator(s));
-        } else if (o != null) {
+        } else if (o != null && !o.isLiteral()) {
+            // der - added guard on isLiteral to support typed literal semantics
             return new TripleMatchIterator(m, objects.iterator(o));
         } else if (p != null) {
             return new TripleMatchIterator(m, predicates.iterator(p));

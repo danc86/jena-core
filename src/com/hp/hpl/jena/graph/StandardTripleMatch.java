@@ -98,7 +98,9 @@ public class StandardTripleMatch implements TripleMatch {
         }
         
         protected boolean matches(Node matcherNode, Node testNode) {
-            return matcherNode == null  || matcherNode.equals(testNode);
+            // return matcherNode == null  || matcherNode.equals(testNode);
+            // der - modified to support sameValueAs semantics
+            return matcherNode == null  || matcherNode.sameValueAs(testNode);
         }
     }
 

@@ -271,8 +271,6 @@ final public class LiteralLabel {
      * the same value but different language tag are semantically
      * equivalent but distinguished by the java equality function
      * in order to support round tripping.
-     * <p>Default implementation is to use equals, subclasses should
-     * override this.</p>
      */
     public boolean sameValueAs(LiteralLabel other) {
         if (other == null)
