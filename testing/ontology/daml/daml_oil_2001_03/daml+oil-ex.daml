@@ -17,8 +17,7 @@
   <rdfs:comment>
     An example ontology, with data types taken from XML Schema
   </rdfs:comment>
-  <!--daml:imports rdf:resource="http://www.daml.org/2001/03/daml+oil"/-->
-  <daml:imports rdf:resource="file:modules/rdf/regression/testDAML/daml_oil_2001_03/daml+oil.daml"/>
+  <daml:imports rdf:resource="http://www.daml.org/2001/03/daml+oil"/>
 </daml:Ontology>
 
 <daml:Class rdf:about="http://www.daml.org/2001/03/daml+oil-ex#Animal">

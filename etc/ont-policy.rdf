@@ -54,12 +54,5 @@
 	<prefix    rdf:datatype="&xsd;string">daml</prefix>
 </OntologySpec>
 
-<OntologySpec>
-	<!-- local version of the old DAML vocabulary -->
-	<publicURI rdf:resource="http://www.daml.org/2000/12/daml+oil" />
-	<altURL    rdf:resource="file:vocabularies/daml+oil-2000-12.daml" />
-	<language  rdf:resource="http://www.daml.org/2000/12/daml+oil" />
-	<prefix    rdf:datatype="&xsd;string">daml</prefix>
-</OntologySpec>
 
 </rdf:RDF>

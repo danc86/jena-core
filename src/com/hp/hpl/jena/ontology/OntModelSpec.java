@@ -184,7 +184,7 @@ public class OntModelSpec {
             return OWL_LITE_MEM_TRANS_INF;
         }
         else if (languageURI.equals( ProfileRegistry.DAML_LANG )) {
-            return DAML_MEM;
+            return DAML_MEM_RDFS_INF;
         }
         else {
             throw new OntologyException( "Did not recognise this language URI, so cannot determine default model spec: " + languageURI );
