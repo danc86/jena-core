@@ -14,7 +14,7 @@ import com.hp.hpl.jena.shared.*;
 */
 public class Node_URI extends Node_Concrete
     {
-    public Node_URI( Object uri )
+    /* package */ Node_URI( Object uri )
         { super( uri ); }
 
     public String getURI()

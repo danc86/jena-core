@@ -13,8 +13,8 @@ package com.hp.hpl.jena.graph;
 */
 public abstract class Node_Concrete extends Node
     {
-    public Node_Concrete( Object label )
-        {  super(label); }
+    protected Node_Concrete( Object label )
+        {  super( label ); }
         
     public boolean isConcrete()
         { return true; }

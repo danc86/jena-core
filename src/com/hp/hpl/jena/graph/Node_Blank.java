@@ -15,7 +15,7 @@ import com.hp.hpl.jena.rdf.model.*;
 
 public class Node_Blank extends Node_Concrete
     {    
-    Node_Blank( Object id ) { super( id ); }
+    /* package */ Node_Blank( Object id ) { super( id ); }
 
     public boolean isBlank() { return true; }
 

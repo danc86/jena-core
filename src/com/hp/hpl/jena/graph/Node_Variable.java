@@ -15,7 +15,7 @@ package com.hp.hpl.jena.graph;
 
 public class Node_Variable extends Node_Fluid
     {
-    public Node_Variable( Object name )
+    protected Node_Variable( Object name )
         { super( name ); }
 
     public String getName()

@@ -106,9 +106,9 @@ public abstract class DBProp {
 		return (hostname + uid.toString()).replace('.','_').replace(':','_').replace('-','_');
 	}
 
-	public static Node_URI generateNodeURI() {
+	public static Node generateNodeURI() {
 		String generateUniqueID = null;
-		return new Node_URI(DB.uri + generateUniqueID());
+		return Node.createURI( DB.uri + generateUniqueID() );
 	}
 	
 

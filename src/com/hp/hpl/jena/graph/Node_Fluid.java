@@ -13,7 +13,7 @@ package com.hp.hpl.jena.graph;
 */
 public abstract class Node_Fluid extends Node
     {
-    public Node_Fluid(Object label)
+    protected Node_Fluid(Object label)
         { super(label); }
 
     public boolean isConcrete()
