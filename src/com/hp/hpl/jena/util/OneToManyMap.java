@@ -312,7 +312,7 @@ public class OneToManyMap
         HashSet s = new HashSet();
 
         for (Iterator e = m_table.keySet().iterator();  e.hasNext();  ) {
-            s.addAll( (ArrayList) e.next() );
+            s.addAll( (ArrayList) m_table.get(e.next()) );
         }
 
         return s;
