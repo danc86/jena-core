@@ -96,10 +96,10 @@ public class TestBugReports extends TestCase {
             for (StmtIterator j = r.listProperties(RDF.type); j.hasNext(); ) {
                 System.out.println( "ind - " + r + " rdf:type = " + j.nextStatement().getObject() );
             }
-            System.out.println("----------"); / **/
+            System.out.println("----------"); /**/
         }
         
-        assertEquals( "Expecting 3 individuals", 6, count );
+        assertEquals( "Expecting 6 individuals", 6, count );
     }
     
     

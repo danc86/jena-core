@@ -242,8 +242,35 @@ public class TestListSyntaxCategories
                 return r instanceof Individual;
             }
         },
+        new DoListTest( "empty OWL list individuals",  null,  OntModelSpec.OWL_MEM,  0, new String[] {} ) 
+        {
+            public Iterator doList( OntModel m ) {
+                return m.listIndividuals();
+            }
+            public boolean test( Resource r ) {
+                return r instanceof Individual;
+            }
+        },
+        new DoListTest( "empty OWL+rule list individuals",  null,  OntModelSpec.OWL_MEM_RULE_INF,  0, new String[] {} ) 
+        {
+            public Iterator doList( OntModel m ) {
+                return m.listIndividuals();
+            }
+            public boolean test( Resource r ) {
+                return r instanceof Individual;
+            }
+        },
         new DoListTest( "DAML list individuals",  "file:testing/ontology/daml/list-syntax/test.rdf",  OntModelSpec.DAML_MEM_RULE_INF,  6,  
                         new String[] {NS+"A0", NS+"A1", NS+"C0", NS+"a1", NS+"a2", NS+"a0"} ) 
+        {
+            public Iterator doList( OntModel m ) {
+                return m.listIndividuals();
+            }
+            public boolean test( Resource r ) {
+                return r instanceof Individual;
+            }
+        },
+        new DoListTest( "empty DAML+rule list individuals",  null,  OntModelSpec.DAML_MEM_RULE_INF,  0, new String[] {} ) 
         {
             public Iterator doList( OntModel m ) {
                 return m.listIndividuals();
@@ -639,7 +666,9 @@ public class TestListSyntaxCategories
             OntModel m = ModelFactory.createOntologyModel( m_spec, null );
             m.getDocumentManager().setMetadataSearchPath( "file:etc/ont-policy-test.rdf", true );
             
-            m.read( m_fileName );
+            if (m_fileName != null) {
+                m.read( m_fileName );
+            }
             
             boolean exOccurred = false;
             Iterator i = null;
