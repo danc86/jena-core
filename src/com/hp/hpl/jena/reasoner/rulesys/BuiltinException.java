@@ -9,6 +9,8 @@
  *****************************************************************/
 package com.hp.hpl.jena.reasoner.rulesys;
 
+import com.hp.hpl.jena.shared.JenaException;
+
 /**
  * Exceptions thrown by runtime errors in exceuting rule system
  * builtin operations.
@@ -16,7 +18,7 @@ package com.hp.hpl.jena.reasoner.rulesys;
  * @author <a href="mailto:der@hplb.hpl.hp.com">Dave Reynolds</a>
  * @version $Revision$ on $Date$
  */
-public class BuiltinException extends RuntimeException {
+public class BuiltinException extends JenaException {
 
     /**
      * Constructor.

@@ -50,14 +50,14 @@ public class TestRDFSRules extends TestCase {
         return new TestSuite(TestRDFSRules.class);
     }  
 
-//    /**
-//     * Test the basic functioning of an RDFS reasoner
-//     */
-//    public void testRDFSReasoner() throws IOException {
-//        ReasonerTester tester = new ReasonerTester("rdfs/manifest-nodirect.rdf");
-//        ReasonerFactory rf = RDFSRuleReasonerFactory.theInstance();
-//        assertTrue("RDFS reasoner tests", tester.runTests(rf, this, null));
-//    }
+    /**
+     * Test the basic functioning of an RDFS reasoner
+     */
+    public void testRDFSReasoner() throws IOException {
+        ReasonerTester tester = new ReasonerTester("rdfs/manifest-nodirect.rdf");
+        ReasonerFactory rf = RDFSRuleReasonerFactory.theInstance();
+        assertTrue("RDFS reasoner tests", tester.runTests(rf, this, null));
+    }
 
     /**
      * Test the basic functioning of an RDFS reasoner

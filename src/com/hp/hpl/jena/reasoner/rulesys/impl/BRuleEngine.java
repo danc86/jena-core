@@ -41,8 +41,8 @@ public class BRuleEngine {
     /** The table of all goals */
     protected GoalTable goalTable;
     
-    /** The inference graph which is using this engine */
-    protected BasicBackwardRuleInfGraph infGraph;
+    /** The inference graph which is using this engine - used for calling builtins */
+    protected BackwardRuleInfGraphI infGraph;
     
     /** Indexed version of the rule set */
     protected RuleStore ruleStore;
@@ -62,7 +62,7 @@ public class BRuleEngine {
      * @param infGraph the parent inference graph which is using this engine
      * @param rules the indexed set of rules to process
      */
-    public BRuleEngine(BasicBackwardRuleInfGraph infGraph, RuleStore rules) {
+    public BRuleEngine(BackwardRuleInfGraphI infGraph, RuleStore rules) {
         this.infGraph = infGraph;
         goalTable = new GoalTable(this);
         ruleStore = rules;
@@ -211,7 +211,7 @@ public class BRuleEngine {
     /**
      * Return the rule infernce graph that owns this engine.
      */
-    public BasicBackwardRuleInfGraph getInfGraph() {
+    public BackwardRuleInfGraphI getInfGraph() {
         return infGraph;  
     }
     

@@ -10,6 +10,7 @@
 package com.hp.hpl.jena.reasoner.rulesys;
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.reasoner.*;
+import com.hp.hpl.jena.reasoner.rulesys.impl.FRuleEngine;
 import com.hp.hpl.jena.graph.*;
 import java.util.*;
 
@@ -33,7 +34,7 @@ public class BasicForwardRuleReasoner implements Reasoner {
     protected boolean recordDerivations = false;
     
     /** threshold on the numbers of rule firings allowed in a single operation */
-    protected long nRulesThreshold = BasicForwardRuleInfGraph.DEFAULT_RULES_THRESHOLD;
+    protected long nRulesThreshold = FRuleEngine.DEFAULT_RULES_THRESHOLD;
 
     /** Flag which, if true, enables tracing of rule actions to logger.info */
     boolean traceOn = false;
@@ -115,7 +116,7 @@ public class BasicForwardRuleReasoner implements Reasoner {
      * will be combined with the data when the final InfGraph is created.
      */
     public Reasoner bindSchema(Graph tbox) throws ReasonerException {
-        InfGraph graph = new BasicForwardRuleInfGraph(this, rules, tbox);
+        InfGraph graph = new BasicForwardRuleInfGraph(this, rules, null, tbox);
         return new BasicForwardRuleReasoner(rules, graph, factory);
     }
     
@@ -124,7 +125,7 @@ public class BasicForwardRuleReasoner implements Reasoner {
      * will be combined with the data when the final InfGraph is created.
      */
     public Reasoner bindSchema(Model tbox) throws ReasonerException {
-        InfGraph graph = new BasicForwardRuleInfGraph(this, rules, tbox.getGraph());
+        InfGraph graph = new BasicForwardRuleInfGraph(this, rules, null, tbox.getGraph());
         return new BasicForwardRuleReasoner(rules, graph, factory);
     }
     
@@ -140,19 +141,12 @@ public class BasicForwardRuleReasoner implements Reasoner {
      * constraints imposed by this reasoner.
      */
     public InfGraph bind(Graph data) throws ReasonerException {
-        BasicForwardRuleInfGraph graph = new BasicForwardRuleInfGraph(this, rules);
+        BasicForwardRuleInfGraph graph = new BasicForwardRuleInfGraph(this, rules, schemaGraph);
         graph.setDerivationLogging(recordDerivations);
         graph.setRuleThreshold(nRulesThreshold);
         graph.setTraceOn(traceOn);
         graph.rebind(data);
         return graph;
-    }
-    
-    /**
-     * Make the precomputed schema deductions available to the inf graph constructor.
-     */
-    protected InfGraph getSchemaGraph() {
-        return schemaGraph;
     }
     
     /**

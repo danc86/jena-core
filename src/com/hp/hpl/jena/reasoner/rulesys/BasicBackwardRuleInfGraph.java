@@ -26,7 +26,7 @@ import org.apache.log4j.Logger;
  * @author <a href="mailto:der@hplb.hpl.hp.com">Dave Reynolds</a>
  * @version $Revision$ on $Date$
  */
-public class BasicBackwardRuleInfGraph extends BaseInfGraph {
+public class BasicBackwardRuleInfGraph extends BaseInfGraph implements BackwardRuleInfGraphI {
 
 //=======================================================================
 // variables
@@ -257,17 +257,6 @@ public class BasicBackwardRuleInfGraph extends BaseInfGraph {
      */
     public ExtendedIterator findDataMatches(TriplePattern pattern) {
         return dataFind.find(pattern);
-    }
-            
-    /**
-     * Test when the data (and TBD the deductions) contains the
-     * given triple.
-     */
-    public boolean dataContains(Triple t) {
-        ExtendedIterator i = dataFind.find(new TriplePattern(t.getSubject(), t.getPredicate(), t.getObject()));
-        boolean result = i.hasNext();
-        i.close();
-        return result;
     }
             
     /**

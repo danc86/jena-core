@@ -59,7 +59,7 @@ public class Remove implements Builtin {
                 int clauseIndex = Util.getIntValue(clauseN);
                 Object clause = context.getRule().getBodyElement(clauseIndex);
                 if (clause instanceof TriplePattern) {
-                    Triple t = BasicForwardRuleInfGraph.instantiate(
+                    Triple t = FRuleEngine.instantiate(
                                         (TriplePattern)clause, 
                                         ((BFRuleContext)context).getEnvStack() );
                     context.getGraph().delete(t);

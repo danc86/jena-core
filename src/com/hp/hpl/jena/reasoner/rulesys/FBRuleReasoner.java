@@ -1,7 +1,7 @@
 /******************************************************************
- * File:        BasicBackwardRuleReasoner.java
+ * File:        FBRuleReasoner.java
  * Created by:  Dave Reynolds
- * Created on:  29-Apr-2003
+ * Created on:  29-May-2003
  * 
  * (c) Copyright 2003, Hewlett-Packard Company, all rights reserved.
  * [See end of file]
@@ -12,72 +12,79 @@ package com.hp.hpl.jena.reasoner.rulesys;
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.reasoner.*;
 import com.hp.hpl.jena.reasoner.rulesys.impl.FRuleEngine;
-import com.hp.hpl.jena.reasoner.rulesys.impl.RuleStore;
 import com.hp.hpl.jena.graph.*;
 import java.util.*;
 
 /**
- * Reasoner implementation which augments or transforms an RDF graph
- * according to a set of rules. The rules are processed using a
- * tabled backchaining interpreter which is implemented by the
- * relvant InfGraph class. 
+ * Rule-based reasoner interface. This is the default rule reasoner to use.
+ * It supports both forward reasoning and backward reasoning, including use
+ * of forward rules to generate and instantiate backward rules.
  * 
  * @author <a href="mailto:der@hplb.hpl.hp.com">Dave Reynolds</a>
  * @version $Revision$ on $Date$
  */
-public class BasicBackwardRuleReasoner implements Reasoner {
-
+public class FBRuleReasoner implements Reasoner {
+    
     /** The parent reasoner factory which is consulted to answer capability questions */
     protected ReasonerFactory factory;
-    
-    /** The rules to be used by this instance of the backward engine */
+
+    /** The rules to be used by this instance of the forward engine */
     protected List rules;
     
-    /** Indexed, normalized copy of the rule list */
-    protected RuleStore ruleStore;
-    
-    /** A cache set of schema data used in partial binding chains */
-    protected Graph schemaGraph;
+    /** A precomputed set of schema deductions */
+    protected InfGraph schemaGraph;
     
     /** Flag to set whether the inference class should record derivations */
     protected boolean recordDerivations = false;
     
-    /** Flag which, if true, enables tracing of rule actions to logger.info */
-    boolean traceOn = false;
-    
     /** threshold on the numbers of rule firings allowed in a single operation */
     protected long nRulesThreshold = FRuleEngine.DEFAULT_RULES_THRESHOLD;
 
+    /** Flag which, if true, enables tracing of rule actions to logger.info */
+    boolean traceOn = false;
+    
+    /** Base URI used for configuration properties for rule reasoners */
+    static final String URI = "http://www.hpl.hp.com/semweb/2003/RuleReasoner";
+     
+    /** Property used to configure the derivation logging behaviour of the reasoner.
+     *  Set to "true" to enable logging of derivations. */
+    public static final Property PROPderivationLogging = ResourceFactory.createProperty(URI+"#", "derivationLogging");
+    
+    /** Property used to configure the tracing behaviour of the reasoner.
+     *  Set to "true" to enable internal trace message to be sent to Logger.info . */
+    public static final Property PROPtraceOn = ResourceFactory.createProperty(URI+"#", "traceOn");
+    
+    /** Property used to configure the maximum number of rule firings allowed in 
+     * a single operation. Should be an xsd:int. */
+    public static final Property PROPrulesThreshold = ResourceFactory.createProperty(URI+"#", "rulesThreshold");
+    
     /**
      * Constructor. This is the raw version that does not reference a ReasonerFactory
      * and so has no capabilities description. 
      * @param rules a list of Rule instances which defines the ruleset to process
      */
-    public BasicBackwardRuleReasoner(List rules) {
+    public FBRuleReasoner(List rules) {
         this.rules = rules;
-        ruleStore = new RuleStore(rules);
     }
-
+    
     /**
      * Constructor
      * @param rules a list of Rule instances which defines the ruleset to process
      * @param factory the parent reasoner factory which is consulted to answer capability questions
      */
-    public BasicBackwardRuleReasoner(List rules, ReasonerFactory factory) {
+    public FBRuleReasoner(List rules, ReasonerFactory factory) {
         this.rules = rules;
         this.factory = factory;
-        ruleStore = new RuleStore(rules);
     }
     
     /**
      * Internal constructor, used to generated a partial binding of a schema
      * to a rule reasoner instance.
      */
-    protected BasicBackwardRuleReasoner(BasicBackwardRuleReasoner parent, Graph schemaGraph) {
-        rules = parent.rules;
-        ruleStore = parent.ruleStore;
+    private FBRuleReasoner(List rules, InfGraph schemaGraph, ReasonerFactory factory) {
+        this.rules = rules;
         this.schemaGraph = schemaGraph;
-        this.factory = parent.factory;
+        this.factory = factory;
     }
 
     /**
@@ -113,7 +120,9 @@ public class BasicBackwardRuleReasoner implements Reasoner {
      * will be combined with the data when the final InfGraph is created.
      */
     public Reasoner bindSchema(Graph tbox) throws ReasonerException {
-        return new BasicBackwardRuleReasoner(this, tbox);
+        FBRuleInfGraph graph = new FBRuleInfGraph(this, rules, null, tbox);
+        graph.prepare();
+        return new FBRuleReasoner(rules, graph, factory);
     }
     
     /**
@@ -121,7 +130,7 @@ public class BasicBackwardRuleReasoner implements Reasoner {
      * will be combined with the data when the final InfGraph is created.
      */
     public Reasoner bindSchema(Model tbox) throws ReasonerException {
-        return new BasicBackwardRuleReasoner(this, tbox.getGraph());
+        return bindSchema(tbox.getGraph());
     }
     
     /**
@@ -136,9 +145,11 @@ public class BasicBackwardRuleReasoner implements Reasoner {
      * constraints imposed by this reasoner.
      */
     public InfGraph bind(Graph data) throws ReasonerException {
-        BasicBackwardRuleInfGraph graph = new BasicBackwardRuleInfGraph(this, data, ruleStore);
+        BasicForwardRuleInfGraph graph = new FBRuleInfGraph(this, rules, schemaGraph);
         graph.setDerivationLogging(recordDerivations);
         graph.setRuleThreshold(nRulesThreshold);
+        graph.setTraceOn(traceOn);
+        graph.rebind(data);
         return graph;
     }
     
@@ -178,20 +189,31 @@ public class BasicBackwardRuleReasoner implements Reasoner {
     }
     
     /**
-     * Set a configuration paramter for the reasoner. In the case of the this
-     * reasoner there are no configuration parameters and this method is simply 
-     * here to meet the interfaces specification
+     * Set a configuration paramter for the reasoner. The supported parameters
+     * are:
+     * <ul>
+     * <li>BasicForwaredRuleReasoner.PROPderivationLogging - set to true to enable recording all rule derivations</li>
+     * <li>BasicForwaredRuleReasoner.PROPtraceOn - set to true to enable verbose trace information to be sent to the logger INFO channel</li>
+     * <li>BasicForwaredRuleReasoner.PROPrulesThreshold - set a limit on the number of rule firings allowed in a derivation to prevent infinite loops</li>
+     * </ul> 
      * 
      * @param parameterUri the uri identifying the parameter to be changed
      * @param value the new value for the parameter, typically this is a wrapped
      * java object like Boolean or Integer.
      */
     public void setParameter(String parameterUri, Object value) {
-        throw new IllegalParameterException(parameterUri);
+        if (parameterUri.equals(PROPderivationLogging.getURI())) {
+            recordDerivations = Util.convertBooleanPredicateArg(parameterUri, value);
+        } else if (parameterUri.equals(PROPtraceOn.getURI())) {
+            traceOn =  Util.convertBooleanPredicateArg(parameterUri, value);
+        } else if (parameterUri.equals(PROPrulesThreshold.getURI())) {
+            nRulesThreshold =  Util.convertIntegerPredicateArg(parameterUri, value);
+        } else {
+            throw new IllegalParameterException("Don't recognize configuration parameter " + parameterUri + " for rule-based reasoner");
+        }
     }
 
 }
-
 
 
 /*
@@ -223,4 +245,3 @@ public class BasicBackwardRuleReasoner implements Reasoner {
     (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
     THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
-

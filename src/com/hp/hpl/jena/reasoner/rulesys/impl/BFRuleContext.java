@@ -11,10 +11,7 @@ package com.hp.hpl.jena.reasoner.rulesys.impl;
 
 import com.hp.hpl.jena.mem.GraphMem;
 import com.hp.hpl.jena.reasoner.*;
-import com.hp.hpl.jena.reasoner.rulesys.BasicForwardRuleInfGraph;
-import com.hp.hpl.jena.reasoner.rulesys.BindingEnvironment;
-import com.hp.hpl.jena.reasoner.rulesys.Rule;
-import com.hp.hpl.jena.reasoner.rulesys.RuleContext;
+import com.hp.hpl.jena.reasoner.rulesys.*;
 import com.hp.hpl.jena.util.PrintUtil;
 import com.hp.hpl.jena.util.iterator.ClosableIterator;
 import com.hp.hpl.jena.graph.*;
@@ -37,7 +34,7 @@ public class BFRuleContext implements RuleContext {
     protected Rule rule;
     
     /** The enclosing inference graph. */
-    protected BasicForwardRuleInfGraph graph;
+    protected ForwardRuleInfGraphI graph;
     
     /** A stack of triples which have been added to the graph but haven't yet been processed. */
     protected List stack;
@@ -55,7 +52,7 @@ public class BFRuleContext implements RuleContext {
      * Constructor.
      * @param graph the inference graph which owns this context.
      */
-    public BFRuleContext(BasicForwardRuleInfGraph graph) {
+    public BFRuleContext(ForwardRuleInfGraphI graph) {
         this.graph = graph;
         env = new BindingStack();
         stack = new ArrayList();
@@ -178,7 +175,7 @@ public class BFRuleContext implements RuleContext {
      */
     public ClosableIterator find(Node s, Node p, Node o) {
         //return graph.find(s, p, o).andThen(pendingCache.find(s, p, o));
-        return graph.find(s, p, o);
+        return graph.findForward(s, p, o);
     }
     
     /**

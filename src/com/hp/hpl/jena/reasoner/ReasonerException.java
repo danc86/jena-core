@@ -1,55 +1,39 @@
 /******************************************************************
- * File:        TestPackage.java
+ * File:        ReasonerException.java
  * Created by:  Dave Reynolds
- * Created on:  30-Mar-03
+ * Created on:  09-Jan-2003
  * 
  * (c) Copyright 2003, Hewlett-Packard Company, all rights reserved.
  * [See end of file]
  * $Id$
  *****************************************************************/
-package com.hp.hpl.jena.reasoner.rulesys.test;
+package com.hp.hpl.jena.reasoner;
 
-
-import junit.framework.*;
+import com.hp.hpl.jena.shared.JenaException;
 
 /**
- * Aggregate tester that runs all the test associated with the rulesys package.
+ * Exception signalling some generic problem with the reasoning subsystem.
+ * Subclasses of this exception may be used to report more specific problems.
+ * <p>In the future there may be a top level JenaException which this exception
+ * should extend.
  * 
  * @author <a href="mailto:der@hplb.hpl.hp.com">Dave Reynolds</a>
  * @version $Revision$ on $Date$
  */
-
-public class TestPackage extends TestSuite {
-
-    static public TestSuite suite() {
-        return new TestPackage();
-    }
+public class ReasonerException extends JenaException {
     
-    /** Creates new TestPackage */
-    private TestPackage() {
-        super("RuleSys");
-        addTest( "TestBasics", TestBasics.suite() );
-        
-        // Omitted temporarily in the interests of speed?
-        // addTest( "TestOWLRules", TestOWLRules.suite() );
-        
-        // Omitted while developing backward version
-        addTest( "TestBackchainer", TestBackchainer.suite() );
-        addTest( "TestRDFSRules", TestRDFSRules.suite() );
-        
-        addTest( "TestFBRules", TestFBRules.suite() );
-    }
-
-    // helper method
-    private void addTest(String name, TestSuite tc) {
-        tc.setName(name);
-        addTest(tc);
+    /**
+     * Constructor.
+     * @param msg a free-text message describing the problem
+     */
+    public ReasonerException(String msg) {
+        super(msg);
     }
 
 }
 
 /*
-    (c) Copyright Hewlett-Packard Company 2002
+    (c) Copyright Hewlett-Packard Company 2003
     All rights reserved.
 
     Redistribution and use in source and binary forms, with or without
@@ -77,3 +61,4 @@ public class TestPackage extends TestSuite {
     (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
     THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
+
