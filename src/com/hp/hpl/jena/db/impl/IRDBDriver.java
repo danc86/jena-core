@@ -106,6 +106,12 @@ public interface IRDBDriver {
 	 * @return DBPropGraph containg the default properties for a new model
 	 */
 	DBPropGraph getDefaultModelProperties();
+	
+	/**
+	 * Return a string identifying underlying database type.
+	 *
+	 */
+	String getDatabaseType();
 
     /**
      * Remove all RDF information from a database.
