@@ -122,9 +122,8 @@ public abstract class BaseInfGraph extends GraphBase implements InfGraph {
      * Returns an iterator over Triples.
      */
     public ExtendedIterator find(Node subject, Node property, Node object) {
-        return findWithContinuation(
-                            new TriplePattern(subject, property, object), fdata);
-    }
+        return findWithContinuation(new TriplePattern(subject, property, object), fdata);
+     }
 
     /**
      * Basic pattern lookup interface.
@@ -133,7 +132,7 @@ public abstract class BaseInfGraph extends GraphBase implements InfGraph {
      *  that match the pattern
      */
     public ExtendedIterator find(TriplePattern pattern) {
-        return findWithContinuation(pattern, null);
+        return findWithContinuation(pattern, fdata);
     }
     
     /**

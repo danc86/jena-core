@@ -53,7 +53,11 @@ public class FGraph implements Finder {
      * may not have completely satisfied the query.
      */
     public ExtendedIterator findWithContinuation(TriplePattern pattern, Finder continuation) {
-        return graph.find(pattern.asTripleMatch()).andThen(continuation.find(pattern));
+        if (continuation == null) {
+            return graph.find(pattern.asTripleMatch());
+        } else {
+            return graph.find(pattern.asTripleMatch()).andThen(continuation.find(pattern));
+        }
     }
 
     /**
