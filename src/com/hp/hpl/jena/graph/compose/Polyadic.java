@@ -25,6 +25,7 @@ package com.hp.hpl.jena.graph.compose;
 // Imports
 ///////////////
 import com.hp.hpl.jena.graph.*;
+import com.hp.hpl.jena.graph.impl.WrappedBulkUpdateHandler;
 import com.hp.hpl.jena.shared.*;
 import com.hp.hpl.jena.util.iterator.*;
 
@@ -212,6 +213,7 @@ public abstract class Polyadic
     public void setBaseGraph( Graph graph ) {
         if (m_subGraphs.contains( graph )) {
             m_baseGraph = graph;
+            bud = null;
         }
         else {
             throw new IllegalArgumentException( "The updateable graph must be one of the graphs from the composition" );
@@ -232,39 +234,28 @@ public abstract class Polyadic
         if (getBaseGraph() != null) {
             sg.remove( getBaseGraph() );
         }
-        
+       
         return sg;
     }
-    
+
+    public BulkUpdateHandler getBulkUpdateHandler() {
+        if (getBaseGraph() == null)
+            throw new RuntimeException(); // return super.getBulkUpdateHandler();
+        if (bud == null)  
+            bud = new WrappedBulkUpdateHandler( this, getBaseGraph().getBulkUpdateHandler() );
+        return bud;
+    }
+
     // the following methods all delegate handling capabilities to the base graph
     // TODO: this needs to be integrated with WrappedGraph, but we don't have time to do so before Jena 2.0 release
     
-    public TransactionHandler getTransactionHandler()
-        { return (getBaseGraph() == null) ? super.getTransactionHandler() : getBaseGraph().getTransactionHandler(); }
+    public TransactionHandler getTransactionHandler() { 
+        return (getBaseGraph() == null) ? super.getTransactionHandler() : getBaseGraph().getTransactionHandler(); 
+        }
 
-    public BulkUpdateHandler getBulkUpdateHandler()
-        { return (getBaseGraph() == null) ? super.getBulkUpdateHandler() : getBaseGraph().getBulkUpdateHandler(); }
-
-    public Capabilities getCapabilities()
-        { return (getBaseGraph() == null) ? super.getCapabilities() : getBaseGraph().getCapabilities(); }
-
-    public GraphEventManager getEventManager()
-        { return (getBaseGraph() == null) ? super.getEventManager() : getBaseGraph().getEventManager(); }
-
-//    public Reifier getReifier()
-//        { 
-//        if (reifier == null) reifier = new SimpleReifier( this, style );
-//        return reifier;
-//        }
-
-    // Internal implementation methods
-    //////////////////////////////////
-
-
-    //==============================================================================
-    // Inner class definitions
-    //==============================================================================
-
+    public Capabilities getCapabilities() { 
+        return (getBaseGraph() == null) ? super.getCapabilities() : getBaseGraph().getCapabilities(); 
+    }
 
 }
 

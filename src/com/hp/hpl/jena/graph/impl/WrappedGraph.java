@@ -15,10 +15,12 @@ import com.hp.hpl.jena.util.iterator.*;
     A  wrapper class which simply defers all operations to its base.
  	@author kers
 */
-public class WrappedGraph implements Graph
+public class WrappedGraph implements GraphWithPerform
     {
     protected Graph base;
     protected Reifier reifier;
+    protected BulkUpdateHandler bud;
+    protected GraphEventManager gem;
     
     public WrappedGraph( Graph base )
         { this.base = base; 
@@ -34,13 +36,19 @@ public class WrappedGraph implements Graph
         { return base.getTransactionHandler(); }
 
     public BulkUpdateHandler getBulkUpdateHandler()
-        { return base.getBulkUpdateHandler(); }
+        {
+        if (bud == null)  bud = new WrappedBulkUpdateHandler( this, base.getBulkUpdateHandler() );
+        return bud;
+        }
 
     public Capabilities getCapabilities()
         { return base.getCapabilities(); }
 
     public GraphEventManager getEventManager()
-        { return base.getEventManager(); }
+        {
+        if (gem == null) gem = new SimpleEventManager( this ); 
+        return gem;
+        }
 
     public Reifier getReifier()
         {return reifier; }
@@ -48,11 +56,13 @@ public class WrappedGraph implements Graph
     public PrefixMapping getPrefixMapping()
         { return base.getPrefixMapping(); }
 
-    public void add( Triple t ) throws AddDeniedException
-        { base.add( t ); }
+    public void add( Triple t ) 
+        { base.add( t );
+        getEventManager().notifyAddTriple( t ); }
 
-    public void delete( Triple t ) throws DeleteDeniedException
-        { base.delete( t ); }
+    public void delete( Triple t ) 
+        { base.delete( t ); 
+        getEventManager().notifyDeleteTriple( t ); }
 
     public ExtendedIterator find( TripleMatch m )
         { return base.find( m ); }
@@ -74,9 +84,21 @@ public class WrappedGraph implements Graph
 
     public boolean isEmpty()
         { return base.isEmpty(); }
-        
-    public int size() throws UnsupportedOperationException
+
+    public int size()
         { return base.size(); }
+    
+    public void performAdd(Triple t)
+        {
+        // TODO Auto-generated method stub
+        
+        }
+
+    public void performDelete(Triple t)
+        {
+        // TODO Auto-generated method stub
+        
+        }
     }
 
 

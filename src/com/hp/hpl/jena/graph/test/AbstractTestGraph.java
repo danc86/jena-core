@@ -391,13 +391,13 @@ public abstract class AbstractTestGraph extends GraphTestBase
     public void testAddTriple()
         {
         getAndRegister( L ).add( SPO );
-        assertTrue( L.has( new Object[] {"add", SPO} ) );
+        L.assertHas( new Object[] {"add", SPO} );
         }
         
     public void testDeleteTriple()
         {        
         getAndRegister( L ).delete( SPO );
-        assertTrue( L.has( new Object[] { "delete", SPO} ) );
+        L.assertHas( new Object[] { "delete", SPO} );
         }
         
     public void testTwoListeners()
@@ -510,6 +510,13 @@ public abstract class AbstractTestGraph extends GraphTestBase
         Object value = new int[]{};
         g.getEventManager().notifyEvent( g, value );
         L.assertHas( new Object[] { "someEvent", g, value } );
+        }
+    
+    public void testRemoveAllEvent()
+        {
+        Graph g = getAndRegister( L );
+        g.getBulkUpdateHandler().removeAll();
+        L.assertHas( new Object[] { "someEvent", g, GraphEvents.removeAll } );        
         }
     
     /**

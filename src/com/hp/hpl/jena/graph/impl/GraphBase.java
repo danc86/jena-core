@@ -28,7 +28,8 @@ import com.hp.hpl.jena.shared.impl.PrefixMappingImpl;
 	@author kers
 */
 
-public abstract class GraphBase implements Graph {
+public abstract class GraphBase implements GraphWithPerform 
+	{
 
     protected final ReificationStyle style;
     

@@ -123,18 +123,6 @@ public class MultiUnion
     }
 
     /**
-        adds are notified by the base graph (and we share its event handler). 
-    */
-    public void notifyAdd( Triple t )
-        {}
-
-    /**
-        deletes are notified by the base graph (and we share its event handler). 
-    */    
-    public void notifyDelete( Triple t )
-        {}
-
-    /**
      * <p>
      * Delete the given triple from the union model; the actual component model to
      * be updated will be the designated (or default) {@linkplain #getBaseGraph updateable} graph. 
@@ -218,16 +206,6 @@ public class MultiUnion
             m_subGraphs.add( graph );
         }
     }
-    
-
-    // Internal implementation methods
-    //////////////////////////////////
-
-
-    //==============================================================================
-    // Inner class definitions
-    //==============================================================================
-
 
 }
 
