@@ -23,9 +23,11 @@ import com.hp.hpl.jena.vocabulary.RDFS;
  * Datastructure which defines a triple pattern as used in simple
  * rules and in find interfaces. 
  * <p>
- * Wildcards are recorded by using Node_Variable entries rather than
+ * Wildcards are recorded by using Node_RuleVariable entries rather than
  * nulls because they can be named. If a null is specified that is
- * converted to a variable of name "".</p>
+ * converted to a variable of name "". Note that whilst some engines might simply
+ * require Node_Variables the forward engine requires variables represented using
+ * the more specialized subclass - Node_RuleVariable.</p>
  * <p>
  * It would make more sense to have TriplePattern subclass Triple
  * but that is final for some strange reason.</p>
@@ -46,7 +48,7 @@ public class TriplePattern implements ClauseEntry {
     
     /**
      * Constructor - builds a pattern from three nodes,
-     * use Node_Variables as variables, use a variable
+     * use Node_RuleVariables as variables, use a variable
      * with an empty name as a wildcard, can also use null
      * as a wildcard.
      */
@@ -273,7 +275,7 @@ public class TriplePattern implements ClauseEntry {
     }
             
     /**
-     * Convert any null wildcards to Node_Variable wildcards.
+     * Convert any null wildcards to Node_RuleVariable wildcards.
      */
     private static Node normalize(Node node) {
         if (node == null || node == Node.ANY) return Node_RuleVariable.WILD;
@@ -282,7 +284,7 @@ public class TriplePattern implements ClauseEntry {
     }
             
     /**
-     * Convert any Node_Variable wildcards to null. This loses
+     * Convert any Node_RuleVariable wildcards to null. This loses
      * the variable named but is used when converting a singleton
      * pattern to a TripleMtch
      */
