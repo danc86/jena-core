@@ -318,7 +318,7 @@ public class N3JenaWriterCommon implements RDFWriter
     
     protected void writeHeader(Model model)
     {
-        if (baseURIref != null)
+        if (baseURIref != null && !baseURIref.equals("") )
             out.println("# Base: " + baseURIref);
     }
     
