@@ -118,7 +118,14 @@ public class HasValueRestrictionImpl
      */ 
     public RDFNode getHasValue() {
         checkProfile( getProfile().HAS_VALUE(), "HAS_VALUE" );
-        return getPropertyValue( getProfile().HAS_VALUE() );
+        RDFNode n = getPropertyValue( getProfile().HAS_VALUE() );
+        
+        // map to an individual in the case of a resource value 
+        if (n.canAs( Individual.class )) {
+            n = n.as( Individual.class );
+        }
+        
+        return n;
     }
 
     /**
