@@ -5,8 +5,11 @@
 */
 package com.hp.hpl.jena.reasoner.rulesys.impl;
 
+import java.util.*;
+
+import com.hp.hpl.jena.graph.Graph;
 import com.hp.hpl.jena.rdf.model.*;
-import com.hp.hpl.jena.reasoner.Reasoner;
+import com.hp.hpl.jena.reasoner.*;
 import com.hp.hpl.jena.reasoner.rulesys.*;
 
 /**
@@ -19,19 +22,24 @@ import com.hp.hpl.jena.reasoner.rulesys.*;
 public final class WrappedRuleReasonerFactory extends BaseRuleReasonerFactory 
     implements RuleReasonerFactory
     {
-    private final RuleReasonerFactory factory;
+    private final ReasonerFactory factory;
+    private List schemas = new ArrayList();
     
-    public WrappedRuleReasonerFactory( RuleReasonerFactory rrf )
+    public WrappedRuleReasonerFactory( ReasonerFactory rrf )
         { super();
         this.factory = rrf; }
     
     public Reasoner create(Resource configuration)
-        { FBRuleReasoner result = (FBRuleReasoner) factory.create( configuration );
-        result.setRules( rules );
+        { Reasoner result = factory.create( configuration );
+        if (result instanceof RuleReasoner) ((RuleReasoner) result).setRules( rules );
+        for (int i = 0; i < schemas.size(); i += 1) result.bindSchema( (Graph) schemas.get(i) );
         return result; }
     
     public Model getCapabilities()
         { return factory.getCapabilities(); }
+    
+    public void bindSchema( Graph schema )
+    	{ schemas.add( schema ); }
     
     public String getURI()
         { return factory.getURI(); }

@@ -71,6 +71,11 @@ public class JMS
     public static final Property ruleSet = property( "ruleSet" );
     
     /**
+     	The property of a reasoner spec that specifies a schema to load
+    */
+    public static final Property schemaURL = property( "schemaURL" );
+    
+    /**
          The property of a RuleSet that specifies a rule.
     */
     public static final Property hasRule = property( "hasRule" );
