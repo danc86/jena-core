@@ -44,11 +44,15 @@ public class TestAnonID extends TestCase {
      */
     public void testAnonID() {
         boolean prior = JenaParameters.disableBNodeUIDGeneration;
-        JenaParameters.disableBNodeUIDGeneration = false;
-        doTestAnonID();
-        JenaParameters.disableBNodeUIDGeneration = true;
-        doTestAnonID();
-        JenaParameters.disableBNodeUIDGeneration = prior;
+        try
+            {
+            JenaParameters.disableBNodeUIDGeneration = false;
+            doTestAnonID();
+            JenaParameters.disableBNodeUIDGeneration = true;
+            doTestAnonID();
+            }
+        finally
+            { JenaParameters.disableBNodeUIDGeneration = prior; }
     }
 
     /**

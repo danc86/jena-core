@@ -49,13 +49,20 @@ public class AnonId extends java.lang.Object {
     
     String id = null;
 
-    /** Support for debugging: global anonID counter */
-    private static int idCount = 0;
+    /** 
+        Support for debugging: global anonID counter. The intial value is just to
+        make the output look prettier if it has lots (but not lots and lots) of bnodes
+        in it.
+    */
+    private static int idCount = 100000;
     
-    /** Creates new AnonId.
-     *
-     * <p>This id is guaranteed to be unique on this machine.</p>
-     */
+    /** 
+        Creates new AnonId. Normally this id is guaranteed to be unique on this 
+        machine: it is time-dependant. However, sometimes [incorrect] code is
+        sensitive to bnode ordering and produces bizarre bugs (both Dave and
+        Chris have been bitten by this, as have some users, I think). Hence the
+        disableBNodeUIDGeneration flag, which allows bnode IDs to be predictable.
+    */
     public AnonId() {
         if (JenaParameters.disableBNodeUIDGeneration) {
             synchronized (AnonId.class) {

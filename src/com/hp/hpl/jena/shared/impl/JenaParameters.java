@@ -100,8 +100,8 @@ public class JenaParameters {
      * simple count local to this JVM. This is ONLY for use in debugging
      * systems exhibiting non-deterministic behaviour due to the 
      * time-dependence of UIDs, not for normal production use. In particular, it
-     * breaks the contract that anonIDs should be unique on the same machine, they 
-     * will only be unique for a single JVM run.
+     * breaks the contract that anonIDs should be unique on the same machine: they 
+     * will only be unique for this single JVM run.
      */
     public static boolean disableBNodeUIDGeneration = false;
 }
