@@ -472,11 +472,11 @@ abstract public class BaseXMLWriter implements RDFXMLWriterI {
 			if (!(javaEnc.equals("UTF8") || javaEnc.equals("UTF-16"))) {
 				//		System.out.println(javaEnc);
 				String xEnc = EncodingMap.getJava2IANAMapping(javaEnc);
-				String yEnc = Charset.forName(javaEnc).name();
-				if (xEnc != null && !yEnc.equalsIgnoreCase(xEnc)) {
-				    logger.warn("xEnc: "+xEnc+ " yEnc: "+ yEnc );
+				String ianaEnc = Charset.forName(javaEnc).name();
+				if (xEnc != null && !ianaEnc.equalsIgnoreCase(xEnc)) {
+				    logger.warn("xEnc: "+xEnc+ " IanaEnc: "+ ianaEnc );
 				}
-				decl = "<?xml version="+q("1.0")+" encoding=" + q(yEnc) + "?>";
+				decl = "<?xml version="+q("1.0")+" encoding=" + q(ianaEnc) + "?>";
 			}
 		}
 		if (decl == null && showXmlDeclaration != null)
