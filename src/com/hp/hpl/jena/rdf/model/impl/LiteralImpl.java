@@ -54,8 +54,10 @@ public class LiteralImpl extends EnhNode implements Literal {
   
     final static public Implementation factory = new Implementation() {
         public boolean canWrap( Node n, EnhGraph eg )
-            { return true; }
-        public EnhNode wrap(Node n,EnhGraph eg) {
+            { return n.isLiteral(); }
+            
+        public EnhNode wrap(Node n, EnhGraph eg) {
+            if (!n.isLiteral()) throw new LiteralRequiredException( n );
             return new LiteralImpl(n,eg);
         }
     };          

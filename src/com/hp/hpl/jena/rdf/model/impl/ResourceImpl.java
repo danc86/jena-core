@@ -23,8 +23,9 @@ public class ResourceImpl extends EnhNode implements Resource {
     
     final static public Implementation factory = new Implementation() {
         public boolean canWrap( Node n, EnhGraph eg )
-            { return true; }
+            { return !n.isLiteral(); }
         public EnhNode wrap(Node n,EnhGraph eg) {
+            if (n.isLiteral()) throw new ResourceRequiredException( n );
             return new ResourceImpl(n,eg);
         }
     };
