@@ -74,7 +74,7 @@ public class UniqueExtendedIterator extends WrappedIterator {
      * @see Iterator#next()
      */
     public Object next() {
-        if (hasNext() == false) noElements( "exhausted UniqueIterator" );
+        ensureHasNext();
         Object result = next;
         next = null;
         return result;

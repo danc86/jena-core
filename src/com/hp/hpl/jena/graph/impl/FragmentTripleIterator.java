@@ -51,7 +51,7 @@ public abstract class FragmentTripleIterator extends NiceIterator
     */
     public Object next()
         {
-        if (!hasNext()) throw new NoSuchElementException();
+        ensureHasNext();
         return pending.remove( pending.size() - 1 );
         }
         

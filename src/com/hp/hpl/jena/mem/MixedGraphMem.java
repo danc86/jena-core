@@ -118,7 +118,7 @@ public class MixedGraphMem extends GraphMemBase implements Graph
                 
                 public Object next()
                     {
-                    if (hasNext() == false) throw new NoSuchElementException();
+                    ensureHasNext();
                     try { return remember = triple; } finally { triple = null; }
                     }
                 

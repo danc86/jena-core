@@ -54,21 +54,7 @@ public abstract class CompositionBase
      * @see com.hp.hpl.jena.graph.Graph#size()
      */
     public int size()
-        { return countIterator( GraphUtil.findAll( this ) ); }      
-
-    /**
-     * <p>
-     * Answer true if the given triple occurs at least once in this graph.
-     * </p>
-     * 
-     * @param t A triple to test
-     * @return True if t is an edge of this graph
-     * @see com.hp.hpl.jena.graph.Graph#contains(Triple)
-     */
-    public boolean contains( Triple t )
-        {
-        return contains( t.getSubject(), t.getPredicate(), t.getObject() );
-        }                     
+        { return countIterator( GraphUtil.findAll( this ) ); }             
       
     /**
      * <p>

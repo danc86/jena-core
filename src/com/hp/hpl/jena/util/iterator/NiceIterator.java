@@ -33,6 +33,9 @@ public class NiceIterator implements ExtendedIterator
     public boolean hasNext()
         {  return false; }
 
+    protected void ensureHasNext()
+        { if (hasNext() == false) throw new NoSuchElementException(); }
+    
     /**
         default next: throw an exception.
     */

@@ -308,32 +308,6 @@ public abstract class BaseInfGraph extends GraphBase implements InfGraph {
     }
     
     /**
-     * Test if the graph contains the given triple.
-     * Overridden in order to implement semantic instead of syntactic
-     * equivalance.
-     */
-    public boolean contains(Triple t) {
-        checkOpen();
-        ClosableIterator i = find(t.getSubject(), t.getPredicate(), t.getObject());
-        boolean contained =  i.hasNext();
-        i.close();
-        return contained;
-    }
-    
-    /**
-     * Test if the graph contains the given triple.
-     * Overridden in order to implement semantic instead of syntactic
-     * equivalance.
-     */
-    public boolean contains(Node s, Node p, Node o) {
-        checkOpen();
-        ClosableIterator i = find(s, p, o);
-        boolean contained =  i.hasNext();
-        i.close();
-        return contained;
-    }
-    
-    /**
      * Switch on/off drivation logging
      */
     public void setDerivationLogging(boolean logOn) {

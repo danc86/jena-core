@@ -390,14 +390,6 @@ public class GraphRDB extends GraphBase implements Graph {
 	}
 
 	/* (non-Javadoc)
-	 * @see com.hp.hpl.jena.graph.Graph#contains(com.hp.hpl.jena.graph.Node, com.hp.hpl.jena.graph.Node, com.hp.hpl.jena.graph.Node)
-	 */
-	public boolean contains(Node s, Node p, Node o) {
-		return contains( Triple.create(s, p, o) );
-	} 
-			
-
-	/* (non-Javadoc)
 	 * @see com.hp.hpl.jena.graph.Graph#find(com.hp.hpl.jena.graph.TripleMatch)
 	 */
 	public ExtendedIterator find(TripleMatch m) {
