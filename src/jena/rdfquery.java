@@ -60,6 +60,8 @@ public class rdfquery
 
     public static void main (String [] argv)
     {
+        System.err.println("Jena2 RDQL") ;
+        
         //Log.getInstance().setConsoleHandler();
         Log.getInstance().setHandler(new PlainLogHandler());
 
