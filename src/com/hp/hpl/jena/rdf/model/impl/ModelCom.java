@@ -1282,6 +1282,13 @@ implements Model, ModelI, PrefixMapping, ModelLock
     public Statement asStatement( Triple t )
         { return StatementImpl.toStatement( t, this ); }
         
+    public Statement [] asStatements( Triple [] triples )
+        {
+        Statement [] result = new Statement [triples.length];
+        for (int i = 0; i < triples.length; i += 1) result[i] = asStatement( triples[i] );
+        return result;    
+        }
+        
 	private Iterator asStatements( final Iterator it ) {
 		return new Iterator() {
 			public boolean hasNext() { return it.hasNext(); }

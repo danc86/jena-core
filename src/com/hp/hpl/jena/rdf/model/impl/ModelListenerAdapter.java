@@ -25,10 +25,10 @@ public class ModelListenerAdapter implements GraphListener
         { this.m = m; this.L = L; }
 
     public void notifyAdd( Triple [] triples )
-        {}
+        { L.addedStatements( m.asStatements( triples ) ); }
         
     public void notifyDelete( Triple [] triples )
-        {}
+        { L.removedStatements( m.asStatements( triples ) ); }
         
     public void notifyAdd( Triple t )
         { L.addedStatement( m.asStatement( t ) ); }

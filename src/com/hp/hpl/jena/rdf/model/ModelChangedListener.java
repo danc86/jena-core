@@ -18,11 +18,15 @@ public interface ModelChangedListener
     */
     void addedStatement( Statement s );
     
+    void addedStatements( Statement [] statements );
+    
     /**
         Method to call when a single statement has been removed from the attached model.
         @param s the statement that has been presented for removal.
     */
     void removedStatement( Statement s );
+    
+    void removedStatements( Statement [] statements );
     }
 
 
