@@ -200,7 +200,7 @@ class Unparser {
 				u.setFragment(null);
 				localName = u.getURIString();
 			} catch (MalformedURIException e) {
-				throw new BadURIException("", e);
+				throw new BadURIException( uri, e);
 			}
 	}
 
