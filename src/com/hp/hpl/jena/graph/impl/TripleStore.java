@@ -6,9 +6,8 @@
 
 package com.hp.hpl.jena.graph.impl;
 
-import com.hp.hpl.jena.graph.Triple;
-import com.hp.hpl.jena.util.iterator.ExtendedIterator;
-import com.hp.hpl.jena.util.iterator.WrappedIterator;
+import com.hp.hpl.jena.graph.*;
+import com.hp.hpl.jena.util.iterator.*;
 
 /**
      TripleStore - interface for bulk storage of triples used in composed graphs.
@@ -29,7 +28,7 @@ public interface TripleStore
     /**
          Remove a triple from this triple store.
     */
-    public abstract void remove( Triple t );
+    public abstract void delete( Triple t );
 
     /**
          Answer the size (number of triples) of this triple store.
@@ -60,7 +59,7 @@ public interface TripleStore
          Answer an ExtendedIterator returning all the triples from this store that
          match the pattern <code>m = (S, P, O)</code>.
     */
-    public abstract ExtendedIterator find( Triple tm );
+    public abstract ExtendedIterator find( TripleMatch tm );
 
     /**
         Clear this store, ie remove all triples from it.

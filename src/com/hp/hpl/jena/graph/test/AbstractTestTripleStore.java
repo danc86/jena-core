@@ -18,9 +18,6 @@ public abstract class AbstractTestTripleStore extends GraphTestBase
     public AbstractTestTripleStore( String name )
         { super( name ); }
     
-    public static TestSuite suite()
-        { return new TestSuite( AbstractTestTripleStore.class ); }
-    
     /**
          Subclasses must over-ride to return a new empty TripleStore. 
     */

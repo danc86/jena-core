@@ -41,7 +41,7 @@ public class GraphMem extends GraphMemBase implements Graph
         { if (!getReifier().handledAdd( t )) store.add( t ); }
 
     public void performDelete( Triple t )
-        { if (!getReifier().handledRemove( t )) store.remove( t ); }
+        { if (!getReifier().handledRemove( t )) store.delete( t ); }
 
 
     public int size()  
