@@ -1809,6 +1809,31 @@ public class OntModelImpl
     }
     
     /**
+     * Reset any internal caches. Some systems, such as the tabled backchainer, 
+     * retain information after each query. A reset will wipe this information preventing
+     * unbounded memory use at the expense of more expensive future queries. A reset
+     * does not cause the raw data to be reconsulted and so is less expensive than a rebind.
+     */
+    public void reset() {
+        if (getGraph() instanceof InfGraph) {
+            ((InfGraph) getGraph()).reset();
+        }
+    }
+    
+    /**
+     * Returns a derivations model. The rule reasoners typically create a 
+     * graph containing those triples added to the base graph due to rule firings.
+     * In some applications it can useful to be able to access those deductions
+     * directly, without seeing the raw data which triggered them. In particular,
+     * this allows the forward rules to be used as if they were rewrite transformation
+     * rules.
+     * @return null always because this functionality is rarely relevant to ontology models
+     */
+    public Model getDeductionsModel() {
+        return null;
+    }
+    
+    /**
      * Test the consistency of the underlying data. This normally tests
      * the validity of the bound instance data against the bound
      * schema data. 

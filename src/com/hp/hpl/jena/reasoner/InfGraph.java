@@ -133,6 +133,17 @@ public interface InfGraph extends Graph {
      */
     public Iterator getDerivation(Triple triple);
     
+    /**
+     * Returns a derivations graph. The rule reasoners typically create a 
+     * graph containing those triples added to the base graph due to rule firings.
+     * In some applications it can useful to be able to access those deductions
+     * directly, without seeing the raw data which triggered them. In particular,
+     * this allows the forward rules to be used as if they were rewrite transformation
+     * rules.
+     * @return the deductions graph, if relevant for this class of inference
+     * engine or null if not.
+     */
+    public Graph getDeductionsGraph(); 
 }
 
 /*

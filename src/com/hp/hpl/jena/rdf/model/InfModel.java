@@ -70,6 +70,14 @@ public interface InfModel extends Model {
     public void prepare();
     
     /**
+     * Reset any internal caches. Some systems, such as the tabled backchainer, 
+     * retain information after each query. A reset will wipe this information preventing
+     * unbounded memory use at the expense of more expensive future queries. A reset
+     * does not cause the raw data to be reconsulted and so is less expensive than a rebind.
+     */
+    public void reset();
+    
+    /**
      * Test the consistency of the underlying data. This normally tests
      * the validity of the bound instance data against the bound
      * schema data. 
@@ -109,8 +117,21 @@ public interface InfModel extends Model {
      * Not all reasoneers will support derivations.
      * @return an iterator over Derivation records or null if there is no derivation information
      * available for this triple.
+     * @see com.hp.hpl.jena.reasoner.Derivation Derviation
      */
     public Iterator getDerivation(Statement statement);    
+    
+    /**
+     * Returns a derivations model. The rule reasoners typically create a 
+     * graph containing those triples added to the base graph due to rule firings.
+     * In some applications it can useful to be able to access those deductions
+     * directly, without seeing the raw data which triggered them. In particular,
+     * this allows the forward rules to be used as if they were rewrite transformation
+     * rules.
+     * @return the deductions model, if relevant for this class of inference
+     * engine or null if not.
+     */
+    public Model getDeductionsModel(); 
 
 }
 
