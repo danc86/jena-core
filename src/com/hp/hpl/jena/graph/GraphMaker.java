@@ -16,11 +16,11 @@ public interface GraphMaker
 {
 
     /**
-        Answer a graph who's name isn't interesting. 
-        TODO resolve the issue of whether it may be some other graph, or a different
-        one each time.
+        Answer the default graph of this ModelMaker. The same graph is returned on
+        each call. It may only be constructed on the first call of getGraph(), or at any
+        previous time.
         
-        @return a new or existing graph.
+        @return the same default graph each time
      */
     public Graph getGraph();
     
