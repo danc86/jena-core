@@ -56,7 +56,7 @@ public class ListNotContains extends BaseBuiltin {
 
 
 /*
-    (c) Copyright Hewlett-Packard Development Company, LP 2003
+    (c) Copyright 2003, 2004 Hewlett-Packard Development Company, LP
     All rights reserved.
 
     Redistribution and use in source and binary forms, with or without
