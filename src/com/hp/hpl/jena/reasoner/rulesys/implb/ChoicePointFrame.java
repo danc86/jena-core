@@ -57,7 +57,7 @@ public class ChoicePointFrame extends FrameObject {
      * @param interpreter the LPInterpreter whose state is to be preserved
      * @param predicateClauses the list of predicates for this choice point
      */
-    public void init(LPInterpreter interpreter, List predicateClauses) {
+    public void init(LPInterpreter interpreter, Collection predicateClauses) {
         envFrame = interpreter.envFrame;
 //        envFrame.incRefCount();
         trailIndex = interpreter.trail.size();

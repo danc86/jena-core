@@ -334,8 +334,8 @@ public class DebugOWL {
 //            new DebugOWL(OWLExpt).runVolz();
             
             // Test volz examples on RDFS config
-            System.out.println("Volz tests on RDFSRule");
-            new DebugOWL(RDFSExpt).runVolz();
+//            System.out.println("Volz tests on RDFSRule");
+//            new DebugOWL(RDFSExpt).runVolz();
             System.out.println("Volz tests on expt, not tgc just type rules");
             new DebugOWL(EXPT).runVolz();
             System.out.println("Volz tests on lp variant of expt, not tgc just type rules");

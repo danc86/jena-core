@@ -73,7 +73,7 @@ public class LPInterpreter {
      */
     public LPInterpreter(LPBRuleEngine engine, TriplePattern goal) {
         this.engine = engine;
-        List clauses = engine.getRuleStore().codeFor(goal);
+        Collection clauses = engine.getRuleStore().codeFor(goal);
         
         // Construct dummy top environemnt which is a call into the clauses for this goal
         envFrame = LPEnvironmentFactory.createEnvironment();
@@ -322,9 +322,9 @@ public class LPInterpreter {
                             break;
                         
                         case RuleClauseCode.LAST_CALL_PREDICATE:
-                            // TODO: improved implementation of last call case!
+                            // TODO: improved implementation of last call case
                         case RuleClauseCode.CALL_PREDICATE:
-                            List clauses = (List)args[ac++];
+                            Collection clauses = (List)args[ac++];
                             // Create the new choice points
                             ChoicePointFrame newChoiceFrame = ChoicePointFactory.create();
                             newChoiceFrame.init(this, clauses);
@@ -340,7 +340,29 @@ public class LPInterpreter {
 //                            logger.debug("CALL");
                             continue main;
                                             
-                        case RuleClauseCode.CALL_TRIPLE_MATCH:
+                        case RuleClauseCode.CALL_PREDICATE_INDEX:
+                            // This code path is experimental, don't yet know if it has enough 
+                            // performance benefit to justify the cost of maintaining it.
+                            clauses = (List)args[ac++];
+                            // Check if we can futher index the clauses
+                            if (!argVars[2].isVariable()) {
+                                clauses = engine.getRuleStore().codeFor(
+                                    new TriplePattern(argVars[0], argVars[1], argVars[2]));
+                            }
+                            // Create the new choice points
+                            newChoiceFrame = ChoicePointFactory.create();
+                            newChoiceFrame.init(this, clauses);
+                            newChoiceFrame.linkTo(cpFrame);
+                            tmFrame = TripleMatchFactory.create();
+                            tmFrame.init(this);
+                            tmFrame.linkTo(newChoiceFrame);
+                            tmFrame.setContinuation(pc, ac);
+                            newChoiceFrame.setContinuation(pc, ac);
+                            cpFrame = tmFrame;
+//                            logger.debug("CALL(INDEXED)");
+                            continue main;
+                                            
+                         case RuleClauseCode.CALL_TRIPLE_MATCH:
                             // Stash the current state
                             tmFrame = TripleMatchFactory.create();
                             tmFrame.init(this);
