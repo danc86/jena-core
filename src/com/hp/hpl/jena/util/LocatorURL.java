@@ -26,9 +26,14 @@ public class LocatorURL implements Locator
 
     public InputStream open(String filenameOrURI)
     {
-        if ( ! hasScheme(filenameOrURI, "http:") &&  
-             ! hasScheme(filenameOrURI, "file:") ) 
+        if ( ! hasScheme(filenameOrURI, "http:") 
+            // && ! hasScheme(filenameOrURI, "file:") // Leave a filelocator to hanlde this. 
+            ) 
+        {
+            if ( FileManager.logLookupFailures && log.isTraceEnabled() )
+                log.trace("Not an http URL: "+filenameOrURI) ; 
             return null;
+        }
         
         try
         {
@@ -37,7 +42,7 @@ public class LocatorURL implements Locator
             if ( in == null )
             {
                 if ( FileManager.logLookupFailures && log.isTraceEnabled() )
-                    log.trace("LocatorURL: not found: "+filenameOrURI) ; 
+                    log.trace("Not found: "+filenameOrURI) ; 
                 return null ;
             }
             

@@ -82,16 +82,14 @@ public class LocatorFile implements Locator
         return f.exists() ;
     }
     
-    
-    
     public InputStream open(String filenameOrURI)
     {
         File f = toFile(filenameOrURI) ;
 
         if ( f == null || !f.exists() )
         {
-            if ( FileManager.logLookupFailures )
-                log.debug("File not found: "+filenameOrURI) ; 
+            if ( FileManager.logLookupFailures && log.isTraceEnabled())
+                log.trace("File not found: "+filenameOrURI) ; 
             return null ;
         }
         
