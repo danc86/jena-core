@@ -293,13 +293,11 @@ public class GraphRDB extends GraphBase implements Graph {
 		return result;
 	}
 
-	/* TODO - uncomment this to activate after implementation complete
-	 * (non-Javadoc)
+	/* (non-Javadoc)
 	 * @see com.hp.hpl.jena.graph.Graph#getBulkUpdateHandler()
-	 *
+	 */
 	 public BulkUpdateHandler getBulkUpdateHandler()
-		{ return new SimpleBulkUpdateHandler( this ); }
-	 *******/
+		{ return new DBBulkUpdateHandler( this ); }
 
 	/* TODO - unoomment this to activate after implementation complete
 	 * (non-Javadoc)
