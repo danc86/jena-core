@@ -42,9 +42,6 @@ public class TestModelSpec extends ModelTestBase
 //        s.addTest( new TestModelSpec( "testDefaultMaker" ) );
 //        return s; }
         
-    protected static Resource resource()
-        { return ResourceFactory.createResource(); }
-        
     public void testNotFindMaker()
         {
         Resource type = resource( "jms:xyz" );

@@ -57,7 +57,10 @@ public class ModelTestBase extends GraphTestBase
         Node n = Node.create( m, s );    
         return (RDFNode) ((ModelCom) m).getNodeAs( n, (n.isLiteral() ? Literal.class : Resource.class) );
         }
-        
+
+     protected static Resource resource()
+         { return ResourceFactory.createResource(); }
+         
     public static Resource resource( String s )
         { return resource( aModel, s ); }
     

@@ -519,7 +519,7 @@ public class OntModelSpec extends ModelSpecImpl implements ModelSpec {
     public static ReasonerFactory getReasonerFactory( Model description, Resource root ) {
         Statement factStatement = description.getProperty( root, JMS.reasonsWith );
         if (factStatement == null) return null;
-        return ModelSpecImpl.getReasonerFactory( factStatement.getResource(), description );
+        return InfModelSpec.getReasonerFactory( factStatement.getResource(), description );
     }
 
     /**
