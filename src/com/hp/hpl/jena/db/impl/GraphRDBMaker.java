@@ -102,7 +102,7 @@ public class GraphRDBMaker extends BaseGraphMaker
         return consGraph( name, fresh );
         }
         
-    private Graph consGraph( String name, boolean fresh )
+    protected Graph consGraph( String name, boolean fresh )
         {        
         Graph p = c.getDefaultModelProperties().getGraph();
         return new GraphRDB( c, name, (fresh ? p : null), reificationStyle, fresh );
