@@ -224,6 +224,35 @@ public class TestDAMLProperty
                     assertNotNull( p );
                 }
             },
+            new OntTestCase( "unambiguous property" ) {
+                public void doTest( DAMLModel m ) throws Exception {
+                    DAMLObjectProperty p = m.createDAMLObjectProperty( NS + "p" );
+                    assertFalse( "p not unambiguous", p.isUnambiguous() );
+                    p.setIsUnambiguous( true );
+                    assertTrue( "p not unambiguous", p.isUnambiguous() );
+                    p.setIsUnambiguous( false );
+                    assertFalse( "p not unambiguous", p.isUnambiguous() );
+                }
+            },
+            new OntTestCase( "Transitive property" ) {
+                public void doTest( DAMLModel m ) throws Exception {
+                    DAMLObjectProperty p = m.createDAMLObjectProperty( NS + "p" );
+                    assertFalse( "p not Transitive", p.isTransitive() );
+                    p.setIsTransitive( true );
+                    assertTrue( "p not Transitive", p.isTransitive() );
+                    p.setIsTransitive( false );
+                    assertFalse( "p not Transitive", p.isTransitive() );
+                }
+            },
+            new OntTestCase( "DAMLObjectProperty.prop_inverseOf" ) {
+                public void doTest( DAMLModel m ) throws Exception {
+                    DAMLObjectProperty p = m.createDAMLObjectProperty( NS + "p" );
+                    DAMLObjectProperty q = m.createDAMLObjectProperty( NS + "q" );
+                   
+                    p.prop_inverseOf().add( q );
+                    assertEquals( "inverse", q, p.prop_inverseOf().get() );
+                }
+            },
         };
     }
     
