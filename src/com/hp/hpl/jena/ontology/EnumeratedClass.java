@@ -57,7 +57,7 @@ public interface EnumeratedClass
     /**
      * <p>Assert that this class is exactly the enumeration of the given individuals. Any existing 
      * statements for <code>oneOf</code> will be removed.</p>
-     * @param enum A list of individuals that defines the class extension for this class
+     * @param en A list of individuals that defines the class extension for this class
      * @exception OntProfileException If the {@link Profile#ONE_OF()} property is not supported in the current language profile.   
      */ 
     public void setOneOf( RDFList en );
