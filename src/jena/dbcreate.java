@@ -28,8 +28,8 @@ public class dbcreate extends DBcmd
 {
     public static final String[] usage = new String[]
     { 
-        "dbcreate [--spec spec] | [db description] [--model name] file" ,
-        "  where db description is" ,
+        "dbcreate [--spec spec] | [db_description] [--model name]" ,
+        "  where db_description is" ,
         "    --db JDBC URL --dbType type" ,
         "    --dbUser user --dbPassword password" 
      } ;

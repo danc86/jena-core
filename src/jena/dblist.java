@@ -27,12 +27,20 @@ import com.hp.hpl.jena.util.iterator.*;
  
 public class dblist extends DBcmd
 {
-    static final String[] usageMsg = {"dblist [db spec]"} ;
+    public static final String[] usage = new String[]
+                                                    { 
+            "dblist [--spec spec] | [db_description] [--model name]" ,
+            "  where db_description is" ,
+            "    --db JDBC URL --dbType type" ,
+            "    --dbUser user --dbPassword password" 
+    } ;
+    
+    
     
     public static void main(String[] args)
     {
         dblist db = new dblist();
-        db.setUsage(usageMsg) ;
+        db.setUsage(usage) ;
         db.init(args);
         db.exec();
     }

@@ -27,8 +27,8 @@ public class dbload extends DBcmd
 {
     public static final String[] usage = new String[]
     { 
-        "dbload [--spec spec] | [db description] [--model name] file" ,
-        "  where db description is" ,
+        "dbload [--spec spec] | [db_description] [--model name] file" ,
+        "  where db_description is" ,
         "    --db JDBC URL --dbType type" ,
         "    --dbUser user --dbPassword password" 
      } ;
@@ -57,6 +57,8 @@ public class dbload extends DBcmd
 
     boolean exec1(String arg)
     {
+        if ( verbose )
+            System.out.println("Start load: "+arg) ;
         // Crude but convenient
         if ( arg.indexOf(':') == -1 )
             arg = "file:"+arg ;
