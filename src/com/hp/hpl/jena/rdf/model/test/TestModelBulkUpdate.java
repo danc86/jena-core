@@ -71,6 +71,30 @@ public class TestModelBulkUpdate extends ModelTestBase
         testOmits( m, sList );
         }
         
+    public void testBulkByModel()
+        { testBulkByModel( ModelFactory.createDefaultModel() ); }
+        
+    public void testBulkByModel( Model m )
+        {
+        assertEquals( "precondition: model must be empty", 0, m.size() );
+        Model A = modelWithStatements( "clouds offer rain; trees offer shelter" );
+        Model B = modelWithStatements( "x R y; y Q z; z P x" );
+        m.add( A );
+        assertIsoModels( "", A, m );
+        m.add( B );
+        m.remove( A );
+        assertIsoModels( "", B, m );
+        m.remove( B );
+        assertEquals( "", 0, m.size() );
+        }
+        
+    public void testBulkRemoveSelf()
+        {
+        Model m = modelWithStatements( "they sing together; he sings alone" );
+        m.remove( m );
+        assertEquals( "", 0, m.size() );
+        }
+        
     }
 
 

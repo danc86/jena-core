@@ -77,6 +77,20 @@ public class ModelTestBase extends JenaTestBase
     public static Model modelWithStatements( String facts )
         { return modelAdd( ModelFactory.createDefaultModel(), facts ); }
          
+     /**
+        test that two modes are isomorphic and fail if they are not.
+        
+        @param title a String appearing at the beginning of the failure message
+        @param wanted the model value that is expected
+        @param got the model value to check
+        @exception if the models are not isomorphic
+     */    
+    public void assertIsoModels( String title, Model wanted, Model got )
+        {
+        if (wanted.isIsomorphicWith( got ) == false)
+            fail( title + ": expected " + wanted + " but had " + got );
+        }
+        
     }
 
 
