@@ -7,8 +7,6 @@ package com.hp.hpl.jena.n3;
 import java.io.* ;
 import antlr.* ;
 import antlr.collections.*;
-import java.io.* ;
-
 
 /** Miscellaneous things in supprt of Antlr-derived parsers
  * 
