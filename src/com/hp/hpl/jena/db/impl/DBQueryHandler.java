@@ -84,7 +84,7 @@ public class DBQueryHandler extends SimpleQueryHandler {
 		DBPattern minSrc, unstagedSrc = null;
 		while (patternsToDo > 0) {
 			// rank the patterns by cost
-			minCost = DBPattern.costMax + 1;
+			minCost = DBPattern.costMax;
 			minSrc = null;
 			for (i = 0; i < ptn.length; i++) {
 				src = source[i];
