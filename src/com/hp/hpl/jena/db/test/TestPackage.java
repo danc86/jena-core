@@ -60,6 +60,7 @@ public class TestPackage extends TestSuite
 		addTest( "TestCompatability", TestCompatability.suite() );
 		addTest( "TestCompareToMem", TestCompareToMem.suite() );
 		addTest( "TestGraphRDB", TestGraphRDB.suite());
+        addTest( "TestQueryRDB", TestQueryRDB.suite() );
 		addTest( "TestGraphRDBMaker", TestGraphRDB.suite());
 		addTest( "TestMultiModel", TestMultiModel.suite());
 		addTest( "TestNsPrefix", TestNsPrefix.suite());
