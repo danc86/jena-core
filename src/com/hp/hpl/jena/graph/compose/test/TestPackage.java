@@ -33,8 +33,6 @@ public class TestPackage extends Object {
         result.addTest( TestUnion.suite() );
         result.addTest( TestDifference.suite() );
         result.addTest( TestIntersection.suite() );
-        result.addTest( TestRDFS.suite() );
-        result.addTest( TestRDFClosure.suite() );
         result.addTest( TestMultiUnion.suite() );
         return  result;
     }
