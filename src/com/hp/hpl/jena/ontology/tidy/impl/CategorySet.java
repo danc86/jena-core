@@ -50,12 +50,12 @@ public class CategorySet implements Comparable, Serializable, Constants {
 	 * @return The ids of all CategorySet which may be the subject
 	 * or object of disjointWith. 
 	 */
-	static final Q disjointWithSets= new Q() {
-		boolean test(int all[]){
-			return all[0] != Grammar.orphan &&
-			  intersect(Grammar.disjointWithX,all);
-		}
-	};
+//	static final Q disjointWithSets= new Q() {
+//		boolean test(int all[]){
+//			return all[0] != Grammar.orphan &&
+//			  intersect(Grammar.disjointWithX,all);
+//		}
+//	};
 
     static final private int orphanTypes[] = new int[]{
     	Grammar.owlOntologyProperty,
@@ -85,35 +85,35 @@ public class CategorySet implements Comparable, Serializable, Constants {
 	} 
 };	
 
-   static final Q descSets = new Q() {
-	boolean test(int all[]){
-		return ( intersect(Grammar.restrictionsX,all)
-		  || intersect(Grammar.descriptionsX,all) );
-	} 
-};
+//   static final Q descSets = new Q() {
+//	boolean test(int all[]){
+//		return ( intersect(Grammar.restrictionsX,all)
+//		  || intersect(Grammar.descriptionsX,all) );
+//	} 
+//};
 	/**
 	 * The ids of all orphaned unnamed individuals, which are
 	 * not known not to be cyclic.
 	 * In fact, these are not cyclic.
 	 * @return
 	 */
-	static final Q cyclicOrphanSets= new Q() {
-	boolean test(int all[]){
-		return all[0]==Grammar.orphan
-		  && member(Grammar.unnamedIndividual,all)
-		  && intersect(cycles,all);
-	} 
-};
+//	static final Q cyclicOrphanSets= new Q() {
+//	boolean test(int all[]){
+//		return all[0]==Grammar.orphan
+//		  && member(Grammar.unnamedIndividual,all)
+//		  && intersect(cycles,all);
+//	} 
+//};
 
-  static final Q userTypedLiterals = new Q() {
-  	int[] asInt() {
-  		return new int[]{Grammar.userTypedLiteral
-  		};
-  	}
-  	boolean test(int all[]) {
-  		return false;
-  	}
-  };
+//  static final Q userTypedLiterals = new Q() {
+//  	int[] asInt() {
+//  		return new int[]{Grammar.userTypedLiteral
+//  		};
+//  	}
+//  	boolean test(int all[]) {
+//  		return false;
+//  	}
+//  };
 
 	/**
 	 * @return the ids of all categories for which the node must be structured
@@ -141,12 +141,12 @@ public class CategorySet implements Comparable, Serializable, Constants {
    	  untypedSets,
    	  structuredOne,
    	  structuredTwo,
-   	  disjointWithSets
+   //	  disjointWithSets
    };
    static private Q orphaned[] = new Q[]{
    	orphanSets,
    	dlOrphanSets,
-   	cyclicOrphanSets
+   //	cyclicOrphanSets
    };
 	
 	
