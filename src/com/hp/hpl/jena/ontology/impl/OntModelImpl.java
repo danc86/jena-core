@@ -1400,6 +1400,24 @@ public class OntModelImpl
         return mainQuery.mapWith( new SubjectNodeAs( asKey ) );
     }
     
+    // output operations - delegate to base model
+    
+    public Model write( Writer writer )                             { return getBaseModel().write( writer ); }
+    public Model write( Writer writer, String lang )                { return getBaseModel().write( writer, lang ); }
+    public Model write( Writer writer, String lang, String base )   { return getBaseModel().write( writer, lang, base ); }
+    public Model write( OutputStream out )                          { return getBaseModel().write( out ); }
+    public Model write( OutputStream out, String lang )             { return getBaseModel().write( out, lang ); }
+    public Model write( OutputStream out, String lang, String base) { return getBaseModel().write( out, lang, base ); }
+
+    public Model writeAll( Writer writer, String lang, String base ) {
+        return super.write( writer, lang, base );
+    }
+    
+    public Model writeAll( OutputStream out, String lang, String base ) {
+        return super.write( out, lang, base );
+    }
+    
+    
     
     // Internal implementation methods
     //////////////////////////////////

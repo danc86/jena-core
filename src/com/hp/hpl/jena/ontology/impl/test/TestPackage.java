@@ -34,6 +34,7 @@ public class TestPackage extends TestSuite {
         addTest( "TestIndividual", TestIndividual.suite() );
         addTest( "TestAllDifferent", TestAllDifferent.suite() );
         addTest( new TestSuite( TestOntReasoning.class  ) );
+        addTest( new TestSuite( TestOntModel.class ) );
     }
 
     private void addTest(String name, TestSuite tc) {
