@@ -231,6 +231,29 @@ public class TestBugs extends TestCase {
         assertTrue("hasValue equiv deduction", test.contains(A, OWL.equivalentClass, B));
     }
 
+    /**
+     * Test reported problem with OWL property axioms.
+     */
+    public void testOWLPropertyAxioms() {
+        Model data = ModelFactory.createDefaultModel();
+        Resource fp = data.createResource("urn:x-hp:eg/fp");
+        Resource ifp = data.createResource("urn:x-hp:eg/ifp");
+        Resource tp = data.createResource("urn:x-hp:eg/tp");
+        Resource sp = data.createResource("urn:x-hp:eg/sp");
+        data.add(fp, RDF.type, OWL.FunctionalProperty);
+        data.add(ifp, RDF.type, OWL.InverseFunctionalProperty);
+        data.add(tp, RDF.type, OWL.TransitiveProperty);
+        data.add(sp, RDF.type, OWL.SymmetricProperty);
+        InfModel infmodel = ModelFactory.createInfModel(ReasonerRegistry.getOWLReasoner(), data);
+        assertTrue("property class axioms", infmodel.contains(fp, RDF.type, RDF.Property));
+        assertTrue("property class axioms", infmodel.contains(ifp, RDF.type, RDF.Property));
+        assertTrue("property class axioms", infmodel.contains(tp, RDF.type, RDF.Property));
+        assertTrue("property class axioms", infmodel.contains(sp, RDF.type, RDF.Property));
+        assertTrue("property class axioms", infmodel.contains(ifp, RDF.type, OWL.ObjectProperty));
+        assertTrue("property class axioms", infmodel.contains(tp, RDF.type,  OWL.ObjectProperty));
+        assertTrue("property class axioms", infmodel.contains(sp, RDF.type,  OWL.ObjectProperty));
+    }
+    
     // debug assistant
     private void tempList(Model m, Resource s, Property p, RDFNode o) {
         System.out.println("Listing of " + PrintUtil.print(s) + " " + PrintUtil.print(p) + " " + PrintUtil.print(o));
