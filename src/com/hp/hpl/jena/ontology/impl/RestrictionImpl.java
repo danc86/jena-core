@@ -81,7 +81,7 @@ public class RestrictionImpl
 
     /**
      * <p>
-     * Construct an ontology class node represented by the given node in the given graph.
+     * Construct a restriction node represented by the given node in the given graph.
      * </p>
      * 
      * @param n The node that represents the resource
