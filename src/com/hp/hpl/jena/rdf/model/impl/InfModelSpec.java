@@ -42,7 +42,6 @@ public class InfModelSpec extends ModelSpecImpl
         Statement xx = description.listStatements( root, JMS.reasonsWith, (RDFNode) null ).nextStatement();
         reasonerRoot = st.getSubject();
         Resource yy = xx.getResource();
-        Assert.assertEquals( reasonerRoot, yy );
         reasonerResource = st.getResource();
         factory = getReasonerFactory( st.getSubject(), description );
         }   
