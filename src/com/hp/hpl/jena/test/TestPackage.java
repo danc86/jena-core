@@ -35,6 +35,7 @@ public class TestPackage extends TestSuite {
         addTest( com.hp.hpl.jena.util.iterator.test.TestPackage.suite() );
         addTest("Mega", com.hp.hpl.jena.regression.MegaTestSuite.suite());
         addTest( com.hp.hpl.jena.rdf.arp.test.TestPackage.suite());
+        addTest("Reasoners", com.hp.hpl.jena.reasoner.test.TestPackage.suite());
     }
 
     private void addTest(String name, TestSuite tc) {
