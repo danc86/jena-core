@@ -130,7 +130,7 @@ public abstract class AbstractTestQuery extends GraphTestBase
         if (bindings.hasNext())
             {
             Domain it = (Domain) bindings.next();
-            if (it.size() == 1)
+            if (it.size() > 0)
                 {
                 if (it.get(0).equals( node("bill") ))
                     {
@@ -297,7 +297,7 @@ public abstract class AbstractTestQuery extends GraphTestBase
         assertTrue( "testTwoPatterns: one binding", bindings.size() == 1 );
         Domain  d = (Domain) bindings.get( 0 );
         // System.out.println( "* width = " + d.width() );
-        assertEquals( "testTwoPatterns: width 2", d.size(), 2 );
+        assertTrue( "testTwoPatterns: width 2", d.size() >= 2 );
         assertEquals( "testTwoPatterns: X = chris", d.get(0), node("chris") );
         assertEquals( "testTwoPatterns: Y = SF", d.get(1), node("SF") );
         }
@@ -312,7 +312,7 @@ public abstract class AbstractTestQuery extends GraphTestBase
         assertEquals( "testTwoPatterns: one binding", 1, bindings.size() );
         Domain  d = (Domain) bindings.get( 0 );
         // System.out.println( "* width = " + d.width() );
-        assertEquals( "testTwoPatterns: width 2", d.size(), 2 );
+        assertTrue( "testTwoPatterns: width 2", d.size() >= 2 );
         assertEquals( "testTwoPatterns: X = chris", d.get(0), node("chris") );
         assertEquals( "testTwoPatterns: Y = SF", d.get(1), node("SF") );        
         }
@@ -327,7 +327,7 @@ public abstract class AbstractTestQuery extends GraphTestBase
         List bindings = iteratorToList( Q.executeBindings( args, new Node [] {X, Z} ) );
         assertEquals( "testTwoGraphs: one binding", bindings.size(), 1 );
         Domain  d = (Domain) bindings.get( 0 );
-        assertEquals( "testTwoGraphs: width 2", d.size(), 2 );
+        assertTrue( "testTwoGraphs: width 2", d.size() >= 2 );
         assertEquals( "testTwoGraphs: X = chris", d.get(0), node("chris") );
         assertEquals( "testTwoGraphs: Y = SF", d.get(1), node("SF") );     
         }

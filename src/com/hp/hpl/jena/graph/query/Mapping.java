@@ -11,7 +11,8 @@ import java.util.*;
 
 /**
     this class is used to record the mapping from [variable] Node's to
-    the indexes they are bound to in a Query.
+    the indexes they are bound to in a Query. Nodes bound to negative values
+    are predeclared; the negative value is converted on index allocation.
 */
 
 public class Mapping 
