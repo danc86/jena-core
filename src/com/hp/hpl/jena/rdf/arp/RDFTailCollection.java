@@ -35,11 +35,15 @@ public class RDFTailCollection extends RDFCollection {
 	 */
 	CollectionAction next(AResourceInternal head) {
 		ARPResource cell = new ARPResource(X.arp);
-		last.setPredicateObject(rest, cell, null);
-		cell.setPredicateObject(first, head, null);
-		X.arp.endLocalScope(head);
-		endLastScope();
-		last = cell;
+		try {
+			last.setPredicateObject(rest, cell, null);
+			cell.setPredicateObject(first, head, null);
+		}
+		finally {
+			X.arp.endLocalScope(head);
+			endLastScope();
+			last = cell;
+		}
 		return this;
 	}
 }

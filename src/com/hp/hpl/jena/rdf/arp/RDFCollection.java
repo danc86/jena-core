@@ -55,12 +55,16 @@ class RDFCollection extends CollectionAction {
 	 */
 	CollectionAction next(AResourceInternal head) {
 		ARPResource cell= new ARPResource(X.arp); 
-		cell.setPredicateObject( first,head, null );
-		X.arp.endLocalScope(head);
+		try {
+			cell.setPredicateObject( first,head, null );
+		}
+		finally {
+			X.arp.endLocalScope(head); 
+			rslt[0] = cell;
+		}
 		//cell.setPredicateObject( rest, tail, null );
 		//cell.setType(DAML.List);
-												 
-		rslt[0] = cell;
+												
 		return new RDFTailCollection(X,cell);
 		
 	}

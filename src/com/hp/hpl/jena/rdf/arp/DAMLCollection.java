@@ -61,12 +61,16 @@ class DAMLCollection extends CollectionAction {
 	 */
 	CollectionAction next(AResourceInternal head) {
 		ARPResource cell= new ARPResource(X.arp); 
+		try {
 		cell.setPredicateObject( first,head, null );
-		X.arp.endLocalScope(head);
 		
 		cell.setType(List);
+		}
+		finally {
+		X.arp.endLocalScope(head);
 												 
 		rslt[0] = cell;
+		}
 		return new DAMLTailCollection(X,cell);
 		
 	}

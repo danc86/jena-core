@@ -910,7 +910,10 @@ class ARPFilter
 	 * @param v
 	 */
 	public void endLocalScope(Object v) {
-		if (scopeHandler != nullScopeHandler && v instanceof ARPResource) {
+		
+		if (scopeHandler != nullScopeHandler 
+		  && v != null
+		  && v instanceof ARPResource) {
 			ARPResource bn = (ARPResource) v;
 			if (!bn.isAnonymous())
 				return;
@@ -923,6 +926,9 @@ class ARPFilter
 					nodeIdUserData.put(bnodeID, null);
 			} else {
 				scopeHandler.endBNodeScope(bn);
+				// TODO this should not be necessary
+				bn.unsetHasBeenUsed();
+				
 			}
 		}
 	}

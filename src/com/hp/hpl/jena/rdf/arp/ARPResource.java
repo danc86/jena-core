@@ -305,7 +305,10 @@ class ARPResource implements  AResourceInternal {
 	 */
 	public void setHasBeenUsed() {
 		used = true;
-	}
+	} 
+	void unsetHasBeenUsed() {
+	used = false;
+}
 
 
 	/* (non-Javadoc)
