@@ -38,6 +38,7 @@ public class TestPackage extends TestSuite
 		addTest( "TestGraphRDB", TestGraphRDB.suite());
 		addTest( "TestNsPrefix", TestNsPrefix.suite());
 		addTest( "TestPrefixMapping", TestPrefixMapping.suite());
+		addTest( "TestTransactions", TestBasicOperations.suite() );
 		// TODO remove the dmoz test for now - it fails because of invalid
 		// characters in the Resource URIs in the DMOZ file.
 		// addTest( "TestCompareDMOZ", TestCompareDMOZ.suite() );
