@@ -48,6 +48,8 @@ abstract class DBcmd
         drivers.put("mysql",       "com.mysql.jdbc.Driver");
         drivers.put("postgresql",  "org.postgresql.Driver");
         drivers.put("postgres",    "org.postgresql.Driver");
+        drivers.put("postgresql",  "org.postgresql.Driver");
+        drivers.put("PostgreSQL",  "org.postgresql.Driver") ;  // Thanks to Joshua Moore [j.moore@dkfz-heidelberg.de]
     }
 
     boolean takesPositionalArgs = false ;
