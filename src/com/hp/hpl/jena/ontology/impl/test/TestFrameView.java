@@ -89,7 +89,9 @@ public class TestFrameView
 
     public void setUp() {
         mNoInf = ModelFactory.createOntologyModel( OntModelSpec.OWL_MEM );
+        mNoInf.read( "file:testing/ontology/owl/list-syntax/test-ldp.rdf" );
         mInf = ModelFactory.createOntologyModel( OntModelSpec.OWL_MEM_RULE_INF );
+        mInf.read( "file:testing/ontology/owl/list-syntax/test-ldp.rdf" );
 
         infA = mInf.getOntClass( NS + "A" );
         infB = mInf.getOntClass( NS + "B" );
@@ -114,14 +116,24 @@ public class TestFrameView
         infQb = mInf.getObjectProperty( NS + "qB" );
     }
 
-    public void testLDP_A_noinf_nodirect() {
+    public void testLDP_noinfA_nodirect() {
         TestUtil.assertIteratorValues( this, noinfA.listDeclaredProperties( false ),
-                                       new Object[] {noinfPa} );
+                                       new Object[] {noinfPa, noinfQa} );
     }
 
-    public void testLDP_A_noinf_direct() {
+    public void testLDP_noinfA_direct() {
         TestUtil.assertIteratorValues( this, noinfA.listDeclaredProperties( true ),
-                                       new Object[] {noinfPa} );
+                                       new Object[] {noinfPa, noinfQa} );
+    }
+
+    public void testLDP_infA_nodirect() {
+        TestUtil.assertIteratorValues( this, infA.listDeclaredProperties( false ),
+                                       new Object[] {infPa, infQa, infQb} );
+    }
+
+    public void testLDP_infA_direct() {
+        TestUtil.assertIteratorValues( this, infA.listDeclaredProperties( true ),
+                                       new Object[] {infPa, infQa, infQb} );
     }
 
     // Internal implementation methods

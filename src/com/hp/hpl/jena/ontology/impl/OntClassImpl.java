@@ -549,27 +549,64 @@ public class OntClassImpl
     // other utility methods
 
     /**
-     * <p>Answer an iteration of the properties that may be used for
-     * instances of this class: i&#046;e&#046; the properties that have this class,
-     * or one of its super-classes, as domain.<p>
-     *
-     * @return An iteration of the properties that have this class in the domain
+     * <p>Answer an iteration of the properties associated with a frame-like
+     * view of this class. Note that many cases of determining whether a
+     * property is associated with a class depends on RDFS or OWL reasoning.
+     * This method may therefore return complete results only in models that
+     * have an attached reasoner.
+     * See the
+     * <a href="../../../../../../how-to/rdf-frames.html">RDF frames how-to</a>
+     * for full details.<p>
+     * @return An iteration of the properties that are associated with this class
+     * by their domain.
      */
     public ExtendedIterator listDeclaredProperties() {
-        return listDeclaredProperties( true );
+        return listDeclaredProperties( false );
     }
 
 
     /**
-     * <p>Answer an iteration of the properties that may be used for
-     * instances of this class: i&#046;e&#046; the properties that have this class,
-     * or optionally one of its super-classes, as domain.</p>
-     *
-     * @param all If true, use all available information from the class hierarchy;
-     * if false, only use properties defined for this class alone.
-     * @return An iteration of the properties that have this class as domain
+     * <p>Answer an iteration of the properties associated with a frame-like
+     * view of this class. Note that many cases of determining whether a
+     * property is associated with a class depends on RDFS or OWL reasoning.
+     * This method may therefore return complete results only in models that
+     * have an attached reasoner. See the
+     * <a href="../../../../../../how-to/rdf-frames.html">RDF frames how-to</a>
+     * for full details.<p>
+     * @param direct If true, restrict the properties returned to those directly
+     * associated with this class.
+     * @return An iteration of the properties that are associated with this class
+     * by their domain.
      */
-    public ExtendedIterator listDeclaredProperties( boolean all ) {
+    public ExtendedIterator listDeclaredProperties( boolean direct ) {
+        // first collect the candidate properties
+        OntModel mOnt = (OntModel) getModel();
+        List cands = new ArrayList();
+
+        // if the attached model does inference, it will potentially find more of these
+        // than a non-inference model
+        for (StmtIterator i = mOnt.listStatements( null, getProfile().DOMAIN(), this ); i.hasNext(); ) {
+            cands.add( i.nextStatement().getSubject().as( Property.class ) );
+        }
+
+        // now we iterate over the candidates and check that they match all domain constraints
+        for (int j = cands.size() -1; j >= 0; j--) {
+            Property cand = (Property) cands.get( j );
+            if (!testDomain( cand, direct )) {
+                cands.remove( j );
+            }
+        }
+
+        // if we are restricting to the direct cases, we remove non-direct members from
+        // the property hierarchy
+        if (direct) {
+            // TODO
+        }
+        // return the results, using the ont property facet
+        return WrappedIterator.create( cands.iterator() )
+                              .mapWith( new AsMapper( OntProperty.class ) );
+
+        /*
         // decide which model to use, based on whether we want entailments
         // TODO this is a hack to get around a jena-dev bug report - code to be replaced
         // during the forthcoming re-write of ldp
@@ -645,6 +682,7 @@ public class OntClassImpl
 
         // map each answer value to the appropriate ehnanced node
         return WrappedIterator.create( props.iterator() ).mapWith( new AsMapper( OntProperty.class ) );
+        */
     }
 
 
@@ -876,6 +914,30 @@ public class OntClassImpl
         return false;
     }
 
+
+    /**
+     * <p>Answer true if this class lies with the domain of p<p>
+     * @param p
+     * @param direct
+     * @return
+     */
+    protected boolean testDomain( Property p, boolean direct ) {
+        for (StmtIterator i = getModel().listStatements( p, getProfile().DOMAIN(), (RDFNode) null ); i.hasNext();  ) {
+            Resource domain = i.nextStatement().getResource();
+            
+            // there are some well-known values we ignore
+            if (domain.equals( OWL.Thing ) || domain.equals( RDFS.Resource )) {
+                continue;
+            }
+            
+            if (!(domain.equals( this ) ||
+                 (!direct && hasSuperClass( domain )))) {
+                // there is a class in the domain of p that is not a super-class of this class
+                return false;
+            }
+        }
+        return true;
+    }
 
 
     //==============================================================================
