@@ -75,6 +75,7 @@ public class ARP implements ARPErrorNumbers {
 
     static private class Fake extends EncodingMap {
         static {
+            EncodingMap.fJava2IANAMap.put("ISO8859_15_FDIS","ISO-8859-15");
             Iterator it = EncodingMap.fJava2IANAMap.entrySet().iterator();
             while (it.hasNext()) {
                 Map.Entry me = (Map.Entry) it.next();
