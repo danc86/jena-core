@@ -104,6 +104,8 @@ public class OWLLiteProfile
     public Property SUB_PROPERTY_OF() {             return RDFS.subPropertyOf; }
     public Property UNION_OF() {                    return null; }
     public Property VERSION_INFO() {                return OWL.versionInfo; }
+    public Property DOMAIN() {                      return RDFS.domain; }
+    public Property RANGE() {                       return RDFS.range; }
 
     
     

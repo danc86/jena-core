@@ -500,6 +500,26 @@ public interface Profile
     public Property SUB_PROPERTY_OF();
     
     
+    /**
+     * <p>
+     * Answer the predicate that denotes the domain of a property.
+     * </p>
+     * 
+     * @return The property that denotes a property domain
+     */
+    public Property DOMAIN();
+    
+    
+    /**
+     * <p>
+     * Answer the predicate that denotes the range of a property
+     * </p>
+     * 
+     * @return The property that denotes the property range
+     */
+    public Property RANGE();
+    
+    
     
 }
 

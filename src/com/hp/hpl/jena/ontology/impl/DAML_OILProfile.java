@@ -97,6 +97,8 @@ public class DAML_OILProfile
     private Property m_incompatibleWith             = null;
     private Property m_subPropertyOf                = m_vocabModel.createProperty( DAML_OIL.subPropertyOf.getNameSpace(),           DAML_OIL.subPropertyOf.getLocalName() );
     private Property m_subClassOf                   = m_vocabModel.createProperty( DAML_OIL.subClassOf.getNameSpace(),              DAML_OIL.subClassOf.getLocalName() );
+    private Property m_domain                       = m_vocabModel.createProperty( DAML_OIL.subClassOf.getNameSpace(),              DAML_OIL.domain.getLocalName() );
+    private Property m_range                        = m_vocabModel.createProperty( DAML_OIL.subClassOf.getNameSpace(),              DAML_OIL.range.getLocalName() );
 
 
 
@@ -160,6 +162,8 @@ public class DAML_OILProfile
     public Property INCOMPATIBLE_WITH() {           return m_incompatibleWith; }
     public Property SUB_CLASS_OF() {                return m_subClassOf; }
     public Property SUB_PROPERTY_OF() {             return m_subPropertyOf; }
+    public Property DOMAIN() {                      return m_domain; }
+    public Property RANGE() {                       return m_range; }
     
     
 

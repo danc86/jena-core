@@ -104,6 +104,9 @@ public class OWLDLProfile
     public Property INCOMPATIBLE_WITH() {           return OWL.incompatibleWith; }
     public Property SUB_PROPERTY_OF() {             return RDFS.subPropertyOf; }
     public Property SUB_CLASS_OF() {                return RDFS.subClassOf; }
+    public Property DOMAIN() {                      return RDFS.domain; }
+    public Property RANGE() {                       return RDFS.range; }
+    
     
     
 
