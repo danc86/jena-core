@@ -135,6 +135,14 @@ public class TestResourceUtils
         assertTrue( "anon should have q c", anon.hasProperty( q, c ) );
         
         assertTrue( "d p b should be unchanged", d.hasProperty( p, b ) );
+        
+        // reflexive case
+        Resource f = m.createResource( NS + "f" );
+        f.addProperty( p, f );
+        
+        Resource f1 = ResourceUtils.renameResource( f, NS +"f1" );
+        assertFalse( "Should be no f statements",  m.listStatements( f, null, (RDFNode) null).hasNext() );
+        assertTrue( "f1 has p f1", f1.hasProperty( p, f1 ) );
     }
     
     // Internal implementation methods

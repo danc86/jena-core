@@ -147,36 +147,31 @@ public class ResourceUtils {
      */
     public static Resource renameResource( Resource old, String uri ) {
         Model m = old.getModel();
-        List subjectRefs = new ArrayList();
-        List objectRefs = new ArrayList();
+        List stmts = new ArrayList();
         
         // list the statements that mention old as a subject
-        for (Iterator i = old.listProperties();  i.hasNext(); subjectRefs.add( i.next() ) );
+        for (Iterator i = old.listProperties();  i.hasNext(); stmts.add( i.next() ) );
         
         // list the statements that mention old an an object
-        for (Iterator i = m.listStatements( null, null, old );  i.hasNext();  objectRefs.add( i.next() ) );
+        for (Iterator i = m.listStatements( null, null, old );  i.hasNext();  stmts.add( i.next() ) );
         
         // create a new resource to replace old
         Resource res = (uri == null) ? m.createResource() : m.createResource( uri );
         
         // now move the statements to refer to res instead of old
-        for (Iterator i = subjectRefs.iterator(); i.hasNext(); ) {
+        for (Iterator i = stmts.iterator(); i.hasNext(); ) {
             Statement s = (Statement) i.next();
             
-            res.addProperty( s.getPredicate(), s.getObject() );
             s.remove();
-        }
+            
+            Resource subj = s.getSubject().equals( old ) ? res : s.getSubject();    
+            RDFNode obj = s.getObject().equals( old ) ? res : s.getObject();
         
-        for (Iterator i = objectRefs.iterator(); i.hasNext(); ) {
-            Statement s = (Statement) i.next();
-            
-            s.getSubject().addProperty( s.getPredicate(), res );
-            s.remove();
+            m.add( subj, s.getPredicate(), obj );    
         }
         
         return res;
     }
-    
     
 
     // Internal implementation methods
