@@ -66,9 +66,9 @@ public interface Graph  {
         Add the triple t (if possible) to the set belonging to this graph 
      
         @param t the triple to add to the graph
-        @throws JenaAddDeniedException if the triple cannot be added 
+        @throws AddDeniedException if the triple cannot be added 
     */
-	void add(Triple t) throws JenaAddDeniedException;
+	void add(Triple t) throws AddDeniedException;
     
     /** 
         Remove the triple t (if possible) from the set belonging to this graph 

@@ -105,7 +105,7 @@ public abstract class GraphBase implements Graph {
         }
     
     public void performAdd( Triple t )
-        { throw new JenaAddDeniedException( "GraphBase::performAdd" ); }
+        { throw new AddDeniedException( "GraphBase::performAdd" ); }
 
 	/**
 	 * @see com.hp.hpl.jena.graph.Graph#delete(Triple)
