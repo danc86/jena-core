@@ -39,7 +39,7 @@ import com.hp.hpl.jena.ontology.path.PathSet;
  * @version CVS $Id$
  */
 public interface Restriction
-    extends ClassDescription
+    extends OntClass
 {
     // Constants
     //////////////////////////////////

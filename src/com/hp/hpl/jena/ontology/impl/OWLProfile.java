@@ -245,7 +245,7 @@ public class OWLProfile
                                             }
                                         }
         },
-        {  ClassDescription.class,      new SupportsCheck() {
+        {  OntClass.class,              new SupportsCheck() {
                                             public boolean doCheck( Node n, EnhGraph g ) {
                                                 return g.asGraph().contains( n, RDF.type.asNode(), OWL.Class.asNode() ) ||
                                                        g.asGraph().contains( n, RDF.type.asNode(), OWL.Restriction.asNode() );
@@ -283,22 +283,10 @@ public class OWLProfile
                                             }
                                         }
         },
-        {  OntClass.class,              new SupportsCheck() {
-                                            public boolean doCheck( Node n, EnhGraph g ) {
-                                                return g.asGraph().contains( n, RDF.type.asNode(), OWL.Class.asNode() );
-                                            }
-                                        }
-        },
         {  OntList.class,               new SupportsCheck() {
                                             public boolean doCheck( Node n, EnhGraph g ) {
                                                 return n.equals( RDF.nil.asNode() )  ||
                                                        g.asGraph().contains( n, RDF.type.asNode(), RDF.List.asNode() );
-                                            }
-                                        }
-        },
-        {  Ontology.class,              new SupportsCheck() {
-                                            public boolean doCheck( Node n, EnhGraph g ) {
-                                                return g.asGraph().contains( n, RDF.type.asNode(), OWL.Ontology.asNode() );
                                             }
                                         }
         },
@@ -308,6 +296,12 @@ public class OWLProfile
                                                        g.asGraph().contains( n, RDF.type.asNode(), OWL.ObjectProperty.asNode() ) ||
                                                        g.asGraph().contains( n, RDF.type.asNode(), OWL.DatatypeProperty.asNode() ) ||
                                                        g.asGraph().contains( n, RDF.type.asNode(), OWL.AnnotationProperty.asNode() );
+                                            }
+                                        }
+        },
+        {  Ontology.class,              new SupportsCheck() {
+                                            public boolean doCheck( Node n, EnhGraph g ) {
+                                                return g.asGraph().contains( n, RDF.type.asNode(), OWL.Ontology.asNode() );
                                             }
                                         }
         },

@@ -224,8 +224,8 @@ public class TestClassExpression
                 "OWL ClassDescription.oneOf",
                 new PS() { 
                     public PathSet ps( OntModel m ) {
-                        return ((OntClass) m.getResource( NS + "ClassA" )
-                               .as( OntClass.class )).p_oneOf(); 
+                        return ((EnumeratedClass) m.getResource( NS + "ClassA" )
+                               .as( EnumeratedClass.class )).p_oneOf(); 
                     } 
                 },
                 OWL.oneOf,
@@ -241,8 +241,8 @@ public class TestClassExpression
                 "DAML ClassDescription.oneOf",
                 new PS() { 
                     public PathSet ps( OntModel m ) {
-                        return ((OntClass) m.getResource( NS + "ClassA" )
-                               .as( OntClass.class )).p_oneOf(); 
+                        return ((EnumeratedClass) m.getResource( NS + "ClassA" )
+                               .as( EnumeratedClass.class )).p_oneOf(); 
                     } 
                 },
                 DAML_OIL.oneOf,
@@ -500,8 +500,8 @@ public class TestClassExpression
                 "OWL ClassDescription.intersectionOf",
                 new PS() { 
                     public PathSet ps( OntModel m ) {
-                        return ((OntClass) m.getResource( NS + "ClassA" )
-                               .as( OntClass.class )).p_intersectionOf(); 
+                        return ((IntersectionClass) m.getResource( NS + "ClassA" )
+                               .as( IntersectionClass.class )).p_intersectionOf(); 
                     } 
                 },
                 OWL.intersectionOf,
@@ -517,8 +517,8 @@ public class TestClassExpression
                 "OWL ClassDescription.unionOf",
                 new PS() { 
                     public PathSet ps( OntModel m ) {
-                        return ((OntClass) m.getResource( NS + "ClassB" )
-                               .as( OntClass.class )).p_unionOf(); 
+                        return ((UnionClass) m.getResource( NS + "ClassB" )
+                               .as( UnionClass.class )).p_unionOf(); 
                     } 
                 },
                 OWL.unionOf,
@@ -534,8 +534,8 @@ public class TestClassExpression
                 "OWL ClassDescription.complementOf",
                 new PS() { 
                     public PathSet ps( OntModel m ) {
-                        return ((OntClass) m.getResource( NS + "ClassC" )
-                               .as( OntClass.class )).p_complementOf(); 
+                        return ((ComplementClass) m.getResource( NS + "ClassC" )
+                               .as( ComplementClass.class )).p_complementOf(); 
                     } 
                 },
                 OWL.complementOf,
@@ -551,8 +551,8 @@ public class TestClassExpression
                 "OWL Lite ClassDescription.intersectionOf",
                 new PS() { 
                     public PathSet ps( OntModel m ) {
-                        return ((OntClass) m.getResource( NS + "ClassA" )
-                               .as( OntClass.class )).p_intersectionOf(); 
+                        return ((IntersectionClass) m.getResource( NS + "ClassA" )
+                               .as( IntersectionClass.class )).p_intersectionOf(); 
                     } 
                 },
                 OWL.intersectionOf,
@@ -568,8 +568,8 @@ public class TestClassExpression
                 "OWL Lite ClassDescription.unionOf",
                 new PS() { 
                     public PathSet ps( OntModel m ) {
-                        return ((OntClass) m.getResource( NS + "ClassB" )
-                               .as( OntClass.class )).p_unionOf(); 
+                        return ((UnionClass) m.getResource( NS + "ClassB" )
+                               .as( UnionClass.class )).p_unionOf(); 
                     } 
                 },
                 OWL.unionOf,
@@ -585,8 +585,8 @@ public class TestClassExpression
                 "OWL Lite ClassDescription.complementOf",
                 new PS() { 
                     public PathSet ps( OntModel m ) {
-                        return ((OntClass) m.getResource( NS + "ClassC" )
-                               .as( OntClass.class )).p_complementOf(); 
+                        return ((ComplementClass) m.getResource( NS + "ClassC" )
+                               .as( ComplementClass.class )).p_complementOf(); 
                     } 
                 },
                 OWL.complementOf,
@@ -602,8 +602,8 @@ public class TestClassExpression
                 "DAML ClassDescription.intersectionOf",
                 new PS() { 
                     public PathSet ps( OntModel m ) {
-                        return ((OntClass) m.getResource( NS + "ClassA" )
-                               .as( OntClass.class )).p_intersectionOf(); 
+                        return ((IntersectionClass) m.getResource( NS + "ClassA" )
+                               .as( IntersectionClass.class )).p_intersectionOf(); 
                     } 
                 },
                 DAML_OIL.intersectionOf,
@@ -619,8 +619,8 @@ public class TestClassExpression
                 "DAML ClassDescription.unionOf",
                 new PS() { 
                     public PathSet ps( OntModel m ) {
-                        return ((OntClass) m.getResource( NS + "ClassB" )
-                               .as( OntClass.class )).p_unionOf(); 
+                        return ((UnionClass) m.getResource( NS + "ClassB" )
+                               .as( UnionClass.class )).p_unionOf(); 
                     } 
                 },
                 DAML_OIL.unionOf,
@@ -636,8 +636,8 @@ public class TestClassExpression
                 "DAML ClassDescription.complementOf",
                 new PS() { 
                     public PathSet ps( OntModel m ) {
-                        return ((OntClass) m.getResource( NS + "ClassC" )
-                               .as( OntClass.class )).p_complementOf(); 
+                        return ((ComplementClass) m.getResource( NS + "ClassC" )
+                               .as( ComplementClass.class )).p_complementOf(); 
                     } 
                 },
                 DAML_OIL.complementOf,

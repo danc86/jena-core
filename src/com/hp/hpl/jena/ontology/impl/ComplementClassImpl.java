@@ -5,7 +5,7 @@
  * Author email       Ian.Dickinson@hp.com
  * Package            Jena 2
  * Web                http://sourceforge.net/projects/jena/
- * Created            31-Mar-2003
+ * Created            28-Apr-2003
  * Filename           $RCSfile$
  * Revision           $Revision$
  * Release status     $State$
@@ -22,27 +22,27 @@
 package com.hp.hpl.jena.ontology.impl;
 
 
-
 // Imports
 ///////////////
-import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.enhanced.*;
+import com.hp.hpl.jena.graph.Node;
 import com.hp.hpl.jena.ontology.*;
-import com.hp.hpl.jena.ontology.path.*;
+import com.hp.hpl.jena.ontology.path.PathSet;
+import com.hp.hpl.jena.rdf.model.Property;
 
 
 /**
  * <p>
- * Implementation of the ontology abstraction representing restrictions.
+ * Implementation of a node representing a complement class description.
  * </p>
  *
  * @author Ian Dickinson, HP Labs
  *         (<a  href="mailto:Ian.Dickinson@hp.com" >email</a>)
  * @version CVS $Id$
  */
-public class RestrictionImpl 
+public class ComplementClassImpl 
     extends OntClassImpl
-    implements Restriction 
+    implements ComplementClass
 {
     // Constants
     //////////////////////////////////
@@ -51,24 +51,29 @@ public class RestrictionImpl
     //////////////////////////////////
 
     /**
-     * A factory for generating Restriction facets from nodes in enhanced graphs.
+     * A factory for generating ComplementClass facets from nodes in enhanced graphs.
      * Note: should not be invoked directly by user code: use 
      * {@link com.hp.hpl.jena.rdf.model.RDFNode#as as()} instead.
      */
     public static Implementation factory = new Implementation() {
         public EnhNode wrap( Node n, EnhGraph eg ) { 
             if (canWrap( n, eg )) {
-                return new RestrictionImpl( n, eg );
+                return new ComplementClassImpl( n, eg );
             }
             else {
-                throw new OntologyException( "Cannot convert node " + n + " to Restriction");
+                throw new OntologyException( "Cannot convert node " + n + " to ComplementClass");
             } 
         }
             
         public boolean canWrap( Node node, EnhGraph eg ) {
-            // node will support being an Restriction facet if it has rdf:type owl:Restriction or equivalent
+            // node will support being an ComplementClass facet if it has rdf:type owl:Class and an owl:complementOf statement (or equivalents) 
             Profile profile = (eg instanceof OntModel) ? ((OntModel) eg).getProfile() : null;
-            return (profile != null)  &&  profile.isSupported( node, eg, Restriction.class );
+            Property comp = (profile == null) ? null : profile.COMPLEMENT_OF();
+
+            return (profile != null)  &&  
+                   profile.isSupported( node, eg, OntClass.class )  &&
+                   comp != null && 
+                   eg.asGraph().contains( node, comp.asNode(), null );
         }
     };
 
@@ -81,13 +86,13 @@ public class RestrictionImpl
 
     /**
      * <p>
-     * Construct an ontology class node represented by the given node in the given graph.
+     * Construct a complement class node represented by the given node in the given graph.
      * </p>
      * 
      * @param n The node that represents the resource
      * @param g The enh graph that contains n
      */
-    public RestrictionImpl( Node n, EnhGraph g ) {
+    public ComplementClassImpl( Node n, EnhGraph g ) {
         super( n, g );
     }
 
@@ -98,107 +103,17 @@ public class RestrictionImpl
     /**
      * <p>
      * Answer an {@link PathSet accessor} for the 
-     * <code>onProperty</code>
-     * property of a restriction. The accessor
+     * <code>complementOf</code>
+     * property of a class or class description. The accessor
      * can be used to perform a variety of operations, including getting and setting the value.
      * </p>
      * 
-     * @return An abstract accessor for the imports of an ontology element
+     * @return An abstract accessor for the complement class description
      */
-    public PathSet p_onProperty() {
-        return asPathSet( getProfile().ON_PROPERTY() );
+    public PathSet p_complementOf() {
+        return asPathSet( getProfile().COMPLEMENT_OF() );
     }
-    
 
-    /**
-     * <p>
-     * Answer an {@link PathSet accessor} for the 
-     * <code>allValuesFrom</code>
-     * property of a restriction. The accessor
-     * can be used to perform a variety of operations, including getting and setting the value.
-     * </p>
-     * 
-     * @return An abstract accessor for the imports of an ontology element
-     */
-    public PathSet p_allValuesFrom() {
-        return asPathSet( getProfile().ALL_VALUES_FROM() );
-    }
-    
-
-    /**
-     * <p>
-     * Answer an {@link PathSet accessor} for the 
-     * <code>someValuesFrom</code>
-     * property of a restriction. The accessor
-     * can be used to perform a variety of operations, including getting and setting the value.
-     * </p>
-     * 
-     * @return An abstract accessor for the imports of an ontology element
-     */
-    public PathSet p_someValuesFrom() {
-        return asPathSet( getProfile().SOME_VALUES_FROM() );
-    }
-    
-
-    /**
-     * <p>
-     * Answer an {@link PathSet accessor} for the 
-     * <code>hasValue</code>
-     * property of a restriction. The accessor
-     * can be used to perform a variety of operations, including getting and setting the value.
-     * </p>
-     * 
-     * @return An abstract accessor for the imports of an ontology element
-     */
-    public PathSet p_hasValue() {
-        return asPathSet( getProfile().HAS_VALUE() );
-    }
-    
-
-    /**
-     * <p>
-     * Answer an {@link PathSet accessor} for the 
-     * <code>cardinality</code>
-     * property of a restriction. The accessor
-     * can be used to perform a variety of operations, including getting and setting the value.
-     * </p>
-     * 
-     * @return An abstract accessor for the imports of an ontology element
-     */
-    public PathSet p_cardinality() {
-        return asPathSet( getProfile().CARDINALITY() );
-    }
-    
-
-    /**
-     * <p>
-     * Answer an {@link PathSet accessor} for the 
-     * <code>minCardinality</code>
-     * property of a restriction. The accessor
-     * can be used to perform a variety of operations, including getting and setting the value.
-     * </p>
-     * 
-     * @return An abstract accessor for the imports of an ontology element
-     */
-    public PathSet p_minCardinality() {
-        return asPathSet( getProfile().MIN_CARDINALITY() );
-    }
-    
-
-    /**
-     * <p>
-     * Answer an {@link PathSet accessor} for the 
-     * <code>maxCardinality</code>
-     * property of a restriction. The accessor
-     * can be used to perform a variety of operations, including getting and setting the value.
-     * </p>
-     * 
-     * @return An abstract accessor for the imports of an ontology element
-     */
-    public PathSet p_maxCardinality() {
-        return asPathSet( getProfile().MAX_CARDINALITY() );
-    }
-    
 
     // Internal implementation methods
     //////////////////////////////////

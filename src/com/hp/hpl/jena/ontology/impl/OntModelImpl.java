@@ -336,7 +336,7 @@ public class OntModelImpl
      * @return An iterator over class description resources. 
      */
     public Iterator listClasses() {
-        return findByTypeAs( getProfile().getClassDescriptionTypes(), ClassDescription.class );
+        return findByTypeAs( getProfile().getClassDescriptionTypes(), OntClass.class );
     }
     
 
@@ -356,7 +356,7 @@ public class OntModelImpl
      * @see Profile#ONE_OF
      */
     public Iterator listEnumeratedClasses()  {
-        return findByDefiningPropertyAs( getProfile().ONE_OF(), ClassDescription.class );
+        return findByDefiningPropertyAs( getProfile().ONE_OF(), EnumeratedClass.class );
     }
     
 
@@ -376,7 +376,7 @@ public class OntModelImpl
      * @see Profile#UNION_OF
      */
     public Iterator listUnionClasses() {
-        return findByDefiningPropertyAs( getProfile().UNION_OF(), ClassDescription.class );
+        return findByDefiningPropertyAs( getProfile().UNION_OF(), UnionClass.class );
     }
     
 
@@ -396,7 +396,7 @@ public class OntModelImpl
      * @see Profile#COMPLEMENT_OF
      */
     public Iterator listComplementClasses() {
-        return findByDefiningPropertyAs( getProfile().COMPLEMENT_OF(), ClassDescription.class );
+        return findByDefiningPropertyAs( getProfile().COMPLEMENT_OF(), ComplementClass.class );
     }
     
 
@@ -416,7 +416,7 @@ public class OntModelImpl
      * @see Profile#INTERSECTION_OF
      */
     public Iterator listIntersectionClasses() {
-        return findByDefiningPropertyAs( getProfile().INTERSECTION_OF(), ClassDescription.class );
+        return findByDefiningPropertyAs( getProfile().INTERSECTION_OF(), IntersectionClass.class );
     }
     
 

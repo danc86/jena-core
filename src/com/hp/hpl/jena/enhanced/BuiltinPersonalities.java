@@ -32,9 +32,12 @@ public class BuiltinPersonalities {
         // ontology additions
         .add( OntList.class, OntListImpl.factory )
         .add( Ontology.class, OntologyImpl.factory )
-        .add( ClassDescription.class, ClassDescriptionImpl.factory )
         .add( OntClass.class, OntClassImpl.factory )
         .add( Restriction.class, RestrictionImpl.factory )
+        .add( EnumeratedClass.class, EnumeratedClassImpl.factory )
+        .add( IntersectionClass.class, IntersectionClassImpl.factory )
+        .add( UnionClass.class, UnionClassImpl.factory )
+        .add( ComplementClass.class, ComplementClassImpl.factory )
         .add( OntProperty.class, OntPropertyImpl.factory )
         .add( ObjectProperty.class, ObjectPropertyImpl.factory )
         .add( DatatypeProperty.class, DatatypePropertyImpl.factory )

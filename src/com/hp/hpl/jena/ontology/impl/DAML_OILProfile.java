@@ -300,7 +300,7 @@ public class DAML_OILProfile
     
     private static Object[][] s_supportsCheckTable = new Object[][] {
         // Resource (key),              check method
-        {  ClassDescription.class,      new SupportsCheck() {
+        {  OntClass.class,              new SupportsCheck() {
                                             public boolean doCheck( Node n, EnhGraph g ) {
                                                 return g.asGraph().contains( n, RDF.type.asNode(), DAML_OIL.Class.asNode() ) ||
                                                        g.asGraph().contains( n, RDF.type.asNode(), DAML_OIL.Restriction.asNode() );
@@ -336,12 +336,6 @@ public class DAML_OILProfile
         {  ObjectProperty.class,        new SupportsCheck() {
                                             public boolean doCheck( Node n, EnhGraph g ) {
                                                 return g.asGraph().contains( n, RDF.type.asNode(), DAML_OIL.ObjectProperty.asNode() );
-                                            }
-                                        }
-        },
-        {  OntClass.class,              new SupportsCheck() {
-                                            public boolean doCheck( Node n, EnhGraph g ) {
-                                                return g.asGraph().contains( n, RDF.type.asNode(), DAML_OIL.Class.asNode() );
                                             }
                                         }
         },
