@@ -108,6 +108,7 @@ public class PrintUtil {
      * Return a simplified print string for a Triple
      */
     public static String print(Triple triple) {
+        if (triple == null) return "(null)";
         return "(" + print(triple.getSubject()) + " " +
                       print(triple.getPredicate()) + " " +
                       print(triple.getObject()) + ")";
@@ -117,6 +118,7 @@ public class PrintUtil {
      * Return a simplified print string for a TriplePattern
      */
     public static String print(TriplePattern triple) {
+        if (triple == null) return "(null)";
         return "(" + print(triple.getSubject()) + " " +
                       print(triple.getPredicate()) + " " +
                       print(triple.getObject()) + ")";
@@ -126,6 +128,7 @@ public class PrintUtil {
      * Return a simplified print string for a statment
      */
     public static String print(Statement stmt) {
+        if (stmt == null) return "(null)";
         return print(stmt.asTriple());
     }
     
