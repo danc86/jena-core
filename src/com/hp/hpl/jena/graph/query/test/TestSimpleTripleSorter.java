@@ -102,6 +102,15 @@ public class TestSimpleTripleSorter extends GraphTestBase
         }
         
     /**
+        Test that a triple that binds more things gets sorted earlier than a equally-light
+        triple that binds fewer things
+    */
+    public void testSortByMass()
+        {
+        testReordersTo( "?b c d; ?a b c; ?b ?c d; ?a ?b ?d", "?a b c; ?b c d; ?b ?c d; ?a ?b ?d" );    
+        }
+        
+    /**
         Utility: test that the triple array described by <code>original</code> gets reordered
         to the triple array described by <code>desired</code>.
     */
