@@ -193,9 +193,10 @@ public class DBPropGraph extends DBProp {
 	
 	public static DBPropGraph findPropGraphByName( SpecializedGraph graph, String name ) {
 		Node myNode = Node.createLiteral( name );
-		Iterator it =  graph.find( null, graphName, myNode, newComplete() );
+		ClosableIterator it =  graph.find( null, graphName, myNode, newComplete() );
 		if( it.hasNext() )
-			return new DBPropGraph( graph, ((Triple)it.next()).getSubject());
+			try { return new DBPropGraph( graph, ((Triple)it.next()).getSubject()); }
+            finally { it.close(); }
 		else
 			return null;
 	}

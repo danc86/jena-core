@@ -191,21 +191,20 @@ public  class PSet_TripleStore_RDB implements IPSet {
 	 */
 	public int rowCount(String tName) {
 
-	int result = 0;
 	try {
+        int result = 0;
 		 String op = "getRowCount";
 		 PreparedStatement ps = m_sql.getPreparedSQLStatement(op,tName);
 	     ResultSet rs = ps.executeQuery();
-	     while ( rs.next() ) {
-		  result = rs.getInt(1);
-	     } 
+	     while ( rs.next() ) result = rs.getInt(1); 
+         rs.close();
 		m_sql.returnPreparedSQLStatement(ps);
+        return result;
 	} catch (SQLException e) {
 	   logger.debug("tried to count rows in " + tName);
 	   logger.debug("Caught exception: ", e);
            throw new JenaException("Exception during database access", e);    // Rethrow in case there is a recovery option
 	}
-	return(result);
 	}
 
 	//=======================================================================
