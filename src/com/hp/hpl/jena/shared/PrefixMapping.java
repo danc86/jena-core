@@ -31,6 +31,13 @@ public interface PrefixMapping
   <p>      
         A prefix name must be a valid NCName, or the empty string. The empty string
         is reserved to mean "the default namespace".
+  <p>
+        Any URI may be ignored; for example URIs that end
+        in an NCName char may be discarded.
+  <p>
+        Does  not check the RFC2396 validity of the URI. 
+        Bad URIs are either silently ignored or behave as if they
+        were good.
         
         @param prefix the string to be used for the prefix.
         @param uri the URI prefix to be named
