@@ -69,7 +69,7 @@ public class OntClassImpl
                 return new OntClassImpl( n, eg );
             }
             else {
-                throw new ConversionException( "Cannot convert node " + n.toString() + " to OntClass");
+                throw new ConversionException( "Cannot convert node " + n.toString() + " to OntClass: it does not have rdf:type owl:Class or equivalent");
             } 
         }
             

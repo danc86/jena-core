@@ -27,7 +27,7 @@ public class ModelListenerAdapter implements GraphListener
     protected ModelCom m;
     protected ModelChangedListener L;
 
-    ModelListenerAdapter( ModelCom m, ModelChangedListener L )
+    public ModelListenerAdapter( ModelCom m, ModelChangedListener L )
         { this.m = m; this.L = L; }
 
     public void notifyAddArray( Graph graph, Triple [] triples )
