@@ -368,8 +368,11 @@
 # Disjointness
 #------------------------------------------------------------------
 
-[distinct1: (?C owl:disjointWith ?D), (?X rdf:type ?C), (?Y rdf:type ?D) 
-						-> (?X owl:differentFrom ?Y) ]
+#[distinct1: (?C owl:disjointWith ?D), (?X rdf:type ?C), (?Y rdf:type ?D) 
+#						-> (?X owl:differentFrom ?Y) ]
+
+[distinct1: (?X owl:differentFrom ?Y) <- 
+    (?C owl:disjointWith ?D), (?X rdf:type ?C), (?Y rdf:type ?D)   ]
 
 # Exploding the pairwise assertions is simply done procedurally here.
 # This is better handled by a dedicated equality reasoner any.
