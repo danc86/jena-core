@@ -938,6 +938,22 @@ public class TestBugReports
         //                               new Object[] {m.getObjectProperty( NS+"hasPublications")} );
     }
     
+    /** Bug report from Dave - cycles checking code still not correct */
+    public void test_der_03() {
+        String NS = "http://jena.hpl.hp.com/test#";
+        OntModel om = ModelFactory.createOntologyModel(OntModelSpec.OWL_MEM);
+        OntClass A = om.createClass(NS+"A");
+        OntClass B = om.createClass(NS+"B");
+        OntClass C = om.createClass(NS+"C");
+        A.addSuperClass(B);
+        A.addSuperClass(C);
+        B.addSuperClass(C);
+        C.addSuperClass(B);
+        
+        TestUtil.assertIteratorValues( this, A.listSuperClasses( true ), new Object[] {B,C} );
+    }
+    
+    
     /**
      * Bug report by pierluigi.damadio@katamail.com: raises conversion exception
      */
