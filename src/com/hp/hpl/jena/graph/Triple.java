@@ -69,6 +69,12 @@ final public class Triple {
     private boolean sameAs( Node s, Node p, Node o )
         { return subj.equals( s ) && pred.equals( p ) && obj.equals( o ); }
         
+    public boolean matches( Triple other )
+        { return other.matchedBy( subj, pred, obj  ); }
+        
+    private boolean matchedBy( Node s, Node p, Node o )
+        { return s.matches( subj ) && p.matches( pred ) && o.matches( obj ); }
+        
     /**
         The hash-code of a triple is the hash-codes of its components munged
         together. The current hash-code is an exclusive-or of the slightly-shifted

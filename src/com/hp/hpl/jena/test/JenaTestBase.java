@@ -29,6 +29,13 @@ public class JenaTestBase extends TestCase
         { assertTrue( title, !b ); }
         
     /**
+        Assert that the specified boolean must be false.
+        @param b the boolean to test
+    */
+    public void assertFalse( boolean b )
+        { assertTrue( !b ); }
+        
+    /**
         assert that the two objects must be unequal according to .equals().
         @param title a labelling string for the assertion failure text
         @param x an object to test; the subject of a .equals()
