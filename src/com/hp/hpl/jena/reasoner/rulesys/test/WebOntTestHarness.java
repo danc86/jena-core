@@ -201,8 +201,8 @@ public class WebOntTestHarness {
         jena2.addProperty(RDFS.comment, 
             testResults.createLiteral(
                 "<a href=\"http://jena.sourceforce.net/\">Jena2</a> includes a rule-based inference engine for RDF processing, " +
-                "supporting both forward and backward chaining rules. Its OWL rule set is designed to provide a sound " +
-                "but not complete implementation of that fragment of OWL/Full limited to the OWL/lite vocabulary. In" +
+                "supporting both forward and backward chaining rules. Its OWL rule set is designed to provide sound " +
+                "but not complete instance resasoning for that fragment of OWL/Full limited to the OWL/lite vocabulary. In" +
                 "particular it does not support unionOf/complementOf.",
                 true)
         );
@@ -287,10 +287,17 @@ public class WebOntTestHarness {
         } else {
             System.out.println("\nFAIL: " + test);
         }
+        Resource resultType = null;
+        if (test.hasProperty(RDF.type, OWLTest.NegativeEntailmentTest) 
+        ||  test.hasProperty(RDF.type, OWLTest.ConsistencyTest)) {
+            resultType = success ? OWLResults.PassingRun : OWLResults.FailingRun;
+        } else {
+            resultType = success ? OWLResults.PassingRun : OWLResults.IncompleteRun;
+        }
         // log to the rdf result format
         Resource result = testResults.createResource()
             .addProperty(RDF.type, OWLResults.TestRun)
-            .addProperty(RDF.type, success ? OWLResults.PassingRun : OWLResults.FailingRun)
+            .addProperty(RDF.type, resultType)
             .addProperty(OWLResults.test, test)
             .addProperty(OWLResults.system, jena2);
     }

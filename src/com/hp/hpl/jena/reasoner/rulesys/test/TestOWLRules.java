@@ -103,8 +103,6 @@ public class TestOWLRules extends TestCase {
         suite.addTest(new TestOWLRules("maxCardinality/Manifest002.rdf"));
         suite.addTest(new TestOWLRules("FunctionalProperty/Manifest005-mod.rdf"));
         suite.addTest(new TestOWLRules("I5.24/Manifest004-mod.rdf"));  // bx - long
-        suite.addTest(new TestOWLRules("localtests/Manifest001.rdf"));      // bx - long but terminates
-        suite.addTest(new TestOWLRules("localtests/Manifest002.rdf"));   // bx - long but terminates
         suite.addTest(new TestOWLRules("cardinality/Manifest001-mod.rdf")); // bx gets lost
         suite.addTest(new TestOWLRules("cardinality/Manifest002-mod.rdf")); // bx gets lost
         suite.addTest(new TestOWLRules("cardinality/Manifest002-mod.rdf")); // bx gets lost
@@ -122,7 +120,10 @@ public class TestOWLRules extends TestCase {
         suite.addTest(new TestOWLRules("someValuesFrom/Manifest001.rdf")); // bx needs creation rule
     
         // New local tests
+        suite.addTest(new TestOWLRules("localtests/Manifest001.rdf"));
+        suite.addTest(new TestOWLRules("localtests/Manifest002.rdf"));
         suite.addTest(new TestOWLRules("localtests/Manifest003.rdf"));
+        suite.addTest(new TestOWLRules("localtests/Manifest004.rdf"));
         
         // Duplications of tests included earlier
 //        suite.addTest(new TestOWLRules("differentFrom/Manifest002.rdf"));  // Duplication of AllDifferent#1
