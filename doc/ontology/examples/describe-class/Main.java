@@ -54,26 +54,41 @@ public class Main {
     //////////////////////////////////
 
     public static void main( String[] args ) {
-        OntModel m = ModelFactory.createOntologyModel( OntModelSpec.OWL_MEM, null );
+        // read the argument file, or the default
+        String source = (args.length == 0) ? "http://www.w3.org/2001/sw/WebOnt/guide-src/wine" : args[0];
         
-        // we have a local copy of the wine ontology
-        m.getDocumentManager().addAltEntry( "http://www.w3.org/2001/sw/WebOnt/guide-src/wine", 
-                                            "file:testing/reasoners/bugs/wine.owl" );
-        m.getDocumentManager().addAltEntry( "http://www.w3.org/2001/sw/WebOnt/guide-src/food", 
-                                            "file:testing/reasoners/bugs/food.owl" );
-        m.getDocumentManager().addAltEntry( "http://www.w3.org/2001/sw/WebOnt/guide-src/food.owl", 
-                                            "file:testing/reasoners/bugs/food.owl" );
+        // guess if we're using a daml source
+        boolean isDAML = source.endsWith( ".daml" );
+        
+        OntModel m = ModelFactory.createOntologyModel( 
+                        isDAML ? OntModelSpec.DAML_MEM : OntModelSpec.OWL_MEM, null
+                     );
 
-        m.read( "http://www.w3.org/2001/sw/WebOnt/guide-src/wine" );
-        
-        // now list the classes
+        // we have a local copy of the wine ontology
+        m.getDocumentManager().addAltEntry( "http://www.w3.org/2001/sw/WebOnt/guide-src/wine",
+                                            "file:doc/ontology/examples/describe-class/wine.owl" );
+        m.getDocumentManager().addAltEntry( "http://www.w3.org/2001/sw/WebOnt/guide-src/food",
+                                            "file:doc/ontology/examples/describe-class/food.owl" );
+
+        // read the source document
+        m.read( source );
+
         DescribeClass dc = new DescribeClass();
-        for (Iterator i = m.listClasses();  i.hasNext(); ) {
-            dc.describeClass( System.out, (OntClass) i.next() );
+
+        if (args.length >= 2) {
+            // we have a named class to describe
+            OntClass c = m.getOntClass( args[1] );
+            dc.describeClass( System.out, c );
+        }
+        else {
+            for (Iterator i = m.listClasses();  i.hasNext(); ) {
+                // now list the classes
+                dc.describeClass( System.out, (OntClass) i.next() );
+            }
         }
     }
-    
-    
+
+
     // Internal implementation methods
     //////////////////////////////////
 
