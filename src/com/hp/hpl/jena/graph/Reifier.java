@@ -16,17 +16,10 @@ package com.hp.hpl.jena.graph;
 */
 
 import com.hp.hpl.jena.util.iterator.*;
-import com.hp.hpl.jena.vocabulary.*;
 import com.hp.hpl.jena.shared.*;
 
 public interface Reifier extends GetTriple
     {
-    public static final Node type = RDF.type.asNode();
-    public static final Node subject = RDF.subject.asNode();
-    public static final Node predicate = RDF.predicate.asNode();
-    public static final Node object = RDF.object.asNode();
-    public static final Node Statement = RDF.Statement.asNode();
-          
     public static final Style Standard = new Style( true, false );
     public static final Style Convenient = new Style( true, true );
     public static final Style Minimal = new Style( false, false );
