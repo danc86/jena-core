@@ -92,8 +92,8 @@ class SyntaxTest extends TestCase {
 			DMEntry ent = (DMEntry)dm.table.get(url);
 			Resource level = ent.lvl;
 			
-			if (!url.equals("http://www.w3.org/2002/03owlt/Restriction/conclusions006"))
-			  continue;
+		//	if (!url.equals("http://www.w3.org/2002/03owlt/Restriction/conclusions006"))
+		//	  continue;
 			Checker chk = new Checker(ent.lvl.equals(OWLTest.Lite));
 			ent.init();
 			OntModel om = ModelFactory.createOntologyModel( 
