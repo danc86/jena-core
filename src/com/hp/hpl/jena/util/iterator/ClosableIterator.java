@@ -36,12 +36,11 @@ package com.hp.hpl.jena.util.iterator;
  * @author  bwm
  * @version  Release='$Name$' Revision='$Revision$' Date='$Date$'
  */
+
 import java.util.Iterator;
 
 
-
 /** An iterator which should be closed after use
- *
  * <p>Some iterators take up resources which should be free'd as soon as
  * possible, i.e. without waiting for the garbage collector to call the
  * the finalizer.</p>
@@ -52,18 +51,12 @@ import java.util.Iterator;
  * @author bwm
  * @version Release='$Name$' Revision='$Revision$' Date='$Date$'
  */
+
 public interface ClosableIterator extends Iterator {
     
     /** Close the iterator
      */
     public void close();
     
-    public ClosableIterator andThen( ClosableIterator other );
-    
-    public ClosableIterator filterKeep( Filter f );
-
-    public ClosableIterator filterDrop( final Filter f );
-    
-    public ClosableIterator mapWith( Map1 map1 );
-
+ 
 }

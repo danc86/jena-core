@@ -7,11 +7,9 @@
 package com.hp.hpl.jena.util.iterator;
 import java.util.Iterator;
 /**
- * @author jjchplb
- *
- * To change this generated comment edit the template variable "typecomment":
- * Window>Preferences>Java>Templates.
- */
+    @author jjchplb
+*/
+
 public class ClosableIteratorImpl extends NiceIterator implements ClosableIterator {
     final protected Iterator underlying;
     public ClosableIteratorImpl(Iterator u) {

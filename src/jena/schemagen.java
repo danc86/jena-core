@@ -37,8 +37,6 @@ import com.hp.hpl.jena.vocabulary.RDFS;
 import com.hp.hpl.jena.mem.ModelMem;
 
 import java.net.URL;
-import java.net.MalformedURLException;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.PrintStream;

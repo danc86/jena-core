@@ -6,22 +6,13 @@
 
 package jena;
 
-
 import junit.framework.* ;
 import java.io.* ;
-import java.net.* ;
-import java.util.* ;
-import java.text.* ;
 
 import com.hp.hpl.jena.util.* ;
-
 import com.hp.hpl.jena.rdql.* ;
-import com.hp.hpl.jena.rdql.parser.* ;
 import com.hp.hpl.jena.rdql.test.* ;
-
 import com.hp.hpl.jena.rdf.model.* ;
-import com.hp.hpl.jena.rdf.model.impl.* ;
-
 
 /** A program to execute queries from the command line.
  *

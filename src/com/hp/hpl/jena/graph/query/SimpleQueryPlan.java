@@ -25,7 +25,7 @@ public class SimpleQueryPlan implements BindingQueryPlan
         this.variables = variables;
         }
         
-    public ClosableIterator executeBindings()
+    public ExtendedIterator executeBindings()
         {
         return query.executeBindings( graph, variables );
         }

@@ -13,7 +13,7 @@ import com.hp.hpl.jena.util.iterator.*;
 */
 public interface BindingQueryPlan
     {
-    public ClosableIterator executeBindings();
+    public ExtendedIterator executeBindings();
     }
 
 /*
