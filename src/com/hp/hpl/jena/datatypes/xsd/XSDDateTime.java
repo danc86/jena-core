@@ -174,7 +174,7 @@ public class XSDDateTime extends AbstractDateTime {
                 buff.append("-");
             }
             if ((mask & DAY_MASK) != 0) {
-                buff.append("-");
+                if (mask != DAY_MASK) buff.append("-");
                 if (data[DAY] <= 9) buff.append("0");
                 buff.append(data[DAY]);
             }
