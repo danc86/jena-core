@@ -70,6 +70,11 @@ public class JMS
          The property of a reasoner spec that specifies in-line rule-sets.
     */
     public static final Property ruleSet = property( "ruleSet" );
+
+    /**
+        The property of a ModelSpec that specifies the model name.
+    */
+    public static final Property modelName = property( "modelName" );
     
     /**
      	The property of a reasoner spec that specifies a schema to load
@@ -178,6 +183,11 @@ public class JMS
         The class of PlainModelSpec resources [subclass of ModelSpec].
     */
     public static final Resource PlainModelSpec = resource( "PlainModelSpec" );
+    
+    /**
+        The class of FileModel specifications.
+    */
+    public static Resource FileModelSpec = resource( "FileModelSpec" );
     
     /**
         The class of InfModelSpec resources [subclass of ModelSpec].
