@@ -377,6 +377,22 @@ public abstract class AbstractTestGraph extends GraphTestBase
     public Iterator asIterator( Triple [] triples )
         { return Arrays.asList( triples ).iterator(); }
     
+    public void testBulkAddGraph()
+        {
+        Graph g = getAndRegister( L );
+        Graph triples = graphWith( "this type graph; I type slowly" );
+        g.getBulkUpdateHandler().add( triples );
+        L.assertHas( new Object[] {"addGraph", triples} );
+        }
+        
+    public void testBulkDeleteGraph()
+        {        
+        Graph g = getAndRegister( L );
+        Graph triples = graphWith( "this type graph; I type slowly" );
+        g.getBulkUpdateHandler().delete( triples );
+        L.assertHas( new Object[] {"deleteGraph", triples} );
+        }
+        
     public void testContainsNode()
         {
         Graph g = getGraph();

@@ -60,6 +60,8 @@ public interface GraphEventManager
      */
     void notifyAddIterator( List triples );
     
+    void notifyAdd( Graph g );
+    
     /**
         Notify all attached listeners that the triple <code>t</code> has been removed,
         by calling their <code>notifyDelete(Triple)</code> methods.
@@ -83,6 +85,8 @@ public interface GraphEventManager
         the graph; its content has been captured in the list <code>triples</code>.
      */
     void notifyDeleteIterator( List triples );
+    
+    void notifyDelete( Graph g );
     }
 
 /*

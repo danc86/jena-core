@@ -38,6 +38,10 @@ public class ModelListenerAdapter implements GraphListener
     public void notifyAdd( Iterator it )
         { L.addedStatements( m.asStatements( it ) ); }
         
+    public void notifyAdd( Graph g )
+        { 
+        }
+        
     public void notifyDelete( Iterator it )
         { L.removedStatements( m.asStatements( it ) ); }
         
@@ -50,6 +54,10 @@ public class ModelListenerAdapter implements GraphListener
     public void notifyDelete( List triples )
         { L.removedStatements( m.asStatements( triples ) ); }
 
+    public void notifyDelete( Graph g )
+        {
+        }
+        
     public boolean equals( Object other )
         { 
         return 

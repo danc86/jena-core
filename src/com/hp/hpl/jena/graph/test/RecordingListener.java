@@ -31,6 +31,9 @@ class RecordingListener implements GraphListener
     public void notifyAdd( Iterator it )
         { record( "addIterator", GraphTestBase.iteratorToList( it ) ); }
         
+    public void notifyAdd( Graph g )
+        { record( "addGraph", g ); }
+        
     public void notifyDelete( Triple t )
         { record( "delete", t ); }
         
@@ -42,6 +45,9 @@ class RecordingListener implements GraphListener
         
     public void notifyDelete( Iterator it )
         { record( "deleteIterator", GraphTestBase.iteratorToList( it ) ); }
+        
+    public void notifyDelete( Graph g )
+        { record( "deleteGraph", g ); }
         
     protected void record( String tag, Object info )
         { history.add( tag ); history.add( info ); }

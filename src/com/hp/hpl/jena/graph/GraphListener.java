@@ -34,6 +34,8 @@ public interface GraphListener
     */
     void notifyAdd( Iterator it );
     
+    void notifyAdd( Graph g );
+    
     /**
         Method called when a single triple has been deleted from the graph.
     */
@@ -53,6 +55,8 @@ public interface GraphListener
         Method called when an iterator [of triples] has been deleted from the graph.
     */
     void notifyDelete( Iterator it );
+    
+    void notifyDelete( Graph g );
     }
 
 /*
