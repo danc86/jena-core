@@ -17,6 +17,10 @@ class CategorySet implements Comparable {
     	Grammar.cyclicFirst,
     	Grammar.cyclicRest
     };
+    static private final int untyped[] = new int[]{
+		Grammar.badRestriction,
+		Grammar.notype
+    };
 	/**
 	 * 
 	 * @return The ids of all CategorySet which might be cyclic. 
@@ -34,7 +38,7 @@ class CategorySet implements Comparable {
 	 */
 	static final Q untypedSets= new Q() {
 		boolean test(int all[]){
-			return member(Grammar.notype,all);
+			return intersect(untyped,all);
 		}
 	};
 	/**

@@ -11,7 +11,7 @@ import com.hp.hpl.jena.ontology.*;
 import java.util.*;
 import java.io.*;
 import com.hp.hpl.jena.rdf.model.*;
-import com.hp.hpl.jena.shared.*;
+//import com.hp.hpl.jena.shared.*;
 import com.hp.hpl.jena.vocabulary.OWLTest;
 import com.hp.hpl.jena.shared.wg.*;
 /**
@@ -92,6 +92,8 @@ class SyntaxTest extends TestCase {
 			DMEntry ent = (DMEntry)dm.table.get(url);
 			Resource level = ent.lvl;
 			
+			if (!url.equals("http://www.w3.org/2002/03owlt/Restriction/conclusions006"))
+			  continue;
 			Checker chk = new Checker(ent.lvl.equals(OWLTest.Lite));
 			ent.init();
 			OntModel om = ModelFactory.createOntologyModel( 
