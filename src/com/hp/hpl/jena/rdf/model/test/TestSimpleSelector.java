@@ -11,7 +11,6 @@ package com.hp.hpl.jena.rdf.model.test;
 */
 
 import com.hp.hpl.jena.rdf.model.*;
-import com.hp.hpl.jena.rdf.model.impl.*;
 import com.hp.hpl.jena.vocabulary.*;
 
 import junit.framework.TestCase;

@@ -17,7 +17,6 @@ import java.util.Iterator;
  * @version  Release='$Name$' Revision='$Revision$' Date='$Date$' 
  */
 
-import com.hp.hpl.jena.util.iterator.*;
 
 public class StmtIteratorImpl extends WrappedIterator implements StmtIterator
     {
