@@ -6,10 +6,6 @@
 
 package com.hp.hpl.jena.graph.query;
 
-import com.hp.hpl.jena.graph.*;
-import java.util.*;
-import com.hp.hpl.jena.util.iterator.*;
-
 /**
 	a processing stage in the query pipeline. Each stage
 	gets connected to its predecessor in the pipeline, and

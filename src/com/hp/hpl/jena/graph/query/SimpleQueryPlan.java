@@ -7,7 +7,6 @@
 package com.hp.hpl.jena.graph.query;
 
 import com.hp.hpl.jena.util.iterator.*;
-import java.util.*;
 import com.hp.hpl.jena.graph.*;
 
 /**

@@ -6,8 +6,6 @@
 
 package com.hp.hpl.jena.graph.query;
 
-import java.util.*;
-
 /**
 	@author hedgehog
 */
