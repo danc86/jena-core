@@ -380,11 +380,15 @@ abstract public class BaseXMLWriter implements RDFWriter {
 			String decl = null;
 			if (out instanceof OutputStreamWriter) {
 				String javaEnc = ((OutputStreamWriter) out).getEncoding();
+               // System.err.println(javaEnc);
 				if (!(javaEnc.equals("UTF8") || javaEnc.equals("UTF-16"))) {
 			//		System.out.println(javaEnc);
+                    String xEnc = EncodingMap.getJava2IANAMapping(javaEnc);
+                    if (xEnc == null)
+                      xEnc = javaEnc; // hmm.. incorrect
 					decl =
 						"<?xml version='1.0' encoding='"
-							+ EncodingMap.getJava2IANAMapping(javaEnc)
+							+ xEnc
 							+ "'?>";
 				}
 			}
