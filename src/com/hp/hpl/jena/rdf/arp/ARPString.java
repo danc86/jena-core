@@ -65,11 +65,13 @@ class ARPString implements ALiteral {
     ARPString(Vector v,String lang) {
         this.lang = lang;
         this.isWellFormedXML = false;
+        StringBuffer buf = new StringBuffer(256);
         value = "";
         Iterator it = v.iterator();
         while (it.hasNext()) {
-        	value = value + ((StrToken)it.next()).value;
+        	buf.append( ((StrToken)it.next()).value );
         }
+        value = new String(buf.toString());
     }
     private String value;
     private String lang;

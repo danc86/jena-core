@@ -519,7 +519,7 @@ class ARPFilter
 		setErrorMode(WARN_UNKNOWN_PARSETYPE, warning);
 		//     setErrorMode(WARN_BAD_XML, nonErrorMode);
 		setErrorMode(WARN_PROCESSING_INSTRUCTION_IN_RDF, nonErrorMode);
-		setErrorMode(WARN_LEGAL_REUSE_OF_ID, nonErrorMode);
+//		setErrorMode(WARN_LEGAL_REUSE_OF_ID, nonErrorMode);
 		setErrorMode(WARN_RDF_NN_AS_TYPE, nonErrorMode);
 		setErrorMode(WARN_UNKNOWN_RDF_ELEMENT, warning);
 		setErrorMode(WARN_UNKNOWN_RDF_ATTRIBUTE, warning);

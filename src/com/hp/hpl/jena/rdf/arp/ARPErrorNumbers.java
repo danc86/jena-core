@@ -152,6 +152,9 @@ public interface ARPErrorNumbers {
       The default mode allows this with a warning. 
      Strict mode skips to the end of the enclosing element of the second 
      and subsequent occurrences.
+     This check is expensive in memory. When processing very large files,
+     it may be sensible to switch the check off by using
+     {@link ARP.setErrorMode(int,int)} to ignore this condition.
      * (W105).
      @see #WARN_LEGAL_REUSE_OF_ID
     
@@ -272,6 +275,7 @@ public interface ARPErrorNumbers {
      * in the context of different xml:bases.
      * In default mode this is a warning; in strict mode it is ignored.
      @see #WARN_REDEFINITION_OF_ID
+     @deprecated Last supported in Jena 2.1 - too expensive.
      */
     public int WARN_LEGAL_REUSE_OF_ID = 120;
     /**
