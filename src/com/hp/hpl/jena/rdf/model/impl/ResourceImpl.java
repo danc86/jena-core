@@ -121,6 +121,9 @@ public class ResourceImpl extends EnhNode implements Resource {
         this( Node.createURI( nameSpace + localName ), nameSpace.length(), m );
     }
 
+    public Object visitWith( RDFVisitor rv )
+        { return isAnon() ? rv.visitBlank( this, getId() ) : rv.visitURI( this, getURI() ); }
+        
     public RDFNode inModel( Model m )
         { 
         return 

@@ -68,6 +68,9 @@ public class LiteralImpl extends EnhNode implements Literal {
         this( n, (Model)m );
     }
     
+    public Object visitWith( RDFVisitor rv )
+        { return rv.visitLiteral( this ); }
+        
     /**
         Literals are not in any particular model, and so inModel can return this.
         @param m a model to move the literal into

@@ -77,4 +77,13 @@ public interface RDFNode {
         @return this, if it's already in m (or no model), a copy in m otherwise
     */
     public RDFNode inModel( Model m );
+    
+    /**
+        Apply the appropriate method of the visitor to this node's content and
+        return the result.
+        
+        @param rv an RDFVisitor with a method for URI/blank/literal nodes
+        @return the result returned by the selected method
+    */
+    public Object visitWith( RDFVisitor rv );
 }
