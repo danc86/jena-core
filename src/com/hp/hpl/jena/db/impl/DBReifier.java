@@ -76,13 +76,10 @@ public class DBReifier implements Reifier
         { return getReificationTriples().find( m ); }
     
     public ExtendedIterator find( TripleMatch m, boolean showHidden )
-        { return showHidden ? getHiddenTriples().find( m ) : NullIterator.instance; }
+        { return showHidden == m_style.conceals() ? getReificationTriples().find( m ) : NullIterator.instance; }
 
     public int size() 
-        { return getHiddenTriples().size(); }
-    
-    public Graph getHiddenTriples()
-        { return m_style == ReificationStyle.Standard ? Graph.emptyGraph : getReificationTriples(); }
+        { return m_style.conceals() ? 0 : getReificationTriples().size(); }
 
     /**
         Utility method useful for its short name: answer a new CompletionFlag

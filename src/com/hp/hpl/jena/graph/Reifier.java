@@ -19,11 +19,6 @@ import com.hp.hpl.jena.util.iterator.*;
 public interface Reifier extends GetTriple
     {
     /**
-         return a read-only Graph of the triples used for reification.
-    */    
-    Graph getHiddenTriples();
-    
-    /**
         Answer a read-only graph of all the reification quadlets in this reifier. 
     */
     Graph getReificationTriples();

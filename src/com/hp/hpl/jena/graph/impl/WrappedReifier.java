@@ -26,11 +26,6 @@ public class WrappedReifier implements Reifier
         { this.base = base; this.parent = parent; }
 
 	/** 
-	 	@see com.hp.hpl.jena.graph.Reifier#getHiddenTriples()
-	*/
-	public Graph getHiddenTriples() { return base.getHiddenTriples(); }
-
-	/** 
 	 	@see com.hp.hpl.jena.graph.Reifier#getReificationTriples()
 	*/
 	public Graph getReificationTriples() { return base.getReificationTriples(); }
