@@ -91,7 +91,7 @@ public class TestModelSpec extends ModelTestBase
         {
         OntModelSpec oms = OntModelSpec.OWL_MEM_RULE_INF;
         Model spec = ModelFactory.createDefaultModel();
-        Resource lang = spec.createResource(  oms.getLanguage() );
+        String lang = oms.getLanguage();
         Resource me = ResourceFactory.createResource();
         Resource factory = spec.createResource( oms.getReasonerFactory().getURI() );
         spec.add( me, JMS.ontLanguage, lang );
@@ -110,7 +110,7 @@ public class TestModelSpec extends ModelTestBase
         spec.add( me, JMS.docManager, dm );
     /* */
         OntModelSpec ms = new OntModelSpec( spec );
-        assertEquals( lang.getURI(), ms.getLanguage() );
+        assertEquals( lang, ms.getLanguage() );
         assertEquals( factory.getURI(), ms.getReasonerFactory().getURI() );
         assertIsoModels( modelMaker, ms.getModelMaker().getDescription() );
         assertSame( odm, ms.getDocumentManager() );

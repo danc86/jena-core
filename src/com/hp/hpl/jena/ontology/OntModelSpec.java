@@ -362,7 +362,7 @@ public class OntModelSpec extends ModelSpecImpl implements ModelSpec {
     */
     public static String getLanguage( Model description, Resource root ) {
         Statement langStatement = description.getRequiredProperty( root, JMS.ontLanguage );
-        return langStatement.getResource().getURI();
+        return langStatement.getString(); // .getURI();
     }
     
     /**
