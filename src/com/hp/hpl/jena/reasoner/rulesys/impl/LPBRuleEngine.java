@@ -213,8 +213,8 @@ public class LPBRuleEngine {
             ArrayList toClose = new ArrayList();
             for (Iterator i = activeInterpreters.iterator(); i.hasNext(); ) {
                 LPInterpreter interpreter = (LPInterpreter)i.next();
-                if (interpreter.iContext instanceof LPTopGoalIterator) {
-                    toClose.add(interpreter.iContext);
+                if (interpreter.getContext() instanceof LPTopGoalIterator) {
+                    toClose.add(interpreter.getContext());
                 }
             }
             for (Iterator i = toClose.iterator(); i.hasNext(); ) {
@@ -324,8 +324,8 @@ public class LPBRuleEngine {
         ArrayList contexts = new ArrayList(activeInterpreters.size());
         for (Iterator i = activeInterpreters.iterator(); i.hasNext(); ) {
             LPInterpreter interpreter = (LPInterpreter)i.next();
-            if (interpreter.iContext instanceof Generator) {
-                contexts.add(interpreter.iContext);     
+            if (interpreter.getContext() instanceof Generator) {
+                contexts.add(interpreter.getContext());     
             }
         }
         Generator.checkForCompletions(contexts);
