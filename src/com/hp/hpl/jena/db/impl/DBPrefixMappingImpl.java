@@ -82,6 +82,7 @@ public class DBPrefixMappingImpl extends PrefixMappingImpl {
 	 * @see com.hp.hpl.jena.shared.PrefixMapping#setNsPrefixes(java.util.Map)
 	 */
 	public PrefixMapping setNsPrefixes(Map other) {
+        checkUnlocked();
 		Iterator it = other.entrySet().iterator();
 		while (it.hasNext()) {
 			Map.Entry e = (Map.Entry) it.next();

@@ -22,20 +22,29 @@ import org.apache.xerces.util.XMLChar;
 public class PrefixMappingImpl implements PrefixMapping
     {
     private Map map;
+    private boolean locked;
     
     public PrefixMappingImpl()
-        { 
-        map = new HashMap(); 
-        }
+        { map = new HashMap(); }
            
+    public PrefixMapping lock()
+        { 
+        locked = true; 
+        return this;
+        }
+        
     public PrefixMapping setNsPrefix( String prefix, String uri ) 
         {
+        checkUnlocked();
         checkLegal( prefix );
         if (!prefix.equals( "" )) removeExisting( uri );
         checkProper( uri );
         map.put( prefix, uri );
         return this;
         }
+        
+    protected void checkUnlocked()
+        { if (locked) throw new JenaLockedException( this ); }
         
     private void checkProper( String uri )
         {
@@ -82,6 +91,7 @@ public class PrefixMappingImpl implements PrefixMapping
     */
     public PrefixMapping setNsPrefixes( Map other )
         {
+        checkUnlocked();
         Iterator it = other.entrySet().iterator();
         while (it.hasNext())
             {
@@ -123,6 +133,12 @@ public class PrefixMappingImpl implements PrefixMapping
             return uri == null ? prefixed : uri + prefixed.substring( colon + 1 );
             } 
         }
+        
+    /**
+        Answer a readable (we hope) representation of this prefix mapping.
+    */
+    public String toString()
+        { return "pm:" + map; }
         
     /**
         Compress the URI using the prefix mapping. This version of the code looks

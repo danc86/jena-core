@@ -253,6 +253,21 @@ public abstract class AbstractTestPrefixMapping extends GraphTestBase
         assertSame( A, A.setNsPrefixes( A ) );
         assertSame( A, A.setNsPrefixes( new HashMap() ) );
         }
+        
+    public void testLock()
+        {
+        PrefixMapping A = getMapping();
+        assertSame( A, A.lock() );
+    /* */    
+        try { A.setNsPrefix( "crisp", crispURI ); fail( "mapping should be frozen" ); }
+        catch (PrefixMapping.JenaLockedException e) { /* correct */ }
+    /* */    
+        try { A.setNsPrefixes( A ); fail( "mapping should be frozen" ); }
+        catch (PrefixMapping.JenaLockedException e) { /* correct */ }
+    /* */
+        try { A.setNsPrefixes( new HashMap() ); fail( "mapping should be frozen" ); }
+        catch (PrefixMapping.JenaLockedException e) { /* correct */ }
+        }
     }
 
 /*
