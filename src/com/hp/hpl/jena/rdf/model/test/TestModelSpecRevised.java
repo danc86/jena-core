@@ -74,14 +74,14 @@ public class TestModelSpecRevised extends ModelTestBase
         catch (RulesetNotFoundException e) { assertEquals( "nowhere:man", e.getURI() ); }
         }
     
-//    public void testRulesetURLWorks()
-//        {
-//        String uri = GenericRuleReasonerFactory.URI;
-//        URL url = TestModelSpecRevised.class.getResource( "/testing/modelspecs/empty.rules" );
-//        Model rs = modelWithStatements( "_a jms:reasoner " + uri + "; _a jms:ruleSetURL " + url );
-//        Resource A = resource( "_a" );
-//        ModelSpecImpl.getReasonerFactory( A, rs );
-//        }
+    public void testRulesetURLWorks()
+        {
+        String uri = GenericRuleReasonerFactory.URI;
+        URL url = TestModelSpecRevised.class.getResource( "/testing/modelspecs/empty.rules" );
+        Model rs = modelWithStatements( "_a jms:reasoner " + uri + "; _a jms:ruleSetURL " + url );
+        Resource A = resource( "_a" );
+        ModelSpecImpl.getReasonerFactory( A, rs );
+        }
     
     protected void testGetReasoner(String uri, Class wantClass)
         {
