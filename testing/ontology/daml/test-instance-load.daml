@@ -15,7 +15,7 @@
 <daml:Ontology rdf:about="">
   <daml:versionInfo>$Id$</daml:versionInfo>
   <daml:imports rdf:resource="http://www.daml.org/2001/03/daml+oil" />
-  <daml:imports rdf:resource="file:modules/rdf/regression/testDAML/test-instance-load-classes.daml" />
+  <daml:imports rdf:resource="file:testing/ontology/daml/test-instance-load-classes.daml" />
 </daml:Ontology>
 
 <cr:Cop rdf:about="http://dickinson-i-4/daml/tests/test-instance-load.daml#pugh">
