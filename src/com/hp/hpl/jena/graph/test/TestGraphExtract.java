@@ -75,6 +75,12 @@ public class TestGraphExtract extends GraphTestBase
         testExtract( "a R b; b S _c", "a", "a R b; b S _c; _c T d", TripleBoundary.stopAtAnonObject );
         }
     
+    /**
+         This test exposed that the update-existing-graph functionality was broken
+         if the target graph already contained any statements with a subject S
+         appearing as subject in the source graph - no further Spo statements were
+         added.
+    */
     public void testPartialUpdate()
         {
         Graph source = graphWith( "a R b; b S e" );
