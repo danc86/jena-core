@@ -69,7 +69,7 @@ public abstract class Node {
     public static Node create( PrefixMapping pm, String x )
         {
         if (x.equals( "" ))
-            throw new JenaException( "GraphTestBase::node does not accept an empty string as argument" );
+            throw new JenaException( "Node.create does not accept an empty string as argument" );
         char first = x.charAt( 0 );
         if (first == '\'')
             return Node.createLiteral( newString( x ) );
