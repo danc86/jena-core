@@ -17,12 +17,15 @@ import java.io.*;
  *
 */
 public class SyntaxProblem {
-	
+	static private Model emptyModel = ModelFactory.createDefaultModel();
 	private Graph pgraph;
 	private EnhNode pnode;
-	private int level;
+	final int level;
 	private String shortDescription;
-	
+
+	static EnhNode inEmptyModel(Node n) {
+		return ((EnhGraph)emptyModel).getNodeAs(n,RDFNode.class);
+	}
 	/**
 	 * A syntax problem with only a problemNode().
 	 * @param shortD Short description
@@ -50,7 +53,16 @@ public class SyntaxProblem {
 	 */
 	SyntaxProblem(String shortD, EnhNode en, int lvl) {
 		this(shortD, en, null, lvl );
-	}
+	}	
+	/**
+	* A syntax problem with only a problemNode().
+	* @param shortD Short description
+	* @param n The problem node
+	* @param lvl The highest level at which this is illegal.
+	*/
+   SyntaxProblem(String shortD, Node n, int lvl) {
+	   this(shortD, inEmptyModel(n), null, lvl );
+   }
 	/**
 	 * A SyntaxProblem with only a problemSubGraph().
 	 * @param shortD Short description
@@ -126,8 +138,11 @@ public class SyntaxProblem {
 				     ("^^<"+dt +">")));
 				   
 			}
-			ww.write(" in:\n");
 			m = (Model)pnode.getGraph();
+			if ( m == emptyModel )
+			  ww.write("\n");
+			else
+ 			   ww.write(" in:\n");
 		} else {
 			ww.write("Concerning sub-graph:\n");
 			m = ModelFactory.createModelForGraph(pgraph);
