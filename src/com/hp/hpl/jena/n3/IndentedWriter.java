@@ -33,6 +33,8 @@ import java.io.* ;
 		currentIndent = 0 ;
 	}
 
+    public Writer getWriter() { return writer ; }
+
 	public int getRow() { return row ; }
 	public int getCol() { return column ; }
 	public int getIndent() { return currentIndent ; }
