@@ -10,7 +10,6 @@
 package com.hp.hpl.jena.reasoner.rulesys;
 
 import java.util.*;
-import java.io.*;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -58,13 +57,7 @@ public class OWLFBRuleReasoner extends FBRuleReasoner {
      * Return the rule set, loading it in if necessary
      */
     public static List loadRules() {
-        if (ruleSet == null) {
-            try {
-                ruleSet = Rule.parseRules(Util.loadResourceFile(RULE_FILE));
-            } catch (IOException e) {
-                throw new ReasonerException("Can't load rules file: " + RULE_FILE, e);
-            }
-        }
+        if (ruleSet == null) ruleSet = loadRules( RULE_FILE );
         return ruleSet;
     }
     

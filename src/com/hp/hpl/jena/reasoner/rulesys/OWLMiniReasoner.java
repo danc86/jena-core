@@ -11,7 +11,6 @@ package com.hp.hpl.jena.reasoner.rulesys;
 
 import com.hp.hpl.jena.reasoner.*;
 
-import java.io.IOException;
 import java.util.*;
 
 /**
@@ -38,13 +37,7 @@ public class OWLMiniReasoner extends GenericRuleReasoner implements Reasoner {
      * Return the rule set, loading it in if necessary
      */
     public static List loadRules() {
-        if (miniRuleSet == null) {
-            try {
-                miniRuleSet = Rule.parseRules(Util.loadResourceFile(MINI_RULE_FILE));
-            } catch (IOException e) {
-                throw new ReasonerException("Can't load rules file: " + MINI_RULE_FILE, e);
-            }
-        }
+        if (miniRuleSet == null) miniRuleSet = loadRules( MINI_RULE_FILE );
         return miniRuleSet;
     }
     

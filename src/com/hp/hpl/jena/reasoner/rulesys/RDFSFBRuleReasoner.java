@@ -9,10 +9,8 @@
  *****************************************************************/
 package com.hp.hpl.jena.reasoner.rulesys;
 
-import java.io.*;
 import java.util.*;
 
-import com.hp.hpl.jena.reasoner.ReasonerException;
 import com.hp.hpl.jena.reasoner.ReasonerFactory;
 
 /**
@@ -41,13 +39,7 @@ public class RDFSFBRuleReasoner extends FBRuleReasoner {
      * Return the RDFS rule set, loading it in if necessary
      */
     public static List loadRules() {
-        if (ruleSet == null) {
-            try {
-                ruleSet = Rule.parseRules(Util.loadResourceFile(RULE_FILE));
-            } catch (IOException e) {
-                throw new ReasonerException("Can't load rules file: " + RULE_FILE, e);
-            }
-        }
+        if (ruleSet == null) ruleSet = loadRules( RULE_FILE );
         return ruleSet;
     }
 

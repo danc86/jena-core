@@ -11,6 +11,7 @@ package com.hp.hpl.jena.reasoner.rulesys;
 
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.reasoner.*;
+import com.hp.hpl.jena.shared.WrappedIOException;
 import com.hp.hpl.jena.vocabulary.ReasonerVocabulary;
 import com.hp.hpl.jena.graph.*;
 import java.util.*;
@@ -221,6 +222,17 @@ public class FBRuleReasoner implements Reasoner {
     public List getRules() {
         return rules;
     } 
+    
+    /**
+         Answer the list of rules loaded from the given filename. May throw a
+         ReasonerException wrapping an IOException.
+    */
+    public static List loadRules( String fileName ) {
+        try 
+            { return Rule.parseRules(Util.loadResourceFile( fileName ) ); }
+        catch (WrappedIOException e) 
+            { throw new ReasonerException("Can't load rules file: " + fileName, e.getCause() ); }
+    }
     
     /**
      * Register an RDF predicate as one whose presence in a goal should force

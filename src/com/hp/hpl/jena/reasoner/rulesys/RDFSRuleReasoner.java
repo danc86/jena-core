@@ -9,7 +9,6 @@
  *****************************************************************/
 package com.hp.hpl.jena.reasoner.rulesys;
 
-import java.io.*;
 import java.util.*;
 
 import com.hp.hpl.jena.graph.*;
@@ -67,7 +66,7 @@ public class RDFSRuleReasoner extends GenericRuleReasoner {
      * Constructor
      */
     public RDFSRuleReasoner(ReasonerFactory parent) {
-        super(loadRules(DEFAULT_RULES), parent);
+        super(loadRulesLevel(DEFAULT_RULES), parent);
         setMode(HYBRID);
         setTransitiveClosureCaching(true);
         //addPreprocessingHook(new RDFSCMPPreprocessHook());
@@ -114,7 +113,7 @@ public class RDFSRuleReasoner extends GenericRuleReasoner {
             return true;
         } else if (parameter.equals(ReasonerVocabulary.PROPsetRDFSLevel)) {
             String level = ((String)value).toLowerCase();
-            setRules(loadRules(level));
+            setRules(loadRulesLevel(level));
             if (level.equals(FULL_RULES)) {
                 addPreprocessingHook(cmpProcessor);
             } else {
@@ -183,19 +182,15 @@ public class RDFSRuleReasoner extends GenericRuleReasoner {
      * Return the RDFS rule set, loading it in if necessary.
      * @param level a string defining the processing level required
      */
-    public static List loadRules(String level) {
+    public static List loadRulesLevel(String level) {
         List ruleSet = (List)ruleSets.get(level);
         if (ruleSet == null) {
-            try {
-                String file = (String)ruleFiles.get(level);
-                if (file == null) {
-                    throw new ReasonerException("Illegal RDFS conformance level: " + level);
-                }
-                ruleSet = Rule.parseRules(Util.loadResourceFile(file));
-                ruleSets.put(level, ruleSet);
-            } catch (IOException e) {
-                throw new ReasonerException("Can't load rules file: " + RULE_FILE, e);
+            String file = (String)ruleFiles.get(level);
+            if (file == null) {
+                throw new ReasonerException("Illegal RDFS conformance level: " + level);
             }
+            ruleSet = loadRules( file );
+            ruleSets.put(level, ruleSet);
         }
         return ruleSet;
     }

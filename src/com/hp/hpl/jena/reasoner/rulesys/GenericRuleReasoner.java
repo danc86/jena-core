@@ -15,7 +15,6 @@ import com.hp.hpl.jena.vocabulary.ReasonerVocabulary;
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.rdf.model.*;
 
-import java.io.IOException;
 import java.util.*;
 
 /**
@@ -238,12 +237,7 @@ public class GenericRuleReasoner extends FBRuleReasoner {
             
         } else if (parameter.equals(ReasonerVocabulary.PROPruleSet)) {
             if (value instanceof String) {
-                try {
-                    String ruleString = Util.loadResourceFile((String)value);
-                    setRules(Rule.parseRules(ruleString));
-                } catch (IOException e) {
-                    throw new ReasonerException("Failed to open rule file: " + value, e);
-                }
+                setRules( loadRules( (String)value ) );
             } else {
                 throw new IllegalParameterException("PROPruleSet value should be a URI string. Was a " + value.getClass());
             }

@@ -12,8 +12,6 @@ import junit.framework.TestSuite;
 import com.hp.hpl.jena.rdf.model.test.ModelTestBase;
 import com.hp.hpl.jena.reasoner.rulesys.*;
 import com.hp.hpl.jena.reasoner.rulesys.impl.BaseRuleReasonerFactory;
-import com.hp.hpl.jena.reasoner.transitiveReasoner.TransitiveReasoner;
-import com.hp.hpl.jena.reasoner.transitiveReasoner.TransitiveReasonerFactory;
 
 /**
      TestSetRules - tests to bring setRules into existence on RuleReasonerFactory.     

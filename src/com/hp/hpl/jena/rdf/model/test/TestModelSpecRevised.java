@@ -30,60 +30,6 @@ public class TestModelSpecRevised extends ModelTestBase
     public static TestSuite suite()
         { return new TestSuite( TestModelSpecRevised.class ); }
     
-    public void testFactoryWrapper()
-        {
-        List L = new ArrayList( Rule.parseRules( "[name: (?s owl:foo ?p) -> (?s ?p ?a)]" ) );
-        MockFactory mock = new MockFactory();
-        WrappedFactory wrap = new WrappedFactory( mock );
-        assertEquals( mock.reasoner, wrap.create( null ) );
-        assertEquals( mock.model, wrap.getCapabilities() );
-        assertEquals( mock.getURI(), wrap.getURI() );
-        wrap.setRules( L );
-        assertEquals( L, ((FBRuleReasoner) wrap.create( null )).getRules() );
-        }
-    
-    public class WrappedFactory implements RuleReasonerFactory
-       {
-       protected ReasonerFactory base;
-       protected List rules = new ArrayList();
-       
-       public WrappedFactory( ReasonerFactory base )
-           { this.base = base; }
-       
-       public Reasoner create(Resource configuration)
-           { Reasoner result = base.create( configuration ); 
-           if (result instanceof FBRuleReasoner) ((FBRuleReasoner) result).setRules( rules );
-           return result; }
-
-       public Model getCapabilities()
-           { return base.getCapabilities();  }
-
-       public String getURI()
-           { return base.getURI();  }
-       
-       public void setRules( List rules )
-           { this.rules = rules; }
-       }
-   
-    protected static class MockFactory implements ReasonerFactory
-        {
-        public final Model model = ModelFactory.createDefaultModel();
-        public final Reasoner reasoner = new GenericRuleReasoner( new ArrayList() );
-        
-        protected void add( String what )
-            {}
-        
-        public Reasoner create( Resource configuration )
-            { add( "create" ); return reasoner; }
-
-        public Model getCapabilities()
-            { add( "getCapabilities" ); return model; }
-
-        public String getURI()
-            { add( "getURI" ); return "eg:someURI"; }
-        
-        }
-    
     /*
      * 
         Statement factStatement = description.getProperty( root, JMS.reasonsWith );
@@ -137,7 +83,19 @@ public class TestModelSpecRevised extends ModelTestBase
         String url = "file:testing/modelspecs/empty.rules";
         Model rs = modelWithStatements( "_a jms:reasoner " + uri + "; _a jms:ruleSetURL " + url );
         Resource A = resource( "_a" );
-        ModelSpecImpl.getReasonerFactory( A, rs );
+        ReasonerFactory rf = ModelSpecImpl.getReasonerFactory( A, rs );
+        GenericRuleReasoner gr = (GenericRuleReasoner) rf.create( null );
+        assertEquals( new ArrayList(), gr.getRules() );
+        }
+    public void testRulesetURL2Works()
+        {
+        String uri = GenericRuleReasonerFactory.URI;
+        String url = "file:testing/modelspecs/example.rules";
+        Model rs = modelWithStatements( "_a jms:reasoner " + uri + "; _a jms:ruleSetURL " + url );
+        Resource A = resource( "_a" );
+        ReasonerFactory rf = ModelSpecImpl.getReasonerFactory( A, rs );
+        GenericRuleReasoner gr = (GenericRuleReasoner) rf.create( null );
+        assertEquals( new ArrayList(), gr.getRules() );
         }
     
     public void testRulesetURLLoads()

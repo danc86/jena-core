@@ -159,13 +159,7 @@ public class TestLPRDFS extends TestCase {
      * Return the RDFS rule set, loading it in if necessary
      */
     public static List loadRules() {
-        if (ruleSet == null) {
-            try {
-                ruleSet = Rule.parseRules(Util.loadResourceFile(RULE_FILE));
-            } catch (IOException e) {
-                throw new ReasonerException("Can't load rules file: " + RULE_FILE, e);
-            }
-        }
+        if (ruleSet == null) ruleSet = FBRuleReasoner.loadRules( RULE_FILE );
         return ruleSet;
     }
 

@@ -10,7 +10,6 @@
 package com.hp.hpl.jena.reasoner.rulesys.impl.oldCode;
 
 import java.util.*;
-import java.io.*;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -20,6 +19,7 @@ import com.hp.hpl.jena.reasoner.rulesys.FBRuleReasoner;
 import com.hp.hpl.jena.reasoner.rulesys.Rule;
 import com.hp.hpl.jena.reasoner.rulesys.Util;
 import com.hp.hpl.jena.reasoner.rulesys.impl.OWLRuleTranslationHook;
+import com.hp.hpl.jena.shared.WrappedIOException;
 import com.hp.hpl.jena.graph.*;
 
 /**
@@ -67,7 +67,7 @@ public class OWLExptRuleReasoner extends FBRuleReasoner  {
         if (ruleSet == null) {
             try {
                 ruleSet = Rule.parseRules(Util.loadResourceFile(RULE_FILE));
-            } catch (IOException e) {
+            } catch (WrappedIOException e) {
                 throw new ReasonerException("Can't load rules file: " + RULE_FILE, e);
             }
         }

@@ -9,7 +9,6 @@
  *****************************************************************/
 package com.hp.hpl.jena.reasoner.rulesys.test;
 
-import java.io.IOException;
 import java.util.Iterator;
 
 import com.hp.hpl.jena.graph.*;
@@ -22,6 +21,7 @@ import com.hp.hpl.jena.vocabulary.*;
 import com.hp.hpl.jena.reasoner.*;
 import com.hp.hpl.jena.reasoner.rulesys.*;
 import com.hp.hpl.jena.reasoner.rulesys.impl.oldCode.*;
+import com.hp.hpl.jena.shared.WrappedIOException;
 //import com.hp.hpl.jena.reasoner.transitiveReasoner.TransitiveReasonerFactory;
 
 import org.apache.commons.logging.Log;
@@ -98,8 +98,8 @@ public class DebugOWL {
             grr.setMode(GenericRuleReasoner.HYBRID);
             try {
                 grr.setRules(Rule.parseRules(Util.loadResourceFile("etc/expt.rules")));
-            } catch (IOException e) {
-                System.out.println("Failed to open rules file: " + e);
+            } catch (WrappedIOException e) {
+                System.out.println("Failed to open rules file: " + e.getCause() );
                 System.exit(1);
             }
 //            grr.setTransitiveClosureCaching(true);
@@ -134,8 +134,8 @@ public class DebugOWL {
                 try {
                     List rules = Rule.parseRules(Util.loadResourceFile("etc/expt.rules"));
                     reasoner = new FBRuleReasoner(rules);
-                } catch (IOException e) {
-                    System.out.println("Failed to open rules file: " + e);
+                } catch (WrappedIOException e) {
+                    System.out.println("Failed to open rules file: " + e.getCause());
                     System.exit(1);
                 }
                 break;
