@@ -759,7 +759,18 @@ public class schemagen {
             return ns;
         }
 
-        // if we are using an ontology model, get the namespace URI from the ontology element
+        // alternatively, the default namespace may be set in the prefix mapping read from the input document
+        String defaultNS = m_source.getNsPrefixURI( "" );
+        if (defaultNS == null) {
+            defaultNS = m_source.getBaseModel().getNsPrefixURI( "" );
+        }
+        
+        if (defaultNS != null) {
+            m_includeURI.add( defaultNS );
+            return defaultNS;
+        }
+        
+        // if we are using an ontology model, we can get the namespace URI from the ontology element
         try {
             Resource ont = m_source.getBaseModel()
                                    .listStatements( null, RDF.type, m_source.getProfile().ONTOLOGY() )
