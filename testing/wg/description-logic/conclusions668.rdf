@@ -157,11 +157,6 @@ ABox test from DL98 systems comparison.
 <owl:Class rdf:about="http://oiled.man.example.net/test#C38"/>
 </rdf:type>
 </owl:Thing>
-<owl:Thing rdf:about="http://oiled.man.example.net/test#V16448">
-  <rdf:type>
-<owl:Class rdf:about="http://oiled.man.example.net/test#C122"/>
-</rdf:type>
-</owl:Thing>
 <owl:Thing rdf:about="http://oiled.man.example.net/test#V16439">
   <rdf:type>
 <owl:Class rdf:about="http://oiled.man.example.net/test#C130"/>
