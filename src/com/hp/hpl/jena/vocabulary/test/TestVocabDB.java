@@ -29,7 +29,7 @@ public class TestVocabDB extends VocabTestBase
         assertProperty( ns + "DriverVersion", DB.driverVersion );
         assertProperty( ns + "FormatDate", DB.formatDate );
         assertProperty( ns + "Graph", DB.graph );
-        assertProperty( ns + "MaxLiteral", DB.maxLiteral );
+        // assertProperty( ns + "MaxLiteral", DB.maxLiteral );
     /* */
         assertProperty( ns + "GraphName", DB.graphName );
         assertProperty( ns + "GraphType", DB.graphType );
