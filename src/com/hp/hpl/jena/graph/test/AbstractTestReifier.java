@@ -162,13 +162,13 @@ public abstract class AbstractTestReifier extends GraphTestBase
         graphAdd( g, "x rdf:subject A; x rdf:predicate P; x rdf:object O; x rdf:type rdf:Statement" );
         assertEquals( triple( "A P O" ), r.getTriple( node( "x" ) ) );
         try 
-            { graphAdd( g, "x rdf:subject BOOM" ); }
+            { graphAdd( g, "x rdf:subject BOOM" ); 
+            assertEquals( null, r.getTriple( node( "x" ) ) ); }
         catch (AlreadyReifiedException e) 
             {
             if (r instanceof DBReifier) { System.err.println( "! Db reifier must fix over-specification problem" ); }
             else throw e;
             }
-        assertEquals( null, r.getTriple( node( "x" ) ) );
         }
     
     public void testManifestQuadsStandard()
