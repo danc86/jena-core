@@ -20,138 +20,16 @@ import java.util.*;
 
 import junit.framework.*;
 
-public class TestGraph extends GraphTestBase
+public class TestGraph extends AbstractTestGraph
     { 
 	public TestGraph( String name )
-		{ super( name ); };
-		
+		{ super( name ); }
+
     public static TestSuite suite()
-        { return new TestSuite( TestGraph.class ); }   
-
-    public void testAGraph( String title, Graph g )
-        {
-        graphAdd( g, "x R y; p S q; a T b" );
-    /* */
-        assertContainsAll( title + ": simple graph", g, "x R y; p S q; a T b" );
-        assertEquals( title + ": size", g.size(), 3 );
-        graphAdd( g, "spindizzies lift cities; Diracs communicate instantaneously" );
-        assertEquals( title + ": size after adding", g.size(), 5 );
-        g.delete( triple( "x R y" ) );
-        g.delete( triple( "a T b" ) );
-        assertEquals( title + ": size after deleting", g.size(), 3 );
-        assertContainsAll( title + ": modified simple graph", g, "p S q; spindizzies lift cities; Diracs communicate instantaneously" );
-        assertOmitsAll( title + ": modified simple graph", g, "x R y; a T b" );
-    /* */ 
-        ClosableIterator it = g.find( null, node("lift"), null );
-        assertTrue( title + ": finds some triple(s)", it.hasNext() );
-        assertEquals( title + ": finds a 'lift' triple", triple("spindizzies lift cities"), it.next() );
-        assertFalse( title + ": finds exactly one triple", it.hasNext() );
-        }
-
-    public void testStuff()
-        {
-        testAGraph( "StoreMem", new GraphMem() );
-        testAGraph( "StoreMemBySubject", new GraphMem() );
-//        String [] empty = new String [] {};
-//        Graph g = graphWith( "x R y; p S q; a T b" );
-//    /* */
-//        assertContainsAll( "simple graph", g, "x R y; p S q; a T b" );
-//        graphAdd( g, "spindizzies lift cities; Diracs communicate instantaneously" );
-//        g.delete( triple( "x R y" ) );
-//        g.delete( triple( "a T b" ) );
-//        assertContainsAll( "modified simple graph", g, "p S q; spindizzies lift cities; Diracs communicate instantaneously" );
-//        assertOmitsAll( "modified simple graph", g, "x R y; a T b" );
-        }
-                                      
-    public void testReificationControl()
-        {
-        Graph g1 = graphWith( "x rdf:subject S" );
-        Graph g2 = GraphBase.withReification( g1 );
-        assertEquals( "should not hide reification triple", 1, g1.size() );
-        assertEquals( "should not hide reification triple", 1, g2.size() );
-        g2.add( triple( "x rdf:object O" ) );
-        assertEquals( "", 1, g1.size() );
-        assertEquals( "", 1, g2.size() );
-        }
-
-    public void testHasTransactions()
-        { testHasTransactions( Factory.createDefaultGraph() ); }
-                
-    /**
-        Test that Graphs have transaction support methods, and that if they fail
-        on some g they fail because they do not support the operation.
-    */
-    public static void testHasTransactions( Graph g )
-        {
-        TransactionHandler th = g.getTransactionHandler();
-        th.transactionsSupported();
-        try { th.begin(); } catch (UnsupportedOperationException x) {}
-        try { th.abort(); } catch (UnsupportedOperationException x) {}
-        try { th.commit(); } catch (UnsupportedOperationException x) {}
-        }
-                    
-    public void testBulkUpdate()
-        { testBulkUpdate( Factory.createDefaultGraph() ); }
-
-    static final Triple [] tripleArray = tripleArray( "S P O; A R B; X Q Y" );
-
-    static final List tripleList = Arrays.asList( tripleArray( "i lt j; p equals q" ) );
+        { return new TestSuite( TestGraph.class ); }
         
-    static final Triple [] setTriples = tripleArray
-        ( "scissors cut paper; paper wraps stone; stone breaks scissors" );
-        
-    static final Set tripleSet = new HashSet( Arrays.asList( setTriples ) );
-                
-    public void testBulkUpdate( Graph g )
-        {
-        BulkUpdateHandler bu = g.getBulkUpdateHandler();
-        Graph items = graphWith( "pigs might fly; dead can dance" );
-        int initialSize = g.size();
-    /* */
-        bu.add( tripleArray );
-        testContains( g, tripleArray );
-    /* */
-        bu.add( tripleList );
-        testContains( g, tripleList );
-        testContains( g, tripleArray );
-    /* */
-        bu.add( tripleSet.iterator() );
-        testContains( g, tripleSet.iterator() );
-        testContains( g, tripleList );
-        testContains( g, tripleArray );
-    /* */
-        bu.add( items );
-        testContains( g, items );
-        testContains( g, tripleSet.iterator() );
-        testContains( g, tripleArray );
-        testContains( g, tripleList );
-    /* */
-        bu.delete( tripleArray );
-        testOmits( g, tripleArray );
-        testContains( g, tripleList );
-        testContains( g, tripleSet.iterator() );
-        testContains( g, items );
-    /* */
-        bu.delete( tripleSet.iterator() );
-        testOmits( g, tripleSet.iterator() );
-        testOmits( g, tripleArray );
-        testContains( g, tripleList );
-        testContains( g, items );
-    /* */
-        bu.delete( items );
-        testOmits( g, tripleSet.iterator() );
-        testOmits( g, tripleArray );
-        testContains( g, tripleList );
-        testOmits( g, items ); 
-    /* */
-        bu.delete( tripleList );
-        assertEquals( "graph has original size", initialSize, g.size() );
-        }
-                    
-    public static void testHasCapabilities( Graph g )
-        {
-        Capabilities c = g.getCapabilities();
-        }
+    public Graph getGraph()
+        { return new GraphMem(); }
     }
 
 /*

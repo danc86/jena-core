@@ -74,7 +74,7 @@ public class GraphTestBase extends JenaTestBase
         return result;
         }
         
-    public static void testNodeHelp()
+    public void testNodeHelp()
         {
         assertTrue( "node() making URIs", node( "hello" ).isURI() );
         assertTrue( "node() making literals", node( "123" ).isLiteral() );
