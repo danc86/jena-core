@@ -529,6 +529,49 @@ public class TestDigReasoner
                                        new Resource[] {q1, q2}, 0 );
     }
 
+    public void testIncrementalAdd() {
+        String NS = "http://example.org/foo#";
+        
+        DIGReasoner r = (DIGReasoner) ReasonerRegistry.theRegistry().create( DIGReasonerFactory.URI, null );
+        
+        OntModelSpec spec = new OntModelSpec( OntModelSpec.OWL_DL_MEM );
+        spec.setReasoner( r );
+        OntModel m = ModelFactory.createOntologyModel( spec, null );
+
+        OntClass F0 = m.createClass( NS + "F0" );
+        OntClass F1 = m.createClass( NS + "F1" );
+        OntClass F2 = m.createClass( NS + "F2" );
+        Individual i0 = m.createIndividual( NS + "i0", F0 );
+        
+        assertFalse( "i0 is not an F2", i0.hasRDFType( F2 ) );
+        F0.addSuperClass( F1 );
+        F1.addSuperClass( F2 );
+        assertTrue( "i0 should now be an F2", i0.hasRDFType( F2 ) );
+    }
+    
+    
+    public void testIncrementalRemove() {
+        String NS = "http://example.org/foo#";
+        
+        DIGReasoner r = (DIGReasoner) ReasonerRegistry.theRegistry().create( DIGReasonerFactory.URI, null );
+        
+        OntModelSpec spec = new OntModelSpec( OntModelSpec.OWL_DL_MEM );
+        spec.setReasoner( r );
+        OntModel m = ModelFactory.createOntologyModel( spec, null );
+
+        OntClass F0 = m.createClass( NS + "F0" );
+        OntClass F1 = m.createClass( NS + "F1" );
+        OntClass F2 = m.createClass( NS + "F2" );
+        Individual i0 = m.createIndividual( NS + "i0", F0 );
+        F0.addSuperClass( F1 );
+        F1.addSuperClass( F2 );
+        
+        assertTrue( "i0 is an F2", i0.hasRDFType( F2 ) );
+        F0.removeSuperClass( F1 );
+        assertFalse( "i0 should now not be an F2", i0.hasRDFType( F2 ) );
+    }
+    
+    
     public void xxtestDebug1() {
         String NS = "http://example.org/foo#";
         

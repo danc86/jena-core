@@ -161,6 +161,26 @@ public class DIGInfGraph
     // overriding the BaseInfGraph methods
     
     /**
+     * <p>Add one triple to the data graph, mark the graph not-prepared,
+     * but don't run prepare() just yet.</p>
+     * @param t A triple to add to the graph
+     */
+    public synchronized void performAdd(Triple t) {
+        fdata.getGraph().add(t);
+        isPrepared = false;
+    }
+
+    /**
+     * <p>Delete one triple from the data graph, mark the graph not-prepared,
+     * but don't run prepare() just yet.</p>
+     * @param t A triple to remove from the graph
+     */
+    public void performDelete(Triple t) {
+        fdata.getGraph().delete(t);
+        isPrepared = false;
+    }
+
+    /**
      * Replace the underlying data graph for this inference graph and start any
      * inferences over again. This is primarily using in setting up ontology imports
      * processing to allow an imports multiunion graph to be inserted between the
