@@ -79,6 +79,7 @@ public class DAML_OILProfile
     private Resource m_annotationProperty           = null;
     private Resource m_list                         = m_vocabModel.createResource( DAML_OIL.List.getURI()                      );                     
     private Resource m_nil                          = m_vocabModel.createResource( DAML_OIL.nil.getURI()                       );
+    private Resource m_datarange                    = null;
     
     private Property m_equivalentProperty           = m_vocabModel.createProperty( DAML_OIL.samePropertyAs.getNameSpace(),          DAML_OIL.samePropertyAs.getLocalName() );
     private Property m_equivalentClass              = m_vocabModel.createProperty( DAML_OIL.sameClassAs.getNameSpace(),             DAML_OIL.sameClassAs.getLocalName() );
@@ -149,6 +150,7 @@ public class DAML_OILProfile
     public Resource ANNOTATION_PROPERTY() {         return m_annotationProperty; }
     public Resource LIST() {                        return m_list; }
     public Resource NIL() {                         return m_nil; }
+    public Resource DATARANGE() {                   return m_datarange; }
     
     public Property EQUIVALENT_PROPERTY() {         return m_equivalentProperty; }
     public Property EQUIVALENT_CLASS() {            return m_equivalentClass; }

@@ -243,6 +243,13 @@ public interface Profile
      */
     public Resource ANNOTATION_PROPERTY();
     
+    /**
+     * <p>
+     * Answer the class that defines a closed range of concrete data values.
+     * </p>
+     * @return The DataRange class
+     */
+    public Resource DATARANGE();
     
     /**
      * <p>

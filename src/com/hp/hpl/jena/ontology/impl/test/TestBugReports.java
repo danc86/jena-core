@@ -211,7 +211,7 @@ public class TestBugReports
               Restriction r = oc.asRestriction();
               if ( r.isSomeValuesFromRestriction() ) {
                  SomeValuesFromRestriction sr = r.asSomeValuesFromRestriction();
-                 OntClass sc = sr.getSomeValuesFrom();
+                 OntClass sc = (OntClass) sr.getSomeValuesFrom();
                     if ( sc.isEnumeratedClass() ) {
                        EnumeratedClass ec = sc.asEnumeratedClass();
                        assertEquals( "Enumeration size should be 2", 2, ec.getOneOf().size() );

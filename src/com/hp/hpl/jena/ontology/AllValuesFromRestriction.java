@@ -60,11 +60,13 @@ public interface AllValuesFromRestriction
     public void setAllValuesFrom( Resource cls );
 
     /**
-     * <p>Answer the class that all values of the restricted property must belong to.</p>
-     * @return A class that all values from the restricted property must belong to
+     * <p>Answer the resource characterising the constraint on all values of the restricted property. This may be
+     * a class, the URI of a concrete datatype, a DataRange object or the URI rdfs:Literal.</p>
+     * @return A resource, which will have been pre-converted to the appropriate Java value type
+     *        ({@link OntClass} or {@link DataRange}) if appropriate.
      * @exception OntProfileException If the {@link Profile#ALL_VALUES_FROM()} property is not supported in the current language profile.   
      */ 
-    public OntClass getAllValuesFrom();
+    public Resource getAllValuesFrom();
 
     /**
      * <p>Answer true if this property restriction has the given class as the class to which all 

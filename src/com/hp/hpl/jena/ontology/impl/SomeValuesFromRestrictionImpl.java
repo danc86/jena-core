@@ -110,12 +110,28 @@ public class SomeValuesFromRestrictionImpl
     }
 
     /**
-     * <p>Answer the class that at least one value of the restricted property must belong to.</p>
-     * @return A class that some values from the restricted property must belong to
+     * <p>Answer the resource characterising the constraint on at least one value of the restricted property. This may be
+     * a class, the URI of a concrete datatype, a DataRange object or the URI rdfs:Literal.</p>
+     * @return A resource, which will have been pre-converted to the appropriate Java value type
+     *        ({@link OntClass} or {@link DataRange}) if appropriate.
      * @exception OntProfileException If the {@link Profile#SOME_VALUES_FROM()} property is not supported in the current language profile.   
      */ 
-    public OntClass getSomeValuesFrom() {
-        return (OntClass) objectAs( getProfile().SOME_VALUES_FROM(), "SOME_VALUES_FROM", OntClass.class );
+    public Resource getSomeValuesFrom() {
+        checkProfile( getProfile().SOME_VALUES_FROM(), "SOME_VALUES_FROM" );
+        Resource r = (Resource) getRequiredProperty( getProfile().SOME_VALUES_FROM() ).getObject();
+        
+        if (r.canAs( OntClass.class )) {
+            // all values from a class
+            return (Resource) r.as( OntClass.class );
+        }
+        else if (r.canAs( DataRange.class )) {
+            // all values from a given data range
+            return (Resource) r.as( DataRange.class );
+        }
+        else {
+            // must be a datatype ID or rdfs:Literal
+            return r;
+        }
     }
 
     /**

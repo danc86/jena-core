@@ -81,6 +81,7 @@ public class OWLProfile
     public Resource ANNOTATION_PROPERTY() {         return OWL.AnnotationProperty; }
     public Resource LIST() {                        return RDF.List; }
     public Resource NIL() {                         return RDF.nil; }
+    public Resource DATARANGE() {                   return OWL.DataRange; }
     
 
     public Property EQUIVALENT_PROPERTY() {         return OWL.equivalentProperty; }
@@ -377,6 +378,13 @@ public class OWLProfile
         {  Individual.class,    new SupportsCheck() {
                                             public boolean doCheck( Node n, EnhGraph g ) {
                                                 return n instanceof Node_URI || n instanceof Node_Blank;
+                                            }
+                                        }
+        },
+        {  DataRange.class,    new SupportsCheck() {
+                                            public boolean doCheck( Node n, EnhGraph g ) {
+                                                return n instanceof Node_Blank  &&
+                                                       g.asGraph().contains( n, RDF.type.asNode(), OWL.DataRange.asNode() );
                                             }
                                         }
         },

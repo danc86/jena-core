@@ -946,6 +946,17 @@ public interface OntModel
 
 
     /**
+     * <p>Answer a data range defined as the given set of concrete data values.  DataRange resources
+     * are necessarily bNodes.</p>
+     * 
+     * @param literals A list of literals that will be the members of the data range, 
+     *                 or null to define an empty data range
+     * @return A new data range containing the given literals as permissible values
+     */
+    public DataRange createDataRange( RDFList literals );
+
+
+    /**
      * <p>
      * Answer a new, anonymous node representing the fact that a given set of classes are all
      * pair-wise distinct.  <code>AllDifferent</code> is a feature of OWL only, and is something

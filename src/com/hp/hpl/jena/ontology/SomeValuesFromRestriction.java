@@ -60,11 +60,13 @@ public interface SomeValuesFromRestriction
     public void setSomeValuesFrom( Resource cls );
 
     /**
-     * <p>Answer the class that at least one value of the restricted property must belong to.</p>
-     * @return A class that some values from the restricted property must belong to
-     * @exception OntProfileException If the {@link Profile#SOME_VALUES_FROM()} property is not supported in the current language profile.   
+     * <p>Answer the resource characterising the constraint on at least one value of the restricted property. This may be
+     * a class, the URI of a concrete datatype, a DataRange object or the URI rdfs:Literal.</p>
+     * @return A resource, which will have been pre-converted to the appropriate Java value type
+     *        ({@link OntClass} or {@link DataRange}) if appropriate.
+     * @exception OntProfileException If the {@link Profile#ALL_VALUES_FROM()} property is not supported in the current language profile.   
      */ 
-    public OntClass getSomeValuesFrom();
+    public Resource getSomeValuesFrom();
 
     /**
      * <p>Answer true if this property restriction has the given class as the class to which at least one 

@@ -95,7 +95,9 @@ public class OWL
     /** Resource denoting the class of OWL properties that are annotations */
     public static final Resource AnnotationProperty           = m_vocabModel.createResource( OWL.NAMESPACE + "AnnotationProperty"        );
 
-
+    /** Resource denoting a class that represents a property range consisting of concrete data values */
+    public static final Resource DataRange                    = m_vocabModel.createResource( OWL.NAMESPACE + "DataRange"                 );
+    
     /** Property denoting the OWL predicate that states that two given properties are equivalent */
     public static final Property equivalentProperty           = m_vocabModel.createProperty( OWL.NAMESPACE, "equivalentProperty"         );
 

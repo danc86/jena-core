@@ -83,6 +83,7 @@ public class RDFSProfile
     public Resource ANNOTATION_PROPERTY() {         return null; }
     public Resource LIST() {                        return RDF.List; }
     public Resource NIL() {                         return RDF.nil; }
+    public Resource DATARANGE() {                   return null; }
     
 
     public Property EQUIVALENT_PROPERTY() {         return null; }

@@ -59,6 +59,7 @@ public class OWLLiteProfile
     // External signature methods
     //////////////////////////////////
 
+    public Resource DATARANGE() {                   return null; }
     public Resource NOTHING() {                     return null; }
     public Property COMPLEMENT_OF() {               return null; }
     public Property DISJOINT_WITH() {               return null; }

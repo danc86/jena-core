@@ -43,6 +43,7 @@ public class BuiltinPersonalities {
         .add( IntersectionClass.class, IntersectionClassImpl.factory )
         .add( UnionClass.class, UnionClassImpl.factory )
         .add( ComplementClass.class, ComplementClassImpl.factory )
+        .add( DataRange.class, DataRangeImpl.factory )
         
         .add( Restriction.class, RestrictionImpl.factory )
         .add( HasValueRestriction.class, HasValueRestrictionImpl.factory )

@@ -28,8 +28,10 @@ package com.hp.hpl.jena.ontology.impl.test;
 import java.util.ArrayList;
 
 import com.hp.hpl.jena.ontology.*;
-import com.hp.hpl.jena.rdf.model.RDFNode;
+import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.util.iterator.ClosableIterator;
+import com.hp.hpl.jena.vocabulary.*;
+import com.hp.hpl.jena.vocabulary.XSD;
 
 import junit.framework.*;
 
@@ -357,7 +359,67 @@ public class TestClassExpression
                     A.removeAllValuesFrom( C );
 
                     assertTrue( "Restriction should not be some values from C", !A.hasAllValuesFrom( C ) );
-                    assertEquals( "cardinality should be 0 ", 0, A.getCardinality( prof.SOME_VALUES_FROM() ));
+                    assertEquals( "cardinality should be 0 ", 0, A.getCardinality( prof.ALL_VALUES_FROM() ));
+                }
+            },
+            new OntTestCase( "AllValuesFromRestriction.allValuesFrom.datatype", true, true, true, false ) {
+                public void ontTest( OntModel m ) throws Exception {
+                    Profile prof = m.getProfile();
+                    OntProperty p = m.createObjectProperty( NS + "p" );
+
+                    AllValuesFromRestriction A = m.createAllValuesFromRestriction( NS + "A", p, XSD.gDay  );
+                    
+                    assertEquals( "Restriction should be all values from gDay", XSD.gDay, A.getAllValuesFrom() );
+                    assertTrue( "Restriction should be all values from gDay", A.hasAllValuesFrom( XSD.gDay ) );
+                    assertTrue( "Restriction should not be all values from decimal", !A.hasAllValuesFrom( XSD.decimal ) );
+                    assertEquals( "cardinality should be 1 ", 1, A.getCardinality( prof.ALL_VALUES_FROM() ));
+                    
+                    A.setAllValuesFrom( XSD.gMonth );
+
+                    assertEquals( "Restriction should be all values from gMonth", XSD.gMonth, A.getAllValuesFrom() );
+                    assertTrue( "Restriction should not be all values from gDay", !A.hasAllValuesFrom( XSD.gDay ) );
+                    assertTrue( "Restriction should be all values from gMonth", A.hasAllValuesFrom( XSD.gMonth ) );
+                    assertEquals( "cardinality should be 1 ", 1, A.getCardinality( prof.ALL_VALUES_FROM() ));
+                    
+                    A.removeAllValuesFrom( XSD.gMonth );
+
+                    assertTrue( "Restriction should not be some values from gMonth", !A.hasAllValuesFrom( XSD.gMonth ) );
+                    assertEquals( "cardinality should be 0 ", 0, A.getCardinality( prof.ALL_VALUES_FROM() ));
+                }
+            },
+            new OntTestCase( "AllValuesFromRestriction.allValuesFrom.literal", true, true, true, false ) {
+                public void ontTest( OntModel m ) throws Exception {
+                    Profile prof = m.getProfile();
+                    OntProperty p = m.createObjectProperty( NS + "p" );
+
+                    AllValuesFromRestriction A = m.createAllValuesFromRestriction( NS + "A", p, RDFS.Literal  );
+                    
+                    assertEquals( "Restriction should be all values from literal", RDFS.Literal, A.getAllValuesFrom() );
+                    assertTrue( "Restriction should be all values from literal", A.hasAllValuesFrom( RDFS.Literal ) );
+                    assertTrue( "Restriction should not be all values from decimal", !A.hasAllValuesFrom( XSD.decimal ) );
+                    assertEquals( "cardinality should be 1 ", 1, A.getCardinality( prof.ALL_VALUES_FROM() ));
+                }
+            },
+            new OntTestCase( "AllValuesFromRestriction.allValuesFrom.datarange", true, false, false, false ) {
+                public void ontTest( OntModel m ) throws Exception {
+                    Profile prof = m.getProfile();
+                    Literal x = m.createLiteral( 1 );
+                    Literal y = m.createLiteral( 2 );
+                    DataRange dr = m.createDataRange( m.createList( new RDFNode[] {x, y} ) );
+                    OntProperty p = m.createObjectProperty( NS + "p" );
+
+                    AllValuesFromRestriction A = m.createAllValuesFromRestriction( NS + "A", p, dr  );
+                    
+                    assertEquals( "Restriction should be all values from dr", dr, A.getAllValuesFrom() );
+                    assertTrue( "value should be a datarange", A.getAllValuesFrom() instanceof DataRange );
+                    assertTrue( "Restriction should be all values from dr", A.hasAllValuesFrom( dr ) );
+                    assertTrue( "Restriction should not be all values from decimal", !A.hasAllValuesFrom( XSD.decimal ) );
+                    assertEquals( "cardinality should be 1 ", 1, A.getCardinality( prof.ALL_VALUES_FROM() ));
+                    
+                    A.removeAllValuesFrom( dr );
+
+                    assertTrue( "Restriction should not be some values from gMonth", !A.hasAllValuesFrom( dr ) );
+                    assertEquals( "cardinality should be 0 ", 0, A.getCardinality( prof.ALL_VALUES_FROM() ));
                 }
             },
             new OntTestCase( "HasValueRestriction.hasValue", true, false, true, false ) {
@@ -414,6 +476,66 @@ public class TestClassExpression
                     A.removeSomeValuesFrom( C );
 
                     assertTrue( "Restriction should not be some values from C", !A.hasSomeValuesFrom( C ) );
+                    assertEquals( "cardinality should be 0 ", 0, A.getCardinality( prof.SOME_VALUES_FROM() ));
+                }
+            },
+            new OntTestCase( "SomeValuesFromRestriction.SomeValuesFrom.datatype", true, true, true, false ) {
+                public void ontTest( OntModel m ) throws Exception {
+                    Profile prof = m.getProfile();
+                    OntProperty p = m.createObjectProperty( NS + "p" );
+
+                    SomeValuesFromRestriction A = m.createSomeValuesFromRestriction( NS + "A", p, XSD.gDay  );
+                    
+                    assertEquals( "Restriction should be some values from gDay", XSD.gDay, A.getSomeValuesFrom() );
+                    assertTrue( "Restriction should be some values from gDay", A.hasSomeValuesFrom( XSD.gDay ) );
+                    assertTrue( "Restriction should not be some values from decimal", !A.hasSomeValuesFrom( XSD.decimal ) );
+                    assertEquals( "cardinality should be 1 ", 1, A.getCardinality( prof.SOME_VALUES_FROM() ));
+                    
+                    A.setSomeValuesFrom( XSD.gMonth );
+
+                    assertEquals( "Restriction should be some values from gMonth", XSD.gMonth, A.getSomeValuesFrom() );
+                    assertTrue( "Restriction should not be some values from gDay", !A.hasSomeValuesFrom( XSD.gDay ) );
+                    assertTrue( "Restriction should be some values from gMonth", A.hasSomeValuesFrom( XSD.gMonth ) );
+                    assertEquals( "cardinality should be 1 ", 1, A.getCardinality( prof.SOME_VALUES_FROM() ));
+                    
+                    A.removeSomeValuesFrom( XSD.gMonth );
+
+                    assertTrue( "Restriction should not be some values from gMonth", !A.hasSomeValuesFrom( XSD.gMonth ) );
+                    assertEquals( "cardinality should be 0 ", 0, A.getCardinality( prof.SOME_VALUES_FROM() ));
+                }
+            },
+            new OntTestCase( "SomeValuesFromRestriction.SomeValuesFrom.literal", true, true, true, false ) {
+                public void ontTest( OntModel m ) throws Exception {
+                    Profile prof = m.getProfile();
+                    OntProperty p = m.createObjectProperty( NS + "p" );
+
+                    SomeValuesFromRestriction A = m.createSomeValuesFromRestriction( NS + "A", p, RDFS.Literal  );
+                    
+                    assertEquals( "Restriction should be some values from literal", RDFS.Literal, A.getSomeValuesFrom() );
+                    assertTrue( "Restriction should be some values from literal", A.hasSomeValuesFrom( RDFS.Literal ) );
+                    assertTrue( "Restriction should not be some values from decimal", !A.hasSomeValuesFrom( XSD.decimal ) );
+                    assertEquals( "cardinality should be 1 ", 1, A.getCardinality( prof.SOME_VALUES_FROM() ));
+                }
+            },
+            new OntTestCase( "SomeValuesFromRestriction.SomeValuesFrom.datarange", true, false, false, false ) {
+                public void ontTest( OntModel m ) throws Exception {
+                    Profile prof = m.getProfile();
+                    Literal x = m.createLiteral( 1 );
+                    Literal y = m.createLiteral( 2 );
+                    DataRange dr = m.createDataRange( m.createList( new RDFNode[] {x, y} ) );
+                    OntProperty p = m.createObjectProperty( NS + "p" );
+
+                    SomeValuesFromRestriction A = m.createSomeValuesFromRestriction( NS + "A", p, dr  );
+                    
+                    assertEquals( "Restriction should be some values from dr", dr, A.getSomeValuesFrom() );
+                    assertTrue( "value should be a datarange", A.getSomeValuesFrom() instanceof DataRange );
+                    assertTrue( "Restriction should be some values from dr", A.hasSomeValuesFrom( dr ) );
+                    assertTrue( "Restriction should not be some values from decimal", !A.hasSomeValuesFrom( XSD.decimal ) );
+                    assertEquals( "cardinality should be 1 ", 1, A.getCardinality( prof.SOME_VALUES_FROM() ));
+                    
+                    A.removeSomeValuesFrom( dr );
+
+                    assertTrue( "Restriction should not be some values from gMonth", !A.hasSomeValuesFrom( dr ) );
                     assertEquals( "cardinality should be 0 ", 0, A.getCardinality( prof.SOME_VALUES_FROM() ));
                 }
             },
@@ -992,6 +1114,37 @@ public class TestClassExpression
                     
                     assertTrue( "declared property should be an ont prop", C.listDeclaredProperties( true ).next() instanceof OntProperty );
                     assertTrue( "declared property should be an ont prop", C.listDeclaredProperties( false ).next() instanceof OntProperty );
+                }
+            },
+            new OntTestCase( "DataRange.oneOf", true, false, false, false ) {
+                public void ontTest( OntModel m ) throws Exception {
+                    Literal x = m.createTypedLiteral( 42 );
+                    Literal y = m.createTypedLiteral( true );
+                    Literal z = m.createTypedLiteral( "life" );
+                    RDFList lits = m.createList( new RDFNode[] {x,y} );
+                    
+                    DataRange d0 = m.createDataRange( lits );
+                    
+                    assertTrue( "datarange should contain x", d0.hasOneOf( x ) );
+                    assertTrue( "datarange should contain y", d0.hasOneOf( y ) );
+                    assertFalse( "datarange should not contain z", d0.hasOneOf( z ) );
+                    
+                    d0.removeOneOf( z );
+                    assertTrue( "datarange should contain x", d0.hasOneOf( x ) );
+                    assertTrue( "datarange should contain y", d0.hasOneOf( y ) );
+                    assertFalse( "datarange should not contain z", d0.hasOneOf( z ) );
+                    
+                    d0.removeOneOf( x );
+                    assertFalse( "datarange should not contain x", d0.hasOneOf( x ) );
+                    assertTrue( "datarange should contain y", d0.hasOneOf( y ) );
+                    assertFalse( "datarange should not contain z", d0.hasOneOf( z ) );
+                    
+                    d0.addOneOf( z );
+                    assertEquals( "datarange should be size 2", 2, d0.getOneOf().size() );
+                    iteratorTest( d0.listOneOf(), new Object[] {y,z} );
+                    
+                    d0.setOneOf( m.createList( new RDFNode[] {x} ) );
+                    iteratorTest( d0.listOneOf(), new Object[] {x} );
                 }
             },
             
