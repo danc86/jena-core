@@ -21,7 +21,7 @@ import junit.framework.*;
  * @author Jeremy Carroll
  * @version CVS info: $Id$,
  */
-public class TestPackage {
+public class TestPackage extends TestCase{
 
     /**
      * Answer a suite of all the tests defined here

@@ -231,7 +231,7 @@ abstract public class BaseXMLWriter implements RDFXMLWriterI {
             String value = (String) e.getValue();
             String already = this.getPrefixFor( value );
             if (already == null) 
-                { this.setNsPrefix( key, value ); 
+                { this.setNsPrefix( model.getNsURIPrefix( value ), value ); 
                 if (writingAllModelPrefixNamespaces) this.addNameSpace( value ); }
             }
         }
