@@ -138,7 +138,6 @@ public abstract class AbstractTestGraphMaker extends GraphTestBase
         Node S = node( "S" ), P = node( "P" ), O = node( "O" );
         g1.add( new Triple( S, P, O ) );
         g2.add( new Triple( O, P, S ) );
-        System.err.println( ">> " + g1 + " && " + g2 );
         return g2.contains( S, P, O ) && g1.contains( O, P, S );
         }
         
