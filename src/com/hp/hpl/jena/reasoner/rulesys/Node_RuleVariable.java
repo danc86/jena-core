@@ -116,6 +116,14 @@ public class Node_RuleVariable extends Node_Variable {
     }
     
     /**
+     * Return the raw value to which this variable is bound (via LP binding) with
+     * no dereferencing.
+     */
+    public Node getRawBoundValue() {
+        return value;
+    }
+    
+    /**
      * Set the variable to be unbound (in the brule sense)
      */
     public void unbind() {
