@@ -309,10 +309,14 @@ public class TestTransitiveGraphCacheNew extends TestCase {
      */
     public void testBug1() {
         TransitiveGraphCacheNew cache = new TransitiveGraphCacheNew(directP, closedP);
-        cache.addRelation(a, b);        
+        cache.addRelation(a, b);  
         cache.addRelation(c, a);        
         cache.addRelation(c, b);        
+        System.out.println("After (ab), (ca), (cb)");
+        System.out.println(cache.dump());
         cache.addRelation(a, c);     
+        System.out.println("After (ac)");
+        System.out.println(cache.dump());
         TestUtil.assertIteratorValues(this, 
             cache.find(new TriplePattern(a, directP, null)),
             new Object[] {
