@@ -203,7 +203,7 @@ public class BRuleEngine {
                     Rule rule = current.ruleInstance.rule;
                     boolean foundGoal = false;
                     int maxClause = rule.bodyLength();
-                    int clauseIndex = current.clauseIndex;
+                    int clauseIndex = current.nextClauseIndex();
                     while (clauseIndex < maxClause && !foundGoal) {
                         Object clause = rule.getBodyElement(clauseIndex++);
                         if (clause instanceof TriplePattern) {

@@ -24,6 +24,7 @@ public class RDFSBRuleReasoner extends BasicBackwardRuleReasoner {
     
     /** The location of the OWL rule definitions on the class path */
     public static final String RULE_FILE = "etc/rdfs-b.rules";
+//    public static final String RULE_FILE = "etc/rdfs-b-tuned.rules";
     
     /** The parsed rules */
     protected static List ruleSet;

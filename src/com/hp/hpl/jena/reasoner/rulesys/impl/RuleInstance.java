@@ -39,6 +39,12 @@ public class RuleInstance {
     /** The head clause whose bindings are being sought */
     protected TriplePattern head;
     
+    /** Set to true if the first two body clauses were reordered for performance */
+    protected boolean clausesReordered = false;
+    
+    /** If the clauses are reordered this contains the index of the second clause */
+    protected int secondClause;
+    
     /**
      * Constructor. Create a new continuation point for a rule in
      * the context of a specific goal represented by the table entry.

@@ -18,6 +18,8 @@ import java.util.*;
 import com.hp.hpl.jena.util.OneToManyMap;
 import com.hp.hpl.jena.util.PrintUtil;
 import com.hp.hpl.jena.util.iterator.*;
+import com.hp.hpl.jena.vocabulary.RDF;
+
 import org.apache.log4j.Logger;
 
 /**
@@ -568,18 +570,22 @@ public class BasicForwardRuleInfGraph extends BaseInfGraph {
     }
 
     /**
-     * Score a Node in terms of groundedness.
+     * Score a Node in terms of groundedness - heuristic.
      * Treats a variable as better than a wildcard because it constrains
-     * later clauses.
+     * later clauses. Treats rdf:type as worse than any other ground node
+     * because that tends to link to lots of expensive rules.
      */
-    private static int scoreNodeBoundness(Node n, BindingStack env) {
+    public static int scoreNodeBoundness(Node n, BindingEnvironment env) {
         if (n instanceof Node_ANY) {
             return 0;
         } else if (n instanceof Node_RuleVariable) {
-            if (env.getBinding(n) != null) {
-                return 3;
-            } else {
+            Node val = env.getGroundVersion(n);
+            if (val == null) {
                 return 1;
+            } else if (val.equals(RDF.type.asNode())) {
+                return 2;
+            } else {
+                return 3;
             }
         } else {
             return 3;
