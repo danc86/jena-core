@@ -147,7 +147,7 @@ class CategorySet implements Comparable {
 	
 	
 	static private final SortedSet sorted = new TreeSet();
-	static private final Vector unsorted = new Vector();
+	static final Vector unsorted = new Vector();
 	/**
 	 * 
 	 * @param k A sorted array of integers, each reflecting a category.
