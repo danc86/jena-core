@@ -58,11 +58,13 @@ import java.util.*;
 
 public class ModelCom 
 extends EnhGraph
-implements Model, ModelI, PrefixMapping 
+implements Model, ModelI, PrefixMapping, ModelLock
 {
 
       private RDFReaderF readerFactory = new RDFReaderFImpl();
       private RDFWriterF writerFactory = new RDFWriterFImpl();
+      private ModelLock modelLock = null ;
+      
     // next free error code = 3
     /**
     	make a model based on the specified graph
@@ -1311,4 +1313,22 @@ implements Model, ModelI, PrefixMapping
         EnhGraph R = (EnhGraph) withHiddenStatements( m );
         return L.isIsomorphicWith( R );
         }
+        
+    public synchronized ModelLock getModelLock()
+    {
+        if ( modelLock == null )
+            modelLock = new ModelLockImpl() ;
+        return modelLock ;
+    }
+    
+    public void enterCriticalSection(boolean requestReadLock)
+    {
+        this.getModelLock().enterCriticalSection(requestReadLock) ;
+    }
+    
+    public void leaveCriticalSection()
+    {
+        this.getModelLock().leaveCriticalSection() ;
+    }
+            
 }

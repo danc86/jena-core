@@ -55,7 +55,7 @@ import java.util.*;
  * @version $Name$ $Revision$Date$'
  */
 public interface Model 
-    extends ModelCon, RDFReaderF, RDFWriterF, PrefixMapping
+    extends ModelCon, RDFReaderF, RDFWriterF, PrefixMapping, ModelLock
 {
 
 	/** Every model is based on some Graph */
@@ -785,7 +785,15 @@ public interface Model
 	 *     rather than leave it to the finalizer.</p>
 	 */
 	public void close();
-
+    
+    /** Get the model lock for this model.
+     *  See also the convenience operations enterCriticalSection and leaveCriticalSection.
+     *  
+     * @see ModelLock
+     * @return The ModelLock object associated with this model 
+     */
+    public ModelLock getModelLock() ;
+    
 }
 
 /*

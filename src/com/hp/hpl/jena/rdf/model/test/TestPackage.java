@@ -33,6 +33,7 @@ public class TestPackage extends TestSuite {
         addTest( "TestContains", TestContains.suite() );
         addTest( "TestNamespace", TestNamespace.suite() );
         addTest( "TestModelBulkUpdate", TestModelBulkUpdate.suite() );
+        addTest( "TestConcurrency", TestConcurrency.suite() ) ;
         }
 
     private void addTest(String name, TestSuite tc) {
