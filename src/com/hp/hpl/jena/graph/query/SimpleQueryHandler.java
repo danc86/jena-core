@@ -64,7 +64,7 @@ public class SimpleQueryHandler implements QueryHandler
         HashSet objects = new HashSet();
         ClosableIterator it = graph.find( s, p, null );
         while (it.hasNext()) objects.add( ((Triple) it.next()).getObject() );
-		return new ClosableIteratorImpl( objects.iterator() );
+		return WrappedIterator.create( objects.iterator() );
 		}
 		
 	public ExtendedIterator subjectsFor( Node p, Node o )
@@ -72,7 +72,7 @@ public class SimpleQueryHandler implements QueryHandler
         HashSet objects = new HashSet();
         ClosableIterator it = graph.find( null, p, o );
         while (it.hasNext()) objects.add( ((Triple) it.next()).getSubject() );
-		return new ClosableIteratorImpl( objects.iterator() );
+		return WrappedIterator.create( objects.iterator() );
 		}
     }
 

@@ -91,10 +91,16 @@ public class Query
     private int [] findIndexes( Mapping map, Node [] nodes )
         {
         int [] result = new int [nodes.length];
-        for (int i = 0; i < nodes.length; i += 1) result[i] = map.indexOf( nodes[i] ); 
+        for (int i = 0; i < nodes.length; i += 1) result[i] = findIndex( map, nodes[i] ); 
         return result;
         }
          
+    private int findIndex( Mapping map, Node node )
+        {
+        if (map.maps( node ) == false) map.newIndex( node );
+        return map.indexOf( node );
+        }
+        
     private ExtendedIterator filter( final int [] indexes, final Pipe complete )
         {
         return new NiceIterator()
