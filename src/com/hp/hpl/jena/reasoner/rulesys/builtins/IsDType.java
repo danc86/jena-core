@@ -49,8 +49,8 @@ public class IsDType extends BaseBuiltin {
      */
     public boolean bodyCall(Node[] args, int length, RuleContext context) {
         checkArgs(length, context);
-        Node val = args[0];
-        Node dt = args[1];
+        Node val = getArg(0, args, context);
+        Node dt = getArg(1, args, context);
         if (val.isLiteral()) {
             if (dt.equals(RDFS.Nodes.Literal)) {
                 return true;

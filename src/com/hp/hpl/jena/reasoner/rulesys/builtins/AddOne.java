@@ -49,11 +49,13 @@ public class AddOne extends BaseBuiltin {
         checkArgs(length, context);
         BindingEnvironment env = context.getEnv();
         boolean ok = false;
-        if (Util.isNumeric(args[0])) {
-            Node newVal = Util.makeIntNode( Util.getIntValue(args[0]) + 1 );
+        Node a0 = getArg(0, args, context);
+        Node a1 = getArg(1, args, context);
+        if (Util.isNumeric(a0)) {
+            Node newVal = Util.makeIntNode( Util.getIntValue(a0) + 1 );
             ok = env.bind(args[1], newVal);
-        } else if (Util.isNumeric(args[1])) {
-            Node newVal = Util.makeIntNode( Util.getIntValue(args[1]) - 1 );
+        } else if (Util.isNumeric(a1)) {
+            Node newVal = Util.makeIntNode( Util.getIntValue(a1) - 1 );
             ok = env.bind(args[0], newVal);
         }
         return ok;

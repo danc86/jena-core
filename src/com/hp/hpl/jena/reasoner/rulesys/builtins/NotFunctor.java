@@ -46,7 +46,7 @@ public class NotFunctor extends BaseBuiltin {
      */
     public boolean bodyCall(Node[] args, int length, RuleContext context) {
         checkArgs(length, context);
-        return !Functor.isFunctor(args[0]);
+        return !Functor.isFunctor(getArg(0, args, context));
     }
     
 }

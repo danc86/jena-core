@@ -42,7 +42,7 @@ public class Unbound extends BaseBuiltin {
     public boolean bodyCall(Node[] args, int length, RuleContext context) {
         BindingEnvironment env = context.getEnv();
         for (int i = 0; i < length; i++) {
-            if ( !(args[i] instanceof Node_RuleVariable) ) return false;
+            if ( !(getArg(i, args, context) instanceof Node_RuleVariable) ) return false;
         }
         return true;
     }

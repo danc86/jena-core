@@ -41,7 +41,7 @@ public class Remove extends BaseBuiltin {
     public void headAction(Node[] args, int length, RuleContext context) {
         boolean ok = false;
         for (int i = 0; i < length; i++) {
-            Node clauseN = args[i];
+            Node clauseN = getArg(i, args, context);
             if (Util.isNumeric(clauseN)) {
                 int clauseIndex = Util.getIntValue(clauseN);
                 Object clause = context.getRule().getBodyElement(clauseIndex);

@@ -48,8 +48,8 @@ public class Sum extends BaseBuiltin {
     public boolean bodyCall(Node[] args, int length, RuleContext context) {
         checkArgs(length, context);
         BindingEnvironment env = context.getEnv();
-        Node n1 = args[0];
-        Node n2 = args[1];
+        Node n1 = getArg(0, args, context);
+        Node n2 = getArg(1, args, context);
         if (n1.isLiteral() && n2.isLiteral()) {
             Object v1 = n1.getLiteral().getValue();
             Object v2 = n2.getLiteral().getValue();

@@ -47,8 +47,8 @@ public class NotEqual extends BaseBuiltin {
      */
     public boolean bodyCall(Node[] args, int length, RuleContext context) {
         checkArgs(length, context);
-        Node n1 = args[0];
-        Node n2 = args[1];
+        Node n1 = getArg(0, args, context);
+        Node n2 = getArg(1, args, context);
         if (Util.isNumeric(n1)) {
             return Util.compareNumbers(n1, n2) != 0;
         } else {

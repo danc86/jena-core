@@ -50,10 +50,13 @@ public class ListMapAsSubject extends BaseBuiltin {
      */
     public void headAction(Node[] args, int length, RuleContext context) {
         checkArgs(length, context);
-        List l = Util.convertList(args[0], context);
+        Node n0 = getArg(0, args, context);
+        Node n1 = getArg(1, args, context);
+        Node n2 = getArg(2, args, context);
+        List l = Util.convertList(n0, context);
         for (Iterator i = l.iterator(); i.hasNext(); ) {
             Node x = (Node)i.next();
-            context.add( new Triple(x, args[1], args[2]));
+            context.add( new Triple(x, n1, n2));
         }
     }
     

@@ -50,7 +50,7 @@ public class ListLength extends BaseBuiltin {
     public boolean bodyCall(Node[] args, int length, RuleContext context) {
         checkArgs(length, context);
         BindingEnvironment env = context.getEnv();
-        int len = getLength(args[0], context);
+        int len = getLength(getArg(0, args, context), context);
         if (len == -1) {
             return false;
         } else {

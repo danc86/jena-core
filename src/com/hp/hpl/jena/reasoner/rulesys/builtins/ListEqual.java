@@ -49,7 +49,9 @@ public class ListEqual extends BaseBuiltin {
      */
     public boolean bodyCall(Node[] args, int length, RuleContext context) {
         checkArgs(length, context);
-        return listEqual(args[0], args[1], context);
+        Node n0 = getArg(0, args, context);
+        Node n1 = getArg(1, args, context);
+        return listEqual(n0, n1, context);
     }
     
     /**

@@ -52,9 +52,9 @@ public class MakeInstance extends BaseBuiltin {
 //            System.out.println(" - " + PrintUtil.print(args[i]));
 //        }
         if (length == 3 || length == 4) {
-            Node inst = args[0];
-            Node prop = args[1];
-            Node pclass = length == 4 ? args[2] : null;
+            Node inst = getArg(0, args, context);
+            Node prop = getArg(1, args, context);
+            Node pclass = length == 4 ? getArg(2, args, context) : null;
             if (context instanceof BBRuleContext) {
                 Node temp = ((BBRuleContext)context).getTemp(inst, prop, pclass);
                 return context.getEnv().bind(args[length-1], temp); 

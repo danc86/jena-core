@@ -40,7 +40,7 @@ public class Print extends BaseBuiltin {
      * the current environment
      */
     public boolean bodyCall(Node[] args, int length, RuleContext context) {
-        print(args, length);
+        print(args, length, context);
         return true;
     }
     
@@ -53,15 +53,15 @@ public class Print extends BaseBuiltin {
      * @param context an execution context giving access to other relevant data
      */
     public void headAction(Node[] args, int length, RuleContext context) {
-        print(args, length);
+        print(args, length, context);
     }
     
     /**
      * Print a node list to stdout
      */
-    public void print(Node[] args, int length) {
+    public void print(Node[] args, int length, RuleContext context) {
         for (int i = 0 ; i < length; i++) {
-            System.out.print( PrintUtil.print(args[i]) + " ");
+            System.out.print( PrintUtil.print(getArg(i, args, context)) + " ");
         }
         System.out.println("");
     }

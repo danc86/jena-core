@@ -46,8 +46,10 @@ public class GE extends BaseBuiltin {
      */
     public boolean bodyCall(Node[] args, int length, RuleContext context) {
         checkArgs(length, context);
-        if ( Util.isNumeric(args[0]) && Util.isNumeric(args[1]) ) {
-            return Util.compareNumbers(args[0], args[1]) >= 0;
+        Node n0 = getArg(0, args, context);
+        Node n1 = getArg(1, args, context);
+        if ( Util.isNumeric(n0) && Util.isNumeric(n1) ) {
+            return Util.compareNumbers(n0, n1) >= 0;
         } else {
             return false;
         }

@@ -47,9 +47,11 @@ public class NoValue extends BaseBuiltin {
         }
         Node obj = null;
         if (length == 3) {
-            obj = args[2];
+            obj = getArg(2, args, context);
         }
-        return !context.contains(args[0], args[1], obj);
+        Node subj = getArg(0, args, context);
+        Node pred = getArg(1, args, context);
+        return !context.contains(subj, pred, obj);
     }
     
 }

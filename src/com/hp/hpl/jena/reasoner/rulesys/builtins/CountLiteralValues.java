@@ -49,7 +49,9 @@ public class CountLiteralValues extends BaseBuiltin {
      */
     public boolean bodyCall(Node[] args, int length, RuleContext context) {
         ArrayList values = new ArrayList();
-        for (Iterator ni = context.find(args[0], args[1], null); ni.hasNext(); ) {
+        Node a0 = getArg(0, args, context);
+        Node a1 = getArg(1, args, context);
+        for (Iterator ni = context.find(a0, a1, null); ni.hasNext(); ) {
             Node v = ((Triple)ni.next()).getObject();
             if (v.isLiteral()) {
                 // Can't just use contains because distinct objects may

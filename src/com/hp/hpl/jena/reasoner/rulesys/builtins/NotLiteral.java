@@ -47,7 +47,7 @@ public class NotLiteral extends BaseBuiltin {
      */
     public boolean bodyCall(Node[] args, int length, RuleContext context) {
         checkArgs(length, context);
-        return !args[0].isLiteral();
+        return !getArg(0, args, context).isLiteral();
     }
     
 }

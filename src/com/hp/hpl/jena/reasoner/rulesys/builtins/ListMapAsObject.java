@@ -51,10 +51,13 @@ public class ListMapAsObject extends BaseBuiltin {
      */
     public void headAction(Node[] args, int length, RuleContext context) {
         checkArgs(length, context);
-        List l = Util.convertList(args[2], context);
+        Node n0 = getArg(0, args, context);
+        Node n1 = getArg(1, args, context);
+        Node n2 = getArg(2, args, context);
+        List l = Util.convertList(n2, context);
         for (Iterator i = l.iterator(); i.hasNext(); ) {
             Node x = (Node)i.next();
-            context.add( new Triple(args[0], args[1], x));
+            context.add( new Triple(n0, n1, x));
         }
     }
     

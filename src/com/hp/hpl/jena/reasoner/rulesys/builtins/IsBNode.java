@@ -47,7 +47,7 @@ public class IsBNode extends BaseBuiltin {
      */
     public boolean bodyCall(Node[] args, int length, RuleContext context) {
         checkArgs(length, context);
-        return args[0].isBlank();
+        return getArg(0, args, context).isBlank();
     }
     
 }
