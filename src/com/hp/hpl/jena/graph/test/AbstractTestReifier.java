@@ -271,6 +271,13 @@ public abstract class AbstractTestReifier extends GraphTestBase
         assertEquals( "triple Y still there", triple( "y R a" ), R.getTriple( Y ) );
         }
         
+    public void testRemoveFromNothing()
+        {
+        Graph G = getGraph();
+        Reifier R = G.getReifier();
+        G.delete( triple( "quint rdf:subject S" ) );
+        }
+    
 //    public void testRemoveByTriple()
 //        {
 //        Graph G = getGraph();

@@ -167,7 +167,7 @@ public class SimpleReifier implements Reifier
      */
     private void updateFragments( ReifierFragmentHandler s, Triple fragment, Node tag, Node object )
         {
-        Triple t = s.reifyCompleteQuad( fragment, tag, object );
+        Triple t = s.reifyIfCompleteQuad( fragment, tag, object );
         if (t instanceof Triple) tripleMap.putTriple( tag, t );
         }
 
