@@ -666,7 +666,7 @@ public class URI implements Serializable {
 				if (index + 2 >= end
 					|| !isHex(p_uriSpec.charAt(index + 1))
 					|| !isHex(p_uriSpec.charAt(index + 2))) {
-					throw new MalformedURIException("Path contains invalid escape sequence!");
+					throw new MalformedURIException( "Path contains invalid escape sequence: " + p_uriSpec );
 				}
 			} else if (
 				!isReservedCharacter(testChar)
