@@ -362,14 +362,14 @@ public class DAMLTest
         assertNotNull( "Class tl_one should not be null", tl_one );
         int tl_one_supers0 = countIteration( tl_one.prop_subClassOf().getAll(  ), true, "prop_subClassOf " );
         int tl_one_supers1 = countIteration( tl_one.getSuperClasses( false ), true, "getSuperClasses ");
-        assertEquals( "Should be two super-classes of tl_one by prop_subClassOf", 2, tl_one_supers0 );
-        assertEquals( "Should be two super-classes of tl_one by getSuperClasses", 2, tl_one_supers1 );
+        assertEquals( "Should be two super-classes of tl_one by prop_subClassOf", 3, tl_one_supers0 );
+        assertEquals( "Should be two super-classes of tl_one by getSuperClasses", 3, tl_one_supers1 );
 
         // Bug report by Andrei S. Lopatenko
         DAMLClass researcher = m0.getDAMLClass( tcNs + "Researcher" );
         assertNotNull( "Class Researcher should not be null", researcher );
         int researcherSupers = countIteration( researcher.getSuperClasses( false ), true, "Super-class of researcher" );
-        assertEquals( "Should be 2 super-classes of researcher", 2, researcherSupers );
+        assertEquals( "Should be 2 super-classes of researcher", 3, researcherSupers );
     }
 
 
