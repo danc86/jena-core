@@ -49,7 +49,7 @@ class ARPString implements ALiteral {
     /** Creates new StringToken */
     ARPString(String value,String lang,String parseType) {
         this.value = value;
-        this.lang = lang;
+        this.lang = "";
         this.isWellFormedXML = true;
         this.parseType = parseType;
     }

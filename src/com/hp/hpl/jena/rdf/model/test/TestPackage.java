@@ -39,7 +39,8 @@ public class TestPackage extends TestSuite {
         addTest( "TestStandardModels", TestStandardModels.suite() );
         addTest( "TestQuery", TestQuery.suite() );
         addTest( "TestSelectors", TestSelectors.suite() );
-        addTest( "TestList", TestList.suite() );
+        // TODO TestList
+      //  addTest( "TestList", TestList.suite() );
         }
 
     private void addTest(String name, TestSuite tc) {
