@@ -81,6 +81,7 @@ public class RDFSRuleInfGraph extends FBRuleInfGraph {
     public ValidityReport.Report checkLiteral(Node prop, Node value) {
         List range = (List) getDTRange().get(prop);
         if (range != null) {
+            if (value.isBlank()) return null;
             if (!value.isLiteral()) {
                 return new ValidityReport.Report(true, "dtRange", 
                     "Property " + prop + " has a typed range but was given a non literal value " + value);

@@ -745,7 +745,7 @@ public class TestFBRules extends TestCase {
 
                 new Triple(n2, s, Node.createLiteral("isLiteral", "", null)),
                 new Triple(n2, s, Node.createLiteral("notXSDInt", "", null)),
-                new Triple(n2, s, Node.createLiteral("notXSDString", "", null)),
+                new Triple(n2, s, Node.createLiteral("isXSDString", "", null)),
 
                 new Triple(n3, s, Node.createLiteral("isLiteral", "", null)),
                 new Triple(n3, s, Node.createLiteral("notXSDInt", "", null)),

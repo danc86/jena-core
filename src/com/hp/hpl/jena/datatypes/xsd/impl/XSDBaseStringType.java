@@ -54,7 +54,8 @@ public class XSDBaseStringType extends XSDDatatype {
      */
     public boolean isValidLiteral(LiteralLabel lit) {
         RDFDatatype dt = lit.getDatatype();
-        if (dt == null || this.equals(dt)) return true;
+        if ( dt == null && lit.language().equals("") ) return true;
+        if ( this.equals(dt) ) return true;
         if (dt instanceof XSDBaseStringType) {
             return isValid(lit.getLexicalForm());
         } else {

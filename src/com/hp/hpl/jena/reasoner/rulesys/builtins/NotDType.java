@@ -10,7 +10,6 @@
 package com.hp.hpl.jena.reasoner.rulesys.builtins;
 
 import com.hp.hpl.jena.reasoner.rulesys.*;
-import com.hp.hpl.jena.vocabulary.RDFS;
 import com.hp.hpl.jena.graph.*;
 
 /**
@@ -51,18 +50,7 @@ public class NotDType extends BaseBuiltin {
         checkArgs(length, context);
         Node val = getArg(0, args, context);
         Node dt = getArg(1, args, context);
-        if (val.isLiteral()) {
-            if (dt.equals(RDFS.Nodes.Literal)) {
-                return false;
-            } else {
-                if (val.getLiteral().getDatatype() != null) {
-                    return ! val.getLiteral().getDatatypeURI().equals(dt.getURI());
-                } else {
-                    return true;
-                }
-            }
-        }
-        return true;
+        return !IsDType.isTypeOK(val, dt);
     }
 }
 

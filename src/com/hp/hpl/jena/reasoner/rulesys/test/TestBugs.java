@@ -319,6 +319,18 @@ public class TestBugs extends TestCase {
         assertTrue(! omodel.contains(s));
     }
     
+    /**
+     * Test change of RDF specs to allow plain literals w/o lang and XSD string to be the same.
+     */
+    public void testLiteralBug() {
+        Model model = ModelLoader.loadModel("file:testing/reasoners/bugs/dtValidation.owl");
+        Model m = ModelFactory.createDefaultModel();
+        Reasoner r = ReasonerRegistry.getOWLReasoner();
+        InfModel infmodel = ModelFactory.createInfModel(r, model);
+        ValidityReport validity = infmodel.validate();
+        assertTrue (validity.isValid());                
+    }
+    
     // debug assistant
     private void tempList(Model m, Resource s, Property p, RDFNode o) {
         System.out.println("Listing of " + PrintUtil.print(s) + " " + PrintUtil.print(p) + " " + PrintUtil.print(o));
