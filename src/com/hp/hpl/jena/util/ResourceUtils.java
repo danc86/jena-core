@@ -159,6 +159,38 @@ public class ResourceUtils {
 
     
     /**
+     * <p>Answer a list of lists, which is a partition of the given
+     * input list of resources.  The equivalence relation is the predicate p.
+     * So, two resources <code>a</code> and <code>b</code>
+     * will be in the same partition iff 
+     * <code>(a p b) && (b p a)</code>.</p>  
+     * @param l A list of resources
+     * @param p An equivalence predicate
+     * @return A list of lists which are the partitions of <code>l</code> 
+     * under <code>p</code>
+     */
+    public static List partition( List l, Property p ) {
+        // first copy the input so we can mess with it
+        List source = new ArrayList();
+        source.addAll( l );
+        List parts = new ArrayList();
+        
+        while (!source.isEmpty()) {
+            // each step through the loop we pick a random element, and
+            // create a list of that element and all its equivalent values
+            Resource seed = (Resource) source.remove( 0 );
+            List part = removeEquiv( source, p, seed );
+            part.add( seed );
+            
+            // add to the partition list
+            parts.add( part );
+        }
+        
+        return parts;
+    }
+    
+    
+    /**
      * <p>Answer a new resource that occupies the same position in the graph as the current
      * resource <code>old</code>, but that has the given URI.  In the process, the existing
      * statements referring to <code>old</code> are removed.  Since Jena does not allow the

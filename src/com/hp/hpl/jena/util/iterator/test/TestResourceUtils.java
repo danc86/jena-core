@@ -217,6 +217,40 @@ public class TestResourceUtils
         assertEquals( out, de );
     }
     
+    public void testPartition() {
+        Model m = ModelFactory.createDefaultModel();
+        
+        Resource a = m.createResource( NS + "a" );
+        Resource b = m.createResource( NS + "b" );
+        Resource c = m.createResource( NS + "c" );
+        Resource d = m.createResource( NS + "d" );
+        Resource e = m.createResource( NS + "e" );
+        
+        b.addProperty( RDFS.subClassOf, a );
+        a.addProperty( RDFS.subClassOf, b );  // a,b are equivalent
+        d.addProperty( RDFS.subClassOf, e );
+        e.addProperty( RDFS.subClassOf, d );  // d,e are equivalent
+        
+        // reflexive relations - would be inferred by inf engine
+        a.addProperty( RDFS.subClassOf, a );
+        b.addProperty( RDFS.subClassOf, b );
+        c.addProperty( RDFS.subClassOf, c );
+        d.addProperty( RDFS.subClassOf, d );
+        e.addProperty( RDFS.subClassOf, e );
+        
+        List abcde = Arrays.asList( new Object[] {a,b,c,d,e} );
+        List ab = Arrays.asList( new Object[] {b,a} );
+        List cc = Arrays.asList( new Object[] {c} );
+        List de = Arrays.asList( new Object[] {e,d} );
+
+        List partition = ResourceUtils.partition( abcde, RDFS.subClassOf );
+        assertEquals( "Should be 3 partitions", 3, partition.size() );
+        assertEquals( "First parition should be (a,b)", ab, partition.get(0) );
+        assertEquals( "First parition should be (c)", cc, partition.get(1) );
+        assertEquals( "First parition should be (d,e)", de, partition.get(2) );
+    }
+
+    
     // Internal implementation methods
     //////////////////////////////////
 
