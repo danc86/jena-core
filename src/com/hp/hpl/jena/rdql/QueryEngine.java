@@ -210,8 +210,6 @@ public class QueryEngine implements QueryExecution
 
         TriplePattern tp = (TriplePattern)query.triplePatterns.get(index) ;
 
-        // Would like stop the triple matcher mid-flow as well.
-        // Null return means nothing will match (unusual occurence but possible).
         Iterator iter = tp.match((query.loggingOn ? query.log : null), this, query.source, env ) ;
 
         if ( iter != null )

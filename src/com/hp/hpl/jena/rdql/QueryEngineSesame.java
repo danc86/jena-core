@@ -12,9 +12,6 @@ import java.io.*;
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.mem.*;
 
-import com.hp.hpl.jena.rdql.*;
-
-
 import EDU.oswego.cs.dl.util.concurrent.*;
 
 // Sesame
