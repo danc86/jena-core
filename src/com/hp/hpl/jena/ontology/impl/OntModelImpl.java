@@ -717,7 +717,8 @@ public class OntModelImpl
      * @return An Axiom resource.
      */
     public Axiom createAxiom( Resource cls, String uri ) {
-        return (Axiom) createOntResource( Axiom.class, cls, uri );
+        // TODO
+        return null; 
     }
     
    
