@@ -205,14 +205,24 @@ public class JMS
     public static final Resource rsConvenient = resource( "rsConvenient" );
 
     /**
-        The JMS schema encoded into a model. This defines the subclass hierarchy
-        and the essential domains of the properties. ["Essential" means "relied on by
-        the ModelSpec engines"].
+       The JMS schema; accessed by <code>getSchema()</code>.  
+    */
+    static protected Model schema = null;
+
+    /**
+        Answer the JMS schema encoded into a model. This defines the subclass 
+        hierarchy and the essential domains of the properties. ["Essential" 
+        means "relied on by the ModelSpec engines".] The schema is not loaded 
+        until its first use.
         
         TODO make this model immutable once created. 
     */
-    static final public Model schema = FileManager.get().loadModel( "vocabularies/jena-model-spec.n3" );
-
+    public static Model getSchema()
+        {
+        if (schema == null) 
+            schema = FileManager.get().loadModel( "vocabularies/jena-model-spec.n3" );
+        return schema;
+        }
     /**
         Utility: answer a plain literal string with the given value.
      */

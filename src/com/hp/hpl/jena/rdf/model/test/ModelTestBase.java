@@ -51,9 +51,9 @@ public class ModelTestBase extends GraphTestBase
     public static Statement statement( Model m, String fact )
          {
          StringTokenizer st = new StringTokenizer( fact );
-         Resource sub = resource( st.nextToken() );
-         Property pred = property( st.nextToken() );
-         RDFNode obj = rdfNode( aModel, st.nextToken() );
+         Resource sub = resource( m, st.nextToken() );
+         Property pred = property( m, st.nextToken() );
+         RDFNode obj = rdfNode( m, st.nextToken() );
          return m.createStatement( sub, pred, obj );    
          }    
     
