@@ -89,7 +89,12 @@ abstract class XMLHandler
 
 
 	void userWarning(ParseException e) throws SAXException {
+		//try {
 		handlers.getErrorHandler().warning(e.rootCause());
+		//}
+		//catch (Exception ee){
+	//		throw new WrappedException(ee);
+		//}
 	}
 	void userError(ParseException e) throws SAXException {
 		if (e.getFatal())

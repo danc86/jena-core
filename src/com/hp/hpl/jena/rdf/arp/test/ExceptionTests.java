@@ -136,7 +136,7 @@ public class ExceptionTests
 
 		  Model m = ModelFactory.createDefaultModel();
 		  RDFReader rdr = m.getReader();
-		  rdr.setProperty("ERR_BAD_RDF_ATTRIBUTE","EM_FATAL");
+		  rdr.setProperty("WARN_BAD_NAME","EM_FATAL");
 		  rdr.read(m,"file:testing/arp/qname-in-ID/bug74_0.rdf");
 
 		  fail("Promoted warning did not throw exception");
