@@ -200,6 +200,7 @@ public class TriplePattern implements ClauseEntry {
      */
     public boolean isLegal() {
         if (subject.isLiteral() || predicate.isLiteral()) return false;
+        if (Functor.isFunctor(subject)) return false;
         if (Functor.isFunctor(object)) {
             Node[] args = ((Functor)object.getLiteral().getValue()).getArgs();
             for (int i = 0; i < args.length; i++) {

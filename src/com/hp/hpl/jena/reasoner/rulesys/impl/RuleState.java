@@ -294,7 +294,7 @@ public class RuleState {
         return "RuleState " 
                 + ruleInstance.rule.toShortString()
                 + "("+ (clauseIndex-1) +")"
-                + ", env=" + env 
+//                + ", env=" + env 
                 + ", gs=" + goalState;
     }
     

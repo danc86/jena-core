@@ -13,11 +13,11 @@ import java.util.Iterator;
 
 import com.hp.hpl.jena.graph.*;
 //import com.hp.hpl.jena.graph.compose.Union;
-import com.hp.hpl.jena.rdf.model.*;
+//import com.hp.hpl.jena.mem.GraphMem;
+//import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.util.ModelLoader;
 import com.hp.hpl.jena.util.PrintUtil;
-import com.hp.hpl.jena.vocabulary.RDF;
-import com.hp.hpl.jena.vocabulary.RDFS;
+import com.hp.hpl.jena.vocabulary.*;
 import com.hp.hpl.jena.reasoner.*;
 import com.hp.hpl.jena.reasoner.rulesys.*;
 
@@ -44,8 +44,9 @@ public class DebugOWL {
      * Construct a test harness on a given source file.
      */
     public DebugOWL(String testFile) {
-        Model data = ModelLoader.loadModel(testFile);
-        testdata = data.getGraph();
+        testdata = ModelLoader.loadModel(testFile).getGraph();
+//        testdata = new GraphMem();
+//        ((OWLFBRuleReasoner)reasoner).setTraceOn(true);
         infgraph = reasoner.bind(testdata);
     }
     
@@ -84,20 +85,18 @@ public class DebugOWL {
             
             DebugOWL tester = new DebugOWL(dataFile);
             System.out.println("Test data only started ...");
-            long t = tester.list(null, RDF.type.asNode(), RDFS.Class.asNode(), false);
-            System.out.println("Took " + t + "ms");
-            t = tester.list(null, RDF.type.asNode(), null, false);
+            long t = tester.list(null, RDF.type.asNode(), RDFS.Class.asNode(), true);
             System.out.println("Took " + t + "ms");
             
-            tester = new DebugOWL(schemaFile);
-            System.out.println("Test schema only started ...");
-            t = tester.list(null, RDF.type.asNode(), RDFS.Class.asNode(), false);
-            System.out.println("Took " + t + "ms");
-            
-            tester = new DebugOWL(schemaFile, dataFile);
-            System.out.println("Test schema + data  started ...");
-            t = tester.list(null, RDF.type.asNode(), RDFS.Class.asNode(), false);
-            System.out.println("Took " + t + "ms");
+//            tester = new DebugOWL(schemaFile);
+//            System.out.println("Test schema only started ...");
+//            t = tester.list(null, RDF.type.asNode(), RDFS.Class.asNode(), false);
+//            System.out.println("Took " + t + "ms");
+//            
+//            tester = new DebugOWL(schemaFile, dataFile);
+//            System.out.println("Test schema + data  started ...");
+//            t = tester.list(null, RDF.type.asNode(), RDFS.Class.asNode(), false);
+//            System.out.println("Took " + t + "ms");
         } catch (Exception e) {
             System.out.println("Problem: " + e);
             e.printStackTrace();

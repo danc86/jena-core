@@ -11,6 +11,7 @@ package com.hp.hpl.jena.reasoner.rulesys.impl;
 
 import com.hp.hpl.jena.reasoner.rulesys.*;
 import com.hp.hpl.jena.reasoner.*;
+import com.hp.hpl.jena.util.PrintUtil;
 import com.hp.hpl.jena.graph.*;
 
 import org.apache.log4j.Logger;
@@ -310,9 +311,9 @@ public class BRuleEngine {
                     // (if empty then an exception is thrown and caught later)
                     current = nextAgendaItem();
                     numResults = 0;
-                }
-                if (traceOn) {
-                    logger.debug("Processing " + current);
+                    if (traceOn) {
+                        logger.debug("Waken:   " + current);
+                    }
                 }
                 Object result = current.next();
                 if (result == StateFlag.FAIL) {
@@ -327,7 +328,7 @@ public class BRuleEngine {
                 } else if (result == StateFlag.SUSPEND) {
                     // Can do no more with this goal
                     if (traceOn) {
-                        logger.debug("Suspend " + current);
+                        logger.debug("Suspend: " + current);
                     }
                     GoalResults waitingFor = current.goalState.results;
                     waitingFor.addDependent(current);
@@ -383,7 +384,7 @@ public class BRuleEngine {
                     GoalResults resultDest = current.ruleInstance.generator;
                     Triple finalResult = current.getResult(env);
                     if (traceOn) {
-                        logger.debug("Result:" + finalResult + " <- " + current +", newenv=" + env);
+                        logger.debug("Result:  " + PrintUtil.print(finalResult) + " <- " + current +", newenv=" + env);
                     }
                     boolean newresult = resultDest.addResult(finalResult);
                     if (delayedRSClose != null) {

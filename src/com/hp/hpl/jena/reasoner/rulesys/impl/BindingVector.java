@@ -13,6 +13,7 @@ import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.graph.impl.*;
 import com.hp.hpl.jena.reasoner.*;
 import com.hp.hpl.jena.reasoner.rulesys.*;
+import com.hp.hpl.jena.util.PrintUtil;
 
 import java.util.*;
 
@@ -200,7 +201,7 @@ public class BindingVector implements BindingEnvironment {
             if (environment[i] == null) {
                 buffer.append("-");
             } else {
-                buffer.append(environment[i].toString());
+                buffer.append(PrintUtil.print(environment[i]));
             }
             buffer.append(" ");
         }
