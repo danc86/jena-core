@@ -79,7 +79,7 @@ public class OWLFBRuleReasoner extends FBRuleReasoner {
         if (schemaGraph != null) {
             throw new ReasonerException("Can only bind one schema at a time to an OWLRuleReasoner");
         }
-        FBRuleInfGraph graph = new FBRuleInfGraph(this, rules, getPreload(), tbox);
+        FBRuleInfGraph graph = new FBRuleInfGraph(this, augmentRules(rules, tbox), getPreload(), tbox);
         graph.prepare();
         return new OWLFBRuleReasoner(this, graph);
     }
@@ -97,21 +97,9 @@ public class OWLFBRuleReasoner extends FBRuleReasoner {
      */
     public InfGraph bind(Graph data) throws ReasonerException {
         FBRuleInfGraph graph =  null;
-        InfGraph schemaArg = schemaGraph == null ? getPreload() : schemaGraph; 
-        
-        // Process the  data looking for any intersection declarations
-        // that we translate into addtiional rules procedurally (for now at least)
-        Iterator i = data.find(null, OWL.intersectionOf.asNode(), null);
-        if (i.hasNext()) {
-            List newrules = (List) ((ArrayList) rules).clone();
-            while(i.hasNext()) {
-                translateIntersectionOf((Triple)i.next(), newrules, data);
-            }
-            graph = new FBRuleInfGraph(this, newrules, schemaArg);
-        } else {
-            graph = new FBRuleInfGraph(this, rules, schemaArg);
-        }
-        
+        FBRuleInfGraph schemaArg = schemaGraph == null ? getPreload() : (FBRuleInfGraph)schemaGraph; 
+        List baseRules = schemaArg.getRules();
+        graph = new FBRuleInfGraph(this, augmentRules(baseRules, data), schemaArg);
         graph.setDerivationLogging(recordDerivations);
         graph.setTraceOn(traceOn);
         graph.rebind(data);
@@ -123,14 +111,32 @@ public class OWLFBRuleReasoner extends FBRuleReasoner {
      * Get the single static precomputed rule closure.
      */
     public FBRuleInfGraph getPreload() {
-        return null;        // Disable preload for now, causes problems
-//        synchronized (OWLFBRuleReasoner.class) {
-//            if (preload == null) {
-//                preload = new FBRuleInfGraph(this, rules, null);
-//                preload.prepare();
-//            }
-//            return preload;
-//        }
+//        return null;        // Disable preload for now, causes problems
+        synchronized (OWLFBRuleReasoner.class) {
+            if (preload == null) {
+                preload = new FBRuleInfGraph(this, rules, null);
+                preload.prepare();
+            }
+            return preload;
+        }
+    }
+    
+    /**
+     * Check a source graph for intersection statements and return a rule set
+     * augmented by new intersection rules (or the original rule set if no
+     * augmentations are needed).
+     */
+    private List augmentRules(List baseRules, Graph data) {
+        Iterator i = data.find(null, OWL.intersectionOf.asNode(), null);
+        if (i.hasNext()) {
+            List newrules = (List) ((ArrayList) baseRules).clone();
+            while(i.hasNext()) {
+                translateIntersectionOf((Triple)i.next(), newrules, data);
+            }
+            return newrules;
+        } else {
+            return baseRules;
+        }
     }
     
     /**
