@@ -542,7 +542,7 @@ public class N3JenaWriterCommon implements RDFWriter
 
         if ( datatype != null )
         {
-            // Spoecial form we know how to handle?
+            // Special form we know how to handle?
             // Assume valid text
             if ( datatype.equals(XSD.integer.getURI()) ) 
                 return s ;
@@ -561,7 +561,14 @@ public class N3JenaWriterCommon implements RDFWriter
 		int i = -1 ;
 
         StringBuffer sbuff = new StringBuffer() ;
-        sbuff.append("\"");
+        String quoteMarks = "\"" ;
+        
+        if ( s.indexOf("\n") != -1 ||
+             s.indexOf("\r") != -1 ||
+             s.indexOf("\f") != -1 )
+             quoteMarks = "\"\"\"" ;
+        
+        sbuff.append(quoteMarks);
         
 		for(;;)
 		{
@@ -570,13 +577,14 @@ public class N3JenaWriterCommon implements RDFWriter
 			if (i == -1)
 			{
                 sbuff.append(s.substring(j));
-                sbuff.append("\"");
 				break;
 			}
             sbuff.append(s.substring(j, i));
             sbuff.append("\\\"");
 			j = i + 1;
 		}
+
+        sbuff.append(quoteMarks);
 
         // Format the language tag 
         if ( lang != null && lang.length()>0)
