@@ -34,7 +34,7 @@ public class TestPackage {
         suite.addTest(new PrettyWriterTest("testAnonDamlClass"));
         /* */
         suite.addTest(new PrettyWriterTest("testLi"));
-
+        
     	//if ( true ) return suite;
         /* */
         suite.addTest(new PrettyWriterTest("testRDFCollection"));

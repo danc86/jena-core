@@ -747,6 +747,7 @@ class Unparser {
 					if (ix != 0) {
 						if (ix > greatest) {
 							found.setSize(ix);
+							greatest = ix;
 						}
 						found.set(ix - 1, s);
 					}
