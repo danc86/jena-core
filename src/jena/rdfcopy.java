@@ -1,5 +1,5 @@
 /*
- *  (c) Copyright Hewlett-Packard Company 2001 
+ *  (c) Copyright Hewlett-Packard Company 2001-2003
  *  All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
