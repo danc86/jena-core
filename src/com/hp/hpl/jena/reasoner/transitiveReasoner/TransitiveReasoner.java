@@ -88,8 +88,8 @@ public class TransitiveReasoner implements Reasoner {
      * subClassOf is discovered.
      * @param tbox schema containing the property and class declarations
      */
-    public Reasoner bindRuleset(Graph tbox) throws ReasonerException {
-        return bindRuleset(new FGraph(tbox));
+    public Reasoner bindSchema(Graph tbox) throws ReasonerException {
+        return bindSchema(new FGraph(tbox));
     }
     
      
@@ -102,7 +102,7 @@ public class TransitiveReasoner implements Reasoner {
      * subClassOf is discovered.
      * @param tbox schema containing the property and class declarations
      */
-    Reasoner bindRuleset(Finder tbox) throws ReasonerException {
+    Reasoner bindSchema(Finder tbox) throws ReasonerException {
         if (this.tbox != null) {
             throw new ReasonerException("Attempt to bind multiple rulesets - disallowed for now");
         }
@@ -255,7 +255,7 @@ public class TransitiveReasoner implements Reasoner {
                 newTbox = new FGraph(data);
             }
             reasoner = new TransitiveReasoner();
-            reasoner.bindRuleset(newTbox);
+            reasoner.bindSchema(newTbox);
         }            
         // Cache the closures of subPropertyOf because these are likely to be
         // small and accessed a lot

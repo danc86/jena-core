@@ -208,7 +208,7 @@ public class ReasonerTester {
         Graph tbox = loadTestFile(test, tboxP);
         Graph data = loadTestFile(test, dataP);
         Reasoner reasoner = reasonerF.create(null);
-        InfGraph graph = reasoner.bindRuleset(tbox).bind(data);
+        InfGraph graph = reasoner.bindSchema(tbox).bind(data);
         
         // Run each query triple and accumulate the results
         Graph queryG = loadTestFile(test, queryP);

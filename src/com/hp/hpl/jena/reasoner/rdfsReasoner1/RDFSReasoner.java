@@ -59,8 +59,8 @@ public class RDFSReasoner extends TransitiveReasoner implements Reasoner {
      * subClassOf is discovered.
      * @param tbox schema containing the property and class declarations
      */
-    public Reasoner bindRuleset(Graph tbox) throws ReasonerException {
-        super.bindRuleset(tbox);
+    public Reasoner bindSchema(Graph tbox) throws ReasonerException {
+        super.bindSchema(tbox);
         subPropertyCache.setCaching(true);
         
         // TODO: Extract tbox induced rules

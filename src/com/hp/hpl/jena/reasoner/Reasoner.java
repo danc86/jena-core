@@ -47,7 +47,7 @@ public interface Reasoner extends Finder {
      * can only accept a single rule set in this way and one rule set has
      * already been bound in of if the ruleset is illformed.
      */
-    public Reasoner bindRuleset(Graph tbox) throws ReasonerException;
+    public Reasoner bindSchema(Graph tbox) throws ReasonerException;
     
     /**
      * Attach the reasoner to a set of RDF ddata to process.
