@@ -50,9 +50,9 @@ public class GoalTable {
      * @return a GoalState which can iterate over all of the goal solutions
      */
     public GoalState findGoal(TriplePattern goal) {
-        if (ruleEngine.getInfGraph().isTraceOn()) {
-            //logger.debug("findGoal on " + goal.toString());
-        }
+//        if (ruleEngine.getInfGraph().isTraceOn()) {
+//            logger.debug("findGoal on " + goal.toString());
+//        }
         GoalResults results = (GoalResults) table.get(goal);
         if (results == null) {
             results = new GoalResults(goal, ruleEngine);

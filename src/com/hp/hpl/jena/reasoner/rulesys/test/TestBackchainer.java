@@ -464,6 +464,28 @@ public class TestBackchainer extends TestCase {
                 new Triple(a, s, d)
             } );
     }
+    
+    /**
+     * Test basic functor usage.
+     */
+    public void testFunctors3() {
+        Graph data = new GraphMem();
+        data.add(new Triple(a, s, b));
+        data.add(new Triple(a, t, c));
+        List rules = Rule.parseRules(
+            "[r1: (a q f(?x,?y)) <- (a s ?x), (a t ?y)]" +
+            "[r2: (a p ?x) <- (a q ?x)]" +
+            "[r3: (a r ?y) <- (a p f(?x, ?y))]"
+        );
+        Reasoner reasoner =  new BasicBackwardRuleReasoner(rules);
+        InfGraph infgraph = reasoner.bind(data);
+        ((BasicBackwardRuleInfGraph)infgraph).setTraceOn(true);
+        TestUtil.assertIteratorValues(this, 
+            infgraph.find(a, r, null), 
+            new Object[] {
+                new Triple(a, r, c)
+            } );
+    }
 
     /**
      * Test basic builtin usage.

@@ -182,7 +182,7 @@ public class RuleState {
         if (goalState != null) goalState.close();
         ruleInstance.generator.decRefCount();
     }
-    
+        
     /**
      * Create the first RuleState for using a given rule to satisfy a goal.
      * @param rule the rule being instantiated
@@ -225,6 +225,10 @@ public class RuleState {
                 }
                 // ... end of clause reorder
                 TriplePattern subgoal = env.partInstantiate((TriplePattern)clause);
+                if (subgoal.getSubject().isLiteral() || subgoal.getPredicate().isLiteral()) {
+                    // Illegal goal, could never be satisfied
+                    return null;
+                }
                 GoalState gs = generator.getEngine().findGoal(subgoal);
                 RuleState rs = new RuleState(ri, env, gs, clauseIndex);
                 rs.initMapping(subgoal);

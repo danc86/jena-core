@@ -103,6 +103,17 @@ public class Functor {
     }
     
     /**
+     * Returns true if the functor is fully ground in the given environment
+     */
+    public boolean isGround(BindingEnvironment env) {
+        for (int i = 0; i < args.length; i++) {
+            Node n = args[i];
+            if (env.getGroundVersion(args[i]).isVariable()) return false;
+        }
+        return true;
+    }
+    
+    /**
      * Execute the given built in as a body clause.
      * @param context an execution context giving access to other relevant data
      * @return true if the functor has an implementation and that implementation returns true when evaluated

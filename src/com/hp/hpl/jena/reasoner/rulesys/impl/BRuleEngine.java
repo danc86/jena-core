@@ -258,7 +258,14 @@ public class BRuleEngine {
                         if (clause instanceof TriplePattern) {
                             // found next subgoal to try
                             // Push current state onto stack 
-                            current = new RuleState(current, (TriplePattern)clause, clauseIndex, env);
+                            TriplePattern subgoal = env.partInstantiate((TriplePattern)clause);
+                            if (subgoal.getSubject().isLiteral() || subgoal.getPredicate().isLiteral()) {
+                                // branch has failed
+                                delayedRSClose = current;
+                                current = current.prev;
+                            } else {                                
+                                current = new RuleState(current, subgoal, clauseIndex, env);
+                            }
                             foundGoal = true;
                         } else {
                             if (!infGraph.processBuiltin(clause, rule, env)) {
