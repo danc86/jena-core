@@ -70,6 +70,12 @@ public interface RegexpTreeGenerator
          returned.
     */
     public abstract RegexpTree getAlternatives( List operands );
+
+    /**
+         Answer an empty RegexpTree (corresponding to nothing in a parsed
+         expression, and matching the empty string).
+    */
+    public abstract RegexpTree getNothing();
     }
 
 /*

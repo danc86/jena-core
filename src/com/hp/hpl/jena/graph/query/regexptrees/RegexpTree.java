@@ -25,6 +25,8 @@ public abstract class RegexpTree
     public static final RegexpTree SOL = new StartOfLine();
 
     public static final RegexpTree ANY = new AnySingle();
+    
+    public static final RegexpTree NON = new Nothing();
 
     public abstract boolean equals( Object other );
     
