@@ -97,9 +97,9 @@ public class FileGraph extends GraphMem
         return "RDF/XML";
         }
         
-    public static boolean plausibleGraphName( String name )
+    public static boolean isPlausibleGraphName( String name )
         {
-        String suffix = name.substring( name.lastIndexOf( '.' ) + 1 );
+        String suffix = name.substring( name.lastIndexOf( '.' ) + 1 ).toLowerCase();
         return suffix.equals( "n3" ) || suffix.equals( "nt" ) || suffix.equals( "rdf" );
         }
         

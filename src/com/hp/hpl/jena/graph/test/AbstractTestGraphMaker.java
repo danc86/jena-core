@@ -209,24 +209,26 @@ public abstract class AbstractTestGraphMaker extends GraphTestBase
         { assertFalse( gf.listGraphs().hasNext() ); }
         
     public void testListThreeGraphs()
-        { gf.createGraph( "x" ).close();
-        gf.createGraph( "y" ).close();
-        gf.createGraph( "z" ).close();
+        { String x = "x", y = "y/sub", z = "z:boo";
+        gf.createGraph( x ).close();
+        gf.createGraph( y ).close();
+        gf.createGraph( z ).close();
         Set s = iteratorToSet( gf.listGraphs() );
         assertEquals( 3, s.size() ); 
-        assertTrue( s.contains( "x" ) );
-        assertTrue( s.contains( "y" ) );
-        assertTrue( s.contains( "z" ) ); }
+        assertTrue( s.contains( x ) );
+        assertTrue( s.contains( y ) );
+        assertTrue( s.contains( z ) ); }
         
     public void testListAfterDelete()
-        { gf.createGraph( "x" ).close();
-        gf.createGraph( "y" ).close();
-        gf.createGraph( "z" ).close();
-        gf.removeGraph( "x" );
+        { String x = "x_y", y = "y//zub", z = "a:b/c";
+        gf.createGraph( x ).close();
+        gf.createGraph( y ).close();
+        gf.createGraph( z ).close();
+        gf.removeGraph( x );
         Set s = iteratorToSet( gf.listGraphs() );
         assertEquals( 2, s.size() ); 
-        assertTrue( s.contains( "y" ) );
-        assertTrue( s.contains( "z" ) ); }
+        assertTrue( s.contains( y ) );
+        assertTrue( s.contains( z ) ); }
         
     }
 
