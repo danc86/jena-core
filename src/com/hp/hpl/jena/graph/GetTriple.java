@@ -7,16 +7,18 @@ package com.hp.hpl.jena.graph;
 
 /**
     this interface describes types that can have a triple extracted using
-    a _getTriple_ method. It was constructed so that Node's can have
-    possibly embedded triples but defer to a GetTriple object if they have
-    no triple of their own; the particular GetTriple used initially is in Reifier,
-    but that seemed excessively special.
+    a <code>getTriple</code> method. It was constructed so that Node's 
+    can have possibly embedded triples but defer to a GetTriple object if 
+    they have no triple of their own; the particular GetTriple used initially is
+    in Reifier, but that seemed excessively special.
 */
 
 public interface GetTriple
     {
     /**
-        return the triple associated with the node _n_.
+        Answer the triple associated with the node <code>n</code>.
+        @param n the node to use as the key
+        @return the associated triple, or <code>null</code> if none
     */
     public Triple getTriple( Node n );
     }

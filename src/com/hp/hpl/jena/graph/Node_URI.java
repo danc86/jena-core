@@ -7,6 +7,7 @@
 package com.hp.hpl.jena.graph;
 
 /**
+    RDF nodes with a global identity given by a URI.
 	@author kers
 */
 public class Node_URI extends Node_Concrete

@@ -7,12 +7,9 @@
 package com.hp.hpl.jena.graph;
 
 /**
-	@author kers
-<br>
     This interface represents the type of things that can hold reified triples
     for a Jena Graph.
-<br>    
-    PRELIMINARY - waiting for the fire.
+    @author kers
 */
 
 import com.hp.hpl.jena.util.iterator.*;

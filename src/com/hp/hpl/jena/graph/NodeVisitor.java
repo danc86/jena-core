@@ -10,10 +10,10 @@ import com.hp.hpl.jena.graph.impl.*;
 import com.hp.hpl.jena.rdf.model.*;
 
 /**
- 	@author hedgehog
-    
     The NodeVisitor interface is used by Node::visitWith so that an application
-    can have type-dispatch on the class of a Node.
+    can have type-dispatch on the class of a Node. 	
+    
+    @author hedgehog
 */
 public interface NodeVisitor
     {

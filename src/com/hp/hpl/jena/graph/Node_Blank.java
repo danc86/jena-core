@@ -7,6 +7,7 @@
 package com.hp.hpl.jena.graph;
 
 /**
+    RDF blank nodes, ie nodes with identity but without URIs.
 	@author kers
 */
 

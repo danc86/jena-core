@@ -7,7 +7,7 @@
 package com.hp.hpl.jena.graph;
 
 /**
-    This is the superclass for "concrete" nodes, ie those which correspond
+    This is the class of "concrete" nodes, ie those which correspond
     to actual RDF data - URIs, blank nodes, and literals.
  	@author kers
 */
