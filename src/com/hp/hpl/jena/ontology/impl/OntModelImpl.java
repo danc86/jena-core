@@ -2603,16 +2603,20 @@ public class OntModelImpl
     
     /**
      * <p>
-     * Answer the resource with the given uri and that has the given rdf:type -
+     * Answer the resource with the given uri and that optionally has the given <code>rdf:type</code>, 
      * creating the resource if necessary.
      * </p>
      * 
-     * @param uri The uri to use, or null
-     * @param rdfType The resource to assert as the rdf:type
+     * @param uri The uri to use, or null for an anonymous resource
+     * @param rdfType The resource to assert as the <code>rdf:type</code>, or null to leave untyped
      * @return A new or existing Resource
      */
     protected Resource getResourceWithType( String uri, Resource rdfType ) {
-        return getResource( uri ).addProperty( RDF.type, rdfType );
+        Resource r = getResource( uri );
+        if (rdfType != null) {
+            r.addProperty( RDF.type, rdfType );
+        }
+        return r;
     }
     
     

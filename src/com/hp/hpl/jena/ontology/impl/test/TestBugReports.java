@@ -831,6 +831,17 @@ public class TestBugReports extends TestCase {
         }
     }
     
+    /** Bug report by sinclair bain (slbain) SF bugID 912202 - NPE in createOntResource() when 2nd param is null */
+    public void test_sb_01() {
+        OntModel model= ModelFactory.createOntologyModel(OntModelSpec.OWL_MEM_RDFS_INF, null);
+
+        Resource result= null;
+        Resource nullValueForResourceType= null;
+
+        result= model.createOntResource( OntResource.class, nullValueForResourceType, "http://www.somewhere.com/models#SomeResourceName" );
+        assertNotNull( result );
+    }
+    
     
     // Internal implementation methods
     //////////////////////////////////
