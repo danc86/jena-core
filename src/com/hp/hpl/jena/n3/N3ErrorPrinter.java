@@ -5,7 +5,7 @@
 
 package com.hp.hpl.jena.n3;
 import java.io.*;
-import antlr.collections.AST;
+//import antlr.collections.AST;
 import com.hp.hpl.jena.n3.*;
 
 /**

@@ -5,7 +5,6 @@
 
 package com.hp.hpl.jena.n3;
 
-import antlr.Token ;
 import antlr.collections.AST ;
 
 /** A basic (do nothing) implementation of N3ParserEventHandler.

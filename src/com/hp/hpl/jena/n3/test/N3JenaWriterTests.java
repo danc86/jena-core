@@ -8,15 +8,12 @@ package com.hp.hpl.jena.n3.test ;
 import com.hp.hpl.jena.n3.test.N3ExternalTestsCom;
 
 import java.io.* ;
-import java.util.* ;
 
 import junit.framework.* ;
 
 import com.hp.hpl.jena.n3.* ;
-import com.hp.hpl.jena.util.*;
 
 import com.hp.hpl.jena.rdf.model.*;
-import com.hp.hpl.jena.rdf.model.impl.*;
 import com.hp.hpl.jena.mem.*;
 
 //import com.hp.hpl.mesa.rdf.jena.vocabulary.*;
@@ -103,12 +100,12 @@ public class N3JenaWriterTests extends N3ExternalTestsCom
 			Model model_2 = new ModelMem() ;
 			model_2.read(r, uriBase, "N3") ;
 			
-			if ( ! ModelMatcher.equals(model_1, model_2) )
+            if ( ! model_1.isIsomorphicWith(model_2) )
 			{
 				//System.out.println("#### ---- "+testName+" ------------------------------") ;
 				//System.out.println(w.toString()) ;
 				//System.out.flush() ;
-				fail("Models don't match: "+testName) ;
+                assertTrue("Models don't match: "+testName, false) ;
 			}
 		}
 	}

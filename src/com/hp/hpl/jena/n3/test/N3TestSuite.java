@@ -5,9 +5,7 @@
 
 package com.hp.hpl.jena.n3.test;
 
-import com.hp.hpl.jena.n3.* ;
 import junit.framework.* ;
-import java.util.* ;
 
 /**
  * @author		Andy Seaborne

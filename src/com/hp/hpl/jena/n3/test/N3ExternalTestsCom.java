@@ -7,16 +7,9 @@ package com.hp.hpl.jena.n3.test;
 
 import java.io.* ;
 import java.util.* ;
-import com.hp.hpl.jena.n3.* ;
 import junit.framework.* ;
 
-import com.hp.hpl.jena.rdf.model.* ;
-//import com.hp.hpl.jena.rdf.model.impl.* ;
-import com.hp.hpl.jena.mem.* ;
-
-
 import com.hp.hpl.jena.util.tuple.* ;
-import com.hp.hpl.jena.util.ModelLoader;
 
 //@@ToDo: Hunt around for the config file
 

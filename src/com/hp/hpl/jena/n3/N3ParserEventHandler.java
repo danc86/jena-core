@@ -4,7 +4,6 @@
  */
 
 package com.hp.hpl.jena.n3;
-import antlr.Token ;
 import antlr.collections.AST;
 
 /** Interface for handling the output events from the N3 parser

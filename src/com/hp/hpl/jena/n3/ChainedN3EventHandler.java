@@ -5,7 +5,6 @@
 
 package com.hp.hpl.jena.n3;
 
-import antlr.Token ;
 import antlr.collections.AST ;
 
 /** Support for chaining handlers.  Sends the operations to a chained handler.
