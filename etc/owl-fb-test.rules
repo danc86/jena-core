@@ -130,10 +130,10 @@
 -> (owl:Thing rdf:type owl:Class).
 
 # These might need to be pre-expanded in the initial rule set
--> (owl:equivalentProperty rdf:type owl:SymmetricProperty).
--> (owl:equivalentProperty rdf:type owl:TransitiveProperty).
--> (owl:equivalentClass rdf:type owl:SymmetricProperty).
--> (owl:equivalentClass rdf:type owl:TransitiveProperty).
+#-> (owl:equivalentProperty rdf:type owl:SymmetricProperty).
+#-> (owl:equivalentProperty rdf:type owl:TransitiveProperty).
+#-> (owl:equivalentClass rdf:type owl:SymmetricProperty).
+#-> (owl:equivalentClass rdf:type owl:TransitiveProperty).
 -> (owl:sameAs rdf:type owl:SymmetricProperty).
 -> (owl:sameIndividualAs rdf:type owl:SymmetricProperty).
 -> (owl:sameIndividualAs rdf:type owl:TransitiveProperty).
@@ -256,7 +256,7 @@
      (?C owl:equivalentClass min(?P, 1)) ]
 
 [cardRec2: (?C owl:equivalentClass card(?P, 1)) -> table(?P),
-	[cardRec2b: (?X rdf:type ?C) <- (?X rdf:type min(P, 1)), (?X rdf:type max(P, 1)) ] ]
+	[cardRec2b: (?X rdf:type ?C) <- (?X rdf:type min(?P, 1)), (?X rdf:type max(?P, 1)) ] ]
 
 #------------------------------------------------------------------
 # someValuesFrom
