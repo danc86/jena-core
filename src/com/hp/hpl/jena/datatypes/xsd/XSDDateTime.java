@@ -11,6 +11,7 @@ package com.hp.hpl.jena.datatypes.xsd;
 
 import java.util.*;
 
+
 /**
  * Represent an XSD date/time value. Rather than have a separate type for each
  * legal date/time value combination this is a combination type than does runtime
@@ -70,7 +71,8 @@ public class XSDDateTime extends AbstractDateTime {
      */
     private static int[] convertCalendar(Calendar date) {
         int[] data = new int[TOTAL_SIZE];
-        int offset = date.get(Calendar.ZONE_OFFSET);
+        int offset = date.get(Calendar.ZONE_OFFSET) + date.get(Calendar.DST_OFFSET);
+                                        //  Thanks to Greg Shueler for DST patch
         Calendar cal = date;
         if (offset != 0) {
             cal = (Calendar)date.clone();

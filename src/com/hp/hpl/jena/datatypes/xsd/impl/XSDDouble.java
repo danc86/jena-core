@@ -60,7 +60,7 @@ public class XSDDouble extends XSDDatatype {
       * of this datatype. Brute force implementation.
       */
      public boolean isValidValue(Object valueForm) {
-         return (valueForm instanceof Float);
+         return (valueForm instanceof Double);
      }
    
      /**

@@ -141,10 +141,10 @@ public class XSDDatatype extends BaseDatatype {
     public static final XSDDatatype XSDNOTATION = new XSDDatatype("NOTATION");
 
     /** Datatype representing xsd:hexBinary */
-    public static final XSDDatatype XSDhexBinary = new XSDDatatype("hexBinary");
+    public static final XSDDatatype XSDhexBinary = new XSDhexBinary("hexBinary");
 
     /** Datatype representing xsd:base64Binary */
-    public static final XSDDatatype XSDbase64Binary = new XSDDatatype("base64Binary");
+    public static final XSDDatatype XSDbase64Binary = new XSDbase64Binary("base64Binary");
 
     /** Datatype representing xsd:date */
     public static final XSDDatatype XSDdate = new XSDDateType("date");
@@ -370,14 +370,14 @@ public class XSDDatatype extends BaseDatatype {
         switch (validatedInfo.actualValueType) {
             case XSConstants.BASE64BINARY_DT:
                 byte[] decoded = Base64.decode(validatedInfo.normalizedValue);
-                return new String(decoded);
+                return (Object)(decoded);
                 
             case XSConstants.BOOLEAN_DT:
                 return (Boolean)validatedInfo.actualValue;
                                 
             case XSConstants.HEXBINARY_DT:
                 decoded = HexBin.decode(validatedInfo.normalizedValue);
-                return new String(decoded);
+                return (Object)(decoded);
 
             case XSConstants.UNSIGNEDSHORT_DT:
             case XSConstants.INT_DT:
