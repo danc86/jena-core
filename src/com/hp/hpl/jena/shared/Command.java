@@ -4,33 +4,19 @@
   $Id$
 */
 
-package com.hp.hpl.jena.graph;
-
-import com.hp.hpl.jena.shared.*;
-import com.hp.hpl.jena.graph.impl.*;
+package com.hp.hpl.jena.shared;
 
 /**
  	@author kers
+    An interface expressing the execution of a command.
 */
-public class SimpleTransactionHandler extends TransactionHandlerBase
-    {
-    public SimpleTransactionHandler()
-        { super(); }
 
-    public boolean transactionsSupported()
-        { return false; }
-        
-    public void begin()
-        { notSupported(); }
-        
-    public void abort()
-        { notSupported(); }
-        
-    public void commit()
-        { notSupported(); }
-        
-    private void notSupported()
-        { throw new UnsupportedOperationException( "oops" ); }
+public interface Command
+    {
+    /**
+        Perform some action and return some result.
+    */
+    Object execute();
     }
 
 

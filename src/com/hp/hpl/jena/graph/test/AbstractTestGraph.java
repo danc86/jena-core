@@ -8,6 +8,7 @@ package com.hp.hpl.jena.graph.test;
 
 import com.hp.hpl.jena.util.iterator.*;
 import com.hp.hpl.jena.graph.*;
+import com.hp.hpl.jena.shared.*;
 
 import java.util.*;
 
@@ -89,6 +90,11 @@ public abstract class AbstractTestGraph extends GraphTestBase
         try { th.begin(); } catch (UnsupportedOperationException x) {}
         try { th.abort(); } catch (UnsupportedOperationException x) {}
         try { th.commit(); } catch (UnsupportedOperationException x) {}
+    /* */
+        Command cmd = new Command() 
+            { public Object execute() { return null; } };
+        try { th.executeInTransaction( cmd ); } 
+        catch (UnsupportedOperationException x) {}
         }
 
     static final Triple [] tripleArray = tripleArray( "S P O; A R B; X Q Y" );

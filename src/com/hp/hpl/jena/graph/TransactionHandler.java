@@ -6,6 +6,8 @@
 
 package com.hp.hpl.jena.graph;
 
+import com.hp.hpl.jena.shared.*;
+
 /**
     Preliminary interface for graphs supporting transactions.
     
@@ -40,6 +42,12 @@ public interface TransactionHandler
         throw an UnsupportedOperationException.
    */
     void commit();
+    
+    /**
+        If transactions are supported, execute the command c within a transaction
+        and return its result. If not, throw an UnsupportedOperationException.
+    */
+    Object executeInTransaction( Command c );
     }
 
 

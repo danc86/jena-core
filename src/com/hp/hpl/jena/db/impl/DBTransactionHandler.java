@@ -7,7 +7,8 @@
 package com.hp.hpl.jena.db.impl;
 
 import com.hp.hpl.jena.db.GraphRDB;
-import com.hp.hpl.jena.graph.TransactionHandler;
+import com.hp.hpl.jena.graph.*;
+import com.hp.hpl.jena.graph.impl.*;
 
 /**
  * Transaction handler for graphs backed by a database.
@@ -15,10 +16,9 @@ import com.hp.hpl.jena.graph.TransactionHandler;
  * @author csayers based on SimpleTransactionHandler by kers 
  * @version $Revision$
  */
-public class DBTransactionHandler implements TransactionHandler {
+public class DBTransactionHandler extends TransactionHandlerBase {
 	private IRDBDriver m_driver = null;
-
-	
+    
 	/**
 	 * Construct a transaction handler for the database.
 	 * 

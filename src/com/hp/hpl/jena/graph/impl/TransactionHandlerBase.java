@@ -4,35 +4,34 @@
   $Id$
 */
 
-package com.hp.hpl.jena.graph;
+package com.hp.hpl.jena.graph.impl;
 
+import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.shared.*;
-import com.hp.hpl.jena.graph.impl.*;
 
 /**
  	@author kers
+    
+    A base for transaction handlers - all it does is provide the canonical
+    implementation of executeInTransaction.
 */
-public class SimpleTransactionHandler extends TransactionHandlerBase
+public abstract class TransactionHandlerBase implements TransactionHandler
     {
-    public SimpleTransactionHandler()
+    public TransactionHandlerBase()
         { super(); }
 
-    public boolean transactionsSupported()
-        { return false; }
-        
-    public void begin()
-        { notSupported(); }
-        
-    public void abort()
-        { notSupported(); }
-        
-    public void commit()
-        { notSupported(); }
-        
-    private void notSupported()
-        { throw new UnsupportedOperationException( "oops" ); }
+    /**
+        Execute the command <code>c</code> within a transaction. If it
+        completes normally, commit the transaction and return the result.
+        Otherwise abort the transaction and throw a wrapped exception.
+    */
+    public Object executeInTransaction( Command c )
+        {
+        begin();
+        try { Object result = c.execute(); commit(); return result; }
+        catch (Exception e) { abort(); throw new JenaException( e ); }
+        }
     }
-
 
 /*
     (c) Copyright Hewlett-Packard Company 2003

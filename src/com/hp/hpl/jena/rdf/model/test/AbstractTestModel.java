@@ -4,33 +4,38 @@
   $Id$
 */
 
-package com.hp.hpl.jena.graph;
+package com.hp.hpl.jena.rdf.model.test;
 
+import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.shared.*;
-import com.hp.hpl.jena.graph.impl.*;
 
 /**
  	@author kers
 */
-public class SimpleTransactionHandler extends TransactionHandlerBase
+public abstract class AbstractTestModel extends ModelTestBase
     {
-    public SimpleTransactionHandler()
-        { super(); }
+    public AbstractTestModel( String name )
+        { super(name); }
 
-    public boolean transactionsSupported()
-        { return false; }
+    public abstract Model getModel();
+    
+    private Model model;
+    
+    public void setUp()
+        {
+        model = getModel();
+        }
         
-    public void begin()
-        { notSupported(); }
-        
-    public void abort()
-        { notSupported(); }
-        
-    public void commit()
-        { notSupported(); }
-        
-    private void notSupported()
-        { throw new UnsupportedOperationException( "oops" ); }
+    public void tearDown()
+        {
+        model.close();
+        } 
+       
+    public void testTransactions()
+        { 
+        Command cmd = null;
+        if (model.supportsTransactions()) model.executeInTransaction( cmd );
+        }
     }
 
 

@@ -4,33 +4,31 @@
   $Id$
 */
 
-package com.hp.hpl.jena.graph;
+package com.hp.hpl.jena.rdf.model.test;
 
-import com.hp.hpl.jena.shared.*;
-import com.hp.hpl.jena.graph.impl.*;
+import com.hp.hpl.jena.rdf.model.*;
+
+import junit.framework.*;
 
 /**
  	@author kers
 */
-public class SimpleTransactionHandler extends TransactionHandlerBase
+public class TestStandardModels extends AbstractTestModel
     {
-    public SimpleTransactionHandler()
-        { super(); }
 
-    public boolean transactionsSupported()
-        { return false; }
+    public TestStandardModels(String name)
+        { super(name); }
         
-    public void begin()
-        { notSupported(); }
-        
-    public void abort()
-        { notSupported(); }
-        
-    public void commit()
-        { notSupported(); }
-        
-    private void notSupported()
-        { throw new UnsupportedOperationException( "oops" ); }
+    public static TestSuite suite()
+        {
+        return new TestSuite( TestStandardModels.class );
+        }
+
+    public Model getModel()
+        {
+        return ModelFactory.createDefaultModel();
+        }   
+
     }
 
 

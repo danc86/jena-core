@@ -735,6 +735,14 @@ public interface Model
 	 * @throws RDFException Generic RDF Exception
 	 */
 	Model commit() throws RDFException;
+    
+    /**
+        Execute the command <code>cmd</code> inside a transaction. If it
+        completes, commit the transaction and return the result; if it fails
+        (by throwing an exception), abort the transaction and throw an
+        exception.
+    */
+    Object executeInTransaction( Command cmd );
 
 	/** Determine whether this model is independent.
 	 *

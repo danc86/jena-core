@@ -28,6 +28,7 @@ public class TestPackage extends TestSuite {
         addTest( "TestModelPolymorphism", TestModelPolymorphism.suite() );
         addTest( "TestSimpleSelector", TestSimpleSelector.suite() );
         addTest( "TestStatements", TestStatements.suite() );
+        addTest( "TestRDFNodes", TestRDFNodes.suite() );
         addTest( "TestReifiedStatements", TestReifiedStatements.suite() );
         addTest( "TestIterators", TestIterators.suite() );
         addTest( "TestContains", TestContains.suite() );
@@ -35,6 +36,7 @@ public class TestPackage extends TestSuite {
         addTest( "TestModelBulkUpdate", TestModelBulkUpdate.suite() );
         addTest( "TestConcurrency", TestConcurrency.suite() ) ;
         addTest( "TestModelMakerImpl", TestModelMakerImpl.suite() );
+        addTest( "TestStandardModels", TestStandardModels.suite() );
         }
 
     private void addTest(String name, TestSuite tc) {
