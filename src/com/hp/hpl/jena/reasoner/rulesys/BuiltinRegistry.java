@@ -37,6 +37,10 @@ public class BuiltinRegistry {
         theRegistry.register(new Print());
         theRegistry.register(new AddOne());
         theRegistry.register(new LessThan());
+        theRegistry.register(new GreaterThan());
+        theRegistry.register(new LE());
+        theRegistry.register(new GE());
+        theRegistry.register(new Equal());
         theRegistry.register(new NotFunctor());
         theRegistry.register(new IsFunctor());
         theRegistry.register(new NotEqual());
@@ -44,10 +48,16 @@ public class BuiltinRegistry {
         theRegistry.register(new NoValue());
         theRegistry.register(new Remove());
         theRegistry.register(new Sum());
+        theRegistry.register(new Product());
         theRegistry.register(new Bound());
         theRegistry.register(new Unbound());
         theRegistry.register(new IsLiteral());
         theRegistry.register(new NotLiteral());
+        theRegistry.register(new IsBNode());
+        theRegistry.register(new NotBNode());
+        theRegistry.register(new IsDType());
+        theRegistry.register(new NotDType());
+        theRegistry.register(new CountLiteralValues());
         
         theRegistry.register(new MakeInstance());
         theRegistry.register(new Table());

@@ -1,7 +1,7 @@
 /******************************************************************
- * File:        NotEqual.java
+ * File:        LE.java
  * Created by:  Dave Reynolds
- * Created on:  13-Apr-03
+ * Created on:  24-Aug-2003
  * 
  * (c) Copyright 2003, Hewlett-Packard Company, all rights reserved.
  * [See end of file]
@@ -13,19 +13,19 @@ import com.hp.hpl.jena.reasoner.rulesys.*;
 import com.hp.hpl.jena.graph.*;
 
 /**
- * Check that the two args are different. This uses a semantic equality test.
+ * Tests if the first argument is less than or equal to the second.
  * 
  * @author <a href="mailto:der@hplb.hpl.hp.com">Dave Reynolds</a>
  * @version $Revision$ on $Date$
  */
-public class NotEqual extends BaseBuiltin {
+public class LE extends BaseBuiltin {
 
     /**
      * Return a name for this builtin, normally this will be the name of the 
      * functor that will be used to invoke it.
      */
     public String getName() {
-        return "notEqual";
+        return "le";
     }
     
     /**
@@ -39,24 +39,21 @@ public class NotEqual extends BaseBuiltin {
      * This method is invoked when the builtin is called in a rule body.
      * @param args the array of argument values for the builtin, this is an array 
      * of Nodes, some of which may be Node_RuleVariables.
-     * @param length the length of the argument list, may be less than the length of the args array
-     * for some rule engines
      * @param context an execution context giving access to other relevant data
      * @return return true if the buildin predicate is deemed to have succeeded in
      * the current environment
      */
     public boolean bodyCall(Node[] args, int length, RuleContext context) {
         checkArgs(length, context);
-        Node n1 = args[0];
-        Node n2 = args[1];
-        if (Util.isNumeric(n1)) {
-            return Util.compareNumbers(n1, n2) != 0;
+        if ( Util.isNumeric(args[0]) && Util.isNumeric(args[1]) ) {
+            return Util.compareNumbers(args[0], args[1]) <= 0;
         } else {
-            return ! n1.sameValueAs(n2);
+            return false;
         }
     }
     
 }
+
 
 /*
     (c) Copyright Hewlett-Packard Company 2003

@@ -14,7 +14,7 @@ import com.hp.hpl.jena.reasoner.rulesys.*;
 import com.hp.hpl.jena.graph.*;
 
 /**
- * Bind the second argument to 1+ the first argument. Just used for testing builtins.
+ * Tests if the first argument is less than the second.
  * 
  * @author <a href="mailto:der@hplb.hpl.hp.com">Dave Reynolds</a>
  * @version $Revision$ on $Date$
@@ -47,7 +47,7 @@ public class LessThan extends BaseBuiltin {
     public boolean bodyCall(Node[] args, int length, RuleContext context) {
         checkArgs(length, context);
         if ( Util.isNumeric(args[0]) && Util.isNumeric(args[1]) ) {
-            return Util.getIntValue(args[0]) < Util.getIntValue(args[1]);
+            return Util.compareNumbers(args[0], args[1]) < 0;
         } else {
             return false;
         }

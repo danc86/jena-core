@@ -1,7 +1,7 @@
 /******************************************************************
- * File:        NotEqual.java
+ * File:        Equal.java
  * Created by:  Dave Reynolds
- * Created on:  13-Apr-03
+ * Created on:  24-Aug-2003
  * 
  * (c) Copyright 2003, Hewlett-Packard Company, all rights reserved.
  * [See end of file]
@@ -13,19 +13,19 @@ import com.hp.hpl.jena.reasoner.rulesys.*;
 import com.hp.hpl.jena.graph.*;
 
 /**
- * Check that the two args are different. This uses a semantic equality test.
+ * Check that the two args are semantically equal.
  * 
  * @author <a href="mailto:der@hplb.hpl.hp.com">Dave Reynolds</a>
  * @version $Revision$ on $Date$
  */
-public class NotEqual extends BaseBuiltin {
+public class Equal extends BaseBuiltin {
 
     /**
      * Return a name for this builtin, normally this will be the name of the 
      * functor that will be used to invoke it.
      */
     public String getName() {
-        return "notEqual";
+        return "equal";
     }
     
     /**
@@ -50,13 +50,14 @@ public class NotEqual extends BaseBuiltin {
         Node n1 = args[0];
         Node n2 = args[1];
         if (Util.isNumeric(n1)) {
-            return Util.compareNumbers(n1, n2) != 0;
+            return Util.compareNumbers(n1, n2) == 0;
         } else {
-            return ! n1.sameValueAs(n2);
+            return n1.sameValueAs(n2);
         }
     }
     
 }
+
 
 /*
     (c) Copyright Hewlett-Packard Company 2003

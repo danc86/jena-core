@@ -1,7 +1,7 @@
 /******************************************************************
- * File:        NotEqual.java
+ * File:        IsDType.java
  * Created by:  Dave Reynolds
- * Created on:  13-Apr-03
+ * Created on:  24-Aug-2003
  * 
  * (c) Copyright 2003, Hewlett-Packard Company, all rights reserved.
  * [See end of file]
@@ -10,22 +10,24 @@
 package com.hp.hpl.jena.reasoner.rulesys.builtins;
 
 import com.hp.hpl.jena.reasoner.rulesys.*;
+import com.hp.hpl.jena.vocabulary.RDFS;
 import com.hp.hpl.jena.graph.*;
 
 /**
- * Check that the two args are different. This uses a semantic equality test.
+ * Tests whether the first argument is an instance of the datatype defined
+ * by the resource in the second argument.
  * 
  * @author <a href="mailto:der@hplb.hpl.hp.com">Dave Reynolds</a>
  * @version $Revision$ on $Date$
  */
-public class NotEqual extends BaseBuiltin {
+public class IsDType extends BaseBuiltin {
 
     /**
      * Return a name for this builtin, normally this will be the name of the 
      * functor that will be used to invoke it.
      */
     public String getName() {
-        return "notEqual";
+        return "isDType";
     }
     
     /**
@@ -47,16 +49,23 @@ public class NotEqual extends BaseBuiltin {
      */
     public boolean bodyCall(Node[] args, int length, RuleContext context) {
         checkArgs(length, context);
-        Node n1 = args[0];
-        Node n2 = args[1];
-        if (Util.isNumeric(n1)) {
-            return Util.compareNumbers(n1, n2) != 0;
-        } else {
-            return ! n1.sameValueAs(n2);
+        Node val = args[0];
+        Node dt = args[1];
+        if (val.isLiteral()) {
+            if (dt.equals(RDFS.Nodes.Literal)) {
+                return true;
+            } else {
+                if (val.getLiteral().getDatatype() != null) {
+                    return val.getLiteral().getDatatypeURI().equals(dt.getURI());
+                } else {
+                    return false;
+                }
+            }
         }
+        return false;
     }
-    
 }
+
 
 /*
     (c) Copyright Hewlett-Packard Company 2003
