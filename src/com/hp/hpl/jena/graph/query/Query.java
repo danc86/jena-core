@@ -123,7 +123,7 @@ public class Query
                 { 
                 int count = 0; 
                 while (hasNext()) { count += 1; next(); }
-                System.err.println( ">> pulled " + count + " values" );
+                // System.err.println( ">> pulled " + count + " values" );
                 }
             };
         }
