@@ -443,9 +443,11 @@ xobj(0^^(xsd:nonNegativeInteger),liteInteger):- !.
 xobj(1^^(xsd:nonNegativeInteger),liteInteger):- !.
 xobj(literal,dlInteger).
 xobj(literal,liteInteger).
+xobj(literal,userTypedLiteral).
 xobj(A,A).
 
 dull(_:_).
 dull(literal).
 dull(dlInteger).
 dull(liteInteger).
+dull(userTypedLiteral).

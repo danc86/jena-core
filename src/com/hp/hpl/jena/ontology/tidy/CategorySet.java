@@ -101,6 +101,16 @@ class CategorySet implements Comparable {
 	} 
 };
 
+  static final Q userTypedLiterals = new Q() {
+  	int[] asInt() {
+  		return new int[]{Grammar.userTypedLiteral
+  		};
+  	}
+  	boolean test(int all[]) {
+  		return false;
+  	}
+  };
+
 	/**
 	 * @return the ids of all categories for which the node must be structured
 	 * with one member.

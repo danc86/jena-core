@@ -143,7 +143,8 @@ class SubCategorize {
 			case 2 :
 				return prop == Grammar.notype;
 			case 4 :
-				return obj == Grammar.notype || obj == Grammar.badRestriction;
+				return ( obj == Grammar.notype && prop != Grammar.annotationPropID )
+				       || obj == Grammar.badRestriction;
 			case 3 :
 			case 6 :
 			case 7 :
