@@ -161,6 +161,35 @@ public class TestBugReports
         assertFalse( "file: #A should not be a class", m.getResource( "file:testing/ontology/relativenames.rdf#A" ).canAs( OntClass.class ) );
     }
     
+    
+    /** Bug report from Holger Knublach: not all elements of a union are removed */
+    public void test_hk_05() {
+        OntModelSpec spec = new OntModelSpec(OntModelSpec.OWL_MEM);
+        spec.setReasoner(null);
+        OntModel ontModel = ModelFactory.createOntologyModel(spec, null);
+        String ns = "http://foo.bar/fu#";
+        OntClass a = ontModel.createClass(ns+"A");
+        OntClass b = ontModel.createClass(ns+"B");
+        System.err.println( "--------------------------------------------------");
+        System.err.println( "Stage 1");
+        ontModel.write( System.err, "RDF/XML-ABBREV" );
+        
+        int oldCount = getStatementCount( ontModel );
+        
+        RDFList members = ontModel.createList(new RDFNode[] {a, b});
+        IntersectionClass intersectionClass =
+            ontModel.createIntersectionClass(null, members);
+        System.err.println( "--------------------------------------------------");
+        System.err.println( "Stage 2");
+        ontModel.write( System.err, "RDF/XML" );
+        intersectionClass.remove();
+        System.err.println( "--------------------------------------------------");
+        System.err.println( "Stage 3");
+        
+        ontModel.write( System.err, "RDF/XML-ABBREV" );
+        assertEquals("Before and after statement counts are different", oldCount, getStatementCount( ontModel ));
+    }
+    
     /**
      * Bug report by federico.carbone@bt.com, 30-July-2003.   A literal can be
      * turned into an individual.
@@ -443,6 +472,15 @@ public class TestBugReports
      
     // Internal implementation methods
     //////////////////////////////////
+    
+    private int getStatementCount( OntModel ontModel ) {
+        int count = 0;
+        for (Iterator it = ontModel.listStatements(); 
+             it.hasNext(); it.next()) {
+            count++;
+        }
+        return count;
+    }
 
     //==============================================================================
     // Inner class definitions

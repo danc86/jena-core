@@ -32,6 +32,7 @@ import com.hp.hpl.jena.shared.JenaException;
 import com.hp.hpl.jena.util.iterator.*;
 import com.hp.hpl.jena.vocabulary.*;
 import com.hp.hpl.jena.ontology.*;
+//import com.hp.hpl.jena.ontology.event.*;
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.graph.compose.MultiUnion;
 import com.hp.hpl.jena.graph.query.*;
@@ -85,6 +86,10 @@ public class OntModelImpl
     
     /** The listener that detects dynamically added or removed imports statments */
     protected ImportsListener m_importsListener = null;
+    
+    /** The event manager for ontology events on this model */
+    //protected OntEventManager m_ontEventMgr = null;
+    
     
     
     // Constructors
@@ -1576,7 +1581,6 @@ public class OntModelImpl
      */
     public RDFList createList() {
         Resource list = getResource( getProfile().NIL().getURI() );
-        list.addProperty( RDF.type, getProfile().LIST() );
         
         return (RDFList) list.as( RDFList.class );
     }
@@ -1961,6 +1965,40 @@ public class OntModelImpl
     }
 
 
+    /**
+     * <p>Answer the ontology event manager attached to this model.  If there is no event
+     * manager currently attached, a new one will be created.</p>
+     * @return The current, or a new, ontology event mananger
+     * /
+    public OntEventManager getOntEventManager() {
+        if (m_ontEventMgr == null) {
+            m_ontEventMgr = new OntEventManager();
+        }
+        
+        return m_ontEventMgr;
+    }*/
+    
+    
+    /**
+     * <p>Set the ontology event manager attached to this model to be the given object.
+     * Ontology events provide a higher-level view of the chagnes to the model than
+     * the model events, which report only changed statements.</p>
+     * 
+     * @param mgr The new ontology event mgr
+     * /
+    public void setOntEventManager( OntEventManager mgr ) {
+        // clear the old handler before we dump it
+        if (m_ontEventMgr != null) {
+            for (Iterator i = m_ontEventMgr.listRegisteredEvents();  i.hasNext(); ) {
+                Resource event = (Resource) i.next();
+                m_ontEventMgr.removeHandler( event );
+            }
+        }
+        
+        m_ontEventMgr = mgr;
+    }*/
+    
+    
     /**
      * <p>
      * Answer the iterator over the resources from the graph that satisfy the given
