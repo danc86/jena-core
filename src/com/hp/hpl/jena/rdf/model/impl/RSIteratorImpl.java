@@ -9,7 +9,7 @@ package com.hp.hpl.jena.rdf.model.impl;
 import java.util.Iterator;
 
 import com.hp.hpl.jena.rdf.model.*;
-import com.hp.hpl.jena.util.iterator.*;
+//import com.hp.hpl.jena.util.iterator.*;
 
 public class RSIteratorImpl extends ResIteratorImpl implements RSIterator
     {
