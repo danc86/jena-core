@@ -63,7 +63,6 @@ public class StatementImpl  implements Statement {
                          Model model) throws RDFException {
         this.model = model;
         this.subject = (Resource) subject.inModel( model ); 
-        if (this.subject.getModel() != model) throw new RuntimeException( "BOTHER "  + subject );
         this.predicate = (Property) predicate.inModel( model ); 
         this.object = object.inModel( model ); 
     }    

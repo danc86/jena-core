@@ -108,7 +108,7 @@ public class ConcatenatedIterator
             m_iter0 = (Iterator) iter0;
         }
         else if (iter0 instanceof NodeIterator) {
-            m_iter0 = new NodeIteratorWrapper( (NodeIterator) iter0 );
+            m_iter0 =  (NodeIterator) iter0;
         }
         else if (iter0 instanceof ResIterator) {
             m_iter0 = (ResIterator) iter0; 
@@ -122,7 +122,7 @@ public class ConcatenatedIterator
             m_iter1 = (Iterator) iter1;
         }
         else if (iter1 instanceof NodeIterator) {
-            m_iter1 = new NodeIteratorWrapper( (NodeIterator) iter1 );
+            m_iter1 =  (NodeIterator) iter1;
         }
         else if (iter1 instanceof ResIterator) {
             m_iter1 = (ResIterator) iter1;

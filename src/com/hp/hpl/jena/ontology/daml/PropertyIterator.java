@@ -57,7 +57,6 @@ import com.hp.hpl.jena.shared.*;
 
 import com.hp.hpl.jena.util.Log;
 import com.hp.hpl.jena.util.iterator.ConcatenatedIterator;
-import com.hp.hpl.jena.util.iterator.NodeIteratorWrapper;
 
 import com.hp.hpl.jena.vocabulary.DAML_OIL;
 
@@ -487,7 +486,7 @@ public class PropertyIterator
             // don't use equivalents
             if (m_model != null) {
                 // we have a model to query, so use it to get the object of the triple
-                i = new NodeIteratorWrapper( m_model.listObjectsOfProperty( res, m_pred ) );
+                i = m_model.listObjectsOfProperty( res, m_pred );
             }
             else {
                 // no model (can occur when using built-in constants from vocab)
