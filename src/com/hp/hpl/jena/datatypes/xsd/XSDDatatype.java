@@ -13,8 +13,7 @@ package com.hp.hpl.jena.datatypes.xsd;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.io.Reader;
-import java.util.List;
-import java.util.ArrayList;
+import java.util.*;
 
 import com.hp.hpl.jena.datatypes.*;
 import com.hp.hpl.jena.datatypes.xsd.impl.*;
@@ -185,7 +184,6 @@ public class XSDDatatype extends BaseDatatype {
 //    /** Datatype representing xsd:IDREFS */
 //    public static final XSDDatatype XSDIDREFS = new XSDBaseStringType("IDREFS");
 
-    
 //=======================================================================
 // local variables
         
@@ -346,6 +344,7 @@ public class XSDDatatype extends BaseDatatype {
                 XSSimpleType xstype = (XSSimpleType) map.item(i);
                 // Filter built in types - only needed for 2.6.0
                 if ( ! XSD.equals(xstype.getNamespace()) ) {
+                    //xstype.derivedFrom()
                     XSDDatatype definedType = new XSDGenericType(xstype, source.getSystemId());
                     tm.registerDatatype(definedType);
                     names.add(definedType.getURI());
@@ -435,6 +434,50 @@ public class XSDDatatype extends BaseDatatype {
         return lexical;
     }
     
+    /**
+     * Test whether the given LiteralLabel is a valid instance
+     * of this datatype. This takes into accound typing information
+     * as well as lexical form - for example an xsd:string is
+     * never considered valid as an xsd:integer (even if it is
+     * lexically legal like "1").
+     */
+    public boolean isValidLiteral(LiteralLabel lit) {
+        return isBaseTypeCompatible(lit) && isValid(lit.getLexicalForm());
+    }
+    
+    /**
+     * Test if the given typed value is in the right partition of the XSD type space.
+     * If this test passes then if the typed value has a legal lexical form for
+     * this type then it is a legal instance.
+     */
+    public boolean isBaseTypeCompatible(LiteralLabel lit) {
+        XSTypeDefinition base = getFoundingType();
+        RDFDatatype litDT = lit.getDatatype();
+        if (litDT instanceof XSDDatatype) {
+            XSTypeDefinition litBase = ((XSDDatatype)litDT).getFoundingType();
+            return base.equals(litBase);
+
+        } else if (litDT == null && lit.language().equals("")) {
+            // Special RDF case, a plain literal is type compatible with and xsd:string-based type
+            return base.equals(XSDstring.typeDeclaration);
+        } else {
+            return false;
+        }
+    }
+    
+    /**
+     * Return the most specific type below xsd:anySimpleType that this type is derived from.
+     */
+    private XSTypeDefinition getFoundingType() {
+        XSTypeDefinition founding = typeDeclaration;
+        XSTypeDefinition parent = founding.getBaseType();
+        while (parent.getBaseType() != null) {
+            founding = parent;
+            parent = founding.getBaseType();
+        }
+        return founding;
+    }
+            
     /**
      * Helper function to return the substring of a validated number string
      * omitting any leading + sign.

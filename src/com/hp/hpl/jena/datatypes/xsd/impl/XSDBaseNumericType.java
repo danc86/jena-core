@@ -57,9 +57,7 @@ public class XSDBaseNumericType extends XSDDatatype {
      * lexically legal like "1").
      */
     public boolean isValidLiteral(LiteralLabel lit) {
-        RDFDatatype dt = lit.getDatatype();
-        if (this.equals(dt)) return true;
-        if (dt instanceof XSDBaseNumericType) {
+        if (isBaseTypeCompatible(lit)) {
             String lex = lit.getLexicalForm();
             if (JenaParameters.enableWhitespaceCheckingOfTypedLiterals) {
                 if (lex.trim().equals(lex)) {

@@ -44,16 +44,16 @@ public class XSDFloat extends XSDDatatype {
      }
 
     
-     /**
-      * Test whether the given LiteralLabel is a valid instance
-      * of this datatype. This takes into accound typing information
-      * as well as lexical form - for example an xsd:string is
-      * never considered valid as an xsd:integer (even if it is
-      * lexically legal like "1").
-      */
-     public boolean isValidLiteral(LiteralLabel lit) {
-         return equals(lit.getDatatype());
-     }
+//     /**
+//      * Test whether the given LiteralLabel is a valid instance
+//      * of this datatype. This takes into accound typing information
+//      * as well as lexical form - for example an xsd:string is
+//      * never considered valid as an xsd:integer (even if it is
+//      * lexically legal like "1").
+//      */
+//     public boolean isValidLiteral(LiteralLabel lit) {
+//         return equals(lit.getDatatype());
+//     }
      
      /**
       * Test whether the given object is a legal value form

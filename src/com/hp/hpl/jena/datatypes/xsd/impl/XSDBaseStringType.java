@@ -9,7 +9,6 @@
  *****************************************************************/
 package com.hp.hpl.jena.datatypes.xsd.impl;
 
-import com.hp.hpl.jena.datatypes.*;
 import com.hp.hpl.jena.datatypes.xsd.*;
 import com.hp.hpl.jena.graph.impl.LiteralLabel;
 import com.hp.hpl.jena.shared.impl.JenaParameters;
@@ -45,23 +44,26 @@ public class XSDBaseStringType extends XSDDatatype {
     }
 
     
-    /**
-     * Test whether the given LiteralLabel is a valid instance
-     * of this datatype. This takes into accound typing information
-     * as well as lexical form - for example an xsd:string is
-     * never considered valid as an xsd:integer (even if it is
-     * lexically legal like "1").
-     */
-    public boolean isValidLiteral(LiteralLabel lit) {
-        RDFDatatype dt = lit.getDatatype();
-        if ( dt == null && lit.language().equals("") ) return true;
-        if ( this.equals(dt) ) return true;
-        if (dt instanceof XSDBaseStringType) {
-            return isValid(lit.getLexicalForm());
-        } else {
-            return false;
-        }
-    }
+// Functionality moved to XSDDatatype but old code left here temporarily until
+// we're sure the change is correct.
+//    
+//    /**
+//     * Test whether the given LiteralLabel is a valid instance
+//     * of this datatype. This takes into accound typing information
+//     * as well as lexical form - for example an xsd:string is
+//     * never considered valid as an xsd:integer (even if it is
+//     * lexically legal like "1").
+//     */
+//    public boolean isValidLiteral(LiteralLabel lit) {
+//        RDFDatatype dt = lit.getDatatype();
+//        if ( dt == null && lit.language().equals("") ) return true;
+//        if ( this.equals(dt) ) return true;
+//        if (dt instanceof XSDBaseStringType) {
+//            return isValid(lit.getLexicalForm());
+//        } else {
+//            return false;
+//        }
+//    }
     
     /**
      * Compares two instances of values of the given datatype. 

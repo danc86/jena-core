@@ -37,6 +37,7 @@ public class XSDGenericType extends XSDDatatype {
         super(xstype, namespace);
     }
 
+
 //  No longer need to perform any special case processing of union types since we
 //  now do runtime type coercion - is that right?
 
