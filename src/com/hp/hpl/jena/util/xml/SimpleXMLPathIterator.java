@@ -148,6 +148,7 @@ public class SimpleXMLPathIterator
             else if (!j.hasNext()) {
                 // finished iterator
                 m_stack.add( i, null );
+                m_result = null;
                 i--;
             }
             else {
