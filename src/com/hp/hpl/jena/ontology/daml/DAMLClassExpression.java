@@ -2,7 +2,7 @@
  * Source code information
  * -----------------------
  * Original author    Ian Dickinson, HP Labs Bristol
- * Author email       Ian_Dickinson@hp.com
+ * Author email       Ian.Dickinson@hp.com
  * Package            Jena
  * Created            29 Jan 2001
  * Filename           $RCSfile$
@@ -12,7 +12,7 @@
  * Last modified on   $Date$
  *               by   $Author$
  *
- * (c) Copyright 2002-2003, Hewlett-Packard Company, all rights reserved. 
+ * (c) Copyright 2001-2003, Hewlett-Packard Company, all rights reserved. 
  * (see footer for full conditions)
  *****************************************************************************/
 

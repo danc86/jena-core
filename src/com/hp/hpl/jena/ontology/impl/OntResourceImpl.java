@@ -1113,8 +1113,7 @@ public class OntResourceImpl
         try {
             return getProperty( p ).getObject().as( asClass );
         }
-        catch (JenaException e) {
-            // subject does not have that property exception - TODO implement a more specific check here
+        catch (JenaPropertyNotFoundException e) {
             return null;
         }
     }

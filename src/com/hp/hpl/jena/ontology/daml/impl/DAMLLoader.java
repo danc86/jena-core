@@ -251,8 +251,7 @@ public class DAMLLoader
      * @return true if the ontology has already been loaded by the knowledge store.
      */
     public boolean isLoadedOntology( String uri ) {
-        //m_damlModel.getDocumentManager().something TODO
-        return false;
+        return m_damlModel.hasLoadedImport( uri );
     }
 
 

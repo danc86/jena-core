@@ -2,7 +2,7 @@
  * Source code information
  * -----------------------
  * Original author    Ian Dickinson, HP Labs Bristol
- * Author email       Ian_Dickinson@hp.com
+ * Author email       Ian.Dickinson@hp.com
  * Package            Jena
  * Created            10 Nov 2000
  * Filename           $RCSfile$
@@ -41,7 +41,7 @@ import org.apache.log4j.Logger;
  * Legacy JUnit regression tests for the Jena DAML model.
  * TODO: these tests are not yet fully migrated to Jena2.
  *
- * @author Ian Dickinson, HP Labs (<a href="mailto:Ian_Dickinson@hp.com">email</a>)
+ * @author Ian Dickinson, HP Labs (<a href="mailto:Ian.Dickinson@hp.com">email</a>)
  * @version CVS info: $Id$,
  */
 public class DAMLTest

@@ -28,7 +28,6 @@ import java.io.*;
 import java.util.*;
 
 import com.hp.hpl.jena.rdf.model.*;
-import com.hp.hpl.jena.shared.JenaException;
 import com.hp.hpl.jena.util.iterator.*;
 import com.hp.hpl.jena.datatypes.TypeMapper;
 import com.hp.hpl.jena.ontology.daml.*;
@@ -396,7 +395,7 @@ public class DAMLModelImpl
             return read( url.openStream(), base, lang );
         }
         catch (IOException e) {
-            throw new JenaException( "I/O error while reading from uri " + uri );
+            throw new OntologyException( "I/O error while reading from uri " + uri );
         }
     }
 
@@ -508,7 +507,6 @@ public class DAMLModelImpl
         }
 
         // now as predicate: note that this URI may not be a valid predicate URI
-        // so we ignore any RDFException in this region
         Property p = getProperty( uri );
         StmtIterator p0 = listStatements( null, p, (RDFNode) null );
         if (p0.hasNext()) {

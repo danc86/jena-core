@@ -2,7 +2,7 @@
  * Source code information
  * -----------------------
  * Original author    Ian Dickinson, HP Labs Bristol
- * Author email       Ian_Dickinson@hp.com
+ * Author email       Ian.Dickinson@hp.com
  * Package            Jena
  * Created            27 July 2001
  * Filename           $RCSfile$
@@ -51,7 +51,7 @@ package com.hp.hpl.jena.util;
 /**
  * Interface that encapsulates bare-bones log handling capability.
  *
- * @author Ian Dickinson, HP Labs (<a href="mailto:Ian_Dickinson@hp.com">email</a>)
+ * @author Ian Dickinson, HP Labs (<a href="mailto:Ian.Dickinson@hp.com">email</a>)
  * @version CVS info: $Id$
  */
 public interface LogHandler
