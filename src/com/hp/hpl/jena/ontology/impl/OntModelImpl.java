@@ -1406,6 +1406,39 @@ public class OntModelImpl
     }
 
 
+    /**
+     * <p>
+     * Answer the iterator over the resources from the graph that satisfy the given
+     * query, followed by the answers to the alternative queries (if specified). A
+     * typical scenario is that the main query gets resources of a given class (say,
+     * <code>rdfs:Class</code>), while the altQueries query for aliases for that
+     * type (such as <code>daml:Class</code>).
+     * </p>
+     * 
+     * @param query A query to run against the model
+     * @param altQueries An optional list of subsidiary queries to chain on to the first 
+     * @return ExtendedIterator An iterator over the (assumed single) results of 
+     * executing the queries.
+     */
+    public ExtendedIterator queryFor( BindingQueryPlan query, List altQueries, Class asKey ) {
+        GetBinding firstBinding  = new GetBinding( 0 );
+        
+        // get the results from the main query
+        ExtendedIterator mainQuery = query.executeBindings().mapWith( firstBinding );
+        
+        // now add the alternate queries, if defined
+        if (altQueries != null) {
+            for (Iterator i = altQueries.iterator();  i.hasNext();  ) {
+                ExtendedIterator altQuery = ((BindingQueryPlan) i.next()).executeBindings().mapWith( firstBinding );
+                mainQuery = mainQuery.andThen( altQuery );
+            }
+        }
+        
+        // map each answer value to the appropriate ehnanced node
+        return mainQuery.mapWith( new SubjectNodeAs( asKey ) );
+    }
+    
+    
     // Internal implementation methods
     //////////////////////////////////
 
@@ -1533,39 +1566,6 @@ public class OntModelImpl
      */
     protected ExtendedIterator findByTypeAs( Resource type, Class asKey ) {
         return findByType( type ).mapWith( new SubjectNodeAs( asKey ) );
-    }
-    
-    
-    /**
-     * <p>
-     * Answer the iterator over the resources from the graph that satisfy the given
-     * query, followed by the answers to the alternative queries (if specified). A
-     * typical scenario is that the main query gets resources of a given class (say,
-     * <code>rdfs:Class</code>), while the altQueries query for aliases for that
-     * type (such as <code>daml:Class</code>).
-     * </p>
-     * 
-     * @param query A query to run against the model
-     * @param altQueries An optional list of subsidiary queries to chain on to the first 
-     * @return ExtendedIterator An iterator over the (assumed single) results of 
-     * executing the queries.
-     */
-    protected ExtendedIterator queryFor( BindingQueryPlan query, List altQueries, Class asKey ) {
-        GetBinding firstBinding  = new GetBinding( 0 );
-        
-        // get the results from the main query
-        ExtendedIterator mainQuery = query.executeBindings().mapWith( firstBinding );
-        
-        // now add the alternate queries, if defined
-        if (altQueries != null) {
-            for (Iterator i = altQueries.iterator();  i.hasNext();  ) {
-                ExtendedIterator altQuery = ((BindingQueryPlan) i.next()).executeBindings().mapWith( firstBinding );
-                mainQuery = mainQuery.andThen( altQuery );
-            }
-        }
-        
-        // map each answer value to the appropriate ehnanced node
-        return mainQuery.mapWith( new SubjectNodeAs( asKey ) );
     }
     
     

@@ -327,6 +327,40 @@ public interface OntClass
     public void removeDisjointWith( Resource cls );
     
 
+    // other utility methods
+    
+    /**
+     * <p>Answer an iteration of the properties that may be used for
+     * instances of this class: i&#046;e&#046; the properties that have this class,
+     * or one of its super-classes, as domain.<p>
+     *
+     * @return An iteration of the properties that have this class in the domain
+     */
+    public Iterator listDeclaredProperties();
+
+
+    /**
+     * <p>Answer an iteration of the properties that may be used for
+     * instances of this class: i&#046;e&#046; the properties that have this class,
+     * or optionally one of its super-classes, as domain.</p>
+     *
+     * @param all If true, use all available information from the class hierarchy;
+     * if false, only use properties defined for this class alone.
+     * @return An iteration of the properties that have this class as domain
+     */
+    public Iterator listDeclaredProperties( boolean all );
+
+
+    /**
+     * <p>Answer an iterator over the individuals in the model that have this
+     * class among their types.<p>
+     *
+     * @return An iterator over those instances that have this class as one of
+     *         the classes to which they belong
+     */
+    public Iterator listInstances();
+
+
     // access to facets
 
     /** 
