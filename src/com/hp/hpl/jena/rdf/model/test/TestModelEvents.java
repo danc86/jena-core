@@ -49,6 +49,9 @@ public class TestModelEvents extends ModelTestBase
         public void addedStatements( StmtIterator statements )
             { record( "addIterator", iteratorToList( statements ) ); }
             
+        public void addedStatements( Model m )
+            { record( "addModel", m ); }
+            
         public void removedStatements( Statement [] statements )
             { record( "remove[]", Arrays.asList( statements ) ); }
         
@@ -60,6 +63,9 @@ public class TestModelEvents extends ModelTestBase
             
         public void removedStatements( StmtIterator statements )
             { record( "removeIterator", iteratorToList( statements ) ); }
+            
+        public void removedStatements( Model m )
+            { record( "removeModel", m ); }
             
         protected void record( String tag, Object info )
             { history.add( tag ); history.add( info ); }
@@ -184,8 +190,22 @@ public class TestModelEvents extends ModelTestBase
         }
                     
     protected StmtIterator asIterator( Statement [] statements )
+        { return new StmtIteratorImpl( Arrays.asList( statements ).iterator() ); }
+        
+    public void testAddModel()
         {
-        return new StmtIteratorImpl( Arrays.asList( statements ).iterator() );
+        model.register( SL );
+        Model m = modelWithStatements( "NT beats S; S beats H; H beats D" );
+        model.add( m );
+        SL.assertHas( new Object[] {"addModel", m} );
+        }
+        
+    public void testDeleteModel()
+        {
+        model.register( SL );
+        Model m = modelWithStatements( "NT beats S; S beats H; H beats D" );
+        model.remove( m );
+        SL.assertHas( new Object[] {"removeModel", m} );
         }
     }
 

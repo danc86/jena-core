@@ -34,6 +34,11 @@ public interface GraphListener
     */
     void notifyAdd( Iterator it );
     
+    /**
+        Method called when another graph <code>g</code> has been used to
+        specify the triples added to our attached graph.
+    	@param g the graph of triples added
+     */
     void notifyAdd( Graph g );
     
     /**
@@ -56,6 +61,11 @@ public interface GraphListener
     */
     void notifyDelete( Iterator it );
     
+    /**
+        Method to call when another graph has been used to specify the triples 
+        deleted from our attached graph. 
+    	@param g the graph of triples added
+     */
     void notifyDelete( Graph g );
     }
 
