@@ -703,6 +703,26 @@ public class TestOntModel
         assertTrue( "Should have raised exception to get owl lang level on non-owl model", ex );
     }
     
+    public void testRead() {
+        String base0 = "http://example.com/test0"; 
+        String ns0 = base0 + "#";
+        String base1 = "http://example.com/test1"; 
+        String ns1 = base1 + "#";
+        
+        OntModel m = ModelFactory.createOntologyModel( OntModelSpec.OWL_MEM );
+        m.getDocumentManager().reset();
+        m.getDocumentManager().addAltEntry( base0, "file:testing/ontology/relativenames.rdf" );
+        m.read( base0, "RDF/XML" );
+        assertNotNull( "Should be a class ns0:A", m.getOntClass( ns0 + "A" ) );
+        assertNull( "Should not be a class ns1:A", m.getOntClass( ns1 + "A" ) );
+        
+        m = ModelFactory.createOntologyModel( OntModelSpec.OWL_MEM );
+        m.getDocumentManager().reset();
+        m.getDocumentManager().addAltEntry( base0, "file:testing/ontology/relativenames.rdf" );
+        m.read( base0, base1, "RDF/XML" );
+        assertNull( "Should not be a class ns0:A", m.getOntClass( ns0 + "A" ) );
+        assertNotNull( "Should be a class ns1:A", m.getOntClass( ns1 + "A" ) );
+    }
     
     // Internal implementation methods
     //////////////////////////////////
