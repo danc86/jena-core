@@ -10,9 +10,9 @@
 package com.hp.hpl.jena.reasoner.test;
 
 import com.hp.hpl.jena.mem.ModelMem;
-import com.hp.hpl.jena.reasoner.rdfsReasoner1.RDFSReasoner;
-import com.hp.hpl.jena.reasoner.rdfsReasoner1.RDFSReasonerFactory;
-//import com.hp.hpl.jena.reasoner.rulesys.RDFSRuleReasonerFactory;
+//import com.hp.hpl.jena.reasoner.rdfsReasoner1.RDFSReasoner;
+//import com.hp.hpl.jena.reasoner.rdfsReasoner1.RDFSReasonerFactory;
+import com.hp.hpl.jena.reasoner.rulesys.RDFSRuleReasonerFactory;
 import com.hp.hpl.jena.reasoner.*;
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.vocabulary.*;
@@ -55,9 +55,9 @@ public class TestCurrentRDFWG extends TestCase {
         TestSuite suite = new TestSuite();
         try {
             Resource config = new ModelMem().createResource().addProperty(ReasonerVocabulary.PROPenableCMPScan, true);
-//            config.addProperty(ReasonerVocabulary.PROPtraceOn, true);
-//            constructRDFWGtests(suite, RDFSRuleReasonerFactory.theInstance(), null);
-            constructRDFWGtests(suite, RDFSReasonerFactory.theInstance(), null);
+            config.addProperty(ReasonerVocabulary.PROPtraceOn, true);
+            constructRDFWGtests(suite, RDFSRuleReasonerFactory.theInstance(), null);
+//            constructRDFWGtests(suite, RDFSReasonerFactory.theInstance(), null);
                         
         } catch (IOException e) {
             // failed to even built the test harness
