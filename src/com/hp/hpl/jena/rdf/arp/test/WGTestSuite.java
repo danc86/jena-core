@@ -2,7 +2,7 @@
     (c) Copyright 2001, 2002, 2003, Hewlett-Packard Development Company, LP
     [See end of file]
     $Id$
- */
+*/
 
 package com.hp.hpl.jena.rdf.arp.test;
 

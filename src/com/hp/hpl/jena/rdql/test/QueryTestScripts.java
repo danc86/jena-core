@@ -1,6 +1,7 @@
 /*
  * (c) Copyright 2001, 2002, 2003, Hewlett-Packard Development Company, LP
  * [See end of file]
+ * $Id$
  */
 
 
@@ -9,16 +10,15 @@ package com.hp.hpl.jena.rdql.test;
 import java.io.* ;
 //import java.util.* ;
 
-import com.hp.hpl.jena.rdf.model.* ;
-import com.hp.hpl.jena.mem.* ;
+import com.hp.hpl.jena.rdf.model.*;
 
-import junit.framework.* ;
+import junit.framework.*;
 
-import com.hp.hpl.jena.util.* ;
+import com.hp.hpl.jena.util.*;
 import com.hp.hpl.jena.shared.*;
-import com.hp.hpl.jena.rdql.* ;
+import com.hp.hpl.jena.rdql.*;
 
-import com.hp.hpl.jena.vocabulary.* ;
+import com.hp.hpl.jena.vocabulary.*;
 
 import org.apache.log4j.Logger;
 

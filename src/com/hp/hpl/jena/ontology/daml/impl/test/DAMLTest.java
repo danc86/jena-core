@@ -26,7 +26,6 @@ package com.hp.hpl.jena.ontology.daml.impl.test;
 import junit.framework.*;
 
 import com.hp.hpl.jena.rdf.model.*;
-import com.hp.hpl.jena.mem.*;
 import com.hp.hpl.jena.ontology.OntDocumentManager;
 import com.hp.hpl.jena.ontology.daml.*;
 import com.hp.hpl.jena.vocabulary.*;

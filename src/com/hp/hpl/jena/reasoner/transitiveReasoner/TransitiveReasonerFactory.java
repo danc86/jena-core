@@ -9,7 +9,6 @@
  *****************************************************************/
 package com.hp.hpl.jena.reasoner.transitiveReasoner;
 
-import com.hp.hpl.jena.mem.ModelMem;
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.vocabulary.*;
 import com.hp.hpl.jena.reasoner.*;
@@ -55,7 +54,7 @@ public class TransitiveReasonerFactory implements ReasonerFactory {
      */
     public Model getCapabilities() {
         if (capabilities == null) {
-            capabilities = new ModelMem();
+            capabilities = ModelFactory.createDefaultModel();
             Resource base = capabilities.createResource(getURI());
             base.addProperty(ReasonerVocabulary.nameP, "Transitive Reasoner")
                 .addProperty(ReasonerVocabulary.descriptionP, "Provides reflexive-transitive closure of subClassOf and subPropertyOf")

@@ -11,7 +11,6 @@ package com.hp.hpl.jena.reasoner;
 
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.vocabulary.*;
-import com.hp.hpl.jena.mem.ModelMem;
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.reasoner.rulesys.DAMLMicroReasonerFactory;
 import com.hp.hpl.jena.reasoner.rulesys.GenericRuleReasonerFactory;
@@ -50,7 +49,7 @@ public class ReasonerRegistry {
      * Constructor is hidden - go via theRegistry
      */
     private ReasonerRegistry() {
-        allDescriptions = new ModelMem();
+        allDescriptions = ModelFactory.createDefaultModel();
         // Preload the known Jena reasoers
         register(TransitiveReasonerFactory.theInstance());
         register(RDFSRuleReasonerFactory.theInstance());
