@@ -129,7 +129,7 @@ public class Functor implements ClauseEntry {
      * @return true if the functor has an implementation and that implementation returns true when evaluated
      */
     public boolean evalAsBodyClause(RuleContext context) {
-        if (implementor == null) {
+        if (getImplementor() == null) {
             logger.warn("Invoking undefined functor " + getName() + " in " + context.getRule().toShortString());
             return false;
         }
@@ -142,7 +142,7 @@ public class Functor implements ClauseEntry {
      * @return true if the functor has an implementation and that implementation returns true when evaluated
      */
     public boolean safeEvalAsBodyClause(RuleContext context) {
-        if (implementor == null) {
+        if (getImplementor() == null) {
             logger.warn("Invoking undefined functor " + getName() + " in " + context.getRule().toShortString());
             return false;
         }
@@ -169,6 +169,9 @@ public class Functor implements ClauseEntry {
      * @return the Builtin or null if there isn't one
      */
     public Builtin getImplementor() {
+        if (implementor == null) {
+            implementor = BuiltinRegistry.theRegistry.getImplementation(name);
+        }
         return implementor;
     }
     

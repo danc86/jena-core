@@ -19,6 +19,8 @@ import com.hp.hpl.jena.reasoner.*;
 import com.hp.hpl.jena.shared.JenaException;
 import com.hp.hpl.jena.datatypes.xsd.*;
 
+import org.apache.log4j.Logger;
+
 /** * Representation of a generic inference rule. 
  * <p>
  * This represents the rule specification but most engines will 
@@ -75,6 +77,9 @@ public class Rule implements ClauseEntry {
     
     /** Flags whether the rule was written as a forward or backward rule */
     protected boolean isBackward = false;
+    
+    /** log4j logger*/
+    static Logger logger = Logger.getLogger(Rule.class);
     
     /**
      * Constructor
@@ -621,7 +626,13 @@ public class Rule implements ClauseEntry {
             } else {
                 String name = nextToken();
                 List args = parseNodeList();
-                return new Functor(name, args, BuiltinRegistry.theRegistry);
+                Functor clause = new Functor(name, args, BuiltinRegistry.theRegistry);
+                if (clause.getImplementor() == null) {
+                    // Not a fatal error becase later processing can add this
+                    // implementation to the registry
+                    logger.warn("Rule references unimplemented functor: " + name);
+                }
+                return clause;
             }
         }
         

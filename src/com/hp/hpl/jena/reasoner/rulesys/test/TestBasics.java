@@ -66,8 +66,8 @@ public class TestBasics extends TestCase  {
             "(?a rdf:type _) -> (?a rdf:type ?b).",
             "(?a rdf:type _), (?a rdf:type _) -> (?a rdf:type ?b).",
             "(?a rdf:type max(?a,1)) -> (?a rdf:type 'foo').",
-            "(?a rdf:type _) -> action(?a).",
-            "(?a rdf:type _) -> [(?a rdf:type _) -> action(?a)].",
+            "(?a rdf:type _) -> addOne(?a).",
+            "(?a rdf:type _) -> [(?a rdf:type _) -> addOne(?a)].",
            "(?a rdf:type _) -> (?a rdf:type 42).",
            "(?a rdf:type _) -> (?a rdf:type ' fool that,I(am)').",
             "[rule1: (?a rdf:type _) -> (?a rdf:type 42)]"
@@ -76,8 +76,8 @@ public class TestBasics extends TestCase  {
             "[ (?a rdf:type *) -> (?a rdf:type ?b) ]",
             "[ (?a rdf:type *) (?a rdf:type *) -> (?a rdf:type ?b) ]",
             "[ (?a rdf:type max(?a 1)^^urn:x-hp-jena:Functor) -> (?a rdf:type 'foo') ]",
-            "[ (?a rdf:type *) -> action(?a) ]",
-            "[ (?a rdf:type *) -> [ (?a rdf:type *) -> action(?a) ] ]",
+            "[ (?a rdf:type *) -> addOne(?a) ]",
+            "[ (?a rdf:type *) -> [ (?a rdf:type *) -> addOne(?a) ] ]",
             "[ (?a rdf:type *) -> (?a rdf:type 42) ]",
             "[ (?a rdf:type *) -> (?a rdf:type ' fool that,I(am)') ]",
             "[ rule1: (?a rdf:type *) -> (?a rdf:type 42) ]"
@@ -96,11 +96,11 @@ public class TestBasics extends TestCase  {
         Rule r1 = Rule.parseRule("(?a p ?b) -> (?a q ?b).");
         Rule r2 = Rule.parseRule("(?a p ?b) -> (?b q ?a).");
         Rule r1b = Rule.parseRule("(?x p ?y) -> (?x q ?y).");
-        Rule r3 = Rule.parseRule("(?a p ?b), f(?a) -> (?a q ?b).");
-        Rule r3b = Rule.parseRule("(?c p ?d), f(?c) -> (?c q ?d).");
-        Rule r4 = Rule.parseRule("(?a p ?b), g(?a) -> (?a q ?b).");
-        Rule r5 = Rule.parseRule("(?a p ?b), f(?b) -> (?a q ?b).");
-        Rule r6 = Rule.parseRule("(?a p ?b), f(p) -> (?a q ?b).");
+        Rule r3 = Rule.parseRule("(?a p ?b), addOne(?a) -> (?a q ?b).");
+        Rule r3b = Rule.parseRule("(?c p ?d), addOne(?c) -> (?c q ?d).");
+        Rule r4 = Rule.parseRule("(?a p ?b), makeTemp(?a) -> (?a q ?b).");
+        Rule r5 = Rule.parseRule("(?a p ?b), addOne(?b) -> (?a q ?b).");
+        Rule r6 = Rule.parseRule("(?a p ?b), addOne(p) -> (?a q ?b).");
         assertTrue(! r1.equals(r2));
         assertTrue(  r1.equals(r1b));
         assertTrue(! r1.equals(r3));
