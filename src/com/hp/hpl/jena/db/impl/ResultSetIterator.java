@@ -205,7 +205,7 @@ public class ResultSetIterator implements ExtendedIterator {
                 }
             }
             if (m_sqlCache != null && m_opname != null) {
-                m_sqlCache.returnPreparedSQLStatement(m_statement, m_opname);
+                m_sqlCache.returnPreparedSQLStatement(m_statement);
             } else {
                 try {
                     m_statement.close();

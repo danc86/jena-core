@@ -205,7 +205,7 @@ public  class PSet_TripleStore_RDB implements IPSet {
 	     while ( rs.next() ) {
 		  result = rs.getInt(1);
 	     } 
-		m_sql.returnPreparedSQLStatement(ps, op);
+		m_sql.returnPreparedSQLStatement(ps);
 	} catch (SQLException e) {
 	 		logger.debug("tried to count rows in " + tName);
 		   	logger.debug("Caught exception: ", e);
@@ -355,7 +355,7 @@ public void deleteTripleAR(
 			ps.addBatch();
 		} else {
 			ps.executeUpdate();
-			m_sql.returnPreparedSQLStatement(ps,stmtStr);
+			m_sql.returnPreparedSQLStatement(ps);
 		}
 	} catch (SQLException e1) {
 		logger.error("Exception executing delete: ", e1);
@@ -588,7 +588,7 @@ public void deleteTripleAR(
 					String op = (String) enum.nextElement();
 					PreparedStatement p = (PreparedStatement) batchedPreparedStatements.get(op);
 					p.executeBatch();
-					m_sql.returnPreparedSQLStatement(p,op);
+					m_sql.returnPreparedSQLStatement(p);
 				}
 
 				
