@@ -280,7 +280,7 @@ public class FileManager
         {
             if ( log.isTraceEnabled() )
                 log.trace("Failed to locate '"+mappedURI+"'") ;
-            throw new NotFoundException("Nout found: "+filenameOrURI) ;
+            throw new NotFoundException("Not found: "+filenameOrURI) ;
         }
         model.read(in, baseURI, syntax) ;
         return model ;
