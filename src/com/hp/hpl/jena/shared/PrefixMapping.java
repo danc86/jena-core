@@ -6,8 +6,6 @@
 
 package com.hp.hpl.jena.shared;
 
-import com.hp.hpl.jena.util.*;
-
 import java.util.*;
 
 /**

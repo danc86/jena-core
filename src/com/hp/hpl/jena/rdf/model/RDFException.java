@@ -31,14 +31,11 @@
 
 package com.hp.hpl.jena.rdf.model;
 
-import com.hp.hpl.jena.shared.JenaException;
-
-
 /** Generic RDF Exception class.
  * @author bwm
  * @version $Name$ $Revision$ $Date$
  */
-public class RDFException extends JenaException {
+public class RDFException extends RuntimeException {
     
     protected int       errorCode = 0;
     protected int       otherCode = 0;

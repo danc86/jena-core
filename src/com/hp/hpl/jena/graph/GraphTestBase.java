@@ -17,7 +17,6 @@ import com.hp.hpl.jena.mem.*;
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.shared.*;
 import com.hp.hpl.jena.test.*;
-import com.hp.hpl.jena.util.*;
 
 import java.util.*;
 import java.io.*;

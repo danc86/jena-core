@@ -10,7 +10,6 @@ import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.graph.test.AbstractTestGraph;
 import com.hp.hpl.jena.db.*;
 import com.hp.hpl.jena.shared.*;
-import com.hp.hpl.jena.util.*;
 
 import junit.framework.*;
 
