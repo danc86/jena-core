@@ -26,8 +26,8 @@ import com.hp.hpl.jena.shared.*;
  * A FileManager contains a list of location functions to try: the global
  * FileManger has one @link{LocatorFile} and one @link{LocatorClassLoader}.
  * 
- * A FileManager works in conjunction with a LocationMapper.  A
- * @link{LocationMapper} is a set of alternative locations for system
+ * A FileManager works in conjunction with a LocationMapper.
+ * A @link{LocationMapper} is a set of alternative locations for system
  * resources and a set of alternative prefix locations.  For example, a local
  * copy of a common RDF dataset may be used whenever the usual URL is used by
  * the application.
