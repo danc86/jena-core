@@ -858,6 +858,9 @@ public interface Model
         Register a listener for model-changed events on this model. The methods on
         the listener will be called when API add/remove calls on the model succeed
         [in whole or in part]. 
+    <p>
+        The same listener may be registered many times; if so, it's methods will
+        be called as many times as it's registered for each event.
         
         @see ModelChangedListener
         @return this model, for cascading
@@ -865,9 +868,14 @@ public interface Model
     public Model register( ModelChangedListener listener );
     
     /**
-        Unregister a listener from model-changed events on this model.
+        Unregister a listener from model-changed events on this model. The
+        listener is dtached from the model. The model is returned to permit
+        cascading. If the listener is not attached to the model, then nothing happens.
+        
+        @see ModelChangedListener
+        @return this model, for cascading
     */
-    public void unregister( ModelChangedListener listener );
+    public Model unregister( ModelChangedListener listener );
     
 }
 

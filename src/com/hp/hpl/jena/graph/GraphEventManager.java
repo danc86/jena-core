@@ -12,13 +12,38 @@ package com.hp.hpl.jena.graph;
 */
 public interface GraphEventManager
     {
+    /**
+        Attached <code>listener</code> to this manager; notification events
+        sent to the manager are sent to all registered listeners. A listener may
+        be registered multiple times, in which case it's called multiple times per
+        event.
+        
+        @param listener a listener to be fed events
+        @return this manager, for cascading
+    */
     GraphEventManager register( GraphListener listener );
-    void unregister( GraphListener listener );
     
+    /**
+        If <code>listener</code> is attached to this manager, detach it, otherwise
+        do nothing. Only a single registration is removed.
+        
+        @param listener the listener to be detached from the graph
+        @return this manager, for cascading
+    */
+    GraphEventManager unregister( GraphListener listener );
+    
+    /**
+        Notify all attached listeners that the triple <code>t</code> has been added,
+        by calling their <code>notifyAdd(Triple)</code> methods.
+    */
     void notifyAdd( Triple t );
+    
+    /**
+        Notify all attached listeners that the triple <code>t</code> has been removed,
+        by calling their <code>notifyDelete(Triple)</code> methods.
+    */
     void notifyDelete( Triple t );
     }
-
 
 /*
     (c) Copyright Hewlett-Packard Company 2003

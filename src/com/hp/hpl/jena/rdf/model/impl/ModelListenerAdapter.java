@@ -1,30 +1,38 @@
 /*
-  (c) Copyright 2002, 2003, Hewlett-Packard Company, all rights reserved.
+  (c) Copyright 2003, Hewlett-Packard Company, all rights reserved.
   [See end of file]
   $Id$
 */
 
-package com.hp.hpl.jena.graph;
+package com.hp.hpl.jena.rdf.model.impl;
 
-/**
-    Interface for listening to graph-level update events.
-    @author Jeremy Carroll, extensions by kers
-*/
-public interface GraphListener 
+import com.hp.hpl.jena.graph.*;
+import com.hp.hpl.jena.rdf.model.*;
+
+public class ModelListenerAdapter implements GraphListener
     {
-    /**
-        Method called when a single triple has been added to the graph.
-    */
-    void notifyAdd( Triple t );
-    
-    /**
-        Method called when a single triple has been deleted from the graph.
-    */
-    void notifyDelete( Triple t );
+    protected ModelCom m;
+    protected ModelChangedListener L;
+
+    ModelListenerAdapter( ModelCom m, ModelChangedListener L )
+        { this.m = m; this.L = L; }
+
+    public void notifyAdd( Triple t )
+        { L.addedStatement( m.asStatement( t ) ); }
+
+    public void notifyDelete( Triple t )
+        { L.removedStatement( m.asStatement( t ) ); }
+
+    public boolean equals( Object other )
+        { 
+        return other instanceof ModelListenerAdapter 
+            && L.equals( ((ModelListenerAdapter) other).L )
+            ; 
+        }
     }
 
 /*
-    (c) Copyright Hewlett-Packard Company 2002, 2003
+    (c) Copyright Hewlett-Packard Company 2003
     All rights reserved.
 
     Redistribution and use in source and binary forms, with or without

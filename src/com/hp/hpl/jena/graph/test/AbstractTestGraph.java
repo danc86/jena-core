@@ -1,5 +1,5 @@
 /*
-  (c) Copyright 2002, Hewlett-Packard Company, all rights reserved.
+  (c) Copyright 2003, Hewlett-Packard Company, all rights reserved.
   [See end of file]
   $Id$
 */
@@ -226,8 +226,7 @@ public abstract class AbstractTestGraph extends GraphTestBase
             { history.clear(); }
             
         public boolean has( Object [] things )
-            { return history.equals( Arrays.asList( things ) ); }
-            
+            { return history.equals( Arrays.asList( things ) ); }           
         }
         
     public void testEventRegister()

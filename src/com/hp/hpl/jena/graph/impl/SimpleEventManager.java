@@ -1,30 +1,60 @@
 /*
-  (c) Copyright 2002, 2003, Hewlett-Packard Company, all rights reserved.
+  (c) Copyright 2003, Hewlett-Packard Company, all rights reserved.
   [See end of file]
   $Id$
 */
 
-package com.hp.hpl.jena.graph;
+package com.hp.hpl.jena.graph.impl;
+
+import java.util.*;
+
+import com.hp.hpl.jena.graph.*;
 
 /**
-    Interface for listening to graph-level update events.
-    @author Jeremy Carroll, extensions by kers
-*/
-public interface GraphListener 
-    {
-    /**
-        Method called when a single triple has been added to the graph.
-    */
-    void notifyAdd( Triple t );
+    Simple implementation of GraphEventManager for GraphBase to use.
+    The listeners are held as an [Array]List.
     
-    /**
-        Method called when a single triple has been deleted from the graph.
-    */
-    void notifyDelete( Triple t );
+    @author hedgehog
+*/
+
+public class SimpleEventManager implements GraphEventManager
+    {
+    protected Graph graph;
+    protected List  listeners;
+    
+    SimpleEventManager( Graph graph ) 
+        { 
+        this.graph = graph;
+        this.listeners = new ArrayList(); 
+        }
+    
+    public GraphEventManager register( GraphListener listener ) 
+        { 
+        listeners.add( listener );
+        return this; 
+        }
+        
+    public GraphEventManager unregister( GraphListener listener ) 
+        { 
+        listeners.remove( listener ); 
+        return this;
+        }
+    
+    public void notifyAdd( Triple t ) 
+        {
+        for (int i = 0; i < listeners.size(); i += 1) 
+            ((GraphListener) listeners.get(i)).notifyAdd( t ); 
+        }
+    
+    public void notifyDelete( Triple t ) 
+        { 
+        for (int i = 0; i < listeners.size(); i += 1) 
+            ((GraphListener) listeners.get(i)).notifyDelete( t ); 
+        }
     }
 
 /*
-    (c) Copyright Hewlett-Packard Company 2002, 2003
+    (c) Copyright Hewlett-Packard Company 2003
     All rights reserved.
 
     Redistribution and use in source and binary forms, with or without
