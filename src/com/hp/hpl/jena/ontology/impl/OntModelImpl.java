@@ -512,6 +512,24 @@ public class OntModelImpl
    
     /**
      * <p>
+     * Answer a resource representing an generic property in this model.  Effectively
+     * this method is an alias for {@link #createProperty( String )}, except that
+     * the return type is {@link OntProperty}, which allow more convenient access to
+     * a property's position in the property hierarchy, domain, range, etc.
+     * </p>
+     * 
+     * @param uri The uri for the property. May not be null.
+     * @return An OntProperty resource.
+     */
+    public OntProperty createOntProperty( String uri ) {
+        Property p = createProperty( uri );
+        p.addProperty( RDF.type, getProfile().PROPERTY() );
+        return (OntProperty) p.as( OntProperty.class );
+    }
+    
+   
+    /**
+     * <p>
      * Answer a resource representing an object property in this model, 
      * and that is not a functional property. 
      * </p>
@@ -1142,15 +1160,17 @@ public class OntModelImpl
         List imports = new ArrayList();
         
         // list the ontology nodes
-        for (StmtIterator i = listStatements( null, RDF.type, getProfile().ONTOLOGY() );  i.hasNext(); ) {
-            Resource ontology = i.nextStatement().getSubject();
-            
-            for (StmtIterator j = ontology.listProperties( getProfile().IMPORTS() ); j.hasNext();  ) {
-                // add the imported URI to the list
-                imports.add( j.nextStatement().getResource().getURI() );
+        if (getProfile().ONTOLOGY() != null  &&  getProfile().IMPORTS() != null) {
+            for (StmtIterator i = listStatements( null, RDF.type, getProfile().ONTOLOGY() );  i.hasNext(); ) {
+                Resource ontology = i.nextStatement().getSubject();
+                
+                for (StmtIterator j = ontology.listProperties( getProfile().IMPORTS() ); j.hasNext();  ) {
+                    // add the imported URI to the list
+                    imports.add( j.nextStatement().getResource().getURI() );
+                }
             }
         }
-        
+                
         return imports;
     }
     

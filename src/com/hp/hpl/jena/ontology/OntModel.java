@@ -382,6 +382,20 @@ public interface OntModel
    
     /**
      * <p>
+     * Answer a resource representing an generic property in this model.  Effectively
+     * this method is an alias for {@link #createProperty( String )}, except that
+     * the return type is {@link OntProperty}, which allow more convenient access to
+     * a property's position in the property hierarchy, domain, range, etc.
+     * </p>
+     * 
+     * @param uri The uri for the property. May not be null.
+     * @return An OntProperty resource.
+     */
+    public OntProperty createOntProperty( String uri );
+    
+   
+    /**
+     * <p>
      * Answer a resource representing an object property in this model, 
      * and that is not a functional property. 
      * </p>
@@ -908,7 +922,7 @@ public interface OntModel
      * <strong>Note:</strong> This method is adapted for the ontology
      * model to write out only the base model (which contains the asserted data).  To write 
      * all triples, including imported data and inferred triples, use 
-     * {@link #writeAll{ Writer, String, String }.
+     * {@link #writeAll( Writer, String, String ) writeAll }.
      * </p>
      * 
      * @param writer A writer to which the XML will be written
@@ -923,7 +937,7 @@ public interface OntModel
      * <strong>Note:</strong> This method is adapted for the ontology
      * model to write out only the base model (which contains the asserted data).  To write 
      * all triples, including imported data and inferred triples, use 
-     * {@link #writeAll{ Writer, String, String }.
+     * {@link #writeAll( Writer, String, String ) writeAll }.
      * </p>
      * <p>The language in which to write the model is specified by the
      * <code>lang</code> argument.  Predefined values are "RDF/XML",
@@ -942,7 +956,7 @@ public interface OntModel
      * <strong>Note:</strong> This method is adapted for the ontology
      * model to write out only the base model (which contains the asserted data).  To write 
      * all triples, including imported data and inferred triples, use 
-     * {@link #writeAll{ Writer, String, String }.
+     * {@link #writeAll( Writer, String, String ) writeAll }.
      * </p>
      * <p>The language in which to write the model is specified by the
      * <code>lang</code> argument.  Predefined values are "RDF/XML",
@@ -961,7 +975,7 @@ public interface OntModel
      * <strong>Note:</strong> This method is adapted for the ontology
      * model to write out only the base model (which contains the asserted data).  To write 
      * all triples, including imported data and inferred triples, use 
-     * {@link #writeAll{ OutputStream, String, String }.
+     * {@link #writeAll( OutputStream, String, String ) writeAll }.
      * </p>
      * <p>The language in which to write the model is specified by the
      * <code>lang</code> argument.  Predefined values are "RDF/XML",
@@ -977,7 +991,7 @@ public interface OntModel
      * <strong>Note:</strong> This method is adapted for the ontology
      * model to write out only the base model (which contains the asserted data).  To write 
      * all triples, including imported data and inferred triples, use 
-     * {@link #writeAll{ OutputStream, String, String }.
+     * {@link #writeAll( OutputStream, String, String ) writeAll }.
      * </p>
      * <p>The language in which to write the model is specified by the
      * <code>lang</code> argument.  Predefined values are "RDF/XML",
@@ -994,7 +1008,7 @@ public interface OntModel
      * <strong>Note:</strong> This method is adapted for the ontology
      * model to write out only the base model (which contains the asserted data).  To write 
      * all triples, including imported data and inferred triples, use 
-     * {@link #writeAll{ OutputStream, String, String }.
+     * {@link #writeAll( OutputStream, String, String ) writeAll }.
      * </p>
      * <p>The language in which to write the model is specified by the
      * <code>lang</code> argument.  Predefined values are "RDF/XML",
@@ -1012,7 +1026,7 @@ public interface OntModel
      * <p>Write a serialized represention of all of the contents of the model,
      * including inferred statements and statements imported from other
      * documents.  To write only the data asserted in the base model, use
-     * {@link #write( Writer, String, String}. 
+     * {@link #write( Writer, String, String ) write}. 
      * It is often better to use an OutputStream rather than a Writer,
      * since this will avoid character encoding errors.
      * </p>
@@ -1032,7 +1046,7 @@ public interface OntModel
      * <p>Write a serialized represention of all of the contents of the model,
      * including inferred statements and statements imported from other
      * documents.  To write only the data asserted in the base model, use
-     * {@link #write( OutputStream, String, String}. 
+     * {@link #write( OutputStream, String, String ) write}. 
      * </p>
      * <p>The language in which to write the model is specified by the
      * <code>lang</code> argument.  Predefined values are "RDF/XML",
