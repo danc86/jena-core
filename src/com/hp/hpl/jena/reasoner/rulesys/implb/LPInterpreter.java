@@ -47,7 +47,7 @@ public class LPInterpreter {
     protected Node[] argVars = new Node[RuleClauseCode.MAX_ARGUMENT_VARS];
         
     /** The set of "permanent" variables (Yi) in use by this interpreter */
-    protected Node[] pVars;
+    protected Node[] pVars = new Node[RuleClauseCode.MAX_PERMANENT_VARS];
 
     /** The current environment frame */
     protected EnvironmentFrame envFrame;
@@ -157,12 +157,13 @@ public class LPInterpreter {
                 RuleClauseCode clause = (RuleClauseCode)choice.clauseIterator.next();
                 envFrame = LPEnvironmentFactory.createEnvironment();
                 envFrame.init(clause);
+                choice.reset();
                 envFrame.linkTo(choice.envFrame);
 
                 // Restore the choice point state
-                argVars = choice.argVars;
+                System.arraycopy(choice.argVars, 0, argVars, 0, RuleClauseCode.MAX_ARGUMENT_VARS);
                 int trailMark = choice.trailIndex;
-                if (trailMark > trail.size()) {
+                if (trailMark < trail.size()) {
                     unwindTrail(trailMark);
                 }
                 
@@ -172,9 +173,10 @@ public class LPInterpreter {
                 TripleMatchFrame tmFrame = (TripleMatchFrame)cpFrame;
                 
                 // Restore the calling context
+                tmFrame.reset();
                 envFrame = tmFrame.envFrame;
                 int trailMark = tmFrame.trailIndex;
-                if (trailMark > trail.size()) {
+                if (trailMark < trail.size()) {
                     unwindTrail(trailMark);
                 }
                 
@@ -207,8 +209,8 @@ public class LPInterpreter {
                 TripleMatchFrame tmFrame;
     
                 // Debug ...
-//                System.out.println("Interpeting code (at p = " + pc + "):");
-//                envFrame.clause.print(System.out);
+                System.out.println("Interpeting code (at p = " + pc + "):");
+                envFrame.clause.print(System.out);
         
                 codeloop: while (true) {
                     switch (code[pc++]) {
