@@ -43,6 +43,9 @@ public class Node_Literal extends Node
               && ((LiteralLabel)label).sameValueAs( ((Node_Literal) o).getLiteral() );
     }
     
+    public boolean matches( Node x )
+        { return sameValueAs( x ); }
+    
 }
 
 /*

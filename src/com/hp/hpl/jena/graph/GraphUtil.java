@@ -1,51 +1,25 @@
 /*
-  (c) Copyright 2002, 2003, Hewlett-Packard Company, all rights reserved.
+  (c) Copyright 2002, Hewlett-Packard Company, all rights reserved.
   [See end of file]
   $Id$
 */
 
-package com.hp.hpl.jena.graph.impl;
+package com.hp.hpl.jena.graph;
 
-import java.util.*;
-
-import com.hp.hpl.jena.graph.*;
+import com.hp.hpl.jena.util.iterator.ExtendedIterator;
 
 /**
-    A simple-minded implementation of the bulk update interface.
-    
  	@author kers
 */
-
-public class SimpleBulkUpdateHandler implements BulkUpdateHandler
+public class GraphUtil
     {
-    private Graph graph;
-    
-    public SimpleBulkUpdateHandler( Graph graph )
-        { this.graph = graph; }
 
-    public void add( Triple [] triples )
-        { for (int i = 0; i < triples.length; i += 1) graph.add( triples[i] ); }
-        
-    public void add( List triples )
-        { for (int i = 0; i < triples.size(); i += 1) graph.add( (Triple) triples.get(i) ); }
-        
-    public void add( Iterator it )
-        { while (it.hasNext()) graph.add( (Triple) it.next() ); }
-        
-    public void add( Graph g )
-        { add( GraphUtil.findAll( g ) );  }
+    private GraphUtil()
+        {}
 
-    public void delete( Triple [] triples )
-        { for (int i = 0; i < triples.length; i += 1) graph.delete( triples[i] ); }
-    
-    public void delete( List triples )
-        { for (int i = 0; i < triples.size(); i += 1) graph.delete( (Triple) triples.get(i) );}
-    
-    public void delete( Iterator it )
-        {  while (it.hasNext()) graph.delete( (Triple) it.next() ); }
-    
-    public void delete( Graph g )
-        { delete( GraphUtil.findAll( g ) ); }
+    public static ExtendedIterator findAll( Graph g )
+        { return g.find( Node.ANY, Node.ANY, Node.ANY ); }
+
     }
 
 

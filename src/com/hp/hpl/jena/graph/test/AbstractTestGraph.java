@@ -159,6 +159,14 @@ public abstract class AbstractTestGraph extends GraphTestBase
         Graph g = getGraph();
         Capabilities c = g.getCapabilities();
         }
+        
+    public void testFind()
+        {
+        Graph g = getGraph();
+        graphAdd( g, "S P O" );
+        assertTrue( g.find( Node.ANY, null, null ).hasNext() );
+        assertTrue( g.find( null, Node.ANY, null ).hasNext() );
+        }
     }
 
 

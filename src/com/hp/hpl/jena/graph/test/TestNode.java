@@ -11,6 +11,7 @@ import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.graph.impl.*;
 import com.hp.hpl.jena.rdf.model.AnonId;
 import com.hp.hpl.jena.shared.*;
+import com.hp.hpl.jena.datatypes.*;
 
 import java.util.*;
 import junit.framework.*;
@@ -382,6 +383,35 @@ public class TestNode extends GraphTestBase
         StringTokenizer st = new StringTokenizer( words );
         while (st.hasMoreTokens()) result.add( st.nextToken() );
         return result;
+        }
+        
+    public void testSimpleMatches()
+        {
+        assertTrue( Node.create( "S").matches( Node.create( "S" ) ) );
+        assertFalse(  "", Node.create( "S").matches( Node.create( "T" ) ) );
+        assertFalse( "", Node.create( "S" ).matches( null ) );
+        assertTrue( Node.create( "_X").matches( Node.create( "_X" ) ) );
+        assertFalse( "", Node.create( "_X").matches( Node.create( "_Y" ) ) );
+        assertFalse( "", Node.create( "_X").matches( null ) );
+        assertTrue( Node.create( "10" ).matches( Node.create( "10" ) ) );
+        assertFalse( "", Node.create( "10" ).matches( Node.create( "11" ) ) );
+        assertFalse( "", Node.create( "10" ).matches( null ) );
+        assertTrue( Node.ANY.matches( Node.create( "S" ) ) );
+        assertTrue( Node.ANY.matches( Node.create( "_X" ) ) );
+        assertTrue( Node.ANY.matches( Node.create( "10" ) ) );
+        assertFalse( "", Node.ANY.matches( null ) );
+        }
+        
+    public void testDataMatches()
+        {
+        TypeMapper tm = TypeMapper.getInstance();
+        RDFDatatype dt1 = tm.getTypeByValue( new Integer( 10 ) );
+        RDFDatatype dt2 = tm.getTypeByValue( new Short( (short) 10 ) );
+        Node A = Node.createLiteral( "10", "", dt1 );
+        Node B = Node.createLiteral( "10", "", dt2 );
+        assertDiffer( "types must make a difference", A, B );
+        assertTrue( "A and B must express the same value", A.sameValueAs( B ) );
+        assertTrue( "matching literals must respect sameValueAs", A.matches( B ) );
         }
     }
 

@@ -31,9 +31,7 @@ public class ConstraintStage extends Stage
         supplied _map_ for bindings of variables.
     */
     public ConstraintStage( Mapping map, Graph g )
-        {
-        this.predicate = translate( map, g );
-        }
+        { this.predicate = translate( map, g ); }
         
     /**
         the translated graph is the AND-composition of the translated
@@ -42,7 +40,7 @@ public class ConstraintStage extends Stage
     private Predicate translate( Mapping map, Graph g )
         {
         Predicate result = Predicate.TRUE;
-        ClosableIterator it = g.find( null, null, null );
+        ClosableIterator it = GraphUtil.findAll( g );
         while (it.hasNext()) result = result.and( translate( map, (Triple) it.next() ) );
         return result;
         }

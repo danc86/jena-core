@@ -279,7 +279,16 @@ public abstract class Node {
     	return label.hashCode();
     }
     
-
+    /**
+        Answer true iff this node accepts the other one as a match.
+        The default is an equality test; it is over-ridden in subclasses to
+        provide the appropriate semantics for literals, ANY, and variables.
+        
+        @param other a node to test for matching
+        @return true iff this node accepts the other as a match
+    */
+    public boolean matches( Node other )
+        { return equals( other ); }
 
     /** 
         Return the N-Triple representation of this node. hedgehog hack: just use 

@@ -53,7 +53,7 @@ public class Delta extends Dyadic implements Graph
 		 
 	public ExtendedIterator find( TripleMatch tm ) 
 		{
-        return base.find( tm ) .filterDrop( ifIn( R.find( null, null, null ) ) ) .andThen( L.find( tm ) );
+        return base.find( tm ) .filterDrop( ifIn( GraphUtil.findAll( R ) ) ) .andThen( L.find( tm ) );
 		}
 
 	public void close() 

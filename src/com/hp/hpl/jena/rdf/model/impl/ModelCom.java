@@ -1104,7 +1104,7 @@ implements Model, ModelI, PrefixMapping, ModelLock
         }
 
     public boolean supportsTransactions() 
-        { return getGraph().getTransactionHandler().transactionsSupported(); }
+        { return getTransactionHandler().transactionsSupported(); }
     	
     public Model begin() 
         { getTransactionHandler().begin(); return this; }

@@ -68,9 +68,9 @@ public class SimpleTreeQueryPlan implements TreeQueryPlan
 	public static HashSet getRoots( Graph pattern )
 		{
 		HashSet roots = new HashSet();
-		ClosableIterator sub = pattern.find( null, null, null );
+		ClosableIterator sub = GraphUtil.findAll( pattern );
 		while (sub.hasNext()) roots.add( ((Triple) sub.next()).getSubject() );
-		ClosableIterator obj = pattern.find( null, null, null );
+		ClosableIterator obj = GraphUtil.findAll( pattern );
 		while (obj.hasNext()) roots.remove( ((Triple) obj.next()).getObject() );
 		return roots;
 		}

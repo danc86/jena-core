@@ -61,14 +61,14 @@ public class Query
         
     public Query addConstraint( Graph g )
         {
-        ClosableIterator it = g.find( null, null, null );
+        ClosableIterator it = GraphUtil.findAll( g );
         while (it.hasNext()) constraintGraph.add( (Triple) it.next() );
         return this;
         }
                 
     private void addMatches( Graph p )
         {
-        ClosableIterator it = p.find( null, null, null );
+        ClosableIterator it = GraphUtil.findAll( p );
         while (it.hasNext()) addMatch( (Triple) it.next() );
         }
 

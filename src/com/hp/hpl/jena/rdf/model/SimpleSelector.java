@@ -256,19 +256,19 @@ public class SimpleSelector extends Object implements Selector {
         return true;
     }
     
-    /**
-        TODO unused - eliminate?
-     */
-    public TripleMatch asTripleMatch(final ModelCom model) {
-    	return new StandardTripleMatch(
-    	    subject==null?null:subject.asNode(),
-    	    predicate==null?null:predicate.asNode(),
-    	    object==null?null:object.asNode() ) {
-    	  public boolean triple(Triple t) {
-    	  	 return selects(IteratorFactory.asStatement(t,model));
-    	  }
-    	};
-    }
+//    /**
+//        TODO unused - eliminate?
+//     */
+//    public TripleMatch asTripleMatch(final ModelCom model) {
+//    	return new StandardTripleMatch(
+//    	    subject==null?null:subject.asNode(),
+//    	    predicate==null?null:predicate.asNode(),
+//    	    object==null?null:object.asNode() ) {
+//    	  public boolean triple(Triple t) {
+//    	  	 return selects(IteratorFactory.asStatement(t,model));
+//    	  }
+//    	};
+//    }
 }
 /*
  *  (c) Copyright Hewlett-Packard Company 2000 - 2003

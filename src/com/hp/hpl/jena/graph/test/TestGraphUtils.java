@@ -1,51 +1,53 @@
 /*
-  (c) Copyright 2002, 2003, Hewlett-Packard Company, all rights reserved.
+  (c) Copyright 2002, Hewlett-Packard Company, all rights reserved.
   [See end of file]
   $Id$
 */
 
-package com.hp.hpl.jena.graph.impl;
-
-import java.util.*;
+package com.hp.hpl.jena.graph.test;
 
 import com.hp.hpl.jena.graph.*;
+import com.hp.hpl.jena.graph.impl.*;
+import com.hp.hpl.jena.util.iterator.*;
+
+import junit.framework.*;
 
 /**
-    A simple-minded implementation of the bulk update interface.
-    
  	@author kers
 */
-
-public class SimpleBulkUpdateHandler implements BulkUpdateHandler
+public class TestGraphUtils extends GraphTestBase
     {
-    private Graph graph;
-    
-    public SimpleBulkUpdateHandler( Graph graph )
-        { this.graph = graph; }
+    public TestGraphUtils(String name)
+        { super(name); }
 
-    public void add( Triple [] triples )
-        { for (int i = 0; i < triples.length; i += 1) graph.add( triples[i] ); }
+    public static TestSuite suite()
+        { return new TestSuite( TestGraphUtils.class ); }
         
-    public void add( List triples )
-        { for (int i = 0; i < triples.size(); i += 1) graph.add( (Triple) triples.get(i) ); }
+    private static class Bool 
+        {
+        boolean value;
+        Bool( boolean value ) { this.value = value; }
+        }
         
-    public void add( Iterator it )
-        { while (it.hasNext()) graph.add( (Triple) it.next() ); }
-        
-    public void add( Graph g )
-        { add( GraphUtil.findAll( g ) );  }
-
-    public void delete( Triple [] triples )
-        { for (int i = 0; i < triples.length; i += 1) graph.delete( triples[i] ); }
-    
-    public void delete( List triples )
-        { for (int i = 0; i < triples.size(); i += 1) graph.delete( (Triple) triples.get(i) );}
-    
-    public void delete( Iterator it )
-        {  while (it.hasNext()) graph.delete( (Triple) it.next() ); }
-    
-    public void delete( Graph g )
-        { delete( GraphUtil.findAll( g ) ); }
+    public void testFindAll()
+        {
+        final Bool foundAll = new Bool( false );
+        Graph mock = new GraphBase() 
+            {
+            public ExtendedIterator find( Node s, Node p, Node o )
+                { 
+                assertEquals( Node.ANY, s ); 
+                assertEquals( Node.ANY, p );
+                assertEquals( Node.ANY, o );
+                foundAll.value = true;
+                return null;
+                }
+            public ExtendedIterator find( TripleMatch tm )
+                { return null; }
+            };
+        GraphUtil.findAll( mock );
+        assertTrue( "find(ANY, ANY, ANY) called", foundAll.value );
+        }
     }
 
 
