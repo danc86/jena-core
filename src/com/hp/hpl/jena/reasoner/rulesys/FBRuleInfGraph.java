@@ -56,7 +56,7 @@ public class FBRuleInfGraph  extends BasicForwardRuleInfGraph implements Backwar
     protected List rules;
     
     /** Static switch from Basic to RETE implementation of the forward component */
-    public static final boolean useRETE = true;
+    public static boolean useRETE = true;
 
     /** Flag, if true then subClass and subProperty lattices will be optimized using TGCs */
     protected boolean useTGCCaching = false;
