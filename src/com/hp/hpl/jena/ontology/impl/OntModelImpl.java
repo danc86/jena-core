@@ -1019,23 +1019,6 @@ public class OntModelImpl
    
     /**
      * <p>
-     * Answer a resource that represents an axiom in this model. If a resource
-     * with the given uri exists in the model, it will be re-used.  If not, a new one is created in
-     * the updateable sub-graph of the ontology model. 
-     * </p>
-     * 
-     * @param cls The class of axiom (e&#046;g&#046; <code>owl:AllDifferent</code>).
-     * @param uri The uri for the axiom, or null for an anonymous axiom.
-     * @return An Axiom resource.
-     */
-    public Axiom createAxiom( Resource cls, String uri ) {
-        // TODO
-        return null; 
-    }
-    
-   
-    /**
-     * <p>
      * Answer a resource that represents an anonymous class description in this model. A new
      * anonymous resource of <code>rdf:type C</code>, where C is the class type from the
      * language profile.

@@ -245,20 +245,6 @@ public class OWLProfile
                                             }
                                         }
         },
-        { Axiom.class,                  new SupportsCheck() {
-                                            public boolean doCheck( Node n, EnhGraph g ) {
-                                                // node will support being an Axiom facet if it has rdf:type owl:AllDifferent or equivalent
-                                                for (Iterator i = ((OntModel) g).getProfile().getAxiomTypes();  i.hasNext(); ) {
-                                                    if (g.asGraph().contains( n, RDF.type.asNode(), ((Resource) i.next()).asNode() )) {
-                                                        // node has a recognised axiom type
-                                                        return true;
-                                                    }
-                                                }
-
-                                                return false;
-                                            }
-                                        }
-        },
         {  OntClass.class,              new SupportsCheck() {
                                             public boolean doCheck( Node n, EnhGraph g ) {
                                                 return g.asGraph().contains( n, RDF.type.asNode(), OWL.Class.asNode() ) ||
