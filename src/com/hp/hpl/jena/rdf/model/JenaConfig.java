@@ -33,6 +33,8 @@ package com.hp.hpl.jena.rdf.model;
 
 import org.apache.log4j.Logger;
 
+import com.hp.hpl.jena.*;
+
 /** A Class for configuring Jena's behaviour.
  *
  * <p>It is sometimes necessary to configure Jena's behaviour.  For example

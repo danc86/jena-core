@@ -7,6 +7,7 @@
 
 package com.hp.hpl.jena.xmloutput.test;
 
+import com.hp.hpl.jena.*;
 import com.hp.hpl.jena.mem.ModelMem;
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.xmloutput.impl.*;

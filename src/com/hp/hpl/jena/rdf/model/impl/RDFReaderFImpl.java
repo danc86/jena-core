@@ -29,6 +29,7 @@
 
 package com.hp.hpl.jena.rdf.model.impl;
 
+import com.hp.hpl.jena.*;
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.shared.*;
 import java.util.Properties;
