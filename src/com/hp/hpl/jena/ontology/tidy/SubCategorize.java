@@ -213,7 +213,7 @@ class SubCategorize {
 					if (okp[j] || SPECIALSYM(p[j]))
 						for (k = 0; k < o.length; k++)
 							if (oko[k] || SPECIALSYM(o[k])) {
-								if (pseudotriple(s[i], p[j], o[i])) {
+								if (pseudotriple(s[i], p[j], o[k])) {
 									oks[i] = okp[j] = oko[k] = true;
 								}
 							}

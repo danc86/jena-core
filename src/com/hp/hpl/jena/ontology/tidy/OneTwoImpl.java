@@ -59,11 +59,15 @@ class OneTwoImpl extends CGeneral {
 	public void addObjectTriple(Triple t) {
 		check(2, t);
 	}
-
+    static private Node gProp[] = {
+    	Vocab.firstPart,
+    	Vocab.secondPart,
+    	Vocab.objectOfTriple
+    };
 	private Triple get(int i) {
 		if (seen[i] == null) {
 			Graph G = getGraph().asGraph();
-			ClosableIterator it = G.find(asNode(), Vocab.objectOfTriple, null);
+			ClosableIterator it = G.find(asNode(), gProp[i], null);
 			if (it.hasNext())
 				seen[i] =
 					G.getReifier().getTriple(((Triple) it.next()).getObject());

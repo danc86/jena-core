@@ -168,7 +168,7 @@ class CategorySet implements Comparable {
 		if ( !tail.isEmpty() ) {
 			CategorySet close = (CategorySet) tail.first();
 			if (close.equals(cs)) {
-				System.err.println("Close enough.");
+			//	System.err.println("Close enough.");
 				return close.id;
 			}
 		}

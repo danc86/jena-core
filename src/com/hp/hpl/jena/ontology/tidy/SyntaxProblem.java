@@ -7,6 +7,7 @@ package com.hp.hpl.jena.ontology.tidy;
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.enhanced.*;
 import com.hp.hpl.jena.rdf.model.*;
+import com.hp.hpl.jena.rdf.model.impl.*;
 import java.util.*;
 import java.io.*;
 
@@ -83,8 +84,8 @@ public class SyntaxProblem {
 	   		addToMe.add((Triple)it.next());
 	   	}
 	   }
-	
-	private RDFWriter wtr;
+	static private RDFWriter defaultWriter = new NTripleWriter();
+	private RDFWriter wtr = defaultWriter;
 	/**
 	 * Sets the writer used for creation of the 
 	 * {@link #longDescription()}.
