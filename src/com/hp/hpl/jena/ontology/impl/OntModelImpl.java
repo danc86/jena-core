@@ -270,7 +270,7 @@ public class OntModelImpl
      * @return An iterator over Individuals. 
      */
     public ExtendedIterator listIndividuals() {
-        return queryFor( m_individualsQuery, null, Individual.class );
+        return new UniqueExtendedIterator( queryFor( m_individualsQuery, null, Individual.class ) );
     }
     
 
