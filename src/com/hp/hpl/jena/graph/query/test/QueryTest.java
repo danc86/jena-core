@@ -15,7 +15,7 @@ import junit.framework.*;
     Test query over plain memory graphs.
 */
 
-public class QueryTest extends AbstractTestQuery
+public class QueryTest extends TestCase
     {
 	public QueryTest( String name )
 		{ super( name ); }
@@ -23,13 +23,25 @@ public class QueryTest extends AbstractTestQuery
     public static TestSuite suite()
     	{ 
         TestSuite result = new TestSuite();
-        result.addTest( new TestSuite( QueryTest.class ) );
-        // result.addTest( new QueryTest( "testGraphConstraints" ) );
+        result.addTest( new TestSuite( TestQueryGraphMem.class ) );
+        result.addTest( new TestSuite( TestQuerySmallGraphMem.class ) );
         return result;
         } 
-    	
-    public Graph getGraph()
-        { return new GraphMem(); }        
+    
+    public static class TestQueryGraphMem extends AbstractTestQuery
+        {
+        public TestQueryGraphMem( String name ) { super( name ); }
+        
+        public Graph getGraph() { return new GraphMem(); }       
+        }
+    
+    public static class TestQuerySmallGraphMem extends AbstractTestQuery
+        {
+        public TestQuerySmallGraphMem( String name ) { super( name ); }
+        
+        public Graph getGraph() { return new SmallGraphMem(); }       
+        }
+     
     }
 
 /*

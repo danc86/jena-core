@@ -213,7 +213,7 @@ public abstract class Polyadic
     public void setBaseGraph( Graph graph ) {
         if (m_subGraphs.contains( graph )) {
             m_baseGraph = graph;
-            bud = null;
+            bulkHandler = null;
         }
         else {
             throw new IllegalArgumentException( "The updateable graph must be one of the graphs from the composition" );
@@ -241,9 +241,9 @@ public abstract class Polyadic
     public BulkUpdateHandler getBulkUpdateHandler() {
         if (getBaseGraph() == null)
             throw new RuntimeException(); // return super.getBulkUpdateHandler();
-        if (bud == null)  
-            bud = new WrappedBulkUpdateHandler( this, getBaseGraph().getBulkUpdateHandler() );
-        return bud;
+        if (bulkHandler == null)  
+            bulkHandler = new WrappedBulkUpdateHandler( this, getBaseGraph().getBulkUpdateHandler() );
+        return bulkHandler;
     }
 
     // the following methods all delegate handling capabilities to the base graph

@@ -38,6 +38,8 @@ public class TestGraph extends GraphTestBase
         TestSuite result = new TestSuite( TestGraph.class );
         result.addTest( suite( MetaTestGraph.class, GraphMem.class ) );
         result.addTest( suite( TestReifier.class, GraphMem.class ) );
+        result.addTest( suite( MetaTestGraph.class, SmallGraphMem.class ) );
+        result.addTest( suite( TestReifier.class, SmallGraphMem.class ) );
         result.addTest( suite( MetaTestGraph.class, WrappedGraphMem.class ) );
         result.addTest( suite( TestReifier.class, WrappedGraphMem.class ) );
         return result;

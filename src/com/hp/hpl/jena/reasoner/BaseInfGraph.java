@@ -89,8 +89,8 @@ public abstract class BaseInfGraph extends GraphBase implements InfGraph {
     
     public BulkUpdateHandler getBulkUpdateHandler()
         { 
-        if (bud == null) bud = new InfBulkUpdateHandler( this ); 
-        return bud;
+        if (bulkHandler == null) bulkHandler = new InfBulkUpdateHandler( this ); 
+        return bulkHandler;
         }
     
     /**

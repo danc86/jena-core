@@ -26,7 +26,7 @@ public class GraphMemBulkUpdateHandler extends SimpleBulkUpdateHandler
 	    notifyRemoveAll();
 	    }
 	
-	private void clearComponents()
+	protected void clearComponents()
 	    {
 	    GraphMem g = (GraphMem) graph;
 	    g.subjects.clear();
