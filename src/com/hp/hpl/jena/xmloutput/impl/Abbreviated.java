@@ -10,6 +10,8 @@ package com.hp.hpl.jena.xmloutput.impl;
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.vocabulary.*;
 
+import com.hp.hpl.jena.reasoner.*;
+
 import java.io.*;
 //Writer;
 //import java.io.PrintWriter;
@@ -105,6 +107,15 @@ public class Abbreviated extends BaseXMLWriter implements RDFErrorHandler {
 		return rslt;
 	}
 
+	synchronized public void write(Model baseModel, Writer out, String base)
+			 { 
+			if (baseModel.getGraph() instanceof InfGraph) {
+				logger.warn("Workaround for bugs 803804 and 858163: using RDF/XML (not RDF/XML-ABBREV) writer  for inferred graph");
+			  baseModel.write(out,"RDF/XML",base);
+			} else
+			  super.write(baseModel,out,base);
+		}
+		
 	void writeBody(
 		Model model,
 		PrintWriter pw,

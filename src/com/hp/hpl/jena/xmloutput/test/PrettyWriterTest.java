@@ -105,12 +105,13 @@ public class PrettyWriterTest extends ModelTestBase {
 	public void test803804() {
 		String sourceT =
 			"<rdf:RDF "
-+ " xmlns:rdf='http://www.w3.org/1999/02/22-rdf-syntax-ns#'"
-+ " xmlns:rdfs='http://www.w3.org/2000/01/rdf-schema#'"
+				+ " xmlns:rdf='http://www.w3.org/1999/02/22-rdf-syntax-ns#'"
+				+ " xmlns:rdfs='http://www.w3.org/2000/01/rdf-schema#'"
 				+ " xmlns:owl=\"http://www.w3.org/2002/07/owl#\">"
-+ " <owl:ObjectProperty rdf:about="
-+"'http://example.org/foo#p'>" +
-	" </owl:ObjectProperty>" + "</rdf:RDF>";
+				+ " <owl:ObjectProperty rdf:about="
+				+ "'http://example.org/foo#p'>"
+				+ " </owl:ObjectProperty>"
+				+ "</rdf:RDF>";
 
 		OntModel m =
 			ModelFactory.createOntologyModel(
@@ -121,25 +122,37 @@ public class PrettyWriterTest extends ModelTestBase {
 			"http://example.org/foo");
 
 		Model m0 = ModelFactory.createModelForGraph(m.getGraph());
-	  Set copyOfm0 = new HashSet();
-	  Set blankNodes = new HashSet();
-	  Iterator it = m0.listStatements();
-	  while (it.hasNext()) {
-	  	Statement st = (Statement)it.next(); 
-		  copyOfm0.add(st);
-		  Resource subj = st.getSubject();
-		  if (subj.isAnon())
-		    blankNodes.add(subj);
-	  }
-	  
-	  it = blankNodes.iterator();
-	  while (it.hasNext()) {
-	  	Resource b = (Resource)it.next();
-	  	Statement st = m0.createStatement(b,OWL.sameAs,b);
-	//  	assertEquals(m0.contains(st),copyOfm0.contains(st));
-	  }
-	  
-	//	m0.write(System.err, "RDF/XML-ABBREV");
+		/*
+			  Set copyOfm0 = new HashSet();
+			  Set blankNodes = new HashSet();
+			  Iterator it = m0.listStatements();
+			  while (it.hasNext()) {
+			  	Statement st = (Statement)it.next(); 
+				  copyOfm0.add(st);
+				  Resource subj = st.getSubject();
+				  if (subj.isAnon())
+				    blankNodes.add(subj);
+			  }
+			  
+			  it = blankNodes.iterator();
+			  while (it.hasNext()) {
+			  	Resource b = (Resource)it.next();
+			  	Statement st = m0.createStatement(b,OWL.sameAs,b);
+			//  	assertEquals(m0.contains(st),copyOfm0.contains(st));
+			  }
+		*/
+		TestXMLFeatures.blockLogger();
+		try {
+			m0.write(new OutputStream() {
+				public void write(int b) throws IOException {
+				}
+			}, "RDF/XML-ABBREV");
+
+		} finally {
+			// This will need to change when the bug is finally fixed.
+			
+			assertTrue(TestXMLFeatures.unblockLogger());
+		}
 	}
 }
 

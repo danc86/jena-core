@@ -79,11 +79,11 @@ public class TestXMLFeatures extends ModelTestBase {
 			sawErrors = true;
 		}
 	};
-	static private void blockLogger() {
+	static void blockLogger() {
 		realLogger = BaseXMLWriter.setLogger(falseLogger);
 		sawErrors = false;
 	}
-	static private boolean unblockLogger() {
+	static boolean unblockLogger() {
 	  BaseXMLWriter.setLogger(realLogger);
 	  return sawErrors;
 	}

@@ -427,7 +427,7 @@ abstract public class BaseXMLWriter implements RDFXMLWriterI {
 	 * @param base the base URI for relative URI calculations.  <code>
 	 * null</code> means use only absolute URI's.
 	 */
-	final synchronized public void write(Model baseModel, Writer out, String base)
+	synchronized public void write(Model baseModel, Writer out, String base)
 		 {        
         Model model = ModelFactory.withHiddenStatements( baseModel );
 		this.namespacesNeeded = new HashSet();
