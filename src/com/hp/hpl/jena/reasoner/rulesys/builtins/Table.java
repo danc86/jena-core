@@ -47,7 +47,7 @@ public class Table extends BaseBuiltin {
                 ((FBLPRuleInfGraph)infgraph).setTabled(args[i]);
             }
         } else {
-            throw new BuiltinException(this, context, "builtin " + getName() + " only usable in backward/hybrid rule sets");
+            throw new BuiltinException(this, context, "builtin " + getName() + " only usable in LP hybrid rule sets");
         }
     }
  
