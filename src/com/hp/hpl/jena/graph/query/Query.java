@@ -257,10 +257,22 @@ public class Query
                 nodes[--i] = nodeTriples.head;
                 nodeTriples = nodeTriples.tail;
                 }
+            sortTriples( nodes );
             Stage next = g.queryHandler().patternStage( map, constraintGraph, nodes );
             stages.add( next );
             }
         }
+        
+    public void setTripleSorter( TripleSorter ts )
+        { sortMethod = ts == null ? dontSort : ts; }
+        
+    private static final TripleSorter dontSort = new TripleSorter()
+        { public void sort( Triple [] ts ) {} };
+        
+    private TripleSorter sortMethod = dontSort;
+    
+    private void sortTriples( Triple [] ts )
+        { sortMethod.sort( ts ); }
         
     private int variableCount = -1;
     

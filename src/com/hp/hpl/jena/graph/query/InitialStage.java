@@ -6,8 +6,6 @@
 
 package com.hp.hpl.jena.graph.query;
 
-import com.hp.hpl.jena.graph.*;
-
 /**
     The initial stage of a query, responsible for dropping the no-variables-bound seed
     binding domain into the remaining stages of the query pipeline.
