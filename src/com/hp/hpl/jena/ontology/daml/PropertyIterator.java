@@ -188,8 +188,8 @@ public class PropertyIterator
      * @param isReflexive If true, the property is reflexive (so, the root resource will be included
      *                    in the iteration).
      * @param useEquivalence If true, equivalence between DAML values will be included in the
-     *                       iteration (unless the model containing the DAML values has equivalence
-     *                       switched off via {@link com.hp.hpl.jena.ontology.daml.Model#setUseEquivalence}.
+     * iteration (unless the model containing the DAML values
+     * has equivalence switched off via {@link DAMLModel#setUseEquivalence}).
      */
     public PropertyIterator( Resource root, Property pred, Property inverse, boolean isTransitive,
                              boolean isReflexive, boolean useEquivalence ) {
@@ -249,8 +249,8 @@ public class PropertyIterator
      * @param isReflexive If true, the property is reflexive (so, the root resources will be included
      *                    in the iteration).
      * @param useEquivalence If true, equivalence between DAML values will be included in the
-     *                       iteration (unless the model containing the DAML values has equivalence
-     *                       switched off via {@link com.hp.hpl.jena.ontology.daml.Model#setUseEquivalence}.
+     * iteration (unless the model containing the DAML values has equivalence
+     * switched off via {@link DAMLModel#setUseEquivalence}.
      */
     public PropertyIterator( Iterator roots, Property pred, Property inverse, boolean isTransitive,
                              boolean isReflexive, boolean useEquivalence ) {

@@ -168,10 +168,10 @@ public class DAMLModelImpl
     /** The set of indexes to different daml values */
     protected Hashtable m_indexes = new Hashtable();
 
-    /** An index of values by type and name only (i.e. collecting namespace entries together) */
+    /** An index of values by type and name only (i&#046;e&#046; collecting namespace entries together) */
     protected OneToManyMap m_nameIndex = new OneToManyMap();
 
-    /** An index of classes by namespace and type only (i.e. collecting named entries together) */
+    /** An index of classes by namespace and type only (i&#046;e&#046; collecting named entries together) */
     protected OneToManyMap m_namespaceIndex = new OneToManyMap();
 
     /** A registry for mapping XML data to Java types */
@@ -461,7 +461,7 @@ public class DAMLModelImpl
     /**
      * Answer an iterator over all DAML properties that are presently in the model.
      *
-     * @return an iterator over all currently defined properties (i.e. rdf:Property and
+     * @return an iterator over all currently defined properties (i&#046;e&#046; rdf:Property and
      *         all sub-classes).
      */
     public Iterator listDAMLProperties() {

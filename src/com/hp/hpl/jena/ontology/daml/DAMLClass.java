@@ -155,7 +155,7 @@ public interface DAMLClass
      * Answer an iterator over the DAML classes (or, strictly, class expressions)
      * that mention this class as one of its super-classes.
      *
-     * @param closed If true, close the iteration over the sub-class relation: i.e.
+     * @param closed If true, close the iteration over the sub-class relation: i&#046;e&#046;
      *               return the sub-classes of the sub-classes, etc.
      * @return an iterator over this class's super-classes. The members of the
      *         iteration will be DAMLClass objects.
@@ -178,7 +178,7 @@ public interface DAMLClass
      * Answer an iterator over the DAML classes (or, strictly, class expressions)
      * that mention this class as one of its sub-classes.
      *
-     * @param closed If true, close the iteration over the super-class relation: i.e.
+     * @param closed If true, close the iteration over the super-class relation: i&#046;e&#046;
      *               return the super-classes of the super-classes, etc.
      * @return an iterator over this class's sub-classes. The members of the
      *         iteration will be DAMLClass objects.
@@ -246,7 +246,7 @@ public interface DAMLClass
 
     /**
      * Answer an iteration of the properties that may be used for
-     * instances of this class: i.e. the properties that have this class,
+     * instances of this class: i&#046;e&#046; the properties that have this class,
      * or one of its super-classes, as domain.
      *
      * @return An iteration of the properties that have this class as domain
@@ -256,7 +256,7 @@ public interface DAMLClass
 
     /**
      * Answer an iteration of the properties that may be used for
-     * instances of this class: i.e. the properties that have this class,
+     * instances of this class: i&#046;e&#046; the properties that have this class,
      * or optionally one of its super-classes, as domain.
      *
      * @param closed If true, close the iteration over the super-classes

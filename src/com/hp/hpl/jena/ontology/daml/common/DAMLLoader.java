@@ -116,7 +116,7 @@ public class DAMLLoader
     /** {@link #getStatus Status} flag: OK */
     public static final long STATUS_OK = 0L;
 
-    /** {@link #getStatus Status} flag: input source is not available (e.g. a file cannot be opened) */
+    /** {@link #getStatus Status} flag: input source is not available (e&#046;g&#046; a file cannot be opened) */
     public static final long STATUS_INPUT_UNAVAILABLE = 1L;
 
     /** {@link #getStatus Status} flag: an I/O error occurred - details will be in log file. */

@@ -63,7 +63,7 @@ public interface DAMLClassExpression
     //////////////////////////////////
 
     /**
-     * Answer true if this class expression is an enumeration (i.e. has a property
+     * Answer true if this class expression is an enumeration (i&#046;e&#046; has a property
      * 'oneOf' with a list of values).  This is not an exclusive property, a class
      * expression can be an enumeration at the same time as one of the other kinds
      * of class expression, though the conjunction of these may produce the Nothing
@@ -75,7 +75,7 @@ public interface DAMLClassExpression
 
 
     /**
-     * Answer true if this class expression is an named class (i.e. is not an anonymous
+     * Answer true if this class expression is an named class (i&#046;e&#046; is not an anonymous
      * class expression).  This is not an exclusive property, a class
      * expression can be named at the same time as one of the other kinds
      * of class expression, though the conjunction of these may produce the Nothing
@@ -87,7 +87,7 @@ public interface DAMLClassExpression
 
 
     /**
-     * Answer true if this class expression is an property restriction (i.e. is a
+     * Answer true if this class expression is an property restriction (i&#046;e&#046; is a
      * Restriction value).  This is not an exclusive property, a class
      * expression can be a property restriction at the same time as one of the other kinds
      * of class expression, though the conjunction of these may produce the Nothing
