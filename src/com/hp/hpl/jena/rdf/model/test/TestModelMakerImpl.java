@@ -124,15 +124,6 @@ public class TestModelMakerImpl extends ModelTestBase
         maker.getDescription();
         checkHistory( one( "getDescription()" ) ); 
         }
-
-    public void testModelSource()
-        {
-        assertTrue( hasAsParent( ModelMaker.class, ModelSource.class ) );
-        assertTrue( hasAsParent( ModelSpec.class, ModelSource.class ) );
-        ModelSource s = new TestModelSource.ModelSourceImpl();
-        assertNotNull( s.openModel( "henry" ) );
-        assertNull( s.getExistingModel( "splendid" ) );
-        }
     
     private void checkHistory( List expected )
         { assertEquals( expected, history() ); }

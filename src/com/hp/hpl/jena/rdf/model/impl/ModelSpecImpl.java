@@ -111,7 +111,7 @@ public abstract class ModelSpecImpl implements ModelSpec
      	Answer null, as ModelSpecs as ModelSources don't remember any Models.
      	This is consistent with openModel() always creating a new Model.
     */
-    public Model getExistingModel( String URI )
+    public Model openModelIfPresent( String URI )
         { return null; }
         
     /**

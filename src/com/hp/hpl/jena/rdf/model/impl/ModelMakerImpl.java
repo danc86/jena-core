@@ -30,7 +30,7 @@ public class ModelMakerImpl implements ModelMaker
     protected Model makeModel( Graph g )
         { return new ModelCom( g ); }
     
-    public Model getExistingModel( String name )
+    public Model openModelIfPresent( String name )
         { return maker.hasGraph( name ) ? openModel( name ) : null; }
     
     public Model openModel( String name, boolean strict )
