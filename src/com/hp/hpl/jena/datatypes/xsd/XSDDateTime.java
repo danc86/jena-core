@@ -106,7 +106,9 @@ public class XSDDateTime extends AbstractDateTime {
         TimeZone tz = data[utc] == 'Z' ? TimeZone.getTimeZone("GMT") : TimeZone.getDefault();
         Calendar calendar = new GregorianCalendar(tz);
         calendar.set(data[CY], data[M] - 1, data[D], data[h], data[m], data[s]);
-        calendar.set(Calendar.MILLISECOND, 0);
+        calendar.set(Calendar.MILLISECOND, data[ms]);
+        // was this to work around problems with some Linux JDKs
+        // calendar.set(Calendar.MILLISECOND, 0);
         return calendar;
     }
     

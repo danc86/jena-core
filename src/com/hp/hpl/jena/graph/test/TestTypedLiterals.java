@@ -452,6 +452,15 @@ public class TestTypedLiterals extends TestCase {
         XSDDateTime returnedDateTime = (XSDDateTime) r1.getProperty(p).getLiteral().getValue();
         assertEquals("deserialized calendar value", testCal3, returnedDateTime.asCalendar());
 
+        // dateTime to calendar with milliseconds
+        Calendar testCal4 = new GregorianCalendar(TimeZone.getTimeZone("GMT"));
+        testCal4.set(1999, 4, 30, 15, 9, 32);
+        testCal4.set(Calendar.MILLISECOND, 25);
+        Literal lc4 = m.createTypedLiteral(testCal4);
+        assertEquals("serialization", "1999-05-30T15:09:32.25Z", lc4.getValue().toString());
+        assertEquals("calendar ms test", m.createTypedLiteral("1999-05-30T15:09:32.25Z", XSDDatatype.XSDdateTime), lc4 );
+        XSDDateTime dt4 = (XSDDateTime)lc4.getValue();
+        assertEquals(dt4.asCalendar(), testCal4);
         
         // date
         l1 = m.createTypedLiteral("1999-05-31", XSDDatatype.XSDdate);
