@@ -2,7 +2,7 @@
 <!-- $Id$ -->
 <!-- (c) Copyright 2003, Hewlett-Packard Development Company LP -->
 <head>
-  <title>Jena Semantic Web Framework - Documentation Overview</title>
+  <title>Jena Semantic Web Framework - Command Line Utilities</title>
   <meta name="author" content="The Jena Team" />
   <meta name="description" content="" />
   <meta name="keywords" content="" />
@@ -14,7 +14,7 @@
 <body>
 
 <div id="header">
-Jena Documentation
+Jena  Command Line Utilities
 </div>
 
 
@@ -55,62 +55,52 @@ Jena Documentation
 <div id="trail">
 <a href="index.html">home</a>
 &raquo; <a href="documentation.html">documentation</a>
+&raquo; <a href="tools.html">tools</a>
 </div>
 
 <div id="content">
-<h2>Jena RDF Tutorial</h2>
-<p><a href="tutorial/RDF_API/index.html">The Jena API</a></p>
-<p><a href="tutorial/RDQL/index.html">RDQL - a query language for RDF</a></p>
+<p>
+Jena provides a number of utilities that wrap up access to
+some comonnly used functionality.</p>
+<p>These command utilites print a usage message with
+the <code>-h</code> flag.</p>
 
-<h2>Javadoc</h2>
-<p><a href="javadoc/index.html">The Jena Javadoc (Public APIs)</a></p>
+<dl>
+<dt>rdfparse</dt>
+<dd>Call ARP</dd>
 
-<h2>FAQ</h2>
-<!-- <p><a href="FAQ/jena-faq.html">Jena FAQ</a></p> -->
-<p><a href="jena-faq.html">Jena FAQ</a></p>
+<dt>rdfcopy</dt>
+<dd>Copy a model, changing its syntax</dd>
 
-<h2>Ontology Processing</h2>
-<p><a href="ontology/index.html">The Jena Ontology API</a></p>
+<dt>rdfquery</dt>
+<dd>Execute an RDQL query on a model.</dd>
 
-<p>Example programs:
-<br />
-<a href="ontology/examples/persistent-ont-model/index.html">Persistent Ontology Models</a><br />
-<a href="ontology/examples/describe-class/index.html">Textual description of a class</a><br />
-<a href="ontology/examples/class-hierarchy/index.html">Textual rendering of the class hierarchy</a><br />
-</p>
+<dt>rdfcompare</dt>
+<dd>Test whether two models are ismorphic</dd>
 
-<h2>Inference</h2>
-<p><a href="inference/index.html">Inference Engine User Manual</a></p>
+<dt>schemagen</dt>
+<dd><a href="how-to/schemagen.html">schemagen - a tool to generate Java
+from a vocabulary or ontology</a></dd>
 
+<dt>n3</dt>
+<dd>A tool to access the N3 parser directly.</dd>
 
-<h2>HowTo's</h2>
+<dt>dbcreate</dt>
+<dd>Create a Jena model in a database.</dd>
 
-<p><a href="how-to/model-factory.html">Creating models</a></p>
-<p><a href="DB/index.html">Persistent RDF data in relational databases</a></p>
-<p><a href="IO/iohowto.html">I/O: RDF Readers and Writers</a></p>
-<p><a href="how-to/typedLiterals.html">Typed literals</a></p>
-<p><a href="ARP/index.html">ARP - An RDF Parser</a></p>
+<dt>dblist</dt>
+<dd>List all models in a databse.</dd>
 
-<p><a href="RDQL/index.html">RDQL</a></p>
-<p><a href="migrate1-2.html">Migration from Jena1 to Jena2</a></p>
-<p><a href="how-to/owl-syntax-checker.html">OWL Syntax Checker</a></p>
+<dt>dbload</dt>
+<dd>Load a file of data into a database.</dd>
 
-<p><a href="how-to/event-handler.html">Model Event Mechanism</a></p>
-<p><a href="how-to/reification.html">Reification</a></p>
+<dt>dbdump<dt>
+<dd>Dump a database</dd>
 
-<h2>Command Line Utilities</h2>
-<p>Jena has a number of command line programs to process RDF models and to
-manipulate models held in relational databases.</p>
-<ul>
-<li><a href="tools.html">Tool descriptions</a></li>
-<li><a href="javadoc/jena/package-summary.html">javadoc</a> for the "jena" package</li>
-</ul>
+<dt>dbremove</dt>
+<dd>Remove a Jena model and all its data from a database. Use with care.</dd>
 
-<h2>Jena Internals</h2>
-<p><a href="reify-api.html">Reification API</a></p>
-<p><a href="reify-spi.html">Reification internal API</a></p>
-<p><a href="enh-node-howto.html">Enhanced Nodes</a></p>
-<!-- <p><a href="jena2-api-changes.html">API changes</a></p> -->
+</dl>
 
 </div><!-- end #content -->
 
