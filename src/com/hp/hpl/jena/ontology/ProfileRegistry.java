@@ -44,14 +44,14 @@ public class ProfileRegistry {
     // Constants
     //////////////////////////////////
 
-    /** The URI that maps to the language profile for OWL (full) */
-    public static final String OWL_LANG = OWL.getURI();
+    /** The URI that maps to the language profile for OWL-Full (value {@value}) */
+    public static final String OWL_LANG = OWL.FULL_LANG.getURI();
     
-    /** The URI that maps to the language profile for OWL (DL) */
-    public static final String OWL_DL_LANG = "http://www.w3.org/TR/owl-features/#term_OWLDL";
+    /** The URI that maps to the language profile for OWL-DL (value {@value}) */
+    public static final String OWL_DL_LANG = OWL.DL_LANG.getURI();
     
-    /** The URI that maps to the language profile for OWL (lite) */
-    public static final String OWL_LITE_LANG = "http://www.w3.org/TR/owl-features/#term_OWLLite";
+    /** The URI that maps to the language profile for OWL-Lite (value {@value}) */
+    public static final String OWL_LITE_LANG = OWL.LITE_LANG.getURI();
     
     /** The URI that maps to the language profile for DAML+OIL */
     public static final String DAML_LANG = DAML_OIL.NAMESPACE_DAML_2001_03_URI;
