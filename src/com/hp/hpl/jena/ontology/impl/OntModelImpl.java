@@ -27,6 +27,7 @@ package com.hp.hpl.jena.ontology.impl;
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.rdf.model.impl.*;
 import com.hp.hpl.jena.reasoner.*;
+import com.hp.hpl.jena.shared.JenaException;
 import com.hp.hpl.jena.util.iterator.*;
 import com.hp.hpl.jena.vocabulary.*;
 import com.hp.hpl.jena.ontology.*;
@@ -36,6 +37,7 @@ import com.hp.hpl.jena.graph.query.*;
 import com.hp.hpl.jena.enhanced.*;
 
 import java.io.*;
+import java.net.*;
 import java.util.*;
 
 
@@ -1502,11 +1504,7 @@ public class OntModelImpl
      * @param uri URI to read from, may be mapped to a local source by the document manager
      */
     public Model read( String uri ) {
-        super.read( getDocumentManager().doAltURLMapping( uri ) );
-        
-        getDocumentManager().loadImports( this );
-        rebind();
-        return this;
+        return read( uri, null );
     }
     
     /**
@@ -1543,12 +1541,30 @@ public class OntModelImpl
      * @param uri URI to read from, may be mapped to a local source by the document manager
      * @param lang The source syntax
      */
-    public Model read(String uri, String syntax) {
-        super.read( getDocumentManager().doAltURLMapping( uri ), syntax );
-                
+    public Model read( String uri, String syntax ) {
+        String sourceURL = getDocumentManager().doAltURLMapping( uri );
+        
+        // we have to duplicate the encoding translation here, since there's no method on Model
+        // to read from a URL with a separate baseURI
+        try {
+            URLConnection conn = new URL( sourceURL ).openConnection();
+            String encoding = conn.getContentEncoding();
+            
+            if (encoding == null) {
+                super.read( conn.getInputStream(), uri, syntax );
+            }
+            else {
+                super.read( new InputStreamReader(conn.getInputStream(), encoding), uri, syntax );
+            }
+        } 
+        catch (IOException e) {
+            throw new JenaException( e);
+        }
+
         // cache this model against the public uri (if caching enabled)
         getDocumentManager().addModel( uri, this );
 
+        // now load the imported documents
         getDocumentManager().loadImports( this );
         rebind();
         return this;

@@ -754,11 +754,14 @@ public class OntDocumentManager
                 }
             }
     
-            // queue the imports from the input model on the end of the read queue
-            queueImports( in, readQueue, model.getProfile() );
-    
-            // add to the imports union graph, but don't do the rebind yet
-            model.addSubModel( in, false );
+            // we trap the case of importing ourself (which may happen via an indirect imports chain)
+            if (in != model) {
+                // queue the imports from the input model on the end of the read queue
+                queueImports( in, readQueue, model.getProfile() );
+        
+                // add to the imports union graph, but don't do the rebind yet
+                model.addSubModel( in, false );
+            }
         }
     }
 

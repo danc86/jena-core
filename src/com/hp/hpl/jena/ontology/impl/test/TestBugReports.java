@@ -148,6 +148,17 @@ public class TestBugReports
         
     }
     
+    /** Bug report from Holger Knublauch on Aug 19th, 2003.  Document manager alt mechanism breaks relative name translation */
+    public void test_hk_04() {
+        OntModel m = ModelFactory.createOntologyModel();
+        m.getDocumentManager().addAltEntry( "http://jena.hpl.hp.com/testing/ontology/relativenames", 
+                                            "file:testing/ontology/relativenames.rdf");
+        
+        m.read( "http://jena.hpl.hp.com/testing/ontology/relativenames" );
+        assertTrue( "#A should be a class", m.getResource( "http://jena.hpl.hp.com/testing/ontology/relativenames#A" ).canAs( OntClass.class ) );
+        assertFalse( "file: #A should not be a class", m.getResource( "file:testing/ontology/relativenames.rdf#A" ).canAs( OntClass.class ) );
+    }
+    
     /**
      * Bug report by federico.carbone@bt.com, 30-July-2003.   A literal can be
      * turned into an individual.

@@ -187,6 +187,21 @@ public class MultiUnion
     }
 
 
+    /**
+     * <p>
+     * Add the given graph to this union.  If it is already a member of the union, don't
+     * add it a second time.
+     * </p>
+     * 
+     * @param graph A sub-graph to add to this union
+     */        
+    public void addGraph( Graph graph ) { 
+        if (!m_subGraphs.contains( graph )) {
+            m_subGraphs.add( graph );
+        }
+    }
+    
+
     // Internal implementation methods
     //////////////////////////////////
 
