@@ -39,20 +39,20 @@ public class ExpressionSet
     public boolean isComplex()
         { return !expressions.isEmpty(); }
     
-    /**
-        Evaluate this expression set, delivering true iff no member of the set evaluates
-        to false.
-        
-     	@param vv the mapping from variables to values
-     	@return true iff no member evaluates to false
-     */    
-    public boolean evalBool( VariableValues vv )
-        { 
-        Iterator it = expressions.iterator();
-        while (it.hasNext()) 
-            if (((Expression) it.next()).evalBool( vv ) == false) return false;
-        return true;
-        }
+//    /**
+//        Evaluate this expression set, delivering true iff no member of the set evaluates
+//        to false.
+//        
+//     	@param vv the mapping from variables to values
+//     	@return true iff no member evaluates to false
+//     */    
+//    public boolean evalBool( VariableValues vv )
+//        { 
+//        Iterator it = expressions.iterator();
+//        while (it.hasNext()) 
+//            if (((Expression) it.next()).evalBool( vv ) == false) return false;
+//        return true;
+//        }
 
     /**
          Answer a ValuatorSet which contains exactly the valuators for each

@@ -35,9 +35,6 @@ public abstract class BaseExampleExpression
         
     public Expression and( Expression e ) { return and( this, e ); }
         
-    public Object eval( VariableValues vv )
-        { return evalBool( vv ) ? Boolean.TRUE : Boolean.FALSE; }
- 
     public static BaseExampleExpression and( final Expression L, final Expression R )
         {
         return new BaseExampleExpression()
@@ -51,10 +48,6 @@ public abstract class BaseExampleExpression
                 {
                 return BaseExampleValuator.and( L.prepare( vi ), R.prepare( vi ) );    
                 }
-                
-            public boolean evalBool( VariableValues vv )
-                { return L.evalBool( vv ) && R.evalBool( vv ); }
-                 
             };     
         }
     }
