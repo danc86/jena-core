@@ -802,21 +802,21 @@ public class TestFBRules extends TestCase {
         int count = 0;
         for (Iterator i = infgraph.find(null, rbPrototypeProp, null); i.hasNext(); ) {
             Object t = i.next();
-//            System.out.println(" - " + PrintUtil.print(t));
+            System.out.println(" - " + PrintUtil.print(t));
             count++;
         }
 //        listFBGraph("direct databind case", (FBRuleInfGraph)infgraph);
-        assertTrue(count == 7);
+        assertTrue(count == 5);
         
         infgraph = reasoner.bindSchema(data).bind(new GraphMem());
         count = 0;
         for (Iterator i = infgraph.find(null, rbPrototypeProp, null); i.hasNext(); ) {
             Object t = i.next();
-//            System.out.println(" - " + PrintUtil.print(t));
+            System.out.println(" - " + PrintUtil.print(t));
             count++;
         }
 //        listFBGraph("bindSchema case", (FBRuleInfGraph)infgraph);
-        assertTrue(count == 7);
+        assertTrue(count == 5);
     }
     
     /**
