@@ -17,33 +17,36 @@ import com.hp.hpl.jena.graph.TransactionHandler;
  */
 public class DBTransactionHandler implements TransactionHandler {
 	private IRDBDriver m_driver = null;
-	private GraphRDB m_graphRDB = null;
 
-	public DBTransactionHandler(IRDBDriver driver, GraphRDB graphRDB) {
+	
+	/**
+	 * Construct a transaction handler for the database.
+	 * 
+	 * @param driver the datatabase-specific IRDBDriver.
+	 * @param graphRDB the specific GraphRDB for which the transaction applies.
+	 * This is not currently needed - included for future use.
+	 */
+	public DBTransactionHandler(IRDBDriver driver, GraphRDB graphRDB ) {
 		super();
 		m_driver = driver;
-		m_graphRDB = graphRDB; // suspect we may need this later
 	}
 
 	public boolean transactionsSupported() {
-		return false; // TODO change to m_driver.transactionsSupported();
+		return m_driver.transactionsSupported();
 	}
 
 	public void begin() {
-		notSupported(); // TODO change to m_driver.begin(); 
+		m_driver.begin(); 
 	}
 
 	public void abort() {
-		notSupported(); // TODO change to m_driver.abort();
+		m_driver.abort();
 	}
 
 	public void commit() {
-		notSupported(); // TODO change to m_driver.commit();
+		m_driver.commit();
 	}
 
-	private void notSupported() {
-		throw new UnsupportedOperationException("sorry, transactions are not supported yet.");
-	}
 }
 
 /*
