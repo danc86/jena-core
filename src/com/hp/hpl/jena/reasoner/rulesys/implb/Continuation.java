@@ -25,7 +25,11 @@ public interface Continuation {
 
     /**
      * Return the next value from the generator.
-     * @return ??
+     * @return an object representing the next available value, or StateFlag.FAIL if there are no
+     * futher returns, or StateFlag.SUSPEND if the generate can generate no values at this time but 
+     * is not known to have completed. The returned object is may be a Triple (in the case of a
+     * graph iterator, or top level goal) or simply be null (in the case on an LP choice point which
+     * returns the data in the global variable bindings).
      */
     public Object next();
     
