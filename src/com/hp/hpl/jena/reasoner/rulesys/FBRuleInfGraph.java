@@ -10,6 +10,8 @@
 package com.hp.hpl.jena.reasoner.rulesys;
 
 import com.hp.hpl.jena.mem.GraphMem;
+import com.hp.hpl.jena.rdf.model.RDFNode;
+import com.hp.hpl.jena.rdf.model.ResourceFactory;
 import com.hp.hpl.jena.reasoner.rulesys.impl.*;
 import com.hp.hpl.jena.reasoner.transitiveReasoner.*;
 import com.hp.hpl.jena.reasoner.*;
@@ -682,7 +684,12 @@ public class FBRuleInfGraph  extends BasicForwardRuleInfGraph implements Backwar
                     for (int j = 2; j < rFunc.getArgLength(); j++) {
                         description.append( "Implicated node: " + PrintUtil.print(rFunc.getArgs()[j]) + "\n");
                     }
-                    report.add(nature.equalsIgnoreCase("error"), type, description.toString());
+                    Node culpritN = t.getSubject();
+                    RDFNode culprit = null;
+                    if (culpritN.isURI()) {
+                        culprit = ResourceFactory.createResource(culpritN.getURI());
+                    }
+                    report.add(nature.equalsIgnoreCase("error"), type, description.toString(), culprit);
                 }
             }
         }

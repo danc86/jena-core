@@ -50,7 +50,14 @@ public class NoValue extends BaseBuiltin {
             obj = getArg(2, args, context);
         }
         Node subj = getArg(0, args, context);
+        // Allow variables in subject position to correspond to wild cards
+        if (subj.isVariable()) {
+            subj = null;
+        }
         Node pred = getArg(1, args, context);
+        if (pred.isVariable()) {
+            pred = null;
+        }
         return !context.contains(subj, pred, obj);
     }
     
