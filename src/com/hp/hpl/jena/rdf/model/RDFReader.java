@@ -49,13 +49,21 @@ public interface RDFReader {
 	 * and the character encoding of the data in the file.
 	 * @param model The model to which statements are added.
 	 * @param r the reader from which to read
+	 * @param base The base to use when converting relative to absolute URI's.
+	 * The base URI may be null if there are no relative URIs to convert.
+	 * A base URI of "" may permit relative URIs to be used in the
+	 * model unconverted.
 	 */
 	public void read(Model model, Reader r, String base) ;
 
 	/** Read serialized RDF from an <code>InputStream</code> and add the statements
 	 * to a <code>Model</code>.
 	 * @param model The model to which statements are added.
-	 * @param r the InputStream from which to read
+	 * @param r The InputStream from which to read
+	 * @param base The base to use when converting relative to absolute URI's.
+	 * The base URI may be null if there are no relative URIs to convert.
+	 * A base URI of "" may permit relative URIs to be used in the
+	 * model unconverted.
 	 */
 	public void read(Model model, InputStream r, String base);
 

@@ -326,7 +326,10 @@ public interface Model
 
 	/** Add statements from an RDF/XML serialization.
 	 * @param in the source of the RDF/XML
-	 * @param base the base to use when converting relative to absolute uri's
+	 * @param base the base to use when converting relative to absolute uri's.
+	 * The base URI may be null if there are no relative URIs to convert.
+	 * A base URI of "" may permit relative URIs to be used in the
+	 * model unconverted.
 	 * @return the current model
 	 */
 	public Model read(InputStream in, String base) ;
@@ -340,6 +343,10 @@ public interface Model
 	 * @return this model
 	 * @param base the base uri to be used when converting relative
 	 * URI's to absolute URI's.
+	  The base URI may be null if there are no relative URIs to 
+	  convert.
+	  A base URI of "" may permit relative URIs to be used in the
+	   model.
 	 * @param lang the langauge of the serialization <code>null<code>
 	 * selects the default
 	 * @param in the source of the input serialization
@@ -354,8 +361,12 @@ public interface Model
      * mismatch between the character encoding of say the FileReader and the
      * character encoding of the data in the file.
 	 * @param reader the source of the RDF/XML
-	 * @param base the base to use when converting relative to absolute uri's
-	 * @return the current model
+	 * @param base the base to use when converting relative to absolute uri's.
+	  The base URI may be null if there are no relative URIs to 
+	  convert.
+	  A base URI of "" may permit relative URIs to be used in the
+	   model.
+	 * * @return the current model
 	 */
 	public Model read(Reader reader, String base) ;
 	
@@ -389,6 +400,12 @@ public interface Model
 	 * @return this model
 	 * @param base the base uri to be used when converting relative
 	 * URI's to absolute URI's.
+	 
+	  The base URI may be null if there are no relative URIs to 
+	  convert.
+	  A base URI of "" may permit relative URIs to be used in the
+	   model.
+	   
 	 * @param lang the langauge of the serialization <code>null<code>
 	 * selects the default
 	 * @param reader the source of the input serialization
