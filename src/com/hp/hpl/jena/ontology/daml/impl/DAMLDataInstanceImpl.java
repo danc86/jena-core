@@ -35,7 +35,6 @@ import com.hp.hpl.jena.vocabulary.*;
 
 import java.util.Iterator;
 
-import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 
