@@ -559,7 +559,7 @@ public abstract class AbstractTestQuery extends GraphTestBase
     public void testQueryConstraintUnbound()
         {
         Query q = new Query()
-            .addConstraint( notEqual( X, Y ) )
+            .addConstraint( notEqual( X, Z ) )
             .addMatch( X, Query.ANY, X )
             ;
         Graph g = getGraphWith( "x R x; x R y" );
@@ -592,6 +592,7 @@ public abstract class AbstractTestQuery extends GraphTestBase
         {
         Graph g = dataGraph();
         Map answer = getAnswer( g, TripleSorter.dontSort );
+        // TODO remove: System.err.println( ">> " + answer );
         assertEquals( 1, answer.size() );
         assertEquals( new Integer(1), answer.get( Arrays.asList( nodes( "a d" ) ) ) );
     /* */

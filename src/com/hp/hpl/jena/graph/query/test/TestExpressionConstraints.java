@@ -85,7 +85,7 @@ public class TestExpressionConstraints extends GraphTestBase
         {        
         Graph g = graphWith( "x R y; a P a" );
         Query q = new Query()
-            .addMatch( Z, ANY, ANY )
+            // .addMatch( Z, ANY, ANY )
             .addMatch( X, ANY, Y )
             .addConstraint( notEqual( X, Y ) )
             ;

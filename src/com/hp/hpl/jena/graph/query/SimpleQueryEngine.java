@@ -36,8 +36,7 @@ public class SimpleQueryEngine
         Mapping map = new Mapping( nodes );
         ArrayList stages = new ArrayList();        
         addStages( stages, args, map );
-        if (constraint != Expression.TRUE) 
-            stages.add( new ConstraintStage( map, constraint ) );
+        if (constraint.isComplex()) stages.add( new ConstraintStage( map, constraint ) );
         outStages.addAll( stages );
         variableCount = map.size();
         return filter( connectStages( stages, variableCount ) );

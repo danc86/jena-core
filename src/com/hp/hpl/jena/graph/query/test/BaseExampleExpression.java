@@ -9,12 +9,19 @@ package com.hp.hpl.jena.graph.query.test;
 import com.hp.hpl.jena.graph.query.Expression;
 import com.hp.hpl.jena.graph.query.*;
 
+import java.util.*;
+
 /**
 	BaseExampleExpression - simple expressions
 	@author kers
  */
 public abstract class BaseExampleExpression implements Expression
     {
+    public boolean isVariable() { return false; }
+    public boolean isApply() { return false; }
+    public String getName() { return null; }
+    public List getArgs() { return null; }
+    
     public static abstract class BaseExampleValuator implements Valuator
         {
         public abstract boolean evalBool( IndexValues iv );      

@@ -38,6 +38,10 @@ public class ExpressionSet
         expressions.add( e );
         return this;    
         }
+    
+    public boolean isComplex()
+        { return !expressions.isEmpty(); }
+    
     /**
         Evaluate this expression set, delivering true iff no member of the set evaluates
         to false.
@@ -68,6 +72,12 @@ public class ExpressionSet
         while (it.hasNext()) result.add( ((Expression) it.next()).prepare( vi ) );
         return result;    
         }
+    
+    public Iterator iterator()
+        { return expressions.iterator(); }
+    
+    public String toString()
+        { return expressions.toString(); }
     }
 
 /*
