@@ -175,7 +175,7 @@ public class FileManager
      */
 
     public Model loadModel(String filenameOrURI)
-    { return loadModel(filenameOrURI, filenameOrURI) ; }
+    { return loadModel(filenameOrURI, null) ; }
 
     /** Load a model from a file (local or remote).
      *  Guesses the syntax of the file based on filename extension, 
@@ -228,7 +228,7 @@ public class FileManager
      */    
 
     public Model readModel(Model model, String filenameOrURI)
-    { return readModel(model, filenameOrURI, filenameOrURI); }
+    { return readModel(model, filenameOrURI, null); }
     
     /**
      * Read a file of RDF into a model.
@@ -255,7 +255,7 @@ public class FileManager
     public Model readModel(Model model, String filenameOrURI, String baseURI, String syntax)
     {
         if ( baseURI == null )
-            baseURI = "" ;
+            baseURI = chooseBaseURI(filenameOrURI) ;
 
         if ( syntax == null )
         {
@@ -288,6 +288,16 @@ public class FileManager
         return null ;
     }
      
+    private String chooseBaseURI(String baseURI)
+    {
+        String scheme = FileUtils.getScheme(baseURI) ;
+        if ( scheme != null )
+            return baseURI ;
+        if ( baseURI.startsWith("/") )
+            return "file://"+baseURI ;
+        return "file:"+baseURI ;
+    }
+    
     /** Open a file using the locators of this FileManager */
     public InputStream open(String filenameOrURI)
     {
