@@ -47,9 +47,6 @@ public interface Jena
     /** The product name */    
     public static final String NAME = "@Name@";
     
-    /** The copyright notice */
-    public static final String COPYRIGHT = "@copyright@";
-    
     /** The Jena web site */    
     public static final String WEBSITE = "@website@";
     

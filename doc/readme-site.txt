@@ -59,8 +59,19 @@ produce - Runs merge on each file in the website
 release - Ship the website off to jena.sourceforge.net (if you
           have ssh access)
 
+linkcheck - check relative links
+
+(PS "find . -path ./javadoc -prune -o -name \*html -print | xargs linkcheck" 
+finds and checks all the HTML files not in javadoc.)
+
+
+
 Notes
 -----
+
+Colours:
+The light blue colour is: rgb(202,223,244) / #CADFF4
+"Jena red" is rgb(216, 32 0) / #D82000
 
 
 ----------------

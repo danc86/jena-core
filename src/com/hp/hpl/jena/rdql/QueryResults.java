@@ -1,3 +1,8 @@
+/*
+ * (c) Copyright 2001-2003, Hewlett-Packard Company, all rights reserved.
+ * [See end of file]
+ */
+
 
 package com.hp.hpl.jena.rdql;
 
