@@ -104,7 +104,7 @@ public class NTripleWriter extends Object implements RDFWriter {
     /** Set a property to control the writer's behaviour.
      *
      * <p>This writer currently recognises no properties.  Invoking this
-     * method always causes an <CODE>UNKNOWNPROPERTY RDFException</CODE>
+     * method always causes an <CODE>JenaUnknownPropertyException</CODE>
      * to be raised.</p>?
      * @param propName The name of the property to be set
      * @param propValue The new value of the property

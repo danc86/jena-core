@@ -203,7 +203,7 @@ public class N3toRDF implements N3ParserEventHandler
 		}
 		catch (JenaException rdfEx)
 		{
-			error("Line "+line+": RDFException: " + rdfEx);
+			error("Line "+line+": JenaException: " + rdfEx);
 		}
 	}
 	

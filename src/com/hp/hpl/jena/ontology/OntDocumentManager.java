@@ -694,7 +694,7 @@ public class OntDocumentManager
         catch (JenaException e) {
             if (warn) {
                 Logger.getLogger( OntDocumentManager.class )
-                      .warn( "RDFException while reading model from " + resolvableURI + ", with message: " + e.getMessage(), e );
+                      .warn( "JenaException while reading model from " + resolvableURI + ", with message: " + e.getMessage(), e );
             }
             return false;
         }

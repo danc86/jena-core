@@ -6,11 +6,7 @@
 package com.hp.hpl.jena.vocabulary;
 
 import com.hp.hpl.jena.rdf.model.impl.ErrorHelper;
-//import com.hp.hpl.jena.rdf.model.Model;
-import com.hp.hpl.jena.rdf.model.Resource;
-import com.hp.hpl.jena.rdf.model.ResourceFactory;
-import com.hp.hpl.jena.rdf.model.Property;
-//import com.hp.hpl.jena.rdf.model.RDFException;
+import com.hp.hpl.jena.rdf.model.*;
 
 /** ResultSet vocabulary class for namespace http://jena.hpl.hp.com/2003/03/result-set#
  */

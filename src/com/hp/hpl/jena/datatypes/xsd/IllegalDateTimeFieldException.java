@@ -9,7 +9,7 @@
  *****************************************************************/
 package com.hp.hpl.jena.datatypes.xsd;
 
-import com.hp.hpl.jena.rdf.model.RDFException;
+import com.hp.hpl.jena.shared.*;
 
 /**
  * Exception thrown when attempting to access a field of an XSDDateTime 
@@ -19,7 +19,7 @@ import com.hp.hpl.jena.rdf.model.RDFException;
  * @author <a href="mailto:der@hplb.hpl.hp.com">Dave Reynolds</a>
  * @version $Revision$ on $Date$
  */
-public class IllegalDateTimeFieldException extends RDFException {
+public class IllegalDateTimeFieldException extends JenaException {
     
     /** Constructor */
     public IllegalDateTimeFieldException(String msg) {

@@ -21,7 +21,7 @@
 ///////////////
 package com.hp.hpl.jena.ontology;
 
-import com.hp.hpl.jena.rdf.model.RDFException;
+import com.hp.hpl.jena.shared.*;
 
 
 // Imports
@@ -37,7 +37,7 @@ import com.hp.hpl.jena.rdf.model.RDFException;
  * @version CVS $Id$
  */
 public class OntologyException
-    extends RDFException 
+    extends JenaException 
 {
     // Constants
     //////////////////////////////////

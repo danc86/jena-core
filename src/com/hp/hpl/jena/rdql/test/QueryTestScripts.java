@@ -322,7 +322,7 @@ public class QueryTestScripts extends TestSuite
                 throw qEx ;
             }
             catch (IOException ioEx){ pw.println("IOException: "+ioEx) ; ioEx.printStackTrace(pw) ; pw.flush() ; }
-            //catch (JenaException rdfEx) { pw.println("RDFException: "+rdfEx) ; rdfEx.printStackTrace(pw) ; pw.flush() ; }
+            //catch (JenaException rdfEx) { pw.println("JenaException: "+rdfEx) ; rdfEx.printStackTrace(pw) ; pw.flush() ; }
             catch (Exception ex)
             {
                 pw.println("Exception: "+ex) ;

@@ -9,7 +9,7 @@
  *****************************************************************/
 package com.hp.hpl.jena.datatypes;
 
-import com.hp.hpl.jena.rdf.model.RDFException;
+import com.hp.hpl.jena.shared.*;
 
 /**
  * Exception thrown when a lexical form does not match the stated
@@ -20,7 +20,7 @@ import com.hp.hpl.jena.rdf.model.RDFException;
  * @author <a href="mailto:der@hplb.hpl.hp.com">Dave Reynolds</a>
  * @version $Revision$ on $Date$
  */
-public class DatatypeFormatException extends RDFException 
+public class DatatypeFormatException extends JenaException 
 {
     /**
      * Preferred constructor.

@@ -359,7 +359,7 @@ import com.hp.hpl.jena.shared.*;
                 sIter = m.listStatements(s, p, o) ;
             } catch (JenaException rdfEx)
             {
-                QSys.unhandledException(rdfEx, "TriplePattern.BindingIterator(RDFException)", "BindingIterator") ;
+                QSys.unhandledException(rdfEx, "TriplePattern.BindingIterator(JenaException)", "BindingIterator") ;
             }
             catch (Throwable exEx)
             {
@@ -541,7 +541,7 @@ import com.hp.hpl.jena.shared.*;
                     return binding ;
                 }
             }
-            catch (JenaException rdfEx) { QSys.unhandledException(rdfEx, "TriplePattern.BindingIterator(RDFException)", "next") ; }
+            catch (JenaException rdfEx) { QSys.unhandledException(rdfEx, "TriplePattern.BindingIterator(JenaException)", "next") ; }
             catch (Throwable t) { QSys.unhandledException(t, "TriplePattern.BindingIterator(Throwable)", "next") ; }
             return null ;
         }

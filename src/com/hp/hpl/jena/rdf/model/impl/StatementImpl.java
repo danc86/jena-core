@@ -120,7 +120,7 @@ public class StatementImpl  implements Statement {
         
     /**
         get the object field of this statement, insisting that it be a Literal.
-        If it isn't, throw RDFException.OBJECTNOTLITERAL.
+        If it isn't, throw JenaLiteralRequiredException.
     */
     public Literal getLiteral()  {        
         if (object instanceof Literal) {

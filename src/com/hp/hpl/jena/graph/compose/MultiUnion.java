@@ -104,7 +104,7 @@ public class MultiUnion
      * </p>
      * 
      * @param t A triple to add to the union graph
-     * @exception RDFException if the union does not contain any sub-graphs yet
+     * @exception JenaException if the union does not contain any sub-graphs yet
      */
     public void add( Triple t ) {
         try {
@@ -123,7 +123,7 @@ public class MultiUnion
      * </p>
      * 
      * @param t A triple to from the union graph
-     * @exception RDFException if the union does not contain any sub-graphs yet
+     * @exception JenaException if the union does not contain any sub-graphs yet
      */
     public void delete( Triple t ) {
         try {
