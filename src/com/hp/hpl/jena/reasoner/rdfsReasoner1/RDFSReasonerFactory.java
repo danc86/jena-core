@@ -11,6 +11,7 @@ package com.hp.hpl.jena.reasoner.rdfsReasoner1;
 
 import com.hp.hpl.jena.reasoner.*;
 import com.hp.hpl.jena.reasoner.transitiveReasoner.TransitiveReasoner;
+import com.hp.hpl.jena.mem.ModelMem;
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.rdf.model.impl.PropertyImpl;
 import com.hp.hpl.jena.vocabulary.*;
