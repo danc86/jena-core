@@ -60,8 +60,8 @@ public class TransitiveReasonerFactory implements ReasonerFactory {
                 .addProperty(ReasonerRegistry.descriptionP, "Provides reflexive-transitive closure of subClassOf and subPropertyOf")
                 .addProperty(ReasonerRegistry.supportsP, RDFS.subClassOf)
                 .addProperty(ReasonerRegistry.supportsP, RDFS.subPropertyOf)
-                .addProperty(ReasonerRegistry.supportsP, TransitiveReasoner.directSubClassOf)
-                .addProperty(ReasonerRegistry.supportsP, TransitiveReasoner.directSubPropertyOf)
+                .addProperty(ReasonerRegistry.supportsP, ReasonerVocabulary.directSubClassOf)
+                .addProperty(ReasonerRegistry.supportsP, ReasonerVocabulary.directSubPropertyOf)
                 .addProperty(ReasonerRegistry.versionP, "0.1");
         }
         return capabilities;
