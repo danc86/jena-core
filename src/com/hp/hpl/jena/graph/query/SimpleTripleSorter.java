@@ -17,9 +17,19 @@ public class SimpleTripleSorter implements TripleSorter
     public SimpleTripleSorter()
         {}
 
-    public void sort( Triple[] triples )
+    /**
+        Sort the triple array so that more-bound triples come before less-bound triples.
+        Preserve the order of the elements unless they <i>have<i> to move. 
+    */
+    public Triple [] sort( Triple[] triples )
         {
-
+        Triple [] copy = new Triple[triples.length];
+        int here = 0;
+        for (int i = 0; i < triples.length; i += 1)
+            if (triples[i].isConcrete()) copy[here++] = triples[i];
+        for (int i = 0; i < triples.length; i += 1)
+            if (!triples[i].isConcrete()) copy[here++] = triples[i];
+        return copy;
         }
 
     }

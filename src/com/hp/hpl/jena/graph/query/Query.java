@@ -257,7 +257,7 @@ public class Query
                 nodes[--i] = nodeTriples.head;
                 nodeTriples = nodeTriples.tail;
                 }
-            sortTriples( nodes );
+            nodes = sortTriples( nodes );
             Stage next = g.queryHandler().patternStage( map, constraintGraph, nodes );
             stages.add( next );
             }
@@ -267,12 +267,12 @@ public class Query
         { sortMethod = ts == null ? dontSort : ts; }
         
     public static final TripleSorter dontSort = new TripleSorter()
-        { public void sort( Triple [] ts ) {} };
+        { public Triple []  sort( Triple [] ts ) { return ts; } };
         
     private TripleSorter sortMethod = dontSort;
     
-    private void sortTriples( Triple [] ts )
-        { sortMethod.sort( ts ); }
+    private Triple [] sortTriples( Triple [] ts )
+        { return sortMethod.sort( ts ); }
         
     private int variableCount = -1;
     
