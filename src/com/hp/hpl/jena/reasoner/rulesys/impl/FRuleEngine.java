@@ -19,7 +19,8 @@ import com.hp.hpl.jena.util.PrintUtil;
 import com.hp.hpl.jena.util.iterator.*;
 import com.hp.hpl.jena.vocabulary.RDF;
 
-import org.apache.log4j.Logger;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 /**
  * The processing engine for forward production rules. It neeeds to reference
@@ -60,8 +61,7 @@ public class FRuleEngine implements FRuleEngineI {
     /** True if we have processed the axioms in the rule set */
     boolean processedAxioms = false;
     
-    /** log4j logger */
-    protected static Logger logger = Logger.getLogger(FRuleEngine.class);
+    protected static Log logger = LogFactory.getLog(FRuleEngine.class);
     
 //  =======================================================================
 //  Constructors

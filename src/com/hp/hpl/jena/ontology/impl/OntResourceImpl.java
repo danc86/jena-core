@@ -39,7 +39,8 @@ import com.hp.hpl.jena.vocabulary.*;
 
 import java.util.*;
 
-import org.apache.log4j.Logger;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 
 /**
@@ -966,7 +967,7 @@ public class OntResourceImpl
                 // this object is referenced from inside a list
                 // we don't delete this, since it would make the list ill-formed
                 String me = isAnon() ? ("Anon object " + getId()) : getURI();
-                Logger.getLogger( getClass() ).warn( me + " is referened from an RDFList, so will not be fully removed");
+                LogFactory.getLog( getClass() ).warn( me + " is referened from an RDFList, so will not be fully removed");
                 skip.add( s );
             }
             else if (s.getObject() instanceof Resource){

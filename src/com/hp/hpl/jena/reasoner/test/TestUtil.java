@@ -11,7 +11,8 @@ package com.hp.hpl.jena.reasoner.test;
 
 import junit.framework.TestCase;
 import java.util.Iterator;
-import org.apache.log4j.Logger;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 /**
  * Collection of utilities to assist with unit testing.
@@ -23,7 +24,7 @@ public class TestUtil {
     
     /** Helper function test an iterator against a list of objects - order independent */
     public static void assertIteratorValues(TestCase testCase, Iterator it, Object[] vals) {
-        Logger logger = Logger.getLogger( testCase.getClass() );
+        Log logger = LogFactory.getLog( testCase.getClass() );
         
         boolean[] found = new boolean[vals.length];
         for (int i = 0; i < vals.length; i++) found[i] = false;

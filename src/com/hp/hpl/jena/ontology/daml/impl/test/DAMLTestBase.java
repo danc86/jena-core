@@ -26,7 +26,8 @@ package com.hp.hpl.jena.ontology.daml.impl.test;
 ///////////////
 import java.util.*;
 
-import org.apache.log4j.Logger;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 import com.hp.hpl.jena.ontology.*;
 import com.hp.hpl.jena.ontology.daml.DAMLModel;
@@ -121,7 +122,7 @@ public abstract class DAMLTestBase
     
         /** Test that an iterator delivers the expected values */
         protected void iteratorTest( Iterator i, Object[] expected ) {
-            Logger logger = Logger.getLogger( getClass() );
+            Log logger = LogFactory.getLog( getClass() );
             List expList = new ArrayList();
             for (int j = 0; j < expected.length; j++) {
                 expList.add( expected[j] );

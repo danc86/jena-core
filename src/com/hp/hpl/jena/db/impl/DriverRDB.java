@@ -31,7 +31,8 @@ import com.hp.hpl.jena.graph.impl.LiteralLabel;
 import com.hp.hpl.jena.rdf.model.AnonId;
 import com.hp.hpl.jena.shared.*;
 
-import org.apache.log4j.Logger;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.apache.xerces.util.XMLChar;
 
 //=======================================================================
@@ -220,7 +221,7 @@ public abstract class DriverRDB implements IRDBDriver {
    /** Database layout version */
    protected String LAYOUT_VERSION = "2.0";
    
-   protected static Logger logger = Logger.getLogger( PSet_ReifStore_RDB.class );
+   protected static Log logger = LogFactory.getLog( PSet_ReifStore_RDB.class );
     
 // =======================================================================
 //	Instance variables

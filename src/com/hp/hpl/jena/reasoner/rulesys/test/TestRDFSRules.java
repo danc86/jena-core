@@ -24,7 +24,8 @@ import junit.framework.TestCase;
 import junit.framework.TestSuite;
 import java.io.IOException;
 import java.util.Iterator;
-import org.apache.log4j.Logger;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 /** * Test suite to test the production rule version of the RDFS implementation.
  * <p> The tests themselves have been replaced by an updated version
@@ -35,8 +36,7 @@ public class TestRDFSRules extends TestCase {
     /** Base URI for the test names */
     public static final String NAMESPACE = "http://www.hpl.hp.com/semweb/2003/query_tester/";
     
-    /** log4j logger */
-    protected static Logger logger = Logger.getLogger(TestRDFSRules.class);
+    protected static Log logger = LogFactory.getLog(TestRDFSRules.class);
     
     /**
      * Boilerplate for junit

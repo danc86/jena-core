@@ -7,7 +7,8 @@ package com.hp.hpl.jena.regression;
 
 import com.hp.hpl.jena.rdf.model.*;
 
-import org.apache.log4j.Logger;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 /**
  *
  * @author  bwm
@@ -15,7 +16,7 @@ import org.apache.log4j.Logger;
 public class testModelEquals extends Object {
    
 
-    protected static Logger logger = Logger.getLogger( testModelEquals.class );
+    protected static Log logger = LogFactory.getLog( testModelEquals.class );
     
     void test(GetModel gm) {
         Model m1, m2;

@@ -17,7 +17,8 @@ import com.hp.hpl.jena.reasoner.*;
 import com.hp.hpl.jena.util.PrintUtil;
 import com.hp.hpl.jena.graph.*;
 
-import org.apache.log4j.Logger;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 import java.util.*;
 
@@ -67,8 +68,7 @@ public class BRuleEngine {
      * reschedule itself lower on the agenda */
     protected int batchSize = 100000;
     
-    /** log4j logger*/
-    static Logger logger = Logger.getLogger(BRuleEngine.class);
+    static Log logger = LogFactory.getLog(BRuleEngine.class);
     
 //  =======================================================================
 //  Constructors
@@ -168,7 +168,7 @@ public class BRuleEngine {
    
     /**
      * Set the state of the trace flag. If set to true then rule firings
-     * are logged out to the Logger at "INFO" level.
+     * are logged out to the Log at "INFO" level.
      */
     public void setTraceOn(boolean state) {
         traceOn = state;

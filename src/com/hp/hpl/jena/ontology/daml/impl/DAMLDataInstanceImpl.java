@@ -35,7 +35,8 @@ import com.hp.hpl.jena.vocabulary.*;
 
 import java.util.Iterator;
 
-import org.apache.log4j.Logger;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 
 
@@ -143,7 +144,7 @@ public class DAMLDataInstanceImpl
             RDFDatatype dType = getDatatype();
             
             if (dType == null) {
-                Logger.getLogger( getClass() ).warn( "No RDFDatatype defined for DAML data instance " + this );
+                LogFactory.getLog( getClass() ).warn( "No RDFDatatype defined for DAML data instance " + this );
             }
             else {
                 return dType.parse( getRequiredProperty( RDF.value ).getString() );

@@ -248,7 +248,7 @@ public class FBRuleReasoner implements Reasoner {
     
     /**
      * Set the state of the trace flag. If set to true then rule firings
-     * are logged out to the Logger at "INFO" level.
+     * are logged out to the Log at "INFO" level.
      */
     public void setTraceOn(boolean state) {
         traceOn = state;
@@ -256,7 +256,7 @@ public class FBRuleReasoner implements Reasoner {
     
     /**
      * Return the state of the trace flag.If set to true then rule firings
-     * are logged out to the Logger at "INFO" level.
+     * are logged out to the Log at "INFO" level.
      */
     public boolean isTraceOn() {
         return traceOn;

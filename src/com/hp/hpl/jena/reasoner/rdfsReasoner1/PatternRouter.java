@@ -17,7 +17,8 @@ import com.hp.hpl.jena.reasoner.transitiveReasoner.TransitiveGraphCache;
 import com.hp.hpl.jena.util.iterator.ExtendedIterator;
 import com.hp.hpl.jena.graph.*;
 
-import org.apache.log4j.Logger;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 import java.util.*;
 
@@ -39,8 +40,7 @@ import java.util.*;
  */
 public class PatternRouter {
     
-    /** log4j logger */
-    protected static Logger logger = Logger.getLogger(PatternRouter.class);
+    protected static Log logger = LogFactory.getLog(PatternRouter.class);
     
     
     /** A map from pattern predicate to a list of satisfying Finders */

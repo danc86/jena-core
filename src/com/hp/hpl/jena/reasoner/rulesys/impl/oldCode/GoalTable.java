@@ -12,7 +12,8 @@ package com.hp.hpl.jena.reasoner.rulesys.impl.oldCode;
 import com.hp.hpl.jena.reasoner.*;
 
 import java.util.*;
-import org.apache.log4j.Logger;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 /**
  *  Part of the backwared chaining rule interpreter. The goal table
@@ -31,8 +32,7 @@ public class GoalTable {
     /** The parent inference engine for the goal table */
     protected BRuleEngine ruleEngine;
     
-    /** log4j logger*/
-    static Logger logger = Logger.getLogger(GoalTable.class);
+    static Log logger = LogFactory.getLog(GoalTable.class);
         
     /**
      * Constructor. Creates a new, empty GoalTable. Any goal search on

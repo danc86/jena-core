@@ -26,7 +26,8 @@ package com.hp.hpl.jena.reasoner.dig;
 ///////////////
 import java.util.Iterator;
 
-import org.apache.log4j.Logger;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.w3c.dom.Document;
 
 import com.hp.hpl.jena.graph.*;
@@ -101,7 +102,7 @@ public abstract class DIGQueryTranslator {
         boolean warn = dc.warningCheck( response );
         if (warn) {
             for (Iterator i = dc.getWarnings();  i.hasNext(); ) {
-                Logger.getLogger( getClass() ).warn( i.next() );
+                LogFactory.getLog( getClass() ).warn( i.next() );
             }
         }
         

@@ -32,7 +32,8 @@ import java.util.*;
 
 import javax.xml.parsers.*;
 
-import org.apache.log4j.Logger;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.apache.xml.serialize.*;
 import org.w3c.dom.*;
 
@@ -162,7 +163,7 @@ public class DIGConnection {
             errorCheck( response );
 
             if (warningCheck(response)) {
-                Logger.getLogger(getClass()).warn( "DIG reasoner warning: " + getWarnings().next() );
+                LogFactory.getLog(getClass()).warn( "DIG reasoner warning: " + getWarnings().next() );
             }
             m_kbURI = null;
         }

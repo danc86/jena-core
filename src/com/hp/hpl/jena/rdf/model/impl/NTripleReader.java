@@ -29,7 +29,8 @@
 
 package com.hp.hpl.jena.rdf.model.impl;
 
-import org.apache.log4j.*;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.util.FileUtils;
@@ -45,7 +46,7 @@ import java.util.*;
  * @version  Release=$Name$ Date=$Date$
  */
 public class NTripleReader extends Object implements RDFReader {
-    static final Logger log = Logger.getLogger(NTripleReader.class);
+    static final Log log = LogFactory.getLog(NTripleReader.class);
 
     private Model model = null;
     private Hashtable anons = new Hashtable();

@@ -17,7 +17,8 @@ import com.hp.hpl.jena.reasoner.test.ReasonerTester;
 
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
-import org.apache.log4j.Logger;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import java.util.*;
 
 /**
@@ -37,8 +38,7 @@ public class TestLPRDFS extends TestCase {
     /** The tester utility */
     protected ReasonerTester tester;
      
-    /** log4j logger*/
-    static Logger logger = Logger.getLogger(TestLPRDFS.class);
+    static Log logger = LogFactory.getLog(TestLPRDFS.class);
     
     /**
      * Boilerplate for junit

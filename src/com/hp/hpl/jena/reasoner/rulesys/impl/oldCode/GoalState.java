@@ -11,7 +11,8 @@ package com.hp.hpl.jena.reasoner.rulesys.impl.oldCode;
 
 import com.hp.hpl.jena.reasoner.rulesys.impl.StateFlag;
 import com.hp.hpl.jena.util.iterator.ClosableIterator;
-import org.apache.log4j.Logger;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 /**
  * Represents the state in a traversal of all the solutions of a
@@ -35,8 +36,7 @@ public class GoalState {
     /** The index of the next memoized solution to return */
     protected int solutionPointer = 0;
     
-    /** log4j logger*/
-    static Logger logger = Logger.getLogger(GoalState.class);
+    static Log logger = LogFactory.getLog(GoalState.class);
     
     /**
      * Constructor. Create a GoalState which can traverse all the

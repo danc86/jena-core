@@ -63,7 +63,8 @@
 package com.hp.hpl.jena.rdf.arp;
 
 import java.io.Serializable;
-import org.apache.log4j.Logger;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 
 /**********************************************************************
@@ -100,7 +101,7 @@ import org.apache.log4j.Logger;
 **********************************************************************/
 public class URI implements Serializable {
 	
-	static Logger logger = Logger.getLogger(URI.class);
+	static Log logger = LogFactory.getLog(URI.class);
 
 	/** reserved characters */
 	private static final String RESERVED_CHARACTERS = ";/?:@&=+$,[]";

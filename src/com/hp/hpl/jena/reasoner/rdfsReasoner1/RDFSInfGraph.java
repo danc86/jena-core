@@ -19,7 +19,8 @@ import com.hp.hpl.jena.vocabulary.*;
 import com.hp.hpl.jena.util.iterator.ExtendedIterator;
 import com.hp.hpl.jena.util.iterator.UniqueExtendedIterator;
 
-import org.apache.log4j.Logger;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 import java.util.*;
 
@@ -75,8 +76,7 @@ public class RDFSInfGraph extends BaseInfGraph {
 //=======================================================================
 // static rules and axioms
         
-    /** log4j logger */
-    protected static Logger logger = Logger.getLogger(RDFSInfGraph.class);
+    protected static Log logger = LogFactory.getLog(RDFSInfGraph.class);
     
     /** The RDFS forward rule set */
     protected static BaseFRule[] rules = new BaseFRule[] {

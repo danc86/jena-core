@@ -16,7 +16,8 @@ import com.hp.hpl.jena.util.PrintUtil;
 import com.hp.hpl.jena.util.iterator.ClosableIterator;
 import com.hp.hpl.jena.graph.*;
 import java.util.*;
-import org.apache.log4j.Logger;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 /**
  * An implementation of the generic RuleContext interface used by
@@ -48,8 +49,7 @@ public class BFRuleContext implements RuleContext {
     /** A searchable index into the pending triples */
     protected Graph pendingCache;
     
-    /** log4j logger */
-    protected static Logger logger = Logger.getLogger(BFRuleContext.class);
+    protected static Log logger = LogFactory.getLog(BFRuleContext.class);
     
     /**
      * Constructor.

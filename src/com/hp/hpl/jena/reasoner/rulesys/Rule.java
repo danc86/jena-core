@@ -18,7 +18,8 @@ import com.hp.hpl.jena.graph.impl.*;
 import com.hp.hpl.jena.reasoner.*;
 import com.hp.hpl.jena.datatypes.xsd.*;
 
-import org.apache.log4j.Logger;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 /** * Representation of a generic inference rule. 
  * <p>
@@ -77,8 +78,7 @@ public class Rule implements ClauseEntry {
     /** Flags whether the rule was written as a forward or backward rule */
     protected boolean isBackward = false;
     
-    /** log4j logger*/
-    static Logger logger = Logger.getLogger(Rule.class);
+    static Log logger = LogFactory.getLog(Rule.class);
     
     /**
      * Constructor

@@ -18,7 +18,8 @@ import java.util.*;
 
 import com.hp.hpl.jena.util.OneToManyMap;
 import com.hp.hpl.jena.util.iterator.*;
-import org.apache.log4j.Logger;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 /**
  * An inference graph that runs a set of rules using a tabled
@@ -71,8 +72,7 @@ public class BasicBackwardRuleInfGraph extends BaseInfGraph implements BackwardR
     /** Default setting for rules threshold */
     public static final long DEFAULT_RULES_THRESHOLD = 500000;
     
-    /** log4j logger*/
-    static Logger logger = Logger.getLogger(BasicBackwardRuleInfGraph.class);
+    static Log logger = LogFactory.getLog(BasicBackwardRuleInfGraph.class);
     
 //=======================================================================
 // Core methods
@@ -264,7 +264,7 @@ public class BasicBackwardRuleInfGraph extends BaseInfGraph implements BackwardR
     
     /**
      * Set the state of the trace flag. If set to true then rule firings
-     * are logged out to the Logger at "INFO" level.
+     * are logged out to the Log at "INFO" level.
      */
     public void setTraceOn(boolean state) {
         traceOn = state;

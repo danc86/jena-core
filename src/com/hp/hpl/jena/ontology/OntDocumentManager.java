@@ -31,7 +31,8 @@ import java.net.*;
 import java.net.URLConnection;
 import java.util.*;
 
-import org.apache.log4j.*;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.apache.xerces.util.XMLChar;
 
 import com.hp.hpl.jena.rdf.model.*;
@@ -122,8 +123,8 @@ public class OntDocumentManager
     /** Mapping of public public URI's to language resources */
     protected Map m_languageMap = new HashMap();
 
-    /** Logger for this class */
-    private Logger m_log = Logger.getLogger( getClass() );
+    /** Log for this class */
+    private Log m_log = LogFactory.getLog( getClass() );
 
     /** Flag: cache models as they are loaded */
     protected boolean m_cacheModels = true;
@@ -817,7 +818,7 @@ public class OntDocumentManager
      */
     protected void loadImport( OntModel model, String importURI, List readQueue ) {
         if (m_processImports) {
-            Logger.getLogger( getClass() ).debug( "OntDocumentManager loading " + importURI );
+            LogFactory.getLog( getClass() ).debug( "OntDocumentManager loading " + importURI );
             
             // add this model to occurs check list
             model.addLoadedImport( importURI );
@@ -918,7 +919,7 @@ public class OntDocumentManager
                     u = u + " (re-directed via the document mgr from <" + uri + ">)"; 
                 }
                 
-                Logger.getLogger( OntDocumentManager.class )
+                LogFactory.getLog( OntDocumentManager.class )
                       .warn( "An error occurred while attempting to read from " + u + 
                              ". Error was '" + e.getMessage() + "'.", e );
             }

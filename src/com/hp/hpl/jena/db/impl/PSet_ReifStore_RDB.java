@@ -19,7 +19,8 @@ import com.hp.hpl.jena.db.impl.SpecializedGraphReifier_RDB.StmtMask;
 
 import com.hp.hpl.jena.vocabulary.RDF;
 
-import org.apache.log4j.Logger;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 //=======================================================================
 /**
@@ -47,7 +48,7 @@ public class PSet_ReifStore_RDB extends PSet_TripleStore_RDB {
 	//=======================================================================
 	// Internal variables
     
-    protected static Logger logger = Logger.getLogger( PSet_ReifStore_RDB.class );
+    protected static Log logger = LogFactory.getLog( PSet_ReifStore_RDB.class );
     
 	//=======================================================================
 	// Constructors and accessors

@@ -18,7 +18,8 @@ import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.shared.JenaException;
 import com.hp.hpl.jena.vocabulary.RDF;
 
-import org.apache.log4j.Logger;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 //=======================================================================
 /**
@@ -60,7 +61,7 @@ public class ResultSetReifIterator extends ResultSetIterator {
 	protected int m_nextFrag;
 
 
-    static protected Logger logger = Logger.getLogger( ResultSetReifIterator.class );
+    static protected Log logger = LogFactory.getLog( ResultSetReifIterator.class );
     
 	// Constructor
 	public ResultSetReifIterator(IPSet p, boolean getTriples, IDBID graphID) {

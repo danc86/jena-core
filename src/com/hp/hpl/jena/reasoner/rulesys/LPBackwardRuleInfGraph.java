@@ -17,7 +17,8 @@ import java.util.*;
 
 import com.hp.hpl.jena.util.OneToManyMap;
 import com.hp.hpl.jena.util.iterator.*;
-import org.apache.log4j.Logger;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 /**
  * Inference graph for accessing the LP version of the backward chaining
@@ -49,8 +50,7 @@ public class LPBackwardRuleInfGraph extends BaseInfGraph implements BackwardRule
     /** Cache of temporary property values inferred through getTemp calls */
     protected TempNodeCache tempNodecache;
         
-    /** log4j logger*/
-    static Logger logger = Logger.getLogger(LPBackwardRuleInfGraph.class);
+    static Log logger = LogFactory.getLog(LPBackwardRuleInfGraph.class);
     
 //  =======================================================================
 //   Core methods
@@ -238,7 +238,7 @@ public class LPBackwardRuleInfGraph extends BaseInfGraph implements BackwardRule
        
     /**
      * Set the state of the trace flag. If set to true then rule firings
-     * are logged out to the Logger at "INFO" level.
+     * are logged out to the Log at "INFO" level.
      */
     public void setTraceOn(boolean state) {
         engine.setTraceOn(state);

@@ -17,7 +17,8 @@ import com.hp.hpl.jena.shared.*;
 
 import com.hp.hpl.jena.vocabulary.ResultSet ;
 
-import org.apache.log4j.*;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 //import com.hp.hpl.jena.mem.ModelMem ;
 //import com.hp.hpl.jena.reasoner.* ;
@@ -79,7 +80,7 @@ public class rdfquery
 
     static boolean applyRDFS = false ;
     
-    static protected Logger logger = Logger.getLogger( rdfquery.class );
+    static protected Log logger = LogFactory.getLog( rdfquery.class );
 
     public static void main (String [] argv)
     {
@@ -342,12 +343,6 @@ public class rdfquery
 
         if ( messageLevel >= 3 )
             dumpModel = true ;
-
-        if ( debug )
-        {
-            logger.setLevel( Level.DEBUG );
-            logger.debug("Debug on");
-        }
 
         String queryString = null ;
 

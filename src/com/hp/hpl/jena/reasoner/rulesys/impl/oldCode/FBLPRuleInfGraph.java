@@ -19,7 +19,8 @@ import java.util.*;
 import com.hp.hpl.jena.util.OneToManyMap;
 import com.hp.hpl.jena.util.iterator.*;
 
-import org.apache.log4j.Logger;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 /**
  * An inference graph that uses a mixture of forward and backward
@@ -35,8 +36,7 @@ public class FBLPRuleInfGraph  extends FBRuleInfGraph {
     /** The core backward rule engine which includes all the memoized results */
     protected LPBRuleEngine lpbEngine;
     
-    /** log4j logger*/
-    static Logger logger = Logger.getLogger(FBLPRuleInfGraph.class);
+    static Log logger = LogFactory.getLog(FBLPRuleInfGraph.class);
 
 //  =======================================================================
 //  Constructors
@@ -169,7 +169,7 @@ public class FBLPRuleInfGraph  extends FBRuleInfGraph {
     
     /**
      * Set the state of the trace flag. If set to true then rule firings
-     * are logged out to the Logger at "INFO" level.
+     * are logged out to the Log at "INFO" level.
      */
     public void setTraceOn(boolean state) {
         super.setTraceOn(state);

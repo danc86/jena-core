@@ -11,7 +11,8 @@ import com.hp.hpl.jena.datatypes.*;
 import com.hp.hpl.jena.graph.impl.*;
 import com.hp.hpl.jena.shared.*;
 
-import org.apache.log4j.*;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 import java.util.*;
 
@@ -30,7 +31,7 @@ public abstract class Node {
     static final int THRESHOLD = 1000;
     static final HashMap present = new HashMap( THRESHOLD * 2 );
 
-    static final Logger log = Logger.getLogger( Node.class );
+    static final Log log = LogFactory.getLog( Node.class );
 
     /**
         The canonical instance of Node_ANY; no-one else need use the

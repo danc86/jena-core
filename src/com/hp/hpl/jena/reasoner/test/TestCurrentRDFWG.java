@@ -21,7 +21,8 @@ import java.util.Iterator;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
-import org.apache.log4j.Logger;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 /**
  * Test the default RDFS reasoner against the current set of working group tests
@@ -44,8 +45,7 @@ public class TestCurrentRDFWG extends ReasonerTestBase {
     /** The resource which acts as a description for the Jena2 instance being tested */
     Resource jena2;
     
-    /** log4j logger */
-    protected static Logger logger = Logger.getLogger(TestCurrentRDFWG.class);
+    protected static Log logger = LogFactory.getLog(TestCurrentRDFWG.class);
 
     /**
      * Boilerplate for junit

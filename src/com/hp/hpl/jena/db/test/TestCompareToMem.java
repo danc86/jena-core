@@ -28,7 +28,8 @@ import com.hp.hpl.jena.db.*;
 import com.hp.hpl.jena.rdf.model.*;
 
 import junit.framework.*;
-import org.apache.log4j.Logger;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 public class TestCompareToMem extends TestCase
     {    
@@ -39,7 +40,7 @@ public class TestCompareToMem extends TestCase
     public static TestSuite suite()
         { return new TestSuite( TestCompareToMem.class ); }   
      
-     static Logger logger = Logger.getLogger( TestCompareToMem.class );
+     static Log logger = LogFactory.getLog( TestCompareToMem.class );
      
     Model modelrdf = null;    
     Model modelmem = null;

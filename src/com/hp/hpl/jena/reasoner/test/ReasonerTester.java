@@ -20,7 +20,8 @@ import com.hp.hpl.jena.vocabulary.RDF;
 import com.hp.hpl.jena.shared.*;
 
 import junit.framework.TestCase;
-import org.apache.log4j.Logger;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 import java.util.*;
 import java.io.*;
@@ -91,8 +92,7 @@ public class ReasonerTester {
     /** A cache of loaded source files, map from source name to Model */
     protected Map sourceCache = new HashMap();
     
-    /** log4j logger */
-    protected static Logger logger = Logger.getLogger(ReasonerTester.class);
+    protected static Log logger = LogFactory.getLog(ReasonerTester.class);
     
     /**
      * Constructor.

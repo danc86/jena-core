@@ -14,7 +14,8 @@ import com.hp.hpl.jena.reasoner.*;
 import com.hp.hpl.jena.reasoner.rulesys.*;
 
 import java.util.*;
-import org.apache.log4j.Logger;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 /**
  * Part of the backward chaining rule interpreter. The goal table
@@ -68,8 +69,7 @@ public class GoalResults {
     /** Flag to indicate that the goal is a singleton and so should close once one result is in */
     protected boolean isSingleton = false;
         
-    /** log4j logger*/
-    static Logger logger = Logger.getLogger(GoalResults.class);
+    static Log logger = LogFactory.getLog(GoalResults.class);
     
 //  =======================================================================
 //   methods

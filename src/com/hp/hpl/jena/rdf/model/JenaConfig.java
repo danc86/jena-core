@@ -31,7 +31,8 @@
 
 package com.hp.hpl.jena.rdf.model;
 
-import org.apache.log4j.Logger;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 import com.hp.hpl.jena.*;
 
@@ -59,7 +60,7 @@ public class JenaConfig {
     private JenaConfig() {
     }
     
-    protected static Logger logger = Logger.getLogger( JenaConfig.class );
+    protected static Log logger = LogFactory.getLog( JenaConfig.class );
     
     private static boolean oldLiteralCompare;
     

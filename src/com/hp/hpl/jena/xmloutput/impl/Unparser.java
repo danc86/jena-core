@@ -99,7 +99,8 @@ import com.hp.hpl.jena.shared.*;
 import java.util.*;
 import java.io.*;
 
-import org.apache.log4j.Logger;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.apache.xerces.util.XMLChar;
 
 
@@ -112,7 +113,7 @@ class Unparser {
 	static private Property DESCRIPTION =
 		new PropertyImpl(RDF.getURI(), "Description");
         
-    static protected Logger logger = Logger.getLogger( Unparser.class );
+    static protected Log logger = LogFactory.getLog( Unparser.class );
     
 	/** Creates an Unparser for the specified model.
 	 * The localName is the URI (typical URL) intended for

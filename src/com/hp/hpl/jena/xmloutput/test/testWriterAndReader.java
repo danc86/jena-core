@@ -17,7 +17,8 @@ import java.io.*;
 import java.util.*;
 
 import junit.framework.*;
-import org.apache.log4j.Logger;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 /**
  * This will test any Writer and Reader pair.
@@ -37,7 +38,7 @@ public class testWriterAndReader
 	static private int lastTest = 9;
 	static private int repetitionsJ = 6;
     
-  protected static Logger logger = Logger.getLogger( testWriterAndReader.class );
+  protected static Log logger = LogFactory.getLog( testWriterAndReader.class );
     
 	String lang;
 	String test;

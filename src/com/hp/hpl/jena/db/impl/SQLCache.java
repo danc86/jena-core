@@ -17,7 +17,8 @@ import java.io.*;
 import com.hp.hpl.jena.db.*;
 import com.hp.hpl.jena.shared.JenaException;
 
-import org.apache.log4j.Logger;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 //=======================================================================
 /**
@@ -68,7 +69,7 @@ public class SQLCache {
     /** Set to true to enable cache of pre-prepared statements. */
     protected boolean CACHE_PREPARED_STATEMENTS = true;
 
-    static protected Logger logger = Logger.getLogger( SQLCache.class );
+    static protected Log logger = LogFactory.getLog( SQLCache.class );
 //=======================================================================
 // Public interface
 

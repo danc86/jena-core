@@ -18,7 +18,8 @@ import java.util.*;
 import com.hp.hpl.jena.util.OneToManyMap;
 import com.hp.hpl.jena.util.iterator.*;
 
-import org.apache.log4j.Logger;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 /**
  * An inference graph interface that runs a set of forward chaining
@@ -55,8 +56,7 @@ public class BasicForwardRuleInfGraph extends BaseInfGraph implements ForwardRul
     /** Flag which, if true, enables tracing of rule actions to logger.info */
     protected boolean traceOn = false;
     
-    /** log4j logger */
-    protected static Logger logger = Logger.getLogger(BasicForwardRuleInfGraph.class);
+    protected static Log logger = LogFactory.getLog(BasicForwardRuleInfGraph.class);
     
 //=======================================================================
 // Core methods
@@ -401,7 +401,7 @@ public class BasicForwardRuleInfGraph extends BaseInfGraph implements ForwardRul
      
     /**
      * Set the state of the trace flag. If set to true then rule firings
-     * are logged out to the Logger at "INFO" level.
+     * are logged out to the Log at "INFO" level.
      */
     public void setTraceOn(boolean state) {
         traceOn = state;

@@ -170,7 +170,7 @@ public class BasicBackwardRuleReasoner implements Reasoner {
     
     /**
      * Set the state of the trace flag. If set to true then rule firings
-     * are logged out to the Logger at "INFO" level.
+     * are logged out to the Log at "INFO" level.
      */
     public void setTraceOn(boolean state) {
         traceOn = state;

@@ -37,7 +37,8 @@ import java.io.*;
 
 import com.hp.hpl.jena.shared.*;
 
-import org.apache.log4j.Logger;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 /**
  *
@@ -51,7 +52,7 @@ public class testReaderInterface extends Object {
         (new testReaderInterface()).test(m1);
     }
 
-    protected static Logger logger = Logger.getLogger( testReaderInterface.class );
+    protected static Log logger = LogFactory.getLog( testReaderInterface.class );
     
     void test(Model m1) {
 

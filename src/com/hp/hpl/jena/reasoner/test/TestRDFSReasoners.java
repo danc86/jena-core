@@ -22,7 +22,8 @@ import java.util.Iterator;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
-import org.apache.log4j.Logger;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 /**
  * Test the set of admissable RDFS reasoners.
@@ -35,8 +36,7 @@ public class TestRDFSReasoners extends ReasonerTestBase {
     /** Base URI for the test names */
     public static final String NAMESPACE = "http://www.hpl.hp.com/semweb/2003/query_tester/";
     
-    /** log4j logger */
-    protected static Logger logger = Logger.getLogger(TestReasoners.class);
+    protected static Log logger = LogFactory.getLog(TestReasoners.class);
 
     /**
      * Boilerplate for junit

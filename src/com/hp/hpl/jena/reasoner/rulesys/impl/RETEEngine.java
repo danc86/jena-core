@@ -18,7 +18,8 @@ import com.hp.hpl.jena.util.OneToManyMap;
 import com.hp.hpl.jena.util.PrintUtil;
 import com.hp.hpl.jena.util.iterator.ConcatenatedIterator;
 
-import org.apache.log4j.Logger;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 /**
  * A RETE version of the the forward rule system engine. It neeeds to reference
@@ -59,8 +60,7 @@ public class RETEEngine implements FRuleEngineI {
     /** True if we have processed the axioms in the rule set */
     boolean processedAxioms = false;
     
-    /** log4j logger */
-    protected static Logger logger = Logger.getLogger(FRuleEngine.class);
+    protected static Log logger = LogFactory.getLog(FRuleEngine.class);
     
 //  =======================================================================
 //  Constructors

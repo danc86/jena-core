@@ -26,7 +26,8 @@ package com.hp.hpl.jena.rdf.model.test;
 ///////////////
 import java.util.*;
 
-import org.apache.log4j.Logger;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 import junit.framework.*;
 
@@ -110,7 +111,7 @@ public class TestList
 
     /** Test that an iterator delivers the expected values */
     protected static void iteratorTest( Iterator i, Object[] expected ) {
-        Logger logger = Logger.getLogger( TestList.class );
+        Log logger = LogFactory.getLog( TestList.class );
         List expList = new ArrayList();
         for (int j = 0; j < expected.length; j++) {
             expList.add( expected[j] );

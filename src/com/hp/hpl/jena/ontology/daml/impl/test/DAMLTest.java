@@ -34,7 +34,8 @@ import java.util.*;
 
 import java.io.*;
 
-import org.apache.log4j.Logger;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 
 /**
@@ -57,7 +58,7 @@ public class DAMLTest
     // Instance variables
     //////////////////////////////////
 
-    private Logger m_log = Logger.getLogger( DAMLTest.class );
+    private Log m_log = LogFactory.getLog( DAMLTest.class );
      
     // Constructors
     //////////////////////////////////

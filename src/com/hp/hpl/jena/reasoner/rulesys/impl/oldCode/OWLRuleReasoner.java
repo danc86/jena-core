@@ -11,7 +11,8 @@ package com.hp.hpl.jena.reasoner.rulesys.impl.oldCode;
 
 import java.util.*;
 import java.io.*;
-import org.apache.log4j.Logger;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 import com.hp.hpl.jena.reasoner.*;
 import com.hp.hpl.jena.reasoner.rulesys.BasicForwardRuleInfGraph;
@@ -46,8 +47,7 @@ public class OWLRuleReasoner extends BasicForwardRuleReasoner {
     /** The parsed rules */
     protected static List ruleSet;
     
-    /** log4j logger */
-    protected static Logger logger = Logger.getLogger(OWLRuleReasoner.class);
+    protected static Log logger = LogFactory.getLog(OWLRuleReasoner.class);
     
     /** Performance statistics - the total number of rule firings used during data bind operations so far. */
     protected static long nRulesFired = 0;

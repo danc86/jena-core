@@ -38,7 +38,7 @@ public class TestXMLFeatures extends ModelTestBase {
 	static AwkCompiler awk = PrettyWriterTest.awk;
 	static AwkMatcher matcher = PrettyWriterTest.matcher;
     
-   // static protected Logger logger = Logger.getLogger( TestXMLFeatures.class );
+   // static protected Log logger = LogFactory.getLog( TestXMLFeatures.class );
 
    // static { logger.setLevel( Level.OFF ); }
     

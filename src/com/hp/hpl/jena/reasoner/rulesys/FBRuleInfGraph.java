@@ -23,7 +23,8 @@ import com.hp.hpl.jena.util.PrintUtil;
 import com.hp.hpl.jena.util.iterator.*;
 import com.hp.hpl.jena.vocabulary.*;
 
-import org.apache.log4j.Logger;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 /**
  * An inference graph that uses a mixture of forward and backward
@@ -71,8 +72,7 @@ public class FBRuleInfGraph  extends BasicForwardRuleInfGraph implements Backwar
     /** Cache of temporary property values inferred through getTemp calls */
     protected TempNodeCache tempNodecache;
     
-    /** log4j logger*/
-    static Logger logger = Logger.getLogger(FBRuleInfGraph.class);
+    static Log logger = LogFactory.getLog(FBRuleInfGraph.class);
 
 //  =======================================================================
 //  Constructors
@@ -441,7 +441,7 @@ public class FBRuleInfGraph  extends BasicForwardRuleInfGraph implements Backwar
     
     /**
      * Set the state of the trace flag. If set to true then rule firings
-     * are logged out to the Logger at "INFO" level.
+     * are logged out to the Log at "INFO" level.
      */
     public void setTraceOn(boolean state) {
         super.setTraceOn(state);

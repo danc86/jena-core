@@ -24,7 +24,8 @@ import com.hp.hpl.jena.reasoner.rulesys.*;
 import com.hp.hpl.jena.reasoner.rulesys.impl.oldCode.*;
 //import com.hp.hpl.jena.reasoner.transitiveReasoner.TransitiveReasonerFactory;
 
-import org.apache.log4j.Logger;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import java.util.*;
 
 /**
@@ -58,8 +59,7 @@ public class DebugOWL {
     /** Instance properties */
     Node[] properties;
         
-    /** log4j logger*/
-    static Logger logger = Logger.getLogger(DebugOWL.class);
+    static Log logger = LogFactory.getLog(DebugOWL.class);
     
     /** reasoner config: experimental ruleset and config */
     public static final int EXPT = 1;

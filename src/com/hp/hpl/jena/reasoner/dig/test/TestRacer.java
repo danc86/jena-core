@@ -27,7 +27,8 @@ package com.hp.hpl.jena.reasoner.dig.test;
 ///////////////
 import java.util.*;
 
-import org.apache.log4j.Logger;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 import com.hp.hpl.jena.ontology.OntModelSpec;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
@@ -110,7 +111,7 @@ public class TestRacer
     protected void iteratorTest( Iterator i, Object[] expected ) {
         assertNotNull( "Iterator should not be null", i );
         
-        Logger logger = Logger.getLogger( getClass() );
+        Log logger = LogFactory.getLog( getClass() );
         List expList = new ArrayList();
         for (int j = 0; j < expected.length; j++) {
             expList.add( expected[j] );

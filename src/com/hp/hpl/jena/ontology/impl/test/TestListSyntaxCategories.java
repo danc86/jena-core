@@ -32,7 +32,8 @@ import junit.framework.*;
 
 import java.util.*;
 
-import org.apache.log4j.Logger;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 
 
@@ -675,7 +676,7 @@ public class TestListSyntaxCategories
                 
                 // debugging 
                 if (m_count != actual.size()) {
-                    Logger logger = Logger.getLogger( getClass() );
+                    Log logger = LogFactory.getLog( getClass() );
                     logger.debug( getName() + " - expected " + m_count + " results, actual = " + actual.size() );
                     for (Iterator j = actual.iterator(); j.hasNext(); ) {
                         logger.debug( getName() + " - saw actual: " + j.next() );

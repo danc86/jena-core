@@ -17,7 +17,8 @@ import java.net.*;
 import java.util.*;
 import java.io.*;
 
-import org.apache.log4j.Logger;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 /** A common set of regression tests.
  *
@@ -32,7 +33,7 @@ public class Regression extends Object {
         (new Regression()).test(m1, m2, m3, m4);
     }
 
-    protected static Logger logger = Logger.getLogger( Regression.class );
+    protected static Log logger = LogFactory.getLog( Regression.class );
 
     /** Run the whole batch of common tests on a model implementation
      * @param m an instance of the model to be tested

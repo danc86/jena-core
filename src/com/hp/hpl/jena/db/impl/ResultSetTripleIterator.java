@@ -16,7 +16,8 @@ import java.sql.*;
 import com.hp.hpl.jena.db.RDFRDBException;
 import com.hp.hpl.jena.graph.*;
 
-import org.apache.log4j.Logger;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 //=======================================================================
 /**
@@ -45,7 +46,7 @@ public class ResultSetTripleIterator extends ResultSetIterator {
     /** HasType flag if iterating over reified statements */
     protected boolean m_hasType;
 
-    static protected Logger logger = Logger.getLogger( ResultSetTripleIterator.class );
+    static protected Log logger = LogFactory.getLog( ResultSetTripleIterator.class );
     
 	// Constructor
 	public ResultSetTripleIterator(IPSet p, IDBID graphID) {

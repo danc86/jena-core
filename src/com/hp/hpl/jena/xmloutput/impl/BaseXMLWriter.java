@@ -25,7 +25,8 @@ import java.util.*;
 
 import org.apache.xerces.util.*;
 import org.apache.oro.text.regex.*;
-import org.apache.log4j.Logger;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 /** 
  * This is not part of the public API.
@@ -55,8 +56,7 @@ abstract public class BaseXMLWriter implements RDFXMLWriterI {
         setupMaps();
     }
     
-    /** log4j logger */
-	//protected static Logger logger = Logger.getLogger( BaseXMLWriter.class );
+	//protected static Log logger = LogFactory.getLog( BaseXMLWriter.class );
   protected static SimpleLogger logger = new SimpleLogger() {
   	public void warn(String s) {
   		System.err.println(s);
