@@ -1,5 +1,5 @@
 /*
- * (c) Copyright 2001-2003, Hewlett-Packard Company, all rights reserved.
+ * (c) Copyright 2001, 2002, 2003, Hewlett-Packard Development Company, LP
  * [See end of file]
  */
 
@@ -320,7 +320,7 @@ import com.hp.hpl.jena.shared.*;
                     System.err.println(objectSlot.getVar().toString()) ;
                 else
                 {
-                                        if ( ! ( o instanceof Literal ) )
+                                        if ( ! ( o instanceof Literal ) )
                     {
                         System.err.println(o.toString()) ;
                     }
@@ -333,7 +333,7 @@ import com.hp.hpl.jena.shared.*;
                         if ( ((Literal)o).getDatatypeURI() != null )
                             tmp = tmp+"^^<"+((Literal)o).getDatatypeURI()+">" ;
                         System.err.println(tmp) ;
-                    }                }
+                    }                }
             }
             // ----
 
@@ -615,7 +615,7 @@ import com.hp.hpl.jena.shared.*;
 }
 
 /*
- *  (c) Copyright Hewlett-Packard Company 2001-2003
+ *  (c) Copyright 2001, 2002, 2003 Hewlett-Packard Development Company, LP
  *  All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
