@@ -10,7 +10,6 @@
 package com.hp.hpl.jena.reasoner.rulesys;
 
 import com.hp.hpl.jena.reasoner.*;
-import com.hp.hpl.jena.reasoner.rulesys.impl.BaseRuleReasonerFactory;
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.vocabulary.*;
 
@@ -21,8 +20,7 @@ import com.hp.hpl.jena.vocabulary.*;
  * @author <a href="mailto:der@hplb.hpl.hp.com">Dave Reynolds</a>
  * @version $Revision$ on $Date$
  */
-public class RDFSRuleReasonerFactory extends BaseRuleReasonerFactory
-    implements RuleReasonerFactory {
+public class RDFSRuleReasonerFactory implements ReasonerFactory {
     
     /** Single global instance of this factory */
     private static ReasonerFactory theInstance = new RDFSRuleReasonerFactory();
@@ -45,9 +43,7 @@ public class RDFSRuleReasonerFactory extends BaseRuleReasonerFactory
      * @param configuration a set of arbitrary configuration information for the reasoner
      */
     public Reasoner create(Resource configuration) {
-        RDFSRuleReasoner result = new RDFSRuleReasoner(this, configuration);
-        result.addRules( rules );
-        return result;
+        return new RDFSRuleReasoner (this, configuration );
     }
     
     /**

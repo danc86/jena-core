@@ -12,7 +12,6 @@ package com.hp.hpl.jena.reasoner.rulesys;
 
 import com.hp.hpl.jena.reasoner.*;
 import com.hp.hpl.jena.reasoner.rulesys.Util;
-import com.hp.hpl.jena.reasoner.rulesys.impl.BaseRuleReasonerFactory;
 import com.hp.hpl.jena.reasoner.transitiveReasoner.TransitiveReasoner;
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.vocabulary.*;
@@ -33,8 +32,7 @@ import com.hp.hpl.jena.vocabulary.*;
  * @author <a href="mailto:der@hplb.hpl.hp.com">Dave Reynolds</a>
  * @version $Revision$ on $Date$
  */
-public class OWLMicroReasonerFactory extends BaseRuleReasonerFactory 
-    implements RuleReasonerFactory {
+public class OWLMicroReasonerFactory implements ReasonerFactory {
     
     /** Single global instance of this factory */
     private static ReasonerFactory theInstance = new OWLMicroReasonerFactory();
@@ -69,7 +67,7 @@ public class OWLMicroReasonerFactory extends BaseRuleReasonerFactory
                 reasoner.setTraceOn(doTrace.booleanValue());
             }
         }
-        return reasoner.addRules( rules );
+        return reasoner;
     }
    
     /**

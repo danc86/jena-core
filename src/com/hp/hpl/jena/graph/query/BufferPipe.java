@@ -20,7 +20,13 @@ public class BufferPipe implements Pipe
     private boolean open = true;
     private BoundedBuffer buffer = new BoundedBuffer( 5 );
     private Object pending = null;
-    private static final String finished = "<finished>";
+    
+    public static class Finished
+        {
+        
+        }
+    
+    private static final Finished finished = new Finished();
      
     public BufferPipe()
         { }
@@ -44,6 +50,9 @@ public class BufferPipe implements Pipe
 
     public void close()
         { putAny( finished );  }
+    
+    public void close( Exception e )
+        { close(); }
 
     public boolean hasNext()
         {
@@ -52,7 +61,7 @@ public class BufferPipe implements Pipe
             if (pending == null)
                 {
                 pending = fetch();
-                if (pending == finished) open = false;
+                if (pending instanceof Finished) open = false;
                 return open;
                 }
             else

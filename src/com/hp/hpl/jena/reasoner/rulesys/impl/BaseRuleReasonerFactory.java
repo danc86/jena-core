@@ -5,29 +5,17 @@
 */
 package com.hp.hpl.jena.reasoner.rulesys.impl;
 
-import java.util.ArrayList;
-import java.util.List;
 
 /**
      BaseRuleReasonerFactory - a base for RuleReasonerFactories that handles
      the list of rules.
      
+     OBSOLETE, not used anywhere.
+     
      @author kers
 */
 public class BaseRuleReasonerFactory 
     {
-    /**
-         The list of rules to be added to newly-created reasoners; defaults to the
-         empty list.
-    */
-    protected List rules = new ArrayList();
-
-    /**
-         Add <code>rules</code>, which must be a List of <code>Rule</code> objects.
-         to the rule list.
-    */
-    public void addRules(List rules)
-        { this.rules.addAll( rules ); }
     }
 
 /*

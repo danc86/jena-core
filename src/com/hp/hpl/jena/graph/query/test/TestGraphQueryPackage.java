@@ -22,6 +22,7 @@ public class TestGraphQueryPackage
     public static TestSuite suite()
         {
         TestSuite result = new TestSuite();
+        result.addTest( TestBufferPipe.suite() );
         result.addTest( QueryTest.suite() );
         result.addTest( TestSimpleTripleSorter.suite() );
         result.addTest( TestExpressions.suite() );
