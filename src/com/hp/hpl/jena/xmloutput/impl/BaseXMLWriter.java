@@ -23,6 +23,7 @@ import com.hp.hpl.jena.rdf.arp.MalformedURIException;
 
 import java.io.*;
 import java.util.*;
+import java.nio.charset.Charset;
 
 import org.apache.xerces.util.*;
 import org.apache.oro.text.regex.*;
@@ -471,13 +472,11 @@ abstract public class BaseXMLWriter implements RDFXMLWriterI {
 			if (!(javaEnc.equals("UTF8") || javaEnc.equals("UTF-16"))) {
 				//		System.out.println(javaEnc);
 				String xEnc = EncodingMap.getJava2IANAMapping(javaEnc);
-				if (xEnc == null) {
-		            logger.warn("IANA name for Java encoding: "+javaEnc+" is not known. \n"+
-		            "   Not including any encoding declaration in the RDF/XML output.\n" +
-		            "   It is better to use a FileOutputStream, in place of a FileWriter.");
-		        } else {
-				   decl = "<?xml version="+q("1.0")+" encoding=" + q(xEnc) + "?>";
-		        }
+				String yEnc = Charset.forName(javaEnc).name();
+				if (xEnc != null && !yEnc.equalsIgnoreCase(xEnc)) {
+				    logger.warn("xEnc: "+xEnc+ " yEnc: "+ yEnc );
+				}
+				decl = "<?xml version="+q("1.0")+" encoding=" + q(yEnc) + "?>";
 			}
 		}
 		if (decl == null && showXmlDeclaration != null)
