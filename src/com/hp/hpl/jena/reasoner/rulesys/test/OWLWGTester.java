@@ -11,7 +11,7 @@ package com.hp.hpl.jena.reasoner.rulesys.test;
 
 import com.hp.hpl.jena.reasoner.*;
 import com.hp.hpl.jena.reasoner.rulesys.BasicForwardRuleInfGraph;
-import com.hp.hpl.jena.reasoner.rulesys.OWLRuleReasonerFactory;
+import com.hp.hpl.jena.reasoner.rulesys.BasicForwardRuleReasoner;
 import com.hp.hpl.jena.reasoner.test.WGReasonerTester;
 import com.hp.hpl.jena.util.ModelLoader;
 import com.hp.hpl.jena.util.PrintUtil;
@@ -160,8 +160,8 @@ public class OWLWGTester {
         if (log) {
             configuration = ModelFactory.createDefaultModel();
             configuration.createResource(reasonerF.getURI())
-                         .addProperty(OWLRuleReasonerFactory.PROPtraceOn, "true")
-                         .addProperty(OWLRuleReasonerFactory.PROPderivationLogging, "true");
+                         .addProperty(BasicForwardRuleReasoner.PROPtraceOn, "true")
+                         .addProperty(BasicForwardRuleReasoner.PROPderivationLogging, "true");
         }
         Reasoner reasoner = reasonerF.create(configuration);
         // Temp ...

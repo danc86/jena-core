@@ -16,7 +16,7 @@ import com.hp.hpl.jena.vocabulary.RDF;
 import com.hp.hpl.jena.mem.ModelMem;
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.reasoner.rdfsReasoner1.RDFSReasonerFactory;
-//import com.hp.hpl.jena.reasoner.rulesys.OWLRuleReasonerFactory;
+import com.hp.hpl.jena.reasoner.rulesys.OWLRuleReasonerFactory;
 import com.hp.hpl.jena.reasoner.transitiveReasoner.TransitiveReasonerFactory;
 
 import java.util.*;
@@ -206,12 +206,12 @@ public class ReasonerRegistry {
      */
     public static final Reasoner TRANSITIVE = TransitiveReasonerFactory.theInstance().create(null);
     
-//    /**
-//     * Prebuilt stanard configuration for the default OWL reasoner. This configuration is
-//     * a pure forward rule-based reasoner that will compute all entailments from the ontology + instamnce
-//     * data at bind time.
-//     */
-//    public static final Reasoner OWL = OWLRuleReasonerFactory.theInstance().create(null);
+    /**
+     * Prebuilt stanard configuration for the default OWL reasoner. This configuration is
+     * a pure forward rule-based reasoner that will compute all entailments from the ontology + instamnce
+     * data at bind time.
+     */
+    public static final Reasoner OWL = OWLRuleReasonerFactory.theInstance().create(null);
     
 }
 

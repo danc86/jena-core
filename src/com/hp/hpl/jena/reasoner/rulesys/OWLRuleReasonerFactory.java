@@ -40,18 +40,6 @@ public class OWLRuleReasonerFactory implements ReasonerFactory {
     /** Static URI for this reasoner type */
     public static final String URI = "http://www.hpl.hp.com/semweb/2003/OWLRuleReasoner";
     
-    /** Property used to configure the derivation logging behaviour of the reasoner.
-     *  Set to "true" to enable logging of derivations. */
-    public static final Property PROPderivationLogging = ResourceFactory.createProperty(URI+"#", "derivationLogging");
-    
-    /** Property used to configure the tracing behaviour of the reasoner.
-     *  Set to "true" to enable internal trace message to be sent to Logger.info . */
-    public static final Property PROPtraceOn = ResourceFactory.createProperty(URI+"#", "traceOn");
-    
-    /** Property used to configure the maximum number of rule firings allowed in 
-     * a single operation. Should be an xsd:int. */
-    public static final Property PROPrulesThreshold = ResourceFactory.createProperty(URI+"#", "rulesThreshold");
-    
     /**
      * Return the single global instance of this factory
      */
@@ -67,15 +55,15 @@ public class OWLRuleReasonerFactory implements ReasonerFactory {
     public Reasoner create(Model configuration) {
         OWLRuleReasoner reasoner = new OWLRuleReasoner();
         if (configuration != null) {
-            Boolean doLog = Util.checkBinaryPredicate(URI, PROPderivationLogging, configuration);
+            Boolean doLog = Util.checkBinaryPredicate(URI, BasicForwardRuleReasoner.PROPderivationLogging, configuration);
             if (doLog != null) {
                 reasoner.setDerivationLogging(doLog.booleanValue());
             }
-            Boolean doTrace = Util.checkBinaryPredicate(URI, PROPtraceOn, configuration);
+            Boolean doTrace = Util.checkBinaryPredicate(URI, BasicForwardRuleReasoner.PROPtraceOn, configuration);
             if (doTrace != null) {
                 reasoner.setTraceOn(doTrace.booleanValue());
             }
-            Integer threshold = Util.getIntegerPredicate(URI, PROPrulesThreshold, configuration);
+            Integer threshold = Util.getIntegerPredicate(URI, BasicForwardRuleReasoner.PROPrulesThreshold, configuration);
             if (threshold != null) {
                 reasoner.setRulesThreshold(threshold.intValue());
             }
