@@ -117,7 +117,6 @@ public class NiceIterator implements ExtendedIterator
     */     
     public ExtendedIterator mapWith( Map1 map1 )
         { return new Map1Iterator( map1, this ); }
-    
 
     /**
         If <code>it</code> is a Closableiterator, close it. Abstracts away from

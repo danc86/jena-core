@@ -10,9 +10,10 @@ import com.hp.hpl.jena.util.iterator.*;
 
 import java.util.Iterator;
 
-/** An iterator that selects triples from an underlying iterators of triples
- * It used to take TripleMatch's, but those are obsolete.
- * @author  bwm, kers
+/** 
+ 	An iterator that selects triples from an underlying iterators of triples
+ 	It used to take TripleMatch's, but those are obsolete.
+ 	@author  bwm, kers
 */
 public class TripleMatchIterator 
     extends FilterIterator

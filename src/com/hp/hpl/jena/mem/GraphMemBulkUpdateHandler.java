@@ -29,7 +29,6 @@ public class GraphMemBulkUpdateHandler extends SimpleBulkUpdateHandler
 	private void clearComponents()
 	    {
 	    GraphMem g = (GraphMem) graph;
-	    // g.triples.clear();
 	    g.subjects.clear();
 	    g.predicates.clear();
 	    g.objects.clear();
