@@ -820,6 +820,22 @@ public class OntResourceImpl
     /**
      * <p>
      * Answer true if this resource is a member of the class denoted by the
+     * given class resource.  Includes all available types, so is equivalent to
+     * <code><pre>
+     * hasRDF( ontClass, false );
+     * </pre></code>
+     * </p>
+     * 
+     * @param ontClass Denotes a class to which this value may belong
+     * @return True if this resource has the given class as one of its <code>rdf:type</code>'s.
+     */
+    public boolean hasRDFType( Resource ontClass ) {
+        return hasRDFType( ontClass, "unknown", false );
+    }
+
+    /**
+     * <p>
+     * Answer true if this resource is a member of the class denoted by the
      * given class resource.
      * </p>
      * 

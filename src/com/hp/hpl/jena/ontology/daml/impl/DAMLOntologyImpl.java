@@ -47,17 +47,13 @@ package com.hp.hpl.jena.ontology.daml.impl;
 ///////////////
 import com.hp.hpl.jena.rdf.model.NodeIterator;
 
-import com.hp.hpl.jena.ontology.daml.DAMLModel;
-import com.hp.hpl.jena.ontology.daml.DAMLOntology;
-import com.hp.hpl.jena.ontology.daml.LiteralAccessor;
+import com.hp.hpl.jena.ontology.daml.*;
 
 import com.hp.hpl.jena.util.Log;
 import com.hp.hpl.jena.util.iterator.ConcatenatedNodeIterator;
 import com.hp.hpl.jena.shared.*;
 
-import com.hp.hpl.jena.vocabulary.DAML_OIL;
-import com.hp.hpl.jena.vocabulary.DAML_OIL_2000_12;
-import com.hp.hpl.jena.vocabulary.DAMLVocabulary;
+import com.hp.hpl.jena.vocabulary.*;
 
 
 
@@ -147,8 +143,9 @@ public class DAMLOntologyImpl
      * @return An iterator over the resources representing imported ontologies
      */
     public NodeIterator getImportedOntologies() {
-        return new ConcatenatedNodeIterator( getPropertyValues( DAML_OIL.imports ),
-                                             getPropertyValues( DAML_OIL_2000_12.imports ) );
+        return getPropertyValues( DAML_OIL.imports );
+        //return new ConcatenatedNodeIterator( ,
+        //                                     getPropertyValues( DAML_OIL_2000_12.imports ) );
     }
 
 

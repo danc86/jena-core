@@ -237,7 +237,7 @@ public class DAMLListImpl
 
         if (isNil( rest )) {
             // rest of the list is nil, so ensure we return the right value
-            return getVocabulary().nil();
+            return getNil();
         }
         else {
             if (rest instanceof com.hp.hpl.jena.ontology.daml.DAMLList) {
@@ -320,7 +320,7 @@ public class DAMLListImpl
      * nil list. This correctly terminates the list at this point.
      */
     public void setRestNil() {
-        setRest( getVocabulary().nil() );
+        setRest( getNil() );
     }
 
 
@@ -351,7 +351,8 @@ public class DAMLListImpl
      * @return The resource denoting nil
      */
     public DAMLList getNil() {
-        return getVocabulary().nil();
+        // TODO revisit this
+        return new DAMLListImpl( getVocabulary().nil().getURI(), getDAMLModel(), getVocabulary() );
     }
 
 

@@ -45,12 +45,8 @@ package com.hp.hpl.jena.ontology.daml.impl;
 
 // Imports
 ///////////////
-import com.hp.hpl.jena.vocabulary.DAMLVocabulary;
-import com.hp.hpl.jena.vocabulary.DAML_OIL;
-import com.hp.hpl.jena.vocabulary.DAML_OIL_2000_12;
-
+import com.hp.hpl.jena.vocabulary.*;
 import com.hp.hpl.jena.rdf.model.Resource;
-
 import com.hp.hpl.jena.rdf.model.impl.Util;
 
 
@@ -111,9 +107,6 @@ public class VocabularyManager
 
             // test the known namespaces
             if (namespace != null) {
-                if (namespace.equals( DAML_OIL.NAMESPACE_DAML_2000_12_URI )) {
-                    return DAML_OIL_2000_12.getInstance();
-                }
 
                 // add further namespace tests here as the namespaces are defined.
             }

@@ -51,30 +51,14 @@ import java.util.*;
 
 import com.hp.hpl.jena.rdf.model.*;
 
-import com.hp.hpl.jena.mem.ModelMem;
-
+import com.hp.hpl.jena.mem.*;
 import com.hp.hpl.jena.util.Log;
 import com.hp.hpl.jena.util.OneToManyMap;
-
-import com.hp.hpl.jena.ontology.daml.DAMLModel;
-import com.hp.hpl.jena.ontology.daml.DAMLCommon;
-import com.hp.hpl.jena.ontology.daml.DAMLClass;
-import com.hp.hpl.jena.ontology.daml.DAMLObjectProperty;
-import com.hp.hpl.jena.ontology.daml.DAMLInstance;
-import com.hp.hpl.jena.ontology.daml.DAMLOntology;
-import com.hp.hpl.jena.ontology.daml.DAMLProperty;
-import com.hp.hpl.jena.ontology.daml.DAMLDatatypeProperty;
-import com.hp.hpl.jena.ontology.daml.DAMLDatatype;
-import com.hp.hpl.jena.ontology.daml.DAMLList;
-import com.hp.hpl.jena.ontology.daml.DAMLRestriction;
-
+import com.hp.hpl.jena.ontology.daml.*;
+import com.hp.hpl.jena.ontology.*;
+import com.hp.hpl.jena.ontology.impl.*;
 import com.hp.hpl.jena.shared.*;
-
-import com.hp.hpl.jena.vocabulary.DAML_OIL;
-import com.hp.hpl.jena.vocabulary.DAML_OIL_2000_12;
-import com.hp.hpl.jena.vocabulary.DAMLVocabulary;
-import com.hp.hpl.jena.vocabulary.RDF;
-import com.hp.hpl.jena.vocabulary.RDFS;
+import com.hp.hpl.jena.vocabulary.*;
 
 
 
@@ -91,7 +75,7 @@ import com.hp.hpl.jena.vocabulary.RDFS;
  * @version CVS info: $Id$
  */
 public class DAMLModelImpl
-    extends ModelMem
+    extends OntModelImpl
     implements DAMLModel
 {
     // Constants
@@ -105,30 +89,19 @@ public class DAMLModelImpl
     protected static Object[][] DAML_CLASS_TABLE = new Object[][] {
         // DAML class instance                   Corresponding java class
         { DAML_OIL.Class,                        DAMLClassImpl.class },
-        { DAML_OIL_2000_12.Class,                DAMLClassImpl.class },
         { RDFS.Class,                            DAMLClassImpl.class },
 
-        { DAML_OIL_2000_12.Disjoint,             DAMLDisjointImpl.class },
-
         { DAML_OIL.Restriction,                  DAMLRestrictionImpl.class },
-        { DAML_OIL_2000_12.Restriction,          DAMLRestrictionImpl.class },
 
         { DAML_OIL.List,                         DAMLListImpl.class },
-        { DAML_OIL_2000_12.List,                 DAMLListImpl.class },
 
         { DAML_OIL.Ontology,                     DAMLOntologyImpl.class },
-        { DAML_OIL_2000_12.Ontology,             DAMLOntologyImpl.class },
 
         { DAML_OIL.Property,                     DAMLPropertyImpl.class },
-        { DAML_OIL_2000_12.Property,             DAMLPropertyImpl.class },
         { RDF.Property,                          DAMLPropertyImpl.class },
 
         { DAML_OIL.DatatypeProperty,             DAMLDatatypePropertyImpl.class },
         { DAML_OIL.ObjectProperty,               DAMLObjectPropertyImpl.class },
-
-        { DAML_OIL_2000_12.UniqueProperty,       DAMLPropertyImpl.class },
-        { DAML_OIL_2000_12.TransitiveProperty,   DAMLPropertyImpl.class },
-        { DAML_OIL_2000_12.UnambiguousProperty,  DAMLPropertyImpl.class },
 
         { DAML_OIL.UniqueProperty,               DAMLPropertyImpl.class },
         { DAML_OIL.TransitiveProperty,           DAMLObjectPropertyImpl.class },
@@ -173,12 +146,17 @@ public class DAMLModelImpl
     /**
      * Constructor, initialises internal data structures.
      */
-    public DAMLModelImpl() {
+    public DAMLModelImpl( OntModelSpec spec, Model m ) {
+        super( spec, m );
+        // TODO clean up
         // create well-known values
         initStore();
     }
 
-
+    public DAMLModelImpl() {
+        //TODO clean up
+        this( null, null );
+    }
 
     // External signature methods
     //////////////////////////////////
