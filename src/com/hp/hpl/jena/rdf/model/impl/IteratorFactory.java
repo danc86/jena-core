@@ -34,23 +34,12 @@ public final class IteratorFactory {
 		else
 		  return asResource(n,m);
 	}
-	/*
-	public Resource anonResource( Model m )
-		{
-		return (Resource) asRDFNode( Node.makeAnon( new AnonId() ), m );
-		}
-		*/
 		
 	/**
 	 * 
 	 */
 	static public Statement asStatement(Triple t, ModelCom m) {
-		return new StatementImpl(
-		asResource(t.getSubject(),m),
-		asProperty(t.getPredicate(),m),
-		asRDFNode(t.getObject(),m),
-		m
-		);
+        return StatementImpl.toStatement( t, m );
 	}
 
 	/**
