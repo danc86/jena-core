@@ -24,7 +24,7 @@ import java.util.*;
  * @author <a href="mailto:der@hplb.hpl.hp.com">Dave Reynolds</a>
  * @version $Revision$ on $Date$
  */
-public class FBRuleReasoner implements Reasoner {
+public class FBRuleReasoner implements RuleReasoner {
     
     /** The parent reasoner factory which is consulted to answer capability questions */
     protected ReasonerFactory factory;

@@ -15,6 +15,7 @@ import com.hp.hpl.jena.rdf.model.test.ModelTestBase;
 import com.hp.hpl.jena.reasoner.Reasoner;
 import com.hp.hpl.jena.reasoner.rulesys.*;
 import com.hp.hpl.jena.reasoner.rulesys.impl.BaseRuleReasonerFactory;
+import com.hp.hpl.jena.reasoner.rulesys.impl.WrappedRuleReasonerFactory;
 
 /**
      TestSetRules - tests to bring setRules into existence on RuleReasonerFactory.     
@@ -57,28 +58,6 @@ public class TestSetRules extends ModelTestBase
         assertEquals( Arrays.asList( new Object[] {"capabilities", "uri", "create"} ),  mock.done );
         }
     
-    public static final class WrappedRuleReasoner extends BaseRuleReasonerFactory implements RuleReasonerFactory
-        {
-        private final RuleReasonerFactory rrf;
-
-        public WrappedRuleReasoner( RuleReasonerFactory rrf )
-            {
-            super();
-            this.rrf = rrf;
-            }
-
-        public Reasoner create(Resource configuration)
-            { FBRuleReasoner result = (FBRuleReasoner) rrf.create( configuration );
-            result.setRules( rules );
-            return result; }
-
-        public Model getCapabilities()
-            { return rrf.getCapabilities(); }
-
-        public String getURI()
-            { return rrf.getURI(); }
-        }
-
     private static class MockFactory implements RuleReasonerFactory
         {
         List done = new ArrayList();
@@ -105,14 +84,14 @@ public class TestSetRules extends ModelTestBase
     
     private static RuleReasonerFactory wrap( final RuleReasonerFactory rrf )
         {
-        return new WrappedRuleReasoner(rrf);
+        return new WrappedRuleReasonerFactory(rrf);
         }
     
     private void testFactory( RuleReasonerFactory grf )
         {
-        FBRuleReasoner base = (FBRuleReasoner) grf.create( null );
+        RuleReasoner base = (RuleReasoner) grf.create( null );
         grf.addRules( rules );
-        FBRuleReasoner gr = (FBRuleReasoner) grf.create( null );
+        RuleReasoner gr = (RuleReasoner) grf.create( null );
         assertEquals( append( base.getRules(), rules ), gr.getRules() );
         }    
     }

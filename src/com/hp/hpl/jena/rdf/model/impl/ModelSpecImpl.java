@@ -9,6 +9,7 @@ package com.hp.hpl.jena.rdf.model.impl;
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.reasoner.*;
 import com.hp.hpl.jena.reasoner.rulesys.*;
+import com.hp.hpl.jena.reasoner.rulesys.impl.WrappedRuleReasonerFactory;
 import com.hp.hpl.jena.reasoner.rulesys.test.TestSetRules;
 import com.hp.hpl.jena.util.FileUtils;
 import com.hp.hpl.jena.vocabulary.*;
@@ -317,7 +318,7 @@ public abstract class ModelSpecImpl implements ModelSpec
         StmtIterator rulesets = rs.listStatements( R, JMS.ruleSetURL, (RDFNode) null );
         if (rulesets.hasNext())
             {
-            TestSetRules.WrappedRuleReasoner f = new TestSetRules.WrappedRuleReasoner( (RuleReasonerFactory) rf );
+            WrappedRuleReasonerFactory f = new WrappedRuleReasonerFactory( (RuleReasonerFactory) rf );
             while (rulesets.hasNext()) load( f, rulesets.nextStatement().getResource() );
             rf = f;
             }
