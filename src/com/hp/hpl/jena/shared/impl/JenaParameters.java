@@ -78,6 +78,16 @@ public class JenaParameters {
      * XSD numberic typed literal.
      */
     public static boolean enableWhitespaceCheckingOfTypedLiterals = false;
+    
+    /**
+     * Set this flag to true (default) to hide certain internal nodes from the output
+     * of inference graphs. Some rule sets (notably owl-fb) create blank nodes as 
+     * part of their reasoning process. If these match some query they can appear
+     * in the results. Such nodes are recorded as "hidden" and if this flag is set
+     * all triples involving such hidden nodes will be removed from the output - any
+     * indirect consequences will, however, still be visible.  
+     */
+    public static boolean enableFilteringOfHiddenInfNodes = true;    
 }
 
 
