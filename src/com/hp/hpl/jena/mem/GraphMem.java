@@ -22,28 +22,34 @@ import java.util.*;
     Thus in normal use one close is enough, but GraphMakers using GraphMems
     can arrange to re-use the same named graph.
     
- * @author  bwm, kers
- */
-public class GraphMem extends GraphBase implements Graph {
-
+    @author  bwm, kers
+*/
+public class GraphMem extends GraphBase implements Graph 
+    {
+    /** the set storing all the triples in this GraphMem */
     HashSet triples = new HashSet();
 
     NodeMap subjects = new NodeMap();
     NodeMap predicates = new NodeMap();
     NodeMap objects = new NodeMap();
 
-    /** Creates new Store */
+    protected int count;
+    
+    /**
+        Initialises a GraphMem with the Minimal reification style
+    */
     public GraphMem() 
         { this( ReificationStyle.Minimal ); }
     
+    /**
+        Initialises a GraphMem with the given reification style.
+    */
     public GraphMem( ReificationStyle style )
         { 
         super( style );
         count = 1; 
         }
 
-    protected int count;
-    
     public void close()
         {
         if (--count == 0)

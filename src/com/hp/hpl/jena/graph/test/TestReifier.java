@@ -37,16 +37,9 @@ public class TestReifier extends AbstractTestReifier
     public static TestSuite suite()
         { 
         TestSuite result = new TestSuite();
-        // result.addTest( new TestSuite( TestReifier.class ) );
-        result.addTest( MetaTestGraph.suite( TestReifier.class, GraphMem.class, ReificationStyle.Minimal ) );
+        result.addTest( MetaTestGraph.suite( TestReifier.class, GraphMem.class ) );
         return result; 
         }   
-        
-    public static Constructor getConstructor( Class c, Class [] args )
-        {
-        try { return c.getConstructor( args ); }
-        catch (NoSuchMethodException e) { return null; }
-        }
         
     public Graph getGraph( ReificationStyle style ) 
         {

@@ -18,9 +18,11 @@ import com.hp.hpl.jena.util.iterator.*;
 public class WrappedGraph implements Graph
     {
     protected Graph base;
+    protected Reifier reifier;
     
     public WrappedGraph( Graph base )
-        { this.base = base; }
+        { this.base = base; 
+        this.reifier = new WrappedReifier( base.getReifier(), this ); }
 
     public boolean dependsOn( Graph other )
         { return base.dependsOn( other ); }
@@ -41,7 +43,7 @@ public class WrappedGraph implements Graph
         { return base.getEventManager(); }
 
     public Reifier getReifier()
-        {return base.getReifier(); }
+        {return reifier; }
 
     public PrefixMapping getPrefixMapping()
         { return base.getPrefixMapping(); }
