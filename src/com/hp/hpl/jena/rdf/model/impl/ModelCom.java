@@ -769,6 +769,12 @@ implements Model, ModelI, PrefixMapping, ModelLock
         return createList( Arrays.asList( members ).iterator() );
     }
     
+    public RDFNode getRDFNode( Node n )
+        {   
+        return n.isURI() || n.isBlank()
+            ? (RDFNode) new ResourceImpl( n, (Model) this )
+            : (RDFNode) new LiteralImpl( n, (Model) this); 
+        }
     
     public Resource getResource(String uri)  {
         return IteratorFactory.asResource(makeURI(uri),this);
