@@ -28,6 +28,7 @@ package com.hp.hpl.jena.ontology.impl;
 import com.hp.hpl.jena.enhanced.*;
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.ontology.*;
+import com.hp.hpl.jena.util.iterator.ExtendedIterator;
 
 
 
@@ -94,6 +95,36 @@ public class ObjectPropertyImpl
 
     // External signature methods
     //////////////////////////////////
+
+    /**
+     * <p>Answer a property that is an inverse of this property, ensuring that it
+     * presents the ObjectProperty facet.</p>
+     * @return A property inverse to this property
+     * @exception OntProfileException If the {@link Profile#INVERSE_OF()} property is not supported in the current language profile.   
+     */ 
+    public OntProperty getInverseOf() {
+        return super.getInverseOf().asObjectProperty();
+    }
+
+    /**
+     * <p>Answer an iterator over all of the properties that are declared to be inverse properties of
+     * this property, esnuring that each presents the objectProperty facet.</p>
+     * @return An iterator over the properties inverse to this property.
+     * @exception OntProfileException If the {@link Profile#INVERSE_OF()} property is not supported in the current language profile.   
+     */ 
+    public ExtendedIterator listInverseOf() {
+        return super.listInverseOf().mapWith( new AsMapper( ObjectProperty.class ));
+    }
+
+    /**
+     * <p>Answer the property that is the inverse of this property, ensuring that it presents
+     * the object property facet.</p>
+     * @return The property that is the inverse of this property, or null. 
+     */
+    public OntProperty getInverse() {
+        return super.getInverse().asObjectProperty();
+    }
+    
 
     // Internal implementation methods
     //////////////////////////////////
