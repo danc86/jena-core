@@ -33,6 +33,14 @@ import com.hp.hpl.jena.shared.*;
 
     QueryEngineExt queryEngine = null ;
 
+    /**
+     * Deprecated - but not mentioned here to avoid warnings elsewhere
+     * and its not public anyway. 
+     * @param s
+     * @param p
+     * @param o
+     */
+
     public TriplePattern(Slot s, Slot p, Slot o)
     {
         subjectSlot = s ;

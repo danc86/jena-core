@@ -15,6 +15,9 @@ import com.hp.hpl.jena.util.ModelLoader ;
 import EDU.oswego.cs.dl.util.concurrent.* ;
 
 /** An execution of a query.
+ * 
+ *  This is mapping to the old, external query evaluation system.
+ * 
  *  The query is not modified so can be reused.  A new QueryEngine object
  *  should be created because the internal state after (and during) execution
  *  of a query is not defined.
@@ -46,6 +49,11 @@ public class QueryEngineExt implements QueryExecution
     // Statistics
     long triplePatterns = 0 ;
     long queryStartTime = -1 ;
+
+    /**
+     * @deprecated Use QueryEngine - which devloves mathcing to the graph. 
+     * @param q
+     */
 
     public QueryEngineExt(Query q)
     {
