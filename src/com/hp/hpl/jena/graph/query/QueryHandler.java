@@ -33,7 +33,7 @@ public interface QueryHandler
     <p>
         _map_ is the variable binding map to use and update. _constraints_ is
         the current constraint expression: if this Stage can absorb some of the 
-        ANDed constraints, it may do so, remove them from the graph.
+        ANDed constraints, it may do so, and remove them from the ExpressionSet.
     */
     public Stage patternStage( Mapping map, ExpressionSet constraints, Triple [] p );
     

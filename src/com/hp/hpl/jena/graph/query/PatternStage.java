@@ -79,7 +79,12 @@ public class PatternStage extends Stage
     protected void plantWhereFullyBound( Expression e, Iterator it, Mapping map, ValuatorSet [] es )
         {
         for (int i = 0; i < boundVariables.length; i += 1)
-            if (canEval( e, i )) { es[i].add( e.prepare( map ) ); it.remove(); return; }
+            if (canEval( e, i )) 
+                { 
+                es[i].add( e.prepare( map ) ); 
+                it.remove(); 
+                return; 
+                }
         }
     
     /**

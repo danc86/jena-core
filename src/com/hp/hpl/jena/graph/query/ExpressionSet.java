@@ -72,6 +72,9 @@ public class ExpressionSet
     public Iterator iterator()
         { return expressions.iterator(); }
     
+    /**
+         Answer a string representing this ExpressionSet for human consumption.
+    */
     public String toString()
         { return expressions.toString(); }
     }
