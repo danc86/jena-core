@@ -18,7 +18,7 @@ import com.hp.hpl.jena.graph.*;
  * @author <a href="mailto:der@hplb.hpl.hp.com">Dave Reynolds</a>
  * @version $Revision$ on $Date$
  */
-public class MakeTemp implements Builtin {
+public class MakeTemp extends BaseBuiltin {
 
     /**
      * Return a name for this builtin, normally this will be the name of the 

@@ -160,17 +160,35 @@ public class BindingVector implements BindingEnvironment {
         );
     }
     
+// Replaced by version below for consistency with stack variant    
+//    /**
+//     * Instatiate a goal pattern using the binding environment
+//     * @param goal the TriplePattern to be instantiated
+//     * @return an instantiated Triple
+//     */
+//    public Triple instantiate(TriplePattern goal) {
+//        return new Triple(
+//                getGroundVersion(goal.getSubject()),
+//                getGroundVersion(goal.getPredicate()),
+//                getGroundVersion(goal.getObject())
+//        );
+//    }
+    
     /**
-     * Instatiate a goal pattern using the binding environment
-     * @param goal the TriplePattern to be instantiated
-     * @return an instantiated Triple
+     * Instantiate a triple pattern against the current environment.
+     * This version handles unbound varibles by turning them into bNodes.
+     * @param clause the triple pattern to match
+     * @param env the current binding environment
+     * @return a new, instantiated triple
      */
-    public Triple instantiate(TriplePattern goal) {
-        return new Triple(
-                getGroundVersion(goal.getSubject()),
-                getGroundVersion(goal.getPredicate()),
-                getGroundVersion(goal.getObject())
-        );
+    public Triple instantiate(TriplePattern pattern) {
+        Node s = getGroundVersion(pattern.getSubject());
+        if (s.isVariable()) s = Node.createAnon();
+        Node p = getGroundVersion(pattern.getPredicate());
+        if (p.isVariable()) p = Node.createAnon();
+        Node o = getGroundVersion(pattern.getObject());
+        if (o.isVariable()) o = Node.createAnon();
+        return new Triple(s, p, o);
     }
     
     /**
@@ -351,7 +369,7 @@ public class BindingVector implements BindingEnvironment {
         return hash;
     }
     
-    
+
 }
 
 

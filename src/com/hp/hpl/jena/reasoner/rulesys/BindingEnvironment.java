@@ -10,6 +10,7 @@
 package com.hp.hpl.jena.reasoner.rulesys;
 
 import com.hp.hpl.jena.graph.*;
+import com.hp.hpl.jena.reasoner.TriplePattern;
 
 /**
  * Interface through which the current bound values of variables
@@ -37,7 +38,16 @@ public interface BindingEnvironment {
      * @return false if the binding fails
      */
     public boolean bind(Node var, Node value);
-        
+    
+    /**
+      * Instantiate a triple pattern against the current environment.
+      * This version handles unbound varibles by turning them into bNodes.
+      * @param clause the triple pattern to match
+      * @param env the current binding environment
+      * @return a new, instantiated triple
+      */
+     public Triple instantiate(TriplePattern pattern);
+         
 }
 
 /*

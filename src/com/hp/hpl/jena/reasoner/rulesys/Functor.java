@@ -128,6 +128,23 @@ public class Functor implements ClauseEntry {
     }
     
     /**
+     * Execute the given built in as a body clause, only if it is side-effect-free.
+     * @param context an execution context giving access to other relevant data
+     * @return true if the functor has an implementation and that implementation returns true when evaluated
+     */
+    public boolean safeEvalAsBodyClause(RuleContext context) {
+        if (implementor == null) {
+            logger.warn("Invoking undefined functor " + getName() + " in " + context.getRule().toShortString());
+            return false;
+        }
+        if (implementor.isSafe()) {
+            return implementor.bodyCall(getBoundArgs(context.getEnv()), context);
+        } else {
+            return false;
+        }
+    }
+    
+    /**
      * Return a new Node array containing the bound versions of this Functor's arguments
      */
     public Node[] getBoundArgs(BindingEnvironment env) {

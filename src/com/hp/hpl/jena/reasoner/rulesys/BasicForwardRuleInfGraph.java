@@ -256,7 +256,7 @@ public class BasicForwardRuleInfGraph extends BaseInfGraph implements ForwardRul
         }
         fdeductions.getGraph().delete(t);
     }
-    
+
 //  =======================================================================
 //   Implementation of ForwardRuleInfGraphI interface which is used by
 //   the forward rule engine to invoke functions in this InfGraph

@@ -55,6 +55,7 @@ public interface ForwardRuleInfGraphI extends InfGraph, SilentAddI {
      * Log a dervivation record against the given triple.
      */
     public void logDerivation(Triple t, Object derivation);
+
 }
 
 

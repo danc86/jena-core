@@ -11,6 +11,7 @@ package com.hp.hpl.jena.reasoner.rulesys.impl;
 
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.graph.impl.*;
+import com.hp.hpl.jena.reasoner.TriplePattern;
 import com.hp.hpl.jena.reasoner.rulesys.BindingEnvironment;
 import com.hp.hpl.jena.reasoner.rulesys.Functor;
 import com.hp.hpl.jena.reasoner.rulesys.Node_RuleVariable;
@@ -194,6 +195,23 @@ public class BindingStack implements BindingEnvironment {
      */
     public void bindNoCheck(Node_RuleVariable var, Node value) {
         environment[var.getIndex()] = value;
+    }
+    
+    /**
+     * Instantiate a triple pattern against the current environment.
+     * This version handles unbound varibles by turning them into bNodes.
+     * @param clause the triple pattern to match
+     * @param env the current binding environment
+     * @return a new, instantiated triple
+     */
+    public Triple instantiate(TriplePattern pattern) {
+        Node s = getGroundVersion(pattern.getSubject());
+        if (s.isVariable()) s = Node.createAnon();
+        Node p = getGroundVersion(pattern.getPredicate());
+        if (p.isVariable()) p = Node.createAnon();
+        Node o = getGroundVersion(pattern.getObject());
+        if (o.isVariable()) o = Node.createAnon();
+        return new Triple(s, p, o);
     }
     
 }

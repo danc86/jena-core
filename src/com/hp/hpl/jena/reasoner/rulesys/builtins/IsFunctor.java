@@ -19,7 +19,7 @@ import com.hp.hpl.jena.graph.*;
  * @author <a href="mailto:der@hplb.hpl.hp.com">Dave Reynolds</a>
  * @version $Revision$ on $Date$
  */
-public class IsFunctor implements Builtin {
+public class IsFunctor extends BaseBuiltin {
 
     /**
      * Return a name for this builtin, normally this will be the name of the 
@@ -39,24 +39,11 @@ public class IsFunctor implements Builtin {
      */
     public boolean bodyCall(Node[] args, RuleContext context) {
         if (args.length != 1) {
-            throw new BuiltinException(this, context, "must have 1 arguments");
+            throw new BuiltinException(this, context, getName() + " must have 1 arguments");
         }
         return Functor.isFunctor(args[0]);
     }
     
-    
-    /**
-     * This method is invoked when the builtin is called in a rule head.
-     * Such a use is only valid in a forward rule.
-     * @param args the array of argument values for the builtin, this is an array 
-     * of Nodes.
-     * @param context an execution context giving access to other relevant data
-     * @param rule the invoking rule
-     */
-    public void headAction(Node[] args, RuleContext context) {
-        // Can't be used in the head
-        throw new BuiltinException(this, context, "can't do notFunctor in rule heads");
-    }
 }
 
 /*

@@ -54,6 +54,12 @@ public interface Builtin {
      * @param context an execution context giving access to other relevant data
      */
     public void headAction(Node[] args, RuleContext context);
+    
+    /**
+     * Returns false if this builtin has side effects when run in a body clause,
+     * other than the binding of environment variables.
+     */
+    public boolean isSafe();
 }
 
 /*

@@ -19,7 +19,7 @@ import com.hp.hpl.jena.graph.*;
  * @author <a href="mailto:der@hplb.hpl.hp.com">Dave Reynolds</a>
  * @version $Revision$ on $Date$
  */
-public class NoValue implements Builtin {
+public class NoValue extends BaseBuiltin {
 
     /**
      * Return a name for this builtin, normally this will be the name of the 
@@ -44,21 +44,6 @@ public class NoValue implements Builtin {
         return !context.contains(args[0], args[1], null);
     }
     
-    
-    /**
-     * This method is invoked when the builtin is called in a rule head.
-     * Such a use is only valid in a forward rule.
-     * Exected args are the instance to be annotated, the property to use and the type
-     * of the resulting bNode.
-     * @param args the array of argument values for the builtin, this is an array 
-     * of Nodes.
-     * @param context an execution context giving access to other relevant data
-     * @param rule the invoking rule
-     */
-    public void headAction(Node[] args, RuleContext context) {
-        // Can't be used in the head
-        throw new BuiltinException(this, context, "can't do " + getName() + " in rule heads");
-    }
 }
 
 /*

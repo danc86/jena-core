@@ -32,12 +32,16 @@ public class RETERuleContext implements RuleContext {
     /** The enclosing inference graph. */
     protected ForwardRuleInfGraphI graph;
     
+    /** The RETE engine associated with the inference graph */
+    protected RETEEngine engine;
+    
     /**
      * Constructor.
      * @param graph the inference graph which owns this context.
      */
-    public RETERuleContext(ForwardRuleInfGraphI graph) {
+    public RETERuleContext(ForwardRuleInfGraphI graph, RETEEngine engine) {
         this.graph = graph;
+        this.engine = engine;
     }
     
     /**
@@ -54,6 +58,13 @@ public class RETERuleContext implements RuleContext {
      */
     public InfGraph getGraph() {
         return graph;
+    }
+    
+    /**
+     * Returns the RETE engine associated with this context.
+     */
+    public RETEEngine getEngine() {
+        return engine;
     }
 
     /**
@@ -115,6 +126,14 @@ public class RETERuleContext implements RuleContext {
      */
     public void silentAdd(Triple t) {
         ((SilentAddI)graph).silentAdd(t);
+    }
+
+    /**
+     * Remove a triple from the deduction graph (and the original graph if relevant).
+     */
+    public void remove(Triple t) {
+        graph.delete(t);
+        engine.deleteTriple(t, true);
     }
 
 }

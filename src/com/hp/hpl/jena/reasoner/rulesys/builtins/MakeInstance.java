@@ -26,7 +26,7 @@ import com.hp.hpl.jena.graph.*;
  * @author <a href="mailto:der@hplb.hpl.hp.com">Dave Reynolds</a>
  * @version $Revision$ on $Date$
  */
-public class MakeInstance implements Builtin {
+public class MakeInstance extends BaseBuiltin {
 
     /**
      * Return a name for this builtin, normally this will be the name of the 
@@ -70,9 +70,25 @@ public class MakeInstance implements Builtin {
      * @param rule the invoking rule
      */
     public void headAction(Node[] args, RuleContext context) {
-        // Can't be used in the head
-        throw new BuiltinException(this, context, "can't do " + getName() + " in rule heads");
+        if (args.length != 4) {
+            throw new BuiltinException(this, context, getName() + " expected 4 arguments");
+        }
+        if ( ! context.contains(args[0], args[1], null)) {
+            Node value = Node.createAnon();
+            // This won't work until we a concurrently updatable deductions graph
+//            context.silentAdd(new Triple(value, RDF.type.asNode(), args[2]));
+            context.getEnv().bind(args[3], value);
+        }
     }
+    
+    /**
+     * Returns false if this builtin has side effects when run in a body clause,
+     * other than the binding of environment variables.
+     */
+    public boolean isSafe() {
+        return false;
+    }
+    
 }
 
 

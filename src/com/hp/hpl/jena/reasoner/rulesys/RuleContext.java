@@ -62,7 +62,6 @@ public interface RuleContext {
     /**
      * In some formulations the context includes deductions that are not yet
      * visible to the underlying graph but need to be checked for.
-     * However, currently this calls the graph find directly.
      */
     public ClosableIterator find(Node s, Node p, Node o);
     
@@ -71,6 +70,10 @@ public interface RuleContext {
      */
     public void silentAdd(Triple t);
 
+    /**
+     * Remove a triple from the deduction graph (and the original graph if relevant).
+     */
+    public void remove(Triple t);
 }
 
 

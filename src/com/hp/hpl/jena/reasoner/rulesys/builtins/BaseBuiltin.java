@@ -1,7 +1,7 @@
 /******************************************************************
- * File:        unbound.java
+ * File:        BaseBuiltin.java
  * Created by:  Dave Reynolds
- * Created on:  11-May-2003
+ * Created on:  10-Jun-2003
  * 
  * (c) Copyright 2003, Hewlett-Packard Company, all rights reserved.
  * [See end of file]
@@ -9,25 +9,17 @@
  *****************************************************************/
 package com.hp.hpl.jena.reasoner.rulesys.builtins;
 
-
 import com.hp.hpl.jena.reasoner.rulesys.*;
 import com.hp.hpl.jena.graph.*;
 
 /**
- * Predicate used to check if a variable has not been bound.
+ * Dummy implementation of the Builtin interface that specific
+ * implementations can inherit from.
  * 
  * @author <a href="mailto:der@hplb.hpl.hp.com">Dave Reynolds</a>
  * @version $Revision$ on $Date$
  */
-public class Unbound extends BaseBuiltin {
-
-    /**
-     * Return a name for this builtin, normally this will be the name of the 
-     * functor that will be used to invoke it.
-     */
-    public String getName() {
-        return "unbound";
-    }
+public abstract class BaseBuiltin implements Builtin {
 
     /**
      * This method is invoked when the builtin is called in a rule body.
@@ -38,15 +30,33 @@ public class Unbound extends BaseBuiltin {
      * the current environment
      */
     public boolean bodyCall(Node[] args, RuleContext context) {
-        BindingEnvironment env = context.getEnv();
-        for (int i = 0; i < args.length; i++) {
-            if ( !(args[i] instanceof Node_RuleVariable) ) return false;
-        }
+        throw new BuiltinException(this, context, "builtin " + getName() + " not usable in rule bodies");
+    }
+    
+    
+    /**
+     * This method is invoked when the builtin is called in a rule head.
+     * Such a use is only valid in a forward rule.
+     * @param args the array of argument values for the builtin, this is an array 
+     * of Nodes.
+     * @param context an execution context giving access to other relevant data
+     * @param rule the invoking rule
+     */
+    public void headAction(Node[] args, RuleContext context) {
+        throw new BuiltinException(this, context, "builtin " + getName() + " not usable in rule heads");
+    }
+    
+    /**
+     * Returns false if this builtin has side effects when run in a body clause,
+     * other than the binding of environment variables.
+     */
+    public boolean isSafe() {
+        // Default is safe!
         return true;
     }
+    
 
 }
-
 
 
 

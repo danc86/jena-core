@@ -112,6 +112,13 @@ public class BBRuleContext implements RuleContext {
         ((SilentAddI)graph).silentAdd(t);
     }
 
+    /**
+     * Remove a triple from the deduction graph (and the original graph if relevant).
+     */
+    public void remove(Triple t) {
+        graph.delete(t);
+    }
+
 }
 
 

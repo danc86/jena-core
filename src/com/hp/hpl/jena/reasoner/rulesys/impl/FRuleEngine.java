@@ -382,14 +382,14 @@ public class FRuleEngine {
                 for (int i = 0; i < rule.bodyLength(); i++) {
                     Object clause = rule.getBodyElement(i);
                     if (clause instanceof TriplePattern) {
-                        matchList.add(instantiate((TriplePattern)clause, env));
+                        matchList.add(env.instantiate((TriplePattern)clause));
                     } 
                 }
             }
             for (int i = 0; i < rule.headLength(); i++) {
                 Object hClause = rule.getHeadElement(i);
                 if (hClause instanceof TriplePattern) {
-                    Triple t = instantiate((TriplePattern) hClause, env);
+                    Triple t = env.instantiate((TriplePattern) hClause);
                     if (!t.getSubject().isLiteral()) {
                         // Only add the result if it is legal at the RDF level.
                         // E.g. RDFS rules can create assertions about literals
@@ -470,22 +470,22 @@ public class FRuleEngine {
         }
     }
     
-    /**
-     * Instantiate a triple pattern against the current environment.
-     * This version handles unbound varibles by turning them into bNodes.
-     * @param clause the triple pattern to match
-     * @param env the current binding environment
-     * @return a new, instantiated triple
-     */
-    public static Triple instantiate(TriplePattern pattern, BindingStack env) {
-        Node s = env.getBinding(pattern.getSubject());
-        if (s == null) s = Node.createAnon();
-        Node p = env.getBinding(pattern.getPredicate());
-        if (p == null) p = Node.createAnon();
-        Node o = env.getBinding(pattern.getObject());
-        if (o == null) o = Node.createAnon();
-        return new Triple(s, p, o);
-    }
+//    /**
+//     * Instantiate a triple pattern against the current environment.
+//     * This version handles unbound varibles by turning them into bNodes.
+//     * @param clause the triple pattern to match
+//     * @param env the current binding environment
+//     * @return a new, instantiated triple
+//     */
+//    public static Triple instantiate(TriplePattern pattern, BindingStack env) {
+//        Node s = env.getBinding(pattern.getSubject());
+//        if (s == null) s = Node.createAnon();
+//        Node p = env.getBinding(pattern.getPredicate());
+//        if (p == null) p = Node.createAnon();
+//        Node o = env.getBinding(pattern.getObject());
+//        if (o == null) o = Node.createAnon();
+//        return new Triple(s, p, o);
+//    }
     
     /**
      * Test if a TriplePattern matches a Triple in the given binding

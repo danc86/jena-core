@@ -21,7 +21,7 @@ import com.hp.hpl.jena.graph.*;
  * @author <a href="mailto:der@hplb.hpl.hp.com">Dave Reynolds</a>
  * @version $Revision$ on $Date$
  */
-public class SchedulePrototypeCheck implements Builtin {
+public class SchedulePrototypeCheck extends BaseBuiltin {
 
     /**
      * Return a name for this builtin, normally this will be the name of the 
@@ -29,19 +29,6 @@ public class SchedulePrototypeCheck implements Builtin {
      */
     public String getName() {
         return "schedulePrototypeCheck";
-    }
-
-    /**
-     * This method is invoked when the builtin is called in a rule body.
-     * @param args the array of argument values for the builtin, this is an array 
-     * of Nodes, some of which may be Node_RuleVariables.
-     * @param context an execution context giving access to other relevant data
-     * @return return true if the buildin predicate is deemed to have succeeded in
-     * the current environment
-     */
-    public boolean bodyCall(Node[] args, RuleContext context) {
-        // Can't be used in the body
-        throw new BuiltinException(this, context, "can't do " + getName() + " in rule bodies");
     }
     
     
