@@ -72,7 +72,7 @@ public class ResourceBRWRule extends BRWRule {
                     it = bRr.findRawWithContinuation(pattern, data);
                 }
             }
-            BRWRule rwrule = new BRWRule(new TriplePattern(Node.makeVariable(var), TYPE, RESOURCE), body);
+            BRWRule rwrule = new BRWRule(new TriplePattern(Node.createVariable(var), TYPE, RESOURCE), body);
             return new RewriteIterator(it, rwrule);
         }
     }    

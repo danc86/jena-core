@@ -29,8 +29,8 @@ public class PropertyBRWRule extends BRWRule {
      * Constructor
      */
     public PropertyBRWRule() {
-        super(new TriplePattern(Node.makeVariable("p"), RDF.type.getNode(), RDF.Property.getNode()),   
-               new TriplePattern(null, Node.makeVariable("s"), null));
+        super(new TriplePattern(Node.createVariable("p"), RDF.type.getNode(), RDF.Property.getNode()),   
+               new TriplePattern(null, Node.createVariable("s"), null));
     }
     
     /**

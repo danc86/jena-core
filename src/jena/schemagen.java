@@ -29,7 +29,7 @@
 
 package jena;
 
-import com.hp.hpl.jena.rdf.model.impl.SelectorImpl;
+import com.hp.hpl.jena.rdf.model.impl.*;
 import com.hp.hpl.jena.rdf.model.impl.Util;
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.vocabulary.RDF;
@@ -152,7 +152,7 @@ public class schemagen extends java.lang.Object {
 
         // extract all the resources of the given type in the schema
         StmtIterator iter = schema.listStatements(
-                                 new SelectorImpl(null, RDF.type, type));
+                                 new SimpleSelector(null, RDF.type, type));
         // for each one
         while (iter.hasNext()) {
             Resource r = iter.nextStatement()

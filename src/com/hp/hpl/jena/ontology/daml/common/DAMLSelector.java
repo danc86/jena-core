@@ -45,7 +45,7 @@ package com.hp.hpl.jena.ontology.daml.common;
 
 // Imports
 ///////////////
-import com.hp.hpl.jena.rdf.model.impl.SelectorImpl;
+import com.hp.hpl.jena.rdf.model.impl.SimpleSelector;
 
 import com.hp.hpl.jena.rdf.model.RDFNode;
 import com.hp.hpl.jena.rdf.model.Resource;
@@ -90,7 +90,7 @@ import java.util.Iterator;
  * @version CVS info: $Id$
  */
 public class DAMLSelector
-    extends SelectorImpl
+    extends SimpleSelector
 {
     // Constants
     //////////////////////////////////

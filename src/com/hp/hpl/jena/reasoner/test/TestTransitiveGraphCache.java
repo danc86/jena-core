@@ -29,16 +29,16 @@ public class TestTransitiveGraphCache extends TestCase {
     
     // Dummy predicates and nodes for the graph
     String NS = "urn:x-hp-test:ex/";
-    Node directP = Node.makeURI(NS+"directSubProperty");
-    Node closedP = Node.makeURI(NS+"subProperty");
+    Node directP = Node.createURI(NS+"directSubProperty");
+    Node closedP = Node.createURI(NS+"subProperty");
     
-    Node a = Node.makeURI(NS+"a");
-    Node b = Node.makeURI(NS+"b");
-    Node c = Node.makeURI(NS+"c");
-    Node d = Node.makeURI(NS+"d");
-    Node e = Node.makeURI(NS+"e");
-    Node f = Node.makeURI(NS+"f");
-    Node g = Node.makeURI(NS+"g");
+    Node a = Node.createURI(NS+"a");
+    Node b = Node.createURI(NS+"b");
+    Node c = Node.createURI(NS+"c");
+    Node d = Node.createURI(NS+"d");
+    Node e = Node.createURI(NS+"e");
+    Node f = Node.createURI(NS+"f");
+    Node g = Node.createURI(NS+"g");
      
     /**
      * Boilerplate for junit

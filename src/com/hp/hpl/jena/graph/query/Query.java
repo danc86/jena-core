@@ -25,12 +25,12 @@ public class Query
      
     public static final Node ANY = Node.ANY;
     
-    public static final Node S = Node.makeVariable( "S" );
-    public static final Node P = Node.makeVariable( "P" );
-    public static final Node O = Node.makeVariable( "O" );
-    public static final Node X = Node.makeVariable( "X" );
-    public static final Node Y = Node.makeVariable( "Y" );
-    public static final Node Z = Node.makeVariable( "Z" );
+    public static final Node S = Node.createVariable( "S" );
+    public static final Node P = Node.createVariable( "P" );
+    public static final Node O = Node.createVariable( "O" );
+    public static final Node X = Node.createVariable( "X" );
+    public static final Node Y = Node.createVariable( "Y" );
+    public static final Node Z = Node.createVariable( "Z" );
     
     public static final Node NE = GraphTestBase.node( "&ne" );
         

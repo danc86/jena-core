@@ -147,22 +147,22 @@ public class BRWRule {
      */
     public static Node parseNode(String token) {
         if (token.startsWith("?")) {
-            return Node.makeVariable(token.substring(1));
+            return Node.createVariable(token.substring(1));
         } else if (token.equals("_")) {
-            return Node.makeVariable("*");
+            return Node.createVariable("*");
         } else if (token.indexOf(':') != -1) {
             int split = token.indexOf(':');
             String nsPrefix = token.substring(0, split);
             String localname = token.substring(split+1);
             if (nsPrefix.equalsIgnoreCase("rdf")) {
-                return Node.makeURI(RDF.getURI() + localname);
+                return Node.createURI(RDF.getURI() + localname);
             } else if (nsPrefix.equalsIgnoreCase("rdfs")) {
-                return Node.makeURI(RDFS.getURI() + localname);
+                return Node.createURI(RDFS.getURI() + localname);
             } else {
-                return Node.makeURI(token);
+                return Node.createURI(token);
             }
         } else {
-            return Node.makeURI(token);
+            return Node.createURI(token);
         }
     }
     

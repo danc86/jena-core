@@ -15,6 +15,7 @@ import com.hp.hpl.jena.reasoner.*;
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.mem.ModelMem;
 import com.hp.hpl.jena.vocabulary.*;
+import com.hp.hpl.jena.rdf.model.impl.*;
 import com.hp.hpl.jena.rdf.model.impl.StatementImpl;
 
 import junit.framework.TestCase;

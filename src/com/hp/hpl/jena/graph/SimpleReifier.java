@@ -55,7 +55,7 @@ public class SimpleReifier implements Reifier
         
     /** reify a triple _t_, allocating a new blank node to represent it */
     public Node reify( Triple t )
-        { return reifyAs( Node.makeAnon(), t ); }        
+        { return reifyAs( Node.createAnon(), t ); }        
         
     /** 
         reifiy a triple _t_ with tag _tag_. If a different triple is already

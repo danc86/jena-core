@@ -839,7 +839,7 @@ public class DAMLTest
 
                 // shouldn't be in the model either
                 int n = 0;
-                for (StmtIterator j = m.listStatements( new SelectorImpl( r, null, (RDFNode) null ) );  j.hasNext();  n++);
+                for (StmtIterator j = m.listStatements( new SimpleSelector( r, null, (RDFNode) null ) );  j.hasNext();  n++);
                 assertEquals( "DAML value " + rURI + " should have been removed from the model", 0, n );
             }
         }

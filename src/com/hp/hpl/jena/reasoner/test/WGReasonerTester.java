@@ -291,7 +291,7 @@ public class WGReasonerTester {
                if (i > varnames.length()) {
                    throw new ReasonerException("Too many bnodes in query");
                }
-               t = Node.makeVariable(varnames.substring(i, i+1));
+               t = Node.createVariable(varnames.substring(i, i+1));
                bnodeToVar.put(node, t);
             } 
             return t;

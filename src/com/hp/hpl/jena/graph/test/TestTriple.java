@@ -51,10 +51,10 @@ public class TestTriple extends TestCase
             
             Node[] nodes = new Node[] {
               Node.ANY,
-              Node.makeAnon(id),    Node.makeAnon(),
-              Node.makeLiteral(L),  Node.makeLiteral(L2),
-              Node.makeURI(U),      Node.makeURI(U2),
-              Node.makeVariable(N), Node.makeVariable(N2)
+              Node.createAnon(id),    Node.createAnon(),
+              Node.createLiteral(L),  Node.createLiteral(L2),
+              Node.createURI(U),      Node.createURI(U2),
+              Node.createVariable(N), Node.createVariable(N2)
             };
             
             String[] types= {

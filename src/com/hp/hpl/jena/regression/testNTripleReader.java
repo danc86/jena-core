@@ -58,7 +58,7 @@ public class testNTripleReader extends Object {
                  if (m1.size() != 5) error(test, n);
                  StmtIterator iter = 
                      m1.listStatements(
-                             new SelectorImpl(null, null, "foo\"\\\n\r\tbar"));
+                             new SimpleSelector(null, null, "foo\"\\\n\r\tbar"));
             n++; if (! iter.hasNext()) error(test, n);
         } catch (Exception e) {
             inError = true;

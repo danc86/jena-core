@@ -69,7 +69,7 @@ public class TestReifier extends GraphTestBase
     	assertTrue( "node is known bound", R.hasTriple( M ) );
     	assertTrue( "node is known bound", R.hasTriple( N ) );
     	assertFalse( "node is known unbound", R.hasTriple( Node.ANY ) );
-    	assertFalse( "node is known unbound", R.hasTriple( Node.makeURI( "any:thing" ) ) );
+    	assertFalse( "node is known unbound", R.hasTriple( Node.createURI( "any:thing" ) ) );
     /* */
     	Graph GR = R.getReifiedTriples();
     	assertTrue( "reified triples", graphWith( "x R y; p S q" ).isIsomorphicWith(GR) );
@@ -80,7 +80,7 @@ public class TestReifier extends GraphTestBase
     	{
     	Graph G = graphWith( "" );
     	Reifier R = G.getReifier();
-    	Node X = Node.makeURI( "some:uri" );
+    	Node X = Node.createURI( "some:uri" );
     	assertEquals( "node used", X, R.reifyAs( X, triple( "x R y" ) ) );
     	assertEquals( "retrieves correctly", triple( "x R y" ), R.getTriple( X ) );
     	}

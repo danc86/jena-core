@@ -775,7 +775,7 @@ public class N3JenaWriter implements RDFWriter
 	private StmtIterator listStatements(Model model, Resource subj, Property prop, RDFNode obj)
 		throws RDFException
 	{
-		return model.listStatements(new SelectorImpl(subj, prop, obj)) ;
+		return model.listStatements(new SimpleSelector(subj, prop, obj)) ;
 	}
 
 

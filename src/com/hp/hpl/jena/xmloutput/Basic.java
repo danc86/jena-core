@@ -7,7 +7,7 @@
 
 package com.hp.hpl.jena.xmloutput;
 
-import com.hp.hpl.jena.rdf.model.impl.SelectorImpl;
+import com.hp.hpl.jena.rdf.model.impl.*;
 import com.hp.hpl.jena.rdf.model.impl.Util;
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.vocabulary.RDF;
@@ -80,7 +80,7 @@ public class Basic extends BaseXMLWriter {
 		throws RDFException {
 		StmtIterator sIter =
 			model.listStatements(
-				new SelectorImpl(subject, null, (RDFNode) null));
+				new SimpleSelector(subject, null, (RDFNode) null));
 
 		writeDescriptionHeader(subject, writer);
 		if ((subject instanceof Statement)

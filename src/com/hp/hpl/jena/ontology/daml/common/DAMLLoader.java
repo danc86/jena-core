@@ -82,8 +82,8 @@ import com.hp.hpl.jena.rdf.model.Statement;
 import com.hp.hpl.jena.rdf.model.Property;
 import com.hp.hpl.jena.rdf.model.RDFNode;
 
+import com.hp.hpl.jena.rdf.model.impl.SimpleSelector;
 import com.hp.hpl.jena.rdf.model.impl.Util;
-import com.hp.hpl.jena.rdf.model.impl.SelectorImpl;
 
 import com.hp.hpl.jena.mem.ModelMem;
 
@@ -626,9 +626,9 @@ public class DAMLLoader
         // first check that we are loading included ontologies
         if (getLoadImportedOntologies()) {
             // first find if there is an Ontology resource
-            ResIterator i0 = model.query( new SelectorImpl( null, RDF.type, ontologyInstanceType ) )
+            ResIterator i0 = model.query( new SimpleSelector( null, RDF.type, ontologyInstanceType ) )
                                   .listSubjects();
-            ResIterator i1 = model.query( new SelectorImpl( null, DAML_OIL.type, ontologyInstanceType ) )
+            ResIterator i1 = model.query( new SimpleSelector( null, DAML_OIL.type, ontologyInstanceType ) )
                                   .listSubjects();
 
             // we collect the imported URI's first, then load them ... otherwise we're

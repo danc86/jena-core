@@ -343,7 +343,7 @@ public class TriplePattern
             o = _o ;
             currentBinding = binding ;
             try {
-                Selector selector = new SelectorImpl(s, p, o) ;
+                Selector selector = new SimpleSelector(s, p, o) ;
                 sIter = m.listStatements(selector) ;
             } catch (RDFException rdfEx)
             {

@@ -85,7 +85,7 @@ public class ConstraintStage extends Stage
     */
     static public void addFactory( String uri, PredicateFactory f )
         {
-        Node n = Node.makeURI( uri );
+        Node n = Node.createURI( uri );
         if (factories.containsKey( n ))
             throw new UnsupportedOperationException( "cannot redefine: " + f );
         else

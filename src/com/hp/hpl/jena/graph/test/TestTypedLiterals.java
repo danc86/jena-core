@@ -14,7 +14,8 @@ import com.hp.hpl.jena.graph.dt.*;
 import com.hp.hpl.jena.graph.query.*;
 import com.hp.hpl.jena.mem.ModelMem;
 import com.hp.hpl.jena.rdf.model.*;
-import com.hp.hpl.jena.rdf.model.impl.SelectorImpl;
+import com.hp.hpl.jena.rdf.model.impl.*;
+
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
@@ -449,7 +450,7 @@ public class TestTypedLiterals extends TestCase {
         Iterator qi = model.getGraph().queryHandler().prepareBindings(q, new Node[] {}).executeBindings();
         assertTrue(qi.hasNext());
         // Similar tests at Model API level
-        Selector s1 = new SelectorImpl(a, p, l2);
+        Selector s1 = new SimpleSelector(a, p, l2);
         assertTrue(model.listStatements(s1).hasNext());
     }
     
