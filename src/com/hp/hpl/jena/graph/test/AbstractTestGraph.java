@@ -116,7 +116,8 @@ public abstract class AbstractTestGraph extends GraphTestBase
             assertTrue( g.isEmpty() );
             }
         }
-                
+        
+
     public void testAGraph()
         {
         String title = this.getClass().getName();
