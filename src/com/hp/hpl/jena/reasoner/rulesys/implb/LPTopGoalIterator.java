@@ -51,7 +51,8 @@ public class LPTopGoalIterator implements ClosableIterator, LPInterpreterContext
      */
     public LPTopGoalIterator(LPInterpreter engine) {
         this.interpreter = engine;
-        engine.setState(this);
+//        engine.setState(this);
+        engine.setTopInterpreter(this);
     }
     
     /**

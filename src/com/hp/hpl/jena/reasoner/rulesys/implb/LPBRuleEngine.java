@@ -217,7 +217,7 @@ public class LPBRuleEngine {
     public synchronized Generator generatorFor(TriplePattern goal, List clauses) {
         Generator generator = (Generator) tabledGoals.get(goal);
         if (generator == null) {
-            LPInterpreter interpreter = new LPInterpreter(this, goal, clauses);
+            LPInterpreter interpreter = new LPInterpreter(this, goal, clauses, false);
             activeInterpreters.add(interpreter);
             generator = new Generator(interpreter);
             schedule(generator);
@@ -234,7 +234,7 @@ public class LPBRuleEngine {
     public synchronized Generator generatorFor(TriplePattern goal) {
         Generator generator = (Generator) tabledGoals.get(goal);
         if (generator == null) {
-            LPInterpreter interpreter = new LPInterpreter(this, goal);
+            LPInterpreter interpreter = new LPInterpreter(this, goal, false);
             activeInterpreters.add(interpreter);
             generator = new Generator(interpreter);
             schedule(generator);

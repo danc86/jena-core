@@ -70,7 +70,8 @@ public class TestBasicLP  extends TestCase {
         return new TestSuite( TestBasicLP.class );
         
 //        TestSuite suite = new TestSuite();
-//        suite.addTest(new TestBasicLP( "testProblem2" ));
+//        suite.addTest(new TestBasicLP( "testBaseRules5" ));
+//        suite.addTest(new TestBasicLP( "testProblem4" ));
 //        return suite;
     }  
    
@@ -896,7 +897,6 @@ public class TestBasicLP  extends TestCase {
         String rules =         "[r1: (?x r ?y ) <- bound(?x), (?x p ?y) ]" +
         "[r2: (?x r ?y) <- unbound(?x), (?x q ?y)]";
         doTest(rules,
-                new Node[] { },
                 new Triple[] {
                     new Triple(a, p, b),
                     new Triple(a, q, c)
@@ -906,7 +906,6 @@ public class TestBasicLP  extends TestCase {
                     new Triple(a, r, b)
                 } );
         doTest(rules,
-                new Node[] { },
                 new Triple[] {
                     new Triple(a, p, b),
                     new Triple(a, q, c)
@@ -915,7 +914,27 @@ public class TestBasicLP  extends TestCase {
                 new Object[] {
                     new Triple(a, r, c)
                 } );
+    }
 
+    /**
+     * A problem from the original backchainer tests - head unification test
+     */
+    public void testProblem4() {
+        String rules =   "[r1: (c r ?x) <- (?x p ?x)]" +
+        "[r2: (?x p ?y) <- (a q ?x), (b q ?y)]";
+        doTest(rules,
+                new Node[] { r, p },
+                new Triple[] {
+                    new Triple(a, q, a),
+                    new Triple(a, q, b),
+                    new Triple(a, q, c),
+                    new Triple(b, q, b),
+                    new Triple(b, q, d),
+                },
+                new Triple(c, r, Node.ANY),
+                new Object[] {
+                    new Triple(c, r, b)
+                } );
     }
     
     /** 
