@@ -52,6 +52,13 @@ public class Mapping
 		}
 		
     /**
+        Answer the number of names currently held in the map
+        @return the number of names in the map
+    */
+    public int size()
+        { return map.size(); }
+        
+    /**
         @param the node _v_ to look up
         @return true iff this mapping maps _v_ to an index
     */

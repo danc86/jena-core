@@ -464,6 +464,33 @@ public class QueryTest extends GraphTestBase
         q.executeBindings( g, nodes( "" ) );
         return Arrays.asList( tripleses[0] );
         }
+        
+    /**
+        test that we can correctly deduce the variable count for some queries.
+     */
+    public void testVariableCount()
+        {
+        assertCount( 0, "" );
+        assertCount( 0, "x R y" );
+        assertCount( 1, "?x R y" );
+        assertCount( 1, "?x R ?x" );
+        assertCount( 2, "?x R ?y" );
+        assertCount( 3, "?x ?R ?y" );
+        assertCount( 6, "?x ?R ?y; ?a ?S ?c" );
+        assertCount( 18, "?a ?b ?c; ?d ?e ?f; ?g ?h ?i; ?j ?k ?l; ?m ?n ?o; ?p ?q ?r" );
+        }
+    
+    public void assertCount( int expected, String query )
+        {
+        Graph g = graphWith( "" );
+        Query q = new Query();
+        Triple [] triples = tripleArray( query );
+        for (int i = 0; i < triples.length; i += 1) q.addMatch( triples[i] );
+        q.executeBindings( g, new Node [] {} );
+        assertEquals( expected, q.getVariableCount() );
+        q.executeBindings( g, nodes( "?notPresentInQuery" ) );
+        assertEquals( expected + 1, q.getVariableCount() );
+        }
     }
 
 /*

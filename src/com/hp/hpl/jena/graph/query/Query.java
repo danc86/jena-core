@@ -86,7 +86,8 @@ public class Query
         addStages( stages, args, map );
         stages.add( new ConstraintStage( map, constraintGraph ) );
         final int [] indexes = findIndexes( map, nodes );
-        return filter( indexes, connectStages( stages ).deliver( result ) );
+        variableCount = map.size();
+        return filter( indexes, connectStages( stages, variableCount ).deliver( result ) );
         }
 
     private int [] findIndexes( Mapping map, Node [] nodes )
@@ -182,9 +183,14 @@ public class Query
             }
         }
         
-    private Stage connectStages( ArrayList stages )
+    private int variableCount = -1;
+    
+    public int getVariableCount()
+        { return variableCount; }
+        
+    private Stage connectStages( ArrayList stages, int count )
         {
-        Stage current = Stage.initial();
+        Stage current = Stage.initial( count );
         for (int i = 0; i < stages.size(); i += 1)
             current = ((Stage) stages.get( i )).connectFrom( current );
         return current;

@@ -21,8 +21,8 @@ public abstract class Stage
 	protected Stage previous;
     
 	/** construct a new initial stage for the pipeline */    
-	public static Stage initial()
-		{ return new InitialStage(); }
+	public static Stage initial( int count )
+		{ return new InitialStage( count ); }
         
     /** connect this stage to its supplier; return this for chaining. */
 	public Stage connectFrom( Stage s )
