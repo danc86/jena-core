@@ -51,6 +51,12 @@ public class Fragments
     public Fragments( Node n ) 
         { this.n = n; }
         
+    public Fragments( Node n, Triple t )
+        {
+        this( n );
+        addTriple( t ); 
+        }
+        
     /**
         true iff this is a complete fragment; every component is present with exactly
         one value, so n unambiguously reifies (subject, predicate, object).
