@@ -31,13 +31,15 @@
 
 package com.hp.hpl.jena.rdf.model;
 
+import com.hp.hpl.jena.util.JenaException;
+
 import java.lang.Integer;
 
 /** Generic RDF Exception class.
  * @author bwm
  * @version $Name$ $Revision$ $Date$
  */
-public class RDFException extends RuntimeException {
+public class RDFException extends JenaException {
     
     protected int       errorCode = 0;
     protected int       otherCode = 0;
