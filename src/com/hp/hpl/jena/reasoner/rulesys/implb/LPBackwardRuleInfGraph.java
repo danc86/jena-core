@@ -47,9 +47,6 @@ public class LPBackwardRuleInfGraph extends BaseInfGraph implements BackwardRule
     /** A finder that searches across the data, schema and axioms */
     protected Finder dataFind;
     
-    /** Single context for the reasoner, used when passing information to builtins */
-    protected BBRuleContext context; // TODO: change or remove
-    
     /** Cache of temporary property values inferred through getTemp calls */
     protected TempNodeCache tempNodecache;
         
@@ -104,8 +101,6 @@ public class LPBackwardRuleInfGraph extends BaseInfGraph implements BackwardRule
             if (fschema != null) {
                 dataFind = FinderUtil.cascade(dataFind, fschema);
             }
-            
-            context = new BBRuleContext(this);
         }
         
         isPrepared = true;
@@ -272,13 +267,7 @@ public class LPBackwardRuleInfGraph extends BaseInfGraph implements BackwardRule
      * @return true if the predicate succeeds
      */
     public boolean processBuiltin(Object clause, Rule rule, BindingEnvironment env) {
-        if (clause instanceof Functor) {
-            context.setEnv(env);
-            context.setRule(rule);
-            return((Functor)clause).evalAsBodyClause(context);
-        } else {
-            throw new ReasonerException("Illegal builtin predicate: " + clause + " in rule " + rule);
-        }
+        throw new ReasonerException("Internal error in FBLP rule engine, incorrect invocation of building in rule " + rule); 
     }
     
     /**
