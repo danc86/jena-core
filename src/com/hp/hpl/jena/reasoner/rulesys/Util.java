@@ -118,6 +118,7 @@ public class Util {
         String line;
         while ((line = src.readLine()) != null) {
             if (line.startsWith("#")) continue;     // Skip comment lines
+            if (line.startsWith("//")) continue;     // Skip comment lines
             result.append(line);
             result.append("\n");
         }

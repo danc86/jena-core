@@ -14,6 +14,7 @@ import com.hp.hpl.jena.reasoner.rulesys.*;
 import com.hp.hpl.jena.reasoner.test.WGReasonerTester;
 import com.hp.hpl.jena.util.ModelLoader;
 import com.hp.hpl.jena.util.PrintUtil;
+//import com.hp.hpl.jena.util.PrintUtil;
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.vocabulary.*;
 import com.hp.hpl.jena.graph.*;
@@ -178,26 +179,15 @@ public class OWLWGTester {
         long t2 = System.currentTimeMillis();
         logger.info("Time=" + (t2-t1) + "ms for " + test.getURI());
         //logger.debug("Fired " + ((BasicForwardRuleInfGraph)graph).getNRulesFired() +" rules");
-        // Temp ...
-        //((BasicBackwardRuleInfGraph) graph).dump();
-        // ... end temp
-        // Debug output on failure
+        
         if (!correct) {
-            // Temp
-            if (log) {
-                PrintUtil.registerPrefix("prem", "http://www.w3.org/2002/03owlt/equivalentClass/premises005#");
-                for (Iterator i = conclusions.getGraph().find(null, null, null); i.hasNext(); ) {
-                    Triple t = (Triple)i.next();
-                    StringWriter sw = new StringWriter(4000);
-                    PrintWriter out = new PrintWriter( sw );
-                    logger.debug("Derivation of " + PrintUtil.print(t));
-                    Iterator derivations = graph.getDerivation(t);
-                    while (derivations.hasNext()) {
-                        Derivation deriv = (Derivation)derivations.next();
-                        deriv.printTrace(out, true);
-                    }
-                    out.close();
-                    logger.debug(sw.getBuffer().toString() );
+            // List all the forward deductions for debugging
+            if (graph instanceof FBRuleInfGraph) {
+                System.out.println("Error: deductions graph was ...");
+                FBRuleInfGraph fbGraph = (FBRuleInfGraph)graph;
+                Graph deductions = fbGraph.getDeductionsGraph();
+                for (Iterator i = deductions.find(null,null,null); i.hasNext();) {
+                    logger.info(" - " + PrintUtil.print(i.next()));
                 }
             }
         }

@@ -46,6 +46,7 @@ public class BuiltinRegistry {
         theRegistry.register(new Unbound());
         theRegistry.register(new IsLiteral());
         theRegistry.register(new NotLiteral());
+        theRegistry.register(new SchedulePrototypeCheck());
     }
     
     /**

@@ -190,9 +190,7 @@ public class BindingVector implements BindingEnvironment {
     }
     
     /**
-     * Unify a goal with the head of a rule. This is a poor-man's unification,
-     * we should try swtiching to a more conventional global-variables-with-trail
-     * implementation in the future.
+     * Unify a goal with the head of a rule. 
      * @param goal the goal pattern which it being matched to a rule
      * @param head the head pattern of the rule which is being instantiated
      * @return An initialized binding environment for the rule variables

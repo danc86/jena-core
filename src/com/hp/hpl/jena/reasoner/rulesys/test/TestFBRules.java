@@ -430,6 +430,27 @@ public class TestFBRules extends TestCase {
                   new Triple(b, ty, C1)
               } );
     }
+    
+    /**
+     * Test example hybrid rules for rdfs.
+     */
+    public void testHybridRDFS2() {
+        Graph data = new GraphMem();
+        data.add(new Triple(a, p, b));
+        data.add(new Triple(p, sP, r));
+        data.add(new Triple(r, RDFS.range.asNode(), C1));
+        List rules = Rule.parseRules(
+    "[rdfs3:  (?p rdfs:range ?c)  -> [(?y rdf:type ?c) <- (?x ?p ?y)] ]" + 
+    "[rdfs6:  (?p rdfs:subPropertyOf ?q) -> [ (?a ?q ?b) <- (?a ?p ?b)] ]" + 
+                          "" );        
+        Reasoner reasoner =  new FBRuleReasoner(rules);
+        InfGraph infgraph = reasoner.bind(data);
+//        ((FBRuleInfGraph)infgraph).setTraceOn(true);
+        TestUtil.assertIteratorValues(this, 
+              infgraph.find(b, ty, C1), new Object[] {
+                  new Triple(b, ty, C1)
+              } );
+    }
 
 }
 

@@ -79,7 +79,7 @@ public class OWLRuleReasoner extends BasicForwardRuleReasoner {
     
     /**
      * Precompute the implications of a schema graph.
-     * The practicality benefit of this has not yet been fully checked out.
+     * The practical benefit of this has not yet been fully checked out.
      */
     public Reasoner bindSchema(Graph tbox) throws ReasonerException {
         InfGraph graph = new BasicForwardRuleInfGraph(this, rules, tbox);

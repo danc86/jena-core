@@ -144,6 +144,21 @@ public class Node_RuleVariable extends Node_Variable {
     public int hashCode() {
         return 0xc3a7;
     }
+
+    /**
+     * Compare two nodes, taking into account variable indices.
+     */
+    public static boolean sameNodeAs(Node n, Node m) {
+        if (n instanceof Node_RuleVariable) {
+            if (m instanceof Node_RuleVariable) {
+                return ((Node_RuleVariable)n).getIndex() == ((Node_RuleVariable)m).getIndex();
+            } else {
+                return false;
+            }
+        } else {
+            return n.sameValueAs(m);
+        }
+    }
     
     /** Inner class to wrap the label to ensure it is distinct from other usages */
     static class VarLabel {

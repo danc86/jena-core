@@ -155,7 +155,7 @@ public class FRuleEngine {
      * process the stack of additions firing any relevant rules.
      * @param context a context containing a set of new triples to be added
      */
-    protected void addSet(BFRuleContext context) {
+    public void addSet(BFRuleContext context) {
         long cutoff = nRulesFired + nRulesThreshold;
         Triple t;
         while ((t = context.getNextTriple()) != null) {

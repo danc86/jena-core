@@ -87,6 +87,27 @@ public class TestBasics extends TestCase  {
     }
 
     /**
+     * Test rule equality operations.
+     */
+    public void testRuleEquality() {
+        Rule r1 = Rule.parseRule("(?a p ?b) -> (?a q ?b).");
+        Rule r2 = Rule.parseRule("(?a p ?b) -> (?b q ?a).");
+        Rule r1b = Rule.parseRule("(?x p ?y) -> (?x q ?y).");
+        Rule r3 = Rule.parseRule("(?a p ?b), f(?a) -> (?a q ?b).");
+        Rule r3b = Rule.parseRule("(?c p ?d), f(?c) -> (?c q ?d).");
+        Rule r4 = Rule.parseRule("(?a p ?b), g(?a) -> (?a q ?b).");
+        Rule r5 = Rule.parseRule("(?a p ?b), f(?b) -> (?a q ?b).");
+        Rule r6 = Rule.parseRule("(?a p ?b), f(p) -> (?a q ?b).");
+        assertTrue(! r1.equals(r2));
+        assertTrue(  r1.equals(r1b));
+        assertTrue(! r1.equals(r3));
+        assertTrue(  r3.equals(r3b));
+        assertTrue(! r3.equals(r4));
+        assertTrue(! r3.equals(r5));
+        assertTrue(! r3.equals(r6));
+    }
+    
+    /**
      * Test the BindingEnvironment machinery
      */
     public void testBindingEnvironment() {

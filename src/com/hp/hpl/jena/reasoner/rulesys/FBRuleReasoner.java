@@ -42,6 +42,7 @@ public class FBRuleReasoner implements Reasoner {
 
     /** Flag which, if true, enables tracing of rule actions to logger.info */
     boolean traceOn = false;
+//    boolean traceOn = true;
     
     /** Base URI used for configuration properties for rule reasoners */
     static final String URI = "http://www.hpl.hp.com/semweb/2003/RuleReasoner";
@@ -81,7 +82,7 @@ public class FBRuleReasoner implements Reasoner {
      * Internal constructor, used to generated a partial binding of a schema
      * to a rule reasoner instance.
      */
-    private FBRuleReasoner(List rules, InfGraph schemaGraph, ReasonerFactory factory) {
+    protected FBRuleReasoner(List rules, InfGraph schemaGraph, ReasonerFactory factory) {
         this.rules = rules;
         this.schemaGraph = schemaGraph;
         this.factory = factory;
@@ -145,7 +146,7 @@ public class FBRuleReasoner implements Reasoner {
      * constraints imposed by this reasoner.
      */
     public InfGraph bind(Graph data) throws ReasonerException {
-        BasicForwardRuleInfGraph graph = new FBRuleInfGraph(this, rules, schemaGraph);
+        FBRuleInfGraph graph = new FBRuleInfGraph(this, rules, schemaGraph);
         graph.setDerivationLogging(recordDerivations);
         graph.setRuleThreshold(nRulesThreshold);
         graph.setTraceOn(traceOn);

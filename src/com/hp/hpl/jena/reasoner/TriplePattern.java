@@ -13,6 +13,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.hp.hpl.jena.graph.*;
+import com.hp.hpl.jena.reasoner.rulesys.ClauseEntry;
 import com.hp.hpl.jena.reasoner.rulesys.Functor;
 import com.hp.hpl.jena.reasoner.rulesys.Node_RuleVariable;
 import com.hp.hpl.jena.vocabulary.RDF;
@@ -32,7 +33,7 @@ import com.hp.hpl.jena.vocabulary.RDFS;
  * @author <a href="mailto:der@hplb.hpl.hp.com">Dave Reynolds</a>
  * @version $Revision$ on $Date$
  */
-public class TriplePattern {
+public class TriplePattern implements ClauseEntry {
 
     /** The subject element of the pattern */
     protected Node subject;
@@ -288,6 +289,16 @@ public class TriplePattern {
     /** hash function override */
     public int hashCode() {
         return (subject.hashCode() >> 1) ^ predicate.hashCode() ^ (object.hashCode() << 1);
+    }
+    
+    /**
+     * Compare triple patterns, taking into account variable indices.
+     * The equality function ignores differences between variables.
+     */
+    public boolean sameAs(Object o) {
+        if (! (o instanceof TriplePattern) ) return false;
+        TriplePattern other = (TriplePattern) o;
+        return Node_RuleVariable.sameNodeAs(subject, other.subject) && Node_RuleVariable.sameNodeAs(predicate, other.predicate) && Node_RuleVariable.sameNodeAs(object, other.object);
     }
     
 }

@@ -96,6 +96,13 @@ public class BRuleEngine {
     }
     
     /**
+     * Return an ordered list of all registered rules.
+     */
+    public List getAllRules() {
+        return ruleStore.getAllRules();
+    }
+        
+    /**
      * Stop the current work. This is called if the top level results iterator has
      * either finished or the calling application has had enough. We leave any completed 
      * results in the GoalTable but clear out the agenda and all non-compelted results.

@@ -31,10 +31,10 @@ import com.hp.hpl.jena.vocabulary.*;
  * @author <a href="mailto:der@hplb.hpl.hp.com">Dave Reynolds</a>
  * @version $Revision$ on $Date$
  */
-public class OWLBRuleReasonerFactory implements ReasonerFactory {
+public class OWLFBRuleReasonerFactory implements ReasonerFactory {
     
     /** Single global instance of this factory */
-    private static ReasonerFactory theInstance = new OWLBRuleReasonerFactory();
+    private static ReasonerFactory theInstance = new OWLFBRuleReasonerFactory();
     
     /** Static URI for this reasoner type */
     public static final String URI = "http://www.hpl.hp.com/semweb/2003/OWLBRuleReasoner";
@@ -55,7 +55,7 @@ public class OWLBRuleReasonerFactory implements ReasonerFactory {
      * passed the reasoner encoded within an RDF graph
      */
     public Reasoner create(Model configuration) {
-        OWLBRuleReasoner reasoner = new OWLBRuleReasoner();
+        OWLFBRuleReasoner reasoner = new OWLFBRuleReasoner();
         if (configuration != null) {
             Boolean doLog = Util.checkBinaryPredicate(URI, BasicForwardRuleReasoner.PROPderivationLogging, configuration);
             if (doLog != null) {
