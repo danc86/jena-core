@@ -161,15 +161,34 @@ abstract class DBcmd
 
     }
     
-    protected ModelRDB getRDBModel() 
+protected ModelRDB getRDBModel() 
     {
         if ( dbModel == null )
         {
+            try 
+            {
+                
             if ( argModelName == null )
                 dbModel = ModelRDB.open(getConnection()) ;
             else
-                dbModel = ModelRDB.open(getConnection(), argModelName) ;
+                try {
+                    dbModel = ModelRDB.open(getConnection(), argModelName) ;
+                } catch (com.hp.hpl.jena.shared.DoesNotExistException ex)
+                {
+                    System.out.println("No model '"+argModelName+"' in that database") ;
+                    System.exit(9) ;
+                }
+            }
+            catch (com.hp.hpl.jena.db.RDFRDBException dbEx)
+            {
+                Throwable t = dbEx.getCause() ;
+                if ( t == null )
+                    t = dbEx ;
+                System.out.println("Failed to connect to the database: "+t.getMessage()) ;
+                System.exit(9) ;
+            }
         }
+        
         return dbModel ;   
     }
 
