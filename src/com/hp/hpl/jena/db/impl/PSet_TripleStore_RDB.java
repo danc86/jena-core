@@ -119,10 +119,7 @@ public  class PSet_TripleStore_RDB implements IPSet {
 	public void setMaxLiteral(int value) { MAX_LITERAL = value; }
 	public void setSQLType(String value) { ID_SQL_TYPE = value; }
 	public void setSkipDuplicateCheck(boolean value) { SKIP_DUPLICATE_CHECK = value;}
-	public void setSkipAllocateId(boolean value ) { SKIP_ALLOCATE_ID = value;}
-	public void setEmptyLiteralMarker(String value ) { EMPTY_LITERAL_MARKER = value;}
 	public void setSQLCache(SQLCache cache ) { m_sql = cache; }
-	public void setInsertByProcedure(boolean value) { INSERT_BY_PROCEDURE = value; }
 	public void setCachePreparedStatements(boolean value) { CACHE_PREPARED_STATEMENTS = value; }
 	
 	
@@ -309,7 +306,7 @@ public  class PSet_TripleStore_RDB implements IPSet {
 		 PreparedStatement ps = m_sql.getPreparedSQLStatement("getRowCount",tName);
 	     ResultSet rs = ps.executeQuery();
 	     while ( rs.next() ) {
-		  result = rs.getInt("COUNT(*)");
+		  result = rs.getInt(1);
 	     } 
 	//	m_sql.returnPreparedSQLStatement(ps, "getRowCount");
 	} catch (SQLException e) {
