@@ -684,7 +684,7 @@ public class OntDocumentManager
             else {
                 try {
                     // we have opened the file as a system resource - try to load it into the model
-                    model.read( is, resolvableURI, lang );
+                    model.read( is, uri, lang );
                 }
                 finally {
                     try {is.close();} catch (IOException ignore) {}
