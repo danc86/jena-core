@@ -147,6 +147,15 @@ public class TestModelMakerImpl extends ModelTestBase
 
         public Model getExistingModel(String name)
             { return null; }
+
+        /* (non-Javadoc)
+         * @see com.hp.hpl.jena.rdf.model.ModelSource#createModel()
+         */
+        public Model createModel()
+            {
+            // TODO Auto-generated method stub
+            return null;
+            }
     	}
 
     private void checkHistory( List expected )

@@ -67,6 +67,8 @@ public abstract class ModelSpecImpl implements ModelSpec
     */
     public abstract Model createModel();
     
+    public Model getModel() { return null; }
+    
     /**
         Answer a Model created according to this ModelSpec and based on an underlying
         Model with the given name.

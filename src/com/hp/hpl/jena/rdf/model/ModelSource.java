@@ -32,7 +32,7 @@ public interface ModelSource
         first call on getModel. Multiple calls of getModel will
         yield the *same* model.
     */
-    Model getModel();
+    // Model getModel();
     
     /**
         Answer a Model that satisfies this ModelSource's shape. Different

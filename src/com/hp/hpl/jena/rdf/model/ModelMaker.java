@@ -31,6 +31,8 @@ public interface ModelMaker extends ModelSpec
     */
     public Model createModel( String name, boolean strict );
 
+    public Model getModel();
+    
     /**
         Create a Model that does not already exist - equivalent to
         <br><code>createModel( name, false )</code>.
