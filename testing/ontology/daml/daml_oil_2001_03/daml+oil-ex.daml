@@ -1,12 +1,13 @@
 <!-- $Revision$ of $Date$ -->
 <!-- Note: this is just http://www.daml.org/2001/03/daml+oil-ex.daml, modified  -->
 <!-- to make all names absolute with rdf:about rather than relative with rdf:ID -->
+<!-- also fixed the XSD namespace -->
 
 <rdf:RDF
   xmlns:rdf ="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
   xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
   xmlns:daml="http://www.daml.org/2001/03/daml+oil#"
-  xmlns:xsd ="http://www.w3.org/2000/10/XMLSchema#"
+  xmlns:xsd ="http://www.w3.org/2001/XMLSchema#"
   xmlns:dex ="http://www.daml.org/2001/03/daml+oil-ex#"
   xmlns:exd ="http://www.daml.org/2001/03/daml+oil-ex-dt#"
   xmlns     ="http://www.daml.org/2001/03/daml+oil-ex#"
@@ -128,6 +129,7 @@
 <daml:UniqueProperty rdf:about="http://www.daml.org/2001/03/daml+oil-ex#hasMother">
   <rdfs:subPropertyOf rdf:resource="http://www.daml.org/2001/03/daml+oil-ex#hasParent"/>
   <rdfs:range rdf:resource="http://www.daml.org/2001/03/daml+oil-ex#Female"/>
+  <daml:domain rdf:resource="http://www.daml.org/2001/03/daml+oil-ex#Person"/>
 </daml:UniqueProperty>
 
 <daml:ObjectProperty rdf:about="http://www.daml.org/2001/03/daml+oil-ex#hasChild">

@@ -70,6 +70,8 @@ public class BuiltinPersonalities {
         .add( DAMLOntology.class, DAMLOntologyImpl.factory )
         .add( DAMLInstance.class, DAMLInstanceImpl.factory )
         .add( DAMLList.class, DAMLListImpl.factory )
+        .add( DAMLDataInstance.class, DAMLDataInstanceImpl.factory )
+        .add( DAMLDatatype.class, DAMLDatatypeImpl.factory )
         
         // Last and least ?
         .add( RDFNode.class, ResourceImpl.rdfNodeFactory )

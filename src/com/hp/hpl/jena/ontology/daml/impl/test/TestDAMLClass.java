@@ -81,16 +81,17 @@ public class TestDAMLClass
                     
                     assertEquals( "sub-class cardinality", 0, A.prop_subClassOf().count() );
                     A.prop_subClassOf().add( B );
-                    assertEquals( "sub-class cardinality", 1, A.prop_subClassOf().count() );
-                    A.prop_subClassOf().add( C );
+                    iteratorTest( A.prop_subClassOf().getAll(), new Object[] {A,B} );
                     assertEquals( "sub-class cardinality", 2, A.prop_subClassOf().count() );
+                    A.prop_subClassOf().add( C );
+                    assertEquals( "sub-class cardinality", 3, A.prop_subClassOf().count() );
                     
-                    iteratorTest( A.prop_subClassOf().getAll(), new Object[] {B,C} );
+                    iteratorTest( A.prop_subClassOf().getAll(), new Object[] {A,B,C} );
                     
                     A.prop_subClassOf().remove( C );
-                    assertEquals( "sub-class cardinality", 1, A.prop_subClassOf().count() );
+                    assertEquals( "sub-class cardinality", 2, A.prop_subClassOf().count() );
                     
-                    iteratorTest( A.prop_subClassOf().getAll(), new Object[] {B} );
+                    iteratorTest( A.prop_subClassOf().getAll(), new Object[] {A,B} );
                     
                     assertTrue( "getDAMLValue instanceOf DAMLCommon", A.prop_subClassOf().getDAMLValue() instanceof DAMLCommon );
                     assertTrue( "hasValue", A.prop_subClassOf().hasValue( B ) );
@@ -186,13 +187,6 @@ public class TestDAMLClass
                     
                     assertEquals( "subClassOf A", B, A.getSubClass() );
                     
-                    // no inference
-                    iteratorTest( A.getSubClasses(), new Object[] {B} );
-                    iteratorTest( A.getSubClasses( false ), new Object[] {B} );
-                    iteratorTest( A.getSubClasses( true ), new Object[] {B} );
-                    
-                    C.prop_subClassOf().add( A );   // could be inferred
-                    
                     iteratorTest( A.getSubClasses(), new Object[] {B,C} );
                     iteratorTest( A.getSubClasses( false ), new Object[] {B} );
                     iteratorTest( A.getSubClasses( true ), new Object[] {B,C} );
@@ -208,13 +202,6 @@ public class TestDAMLClass
                     B.prop_subClassOf().add( C );
                     
                     assertEquals( "subClassOf A", B, A.getSuperClass() );
-                    
-                    // no inference
-                    iteratorTest( A.getSuperClasses(), new Object[] {B} );
-                    iteratorTest( A.getSuperClasses( false ), new Object[] {B} );
-                    iteratorTest( A.getSuperClasses( true ), new Object[] {B} );
-                    
-                    A.prop_subClassOf().add( C );   // could be inferred
                     
                     iteratorTest( A.getSuperClasses(), new Object[] {B,C} );
                     iteratorTest( A.getSuperClasses( false ), new Object[] {B} );

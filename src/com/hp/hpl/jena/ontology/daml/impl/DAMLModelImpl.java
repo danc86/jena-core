@@ -255,6 +255,20 @@ public class DAMLModelImpl
 
 
     /**
+     * <p>Create a DAML Datatype representing values from some concrete domain.</p>
+     *
+     * @param uri The URI that is both the URI of this datatype value, and the identifier
+     *             of the concrete domain type (e.g. as an XSD datatype).
+     * @return A new DAMLDatatype object.
+     */
+    public DAMLDatatype createDAMLDatatype( String uri ) {
+        Resource dt = getResource( uri );
+        dt.addProperty( RDF.type, DAML_OIL.Datatype );
+        return (DAMLDatatype) dt.as( DAMLDatatype.class );
+    }
+
+
+    /**
      * <p>Create a new DAML value that is a member of the given class.  The appropriate
      * {@link DAMLCommon} sub-class will be instantiated, so, for example, if the <code>damlClass</code>
      * is {@link DAML_OIL#Restriction}, a {@link DAMLRestriction}

@@ -93,6 +93,9 @@ public class OntModelSpec {
     /** A specification for DAML models that are stored in memory and use the RDFS inferencer for additional entailments */
     public static final OntModelSpec DAML_MEM_RDFS_INF = new OntModelSpec( ModelFactory.createMemModelMaker(), null, RDFSRuleReasonerFactory.theInstance(), ProfileRegistry.DAML_LANG );
     
+    /** A specification for DAML models that are stored in memory and use a subset of the DAML semantic model additional entailments */
+    public static final OntModelSpec DAML_MEM_RULE_INF = new OntModelSpec( ModelFactory.createMemModelMaker(), null, DAMLMicroReasonerFactory.theInstance(), ProfileRegistry.DAML_LANG );
+    
     /** A specification for RDFS ontology models that are stored in memory and do no additional entailment reasoning */
     public static final OntModelSpec RDFS_MEM = new OntModelSpec( ModelFactory.createMemModelMaker(), null, null, ProfileRegistry.RDFS_LANG );
     
@@ -193,7 +196,7 @@ public class OntModelSpec {
             return OWL_LITE_MEM_RDFS_INF;
         }
         else if (languageURI.equals( ProfileRegistry.DAML_LANG )) {
-            return DAML_MEM_RDFS_INF;
+            return DAML_MEM_RULE_INF;
         }
         else if (languageURI.equals( ProfileRegistry.RDFS_LANG )) {
             return RDFS_MEM_RDFS_INF;
@@ -212,7 +215,7 @@ public class OntModelSpec {
     public OntDocumentManager getDocumentManager() {
         if (m_docManager == null) {
             // need to set the default document manager
-            m_docManager = new OntDocumentManager();
+            m_docManager = OntDocumentManager.getInstance();
         }
         
         return m_docManager;

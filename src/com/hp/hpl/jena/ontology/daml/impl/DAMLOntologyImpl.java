@@ -33,7 +33,7 @@ import com.hp.hpl.jena.vocabulary.*;
 
 
 /**
- * Encapsulates the properties known for a given source ontology.
+ * <p>Encapsulates the properties known for a given source ontology.</p>
  *
  * @author Ian Dickinson, HP Labs (<a href="mailto:Ian.Dickinson@hp.com">email</a>)
  * @version CVS info: $Id$

@@ -848,7 +848,7 @@ public class OntResourceImpl
      */
     public int getCardinality( Property p ) {
         int n = 0;
-        for (Iterator i = listProperties( p );  i.hasNext(); n++) {
+        for (Iterator i = new UniqueExtendedIterator( listProperties( p ) );  i.hasNext(); n++) {
             i.next(); 
         }
         

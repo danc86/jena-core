@@ -126,7 +126,7 @@ public class PropertyAccessorImpl
      *         if the property has no value.
      */
     public RDFNode get() {
-        return m_val.getPropertyValue( getProperty() );
+        return m_val.getPropertyValue( getProperty() ).as( DAMLCommon.class );
     }
 
 

@@ -2,9 +2,9 @@
  * Source code information
  * -----------------------
  * Original author    Ian Dickinson, HP Labs Bristol
- * Author email       Ian.Dickinson@hp.com
+ * Author email       Ian_Dickinson@hp.com
  * Package            Jena
- * Created            3 August 2001
+ * Created            17 Sept 2001
  * Filename           $RCSfile$
  * Revision           $Revision$
  * Release status     Preview-release $State$
@@ -18,108 +18,52 @@
 
 // Package
 ///////////////
-package com.hp.hpl.jena.ontology.daml.impl;
+package com.hp.hpl.jena.ontology.daml;
+
 
 
 // Imports
 ///////////////
-import com.hp.hpl.jena.vocabulary.*;
-import com.hp.hpl.jena.rdf.model.*;
-import com.hp.hpl.jena.rdf.model.impl.*;
+import com.hp.hpl.jena.datatypes.RDFDatatype;
 
 
 
 
 /**
- * Contains knowledge of different versions of the DAML vocabulary, to help
- * with managing the different versions of the namespace.
+ * <p>A DAML datatype represents a set of values from a concrete domain, as opposed to
+ * a Class, which is a set of values from the instance domain.  Datatypes and
+ * Classes are disjoint.  In DAML, XML schema is used to encode values from
+ * concrete domains.</p>
  *
  * @author Ian Dickinson, HP Labs (<a href="mailto:Ian.Dickinson@hp.com">email</a>)
  * @version CVS info: $Id$
  */
-public class VocabularyManager
+public interface DAMLDatatype
+    extends DAMLCommon
 {
     // Constants
     //////////////////////////////////
 
 
-    // Static variables
-    //////////////////////////////////
-
-
-    // Instance variables
-    //////////////////////////////////
-
-
-    // Constructors
-    //////////////////////////////////
 
 
     // External signature methods
     //////////////////////////////////
 
     /**
-     * Answer the vocabulary that corresponds to the namespace of the
-     * given resource. By default, answer the most recent vocabulary.
+     * Answer the translator that can map between Java values and the serialized
+     * form that represents the value in the RDF graph.
      *
-     * @param resource The RDF resource denoting a namespace
-     * @return a DAML vocabulary object for the namespace
+     * @return A datatype translator.
      */
-    public static DAMLVocabulary getVocabulary( Resource resource ) {
-        return getDefaultVocabulary();
-    }
-
-
-    /**
-     * Answer the vocabulary that corresponds to the namespace of the
-     * given URI. By default, answer the most recent vocabulary.
-     *
-     * @param uri A URI denoting a namespace
-     * @return a DAML vocabulary object for the namespace
-     */
-    public static DAMLVocabulary getVocabulary( String uri ) {
-        if (uri != null) {
-            // pull out the namespace of the uri
-            int splitPoint = Util.splitNamespace( uri );
-            String namespace = (splitPoint < 0) ? uri : uri.substring( 0, splitPoint );
-
-            // test the known namespaces
-            if (namespace != null) {
-
-                // add further namespace tests here as the namespaces are defined.
-            }
-        }
-
-        // to get here, we assume the default vocabulary
-        return getDefaultVocabulary();
-    }
-
-
-    /**
-     * Answer the default (latest) vocabulary.
-     *
-     * @return a DAML+OIL vocabulary
-     */
-    public static DAMLVocabulary getDefaultVocabulary() {
-        return DAML_OIL.getInstance();
-    }
-
-    // Internal implementation methods
-    //////////////////////////////////
-
-
-
-
-    //==============================================================================
-    // Inner class definitions
-    //==============================================================================
+    public RDFDatatype getTranslator();
 
 
 }
 
 
 /*
-    (c) Copyright Hewlett-Packard Company 2002-2003
+    (c) Copyright Hewlett-Packard Company 2001-2003
     All rights reserved.
 
     Redistribution and use in source and binary forms, with or without
