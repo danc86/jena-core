@@ -254,7 +254,7 @@ public class LPInterpreter {
                 if (!choice.hasNext()) {
                     // No more choices left in this choice point
                     cpFrame = choice.getLink();
-                    if (traceOn) logger.info("FAIL clause choices exhausted");
+                    if (traceOn) logger.info("FAIL in clause " + choice.envFrame.clause + " choices exhausted");
                     continue main;
                 }
                 

@@ -116,7 +116,11 @@ public class LPTopGoalIterator implements ClosableIterator, LPInterpreterContext
         if (checkReadyNeeded) {
             isReady = false;
             for (Iterator i = choicePoints.iterator(); i.hasNext(); ) {
-                if ( ((ConsumerChoicePointFrame)i.next()).isReady() ) {
+                ConsumerChoicePointFrame ccp = (ConsumerChoicePointFrame)i.next();
+                if ( ccp.isReady() ) {
+                    if (nextToRun == null) {
+                        nextToRun = ccp; 
+                    }
                     isReady =  true;
                     break; 
                 }

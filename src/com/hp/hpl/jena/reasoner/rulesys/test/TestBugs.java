@@ -521,12 +521,12 @@ public class TestBugs extends TestCase {
     }
     
     /** Problem with bindSchema and validation rules */
-    public void xxtest_der_validation() {
+    public void test_der_validation() {
         Model abox = FileManager.get().loadModel("file:testing/reasoners/owl/nondetbug.rdf");
         List rules = FBRuleReasoner.loadRules("testing/reasoners/owl/nondetbug.rules");
         GenericRuleReasoner r = new GenericRuleReasoner(rules);
-        r.setTraceOn(true);
-        for (int i = 0; i < 1; i++) {
+//        r.setTraceOn(true);
+        for (int i = 0; i < 10; i++) {
             InfModel im = ModelFactory.createInfModel(r, abox);
             assertTrue("failed on count " + i, im.contains(null, ReasonerVocabulary.RB_VALIDATION_REPORT, (RDFNode)null));
         }
