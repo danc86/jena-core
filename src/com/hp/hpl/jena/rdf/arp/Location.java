@@ -48,6 +48,7 @@ class Location implements Locator {
     final int endLine;
     final int endColumn;
     Location(Locator locator) {
+    	// TODO null locator
         inputName = locator.getSystemId();
         endLine = locator.getLineNumber();
         endColumn = locator.getColumnNumber();
