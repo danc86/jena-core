@@ -140,28 +140,28 @@ public class TestBasics extends TestCase  {
                                     n2);
 
         // Should fail with no bindings
-        boolean match = inf.match(p1, new Triple(n1, n2, n3), env);
+        boolean match = BasicForwardRuleInfGraph.match(p1, new Triple(n1, n2, n3), env);
         assertTrue(!match);
         assertEquals(null, env.getEnvironment()[0]);
         assertEquals(null, env.getEnvironment()[1]);
         assertEquals(null, env.getEnvironment()[2]);
         
         // Should succeed with two bindings
-        match = inf.match(p1, new Triple(n2, n1, n3), env);
+        match = BasicForwardRuleInfGraph.match(p1, new Triple(n2, n1, n3), env);
         assertTrue(match);
         assertEquals(n2, env.getEnvironment()[0]);
         assertEquals(n3, env.getEnvironment()[1]);
         assertEquals(null, env.getEnvironment()[2]);
         
         // should fail but leave prior bindings intact
-        match = inf.match(p2, new Triple(n1, n2, n2), env);
+        match = BasicForwardRuleInfGraph.match(p2, new Triple(n1, n2, n2), env);
         assertTrue(!match);
         assertEquals(n2, env.getEnvironment()[0]);
         assertEquals(n3, env.getEnvironment()[1]);
         assertEquals(null, env.getEnvironment()[2]);
         
         // should succeed with full binding set
-        match = inf.match(p2, new Triple(n3, n1, n2), env);
+        match = BasicForwardRuleInfGraph.match(p2, new Triple(n3, n1, n2), env);
         assertTrue(match);
         assertEquals(n2, env.getEnvironment()[0]);
         assertEquals(n3, env.getEnvironment()[1]);
@@ -230,11 +230,13 @@ public class TestBasics extends TestCase  {
             d.printTrace(out, true);
         }
         out.flush();
-        assertEquals("Rule testRule3 concluded (res p n3) <-\r\n" +
-                    "    Rule testRule1 concluded (n2 p n3) <-\r\n" +
-                    "        Fact (n1 p n3)\r\n" +
-                    "    Rule testRule2 concluded (n2 q n3) <-\r\n" +
-                    "        Fact (n1 q n3)\r\n", outString.getBuffer().toString());
+        
+        String testString = TestUtil.normalizeWhiteSpace("Rule testRule3 concluded (res p n3) <-\n" +
+                "    Rule testRule1 concluded (n2 p n3) <-\n" +
+                "        Fact (n1 p n3)\r\n" +
+                "    Rule testRule2 concluded (n2 q n3) <-\n" +
+                "        Fact (n1 q n3)\r\n");
+        assertEquals(testString, TestUtil.normalizeWhiteSpace(outString.getBuffer().toString()));
     }
     
           
