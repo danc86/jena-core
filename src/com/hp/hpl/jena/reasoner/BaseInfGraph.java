@@ -180,14 +180,6 @@ public abstract class BaseInfGraph extends GraphBase implements InfGraph {
         return contained;
     }
     
-    /** 
-        returns this Graph's reifier. Each call on a given Graph gets the same
-        Reifier object.
-    */
-    public Reifier getReifier() {
-        return null;
-    }
-    
     /**
      * Switch on/off drivation logging
      */
