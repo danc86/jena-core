@@ -14,7 +14,6 @@ import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.graph.query.*;
 import com.hp.hpl.jena.rdf.model.impl.PropertyImpl;
 import com.hp.hpl.jena.rdf.model.impl.ResourceImpl;
-import com.hp.hpl.jena.mem.ModelMem;
 import com.hp.hpl.jena.mem.GraphMem;
 import com.hp.hpl.jena.reasoner.*;
 import com.hp.hpl.jena.vocabulary.RDF;
@@ -123,7 +122,7 @@ public class WGReasonerTester {
         } else if (file.endsWith("n3")) {
             langType = "N3";
         }
-        Model result = new ModelMem();
+        Model result = ModelFactory.createNonreifyingModel();
         String fname = file;
         if (fname.startsWith(BASE_URI)) {
             fname = fname.substring(BASE_URI.length());
@@ -202,7 +201,7 @@ public class WGReasonerTester {
         }
                 
         // Load up the premise documents
-        Model premises = new ModelMem();
+        Model premises = ModelFactory.createNonreifyingModel();
         for (StmtIterator premisesI = test.listProperties(premiseDocumentP); premisesI.hasNext(); ) {
             premises.add(loadFile(premisesI.nextStatement().getObject().toString()));
         }
