@@ -76,22 +76,22 @@ public class TestAllDifferent
                     OntResource b = (OntResource) m.getResource( NS + "b" ).as( OntResource.class );
                     OntResource c = (OntResource) m.getResource( NS + "c" ).as( OntResource.class );
                     
-                    a.addDistinct( b );
+                    a.addDistinctMember( b );
                     assertEquals( "Cardinality should be 1", 1, a.getCardinality( prof.DISTINCT_MEMBERS() ) );
-                    assertEquals( "List size should be 1", 1, a.getDistinct().size() );
+                    assertEquals( "List size should be 1", 1, a.getDistinctMembers().size() );
                     assertTrue( "a should have b as distinct", a.hasDistinctMember( b ) );
                     
-                    a.addDistinct( c );
+                    a.addDistinctMember( c );
                     assertEquals( "Cardinality should be 1", 1, a.getCardinality( prof.DISTINCT_MEMBERS() ) );
-                    assertEquals( "List size should be 2", 2, a.getDistinct().size() );
-                    iteratorTest( a.listDistinct(), new Object[] {b, c} );
+                    assertEquals( "List size should be 2", 2, a.getDistinctMembers().size() );
+                    iteratorTest( a.listDistinctMembers(), new Object[] {b, c} );
                     
                     assertTrue( "a should have b as distinct", a.hasDistinctMember( b ) );
                     assertTrue( "a should have c as distinct", a.hasDistinctMember( c ) );
                     
-                    a.setDistinct( m.createList( new RDFNode[] {b} ) );
+                    a.setDistinctMembers( m.createList( new RDFNode[] {b} ) );
                     assertEquals( "Cardinality should be 1", 1, a.getCardinality( prof.DISTINCT_MEMBERS() ) );
-                    assertEquals( "List size should be 1", 1, a.getDistinct().size() );
+                    assertEquals( "List size should be 1", 1, a.getDistinctMembers().size() );
                     assertTrue( "a should have b as distinct", a.hasDistinctMember( b ) );
                     assertTrue( "a should not have c as distinct", !a.hasDistinctMember( c ) );
                     

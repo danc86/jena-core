@@ -65,28 +65,28 @@ public interface AllDifferent
      * @param members A list of the members that are declared to be distinct.
      * @exception OntProfileException If the {@link Profile#DISTINCT_MEMBERS()} property is not supported in the current language profile.   
      */ 
-    public void setDistinct( RDFList members );
+    public void setDistinctMembers( RDFList members );
 
     /**
      * <p>Add the given individual to the list of distinct members of this AllDifferent declaration.</p>
      * @param res A resource that will be added to the list of all different members.
      * @exception OntProfileException If the {@link Profile#DISTINCT_MEMBERS()} property is not supported in the current language profile.   
      */ 
-    public void addDistinct( Resource res );
+    public void addDistinctMember( Resource res );
 
     /**
      * <p>Add the given individuals to the list of distinct members of this AllDifferent declaration.</p>
      * @param individuals An iterator over the distinct invididuals that will be added 
      * @exception OntProfileException If the {@link Profile#DISTINCT_MEMBERS()} property is not supported in the current language profile.   
      */ 
-    public void addDistinct( Iterator individuals );
+    public void addDistinctMembers( Iterator individuals );
 
     /**
      * <p>Answer the list of distinct members for this AllDifferent declaration.</p>
      * @return The list of individuals declared distinct by this AllDifferent declaration.
      * @exception OntProfileException If the {@link Profile#DISTINCT_MEMBERS()} property is not supported in the current language profile.   
      */ 
-    public RDFList getDistinct();
+    public RDFList getDistinctMembers();
 
     /**
      * <p>Answer an iterator over all of the individuals that are declared to be distinct by
@@ -94,7 +94,7 @@ public interface AllDifferent
      * @return An iterator over distinct individuals.
      * @exception OntProfileException If the {@link Profile#DISTINCT_MEMBERS()} property is not supported in the current language profile.   
      */ 
-    public ExtendedIterator listDistinct();
+    public ExtendedIterator listDistinctMembers();
 
     /**
      * <p>Answer true if this AllDifferent declaration includes <code>res</code> as one of the distinct individuals.</p>

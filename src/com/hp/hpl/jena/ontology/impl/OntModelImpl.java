@@ -1364,7 +1364,7 @@ public class OntModelImpl
         checkProfileEntry( getProfile().ALL_DIFFERENT(), "ALL_DIFFERENT" );
         AllDifferent ad = (AllDifferent) createOntResource( AllDifferent.class, getProfile().ALL_DIFFERENT(), null );
         
-        ad.setDistinct( (differentMembers == null) ? createList() : differentMembers );
+        ad.setDistinctMembers( (differentMembers == null) ? createList() : differentMembers );
         
         return ad;
     }
