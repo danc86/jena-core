@@ -30,8 +30,8 @@ public class LocatorURL implements Locator
             // && ! hasScheme(filenameOrURI, "file:") // Leave a filelocator to hanlde this. 
             ) 
         {
-            if ( FileManager.logLookupFailures && log.isTraceEnabled() )
-                log.trace("Not an http URL: "+filenameOrURI) ; 
+            if ( FileManager.logAllLookups && log.isTraceEnabled() )
+                log.trace("Not found: "+filenameOrURI) ; 
             return null;
         }
         
@@ -41,16 +41,17 @@ public class LocatorURL implements Locator
             InputStream in = new BufferedInputStream(url.openStream());
             if ( in == null )
             {
-                if ( FileManager.logLookupFailures && log.isTraceEnabled() )
+                if ( FileManager.logAllLookups && log.isTraceEnabled() )
                     log.trace("Not found: "+filenameOrURI) ; 
                 return null ;
             }
-            
+            if ( FileManager.logAllLookups  && log.isTraceEnabled() )
+                log.trace("Found: "+filenameOrURI) ;
             return in;
         }
         catch (java.io.FileNotFoundException ex) 
         {
-            if ( FileManager.logLookupFailures && log.isTraceEnabled() )
+            if ( FileManager.logAllLookups && log.isTraceEnabled() )
                 log.trace("LocatorURL: not found: "+filenameOrURI) ; 
             return null ;
         }

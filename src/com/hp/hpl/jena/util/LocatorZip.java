@@ -40,14 +40,24 @@ class LocatorZip implements Locator
         ZipEntry entry = zipFile.getEntry(filenameOrURI) ;
         if ( entry == null )
         {
-            if ( FileManager.logLookupFailures && log.isDebugEnabled() )
-                log.debug("Not found in : "+zipFileName+" : "+filenameOrURI) ; 
+            if ( FileManager.logAllLookups && log.isDebugEnabled() )
+                log.debug("Not found: "+zipFileName+" : "+filenameOrURI) ; 
             return null ;
             
         }
         try
         {
             InputStream in = zipFile.getInputStream(entry) ;
+            
+            if ( in == null )
+            {
+                if ( FileManager.logAllLookups && log.isTraceEnabled() )
+                    log.trace("Not found: "+filenameOrURI) ; 
+                return null ;
+            }
+            
+            if ( FileManager.logAllLookups  && log.isTraceEnabled() )
+                log.trace("Found: "+filenameOrURI) ;
             return in;
         }
         catch (IOException ex)

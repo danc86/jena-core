@@ -25,6 +25,8 @@ public class LocatorFile implements Locator
 {
     static Log log = LogFactory.getLog(LocatorFile.class) ;
     private String altDir = null ;
+    private String altDirLogStr = "" ;
+    
     LocatorFile(String dir)
     {
         if ( false )
@@ -50,6 +52,7 @@ public class LocatorFile implements Locator
         {
             if ( dir.endsWith("/") || dir.endsWith(java.io.File.separator) )
                 dir = dir.substring(0,dir.length()-1) ;
+            altDirLogStr = " ["+dir+"]" ;
         }
         altDir = dir ;
     }
@@ -88,8 +91,8 @@ public class LocatorFile implements Locator
 
         if ( f == null || !f.exists() )
         {
-            if ( FileManager.logLookupFailures && log.isTraceEnabled())
-                log.trace("File not found: "+filenameOrURI) ; 
+            if ( FileManager.logAllLookups && log.isTraceEnabled())
+                log.trace("Not found: "+filenameOrURI+altDirLogStr) ;
             return null ;
         }
         
@@ -98,10 +101,14 @@ public class LocatorFile implements Locator
             if ( in == null )
             {
                 // Should not happen 
-                if ( FileManager.logLookupFailures )
-                    log.trace("LocatorFile: Failed to open: "+filenameOrURI) ;
+                if ( FileManager.logAllLookups && log.isTraceEnabled() )
+                    log.trace("LocatorFile: Failed to open: "+filenameOrURI+altDirLogStr) ;
                 return null ;
             }
+            
+            if ( FileManager.logAllLookups && log.isTraceEnabled() )
+                log.trace("Found: "+filenameOrURI+altDirLogStr) ;
+                
             
             // Create base -- Java 1.4-isms
             //base = f.toURI().toURL().toExternalForm() ;
