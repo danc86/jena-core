@@ -10,7 +10,6 @@
 
 package com.hp.hpl.jena.datatypes;
 
-import com.hp.hpl.jena.datatypes.*;
 import com.hp.hpl.jena.graph.LiteralLabel;
 
 /**
