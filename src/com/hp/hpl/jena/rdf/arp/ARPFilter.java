@@ -166,7 +166,7 @@ class ARPFilter
 
 	private Map nodeIdUserData;
 
-	private boolean embedding = true;
+	private boolean embedding = false;
 	boolean setEmbedding(boolean x) {
 		boolean old = embedding;
 		embedding = x;
@@ -467,6 +467,7 @@ class ARPFilter
 		setErrorMode(WARN_MINOR_INTERNAL_ERROR, warning);
 		setErrorMode(WARN_MINOR_INTERNAL_ERROR, warning);
 		setErrorMode(WARN_DEPRECATED_XMLLANG, warning);
+		setErrorMode(WARN_STRING_NOT_NORMAL_FORM_C, warning);
 		//       setErrorMode(WARN_EMPTY_ABOUT_EACH,nonErrorMode);
 		setErrorMode(WARN_UNKNOWN_PARSETYPE, warning);
 		//     setErrorMode(WARN_BAD_XML, nonErrorMode);

@@ -142,7 +142,7 @@ class ParserSupport
 	void checkString(Token t) throws ParseException {
 		if (!CharacterModel.isNormalFormC(((StrToken) t).value))
 			arp.parseWarning(
-				ERR_STRING_NOT_NORMAL_FORM_C,
+				WARN_STRING_NOT_NORMAL_FORM_C,
 				t.location,
 				"String not in Unicode Normal Form C: " + ((StrToken) t).value);
 		checkEncoding((StrToken) t);
@@ -159,7 +159,7 @@ class ParserSupport
 	void checkNormalFormC(Token t, ARPString str) throws ParseException {
 		if (!CharacterModel.isNormalFormC(str.toString()))
 			arp.parseWarning(
-				ERR_STRING_NOT_NORMAL_FORM_C,
+				WARN_STRING_NOT_NORMAL_FORM_C,
 				t.location,
 				"String not in Unicode Normal Form C: " + str.toString());
 	}

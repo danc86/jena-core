@@ -359,7 +359,13 @@ public interface ARPErrorNumbers {
 	 */
 	public int WARN_RESOLVING_URI_AGAINST_EMPTY_BASE = 130;
 
-
+	/**
+		* String Literals in RDF should be in Unicode Normal Form C
+		* 
+		* *  (W131).
+		**/
+	   public int WARN_STRING_NOT_NORMAL_FORM_C = 131;
+    
     /** Should not happen. 
         Please report occurrence to jjc@hpl.hp.com with test case, if possible. 
      (E200)
@@ -406,7 +412,9 @@ public interface ARPErrorNumbers {
     public int ERR_BAD_RDF_ATTRIBUTE = 206;
     /**
      * String Literals in RDF must be in Unicode Normal Form C
-     *  (E207).
+     @deprecated See 2nd Last Call docs
+     * 
+     * *  (E207).
      **/
     public int ERR_STRING_NOT_NORMAL_FORM_C = 207;
     /**

@@ -86,6 +86,10 @@ class WGTestSuite extends TestSuite implements ARPErrorNumbers {
         if (eh != null)
             jr.setErrorHandler(eh);
         jr.setProperty("error-mode", "strict");
+        
+        if ( base.indexOf("/xmlns/") != -1 
+          || base.indexOf("/comments/") != -1 )
+              jr.setProperty("embedding","true");
         jr.read(model, in, base);
         in.close();
         return model;
