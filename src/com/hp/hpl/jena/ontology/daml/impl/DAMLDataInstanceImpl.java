@@ -62,6 +62,7 @@ import com.hp.hpl.jena.vocabulary.DAML_OIL;
 import com.hp.hpl.jena.vocabulary.RDF;
 
 import java.util.Iterator;
+import com.hp.hpl.jena.shared.*;
 
 
 
@@ -211,7 +212,7 @@ public class DAMLDataInstanceImpl
         try {
             return getTranslator().deserialize( getProperty( RDF.value ).getObject() );
         }
-        catch (RDFException e) {
+        catch (JenaException e) {
             Log.severe( "RDF exception while setting value of data instance: " + e, e );
             return null;
         }

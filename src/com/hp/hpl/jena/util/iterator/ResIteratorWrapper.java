@@ -48,6 +48,7 @@ package com.hp.hpl.jena.util.iterator;
 
 import com.hp.hpl.jena.rdf.model.ResIterator;
 import com.hp.hpl.jena.rdf.model.RDFException;
+import com.hp.hpl.jena.shared.*;
 
 import java.util.NoSuchElementException;
 import java.util.Iterator;
@@ -57,7 +58,7 @@ import java.util.Iterator;
 
 /**
  * OBSOLETE, since ResIterators are now subclasses of Iterator.
- * 
+ *
  * A wrapper for ResIterator that turns it into a standard Java iterator.  Clumsy name,
  * and anyway the need for it may go away in a future version of Jena.
  *
@@ -110,7 +111,7 @@ public class ResIteratorWrapper
         try {
             return m_nIterator.hasNext();
         }
-        catch (RDFException e) {
+        catch (JenaException e) {
             throw new RuntimeException( "RDFException while accessing ResIterator: " + e );
         }
     }
@@ -128,7 +129,7 @@ public class ResIteratorWrapper
         try {
             return m_nIterator.nextResource();
         }
-        catch (RDFException e) {
+        catch (JenaException e) {
             throw new RuntimeException( "RDFException while accessing ResIterator: " + e );
         }
     }

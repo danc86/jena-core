@@ -53,6 +53,7 @@ import com.hp.hpl.jena.rdf.model.Property;
 import com.hp.hpl.jena.rdf.model.RDFNode;
 import com.hp.hpl.jena.rdf.model.RDFException;
 import com.hp.hpl.jena.rdf.model.Model;
+import com.hp.hpl.jena.shared.*;
 
 import com.hp.hpl.jena.util.Log;
 import com.hp.hpl.jena.util.iterator.ConcatenatedIterator;
@@ -432,7 +433,7 @@ public class PropertyIterator
                      enqueue( (RDFNode) i.next() ));
             }
         }
-        catch (RDFException e) {
+        catch (JenaException e) {
             Log.severe( "RDF exception while traversing graph: " + e, e );
         }
     }
@@ -651,4 +652,3 @@ public class PropertyIterator
     //==============================================================================
 
 }
-

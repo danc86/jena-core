@@ -48,6 +48,7 @@ package com.hp.hpl.jena.util.iterator;
 
 import com.hp.hpl.jena.rdf.model.NodeIterator;
 import com.hp.hpl.jena.rdf.model.RDFException;
+import com.hp.hpl.jena.shared.*;
 
 import java.util.NoSuchElementException;
 import java.util.Iterator;
@@ -107,7 +108,7 @@ public class NodeIteratorWrapper
         try {
             return m_nIterator.hasNext();
         }
-        catch (RDFException e) {
+        catch (JenaException e) {
             throw new RuntimeException( "RDFException while accessing NodeIterator: " + e );
         }
     }
@@ -125,7 +126,7 @@ public class NodeIteratorWrapper
         try {
             return m_nIterator.nextNode();
         }
-        catch (RDFException e) {
+        catch (JenaException e) {
             throw new RuntimeException( "RDFException while accessing NodeIterator: " + e );
         }
     }

@@ -56,6 +56,7 @@ import com.hp.hpl.jena.ontology.daml.DAMLCommon;
 
 import com.hp.hpl.jena.util.Log;
 
+import com.hp.hpl.jena.shared.*;
 
 
 /**
@@ -121,7 +122,7 @@ public class IntLiteralAccessorImpl
                 return ((Literal) i.nextNode()).getInt();
             }
         }
-        catch (RDFException e) {
+        catch (JenaException e) {
             Log.severe( "RDF exception when getting literal values: " + e, e );
             throw new RuntimeException( "RDF exception when getting literal values: " + e );
         }

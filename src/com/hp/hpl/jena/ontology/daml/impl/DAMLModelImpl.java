@@ -68,6 +68,8 @@ import com.hp.hpl.jena.ontology.daml.DAMLDatatype;
 import com.hp.hpl.jena.ontology.daml.DAMLList;
 import com.hp.hpl.jena.ontology.daml.DAMLRestriction;
 
+import com.hp.hpl.jena.shared.*;
+
 import com.hp.hpl.jena.vocabulary.DAML_OIL;
 import com.hp.hpl.jena.vocabulary.DAML_OIL_2000_12;
 import com.hp.hpl.jena.vocabulary.DAMLVocabulary;
@@ -365,7 +367,7 @@ public class DAMLModelImpl
                 index( instance );
             }
         }
-        catch (RDFException e) {
+        catch (JenaException e) {
             Log.severe( "RDFException while adding statment to model: " + e, e );
         }
 
@@ -391,7 +393,7 @@ public class DAMLModelImpl
             try {
                 res = getResource( uri );
             }
-            catch (RDFException e) {
+            catch (JenaException e) {
                 Log.severe( "RFD exception while getting resource: " + e, e );
             }
 
@@ -708,7 +710,7 @@ public class DAMLModelImpl
 
     /**
      * Answer true if the model contains the given resource.
-     * 
+     *
      * @param uri The string URI of the resource to test
      * @return True if the resource appears in any subject, predicate or object position in the model.
      */
@@ -748,9 +750,9 @@ public class DAMLModelImpl
                     p0.close();
                 }
             }
-            catch (RDFException ignore) {}
+            catch (JenaException ignore) {}
         }
-        catch (RDFException e) {
+        catch (JenaException e) {
             Log.severe( "RDF exception: " + e, e );
         }
 

@@ -55,6 +55,7 @@ import com.hp.hpl.jena.rdf.model.Resource;
 
 import com.hp.hpl.jena.ontology.daml.PropertyAccessor;
 import com.hp.hpl.jena.ontology.daml.DAMLCommon;
+import com.hp.hpl.jena.shared.*;
 
 import com.hp.hpl.jena.util.Log;
 
@@ -206,7 +207,7 @@ public class PropertyAccessorImpl
         try {
             m_val.addProperty( getProperty(), value );
         }
-        catch (RDFException e) {
+        catch (JenaException e) {
             Log.severe( "RDF exception: " + e, e );
         }
     }

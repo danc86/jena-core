@@ -52,6 +52,7 @@ import com.hp.hpl.jena.rdf.model.NodeIterator;
 import com.hp.hpl.jena.rdf.model.Property;
 import com.hp.hpl.jena.rdf.model.Literal;
 import com.hp.hpl.jena.rdf.model.RDFException;
+import com.hp.hpl.jena.shared.*;
 
 import com.hp.hpl.jena.util.Log;
 
@@ -124,7 +125,7 @@ public class LiteralAccessorImpl
             NodeIterator i = getValues();
             return (i == null  ||  !i.hasNext()) ? null : ((Literal) i.nextNode());
         }
-        catch (RDFException e) {
+        catch (JenaException e) {
             Log.severe( "RDF exception when getting literal values: " + e, e );
             throw new RuntimeException( "RDF exception when getting literal values: " + e );
         }
@@ -140,7 +141,7 @@ public class LiteralAccessorImpl
         try {
             addValue( m_val.getModel().createLiteral( value ) );
         }
-        catch (RDFException e) {
+        catch (JenaException e) {
             Log.severe( "Saw RDF Exception while creating literal: " + e, e );
             throw new RuntimeException( "Saw RDF Exception while creating literal: " + e );
         }
@@ -156,7 +157,7 @@ public class LiteralAccessorImpl
         try {
             m_val.addProperty( getProperty(), value );
         }
-        catch (RDFException e) {
+        catch (JenaException e) {
             Log.severe( "RDF exception " + e, e );
         }
     }
@@ -171,7 +172,7 @@ public class LiteralAccessorImpl
         try {
             removeValue( m_val.getModel().createLiteral( value ) );
         }
-        catch (RDFException e) {
+        catch (JenaException e) {
             Log.severe( "Saw RDF Exception while creating literal: " + e, e );
             throw new RuntimeException( "Saw RDF Exception while creating literal: " + e );
         }
@@ -200,7 +201,7 @@ public class LiteralAccessorImpl
         try {
             return hasValue( m_val.getModel().createLiteral( value ) );
         }
-        catch (RDFException e) {
+        catch (JenaException e) {
             Log.severe( "Saw RDF Exception while creating literal: " + e, e );
             throw new RuntimeException( "Saw RDF Exception while creating literal: " + e );
         }
@@ -219,7 +220,7 @@ public class LiteralAccessorImpl
         try {
             return m_val.hasProperty( getProperty(), value );
         }
-        catch (RDFException e) {
+        catch (JenaException e) {
             Log.severe( "RDF Exception " + e, e );
             throw new RuntimeException( "RDF Exception " + e );
         }

@@ -56,6 +56,7 @@ import com.hp.hpl.jena.ontology.daml.impl.*;
 import com.hp.hpl.jena.util.*;
 import com.hp.hpl.jena.util.iterator.*;
 import com.hp.hpl.jena.vocabulary.*;
+import com.hp.hpl.jena.shared.*;
 
 import java.util.*;
 
@@ -1152,7 +1153,7 @@ public class DAMLTest
                 }
             }
         }
-        catch (RDFException e) {
+        catch (JenaException e) {
             Log.severe( "RDF exception: " + e, e );
         }
 
@@ -1175,5 +1176,3 @@ public class DAMLTest
 
 
 }
-
-

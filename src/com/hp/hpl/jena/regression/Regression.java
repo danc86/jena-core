@@ -35,6 +35,7 @@ import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.util.*;
 import com.hp.hpl.jena.vocabulary.RDF;
 import com.hp.hpl.jena.vocabulary.RDFS;
+import com.hp.hpl.jena.shared.*;
 
 // import java.lang.Math;
 // import java.lang.NumberFormatException;
@@ -426,7 +427,7 @@ public class Regression extends Object {
                     n++; if (! (r.getURI() == null)) error(test, n);
                     n++; if (! (r.getNameSpace() == null)) error(test, n);
                     n++; if (! (r.getLocalName() ==  null)) error(test, n);
-                } catch (RDFException e) {
+                } catch (JenaException e) {
                     error(test, n, e);
                 }
 
@@ -435,7 +436,7 @@ public class Regression extends Object {
                     n++; r = m.createResource((String) null);
                     n++; if (! r.isAnon()) error(test, n);
                     n++; if (!  (r.getURI() == null)) error(test, n);
-                } catch (RDFException e) {
+                } catch (JenaException e) {
                     error(test, n, e);
                 }
 
@@ -444,7 +445,7 @@ public class Regression extends Object {
                     uri = "http://aldabaran.hpl.hp.com/foo";
                     n++; r = m.createResource(uri);
                     n++; if (! r.getURI().equals(uri)) error(test, n);
-                } catch (RDFException e) {
+                } catch (JenaException e) {
                     error(test, n, e);
                 }
 
@@ -452,7 +453,7 @@ public class Regression extends Object {
                     n = 150;
                     n++; r = m.createResource(RDF.Property);
                     n++; if (! r.isAnon()) error(test, n);
-                } catch (RDFException e) {
+                } catch (JenaException e) {
                     error(test, n, e);
                 }
 
@@ -461,7 +462,7 @@ public class Regression extends Object {
                     uri = "http://aldabaran.hpl.hp.com/foo";
                     n++; r = m.createResource(uri, RDF.Property);
                     n++; if (! r.getURI().equals(uri)) error(test, n);
-                } catch (RDFException e) {
+                } catch (JenaException e) {
                     error(test, n, e);
                 }
 
@@ -469,7 +470,7 @@ public class Regression extends Object {
                     n = 170;
                     n++; r = m.createResource(new ResTestObjF());
                     n++; if (! r.isAnon()) error(test, n);
-                } catch (RDFException e) {
+                } catch (JenaException e) {
                     error(test, n, e);
                 }
 
@@ -478,7 +479,7 @@ public class Regression extends Object {
                     uri = "http://aldabaran.hpl.hp.com/foo";
                     n++; r = m.createResource(uri, new ResTestObjF());
                     n++; if (! r.getURI().equals(uri)) error(test, n);
-                } catch (RDFException e) {
+                } catch (JenaException e) {
                     error(test, n, e);
                 }
             }
@@ -497,7 +498,7 @@ public class Regression extends Object {
 /*
                 try {
                     n++; p = m.createProperty(""); error(test, n);
-                } catch (RDFException e) {
+                } catch (JenaException e) {
                     if (e.getErrorCode() != RDFException.INVALIDPROPERTYURI) {
                         error(test, n, e);
                     }
@@ -505,7 +506,7 @@ public class Regression extends Object {
 
                 try {
                     n++; p = m.createProperty("abc"); error(test, n);
-                } catch (RDFException e) {
+                } catch (JenaException e) {
                     if (e.getErrorCode() != RDFException.INVALIDPROPERTYURI) {
                         error(test, n, e);
                     }
@@ -516,7 +517,7 @@ public class Regression extends Object {
                     n++; if (! p.getNameSpace().equals("abc/")) error(test, n);
                     n++; if (! p.getLocalName().equals("def")) error(test, n);
                     n++; if (! p.getURI().equals("abc/def")) error(test,n);
-                } catch (RDFException e) {
+                } catch (JenaException e) {
                     error(test, n, e);
                 }
 
@@ -525,7 +526,7 @@ public class Regression extends Object {
                     n++; if (! p.getNameSpace().equals("abc/")) error(test, n);
                     n++; if (! p.getLocalName().equals("def")) error(test, n);
                     n++; if (! p.getURI().equals("abc/def")) error(test,n);
-                } catch (RDFException e) {
+                } catch (JenaException e) {
                     error(test, n, e);
                 }
 
@@ -534,7 +535,7 @@ public class Regression extends Object {
                     n++; if (! p.getNameSpace().equals(RDF.getURI())) error(test, n);
                     n++; if (! p.getLocalName().equals("_345")) error(test, n);
                     n++; if (! p.getURI().equals(RDF.getURI() + "_345")) error(test,n);
-                } catch (RDFException e) {
+                } catch (JenaException e) {
                     error(test, n, e);
                 }
 
@@ -543,7 +544,7 @@ public class Regression extends Object {
                     n++; if (! p.getNameSpace().equals(RDF.getURI())) error(test, n);
                     n++; if (! p.getLocalName().equals("_345")) error(test, n);
                     n++; if (! p.getURI().equals(RDF.getURI() + "_345")) error(test,n);
-                } catch (RDFException e) {
+                } catch (JenaException e) {
                     error(test, n, e);
                 }
 
@@ -1155,10 +1156,10 @@ public class Regression extends Object {
 //                {
 //                System.err.println( "| oh dear." );
 //                System.err.println( "|  predicate namespaces: " + fromPredicates );
-//                System.err.println( "|  iterator namespaces: " + fromIterator );   
+//                System.err.println( "|  iterator namespaces: " + fromIterator );
 //                }
 
-            NsIterator nIter = m.listNameSpaces();                
+            NsIterator nIter = m.listNameSpaces();
             while (nIter.hasNext()) {
                 String ns = nIter.nextNs();
                 found = false;
@@ -3973,7 +3974,7 @@ public class Regression extends Object {
                     the _null_ argument to LiteralImpl is preserved only for backward
                     compatability. It should be logged and later on become an exception.
                     (Brian and Chris had a discussion about this and agreed).
-                    
+
                     When the method below is deleted, the test code can be installed.
                     Replace RuntimeException with whatever the appropriate exception
                     type is. If we can't decide, perhaps we should delete the test entirely ...
@@ -3997,7 +3998,7 @@ public class Regression extends Object {
 //                    }
 //                catch (RuntimeException e)
 //                    {}
-                    
+
                n=102;
                StmtIterator iter
                             = m.listStatements(new SimpleSelector(null,

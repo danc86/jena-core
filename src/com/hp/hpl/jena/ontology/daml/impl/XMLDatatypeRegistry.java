@@ -56,6 +56,7 @@ import com.hp.hpl.jena.rdf.model.Literal;
 import com.hp.hpl.jena.rdf.model.impl.ResourceImpl;
 
 import com.hp.hpl.jena.vocabulary.RDF;
+import com.hp.hpl.jena.shared.*;
 
 import com.hp.hpl.jena.ontology.daml.DAMLModel;
 
@@ -179,7 +180,7 @@ public class XMLDatatypeRegistry
                                         return deserialize( val );
                                     }
                                 }
-                                catch (RDFException e) {
+                                catch (JenaException e) {
                                     Log.severe( "RDF exception while converting datatype instance: " + e, e );
                                 }
 
@@ -191,7 +192,7 @@ public class XMLDatatypeRegistry
                                 try {
                                     return model.createLiteral( ((Integer) value).intValue() );
                                 }
-                                catch (RDFException e) {
+                                catch (JenaException e) {
                                     Log.severe( "RDF exception while converting datatype instance: " + e, e );
                                     return null;
                                 }
@@ -214,7 +215,7 @@ public class XMLDatatypeRegistry
                                         return deserialize( val );
                                     }
                                 }
-                                catch (RDFException e) {
+                                catch (JenaException e) {
                                     Log.severe( "RDF exception while converting datatype instance: " + e, e );
                                 }
 
@@ -226,7 +227,7 @@ public class XMLDatatypeRegistry
                                 try {
                                     return model.createLiteral( (String) value );
                                 }
-                                catch (RDFException e) {
+                                catch (JenaException e) {
                                     Log.severe( "RDF exception while converting datatype instance: " + e, e );
                                     return null;
                                 }
@@ -249,7 +250,7 @@ public class XMLDatatypeRegistry
                                         return deserialize( val );
                                     }
                                 }
-                                catch (RDFException e) {
+                                catch (JenaException e) {
                                     Log.severe( "RDF exception while converting datatype instance: " + e, e );
                                 }
 
@@ -261,7 +262,7 @@ public class XMLDatatypeRegistry
                                 try {
                                     return model.createLiteral( ((Float) value).floatValue() );
                                 }
-                                catch (RDFException e) {
+                                catch (JenaException e) {
                                     Log.severe( "RDF exception while converting datatype instance: " + e, e );
                                     return null;
                                 }
@@ -284,7 +285,7 @@ public class XMLDatatypeRegistry
                                         return deserialize( val );
                                     }
                                 }
-                                catch (RDFException e) {
+                                catch (JenaException e) {
                                     Log.severe( "RDF exception while converting datatype instance: " + e, e );
                                 }
 
@@ -296,7 +297,7 @@ public class XMLDatatypeRegistry
                                 try {
                                     return model.createLiteral( ((Long) value).longValue() );
                                 }
-                                catch (RDFException e) {
+                                catch (JenaException e) {
                                     Log.severe( "RDF exception while converting datatype instance: " + e, e );
                                     return null;
                                 }

@@ -97,6 +97,7 @@ import com.hp.hpl.jena.rdf.model.impl.PropertyImpl;
 import com.hp.hpl.jena.rdf.model.impl.Util;
 import com.hp.hpl.jena.rdf.arp.*;
 import org.apache.xerces.util.XMLChar;
+import com.hp.hpl.jena.shared.*;
 
 import java.util.*;
 import java.io.*;
@@ -1593,7 +1594,7 @@ class Unparser {
 		// Subjects that are not objects of anything.
 		Iterator nonObjects = new FilterIterator(new Filter() {
 			public boolean accept(Object o) {
-				return (!objectTable.containsKey(o)) 
+				return (!objectTable.containsKey(o))
                   && (!wantReification((Resource)o));
 			}
 		}, modelListSubjects());

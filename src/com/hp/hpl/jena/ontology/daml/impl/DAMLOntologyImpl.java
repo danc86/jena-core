@@ -54,6 +54,7 @@ import com.hp.hpl.jena.ontology.daml.LiteralAccessor;
 
 import com.hp.hpl.jena.util.Log;
 import com.hp.hpl.jena.util.iterator.ConcatenatedNodeIterator;
+import com.hp.hpl.jena.shared.*;
 
 import com.hp.hpl.jena.vocabulary.DAML_OIL;
 import com.hp.hpl.jena.vocabulary.DAML_OIL_2000_12;
@@ -168,7 +169,7 @@ public class DAMLOntologyImpl
                getModel().read( uri );
             }
         }
-        catch (RDFException e) {
+        catch (JenaException e) {
             Log.severe( "RDF exception while adding imports property: " + e, e );
         }
     }
@@ -196,4 +197,3 @@ public class DAMLOntologyImpl
 
 
 }
-

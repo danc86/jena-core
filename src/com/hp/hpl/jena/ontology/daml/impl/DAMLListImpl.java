@@ -56,6 +56,7 @@ import com.hp.hpl.jena.ontology.daml.DAMLCommon;
 
 import com.hp.hpl.jena.vocabulary.DAML_OIL;
 import com.hp.hpl.jena.vocabulary.DAMLVocabulary;
+import com.hp.hpl.jena.shared.*;
 
 import java.util.Iterator;
 
@@ -286,7 +287,7 @@ public class DAMLListImpl
                    (!hasProperty( getVocabulary().first() )  &&
                     !hasProperty( getVocabulary().rest()  ));
         }
-        catch (RDFException e) {
+        catch (JenaException e) {
             Log.severe( "RDF exception " + e, e );
             throw new RuntimeException( "RDF Exception " + e );
         }
