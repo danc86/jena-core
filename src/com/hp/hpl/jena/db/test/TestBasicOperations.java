@@ -320,6 +320,30 @@ public class TestBasicOperations extends TestCase {
 		}
 
 	}
+	
+	public void testPrefixCachePersists() throws java.lang.Exception {
+		// check that the prefix cache persists and affects all models in db.
+		IDBConnection conn = TestConnection.makeAndCleanTestConnection();
+		IRDBDriver d = conn.getDriver();
+		d.setDoCompressURI(true);
+		model = ModelRDB.createModel(conn);
+		int cacheSize = d.getCompressCacheSize();
+		d.setCompressCacheSize(cacheSize/2);	
+		model.close();
+		conn.close();
+		
+		conn = TestConnection.makeTestConnection();
+		d = conn.getDriver();
+		try {
+			d.setDoCompressURI(false);
+			assertFalse(true); // should not get here
+		} catch (Exception e) {
+			model = ModelRDB.createModel(conn,"NamedModel");
+			assertTrue(d.getDoCompressURI() == true);
+			assertTrue(d.getCompressCacheSize() == cacheSize);
+		}
+	}
+
 
 	public void testAddRemoveDatatype() {
 		Resource s = model.createResource("test#subject");
