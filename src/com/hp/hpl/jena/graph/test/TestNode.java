@@ -287,6 +287,15 @@ public class TestNode extends GraphTestBase
             else fail( "should translate " + in + " to " + wanted + " not " + got );
             }
         }
+        
+    public void testNodeHelp()
+        {
+        assertTrue( "node() making URIs", node( "hello" ).isURI() );
+        assertTrue( "node() making literals", node( "123" ).isLiteral() );
+        assertTrue( "node() making literals", node( "'hello'" ).isLiteral() );
+        assertTrue( "node() making blanks", node( "_x" ).isBlank() );
+        assertTrue( "node() making variables", node( "?x" ).isVariable() );
+        }
     }
 
 /*

@@ -6,6 +6,8 @@
 
 package com.hp.hpl.jena.graph;
 
+import java.util.*;
+
 /**
     Triples are the basis for RDF statements; they have a subject, predicate, and
     object field (all nodes) and express the notion that the relationship named
@@ -76,6 +78,29 @@ final public class Triple {
     public int hashCode() {
     	return (subj.hashCode() >> 1) ^ pred.hashCode() ^ (obj.hashCode() << 1);
     }
+        
+    /**
+        Factory method for creating triples, allows caching opportunities.
+        
+        @return a triple with subject=s, predicate=p, object=o
+    */
+    public static Triple create( Node s, Node p, Node o )
+        { return new Triple( s, p, o ); }
+        
+    /**
+        Utility factory method for creating a triple based on the content of an
+        "S P O" string. The S, P, O are processed by Node.create, see which for
+        details of the supported syntax. This method exists to support test code.
+    */
+    public static Triple create( String fact )
+        {
+        StringTokenizer st = new StringTokenizer( fact );
+        Node sub = Node.create( st.nextToken() );
+        Node pred = Node.create( st.nextToken() );
+        Node obj = Node.create( st.nextToken() );
+        return new Triple( sub, pred, obj );
+        }
+            
 }
 
 /*

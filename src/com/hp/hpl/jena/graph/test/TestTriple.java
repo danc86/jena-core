@@ -22,7 +22,7 @@ import junit.framework.TestSuite;
 public class TestTriple extends TestCase
     {    
         
-        public TestTriple(String name)
+    public TestTriple(String name)
         { super( name ); }
     
     public static TestSuite suite()
@@ -123,6 +123,18 @@ public class TestTriple extends TestCase
             Node.cache(true);
         }
     }
+    
+    public void testTripleCreate()
+        {
+        Node S = Node.create( "s" ), P = Node.create( "p" ), O = Node.create( "o" );
+        assertEquals( new Triple( S, P, O ), Triple.create( S, P, O ) );
+        }
+        
+    public void testTripleCreateFromString()
+        {
+        Node S = Node.create( "a" ), P = Node.create( "_P" ), O = Node.create( "?c" );
+        assertEquals( new Triple( S, P, O ), Triple.create( "a _P ?c") );
+        }
 }
 /*
     (c) Copyright Hewlett-Packard Company 2002
