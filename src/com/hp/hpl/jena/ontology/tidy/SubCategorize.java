@@ -7,9 +7,6 @@ package com.hp.hpl.jena.ontology.tidy;
 
 import java.util.*;
 
-
-import compiler.*;
-
 /**
  * This file is a front-end onto the Grammar.java file.
  * Accesses to the data tables in Grammar.java
