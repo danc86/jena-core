@@ -60,6 +60,9 @@ public class LPInterpreter {
     /** The execution context description to be passed to builtins */
     protected RuleContext context;
         
+    /** The tabled generator that this interpreter is currently blocked on, if any */
+    protected Generator blockedOn;
+    
     /** log4j logger*/
     static Logger logger = Logger.getLogger(LPInterpreter.class);
 
@@ -138,6 +141,21 @@ public class LPInterpreter {
         }
     }
 
+    /**
+     * Return the generator that this interpreter is currently blocked on, otherwise null
+     * if it is not blocked.
+     */
+    public Generator getBlockingGenerator() {
+        return blockedOn;
+    }
+    
+    /**
+     * Return the engine which owns this interpreter.
+     */
+    public LPBRuleEngine getEngine() {
+        return engine;
+    }
+    
     //  =======================================================================
     //  Engine implementation  
 

@@ -127,7 +127,7 @@ public class TripleMatchFrame extends FrameObject {
             objectFunctor = null;
             query = new TriplePattern(s, p, o);
         }
-        this.matchIterator = interpreter.engine.getInfGraph().findDataMatches(query);
+        this.matchIterator = interpreter.getEngine().getInfGraph().findDataMatches(query);
     }
 
     /**

@@ -27,7 +27,7 @@ public class LPTopGoalIterator implements ClosableIterator {
     Object lookAhead;
     
     /** The parent backward chaining engine */
-    LPInterpreter engine;
+    LPInterpreter interpreter;
     
     /** True if the iteration has started */
     boolean started = false;
@@ -36,7 +36,7 @@ public class LPTopGoalIterator implements ClosableIterator {
      * Constructor. Wraps a top level goal state as an iterator
      */
     public LPTopGoalIterator(LPInterpreter engine) {
-        this.engine = engine;
+        this.interpreter = engine;
     }
     
     /**
@@ -44,11 +44,13 @@ public class LPTopGoalIterator implements ClosableIterator {
      * lookahead buffer.
      */
     private void moveForward() {
-        lookAhead = engine.next();
-        if (lookAhead instanceof StateFlag) {
-            lookAhead = null;
+        lookAhead = interpreter.next();
+        if (lookAhead == StateFlag.FAIL) {
+            close();
+        } else if (lookAhead == StateFlag.SUSPEND) {
+            interpreter.getEngine().pump(interpreter.getBlockingGenerator());
+            moveForward();
         }
-        if (lookAhead == null) close();
         started = true;
     }
     
@@ -57,7 +59,7 @@ public class LPTopGoalIterator implements ClosableIterator {
      */
     public void close() {
         lookAhead = null;
-        engine.close();
+        interpreter.close();
     }
 
     /**
