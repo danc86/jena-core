@@ -63,10 +63,10 @@ public class N3JenaWriterCommon implements RDFWriter
 
     // Gap from subject to property
 	int indentProperty = 6 ;
-    // Width property+object before wrapping.
+    // Width of property before wrapping.
     // This is not necessarily a control of total width
     // e.g. the pretty writer may be writing properties inside indented one ref bNodes 
-    int propObjWidth = 80-indentProperty ;
+    int widePropertyLen = 20 ;
     
     // Column for property when an object follows a property on the same line
     int propertyWidth = 8 ;
@@ -360,7 +360,7 @@ public class N3JenaWriterCommon implements RDFWriter
             out.print(propStr);
             out.incIndent(indentObject);
 
-            if ( propStr.length() + objStr.length() + minGap < propObjWidth )
+            if ( propStr.length() < widePropertyLen )
             {
                 if ( propStr.length() < propertyWidth ) 
                     out.print( pad(propertyWidth-propStr.length()) ) ;

@@ -100,7 +100,8 @@ public class N3JenaWriterTests extends N3ExternalTestsCom
             
 			StringWriter w = new StringWriter() ;
             model_1.write(w, writerName, uriBase) ;
-            model_1.write(System.out, writerName, uriBase) ;
+            // Check we really are writing different things!
+            //model_1.write(System.out, writerName, uriBase) ;
 			w.close() ;
 			
 			StringReader r = new StringReader(w.toString()) ;

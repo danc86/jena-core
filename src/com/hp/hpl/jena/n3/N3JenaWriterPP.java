@@ -406,8 +406,12 @@ public class N3JenaWriterPP extends N3JenaWriterCommon
         out.incIndent(indentObject);
         out.print(propStr);
         
-        if ( propStr.length() < propertyWidth )
-            out.print( pad(propertyWidth-propStr.length()) ) ;
+        if ( propStr.length() < widePropertyLen )
+        {
+            if ( propStr.length() < propertyWidth ) 
+                out.print( pad(propertyWidth-propStr.length()) ) ;
+            out.print(pad(minGap)) ;
+        }
         else
             // Does not fit this line.
             out.println();
