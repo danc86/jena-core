@@ -370,7 +370,7 @@ class ParserSupport implements ARPErrorNumbers, RDFParserConstants, LanguageTagC
    Map litNamespace(Token prefix, Token uri,Map ns, Map used) {
    	String urins = ((StrToken)uri).value;
    	String prefixS = ((StrToken)prefix).value;
-    useNameSpace(used,prefixS,urins);
+   // useNameSpace(used,prefixS,urins); reagle-01 reagle-02
     Map rslt = new HashMap(ns);
     rslt.put(prefixS,urins);
    	return rslt;
