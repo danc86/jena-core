@@ -337,6 +337,7 @@ public class BasicForwardRuleInfGraph extends BaseInfGraph implements ForwardRul
      * Return the Graph containing all the static deductions available so far.
      */
     public Graph getDeductionsGraph() {
+        prepare();
         return fdeductions.getGraph();
     }
     
