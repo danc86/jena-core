@@ -19,6 +19,8 @@ import com.hp.hpl.jena.reasoner.*;
 import com.hp.hpl.jena.reasoner.rulesys.Node_RuleVariable;
 import com.hp.hpl.jena.vocabulary.RDF;
 
+import com.hp.hpl.jena.shared.*;
+
 import junit.framework.TestCase;
 import org.apache.log4j.Logger;
 
@@ -201,7 +203,7 @@ public class ReasonerTester {
         // Find the specification for the named test
         Resource test = testManifest.getResource(uri);
         if (!test.hasProperty(RDF.type, testClass)) {
-            throw new RDFException("Can't find test: " + uri);
+            throw new JenaException("Can't find test: " + uri);
         }
 
         String description = test.getProperty(descriptionP).getObject().toString();

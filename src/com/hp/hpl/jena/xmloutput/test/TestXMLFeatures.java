@@ -215,7 +215,6 @@ public class TestXMLFeatures extends TestCase {
 		try {
 			m.write(fwriter, lang);
 			fwriter.close();
-			// throw new RDFException(RDFException.INVALIDPROPERTYURI);
 			fail("Writer did not detect bad property URI");
 		} catch (RDFException rdfe) {
 			// This loop here really shouldn't be necessary.

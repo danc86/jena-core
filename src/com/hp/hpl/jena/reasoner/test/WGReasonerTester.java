@@ -18,6 +18,8 @@ import com.hp.hpl.jena.mem.GraphMem;
 import com.hp.hpl.jena.reasoner.*;
 import com.hp.hpl.jena.vocabulary.RDF;
 
+import com.hp.hpl.jena.shared.*;
+
 import junit.framework.TestCase;
 import org.apache.log4j.Logger;
 
@@ -188,7 +190,7 @@ public class WGReasonerTester {
         Resource testType = (Resource)test.getProperty(RDF.type).getObject();
         if (!(testType.equals(NegativeEntailmentTest) ||
                testType.equals(PositiveEntailmentTest) ) ) {
-            throw new RDFException("Can't find test: " + uri);
+            throw new JenaException("Can't find test: " + uri);
         }
 
         String description = test.getProperty(descriptionP).getObject().toString();

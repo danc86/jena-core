@@ -9,7 +9,7 @@ import java.io.* ;
 import com.hp.hpl.jena.n3.* ;
 import junit.framework.* ;
 
-import com.hp.hpl.jena.rdf.model.* ;
+import com.hp.hpl.jena.shared.*;
 //import com.hp.hpl.jena.common.* ;
 //import com.hp.hpl.jena.mem.* ;
 
@@ -84,7 +84,7 @@ public class N3ExternalTests extends N3ExternalTestsCom
 			} catch (Exception ex)
 			{
 				// @@CLEANUP
-				throw new RDFException(ex) ;
+				throw new JenaException(ex) ;
 			}
 		}		
 	}

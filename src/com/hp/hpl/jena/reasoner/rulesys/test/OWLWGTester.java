@@ -18,6 +18,8 @@ import com.hp.hpl.jena.vocabulary.*;
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.graph.query.*;
 
+import com.hp.hpl.jena.shared.*;
+
 import junit.framework.TestCase;
 import org.apache.log4j.Logger;
 
@@ -143,7 +145,7 @@ public class OWLWGTester {
         RDFNode testType = test.getProperty(RDF.type).getObject();
         if (!(testType.equals(NegativeEntailmentTest) ||
                testType.equals(PositiveEntailmentTest) ) ) {
-            throw new RDFException("Can't find test: " + test);
+            throw new JenaException("Can't find test: " + test);
         }
 
         String description = test.getProperty(descriptionP).getObject().toString();

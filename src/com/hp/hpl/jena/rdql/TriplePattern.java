@@ -110,7 +110,7 @@ import com.hp.hpl.jena.shared.*;
 					{
 						if ( rdfEx.getErrorCode() != RDFException.INVALIDPROPERTYURI )
 							throw rdfEx ;
-                        throw new RDFException("Illegal property URI: "+((Resource)tmp).getURI()) ;
+                        throw new JenaInvalidPropertyURIException( ((Resource)tmp).getURI() ) ;
 					}
 				else if (tmp instanceof Value)
 					// Should not happen
