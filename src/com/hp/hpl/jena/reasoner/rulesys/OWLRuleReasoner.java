@@ -8,7 +8,6 @@
  * $Id$
  *****************************************************************/
 package com.hp.hpl.jena.reasoner.rulesys;
-
 import java.util.*;
 import java.io.*;
 import org.apache.log4j.Logger;

@@ -12,17 +12,13 @@ package com.hp.hpl.jena.reasoner.rulesys;
 import com.hp.hpl.jena.reasoner.rulesys.builtins.*;
 import java.util.*;
 
-/**
- * A registry for mapping functor names on java objects (instances 
+/** * A registry for mapping functor names on java objects (instances 
  * of subclasses of Builtin) which implement their behvaiour.
  * <p>
  * This is currently implemented as a singleton to simply any future
  * move to support different sets of builtins.
  * 
- * @see Builtin
- * @author <a href="mailto:der@hplb.hpl.hp.com">Dave Reynolds</a>
- * @version $Revision$ on $Date$
- */
+ * @see Builtin * @author <a href="mailto:der@hplb.hpl.hp.com">Dave Reynolds</a> * @version $Revision$ on $Date$ */
 public class BuiltinRegistry {
 
     /** The single global static registry */
@@ -45,6 +41,9 @@ public class BuiltinRegistry {
         theRegistry.register(new NoValue());
         theRegistry.register(new AssertDisjointPairs());
         theRegistry.register(new Remove());
+        theRegistry.register(new Sum());
+        theRegistry.register(new Bound());
+        theRegistry.register(new Unbound());
     }
     
     /**

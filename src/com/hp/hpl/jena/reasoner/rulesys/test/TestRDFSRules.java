@@ -24,14 +24,9 @@ import java.io.IOException;
 import java.util.Iterator;
 import org.apache.log4j.Logger;
 
-/**
- * Test suite to test the production rule version of the RDFS implementation.
- * 
- * @author <a href="mailto:der@hplb.hpl.hp.com">Dave Reynolds</a>
- * @version $Revision$ on $Date$
- */
-public class TestRDFSRules extends TestCase {
-   
+/** * Test suite to test the production rule version of the RDFS implementation.
+ *  * @author <a href="mailto:der@hplb.hpl.hp.com">Dave Reynolds</a> * @version $Revision$ on $Date$ */
+public class TestRDFSRules extends TestCase {   
     /** Base URI for the test names */
     public static final String NAMESPACE = "http://www.hpl.hp.com/semweb/2003/query_tester/";
     

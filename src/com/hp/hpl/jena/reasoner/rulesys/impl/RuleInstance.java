@@ -9,16 +9,18 @@
  *****************************************************************/
 package com.hp.hpl.jena.reasoner.rulesys.impl;
 
-import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.reasoner.*;
 import com.hp.hpl.jena.reasoner.rulesys.*;
-import java.util.*;
-import org.apache.log4j.Logger;
 
 /**
- *  Part of the backward chaining rule interpreter. A RuleInstance
- * represents a continuation point in processing a single rule to generate
- * goal results.
+ * Part of the backward chaining rule interpreter. A RuleInstance
+ * links an instance of a rule to the GoalResults object for which it is
+ * generating results. It is a simple data structure which is shared amongst
+ * a set of RuleSets to reduce the store turn over needed for RuleState creation.
+ * <p>
+ * Encapuslation warning: this object is used in the tight inner loop of the engine so we access its
+ * field pointers directly rather than through accessor methods.
+ * </p>
  * 
  * @author <a href="mailto:der@hplb.hpl.hp.com">Dave Reynolds</a>
  * @version $Revision$ on $Date$
@@ -31,220 +33,23 @@ public class RuleInstance {
     /** The parent goal table entry which contains this continuation point */
     protected GoalResults generator;
     
-    /** The state of the clause currently being processed */
-    protected RuleState state;
+    /** The enclosing rule engine */
+    protected BRuleEngine engine;
     
     /** The head clause whose bindings are being sought */
     protected TriplePattern head;
-    
-    /** A push down state of RuleStates for earlier subgoals */
-    protected ArrayList stateStack = new ArrayList(); 
-    
-    /** log4j logger*/
-    static Logger logger = Logger.getLogger(RuleInstance.class);
     
     /**
      * Constructor. Create a new continuation point for a rule in
      * the context of a specific goal represented by the table entry.
      */
-    RuleInstance(GoalResults results, Rule rule) {
+    RuleInstance(GoalResults results, Rule rule, TriplePattern head) {
         this.generator = results;
         this.rule = rule;
+        this.engine = results.getEngine();
+        this.head = head;
     }
-    
-    /**
-     * Return the next result for this rule (or FAIL or SUSPEND)
-     */
-    Object next() {
-        if (state == null) {
-            init();
-            if (state == null) return StateFlag.FAIL;
-        }
-        BasicBackwardRuleInfGraph ruleEngine = generator.ruleEngine;
-        if (ruleEngine.isTraceOn()) {
-            logger.debug("Entering ruleInstance: " + rule.toShortString() + " for goal " + generator.goal);
-        }
-        // Process the AND until we hit a fail, a suspend or get though all the clauses
-        while(true) {
-            Object result = state.next();
-            if ( !(result instanceof StateFlag) ) {
-                // Push current state and move to the next subGoal
-                int maxClause = rule.bodyLength();
-                int clauseIndex = state.clauseIndex;
-                BindingVector env = state.env;
-                boolean finished = true;
-                while (clauseIndex < maxClause) {
-                    Object clause = rule.getBodyElement(clauseIndex++);
-                    if (clause instanceof TriplePattern) {
-                        // found next subgoal to try
-                        // Push current state onto stack 
-                        stateStack.add(state);
-                        // This is an expensive step - turns over storage in the inner loop
-                        TriplePattern subgoal = env.bind((TriplePattern)clause);
-                        GoalState gs = ruleEngine.findGoal(subgoal);
-                        state = new RuleState(gs, subgoal, new BindingVector(state.env), clauseIndex);
-                        if (ruleEngine.isTraceOn()) {
-                            logger.debug("Pushed new rule state for subgoal: " + subgoal);
-                        }
-                        finished = false;
-                    } else {
-                        if (!ruleEngine.processBuiltin(clause, rule, env)) {
-                            result = StateFlag.FAIL;
-                            // push state onto stack, fail will pop it again
-                            stateStack.add(state);
-                            finished = false;
-                            break;      // fall through to stack pop
-                        }
-                    }
-                }
-                if (finished) break; // fall through to result return
-            }
-            if (result == StateFlag.SUSPEND) {
-                // Record that this processing point is suspended on the current subgoal
-                state.goalState.results.addDependent(generator);
-                if (ruleEngine.isTraceOn()) {
-                    logger.debug("Suspending ruleInstance: " + rule.toShortString() + " for goal " + generator.goal);
-                }
-                return result;
-            } else if (result == StateFlag.FAIL) {
-                // fail back
-                int ptr = stateStack.size()-1;
-                if (ptr >= 0) {
-                    state = (RuleState)stateStack.get(ptr);
-                    stateStack.remove(ptr);
-                } else {
-                    // Run out of alternatives so the whole rule fails
-                    if (ruleEngine.isTraceOn()) {
-                        logger.debug("Failing ruleInstance: " + rule.toShortString() + " for goal " + generator.goal);
-                    }
-                    return StateFlag.FAIL;
-                }
-            }
-        }
-        // If we get to here we have run out of body clauses
-        Triple result = state.env.instantiate(head);
-        if (ruleEngine.isTraceOn()) {
-            logger.debug("Returning from ruleInstance: " + rule.toShortString() + " value = (" + result +")");
-        }
-        return result;
-    }
-
-    /**
-     * Intialize the RuleInstance. This needs to find the head clause
-     * which is being matched and initialize the binding environment accordingly.
-     * Then finds the first subgoal and sets the initial state. If a guard
-     * predicate fails before then it leaves the state null as a flag that
-     * the rule should fail.
-     */
-    private void init() {
-        BindingVector env = new BindingVector();
-        TriplePattern goal = generator.goal;
-        
-        Object headClause = rule.getHeadElement(0);
-        // Find the head clause which matches the goal
-        if (rule.headLength() > 1) {
-            for (int i = 0; i < rule.headLength(); i++) {
-                headClause = rule.getHeadElement(i);
-                if ( (headClause instanceof TriplePattern) &&
-                     goal.subsumes((TriplePattern)headClause) ) break;
-            }
-        }
-        head = (TriplePattern)headClause;
-        Node n = head.getSubject();
-        if (n instanceof Node_RuleVariable) {
-            Node g = goal.getSubject();
-            if (!g.isVariable()) env.bind(n, g);
-        }
-        n = head.getPredicate();
-        if (n instanceof Node_RuleVariable) {
-            Node g = goal.getPredicate();
-            if (!g.isVariable()) env.bind(n, g);
-        }
-        n = head.getObject();
-        if (n instanceof Node_RuleVariable) {
-            Node g = goal.getObject();
-            if (!g.isVariable()) env.bind(n, g);
-        }
-        int maxClause = rule.bodyLength();
-        
-        // Find the first goal clause
-        int clauseIndex = 0;
-        BasicBackwardRuleInfGraph ruleEngine = generator.ruleEngine;
-        while (state == null && clauseIndex < maxClause) {
-            Object clause = rule.getBodyElement(clauseIndex++);
-            if (clause instanceof TriplePattern) {
-                TriplePattern subgoal = env.bind((TriplePattern)clause);
-                GoalState gs = ruleEngine.findGoal(subgoal);
-                state = new RuleState(gs, subgoal, env, clauseIndex);
-            } else {
-                if (!ruleEngine.processBuiltin(clause, rule, env)) {
-                    return;
-                }
-            }
-        }
-    }
-    
-//  =======================================================================
-//   Inner classes
-
-    /**
-     * Inner class which represents a single state of the rule.
-     */
-    static class RuleState {
-        /** The binding environment for the rule so far */
-        BindingVector env;
-        
-        /** The continuation point for the rule clause being processed */
-        GoalState goalState;
-        
-        /** The clause number in the rule currently being processed.
-         *  TODO this needs revising if we enable clause reordering */
-        int clauseIndex;
-        
-        /** binding offset for subject field, -1 if none */
-        int subjectBind;
-        
-        /** binding offset for predicate field, -1 if none */
-        int predicateBind;
-        
-        /** binding offset for object field, -1 if none */
-        int objectBind;
-        
-        /**
-         * Constructor. Caches the map from result node to environment offset
-         * to speed up result checking during next().
-         */
-        RuleState(GoalState goalState, TriplePattern goal, BindingVector env, int clauseIndex) {
-            this.goalState = goalState;
-            this.env = env;
-            this.clauseIndex = clauseIndex;
-            Node n = goal.getSubject();
-            subjectBind = (n instanceof Node_RuleVariable) ? ((Node_RuleVariable)n).getIndex() : -1 ;
-            n = goal.getPredicate();
-            predicateBind = (n instanceof Node_RuleVariable) ? ((Node_RuleVariable)n).getIndex() : -1 ;
-            n = goal.getObject();
-            objectBind = (n instanceof Node_RuleVariable) ? ((Node_RuleVariable)n).getIndex() : -1 ;
-        }
-        
-        /**
-         * Return the next match for this clause (or FAIL or SUSPEND)
-         */
-        Object next() {
-            Object result = goalState.next();
-            if (result instanceof Triple) {
-                Triple t = (Triple)result;
-                boolean ok = true;
-                Node[] rawenv = env.getEnvironment();
-                if (subjectBind != -1) rawenv[subjectBind] = t.getSubject();
-                if (predicateBind != -1) rawenv[predicateBind] = t.getPredicate();
-                if (objectBind != -1) rawenv[objectBind] = t.getObject();
-            }
-            return result;        
-        }
-        
-    }
-
-    
+     
 }
 
 

@@ -173,6 +173,22 @@ public class BindingVector implements BindingEnvironment {
         );
     }
     
+    /**
+     * Printable form
+     */
+    public String toString() {
+        StringBuffer buffer = new StringBuffer();
+        for (int i = 0; i < environment.length; i++) {
+            if (environment[i] == null) {
+                buffer.append("-");
+            } else {
+                buffer.append(environment[i].toString());
+            }
+            buffer.append(" ");
+        }
+        return buffer.toString();
+    }
+    
 }
 
 

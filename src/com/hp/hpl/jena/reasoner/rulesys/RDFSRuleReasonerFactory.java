@@ -8,19 +8,13 @@
  * $Id$
  *****************************************************************/
 package com.hp.hpl.jena.reasoner.rulesys;
-
 import com.hp.hpl.jena.reasoner.*;
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.vocabulary.*;
 
-/**
- * Factory class for creating blank instances of the RDFS reasoner.
- *
- * @author <a href="mailto:der@hplb.hpl.hp.com">Dave Reynolds</a>
- * @version $Revision$ on $Date$
- */
-public class RDFSRuleReasonerFactory implements ReasonerFactory {
-    
+/** * Factory class for creating blank instances of the RDFS reasoner.
+ * * @author <a href="mailto:der@hplb.hpl.hp.com">Dave Reynolds</a> * @version $Revision$ on $Date$ */
+public class RDFSRuleReasonerFactory implements ReasonerFactory {    
     /** Single global instance of this factory */
     private static ReasonerFactory theInstance = new RDFSRuleReasonerFactory();
     

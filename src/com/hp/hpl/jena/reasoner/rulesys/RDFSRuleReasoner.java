@@ -8,24 +8,17 @@
  * $Id$
  *****************************************************************/
 package com.hp.hpl.jena.reasoner.rulesys;
-
 import java.io.*;
 import org.apache.log4j.Logger;
 import java.util.*;
-
-/**
- * An pure forward chaining implementation of the RDFS closure rules
+/** * An pure forward chaining implementation of the RDFS closure rules
  * based upon the basic forward rule interpreter. The normal mixed
  * forward/backward implementation is generally preferred but this has 
  * two possible uses. First, it is a test and demonstration of the forward
  * chainer. Second, if you want all the RDFS entailments for an entire 
  * dataset the forward chainer will be more efficient.
- * 
- * @author <a href="mailto:der@hplb.hpl.hp.com">Dave Reynolds</a>
- * @version $Revision$ on $Date$
- */
-public class RDFSRuleReasoner extends BasicForwardRuleReasoner {
-    
+ *  * @author <a href="mailto:der@hplb.hpl.hp.com">Dave Reynolds</a> * @version $Revision$ on $Date$ */
+public class RDFSRuleReasoner extends BasicForwardRuleReasoner {    
     /** The location of the OWL rule definitions on the class path */
     public static final String RULE_FILE = "etc/rdfs.rules";
     

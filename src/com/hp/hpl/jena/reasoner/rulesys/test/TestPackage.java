@@ -30,7 +30,7 @@ public class TestPackage extends TestSuite {
         super("RuleSys");
         addTest( "TestBasics", TestBasics.suite() );
         addTest( "TestRDFSRules", TestRDFSRules.suite() );
-        //addTest( "TestBackchainer", TestBackchainer.suite() );
+        addTest( "TestBackchainer", TestBackchainer.suite() );
         
         // Omited temporarily in the interests of speed?
         // addTest( "TestOWLRules", TestOWLRules.suite() );

@@ -1,48 +1,63 @@
 /******************************************************************
- * File:        StateFlag.java
+ * File:        Bound.java
  * Created by:  Dave Reynolds
- * Created on:  03-May-2003
+ * Created on:  11-May-2003
  * 
  * (c) Copyright 2003, Hewlett-Packard Company, all rights reserved.
  * [See end of file]
  * $Id$
  *****************************************************************/
-package com.hp.hpl.jena.reasoner.rulesys.impl;
+package com.hp.hpl.jena.reasoner.rulesys.builtins;
+
+import com.hp.hpl.jena.reasoner.rulesys.*;
+import com.hp.hpl.jena.graph.*;
 
 /**
- * A set of constants used to record state information in the
- * backchaining rule interepreter. 
+ * Predicate used to check if a variable has been bound.
  * 
  * @author <a href="mailto:der@hplb.hpl.hp.com">Dave Reynolds</a>
  * @version $Revision$ on $Date$
  */
-public class StateFlag {
-    
-    /** Label for printing */
-    private String label;
+public class Bound implements Builtin {
 
-    /** Indicates a goal has failed and return no more answers at this time */
-    public static final StateFlag FAIL = new StateFlag("FALL");
-    
-    /** Indicates that all currently available results have been returned and
-     *  the goal should be suspended into new subgoal results have been generated */
-    public static final StateFlag SUSPEND = new StateFlag("SUSPEND");
-    
-    /** Indicates that the goal remains active */
-    public static final StateFlag ACTIVE = new StateFlag("ACTIVE");
-    
-    /** Indicates a fully satisfied goal */
-    public static final StateFlag SATISFIED = new StateFlag("SATISFIED");
-    
-    /** Constructor */
-    private StateFlag(String label) {
-        this.label = label;
+    /**
+     * Return a name for this builtin, normally this will be the name of the 
+     * functor that will be used to invoke it.
+     */
+    public String getName() {
+        return "bound";
+    }
+
+    /**
+     * This method is invoked when the builtin is called in a rule body.
+     * @param args the array of argument values for the builtin, this is an array 
+     * of Nodes, some of which may be Node_RuleVariables.
+     * @param context an execution context giving access to other relevant data
+     * @return return true if the buildin predicate is deemed to have succeeded in
+     * the current environment
+     */
+    public boolean bodyCall(Node[] args, RuleContext context) {
+        BindingEnvironment env = context.getEnv();
+        for (int i = 0; i < args.length; i++) {
+            if (args[i] instanceof Node_RuleVariable) return false;
+        }
+        return true;
     }
     
-    /** Print string */
-    public String toString() {
-        return label;
+    
+    /**
+     * This method is invoked when the builtin is called in a rule head.
+     * Such a use is only valid in a forward rule.
+     * @param args the array of argument values for the builtin, this is an array 
+     * of Nodes.
+     * @param context an execution context giving access to other relevant data
+     * @param rule the invoking rule
+     */
+    public void headAction(Node[] args, RuleContext context) {
+       // Can't be used in the head
+        throw new BuiltinException(this, context, "can't do bound/unbound in rule heads");
     }
+
 }
 
 
