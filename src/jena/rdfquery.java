@@ -11,7 +11,6 @@ import junit.framework.* ;
 import java.io.* ;
 
 import com.hp.hpl.jena.util.* ;
-import com.hp.hpl.jena.util.file.* ;
 import com.hp.hpl.jena.rdql.* ;
 import com.hp.hpl.jena.rdql.test.* ;
 import com.hp.hpl.jena.rdf.model.* ;
