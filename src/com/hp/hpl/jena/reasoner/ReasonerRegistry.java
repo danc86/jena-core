@@ -13,6 +13,7 @@ import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.vocabulary.*;
 import com.hp.hpl.jena.mem.ModelMem;
 import com.hp.hpl.jena.graph.*;
+import com.hp.hpl.jena.reasoner.rulesys.DAMLMicroReasonerFactory;
 import com.hp.hpl.jena.reasoner.rulesys.GenericRuleReasonerFactory;
 import com.hp.hpl.jena.reasoner.rulesys.OWLFBRuleReasonerFactory;
 import com.hp.hpl.jena.reasoner.rulesys.RDFSRuleReasonerFactory;
@@ -57,7 +58,7 @@ public class ReasonerRegistry {
         register(RDFSFBRuleReasonerFactory.theInstance());
         register(OWLFBRuleReasonerFactory.theInstance());
         register(GenericRuleReasonerFactory.theInstance());
-        
+        register(DAMLMicroReasonerFactory.theInstance());
     }
     
     /**
