@@ -14,6 +14,8 @@ import java.net.*;
  * The purpose of this class is to be a minimal example which exercises the
  * memory leak problems reported in "Streaming OWL DL" by Jeremy Carroll.
  * 
+ * I don't believe it is though ...
+ * 
  * @author jjc
  * 
  *  
