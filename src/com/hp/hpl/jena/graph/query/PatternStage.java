@@ -58,6 +58,7 @@ public class PatternStage extends Stage
             ClosableIterator it = graph.find( p.asTripleMatch( current ) );
             while (stillOpen && it.hasNext())
                 if (p.match( current, (Triple) it.next())) nest( sink, current, index + 1 );
+            it.close();
             }
         }
     }
