@@ -9,8 +9,6 @@ package com.hp.hpl.jena.enhanced;
 import com.hp.hpl.jena.shared.JenaException;
 
 /**
- 	@author hedgehog
-
     Exception to throw if an enhanced graph does not support polymorphism
     to a specific class. The exception records the "bad" class and graph for
     later reporting.
