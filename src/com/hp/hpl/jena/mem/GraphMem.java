@@ -107,10 +107,10 @@ public class GraphMem extends GraphMemBase implements Graph
         Node sm = tm.getSubject();
         if (sm.isConcrete())
             return new Removable( subjects.iterator( sm , tm ), predicates, objects );
-        else if (pm.isConcrete())
-            return new Removable( predicates.iterator( pm, tm ), subjects, objects );
         else if (om.isConcrete() && !om.isLiteral())
             return new Removable( objects.iterator( om, tm ), subjects, predicates );
+        else if (pm.isConcrete())
+            return new Removable( predicates.iterator( pm, tm ), subjects, objects );
         else
             return new Removable( subjects.iterator( tm ), predicates, objects );
         }
