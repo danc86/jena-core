@@ -826,6 +826,9 @@ implements Model, ModelI, PrefixMapping, ModelLock
         return graph.size();
     }
 
+    public boolean isEmpty()
+        { return graph.queryHandler().isEmpty(); }
+        
     private void updateNamespace( HashSet set, Iterator it )
         {
         while (it.hasNext())

@@ -72,6 +72,14 @@ public interface Model
 	 */
 	long size() ;
 
+    /**
+        Answer true iff the model contains no explicit statements (ie it's size is zero,
+        listStatements() would deliver the empty iterator).
+        
+        @return true iff the model contains no explicit statements.
+    */
+    boolean isEmpty();
+    
 	// @deprecated Too difficult to implement scalably.
 	/** List all resources which are subjects of statements.
 	 *

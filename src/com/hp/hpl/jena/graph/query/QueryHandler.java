@@ -58,6 +58,11 @@ public interface QueryHandler
         true iff the graph contains a triple in which n appears somewhere.
     */
     public boolean containsNode( Node n );
+    
+    /**
+        Answer true iff the graph contains no explicit triples.
+    */
+    public boolean isEmpty();
     }
 
 /*

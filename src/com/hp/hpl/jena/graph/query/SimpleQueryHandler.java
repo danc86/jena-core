@@ -88,6 +88,12 @@ public class SimpleQueryHandler implements QueryHandler
             || graph.contains( Node.ANY, Node.ANY, n )
             ;
         }
+        
+    /**
+        Answer true iff the subject graph is empty.
+    */
+    public boolean isEmpty()
+        { return graph.size() == 0; }
     }
 
 /*

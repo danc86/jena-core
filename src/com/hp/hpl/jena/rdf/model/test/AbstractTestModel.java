@@ -58,6 +58,21 @@ public abstract class AbstractTestModel extends ModelTestBase
         assertTrue( S instanceof Resource );
         assertEquals( new AnonId( "_Blank" ), ((Resource) S).getId() );
         }
+        
+    public void testIsEmpty()
+        {
+        Statement S1 = statement( model, "model rdf:type nonEmpty" );
+        Statement S2 = statement( model, "pinky rdf:type Pig" );
+        assertTrue( model.isEmpty() );
+        model.add( S1 );
+        assertFalse( model.isEmpty() );
+        model.add( S2 );
+        assertFalse( model.isEmpty() );
+        model.remove( S1 );
+        assertFalse( model.isEmpty() );
+        model.remove( S2 );
+        assertTrue( model.isEmpty() );
+        }
     }
 
 
