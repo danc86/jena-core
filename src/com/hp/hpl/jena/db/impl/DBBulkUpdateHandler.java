@@ -37,7 +37,7 @@ public class DBBulkUpdateHandler implements BulkUpdateHandler {
     */
 	public void add(Triple[] triples) {
 		add( Arrays.asList(triples), false );
-        manager.notifyAdd( triples );
+        manager.notifyAddArray( triples );
 	}
 
 	public void add( List triples ) 
@@ -48,7 +48,7 @@ public class DBBulkUpdateHandler implements BulkUpdateHandler {
     */
     protected void add( List triples, boolean notify ) {
 		graph.add(triples);
-        if (notify) manager.notifyAdd( triples );
+        if (notify) manager.notifyAddList( triples );
 	}
 
     /**
@@ -85,7 +85,7 @@ public class DBBulkUpdateHandler implements BulkUpdateHandler {
 	public void add( Graph g ) {
 		ExtendedIterator triplesToAdd = GraphUtil.findAll( g );
 		try { addIterator( triplesToAdd ); } finally { triplesToAdd.close(); }
-        manager.notifyAdd( g );
+        manager.notifyAddGraph( g );
 	}
 
     /**
@@ -94,7 +94,7 @@ public class DBBulkUpdateHandler implements BulkUpdateHandler {
     */
 	public void delete( Triple[] triples ) {
 		delete( Arrays.asList(triples), false );
-        manager.notifyDelete( triples );
+        manager.notifyDeleteArray( triples );
 	}
 
     public void delete( List triples )
@@ -105,7 +105,7 @@ public class DBBulkUpdateHandler implements BulkUpdateHandler {
     */
 	protected void delete(List triples, boolean notify ) {
 		graph.delete( triples );
-        if (notify) manager.notifyDelete( triples );
+        if (notify) manager.notifyDeleteList( triples );
 	}
     
     /**
@@ -141,7 +141,7 @@ public class DBBulkUpdateHandler implements BulkUpdateHandler {
 	public void delete(Graph g) {
 		ExtendedIterator triplesToDelete = GraphUtil.findAll( g );
 		try { deleteIterator( triplesToDelete ); } finally { triplesToDelete.close(); }
-        manager.notifyDelete( g );
+        manager.notifyDeleteGraph( g );
    	}
 }
 

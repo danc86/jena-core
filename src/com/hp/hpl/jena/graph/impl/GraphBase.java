@@ -67,14 +67,14 @@ public abstract class GraphBase implements Graph {
         Tell the event manager that the triple <code>t</code> has been added to the graph.
     */
     public void notifyAdd( Triple t )
-        { getEventManager().notifyAdd( t ); }
+        { getEventManager().notifyAddTriple( t ); }
         
     /**
         Tell the event manager that the triple <code>t</code> has been deleted from the
         graph.
     */
     public void notifyDelete( Triple t )
-        { getEventManager().notifyDelete( t ); }
+        { getEventManager().notifyDeleteTriple( t ); }
         
     public TransactionHandler getTransactionHandler()
         { return new SimpleTransactionHandler(); }

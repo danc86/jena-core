@@ -17,56 +17,56 @@ public interface GraphListener
     /**
         Method called when a single triple has been added to the graph.
     */
-    void notifyAdd( Triple t );
+    void notifyAddTriple( Triple t );
     
     /**
         Method called when an array of triples has been added to the graph.
     */
-    void notifyAdd( Triple [] triples );
+    void notifyAddArray( Triple [] triples );
     
     /**
         Method called when a list [of triples] has been added to the graph.
     */
-    void notifyAdd( List triples );
+    void notifyAddList( List triples );
     
     /**
         Method called when an iterator [of triples] has been added to the graph
     */
-    void notifyAdd( Iterator it );
+    void notifyAddIterator( Iterator it );
     
     /**
         Method called when another graph <code>g</code> has been used to
         specify the triples added to our attached graph.
     	@param g the graph of triples added
      */
-    void notifyAdd( Graph g );
+    void notifyAddGraph( Graph g );
     
     /**
         Method called when a single triple has been deleted from the graph.
     */
-    void notifyDelete( Triple t );
+    void notifyDeleteTriple( Triple t );
     
     /**
         Method called when a list [of triples] has been deleted from the graph.
     */
-    void notifyDelete( List L );
+    void notifyDeleteList( List L );
     
     /**
         Method called when an array of triples has been deleted from the graph.
     */
-    void notifyDelete( Triple [] triples );
+    void notifyDeleteArray( Triple [] triples );
     
     /**
         Method called when an iterator [of triples] has been deleted from the graph.
     */
-    void notifyDelete( Iterator it );
+    void notifyDeleteIterator( Iterator it );
     
     /**
         Method to call when another graph has been used to specify the triples 
         deleted from our attached graph. 
     	@param g the graph of triples added
      */
-    void notifyDelete( Graph g );
+    void notifyDeleteGraph( Graph g );
     }
 
 /*
