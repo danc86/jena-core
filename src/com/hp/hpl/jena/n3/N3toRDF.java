@@ -11,6 +11,8 @@ import com.hp.hpl.jena.rdf.model.* ;
 
 import com.hp.hpl.jena.vocabulary.*;
 
+// TODO: Add triples to graphs, not statements to models.
+
 /**
  * @author		Andy Seaborne
  * @version 	$Id$
