@@ -21,6 +21,7 @@ public class TestSharedPackage extends TestCase
         TestSuite result = new TestSuite();
         result.addTest( TestPrefixMapping.suite() );
         result.addTest( TestJenaException.suite() );
+        result.addTest( TestReificationStyle.suite() );
         return result;
         }
     }
