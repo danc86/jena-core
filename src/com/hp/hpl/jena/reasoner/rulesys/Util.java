@@ -163,8 +163,13 @@ public class Util {
      */
     private static List convertList(Node node, RuleContext context, List sofar) {
         if (node == null || node.equals(RDF.nil.asNode())) return sofar;
-        sofar.add(getPropValue(node, RDF.first.asNode(), context));
-        return convertList(getPropValue(node, RDF.rest.asNode(), context), context, sofar);
+        Node next = getPropValue(node, RDF.first.asNode(), context);
+        if (next != null) {
+            sofar.add(next);
+            return convertList(getPropValue(node, RDF.rest.asNode(), context), context, sofar);
+        } else {
+            return sofar;
+        }
     }
     
     /**
