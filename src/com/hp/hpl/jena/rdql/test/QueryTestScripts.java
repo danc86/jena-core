@@ -16,6 +16,7 @@ import junit.framework.* ;
 import junit.framework.TestSuite ;
 
 import com.hp.hpl.jena.util.* ;
+import com.hp.hpl.jena.shared.*;
 import com.hp.hpl.jena.rdql.* ;
 
 import com.hp.hpl.jena.vocabulary.* ;
@@ -351,7 +352,7 @@ public class QueryTestScripts extends TestSuite
                 sIter.remove();
             }
             sIter.close() ;
-        } catch ( RDFException rdfEx)
+        } catch ( JenaException rdfEx)
         { Log.severe("Failed to empty model", "com.hp.hpl.jena.rdf.query.Test.QueryTest", "emptyModel", rdfEx) ; }
     }
 

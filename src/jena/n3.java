@@ -11,6 +11,7 @@ import jena.cmdline.*;
 import java.util.* ;
 import com.hp.hpl.jena.rdf.model.* ;
 import com.hp.hpl.jena.mem.* ;
+import com.hp.hpl.jena.shared.*;
 
 import com.hp.hpl.jena.n3.* ;
 
@@ -240,28 +241,20 @@ public class n3
 				model.write(writer, outputLang, baseName) ;
 			writer.flush();
 			}
-		} catch (RDFException rdfEx)
+		} catch (JenaException rdfEx)
 		{
-            N3Exception n3Ex = null ;
-            // See if we can find the N3Exception
-            if ( rdfEx instanceof N3Exception )
-                n3Ex = (N3Exception)rdfEx ;
-            else
-            {
-                Exception ex = rdfEx.getNestedException() ;
-                if ( n3Ex == null && ex!= null && ex instanceof N3Exception )
-                    n3Ex = (N3Exception)ex ;
-                else
-                    if (ex != null && ex instanceof RDFException)
-                        rdfEx = (RDFException)ex ;
-            }
-
+            Throwable cause = rdfEx.getCause();
+            N3Exception n3Ex = (N3Exception)
+                (rdfEx instanceof N3Exception ? rdfEx
+                : cause instanceof N3Exception ? cause
+                : null);
             if ( n3Ex != null )
                 System.err.println(n3Ex.getMessage()) ;
             else
             {
-                System.err.println(rdfEx.getMessage()) ;
-                rdfEx.printStackTrace(System.err) ;
+                Throwable th = (cause == null ? rdfEx : cause);
+                System.err.println( th.getMessage() ) ;
+                th.printStackTrace( System.err );
             }
             System.exit(7) ;
 		}

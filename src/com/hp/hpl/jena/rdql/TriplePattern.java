@@ -104,14 +104,7 @@ import com.hp.hpl.jena.shared.*;
 				if (tmp instanceof Property)
 					predicate = (Property) tmp;
 				else if ( tmp instanceof Resource )
-					try {
-						predicate = subject.getModel().createProperty(((Resource)tmp).getURI()) ;
-					} catch (RDFException rdfEx)
-					{
-						if ( rdfEx.getErrorCode() != RDFException.INVALIDPROPERTYURI )
-							throw rdfEx ;
-                        throw new JenaInvalidPropertyURIException( ((Resource)tmp).getURI() ) ;
-					}
+					predicate = subject.getModel().createProperty(((Resource)tmp).getURI()) ;
 				else if (tmp instanceof Value)
 					// Should not happen
 					throw new RDQL_InternalErrorException("TriplePattern.asStatment: value bound to variable") ;

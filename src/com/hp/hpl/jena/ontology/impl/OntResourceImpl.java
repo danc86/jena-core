@@ -27,6 +27,7 @@ package com.hp.hpl.jena.ontology.impl;
 import com.hp.hpl.jena.datatypes.xsd.XSDDatatype;
 import com.hp.hpl.jena.enhanced.*;
 import com.hp.hpl.jena.graph.*;
+import com.hp.hpl.jena.shared.*;
 import com.hp.hpl.jena.ontology.*;
 import com.hp.hpl.jena.ontology.path.*;
 import com.hp.hpl.jena.rdf.model.*;
@@ -1120,7 +1121,7 @@ public class OntResourceImpl
         try {
             return getProperty( p ).getObject().as( asClass );
         }
-        catch (RDFException e) {
+        catch (JenaException e) {
             // subject does not have that property exception - TODO implement a more specific check here
             return null;
         }
