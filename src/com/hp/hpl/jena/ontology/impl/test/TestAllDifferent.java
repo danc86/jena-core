@@ -33,7 +33,7 @@ import junit.framework.*;
 
 /**
  * <p>
- * Class comment
+ * Unit tests for the AllDifferent declaration.
  * </p>
  *
  * @author Ian Dickinson, HP Labs
@@ -137,11 +137,4 @@ public class TestAllDifferent
     THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
     (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
     THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-*/
-
-/* TODO delete me
-public class TestAllDifferent{
-
-}
-
 */

@@ -503,7 +503,7 @@ public class TestClassExpressionPath
             },
             
             // Boolean class expressions
-            {   
+/*            {   
                 "OWL ClassDescription.intersectionOf",
                 new PS() { 
                     public PathSet ps( OntModel m ) {
@@ -656,7 +656,7 @@ public class TestClassExpressionPath
                 null,
                 null
             },
-            
+            */
       };
     }
     

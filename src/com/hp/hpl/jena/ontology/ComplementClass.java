@@ -25,7 +25,7 @@ package com.hp.hpl.jena.ontology;
 
 // Imports
 ///////////////
-import com.hp.hpl.jena.ontology.path.PathSet;
+import com.hp.hpl.jena.rdf.model.Resource;
 
 
 /**
@@ -47,18 +47,21 @@ public interface ComplementClass
     // External signature methods
     //////////////////////////////////
 
-    /**
-     * <p>
-     * Answer an {@link PathSet accessor} for the 
-     * <code>complementOf</code>
-     * property of a class or class description. The accessor
-     * can be used to perform a variety of operations, including getting and setting the value.
-     * </p>
-     * 
-     * @return An abstract accessor for the complement class description
-     */
-    public PathSet p_complementOf();
-
+	/**
+	 * <p>Answer the class that the class described by this class description
+	 * is a complement of.</p>
+	 * @return The class that this class is a complement of.
+	 */
+	public OntClass getOperand();
+	
+	
+	/**
+	 * <p>Set the class that the class represented by this class expression is
+	 * a complement of. Any existing value for <code>complementOf</code> will
+	 * be replaced.</p>
+	 * @return The class that this class is a complement of.
+	 */
+	public void setOperand( Resource cls );
 }
 
 

@@ -99,6 +99,7 @@ public interface OntResource
      * <p>Answer true if this resource is the same as the given resource.</p>
      * @param res A resource to test against
      * @return True if the resources are declared the same via a <code>sameAs</code> statement.
+     * @exception OntProfileException If the {@link Profile#SAME_AS()} property is not supported in the current language profile.   
      */
     public boolean isSameAs( Resource res );
     

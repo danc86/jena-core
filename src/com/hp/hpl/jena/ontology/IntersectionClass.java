@@ -25,7 +25,6 @@ package com.hp.hpl.jena.ontology;
 
 // Imports
 ///////////////
-import com.hp.hpl.jena.ontology.path.PathSet;
 
 
 /**
@@ -48,18 +47,6 @@ public interface IntersectionClass
 
     // External signature methods
     //////////////////////////////////
-
-    /**
-     * <p>
-     * Answer an {@link PathSet accessor} for the 
-     * <code>intersectionOf</code>
-     * property of a class or class description. The accessor
-     * can be used to perform a variety of operations, including getting and setting the value.
-     * </p>
-     * 
-     * @return An abstract accessor for the intersection class description
-     */
-    public PathSet p_intersectionOf();
 
 
 
