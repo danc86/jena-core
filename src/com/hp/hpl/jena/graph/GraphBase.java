@@ -52,7 +52,7 @@ public abstract class GraphBase implements Graph {
 	/**
 	 * @see com.hp.hpl.jena.graph.Graph#find(TripleMatch)
 	 */
-	public abstract ClosableIterator find(TripleMatch m);
+	public abstract ExtendedIterator find(TripleMatch m);
 
 	/**
 		contains( t ) - return true iff the triple t is in this graph
@@ -78,7 +78,7 @@ public abstract class GraphBase implements Graph {
 	/**
 	 * @see com.hp.hpl.jena.graph.Graph#find(Node, Node, Node)
 	 */
-	public ClosableIterator find(Node s, Node p, Node o) {
+	public ExtendedIterator find(Node s, Node p, Node o) {
 		return find(new StandardTripleMatch(s, p, o));
 	}
 

@@ -7,7 +7,7 @@
 package com.hp.hpl.jena.graph;
 
 import com.hp.hpl.jena.graph.query.*;
-import com.hp.hpl.jena.util.iterator.ClosableIterator;
+import com.hp.hpl.jena.util.iterator.ExtendedIterator;
 
 /**
  * @author Jeremy Carroll
@@ -38,11 +38,11 @@ public interface Graph  {
       
 	  /** Returns an iterator over Triple.
 	   */
-	ClosableIterator find(TripleMatch m);
+	ExtendedIterator find(TripleMatch m);
     
 	  /** Returns an iterator over Triple.
 	   */
-	ClosableIterator find(Node s,Node p,Node o);
+	ExtendedIterator find(Node s,Node p,Node o);
 	
 	/**
 	 * Compare this graph with another using the method

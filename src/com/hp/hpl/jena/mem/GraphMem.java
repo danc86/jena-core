@@ -12,7 +12,7 @@ import com.hp.hpl.jena.graph.Node;
 import com.hp.hpl.jena.graph.Triple;
 import com.hp.hpl.jena.graph.TripleMatch;
 import com.hp.hpl.jena.graph.TripleMatchIterator;
-import com.hp.hpl.jena.util.iterator.ClosableIterator;
+import com.hp.hpl.jena.util.iterator.ExtendedIterator;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -67,7 +67,7 @@ public class GraphMem extends GraphBase implements Graph {
     
     /** Returns an iterator over Triple.
      */
-    public ClosableIterator find(TripleMatch m) {
+    public ExtendedIterator find(TripleMatch m) {
         Node s = m.getSubject();
         Node p = m.getPredicate();
         Node o = m.getObject();

@@ -1008,7 +1008,7 @@ abstract public class ModelCom extends EnhGraph
 			s.remove( IteratorFactory.asStatement( t, g ) );
 		}
         
-		public ClosableIterator find( final TripleMatch m ) {
+		public ExtendedIterator find( final TripleMatch m ) {
 			return new NiceIterator() {
 				Iterator it = s.list( null, null, null );
 				Object current = absent;
