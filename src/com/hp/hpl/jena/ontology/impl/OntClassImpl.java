@@ -547,7 +547,8 @@ public class OntClassImpl
             Resource supClass = (Resource) i.next();
             
             // is this super-class a restriction?
-            if (getProfile().RESTRICTION() != null && supClass.canAs( Restriction.class )) {
+            if (getProfile().RESTRICTION() != null && (supClass.canAs( Restriction.class ) || 
+                                                       supClass.hasProperty( getProfile().ON_PROPERTY() ) )) {
                 // look up the property that this restriction applies to
                 Restriction r = (Restriction) supClass.as( Restriction.class );
                 Property p = r.getOnProperty();
@@ -667,7 +668,7 @@ public class OntClassImpl
      */
     public boolean isEnumeratedClass() {
         checkProfile( getProfile().ONE_OF(), "ONE_OF" );
-        return canAs( EnumeratedClass.class );
+        return hasProperty( getProfile().ONE_OF() );
     }
          
     /** 
@@ -676,7 +677,7 @@ public class OntClassImpl
      */
     public boolean isUnionClass() {
         checkProfile( getProfile().UNION_OF(), "UNION_OF" );
-        return canAs( UnionClass.class );
+        return hasProperty( getProfile().UNION_OF() );
     }
          
     /** 
@@ -685,7 +686,7 @@ public class OntClassImpl
      */
     public boolean isIntersectionClass() {
         checkProfile( getProfile().INTERSECTION_OF(), "INTERSECTION_OF" );
-        return canAs( IntersectionClass.class );
+        return hasProperty( getProfile().INTERSECTION_OF() );
     }
          
     /** 
@@ -694,7 +695,7 @@ public class OntClassImpl
      */
     public boolean isComplementClass() {
         checkProfile( getProfile().COMPLEMENT_OF(), "COMPLEMENT_OF" );
-        return canAs( ComplementClass.class );
+        return hasProperty( getProfile().COMPLEMENT_OF() );
     }
          
     /** 
@@ -703,7 +704,8 @@ public class OntClassImpl
      */
     public boolean isRestriction() {
         checkProfile( getProfile().RESTRICTION(), "RESTRICTION" );
-        return canAs( Restriction.class );
+        return hasProperty( getProfile().ON_PROPERTY() ) || 
+               hasProperty( RDF.type, getProfile().RESTRICTION() );
     }
          
      

@@ -120,17 +120,25 @@ public class AllValuesFromRestrictionImpl
         checkProfile( getProfile().ALL_VALUES_FROM(), "ALL_VALUES_FROM" );
         Resource r = (Resource) getRequiredProperty( getProfile().ALL_VALUES_FROM() ).getObject();
         
-        if (r.canAs( OntClass.class )) {
-            // all values from a class
-            return (Resource) r.as( OntClass.class );
+        boolean currentStrict = ((OntModel) getModel()).strictMode();
+        ((OntModel) getModel()).setStrictMode( true );
+        
+        try {
+            if (r.canAs( OntClass.class )) {
+                // all values from a class
+                return (Resource) r.as( OntClass.class );
+            }
+            else if (r.canAs( DataRange.class )) {
+                // all values from a given data range
+                return (Resource) r.as( DataRange.class );
+            }
+            else {
+                // must be a datatype ID or rdfs:Literal
+                return r;
+            }
         }
-        else if (r.canAs( DataRange.class )) {
-            // all values from a given data range
-            return (Resource) r.as( DataRange.class );
-        }
-        else {
-            // must be a datatype ID or rdfs:Literal
-            return r;
+        finally {
+            ((OntModel) getModel()).setStrictMode( currentStrict );
         }
     }
 

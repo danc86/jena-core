@@ -208,7 +208,7 @@ public class RestrictionImpl
      */
     public boolean isAllValuesFromRestriction() {
         checkProfile( getProfile().ALL_VALUES_FROM(), "ALL_VALUES_FROM" );
-        return canAs( AllValuesFromRestriction.class );
+        return hasProperty( getProfile().ALL_VALUES_FROM() );
     }
          
     /** 
@@ -218,7 +218,7 @@ public class RestrictionImpl
      */
     public boolean isSomeValuesFromRestriction() {
         checkProfile( getProfile().SOME_VALUES_FROM(), "SOME_VALUES_FROM" );
-        return canAs( SomeValuesFromRestriction.class );
+        return hasProperty( getProfile().SOME_VALUES_FROM() );
     }
          
     /** 
@@ -228,7 +228,7 @@ public class RestrictionImpl
      */
     public boolean isHasValueRestriction() {
         checkProfile( getProfile().HAS_VALUE(), "HAS_VALUE" );
-        return canAs( HasValueRestriction.class );
+        return hasProperty( getProfile().HAS_VALUE() );
     }
          
     /** 
@@ -240,7 +240,7 @@ public class RestrictionImpl
      */
     public boolean isCardinalityRestriction() {
         checkProfile( getProfile().CARDINALITY(), "CARDINALITY" );
-        return canAs( CardinalityRestriction.class );
+        return hasProperty( getProfile().CARDINALITY() );
     }
 
     /** 
@@ -252,7 +252,7 @@ public class RestrictionImpl
      */
     public boolean isMinCardinalityRestriction() {
         checkProfile( getProfile().MIN_CARDINALITY(), "MIN_CARDINALITY" );
-        return canAs( MinCardinalityRestriction.class );
+        return hasProperty( getProfile().MIN_CARDINALITY() );
     }
 
     /** 
@@ -264,7 +264,7 @@ public class RestrictionImpl
      */
     public boolean isMaxCardinalityRestriction() {
         checkProfile( getProfile().MAX_CARDINALITY(), "MAX_CARDINALITY" );
-        return canAs( MaxCardinalityRestriction.class );
+        return hasProperty( getProfile().MAX_CARDINALITY() );
     }
 
 
