@@ -14,6 +14,8 @@ import com.hp.hpl.jena.reasoner.rdfsReasoner1.*;
 import com.hp.hpl.jena.reasoner.*;
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.mem.ModelMem;
+import com.hp.hpl.jena.vocabulary.*;
+import com.hp.hpl.jena.rdf.model.impl.StatementImpl;
 
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
@@ -85,6 +87,25 @@ public class TestReasoners extends TestCase {
     }
     */
 
+    /**
+     * Test the ModelFactory interface
+     */
+    public void testModelFactoryRDFS() {
+        Model data = ModelFactory.createDefaultModel();
+        Property p = data.createProperty("urn:x-hp:ex/p");
+        Resource a = data.createResource("urn:x-hp:ex/a");
+        Resource b = data.createResource("urn:x-hp:ex/b");
+        Resource C = data.createResource("urn:x-hp:ex/c");
+        data.add(p, RDFS.range, C)
+            .add(a, p, b);
+        Model result = ModelFactory.createRDFSModel(data);
+        StmtIterator i = result.listStatements(new SimpleSelector(b, RDF.type, (RDFNode)null));
+        TestUtil.assertIteratorValues(this, i, new Object[] {
+            new StatementImpl(b, RDF.type, RDFS.Resource),
+            new StatementImpl(b, RDF.type, C)
+        });
+    }
+        
 }
 
 /*
