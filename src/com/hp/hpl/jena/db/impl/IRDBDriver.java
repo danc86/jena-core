@@ -259,6 +259,13 @@ public interface IRDBDriver {
 	
 	public String genSQLReifQualObj ( char reifProp, boolean hasObj );
 
+	/**
+	 * Indicate whether or not table with name is present in database.
+	 * @param tName name of the table.
+	 * @return true if the table exists.
+	 */
+	public boolean doesTableExist(String tName);
+
 
 }
 
