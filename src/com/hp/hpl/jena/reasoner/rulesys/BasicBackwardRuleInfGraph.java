@@ -348,6 +348,7 @@ public class BasicBackwardRuleInfGraph extends BaseInfGraph {
             } else if (lookAhead == StateFlag.FAIL) {
                 lookAhead = null;
             }
+            if (lookAhead == null) close();
         }
         
         /**
@@ -355,6 +356,7 @@ public class BasicBackwardRuleInfGraph extends BaseInfGraph {
          */
         public void close() {
             goalState.close();
+            engine.halt();
         }
     
         /**

@@ -71,6 +71,26 @@ public class GoalTable {
     }
     
     /**
+     * Clear all partial results, closing any pending RuleStates but leaving
+     * completed goals intact.
+     */
+    public void removePartialGoals() {
+        for (Iterator i= table.entrySet().iterator(); i.hasNext(); ) {
+            Map.Entry entry = (Map.Entry)i.next();
+            TriplePattern goal = (TriplePattern)entry.getKey();
+            GoalResults result = (GoalResults)entry.getValue();
+            if ( ! result.isComplete()) {
+                // Close any iterators in the dependent goal states.
+                for (Iterator d = result.dependents.iterator(); d.hasNext(); ) {
+                    RuleState rs = (RuleState)d.next();
+                    if (rs.goalState != null) rs.goalState.close();
+                }
+                i.remove();
+            }
+        }
+    }
+    
+    /**
      * Set all the goals in the table to "complete".
      */
     public void setAllComplete() {

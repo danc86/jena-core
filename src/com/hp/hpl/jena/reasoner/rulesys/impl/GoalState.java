@@ -83,6 +83,17 @@ public class GoalState {
     }
     
     /**
+     * Return true if there seems to be at least one new result available or if
+     * this can be stripped off the agenda because it has failed.
+     */
+    public boolean couldProcess() {
+        if (tripleMatches != null && tripleMatches.hasNext()) return true;
+        if (results.started && solutionPointer < results.numResults()) return true;
+        if (results.isComplete) return true;
+        return false;
+    }
+    
+    /**
      * Close the GoalState, closing any still active iterators.
      */
     public void close() {
