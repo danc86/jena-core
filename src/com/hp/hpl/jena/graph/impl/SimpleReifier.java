@@ -74,11 +74,10 @@ public class SimpleReifier implements Reifier
     /** */
     public ExtendedIterator allNodes()
         {
-        return WrappedIterator.create( nodeMap.keySet().iterator() ) .filterKeep ( completeFragment );
+        return WrappedIterator.create( nodeMap.tagIterator() ) .filterKeep ( completeFragment );
         }
         
     public ExtendedIterator allNodes( Triple t )
-        // { return allNodes() .filterKeep( matching( t ) );  }
         { 
         Set s = (Set) nodeMap.inverseMap.get( t );
         if (s == null)
