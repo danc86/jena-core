@@ -190,14 +190,7 @@ public abstract class Node {
     /** get the URI of this node if it has one, else die horribly */
     public String getURI()
         { throw new UnsupportedOperationException( "this is not a URI node" ); }
-        
-    /**
-        get the triple associated with this node; if no direct association, use the
-        triple-getter _r_. 
-    */
-    public Triple getTriple( GetTriple r )
-        { return r.getTriple( this ); }
-        
+
     /** get a variable nodes name, otherwise die horribly */
     public String getName()
         { throw new UnsupportedOperationException( "this (" + this.getClass() + ") is not a variable node" ); }

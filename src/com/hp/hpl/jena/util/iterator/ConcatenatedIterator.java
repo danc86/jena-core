@@ -77,34 +77,9 @@ public class ConcatenatedIterator
      * @param iter1 The second iterator. Elements of this iterator will appear
      *              second in the elements read from the concatenation.
      */
-    public ConcatenatedIterator( Object iter0, Object iter1 ) {
-        // find out which kind of iterator iter0 is
-        if (iter0 instanceof Iterator) {
-            m_iter0 = (Iterator) iter0;
-        }
-        else if (iter0 instanceof NodeIterator) {
-            m_iter0 =  (NodeIterator) iter0;
-        }
-        else if (iter0 instanceof ResIterator) {
-            m_iter0 = (ResIterator) iter0; 
-        }
-        else {
-            throw new IllegalArgumentException( "Found a non-iterator when constructing ConcatenatedIterator: " + iter0 );
-        }
-
-        // do the same for iter1
-        if (iter1 instanceof Iterator) {
-            m_iter1 = (Iterator) iter1;
-        }
-        else if (iter1 instanceof NodeIterator) {
-            m_iter1 =  (NodeIterator) iter1;
-        }
-        else if (iter1 instanceof ResIterator) {
-            m_iter1 = (ResIterator) iter1;
-        }
-        else {
-            throw new IllegalArgumentException( "Found a non-iterator when constructing ConcatenatedIterator: " + iter1 );
-        }
+    public ConcatenatedIterator( Iterator iter0, Iterator iter1 ) {
+        m_iter0 = iter0;
+        m_iter1 = iter1;
     }
 
 

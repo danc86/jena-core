@@ -42,11 +42,12 @@ import com.hp.hpl.jena.util.iterator.*;
 import java.util.NoSuchElementException;
 
 
-/** An iterator which returns RDF Statements.
- *
- * <p>RDF iterators are standard Java iterators, except that they
- *   have an extra method to return specifically typed objects,
- *   in this case RDF Statements and have a <CODE>close()</CODE> method
+/** 
+    An iterator which returns RDF Statements.
+    
+    <p>RDF iterators are standard Java iterators, except that they
+    have extras method to return specifically typed objects,
+    in this case RDF Statements and have a <CODE>close()</CODE> method
  *   that should be called to free resources if the application does 
  *   not complete the iteration.</p>
  * @author bwm
