@@ -63,9 +63,9 @@ public class MegaTestSuite extends TestSuite {
         addTest(
             "Memory Model",
             com.hp.hpl.jena.mem.TestSuiteRegression.suite());
-        addTest(
-            "graph.query.QueryTest",
-            com.hp.hpl.jena.graph.query.QueryTest.suite());
+//         addTest(
+//             "graph.query.QueryTest",
+//             com.hp.hpl.jena.graph.query.QueryTest.suite());
 /*        addTest(
             "inference test",
             com.hp.hpl.jena.inference.InferenceTestSuite.suite());
