@@ -195,6 +195,7 @@ public class FBLPRuleInfGraph  extends FBRuleInfGraph {
     public ExtendedIterator findWithContinuation(TriplePattern pattern, Finder continuation) {
         if (!isPrepared) prepare();
         ExtendedIterator result = lpbEngine.find(pattern);
+        // TODO: Check if we need a UniqueExtendedIterator wrapper in here
         if (continuation != null) {
             result = result.andThen(continuation.find(pattern));
         }
