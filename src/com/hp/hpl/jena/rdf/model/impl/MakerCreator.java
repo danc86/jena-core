@@ -6,7 +6,6 @@
 
 package com.hp.hpl.jena.rdf.model.impl;
 
-import com.hp.hpl.jena.graph.Reifier;
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.shared.ReificationStyle;
 import com.hp.hpl.jena.vocabulary.JMS;

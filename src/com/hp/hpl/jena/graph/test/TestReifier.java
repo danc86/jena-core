@@ -13,7 +13,7 @@ import com.hp.hpl.jena.shared.*;
 import junit.framework.*;
 
 /**
-    Thie class tests the reifiers of ordinary GraphMem graphs.
+    This class tests the reifiers of ordinary GraphMem graphs.
 	@author kers
 */
 
