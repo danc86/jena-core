@@ -8,6 +8,7 @@ import junit.framework.TestSuite;
 import junit.framework.Test;
 import junit.framework.TestCase;
 import com.hp.hpl.jena.rdf.model.*;
+import com.hp.hpl.jena.shared.JenaException;
 import com.hp.hpl.jena.vocabulary.OWLTest;
 import com.hp.hpl.jena.ontology.tidy.*;
 import java.util.*;
@@ -173,7 +174,8 @@ public class Extra extends TestCase {
 		}
    	}));
    	System.setErr(new PrintStream(bos));
-   	owlsyntax.main(new String[]{"file:testing/ontology/tidy/emess.rdf"});
+   	try { owlsyntax.main(new String[]{"file:testing/ontology/tidy/emess.rdf"}); }
+    catch (Exception e) { throw new JenaException( e ); }
    	}
    	finally {
    	  System.setOut(oldOut);

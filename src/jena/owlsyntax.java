@@ -159,7 +159,7 @@ public class owlsyntax {
 	 * Run the OWL Syntax Checker, return result as a string. See {@link #main}
 	 * for usage etc.
 	 */
-	public static String mainStr(String args[]) throws Exception {
+	public static String mainStr(String args[]) {
 		String lang = "RDF/XML";
 		CommandLine cmd = new CommandLine();
 		cmd.setUsage(usageMessage);
@@ -206,7 +206,8 @@ public class owlsyntax {
 			if (cmd.items().size() > 0) {
 				manifest = (String) cmd.items().get(0);
 			}
-			runWGTests( wantsTextUI, manifest );
+			try { runWGTests( wantsTextUI, manifest ); }
+            catch (Exception e) { throw new JenaException( e ); }
 		    return "";
 		} else if (lang.equals("RDF/XML")) {
 			StreamingChecker chk = new StreamingChecker(cmd.contains(liteDecl),dm);
