@@ -38,6 +38,13 @@ public class BindingVector implements BindingEnvironment {
     }
     
     /**
+     * Constructor - create a binding environment from a vector of bindings 
+     */
+    public BindingVector(Node [] env) {
+        environment = env; 
+    }
+    
+    /**
      * Constructor - create a binding environment which is a copy
      * of the given environment
      */
