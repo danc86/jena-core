@@ -28,7 +28,6 @@ public class TestTriple extends GraphTestBase
     private static final String U = "http://some.domain.name/magic/spells.incant";
     private static final String N = "Alice";
     private static final LiteralLabel L = new LiteralLabel( "ashes are burning", "en", false );
-    private static final AnonId A = new AnonId();
         
     public void testTripleEquals() {
         try {
