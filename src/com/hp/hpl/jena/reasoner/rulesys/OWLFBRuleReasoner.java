@@ -34,7 +34,7 @@ public class OWLFBRuleReasoner extends FBRuleReasoner {
     protected static List ruleSet;
     
     /** The precomputed axiom closure and compiled rule set */
-    protected static FBRuleInfGraph preload; 
+    protected static FBRuleInfGraph staticPreload; 
     
     protected static Log logger = LogFactory.getLog(OWLFBRuleReasoner.class);
     
@@ -114,11 +114,17 @@ public class OWLFBRuleReasoner extends FBRuleReasoner {
      */
     public InfGraph getPreload() {
         synchronized (OWLFBRuleReasoner.class) {
-            if (preload == null) {
-                preload = new FBRuleInfGraph(this, rules, null);
-                preload.prepare();
+            if (staticPreload == null) {
+                boolean prior = JenaParameters.enableFilteringOfHiddenInfNodes;
+                try {
+                    JenaParameters.enableFilteringOfHiddenInfNodes = true;
+                    staticPreload = new FBRuleInfGraph(this, rules, null);
+                    staticPreload.prepare();
+                } finally {
+                    JenaParameters.enableFilteringOfHiddenInfNodes = prior;
+                }
             }
-            return preload;
+            return staticPreload;
         }
     }
     
