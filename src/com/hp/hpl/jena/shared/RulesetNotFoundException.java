@@ -11,7 +11,7 @@ package com.hp.hpl.jena.shared;
     @author kers
  */
 
-public class RulesetNotFoundException extends JenaException
+public class RulesetNotFoundException extends DoesNotExistException
     {
     protected String uri;
     
