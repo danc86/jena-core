@@ -21,6 +21,16 @@ import com.hp.hpl.jena.graph.*;
  */
 public abstract class BaseBuiltin implements Builtin {
 
+    /** Base URI for jena builtins */
+    public static final String BASE_URI = "http://www.hpl.hp.com/semweb/2003/RuleBuiltin/";
+    
+    /**
+     * Return the full URI which identifies this built in.
+     */
+    public String getURI() {
+        return BASE_URI + getName();
+    }
+
     /**
      * This method is invoked when the builtin is called in a rule body.
      * @param args the array of argument values for the builtin, this is an array 

@@ -27,6 +27,9 @@ public class BuiltinRegistry {
     /** Mapping from functor name to Builtin implementing it */
     protected Map builtins = new HashMap();
     
+    /** Mapping from URI of builtin to implementation */
+    protected Map builtinsByURI = new HashMap();
+    
     // Static initilizer for the singleton instance
     static {
         theRegistry = new BuiltinRegistry();
@@ -64,6 +67,7 @@ public class BuiltinRegistry {
      */
     public void register(String functor, Builtin impl) {
         builtins.put(functor, impl);
+        builtinsByURI.put(impl.getURI(), impl);
     }
    
     /**
@@ -72,6 +76,7 @@ public class BuiltinRegistry {
      */
     public void register(Builtin impl) {
         builtins.put(impl.getName(), impl);
+        builtinsByURI.put(impl.getURI(), impl);
     }
     
     /**
@@ -81,6 +86,15 @@ public class BuiltinRegistry {
      */
     public Builtin getImplementation(String functor) {
         return (Builtin)builtins.get(functor);
+    }
+    
+    /**
+     * Find the implementation of the given builtin functor.
+     * @param uri the URI of the builtin to be retrieved
+     * @return a Builtin or null if there is none registered under that name
+     */
+    public Builtin getImplementationByURI(String uri) {
+        return (Builtin)builtinsByURI.get(uri);
     }
     
 }

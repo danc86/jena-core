@@ -31,10 +31,16 @@ import com.hp.hpl.jena.graph.*;
 public interface Builtin {
 
     /**
-     * Return a name for this builtin, normally this will be the name of the 
-     * functor that will be used to invoke it.
+     * Return a convenient name for this builtin, normally this will be the name of the 
+     * functor that will be used to invoke it and will often be the final component of the
+     * URI.
      */
     public String getName();
+    
+    /**
+     * Return the full URI which identifies this built in.
+     */
+    public String getURI();
     
     /**
      * This method is invoked when the builtin is called in a rule body.
