@@ -13,6 +13,7 @@ package com.hp.hpl.jena.graph.test;
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.graph.impl.LiteralLabel;
 import com.hp.hpl.jena.rdf.model.AnonId;
+import com.hp.hpl.jena.shared.*;
 
 import junit.framework.*;
 
@@ -124,6 +125,29 @@ public class TestTriple extends GraphTestBase
         {
         Node S = Node.create( "a" ), P = Node.create( "_P" ), O = Node.create( "?c" );
         assertEquals( new Triple( S, P, O ), Triple.create( "a _P ?c") );
+        }
+        
+    /**
+        Test that triple-creation respects prefixes, assuming that node creation
+        does.
+    */
+    public void testTriplePrefixes()
+        {
+        Node S = Node.create( "rdf:alpha" ), P = Node.create( "dc:creator" );
+        Node O = Node.create( "spoo:notmapped" );
+        Triple t = Triple.create( "rdf:alpha dc:creator spoo:notmapped" );
+        assertEquals( new Triple( S, P, O ), t );
+        }
+        
+    public void testTripleCreationMapped()
+        {
+        PrefixMapping pm = PrefixMapping.Factory.create()
+            .setNsPrefix( "a", "ftp://foo/" )
+            .setNsPrefix( "b", "http://spoo/" )
+            ;
+        Triple wanted = Triple.create( "ftp://foo/x http://spoo/y c:z" );
+        Triple got = Triple.create( pm, "a:x b:y c:z" );
+        assertEquals( wanted, got );
         }
         
     public void testPlainTripleMatches()
