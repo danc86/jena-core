@@ -1,42 +1,30 @@
 /*
-  (c) Copyright 2002, Hewlett-Packard Company, all rights reserved.
+  (c) Copyright 2003, Hewlett-Packard Company, all rights reserved.
   [See end of file]
   $Id$
 */
 
 package com.hp.hpl.jena.graph;
 
+import com.hp.hpl.jena.rdf.model.*;
+
 /**
-	@author kers
-<br>
-    "variable" nodes; these are outside the RDF2003 specification, but are
-    used internally for "placeholder" nodes where blank nodes would be
-    wrong, most specifically in Query.
+ 	@author hedgehog
+    
+    The NodeVisitor interface is used by Node::visitWith so that an application
+    can have type-dispatch on the class of a Node.
 */
-
-public class Node_Variable extends Node
+public interface NodeVisitor
     {
-    public Node_Variable( Object name )
-        { super( name ); }
-
-    public String getName()
-        { return ((String) label).substring( 1 ); }
-
-    public Object visitWith( NodeVisitor v )
-        { return v.visitVariable( this, getName() ); }
-        
-    public boolean isVariable()
-        { return true; }
-
-    public String toString()
-        { return ((String) label); }
-        
-    public boolean equals( Object other )
-        { return other instanceof Node_Variable && label.equals( ((Node_Variable) other).label ); }
+    Object visitAny( Node_ANY it );
+    Object visitBlank( Node_Blank it, AnonId id );
+    Object visitLiteral( Node_Literal it, LiteralLabel lit );
+    Object visitURI( Node_URI it, String uri );
+    Object visitVariable( Node_Variable it, String name );
     }
-
+    
 /*
-    (c) Copyright Hewlett-Packard Company 2002
+    (c) Copyright Hewlett-Packard Company 2003
     All rights reserved.
 
     Redistribution and use in source and binary forms, with or without

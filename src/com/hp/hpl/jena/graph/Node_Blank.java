@@ -12,13 +12,16 @@ package com.hp.hpl.jena.graph;
 
 import com.hp.hpl.jena.rdf.model.*;
 
-class Node_Blank extends Node
+public class Node_Blank extends Node
     {    
     Node_Blank( Object id ) { super( id ); }
 
     public boolean isBlank() { return true; }
 
     public AnonId getBlankNodeId()  { return (AnonId) label; }
+    
+    public Object visitWith( NodeVisitor v )
+        { return v.visitBlank( this, (AnonId) label ); }
     
     public boolean equals( Object other )
         { return other instanceof Node_Blank && label.equals( ((Node_Blank) other).label ); }

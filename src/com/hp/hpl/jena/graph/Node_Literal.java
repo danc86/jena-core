@@ -20,6 +20,9 @@ public class Node_Literal extends Node
     public boolean isLiteral() 
         { return true; }    
         
+    public Object visitWith( NodeVisitor v )
+        { return v.visitLiteral( this, getLiteral() ); }
+        
     public boolean equals( Object other )
         { return other instanceof Node_Literal && label.equals( ((Node_Literal) other).label ); }
         

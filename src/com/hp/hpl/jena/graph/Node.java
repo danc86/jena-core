@@ -151,7 +151,16 @@ public abstract class Node {
                                             throws DatatypeFormatException {        
         return createLiteral( new LiteralLabel(lex, lang, dtype) );
     }
-                                                                            
+                                                   
+    /**
+        Visit a Node and dispatch on it to the appropriate method from the 
+        NodeVisitor <code>v</code>.
+        
+    	@param v the visitor to apply to the node
+    	@return the value returned by the applied method
+     */
+    public abstract Object visitWith( NodeVisitor v );
+                             
     /** is this a literal node - overridden in Node_Literal */
     public boolean isLiteral() 
         { return false; }

@@ -17,6 +17,9 @@ public class Node_URI extends Node
     public String getURI()
         { return (String) label; }
         
+    public Object visitWith( NodeVisitor v )
+        { return v.visitURI( this, (String) label ); }
+        
     public boolean isURI()
         { return true; }
         

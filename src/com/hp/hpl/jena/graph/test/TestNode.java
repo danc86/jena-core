@@ -297,6 +297,20 @@ public class TestNode extends GraphTestBase
         assertTrue( "node() making blanks", node( "_x" ).isBlank() );
         assertTrue( "node() making variables", node( "?x" ).isVariable() );
         }
+        
+    // TODO fill in this incomplete test
+    public void testVisitorPattern()
+        {
+        NodeVisitor v = new NodeVisitor() 
+            {
+            public Object visitAny( Node_ANY it ) { return null; }
+            public Object visitBlank( Node_Blank it, AnonId id ) { return null; }
+            public Object visitLiteral( Node_Literal it, LiteralLabel lit ) { return null; }
+            public Object visitURI( Node_URI it, String uri ) { return null; }
+            public Object visitVariable( Node_Variable it, String name ) { return null; }
+            };
+        node( "hello" ).visitWith( v );
+        }
     }
 
 /*
