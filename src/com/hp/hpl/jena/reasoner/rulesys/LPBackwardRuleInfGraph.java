@@ -112,7 +112,7 @@ public class LPBackwardRuleInfGraph extends BaseInfGraph implements BackwardRule
      * inference graph and the raw data, before processing.
      * @param data the new raw data graph
      */
-    public void rebind(Graph data) {
+    public synchronized void rebind(Graph data) {
         engine.checkSafeToUpdate();
         fdata = new FGraph(data);
         isPrepared = false;
@@ -125,7 +125,7 @@ public class LPBackwardRuleInfGraph extends BaseInfGraph implements BackwardRule
      * are made "behind the InfGraph's back" and this forces a full reconsult of
      * the changed data. 
      */
-    public void rebind() {
+    public synchronized void rebind() {
         engine.checkSafeToUpdate();
         isPrepared = false;
     }
@@ -133,7 +133,7 @@ public class LPBackwardRuleInfGraph extends BaseInfGraph implements BackwardRule
     /**
      * Flush out all cached results. Future queries have to start from scratch.
      */
-    public void reset() {
+    public synchronized void reset() {
         engine.checkSafeToUpdate();
         engine.reset();
     }
@@ -193,7 +193,7 @@ public class LPBackwardRuleInfGraph extends BaseInfGraph implements BackwardRule
     /** 
      * Removes the triple t (if possible) from the set belonging to this graph. 
      */   
-    public void performDelete(Triple t) {
+    public synchronized void performDelete(Triple t) {
         engine.checkSafeToUpdate();
         fdata.getGraph().delete(t);
         isPrepared = false;
