@@ -308,6 +308,7 @@ public class FRuleEngine implements FRuleEngineI {
                         Functor f = (Functor)head;
                         Builtin imp = f.getImplementor();
                         if (imp != null) {
+                            context.setRule(r);
                             imp.headAction(f.getArgs(), f.getArgLength(), context);
                         } else {
                             throw new ReasonerException("Invoking undefined Functor " + f.getName() +" in " + r.toShortString());

@@ -417,6 +417,7 @@ public class RETEEngine implements FRuleEngineI {
                         Functor f = (Functor)head;
                         Builtin imp = f.getImplementor();
                         if (imp != null) {
+                            tempContext.setRule(r);
                             imp.headAction(f.getArgs(), f.getArgLength(), tempContext);
                         } else {
                             throw new ReasonerException("Invoking undefined Functor " + f.getName() +" in " + r.toShortString());
