@@ -51,6 +51,7 @@ public class TestPackage extends TestSuite
 		addTest( "TestPrefixMapping", TestPrefixMapping.suite());
 		addTest( "TestTransactions", TestBasicOperations.suite() );
 		addTest( "TestReifier", TestReifier.suite() );
+		addTest( "TestReifierCompareToMem", TestReifierCompareToMem.suite());
 
 		// TODO remove the dmoz test for now - it fails because of invalid
 		// characters in the Resource URIs in the DMOZ file.

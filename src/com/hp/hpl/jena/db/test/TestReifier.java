@@ -8,8 +8,8 @@ package com.hp.hpl.jena.db.test;
 
 import java.util.ArrayList;
 
+import com.hp.hpl.jena.db.GraphRDB;
 import com.hp.hpl.jena.db.IDBConnection;
-import com.hp.hpl.jena.db.ModelRDB;
 import com.hp.hpl.jena.graph.*;
 import junit.framework.*;
 
@@ -18,7 +18,7 @@ import junit.framework.*;
 */
 
 public class TestReifier extends GraphTestBase {
-	private ArrayList theModels = new ArrayList();
+	private ArrayList theGraphs = new ArrayList();
 	private IDBConnection theConnection;
 
 	public TestReifier(String name) {
@@ -37,15 +37,19 @@ public class TestReifier extends GraphTestBase {
 	public void tearDown() {
 		try {
 			theConnection.cleanDB();
-			theModels.clear();
+			theGraphs.clear();
 			theConnection.close();
 		} catch (Exception e) { throw new RuntimeException(e);}
 	}
 
 	public Graph getGraph() {
-		ModelRDB m = ModelRDB.createModel(theConnection, "name"+theModels.size());
-		theModels.add(m);
-		return m.getGraph();		
+		// in the following, we specify the same reification behaviour as the
+		// current GraphMem (so we can copy the GraphMem reification test code).
+		GraphRDB g = new GraphRDB(theConnection, "name"+theGraphs.size(), 
+				theConnection.getDefaultModelProperties().getGraph(), 
+				GraphRDB.OPTIMIZE_AND_HIDE_FULL_AND_PARTIAL_REIFICATIONS, true);
+		theGraphs.add(g);
+		return g;		
 	}
 	
     public void testEmptyReifiers()
