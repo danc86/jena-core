@@ -11,7 +11,7 @@ package com.hp.hpl.jena.rdf.model;
     descriptions. See ModelSpecCreatorRegistry for their registration.
     
  	@author hedgehog
- */
+*/
 public interface ModelSpecCreator
     {
     /**
