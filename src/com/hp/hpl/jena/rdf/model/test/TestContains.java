@@ -46,6 +46,28 @@ public class TestContains extends ModelTestBase
         testContains( true, "x R y; a P b; i Q j", "R" );
         testContains( true, "x R y; a P b; i Q j", "a" );
         }
+    
+    private Resource res( String uri )
+        { return ResourceFactory.createResource( "eh:" + uri ); }
+    
+    private Property prop( String uri )
+        { return ResourceFactory.createProperty( "eh:" + uri ); }
+        
+    public void testContainsWithNull()
+        {
+        testCWN( false, "", null, null, null );
+        testCWN( true, "x R y", null, null, null );
+        testCWN( false, "x R y", null, null, res( "z" ) );
+        testCWN( true, "x RR y", res( "x" ), prop( "RR" ), null );
+        testCWN( true, "a BB c", null, prop( "BB" ), res( "c" ) );
+        testCWN( false, "a BB c", null, prop( "ZZ" ), res( "c" ) );
+        }
+    
+    public void testCWN( boolean yes, String facts, Resource S, Property P, RDFNode O )
+        {
+        Model m = modelWithStatements( facts );
+        assertEquals( yes, m.contains( S, P, O ) );
+        }
     }
 
 

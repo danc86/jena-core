@@ -108,7 +108,7 @@ public class ModelFactory extends ModelFactoryBase
         (but still handles reifyAs() and .as(ReifiedStatement).
     */
     public static Model createNonreifyingModel()
-        { return new ModelCom( new GraphMem( Minimal ) );}
+        { return createDefaultModel( Minimal ); }
         
     /** 
      * Answer a model that encapsulates the given graph.

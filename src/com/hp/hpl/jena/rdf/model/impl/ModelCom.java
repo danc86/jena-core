@@ -1007,20 +1007,18 @@ implements Model, PrefixMapping, ModelLock
     public boolean containsResource( RDFNode r )
         { return graph.queryHandler().containsNode( r.asNode() ); }
   
-    public boolean contains(Resource s, Property p)  {
-        ClosableIterator it = graph.find( s.asNode(), p.asNode(), null );
+    public boolean contains( Resource s, Property p )  {
+        ClosableIterator it = graph.find( asNode( s ), asNode( p ), null );
         try { return it.hasNext(); } finally { it.close(); }
     }
     
     public boolean contains( Resource s, Property p, RDFNode o )
-        { return graph.contains( s.asNode(), p.asNode(), o.asNode() ); }
+        { return graph.contains( asNode( s ), asNode( p ), asNode( o ) ); }
         
     public Statement getRequiredProperty( Resource s, Property p )  
-        {
-        Statement st = getProperty( s, p );
+        { Statement st = getProperty( s, p );
         if (st == null) throw new PropertyNotFoundException( p );
-        return st;
-        }
+        return st; }
     
     public Statement getProperty( Resource s, Property p )
         {
@@ -1030,7 +1028,7 @@ implements Model, PrefixMapping, ModelLock
         }
     
     public static Node asNode( RDFNode x )
-        { return x == null ? null : x.asNode(); }
+        { return x == null ? Node.ANY : x.asNode(); }
         
     private NodeIterator listObjectsFor( RDFNode s, RDFNode p )
         {
