@@ -78,7 +78,7 @@ public class ModelTestBase extends JenaTestBase
         { return modelAdd( ModelFactory.createDefaultModel(), facts ); }
          
      /**
-        test that two modes are isomorphic and fail if they are not.
+        test that two models are isomorphic and fail if they are not.
         
         @param title a String appearing at the beginning of the failure message
         @param wanted the model value that is expected

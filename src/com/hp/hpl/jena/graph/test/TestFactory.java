@@ -1,5 +1,5 @@
 /*
-  (c) Copyright 2002, Hewlett-Packard Company, all rights reserved.
+  (c) Copyright 2003, Hewlett-Packard Company, all rights reserved.
   [See end of file]
   $Id$
 */
@@ -11,6 +11,7 @@ package com.hp.hpl.jena.graph.test;
 */
 
 import com.hp.hpl.jena.graph.*;
+import com.hp.hpl.jena.db.*;
 
 import junit.framework.*;
 
@@ -22,9 +23,51 @@ public class TestFactory extends GraphTestBase
     public static TestSuite suite()
         { return new TestSuite( TestFactory.class ); }   
 
+    public void tearDown()
+        {
+//        destroy( "xxx" );
+//        destroy( "alpha" );
+        }
+        
+    private void destroy( String name )
+        {
+        try
+            {
+            GraphRDB g = (GraphRDB) Factory.openPersistentGraph( name );
+            if (g != null) { g.remove(); g.close(); }
+            }
+        catch (Exception e)
+            { System.err.println( "oops: " + e ); }
+        }
+        
     public void testFactory()
         {
         Graph g = Factory.createDefaultGraph();
+        }
+        
+    public void testCreatePersistentGraph()
+        {
+//        Graph g = Factory.createPersistentGraph( "xxx" );
+//        ((GraphRDB) g).remove();
+//        g.close();
+        }
+        
+    public void testOpenPersistentGraph()
+        {
+//        Graph g = Factory.openPersistentGraph( "xxx" );
+//        g.close();
+        }
+        
+    public void testPersistent()
+        {
+//        Graph triples = graphWith( "x R y" );
+//        Graph g = Factory.createPersistentGraph( "alpha" );
+//        g.getBulkUpdateHandler().add( triples );
+//        g.close();
+//        Graph g2 = Factory.openPersistentGraph( "alpha" );
+//        assertTrue( "should retrieve triples", triples.isIsomorphicWith( g2 ) );
+//        ((GraphRDB) g2).remove();
+//        g2.close();
         }
     }
 
