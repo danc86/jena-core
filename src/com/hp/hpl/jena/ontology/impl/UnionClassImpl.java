@@ -27,7 +27,6 @@ package com.hp.hpl.jena.ontology.impl;
 import com.hp.hpl.jena.enhanced.*;
 import com.hp.hpl.jena.graph.Node;
 import com.hp.hpl.jena.ontology.*;
-import com.hp.hpl.jena.ontology.path.PathSet;
 import com.hp.hpl.jena.rdf.model.Property;
 
 
@@ -41,7 +40,7 @@ import com.hp.hpl.jena.rdf.model.Property;
  * @version CVS $Id$
  */
 public class UnionClassImpl 
-    extends OntClassImpl
+    extends BooleanClassDescriptionImpl
     implements UnionClass
 {
     // Constants
@@ -100,20 +99,8 @@ public class UnionClassImpl
     // External signature methods
     //////////////////////////////////
 
-    /**
-     * <p>
-     * Answer an {@link PathSet accessor} for the 
-     * <code>unionOf</code>
-     * property of a class or class description. The accessor
-     * can be used to perform a variety of operations, including getting and setting the value.
-     * </p>
-     * 
-     * @return An abstract accessor for the union class description
-     */
-    public PathSet p_unionOf() {
-        return asPathSet( getProfile().UNION_OF(), "UNION_OF" );
-    }
-
+	public Property operator() {return getProfile().UNION_OF();}
+	public String getOperatorName() {return "UNION_OF";}
 
 
     // Internal implementation methods

@@ -775,8 +775,9 @@ public class OntModelImpl
         checkProfileEntry( getProfile().CLASS(), "CLASS" );
         OntClass c = (OntClass) createOntResource( OntClass.class, getProfile().CLASS(), uri );
         
-        checkProfileEntry( getProfile().COMMENT(), "COMPLEMENT_OF" );
-        c.addProperty( getProfile().COMPLEMENT_OF(), cls );
+        checkProfileEntry( getProfile().COMPLEMENT_OF(), "COMPLEMENT_OF" );
+        // if the class that this class is a complement of is not specified, use owl:nothing or daml:nothing
+        c.addProperty( getProfile().COMPLEMENT_OF(), (cls == null) ? getProfile().NOTHING() : cls );
         
         return (ComplementClass) c.as( ComplementClass.class );
     }
@@ -810,7 +811,7 @@ public class OntModelImpl
         OntClass c = (OntClass) createOntResource( OntClass.class, getProfile().CLASS(), uri );
         
         checkProfileEntry( getProfile().UNION_OF(), "UNION_OF" );
-        c.addProperty( getProfile().UNION_OF(), members );
+        c.addProperty( getProfile().UNION_OF(), (members == null) ? createList() : members );
         
         return (UnionClass) c.as( UnionClass.class );
     }
@@ -827,7 +828,7 @@ public class OntModelImpl
         OntClass c = (OntClass) createOntResource( OntClass.class, getProfile().CLASS(), uri );
         
         checkProfileEntry( getProfile().INTERSECTION_OF(), "INTERSECTION_OF" );
-        c.addProperty( getProfile().INTERSECTION_OF(), members );
+        c.addProperty( getProfile().INTERSECTION_OF(), (members == null) ? createList() : members );
         
         return (IntersectionClass) c.as( IntersectionClass.class );
     }

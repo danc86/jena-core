@@ -27,7 +27,7 @@ package com.hp.hpl.jena.ontology.impl;
 import com.hp.hpl.jena.enhanced.*;
 import com.hp.hpl.jena.graph.Node;
 import com.hp.hpl.jena.ontology.*;
-import com.hp.hpl.jena.ontology.path.PathSet;
+import com.hp.hpl.jena.rdf.model.Property;
 
 
 /**
@@ -40,7 +40,7 @@ import com.hp.hpl.jena.ontology.path.PathSet;
  * @version CVS $Id$
  */
 public class IntersectionClassImpl 
-    extends OntClassImpl
+    extends BooleanClassDescriptionImpl
     implements IntersectionClass
 {
     // Constants
@@ -96,21 +96,8 @@ public class IntersectionClassImpl
     // External signature methods
     //////////////////////////////////
 
-    /**
-     * <p>
-     * Answer an {@link PathSet accessor} for the 
-     * <code>intersectionOf</code>
-     * property of a class or class description. The accessor
-     * can be used to perform a variety of operations, including getting and setting the value.
-     * </p>
-     * 
-     * @return An abstract accessor for the intersection class description
-     */
-    public PathSet p_intersectionOf() {
-        return asPathSet( getProfile().INTERSECTION_OF(), "INTERSECTION_OF" );
-    }
-
-
+	public Property operator() {return getProfile().INTERSECTION_OF();}
+	public String getOperatorName() {return "INTERSECTION_OF";}
     
 
     // Internal implementation methods
