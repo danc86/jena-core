@@ -518,7 +518,6 @@ public class TestBugReports
         m.getDocumentManager().loadImport( m, "http://www.w3.org/2001/sw/WebOnt/guide-src/food" ); 
         
         OntClass ontclass = m.getOntClass( "http://www.w3.org/2001/sw/WebOnt/guide-src/wine#Wine" );
-        System.out.println(ontclass.getLocalName());
         
         int nNamed = 0;
         int nRestriction = 0;
@@ -529,12 +528,10 @@ public class TestBugReports
             
             //this is to view different anonymous IDs
             if (!ontsuperclass.isAnon()) {
-                System.out.println( "super: " + ontsuperclass.toString());
                 nNamed++;
             }
             else if (ontsuperclass.canAs( Restriction.class )) {
-                Restriction r = ontsuperclass.asRestriction();
-                System.out.println( "anon. restriction on prop " + r.getOnProperty() );
+                ontsuperclass.asRestriction();
                 nRestriction++;
             }
             else {
