@@ -12,6 +12,7 @@ package com.hp.hpl.jena.datatypes.xsd.impl;
 import com.hp.hpl.jena.datatypes.*;
 import com.hp.hpl.jena.datatypes.xsd.*;
 import com.hp.hpl.jena.graph.impl.LiteralLabel;
+import com.hp.hpl.jena.shared.impl.JenaParameters;
 
 /**
  * Base implementation for all string datatypes derinved from
@@ -69,7 +70,7 @@ public class XSDBaseStringType extends XSDDatatype {
      */
     public boolean isEqual(LiteralLabel value1, LiteralLabel value2) {
         // value1 will have been used to dispatch here so we know value1 is an xsdstring or extension
-        if ((value2.getDatatype() == null && LiteralLabel.enablePlainSameAsString) ||
+        if ((value2.getDatatype() == null && JenaParameters.enablePlainLiteralSameAsString) ||
              (value2.getDatatype() instanceof XSDBaseStringType)) {
                 return value1.getValue().equals(value2.getValue());
         } else {

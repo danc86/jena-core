@@ -1,55 +1,58 @@
 /******************************************************************
- * File:        DatatypeFormatException.java
+ * File:        XMLLiteralType.java
  * Created by:  Dave Reynolds
- * Created on:  07-Dec-02
+ * Created on:  08-Dec-02
  * 
  * (c) Copyright 2002, Hewlett-Packard Company, all rights reserved.
  * [See end of file]
  * $Id$
  *****************************************************************/
-package com.hp.hpl.jena.datatypes;
+package com.hp.hpl.jena.datatypes.xsd.impl;
 
-import com.hp.hpl.jena.shared.*;
+import com.hp.hpl.jena.datatypes.*;
+import com.hp.hpl.jena.vocabulary.RDF;
 
 /**
- * Exception thrown when a lexical form does not match the stated
- * datatype.
+ * Builtin data type to represent XMLLiteral (i.e. items created
+ * by use of <code>rdf:parsetype='literal'</code>.
  * 
  * @author <a href="mailto:der@hplb.hpl.hp.com">Dave Reynolds</a>
  * @version $Revision$ on $Date$
  */
-public class DatatypeFormatException extends JenaException 
-{
-    
-    // TODO Could consider storing the lexical form and datatype in locals
-    // with accessors.
+public class XMLLiteralType extends BaseDatatype implements RDFDatatype {
+    /** Singleton instance */
+    public static final RDFDatatype theXMLLiteralType = new XMLLiteralType(RDF.getURI() + "XMLLiteral");
     
     /**
-     * Preferred constructor.
-     * @param lexicalForm the illegal string discovered
-     * @param dtype the datatype that found the problem
-     * @param msg additional context for the error
+     * Private constructor.
      */
-    public DatatypeFormatException(String lexicalForm, RDFDatatype dtype, String msg) {
-        super("Lexical form '" + lexicalForm +
-               "' is not a legal instance of " + dtype + " " + msg);
-    }
-                  
-    /**
-     * Creates a new instance of <code>DatatypeFormatException</code> 
-     * without detail message.
-     */
-    public DatatypeFormatException() {
+    private XMLLiteralType(String uri) {
+        super(uri);
     }
     
     /**
-     * Constructs an instance of <code>DatatypeFormatException</code> 
-     * with the specified detail message.
-     * @param msg the detail message.
+     * Convert a serialize a value of this datatype out
+     * to lexical form.
      */
-    public DatatypeFormatException(String msg) {
-        super(msg);
+    public String unparse(Object value) {
+        return value.toString();
     }
+    
+    /**
+     * Parse a lexical form of this datatype to a value
+     * @throws DatatypeFormatException if the lexical form is not legal
+     */
+    public Object parse(String lexicalForm) throws DatatypeFormatException {
+        return lexicalForm;
+    }
+    
+    /**
+     * Test whether the given string is a legal lexical form
+     * of this datatype.
+     */
+    public boolean isValid(String lexicalForm) {
+        return true;
+    }    
 
 }
 

@@ -14,6 +14,7 @@ import java.util.Iterator;
 
 import com.hp.hpl.jena.datatypes.xsd.XSDDatatype;
 import com.hp.hpl.jena.datatypes.xsd.impl.XMLLiteralType;
+import com.hp.hpl.jena.shared.impl.JenaParameters;
 
 /**
  * The TypeMapper provides a global registry of known datatypes.
@@ -81,11 +82,16 @@ public class TypeMapper {
             if (uri == null) {
                 // Plain literal
                 return null;
+            } else {
+                // Uknown datatype
+                if (JenaParameters.enableSilentAcceptanceOfUnknownDatatypes) {
+                    dtype = new BaseDatatype(uri);
+                    registerDatatype(dtype);
+                } else {
+                    throw new DatatypeFormatException(
+                        "Attempted to created typed literal using an unknown datatype - " + uri);
+                }
             }
-            // TODO add log message
-            // TODO add switch to prevent warning messages
-            dtype = new BaseDatatype(uri);
-            registerDatatype(dtype);
         }
         return dtype;
     }

@@ -16,7 +16,6 @@ import java.util.*;
  * Represent an XSD date/time value. Rather than have a separate type for each
  * legal date/time value combination this is a combination type than does runtime
  * checks whether a given field is legal in the current circumstances.
- * <p>TODO: revist and consider have separate types for each.</p>
  * 
  * @author <a href="mailto:der@hplb.hpl.hp.com">Dave Reynolds</a>
  * @version $Revision$ on $Date$
