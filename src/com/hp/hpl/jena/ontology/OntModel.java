@@ -57,13 +57,21 @@ import java.util.*;
  * semantics, the widget's types will include <code>:B</code>, <code>:A</code>,
  * and <code>owl:Thing</code>.
  * </p>
- *
+ * <p>
+ * <strong>Note:</strong> that <code>OntModel</code> is an extension to the
+ * {@link InfModel} interface.  This is to support the case where an ontology model
+ * wraps an inference graph, and we want to make the special capabilities of the
+ * <code>InfModel</code>, for example global consistency checking, accessible to 
+ * client programs.  Since not all ont models use a reasoner, using these methods
+ * may result in a {@link RequiresReasonerException}.
+ * </p>
+ * 
  * @author Ian Dickinson, HP Labs
  *         (<a  href="mailto:Ian.Dickinson@hp.com" >email</a>)
  * @version CVS $Id$
  */
 public interface OntModel
-    extends Model
+    extends InfModel
 {
     // Constants
     //////////////////////////////////
