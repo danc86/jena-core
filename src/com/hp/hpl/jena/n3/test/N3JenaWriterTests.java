@@ -105,7 +105,7 @@ public class N3JenaWriterTests extends N3ExternalTestsCom
 				System.out.println("#### ---- "+testName+" ------------------------------") ;
                 System.out.println("#### Model 1 ---- "+testName+" ------------------------------") ;
                 model_1.write(System.out, "N3") ;
-                System.out.println("#### -Model 2 --- "+testName+" ------------------------------") ;
+                System.out.println("#### Model 2 --- "+testName+" ------------------------------") ;
                 model_2.write(System.out, "N3") ;
                 assertTrue("Models don't match: "+testName, false) ;
 			}
