@@ -700,6 +700,7 @@ public class TestList
                 checkValid( "removeTest0", list0, true );
             }
             
+            
             // delete all of list1 in one go
             list1.removeAll();
             
