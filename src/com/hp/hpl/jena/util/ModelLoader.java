@@ -25,7 +25,7 @@ import com.hp.hpl.jena.db.*;
 
 public class ModelLoader
 {
-    static Logger logger = Logger.getLogger(ModelLoader.class.getName()) ;
+    static Logger logger = Logger.getLogger(ModelLoader.class) ;
 
     public static final String langXML         = "RDF/XML" ;
     public static final String langXMLAbbrev   = "RDF/XML-ABBREV" ;
