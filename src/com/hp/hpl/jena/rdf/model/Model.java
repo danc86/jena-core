@@ -854,6 +854,21 @@ public interface Model
      */
     public ModelLock getModelLock() ;
     
+    /**
+        Register a listener for model-changed events on this model. The methods on
+        the listener will be called when API add/remove calls on the model succeed
+        [in whole or in part]. 
+        
+        @see ModelChangedListener
+        @return this model, for cascading
+    */
+    public Model register( ModelChangedListener listener );
+    
+    /**
+        Unregister a listener from model-changed events on this model.
+    */
+    public void unregister( ModelChangedListener listener );
+    
 }
 
 /*

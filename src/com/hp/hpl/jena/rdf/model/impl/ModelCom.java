@@ -969,7 +969,9 @@ implements Model, ModelI, PrefixMapping, ModelLock
         add a Statement to this Model by adding its SPO components.
     */
     public Model add(Statement s)  {
-        return add( s.getSubject(), s.getPredicate(), s.getObject() );
+        add( s.getSubject(), s.getPredicate(), s.getObject() );
+        listenersAdd( s );
+        return this;
     }
     
     /**
@@ -1421,5 +1423,21 @@ implements Model, ModelI, PrefixMapping, ModelLock
     {
         this.getModelLock().leaveCriticalSection() ;
     }
-            
+        
+    protected ModelChangedListener listener;
+        
+    protected void listenersAdd( Statement s )
+        {
+        if (listener != null) listener.addedStatement( s );
+        }
+        
+    public Model register( ModelChangedListener listener )
+        {
+        this.listener = listener;
+        return this;
+        }
+        
+    public void unregister( ModelChangedListener listener )
+        {
+        }
 }

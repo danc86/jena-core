@@ -12,7 +12,6 @@ import com.hp.hpl.jena.graph.test.*;
 import com.hp.hpl.jena.util.iterator.*;
 import com.hp.hpl.jena.graph.impl.*;
 
-import java.lang.reflect.Array;
 import java.util.*;
 import junit.framework.*;
 
@@ -490,6 +489,14 @@ public class QueryTest extends GraphTestBase
         assertEquals( expected, q.getVariableCount() );
         q.executeBindings( g, nodes( "?notPresentInQuery" ) );
         assertEquals( expected + 1, q.getVariableCount() );
+        }
+        
+    /**
+        PLACEHOLDER
+    */
+    public void testQueryConstraintNull()
+        {
+        Query q = new Query();
         }
     }
 
