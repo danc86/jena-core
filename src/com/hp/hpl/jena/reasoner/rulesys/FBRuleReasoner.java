@@ -51,6 +51,10 @@ public class FBRuleReasoner implements Reasoner {
      *  Set to "true" to enable internal trace message to be sent to Logger.info . */
     public static final Property PROPtraceOn = ResourceFactory.createProperty(URI+"#", "traceOn");
     
+    /** Property used to configure the maximum number of rule firings allowed in 
+     * a single operation. Should be an xsd:int. */
+    public static final Property PROPrulesThreshold = ResourceFactory.createProperty(URI+"#", "rulesThreshold");
+    
     /**
      * Constructor. This is the raw version that does not reference a ReasonerFactory
      * and so has no capabilities description. 
