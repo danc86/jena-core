@@ -125,7 +125,7 @@ public class BindingVector implements BindingEnvironment {
             return var.sameValueAs(value);
         }
     }
-    
+   
     /**
      * Bind a variable in the current envionment to the given value.
      * Overrides and ignores any current binding.
@@ -134,6 +134,16 @@ public class BindingVector implements BindingEnvironment {
      */
     public void bindNoCheck(Node_RuleVariable var, Node value) {
         environment[var.getIndex()] = value;
+    }
+   
+    /**
+     * Bind a variable in the current envionment to the given value.
+     * Overrides and ignores any current binding.
+     * @param index the index of the variable to bind
+     * @param value the value to bind
+     */
+    public void bindNoCheck(int index, Node value) {
+        environment[index] = value;
     }
     
     /**

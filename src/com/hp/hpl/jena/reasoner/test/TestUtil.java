@@ -11,6 +11,7 @@ package com.hp.hpl.jena.reasoner.test;
 
 import junit.framework.TestCase;
 import java.util.Iterator;
+import org.apache.log4j.Logger;
 
 /**
  * Collection of utilities to assist with unit testing.
@@ -19,6 +20,9 @@ import java.util.Iterator;
  * @version $Revision$ on $Date$
  */
 public class TestUtil {
+    
+    /** log4j logger*/
+    static Logger logger = Logger.getLogger(TestUtil.class);
 
     /** Helper function test an iterator against a list of objects - order independent */
     public static void assertIteratorValues(TestCase testCase, Iterator it, Object[] vals) {
@@ -33,9 +37,15 @@ public class TestUtil {
                     found[i] = true;
                 }
             }
+            if (!gotit) {
+                logger.debug("TestUtil found unexpected value: " + n);
+            }
             TestCase.assertTrue(gotit);
         }
         for (int i = 0; i < vals.length; i++) {
+            if (!found[i]) {
+                logger.debug("TestUtil failed to find expected value: " + vals[i]);
+            }
             TestCase.assertTrue(found[i]);
         }
     }

@@ -62,7 +62,7 @@ public class RuleInstance {
         }
         BasicBackwardRuleInfGraph ruleEngine = generator.ruleEngine;
         if (ruleEngine.isTraceOn()) {
-            logger.debug("Entering ruleInstance: " + rule.toShortString());
+            logger.debug("Entering ruleInstance: " + rule.toShortString() + " for goal " + generator.goal);
         }
         // Process the AND until we hit a fail, a suspend or get though all the clauses
         while(true) {
@@ -103,7 +103,7 @@ public class RuleInstance {
                 // Record that this processing point is suspended on the current subgoal
                 state.goalState.results.addDependent(generator);
                 if (ruleEngine.isTraceOn()) {
-                    logger.debug("Suspending ruleInstance: " + rule.toShortString());
+                    logger.debug("Suspending ruleInstance: " + rule.toShortString() + " for goal " + generator.goal);
                 }
                 return result;
             } else if (result == StateFlag.FAIL) {
@@ -115,7 +115,7 @@ public class RuleInstance {
                 } else {
                     // Run out of alternatives so the whole rule fails
                     if (ruleEngine.isTraceOn()) {
-                        logger.debug("Failing ruleInstance: " + rule.toShortString());
+                        logger.debug("Failing ruleInstance: " + rule.toShortString() + " for goal " + generator.goal);
                     }
                     return StateFlag.FAIL;
                 }
@@ -234,10 +234,10 @@ public class RuleInstance {
             if (result instanceof Triple) {
                 Triple t = (Triple)result;
                 boolean ok = true;
-                if (subjectBind != -1) ok &= env.bind(subjectBind, t.getSubject());
-                if (predicateBind != -1) ok &= env.bind(predicateBind, t.getPredicate());
-                if (objectBind != -1) ok &= env.bind(objectBind, t.getObject());
-                if (!ok) return StateFlag.FAIL;
+                Node[] rawenv = env.getEnvironment();
+                if (subjectBind != -1) rawenv[subjectBind] = t.getSubject();
+                if (predicateBind != -1) rawenv[predicateBind] = t.getPredicate();
+                if (objectBind != -1) rawenv[objectBind] = t.getObject();
             }
             return result;        
         }
