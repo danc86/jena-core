@@ -178,6 +178,27 @@ public class TestNodeToTriplesMap extends GraphTestBase
         assertEquals( tripleSet( "x P a; y Q b" ), iteratorToSet( ntO.iterator() ) );
         }
     
+    public void testAddBooleanResult()
+        {
+        assertEquals( true, ntS.add( x, triple( "x P y" ) ) );
+        assertEquals( false, ntS.add( x, triple( "x P y" ) ) );
+    /* */
+        assertEquals( true, ntS.add( y, triple( "y Q z" ) ) );
+        assertEquals( false, ntS.add( y, triple( "y Q z" ) ) );
+    /* */
+        assertEquals( true, ntS.add( y, triple( "y R s" ) ) );
+        assertEquals( false, ntS.add( y, triple( "y R s" ) ) );
+        }
+    
+    public void testRemoveBooleanResult()
+        {
+        assertEquals( false, ntS.remove( triple( "x P y" ) ) );
+        ntS.add( x, triple( "x P y" ) );
+        assertEquals( false, ntS.remove( triple( "x Q y" ) ) );
+        assertEquals( true, ntS.remove( triple( "x P y" ) ) );
+        assertEquals( false, ntS.remove( triple( "x P y" ) ) );
+        }
+    
     // TODO more here
     
     protected void addTriples( NodeToTriplesMap nt, String facts )

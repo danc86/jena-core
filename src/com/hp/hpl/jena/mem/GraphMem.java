@@ -72,22 +72,22 @@ public class GraphMem extends GraphBase implements Graph
         {
         if (getReifier().handledAdd( t ))
             return;
-        else 
-            { 
-            subjects.add( t.getSubject(), t );
+        else if (subjects.add( t.getSubject(), t ))
+            {
             predicates.add( t.getPredicate(), t );
-            objects.add( t.getObject(), t ); }
+            objects.add( t.getObject(), t ); 
+            }
         }
 
     public void performDelete( Triple t )
         {
         if (getReifier().handledRemove( t ))
             return;
-        else 
-            {
-            subjects.remove( t.getSubject(), t );
+        else if (subjects.remove( t.getSubject(), t ))
+        	{
             predicates.remove( t.getPredicate(), t );
-            objects.remove( t.getObject(), t ); }
+            objects.remove( t.getObject(), t ); 
+            }
         }
 
     public int size()  
