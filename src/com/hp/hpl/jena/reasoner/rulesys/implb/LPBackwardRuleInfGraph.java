@@ -141,7 +141,6 @@ public class LPBackwardRuleInfGraph extends BaseInfGraph implements BackwardRule
     public void reset() {
         engine.checkSafeToUpdate();
         engine.reset();
-        // TODO: reset cache, once we have one
     }
 
     /**

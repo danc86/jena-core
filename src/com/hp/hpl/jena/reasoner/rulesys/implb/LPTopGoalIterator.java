@@ -29,6 +29,9 @@ public class LPTopGoalIterator implements ClosableIterator {
     /** The parent backward chaining engine */
     LPInterpreter interpreter;
     
+    /** The generator that the top level interpter last blocked on */
+    protected Generator blockedOn;
+    
     /** True if the iteration has started */
     boolean started = false;
     
@@ -48,7 +51,7 @@ public class LPTopGoalIterator implements ClosableIterator {
         if (lookAhead == StateFlag.FAIL) {
             close();
         } else if (lookAhead == StateFlag.SUSPEND) {
-            interpreter.getEngine().pump(interpreter.getBlockingGenerator());
+            interpreter.getEngine().pump(blockedOn);
             moveForward();
         }
         started = true;

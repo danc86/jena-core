@@ -244,21 +244,23 @@ public class LPBRuleEngine {
     }
     
     /**
-     * Register that a generator is now ready to run.
+     * Register that a generator or specific generator state (Consumer choice point)
+     * is now ready to run.
      */
-    public void schedule(Generator gen) {
-        agenda.add(gen);
+    public void schedule(LPAgendaEntry state) {
+        agenda.add(state);
     }
     
     /**
      * Run the scheduled generators until the given generator is ready to run
      * then run that generator until it generates some results or closes.
      */
-    public synchronized void pump(Generator gen) {
-        while(!gen.isReady) {
+    public synchronized void pump(LPAgendaEntry gen) {
+        while(!gen.isReady()) {
             if (agenda.isEmpty()) return;
-            Generator g = (Generator)agenda.removeFirst();
-            g.pump();
+            // TODO: Consider scanning agenda for entries with max # dependents
+            LPAgendaEntry next = (LPAgendaEntry) agenda.removeFirst();
+            next.pump();
         }
         gen.pump();
     }
