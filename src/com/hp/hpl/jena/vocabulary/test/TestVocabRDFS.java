@@ -20,7 +20,7 @@ public class TestVocabRDFS extends ModelTestBase
 
     public static TestSuite suite()
         { return new TestSuite( TestVocabRDFS.class ); }
-        
+
     public void testVocabRDFS()
         {
         String ns = "http://www.w3.org/2000/01/rdf-schema#";
@@ -43,6 +43,27 @@ public class TestVocabRDFS extends ModelTestBase
         assertEquals( ns + "subPropertyOf", RDFS.subPropertyOf.getURI() );
         assertEquals( ns + "member", RDFS.member.getURI() );
         }
+
+	public void testNodes()
+		{
+        assertEquals( RDFS.Class.getNode(), RDFS.Nodes.Class );
+        assertEquals( RDFS.Datatype.getNode(), RDFS.Nodes.Datatype );
+        assertEquals( RDFS.ConstraintProperty.getNode(), RDFS.Nodes.ConstraintProperty );
+        assertEquals( RDFS.Container.getNode(), RDFS.Nodes.Container );
+        assertEquals( RDFS.ContainerMembershipProperty.getNode(), RDFS.Nodes.ContainerMembershipProperty );
+        assertEquals( RDFS.ConstraintProperty.getNode(), RDFS.Nodes.ConstraintProperty );
+        assertEquals( RDFS.Literal.getNode(), RDFS.Nodes.Literal );
+        assertEquals( RDFS.Resource.getNode(), RDFS.Nodes.Resource );
+        assertEquals( RDFS.comment.getNode(), RDFS.Nodes.comment );
+        assertEquals( RDFS.domain.getNode(), RDFS.Nodes.domain );
+        assertEquals( RDFS.label.getNode(), RDFS.Nodes.label );
+        assertEquals( RDFS.isDefinedBy.getNode(), RDFS.Nodes.isDefinedBy );
+        assertEquals( RDFS.range.getNode(), RDFS.Nodes.range );
+        assertEquals( RDFS.seeAlso.getNode(), RDFS.Nodes.seeAlso );
+        assertEquals( RDFS.subClassOf.getNode(), RDFS.Nodes.subClassOf );
+        assertEquals( RDFS.subPropertyOf.getNode(), RDFS.Nodes.subPropertyOf );
+        assertEquals( RDFS.member.getNode(), RDFS.Nodes.member );
+		}
     }
 
 
