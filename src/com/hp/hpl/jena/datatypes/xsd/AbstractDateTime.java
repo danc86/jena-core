@@ -51,7 +51,6 @@ public class AbstractDateTime {
     /**
      * Constructor
      * @param value the date/time value returned by the parsing
-     * @param dtype the XSD type representation
      */
     public AbstractDateTime(Object value) {
         data = (int[]) value;

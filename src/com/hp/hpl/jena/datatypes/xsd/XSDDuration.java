@@ -25,7 +25,6 @@ public class XSDDuration extends AbstractDateTime {
      * the internals spread across multiple packages.
      * 
      * @param value the date/time value returned by the parsing
-     * @param dtype the XSD type representation
      */
     public XSDDuration(Object value) {
         super(value);
