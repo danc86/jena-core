@@ -224,7 +224,7 @@ public class JenaReader implements RDFReader, ARPErrorNumbers {
 			arpf.parse(inputS, xmlBase);
 			handler.bulkUpdate();
 		} catch (IOException e) {
-			throw new JenaException(e);
+			throw new WrappedIOException(e);
 		} catch (SAXException e) {
 			throw new JenaException(e);
 		} finally {

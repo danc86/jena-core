@@ -6,7 +6,6 @@
 package com.hp.hpl.jena.rdf.model.test;
 
 import java.io.StringReader;
-import java.util.ArrayList;
 
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.graph.test.RecordingListener;
@@ -26,17 +25,34 @@ public class TestReaderEvents extends ModelTestBase
     public static TestSuite suite()
         { return new TestSuite( TestReaderEvents.class ); }
     
-    public void testReaderEvent()
+    public void testXMLReaderEvents()
+        {
+        String emptyModel = "<rdf:RDF xmlns:rdf='http://www.w3.org/1999/02/22-rdf-syntax-ns#'></rdf:RDF>";
+        testReaderEvent( "RDF/XML", emptyModel );
+        }
+
+    public void testN3ReaderEvents()
+        {
+        testReaderEvent( "N3", "" );
+        }
+
+    public void testNTriplesReaderEvents()
+        {
+        testReaderEvent( "N-TRIPLE", "" );
+        }
+    
+    public void testReaderEvent( String language, String emptyModel )
         {
         Model m = ModelFactory.createDefaultModel();
-        Graph g = m.getGraph();
-        RecordingListener L = new RecordingListener();
-        g.getEventManager().register( L );
-        RDFReader r = m.getReader( "RDF/XML" );
-        StringReader stringReader = new StringReader( "<rdf:RDF xmlns:rdf='http://www.w3.org/1999/02/22-rdf-syntax-ns#'></rdf:RDF>" );
+        RecordingModelListener L = new RecordingModelListener();
+        m.register( L );
+        RDFReader r = m.getReader( language );
+        StringReader stringReader = new StringReader( emptyModel );
         r.read( m, stringReader, "" );
-        L.assertHas( new Object[] {"someEvent", g, GraphEvents.startRead, "addList", g, new ArrayList(), "someEvent", g, GraphEvents.finishRead } );
+        L.assertHasStart( new Object[] {"someEvent", m, GraphEvents.startRead} );
+        L.assertHasEnd( new Object[] {"someEvent", m, GraphEvents.finishRead} );
         }
+    
     }
 
 

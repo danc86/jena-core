@@ -32,6 +32,7 @@ package com.hp.hpl.jena.rdf.model.impl;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+import com.hp.hpl.jena.graph.GraphEvents;
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.util.FileUtils;
 import com.hp.hpl.jena.shared.*;
@@ -114,6 +115,15 @@ public class NTripleReader extends Object implements RDFReader {
     }
 
     protected void readRDF()  {
+        try {
+            model.notifyEvent( GraphEvents.startRead );
+            unwrappedReadRDF();
+        } finally {
+            model.notifyEvent( GraphEvents.finishRead );
+        }
+    }
+    
+    protected final void unwrappedReadRDF() {
         Resource subject;
         Property predicate = null;
         RDFNode object;

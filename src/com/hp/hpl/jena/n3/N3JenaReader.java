@@ -5,6 +5,7 @@
 
 package com.hp.hpl.jena.n3;
 
+import com.hp.hpl.jena.graph.GraphEvents;
 import com.hp.hpl.jena.rdf.model.*;
 import java.net.* ;
 import java.io.* ;
@@ -62,6 +63,7 @@ public class N3JenaReader implements RDFReader
 		//i.e. InputStreamReader
 
 		try {
+		    model.notifyEvent( GraphEvents.startRead );
 			N3ParserEventHandler h = new N3toRDF(model, base) ;
 			N3Parser p = new N3Parser(r, h) ;
 			p.parse() ;
@@ -76,6 +78,10 @@ public class N3JenaReader implements RDFReader
         {
             if ( errorHandler == null ) throw new JenaException(ex) ;
             errorHandler.error(ex) ;
+        }
+        finally
+        {
+            model.notifyEvent( GraphEvents.finishRead );
         }
 	}
 	
