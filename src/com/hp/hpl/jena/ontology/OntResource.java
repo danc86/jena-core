@@ -633,9 +633,10 @@ public interface OntResource
     public NodeIterator listPropertyValues( Property property );
     
     /** 
-     * <p>Removes this resource from the ontology by deleting any statements that refer to it.
-     * If this resource is a property, this method will <strong>not</strong> remove instances
-     * of the property from the model.</p>
+     * <p>Removes this resource from the ontology by deleting any statements that refer to it, 
+     * as either statement-subject or statement-object.
+     * If this resource is a property, this method will <strong>not</strong> remove statements
+     * whose predicate is this property.</p>
      * <p><strong>Caveat:</strong> Jena RDF models contain statements, not resources <em>per se</em>,
      * so this method simulates removal of an object by removing all of the statements that have
      * this resource as subject or object, with one exception. If the resource is referenced
@@ -644,7 +645,7 @@ public interface OntResource
      * statement from the midst of a list, without doing other work to repair the list, would
      * leave an ill-formed list in the model.  Therefore, if this resource is known to appear
      * in a list somewhere in the model, it should be separately deleted from that list before
-     * calling this removal method.
+     * calling this remove method.
      * </p>
      */
     public void remove();
