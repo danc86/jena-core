@@ -49,6 +49,7 @@ public class TestFBRules extends TestCase {
     protected Node n2 = Node.createURI("n2");
     protected Node n3 = Node.createURI("n3");
     protected Node n4 = Node.createURI("n4");
+    protected Node n5 = Node.createURI("n5");
     protected Node res = Node.createURI("res");
     protected Node r = Node.createURI("r");
     protected Node s = Node.createURI("s");
@@ -735,6 +736,7 @@ public class TestFBRules extends TestCase {
         data.add(new Triple(n2, p, Node.createLiteral("foo", "", null)) );
         data.add(new Triple(n3, p, Node.createLiteral("foo", "", XSDDatatype.XSDstring)) );
         data.add(new Triple(n4, p, n4));
+        data.add(new Triple(n5, p, Node.createLiteral("-1", "", XSDDatatype.XSDnonNegativeInteger)) );
         infgraph = createReasoner(ruleList).bind(data);
         
         TestUtil.assertIteratorValues(this, infgraph.find(null, s, null),
@@ -754,6 +756,10 @@ public class TestFBRules extends TestCase {
                 new Triple(n4, s, Node.createLiteral("notLiteral", "", null)),
                 new Triple(n4, s, Node.createLiteral("notXSDInt", "", null)),
                 new Triple(n4, s, Node.createLiteral("notXSDString", "", null)),
+
+                new Triple(n5, s, Node.createLiteral("notLiteral", "", null)),
+                new Triple(n5, s, Node.createLiteral("notXSDInt", "", null)),
+                new Triple(n5, s, Node.createLiteral("notXSDString", "", null)),
             });
             
         // Literal counting
