@@ -65,6 +65,10 @@ public class DAMLMicroReasonerFactory implements ReasonerFactory {
                 .addProperty(ReasonerVocabulary.supportsP, RDFS.member)
                 .addProperty(ReasonerVocabulary.supportsP, RDFS.range)
                 .addProperty(ReasonerVocabulary.supportsP, RDFS.domain)
+                .addProperty(ReasonerVocabulary.supportsP, DAML_OIL.subClassOf)
+                .addProperty(ReasonerVocabulary.supportsP, DAML_OIL.subPropertyOf)
+                .addProperty(ReasonerVocabulary.supportsP, DAML_OIL.range)
+                .addProperty(ReasonerVocabulary.supportsP, DAML_OIL.domain)
                 .addProperty(ReasonerVocabulary.versionP, "0.1");
         }
         return capabilities;
