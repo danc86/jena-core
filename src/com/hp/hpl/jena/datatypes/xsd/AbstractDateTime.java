@@ -58,6 +58,7 @@ public class AbstractDateTime {
      */
     public AbstractDateTime(Object value, XSSimpleType dtype) {
         data = (int[]) value;
+        if (data[UTC] == 0) data[UTC]='Z';
         extractFractionalSeconds();
         typeDecl = (XSSimpleTypeDecl)dtype;
     }
@@ -77,7 +78,8 @@ public class AbstractDateTime {
      * Serialization
      */
     public String toString() {
-        return typeDecl.getStringValue(data);
+        String lex = typeDecl.getStringValue(data);
+        return lex;
     }
     
     /**

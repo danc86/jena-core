@@ -37,6 +37,14 @@ public class XSDDateTimeType extends XSDDatatype {
     public Object parse(String lexicalForm) throws DatatypeFormatException {
         return new XSDDateTime(super.parse(lexicalForm), typeDeclaration);
     }
+   
+    /**
+     * Convert a value of this datatype out
+     * to lexical form.
+     */
+    public String unparse(Object value) {
+        return value.toString();
+    }
     
     /**
      * Compares two instances of values of the given datatype.
