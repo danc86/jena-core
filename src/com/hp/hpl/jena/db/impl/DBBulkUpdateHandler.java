@@ -42,7 +42,8 @@ public class DBBulkUpdateHandler implements BulkUpdateHandler {
 			while (it.hasNext() && list.size() < CHUNK_SIZE) {
 				list.add(it.next());
 			}
-			graph.add(list); // list is cleared as a side-effect of this operation
+			graph.add(list);
+			list.clear();
 		}
 	}
 
@@ -66,7 +67,8 @@ public class DBBulkUpdateHandler implements BulkUpdateHandler {
 			while (it.hasNext() && list.size() < CHUNK_SIZE) {
 				list.add(it.next());
 			}
-			graph.delete(list); // list is cleared as a side-effect of this operation
+			graph.delete(list);
+			list.clear();
 		}
 	}
 
