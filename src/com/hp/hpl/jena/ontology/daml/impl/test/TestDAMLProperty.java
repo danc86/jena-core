@@ -98,7 +98,6 @@ public class TestDAMLProperty
                     
                     iteratorTest( p.prop_domain().getAll(), new Object[] {B} );
                     
-                    assertTrue( "getDAMLValue instanceOf DAMLCommon", p.prop_domain().getDAMLValue() instanceof DAMLCommon );
                     assertTrue( "hasValue", p.prop_domain().hasValue( B ) );
                     assertTrue( "hasValue", !p.prop_domain().hasValue( C ) );
                 }
@@ -124,7 +123,6 @@ public class TestDAMLProperty
                     
                     iteratorTest( p.prop_range().getAll(), new Object[] {B} );
                     
-                    assertTrue( "getDAMLValue instanceOf DAMLCommon", p.prop_range().getDAMLValue() instanceof DAMLCommon );
                     assertTrue( "hasValue", p.prop_range().hasValue( B ) );
                     assertTrue( "hasValue", !p.prop_range().hasValue( C ) );
                 }
@@ -150,7 +148,6 @@ public class TestDAMLProperty
                     
                     iteratorTest( p.prop_subPropertyOf().getAll(), new Object[] {q} );
                     
-                    assertTrue( "getDAMLValue instanceOf DAMLCommon", p.prop_subPropertyOf().getDAMLValue() instanceof DAMLCommon );
                     assertTrue( "hasValue", p.prop_subPropertyOf().hasValue( q ) );
                     assertTrue( "hasValue", !p.prop_subPropertyOf().hasValue( r ) );
                 }

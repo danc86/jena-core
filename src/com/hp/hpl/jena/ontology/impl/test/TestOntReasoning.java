@@ -74,7 +74,7 @@ public class TestOntReasoning
     }
     
     public void testSubClassDirectTransInf1a() {
-        OntModel m = (OntModel) ModelFactory.createOntologyModel( ProfileRegistry.OWL_LITE_LANG );
+        OntModel m = ModelFactory.createOntologyModel( ProfileRegistry.OWL_LITE_LANG );
         
         OntClass A = m.createClass( NS + "A" );
         OntClass B = m.createClass( NS + "B" );
@@ -90,7 +90,7 @@ public class TestOntReasoning
     }
     
     public void testSubClassDirectTransInf1b() {
-        OntModel m = (OntModel) ModelFactory.createOntologyModel( ProfileRegistry.OWL_LITE_LANG );
+        OntModel m = ModelFactory.createOntologyModel( ProfileRegistry.OWL_LITE_LANG );
         
         OntClass A = m.createClass( NS + "A" );
         OntClass B = m.createClass( NS + "B" );
@@ -146,7 +146,7 @@ public class TestOntReasoning
     }
     
     public void testSubPropertyDirectTransInf1a() {
-        OntModel m = (OntModel) ModelFactory.createOntologyModel( ProfileRegistry.OWL_LITE_LANG );
+        OntModel m = ModelFactory.createOntologyModel( ProfileRegistry.OWL_LITE_LANG );
         
         OntProperty p = m.createObjectProperty( NS + "p" );
         OntProperty q = m.createObjectProperty( NS + "q" );
@@ -162,7 +162,7 @@ public class TestOntReasoning
     }
     
     public void testSubPropertyDirectTransInf1b() {
-        OntModel m = (OntModel) ModelFactory.createOntologyModel( ProfileRegistry.OWL_LITE_LANG );
+        OntModel m = ModelFactory.createOntologyModel( ProfileRegistry.OWL_LITE_LANG );
         
         OntProperty p = m.createObjectProperty( NS + "p" );
         OntProperty q = m.createObjectProperty( NS + "q" );

@@ -237,10 +237,8 @@ public class PropertyIterator
                     m_model = next.getModel();
                 }
 
-                if (next instanceof Resource) {
-                    m_roots.add( next );
-                    enqueue( next );
-                }
+                m_roots.add( next );
+                enqueue( next );
             }
         }
         else {
@@ -253,10 +251,8 @@ public class PropertyIterator
                     m_model = next.getModel();
                 }
 
-                if (next instanceof Resource) {
-                    m_roots.add( next );
-                    expandQueue( next );
-                }
+                m_roots.add( next );
+                expandQueue( next );
             }
         }
     }

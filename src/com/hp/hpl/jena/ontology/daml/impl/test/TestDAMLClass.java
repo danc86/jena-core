@@ -93,7 +93,6 @@ public class TestDAMLClass
                     
                     iteratorTest( A.prop_subClassOf().getAll(), new Object[] {A,B} );
                     
-                    assertTrue( "getDAMLValue instanceOf DAMLCommon", A.prop_subClassOf().getDAMLValue() instanceof DAMLCommon );
                     assertTrue( "hasValue", A.prop_subClassOf().hasValue( B ) );
                     assertTrue( "hasValue", !A.prop_subClassOf().hasValue( C ) );
                 }
@@ -119,7 +118,6 @@ public class TestDAMLClass
                     
                     iteratorTest( A.prop_disjointWith().getAll(), new Object[] {B} );
                     
-                    assertTrue( "getDAMLValue instanceOf DAMLCommon", A.prop_disjointWith().getDAMLValue() instanceof DAMLCommon );
                     assertTrue( "hasValue", A.prop_disjointWith().hasValue( B ) );
                     assertTrue( "hasValue", !A.prop_disjointWith().hasValue( C ) );
                 }
@@ -145,7 +143,6 @@ public class TestDAMLClass
                     
                     iteratorTest( A.prop_sameClassAs().getAll(), new Object[] {B} );
                     
-                    assertTrue( "getDAMLValue instanceOf DAMLCommon", A.prop_sameClassAs().getDAMLValue() instanceof DAMLCommon );
                     assertTrue( "hasValue", A.prop_sameClassAs().hasValue( B ) );
                     assertTrue( "hasValue", !A.prop_sameClassAs().hasValue( C ) );
                 }
@@ -171,7 +168,6 @@ public class TestDAMLClass
                     
                     iteratorTest( A.prop_complementOf().getAll(), new Object[] {B} );
                     
-                    assertTrue( "getDAMLValue instanceOf DAMLCommon", A.prop_complementOf().getDAMLValue() instanceof DAMLCommon );
                     assertTrue( "hasValue", A.prop_complementOf().hasValue( B ) );
                     assertTrue( "hasValue", !A.prop_complementOf().hasValue( C ) );
                 }

@@ -116,7 +116,6 @@ public class TestBugReports
         // now can we see this as an OntClass?
         OntClass c = (OntClass) owlClassRes.as( OntClass.class );
         assertNotNull( "OntClass c should not be null", c );
-        assertTrue( "c should be an ont class", c instanceof OntClass );
         
         //(OntClass) (ontModel.getProfile().CLASS()).as(OntClass.class);
 
