@@ -2692,8 +2692,9 @@ public class OntModelImpl
     protected BindingQueryPlan queryXTypeOfType( Resource type ) {
         if (type != null) {
             Query q = new Query();
-            q.addMatch( Query.X, RDF.type.asNode(), Query.Y );
+            // kers: this non-intuitive order should improve search performance
             q.addMatch( Query.Y, RDF.type.asNode(), type.asNode() );
+            q.addMatch( Query.X, RDF.type.asNode(), Query.Y );
             
             return queryHandler().prepareBindings( q, new Node[] {Query.X} );
         }
