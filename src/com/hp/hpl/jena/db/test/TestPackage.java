@@ -48,6 +48,7 @@ public class TestPackage extends TestSuite
 		addTest( "TestCompatability", TestCompatability.suite() );
 		addTest( "TestCompareToMem", TestCompareToMem.suite() );
 		addTest( "TestGraphRDB", TestGraphRDB.suite());
+		addTest( "TestGraphRDBMaker", TestGraphRDB.suite());
 		addTest( "TestNsPrefix", TestNsPrefix.suite());
 		addTest( "TestPrefixMapping", TestPrefixMapping.suite());
 		addTest( "TestTransactions", TestTransactions.suite() );
