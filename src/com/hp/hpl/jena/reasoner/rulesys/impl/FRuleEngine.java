@@ -152,7 +152,8 @@ public class FRuleEngine implements FRuleEngineI {
      * It will return false during the axiom bootstrap phase.
      */
     public boolean shouldTrace() {
-        return processedAxioms;
+//        return processedAxioms;
+        return true;
     }
 
     /**
@@ -362,7 +363,7 @@ public class FRuleEngine implements FRuleEngineI {
             }
             // Now fire the rule
             if (infGraph.shouldTrace()) {
-                logger.info("Fired rule: " + rule.toShortString());
+                logger.info("Fired rule: " + rule.toShortString() + " = " + rule.instantiate(env));
             }
             List matchList = null;
             if (recordDerivations) {

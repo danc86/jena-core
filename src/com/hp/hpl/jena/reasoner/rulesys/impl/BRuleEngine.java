@@ -62,7 +62,7 @@ public class BRuleEngine {
     
     /** The size of the result batch permitted before a rule should 
      * reschedule itself lower on the agenda */
-    protected int batchSize = 10;
+    protected int batchSize = 100000;
     
     /** log4j logger*/
     static Logger logger = Logger.getLogger(BRuleEngine.class);

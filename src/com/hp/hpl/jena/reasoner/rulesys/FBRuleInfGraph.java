@@ -230,9 +230,13 @@ public class FBRuleInfGraph  extends BasicForwardRuleInfGraph implements Backwar
             }
             // Prepare the context for builtins run in backwards engine
             context = new BBRuleContext(this, dataFind);
-            // Process any scheduled prototype checks
-            // Prototype processing is currently disabled until we can support concurrently updatable graphs
-            // processPrototypeChecks();
+            
+            // Temp ...
+//            List l = bEngine.rulesFor(new TriplePattern(null, com.hp.hpl.jena.vocabulary.RDF.type.asNode(), null));
+//            for (Iterator i = l.iterator(); i.hasNext(); ) {
+//                System.out.println("type rule: " + i.next());
+//            }
+            // ... end temp
         }
     }
     
