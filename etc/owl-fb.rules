@@ -73,6 +73,7 @@
 
 # This one could be omitted since the results are not really very interesting!
 #[rdf1and4: (?x ?p ?y) -> (?p rdf:type rdf:Property), (?x rdf:type rdfs:Resource), (?y rdf:type rdfs:Resource)]
+[rdf4: (?x ?p ?y) -> (?p rdf:type rdf:Property)]
 
 [rdfs7b: (?a rdf:type rdfs:Class) -> (?a rdfs:subClassOf rdfs:Resource)] 
 
@@ -460,6 +461,10 @@
 [equality1: (?X owl:sameAs ?Y), notEqual(?X,?Y) ->
 		[(?X ?P ?V) <- (?Y ?P ?V)]
 		[(?V ?P ?X) <- (?V ?P ?Y)] ]
+
+[equality2: (?X owl:sameAs ?Y), (?X rdf:type owl:Class) -> (?X owl:equivalentClass ?Y) ]
+
+[equality3: (?X owl:sameAs ?Y), (?X rdf:type rdf:Property) -> (?X owl:equivalentProperty ?Y) ]
 		
 #------------------------------------------------------------------
 # Property rules
