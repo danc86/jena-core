@@ -26,6 +26,9 @@ package com.hp.hpl.jena.ontology.impl.test;
 ///////////////
 import java.io.*;
 
+import com.hp.hpl.jena.graph.*;
+import com.hp.hpl.jena.graph.impl.*;
+import com.hp.hpl.jena.mem.GraphMem;
 import com.hp.hpl.jena.ontology.*;
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.vocabulary.OWL;
@@ -138,6 +141,31 @@ public class TestBugReports
     }
     
     
+    /**
+     * Bug report by Christoph Kunze (Christoph.Kunz@iao.fhg.de). 18/Aug/03 
+     * No transaction support in ontmodel.
+     */
+    public void test_ck_01() {
+        Graph g = new GraphMem() {
+            TransactionHandler m_t = new MockTransactionHandler();
+            public TransactionHandler getTransactionHandler() {return m_t;}
+        };
+        Model m0 = ModelFactory.createModelForGraph( g );
+        OntModel m1 = ModelFactory.createOntologyModel( OntModelSpec.OWL_LITE_MEM, m0 );
+        
+        assertFalse( "Transaction not started yet", ((MockTransactionHandler) m1.getGraph().getTransactionHandler()).m_inTransaction );
+        m1.begin();
+        assertTrue( "Transaction started", ((MockTransactionHandler) m1.getGraph().getTransactionHandler()).m_inTransaction );
+        m1.abort();
+        assertFalse( "Transaction aborted", ((MockTransactionHandler) m1.getGraph().getTransactionHandler()).m_inTransaction );
+        assertTrue( "Transaction aborted", ((MockTransactionHandler) m1.getGraph().getTransactionHandler()).m_aborted);
+        m1.begin();
+        assertTrue( "Transaction started", ((MockTransactionHandler) m1.getGraph().getTransactionHandler()).m_inTransaction );
+        m1.commit();
+        assertFalse( "Transaction committed", ((MockTransactionHandler) m1.getGraph().getTransactionHandler()).m_inTransaction );
+        assertTrue( "Transaction committed", ((MockTransactionHandler) m1.getGraph().getTransactionHandler()).m_committed);
+    }
+    
     // Internal implementation methods
     //////////////////////////////////
 
@@ -145,6 +173,15 @@ public class TestBugReports
     // Inner class definitions
     //==============================================================================
 
+    class MockTransactionHandler extends SimpleTransactionHandler {
+        boolean m_inTransaction = false;
+        boolean m_aborted = false;
+        boolean m_committed = false;
+        
+        public void begin() {m_inTransaction = true;}
+        public void abort() {m_inTransaction = false; m_aborted = true;}
+        public void commit() {m_inTransaction = false; m_committed = true;}
+    }
 }
 
 
