@@ -241,7 +241,8 @@ public class testWriterAndReader extends TestCase implements RDFErrorHandler {
                 Model s1 = m1;
                 Model s2 = m2;
                 assertTrue(
-                    "Comparison of file written out, and file read in.",
+                    "Comparison of file written out, and file read in. See "
+                    + tmpFile1.getAbsolutePath(),
                     s1.isIsomorphicWith(s2));
 
                 if (!keepFiles) {
