@@ -15,7 +15,7 @@ package com.hp.hpl.jena.reasoner.rulesys.impl;
  * @author <a href="mailto:der@hplb.hpl.hp.com">Dave Reynolds</a>
  * @version $Revision$ on $Date$
  */
-public interface RETESourceNode {
+public interface RETESourceNode extends RETENode {
     
     /**
      * Set the continuation node for this node.

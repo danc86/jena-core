@@ -242,6 +242,22 @@ public class RETEClauseFilter implements RETESourceNode {
         }
         return null;
     }
+    
+    /**
+     * Clone this node in the network.
+     * @param netCopy a map from RETENode to cloned instance
+     * @param context the new context to which the network is being ported
+     */
+    public RETENode clone(Map netCopy, RETERuleContext context) {
+        RETEClauseFilter clone = (RETEClauseFilter)netCopy.get(this);
+        if (clone == null) {
+            clone = new RETEClauseFilter(instructions, args);
+            clone.setContinuation((RETESinkNode)continuation.clone(netCopy, context));
+            netCopy.put(this, clone);
+        }
+        return clone;
+    }
+    
 }
 
 

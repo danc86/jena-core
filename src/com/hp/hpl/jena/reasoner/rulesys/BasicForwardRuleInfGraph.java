@@ -49,6 +49,9 @@ public class BasicForwardRuleInfGraph extends BaseInfGraph implements ForwardRul
     /** The forward rule engine being used */
     protected FRuleEngineI engine;
     
+    /** The original rule set as supplied */
+    protected List rules;
+    
     /** Flag which, if true, enables tracing of rule actions to logger.info */
     boolean traceOn = false;
     
@@ -90,6 +93,7 @@ public class BasicForwardRuleInfGraph extends BaseInfGraph implements ForwardRul
        super(null, reasoner);
        engine = new FRuleEngine(this, rules);
 //       engine = new RETEEngine(this, rules);
+       this.rules = rules;
        this.schemaGraph = schema;
    }    
 
@@ -150,10 +154,15 @@ public class BasicForwardRuleInfGraph extends BaseInfGraph implements ForwardRul
         isPrepared = true;
         // initilize the deductions graph
         fdeductions = new FGraph( new GraphMem() );
+        boolean rulesLoaded = false;
         if (schemaGraph != null) {
-            preloadDeductions(schemaGraph);
+            rulesLoaded = preloadDeductions(schemaGraph);
         }
-        engine.init(false);
+        if (rulesLoaded) {
+            engine.fastInit(); 
+        } else {
+            engine.init(true);
+        }
     }
 
     /**
@@ -161,14 +170,22 @@ public class BasicForwardRuleInfGraph extends BaseInfGraph implements ForwardRul
      * fire any rules but provide additional axioms that might enable future rule
      * firing when real data is added. Used to implement bindSchema processing
      * in the parent Reasoner.
-     * @return return true if the rule set has also been loaded, will always be false for this case but subclasses do more
+     * @return return true if the rule set has also been loaded
      */
-    protected boolean preloadDeductions(Graph preload) {
+    protected boolean preloadDeductions(Graph preloadIn) {
         Graph d = fdeductions.getGraph();
-        for (Iterator i = preload.find(null, null, null); i.hasNext(); ) {
-            d.add((Triple)i.next());
+        BasicForwardRuleInfGraph preload = (BasicForwardRuleInfGraph)preloadIn;
+        // If the rule set is the same we can reuse those as well
+        if (preload.rules == rules) {
+            // Load raw deductions
+            for (Iterator i = preload.find(null, null, null); i.hasNext(); ) {
+                d.add((Triple)i.next());
+            }
+            engine.setRuleStore(preload.engine.getRuleStore());
+            return true;
+        } else {
+            return false;
         }
-        return false;
     }
    
     /**

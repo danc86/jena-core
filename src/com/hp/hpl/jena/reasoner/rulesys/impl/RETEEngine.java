@@ -169,11 +169,18 @@ public class RETEEngine implements FRuleEngineI {
      * Set the internal rule from from a precomputed state.
      */
     public void setRuleStore(Object ruleStore) {
-        // TODO need to clone the network here
         RuleStore rs = (RuleStore)ruleStore;
-        clauseIndex = rs.clauseIndex;
         predicatesUsed = rs.predicatesUsed;
         wildcardRule = rs.wildcardRule;
+        
+        // Clone the RETE network to this engine
+        RETERuleContext context = new RETERuleContext(infGraph, this);
+        Map netCopy = new HashMap();
+        clauseIndex = new OneToManyMap();
+        for (Iterator i = rs.clauseIndex.entrySet().iterator(); i.hasNext(); ) {
+            Map.Entry entry = (Map.Entry)i.next();
+            clauseIndex.put(entry.getKey(), ((RETENode)entry.getValue()).clone(netCopy, context));
+        }
     }
     
 //  =======================================================================

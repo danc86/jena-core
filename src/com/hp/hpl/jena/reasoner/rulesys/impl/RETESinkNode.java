@@ -17,7 +17,7 @@ package com.hp.hpl.jena.reasoner.rulesys.impl;
  * @author <a href="mailto:der@hplb.hpl.hp.com">Dave Reynolds</a>
  * @version $Revision$ on $Date$
  */
-public interface RETESinkNode {
+public interface RETESinkNode extends RETENode {
 
     /** 
      * Propagate a token to this node.

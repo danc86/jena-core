@@ -144,6 +144,17 @@ public class TestRETE  extends TestCase {
             this.env = env;
             this.isAdd = isAdd;
         }
+        
+        /**
+         * Clone this node in the network across to a different context.
+         * @param netCopy a map from RETENodes to cloned instance so far.
+         * @param context the new context to which the network is being ported
+         */
+        public RETENode clone(Map netCopy, RETERuleContext context) {
+            // Dummy, not used in testing
+            return this;
+        }
+        
     }
       
     /**

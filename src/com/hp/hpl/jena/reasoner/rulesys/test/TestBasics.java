@@ -301,7 +301,7 @@ public class TestBasics extends TestCase  {
     }
      
     /**
-     * Test schmea partial binding machinery
+     * Test schema partial binding machinery
      */
     public void testSchemaBinding() {
         String rules = "[testRule1: (n1 p ?a) -> (n2, p, ?a)]" +

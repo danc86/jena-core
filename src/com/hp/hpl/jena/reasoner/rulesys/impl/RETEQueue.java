@@ -150,6 +150,22 @@ public class RETEQueue implements RETESinkNode, RETESourceNode {
             this.count = count;
         }
     }
+    
+    /**
+     * Clone this node in the network.
+     * @param context the new context to which the network is being ported
+     */
+    public RETENode clone(Map netCopy, RETERuleContext context) {
+        RETEQueue clone = (RETEQueue)netCopy.get(this);
+        if (clone == null) {
+            clone = new RETEQueue(matchIndices);
+            netCopy.put(this, clone);
+            clone.setSibling((RETEQueue)sibling.clone(netCopy, context));
+            clone.setContinuation((RETESinkNode)continuation.clone(netCopy, context));
+            clone.queue.putAll(queue);
+        }
+        return clone;
+    }
 }
 
 

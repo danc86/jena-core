@@ -1,53 +1,37 @@
 /******************************************************************
- * File:        TestPackage.java
+ * File:        RETENode.java
  * Created by:  Dave Reynolds
- * Created on:  30-Mar-03
+ * Created on:  11-Jun-2003
  * 
  * (c) Copyright 2003, Hewlett-Packard Company, all rights reserved.
  * [See end of file]
  * $Id$
  *****************************************************************/
-package com.hp.hpl.jena.reasoner.rulesys.test;
+package com.hp.hpl.jena.reasoner.rulesys.impl;
 
-
-import junit.framework.*;
+import java.util.Map;
 
 /**
- * Aggregate tester that runs all the test associated with the rulesys package.
+ * Interface for all nodes in the network.
  * 
  * @author <a href="mailto:der@hplb.hpl.hp.com">Dave Reynolds</a>
  * @version $Revision$ on $Date$
  */
-
-public class TestPackage extends TestSuite {
-
-    static public TestSuite suite() {
-        return new TestPackage();
-    }
+public interface RETENode {
     
-    /** Creates new TestPackage */
-    private TestPackage() {
-        super("RuleSys");
-        
-        addTest( "TestBasics", TestBasics.suite() );
-        addTest( "TestBackchainer", TestBackchainer.suite() );
-//        addTest( "TestFBRules", TestFBRules.suite() );
-        addTest( "TestGenericRules", TestGenericRules.suite() );
-        
-//        addTest( "TestRDFSRules", TestRDFSRules.suite() );
-//        addTest( "TestOWLRules", TestOWLRules.suite() );
-    }
-
-    // helper method
-    private void addTest(String name, TestSuite tc) {
-        tc.setName(name);
-        addTest(tc);
-    }
+    /**
+     * Clone this node in the network across to a different context.
+     * @param netCopy a map from RETENodes to cloned instance so far.
+     * @param context the new context to which the network is being ported
+     */
+    public RETENode clone(Map netCopy, RETERuleContext context);
 
 }
 
+
+
 /*
-    (c) Copyright Hewlett-Packard Company 2002
+    (c) Copyright Hewlett-Packard Company 2003
     All rights reserved.
 
     Redistribution and use in source and binary forms, with or without
