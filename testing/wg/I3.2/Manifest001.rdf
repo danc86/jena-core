@@ -1,5 +1,5 @@
 <!--++ I3.2/Manifest001.rdf ** generated using webont test editor. ++-->
-<!--++ Created 23 Sep 2002 20:15:55 GMT ++-->
+<!--++ Created 7 May 2003 11:35:45 GMT ++-->
 <!--
   Copyright World Wide Web Consortium, (Massachusetts Institute of
   Technology, European Research Consortium for Informatics and
@@ -21,16 +21,18 @@
       xmlns:owl='http://www.w3.org/2002/07/owl#'
       xml:base='http://www.w3.org/2002/03owlt/I3.2/Manifest001'
 >
-<otest:NotOwlFeatureTest rdf:ID='test'> <otest:level rdf:resource='http://www.w3.org/2002/03owlt/testOntology#Lite' />
+<otest:NotOwlFeatureTest rdf:ID='test'>
    <rtest:status>APPROVED</rtest:status>
    <rtest:approval rdf:resource='http://lists.w3.org/Archives/Public/www-webont-wg/2002Apr/0339' />
-   <dc:creator>Jeremy Carroll</dc:creator>
+   <dc:creator>Jeremy J. Carroll</dc:creator>
    <rtest:issue rdf:resource='http://www.w3.org/2001/sw/WebOnt/webont-issues#I3.2-Qualified-Restrictions' />
+   <otest:level rdf:resource='http://www.w3.org/2002/03owlt/testOntology#Lite' />
    <rtest:description rdf:parseType='Literal'>
-A DAML+OIL qualified cardinality constraint is not 
-legal OWL.</rtest:description>
+The names used in a DAML+OIL qualified cardinality constraint are not defined the OWL namespace.</rtest:description>
    <rtest:inputDocument>
-         <rtest:RDF-XML-Document rdf:about='bad001' >  <otest:level rdf:resource='http://www.w3.org/2002/03owlt/testOntology#Lite' /> </rtest:RDF-XML-Document>
+         <rtest:RDF-XML-Document rdf:about='bad001' >
+              <otest:level rdf:resource='http://www.w3.org/2002/03owlt/testOntology#Full' />
+         </rtest:RDF-XML-Document>
    </rtest:inputDocument>
 </otest:NotOwlFeatureTest >
 </rdf:RDF>

@@ -28,7 +28,7 @@
    <rtest:description rdf:parseType='Literal'>
 A simple example.</rtest:description>
    <rtest:premiseDocument>
-         <rtest:RDF-XML-Document rdf:about='premises001' >  <otest:level rdf:resource='http://www.w3.org/2002/03owlt/testOntology#Full' /> </rtest:RDF-XML-Document>
+         <rtest:RDF-XML-Document rdf:about='premises001' >  <otest:level rdf:resource='http://www.w3.org/2002/03owlt/testOntology#Lite' /> </rtest:RDF-XML-Document>
    </rtest:premiseDocument>
    <rtest:conclusionDocument>
          <rtest:RDF-XML-Document rdf:about='conclusions001' >  <otest:level rdf:resource='http://www.w3.org/2002/03owlt/testOntology#Full' /> </rtest:RDF-XML-Document>

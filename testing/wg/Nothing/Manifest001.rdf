@@ -1,5 +1,5 @@
 <!--++ Nothing/Manifest001.rdf ** generated using webont test editor. ++-->
-<!--++ Created 27 Sep 2002 10:56:42 GMT ++-->
+<!--++ Created 7 May 2003 11:22:12 GMT ++-->
 <!--
   Copyright World Wide Web Consortium, (Massachusetts Institute of
   Technology, European Research Consortium for Informatics and
@@ -21,15 +21,19 @@
       xmlns:owl='http://www.w3.org/2002/07/owl#'
       xml:base='http://www.w3.org/2002/03owlt/Nothing/Manifest001'
 >
-<otest:InconsistencyTest rdf:ID='test'> <otest:level rdf:resource='http://www.w3.org/2002/03owlt/testOntology#Full' />
-   <rtest:status>APPROVED</rtest:status>
+<otest:InconsistencyTest rdf:ID='test'>
+   <otest:level rdf:resource='http://www.w3.org/2002/03owlt/testOntology#Full' />
+   <rtest:status>PROPOSED</rtest:status>
    <dc:creator>Jeremy J. Carroll</dc:creator>
    <otest:feature rdf:resource='http://www.w3.org/2002/07/owl#Nothing' />
+   <otest:level rdf:resource='http://www.w3.org/2002/03owlt/testOntology#Lite' />
    <rtest:description rdf:parseType='Literal'>
-The triple asserts something of type <code>Nothing</code>, however
+The triple asserts something of type <code>owl:Nothing</code>, however
 that is the empty class.</rtest:description>
    <rtest:inputDocument>
-         <rtest:RDF-XML-Document rdf:about='inconsistent001' >  <otest:level rdf:resource='http://www.w3.org/2002/03owlt/testOntology#Full' /> </rtest:RDF-XML-Document>
+         <rtest:RDF-XML-Document rdf:about='inconsistent001' >
+              <otest:level rdf:resource='http://www.w3.org/2002/03owlt/testOntology#Lite' />
+         </rtest:RDF-XML-Document>
    </rtest:inputDocument>
 </otest:InconsistencyTest >
 </rdf:RDF>

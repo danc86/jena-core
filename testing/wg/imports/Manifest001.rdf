@@ -20,7 +20,7 @@
       xml:base='http://www.w3.org/2002/03owlt/imports/Manifest001'
 >
 <otest:ImportEntailmentTest rdf:ID='test'><otest:level rdf:resource='http://www.w3.org/2002/03owlt/testOntology#Full' />
-   <rtest:status>APPROVED</rtest:status>
+   <rtest:status>APPROVED</rtest:status> <rtest:approval rdf:resource="http://lists.w3.org/Archives/Public/www-webont-wg/2003Jan/0444"/>
    <dc:creator>Jeff Heflin</dc:creator>
    <otest:feature rdf:resource='http://www.w3.org/2002/07/owl#imports' />
    <rtest:description rdf:parseType='Literal'>

@@ -1,5 +1,5 @@
 <!--++ I5.24/conclusions003.rdf ** generated using webont test editor. ++-->
-<!--++ Created 17 Dec 2002 14:50:04 GMT ++-->
+<!--++ Created 7 May 2003 01:51:41 GMT ++-->
 <!--
   Copyright World Wide Web Consortium, (Massachusetts Institute of
   Technology, European Research Consortium for Informatics and
@@ -21,13 +21,18 @@ This is a typical definition of range from description logic.
     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
     xmlns:owl="http://www.w3.org/2002/07/owl#"
     xml:base="http://www.w3.org/2002/03owlt/I5.24/conclusions003" >
-   <owl:Thing>
+  
+   <owl:Class rdf:about="http://www.w3.org/2002/07/owl#Thing">
       <rdfs:subClassOf>
           <owl:Restriction>
-             <owl:onProperty rdf:resource="premises003#prop"/>
-             <owl:allValuesFrom rdf:resource="premises003#A"/>
+             <owl:onProperty>
+               <owl:ObjectProperty rdf:about="premises003#prop"/>
+             </owl:onProperty>
+             <owl:allValuesFrom>
+               <owl:Class rdf:about="premises003#A"/>
+              </owl:allValuesFrom>
           </owl:Restriction>
        </rdfs:subClassOf>
-   </owl:Thing>
+   </owl:Class>
 
 </rdf:RDF>

@@ -1,5 +1,5 @@
 <!--++ cardinality/conclusions003.rdf ** generated using webont test editor. ++-->
-<!--++ Created 18 Dec 2002 12:03:59 GMT ++-->
+<!--++ Created 19 Apr 2003 11:36:49 GMT ++-->
 <!--
   Copyright World Wide Web Consortium, (Massachusetts Institute of
   Technology, European Research Consortium for Informatics and
@@ -23,23 +23,21 @@ An <code>owl:cardinality</code> constraint is simply shorthand for a pair of <co
     xml:base="http://www.w3.org/2002/03owlt/cardinality/conclusions003" >
     <owl:Class rdf:about="premises003#c">
       <rdfs:subClassOf>
-          <rdf:Description>
-             <owl:intersectionOf rdf:parseType="Collection">
-                <owl:Restriction>
-                   <owl:onProperty rdf:resource="premises003#p"/>
-                   <owl:maxCardinality
+        <owl:Restriction>
+          <owl:onProperty rdf:resource="premises003#p"/>
+          <owl:maxCardinality
  rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
-                   >2</owl:maxCardinality>
-                </owl:Restriction>
-                <owl:Restriction>
-                   <owl:onProperty rdf:resource="premises003#p"/>
-                   <owl:minCardinality
+          >2</owl:maxCardinality>
+        </owl:Restriction>
+      </rdfs:subClassOf>
+      <rdfs:subClassOf>
+        <owl:Restriction>
+          <owl:onProperty rdf:resource="premises003#p"/>
+          <owl:minCardinality
  rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
-                   >2</owl:minCardinality>
-                </owl:Restriction>
-              </owl:intersectionOf>
-           </rdf:Description>
-       </rdfs:subClassOf>
-     </owl:Class>
-     <owl:ObjectProperty rdf:about="premises003#p"/>
+          >2</owl:minCardinality>
+        </owl:Restriction>
+      </rdfs:subClassOf>
+    </owl:Class>
+    <owl:ObjectProperty rdf:about="premises003#p"/>
 </rdf:RDF>

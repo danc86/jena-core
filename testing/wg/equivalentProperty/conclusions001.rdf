@@ -1,5 +1,5 @@
 <!--++ equivalentProperty/conclusions001.rdf ** generated using webont test editor. ++-->
-<!--++ Created 18 Dec 2002 13:25:54 GMT ++-->
+<!--++ Created 7 May 2003 11:29:26 GMT ++-->
 <!--
   Copyright World Wide Web Consortium, (Massachusetts Institute of
   Technology, European Research Consortium for Informatics and
@@ -13,7 +13,7 @@
   $Id$
 -->
 <!--
-<code>hasLeader</code> may be stated to be the <code>equivalentProperty</code> <code>hasHead</code>.
+<code>hasLeader</code> may be stated to be the <code>owl:equivalentProperty</code> of <code>hasHead</code>.
 -->
 <!-- Author: Jeremy J. Carroll -->
 <rdf:RDF
@@ -23,7 +23,9 @@
     xmlns:first="http://www.w3.org/2002/03owlt/equivalentProperty/premises001#"
     xml:base="http://www.w3.org/2002/03owlt/equivalentProperty/conclusions001" >
    <owl:Thing rdf:about="premises001#X">
-     <first:hasHead rdf:resource="premises001#Y"/>
+     <first:hasHead>
+        <owl:Thing rdf:about="premises001#Y"/>
+     </first:hasHead>
    </owl:Thing>   
    <owl:ObjectProperty rdf:about="premises001#hasHead"/>
 </rdf:RDF>

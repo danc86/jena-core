@@ -1,4 +1,5 @@
-<!--++ oneOf/conclusions003.rdf ++-->
+<!--++ oneOf/conclusions003.rdf ** generated using webont test editor. ++-->
+<!--++ Created 7 May 2003 11:32:37 GMT ++-->
 <!--
   Copyright World Wide Web Consortium, (Massachusetts Institute of
   Technology, European Research Consortium for Informatics and
@@ -12,7 +13,7 @@
   $Id$
 -->
 <!--
-The order of the instances in an <code>oneOf</code>
+The order of the instances in an <code>owl:oneOf</code>
 construct is unimportant.
 -->
 <!-- Author: Jos De Roo -->

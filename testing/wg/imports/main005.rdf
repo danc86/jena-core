@@ -13,7 +13,8 @@
   $Id$
 -->
 <!--
-OWL DL documents cannot be imported by OWL Lite documents. 
+If an OWL Lite document imports an OWL DL 
+document then it becomes OWL DL.
 -->
 <!-- Author: Jeremy J. Carroll -->
 <rdf:RDF

@@ -1,5 +1,5 @@
 <!--++ I5.24/premises004.rdf ** generated using webont test editor. ++-->
-<!--++ Created 17 Dec 2002 14:52:22 GMT ++-->
+<!--++ Created 7 May 2003 01:47:22 GMT ++-->
 <!--
   Copyright World Wide Web Consortium, (Massachusetts Institute of
   Technology, European Research Consortium for Informatics and
@@ -22,15 +22,17 @@ It works both ways.
     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
     xmlns:owl="http://www.w3.org/2002/07/owl#"
     xml:base="http://www.w3.org/2002/03owlt/I5.24/premises004" >
-   <owl:Thing>
+   <owl:Class rdf:about="http://www.w3.org/2002/07/owl#Thing">
       <rdfs:subClassOf>
           <owl:Restriction>
-             <owl:onProperty rdf:resource="conclusions004#prop"/>
+             <owl:onProperty>
+               <owl:ObjectProperty rdf:about="conclusions004#prop"/>
+             </owl:onProperty>
              <owl:allValuesFrom>
                <owl:Class rdf:about="conclusions004#A"/>
               </owl:allValuesFrom>
           </owl:Restriction>
        </rdfs:subClassOf>
-   </owl:Thing>
+   </owl:Class>
 
 </rdf:RDF>

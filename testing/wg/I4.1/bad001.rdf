@@ -1,5 +1,5 @@
 <!--++ I4.1/bad001.rdf ** generated using webont test editor. ++-->
-<!--++ Created 17 Dec 2002 14:41:50 GMT ++-->
+<!--++ Created 7 May 2003 11:38:43 GMT ++-->
 <!--
   Copyright World Wide Web Consortium, (Massachusetts Institute of
   Technology, European Research Consortium for Informatics and
@@ -13,10 +13,13 @@
   $Id$
 -->
 <!--
-This is not legal OWL. The name <code>UniqueProperty</code> is not in the OWL namespace. <code>daml:UniqueProperty</code> corresponds to <code>owl:FunctionalProperty</code>.
+The name <code>UniqueProperty</code> is not defined in the OWL namespace. 
+<code>daml:UniqueProperty</code> corresponds to <code>owl:FunctionalProperty</code>.
 -->
 <!-- Author: Jeremy J. Carroll -->
 <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xml:base=
+           'http://www.w3.org/2002/03owlt/I4.1/bad001'
   xmlns:owl ="http://www.w3.org/2002/07/owl#" >
     <owl:UniqueProperty rdf:ID="Name"/>
 </rdf:RDF>

@@ -22,7 +22,8 @@
       xml:base='http://www.w3.org/2002/03owlt/disjointWith/Manifest001'
 >
 <otest:PositiveEntailmentTest rdf:ID='test'>
-   <rtest:status>APPROVED</rtest:status>
+   <otest:level rdf:resource='http://www.w3.org/2002/03owlt/testOntology#Full' />
+   <rtest:status>APPROVED</rtest:status> <rtest:approval rdf:resource="http://lists.w3.org/Archives/Public/www-webont-wg/2003Jan/0444"/>
    <dc:creator>Jeremy J. Carroll</dc:creator>
    <otest:feature rdf:resource='http://www.w3.org/2002/07/owl#disjointWith' />
    <otest:level rdf:resource='http://www.w3.org/2002/03owlt/testOntology#DL' />
@@ -35,7 +36,7 @@ Disjoint classes have different members.</rtest:description>
    </rtest:premiseDocument>
    <rtest:conclusionDocument>
          <rtest:RDF-XML-Document rdf:about='conclusions001' >
-              <otest:level rdf:resource='http://www.w3.org/2002/03owlt/testOntology#DL' />
+              <otest:level rdf:resource='http://www.w3.org/2002/03owlt/testOntology#Lite' />
          </rtest:RDF-XML-Document>
    </rtest:conclusionDocument>
 </otest:PositiveEntailmentTest >

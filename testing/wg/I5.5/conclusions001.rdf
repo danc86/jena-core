@@ -1,5 +1,5 @@
 <!--++ I5.5/conclusions001.rdf ** generated using webont test editor. ++-->
-<!--++ Created 12 Dec 2002 17:28:51 GMT ++-->
+<!--++ Created 7 May 2003 10:54:26 GMT ++-->
 <!--
   Copyright World Wide Web Consortium, (Massachusetts Institute of
   Technology, European Research Consortium for Informatics and
@@ -18,6 +18,8 @@ rdf:first is a FunctionalProperty.
 <!-- Author: Jeremy J. Carroll -->
 <rdf:RDF
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xml:base=
+           'http://www.w3.org/2002/03owlt/I5.5/conclusions001'
     xmlns:owl="http://www.w3.org/2002/07/owl#" >
     <owl:FunctionalProperty rdf:about="http://www.w3.org/1999/02/22-rdf-syntax-ns#first" />
 

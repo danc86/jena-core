@@ -1,5 +1,5 @@
 <!--++ cardinality/premises004.rdf ** generated using webont test editor. ++-->
-<!--++ Created 18 Dec 2002 12:01:41 GMT ++-->
+<!--++ Created 19 Apr 2003 11:39:41 GMT ++-->
 <!--
   Copyright World Wide Web Consortium, (Massachusetts Institute of
   Technology, European Research Consortium for Informatics and
@@ -23,7 +23,7 @@ An <code>owl:cardinality</code> constraint is simply shorthand for a pair of <co
     xml:base="http://www.w3.org/2002/03owlt/cardinality/premises004" >    
     <owl:Class rdf:about="conclusions004#c">
       <rdfs:subClassOf>
-          <rdf:Description>
+          <owl:Class>
              <owl:intersectionOf rdf:parseType="Collection">
                 <owl:Restriction>
                    <owl:onProperty rdf:resource="conclusions004#p"/>
@@ -38,7 +38,7 @@ An <code>owl:cardinality</code> constraint is simply shorthand for a pair of <co
                    >2</owl:minCardinality>
                 </owl:Restriction>
               </owl:intersectionOf>
-           </rdf:Description>
+           </owl:Class>
        </rdfs:subClassOf>
      </owl:Class>
      <owl:ObjectProperty rdf:about="conclusions004#p"/>

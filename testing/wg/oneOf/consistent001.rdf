@@ -31,14 +31,14 @@ same individual.
          <rdf:Description rdf:ID="bob"/>
          <rdf:Description rdf:ID="caroline"/>
       </owl:oneOf>
-      <owl:sameClassAs>
+      <owl:equivalentClass>
            <owl:Class>
              <owl:oneOf rdf:parseType="Collection">
                <rdf:Description rdf:ID="yolanda"/>
                <rdf:Description rdf:ID="zebedee"/>
              </owl:oneOf>
            </owl:Class>
-      </owl:sameClassAs>
+      </owl:equivalentClass>
    </owl:Class>
 
 </rdf:RDF>

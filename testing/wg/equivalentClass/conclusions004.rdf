@@ -1,5 +1,5 @@
 <!--++ equivalentClass/conclusions004.rdf ** generated using webont test editor. ++-->
-<!--++ Created 18 Dec 2002 12:12:14 GMT ++-->
+<!--++ Created 22 Apr 2003 08:08:37 GMT ++-->
 <!--
   Copyright World Wide Web Consortium, (Massachusetts Institute of
   Technology, European Research Consortium for Informatics and
@@ -13,7 +13,7 @@
   $Id$
 -->
 <!--
-Two classes with the same complete description are the same.
+Two classes with the same complete description are equivalent.
 -->
 <!-- Author: Jeremy J. Carroll -->
 <rdf:RDF

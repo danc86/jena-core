@@ -1,5 +1,5 @@
 <!--++ equivalentProperty/premises004.rdf ** generated using webont test editor. ++-->
-<!--++ Created 18 Dec 2002 14:01:48 GMT ++-->
+<!--++ Created 22 Apr 2003 08:15:01 GMT ++-->
 <!--
   Copyright World Wide Web Consortium, (Massachusetts Institute of
   Technology, European Research Consortium for Informatics and
@@ -13,7 +13,7 @@
   $Id$
 -->
 <!--
-If <code>p</code> and <code>q</code> have the same property extension then they <code>p</code> <code>equivalentProperty</code> <code>q</code>.
+If <code>p</code> and <code>q</code> have the same property extension then <code>p</code> <code>equivalentProperty</code> <code>q</code>.
 -->
 <!-- Author: Jeremy J. Carroll -->
 <rdf:RDF
@@ -32,24 +32,16 @@ If <code>p</code> and <code>q</code> have the same property extension then they 
    <owl:Thing rdf:ID="v"/>
    <owl:Class rdf:ID="d">
      <owl:equivalentClass>
-        <rdf:Description>
-           <owl:intersectionOf rdf:parseType="Collection">
               <owl:Restriction>
                 <owl:onProperty rdf:resource="#p"/>
                 <owl:hasValue rdf:resource="#v"/>
               </owl:Restriction>
-           </owl:intersectionOf>
-        </rdf:Description>
      </owl:equivalentClass>
      <owl:equivalentClass>
-        <rdf:Description>
-           <owl:intersectionOf rdf:parseType="Collection">
               <owl:Restriction>
                 <owl:onProperty rdf:resource="#q"/>
                 <owl:hasValue rdf:resource="#v"/>
               </owl:Restriction>
-           </owl:intersectionOf>
-        </rdf:Description>
      </owl:equivalentClass>
    </owl:Class>
 </rdf:RDF>

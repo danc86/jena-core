@@ -17,6 +17,8 @@ There is one empty <code>owl:Class</code>, and it is often called <code>Nothing<
 -->
 <!-- Author: Jeremy J. Carroll -->
 <rdf:RDF
+    xml:base="http://www.w3.org/2002/03owlt/Nothing/premises002"
+   
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
     >
 

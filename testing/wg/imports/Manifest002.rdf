@@ -20,7 +20,7 @@
       xml:base='http://www.w3.org/2002/03owlt/imports/Manifest002'
 >
 <otest:NegativeEntailmentTest rdf:ID='test'><otest:level rdf:resource='http://www.w3.org/2002/03owlt/testOntology#Full' />
-   <rtest:status>APPROVED</rtest:status>
+   <rtest:status>APPROVED</rtest:status> <rtest:approval rdf:resource="http://lists.w3.org/Archives/Public/www-webont-wg/2003Jan/0444"/>
    <dc:creator>Jeff Heflin</dc:creator>
    <otest:feature rdf:resource='http://www.w3.org/2002/07/owl#imports' />
    <rtest:description rdf:parseType='Literal'>
@@ -31,6 +31,9 @@ the conjunction of the two documents.
    <rtest:premiseDocument>
          <rtest:RDF-XML-Document rdf:about='premises002' >  <otest:level rdf:resource='http://www.w3.org/2002/03owlt/testOntology#Full' /> </rtest:RDF-XML-Document>
    </rtest:premiseDocument>
+   <otest:importedPremiseDocument>
+         <rtest:RDF-XML-Document rdf:about='support002-A' >  <otest:level rdf:resource='http://www.w3.org/2002/03owlt/testOntology#Lite' /> </rtest:RDF-XML-Document>
+   </otest:importedPremiseDocument>
    <rtest:conclusionDocument>
          <rtest:RDF-XML-Document rdf:about='nonconclusions002' >  <otest:level rdf:resource='http://www.w3.org/2002/03owlt/testOntology#Full' /> </rtest:RDF-XML-Document>
    </rtest:conclusionDocument>

@@ -1,5 +1,5 @@
 <!--++ I5.5/Manifest004.rdf ** generated using webont test editor. ++-->
-<!--++ Created 12 Dec 2002 17:57:07 GMT ++-->
+<!--++ Created 7 May 2003 10:57:43 GMT ++-->
 <!--
   Copyright World Wide Web Consortium, (Massachusetts Institute of
   Technology, European Research Consortium for Informatics and
@@ -21,14 +21,18 @@
       xmlns:owl='http://www.w3.org/2002/07/owl#'
       xml:base='http://www.w3.org/2002/03owlt/I5.5/Manifest004'
 >
-<otest:InconsistencyTest rdf:ID='test'> <otest:level rdf:resource='http://www.w3.org/2002/03owlt/testOntology#Full' />
+<otest:InconsistencyTest rdf:ID='test'>
    <rtest:status>APPROVED</rtest:status>
+   <rtest:approval rdf:resource='http://lists.w3.org/Archives/Public/www-webont-wg/2003Jan/0444' />
    <dc:creator>Jeremy J. Carroll</dc:creator>
    <rtest:issue rdf:resource='http://www.w3.org/2001/sw/WebOnt/webont-issues#I5.5-List-syntax-or-semantics' />
+   <otest:level rdf:resource='http://www.w3.org/2002/03owlt/testOntology#Full' />
    <rtest:description rdf:parseType='Literal'>
 rdf:nil cannot have an rdf:first property.</rtest:description>
    <rtest:inputDocument>
-         <rtest:RDF-XML-Document rdf:about='inconsistent004' >  <otest:level rdf:resource='http://www.w3.org/2002/03owlt/testOntology#Full' /> </rtest:RDF-XML-Document>
+         <rtest:RDF-XML-Document rdf:about='inconsistent004' >
+              <otest:level rdf:resource='http://www.w3.org/2002/03owlt/testOntology#Full' />
+         </rtest:RDF-XML-Document>
    </rtest:inputDocument>
 </otest:InconsistencyTest >
 </rdf:RDF>

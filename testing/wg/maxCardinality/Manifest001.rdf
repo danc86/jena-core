@@ -22,7 +22,7 @@
       xml:base='http://www.w3.org/2002/03owlt/maxCardinality/Manifest001'
 >
 <otest:InconsistencyTest rdf:ID='test'>
-   <rtest:status>APPROVED</rtest:status>
+   <rtest:status>APPROVED</rtest:status> <rtest:approval rdf:resource="http://lists.w3.org/Archives/Public/www-webont-wg/2003Jan/0444"/>
    <dc:creator>Jos De Roo</dc:creator>
    <otest:feature rdf:resource='http://www.w3.org/2002/07/owl#maxCardinality' />
    <otest:level rdf:resource='http://www.w3.org/2002/03owlt/testOntology#Full' />

@@ -1,5 +1,5 @@
 <!--++ FunctionalProperty/Manifest001.rdf ** generated using webont test editor. ++-->
-<!--++ Created 27 Sep 2002 10:40:15 GMT ++-->
+<!--++ Created 14 May 2003 18:50:32 GMT ++-->
 <!--
   Copyright World Wide Web Consortium, (Massachusetts Institute of
   Technology, European Research Consortium for Informatics and
@@ -21,22 +21,27 @@
       xmlns:owl='http://www.w3.org/2002/07/owl#'
       xml:base='http://www.w3.org/2002/03owlt/FunctionalProperty/Manifest001'
 >
-<otest:PositiveEntailmentTest rdf:ID='test'> <otest:level rdf:resource='http://www.w3.org/2002/03owlt/testOntology#Full' />
+<otest:PositiveEntailmentTest rdf:ID='test'>
    <rtest:status>APPROVED</rtest:status>
    <rtest:approval rdf:resource='http://lists.w3.org/Archives/Public/www-webont-wg/2002Aug/0021' />
    <dc:creator>Jeremy J. Carroll</dc:creator>
    <rtest:issue rdf:resource='http://www.w3.org/2001/sw/WebOnt/webont-issues#I4.1-UniqueProp-BadName' />
    <otest:feature rdf:resource='http://www.w3.org/2002/07/owl#FunctionalProperty' />
+   <otest:level rdf:resource='http://www.w3.org/2002/03owlt/testOntology#Full' />
    <rtest:description rdf:parseType='Literal'>
 If <code>prop</code> belongs to <code>owl:FunctionalProperty</code>,
-and <code>subject</code> denotes a resource and
-has two outgoing <code>prop</code> arcs, then the <code>object</code>s of these arcs 
-have the same denotation.</rtest:description>
+and <code>subject</code> denotes a resource
+which is the subject of two <code>prop</code> triples, then the <code>object</code>s
+of these triples have the same denotation.</rtest:description>
    <rtest:premiseDocument>
-         <rtest:RDF-XML-Document rdf:about='premises001' >  <otest:level rdf:resource='http://www.w3.org/2002/03owlt/testOntology#Full' /> </rtest:RDF-XML-Document>
+         <rtest:RDF-XML-Document rdf:about='premises001' >
+              <otest:level rdf:resource='http://www.w3.org/2002/03owlt/testOntology#Full' />
+         </rtest:RDF-XML-Document>
    </rtest:premiseDocument>
    <rtest:conclusionDocument>
-         <rtest:RDF-XML-Document rdf:about='conclusions001' >  <otest:level rdf:resource='http://www.w3.org/2002/03owlt/testOntology#Full' /> </rtest:RDF-XML-Document>
+         <rtest:RDF-XML-Document rdf:about='conclusions001' >
+              <otest:level rdf:resource='http://www.w3.org/2002/03owlt/testOntology#Full' />
+         </rtest:RDF-XML-Document>
    </rtest:conclusionDocument>
 </otest:PositiveEntailmentTest >
 </rdf:RDF>

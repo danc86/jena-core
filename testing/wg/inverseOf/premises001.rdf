@@ -1,5 +1,5 @@
 <!--++ inverseOf/premises001.rdf ** generated using webont test editor. ++-->
-<!--++ Created 27 Sep 2002 10:54:47 GMT ++-->
+<!--++ Created 7 May 2003 10:46:48 GMT ++-->
 <!--
   Copyright World Wide Web Consortium, (Massachusetts Institute of
   Technology, European Research Consortium for Informatics and
@@ -22,6 +22,7 @@ If the pair <code>(x,y)</code> is an instance of <code>P</code>, than the pair <
     xmlns:eg="http://example.net/vocab#"
     xmlns:owl="http://www.w3.org/2002/07/owl#"
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xml:base='http://www.w3.org/2002/03owlt/inverseOf/premises001'
     xmlns:your="http://example.net/yourVocab#">
 
     <rdf:Description rdf:about="http://example.net/myVocab#hasBrother">

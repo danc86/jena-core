@@ -1,5 +1,5 @@
 <!--++ equivalentProperty/conclusions003.rdf ** generated using webont test editor. ++-->
-<!--++ Created 18 Dec 2002 13:28:22 GMT ++-->
+<!--++ Created 7 May 2003 11:30:26 GMT ++-->
 <!--
   Copyright World Wide Web Consortium, (Massachusetts Institute of
   Technology, European Research Consortium for Informatics and
@@ -13,7 +13,7 @@
   $Id$
 -->
 <!--
-The inverse entailment also holds.
+The inverse entailment of test 002 also holds.
 -->
 <!-- Author: Jeremy J. Carroll -->
 <rdf:RDF

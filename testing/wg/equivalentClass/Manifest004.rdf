@@ -1,5 +1,5 @@
 <!--++ equivalentClass/Manifest004.rdf ** generated using webont test editor. ++-->
-<!--++ Created 18 Dec 2002 12:12:14 GMT ++-->
+<!--++ Created 22 Apr 2003 08:08:37 GMT ++-->
 <!--
   Copyright World Wide Web Consortium, (Massachusetts Institute of
   Technology, European Research Consortium for Informatics and
@@ -22,12 +22,14 @@
       xml:base='http://www.w3.org/2002/03owlt/equivalentClass/Manifest004'
 >
 <otest:PositiveEntailmentTest rdf:ID='test'>
+   <otest:level rdf:resource='http://www.w3.org/2002/03owlt/testOntology#Full' />
    <rtest:status>APPROVED</rtest:status>
+   <rtest:approval rdf:resource='http://lists.w3.org/Archives/Public/www-webont-wg/2003Jan/0444' />
    <dc:creator>Jeremy J. Carroll</dc:creator>
    <otest:feature rdf:resource='http://www.w3.org/2002/07/owl#equivalentClass' />
    <otest:level rdf:resource='http://www.w3.org/2002/03owlt/testOntology#Lite' />
    <rtest:description rdf:parseType='Literal'>
-Two classes with the same complete description are the same.</rtest:description>
+Two classes with the same complete description are equivalent.</rtest:description>
    <rtest:premiseDocument>
          <rtest:RDF-XML-Document rdf:about='premises004' >
               <otest:level rdf:resource='http://www.w3.org/2002/03owlt/testOntology#Lite' />

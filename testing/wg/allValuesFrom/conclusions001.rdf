@@ -1,5 +1,5 @@
 <!--++ allValuesFrom/conclusions001.rdf ** generated using webont test editor. ++-->
-<!--++ Created 17 Dec 2002 13:31:57 GMT ++-->
+<!--++ Created 21 Apr 2003 19:12:55 GMT ++-->
 <!--
   Copyright World Wide Web Consortium, (Massachusetts Institute of
   Technology, European Research Consortium for Informatics and
@@ -19,8 +19,10 @@ A simple example.
 <rdf:RDF
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
     xmlns:first="http://www.w3.org/2002/03owlt/allValuesFrom/premises001#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
     xml:base="http://www.w3.org/2002/03owlt/allValuesFrom/conclusions001" >
     <first:c rdf:about="premises001#o">
        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
     </first:c>
+    <owl:Class rdf:about="premises001#c"/>
 </rdf:RDF>

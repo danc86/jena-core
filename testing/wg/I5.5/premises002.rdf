@@ -17,6 +17,8 @@ rdf:rest is a FunctionalProperty.
 -->
 <!-- Author: Jeremy J. Carroll -->
 <rdf:RDF
+    xml:base="http://www.w3.org/2002/03owlt/I5.5/premises002"
+   
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
 
 

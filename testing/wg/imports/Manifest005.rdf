@@ -21,13 +21,15 @@
       xmlns:owl='http://www.w3.org/2002/07/owl#'
       xml:base='http://www.w3.org/2002/03owlt/imports/Manifest005'
 >
-<otest:ImportsLevelTest rdf:ID='test'>
-   <rtest:status>APPROVED</rtest:status>
+<otest:ImportLevelTest rdf:ID='test'>
+   <rtest:status>APPROVED</rtest:status> <rtest:approval rdf:resource="http://lists.w3.org/Archives/Public/www-webont-wg/2003Jan/0444"/>
    <dc:creator>Jeremy J. Carroll</dc:creator>
    <otest:feature rdf:resource='http://www.w3.org/2002/07/owl#imports' />
    <otest:level rdf:resource='http://www.w3.org/2002/03owlt/testOntology#DL' />
    <rtest:description rdf:parseType='Literal'>
-OWL DL documents cannot be imported by OWL Lite documents. </rtest:description>
+If an OWL Lite document imports an OWL DL 
+document then it becomes OWL DL.
+ </rtest:description>
    <otest:importedPremiseDocument>
          <rtest:RDF-XML-Document rdf:about='imports005' >
               <otest:level rdf:resource='http://www.w3.org/2002/03owlt/testOntology#DL' />
@@ -38,5 +40,5 @@ OWL DL documents cannot be imported by OWL Lite documents. </rtest:description>
               <otest:level rdf:resource='http://www.w3.org/2002/03owlt/testOntology#DL' />
          </rtest:RDF-XML-Document>
    </rtest:inputDocument>
-</otest:ImportsLevelTest >
+</otest:ImportLevelTest >
 </rdf:RDF>

@@ -1,5 +1,5 @@
 <!--++ equivalentClass/premises001.rdf ** generated using webont test editor. ++-->
-<!--++ Created 18 Dec 2002 10:57:15 GMT ++-->
+<!--++ Created 7 May 2003 11:28:17 GMT ++-->
 <!--
   Copyright World Wide Web Consortium, (Massachusetts Institute of
   Technology, European Research Consortium for Informatics and
@@ -13,7 +13,7 @@
   $Id$
 -->
 <!--
-Two classes may be different names for the same set of individuals
+Two classes may have the same class extension.
 -->
 <!-- Author: Jeremy J. Carroll -->
 <rdf:RDF

@@ -1,5 +1,5 @@
 <!--++ equivalentProperty/conclusions006.rdf ** generated using webont test editor. ++-->
-<!--++ Created 18 Dec 2002 14:14:05 GMT ++-->
+<!--++ Created 7 May 2003 11:31:38 GMT ++-->
 <!--
   Copyright World Wide Web Consortium, (Massachusetts Institute of
   Technology, European Research Consortium for Informatics and
@@ -13,7 +13,7 @@
   $Id$
 -->
 <!--
-<code>hasLeader</code> may be stated to be the <code>equivalentProperty</code> <code>hasHead</code>.
+<code>hasLeader</code> may be stated to be the <code>owl:equivalentProperty</code> of <code>hasHead</code>.
 -->
 <!-- Author: Jeremy J. Carroll -->
 <rdf:RDF

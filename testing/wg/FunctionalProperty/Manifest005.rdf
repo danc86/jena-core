@@ -1,5 +1,5 @@
 <!--++ FunctionalProperty/Manifest005.rdf ** generated using webont test editor. ++-->
-<!--++ Created 27 Sep 2002 10:45:09 GMT ++-->
+<!--++ Created 7 May 2003 12:25:53 GMT ++-->
 <!--
   Copyright World Wide Web Consortium, (Massachusetts Institute of
   Technology, European Research Consortium for Informatics and
@@ -21,19 +21,24 @@
       xmlns:owl='http://www.w3.org/2002/07/owl#'
       xml:base='http://www.w3.org/2002/03owlt/FunctionalProperty/Manifest005'
 >
-<otest:PositiveEntailmentTest rdf:ID='test'> <otest:level rdf:resource='http://www.w3.org/2002/03owlt/testOntology#Full' />
+<otest:PositiveEntailmentTest rdf:ID='test'>
    <rtest:status>PROPOSED</rtest:status>
    <dc:creator>Peter F. Patel-Schneider</dc:creator>
    <rtest:issue rdf:resource='http://www.w3.org/2001/sw/WebOnt/webont-issues#I4.1-UniqueProp-BadName' />
    <otest:feature rdf:resource='http://www.w3.org/2002/07/owl#FunctionalProperty' />
+   <otest:level rdf:resource='http://www.w3.org/2002/03owlt/testOntology#Full' />
    <rtest:description rdf:parseType='Literal'>
 If prop belongs to <code>owl:FunctionalProperty</code>
-then an OWL object has at most one value for prop.</rtest:description>
+then an OWL individual has at most one value for prop.</rtest:description>
    <rtest:premiseDocument>
-         <rtest:RDF-XML-Document rdf:about='premises005' >  <otest:level rdf:resource='http://www.w3.org/2002/03owlt/testOntology#Full' /> </rtest:RDF-XML-Document>
+         <rtest:RDF-XML-Document rdf:about='premises005' >
+              <otest:level rdf:resource='http://www.w3.org/2002/03owlt/testOntology#Full' />
+         </rtest:RDF-XML-Document>
    </rtest:premiseDocument>
    <rtest:conclusionDocument>
-         <rtest:RDF-XML-Document rdf:about='conclusions005' >  <otest:level rdf:resource='http://www.w3.org/2002/03owlt/testOntology#Full' /> </rtest:RDF-XML-Document>
+         <rtest:RDF-XML-Document rdf:about='conclusions005' >
+              <otest:level rdf:resource='http://www.w3.org/2002/03owlt/testOntology#Full' />
+         </rtest:RDF-XML-Document>
    </rtest:conclusionDocument>
 </otest:PositiveEntailmentTest >
 </rdf:RDF>

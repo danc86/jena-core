@@ -38,12 +38,12 @@ three distinct values on some subject node.
     </rdf:Description>
 
     <rdf:Description rdf:about="inconsistent001#ob1">
-        <owl:differentIndividualFrom rdf:resource="inconsistent001#ob2"/>
-        <owl:differentIndividualFrom rdf:resource="inconsistent001#ob3"/>
+        <owl:differentFrom rdf:resource="inconsistent001#ob2"/>
+        <owl:differentFrom rdf:resource="inconsistent001#ob3"/>
     </rdf:Description>
 
     <rdf:Description rdf:about="inconsistent001#ob2">
-        <owl:differentIndividualFrom rdf:resource="inconsistent001#ob3"/>
+        <owl:differentFrom rdf:resource="inconsistent001#ob3"/>
     </rdf:Description>
 
     <owl:ObjectProperty rdf:about="inconsistent001#prop"/>

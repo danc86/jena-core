@@ -1,5 +1,5 @@
 <!--++ allValuesFrom/premises002.rdf ** generated using webont test editor. ++-->
-<!--++ Created 17 Dec 2002 13:36:58 GMT ++-->
+<!--++ Created 7 May 2003 11:25:25 GMT ++-->
 <!--
   Copyright World Wide Web Consortium, (Massachusetts Institute of
   Technology, European Research Consortium for Informatics and
@@ -13,7 +13,7 @@
   $Id$
 -->
 <!--
-See allValuesFrom.
+Another simple example; contrast with <code>owl:someValuesFrom</code>.
 -->
 <!-- Author: Jeremy J. Carroll -->
 <rdf:RDF

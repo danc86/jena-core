@@ -1,5 +1,5 @@
 <!--++ disjointWith/premises002.rdf ** generated using webont test editor. ++-->
-<!--++ Created 12 Dec 2002 18:29:59 GMT ++-->
+<!--++ Created 7 May 2003 11:26:08 GMT ++-->
 <!--
   Copyright World Wide Web Consortium, (Massachusetts Institute of
   Technology, European Research Consortium for Informatics and
@@ -13,8 +13,7 @@
   $Id$
 -->
 <!--
-Disjoint classes have different members; OWL Full.
-
+Disjoint classes have different members.
 -->
 <!-- Author: Jeremy J. Carroll -->
 <rdf:RDF

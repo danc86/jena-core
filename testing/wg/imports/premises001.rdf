@@ -23,7 +23,8 @@ entailed by the conjunction of the two documents.
     xml:base='http://www.w3.org/2002/03owlt/imports/premises001' >
 
     <rdf:Description rdf:about=''>
-        <owl:imports rdf:resource='http://www.w3.org/2002/03owlt/imports/support001-A'/>
+        <owl:imports 
+     rdf:resource="http://www.w3.org/2002/03owlt/imports/support001-A"/>
     </rdf:Description>
 
     <ont:Man rdf:about='http://example.org/data#Socrates'/>

@@ -1,4 +1,5 @@
-<!--++ miscellaneous/Manifest001.rdf ++-->
+<!--++ miscellaneous/Manifest001.rdf ** generated using webont test editor. ++-->
+<!--++ Created 25 Jul 2003 19:04:02 GMT ++-->
 <!--
   Copyright World Wide Web Consortium, (Massachusetts Institute of
   Technology, European Research Consortium for Informatics and
@@ -22,13 +23,18 @@
 >
 <otest:ConsistencyTest rdf:ID='test'>
    <rtest:status>APPROVED</rtest:status>
-   <dc:creator></dc:creator>
+   <rtest:approval rdf:resource='http://lists.w3.org/Archives/Public/www-webont-wg/2003Jan/0444' />
+   <dc:creator>Guide editors</dc:creator>
+   <otest:issuette rdf:resource='http://www.w3.org/TR/owl-test/#misc-000-guide' />
+   <otest:level rdf:resource='http://www.w3.org/2002/03owlt/testOntology#DL' />
    <otest:level rdf:resource='http://www.w3.org/2002/03owlt/testOntology#Full' />
+   <otest:size rdf:resource='http://www.w3.org/2002/03owlt/testOntology#Large' />
+   <otest:usedDatatype rdf:resource='http://www.w3.org/2001/XMLSchema#positiveInteger'/>
    <rtest:description rdf:parseType='Literal'>
-wine example taken from the guide </rtest:description>
+Wine example taken from the guide.</rtest:description>
    <rtest:inputDocument>
-         <rtest:RDF-XML-Document rdf:about='example001' >
-              <otest:level rdf:resource='http://www.w3.org/2002/03owlt/testOntology#Full' />
+         <rtest:RDF-XML-Document rdf:about='consistent001' >
+              <otest:level rdf:resource='http://www.w3.org/2002/03owlt/testOntology#DL' />
          </rtest:RDF-XML-Document>
    </rtest:inputDocument>
 </otest:ConsistencyTest >

@@ -13,7 +13,9 @@
   $Id$
 -->
 <!--
-Some RDFS files can have type declarations added to make a useful OWL Lite file.
+It is often possible to import an ordinary RDFS document
+unchanged into an OWL Lite document. Aditional type
+declarations may be needed in the importing document.
 -->
 <!-- Author: Jeremy J. Carroll -->
 <rdf:RDF

@@ -1,5 +1,5 @@
 <!--++ I5.5/Manifest002.rdf ** generated using webont test editor. ++-->
-<!--++ Created 12 Dec 2002 17:34:30 GMT ++-->
+<!--++ Created 7 May 2003 10:56:54 GMT ++-->
 <!--
   Copyright World Wide Web Consortium, (Massachusetts Institute of
   Technology, European Research Consortium for Informatics and
@@ -21,17 +21,18 @@
       xmlns:owl='http://www.w3.org/2002/07/owl#'
       xml:base='http://www.w3.org/2002/03owlt/I5.5/Manifest002'
 >
-<otest:PositiveEntailmentTest rdf:ID='test'> <otest:level rdf:resource='http://www.w3.org/2002/03owlt/testOntology#Full' />
+<otest:OWLforOWLTest rdf:ID='test'>
    <rtest:status>APPROVED</rtest:status>
+   <rtest:approval rdf:resource='http://lists.w3.org/Archives/Public/www-webont-wg/2003Jan/0444' />
    <dc:creator>Jeremy J. Carroll</dc:creator>
    <rtest:issue rdf:resource='http://www.w3.org/2001/sw/WebOnt/webont-issues#I5.5-List-syntax-or-semantics' />
+   <otest:level rdf:resource='http://www.w3.org/2002/03owlt/testOntology#Full' />
    <rtest:description rdf:parseType='Literal'>
 rdf:rest is a FunctionalProperty.</rtest:description>
-   <rtest:premiseDocument>
-         <rtest:RDF-XML-Document rdf:about='premises002' >  <otest:level rdf:resource='http://www.w3.org/2002/03owlt/testOntology#Full' /> </rtest:RDF-XML-Document>
-   </rtest:premiseDocument>
    <rtest:conclusionDocument>
-         <rtest:RDF-XML-Document rdf:about='conclusions002' >  <otest:level rdf:resource='http://www.w3.org/2002/03owlt/testOntology#Full' /> </rtest:RDF-XML-Document>
+         <rtest:RDF-XML-Document rdf:about='conclusions002' >
+              <otest:level rdf:resource='http://www.w3.org/2002/03owlt/testOntology#Full' />
+         </rtest:RDF-XML-Document>
    </rtest:conclusionDocument>
-</otest:PositiveEntailmentTest >
+</otest:OWLforOWLTest >
 </rdf:RDF>
