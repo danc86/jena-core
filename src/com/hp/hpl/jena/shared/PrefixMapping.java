@@ -143,7 +143,7 @@ public interface PrefixMapping
         .setNsPrefix( "rdf", RDF.getURI() )
         .setNsPrefix( "dc", DC.getURI() )
         .setNsPrefix( "rss", RSS.getURI() )
-        .setNsPrefix( "daml", DAMLVocabulary.NAMESPACE_DAML_2000_12_URI )
+        .setNsPrefix( "daml", DAMLVocabulary.NAMESPACE_DAML_2001_03_URI )
         .setNsPrefix( "vcard", VCARD.getURI() )
         .setNsPrefix( "owl", OWL.NAMESPACE )
         .lock()
