@@ -28,8 +28,15 @@ public class Driver_Oracle extends DriverRDB {
 	/** 
 	 * Constructor
 	 */
-	public Driver_Oracle(){
+	public Driver_Oracle() {
+		
 		super();
+		
+		//	Oracle not supported at this time
+	    if (true) {
+	    	throw(new RDFRDBException("Oracle is not yet supported for Jena."));
+	    }
+		
 
 		String myPackageName = this.getClass().getPackage().getName();
 		
