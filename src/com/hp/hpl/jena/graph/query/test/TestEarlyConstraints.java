@@ -28,20 +28,8 @@ public class TestEarlyConstraints extends GraphTestBase
         
 	public static TestSuite suite()
         { return new TestSuite( TestEarlyConstraints.class ); }
-    
-    public void testSetRemove()
-        {
-    	Set s = new HashSet();
-        s.add( "a" );
-        s.add( "b" );
-        Iterator it = s.iterator();
-        it.next(); it.remove();
-        assertFalse( s.isEmpty() );
-        it.next(); it.remove();
-        assertTrue( s.isEmpty() );
-        }
-    
-    public void testXXX()
+        
+    public void testEarlyConstraint()
         {
         final int [] count = {0};
         Query q = new Query()
