@@ -70,10 +70,10 @@ public class MegaTestSuite extends TestSuite {
             "inference test",
             com.hp.hpl.jena.inference.InferenceTestSuite.suite());
             */
-        if (false)
-            addTest("DAML", com.hp.hpl.jena.ontology.daml.test.DAMLTest.suite());
-        else
-            System.err.println("WARNING: DAML tests suppressed for the moment");
+//         if (false)
+//             addTest("DAML", com.hp.hpl.jena.ontology.daml.test.DAMLTest.suite());
+//         else
+//             System.err.println("WARNING: DAML tests suppressed for the moment");
     }
     private void addTest(String name, TestSuite tc) {
         tc.setName(name);
