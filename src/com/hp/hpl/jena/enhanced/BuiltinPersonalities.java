@@ -29,6 +29,7 @@ public class BuiltinPersonalities {
         .add( Resource.class, ResourceImpl.factory )
 		.add( Property.class, PropertyImpl.factory )	
 		.add( Literal.class,LiteralImpl.factory )
+        .add( Container.class, ContainerImpl.factory )
         .add( Alt.class, AltImpl.factory )
         .add( Bag.class, BagImpl.factory )
         .add( Seq.class, SeqImpl.factory )
