@@ -31,6 +31,7 @@ import com.hp.hpl.jena.ontology.path.*;
 import com.hp.hpl.jena.vocabulary.*;
 
 
+
 /**
  * <p>
  * Unit test cases for the Ontology class
@@ -215,6 +216,42 @@ public class TestClassExpression
                 new Integer( 1 ),
                 NS + "ClassD",
                 null,
+                null
+            },
+            
+            // Enumerated class
+            {   
+                "OWL EnumeratedClass.oneOf",
+                new PS() { 
+                    public PathSet ps( OntModel m ) {
+                        return ((EnumeratedClass) m.getResource( NS + "ClassA" )
+                               .as( EnumeratedClass.class )).p_oneOf(); 
+                    } 
+                },
+                OWL.oneOf,
+                ProfileRegistry.OWL_LANG,
+                "file:testing/ontology/owl/ClassExpression/test-enum.rdf",
+                T,
+                new Integer( 1 ),
+                null,
+                RDF.List,
+                null
+            },
+            {   
+                "DAML EnumeratedClass.oneOf",
+                new PS() { 
+                    public PathSet ps( OntModel m ) {
+                        return ((EnumeratedClass) m.getResource( NS + "ClassA" )
+                               .as( EnumeratedClass.class )).p_oneOf(); 
+                    } 
+                },
+                DAML_OIL.oneOf,
+                ProfileRegistry.DAML_LANG,
+                "file:testing/ontology/daml/ClassExpression/test-enum.rdf",
+                T,
+                new Integer( 1 ),
+                null,
+                DAML_OIL.List,
                 null
             },
       };

@@ -5,7 +5,7 @@
  * Author email       Ian.Dickinson@hp.com
  * Package            Jena 2
  * Web                http://sourceforge.net/projects/jena/
- * Created            10 Feb 2003
+ * Created            31-Mar-2003
  * Filename           $RCSfile$
  * Revision           $Revision$
  * Release status     $State$
@@ -13,47 +13,70 @@
  * Last modified on   $Date$
  *               by   $Author$
  *
- * (c) Copyright 2002-2003, Hewlett-Packard Company, all rights reserved. 
+ * (c) Copyright 2002-2003, Hewlett-Packard Company, all rights reserved.
  * (see footer for full conditions)
- * ****************************************************************************/
+ *****************************************************************************/
 
 // Package
 ///////////////
-package com.hp.hpl.jena.ontology;
+package com.hp.hpl.jena.ontology.impl;
 
 
 // Imports
 ///////////////
-import com.hp.hpl.jena.ontology.path.PathSet;
+import com.hp.hpl.jena.ontology.*;
+import com.hp.hpl.jena.ontology.path.*;
+import com.hp.hpl.jena.enhanced.*;
+import com.hp.hpl.jena.graph.*;
 
 
 /**
  * <p>
- * Interface providing an encapsulation for general class descriptions, and
- * which provides a super-type for all ontology class expressions.
+ * Implementation for the ontology abstraction representing ontology class descriptions.
  * </p>
  *
  * @author Ian Dickinson, HP Labs
  *         (<a  href="mailto:Ian.Dickinson@hp.com" >email</a>)
  * @version CVS $Id$
  */
-public interface ClassDescription
-    extends OntResource
+public class ClassDescriptionImpl
+    extends OntResourceImpl
+    implements OntClass 
 {
     // Constants
     //////////////////////////////////
 
-
     // Static variables
     //////////////////////////////////
+
+    /** 
+     * A factory for generating class description facets from nodes in enhanced graphs.
+     * Note: should not be invoked directly by user code: use 
+     * {@link com.hp.hpl.jena.rdf.model.RDFNode#as() as()} instead.
+     */
+    public static Implementation factory = new Implementation() {
+        public EnhNode wrap( Node n, EnhGraph eg ) { return new ClassDescriptionImpl( n, eg ); }
+    };
+
 
 
     // Instance variables
     //////////////////////////////////
 
-
     // Constructors
     //////////////////////////////////
+
+    /**
+     * <p>
+     * Construct an ontology class description represented by the given node in the given graph.
+     * </p>
+     * 
+     * @param n The node that represents the resource
+     * @param g The enh graph that contains n
+     */
+    public ClassDescriptionImpl( Node n, EnhGraph g ) {
+        super( n, g );
+    }
 
 
     // External signature methods
@@ -63,48 +86,51 @@ public interface ClassDescription
      * <p>
      * Answer an {@link PathSet accessor} for the 
      * <code>subClassOf</code>
-     * property of a class or class description. The accessor
+     * property of a class description. The accessor
      * can be used to perform a variety of operations, including getting and setting the value.
      * </p>
      * 
      * @return An abstract accessor for the imports of an ontology element
      */
-    public PathSet p_subClassOf();
+    public PathSet p_subClassOf() {
+        return asPathSet( getProfile().SUB_CLASS_OF() );
+    }
     
     /**
      * <p>
      * Answer an {@link PathSet accessor} for the 
      * <code>equivalentClass</code>
-     * property of a class or class description. The accessor
+     * property of a class description. The accessor
      * can be used to perform a variety of operations, including getting and setting the value.
      * </p>
      * 
      * @return An abstract accessor for the imports of an ontology element
      */
-    public PathSet p_equivalentClass();
+    public PathSet p_equivalentClass() {
+        return asPathSet( getProfile().EQUIVALENT_CLASS() );
+    }
     
     /**
      * <p>
      * Answer an {@link PathSet accessor} for the 
      * <code>disjointWith</code>
-     * property of a class or class description. The accessor
+     * property of a class description. The accessor
      * can be used to perform a variety of operations, including getting and setting the value.
      * </p>
      * 
      * @return An abstract accessor for the imports of an ontology element
      */
-    public PathSet p_disjointWith();
-
+    public PathSet p_disjointWith() {
+        return asPathSet( getProfile().DISJOINT_WITH() );
+    }
      
 
     // Internal implementation methods
     //////////////////////////////////
 
-
     //==============================================================================
     // Inner class definitions
     //==============================================================================
-
 
 }
 

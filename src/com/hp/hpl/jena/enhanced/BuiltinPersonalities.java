@@ -10,6 +10,8 @@ import com.hp.hpl.jena.rdf.model.impl.*;
 import com.hp.hpl.jena.ontology.*;
 import com.hp.hpl.jena.ontology.impl.*;
 
+import java.io.*;
+import java.util.*;
 
 /**
 	@author jjc + kers
@@ -30,8 +32,27 @@ public class BuiltinPersonalities {
         // ontology additions
         .add( OntList.class, OntListImpl.factory )
         .add( Ontology.class, OntologyImpl.factory )
+        .add( ClassDescription.class, ClassDescriptionImpl.factory )
         .add( OntClass.class, OntClassImpl.factory )
-        ;		
+        .add( EnumeratedClass.class, EnumeratedClassImpl.factory )
+        ;	
+        
+        
+    /**
+     * For debugging purposes, list the standard personalities on the given
+     * output writer.
+     * 
+     * @param writer A printwriter to list the personalities mapping to
+     */
+    static public void listPersonalities( PrintWriter writer ) {	
+        for (Iterator i = model.nodePersonality().getMap().entrySet().iterator();  i.hasNext(); ) {
+            Map.Entry e = (Map.Entry) i.next();
+            
+            writer.println( "personality key " + ((Class) e.getKey()).getName() + " -> value " + e.getValue() );
+        }
+        
+        writer.flush();
+    }
 }
 
 /*

@@ -85,6 +85,8 @@ public class Personality {
 
         return rslt;
         }
+    
+    protected Map getMap() {return types;}
 }
 
 /*

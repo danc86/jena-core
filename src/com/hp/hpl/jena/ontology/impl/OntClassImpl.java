@@ -26,7 +26,6 @@ package com.hp.hpl.jena.ontology.impl;
 // Imports
 ///////////////
 import com.hp.hpl.jena.ontology.*;
-import com.hp.hpl.jena.ontology.path.*;
 import com.hp.hpl.jena.enhanced.*;
 import com.hp.hpl.jena.graph.*;
 
@@ -41,7 +40,7 @@ import com.hp.hpl.jena.graph.*;
  * @version CVS $Id$
  */
 public class OntClassImpl
-    extends OntResourceImpl
+    extends ClassDescriptionImpl
     implements OntClass 
 {
     // Constants
@@ -51,7 +50,9 @@ public class OntClassImpl
     //////////////////////////////////
 
     /**
-     * A factory for generating Ontology facets from nodes in enhanced graphs.
+     * A factory for generating OntClass facets from nodes in enhanced graphs.
+     * Note: should not be invoked directly by user code: use 
+     * {@link com.hp.hpl.jena.rdf.model.RDFNode#as() as()} instead.
      */
     public static Implementation factory = new Implementation() {
         public EnhNode wrap( Node n, EnhGraph eg ) { return new OntClassImpl( n, eg ); }
@@ -81,47 +82,6 @@ public class OntClassImpl
     // External signature methods
     //////////////////////////////////
 
-    /**
-     * <p>
-     * Answer an {@link PathSet accessor} for the 
-     * <code>subClassOf</code>
-     * property of an ontology. The accessor
-     * can be used to perform a variety of operations, including getting and setting the value.
-     * </p>
-     * 
-     * @return An abstract accessor for the imports of an ontology element
-     */
-    public PathSet p_subClassOf() {
-        return asPathSet( getProfile().SUB_CLASS_OF() );
-    }
-    
-    /**
-     * <p>
-     * Answer an {@link PathSet accessor} for the 
-     * <code>equivalentClass</code>
-     * property of an ontology. The accessor
-     * can be used to perform a variety of operations, including getting and setting the value.
-     * </p>
-     * 
-     * @return An abstract accessor for the imports of an ontology element
-     */
-    public PathSet p_equivalentClass() {
-        return asPathSet( getProfile().EQUIVALENT_CLASS() );
-    }
-    
-    /**
-     * <p>
-     * Answer an {@link PathSet accessor} for the 
-     * <code>disjointWith</code>
-     * property of an ontology. The accessor
-     * can be used to perform a variety of operations, including getting and setting the value.
-     * </p>
-     * 
-     * @return An abstract accessor for the imports of an ontology element
-     */
-    public PathSet p_disjointWith() {
-        return asPathSet( getProfile().DISJOINT_WITH() );
-    }
      
 
     // Internal implementation methods
