@@ -10,4 +10,4 @@
 # $Id$
 ##################################################################
 
-<http://www.example.org> <http://example.org/property> "well-formed XML"@en-US^^<http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral> .
+<http://www.example.org> <http://example.org/property> "well-formed XML"^^<http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral> .
