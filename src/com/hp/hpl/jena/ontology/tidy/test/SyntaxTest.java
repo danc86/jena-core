@@ -104,7 +104,7 @@ class SyntaxTest extends TestCase {
 		//	  return;
 			//(InputStream) inI.next(),
 			//om.read()
-			chk.rawAdd(om.getGraph());
+			chk.addRaw(om.getGraph());
 			
 			String rslt = chk.getSubLanguage();
 			if (!level.getURI().endsWith(rslt)) {
