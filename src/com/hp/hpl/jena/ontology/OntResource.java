@@ -460,25 +460,25 @@ public interface OntResource
 
     /**
      * <p>
-     * Answer true if this DAML value is a member of the class denoted by the given URI.
+     * Answer true if this resource is a member of the class denoted by the given URI.
      * </p>
      *
      * @param classURI String denoting the URI of the class to test against
-     * @return True if it can be shown that this DAML value is a member of the class, via
-     *         <code>rdf:type</code>.
+     * @return True if it can be shown that this ontology resource has an
+     *         <code>rdf:type</code> of the given URI.
      */
     public boolean hasRDFType( String classURI );
 
 
     /**
      * <p>
-     * Answer true if this ontology value is a member of the class denoted by the
+     * Answer true if this resource is a member of the class denoted by the
      * given class resource.
      * </p>
      * 
      * @param ontClass Denotes a class to which this value may belong
      * @return True if <code><i>this</i> rdf:type <i>ontClass</i></code> is
-     * a valid entailment in the model.
+     * true of the current model.
      */
     public boolean hasRDFType( Resource ontClass );
 
