@@ -54,7 +54,7 @@ public class Query
         { return addNamedMatch( name, S, P, O ); }   
    
     public Query addConstraint( Node S, Node P, Node O )
-        { 
+        {
         constraintGraph.add( new Triple( S, P, O ) ); 
         return this;
         }

@@ -505,7 +505,12 @@ public class QueryTest extends GraphTestBase
     */
     public void testQueryConstraintNull()
         {
-        Query q = new Query();
+        try 
+            { 
+            Query q = new Query().addConstraint( null, node( "ne" ), null );
+            fail( "null operands to addConstraint should be caught" );
+            }
+        catch (Exception e) { /* should be more explicit */ }
         }
         
     public void testCloseQuery()
