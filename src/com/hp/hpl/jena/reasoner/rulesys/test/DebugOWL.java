@@ -315,7 +315,8 @@ public class DebugOWL {
 //            new DebugOWL(OWL).run("file:temp/owl-subset.owl");
             
             // Test volz examples on OWL config
-//            new DebugOWL(OWLFB).run();
+//            new DebugOWL(OWLFB).runVolz();
+//            new DebugOWL(OWLExpt).runVolz();
             
             // Test volz examples on RDFS config
 //            System.out.println("Volz tests on RDFSRule");

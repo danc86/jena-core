@@ -82,7 +82,7 @@ public class RETERuleInfGraph extends BasicForwardRuleInfGraph {
      * Add one triple to the data graph, run any rules triggered by
      * the new data item, recursively adding any generated triples.
      */
-    public synchronized void add(Triple t) {
+    public synchronized void performAdd(Triple t) {
         if (!isPrepared) prepare();
         fdata.getGraph().add(t);
         engine.add(t);
@@ -91,7 +91,7 @@ public class RETERuleInfGraph extends BasicForwardRuleInfGraph {
     /** 
      * Removes the triple t (if possible) from the set belonging to this graph. 
      */   
-    public void delete(Triple t) {
+    public void performDelete(Triple t) {
         if (!isPrepared) prepare();
         if (fdata != null) {
             Graph data = fdata.getGraph();

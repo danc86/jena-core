@@ -443,6 +443,18 @@ public class TestBasics extends TestCase  {
                 new Triple(n1, q, n3)
             });
     }
+    
+    /**
+     * Test size bug, used to blow up if size was called before any queries.
+     */
+    public void testSize() {
+        String rules = "[rule1: (?x p ?y) -> (?x q ?y)]";
+        List ruleList = Rule.parseRules(rules);
+        Graph data = new GraphMem();
+        data.add(new Triple(n1, p, n2));
+        InfGraph infgraph = new BasicForwardRuleReasoner(ruleList).bind(data);
+        assertEquals(infgraph.size(), 2);
+    }
         
 }
 
