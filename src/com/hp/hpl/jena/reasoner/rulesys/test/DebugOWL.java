@@ -301,7 +301,7 @@ public class DebugOWL {
         runVolz(3,5,10, false);
         runVolz(3,5,10, false);
         runVolz(4,5,10, false);
-//        runVolz(5,5,10, false);
+        runVolz(5,5,10, false);
         
 //        runVolz(3,5,30, false);
 //        runVolz(4,5,30, false);
@@ -343,12 +343,14 @@ public class DebugOWL {
             // Test volz examples on RDFS config
             System.out.println("Volz tests on normal RDFS, tgc + type rules");
             new DebugOWL(RDFSFinal).runVolz();
-            System.out.println("Volz tests on normal OWL-FB");
-            new DebugOWL(OWLFB).runVolz();
+//            System.out.println("Volz tests on normal RDFS fb rules");
+//            new DebugOWL(RDFSFB).runVolz();
             System.out.println("Volz tests on lp + expt RDFS rules");
             new DebugOWL(RDFSLPExpt).runVolz();
-            System.out.println("Volz tests on lp + expt owl rules");
-            new DebugOWL(OWLExpt).runVolz();
+//            System.out.println("Volz tests on lp + expt owl rules");
+//            new DebugOWL(OWLExpt).runVolz();
+//            System.out.println("Volz tests on normal OWL-FB");
+//            new DebugOWL(OWLFB).runVolz();
                         
 //            DebugOWL tester = new DebugOWL(OWLFB);
 //            tester.load(dataFile2);
