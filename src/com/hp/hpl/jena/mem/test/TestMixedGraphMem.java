@@ -9,6 +9,7 @@ package com.hp.hpl.jena.mem.test;
 import junit.framework.TestSuite;
 
 import com.hp.hpl.jena.graph.Graph;
+import com.hp.hpl.jena.mem.MixedGraphMem;
 
 
 /**
