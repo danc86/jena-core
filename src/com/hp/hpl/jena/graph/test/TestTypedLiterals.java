@@ -254,6 +254,7 @@ public class TestTypedLiterals extends TestCase {
         checkLegalLiteral("-9223372036854775808", XSDDatatype.XSDnonPositiveInteger, BigInteger.class, new BigInteger("-9223372036854775808"));
         
         checkLegalLiteral("12345", XSDDatatype.XSDdecimal, Long.class, new Long("12345"));
+        checkLegalLiteral("0.0", XSDDatatype.XSDdecimal, Long.class, new Long("0"));
         checkLegalLiteral("42.45", XSDDatatype.XSDdecimal, BigDecimal.class, new BigDecimal("42.45"));
         checkLegalLiteral("9223372036854775808.1234", XSDDatatype.XSDdecimal, BigDecimal.class, new BigDecimal("9223372036854775808.1234"));
         checkLegalLiteral("123.4", XSDDatatype.XSDdecimal, BigDecimal.class, new BigDecimal("123.4"));
@@ -542,7 +543,7 @@ public class TestTypedLiterals extends TestCase {
         ll = l.asNode().getLiteral();
         assertTrue(! XSDDatatype.XSDdouble.isValidLiteral(ll));
         assertTrue(! XSDDatatype.XSDdecimal.isValidLiteral(ll));
-         
+                  
         Literal l2 = m.createTypedLiteral("foo", XSDDatatype.XSDstring);
         assertTrue(XSDDatatype.XSDstring.isValidLiteral(l2.asNode().getLiteral()));
         assertTrue(XSDDatatype.XSDnormalizedString.isValidLiteral(l2.asNode().getLiteral()));
