@@ -7,6 +7,7 @@
 package com.hp.hpl.jena.graph;
 
 /**
+ * THIS INTERFACE IS BECOMMING OBSOLETE.
  * A TripleMatch evaluates as true against a triple
  * if all four methods evaluate as true.
  * @author Jeremy Carroll
@@ -26,24 +27,8 @@ public interface TripleMatch {
         /** If it is known that all triples selected by this match will
          *  have a common object, return that node, otherwise return null */
         Node getObject();
-        
-	/** Is n a suitable subject for this match.
-	 */
-	boolean subject(Node n);
-	/** Is n a suitable predicate for this match.
-	 */
-	boolean predicate(Node n);
-	/** Is n a suitable object for this match.
-	 */
-	boolean object(Node n);
-	/** Is t a triple wanted in this match.
-	 *  A precondition before invoking this is
-	 * that subject(), predicate() and object() all are true.
-	 */
-	boolean triple(Triple t);
-
-    /** matches t; should be equal to all four above anded together */
-    boolean matches( Triple t );
+    
+    Triple asTriple();
 }
 
 /*

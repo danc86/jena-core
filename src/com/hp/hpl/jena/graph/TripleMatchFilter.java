@@ -1,5 +1,5 @@
 /*
-  (c) Copyright 2002, Hewlett-Packard Company, all rights reserved.
+  (c) Copyright 2002, 2003 Hewlett-Packard Company, all rights reserved.
   [See end of file]
   $Id$
 */
@@ -9,15 +9,17 @@ package com.hp.hpl.jena.graph;
 import com.hp.hpl.jena.util.iterator.Filter;
 
 /**
- *
- * @author  bwm
- */
+    A class to turn a triple (treated as a pattern) into a Filter.
+    It used to take a TripleMatch but those are obsolete.
+    
+    @author  bwm, kers
+*/
 public class TripleMatchFilter implements Filter {
     
-    TripleMatch tMatch;
+    Triple tMatch;
 
     /** Creates new TripleMatchFilter */
-    public TripleMatchFilter(TripleMatch tMatch) {
+    public TripleMatchFilter(Triple tMatch) {
         this.tMatch = tMatch;
     }
 

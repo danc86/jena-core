@@ -1332,7 +1332,7 @@ public void deleteTripleAR(
 	   } catch (Exception e) {
 		 Log.debug("find encountered exception " + e);
 	   }
-	   return ( new TripleMatchIterator(t,(ExtendedIterator) result));
+	   return ( new TripleMatchIterator( t.asTriple(), result ) );
    }
 
 		/* (non-Javadoc)

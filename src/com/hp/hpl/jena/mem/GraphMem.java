@@ -79,17 +79,17 @@ public class GraphMem extends GraphBase implements Graph {
         Node s = m.getSubject();
         Node p = m.getPredicate();
         Node o = m.getObject();
-
+        Triple tm = m.asTriple();
         // @@ some redundant compares in this code which could be improved
         if (s != null) {
-            return new TripleMatchIterator(m, subjects.iterator(s));
+            return new TripleMatchIterator(tm, subjects.iterator(s));
         } else if (o != null && !o.isLiteral()) {
             // der - added guard on isLiteral to support typed literal semantics
-            return new TripleMatchIterator(m, objects.iterator(o));
+            return new TripleMatchIterator(tm, objects.iterator(o));
         } else if (p != null) {
-            return new TripleMatchIterator(m, predicates.iterator(p));
+            return new TripleMatchIterator(tm, predicates.iterator(p));
         } else {
-            return new TripleMatchIterator(m, triples.iterator());
+            return new TripleMatchIterator(tm, triples.iterator());
         }
     }
 

@@ -33,45 +33,8 @@ public final class StandardTripleMatch implements TripleMatch {
         this.object = nullToAny( object );
     }
         
-	/**
-	 * Stores may optimise to not call this method
-	 * when subject!=null.
-	 * @see TripleMatch#subject(Node)
-	 */
-	public boolean subject(Node n) 
-        { return subject.matches( n ); }
-            
-	/**
-	 * Stores may optimise to not call this method
-	 * when predicate!=null.
-	 * @see TripleMatch#predicate(Node)
-	 */
-	public boolean predicate(Node n) 
-        { return predicate.matches( n ); }
-
-	/**
-	 * Stores may optimise to not call this method
-	 * when object!=null.
-	 * @see TripleMatch#object(Node)
-	 */
-	public boolean object(Node n) 
-        { return object.matches( n ); }
-
-	/**
-	 * This method must always be used as a filter by a Store.
-	 * @see TripleMatch#triple(Triple)
-	 */
-	public boolean triple(Triple t) {
-		return true;
-	}
-    
-    public boolean matches( Triple t )
-        {
-            return subject(t.getSubject())     &&
-                   predicate(t.getPredicate()) && 
-                   object(t.getObject())       &&
-                   triple(t);
-        }
+    public Triple asTriple()
+        { return new Triple( subject, predicate, object ); }
         
     public String toString()
     	{ return "<stm " + subject + " " + predicate + " " + object + ">"; }
