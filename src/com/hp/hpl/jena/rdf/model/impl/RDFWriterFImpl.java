@@ -35,6 +35,8 @@ import com.hp.hpl.jena.rdf.model.*;
 import java.util.Properties;
 import com.hp.hpl.jena.shared.*;
 import com.hp.hpl.jena.n3.N3JenaWriter;
+import com.hp.hpl.jena.JenaRuntime ;
+
 
 /**
  *
@@ -82,7 +84,7 @@ public class RDFWriterFImpl extends Object implements RDFWriterF {
         for (int i = 0; i < LANGS.length; i++) {
             langToClassName.setProperty(
                 LANGS[i],
-                Util.getProperty(PROPNAMEBASE + LANGS[i], DEFAULTWRITERS[i]));
+                JenaRuntime.getSystemProperty(PROPNAMEBASE + LANGS[i], DEFAULTWRITERS[i]));
         }
     }
 

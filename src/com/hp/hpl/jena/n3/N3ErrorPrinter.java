@@ -5,6 +5,7 @@
 
 package com.hp.hpl.jena.n3;
 import java.io.*;
+import com.hp.hpl.jena.util.FileUtils ;
 //import antlr.collections.AST;
 
 
@@ -14,22 +15,18 @@ import java.io.*;
  */
 public class N3ErrorPrinter extends NullN3EventHandler
 {
-	static final String NL = System.getProperty("line.separator","\n") ;
-	
-	Writer out = null;
+	PrintWriter out = null;
 	
 	public N3ErrorPrinter(OutputStream _out)
 	{
-		try {
-			out = new BufferedWriter(new OutputStreamWriter(_out, "UTF-8")) ;
-		} catch (java.io.UnsupportedEncodingException ex) {}
+	    out = FileUtils.asPrintWriterUTF8(_out) ;
 	}
 	
 	/** Best not to use a PrintWriter, but use an OutputStreamWriter (buffered)
 	 * 	with charset "UTF-8".
 	 */
 	
-	public N3ErrorPrinter(Writer _out)
+	public N3ErrorPrinter(PrintWriter _out)
 	{
 		out = _out;
 	}
@@ -38,10 +35,10 @@ public class N3ErrorPrinter extends NullN3EventHandler
 	//public void warning(Exception ex, String message)		{ println("Warning: "+message) ; }
 	//public void deprecated(Exception ex, String message)	{ println("Deprecated: "+message) ; }
 
-	private void print(String s) { try { out.write(s) ; } catch (java.io.IOException ex) {} }
-	private void println(String s) { try { out.write(s) ; out.write(NL) ;}catch (java.io.IOException ex) {} }
-	private void println() { try { out.write(NL) ;} catch (java.io.IOException ex) {} }
-	private void flush() { try { out.flush() ; } catch (java.io.IOException ex) {} }
+	private void print(String s) { out.print(s) ; }
+	private void println(String s) { out.println() ; }
+	private void println() { out.println() ; }
+	private void flush() { out.flush() ; }
 }
 
 /*

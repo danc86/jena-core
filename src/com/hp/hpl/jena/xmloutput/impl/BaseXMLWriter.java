@@ -12,6 +12,7 @@ import com.hp.hpl.jena.rdf.model.impl.*;
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.util.FileUtils;
 import com.hp.hpl.jena.rdf.model.impl.Util;
+import com.hp.hpl.jena.JenaRuntime ;
 
 import com.hp.hpl.jena.vocabulary.*;
 import com.hp.hpl.jena.shared.*;
@@ -258,7 +259,7 @@ abstract public class BaseXMLWriter implements RDFXMLWriterI {
         Iterator it = namespacesNeeded.iterator();
         while (it.hasNext()) {
             String uri = (String) it.next();
-            String val = Util.getProperty( RDFWriter.NSPREFIXPROPBASE + uri );
+            String val = JenaRuntime.getSystemProperty( RDFWriter.NSPREFIXPROPBASE + uri );
             if (val != null && checkLegalPrefix( val ) && !prefixesUsed.contains( val )) {
                 ns.put(uri, val);
                 prefixesUsed.add(val);

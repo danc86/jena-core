@@ -33,6 +33,7 @@ import com.hp.hpl.jena.*;
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.shared.*;
 import java.util.Properties;
+import com.hp.hpl.jena.JenaRuntime ;
 
 /**
  *
@@ -69,7 +70,7 @@ public class RDFReaderFImpl extends Object implements RDFReaderF {
         for (int i = 0; i<LANGS.length; i++) {
             langToClassName.setProperty(
                                LANGS[i],
-                               Util.getProperty(PROPNAMEBASE + LANGS[i],
+                               JenaRuntime.getSystemProperty(PROPNAMEBASE + LANGS[i],
                                                   DEFAULTREADERS[i]));
         }
     }
