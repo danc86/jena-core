@@ -184,13 +184,13 @@ public class OntModelSpec {
      */
     public static OntModelSpec getDefaultSpec( String languageURI ) {
         if (languageURI.equals( ProfileRegistry.OWL_LANG )) {
-            return OWL_MEM_TRANS_INF;
+            return OWL_MEM_RDFS_INF;
         }
         else if (languageURI.equals( ProfileRegistry.OWL_DL_LANG )) {
-            return OWL_DL_MEM_TRANS_INF;
+            return OWL_DL_MEM_RDFS_INF;
         }
         else if (languageURI.equals( ProfileRegistry.OWL_LITE_LANG )) {
-            return OWL_LITE_MEM_TRANS_INF;
+            return OWL_LITE_MEM_RDFS_INF;
         }
         else if (languageURI.equals( ProfileRegistry.DAML_LANG )) {
             return DAML_MEM_RDFS_INF;
