@@ -31,6 +31,8 @@ import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.graph.impl.*;
 import com.hp.hpl.jena.mem.GraphMem;
 import com.hp.hpl.jena.ontology.*;
+import com.hp.hpl.jena.ontology.daml.*;
+import com.hp.hpl.jena.ontology.daml.DAMLModel;
 import com.hp.hpl.jena.ontology.impl.OntClassImpl;
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.reasoner.*;
@@ -617,6 +619,19 @@ public class TestBugReports extends TestCase {
             OntClass c = m.getOntClass( classes[i] );
             for (Iterator j = c.listDeclaredProperties(); j.hasNext(); j.next() );
         }
+    }
+    
+    /** Bug report by Paulo Pinheiro da Silva [pp@ksl.stanford.edu] - exception while accessing PropertyAccessor.getDAMLValue */
+    public void test_ppds_01() {
+        DAMLModel m = ModelFactory.createDAMLModel();
+        DAMLClass c = m.createDAMLClass( NS + "C" );
+        DAMLInstance x = m.createDAMLInstance( c, NS + "x" );
+        DAMLProperty p = m.createDAMLProperty( NS + "p" );
+        
+        x.addProperty( p, "(s (s 0))" );
+        
+        PropertyAccessor a = x.accessProperty( p );
+        assertNull( "Property accessor value should be null", a.getDAMLValue() );
     }
     
     

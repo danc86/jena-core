@@ -152,9 +152,24 @@ public class PropertyAccessorImpl
      *         if the property has no value.
      */
     public DAMLCommon getDAMLValue() {
-        RDFNode n = get();
-        
-        return (n == null) ? null : (DAMLCommon) n.as( DAMLCommon.class );
+        NodeIterator i = null;
+        try {
+            for (i = getAll();  i.hasNext(); ) {
+                RDFNode n = (RDFNode) i.next();
+                
+                if (n.canAs( DAMLCommon.class )) {
+                    return (DAMLCommon) n.as( DAMLCommon.class );
+                }
+            }
+            
+            // no DAMLCommon value, so return null for compatability with Jena 1
+            return null;
+        }
+        finally {
+            if (i != null) {
+                i.close();
+            }
+        }
     }
 
 
