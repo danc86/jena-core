@@ -22,6 +22,7 @@ import com.hp.hpl.jena.datatypes.xsd.XSDDateTime;
 import com.hp.hpl.jena.enhanced.*;
 
 import java.io.*;
+import java.net.URL;
 import java.util.*;
 
 /** Common methods for model implementations.
@@ -202,11 +203,18 @@ public class ModelCom
         return this;
     }
     
+    public Model read( String url, String base, String lang )
+        {
+        try { read( new URL( url ) .openStream(), base, lang ); }
+        catch (IOException e) { throw new WrappedIOException( e ); }
+        return this;
+        }
+    
     public Model read(Reader reader, String base, String lang)
        {
         readerFactory .getReader(lang) .read(this, reader, base);
         return this;
-    }
+       }
     
   	public Model read(InputStream reader, String base, String lang)
   	   {

@@ -12,7 +12,7 @@ import java.util.*;
      @author kers
      @deprecated use CollectionFactory methods
 */
-public class HashUtils extends CollectionFactory
+public class HashUtils
     {
     public static Map createMap() { return new HashMap(); }
     

@@ -457,9 +457,15 @@ public interface Model
 	 * selects the default
 	 * @param reader the source of the input serialization
 	 */
-	public Model read(Reader reader, String base, String lang)
-		;
-	
+	public Model read(Reader reader, String base, String lang);
+
+    /**
+     * @param string
+     * @param string2
+     * @param string3
+    */
+    Model read( String url, String base, String lang );
+    
     // output operations
     
     /** 
