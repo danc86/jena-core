@@ -46,6 +46,33 @@ else
     exit 1 ;
 }
 
+# Find directory of target (for relative links)
+
+if ( $target =~ m!/$! )
+{
+    print STDERR "'$target': Filename end in a /\n" ;
+    exit 2 ;
+}
+
+
+$dir = undef ;
+if ( $target =~ m!(.*)/! )
+{
+    $dir = $1 ;
+    @path = split('/', $dir) ;
+}
+
+## Will be used so we can process file not in the current directory
+## $unpath='' ;
+## for $p (@path)
+## {
+##     $unpath="$unpath".'../' ;
+## }
+## print "Unpath: '$unpath'\n" ;
+## print "Dir = '$dir'\n" ;
+## print $#path , "\n" ;
+## exit ;
+
 # Read whole files.
 undef $/ ;
 open(TARGET, "<$target") || die ;
