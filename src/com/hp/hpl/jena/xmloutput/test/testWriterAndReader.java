@@ -145,6 +145,8 @@ public class testWriterAndReader
 			langsuite.addTest(new TestXMLFeatures("testXMLBase", lang));
 			/* */
 			langsuite.addTest(new TestXMLFeatures("testRelativeAPI", lang));
+			/* * /
+			langsuite.addTest(new TestXMLFeatures("testRelativeURI", lang));
 			/* */
 			langsuite.addTest(new TestXMLFeatures("testRelative", lang));
 			/* */

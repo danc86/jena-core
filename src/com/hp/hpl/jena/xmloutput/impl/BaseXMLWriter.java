@@ -710,7 +710,9 @@ abstract public class BaseXMLWriter implements RDFXMLWriterI {
     private String checkURI( String uri ) {
         if (demandGoodURIs)
             try { new URI( uri ); } 
-            catch (MalformedURIException e) { throw new BadURIException( "", e ); }
+            catch (MalformedURIException e) { 
+            	throw new BadURIException( "Only well-formed absolute URIrefs can be included in RDF/XML output", e ); 
+            }
         return uri;
     }
     

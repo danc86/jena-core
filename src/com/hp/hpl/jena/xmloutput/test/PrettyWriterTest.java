@@ -15,8 +15,8 @@ package com.hp.hpl.jena.xmloutput.test;
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.rdf.model.test.*;
 import com.hp.hpl.jena.ontology.*;
-import com.hp.hpl.jena.vocabulary.*;
-import java.util.*;
+//import com.hp.hpl.jena.vocabulary.*;
+//import java.util.*;
 
 import org.apache.oro.text.awk.AwkCompiler;
 import org.apache.oro.text.awk.AwkMatcher;

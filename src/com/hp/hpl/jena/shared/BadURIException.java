@@ -7,7 +7,17 @@
 package com.hp.hpl.jena.shared;
 
 /**
-    A Jena exception for malformed URIs. (This one is an unchecked
+    A Jena exception for malformed URIs. 
+    <p>
+    Jena checks URIs sometimes, particularly on input and output.
+    It is however possible to have a Jena model which contains
+    bad URIs. Such a model cannot be written out very easily,
+    particularly in RDF/XML, try N-TRIPLE.
+    An input document, particularly when no base URL is known,
+    may introduce relative URIs into a model. These may later
+    cause this exception.
+    <p>
+    (This one is an unchecked
     exception, so we don't litter our code with try-catch blocks or throws
     declarations.)
     

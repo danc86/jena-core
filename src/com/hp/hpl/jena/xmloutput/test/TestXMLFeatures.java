@@ -148,6 +148,15 @@ public class TestXMLFeatures extends ModelTestBase {
 		});
 	}
 
+  public void testRelativeURI() {
+  	Model m = ModelFactory.createDefaultModel();
+  	m.createResource("foo").addProperty(
+  	RDF.value,
+  	"bar");
+  	m.write(new OutputStream(){
+		public void write(int b) throws IOException {
+		}},lang);
+  }
 	public void testPropertyURI() throws IOException {
 		doBadPropTest(lang);
 	}

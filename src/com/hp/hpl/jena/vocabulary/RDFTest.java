@@ -3,8 +3,8 @@
  * Created by:  Dave Reynolds
  * Created on:  12-Sep-2003
  * 
- * (c) Copyright 2003, Hewlett-Packard Company, all rights reserved.
- * [See end of file]
+    (c) Copyright 2003 Hewlett-Packard Development Company, LP
+* [See end of file]
  * $Id$
  *****************************************************************/
 package com.hp.hpl.jena.vocabulary;
@@ -118,7 +118,7 @@ public class RDFTest {
 }
 
 /*
-    (c) Copyright Hewlett-Packard Company 2003
+   (c) Copyright 2003 Hewlett-Packard Development Company, LP
     All rights reserved.
 
     Redistribution and use in source and binary forms, with or without
