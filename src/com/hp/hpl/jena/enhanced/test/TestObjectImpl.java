@@ -57,7 +57,7 @@ public class TestObjectImpl extends TestCommonImpl implements TestObject {
         { return t.isInstance( this) && isObject(); }
         
     public boolean isObject() {
-        return find(O)!=null;
+        return findObject() != null;
     }
     /**
      * The code first checks that the interface is appropriate at this point.
@@ -70,7 +70,7 @@ public class TestObjectImpl extends TestCommonImpl implements TestObject {
     public TestSubject aSubject() {
         if (!isObject())
             throw new IllegalStateException("Node is not the object of a triple.");
-        return (TestSubject)enhGraph.getNodeAs(find(O).getSubject(),TestSubject.class);
+        return (TestSubject)enhGraph.getNodeAs(findObject().getSubject(),TestSubject.class);
     }
 }
 

@@ -34,13 +34,13 @@ public class TestPropertyImpl  extends TestCommonImpl implements TestProperty {
         { return t.isInstance( this ) && isProperty(); }
         
     public boolean isProperty() {
-        return find(P)!=null;
+        return findPredicate() != null;
     }
         
     public TestObject anObject() {
         if (!isProperty())
             throw new IllegalStateException("Node is not the property of a triple.");
-        return (TestObject)enhGraph.getNodeAs(find(P).getObject(),TestObject.class);
+        return (TestObject)enhGraph.getNodeAs(findPredicate().getObject(),TestObject.class);
     }
     
 }

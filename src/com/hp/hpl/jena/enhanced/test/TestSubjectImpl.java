@@ -34,13 +34,13 @@ public class TestSubjectImpl extends TestCommonImpl implements TestSubject {
         { return t.isInstance( this ) && isSubject(); }
         
     public boolean isSubject() {
-        return find(S)!=null;
+        return findSubject() != null;
     }
     
     public TestProperty aProperty() {
         if (!isSubject())
             throw new IllegalStateException("Node is not the subject of a triple.");
-        return (TestProperty)enhGraph.getNodeAs(find(S).getPredicate(),TestProperty.class);
+        return (TestProperty)enhGraph.getNodeAs(findSubject().getPredicate(),TestProperty.class);
     }
 }
 
