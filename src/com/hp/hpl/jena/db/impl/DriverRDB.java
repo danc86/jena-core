@@ -290,15 +290,22 @@ public abstract class DriverRDB implements IRDBDriver {
 		}
 		setTableNames(TABLE_NAME_PREFIX);
 			
-		if( !isDBFormatOK() ) {
+                try {
+                    if( !isDBFormatOK() ) {
+                      // Format the DB
+                      cleanDB();
+                      prefixCache = new LRUCache(PREFIX_CACHE_SIZE);
+                      return formatAndConstructSystemSpecializedGraph();
+                    }
+                } catch (Exception e) {
+                    System.out.println("TEMP error flag");
+                    // We see an error during format testing, might be a dead
+                    // connection rather than an unformated database so abort
                     throw new JenaException("The database appears to be unformatted or corrupted.\n" +
                         "If possible, call IDBConnection.cleanDB(). \n" +
                         "Warning: cleanDB will remove all Jena models from the databases.");
-//			// Re-format the DB
-//			cleanDB();
-//			prefixCache = new LRUCache(PREFIX_CACHE_SIZE);
-//			return formatAndConstructSystemSpecializedGraph();
-		}
+                }
+                
 		prefixCache = new LRUCache(PREFIX_CACHE_SIZE);
         getDbInitTablesParams();  //this call is a hack. it's needed because
         // it has the side effect of initializing some vars (e.g., EOS).
