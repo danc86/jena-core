@@ -154,7 +154,23 @@ public class TestExpressionConstraints extends GraphTestBase
         { VariableValues vv = new VV().set( "X", "hello" ).set( "Y", "ell" );
         assertEquals( true, matches( X, Y ).evalBool( vv ) );  }
         
-    public void testPrepare()
+    public void testPrepareTRUE()
+        {
+        IndexValues none = new IndexValues() 
+            { public Object get( int i ) { return null; } };
+        Expression t = Expression.TRUE.prepare( new Mapping( new Node[0] ) );  
+        assertEquals( true, t.evalBool( none ) );    
+        }
+        
+    public void testPrepareFALSE()
+        {
+        IndexValues none = new IndexValues() 
+            { public Object get( int i ) { return null; } };
+        Expression t = Expression.FALSE.prepare( new Mapping( new Node[0] ) );  
+        assertEquals( false, t.evalBool( none ) );    
+        }
+        
+    public void testPrepareNE()
         {
         Expression e = notEqual( X, Y );
         VariableIndexes map = new Mapping( new Node[2] );

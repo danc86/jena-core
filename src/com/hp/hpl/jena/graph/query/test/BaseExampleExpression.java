@@ -26,7 +26,10 @@ public abstract class BaseExampleExpression implements Expression
         if (x.isVariable()) return vv.get( x.getName() );
         else return x;    
         }
-                                                    
+        
+    protected Object eval( Node x, IndexValues iv )
+        { throw new RuntimeException( "rargh" ); }
+                                                                
     public static Expression and( final Expression L, final Expression R )
         {
         return new BaseExampleExpression()
@@ -35,6 +38,9 @@ public abstract class BaseExampleExpression implements Expression
                 {
                 return and( L.prepare( vi ), R.prepare( vi ) );    
                 }
+                
+            public boolean evalBool( IndexValues iv )
+                { return L.evalBool( iv ) && R.evalBool( iv ); }
                 
             public boolean evalBool( VariableValues vv )
                 { return L.evalBool( vv ) && R.evalBool( vv ); }

@@ -1,5 +1,5 @@
 /*
-  (c) Copyright 2002, Hewlett-Packard Development Company, LP
+  (c) Copyright 2003, Hewlett-Packard Development Company, LP, all rights reserved.
   [See end of file]
   $Id$
 */
@@ -7,17 +7,21 @@
 package com.hp.hpl.jena.graph.query;
 
 /**
-    A query PredicateFactory is something that can construct a
-    Predicate from two Valuators.
-*/
+	IndexValues: something that when supplied with a non-negative integer, returns
+    a value.
 
-public interface PredicateFactory
+	@author kers
+*/
+public interface IndexValues 
     {
-    abstract Predicate construct( Valuator L, Valuator R );
+    /**
+        Answer the value at <code>index</code>.
+    */
+    Object get( int index );
     }
 
 /*
-    (c) Copyright 2002, 2003 Hewlett-Packard Development Company, LP
+    (c) Copyright 2003, Hewlett-Packard Development Company, LP
     All rights reserved.
 
     Redistribution and use in source and binary forms, with or without

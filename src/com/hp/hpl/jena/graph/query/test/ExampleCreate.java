@@ -26,6 +26,9 @@ public class ExampleCreate
                 
             public boolean evalBool( VariableValues vv )
                 { return !eval( x, vv ).equals( eval( y, vv ) ); }
+                
+            public boolean evalBool( IndexValues iv )
+                { return !eval( x, iv ).equals( eval( y, iv ) ); }
             };    
         }    
     
@@ -38,6 +41,9 @@ public class ExampleCreate
                 
             public boolean evalBool( VariableValues vv )
                 { return eval( x, vv ).equals( eval( y, vv ) ); }
+                
+            public boolean evalBool( IndexValues iv )
+                { return eval( x, iv ).equals( eval( y, iv ) ); }
             };    
         }         
         
@@ -59,6 +65,9 @@ public class ExampleCreate
                 return x.indexOf( y ) > -1; }       
                          
             public boolean evalBool( VariableValues vv )
+                { return matches( eval( x, vv ), eval( y, vv ) ); }
+                
+            public boolean evalBool( IndexValues vv )
                 { return matches( eval( x, vv ), eval( y, vv ) ); }
             };    
         }

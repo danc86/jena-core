@@ -17,16 +17,28 @@ public interface Expression
     
     public Expression prepare( VariableIndexes vi );
     
-    public static Expression TRUE = new Expression() 
+    public boolean evalBool( IndexValues iv );
+    
+    public static abstract class EE implements Expression
+        {
+        public Expression prepare( VariableIndexes vi ) { return this; }   
+        public abstract boolean evalBool( VariableValues vv );
+        public abstract boolean evalBool( IndexValues vv );
+        public abstract Object eval( IndexValues vv );
+        }
+        
+    public static Expression TRUE = new EE() 
         { 
         public boolean evalBool( VariableValues vv ) { return true; }
-        public Expression prepare( VariableIndexes vi ) { return this; }
+        public boolean evalBool( IndexValues vv ) { return true; }
+        public Object eval( IndexValues vv ) { return Boolean.TRUE; }
         };
     
-    public static Expression FALSE = new Expression() 
+    public static Expression FALSE = new EE() 
         { 
         public boolean evalBool( VariableValues vv ) { return false; }
-        public Expression prepare( VariableIndexes vi ) { return this; }
+        public boolean evalBool( IndexValues vv ) { return false; }
+        public Object eval( IndexValues vv ) { return Boolean.FALSE; }
         };
     }
 
