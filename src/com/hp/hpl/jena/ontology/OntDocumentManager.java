@@ -29,6 +29,7 @@ import java.io.InputStream;
 import java.util.*;
 
 import org.apache.log4j.*;
+import org.apache.xml.utils.XMLChar;
 
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.util.ModelLoader;
@@ -59,6 +60,9 @@ public class OntDocumentManager
     /** Namespace for ontology metadata resources and properties */
     public static final String NS = "http://jena.hpl.hp.com/schemas/2003/03/ont-manager#";
 
+    /** The anchor char is added to the end of namespace prefix expansions */
+    public static final String ANCHOR = "#";
+    
 
     // Static variables
     //////////////////////////////////
@@ -693,7 +697,12 @@ public class OntDocumentManager
                 // there may be a standard prefix for this ontology
                 try {
                     s = root.getRequiredProperty( PREFIX );
-                    addPrefixMapping( publicURI, s.getString() );
+                    
+                    // if the namespace doesn't end with a suitable split point character, add a #
+                    boolean endWithNCNameCh = XMLChar.isNCName( publicURI.charAt( publicURI.length() - 1 ) );
+                    String prefixExpansion = endWithNCNameCh ? (publicURI + "ANCHOR") : publicURI;
+                    
+                    addPrefixMapping( prefixExpansion, s.getString() );
                 } catch (JenaException ignore) {}
 
                 // there may be a language specified for this ontology
