@@ -204,20 +204,38 @@ public interface Model
 
 	public Literal createLiteral(String v, String language);
 
-	/** 
+    /** 
+     * @deprecated since Jena2. It is no longer legal to have a language
+     * tag on a well-formed XMLLiteral. Use the 2-argument form of
+     * {@link #createLiteral(String, boolean) createLiteral} instead.
+     * 
+     *   Create a literal from a String value with a specified language. An existing literal
+     *   of the right value may be returned, or a fresh one created. 
+     *  @param v the value of the literal
+     *  @param language the language associated with the literal
+     *  @param wellFormed true if the Literal is well formed XML
+     *  @return a new literal representing the value v with the given language
+     */
+    public Literal createLiteral(String v, String language, boolean wellFormed);
+
+    /** 
         Create a literal from a String value with a specified language. An existing literal
         of the right value may be returned, or a fresh one created. 
-	   @param v the value of the literal
-	   @param language the language associated with the literal
-	   @param wellFormed true if the Literal is well formed XML
-	   @return a new literal representing the value v with the given language
-	 */
-	public Literal createLiteral(String v, String language, boolean wellFormed);
+       @param v the value of the literal
+       @param wellFormed true if the Literal is well formed XML
+       @return a new literal representing the value v with the given language
+     */
+    public Literal createLiteral(String v, boolean wellFormed);
 	
     /**
         Build a typed literal from its lexical form. The
         lexical form will be parsed now and the value stored. If
         the form is not legal this will throw an exception.
+        <p>
+        Note that in preview releases of Jena2 it was also possible to specify
+        a language type. Changes to the RDF specification mean that this is no longer
+        legal except for plain literals. To create a plain literal with a language tag
+        use {@link #createLiteral(String, String) createLiteral}. 
         
         @param lex the lexical form of the literal
         @param dtype the type of the literal, null for old style "plain" literals
@@ -227,38 +245,16 @@ public interface Model
     
     /**
      * Build a typed literal from its value form.
-     * 
+     * <p>
+     * Note that in preview releases of Jena2 it was also possible to specify
+     *   a language type. Changes to the RDF specification mean that this is no longer
+     *   legal except for plain literals. To create a plain literal with a language tag
+     *   use {@link #createLiteral(String, String) createLiteral}. 
+     * </p> 
      * @param value the value of the literal
      * @param dtype the type of the literal, null for old style "plain" literals
      */
     public Literal createTypedLiteral(Object value, RDFDatatype dtype);
-
-    /**
-       @deprecated as of Jena2.0, use the form without lang tag since lang tags aren't
-       relevant on typed (as opposed to plain) literals.
-        
-         Build a typed literal from its lexical form. The
-        lexical form will be parsed now and the value stored. If
-        the form is not legal this will throw an exception.
-        
-        @param lex the lexical form of the literal
-        @param lang the optional language tag, only relevant for plain literals
-        @param dtype the type of the literal, null for old style "plain" literals
-        @throws DatatypeFormatException if lex is not a legal form of dtype
-     */
-    public Literal createTypedLiteral(String lex, String lang, RDFDatatype dtype);
-    
-    /**
-     * @deprecated as of Jena2.0, use the form without lang tag since lang tags aren't
-     * relevant on typed (as opposed to plain) literals.
-     * 
-     * Build a typed literal from its value form.
-     * 
-     * @param value the value of the literal
-     * @param lang the optional language tag, only relevant for plain literals
-     * @param dtype the type of the literal, null for old style "plain" literals
-     */
-    public Literal createTypedLiteral(Object value, String lang, RDFDatatype dtype);
     
     /**
      * Build a typed literal label from its value form using

@@ -268,7 +268,7 @@ public class NTripleReader extends Object implements RDFReader {
                 if (wellFormed) {
                     return model.createLiteral(
                         lit.toString(),
-                        "",
+//                        "",
                         wellFormed);
                 } else if ('^' == in.nextChar()) {
                     String datatypeURI = null;

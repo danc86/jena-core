@@ -547,75 +547,6 @@ implements Model, PrefixMapping, ModelLock
     }
         
     /**
-     * @deprecated as of Jena2.0, use the form without lang tag since lang tags aren't
-     * relevant on typed (as opposed to plain) literals.
-     * 
-     * Build a typed literal from its lexical form. The
-     * lexical form will be parsed now and the value stored. If
-     * the form is not legal this will throw an exception.
-     * 
-     * @param lex the lexical form of the literal
-     * @param lang the optional language tag, only relevant for plain literals
-     * @param dtype the type of the literal, null for old style "plain" literals
-     * @throws DatatypeFormatException if lex is not a legal form of dtype
-     */
-    public Literal createTypedLiteral(String lex, String lang, RDFDatatype dtype) 
-                                        throws DatatypeFormatException {
-        LiteralLabel ll = new LiteralLabel(lex, lang, dtype);
-        return new LiteralImpl(Node.createLiteral(ll), (Model)this);
-    }
-    
-    /**
-     * @deprecated as of Jena2.0, use the form without lang tag since lang tags aren't
-     * relevant on typed (as opposed to plain) literals.
-     * 
-     * Build a typed literal from its value form.
-     * 
-     * @param value the value of the literal
-     * @param lang the optional language tag, only relevant for plain literals
-     * @param dtype the type of the literal, null for old style "plain" literals
-     */
-    public Literal createTypedLiteral(Object value, String lang, RDFDatatype dtype) {
-        LiteralLabel ll = new LiteralLabel(value, lang, dtype);
-        return new LiteralImpl(Node.createLiteral(ll), (Model)this);
-    }
-
-    /**
-     * @deprecated as of Jena2.0, use the form without lang tag since lang tags aren't
-     * relevant on typed (as opposed to plain) literals.
-     * 
-     * Build a typed literal from its lexical form. The
-     * lexical form will be parsed now and the value stored. If
-     * the form is not legal this will throw an exception.
-     * 
-     * @param lex the lexical form of the literal
-     * @param lang the optional language tag, only relevant for plain literals
-     * @param typeURI the uri of the type of the literal, null for old style "plain" literals
-     * @throws DatatypeFormatException if lex is not a legal form of dtype
-     */
-    public Literal createTypedLiteral(String lex, String lang, String typeURI)  {
-        RDFDatatype dt = TypeMapper.getInstance().getSafeTypeByName(typeURI);
-        LiteralLabel ll = new LiteralLabel(lex, lang, dt);
-        return new LiteralImpl(Node.createLiteral(ll), (Model)this);
-    }
-        
-    /**
-     * @deprecated as of Jena2.0, use the form without lang tag since lang tags aren't
-     * relevant on typed (as opposed to plain) literals.
-     * 
-     * Build a typed literal from its value form.
-     * 
-     * @param value the value of the literal
-     * @param lang the optional language tag, only relevant for plain literals
-     * @param typeURI the URI of the type of the literal, null for old style "plain" literals
-     */
-    public Literal createTypedLiteral(Object value, String lang, String typeURI) {
-        RDFDatatype dt = TypeMapper.getInstance().getSafeTypeByName(typeURI);
-        LiteralLabel ll = new LiteralLabel(value, lang, dt);
-        return new LiteralImpl(Node.createLiteral(ll), (Model)this);
-    }
-    
-    /**
      * Build a typed literal label from its value form using
      * whatever datatype is currently registered as the the default
      * representation for this java class. No language tag is supplied.
@@ -654,7 +585,11 @@ implements Model, PrefixMapping, ModelLock
     }
     
     public Literal createLiteral(String v, String l)  {
-        return createLiteral( v,l, false );
+        return literal(v, l, false);
+    }
+    
+    public Literal createLiteral(String v, boolean wellFormed) {
+        return literal(v, "", wellFormed);
     }
     
     public Literal createLiteral(String v, String l, boolean wellFormed) {
