@@ -213,15 +213,48 @@ public class DAMLModelImpl
         return (DAMLDatatype) createOntResource( DAMLDatatype.class, VocabularyManager.getDefaultVocabulary().Datatype(), uri );
     }
 
+
     /**
-     * <p>Create an (optionally anonymous) DAML list.</p>
+     * <p>Create an empty DAML list.</p>
      *
-     * @param uri The URI for the new list, or null to create
-     *            an anonymous list.
-     * @return A new DAMLList object.
+     * @return A new empty DAMLList.
      */
-    public DAMLList createDAMLList( String uri ) {
-        return (DAMLList) createOntResource( DAMLList.class, getProfile().LIST(), uri );
+    public DAMLList createDAMLList() {
+        return (DAMLList) getResource( DAML_OIL.nil.getURI() ).as( DAMLList.class );
+    }
+
+
+    /**
+     * <p>Create a new DAML list containing the given elements.</p>
+     *
+     * @param elements An iterator over the elements to be added to the list
+     * @return A new empty DAMLList.
+     */
+    public DAMLList createDAMLList( Iterator elements ) {
+        DAMLList l = createDAMLList();
+        if (elements.hasNext()) {
+            // put the first element on the list
+            RDFNode n = (RDFNode) elements.next();
+            l = (DAMLList) l.cons( n );
+            
+            // now add the remaining elements to the end of the list
+            while (elements.hasNext()) {
+                l.add( (RDFNode) elements.next() );
+            }
+        }
+        
+        return l;
+    }
+
+
+    /**
+     * <p>Create a new DAML list containing the given elements.</p>
+     *
+     * @param elements An array of RDFNodes that will be the elements of the list
+     * @return A new empty DAMLList.
+     */
+    public DAMLList createDAMLList( RDFNode[] elements ) {
+        return createDAMLList( Arrays.asList( elements ).iterator() );
     }
 
 

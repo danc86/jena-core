@@ -989,15 +989,6 @@ public class OntResourceImpl
     }
     
     /** 
-     * <p>Answer a view of this resource as a list </p>
-     * @return This resource, but viewed as an RDFList
-     * @exception ConversionException if the resource cannot be converted to a list
-     */
-    public RDFList asList() {
-        return (RDFList) as( RDFList.class );
-    }
-    
-    /** 
      * <p>Answer a view of this resource as a property</p>
      * @return This resource, but viewed as an OntProperty
      * @exception ConversionException if the resource cannot be converted to a property

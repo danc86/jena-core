@@ -144,6 +144,43 @@ public class DAMLClassImpl
     public PropertyAccessor prop_equivalentTo()                  { return m_common.prop_equivalentTo(); }
     public PropertyAccessor prop_type()                          { return m_common.prop_type(); }
     
+    /**
+     * <p>Answer an iterator over all of the DAML objects that are equivalent to this
+     * class, which will be the union of <code>daml:equivalentTo</code> and
+     * <code>daml:sameClassAs</code>.</p>
+     *
+     * @return an iterator ranging over every equivalent DAML class
+     */
+    public Iterator getEquivalentValues() {
+        ConcatenatedIterator i = new ConcatenatedIterator(
+                       // first the iterator over the equivalentTo values
+                       m_common.getEquivalentValues(),
+                       // followed by the sameClassAs values
+                       getSameClasses() );
+
+        return new UniqueExtendedIterator( i ).mapWith( new AsMapper( DAMLClass.class ) );
+    }
+
+
+    /**
+     * Answer the set of equivalent values to this value, but not including the
+     * value itself.  The iterator will range over a set: each element occurs only
+     * once.
+     *
+     * @return An iteration ranging over the set of values that are equivalent to this
+     *         value, but not itself.
+     */
+    public Iterator getEquivalenceSet() {
+        Set s = new HashSet();
+
+        s.add( this );
+        for (Iterator i = getEquivalentValues();  i.hasNext();  s.add( i.next() ) );
+        s.remove( this );
+        
+        return s.iterator();
+    }
+
+
 
     /**
      * <p>Property accessor for the <code>daml:subClassOf</code> property of a class. This
@@ -419,43 +456,6 @@ public class DAMLClassImpl
         return WrappedIterator.create( super.listEquivalentClasses() ).mapWith( new AsMapper( DAMLClass.class ) );
     }
 
-
-
-    /**
-     * <p>Answer an iterator over all of the DAML objects that are equivalent to this
-     * class, which will be the union of <code>daml:equivalentTo</code> and
-     * <code>daml:sameClassAs</code>.</p>
-     *
-     * @return an iterator ranging over every equivalent DAML class
-     */
-    public Iterator getEquivalentValues() {
-        ConcatenatedIterator i = new ConcatenatedIterator(
-                       // first the iterator over the equivalentTo values
-                       m_common.getEquivalentValues(),
-                       // followed by the sameClassAs values
-                       getSameClasses() );
-
-        return new UniqueExtendedIterator( i ).mapWith( new AsMapper( DAMLClass.class ) );
-    }
-
-
-    /**
-     * Answer the set of equivalent values to this value, but not including the
-     * value itself.  The iterator will range over a set: each element occurs only
-     * once.
-     *
-     * @return An iteration ranging over the set of values that are equivalent to this
-     *         value, but not itself.
-     */
-    public Iterator getEquivalenceSet() {
-        Set s = new HashSet();
-
-        s.add( this );
-        for (Iterator i = getEquivalentValues();  i.hasNext();  s.add( i.next() ) );
-        s.remove( this );
-        
-        return s.iterator();
-    }
 
 
     /**

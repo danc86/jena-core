@@ -54,7 +54,6 @@ import com.hp.hpl.jena.mem.*;
 import com.hp.hpl.jena.ontology.daml.*;
 import com.hp.hpl.jena.util.*;
 import com.hp.hpl.jena.vocabulary.*;
-import com.hp.hpl.jena.shared.*;
 
 import java.util.*;
 
@@ -704,14 +703,14 @@ public class DAMLTest
         assertEquals( "union should have two values", 2, union.getCount() );
 
         // man should be the first element in the list
-        DAMLCommon val1 = union.getFirst();
+        RDFNode val1 = union.getFirst();
         assertEquals( "Man should be the first element in the list", man, val1 );
 
         // woman should be the other element in the list
         DAMLList tail = union.getRest();
         assertNotNull( "Tail of list should not be null", tail );
 
-        DAMLCommon val2 = tail.getFirst();
+        RDFNode val2 = tail.getFirst();
         assertNotNull( "head of tail should not be null", val2 );
         assertEquals( "Woman should be the first element in the tail of the list", woman, val2 );
 
@@ -1137,25 +1136,6 @@ public class DAMLTest
 
         return count;
     }
-
-    private int countIteration( ResIterator i, boolean doLog, String message ) {
-        int count = 0;
-        try {
-            for (;  i.hasNext();  count++) {
-                Object x = i.nextResource();
-
-                if (doLog) {
-                    Log.finest( "counting iteration, " + message + x );
-                }
-            }
-        }
-        catch (JenaException e) {
-            Log.severe( "RDF exception: " + e, e );
-        }
-
-        return count;
-    }
-
 
     private int countClasses( DAMLModel m ) {
         return countIteration( m.listDAMLClasses(), false, null );

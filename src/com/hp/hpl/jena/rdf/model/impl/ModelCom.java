@@ -737,8 +737,8 @@ implements Model, ModelI, PrefixMapping, ModelLock
      * @return An RDF-encoded list of no elements
      */
     public RDFList createList() {
-        Resource list = getResource( RDFListImpl.listNil().getURI() );
-        list.addProperty( RDF.type, RDFListImpl.listType() );
+        Resource list = getResource( RDF.nil.getURI() );
+        list.addProperty( RDF.type, RDF.List );
         
         return (RDFList) list.as( RDFList.class );
     }

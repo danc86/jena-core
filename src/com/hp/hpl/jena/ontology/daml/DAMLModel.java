@@ -137,13 +137,29 @@ public interface DAMLModel
     public DAMLDatatype createDAMLDatatype( String uri );
     
     /**
-     * <p>Create an (optionally anonymous) DAML list.</p>
+     * <p>Create an empty DAML list.</p>
      *
-     * @param uri The URI for the new list, or null to create
-     *            an anonymous list.
-     * @return A new DAMLList object.
+     * @return A new empty DAMLList.
      */
-    public DAMLList createDAMLList( String uri );
+    public DAMLList createDAMLList();
+
+
+    /**
+     * <p>Create a new DAML list containing the given elements.</p>
+     *
+     * @param elements An iterator over the elements to be added to the list
+     * @return A new empty DAMLList.
+     */
+    public DAMLList createDAMLList( Iterator elements );
+
+
+    /**
+     * <p>Create a new DAML list containing the given elements.</p>
+     *
+     * @param elements An array of RDFNodes that will be the elements of the list
+     * @return A new empty DAMLList.
+     */
+    public DAMLList createDAMLList( RDFNode[] elements );
 
 
     /**

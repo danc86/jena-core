@@ -668,13 +668,6 @@ public interface OntResource
     public AnnotationProperty asAnnotationProperty();
     
     /** 
-     * <p>Answer a view of this resource as a list </p>
-     * @return This resource, but viewed as an RDFList
-     * @exception ConversionException if the resource cannot be converted to a list
-     */
-    public RDFList asList();
-    
-    /** 
      * <p>Answer a view of this resource as a property</p>
      * @return This resource, but viewed as an OntProperty
      * @exception ConversionException if the resource cannot be converted to a property
