@@ -257,13 +257,15 @@ public class ModelCom extends EnhGraph
   		return this;
   	    }
         
-    /**
-        for writing out the model, we need *all* the statements, including ones
-        that the reification process may have hidden from us.
-    */
-    public Model withHiddenStatements()
+	/**
+		a read-only Model with all the statements of this Model and any
+		statements "hidden" by reification. That model is dynamic, ie
+		any changes this model will be reflected that one.
+		[TODO: Except this implementation delivers only a static Model]
+	*/
+    public static Model withHiddenStatements( Model m )
         {
-        return (ModelCom) modelReifier.allStatements();
+        return ((ModelCom) m).modelReifier.allStatements();
         }
     
     public Model remove(Statement s) throws RDFException {
@@ -1223,6 +1225,12 @@ public class ModelCom extends EnhGraph
         }
     }
     
+	/**
+		a read-only Model with all the statements of this Model and any
+		statements "hidden" by reification. That model is dynamic, ie
+		any changes this model will be reflected that one.
+		[TODO: Except this implementation delivers only a static Model]
+	*/    
     public Model getHiddenStatements()
         { return modelReifier.getHiddenStatements(); }
         
@@ -1231,8 +1239,8 @@ public class ModelCom extends EnhGraph
     */
     public boolean isIsomorphicWith(Model m)
         {
-        ModelCom L = (ModelCom) this.withHiddenStatements();            
-        EnhGraph R = (EnhGraph) m.withHiddenStatements();
+        ModelCom L = (ModelCom) withHiddenStatements( this );            
+        EnhGraph R = (EnhGraph) withHiddenStatements( m );
         return L.isIsomorphicWith( R );
         }
 }

@@ -10,6 +10,7 @@ package com.hp.hpl.jena.xmloutput.impl;
 import com.hp.hpl.jena.xmloutput.RDFXMLWriterI;
 import com.hp.hpl.jena.rdf.model.impl.RDFDefaultErrorHandler;
 import com.hp.hpl.jena.rdf.model.impl.Util;
+import com.hp.hpl.jena.rdf.model.impl.ModelCom;
 import com.hp.hpl.jena.rdf.model.impl.ResourceImpl;
 import org.apache.xerces.util.XMLChar;
 import com.hp.hpl.jena.rdf.model.*;
@@ -398,10 +399,10 @@ abstract public class BaseXMLWriter implements RDFXMLWriterI {
 	 * null</code> means use only absolute URI's.
 	 * @throws RDFException Generic RDF exception.
 	 */
-	final synchronized public void write(Model model, Writer out, String base)
+	final synchronized public void write(Model baseModel, Writer out, String base)
 		throws RDFException {
 		//ns = new HashMap();
-        model = model.withHiddenStatements();
+        Model model = ModelCom.withHiddenStatements( baseModel );
 		this.namespacesNeeded = new HashSet();
 		ns = null;
 		count = 0;
