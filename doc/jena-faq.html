@@ -198,9 +198,9 @@ Jena 2 &ndash; Frequently Asked Questions
 	</p>
 
 <p id="ontology-2">
-  <strong>Why does <code>.as(&nbsp;OntProperty.class&nbsp;)</code> fail with
+  <strong>Q: Why does <code>.as(&nbsp;OntProperty.class&nbsp;)</code> fail with
   <code>ConversionException</code> on SymmetricProperty (or other property types)?</strong><br />
-  This is a slightly tricky issue.  Internally, <code>.as()</code> calls the <em>supports</em> check,
+  <strong>A:</strong> This is a slightly tricky issue.  Internally, <code>.as()</code> calls the <em>supports</em> check,
   which tests whether the node that is being converted is a common flavour of property.
   Strictly, the only necessary test should be '<code>has rdf:type rdf:Property</code>',
   because that is entailed by all of the other property types.  However, that requires
