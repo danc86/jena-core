@@ -900,7 +900,7 @@ public  class PSet_TripleStore_RDB implements IPSet {
 			String cmd;
 			try {
 				Connection con = m_sql.getConnection();
-				con.setAutoCommit(false);
+				//TODO when doing batch.  con.setAutoCommit(false);
 				Statement stmt = con.createStatement();
 				Iterator it = triples.iterator();
 				
