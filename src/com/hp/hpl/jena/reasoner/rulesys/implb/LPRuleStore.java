@@ -70,6 +70,8 @@ public class LPRuleStore extends RuleStore {
      * add better indexing for the particular cases of wildcard rules and type rules. 
      */
     protected void compileAll() {
+        isCompiled = true;
+        
         // TODO: add support for wildcard rules
         predicateToCodeMap = new HashMap();
         allRuleClauseCodes = new ArrayList();
@@ -100,7 +102,6 @@ public class LPRuleStore extends RuleStore {
             RuleClauseCode code = (RuleClauseCode)i.next();
             code.compile(this);
         }
-        isCompiled = true;
     }
     
     /**
