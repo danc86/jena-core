@@ -260,31 +260,32 @@ public class ResourceImpl extends EnhNode implements Resource {
     }
     
     public Resource removeAll( Property p ) {
-        // there is a risk that the iterator we get by listing the properties is unable
-        // to perform the remove operation. We therefore trap unsupportedOperationEx
-        // and try an alternative strategy.  THERE IS A FURTHER RISK (thanks to kers for
-        // this analysis) that an UnsupOpEx may be thrown for reasons other than the
-        // inability of the iterator.
-        // TODO: investigate and implement a more comprehensive solution, OR decide
-        // to accept the risk!
-        try {
-            for (StmtIterator i = listProperties( p );  i.hasNext();  ) {
-                i.next();
-                i.remove();
-            }
-        }
-        catch (UnsupportedOperationException e) {
-            List stmts = new ArrayList();
-            
-            // collect the statements first
-            for (StmtIterator i = listProperties( p ); i.hasNext(); stmts.add( i.next() ) );
-            
-            // and only then can we remove them
-            for (Iterator j = stmts.iterator();  j.hasNext(); ) {
-                ((Statement) j.next()).remove();
-            }
-        }
-        
+//        // there is a risk that the iterator we get by listing the properties is unable
+//        // to perform the remove operation. We therefore trap unsupportedOperationEx
+//        // and try an alternative strategy.  THERE IS A FURTHER RISK (thanks to kers for
+//        // this analysis) that an UnsupOpEx may be thrown for reasons other than the
+//        // inability of the iterator.
+//        // TODO: investigate and implement a more comprehensive solution, OR decide
+//        // to accept the risk!
+//        try {
+//            for (StmtIterator i = listProperties( p );  i.hasNext();  ) {
+//                i.next();
+//                i.remove();
+//            }
+//        }
+//        catch (UnsupportedOperationException e) {
+//            List stmts = new ArrayList();
+//            
+//            // collect the statements first
+//            for (StmtIterator i = listProperties( p ); i.hasNext(); stmts.add( i.next() ) );
+//            
+//            // and only then can we remove them
+//            for (Iterator j = stmts.iterator();  j.hasNext(); ) {
+//                ((Statement) j.next()).remove();
+//            }
+//        }
+//        
+        mustHaveModel().remove( listProperties( p ) );
         return this;
     }
     

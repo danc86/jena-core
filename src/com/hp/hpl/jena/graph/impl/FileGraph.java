@@ -6,7 +6,6 @@
 
 package com.hp.hpl.jena.graph.impl;
 
-import com.hp.hpl.jena.test.*;
 import com.hp.hpl.jena.util.FileUtils;
 import com.hp.hpl.jena.mem.GraphMem;
 import com.hp.hpl.jena.rdf.model.Model;

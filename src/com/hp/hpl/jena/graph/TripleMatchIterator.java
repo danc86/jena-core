@@ -20,6 +20,9 @@ public class TripleMatchIterator
     {
    public TripleMatchIterator( Triple m, Iterator iter ) 
         { super( new TripleMatchFilter( m ), iter); }
+        
+//    public void remove()
+//        { throw new UnsupportedOperationException(); }
     }
 
 /*
