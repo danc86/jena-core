@@ -161,7 +161,7 @@ public class TestCreate
         new CreateTestCase( "OWL create individual", ProfileRegistry.OWL_LANG, NS + "a" ) {
             public OntResource doCreate( OntModel m )   { 
                 OntClass c = m.createClass( NS + "C" );
-                return m.createIndividual( c, NS + "a" ); 
+                return m.createIndividual( NS + "a", c ); 
             }
             public boolean test( OntResource r )        { return r instanceof Individual;}
         },
@@ -175,7 +175,7 @@ public class TestCreate
         new CreateTestCase( "DAML create individual", ProfileRegistry.DAML_LANG, NS + "a" ) {
             public OntResource doCreate( OntModel m )   { 
                 OntClass c = m.createClass( NS + "C" );
-                return m.createIndividual( c, NS + "a" ); 
+                return m.createIndividual( NS + "a", c ); 
             }
             public boolean test( OntResource r )        { return r instanceof Individual;}
         },

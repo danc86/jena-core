@@ -423,6 +423,110 @@ public class OntClassImpl
     }
          
      
+    // sub-type testing
+
+    /** 
+     * <p>Answer true if this class is an enumerated class expression</p>
+     * @return True if this is an enumerated class expression
+     */
+    public boolean isEnumeratedClass() {
+        checkProfile( getProfile().ONE_OF(), "ONE_OF" );
+        return canAs( EnumeratedClass.class );
+    }
+         
+    /** 
+     * <p>Answer true if this class is a union class expression</p>
+     * @return True if this is a union class expression
+     */
+    public boolean isUnionClass() {
+        checkProfile( getProfile().UNION_OF(), "UNION_OF" );
+        return canAs( UnionClass.class );
+    }
+         
+    /** 
+     * <p>Answer true if this class is an intersection class expression</p>
+     * @return True if this is an intersection class expression
+     */
+    public boolean isIntersectionClass() {
+        checkProfile( getProfile().INTERSECTION_OF(), "INTERSECTION_OF" );
+        return canAs( IntersectionClass.class );
+    }
+         
+    /** 
+     * <p>Answer true if this class is a complement class expression</p>
+     * @return True if this is a complement class expression
+     */
+    public boolean isComplementClass() {
+        checkProfile( getProfile().COMPLEMENT_OF(), "COMPLEMENT_OF" );
+        return canAs( ComplementClass.class );
+    }
+         
+    /** 
+     * <p>Answer true if this class is a property restriction</p>
+     * @return True if this is a restriction
+     */
+    public boolean isRestriction() {
+        checkProfile( getProfile().RESTRICTION(), "RESTRICTION" );
+        return canAs( Restriction.class );
+    }
+         
+     
+    // conversion operations
+    
+    /** 
+     * <p>Answer a view of this class as an enumeration of the given individuals.</p>
+     * @param individuals A list of the individuals that will comprise the permitted values of this
+     * class converted to an enumeration
+     * @return This ontology class, converted to an enumeration of the given individuals 
+     */
+    public EnumeratedClass convertToEnumeratedClass( OntList individuals ) {
+        setPropertyValue( getProfile().ONE_OF(), "ONE_OF", individuals );
+        return (EnumeratedClass) as( EnumeratedClass.class );
+    }
+
+    /** 
+     * <p>Answer a view of this class as an intersection of the given classes.</p>
+     * @param classes A list of the classes that will comprise the operands of the intersection
+     * @return This ontology class, converted to an intersection of the given classes 
+     */
+    public IntersectionClass convertToIntersectionClass( OntList classes ) {
+        setPropertyValue( getProfile().INTERSECTION_OF(), "INTERSECTION_OF", classes );
+        return (IntersectionClass) as( IntersectionClass.class );
+    }
+
+    /** 
+     * <p>Answer a view of this class as a union of the given classes.</p>
+     * @param classes A list of the classes that will comprise the operands of the union
+     * @return This ontology class, converted to an union of the given classes 
+     */
+    public UnionClass convertToUnionClass( OntList classes ) {
+        setPropertyValue( getProfile().UNION_OF(), "UNION_OF", classes );
+        return (UnionClass) as( UnionClass.class );
+    }
+
+    /** 
+     * <p>Answer a view of this class as an complement of the given class.</p>
+     * @param cls An ontology classs that will be operand of the complement
+     * @return This ontology class, converted to an complement of the given class 
+     */
+    public ComplementClass convertToComplementClass( Resource cls ) {
+        setPropertyValue( getProfile().COMPLEMENT_OF(), "COMPLEMENT_OF", cls );
+        return (ComplementClass) as( ComplementClass.class );
+    }
+
+    /** 
+     * <p>Answer a view of this class as an resriction on the given property.</p>
+     * @param prop A property this is the subject of a property restriction class expression
+     * @return This ontology class, converted to a restriction on the given property 
+     */
+    public Restriction convertToRestriction( Property prop ) {
+        if (!hasRDFType( getProfile().RESTRICTION(), "RESTRICTION")) {
+            setRDFType( getProfile().RESTRICTION() );
+        }
+        setPropertyValue( getProfile().ON_PROPERTY(), "ON_PROPERTY", prop );
+        return (Restriction) as( Restriction.class );
+    }
+
 
     // Internal implementation methods
     //////////////////////////////////

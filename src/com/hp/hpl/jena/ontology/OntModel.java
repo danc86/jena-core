@@ -374,7 +374,7 @@ public interface OntModel
      * @param uri The uri for the individual, or null for an anonymous individual.
      * @return An Individual resource.
      */
-    public Individual createIndividual( Resource cls, String uri );
+    public Individual createIndividual( String uri, Resource cls );
     
    
     /**

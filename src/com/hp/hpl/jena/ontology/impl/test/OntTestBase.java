@@ -95,6 +95,7 @@ public abstract class OntTestBase
         protected boolean m_inDAML;
         protected String m_langElement;
         protected boolean m_owlLang = true;
+        protected boolean m_owlLiteLang = false;
 
         public OntTestCase( String langElement, boolean inOWL, boolean inOWLLite, boolean inDAML ) {
             super( "Ontology API test " + langElement );
@@ -112,12 +113,15 @@ public abstract class OntTestBase
             spec.setReasoner( null );
             runTest( ModelFactory.createOntologyModel( spec, null ), m_inOWL );
             
+            m_owlLiteLang = true;
+            
             spec = new OntModelSpec( OntModelSpec.OWL_LITE_MEM );
             spec.setReasoner( null );
             runTest( ModelFactory.createOntologyModel( spec, null ), m_inOWLLite );
             
             // now DAML
             m_owlLang = false;
+            m_owlLiteLang = false;
             
             spec = new OntModelSpec( OntModelSpec.DAML_MEM );
             spec.setReasoner( null );
