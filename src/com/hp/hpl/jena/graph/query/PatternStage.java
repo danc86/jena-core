@@ -104,10 +104,12 @@ public class PatternStage extends Stage
         
     private static final PatternCompiler compiler = new PatternStageCompiler();
         
-    public Pipe deliver( final Pipe result )
+    private static int count = 0;
+    
+    public synchronized Pipe deliver( final Pipe result )
         {
         final Pipe stream = previous.deliver( new BufferPipe() );
-        new Thread() { public void run() { PatternStage.this.run( stream, result ); } } .start();
+        new Thread( "PatternStage-" + ++count ) { public void run() { PatternStage.this.run( stream, result ); } } .start();
         return result;
         }
         
