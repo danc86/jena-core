@@ -116,8 +116,8 @@ public class PerlPatternParser
                 case '^':   return generator.getStartOfLine();
                 case '$':   return generator.getEndOfLine();
                 case '|':   pointer -= 1; return generator.getNothing();
-                case ')':   throw new PerlPatternParser.SyntaxException( "unmatched bracket " + ch );
-                case '(':   throw new PerlPatternParser.SyntaxException( "can't do (E) yet" );
+                case ')':   pointer -= 1; return generator.getNothing(); 
+                case '(':   return parseParens();
                 case '[':   throw new PerlPatternParser.SyntaxException( "can't do [C] yet" );
                 case '\\':  return parseBackslash(); 
                 case '*':
@@ -132,6 +132,19 @@ public class PerlPatternParser
         return generator.getNothing();
         }
     
+    /**
+    	Parse a parenthesised expression. Throw a SyntaxException if the closing
+        bracket is missing. Answer the wrapped sub-expression. Does not cater
+        for the (? ...) stuff.
+    */
+    private RegexpTree parseParens()
+        {
+        RegexpTree operand = parseAlts();
+        if (pointer < limit && toParse.charAt( pointer ) == ')') pointer += 1;
+        else throw new SyntaxException( "missing closing bracket" );
+        return generator.getParen( operand );
+        }
+
     /**
          Parse a backslash-escape and answer the appropriate regexp tree.
          Unhandled escapes throw an exception.

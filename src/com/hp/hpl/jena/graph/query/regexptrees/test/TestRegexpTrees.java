@@ -31,6 +31,8 @@ public class TestRegexpTrees extends GraphTestBase
             { new StartOfLine(), "SOL" },
             { new AnySingle(), "ANY" },
             { new AnySingle(), "ANY" },
+            { new Paren( new AnySingle() ), "(ANY)" },
+            { new Paren( new EndOfLine() ), "(EOL)" },
             { new Text( "hello" ), "hello" },
             { new Text( "goodbye" ), "goodbye" },
             { new AnyOf( "abcde" ), "any[abcde]" },

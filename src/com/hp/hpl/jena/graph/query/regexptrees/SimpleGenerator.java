@@ -26,6 +26,7 @@ public class SimpleGenerator implements RegexpTreeGenerator
     public RegexpTree getAlternatives( List operands ) { return Alternatives.create( operands ); }
     public RegexpTree getClass( String chars, boolean reject ) 
         { return reject ? (RegexpTree) new NoneOf( chars ) : new AnyOf( chars ); }
+    public RegexpTree getParen( RegexpTree operand ) { return new Paren( operand ); }
     }
 
 /*

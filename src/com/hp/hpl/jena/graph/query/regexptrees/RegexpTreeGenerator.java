@@ -82,6 +82,11 @@ public interface RegexpTreeGenerator
          or rejects (reject=true) any (all) of the characters in <code>chars</code>.
     */
     public abstract RegexpTree getClass( String chars, boolean reject );
+    
+    /**
+         Answer a RegexpTree that wraps parentheses around an operand.
+    */
+    public abstract RegexpTree getParen( RegexpTree operand );
     }
 
 /*
