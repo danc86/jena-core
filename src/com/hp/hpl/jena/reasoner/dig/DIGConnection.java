@@ -32,6 +32,7 @@ import java.util.*;
 
 import javax.xml.parsers.*;
 
+import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.xml.serialize.*;
 import org.w3c.dom.*;
@@ -61,6 +62,9 @@ public class DIGConnection {
     // Static variables
     //////////////////////////////////
 
+    private static Log log = LogFactory.getLog( DIGConnection.class );
+    
+    
     // Instance variables
     //////////////////////////////////
 
@@ -121,11 +125,10 @@ public class DIGConnection {
             
             // send
             conn.connect();
-            // PrintStream ps = new PrintStream( conn.getOutputStream() );
-            PrintWriter ps = FileUtils.asPrintWriterUTF8( conn.getOutputStream() );
-            ps.print( out.getBuffer() );
-            ps.flush();
-            ps.close();
+            PrintWriter pw = FileUtils.asPrintWriterUTF8( conn.getOutputStream() );
+            pw.print( out.getBuffer() );
+            pw.flush();
+            pw.close();
             
             // and receive
             Document response = getDigResponse( conn );
@@ -175,7 +178,7 @@ public class DIGConnection {
             errorCheck( response );
 
             if (warningCheck(response)) {
-                LogFactory.getLog(getClass()).warn( "DIG reasoner warning: " + getWarnings().next() );
+                log.warn( "DIG reasoner warning: " + getWarnings().next() );
             }
             m_kbURI = null;
         }
@@ -320,7 +323,7 @@ public class DIGConnection {
                 ch = in.read();
             }
             
-            LogFactory.getLog( getClass() ).debug( "Response buffer = " + buf.toString() );
+            // TODO remove LogFactory.getLog( getClass() ).debug( "Response buffer = " + buf.toString() );
             // now parse into a document
             DocumentBuilder builder = m_factory.newDocumentBuilder();
             return builder.parse( new ByteArrayInputStream( buf.toString().getBytes() ) );
@@ -392,8 +395,10 @@ public class DIGConnection {
             StringWriter out = new StringWriter();
             serialiseDocument( msg, out );
             
-            LogFactory.getLog( getClass() ).debug( outgoing ? "Sending to DIG reasoner ..." : "Received from DIG reasoner ..." );
-            LogFactory.getLog( getClass() ).debug( out );
+            if (log.isDebugEnabled()) {
+                log.debug( outgoing ? "Sending to DIG reasoner ..." : "Received from DIG reasoner ..." );
+                log.debug( out );
+            }
         }
     }
 
