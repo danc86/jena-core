@@ -41,7 +41,8 @@ public class TestPackage extends TestSuite {
         addTest( TestGraphExtract.suite() );
         addTest( "TestCapabilities", TestCapabilities.suite() );
         addTest( "TestGraphUtils", TestGraphUtils.suite() );
-        addTest( "TestGraphPrefixMapping", TestGraphPrefixMapping.suite() );       }
+        addTest( "TestGraphPrefixMapping", TestGraphPrefixMapping.suite() );       
+        }
 
     private void addTest(String name, TestSuite tc) {
         tc.setName(name);

@@ -54,12 +54,6 @@ public class SmallGraphMem extends GraphMemBase
     protected void destroy()
         { triples = null; }
     
-    public boolean isEmpty()
-        {
-        checkOpen();
-        return triples.isEmpty();
-        }
-    
     public BulkUpdateHandler getBulkUpdateHandler()
         {
         if (bulkHandler == null) bulkHandler = new GraphMemBulkUpdateHandler( this )

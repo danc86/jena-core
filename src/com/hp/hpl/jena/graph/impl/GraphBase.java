@@ -170,9 +170,10 @@ public abstract class GraphBase implements GraphWithPerform
         { return find( Triple.createMatch( s, p, o ) ); }
 
     /**
-		Answer <code>true</code> iff <code>t</code> is in the graph as reveal by 
+		Answer <code>true</code> iff <code>t</code> is in the graph as revealed by 
         <code>find(t)</code> being non-empty. <code>t</code> may contain ANY
-        wildcards. Sub-classes may over-ride for efficiency.
+        wildcards. Sub-classes may over-ride reifierContains and graphBaseContains
+        for efficiency.
 	*/
 	public final boolean contains( Triple t ) 
         { checkOpen();

@@ -417,6 +417,16 @@ public abstract class AbstractTestReifier extends GraphTestBase
         assertEquals( 0, r.size() );
         }
     
+    public void testEmpty()
+        {
+        Graph g = getGraph( Standard );
+        assertTrue( g.isEmpty() );
+        graphAdd( g, "x rdf:type rdf:Statement" ); assertFalse( g.isEmpty() );
+        graphAdd( g, "x rdf:subject Deconstruction" ); assertFalse( g.isEmpty() );
+        graphAdd( g, "x rdf:predicate rdfs:subTypeOf" ); assertFalse( g.isEmpty() );
+        graphAdd( g, "x rdf:object LiteraryCriticism" ); assertFalse( g.isEmpty() );
+        }
+    
     public void testReifierEmptyFind()
         {
         Graph g = getGraph( Standard );

@@ -41,15 +41,8 @@ public class GraphMem extends GraphMemBase implements Graph
     public void performDelete( Triple t )
         { if (!getReifier().handledRemove( t )) store.delete( t ); }
 
-
     public int graphBaseSize()  
         { return store.size(); }
-
-    public boolean isEmpty()
-        {
-        checkOpen();
-        return store.isEmpty();
-        }
     
     public QueryHandler queryHandler()
         {
