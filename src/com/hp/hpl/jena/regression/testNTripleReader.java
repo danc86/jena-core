@@ -30,9 +30,7 @@
 package com.hp.hpl.jena.regression;
 
 import com.hp.hpl.jena.rdf.model.*;
-import com.hp.hpl.jena.rdf.model.impl.*;
-
-
+import org.apache.log4j.Logger;
 
 /**
  *
@@ -45,7 +43,9 @@ public class testNTripleReader extends Object {
     protected static void doTest(Model m1) {
         (new testNTripleReader()).test(m1);
     }
-
+    
+    protected static Logger logger = Logger.getLogger( testNTripleReader.class );
+    
     void test(Model m1) {
 
         String  test = "testNTripleReader";
@@ -61,7 +61,7 @@ public class testNTripleReader extends Object {
             n++; if (! iter.hasNext()) error(test, n);
         } catch (Exception e) {
             inError = true;
-            ErrorHelper.logInternalError(" test " + test, n, e);
+            logger.error( " test " + test + "[" + n + "]", e);
         }
   //      System.out.println("End of " + test);        
     }

@@ -29,9 +29,9 @@
 package com.hp.hpl.jena.regression;
 
 import com.hp.hpl.jena.rdf.model.*;
-import com.hp.hpl.jena.rdf.model.impl.ErrorHelper;
 import com.hp.hpl.jena.mem.ModelMem;
 
+import org.apache.log4j.Logger;
 /**
  *
  * @author  bwm
@@ -43,6 +43,8 @@ public class testModelEquals extends Object {
         (new testModelEquals()).test(m1, m2);
     }
 
+    protected static Logger logger = Logger.getLogger( testModelEquals.class );
+    
     void test(Model m1, Model m2) {
 
         String  test = "testModelEquals";
@@ -86,7 +88,7 @@ public class testModelEquals extends Object {
             }
         } catch (Exception e) {
             inError = true;
-            ErrorHelper.logInternalError(" test " + test, n, e);
+            logger.error( " test " + test + "[" + n + "]", e);
         }
      //   System.out.println("End of " + test);        
     }

@@ -37,6 +37,8 @@ import java.net.*;
 
 import com.hp.hpl.jena.shared.*;
 
+import org.apache.log4j.Logger;
+
 /**
  *
  * @author  bwm
@@ -49,6 +51,8 @@ public class testReaderInterface extends Object {
         (new testReaderInterface()).test(m1);
     }
 
+    protected static Logger logger = Logger.getLogger( testReaderInterface.class );
+    
     void test(Model m1) {
 
         String  test = "testReaderInterface";
@@ -115,7 +119,7 @@ public class testReaderInterface extends Object {
 
         } catch (Exception e) {
             inError = true;
-            ErrorHelper.logInternalError(" test " + test, n, e);
+            logger.error( " test " + test + "[" + n + "]", e);
         }
       //  System.out.println("End of " + test);
     }
