@@ -54,17 +54,22 @@ public class TestQuery1 extends AbstractTestQuery1
         
     public Graph getGraph ( ReificationStyle style )
         { 
-        Graph result = new GraphRDB
-            (
-            theConnection,
-            "testGraph-" + count ++, 
-            theConnection.getDefaultModelProperties().getGraph(),
-			GraphRDB.styleRDB( style ), 
-            true
-            );
+        String name = "jena-test-rdb-TestQuery1-" + count ++;
+        if (theConnection.containsModel( name )) makeGraph( name, false, style ).remove();
+        GraphRDB result = makeGraph( name, true, style );
         graphs.add( result );    
         return result;
         }
+        
+    protected GraphRDB makeGraph( String name, boolean fresh, ReificationStyle style )
+        { return new GraphRDB
+            (
+            theConnection,
+            name, 
+            theConnection.getDefaultModelProperties().getGraph(),
+            GraphRDB.styleRDB( style ), 
+            fresh
+            ); }
 
     }
 

@@ -9,6 +9,7 @@ package com.hp.hpl.jena.rdf.model.test;
 import com.hp.hpl.jena.rdf.model.impl.*;
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.shared.*;
+import com.hp.hpl.jena.util.iterator.*;
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.graph.test.*;
 
@@ -44,67 +45,73 @@ public class TestModelMakerImpl extends ModelTestBase
     public void testClose()
         {
         maker.close();
-        assertEquals( history(), one( "close()") );
+        checkHistory( one( "close()") );
         }
         
     public void testRemove()
         {
         maker.removeModel( "London" );
-        assertEquals( history(), one( "remove(London)" ) );
+        checkHistory( one( "remove(London)" ) );
         }
         
     public void testCreate()
         {
         maker.createModel();
-        assertEquals( history(), one( "create()" ) );
+        checkHistory( one( "create()" ) );
         }
         
     public void testGet()
         {
         maker.getModel();
-        assertEquals( history(), one( "get()" ) );  
+        checkHistory( one( "get()" ) );  
         }
         
     public void testCreateNamed()
         {
         Model m = maker.createModel( "petal" );
-        assertEquals( history(), one("create(petal,false)" ) );
+        checkHistory( one("create(petal,false)" ) );
         assertTrue( m.getGraph() == graph );
         }
         
     public void testCreateTrue()
         {
         Model m = maker.createModel( "stem", true );
-        assertEquals( history(), one("create(stem,true)" ) );
+        checkHistory( one("create(stem,true)" ) );
         assertTrue( m.getGraph() == graph );        
         }
         
     public void testCreateFalse()
         {
         Model m = maker.createModel( "leaf", false );
-        assertEquals( history(), one("create(leaf,false)" ) );
+        checkHistory( one("create(leaf,false)" ) );
         assertTrue( m.getGraph() == graph );        
         }
         
     public void testOpen()
         {
         Model m = maker.openModel( "trunk" );
-        assertEquals( history(), one("open(trunk,false)" ) );
+        checkHistory( one("open(trunk,false)" ) );
         assertTrue( m.getGraph() == graph );    
         }
         
     public void testOpenFalse()
         {
         Model m = maker.openModel( "branch", false );
-        assertEquals( history(), one("open(branch,false)" ) );
+        checkHistory( one("open(branch,false)" ) );
         assertTrue( m.getGraph() == graph );    
         }
         
     public void testOpenTrue()
         {
         Model m = maker.openModel( "bark", true );
-        assertEquals( history(), one("open(bark,true)" ) );
+        checkHistory( one("open(bark,true)" ) );
         assertTrue( m.getGraph() == graph );    
+        }
+        
+    public void testListGraphs()
+        {
+        maker.listModels().close();
+        checkHistory( one("listModels()" ) );    
         }
         
     public void testGetGraphMaker()
@@ -115,9 +122,12 @@ public class TestModelMakerImpl extends ModelTestBase
     public void testGetDescription()
         {
         maker.getDescription();
-        assertEquals( history(), one( "getDescription()" ) ); 
+        checkHistory( one( "getDescription()" ) ); 
         }
 
+    private void checkHistory( List expected )
+        { assertEquals( expected, history() ); }
+        
     private List history()
         { return ((MockGraphMaker) maker.getGraphMaker()).history; }
         
@@ -210,6 +220,12 @@ public class TestModelMakerImpl extends ModelTestBase
         public void close()
             {
             history.add( "close()" );
+            }
+            
+        public ExtendedIterator listGraphs()
+            {
+            history.add( "listModels()" );
+            return new NiceIterator();    
             }
         }        
     }

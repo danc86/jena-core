@@ -8,6 +8,7 @@ package com.hp.hpl.jena.rdf.model.impl;
 
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.rdf.model.*;
+import com.hp.hpl.jena.util.iterator.*;
 
 /**
     A ModelMakerImpl implements a ModelMaker over a GraphMaker.
@@ -64,6 +65,9 @@ public class ModelMakerImpl implements ModelMaker
         
     public boolean hasModel( String name )
         { return maker.hasGraph( name ); }
+        
+    public ExtendedIterator listModels()
+        { return maker.listGraphs(); }
     }
 
 /*

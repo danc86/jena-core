@@ -10,7 +10,9 @@ import com.hp.hpl.jena.graph.*;
 
 import java.io.*;
 import java.util.*;
+
 import com.hp.hpl.jena.shared.*;
+import com.hp.hpl.jena.util.iterator.*;
 import com.hp.hpl.jena.vocabulary.*;
 
 /**
@@ -171,6 +173,34 @@ public class FileGraphMaker extends BaseGraphMaker
             while (it.hasNext()) ((File) it.next()).delete();
             }
         }
+        
+    /**
+        Answer a FilenameFilter which recognises plausibly RDF filenames; they're not
+        directories, and FileGraph likes them. Pass the buck, pass the buck ...
+        
+     	@return a FilenameFilter that accepts plausible graph names
+     */
+    public static FilenameFilter graphName()
+        { return new FilenameFilter()
+            {
+            public boolean accept( File file, String name )
+                { return !new File( file, name ).isDirectory()
+                    && FileGraph.plausibleGraphName( name ); }    
+            }; }
+            
+    /**
+        Answer an iterator over the names of graphs in the FileGraphMaker. This is all the
+        names of freshly-created graphs, plus the names of any files in the fileBase that
+        might be RDF files. "Might" is weaker than we'd like for now.
+         
+     	@see com.hp.hpl.jena.graph.GraphMaker#listGraphs()
+     */
+    public ExtendedIterator listGraphs()
+        { String [] fileNames = new File( fileBase ).list( graphName() );
+        Set allNames = new HashSet( Arrays.asList( fileNames ) );
+        Iterator it = created.keySet().iterator();
+        while (it.hasNext()) allNames.add( ((File) it.next()).getName() ); 
+		return WrappedIterator.create( allNames.iterator() ); }
     }
 
 /*

@@ -7,6 +7,7 @@
 package com.hp.hpl.jena.rdf.model;
 
 import com.hp.hpl.jena.graph.*;
+import com.hp.hpl.jena.util.iterator.*;
 
 /**
     A ModelMaker contains a collection of named models, methods for creating
@@ -98,6 +99,14 @@ public interface ModelMaker extends ModelSpec
         makes models. In general this will be an underlying GraphMaker.
     */
     public GraphMaker getGraphMaker();
+    
+    /**
+        Answer an [extended] iterator where each element is the name of a model in
+        the maker, and the complete sequence exhausts the set of names. No particular
+        order is expected from the list.
+        @return an extended iterator over the names of models known to this Maker.
+    */
+    ExtendedIterator listModels();
     }
 
 

@@ -34,6 +34,11 @@ public class TestGraphRDBMaker extends AbstractTestGraphMaker
 
     public static TestSuite suite()
         { return new TestSuite( TestGraphRDBMaker.class ); }
+        
+    public void setUp()
+        { super.setUp();
+        // assertFalse( connection.getAllModelNames().hasNext() ); 
+        }
 
     /**
         The current factory object, or null when there isn't one.
@@ -43,7 +48,7 @@ public class TestGraphRDBMaker extends AbstractTestGraphMaker
     /**
         Invent a new factory on the connection, record it, and return it.    
     */
-    public GraphMaker getGraphFactory()
+    public GraphMaker getGraphMaker()
         { return current = new GraphRDBMaker( connection, ReificationStyle.Minimal ); }    
         
     /**

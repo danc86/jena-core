@@ -51,29 +51,10 @@ public class MegaTestSuite extends TestSuite {
         return new MegaTestSuite();
     }
     private MegaTestSuite() {
-        super("Jena");
-        /* redundant ? */
-        addTest("basic Node tests", com.hp.hpl.jena.graph.test.TestNode.suite());
-        /* redundant ? */
-        addTest("basic Graph tests", com.hp.hpl.jena.graph.test.TestGraph.suite());
-        addTest(
-            "Graph test suite",
-            com.hp.hpl.jena.graph.test.TestPackage.suite());
-        addTest(
-            "Memory Model",
-            com.hp.hpl.jena.mem.TestSuiteRegression.suite());
-//         addTest(
-//             "graph.query.QueryTest",
-//             com.hp.hpl.jena.graph.query.QueryTest.suite());
-/*        addTest(
-            "inference test",
-            com.hp.hpl.jena.inference.InferenceTestSuite.suite());
-            */
-//         if (false)
-//             addTest("DAML", com.hp.hpl.jena.ontology.daml.test.DAMLTest.suite());
-//         else
-//             System.err.println("WARNING: DAML tests suppressed for the moment");
+        super( "Jena");
+        addTest( "Memory Model", com.hp.hpl.jena.mem.TestSuiteRegression.suite() );
     }
+
     private void addTest(String name, TestSuite tc) {
         tc.setName(name);
         addTest(tc);

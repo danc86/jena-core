@@ -97,6 +97,12 @@ public class FileGraph extends GraphMem
         return "RDF/XML";
         }
         
+    public static boolean plausibleGraphName( String name )
+        {
+        String suffix = name.substring( name.lastIndexOf( '.' ) + 1 );
+        return suffix.equals( "n3" ) || suffix.equals( "nt" ) || suffix.equals( "rdf" );
+        }
+        
     /**
         Write out and then close this FileGraph. The graph is written out to the 
         named file in the language guessed from the suffix, and then the 

@@ -7,6 +7,7 @@
 package com.hp.hpl.jena.graph;
 
 import com.hp.hpl.jena.shared.*;
+import com.hp.hpl.jena.util.iterator.*;
 
 /**
     A factory for providing instances of named graphs with appropriate storage models.
@@ -118,6 +119,14 @@ public interface GraphMaker
         can be done.
     */
     public void close();
+    
+    /**
+        Answer an [extended] iterator where each element is the name of a graph in
+        the maker, and the complete sequence exhausts the set of names. No particular
+        order is expected from the list.
+     	@return an extended iterator over the names of graphs known to this Maker.
+     */
+    ExtendedIterator listGraphs();
 }
 
 /* ****************************************************************************
