@@ -1,29 +1,30 @@
 /******************************************************************
- * File:        XSDDateTimeType.java
+ * File:        XSDTimeType.java
  * Created by:  Dave Reynolds
- * Created on:  16-Dec-2002
+ * Created on:  04-Dec-2003
  * 
- * (c) Copyright 2002, Hewlett-Packard Development Company, LP
+ * (c) Copyright 2003, Hewlett-Packard Development Company, LP, all rights reserved.
  * [See end of file]
  * $Id$
  *****************************************************************/
 package com.hp.hpl.jena.datatypes.xsd.impl;
 
-import com.hp.hpl.jena.datatypes.xsd.*;
+import com.hp.hpl.jena.datatypes.xsd.AbstractDateTime;
+import com.hp.hpl.jena.datatypes.xsd.XSDDateTime;
 
 /**
- * Type processor for dateTime, most of the machinery is in the
+ * Type processor for time, most of the machinery is in the
  * base XSDAbstractDateTimeType class.
  * 
  * @author <a href="mailto:der@hplb.hpl.hp.com">Dave Reynolds</a>
  * @version $Revision$ on $Date$
  */
-public class XSDDateTimeType extends XSDAbstractDateTimeType {
+public class XSDTimeType extends XSDAbstractDateTimeType {
 
     /**
      * Constructor
      */
-    public XSDDateTimeType(String typename) {
+    public XSDTimeType(String typename) {
         super(typename);
     }
 
@@ -33,26 +34,29 @@ public class XSDDateTimeType extends XSDAbstractDateTimeType {
      * parse method to make the implementation of XSDGenericType easier.
      */
     public Object parseValidated(String str) {
-         int len = str.length();
-         int[] date = new int[TOTAL_SIZE];
-         int[] timeZone = new int[2];
+        int len = str.length();
+        int[] date = new int[TOTAL_SIZE];
+        int[] timeZone = new int[2];
 
-         int end = indexOf (str, 0, len, 'T');
+        // time
+        // initialize to default values
+        date[CY]=YEAR;
+        date[M]=MONTH;
+        date[D]=DAY;
+        getTime(str, 0, len, date, timeZone);
 
-         // both time and date
-         getDate(str, 0, end, date);
-         getTime(str, end+1, len, date, timeZone);
+        if ( date[utc]!=0 && date[utc]!='Z' ) {
+            AbstractDateTime.normalize(date, timeZone);
+        }
 
-         if ( date[utc]!=0 && date[utc]!='Z') {
-             AbstractDateTime.normalize(date, timeZone);
-         }
-         return new XSDDateTime(date, XSDDateTime.FULL_MASK);
+        return new XSDDateTime(date, TIME_MASK);
     }
     
 }
 
+
 /*
-    (c) Copyright 2002 Hewlett-Packard Development Company, LP
+    (c) Copyright Hewlett-Packard Development Company, LP 2003
     All rights reserved.
 
     Redistribution and use in source and binary forms, with or without

@@ -1,56 +1,69 @@
 /******************************************************************
- * File:        XSDIntType.java
+ * File:        XSDDayType.java
  * Created by:  Dave Reynolds
- * Created on:  10-Dec-02
+ * Created on:  04-Dec-2003
  * 
- * (c) Copyright 2002, Hewlett-Packard Development Company, LP
+ * (c) Copyright 2003, Hewlett-Packard Development Company, LP, all rights reserved.
  * [See end of file]
  * $Id$
  *****************************************************************/
 package com.hp.hpl.jena.datatypes.xsd.impl;
 
-import com.hp.hpl.jena.datatypes.*;
+import com.hp.hpl.jena.datatypes.xsd.AbstractDateTime;
+import com.hp.hpl.jena.datatypes.xsd.XSDDateTime;
 
 /**
- * Datatype template used to define XSD int types
- *
+ * Type processor for gDay, most of the machinery is in the
+ * base XSDAbstractDateTimeType class.
+ * 
  * @author <a href="mailto:der@hplb.hpl.hp.com">Dave Reynolds</a>
  * @version $Revision$ on $Date$
  */
-public class XSDIntType extends XSDBaseNumericType {
+public class XSDDayType extends XSDAbstractDateTimeType {
 
     /**
-     * Constructor. 
-     * @param typeName the name of the XSD type to be instantiated, this is 
-     * used to lookup a type definition from the Xerces schema factory.
+     * Constructor
      */
-    public XSDIntType(String typeName) {
-        super(typeName);
-    }
-    
-    /**
-     * Constructor. 
-     * @param typeName the name of the XSD type to be instantiated, this is 
-     * used to lookup a type definition from the Xerces schema factory.
-     * @param javaClass the java class for which this xsd type is to be
-     * treated as the cannonical representation
-     */
-    public XSDIntType(String typeName, Class javaClass) {
-        super(typeName, javaClass);
-    }
-    
-    /**
-     * Parse a lexical form of this datatype to a value
-     * @throws DatatypeFormatException if the lexical form is not legal
-     */
-    public Object parse(String lexicalForm) throws DatatypeFormatException {        
-        return new Integer(super.parse(lexicalForm).toString());
+    public XSDDayType(String typename) {
+        super(typename);
     }
 
+    //size without time zone: ---09
+    private final static int DAY_SIZE=5;
+
+    /**
+     * Parse a validated date. This is invoked from
+     * XSDDatatype.convertValidatedDataValue rather then from a local
+     * parse method to make the implementation of XSDGenericType easier.
+     */
+    public Object parseValidated(String str) {
+        int len = str.length();
+        int[] date = new int[TOTAL_SIZE];
+        int[] timeZone = new int[2];
+
+        //initialize values
+        date[CY]=YEAR;
+        date[M]=MONTH;
+
+        date[D]=parseInt(str, 3,5);
+
+        if ( DAY_SIZE<len ) {
+            int sign = findUTCSign(str, DAY_SIZE, len);
+            getTimeZone(str, date, sign, len, timeZone);
+        }
+
+        if ( date[utc]!=0 && date[utc]!='Z' ) {
+            AbstractDateTime.normalize(date, timeZone);
+        }
+
+        return new XSDDateTime(date, DAY_MASK);
+    }
+    
 }
 
+
 /*
-    (c) Copyright 2002 Hewlett-Packard Development Company, LP
+    (c) Copyright Hewlett-Packard Development Company, LP 2003
     All rights reserved.
 
     Redistribution and use in source and binary forms, with or without

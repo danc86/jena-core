@@ -76,7 +76,7 @@ public class BaseDatatype implements RDFDatatype {
      * lexically legal like "1").
      */
     public boolean isValidLiteral(LiteralLabel lit) {
-        // default is than only literals with the same type are valid
+        // default is that only literals with the same type are valid
         return equals(lit.getDatatype());
     }
      

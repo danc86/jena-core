@@ -9,7 +9,6 @@
  *****************************************************************/
 package com.hp.hpl.jena.datatypes.xsd.impl;
 
-import com.hp.hpl.jena.datatypes.*;
 import com.hp.hpl.jena.graph.impl.LiteralLabel;
 
 /**
@@ -39,15 +38,7 @@ public class XSDByteType extends XSDBaseNumericType {
     public XSDByteType(String typeName, Class javaClass) {
         super(typeName, javaClass);
     }
-    
-    /**
-     * Parse a lexical form of this datatype to a value
-     * @throws DatatypeFormatException if the lexical form is not legal
-     */
-    public Object parse(String lexicalForm) throws DatatypeFormatException {        
-        return new Byte(super.parse(lexicalForm).toString());
-    }
-    
+        
     /**
      * Compares two instances of values of the given datatype.
      * This ignores lang tags and just uses the java.lang.Number 
