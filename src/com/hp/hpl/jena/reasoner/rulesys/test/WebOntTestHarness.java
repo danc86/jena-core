@@ -138,7 +138,18 @@ public class WebOntTestHarness {
         "http://www.w3.org/2002/03owlt/description-logic/Manifest502#test",
         "http://www.w3.org/2002/03owlt/description-logic/Manifest504#test",
         
+        "http://www.w3.org/2002/03owlt/description-logic/Manifest202#test",
+        "http://www.w3.org/2002/03owlt/description-logic/Manifest203#test",
+        "http://www.w3.org/2002/03owlt/description-logic/Manifest204#test",
+        "http://www.w3.org/2002/03owlt/description-logic/Manifest205#test",
+        "http://www.w3.org/2002/03owlt/description-logic/Manifest206#test",
+        "http://www.w3.org/2002/03owlt/description-logic/Manifest207#test",
+        "http://www.w3.org/2002/03owlt/description-logic/Manifest208#test",
+        
         // Temporary block - incomplete (OOM eventually in some cases)
+        "http://www.w3.org/2002/03owlt/description-logic/Manifest661#test",
+        "http://www.w3.org/2002/03owlt/description-logic/Manifest662#test",
+        
         "http://www.w3.org/2002/03owlt/description-logic/Manifest608#test",
         "http://www.w3.org/2002/03owlt/description-logic/Manifest611#test",
         "http://www.w3.org/2002/03owlt/description-logic/Manifest615#test",
@@ -222,8 +233,9 @@ public class WebOntTestHarness {
             resultFile = args[0];
         }
         WebOntTestHarness harness = new WebOntTestHarness();
-        harness.runTests();
-//        harness.runTest("http://www.w3.org/2002/03owlt/oneOf/Manifest002#test");
+//        harness.runTests();
+//        harness.runTest("http://www.w3.org/2002/03owlt/description-logic/Manifest664#test");
+        harness.runTest("http://www.w3.org/2002/03owlt/description-logic/Manifest664#test");
         RDFWriter writer = harness.testResults.getWriter("RDF/XML-ABBREV");
         OutputStream stream = new FileOutputStream(resultFile);
         writer.setProperty("showXmlDeclaration", "true");
