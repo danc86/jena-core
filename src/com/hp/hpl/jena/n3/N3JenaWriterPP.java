@@ -411,7 +411,7 @@ public class N3JenaWriterPP extends N3JenaWriterCommon
                 out.println(" ;");
             
             String padSp = null ;
-            // Complex objects - do not allow property tobe long and alignment to be lost
+            // Complex objects - do not allow property to be long and alignment to be lost
             if (propStr.length() < propertyCol)
                 padSp = pad(calcPropertyPadding(propStr)) ;
 
