@@ -125,7 +125,7 @@ public abstract class BooleanClassDescriptionImpl
 	 * @exception OntProfileException If the operand property is not supported in the current language profile.   
 	 */ 
 	public ExtendedIterator listOperands() {
-		return getOperands().iterator();
+		return getOperands().iterator().mapWith( new AsMapper( OntClass.class ) );
 	}
 
 	/**

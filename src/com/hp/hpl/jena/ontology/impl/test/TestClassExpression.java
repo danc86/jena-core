@@ -29,6 +29,7 @@ import java.util.ArrayList;
 
 import com.hp.hpl.jena.ontology.*;
 import com.hp.hpl.jena.rdf.model.RDFNode;
+import com.hp.hpl.jena.util.iterator.ClosableIterator;
 
 import junit.framework.*;
 
@@ -221,6 +222,10 @@ public class TestClassExpression
 					assertEquals( "Size should be 2", 2, A.getOperands().size() );
 					iteratorTest( A.listOperands(), new Object[] {B,C} );
                     
+                    ClosableIterator i = A.listOperands();
+                    assertTrue( "Argument should be an OntClass", i.next() instanceof OntClass );
+                    i.close();
+                    
 					A.setOperands( m.createList( new RDFNode[] {C} ) );
 					assertEquals( "Cardinality should be 1", 1, A.getCardinality( prof.INTERSECTION_OF() ) );
 					assertEquals( "Size should be 1", 1, A.getOperands().size() );
@@ -249,6 +254,10 @@ public class TestClassExpression
 					assertEquals( "Cardinality should be 1", 1, A.getCardinality( prof.UNION_OF() ) );
 					assertEquals( "Size should be 2", 2, A.getOperands().size() );
 					iteratorTest( A.listOperands(), new Object[] {B,C} );
+                    
+                    ClosableIterator i = A.listOperands();
+                    assertTrue( "Argument should be an OntClass", i.next() instanceof OntClass );
+                    i.close();
                     
 					A.setOperands( m.createList( new RDFNode[] {C} ) );
 					assertEquals( "Cardinality should be 1", 1, A.getCardinality( prof.UNION_OF() ) );
