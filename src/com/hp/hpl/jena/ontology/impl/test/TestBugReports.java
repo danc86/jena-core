@@ -387,7 +387,60 @@ public class TestBugReports
         assertTrue( intersection.contains( m.getOntClass( "http://example.org/foo#B" ) ));
         assertTrue( intersection.contains( m.getOntClass( "http://example.org/foo#C" ) ));
     }
+
+    /** Bug report by Thorsten Liebig [liebig@informatik.uni-ulm.de] - SymmetricProperty etc not visible in list ont properties */
+    public void test_tl_01() {
+        String sourceT = 
+        "<rdf:RDF " +
+        "    xmlns:rdf='http://www.w3.org/1999/02/22-rdf-syntax-ns#'" +
+        "    xmlns:rdfs='http://www.w3.org/2000/01/rdf-schema#'" +
+        "    xmlns:owl=\"http://www.w3.org/2002/07/owl#\">" +
+        "   <owl:SymmetricProperty rdf:about='http://example.org/foo#p1'>" +
+        "   </owl:SymmetricProperty>" +
+        "   <owl:TransitiveProperty rdf:about='http://example.org/foo#p2'>" +
+        "   </owl:TransitiveProperty>" +
+        "   <owl:InverseFunctionalProperty rdf:about='http://example.org/foo#p3'>" +
+        "   </owl:InverseFunctionalProperty>" +
+        "</rdf:RDF>" ;
+        
+        OntModel m = ModelFactory.createOntologyModel( OntModelSpec.OWL_MEM_RULE_INF, null );
+        m.read( new ByteArrayInputStream( sourceT.getBytes() ), "http://example.org/foo" );
+        
+        boolean foundP1 = false;
+        boolean foundP2 = false;
+        boolean foundP3 = false;
+
+        // iterator of properties should include p1-3
+        for (Iterator i = m.listOntProperties(); i.hasNext(); ) {
+            Resource r = (Resource) i.next();
+            foundP1 = foundP1 || r.getURI().equals( "http://example.org/foo#p1" );
+            foundP2 = foundP2 || r.getURI().equals( "http://example.org/foo#p2" );
+            foundP3 = foundP3 || r.getURI().equals( "http://example.org/foo#p3" );
+        }
+        
+        assertTrue( "p1 not listed", foundP1 );
+        assertTrue( "p2 not listed", foundP2 );
+        assertTrue( "p3 not listed", foundP3 );
+        
+        foundP1 = false;
+        foundP2 = false;
+        foundP3 = false;
+
+        // iterator of object properties should include p1-3
+        for (Iterator i = m.listObjectProperties(); i.hasNext(); ) {
+            Resource r = (Resource) i.next();
+            foundP1 = foundP1 || r.getURI().equals( "http://example.org/foo#p1" );
+            foundP2 = foundP2 || r.getURI().equals( "http://example.org/foo#p2" );
+            foundP3 = foundP3 || r.getURI().equals( "http://example.org/foo#p3" );
+        }
+        
+        assertTrue( "p1 not listed", foundP1 );
+        assertTrue( "p2 not listed", foundP2 );
+        assertTrue( "p3 not listed", foundP3 );
+    }   
     
+    
+     
     // Internal implementation methods
     //////////////////////////////////
 
