@@ -31,7 +31,7 @@ public interface QueryExecution
 	/** Do it! */
 	public QueryResults exec();
 
-	/** Do a query, given an initail starting set of bindings*/
+	/** Do a query, given an initial starting set of bindings*/
 	//public QueryResults exec(ResultBindingImpl startBinding) ;
 
 	/** Stop in mid execution.
