@@ -1,5 +1,5 @@
 /*
- * (c) Copyright 2001-2003, Hewlett-Packard Company, all rights reserved.
+ * (c) Copyright 2001, 2002, 2003, Hewlett-Packard Development Company, LP
  * [See end of file]
  */
 
@@ -39,7 +39,7 @@ public class TestPackage extends TestSuite
 	static String M_DBDRIVER_CLASS = "oracle.jdbc.OracleDriver";
 	// */
 	
-	/*/ mysql settings
+	// */ mysql settings
 	static String M_DB_URL = "jdbc:mysql://localhost/test";
 	static String M_DB_USER = "test";
 	static String M_DB_PASSWD = "";
@@ -55,7 +55,7 @@ public class TestPackage extends TestSuite
 	static String M_DBDRIVER_CLASS = "org.postgresql.Driver";
 	// */
         
-	// */
+	/*/
 	static String M_DB_URL = ModelFactoryBase.guessDBURL();
     static String M_DB_USER = ModelFactoryBase.guessDBUser();
     static String M_DB_PASSWD = ModelFactoryBase.guessDBPassword();
