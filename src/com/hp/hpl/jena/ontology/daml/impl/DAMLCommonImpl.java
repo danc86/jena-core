@@ -203,7 +203,7 @@ public class DAMLCommonImpl
         List me = new LinkedList();
         me.add( this );
         
-        return new UniqueExtendedIterator( WrappedIterator.create( me.iterator() )
+        return UniqueExtendedIterator.create( WrappedIterator.create( me.iterator() )
                    .andThen( listPropertyValues( getProfile().SAME_AS() ) ) );
     }
 

@@ -336,7 +336,7 @@ public class DAMLModelImpl
      * @return An iterator over all currently defined classes (including Restrictions).
      */
     public ExtendedIterator listDAMLClasses() {
-        return new UniqueExtendedIterator( findByTypeAs( getProfile().CLASS(), null, DAMLClass.class ) );
+        return UniqueExtendedIterator.create( findByTypeAs( getProfile().CLASS(), null, DAMLClass.class ) );
     }
 
 
@@ -347,7 +347,7 @@ public class DAMLModelImpl
      *         all sub-classes).
      */
     public ExtendedIterator listDAMLProperties() {
-        return new UniqueExtendedIterator( findByTypeAs( getProfile().PROPERTY(), null, DAMLProperty.class ) );
+        return UniqueExtendedIterator.create( findByTypeAs( getProfile().PROPERTY(), null, DAMLProperty.class ) );
     }
 
 
@@ -357,7 +357,7 @@ public class DAMLModelImpl
      * @return An iterator over all currently defined DAML instances.
      */
     public ExtendedIterator listDAMLInstances() {
-        return new UniqueExtendedIterator( listIndividuals().mapWith( new Map1() {
+        return UniqueExtendedIterator.create( listIndividuals().mapWith( new Map1() {
                         public Object map1(Object x){ return ((Resource) x).as( DAMLInstance.class );} } ) );
     }
 

@@ -158,7 +158,7 @@ public class DAMLClassImpl
                        // followed by the sameClassAs values
                        getSameClasses() );
 
-        return new UniqueExtendedIterator( i ).mapWith( new AsMapper( DAMLClass.class ) );
+        return UniqueExtendedIterator.create( i ).mapWith( new AsMapper( DAMLClass.class ) );
     }
 
 

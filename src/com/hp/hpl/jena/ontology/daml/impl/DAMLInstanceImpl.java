@@ -148,7 +148,7 @@ public class DAMLInstanceImpl
      *         the iteration should be a DAMLInstance object.
      */
     public ExtendedIterator getEquivalentValues() {
-        return new UniqueExtendedIterator( listAs( getProfile().SAME_AS(), "SAME_AS", DAMLInstance.class ).andThen( getSameInstances() ) );
+        return UniqueExtendedIterator.create( listAs( getProfile().SAME_AS(), "SAME_AS", DAMLInstance.class ).andThen( getSameInstances() ) );
     }
 
 

@@ -147,7 +147,7 @@ public class DAMLPropertyImpl
                        // followed by the samePropertyAs values
                        getSameProperties() );
 
-        return new UniqueExtendedIterator( i ).mapWith( new AsMapper( DAMLProperty.class ) );
+        return UniqueExtendedIterator.create( i ).mapWith( new AsMapper( DAMLProperty.class ) );
     }
 
 

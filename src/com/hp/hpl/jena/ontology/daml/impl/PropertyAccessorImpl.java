@@ -113,7 +113,7 @@ public class PropertyAccessorImpl
      * @return An iteration over the values of the encapsulated property.
      */
     public NodeIterator getAll() {
-        return new NodeIteratorImpl( new UniqueExtendedIterator( m_val.listPropertyValues( getProperty() ) ), null );
+        return new NodeIteratorImpl( UniqueExtendedIterator.create( m_val.listPropertyValues( getProperty() ) ), null );
     }
 
 
