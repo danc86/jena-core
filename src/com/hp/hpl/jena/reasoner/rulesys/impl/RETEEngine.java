@@ -303,6 +303,13 @@ public class RETEEngine implements FRuleEngineI {
         deletesPending.add(triple);
         if (deduction) {
             infGraph.getDeductionsGraph().delete(triple);
+            Graph raw = infGraph.getRawGraph();
+            raw.delete(triple);
+            if (raw.contains(triple)) {
+                // Built in a graph which can't delete this triple
+                // so block further processing of this delete to avoid loops
+                deletesPending.remove(triple);
+            }
         }
     }
     

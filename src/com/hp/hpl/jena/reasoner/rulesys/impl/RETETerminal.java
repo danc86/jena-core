@@ -123,8 +123,10 @@ public class RETETerminal implements RETESinkNode {
                             }
                         }
                     } else {
-                        // Remove the generated triple
-                        engine.deleteTriple(t, true);
+                        if ( context.contains(t)) {
+                            // Remove the generated triple
+                            engine.deleteTriple(t, true);
+                        }
                     }
                 }
             } else if (hClause instanceof Functor && isAdd) {
