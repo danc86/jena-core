@@ -721,6 +721,20 @@ public class OntPropertyImpl
     // Internal implementation methods
     //////////////////////////////////
 
+    /**
+     * <p>Answer a property that is attached to the given model, which will either
+     * be this property or a new property object with the same URI in the given
+     * model. If the given model is an ontology model, make the new property object
+     * an ontproperty.</p>
+     * @param m A model 
+     * @return A property equal to this property that is attached to m.
+     */
+    public RDFNode inModel( Model m ) {
+        return (getModel() == m) ? this : m.createProperty( getURI() );
+    }
+
+
+
     //==============================================================================
     // Inner class definitions
     //==============================================================================

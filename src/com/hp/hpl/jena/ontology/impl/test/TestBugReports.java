@@ -200,7 +200,22 @@ public class TestBugReports
         assertTrue( "Transaction committed", ((MockTransactionHandler) m1.getGraph().getTransactionHandler()).m_committed);
     }
     
-    
+    /**
+     * Bug report by Christoph Kunz, 26/Aug/03. CCE when creating a statement from
+     * a vocabulary
+     *
+     */
+    public void test_ck_02() {
+        OntModel vocabModel = ModelFactory.createOntologyModel();
+        ObjectProperty p = vocabModel.createObjectProperty("p");
+        OntClass A = vocabModel.createClass( "A");
+        
+        OntModel workModel = ModelFactory.createOntologyModel();
+        Individual sub = workModel.createIndividual("uri1", A);
+        Individual obj = workModel.createIndividual("uri2", A);
+        workModel.createStatement(sub, p, obj);
+    }
+
     /**
      * Bug report by sjooseng [sjooseng@hotmail.com].  CCE in listOneOf in Enumerated
      * Class with DAML profile.
