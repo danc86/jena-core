@@ -236,13 +236,14 @@ public class NTriple implements ARPErrorNumbers {
 		boolean usedNext = false;
 		for (int i = 0; i < opts.length(); i++) {
 			char opt = opts.charAt(i);
-			if ("beiw".indexOf(opt) != -1) {
+			if ("beiwD".indexOf(opt) != -1) {
 				if (usedNext)
 					usage();
 				usedNext = true;
 			}
 			switch (opt) {
 				case 'D':
+					final int nStatements = Integer.parseInt(nextArg);
  rt.gc(); rt.gc(); 
  startMem = (int)(rt.totalMemory()-rt.freeMemory());
 				arp.setStatementHandler(new StatementHandler(){
@@ -255,17 +256,26 @@ int debugC = 0;
 
 					public void statement(AResource subj, AResource pred, ALiteral lit) {
 						if (++debugC%100 == 0) {
-							System.out.println(debugC);
+							System.out.println("T: " + debugC);
 							rt.gc();
-							System.out.println(rt.totalMemory()-rt.freeMemory()-startMem);
+							System.out.println("M1: "+ (rt.totalMemory()-rt.freeMemory()-startMem));
 						  rt.gc();
-							System.out.println(rt.totalMemory()-rt.freeMemory()-startMem);
-						  if (debugC == 500 && false) 
+							System.out.println("M2: " + (rt.totalMemory()-rt.freeMemory()-startMem));
+						} 
+						if ( debugC == 1 ){
+							rt.gc(); rt.gc(); 
+							startMem = (int)(rt.totalMemory()-rt.freeMemory());
+						}
+						if (debugC == nStatements) {
+
+						  	rt.gc();
+						  	System.err.println("Kill me now.");
 						  try {
-						    Thread.sleep(20000);
+						    Thread.sleep(200000);
 						  }
 						  catch (Exception e){
 						  }
+						  
 						}
 							
 						
