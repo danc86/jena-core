@@ -74,10 +74,16 @@ public class OWLRuleTranslationHook implements RulePreprocessHook {
      * @param elements the list of elements found so far
      */
     protected static void translateIntersectionList(Node node, Finder dataFind, List elements) {
+        if (node == null) {
+            throw new ReasonerException("Illegal list structure in owl:intersectionOf");
+        }
         if (node.equals(RDF.nil.asNode())) {
             return; // end of list
         } 
         Node description = Util.getPropValue(node, RDF.first.asNode(), dataFind);
+        if (description == null) {
+            throw new ReasonerException("Illegal list structure in owl:intersectionOf");
+        }
         // Translate the first description element
         if (dataFind.contains(new TriplePattern(description, RDF.type.asNode(), OWL.Restriction.asNode()))) {
             // Process a restriction element
