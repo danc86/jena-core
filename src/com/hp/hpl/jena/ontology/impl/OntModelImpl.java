@@ -481,9 +481,16 @@ public class OntModelImpl
      * @see Profile#getAnnotationProperties()
      */
     public Iterator listAnnotationProperties() {
-        return findByType( getProfile().ANNOTATION_PROPERTY() )
-               .andThen( WrappedIterator.create( getProfile().getAnnotationProperties() ) )
-               .mapWith( new SubjectNodeAs( AnnotationProperty.class ) );
+        Resource r = (Resource) getProfile().ANNOTATION_PROPERTY();
+        
+        if (r == null) {
+            return new ArrayList().iterator(); 
+        }
+        else {
+            return findByType( r )
+                   .andThen( WrappedIterator.create( getProfile().getAnnotationProperties() ) )
+                   .mapWith( new SubjectNodeAs( AnnotationProperty.class ) );
+        }
     }
     
    
@@ -896,7 +903,7 @@ public class OntModelImpl
      * @return The base-graph for this ontology model
      */
     public Graph getBaseGraph() {
-        return ((MultiUnion) getGraph()).getBaseGraph();
+        return ((OntologyGraph) getGraph()).getUnion().getBaseGraph();
     }
     
     

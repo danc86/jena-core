@@ -28,6 +28,11 @@ import com.hp.hpl.jena.ontology.*;
 import com.hp.hpl.jena.ontology.path.*;
 import com.hp.hpl.jena.enhanced.*;
 import com.hp.hpl.jena.graph.*;
+import com.hp.hpl.jena.rdf.model.*;
+import com.hp.hpl.jena.util.iterator.*;
+import com.hp.hpl.jena.vocabulary.*;
+
+import java.util.Iterator;
 
 
 /**
@@ -137,6 +142,147 @@ public class ClassDescriptionImpl
         return asPathSet( getProfile().DISJOINT_WITH() );
     }
      
+    /**
+     * <p>
+     * Answer an iterator over the class descriptions
+     * that mention this class as one of its super-classes.
+     * </p>
+     * <p>
+     * TODO: the closed parameter is ignored at the current time
+     * </p>
+     * 
+     * @param closed If true, close the iteration over the sub-class relation: i&#046;e&#046;
+     *               return the sub-classes of the sub-classes, etc.
+     * @return an iterator over the resources representing this class's sub-classes
+     */
+    public Iterator getSubClasses( boolean closed ) {
+        // ensure we have an extended iterator of statements  _x rdfs:subClassOf this
+        Iterator i = getModel().listStatements( null, RDFS.subClassOf, this );
+        ExtendedIterator ei = (i instanceof ExtendedIterator) ? (ExtendedIterator) i : WrappedIterator.create( i );
+        
+        // alias defined?
+        if (getProfile().hasAliasFor( RDFS.subClassOf )) {
+            ei = ei.andThen( WrappedIterator.create( getModel().listStatements( null, (Property) getProfile().getAliasFor( RDFS.subClassOf ), this ) ) );
+        }
+        
+        // we only want the subjects of the statements
+        return ei.mapWith( new Map1() { public Object map1( Object x ) { return ((Statement) x).getSubject().as( ClassDescription.class ); } } );
+    }
+
+
+    /**
+     * <p>
+     * Answer an iterator over the class descriptions
+     * for which this class is a sub-class. Will generate the
+     * closure of the iteration over the super-class relationship.
+     * <p>
+     * 
+     * @return an iterator over the resources representing this class's super-classes.
+     */
+    public Iterator getSuperClasses() {
+        return getSuperClasses( true );
+    }
+
+
+    /**
+     * <p>
+     * Answer an iterator over the class descriptions
+     * that mention this class as one of its super-classes.  Will iterate over the
+     * closure of the sub-class relationship.
+     * </p>
+     * 
+     * @return an iterator over the resources representing this class's sub-classes.
+     */
+    public Iterator getSubClasses() {
+        return getSubClasses( true );
+    }
+
+
+    /**
+     * <p>
+     * Answer an iterator over the class descriptions
+     * for which this class is a sub-class. 
+     * </p>
+     * <p>
+     * TODO: the closed parameter is ignored at the current time
+     * </p>
+     * 
+     * @param closed If true, close the iteration over the super-class relation: i&#046;e&#046;
+     *               return the super-classes of the super-classes, etc.
+     * @return an iterator over the resources representing this class's sub-classes.
+     */
+    public Iterator getSuperClasses( boolean closed ) {
+        // ensure we have an extended iterator of statements  this rdfs:subClassOf _x
+        Iterator i = getModel().listStatements( this, RDFS.subClassOf, (RDFNode) null );
+        ExtendedIterator ei = (i instanceof ExtendedIterator) ? (ExtendedIterator) i : WrappedIterator.create( i );
+        
+        // alias defined?
+        if (getProfile().hasAliasFor( RDFS.subClassOf )) {
+            ei = ei.andThen( WrappedIterator.create( getModel().listStatements( this, (Property) getProfile().getAliasFor( RDFS.subClassOf ), (RDFNode) null ) ) );
+        }
+        
+        // we only want the subjects of the statements
+        return ei.mapWith( new Map1() { public Object map1( Object x ) { return ((Statement) x).getSubject().as( ClassDescription.class ); } } );
+    }
+
+
+    /**
+     * <p>
+     * Answer true if the given class is a sub-class of this class.
+     * </p>
+     * 
+     * @param cls A resource representing a class
+     * @return True if this class is a super-class of the given class <code>cls</code>.
+     */
+    public boolean hasSubClass( Resource cls ) {
+        boolean found = false;
+        Iterator i = null;
+        
+        try {
+            i = getSubClasses();
+            while (!found && i.hasNext()) {
+                found = cls.equals( i.next() );           
+            }
+        }
+        finally {
+            if (i instanceof ClosableIterator) {
+                ((ClosableIterator) i).close();
+            }
+        }
+        
+        return found;
+    }
+
+
+    /**
+     * <p>
+     * Answer true if the given class is a super-class of this class.
+     * </p>
+     * 
+     * @param cls A resource representing a class
+     * @return True if this class is a sub-class of the given class <code>cls</code>.
+     */
+    public boolean hasSuperClass( Resource cls ) {
+        boolean found = false;
+        Iterator i = null;
+        
+        try {
+            i = getSuperClasses();
+            while (!found && i.hasNext()) {
+                found = cls.equals( i.next() );           
+            }
+        }
+        finally {
+            if (i instanceof ClosableIterator) {
+                ((ClosableIterator) i).close();
+            }
+        }
+        
+        return found;
+    }
+    
+    
+
     // Internal implementation methods
     //////////////////////////////////
 

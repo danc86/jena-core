@@ -25,6 +25,10 @@ package com.hp.hpl.jena.ontology;
 // Imports
 ///////////////
 import com.hp.hpl.jena.ontology.path.PathSet;
+import com.hp.hpl.jena.rdf.model.Resource;
+
+import java.util.Iterator;
+
 
 
 /**
@@ -96,6 +100,84 @@ public interface ClassDescription
     public PathSet p_disjointWith();
 
 
+    /**
+     * <p>
+     * Answer an iterator over the class descriptions
+     * that mention this class as one of its super-classes.  Will iterate over the
+     * closure of the sub-class relationship.
+     * </p>
+     * 
+     * @return an iterator over the resources representing this class's sub-classes.
+     */
+    public Iterator getSubClasses();
+
+
+    /**
+     * <p>
+     * Answer an iterator over the class descriptions
+     * that mention this class as one of its super-classes.
+     * </p>
+     * <p>
+     * TODO: the closed parameter is ignored at the current time
+     * </p>
+     * 
+     * @param closed If true, close the iteration over the sub-class relation: i&#046;e&#046;
+     *               return the sub-classes of the sub-classes, etc.
+     * @return an iterator over the resources representing this class's sub-classes
+     */
+    public Iterator getSubClasses( boolean closed );
+
+
+    /**
+     * <p>
+     * Answer an iterator over the class descriptions
+     * for which this class is a sub-class. Will generate the
+     * closure of the iteration over the super-class relationship.
+     * <p>
+     * 
+     * @return an iterator over the resources representing this class's super-classes.
+     */
+    public Iterator getSuperClasses();
+
+
+    /**
+     * <p>
+     * Answer an iterator over the class descriptions
+     * for which this class is a sub-class. 
+     * </p>
+     * <p>
+     * TODO: the closed parameter is ignored at the current time
+     * </p>
+     * 
+     * @param closed If true, close the iteration over the super-class relation: i&#046;e&#046;
+     *               return the super-classes of the super-classes, etc.
+     * @return an iterator over the resources representing this class's sub-classes.
+     */
+    public Iterator getSuperClasses( boolean closed );
+
+
+    /**
+     * <p>
+     * Answer true if the given class is a sub-class of this class.
+     * </p>
+     * 
+     * @param cls A resource representing a class
+     * @return True if this class is a super-class of the given class <code>cls</code>.
+     */
+    public boolean hasSubClass( Resource cls );
+
+
+    /**
+     * <p>
+     * Answer true if the given class is a super-class of this class.
+     * </p>
+     * 
+     * @param cls A resource representing a class
+     * @return True if this class is a sub-class of the given class <code>cls</code>.
+     */
+    public boolean hasSuperClass( Resource cls );
+    
+    
 
     // Internal implementation methods
     //////////////////////////////////
