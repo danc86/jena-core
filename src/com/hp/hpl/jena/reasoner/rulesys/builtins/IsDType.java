@@ -14,6 +14,7 @@ import com.hp.hpl.jena.vocabulary.RDFS;
 import com.hp.hpl.jena.datatypes.RDFDatatype;
 import com.hp.hpl.jena.datatypes.TypeMapper;
 import com.hp.hpl.jena.graph.*;
+import com.hp.hpl.jena.graph.impl.LiteralLabel;
 
 /**
  * Tests whether the first argument is an instance of the datatype defined
@@ -65,6 +66,8 @@ public class IsDType extends BaseBuiltin {
         if (!dt.isURI()) return false;
         if (val.isBlank()) return true;
         if (val.isLiteral()) {
+            LiteralLabel ll = val.getLiteral();
+            if (ll.getDatatype() != null && (! ll.isWellFormed())) return false;
             if (dt.equals(RDFS.Nodes.Literal)) {
                 return true;
             } else {
