@@ -89,7 +89,7 @@ public class ResourceBRWRule extends BRWRule {
      * Inner class. This implements an iterator that uses the rule to rewrite any
      * results from the supplied iterator according to the rule.
      */
-    static class ResourceRewriteIterator extends BaseExtendedIterator {
+    static class ResourceRewriteIterator extends WrappedIterator  {
         /** short stack of triples generated but not yet delivered */
         private Triple[] lookahead = new Triple[3];
         
@@ -122,8 +122,8 @@ public class ResourceBRWRule extends BRWRule {
          * @see Iterator#hasNext()
          */
         public boolean hasNext() {
-            while (nAvailable == 0 && underlying.hasNext()) {
-                Triple value = (Triple)underlying.next();
+            while (nAvailable == 0 && super.hasNext()) {
+                Triple value = (Triple)super.next();
                 if (seen.add(value)) {
                     push(value.getSubject());
                     push(value.getPredicate());

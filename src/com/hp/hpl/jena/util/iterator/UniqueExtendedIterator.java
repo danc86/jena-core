@@ -20,7 +20,7 @@ import java.util.*;
  * @author <a href="mailto:der@hplb.hpl.hp.com">Dave Reynolds</a>
  * @version $Revision$ on $Date$
  */
-public class UniqueExtendedIterator extends BaseExtendedIterator {
+public class UniqueExtendedIterator extends WrappedIterator {
 
     /** The set of objects already seen */
     protected HashSet seen = new HashSet();
@@ -40,7 +40,7 @@ public class UniqueExtendedIterator extends BaseExtendedIterator {
      * @return the object to be returned or null if the object has been filtered.
      */
     protected Object nextIfNew() {
-        Object value = underlying.next();
+        Object value = super.next();
         if (seen.add(value)) {
             return value;
         } else {
@@ -52,7 +52,7 @@ public class UniqueExtendedIterator extends BaseExtendedIterator {
      * @see Iterator#hasNext()
      */
     public boolean hasNext() {
-        while (next == null && underlying.hasNext()) {
+        while (next == null && super.hasNext()) {
             next = nextIfNew();
         }
         return next != null;

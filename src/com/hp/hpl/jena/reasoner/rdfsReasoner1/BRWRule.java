@@ -206,7 +206,7 @@ public class BRWRule {
      * Inner class. This implements an iterator that uses the rule to rewrite any
      * results from the supplied iterator according to the rule.
      */
-    static class RewriteIterator extends BaseExtendedIterator {
+    static class RewriteIterator extends WrappedIterator {
         /** The head of the rewrite rule */
         TriplePattern head;
         
@@ -224,7 +224,7 @@ public class BRWRule {
          * @see Iterator#next()
          */
         public Object next() {
-            Triple value = (Triple)underlying.next();
+            Triple value = (Triple)super.next();
             return new Triple( instantiate(head.getSubject(), value),
                                 instantiate(head.getPredicate(), value),
                                 instantiate(head.getObject(), value) );

@@ -273,12 +273,22 @@ public class StatementImpl //extends ResourceImpl
         return result + "]";
     }
     
-    public boolean equals(Object o) {
-        return o != null && o instanceof Statement &&
-              (subject.equals(((Statement) o).getSubject()))
-            && (predicate.equals(((Statement) o).getPredicate()))
-            && (object.equals(((Statement) o).getObject()));
-    }
+    /**
+        .equals() defers to .sameAs so we only get the complexity of one cast.
+    */
+    public boolean equals(Object o)
+        { return o instanceof Statement && sameAs( (Statement) o ); }
+        
+    /**
+        sameAs - is this statement equal to the statement o? We can't assume
+        o is a StatementImpl
+    */
+    private final boolean sameAs( Statement o )
+        { 
+        return subject.equals( o.getSubject() ) 
+            && predicate.equals( o.getPredicate() )
+            && object.equals( o.getObject() );
+        }
     
     public int hashCode() {
     	return asTriple().hashCode();

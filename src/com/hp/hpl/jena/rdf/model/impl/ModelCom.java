@@ -67,10 +67,6 @@ public class ModelCom extends EnhGraph
 		this( base, BuiltinPersonalities.model );
 	}
 	
-    public boolean isModel() {
-    	return true;
-    }
-    
     public QueryHandler queryHandler()
     	{ return getGraph().queryHandler(); }
 	

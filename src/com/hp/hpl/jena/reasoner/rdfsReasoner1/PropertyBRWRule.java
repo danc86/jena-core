@@ -82,7 +82,7 @@ public class PropertyBRWRule extends BRWRule {
          * @return the object to be returned or null if the object has been filtered.
          */
         protected Object nextIfNew() {
-            Node prop = (Node)underlying.next();
+            Node prop = (Node)super.next();
             if (seen.add(prop)) {
                 return new Triple(prop, RDF.type.getNode(), RDF.Property.getNode());
             } else {

@@ -43,7 +43,7 @@ import java.util.Iterator;
  * @author  bwm
  * @version Release='$Name$' Revision='$Revision$' Date='$Date$'
  */
-public class SeqNodeIteratorImpl extends ClosableWrapper implements NodeIterator {
+public class SeqNodeIteratorImpl extends WrappedIterator implements NodeIterator {
     
     Statement stmt = null;
     Seq       seq;

@@ -13,10 +13,10 @@ import java.util.*;
 
 /** A NodeIterator implementation.
  *
- * @author  bwm
+ * @author  bwm + kers
  * @version   Release='$Name$' Revision='$Revision$' Date='$Date$'
  */
-public class NodeIteratorImpl extends ClosableWrapper implements NodeIterator {
+public class NodeIteratorImpl extends WrappedIterator implements NodeIterator {
     
     /** Creates new NodeIteratorImpl */
     public NodeIteratorImpl(Iterator iter, Object object) {
@@ -24,7 +24,7 @@ public class NodeIteratorImpl extends ClosableWrapper implements NodeIterator {
     }
     
     public RDFNode nextNode() {
-        return (RDFNode) iterator.next();
+        return (RDFNode) super.next();
     }
     
 }

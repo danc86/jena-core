@@ -19,7 +19,7 @@ import java.util.Iterator;
 
 import com.hp.hpl.jena.util.iterator.*;
 
-public class StmtIteratorImpl extends ClosableWrapper implements StmtIterator
+public class StmtIteratorImpl extends WrappedIterator implements StmtIterator
     {
     private Statement current;
     

@@ -17,7 +17,7 @@ import java.util.NoSuchElementException;
  * @author  bwm
  * @version   Release='$Name$' Revision='$Revision$' Date='$Date$'
  */
-public class NsIteratorImpl extends ClosableWrapper implements NsIterator {
+public class NsIteratorImpl extends WrappedIterator implements NsIterator {
     
     /** Creates new NsIteratorImpl, ignores _o_ */
     public NsIteratorImpl(Iterator iter, Object o) {

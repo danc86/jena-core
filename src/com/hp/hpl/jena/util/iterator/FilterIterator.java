@@ -36,7 +36,7 @@ import java.util.NoSuchElementException;
  * @author jjc
  * @version Release='$Name$' Revision='$Revision$' Date='$Date$'
  */
-public class FilterIterator extends ClosableWrapper
+public class FilterIterator extends WrappedIterator
 {
 	Filter f;
 	Object current;
@@ -59,8 +59,8 @@ public class FilterIterator extends ClosableWrapper
 	synchronized public boolean hasNext() {
 		if (current!=null)
 			return true;
-		while (  iterator.hasNext() ) {
-			current = iterator.next();
+		while (  super.hasNext() ) {
+			current = super.next();
 			if (f.accept(current))
 				return true;
 		}
@@ -77,7 +77,7 @@ public class FilterIterator extends ClosableWrapper
         if ( current != null || dead )
           throw new IllegalStateException(
           "FilterIterator does not permit calls to hasNext between calls to next and remove.");
-        iterator.remove();
+        super.remove();
         }
         
     /** The next acceptable object in the iterator.

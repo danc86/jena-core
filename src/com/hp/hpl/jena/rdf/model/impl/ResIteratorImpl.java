@@ -16,7 +16,7 @@ import java.util.*;
  * @author  bwm, kers
  * @version   Release='$Name$' Revision='$Revision$' Date='$Date$'
  */
-public class ResIteratorImpl extends ClosableWrapper implements ResIterator {
+public class ResIteratorImpl extends WrappedIterator implements ResIterator {
     
     /** Creates new ResIterator; _object_ is ignored */
     public ResIteratorImpl( Iterator iter, Object object ) {

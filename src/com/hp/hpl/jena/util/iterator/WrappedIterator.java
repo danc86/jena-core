@@ -51,7 +51,7 @@ public class WrappedIterator extends NiceIterator
 
     /**
         if _it_ is a Closableiterator, close it. Abstracts away from
-        tests scattered through the code.
+        tests [that were] scattered through the code.
     */
     public static void close( Iterator it )
         { if (it instanceof ClosableIterator) ((ClosableIterator) it).close(); }

@@ -53,12 +53,6 @@ import java.io.*;
  * @version $Name$ $Revision$Date$'
  */
 public interface Model extends ModelCon, RDFReaderF, RDFWriterF {
-	//    public BindingQueryPlan prepareBindings( Query q, Variable [] variables );
-	/** Is the underlying Graph currently compatible with
-	 *  being a Model (answer is always yes).
-	 *  This method is here to fit with the polymorphism framework.
-	 */
-	boolean isModel();
 
 	/** Every model is based on some Graph */
 	Graph getGraph();

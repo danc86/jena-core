@@ -17,7 +17,7 @@ import java.util.*;
  * @version Release='$Name$' Revision='$Revision$' Date='$Date$'
  */
 public class ContNodeIteratorImpl 
-  extends ClosableWrapper implements NodeIterator{
+  extends WrappedIterator implements NodeIterator{
     
     protected Statement stmt = null;
     protected Container cont;

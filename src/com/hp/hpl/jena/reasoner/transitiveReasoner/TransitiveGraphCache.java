@@ -140,7 +140,7 @@ public class TransitiveGraphCache implements Finder {
                 if (o.isVariable()) {
                     // list all the graph contents
                     Iterator i = new ListAll(nodeMap.values().iterator(), closed, p);
-                    return new BaseExtendedIterator(i);
+                    return WrappedIterator.create(i);
                 } else {
                     // list all backwards from o
                     GraphNode gn_o = (GraphNode)nodeMap.get(o);
@@ -174,7 +174,7 @@ public class TransitiveGraphCache implements Finder {
      * Return an iterator over all registered property nodes
      */
     public ExtendedIterator listAllProperties() {
-        return new BaseExtendedIterator(nodeMap.keySet().iterator());
+        return WrappedIterator.create(nodeMap.keySet().iterator());
     }
    
     /**
@@ -216,7 +216,7 @@ public class TransitiveGraphCache implements Finder {
                 }
                 cache.put(node, closure);
             }
-            return new BaseExtendedIterator(closure.iterator());
+            return WrappedIterator.create(closure.iterator());
         } else {
             return new GraphWalker(node, forward, closed, predicate);
         }
