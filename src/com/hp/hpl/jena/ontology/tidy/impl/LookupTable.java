@@ -211,6 +211,14 @@ public class LookupTable
 		}
 		return theInstance;
 	}
+	
+	boolean canBeSubj(int c){
+		return refinedSubject[c]!=null && refinedSubject[c].length>0;
+	}
+	boolean canBeProp(int c){
+		return refinedProperty[c]!=null && refinedProperty[c].length>0;
+		
+	}
 
 }
 
