@@ -102,8 +102,8 @@ public class TestPackage extends GraphTestBase implements SPO {
         assertTrue(title +":sanity",n instanceof Polymorphic);
         
         // It is always possible to view any node with any interface.
-        TestNode as1 = (TestNode)((EnhNode)n).as(intf);
-        TestNode as2 = (TestNode)((EnhNode)n).as(intf);
+        TestNode as1 = (TestNode)((EnhNode)n).viewAs(intf);
+        TestNode as2 = (TestNode)((EnhNode)n).viewAs(intf);
         
         // caching should ensure we get the same result both times.
         assertTrue( title + ":idempotency", as1==as2 );

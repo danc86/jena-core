@@ -142,7 +142,7 @@ public class EnhGraph
          // We use a cache to avoid reconstructing the same Node too many times.
         EnhNode eh = (EnhNode)enhNodes.get(n);
         if ( eh != null )
-            return eh.as(interf);
+            return eh.viewAs(interf);
             
         // not in the cache, so build a new one
         eh = (EnhNode) ((GraphPersonality) personality).nodePersonality().newInstance( interf, n, this );

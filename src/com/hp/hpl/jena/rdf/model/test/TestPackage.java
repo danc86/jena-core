@@ -23,6 +23,7 @@ public class TestPackage extends TestSuite {
     private TestPackage() {
         super("Model");
         addTest( "TestModel", TestModelFactory.suite() );
+        addTest( "TestModelPolymorphism", TestModelPolymorphism.suite() );
         addTest( "TestSimpleSelector", TestSimpleSelector.suite() );
         }
 

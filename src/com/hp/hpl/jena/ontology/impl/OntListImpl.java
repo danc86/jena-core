@@ -197,7 +197,7 @@ public class OntListImpl
         
         // @todo fix this once we know what the official mechanism is for mapping Resource -> Polymorphic
         Resource tail = getProperty( getVocabulary().getTail() ).getResource();
-        return (OntList) ((EnhNode) tail).as( OntList.type );
+        return (OntList) tail.as( OntList.type );
     }
     
     
@@ -218,7 +218,7 @@ public class OntListImpl
         checkNotNil( "Tried to set the tail of an empty list" );
 
         // @todo fix this once we know what the official mechanism is for mapping Resource -> Polymorphic
-        return (OntList) ((EnhNode) setTailAux( this, tail, getVocabulary().getTail() )).as( OntList.type );
+        return (OntList) (setTailAux( this, tail, getVocabulary().getTail() )).as( OntList.type );
     }
     
     
@@ -266,7 +266,7 @@ public class OntListImpl
         
         // create a new, anonymous typed resource to be the list cell
         // map to a list facet @todo fixme Resource -> polymorphic
-        return (OntList) ((EnhNode) newListCell( value, this )).as( OntList.type );
+        return (OntList) (newListCell( value, this )).as( OntList.type );
     }
     
     
@@ -868,7 +868,7 @@ public class OntListImpl
             }
         }
         else {
-            return (OntList) ((EnhNode) l).as( OntList.type );
+            return (OntList) l.as( OntList.type );
         }
     }
     
@@ -910,7 +910,7 @@ public class OntListImpl
         list.addProperty( tail, getVocabulary().getNil() );
             
         // @todo fixme resource -> polymorphic
-        return (OntList) ((EnhNode) start).as( OntList.type );
+        return (OntList) start.as( OntList.type );
     }
     
     
