@@ -1,6 +1,7 @@
 /*
   (c) Copyright 2003, Hewlett-Packard Company, all rights reserved.
   [See end of file]
+  $Id$
 */
 
 package com.hp.hpl.jena.db.impl;
