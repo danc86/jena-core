@@ -84,6 +84,7 @@ public class SimpleBulkUpdateHandler implements BulkUpdateHandler
         while (it.hasNext())
             {
             Node node = (Node) it.next();
+            // System.err.println( ">> node= " + node + " & triple=" + r.getTriple( node ) );
             ours.getReifier().reifyAs( node, r.getTriple( node ) );
             }
         }

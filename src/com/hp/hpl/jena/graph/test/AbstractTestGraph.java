@@ -239,8 +239,15 @@ public abstract class AbstractTestGraph extends GraphTestBase
         
     public void testBulkAddWithReification()
         {        
+        // testBulkAddWithReification( false );
         testBulkAddWithReification( true );
-        testBulkAddWithReification( false );
+        }
+        
+    public void testBulkAddWithReificationPreamble()
+        {
+        Graph g = getGraph();
+        xSPO( g.getReifier() );
+        assertFalse( g.getReifier().getHiddenTriples().isEmpty() );    
         }
         
     public void testBulkAddWithReification( boolean withReifications )

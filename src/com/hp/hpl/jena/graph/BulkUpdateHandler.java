@@ -43,7 +43,7 @@ public interface BulkUpdateHandler
     
     /**
         Add all the triples of the given graph into the graph this is handler for.
-        Optionall add g's reified triples.
+        Optionally add g's reified triples.
         @param g a Graph whose triples are to be added
         @param withReifications if true, the reified triples of g are added as well
     */
