@@ -44,7 +44,7 @@ public class ContNodeIteratorFactoryImpl
   extends Object implements NodeIteratorFactory {
 
     public NodeIterator createIterator(Iterator iter,Object o,Container cont)
-      throws Exception {
+     {
         return new ContNodeIteratorImpl(iter, o, cont);
     }
 }

@@ -9,12 +9,13 @@ package com.hp.hpl.jena.mem;
 import com.hp.hpl.jena.rdf.model.impl.*;
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.enhanced.*;
+
 /** 
     OBSOLETE. Use the code in ModelFactory.
     @author bwm (original), jjc + kers (for Jena 2)
 */
 
-public class ModelMem extends ModelCom implements Model, ModelI 
+public class ModelMem extends ModelCom implements Model
     {    
     /** 
         make a memory-based model

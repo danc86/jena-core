@@ -229,9 +229,8 @@ public class SeqImpl extends ContainerImpl implements Seq {
         return this;
     }   
         
-     public NodeIterator iterator()  {
-        return ((ModelI)getModel()).listContainerMembers(this, iteratorFactory);
-    }
+     public NodeIterator iterator()  
+        { return listContainerMembers( iteratorFactory ); }
     
     public Container remove(Statement s) {
         getModel().remove(s);
@@ -249,8 +248,8 @@ public class SeqImpl extends ContainerImpl implements Seq {
         return remove(getModel().createStatement(this, RDF.li(index), o).remove());
     }
     
-    public int indexOf(RDFNode o)  {
-        return ((ModelI)getModel()).containerIndexOf(this, o);
+    public int indexOf( RDFNode o )  {
+        return containerIndexOf( o );
     }    
     
     public int indexOf(boolean o)  {
