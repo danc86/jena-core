@@ -24,6 +24,7 @@ package com.hp.hpl.jena.ontology.daml;
 // Imports
 ///////////////
 import com.hp.hpl.jena.rdf.model.*;
+import com.hp.hpl.jena.datatypes.*;
 import com.hp.hpl.jena.datatypes.TypeMapper;
 import com.hp.hpl.jena.ontology.OntModel;
 import com.hp.hpl.jena.ontology.daml.impl.*;
@@ -83,6 +84,32 @@ public interface DAMLModel
      */
     public DAMLInstance createDAMLInstance( DAMLClass damlClass, String uri );
 
+
+    /**
+     * <p>Create an anonymous data instance, which has the given datatype and value.</p>
+     * @param datatype A resource denoting the datatype of the new data instance object
+     * @param value The value of the data instance
+     * @return A new DAMLDataInstance object.
+     */
+    public DAMLDataInstance createDAMLDataInstance( Resource datatype, Object value );
+
+
+    /**
+     * <p>Create an anonymous data instance, which has the given datatype and value.</p>
+     * @param datatype A resource denoting the datatype of the new data instance object
+     * @param value The value of the data instance
+     * @return A new DAMLDataInstance object.
+     */
+    public DAMLDataInstance createDAMLDataInstance( RDFDatatype datatype, Object value );
+
+
+    /**
+     * <p>Create an anonymous data instance, which has the given value and an appropriate datatype.</p>
+     * @param value The value of the data instance
+     * @return A new DAMLDataInstance object.
+     */
+    public DAMLDataInstance createDAMLDataInstance( Object value );
+        
 
     /**
      * <p>Create an (optionally anonymous) DAML class.</p>

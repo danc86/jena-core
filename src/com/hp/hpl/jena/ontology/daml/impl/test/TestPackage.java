@@ -49,7 +49,7 @@ public class TestPackage
         addTest( "TestDAMLClass", TestDAMLClass.suite() );
         addTest( "TestDAMLList", TestDAMLList.suite() );
         addTest( "TestDAMLProperty", TestDAMLProperty.suite() );
-        addTest( "Legacy tests", DAMLTest.suite() );
+        addTestSuite( DAMLTest.class );
     }
 
     private void addTest(String name, TestSuite tc) {

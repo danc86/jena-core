@@ -28,7 +28,9 @@ import java.io.*;
 import java.util.*;
 
 import com.hp.hpl.jena.rdf.model.*;
+import com.hp.hpl.jena.shared.JenaException;
 import com.hp.hpl.jena.util.iterator.*;
+import com.hp.hpl.jena.datatypes.*;
 import com.hp.hpl.jena.datatypes.TypeMapper;
 import com.hp.hpl.jena.ontology.daml.*;
 import com.hp.hpl.jena.ontology.*;
@@ -143,6 +145,46 @@ public class DAMLModelImpl
      */
     public DAMLInstance createDAMLInstance( DAMLClass damlClass, String uri ) {
         return (DAMLInstance) createOntResource( DAMLInstance.class, damlClass, uri );
+    }
+
+
+    /**
+     * <p>Create an anonymous data instance, which has the given datatype and value.</p>
+     * @param datatype A resource denoting the datatype of the new data instance object
+     * @param value The value of the data instance
+     * @return A new DAMLDataInstance object.
+     */
+    public DAMLDataInstance createDAMLDataInstance( Resource datatype, Object value ) {
+        return createDAMLDataInstance( TypeMapper.getInstance().getTypeByName( datatype.getURI() ), value );
+    }
+
+
+    /**
+     * <p>Create an anonymous data instance, which has the given datatype and value.</p>
+     * @param datatype A resource denoting the datatype of the new data instance object
+     * @param value The value of the data instance
+     * @return A new DAMLDataInstance object.
+     */
+    public DAMLDataInstance createDAMLDataInstance( RDFDatatype datatype, Object value ) {
+        Resource bNode = createResource( getResource( datatype.getURI() ) );
+        bNode.addProperty( RDF.value, createTypedLiteral( value, datatype ) );
+        return (DAMLDataInstance) bNode.as( DAMLDataInstance.class );
+    }
+
+
+    /**
+     * <p>Create an anonymous data instance, which has the given value and an appropriate datatype.</p>
+     * @param value The value of the data instance
+     * @return A new DAMLDataInstance object.
+     */
+    public DAMLDataInstance createDAMLDataInstance( Object value ) {
+        RDFDatatype datatype = TypeMapper.getInstance().getTypeByValue( value );
+        if (datatype == null) {
+            throw new JenaException( "Could not determine an appropriate datatype for value " + value );
+        }
+        else {
+            return createDAMLDataInstance( datatype, value );
+        }
     }
 
 
