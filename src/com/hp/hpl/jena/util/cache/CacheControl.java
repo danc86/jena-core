@@ -1,5 +1,5 @@
 /*
- *  (c) Copyright 2002 Hewlett-Packard Development Company, LP
+ *  (c) Copyright 2003, 2004, 2005 Hewlett-Packard Development Company, LP
  *  
  *  All rights reserved.
  * 
@@ -63,7 +63,7 @@ public interface CacheControl {
 }
 
 /*
- *  (c) Copyright 2002 Hewlett-Packard Development Company, LP
+ *  (c) Copyright 2003, 2004, 2005 Hewlett-Packard Development Company, LP
  *  
  *  All rights reserved.
  * 

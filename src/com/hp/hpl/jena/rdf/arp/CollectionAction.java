@@ -1,5 +1,5 @@
 /*
-  (c) Copyright 2003, 2004 Hewlett-Packard Development Company, LP
+  (c) Copyright 2003, 2004, 2005 Hewlett-Packard Development Company, LP
   all rights reserved.
   [See end of file]
   $Id$
@@ -35,7 +35,7 @@ abstract class CollectionAction {
 }
 
 /*
-	(c) Copyright 2003, 2004 Hewlett-Packard Development Company, LP
+	(c) Copyright 2003, 2004, 2005 Hewlett-Packard Development Company, LP
 	All rights reserved.
 
 	Redistribution and use in source and binary forms, with or without

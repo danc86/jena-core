@@ -3,7 +3,7 @@
  * Created by:  Dave Reynolds
  * Created on:  15-Dec-02
  * 
- * (c) Copyright 2002, Hewlett-Packard Development Company, LP
+ * (c) Copyright 2002, 2003, 2004, 2005 Hewlett-Packard Development Company, LP
  * [See end of file]
  * $Id$
  *****************************************************************/
@@ -162,7 +162,7 @@ public class AbstractDateTime {
             cloneDate(date1, tempDate); //clones date1 value to global temporary storage: tempDate
             timeZone[hh]=14;
             timeZone[mm]=0;
-            tempDate[utc]='-';
+            tempDate[utc]='-'; 
             normalize(tempDate, timeZone);
             c1 = compareOrder(tempDate, date2);
             if (c1 == LESS_THAN)
@@ -348,7 +348,7 @@ public class AbstractDateTime {
 }
 
 /*
-    (c) Copyright 2002 Hewlett-Packard Development Company, LP
+    (c) Copyright 2002, 2003, 2004, 2005 Hewlett-Packard Development Company, LP
     All rights reserved.
 
     Redistribution and use in source and binary forms, with or without

@@ -1,5 +1,5 @@
 /*
- *  (c)     Copyright 2000, 2001, 2002 Hewlett-Packard Development Company, LP
+ *  (c)     Copyright 2000, 2001, 2003, 2004, 2005 Hewlett-Packard Development Company, LP
  *   All rights reserved.
  * [See end of file]
  *  $Id$
@@ -157,7 +157,7 @@ public class Abbreviated extends BaseXMLWriter implements RDFErrorHandler {
 
 }
 /*
-	(c) Copyright 200, 2003 Hewlett-Packard Development Company, LP
+	(c) Copyright 200, 2002, 2003, 2004, 2005 Hewlett-Packard Development Company, LP
 	All rights reserved.
 
 	Redistribution and use in source and binary forms, with or without
