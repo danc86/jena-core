@@ -44,12 +44,20 @@ public class SimpleQueryEngine
                                   
     private ExtendedIterator filter( final Stage allStages )
         {
-        final Pipe complete = allStages.deliver( new BufferPipe() );
+        // final Pipe complete = allStages.deliver( new BufferPipe() );
         return new NiceIterator()
             {
+            private Pipe complete;
+            
+            private void ensurePipe()
+                { if (complete == null) complete = allStages.deliver( new BufferPipe() ); }
+            
             public void close() { allStages.close(); clearPipe(); }
-            public Object next() { return complete.get(); }
-            public boolean hasNext() { return complete.hasNext(); }
+            
+            public Object next() { ensurePipe(); return complete.get(); }
+            
+            public boolean hasNext() { ensurePipe(); return complete.hasNext(); }
+            
             private void clearPipe()
                 { 
                 int count = 0; 
