@@ -144,7 +144,7 @@ public class TestModelSpecRevised extends ModelTestBase
     public void testRulesetURLLoads()
         {
         String uri = GenericRuleReasonerFactory.URI;
-        String url = "file:testing/modelspecs/empty.rules" );
+        String url = "file:testing/modelspecs/empty.rules";
         Model rs = modelWithStatements( "_a jms:reasoner " + uri + "; _a jms:ruleSetURL " + url );
         Resource A = resource( "_a" );
         ReasonerFactory rf = ModelSpecImpl.getReasonerFactory( A, rs );
