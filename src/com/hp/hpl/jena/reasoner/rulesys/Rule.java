@@ -572,8 +572,7 @@ public class Rule implements ClauseEntry {
                 return Node.createURI(exp);
             } else if (peekToken().equals("(")) {
                 Functor f = new Functor(token, parseNodeList(), BuiltinRegistry.theRegistry);
-                LiteralLabel ll = new LiteralLabel(f, null, Functor.FunctorDatatype.theFunctorDatatype);
-                return new Node_Literal(ll);
+                return Functor.makeFunctorNode( f );
             } else if (token.equals("'")) {
                 // A plain literal
                 String lit = nextToken();

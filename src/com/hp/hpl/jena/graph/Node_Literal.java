@@ -15,7 +15,7 @@ import com.hp.hpl.jena.shared.*;
 */
 public class Node_Literal extends Node_Concrete
 {
-    public Node_Literal( Object label )
+    /* package */ Node_Literal( Object label )
         { super( label ); }
 
     public LiteralLabel getLiteral()

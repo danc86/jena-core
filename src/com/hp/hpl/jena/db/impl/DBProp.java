@@ -55,7 +55,7 @@ public abstract class DBProp {
         { return new SpecializedGraph.CompletionFlag(); }
 	
 	protected void putPropString( Node_URI predicate, String value) {
-		putPropNode(predicate, new Node_Literal( new LiteralLabel(value, "")));
+		putPropNode( predicate, Node.createLiteral( value ) );
 	}		
 	
 	protected void putPropNode( Node_URI predicate, Node node) {

@@ -10,7 +10,6 @@
 package com.hp.hpl.jena.reasoner.rulesys.impl;
 
 import com.hp.hpl.jena.graph.*;
-import com.hp.hpl.jena.graph.impl.*;
 import com.hp.hpl.jena.reasoner.TriplePattern;
 import com.hp.hpl.jena.reasoner.rulesys.BindingEnvironment;
 import com.hp.hpl.jena.reasoner.rulesys.Functor;
@@ -136,8 +135,7 @@ public class BindingStack implements BindingEnvironment {
                 boundargs.add(binding);
             }
             Functor newf = new Functor(functor.getName(), boundargs);
-            LiteralLabel ll = new LiteralLabel(newf, null, Functor.FunctorDatatype.theFunctorDatatype);
-            return new Node_Literal(ll);
+            return Functor.makeFunctorNode( newf );
         } else {
             return node;
         }

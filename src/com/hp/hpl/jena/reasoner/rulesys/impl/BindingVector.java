@@ -10,7 +10,6 @@
 package com.hp.hpl.jena.reasoner.rulesys.impl;
 
 import com.hp.hpl.jena.graph.*;
-import com.hp.hpl.jena.graph.impl.*;
 import com.hp.hpl.jena.reasoner.*;
 import com.hp.hpl.jena.reasoner.rulesys.*;
 import com.hp.hpl.jena.util.PrintUtil;
@@ -91,9 +90,8 @@ public class BindingVector implements BindingEnvironment {
                 }
                 boundargs.add(binding);
             }
-            Functor newf = new Functor(functor.getName(), boundargs);
-            LiteralLabel ll = new LiteralLabel(newf, null, Functor.FunctorDatatype.theFunctorDatatype);
-            return new Node_Literal(ll);
+            Functor newf = new Functor( functor.getName(), boundargs );
+            return Functor.makeFunctorNode( newf );
         } else {
             return node;
         }

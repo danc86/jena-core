@@ -114,6 +114,9 @@ public abstract class Node {
     public static Node createVariable( String name )
         { return create( makeVariable, Node_Variable.variable( name ) ); }
         
+    public static Node createLiteral( String value )
+        { return createLiteral( value, "", false ); }
+    
     /** make a literal with specified language and XMLishness.
         _lit_ must *not* be null. This intermediate implementation logs
         a warning to allow users moving over to Jena2 to correct their
@@ -146,10 +149,13 @@ public abstract class Node {
      * @param dtype the type of the literal, null for old style "plain" literals
      * @throws DatatypeFormatException if lex is not a legal form of dtype
      */
-    public static Node createLiteral(String lex, String lang, RDFDatatype dtype) 
-                                            throws DatatypeFormatException {        
-        return createLiteral( new LiteralLabel(lex, lang, dtype) );
-    }
+    public static Node createLiteral( String lex, String lang, RDFDatatype dtype ) 
+        throws DatatypeFormatException 
+        { return createLiteral( new LiteralLabel( lex, lang, dtype ) ); }
+    
+    public static Node createUncachedLiteral( Object value, String lang, RDFDatatype dtype ) 
+        throws DatatypeFormatException 
+        { return new Node_Literal( new LiteralLabel( value, lang, dtype ) ); }
                                                    
     /**
         Visit a Node and dispatch on it to the appropriate method from the 

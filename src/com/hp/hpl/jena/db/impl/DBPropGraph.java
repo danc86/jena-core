@@ -185,8 +185,7 @@ public class DBPropGraph extends DBProp {
 	}
 	
 	public static DBPropGraph findPropGraphByName( SpecializedGraph graph, String name ) {
-		
-		Node myNode = new Node_Literal( new LiteralLabel(name, ""));
+		Node myNode = Node.createLiteral( name );
 		Iterator it =  graph.find( null, graphName, myNode, newComplete() );
 		if( it.hasNext() )
 			return new DBPropGraph( graph, ((Triple)it.next()).getSubject());

@@ -260,9 +260,7 @@ public class Functor implements ClauseEntry {
      * accidental structure sharing
      */
     public static Node makeFunctorNode(String name, Node[] args) {
-        Functor f = new Functor(name, args);
-        LiteralLabel ll = new LiteralLabel(f, null, FunctorDatatype.theFunctorDatatype);
-        return new Node_Literal(ll);
+        return makeFunctorNode( new Functor( name, args ) );
     }
     
     /**
@@ -270,8 +268,7 @@ public class Functor implements ClauseEntry {
      * @param f the functor data structure to be wrapped in a node.
      */
     public static Node makeFunctorNode(Functor f) {
-        LiteralLabel ll = new LiteralLabel(f, null, FunctorDatatype.theFunctorDatatype);
-        return new Node_Literal(ll);
+        return Node.createUncachedLiteral(f, null, FunctorDatatype.theFunctorDatatype);
     }
     
    /**
