@@ -81,6 +81,13 @@ public abstract class DBProp {
 		self = null;
 		graph = null;
 	}
+    
+    void showGraph()
+        {
+        SpecializedGraph.CompletionFlag complete = newComplete();
+        ExtendedIterator it = graph.find( self, null, null, complete );
+        while (it.hasNext()) System.err.println( ">> " + it.next() );
+        }
 	
 	public static ExtendedIterator listTriples( SpecializedGraph g, Node self ) {
 		// Get all the triples about the requested node.
