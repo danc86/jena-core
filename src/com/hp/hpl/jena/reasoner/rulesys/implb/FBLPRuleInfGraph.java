@@ -10,6 +10,7 @@
 package com.hp.hpl.jena.reasoner.rulesys.implb;
 
 import com.hp.hpl.jena.reasoner.rulesys.*;
+import com.hp.hpl.jena.reasoner.rulesys.impl.*;
 import com.hp.hpl.jena.reasoner.*;
 import com.hp.hpl.jena.graph.*;
 
