@@ -147,7 +147,7 @@ public abstract class Polyadic
      * 
      * @param graph A graph to test
      * @return True if the graph is this graph, or is a sub-graph of this one.
-     * @see com.hp.hpl.jena.graph.Graph#mightContain(Graph)
+     * @see com.hp.hpl.jena.graph.Graph#dependsOn(Graph)
      */
     public boolean dependsOn( Graph graph ) {
         return (graph == this) || m_subGraphs.contains( graph );

@@ -389,7 +389,6 @@ abstract public class BaseXMLWriter implements RDFXMLWriterI {
 	 * @param out the OutputStream to receive the serialization
 	 * @param base The URL at which the file will be placed.
 	 * @throws IOException if an io error occurs
-	 * @ if any other exception occurs
 	 */
 	final public void write(Model model, OutputStream out, String base)
 		 {
@@ -416,7 +415,6 @@ abstract public class BaseXMLWriter implements RDFXMLWriterI {
 	 * @param model The model to be written.
 	 * @param base the base URI for relative URI calculations.  <code>
 	 * null</code> means use only absolute URI's.
-	 * @ Generic RDF exception.
 	 */
 	final synchronized public void write(Model baseModel, Writer out, String base)
 		 {

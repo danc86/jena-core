@@ -39,12 +39,7 @@ import java.io.OutputStream;
  * @version $Revision$
  */
 public interface RDFWriter {
-/** Namespace prefixes can be set using a system property of the form
- * <code>NSPREFIXPROPBASE + uri</code>.  
- * Such prefixes override the built in
- * ones and those set using 
- * {@link #setNsPrefix(java.lang.String, java.lang.String)}.
- */
+
 	public static final String NSPREFIXPROPBASE
 	  = "com.hp.hpl.jena.nsprefix.";
 	/** Caution: Serialize Model <code>model</code> to Writer <code>out</code>.
@@ -91,8 +86,6 @@ public interface RDFWriter {
  * <dt>N3</dt><dt>N-TRIPLE</dt>
  * <dd>No properties.</dd>
  * <dt>RDF/XML</dt><dt>RDF/XML-ABBREV</dt>
- * <dd>See {@link com.hp.hpl.jena.xmloutput.RDFXMLWriterI#setProperty(String,
- * Object)}
  * </dl>
  * @return the old value for this property, or <code>null</code>
  * if no value was set.

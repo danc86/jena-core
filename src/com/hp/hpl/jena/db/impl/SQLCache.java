@@ -503,7 +503,7 @@ public class SQLCache {
 				sql.execute(op);
 			} catch (SQLException e) {
 				// This is debugging legacy, exception is still reported at the end
-				//System.out.println("Exec failure: " + op + ": " + e);
+				// System.out.println("Exec failure: " + op + ": " + e);
 				operror = op;
 				eignore = e;
 			}

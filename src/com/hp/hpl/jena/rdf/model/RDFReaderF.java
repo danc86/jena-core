@@ -56,7 +56,6 @@ public interface RDFReaderF {
     
 /** return an RDFReader instance for the default serialization language.
  * @return an RDFReader instance for the default serialization language.
- * @ generic RDF exception
  */    
     public RDFReader getReader() ;
     

@@ -8,6 +8,7 @@ package com.hp.hpl.jena.graph.impl;
 
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.util.iterator.*;
+import com.hp.hpl.jena.graph.query.*;
 
 /**
     A Graph that is layered over another graph and defers all its
@@ -31,6 +32,9 @@ public class ReifyingCaptureGraph extends GraphBase
         
     public ExtendedIterator find( TripleMatch m ) 
         { return under.find( m ); }
+        
+    public QueryHandler queryHandler()
+        { return under.queryHandler(); }
         
     public boolean contains( Node s, Node p, Node o )
         { return under.contains( s, p, o ); }
