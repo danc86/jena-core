@@ -21,6 +21,7 @@ public class TestGraphQueryPackage
         TestSuite result = new TestSuite();
         result.addTest( QueryTest.suite() );
         result.addTest( TestSimpleTripleSorter.suite() );
+        result.addTest( TestExpressions.suite() );
         result.addTest( TestExpressionConstraints.suite() );
         result.addTest( TestEarlyConstraints.suite() );
         return result;

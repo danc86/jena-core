@@ -172,22 +172,7 @@ public class TestExpressionConstraints extends GraphTestBase
         { VariableIndexes vi = new VI().set( "X", 0 ).set( "Y", 1 );
         IndexValues iv = new IV().set( 0, "hello" ).set( 1, "ell" );
         assertEquals( true, matches( X, Y ).prepare( vi ).evalBool( iv ) );  }
-        
-    public void testPrepareTRUE()
-        {
-        IndexValues none = new IndexValues() 
-            { public Object get( int i ) { return null; } };
-        Valuator t = Expression.TRUE.prepare( new Mapping( new Node[0] ) );  
-        assertEquals( true, t.evalBool( none ) );    
-        }
-        
-    public void testPrepareFALSE()
-        {
-        IndexValues none = new IndexValues() 
-            { public Object get( int i ) { return null; } };
-        Valuator t = Expression.FALSE.prepare( new Mapping( new Node[0] ) );  
-        assertEquals( false, t.evalBool( none ) );    
-        }
+
         
     public void testPrepareNE()
         {
@@ -202,14 +187,10 @@ public class TestExpressionConstraints extends GraphTestBase
         assertEquals( "http://jena.hpl.hp.com/constraints/EQ", areEqual( X, Y ).getFun() );
         assertEquals( "http://jena.hpl.hp.com/constraints/MATCHES", matches( X, Y ).getFun() );
         }
-    
-    public void testLiterals()
+
+    public void testNotConstant()
         {
-        assertTrue( Expression.TRUE.isConstant() );
-        assertTrue( Expression.FALSE.isConstant() );
         assertFalse( notEqual( X, Y ).isConstant() );
-        assertEquals( Boolean.TRUE, Expression.TRUE.getValue() );
-        assertEquals( Boolean.FALSE, Expression.FALSE.getValue() );
         }
     
     public void testDetectAnd()
