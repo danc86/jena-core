@@ -23,6 +23,15 @@ public abstract class ModelSpecImpl implements ModelSpec
 
     public abstract Model createModel();
     
+    public static ModelSpec create( Model desc )
+        {
+        return new ModelSpecImpl()
+            {
+            public Model createModel() { return null; }    
+            public Model addDescription( Model desc, Resource root ) { return desc; }
+            };
+        }
+        
     public Model getDescription() 
         { return getDescription( ResourceFactory.createResource() ); }
         
@@ -58,6 +67,7 @@ public abstract class ModelSpecImpl implements ModelSpec
         .add( JMS.MemMakerClass, RDFS.subClassOf, JMS.MakerClass )
         .add( JMS.FileMakerClass, RDFS.subClassOf, JMS.MakerClass )
         .add( JMS.ontLanguage, RDFS.domain, JMS.OntMakerClass )
+        .add( JMS.importMaker, RDFS.subClassOf, JMS.maker )
         ;
         
     public static Resource findRootByType( Model description, Resource r )

@@ -55,6 +55,11 @@ public interface Reifier extends GetTriple
     Graph getHiddenTriples();
     
     /**
+        Answer this reifier's style.
+    */
+    Style getStyle();
+    
+    /**
         get the Graph which uses this reifier.
     */
     Graph getParentGraph();

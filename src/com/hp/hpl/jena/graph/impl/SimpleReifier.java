@@ -25,6 +25,7 @@ public class SimpleReifier implements Reifier
     private Graph parent;
     private boolean intercepting = false;
     private boolean concealing = false;
+    private Style style = null;
     private FragmentMap nodeMap;
     
     /** 
@@ -33,13 +34,17 @@ public class SimpleReifier implements Reifier
         @param parent the Graph which we're reifiying for
         @param style the reification style to use
     */
-    public SimpleReifier( Graph parent, Reifier.Style style )
+    public SimpleReifier( Graph parent, Style style )
         {
         this.parent = parent;
         this.nodeMap = new FragmentMap();
         this.intercepting = style.intercepts();
         this.concealing = style.conceals();
+        this.style = style;
         }
+        
+    public Style getStyle()
+        { return style; }
             
     /** return the parent graph we are bound to */
     public Graph getParentGraph()

@@ -49,6 +49,9 @@ public class ModelFactory extends ModelFactoryBase
     */
     public static final Reifier.Style Minimal = Reifier.Minimal;
     
+    public static ModelSpec createSpec( Model desc )
+        { return ModelSpecImpl.create( desc ); }
+    
     /** 
         construct a new memory-based model with the standard reification style
         (reification triples contribute to ReifiedStatements, and are visible to

@@ -17,12 +17,12 @@ public class JMS
     {
     public static final String baseURI = "jms:";
     
-    public static final Resource current = resource( "this" );
-    
     public static final Property ontLanguage = property( "ontLanguage" );
     public static final Property docManager = property( "docManager" );
     public static final Property importMaker = property( "importMaker" );
     public static final Property reasonsWith = property( "reasonsWith" );
+    
+    public static final Property maker = property( "maker" );
     
     public static final Property reificationMode = property( "reificationMode" );
     public static final Property reasoner = property( "reasoner" );

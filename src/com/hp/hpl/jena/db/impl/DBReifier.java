@@ -56,6 +56,9 @@ public class DBReifier implements Reifier
 	 */
 	public Graph getParentGraph() { 
     	return m_parent; }
+        
+    public Style getStyle()
+        { throw new RuntimeException( "NOT YET IMPLEMENTED" ); }
 
 	/* (non-Javadoc)
 	 * @see com.hp.hpl.jena.graph.Reifier#getHiddenTriples()
