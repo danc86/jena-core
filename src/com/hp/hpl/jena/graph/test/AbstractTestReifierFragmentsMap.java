@@ -6,7 +6,6 @@
 
 package com.hp.hpl.jena.graph.test;
 
-import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.graph.impl.ReifierFragmentsMap;
 
 /**
@@ -24,9 +23,6 @@ public abstract class AbstractTestReifierFragmentsMap extends GraphTestBase
     
     public void setUp()
         { fragMap = getFragmentsMap(); }
-
-    public void testEmpty_emptyGraph()
-        { assertIsomorphic( Graph.emptyGraph, fragMap.asGraph() ); }
     
     public void testPutFragments()
         {

@@ -78,17 +78,6 @@ public class SimpleReifierFragmentsMap implements ReifierFragmentsMap
         return WrappedIterator.create( L.iterator() );
         }
 
-    /**
-        Return the fragment map as a read-only Graph of triples. We rely on the
-        default code in GraphBase which allows us to only implement find(TripleMatch)
-        to present a Graph. All the hard work is done by allTriples.
-    */
-    public Graph asGraph()
-        {
-        return new GraphBase()
-            { public ExtendedIterator graphBaseFind( TripleMatch tm ) { return allTriples( tm ); } };
-        }
-
     public ExtendedIterator find( TripleMatch m )
         { return allTriples( m ); }
     

@@ -38,7 +38,7 @@ public interface Reifier extends GetTriple
     ExtendedIterator findEither( TripleMatch m, boolean showHidden );
     
     /**
-         Answer the number of reification quadlets held in this reifier.
+         Answer the number of exposed reification quadlets held in this reifier.
     */
     int size();
     

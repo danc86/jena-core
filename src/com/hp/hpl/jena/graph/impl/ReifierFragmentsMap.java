@@ -18,12 +18,13 @@ import com.hp.hpl.jena.util.iterator.ExtendedIterator;
 public interface ReifierFragmentsMap
     {
     /**
-         Answer the fragment map as a read-only Graph of quadlets. 
+         Answer an iterator over all the fragments that match <code>m</code>.
     */
-    public abstract Graph asGraph();
-    
     public ExtendedIterator find( TripleMatch m );
     
+    /**
+         Answer the number of fragments in this map.
+    */
     public int size();
 
     /**

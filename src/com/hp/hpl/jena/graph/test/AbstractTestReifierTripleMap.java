@@ -36,7 +36,7 @@ public abstract class AbstractTestReifierTripleMap extends GraphTestBase
         assertEquals( false, tripleMap.hasTriple( triple_xRy ) );
         assertEquals( false, tripleMap.tagIterator().hasNext() );
         assertEquals( false, tripleMap.tagIterator( triple_aRb ).hasNext() );
-        assertIsomorphic( Graph.emptyGraph, tripleMap.asGraph() );
+        assertFalse( tripleMap.find( Triple.ANY ).hasNext() );
         }
     
     public void testPutTriple_hasTriple()

@@ -372,6 +372,12 @@ public abstract class AbstractTestPrefixMapping extends GraphTestBase
         assertEquals( null, A.getNsPrefixURI( "hr" ) );
         assertEquals( bURI, A.getNsPrefixURI( "br" ) );
         }
+    
+    public void testTrapNastyNamespace()
+        {
+        try { getMapping().setNsPrefix( "abc", "def" ); fail( "" ); }
+        catch (NamespaceEndsWithNameCharException e) { pass(); }
+        }
         
     public void testLock()
         {

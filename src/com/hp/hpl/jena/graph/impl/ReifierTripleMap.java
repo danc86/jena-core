@@ -52,13 +52,14 @@ public interface ReifierTripleMap
     public abstract void removeTriple( Triple triple );
     
     /**
-         Return the node-to-triple map as a read-only Graph of triples (ie as the
-         corresponding reification quadlets). 
+         Answer an iterator over all the quadlets that match <code>m</code> that
+         correspond to complete reified triples held in this map.
     */
-    public abstract Graph asGraph();
-    
     public ExtendedIterator find( TripleMatch m );
     
+    /**
+         Answer the number of quadlets in this map.
+    */
     public int size();
 
     /**
