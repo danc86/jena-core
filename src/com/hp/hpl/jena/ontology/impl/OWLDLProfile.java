@@ -184,6 +184,14 @@ public class OWLDLProfile
                 }
             }
             },
+            {  HasValueRestriction.class,   new SupportsCheck() {
+                public boolean doCheck( Node n, EnhGraph g ) {
+                    return g.asGraph().contains( n, RDF.type.asNode(), OWL.Restriction.asNode() ) &&
+                    containsSome( g, n, OWL.hasValue ) &&
+                    containsSome( g, n, OWL.onProperty );
+                }
+            }
+            },
             {  CardinalityRestriction.class,   new SupportsCheck() {
                 public boolean doCheck( Node n, EnhGraph g ) {
                     return g.asGraph().contains( n, RDF.type.asNode(), OWL.Restriction.asNode() ) &&
