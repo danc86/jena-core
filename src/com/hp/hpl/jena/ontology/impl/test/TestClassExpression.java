@@ -254,6 +254,246 @@ public class TestClassExpression
                 DAML_OIL.List,
                 null
             },
+            
+            // Restrictions
+            {   
+                "OWL Restriction.onProperty",
+                new PS() { 
+                    public PathSet ps( OntModel m ) {
+                        return ((Restriction) m.getResource( NS + "ClassA" )
+                               .as( Restriction.class )).p_onProperty(); 
+                    } 
+                },
+                OWL.onProperty,
+                ProfileRegistry.OWL_LANG,
+                "file:testing/ontology/owl/ClassExpression/test-restriction.rdf",
+                T,
+                new Integer( 1 ),
+                NS + "p",
+                null,
+                null
+            },
+            {   
+                "OWL Restriction.allValuesFrom",
+                new PS() { 
+                    public PathSet ps( OntModel m ) {
+                        return ((Restriction) m.getResource( NS + "ClassA" )
+                               .as( Restriction.class )).p_allValuesFrom(); 
+                    } 
+                },
+                OWL.allValuesFrom,
+                ProfileRegistry.OWL_LANG,
+                "file:testing/ontology/owl/ClassExpression/test-restriction.rdf",
+                T,
+                new Integer( 1 ),
+                NS + "ClassB",
+                null,
+                null
+            },
+            {   
+                "OWL Restriction.someValuesFrom",
+                new PS() { 
+                    public PathSet ps( OntModel m ) {
+                        return ((Restriction) m.getResource( NS + "ClassB" )
+                               .as( Restriction.class )).p_someValuesFrom(); 
+                    } 
+                },
+                OWL.someValuesFrom,
+                ProfileRegistry.OWL_LANG,
+                "file:testing/ontology/owl/ClassExpression/test-restriction.rdf",
+                T,
+                new Integer( 1 ),
+                NS + "ClassC",
+                null,
+                null
+            },
+            {   
+                "OWL Restriction.hasValue",
+                new PS() { 
+                    public PathSet ps( OntModel m ) {
+                        return ((Restriction) m.getResource( NS + "ClassC" )
+                               .as( Restriction.class )).p_hasValue(); 
+                    } 
+                },
+                OWL.hasValue,
+                ProfileRegistry.OWL_LANG,
+                "file:testing/ontology/owl/ClassExpression/test-restriction.rdf",
+                T,
+                new Integer( 1 ),
+                null,
+                null,
+                new Integer( 42 )
+            },
+            {   
+                "OWL Restriction.minCardinality",
+                new PS() { 
+                    public PathSet ps( OntModel m ) {
+                        return ((Restriction) m.getResource( NS + "ClassD" )
+                               .as( Restriction.class )).p_minCardinality(); 
+                    } 
+                },
+                OWL.minCardinality,
+                ProfileRegistry.OWL_LANG,
+                "file:testing/ontology/owl/ClassExpression/test-restriction.rdf",
+                T,
+                new Integer( 1 ),
+                null,
+                null,
+                new Long( 1 )
+            },
+            {   
+                "OWL Restriction.maxCardinality",
+                new PS() { 
+                    public PathSet ps( OntModel m ) {
+                        return ((Restriction) m.getResource( NS + "ClassE" )
+                               .as( Restriction.class )).p_maxCardinality(); 
+                    } 
+                },
+                OWL.maxCardinality,
+                ProfileRegistry.OWL_LANG,
+                "file:testing/ontology/owl/ClassExpression/test-restriction.rdf",
+                T,
+                new Integer( 1 ),
+                null,
+                null,
+                new Long( 2 )
+            },
+            {   
+                "OWL Restriction.cardinality",
+                new PS() { 
+                    public PathSet ps( OntModel m ) {
+                        return ((Restriction) m.getResource( NS + "ClassF" )
+                               .as( Restriction.class )).p_cardinality(); 
+                    } 
+                },
+                OWL.cardinality,
+                ProfileRegistry.OWL_LANG,
+                "file:testing/ontology/owl/ClassExpression/test-restriction.rdf",
+                T,
+                new Integer( 1 ),
+                null,
+                null,
+                new Long( 0 )
+            },
+            {   
+                "DAML Restriction.onProperty",
+                new PS() { 
+                    public PathSet ps( OntModel m ) {
+                        return ((Restriction) m.getResource( NS + "ClassA" )
+                               .as( Restriction.class )).p_onProperty(); 
+                    } 
+                },
+                DAML_OIL.onProperty,
+                ProfileRegistry.DAML_LANG,
+                "file:testing/ontology/daml/ClassExpression/test-restriction.rdf",
+                T,
+                new Integer( 1 ),
+                NS + "p",
+                null,
+                null
+            },
+            {   
+                "DAML Restriction.allValuesFrom",
+                new PS() { 
+                    public PathSet ps( OntModel m ) {
+                        return ((Restriction) m.getResource( NS + "ClassA" )
+                               .as( Restriction.class )).p_allValuesFrom(); 
+                    } 
+                },
+                DAML_OIL.toClass,
+                ProfileRegistry.DAML_LANG,
+                "file:testing/ontology/daml/ClassExpression/test-restriction.rdf",
+                T,
+                new Integer( 1 ),
+                NS + "ClassB",
+                null,
+                null
+            },
+            {   
+                "DAML Restriction.someValuesFrom",
+                new PS() { 
+                    public PathSet ps( OntModel m ) {
+                        return ((Restriction) m.getResource( NS + "ClassB" )
+                               .as( Restriction.class )).p_someValuesFrom(); 
+                    } 
+                },
+                DAML_OIL.hasClass,
+                ProfileRegistry.DAML_LANG,
+                "file:testing/ontology/daml/ClassExpression/test-restriction.rdf",
+                T,
+                new Integer( 1 ),
+                NS + "ClassC",
+                null,
+                null
+            },
+            {   
+                "DAML Restriction.hasValue",
+                new PS() { 
+                    public PathSet ps( OntModel m ) {
+                        return ((Restriction) m.getResource( NS + "ClassC" )
+                               .as( Restriction.class )).p_hasValue(); 
+                    } 
+                },
+                DAML_OIL.hasValue,
+                ProfileRegistry.DAML_LANG,
+                "file:testing/ontology/daml/ClassExpression/test-restriction.rdf",
+                T,
+                new Integer( 1 ),
+                null,
+                null,
+                new Integer( 42 )
+            },
+            {   
+                "DAML Restriction.minCardinality",
+                new PS() { 
+                    public PathSet ps( OntModel m ) {
+                        return ((Restriction) m.getResource( NS + "ClassD" )
+                               .as( Restriction.class )).p_minCardinality(); 
+                    } 
+                },
+                DAML_OIL.minCardinality,
+                ProfileRegistry.DAML_LANG,
+                "file:testing/ontology/daml/ClassExpression/test-restriction.rdf",
+                T,
+                new Integer( 1 ),
+                null,
+                null,
+                new Long( 1 )
+            },
+            {   
+                "DAML Restriction.maxCardinality",
+                new PS() { 
+                    public PathSet ps( OntModel m ) {
+                        return ((Restriction) m.getResource( NS + "ClassE" )
+                               .as( Restriction.class )).p_maxCardinality(); 
+                    } 
+                },
+                DAML_OIL.maxCardinality,
+                ProfileRegistry.DAML_LANG,
+                "file:testing/ontology/daml/ClassExpression/test-restriction.rdf",
+                T,
+                new Integer( 1 ),
+                null,
+                null,
+                new Long( 2 )
+            },
+            {   
+                "DAML Restriction.cardinality",
+                new PS() { 
+                    public PathSet ps( OntModel m ) {
+                        return ((Restriction) m.getResource( NS + "ClassF" )
+                               .as( Restriction.class )).p_cardinality(); 
+                    } 
+                },
+                DAML_OIL.cardinality,
+                ProfileRegistry.DAML_LANG,
+                "file:testing/ontology/daml/ClassExpression/test-restriction.rdf",
+                T,
+                new Integer( 1 ),
+                null,
+                null,
+                new Long( 0 )
+            },
       };
     }
     

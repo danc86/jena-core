@@ -35,6 +35,7 @@ public class BuiltinPersonalities {
         .add( ClassDescription.class, ClassDescriptionImpl.factory )
         .add( OntClass.class, OntClassImpl.factory )
         .add( EnumeratedClass.class, EnumeratedClassImpl.factory )
+        .add( Restriction.class, RestrictionImpl.factory )
         ;	
         
         

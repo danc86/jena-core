@@ -190,7 +190,7 @@ public abstract class OntTestCase
                     // a literal value 
                     RDFNode v = ps.getValue();
                     assertTrue( "Property value for " + m_property + " should be a literal", v instanceof Literal );
-                    assertEquals( "Property value for " + m_property + " not correct", m_literalVal, ((Literal) v).getValue() );
+                    assertTrue( "Property value for " + m_property + " failed equality test", ((Literal) v).getValue().equals( m_literalVal ) );
                 }
             }
         }
