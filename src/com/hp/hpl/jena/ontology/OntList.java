@@ -133,18 +133,6 @@ public interface OntList
     
     /**
      * <p>
-     * Answer the vocabulary that defines the properties and resources used to
-     * make the assocations forming this list.  Every list must have a defined
-     * vocabulary.
-     * </p>
-     * 
-     * @return A list vocabulary
-     */
-    public OntList.Vocabulary getVocabulary();
-    
-    
-    /**
-     * <p>
      * Return a reference to a new list cell whose head is <code>value</code>
      * and whose tail is this list.
      * </p>
@@ -441,56 +429,6 @@ public interface OntList
     // Inner class definitions
     //==============================================================================
 
-    /**
-     * Encapsulates the sub-set of a general RDF vocabulary that is used to
-     * build a well-formed list. In particular, this vocabulary defines the
-     * relations that relate the list cell to a value ({@link #getHead head}),
-     * and a  list cell to the next cell in the list ({@link #getTail tail}),
-     * the <code>rdf:type</code> for each cell in the list ({@link
-     * #getCellType}) and the resource used to represent an empty list ({@link
-     * #getNil nil}).
-     */
-    public static interface Vocabulary {
-        
-        /**
-         * <p>Answer the constant Resource that represents the end of the list
-         * in this formulation.
-         * </p>
-         * 
-         * @return The nil resource.
-         */
-        public Resource getNil();
-        
-        /**
-         * <p>Answer the Property that represents the link to the value at the
-         * head of the list.
-         * </p>
-         * 
-         * @return The list head property
-         */
-        public Property getHead();
-        
-        /**
-         * <p>Answer the Property that represents the link to the tail of the
-         * list.
-         * </p>
-         * 
-         * @return The list tail property
-         */
-        public Property getTail();
-        
-        /**
-         * <p>Answer the resource that will be the type of each cell in the
-         * list.
-         * </p>
-         * 
-         * @return A resource that should be the <code>rdf:type</code> of each
-         * list cell.
-         */
-        public Resource getCellType();
-    }
-    
-    
     /**
      * Interface that encapsulates a function to apply to every element in a
      * list.

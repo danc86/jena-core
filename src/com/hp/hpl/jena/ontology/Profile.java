@@ -573,7 +573,32 @@ public interface Profile
      * @return The property that denotes the isDefiendBy annotation
      */
     public Property IS_DEFINED_BY();
+   
+    // List vocabulary
     
+    /**
+     * <p>The property that denotes the head of a list</p>
+     * @return The property that maps from a cell in a list to its value
+     */
+    public Property FIRST();
+    
+    /**
+     * <p>The property that denotes the tail of a list</p>
+     * @return The property that maps from a cell in a list to the remainder of the list
+     */
+    public Property REST();
+    
+    /**
+     * <p>The <code>rdf:type</code> for cells in this list</p>
+     * @return The list rdf:type resource
+     */
+    public Resource LIST();
+    
+    /**
+     * <p>The resource that denotes the end of the list</p>
+     */
+    public Resource NIL();
+
     
     // Particular language syntax categories
     

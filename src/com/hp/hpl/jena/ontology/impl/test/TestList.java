@@ -30,7 +30,6 @@ import junit.framework.*;
 
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.ontology.*;
-import com.hp.hpl.jena.ontology.impl.*;
 import com.hp.hpl.jena.vocabulary.*;
 
 
@@ -165,7 +164,7 @@ public class TestList
             Property p = m.createProperty( NS, "p");
             
             // a list of the nil object, but not typed
-            Resource nil = OntListImpl.RDF_LIST_VOCAB.getNil();
+            Resource nil = RDF.nil;
             m.add( root, p, nil );
             OntList l0 = getListRoot( m );
             checkValid( "valid1", l0, true );
@@ -246,8 +245,8 @@ public class TestList
             Property p = m.createProperty( NS, "p");
             
             // a list of the nil object, but not typed
-            Resource nil = OntListImpl.RDF_LIST_VOCAB.getNil();
-            m.add( nil, RDF.type, OntListImpl.RDF_LIST_VOCAB.getCellType() );
+            Resource nil = RDF.nil;
+            m.add( nil, RDF.type, RDF.List );
 
             Resource list = m.createResource();
             m.add( list, RDF.type, RDF.List );
@@ -277,8 +276,8 @@ public class TestList
             Resource root = m.createResource( NS + "root" );
             Property p = m.createProperty( NS, "p");
             
-            Resource nil = OntListImpl.RDF_LIST_VOCAB.getNil();
-            m.add( nil, RDF.type, OntListImpl.RDF_LIST_VOCAB.getCellType() );
+            Resource nil = RDF.nil;
+            m.add( nil, RDF.type, RDF.List );
 
             Resource list0 = m.createResource();
             m.add( list0, RDF.type, RDF.List );
@@ -323,7 +322,7 @@ public class TestList
             Resource root = m.createResource( NS + "root" );
             Property p = m.createProperty( NS, "p");
             
-            Resource nil = m.getResource( OntListImpl.RDF_LIST_VOCAB.getNil().getURI() );
+            Resource nil = m.getResource( RDF.nil.getURI() );
             OntList list = (OntList) nil.as( OntList.class );
             
             Resource[] toAdd = new Resource[] {
@@ -365,7 +364,7 @@ public class TestList
             Resource root = m.createResource( NS + "root" );
             Property p = m.createProperty( NS, "p");
             
-            Resource nil = m.getResource( OntListImpl.RDF_LIST_VOCAB.getNil().getURI() );
+            Resource nil = m.getResource( RDF.nil.getURI() );
             OntList list = (OntList) nil.as( OntList.class );
             
             Resource[] toAdd = new Resource[] {
@@ -507,7 +506,7 @@ public class TestList
         public void runTest() {
             Model m = ModelFactory.createOntologyModel( ProfileRegistry.OWL_LANG );
             
-            Resource nil = m.getResource( OntListImpl.RDF_LIST_VOCAB.getNil().getURI() );
+            Resource nil = m.getResource( RDF.nil.getURI() );
             OntList list = (OntList) nil.as( OntList.class );
             
             Resource r = m.createResource( NS + "a" );
@@ -532,7 +531,7 @@ public class TestList
             Model m = ModelFactory.createOntologyModel( ProfileRegistry.OWL_LANG );
             m.read( "file:testing/ontology/list5.rdf" );
            
-            Resource nil = m.getResource( OntListImpl.RDF_LIST_VOCAB.getNil().getURI() );
+            Resource nil = m.getResource( RDF.nil.getURI() );
             OntList list = (OntList) nil.as( OntList.class );
             
             Resource r = m.createResource( NS + "foo" );
@@ -570,7 +569,7 @@ public class TestList
             Model m = ModelFactory.createOntologyModel( ProfileRegistry.OWL_LANG );
             m.read( "file:testing/ontology/list5.rdf" );
            
-            Resource nil = m.getResource( OntListImpl.RDF_LIST_VOCAB.getNil().getURI() );
+            Resource nil = m.getResource( RDF.nil.getURI() );
             OntList list = (OntList) nil.as( OntList.class );
             
             Resource r = m.createResource( NS + "foo" );
@@ -612,7 +611,7 @@ public class TestList
             Model m = ModelFactory.createOntologyModel( ProfileRegistry.OWL_LANG );
             m.read( "file:testing/ontology/list5.rdf" );
            
-            Resource nil = m.getResource( OntListImpl.RDF_LIST_VOCAB.getNil().getURI() );
+            Resource nil = m.getResource( RDF.nil.getURI() );
             OntList nilList = (OntList) nil.as( OntList.class );
             
             // create a list of foos
@@ -684,7 +683,7 @@ public class TestList
         public void runTest() {
             Model m = ModelFactory.createOntologyModel( ProfileRegistry.OWL_LANG );
             
-            Resource nil = m.getResource( OntListImpl.RDF_LIST_VOCAB.getNil().getURI() );
+            Resource nil = m.getResource( RDF.nil.getURI() );
             OntList list0 = (OntList) nil.as( OntList.class );
             OntList list1 = (OntList) nil.as( OntList.class );
             
@@ -718,7 +717,7 @@ public class TestList
         public void runTest() {
             Model m = ModelFactory.createOntologyModel( ProfileRegistry.OWL_LANG );
            
-            Resource nil = m.getResource( OntListImpl.RDF_LIST_VOCAB.getNil().getURI() );
+            Resource nil = m.getResource( RDF.nil.getURI() );
             OntList nilList = (OntList) nil.as( OntList.class );
             
             // create a list of foos
