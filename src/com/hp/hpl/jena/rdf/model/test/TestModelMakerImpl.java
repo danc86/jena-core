@@ -193,6 +193,18 @@ public class TestModelMakerImpl extends ModelTestBase
             history.add( "getDescription()" );
             return graphWith( "" );    
             }
+                
+        public Graph getDescription( Node root )
+            {
+            history.add( "getDescription(Node)" );
+            return graphWith( "" );    
+            }
+            
+        public Graph addDescription( Graph desc, Node self )
+            {
+            history.add( "addDescription()" );  
+            return desc;  
+            }
             
         public void close()
             {

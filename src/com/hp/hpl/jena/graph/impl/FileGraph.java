@@ -80,8 +80,7 @@ public class FileGraph extends GraphMem
         { this( new File( s ), create, true ); }
         
     public static FileGraph create()
-        { return new FileGraph( GraphTestBase.tempFileName( "xxx", ".rdf" ), true, true );
-        }
+        { return new FileGraph( GraphTestBase.tempFileName( "xxx", ".rdf" ), true, true ); }
         
     /**
         Guess the language of the specified file by looking at the suffix.

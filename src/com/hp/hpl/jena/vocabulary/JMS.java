@@ -35,6 +35,8 @@ public class JMS
     public static final Resource MemMakerClass = resource( "class/MemModelMaker" );
     public static final Resource RDBMakerClass = resource( "class/RDBModelMaker" );
     
+    public static final Resource OntMakerClass = resource( "class/OntModelSpec" );
+    
     public static final Literal rsStandard = literal( "Standard" );
     public static final Literal rsMinimal = literal( "Minimal" );
     public static final Literal rsConvenient = literal( "Convenient" );

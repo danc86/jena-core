@@ -100,6 +100,17 @@ public interface GraphMaker
         @return a Graph describing this Maker.
     */
     public Graph getDescription();
+    
+    public Graph getDescription( Node root );
+    
+    /**
+        Add the description of this GraphMaker to the description graph desc, under the
+        name self.
+        @param desc the graph to which to add the description
+        @param self the root resource to use for the description
+    */
+    public Graph addDescription( Graph desc, Node self );
+    
     /**
         Close the factory - no more requests need be honoured, and any clean-up
         can be done.

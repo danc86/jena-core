@@ -41,12 +41,33 @@ public class GraphRDBMaker extends BaseGraphMaker
         this.reificationStyle = GraphRDB.styleRDB( style );
         }
 
+    /**
+        Answer the RDFS class of this RDB GraphMaker
+        @return JMS.RDBMakerClass [as node]
+    */
     public Node getMakerClass()
         { return JMS.RDBMakerClass.asNode(); }
-             
+        
+    /**
+        Augment the maker description of this maker with RDB-specific properties.
+        TODO do this
+    */     
+    protected void augmentDescription( Graph g, Node self )
+        {}
+        
+    /**
+        Answer the default graph of this Maker.
+    */
     public Graph getGraph()
         { return consGraph( null, true ); }
         
+    /**
+        Answer an "anonymous", freshly-created graph. We fake this by creating a graph
+        with the name "anon_<digit>+". This may lead to problems later; such a graph
+        may need to be deleted when the connection is closed.
+        
+        TODO resolve this issue.
+    */
     public Graph createGraph()
         { return createGraph( "anon_" + counter++ + "", false ); }
     
