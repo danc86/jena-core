@@ -93,6 +93,13 @@ public class LPRuleStore extends RuleStore {
             }
         }
         predicateToCodeMap.put(Node_RuleVariable.ANY, allRuleClauseCodes);
+        
+        
+        // Now compile all the clauses
+        for (Iterator i = allRuleClauseCodes.iterator(); i.hasNext(); ) {
+            RuleClauseCode code = (RuleClauseCode)i.next();
+            code.compile(this);
+        }
         isCompiled = true;
     }
     

@@ -33,7 +33,7 @@ public class Node_RuleVariable extends Node_Variable {
      *  itself (meaning unbound) or an actual value */
     protected Node value;
     
-    /** A flag to indicate the the value is reference (pointer to a var) */
+    /** A flag to indicate that the value is reference (pointer to a var) */
     protected boolean isRef = true;
     
     /** A static wildcard - like Node.ANY but tests equl to other Node_RuleVariables */
@@ -62,11 +62,20 @@ public class Node_RuleVariable extends Node_Variable {
     }
     
     /**
-     * Returns the varibles index in an frule binding vector.
+     * Returns the variable's index in a binding vector.
      * @return int
      */
     public int getIndex() {
         return index;
+    }
+    
+    /**
+     * Changes the variable's index. This is used in LP rules which classify the
+     * variables into different sequences.
+     * @return int
+     */
+    public void setIndex(int index) {
+        this.index = index;
     }
     
     /**
