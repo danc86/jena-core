@@ -87,6 +87,7 @@ public class ModelFactory extends ModelFactoryBase
         Answer a ModelMaker that accesses database-backed Models on
         the database at the other end of the connection c.
         
+        @param c a connection to the database holding the models
         @return a ModelMaker whose Models are held in the database at c
     */
     public static ModelMaker createModelRDBMaker( IDBConnection c )
