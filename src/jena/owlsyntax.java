@@ -89,6 +89,7 @@ public class owlsyntax {
 			+ NL
 			+ NL
 			+ "  -l --lite     Give error messages for OWL DL or OWL Full constructions."
+			+ NL
 			+ "  -d --dl       Give error messages for OWL Full constructions (default)."
 			+ NL
 			+ "  -q --quiet    No error messages."
