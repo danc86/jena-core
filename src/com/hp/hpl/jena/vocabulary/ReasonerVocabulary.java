@@ -114,6 +114,10 @@ public class ReasonerVocabulary {
      *  Values are URI's, see {@link com.hp.hpl.jena.ontology.ProfileRegistry}. Default is OWL. */
     public static final Property EXT_REASONER_ONT_LANG = ResourceFactory.createProperty( JenaReasonerNS, "extReasonerOntologyLang" );
     
+    /** Property to denote the axioms file that the reasoner will use for background knowledge. 
+     *  Values are URL's. Default is no axioms. */
+    public static final Property EXT_REASONER_AXIOMS = ResourceFactory.createProperty( JenaReasonerNS, "extReasonerAxioms" );
+    
     
 //  --------------------------------------------------------------------
 // Method versions of key namespaces which are more initializer friendly
