@@ -32,6 +32,7 @@ package com.hp.hpl.jena.rdf.model.impl;
 
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.shared.*;
+import com.hp.hpl.jena.shared.impl.*;
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.graph.impl.*;
 import com.hp.hpl.jena.graph.query.*;
@@ -861,8 +862,15 @@ implements Model, ModelI, PrefixMapping, ModelLock
             Map.Entry e = (Map.Entry) it.next();
             String key = (String) e.getKey();
             Set  values = (Set) e.getValue();
-            if (values.size() == 1)
-                pm.setNsPrefix( key, (String) values.iterator().next() );
+            Set niceValues = new HashSet();
+            Iterator them = values.iterator();
+            while (them.hasNext())
+                {
+                String uri = (String) them.next();
+                if (PrefixMappingImpl.isNiceURI( uri )) niceValues.add( uri );
+                }
+            if (niceValues.size() == 1)
+                pm.setNsPrefix( key, (String) niceValues.iterator().next() );
             }            
         }
     

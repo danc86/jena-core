@@ -32,7 +32,20 @@ public class PrefixMappingImpl implements PrefixMapping
         {
         checkLegal( prefix );
         if (!prefix.equals( "" )) removeExisting( uri );
+        checkProper( uri );
         map.put( prefix, uri );
+        }
+        
+    private void checkProper( String uri )
+        {
+        // if (!isNiceURI( uri )) throw new RuntimeException( "horrible " + uri );
+        }
+        
+    public static boolean isNiceURI( String uri )
+        {
+        if (uri.equals( "" )) return false;
+        char last = uri.charAt( uri.length() - 1 );
+        return last == '/' || last == '#';
         }
  
     private void removeExisting( String uri )
