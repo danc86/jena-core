@@ -258,7 +258,8 @@ public class LPBRuleEngine {
         while(!gen.isReady()) {
             if (agenda.isEmpty()) return;
             // TODO: Consider scanning agenda for entries with max # dependents
-            LPAgendaEntry next = (LPAgendaEntry) agenda.removeFirst();
+//            LPAgendaEntry next = (LPAgendaEntry) agenda.removeFirst();
+            LPAgendaEntry next = (LPAgendaEntry) agenda.removeLast();
             next.pump();
         }
     }
