@@ -98,7 +98,13 @@ public class SimpleReifierTripleMap implements ReifierTripleMap
         else
             {
             final Iterator it = forwardMap.entrySet().iterator();   
-            return new FragmentTripleIterator( pattern, it );
+            return new FragmentTripleIterator( pattern, it )
+                {
+                public void fill( GraphAdd ga, Node n, Object fragmentsObject )
+                    {
+                    SimpleReifier.graphAddQuad( ga, n, (Triple) fragmentsObject );         
+                    }
+                };
             }
         }
     

@@ -74,7 +74,13 @@ public class SimpleReifierFragmentsMap implements ReifierFragmentsMap
         else
             {
             final Iterator it = forwardMap.entrySet().iterator();   
-            return new FragmentTripleIterator( t, it );
+            return new FragmentTripleIterator( t, it )
+                {
+                public void fill( GraphAdd ga, Node n, Object fragmentsObject )
+                    { 
+                    ((Fragments) fragmentsObject).includeInto( ga );    
+                    }
+                };
             }
         }
     
@@ -160,6 +166,10 @@ public class SimpleReifierFragmentsMap implements ReifierFragmentsMap
 
     public boolean hasFragments( Node tag )
         { return getFragments( tag ) != null; }
+
+       
+    
+    
     }
 
 /*
