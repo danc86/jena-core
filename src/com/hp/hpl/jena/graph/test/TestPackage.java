@@ -27,13 +27,15 @@ public class TestPackage extends TestSuite {
         addTest( TestNodeCache.suite() );
         addTest( "TestNode", TestNode.suite() );
         addTest( "TestTriple", TestTriple.suite() );
+        addTest( TestNodeToTriplesMap.suite() );
         addTest( "TestReifier", TestReifier.suite() );   
         addTest( "TestTypedLiterals", TestTypedLiterals.suite() );
         addTest( "TestGraphQuery", TestGraphQueryPackage.suite() );
-        // addTest( "TestFactory", TestFactory.suite() );
-        addTest( "TestSimpleGraphFactory", TestSimpleGraphMaker.suite() );
+        addTest( "TestFactory", TestFactory.suite() );
+        addTest( "TestGraph", TestGraph.suite() );
+        addTest( "TestSimpleGraphMaker", TestSimpleGraphMaker.suite() );
         addTest( "TestFileGraph", TestFileGraph.suite() );
-        addTest( "TestFileGraphFactory", TestFileGraphMaker.suite() );
+        addTest( "TestFileGraphMaker", TestFileGraphMaker.suite() );
         addTest( "TestCapabilities", TestCapabilities.suite() );
         addTest( "TestGraphUtils", TestGraphUtils.suite() );
         addTest( "TestGraphPrefixMapping", TestGraphPrefixMapping.suite() );       }

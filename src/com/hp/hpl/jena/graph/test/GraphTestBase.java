@@ -63,6 +63,14 @@ public class GraphTestBase extends JenaTestBase
         while (semis.hasMoreTokens()) al.add( triple( semis.nextToken() ) );   
         return (Triple []) al.toArray( new Triple [al.size()] );
         }
+    
+    public static Set tripleSet( String facts )
+        {
+        Set result = new HashSet();
+        StringTokenizer semis = new StringTokenizer( facts, ";" );
+        while (semis.hasMoreTokens()) result.add( triple( semis.nextToken() ) );   
+        return result;
+        }
         
     public static Node [] nodes( String items )
         {

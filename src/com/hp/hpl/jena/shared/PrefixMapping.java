@@ -179,6 +179,7 @@ public interface PrefixMapping
         .setNsPrefix( "dc", DC.getURI() )
         .setNsPrefix( "daml", DAMLVocabulary.NAMESPACE_DAML_2001_03_URI )
         .setNsPrefix( "owl", OWL.getURI() )
+        .setNsPrefix( "xsd", "http://www.w3.org/2001/XMLSchema#" )
         .lock()
         ;   
     
