@@ -41,7 +41,7 @@ package com.hp.hpl.jena.ontology;
  * @version CVS $Id$
  */
 public interface InverseFunctionalProperty
-    extends OntProperty
+    extends ObjectProperty
 {
     // Constants
     //////////////////////////////////

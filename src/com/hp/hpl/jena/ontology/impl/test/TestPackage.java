@@ -22,10 +22,12 @@ public class TestPackage extends TestSuite {
     /** Creates new TestPackage */
     private TestPackage() {
         super("ontology.impl");
-        addTest( "TestList", TestList.suite() );
-        addTest( "TestDocumentManager", TestOntDocumentManager.suite() );
-        addTest( "TestOntology", TestOntology.suite() );
+        addTest( "TestAxioms", TestAxioms.suite() );
         addTest( "TestClassExpression", TestClassExpression.suite() );
+        addTest( "TestList", TestList.suite() );
+        addTest( "TestOntDocumentManager", TestOntDocumentManager.suite() );
+        addTest( "TestOntology", TestOntology.suite() );
+        addTest( "TestProperty", TestProperty.suite() );
     }
 
     private void addTest(String name, TestSuite tc) {

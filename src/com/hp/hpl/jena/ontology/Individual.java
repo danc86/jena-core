@@ -22,6 +22,7 @@
 package com.hp.hpl.jena.ontology;
 
 
+
 // Imports
 ///////////////
 

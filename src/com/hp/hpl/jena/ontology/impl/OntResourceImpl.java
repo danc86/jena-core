@@ -87,6 +87,57 @@ public abstract class OntResourceImpl
     }
 
 
+    /**
+     * <p>
+     * Answer an {@link PathSet accessor} for the 
+     * <code>sameAs</code>
+     * property of any instance. The accessor
+     * can be used to perform a variety of operations, including getting and setting the value.
+     * <b>Note:</b> that any ontology resource can be declared to be the same as another. However,
+     * in the case of OWL, doing so for class or property resources necessarily implies that
+     * OWL Full is being used, since in OWL DL and Lite classes and properties cannot be used
+     * as instances.
+     * </p>
+     * 
+     * @return An abstract accessor for identity between individuals
+     */
+    public PathSet p_sameAs() {
+        return asPathSet( getProfile().SAME_AS() );
+    }
+
+
+    /**
+     * <p>
+     * Answer an {@link PathSet accessor} for the 
+     * <code>sameIndidualAs</code>
+     * property of any instance. The accessor
+     * can be used to perform a variety of operations, including getting and setting the value.
+     * A synonym for {@link #p_sameAs sameAs}.
+     * </p>
+     * 
+     * @return An abstract accessor for identity between individuals
+     */
+    public PathSet p_sameIndividualAs() {
+        return asPathSet( getProfile().SAME_INDIVIDUAL_AS() );
+    }
+
+
+    /**
+     * <p>
+     * Answer an {@link PathSet accessor} for the 
+     * <code>differentFrom</code>
+     * property of any instance. The accessor
+     * can be used to perform a variety of operations, including getting and setting the value.
+     * </p>
+     * 
+     * @return An abstract accessor for asserting non-identity between individuals
+     */
+    public PathSet p_differentFrom() {
+        return asPathSet( getProfile().DIFFERENT_FROM() );
+    }
+
+
+
     // Internal implementation methods
     //////////////////////////////////
 

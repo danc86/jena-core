@@ -69,7 +69,7 @@ public class OntPropertyImpl
 
     /**
      * <p>
-     * Construct an ontology class node represented by the given node in the given graph.
+     * Construct an ontology property represented by the given node in the given graph.
      * </p>
      * 
      * @param n The node that represents the resource

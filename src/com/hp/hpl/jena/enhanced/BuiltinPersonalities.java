@@ -36,6 +36,14 @@ public class BuiltinPersonalities {
         .add( OntClass.class, OntClassImpl.factory )
         .add( Restriction.class, RestrictionImpl.factory )
         .add( OntProperty.class, OntPropertyImpl.factory )
+        .add( ObjectProperty.class, ObjectPropertyImpl.factory )
+        .add( DatatypeProperty.class, DatatypePropertyImpl.factory )
+        .add( TransitiveProperty.class, TransitivePropertyImpl.factory )
+        .add( SymmetricProperty.class, SymmetricPropertyImpl.factory )
+        .add( FunctionalProperty.class, FunctionalPropertyImpl.factory )
+        .add( InverseFunctionalProperty.class, InverseFunctionalPropertyImpl.factory )
+        .add( AllDifferent.class, AllDifferentImpl.factory )
+        .add( Individual.class, IndividualImpl.factory )
         ;	
         
         

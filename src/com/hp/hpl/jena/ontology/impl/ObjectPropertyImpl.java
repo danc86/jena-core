@@ -5,7 +5,7 @@
  * Author email       Ian.Dickinson@hp.com
  * Package            Jena 2
  * Web                http://sourceforge.net/projects/jena/
- * Created            10 Feb 2003
+ * Created            01-Apr-2003
  * Filename           $RCSfile$
  * Revision           $Revision$
  * Release status     $State$
@@ -13,61 +13,82 @@
  * Last modified on   $Date$
  *               by   $Author$
  *
- * (c) Copyright 2002-2003, Hewlett-Packard Company, all rights reserved. 
+ * (c) Copyright 2002-2003, Hewlett-Packard Company, all rights reserved.
  * (see footer for full conditions)
- * ****************************************************************************/
+ *****************************************************************************/
 
 // Package
 ///////////////
-package com.hp.hpl.jena.ontology;
+package com.hp.hpl.jena.ontology.impl;
 
 
 
 // Imports
 ///////////////
-import com.hp.hpl.jena.ontology.path.PathSet;
+import com.hp.hpl.jena.enhanced.*;
+import com.hp.hpl.jena.graph.*;
+import com.hp.hpl.jena.ontology.*;
+
 
 
 /**
  * <p>
- * Interface defining the axiom form in which all members of a collection are
- * declared pair-wise disjoint.  This allows ontologies that wish to support the
- * unique names assumption to add this condition in languages (like OWL) that
- * do not make the same assumption, with a minimum number of statements.
- * Instances of the all different axiom are expected to have a property
- * (e.g. <code>owl:distinctMembers</code> defining the list of distinct
- * individuals in the ontology.  For a given vocabulary, this will be defined by
- * the {@link Profile#distinctMembers distinctMembers} entry.
+ * Implementation of the object property abstraction
  * </p>
  *
  * @author Ian Dickinson, HP Labs
  *         (<a  href="mailto:Ian.Dickinson@hp.com" >email</a>)
  * @version CVS $Id$
  */
-public interface AllDifferent
-    extends Axiom
+public class ObjectPropertyImpl
+    extends OntPropertyImpl
+    implements ObjectProperty 
 {
     // Constants
     //////////////////////////////////
+
+    // Static variables
+    //////////////////////////////////
+
+    /**
+     * A factory for generating ObjectProperty facets from nodes in enhanced graphs.
+     * Note: should not be invoked directly by user code: use 
+     * {@link com.hp.hpl.jena.rdf.model.RDFNode#as() as()} instead.
+     */
+    public static Implementation factory = new Implementation() {
+        public EnhNode wrap( Node n, EnhGraph eg ) { return new ObjectPropertyImpl( n, eg ); }
+    };
+
+
+    // Instance variables
+    //////////////////////////////////
+
+    // Constructors
+    //////////////////////////////////
+
+    /**
+     * <p>
+     * Construct a functional property node represented by the given node in the given graph.
+     * </p>
+     * 
+     * @param n The node that represents the resource
+     * @param g The enh graph that contains n
+     */
+    public ObjectPropertyImpl( Node n, EnhGraph g ) {
+        super( n, g );
+    }
 
 
     // External signature methods
     //////////////////////////////////
 
-    /**
-     * <p>
-     * Answer an {@link PathSet accessor} for the 
-     * <code>distinctMembers</code>
-     * property of an AllDifferent axiom. The accessor
-     * can be used to perform a variety of operations, including getting and setting the value.
-     * </p>
-     * 
-     * @return An abstract accessor for the distinct individuals in an AllDifferent axioms
-     */
-    public PathSet p_distinctMembers();
+    // Internal implementation methods
+    //////////////////////////////////
 
+    //==============================================================================
+    // Inner class definitions
+    //==============================================================================
 
-    
 }
 
 
