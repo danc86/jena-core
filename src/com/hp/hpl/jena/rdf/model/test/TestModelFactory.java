@@ -104,6 +104,13 @@ public class TestModelFactory extends ModelTestBase
         ModelSpec spec = ModelFactory.createSpec( desc );
         Model m = ModelFactory.createModelOver( spec, "aName" );    
         }        
+        
+    public void testCreateNamed()
+        {
+        Resource root = ResourceFactory.createResource();
+        Model desc = TestModelSpec.createPlainModelDesc( root );
+        ModelSpec spec = ModelFactory.createSpec( root, desc );    
+        }
     }
 
 /*
