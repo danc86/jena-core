@@ -129,7 +129,25 @@ public class TestModelMakerImpl extends ModelTestBase
         {
         assertTrue( isExtensionOf( ModelMaker.class, ModelSource.class ) );
         assertTrue( isExtensionOf( ModelSpec.class, ModelSource.class ) );
+        ModelSource s = new ModelSourceImpl();
+        assertNotNull( s.openModel( "henry" ) );
+        assertNull( s.getExistingModel( "splendid" ) );
         }
+    
+    /**
+     	Minimal test implementation of ModelSource. There should be more of
+     	these.
+     	
+     	@author hedgehog
+    */
+    protected static class ModelSourceImpl implements ModelSource
+    	{
+        public Model openModel( String name )
+            { return ModelFactory.createDefaultModel(); }
+
+        public Model getExistingModel(String name)
+            { return null; }
+    	}
     
     public boolean isExtensionOf( Class subClass, Class superClass )
         {

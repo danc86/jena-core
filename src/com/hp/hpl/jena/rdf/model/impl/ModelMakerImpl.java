@@ -26,9 +26,12 @@ public class ModelMakerImpl implements ModelMaker
         
     public void close()
         { maker.close(); }
-        
+       
     protected Model makeModel( Graph g )
         { return new ModelCom( g ); }
+    
+    public Model getExistingModel( String name )
+        { return maker.hasGraph( name ) ? openModel( name ) : null; }
     
     public Model openModel( String name, boolean strict )
         { return makeModel( maker.openGraph( name, strict ) ); }

@@ -100,6 +100,13 @@ public abstract class ModelSpecImpl implements ModelSpec
     */
     public Model openModel( String URI )
         { return ModelFactory.createDefaultModel(); }
+    
+    /**
+     	Answer null, as ModelSpecs as ModelSources don't remember any Models.
+     	This is consistent with openModel() always creating a new Model.
+    */
+    public Model getExistingModel( String URI )
+        { return null; }
         
     /**
         Answer a ModelSpec created from the RDF model to be found using the URI of
