@@ -29,7 +29,7 @@ public class FBRuleReasoner implements Reasoner {
     protected ReasonerFactory factory;
 
     /** The rules to be used by this instance of the forward engine */
-    protected List rules;
+    protected List rules = new ArrayList();
     
     /** A precomputed set of schema deductions */
     protected Graph schemaGraph;
@@ -56,6 +56,7 @@ public class FBRuleReasoner implements Reasoner {
      * @param rules a list of Rule instances which defines the ruleset to process
      */
     public FBRuleReasoner(List rules) {
+        if (rules == null) throw new NullPointerException( "null rules" );
         this.rules = rules;
     }
     
@@ -64,7 +65,7 @@ public class FBRuleReasoner implements Reasoner {
      * @param factory the parent reasoner factory which is consulted to answer capability questions
      */
     public FBRuleReasoner(ReasonerFactory factory) {
-        this(null, factory);
+        this( new ArrayList(), factory);
     }
    
     /**
@@ -73,7 +74,7 @@ public class FBRuleReasoner implements Reasoner {
      * @param configuration RDF node to configure the rule set and mode, can be null
      */
     public FBRuleReasoner(ReasonerFactory factory, Resource configuration) {
-        this(null, factory);
+        this( new ArrayList(), factory);
         this.configuration = configuration;
         if (configuration != null) {
             StmtIterator i = configuration.listProperties();
@@ -102,6 +103,19 @@ public class FBRuleReasoner implements Reasoner {
         this(rules, factory);
         this.schemaGraph = schemaGraph;
     }
+
+    /**
+         Add the given rules to the current set and answer this Reasoner. Provided 
+         so that the Factory can deal out reasoners with specified rulesets. 
+         There may well be a better way to arrange this.
+         TODO review & revise
+    */
+    public FBRuleReasoner addRules(List rules) {
+        List combined = new ArrayList( this.rules );
+        combined.addAll( rules );
+        setRules( combined );
+        return this;
+        }
 
     /**
      * Return a description of the capabilities of this reasoner encoded in
@@ -201,7 +215,7 @@ public class FBRuleReasoner implements Reasoner {
     }
     
     /**
-     * Return the this of Rules used by this reasoner
+     * Return the list of Rules used by this reasoner
      * @return a List of Rule objects
      */
     public List getRules() {

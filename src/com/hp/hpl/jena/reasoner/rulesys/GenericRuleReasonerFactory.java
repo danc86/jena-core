@@ -9,8 +9,11 @@
  *****************************************************************/
 package com.hp.hpl.jena.reasoner.rulesys;
 
+import java.util.*;
+
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.reasoner.*;
+import com.hp.hpl.jena.reasoner.rulesys.impl.BaseRuleReasonerFactory;
 import com.hp.hpl.jena.vocabulary.ReasonerVocabulary;
 
 /**
@@ -21,7 +24,8 @@ import com.hp.hpl.jena.vocabulary.ReasonerVocabulary;
  * @author <a href="mailto:der@hplb.hpl.hp.com">Dave Reynolds</a>
  * @version $Revision$ on $Date$
  */
-public class GenericRuleReasonerFactory implements ReasonerFactory {
+public class GenericRuleReasonerFactory extends BaseRuleReasonerFactory 
+    implements RuleReasonerFactory {
     
     /** Single global instance of this factory */
     private static ReasonerFactory theInstance = new GenericRuleReasonerFactory();
@@ -45,8 +49,8 @@ public class GenericRuleReasonerFactory implements ReasonerFactory {
      * passed the reasoner, encoded as RDF properties of a base configuration resource,
      * can be null in no custom configuration is required.
      */
-    public Reasoner create(Resource configuration) {
-        return new GenericRuleReasoner(this, configuration);
+    public Reasoner create( Resource configuration ) {
+        return new GenericRuleReasoner( this, configuration ) .addRules( rules ); 
     }
    
     /**

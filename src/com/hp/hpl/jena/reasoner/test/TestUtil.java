@@ -52,6 +52,8 @@ public class TestUtil {
         int anonFound = 0;
         
         for (int i = 0; i < vals.length; i++) found[i] = false;
+        
+        
         while (it.hasNext()) {
             Object n = it.next();
             boolean gotit = false;
@@ -77,9 +79,11 @@ public class TestUtil {
         // check that no expected values were unfound
         for (int i = 0; i < vals.length; i++) {
             if (!found[i]) {
+
+                for (int j = 0; j < vals.length; j += 1) System.err.println( "#" + j + ": " + vals[j] );
                 logger.debug( testCase.getName() + " failed to find expected iterator value: " + vals[i]);
             }
-            TestCase.assertTrue(testCase.getName() + " failed to find expected iterator value", found[i]);
+            TestCase.assertTrue(testCase.getName() + " failed to find expected iterator value: " + vals[i], found[i]);
         }
         
         // check we got the right no. of anons

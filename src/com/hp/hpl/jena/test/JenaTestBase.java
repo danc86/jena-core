@@ -82,7 +82,31 @@ public class JenaTestBase extends TestCase
         { return 
             m.getName().startsWith( "test" ) 
             && m.getParameterTypes().length == 0 
-            && m.getReturnType().equals( Void.TYPE ); }                        
+            && m.getReturnType().equals( Void.TYPE ); }              
+    
+    /**
+         Answer true iff <code>subClass</code> is the same class as 
+         <code>superClass</code>, if its superclass <i>is</i> <code>superClass</code>,
+         or if one of its interfaces hasAsInterface that class.
+    */
+    public boolean hasAsParent( Class subClass, Class superClass )
+        {
+        if (subClass == superClass || subClass.getSuperclass() == superClass) return true;
+        Class [] is = subClass.getInterfaces();
+        for (int i = 0; i < is.length; i += 1) if (hasAsParent( is[i], superClass )) return true;
+        return false;
+        }
+    
+    /**
+         Fail unless <code>subClass</code> has <code>superClass</code> as a
+         parent, either a superclass or an implemented (directly or not) interface.
+    */
+    public void assertHasParent( Class subClass, Class superClass )
+        {
+        if (hasAsParent( subClass, superClass ) == false)
+            fail( "" + subClass + " should have " + superClass + " as a parent" );
+        }
+
     }
 
 

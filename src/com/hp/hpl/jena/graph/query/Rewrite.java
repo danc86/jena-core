@@ -73,7 +73,7 @@ public class Rewrite
     
     public static boolean notSpecial( String pattern )
         {
-        return pattern.matches( "[A-Za-z0-9-_ ]*" );
+        return pattern.matches( "[A-Za-z0-9-_:/ ]*" );
         }
 
     public static boolean isContains( String pattern )

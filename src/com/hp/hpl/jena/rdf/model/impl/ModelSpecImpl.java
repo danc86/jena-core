@@ -316,6 +316,8 @@ public abstract class ModelSpecImpl implements ModelSpec
         while (rulesets.hasNext()) load( rf, rulesets.nextStatement().getResource() );
         return rf;
         }
+    
+   
 
     /**
      * @param rf
