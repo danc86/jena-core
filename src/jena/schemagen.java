@@ -671,7 +671,13 @@ public class schemagen {
         int i = 0;
 
         // treat the first character specially - must be able to start a Java ID, may have to upcase
-        for (; !Character.isJavaIdentifierStart( s.charAt( i )); i++) {}
+        try {
+            for (; !Character.isJavaIdentifierStart( s.charAt( i )); i++) {}
+        }
+        catch (StringIndexOutOfBoundsException e) {
+            System.err.println( "Could not identify legal Java identifier start character in '" + s + "', replacing with __" );
+            return "__";
+        }
         buf.append( cap ? Character.toUpperCase( s.charAt( i ) ) : s.charAt( i ) );
 
         // copy the remaining characters - replace non-legal chars with '_'
@@ -732,16 +738,16 @@ public class schemagen {
     protected void writeNamespace() {
         String nsURI = determineNamespaceURI();
 
-        writeln( 1, "/** <p>The namespace of the vocabalary as a string ({@value})</p> */" );
+        writeln( 1, "/** <p>The namespace of the vocabulary as a string ({@value})</p> */" );
         writeln( 1, "public static final String NS = \"" + nsURI + "\";" );
         writeln( 1 );
 
-        writeln( 1, "/** <p>The namespace of the vocabalary as a string</p>" );
+        writeln( 1, "/** <p>The namespace of the vocabulary as a string</p>" );
         writeln( 1, " *  @see #NS */" );
         writeln( 1, "public static String getURI() {return NS;}" );
         writeln( 1 );
 
-        writeln( 1, "/** <p>The namespace of the vocabalary as a resource</p> */" );
+        writeln( 1, "/** <p>The namespace of the vocabulary as a resource</p> */" );
         writeln( 1, "public static final Resource NAMESPACE = m_model.createResource( NS );" );
         writeln( 1 );
     }
