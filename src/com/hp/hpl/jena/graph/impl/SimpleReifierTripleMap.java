@@ -130,6 +130,12 @@ public class SimpleReifierTripleMap implements ReifierTripleMap
             { public ExtendedIterator graphBaseFind( TripleMatch tm ) { return allTriples( tm ); } };
         }
     
+    public ExtendedIterator find( TripleMatch m )
+        { return allTriples( m ); }
+    
+    public int size()
+        { return forwardMap.size() * 4; }
+    
     /**
          Answer an iterator over all the fragment tags in this map.
     */

@@ -56,6 +56,10 @@ public interface ReifierTripleMap
          corresponding reification quadlets). 
     */
     public abstract Graph asGraph();
+    
+    public ExtendedIterator find( TripleMatch m );
+    
+    public int size();
 
     /**
          Answer an iterator over all the bound tags in this map.

@@ -43,6 +43,10 @@ public class WrappedReifier implements Reifier
 	 	@see com.hp.hpl.jena.graph.Reifier#getParentGraph()
 	*/
 	public Graph getParentGraph() { return parent; }
+    
+    public ExtendedIterator find( TripleMatch m ) { return base.find( m ); }
+    
+    public int size() { return base.size(); }
 
 	/** 
 	 	@see com.hp.hpl.jena.graph.Reifier#reifyAs(com.hp.hpl.jena.graph.Node, com.hp.hpl.jena.graph.Triple)

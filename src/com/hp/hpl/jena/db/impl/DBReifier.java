@@ -72,6 +72,12 @@ public class DBReifier implements Reifier
 		return m_hiddenTriples;
 	}
     
+    public ExtendedIterator find( TripleMatch m )
+        { return getReificationTriples().find( m ); }
+    
+    public int size() 
+        { return getHiddenTriples().size(); }
+    
     public Graph getHiddenTriples()
         { return m_style == ReificationStyle.Standard ? Graph.emptyGraph : getReificationTriples(); }
 

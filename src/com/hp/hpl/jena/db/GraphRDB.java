@@ -354,7 +354,7 @@ public class GraphRDB extends GraphBase implements Graph {
 	/* (non-Javadoc)
 	 * @see com.hp.hpl.jena.graph.Graph#size()
 	 */
-	public int size() {
+	public int graphBaseSize() {
 		checkOpen();
         int result = 0;		
 		Iterator it = m_specializedGraphs.iterator();
@@ -372,7 +372,7 @@ public class GraphRDB extends GraphBase implements Graph {
 	/* (non-Javadoc)
 	 * @see com.hp.hpl.jena.graph.Graph#contains(com.hp.hpl.jena.graph.Triple)
 	 */
-	public boolean contains(Triple t) {
+	public boolean graphBaseContains(Triple t) {
 		checkOpen();
         SpecializedGraph.CompletionFlag complete = new SpecializedGraph.CompletionFlag();
 		Iterator it = m_specializedGraphs.iterator();
@@ -394,7 +394,7 @@ public class GraphRDB extends GraphBase implements Graph {
 	 */
 	public ExtendedIterator graphBaseFind(TripleMatch m) {
 		checkOpen();
-        ExtendedIterator result = new NiceIterator();
+        ExtendedIterator result = NullIterator.instance;
 		SpecializedGraph.CompletionFlag complete = new SpecializedGraph.CompletionFlag();
 		Iterator it = m_specializedGraphs.iterator();
 		while( it.hasNext() ) {
@@ -411,6 +411,12 @@ public class GraphRDB extends GraphBase implements Graph {
 		return result;
 	}
 
+    public ExtendedIterator reifierTriples( TripleMatch m )
+        { return NullIterator.instance; }
+    
+    public int reifierSize()
+        { return 0; }
+    
 	/* (non-Javadoc)
 	 * @see com.hp.hpl.jena.graph.Graph#getBulkUpdateHandler()
 	 */

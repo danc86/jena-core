@@ -39,7 +39,7 @@ public class Union extends Dyadic implements Graph
 		R.delete( t );
 		}
 
-    public boolean contains( Triple t )
+    public boolean graphBaseContains( Triple t )
         { return L.contains( t ) || R.contains( t ); }
         
     /**

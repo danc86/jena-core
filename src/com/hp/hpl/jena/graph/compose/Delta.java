@@ -75,7 +75,7 @@ public class Delta extends Dyadic implements Graph
 		base.close();
 		}
 
-	public int size()
+	public int graphBaseSize()
 		{ return base.size() + L.size() - R.size(); }
 	}
 

@@ -1,5 +1,5 @@
 /*
-  (c) Copyright 2002, 2003 Hewlett-Packard Development Company, LP
+  (c) Copyright 2002, 2003, 2004 Hewlett-Packard Development Company, LP
   [See end of file]
   $Id$
 */
@@ -27,6 +27,14 @@ public interface Reifier extends GetTriple
         Answer a read-only graph of all the reification quadlets in this reifier. 
     */
     Graph getReificationTriples();
+    
+    /**
+         Answer an iterator over all the reification triples that this Reifier exposes
+         (ie all if Standard, none otherwise) that match m.
+    */
+    ExtendedIterator find( TripleMatch m );
+    
+    int size();
     
     /**
         Answer this reifier's style.
@@ -85,11 +93,11 @@ public interface Reifier extends GetTriple
     /**
         true iff the Reifier has handled a remove of the triple _t_.
     */
-    boolean handledRemove( Triple t );;
+    boolean handledRemove( Triple t );
     }
 
 /*
-    (c) Copyright 2002, 2003 Hewlett-Packard Development Company, LP
+    (c) Copyright 2002, 2003, 2004 Hewlett-Packard Development Company, LP
     All rights reserved.
 
     Redistribution and use in source and binary forms, with or without

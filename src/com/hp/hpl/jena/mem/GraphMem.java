@@ -12,8 +12,6 @@ import com.hp.hpl.jena.graph.query.*;
 import com.hp.hpl.jena.shared.*;
 import com.hp.hpl.jena.util.iterator.*;
 
-import java.util.*;
-
 /**
     A memory-backed graph with S/P/O indexes. 
     @author  bwm, kers
@@ -44,11 +42,8 @@ public class GraphMem extends GraphMemBase implements Graph
         { if (!getReifier().handledRemove( t )) store.delete( t ); }
 
 
-    public int size()  
-        {
-        checkOpen();
-        return store.size();
-        }
+    public int graphBaseSize()  
+        { return store.size(); }
 
     public boolean isEmpty()
         {
@@ -73,18 +68,15 @@ public class GraphMem extends GraphMemBase implements Graph
          triple-pattern <code>m</code>. Delegated to the store.
      */
     public ExtendedIterator graphBaseFind( TripleMatch m ) 
-        {
-        checkOpen();
-        return store.find( m.asTriple() );
-        }
+        { return store.find( m.asTriple() ); }
 
     /**
          Answer true iff this graph contains <code>t</code>. If <code>t</code>
          happens to be concrete, then we hand responsibility over to the store.
          Otherwise we use the default implementation.
     */
-    public boolean contains( Triple t )
-        { return t.isConcrete() ? store.contains( t ) : super.contains( t ); }
+    public boolean graphBaseContains( Triple t )
+        { return t.isConcrete() ? store.contains( t ) : super.graphBaseContains( t ); }
     
     /**
         Clear this GraphMem, ie remove all its triples (delegated to the store).

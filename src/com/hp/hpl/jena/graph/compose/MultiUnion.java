@@ -150,7 +150,7 @@ public class MultiUnion
      * @param t A triple
      * @return True if any of the graphs in the union contain t
      */
-    public boolean contains( Triple t ) {
+    public boolean graphBaseContains( Triple t ) {
         for (Iterator i = m_subGraphs.iterator();  i.hasNext();  ) {
             if (((Graph) i.next()).contains( t )) {
                 return true;

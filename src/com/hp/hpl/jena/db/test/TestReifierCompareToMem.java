@@ -104,12 +104,13 @@ public class TestReifierCompareToMem extends TestCase
     	logger.debug("Model");
 		Iterator it = m.listStatements();
 		while( it.hasNext()) { 
-			Statement s = (Statement)it.next();
-			RDFNode object = s.getObject();
-			if( object instanceof Literal )
-				logger.debug(name+": "+s.getSubject()+s.getPredicate()+((Literal)object).getValue()+" "+((Literal)object).getDatatype()+" "+((Literal)object).getLanguage());
-			else
-				logger.debug(name+": "+it.next()); 	
+            logger.debug( name + ": " + it.next() );
+//			Statement s = (Statement)it.next();
+//			RDFNode object = s.getObject();
+//			if( object instanceof Literal )
+//				logger.debug(name+": "+s.getSubject()+s.getPredicate()+((Literal)object).getValue()+" "+((Literal)object).getDatatype()+" "+((Literal)object).getLanguage());
+//			else
+//				logger.debug(name+": "+it.next()); 	
     	}
     }
     

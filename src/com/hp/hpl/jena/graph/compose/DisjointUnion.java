@@ -26,7 +26,7 @@ public class DisjointUnion extends Dyadic
     public ExtendedIterator graphBaseFind( TripleMatch m )
         { return L.find( m ) .andThen( R.find( m ) ); }
     
-    public boolean contains( Triple t )
+    public boolean graphBaseContains( Triple t )
         { return L.contains( t ) || R.contains( t ); }
     
     public void performDelete( Triple t )

@@ -277,7 +277,7 @@ public class BasicForwardRuleInfGraph extends BaseInfGraph implements ForwardRul
     /**
      * Return the number of triples in the inferred graph
      */
-    public int size() {
+    public int graphBaseSize() {
         checkOpen();
         if (!isPrepared) {
             prepare();

@@ -53,7 +53,7 @@ public abstract class CompositionBase
      * @return The integer triple count
      * @see com.hp.hpl.jena.graph.Graph#size()
      */
-    public int size()
+    public int graphBaseSize()
         { return countIterator( GraphUtil.findAll( this ) ); }             
       
     /**

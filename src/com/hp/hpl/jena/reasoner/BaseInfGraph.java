@@ -337,7 +337,7 @@ public abstract class BaseInfGraph extends GraphBase implements InfGraph {
     /**
      * Return the number of triples in the just the base graph
      */
-    public int size() {
+    public int graphBaseSize() {
         checkOpen();
         return fdata.getGraph().size();
     }

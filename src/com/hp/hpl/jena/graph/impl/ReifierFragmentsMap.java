@@ -7,6 +7,7 @@
 package com.hp.hpl.jena.graph.impl;
 
 import com.hp.hpl.jena.graph.*;
+import com.hp.hpl.jena.util.iterator.ExtendedIterator;
 
 /**
      ReifierFragmentsMap: how a SimpleReifier manages its incomplete reifications.
@@ -20,6 +21,10 @@ public interface ReifierFragmentsMap
          Answer the fragment map as a read-only Graph of quadlets. 
     */
     public abstract Graph asGraph();
+    
+    public ExtendedIterator find( TripleMatch m );
+    
+    public int size();
 
     /**
          Answer a FragmentHandler which can handle this fragment, or null if it isn't a

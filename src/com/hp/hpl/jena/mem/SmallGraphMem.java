@@ -40,22 +40,16 @@ public class SmallGraphMem extends GraphMemBase
     public void performDelete( Triple t )
         { if (!getReifier().handledRemove( t )) triples.remove( t ); }
     
-    public int size()  
-        {
-        checkOpen();
-        return triples.size();
-        }
+    public int graphBaseSize()  
+        { return triples.size(); }
 
     /**
         Answer true iff t matches some triple in the graph. If t is concrete, we
         can use a simple membership test; otherwise we resort to the generic
         method using find.
     */
-    public boolean contains( Triple t ) 
-        {
-        checkOpen();
-        return t.isConcrete() ? triples.contains( t ) : containsByFind( t ); 
-        }
+    public boolean graphBaseContains( Triple t ) 
+        { return t.isConcrete() ? triples.contains( t ) : containsByFind( t ); }
     
     protected void destroy()
         { triples = null; }

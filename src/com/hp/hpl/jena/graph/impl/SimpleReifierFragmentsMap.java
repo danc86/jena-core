@@ -10,6 +10,7 @@ import java.util.Map;
 import java.util.Set;
 
 import com.hp.hpl.jena.graph.*;
+import com.hp.hpl.jena.shared.JenaException;
 import com.hp.hpl.jena.util.HashUtils;
 import com.hp.hpl.jena.util.iterator.*;
 import com.hp.hpl.jena.vocabulary.RDF;
@@ -89,6 +90,22 @@ public class SimpleReifierFragmentsMap implements ReifierFragmentsMap
             { public ExtendedIterator graphBaseFind( TripleMatch tm ) { return allTriples( tm ); } };
         }
 
+    public ExtendedIterator find( TripleMatch m )
+        { return allTriples( m ); }
+    
+    public int size()
+        { 
+        int result = 0;
+        Iterator it = forwardMap.entrySet().iterator();   
+        while (it.hasNext())
+            {
+            Map.Entry e = (Map.Entry) it.next();
+            Fragments f = (Fragments) e.getValue();
+            result += f.size();
+            }
+        return result; 
+        }
+    
     /**
         given a triple t, see if it's a reification triple and if so return the internal selector;
         otherwise return null.
@@ -179,6 +196,9 @@ public class SimpleReifierFragmentsMap implements ReifierFragmentsMap
             addTriple( t ); 
             }
             
+        public int size()
+            { return slots[0].size() + slots[1].size() + slots[2].size() + slots[3].size(); }
+        
         /**
             true iff this is a complete fragment; every component is present with exactly
             one value, so n unambiguously reifies (subject, predicate, object).
