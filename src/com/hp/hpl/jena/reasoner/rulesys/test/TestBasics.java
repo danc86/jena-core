@@ -87,7 +87,7 @@ public class TestBasics extends TestCase  {
      * Test the BindingEnvironment machinery
      */
     public void testBindingEnvironment() {
-        BindingEnvironment env = new BindingEnvironment();
+        BindingStack env = new BindingStack();
         
         env.bind(3, n1);
         assertEquals(n1, env.getEnvironment()[3]);
@@ -126,7 +126,7 @@ public class TestBasics extends TestCase  {
      * Test simple single clause binding
      */
     public void testClauseMaching() {
-        BindingEnvironment env = new BindingEnvironment();
+        BindingStack env = new BindingStack();
         List rules = new ArrayList();
         BasicForwardRuleInfGraph inf = new BasicForwardRuleInfGraph(
                                             new BasicForwardRuleReasoner(rules), rules);

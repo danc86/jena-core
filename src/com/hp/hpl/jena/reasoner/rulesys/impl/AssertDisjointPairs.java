@@ -61,7 +61,7 @@ public class AssertDisjointPairs implements Builtin {
             for (Iterator j = l.iterator(); j.hasNext(); ) {
                 Node y = (Node)j.next();
                 if (!x.equals(y)) {
-                    context.addPending( new Triple(x, OWL.differentFrom.asNode(), y) );
+                    ((BFRuleContext)context).addPending( new Triple(x, OWL.differentFrom.asNode(), y) );
                 }
             }
         }
