@@ -31,9 +31,7 @@ package com.hp.hpl.jena.mem.test;
 
 import com.hp.hpl.jena.vocabulary.*;
 import com.hp.hpl.jena.mem.ModelMem;
-import com.hp.hpl.jena.mem.test.*;
 import com.hp.hpl.jena.rdf.model.*;
-
 
 /**
  *

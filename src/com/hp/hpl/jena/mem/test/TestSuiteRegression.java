@@ -29,8 +29,6 @@
 
 package com.hp.hpl.jena.mem.test;
 
-import com.hp.hpl.jena.mem.test.*;
-
 import junit.framework.TestSuite;
 
 /**
