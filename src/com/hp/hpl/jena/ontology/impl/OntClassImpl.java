@@ -180,8 +180,9 @@ public class OntClassImpl
      * @exception OntProfileException If the {@link Profile#SUB_CLASS_OF()} property is not supported in the current language profile.   
      */
     public ExtendedIterator listSuperClasses( boolean direct ) {
-        return listDirectPropertyValues( getProfile().SUB_CLASS_OF(), "SUB_CLASS_OF", OntClass.class, getProfile().SUB_CLASS_OF(), direct, false )
-               .filterDrop( new SingleEqualityFilter( this ) );
+        return UniqueExtendedIterator.create(
+                listDirectPropertyValues( getProfile().SUB_CLASS_OF(), "SUB_CLASS_OF", OntClass.class, getProfile().SUB_CLASS_OF(), direct, false )
+                .filterDrop( new SingleEqualityFilter( this ) ) );
     }
 
     /**
@@ -339,8 +340,9 @@ public class OntClassImpl
      * @exception OntProfileException If the {@link Profile#SUB_CLASS_OF()} property is not supported in the current language profile.   
      */
     public ExtendedIterator listSubClasses( boolean direct ) {
-        return listDirectPropertyValues( getProfile().SUB_CLASS_OF(), "SUB_CLASS_OF", OntClass.class, getProfile().SUB_CLASS_OF(), direct, true )
-               .filterDrop( new SingleEqualityFilter( this ) );
+        return UniqueExtendedIterator.create(
+                listDirectPropertyValues( getProfile().SUB_CLASS_OF(), "SUB_CLASS_OF", OntClass.class, getProfile().SUB_CLASS_OF(), direct, true )
+                .filterDrop( new SingleEqualityFilter( this ) ) );
     }
 
 
@@ -418,7 +420,7 @@ public class OntClassImpl
      * @exception OntProfileException If the {@link Profile#EQUIVALENT_CLASS()} property is not supported in the current language profile.   
      */ 
     public ExtendedIterator listEquivalentClasses() {
-        return listAs( getProfile().EQUIVALENT_CLASS(), "EQUIVALENT_CLASS", OntClass.class );
+        return UniqueExtendedIterator.create( listAs( getProfile().EQUIVALENT_CLASS(), "EQUIVALENT_CLASS", OntClass.class ) );
     }
 
     /**
@@ -480,7 +482,7 @@ public class OntClassImpl
      * @exception OntProfileException If the {@link Profile#DISJOINT_WITH()} property is not supported in the current language profile.   
      */ 
     public ExtendedIterator listDisjointWith() {
-        return listAs( getProfile().DISJOINT_WITH(), "DISJOINT_WITH", OntClass.class );
+        return UniqueExtendedIterator.create( listAs( getProfile().DISJOINT_WITH(), "DISJOINT_WITH", OntClass.class ) );
     }
 
     /**
@@ -600,7 +602,7 @@ public class OntClassImpl
      *         the classes to which they belong
      */
     public ExtendedIterator listInstances() {
-        return new UniqueExtendedIterator( 
+        return UniqueExtendedIterator.create( 
                         getModel()
                             .listStatements( null, RDF.type, this )
                             .mapWith( new SubjectAsMapper( Individual.class ) )

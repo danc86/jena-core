@@ -39,7 +39,6 @@ import com.hp.hpl.jena.vocabulary.*;
 
 import java.util.*;
 
-import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 
@@ -758,7 +757,7 @@ public class OntResourceImpl
         ExtendedIterator j = WrappedIterator.create( i );
         
         // we only want each result once
-        return new UniqueExtendedIterator( j );
+        return UniqueExtendedIterator.create( j );
     }
 
     /**
@@ -850,7 +849,7 @@ public class OntResourceImpl
      */
     public int getCardinality( Property p ) {
         int n = 0;
-        for (Iterator i = new UniqueExtendedIterator( listProperties( p ) );  i.hasNext(); n++) {
+        for (Iterator i = UniqueExtendedIterator.create( listProperties( p ) );  i.hasNext(); n++) {
             i.next(); 
         }
         
@@ -1270,7 +1269,7 @@ public class OntResourceImpl
             i = getModel().listStatements( subject, sc, object );
     
             // we only want the subjects or objects of the statements
-            return new UniqueExtendedIterator( i ).mapWith( mapper );
+            return UniqueExtendedIterator.create( i ).mapWith( mapper );
         }
         else {
             // graph does not support direct directly
@@ -1291,7 +1290,7 @@ public class OntResourceImpl
                 s.add( this );
             }
             
-            return new UniqueExtendedIterator( s.iterator() ).mapWith( mapper );
+            return UniqueExtendedIterator.create( s.iterator() ).mapWith( mapper );
         }
     }
     

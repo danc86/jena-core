@@ -108,6 +108,10 @@ public class DIGReasonerFactory
                 .addProperty(ReasonerVocabulary.supportsP, RDFS.member)
                 .addProperty(ReasonerVocabulary.supportsP, RDFS.range)
                 .addProperty(ReasonerVocabulary.supportsP, RDFS.domain)
+                
+                .addProperty( ReasonerVocabulary.supportsP, ReasonerVocabulary.directSubClassOf )
+                .addProperty( ReasonerVocabulary.supportsP, ReasonerVocabulary.directSubPropertyOf )
+                
                 // TODO - add OWL elements supported
                 .addProperty(ReasonerVocabulary.versionP, "0.1");
         }

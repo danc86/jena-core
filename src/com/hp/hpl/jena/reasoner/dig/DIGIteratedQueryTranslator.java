@@ -101,7 +101,7 @@ public abstract class DIGIteratedQueryTranslator
             all = (all == null) ? results : all.andThen( results );
         }
         
-        return new UniqueExtendedIterator( all );
+        return UniqueExtendedIterator.create( all );
     }
     
     

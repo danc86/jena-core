@@ -165,7 +165,7 @@ public abstract class DIGQueryTranslator {
     public abstract Document translatePattern( TriplePattern query, DIGAdapter da );
     
     public abstract ExtendedIterator translateResponse( Document Response, TriplePattern query, DIGAdapter da );
-    
+   
     
     // Internal implementation methods
     //////////////////////////////////
@@ -223,6 +223,38 @@ public abstract class DIGQueryTranslator {
     }
     
     
+    /**
+     * <p>Translate a concept set document into an extended iterator
+     * of triples, placing the concept identities into either the subject
+     * or object position in the returned triple.</p>
+     * @param response The response XML document
+     * @param query The original query
+     * @param da The DIG adapter object being used
+     * @param object Flag to indicate that the concept names should occupy the subject field
+     * of the returned triple, otherwise the object
+     */
+    protected ExtendedIterator translateConceptSetResponse( Document response, TriplePattern query, DIGAdapter da, boolean object ) {
+        // evaluate a path through the return value to give us an iterator over catom names
+        ExtendedIterator catomNames = new SimpleXMLPath( true )
+                                          .appendElementPath( DIGProfile.CONCEPT_SET )
+                                          .appendElementPath( DIGProfile.SYNONYMS )
+                                          .appendElementPath( DIGProfile.CATOM )
+                                          .appendAttrPath( DIGProfile.NAME )
+                                          .getAll( response );
+        
+        ExtendedIterator catomNodes = catomNames.mapWith( new NameToNodeMapper() );
+        
+        // return the results as triples
+        if (object) {
+            return catomNodes.mapWith( new TripleObjectFiller( query.getSubject(), query.getPredicate() ) );
+        }
+        else {
+            return catomNodes.mapWith( new TripleSubjectFiller( query.getPredicate(), query.getObject() ) );
+        }
+    }
+    
+
+
     //==============================================================================
     // Inner class definitions
     //==============================================================================

@@ -24,20 +24,19 @@ package com.hp.hpl.jena.reasoner.dig;
 
 // Imports
 ///////////////
-import org.w3c.dom.*;
+import org.w3c.dom.Element;
+import org.w3c.dom.Document;
 
-import com.hp.hpl.jena.graph.Triple;
 import com.hp.hpl.jena.reasoner.TriplePattern;
-import com.hp.hpl.jena.util.iterator.*;
 
 
 
 /**
  * <p>
- * Translator that generates DIG ancestors/desendants queries in response to a find queries:
+ * Translator that generates DIG parents/childre queries in response to a find queries:
  * <pre>
- * :X rdf:subClassOf *
- * *  rdf:subClassOf :X
+ * :X direct-subClassOf *
+ * *  direct-subClassOf :X
  * </pre>
  * or similar.
  * </p>
@@ -45,8 +44,8 @@ import com.hp.hpl.jena.util.iterator.*;
  * @author Ian Dickinson, HP Labs (<a href="mailto:Ian.Dickinson@hp.com">email</a>)
  * @version Release @release@ ($Id$)
  */
-public class DIGQueryAncestorsTranslator 
-    extends DIGQueryTranslator
+public class DIGQueryParentsTranslator 
+    extends DIGQueryAncestorsTranslator
 {
 
     // Constants
@@ -58,9 +57,6 @@ public class DIGQueryAncestorsTranslator
     // Instance variables
     //////////////////////////////////
 
-    /** Flag for querying for ancestors */
-    protected boolean m_ancestors;
-    
     
     // Constructors
     //////////////////////////////////
@@ -68,11 +64,10 @@ public class DIGQueryAncestorsTranslator
     /**
      * <p>Construct a translator for the DIG query 'parents'.</p>
      * @param predicate The predicate URI to trigger on
-     * @param ancestors If true, we are searching for parents of the class; if false, the descendants
+     * @param parents If true, we are searching for parents of the class; if false, the children
      */
-    public DIGQueryAncestorsTranslator( String predicate, boolean ancestors ) {
-        super( (ancestors ? null : ALL), predicate, (ancestors ? ALL : null) );
-        m_ancestors = ancestors;
+    public DIGQueryParentsTranslator( String predicate, boolean parents ) {
+        super( predicate, parents );
     }
     
 
@@ -81,45 +76,24 @@ public class DIGQueryAncestorsTranslator
 
 
     /**
-     * <p>Answer a query that will generate the class hierachy for a concept</p>
+     * <p>Answer a query that will generate the direct class hierarchy (one level up or down) for a node</p>
      */
     public Document translatePattern( TriplePattern pattern, DIGAdapter da ) {
         DIGConnection dc = da.getConnection();
         Document query = dc.createDigVerb( DIGProfile.ASKS, da.getProfile() );
         
         if (m_ancestors) {
-            Element parents = da.addElement( query.getDocumentElement(), DIGProfile.ANCESTORS );
+            Element parents = da.addElement( query.getDocumentElement(), DIGProfile.PARENTS );
             da.addClassDescription( parents, pattern.getSubject() );
         }
         else {
-            Element descendants = da.addElement( query.getDocumentElement(), DIGProfile.DESCENDANTS );
+            Element descendants = da.addElement( query.getDocumentElement(), DIGProfile.CHILDREN );
             da.addClassDescription( descendants, pattern.getObject() );
         }
         
         return query;
     }
 
-
-    /**
-     * <p>Answer an iterator of triples that match the original find query.</p>
-     */
-    public ExtendedIterator translateResponse( Document response, TriplePattern query, DIGAdapter da ) {
-        // translate the concept set to triples, but then we must add :a rdfs:subClassOf :a to match owl semantics
-        return translateConceptSetResponse( response, query, da, m_ancestors )
-               .andThen( new SingletonIterator( 
-                            new Triple( m_ancestors ? query.getSubject() : query.getObject(),
-                                        query.getPredicate(),
-                                        m_ancestors ? query.getSubject() : query.getObject() ) ) );
-    }
-    
-    
-    public boolean checkSubject( com.hp.hpl.jena.graph.Node subject ) {
-        return !m_ancestors || subject.isConcrete();
-    }
-    
-    public boolean checkObject( com.hp.hpl.jena.graph.Node object ) {
-        return m_ancestors || object.isConcrete();
-    }
 
 
     // Internal implementation methods

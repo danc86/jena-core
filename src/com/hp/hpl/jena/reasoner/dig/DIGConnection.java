@@ -334,7 +334,7 @@ public class DIGConnection {
      */
     protected OutputFormat createXMLFormatter( Document doc ) {
         OutputFormat format = new OutputFormat( doc );
-        format.setIndenting( false );
+        format.setIndenting( true );
         format.setLineWidth( 0 );             
         format.setPreserveSpace( false );
         

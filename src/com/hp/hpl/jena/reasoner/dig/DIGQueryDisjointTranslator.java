@@ -2,10 +2,10 @@
  * Source code information
  * -----------------------
  * Original author    Ian Dickinson, HP Labs Bristol
- * Author email       Ian.Dickinson@hp.com
+ * Author email       ian.dickinson@hp.com
  * Package            Jena 2
  * Web                http://sourceforge.net/projects/jena/
- * Created            July 19th 2003
+ * Created            09-Dec-2003
  * Filename           $RCSfile$
  * Revision           $Revision$
  * Release status     $State$
@@ -15,37 +15,35 @@
  *
  * (c) Copyright 2001, 2002, 2003, Hewlett-Packard Development Company, LP
  * [See end of file]
- * ****************************************************************************/
+ *****************************************************************************/
 
 // Package
 ///////////////
 package com.hp.hpl.jena.reasoner.dig;
 
+import java.util.*;
+import java.util.List;
+
+import org.w3c.dom.*;
+import org.w3c.dom.Document;
+
+import com.hp.hpl.jena.reasoner.TriplePattern;
+import com.hp.hpl.jena.util.iterator.*;
+import com.hp.hpl.jena.util.iterator.ExtendedIterator;
+
 
 // Imports
 ///////////////
-import org.w3c.dom.*;
-
-import com.hp.hpl.jena.graph.Triple;
-import com.hp.hpl.jena.reasoner.TriplePattern;
-import com.hp.hpl.jena.util.iterator.*;
-
-
 
 /**
  * <p>
- * Translator that generates DIG ancestors/desendants queries in response to a find queries:
- * <pre>
- * :X rdf:subClassOf *
- * *  rdf:subClassOf :X
- * </pre>
- * or similar.
+ * Translator for queries about the disjoint-ness of two ground concepts
  * </p>
  *
- * @author Ian Dickinson, HP Labs (<a href="mailto:Ian.Dickinson@hp.com">email</a>)
- * @version Release @release@ ($Id$)
+ * @author Ian Dickinson, HP Labs (<a  href="mailto:Ian.Dickinson@hp.com" >email</a>)
+ * @version CVS $Id$
  */
-public class DIGQueryAncestorsTranslator 
+public class DIGQueryDisjointTranslator 
     extends DIGQueryTranslator
 {
 
@@ -58,44 +56,31 @@ public class DIGQueryAncestorsTranslator
     // Instance variables
     //////////////////////////////////
 
-    /** Flag for querying for ancestors */
-    protected boolean m_ancestors;
-    
-    
     // Constructors
     //////////////////////////////////
 
     /**
-     * <p>Construct a translator for the DIG query 'parents'.</p>
-     * @param predicate The predicate URI to trigger on
-     * @param ancestors If true, we are searching for parents of the class; if false, the descendants
+     * <p>Construct a translator to test whether two concepts are disjoint</p>
+     * @param predicate The predicate we are matching on
      */
-    public DIGQueryAncestorsTranslator( String predicate, boolean ancestors ) {
-        super( (ancestors ? null : ALL), predicate, (ancestors ? ALL : null) );
-        m_ancestors = ancestors;
+    public DIGQueryDisjointTranslator( String predicate ) {
+        super( null, predicate, null );
     }
-    
+
 
     // External signature methods
     //////////////////////////////////
 
-
     /**
-     * <p>Answer a query that will generate the class hierachy for a concept</p>
+     * <p>Answer a query that will test disjointness between two classes</p>
      */
     public Document translatePattern( TriplePattern pattern, DIGAdapter da ) {
         DIGConnection dc = da.getConnection();
         Document query = dc.createDigVerb( DIGProfile.ASKS, da.getProfile() );
-        
-        if (m_ancestors) {
-            Element parents = da.addElement( query.getDocumentElement(), DIGProfile.ANCESTORS );
-            da.addClassDescription( parents, pattern.getSubject() );
-        }
-        else {
-            Element descendants = da.addElement( query.getDocumentElement(), DIGProfile.DESCENDANTS );
-            da.addClassDescription( descendants, pattern.getObject() );
-        }
-        
+        Element subsumes = da.addElement( query.getDocumentElement(), DIGProfile.DISJOINT );
+        da.addClassDescription( subsumes, pattern.getObject() );
+        da.addClassDescription( subsumes, pattern.getSubject() );
+
         return query;
     }
 
@@ -104,21 +89,21 @@ public class DIGQueryAncestorsTranslator
      * <p>Answer an iterator of triples that match the original find query.</p>
      */
     public ExtendedIterator translateResponse( Document response, TriplePattern query, DIGAdapter da ) {
-        // translate the concept set to triples, but then we must add :a rdfs:subClassOf :a to match owl semantics
-        return translateConceptSetResponse( response, query, da, m_ancestors )
-               .andThen( new SingletonIterator( 
-                            new Triple( m_ancestors ? query.getSubject() : query.getObject(),
-                                        query.getPredicate(),
-                                        m_ancestors ? query.getSubject() : query.getObject() ) ) );
+        List answer = new ArrayList();
+        if (isTrue( response )) {
+            // if response is true, the subsumption relationship holds
+            answer.add( query.asTriple() );
+        }
+        
+        return WrappedIterator.create( answer.iterator() );
     }
     
-    
     public boolean checkSubject( com.hp.hpl.jena.graph.Node subject ) {
-        return !m_ancestors || subject.isConcrete();
+        return subject.isConcrete();
     }
     
     public boolean checkObject( com.hp.hpl.jena.graph.Node object ) {
-        return m_ancestors || object.isConcrete();
+        return object.isConcrete();
     }
 
 
