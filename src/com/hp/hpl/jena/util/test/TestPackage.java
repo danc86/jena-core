@@ -24,10 +24,13 @@ public class TestPackage extends TestSuite {
     /** Creates new TestPackage */
     private TestPackage() {
         super( "util" );
-        addTest( "TestCache",  TestCache.suite() );
-        addTest( "TestTokenzier", TestTokenizer.suite());
-        addTest( "TestFileUtils", TestFileUtils.suite() );
-        addTest( "TestHashUtils", TestHashUtils.suite() );
+        addTest( "TestCache",             TestCache.suite() );
+        addTest( "TestTokenzier",         TestTokenizer.suite());
+        addTest( "TestFileUtils",         TestFileUtils.suite() );
+        addTest( "TestHashUtils",         TestHashUtils.suite() );
+        addTest( "TestLocationMapper",    TestLocationMapper.suite() ) ;
+        addTest( "TestFileManager",       TestFileManager.suite()) ;
+
     }
 
     private void addTest(String name, TestSuite tc) {
