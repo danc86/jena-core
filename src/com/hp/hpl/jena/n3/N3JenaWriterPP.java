@@ -347,12 +347,7 @@ public class N3JenaWriterPP extends N3JenaWriterCommon
             return ;
         }
 
-        String propStr = null;
-
-        if (wellKnownPropsMap.containsKey(property.getURI()))
-            propStr = (String) wellKnownPropsMap.get(property.getURI());
-        else
-            propStr = formatProperty(property);
+        String propStr = formatProperty(property);
         
         // Find which objects are simple (i.e. not nested structures)             
 
