@@ -342,14 +342,14 @@ public abstract class AbstractTestQuery extends GraphTestBase
     protected static Map1 getFirst = new Map1() 
         { public Object map1( Object x ) { return ((List) x).get(0); } };        
     
-    protected Expression notEqual( Node x, Node y )
-        { return Expression.Create.NE( x, y );  }
+    protected BaseExampleExpression notEqual( Node x, Node y )
+        { return ExampleCreate.NE( x, y );  }
         
-    protected Expression areEqual( Node x, Node y )
-        { return Expression.Create.EQ( x, y );  }
+    protected BaseExampleExpression areEqual( Node x, Node y )
+        { return ExampleCreate.EQ( x, y );  }
         
-    protected Expression matches( Node x, Node y )
-        { return Expression.Create.MATCHES( x, y ); }
+    protected BaseExampleExpression matches( Node x, Node y )
+        { return ExampleCreate.MATCHES( x, y ); }
                 
     public void testGraphConstraints( String title, Expression constraint, String wanted )
         { 
