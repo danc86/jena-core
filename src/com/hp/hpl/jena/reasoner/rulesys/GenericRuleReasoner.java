@@ -130,6 +130,7 @@ public class GenericRuleReasoner extends FBRuleReasoner {
     
     /**
      * Set (or change) the rule set that this reasoner should execute.
+     * This will not affect inference models already created from this reasoner.
      * @param rules a list of Rule objects
      */
     public void setRules(List rules) {
