@@ -16,6 +16,7 @@ import com.hp.hpl.jena.shared.*;
 import com.hp.hpl.jena.n3.* ;
 
 /**
+    Read N3 files and print in a variery of formats.
  * @author		Andy Seaborne
  * @version 	$Id$
  */
