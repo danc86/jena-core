@@ -245,7 +245,7 @@ class ARPResource implements  AResource {
     
     public String getAnonymousID() {
         return nodeID==null
-                ? ( "ARP" + Integer.toString(genId) )
+                ? ( "ARP:" + Integer.toString(genId) )
                 : nodeID;
     }
     
@@ -297,5 +297,12 @@ class ARPResource implements  AResource {
         else
             arp.setUserData(nodeID,d);
     }
+
+	/* (non-Javadoc)
+	 * @see com.hp.hpl.jena.rdf.arp.AResource#hasNodeID()
+	 */
+	public boolean hasNodeID() {
+		return nodeID!=null;
+	}
     
 }

@@ -98,4 +98,10 @@ class URIReference  implements AResource
     public int hashCode() {
         return uri.hashCode();
     }
+	/* (non-Javadoc)
+	 * @see com.hp.hpl.jena.rdf.arp.AResource#hasNodeID()
+	 */
+	public boolean hasNodeID() {
+		return false;
+	}
 }
