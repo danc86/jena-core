@@ -655,6 +655,18 @@ public abstract class DriverRDB implements IRDBDriver {
     public boolean supportsJenaReification() {
     	return false;
     }
+    
+	/**
+	 * Convert a string into a form suitable for a legal identifier
+	 * name for the database type.
+	 * @author hkuno
+	 *
+	 */
+	public String toDBIdentifier(String aString) {
+		return aString.toUpperCase();
+	}
+
+
 }
 
 /*
