@@ -396,7 +396,13 @@ public class OntModelImpl
         // since the reasoner implements some OWL full functionality for RDF compatability, we
         // have to decide which strategy to use for indentifying individuals depending on whether
         // or not a powerful reasoner (i.e. owl:Thing/daml:Thing aware) is being used with this model
-        if (!(getGraph() instanceof BasicForwardRuleInfGraph) || (m_individualsQueryInf == null) || getProfile().CLASS().equals( RDFS.Class )) {
+        boolean supportsIndAsThing = false;
+        if (getGraph() instanceof InfGraph) {
+            supportsIndAsThing = ((InfGraph) getGraph()).getReasoner()
+                                                        .getCapabilities()
+                                                        .contains( null, ReasonerVocabulary.supportsP, ReasonerVocabulary.individualAsThingP );
+        }
+        if (!supportsIndAsThing || (m_individualsQueryInf == null) || getProfile().CLASS().equals( RDFS.Class )) {
             // no inference, or we are in RDFS land, so we pick things that have rdf:type whose rdf:type is Class
             ExtendedIterator indivI = queryFor( m_individualsQueryNoInf0, null, Individual.class );
 

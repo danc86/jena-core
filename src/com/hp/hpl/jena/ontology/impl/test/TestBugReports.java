@@ -1114,15 +1114,19 @@ public class TestBugReports
     }
     
     /** Test case for SF bug 940570 - listIndividuals not working with RDFS_INF
-     * TODO Temporarily disabled - need to talk to Dave about a robust solution 
      */
-    public void xxx_test_sf_940570() {
+    public void test_sf_940570() {
         OntModel m = ModelFactory.createOntologyModel( OntModelSpec.OWL_MEM_RDFS_INF );
         OntClass C = m.createClass( NS + "C" );
         Resource a = m.createResource( NS + "a", C );
         
-        int count = 0;
         TestUtil.assertIteratorValues( this, m.listIndividuals(), new Object[] {a} );
+        
+        OntModel dm = ModelFactory.createOntologyModel( OntModelSpec.DAML_MEM_RULE_INF );
+        OntClass D = dm.createClass( NS + "D" );
+        Resource b = dm.createResource( NS + "b", D );
+        
+        TestUtil.assertIteratorValues( this, dm.listIndividuals(), new Object[] {b} );
     }
     
     /** Test case for SF bug 945436 - a xml:lang='' in the dataset causes sring index exception in getLabel() */

@@ -69,6 +69,7 @@ public class DAMLMicroReasonerFactory implements ReasonerFactory {
                 .addProperty(ReasonerVocabulary.supportsP, DAML_OIL.subPropertyOf)
                 .addProperty(ReasonerVocabulary.supportsP, DAML_OIL.range)
                 .addProperty(ReasonerVocabulary.supportsP, DAML_OIL.domain)
+                .addProperty(ReasonerVocabulary.supportsP, ReasonerVocabulary.individualAsThingP )
                 .addProperty(ReasonerVocabulary.versionP, "0.1");
         }
         return capabilities;

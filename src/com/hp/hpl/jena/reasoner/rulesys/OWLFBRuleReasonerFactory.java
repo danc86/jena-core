@@ -87,6 +87,7 @@ public class OWLFBRuleReasonerFactory implements ReasonerFactory {
                 .addProperty(ReasonerVocabulary.supportsP, RDFS.range)
                 .addProperty(ReasonerVocabulary.supportsP, RDFS.domain)
                 // TODO - add OWL elements supported
+                .addProperty(ReasonerVocabulary.supportsP, ReasonerVocabulary.individualAsThingP )
                 .addProperty(ReasonerVocabulary.versionP, "0.1");
         }
         return capabilities;
