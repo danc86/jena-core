@@ -13,6 +13,10 @@ import java.util.*;
 /**
     Methods for recording namepsace prefix mappings and applying and
     unapplying them to URIs.
+<p>
+    Note that a Model *is* a PrefixMapping, so all the PrefixMapping
+    operations apply to Models, and a Model can be used to supply
+    the PrefixMapping argument to setNsPrefixes.
     
  	@author kers
 */
@@ -31,7 +35,7 @@ public interface PrefixMapping
     
     /**
         Copies the prefixes from other into this. Any existing binding of the
-        same prefix is lost.
+        same prefix is lost. 
         
         @param other the PrefixMapping to add
     */

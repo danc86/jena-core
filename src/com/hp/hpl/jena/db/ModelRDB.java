@@ -285,14 +285,7 @@ public class ModelRDB extends ModelCom implements Model, ModelI {
     public void close() {
         m_graphRDB.close();
     }
-
-    /**
-     * Finalizer to clean up the database collections
-     */
-    protected void finalize() {
-        close();
-    }
-
+    
     /**
      * Remove all traces of this particular Model from the database.
      */

@@ -36,8 +36,8 @@ public class ModelFactory
         @exception [perhaps] AlreadyExistsException a model with that name already exists.
     */
     
-    public static Model createPersistentModel( String name )
-        { return new ModelCom( Factory.createPersistentGraph( name ) ); }
+//    public static Model createPersistentModel( String name )
+//        { return new ModelCom( Factory.createPersistentGraph( name ) ); }
         
     /**
         Answer a persistent model with the given <code>name</code>. The
@@ -46,8 +46,8 @@ public class ModelFactory
         @return a model mapping to the persisted name
         @exception [perhaps] NoSuchModelException if it doesn't exist
     */
-    public static Model openPersistentModel( String name )
-        { return new ModelCom( Factory.openPersistentGraph( name ) ); }
+//    public static Model openPersistentModel( String name )
+//        { return new ModelCom( Factory.openPersistentGraph( name ) ); }
         
     /**
         construct a new memory-based model that does not capture reification triples

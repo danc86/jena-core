@@ -9,6 +9,7 @@ package com.hp.hpl.jena.graph;
 import com.hp.hpl.jena.mem.*;
 import com.hp.hpl.jena.db.test.*;
 import com.hp.hpl.jena.db.*;
+import com.hp.hpl.jena.db.impl.*;
 
 /**
     A factory class for creating Graphs [like ModelFactory, but for Graph;
@@ -22,21 +23,8 @@ public class Factory
     public static Graph createDefaultGraph()
         { return new GraphMem(); }
         
-    /** WARNING: incomplete, NOT FOR PUBLIC USE */
-    public static Graph createPersistentGraph( String name )
-        {         
-        IDBConnection c = TestConnection.makeTestConnection(); 
-        ModelRDB shell = ModelRDB.createModel( c, name );
-        return shell.getGraph(); 
-        }
-
-    /** WARNING: incomplete, NOT FOR PUBLIC USE */        
-    public static Graph openPersistentGraph( String name )
-        {         
-        IDBConnection c = TestConnection.makeTestConnection(); 
-        ModelRDB shell = ModelRDB.open( c, name );
-        return shell.getGraph(); 
-        }
+    public static GraphFactory createRDBGraphFactory( IDBConnection c )
+        { return new GraphRDBFactory( c ); }
               
     private Factory()
         { super(); }

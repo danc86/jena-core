@@ -21,6 +21,12 @@ public class DefaultGraphFactory implements GraphFactory {
 	public Graph getGraph() {
 	     return new GraphMem();
 	 }
+     
+     public Graph createGraph( String name )
+        { throw new UnsupportedOperationException( "" ); }
+       
+    public Graph openGraph( String name )
+        { throw new UnsupportedOperationException( "" ); }
 }
 /*
 	(c) Copyright Hewlett-Packard Company 2003

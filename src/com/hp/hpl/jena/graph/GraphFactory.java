@@ -32,6 +32,8 @@ package com.hp.hpl.jena.graph;
  * is unique; some applications may legitimately want to write triples into
  * a single graph (such as a database). 
  * </p>
+ * 
+ * Updated by kers; added methods that create or locate named graphs.
  *
  * @author Ian Dickinson, HP Labs
  *         (<a  href="mailto:Ian.Dickinson@hp.com" >email</a>)
@@ -39,11 +41,6 @@ package com.hp.hpl.jena.graph;
  */
 public interface GraphFactory 
 {
-    // Constants
-    //////////////////////////////////
-
-    // External signature methods
-    //////////////////////////////////
 
     /**
      * <p>
@@ -53,6 +50,19 @@ public interface GraphFactory
      * @return A new or existing graph.
      */
     public Graph getGraph();
+    
+    /**
+        Create a new graph associated with the given name. If this factory
+        already knows about a graph with this name, throw an AlreadyExistsException.
+        Otherwise create and return the new graph.
+    */
+    public Graph createGraph( String name );
+    
+    /**
+        Find an existing graph that this factory knows about under the given
+        name. If no such graph exists, throw a DoesNotExistException.
+    */
+    public Graph openGraph( String name );
 }
 
 
