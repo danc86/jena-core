@@ -1572,8 +1572,9 @@ class Unparser {
 	private Iterator listSubjects()  {
 		//  The current file - mainly intended for good DAML.
 		Iterator currentFile =
-			new ArrayIterator(
-				new Resource[] { model.createResource(this.localName)});
+//			new ArrayIterator(
+//				new Resource[] { model.createResource(this.localName)});
+            new SingletonIterator( model.createResource(this.localName) );
 		// The pleasing types
 		Iterator pleasing = pleasingTypeIterator();
 
