@@ -39,6 +39,7 @@ public class Node_Variable extends Node_Fluid
     public static class VariableName
         {
         String name;
+        
         VariableName( String name ) 
             { this.name = name; }
         
@@ -47,6 +48,9 @@ public class Node_Variable extends Node_Fluid
         
         public boolean equals( Object other )
             { return other instanceof VariableName && name.equals( ((VariableName) other).name );  }
+        
+        public String toString()
+            { return "?" + name; }
         }
     }
 
