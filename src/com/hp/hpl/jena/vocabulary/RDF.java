@@ -10,7 +10,7 @@ import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.rdf.model.*;
 
 /**
-
+    The standard RDF vocabulary.
     @author  bwm; updated by kers/daniel/christopher
     @version $Id$
 */

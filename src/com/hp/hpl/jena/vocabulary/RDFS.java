@@ -1,8 +1,4 @@
-/*
-  (c) Copyright 2000, 2003, Hewlett-Packard Company, all rights reserved.
-  [See end of file]
-  $Id$
-*/
+
 
 package com.hp.hpl.jena.vocabulary;
 
@@ -44,6 +40,9 @@ public class RDFS {
     public static final Property subPropertyOf  = property( "subPropertyOf");
     public static final Property member  = property( "member");
 
+    /**
+        The RDFS vocabulary, expressed for the SPI layer in terms of .grap.Nodes.
+    */
     public static class Nodes
         {
         public static final Node Class = RDFS.Class.getNode();
