@@ -199,6 +199,18 @@ public class TestNodeToTriplesMap extends GraphTestBase
         assertEquals( false, ntS.remove( triple( "x P y" ) ) );
         }
     
+    public void testContains()
+        {
+        addTriples( ntS, "x P y; a P b" );
+        assertTrue( ntS.contains( triple( "x P y" ) ) );
+        assertTrue( ntS.contains( triple( "a P b" ) ) );
+        assertFalse( ntS.contains( triple( "x P z" ) ) );
+        assertFalse( ntS.contains( triple( "y P y" ) ) );
+        assertFalse( ntS.contains( triple( "x R y" ) ) );
+        assertFalse( ntS.contains( triple( "e T f" ) ) );
+        assertFalse( ntS.contains( triple( "_x F 17" ) ) );
+        }
+    
     // TODO more here
     
     protected void addTriples( NodeToTriplesMap nt, String facts )

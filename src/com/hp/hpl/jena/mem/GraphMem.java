@@ -117,6 +117,16 @@ public class GraphMem extends GraphMemBase implements Graph
         }
 
     /**
+         Answer true iff this graph contains <code>t</code>. If <code>t</code>
+         happens to be concrete, then we hand responsibility over to one of the
+         index graphs -- doesn't matter which one, but we've picked the subjects.
+    */
+    public boolean contains( Triple t )
+        {
+        return t.isConcrete() ? subjects.contains( t ) : super.contains( t );
+        }
+    
+    /**
          An iterator wrapper for NodeToTriplesMap iterators which ensures that
          a .remove on the base iterator is copied to the other two maps of this
          GraphMem. The current triple (the most recent result of .next) is

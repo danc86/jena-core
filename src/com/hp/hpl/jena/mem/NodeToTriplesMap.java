@@ -153,6 +153,16 @@ public abstract class NodeToTriplesMap
     */
     public boolean remove( Triple t )
         { return remove( getIndexNode( t ), t ); }
+
+    /**
+     * @param triple
+     * @return
+     */
+    public boolean contains( Triple triple )
+        { 
+        Set s = (Set) map.get( getIndexNode( triple ) );
+        return s == null ? false : s.contains( triple );
+        }
     }
 
 /*
