@@ -40,6 +40,7 @@ public class TestPackage extends TestSuite {
         addTest("Composed graphs", com.hp.hpl.jena.graph.compose.test.TestPackage.suite() );
         addTest( "Ontology", com.hp.hpl.jena.ontology.impl.test.TestPackage.suite() );
         addTest( "Paths", com.hp.hpl.jena.ontology.path.impl.test.TestPackage.suite() );
+        addTest("OWL Syntax", com.hp.hpl.jena.ontology.tidy.test.TestPackage.suite() );
     }
 
     private void addTest(String name, TestSuite tc) {

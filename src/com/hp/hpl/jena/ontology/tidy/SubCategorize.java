@@ -81,7 +81,7 @@ class SubCategorize {
 					return true;
 				if (subj == Grammar.notype) {
 					if (prop != Grammar.rdftype)
-						return false;
+						return true;
 					for (int i = 0; i < notType.length; i++)
 						if (obj == notType[i])
 							return true;
