@@ -7,6 +7,7 @@
 package com.hp.hpl.jena.graph.test;
 
 import junit.framework.*;
+import com.hp.hpl.jena.graph.query.test.*;
 
 /**
     Collected test suite for the .graph package.
@@ -26,6 +27,7 @@ public class TestPackage extends TestSuite {
         addTest( "TestTriple", TestTriple.suite() );
         addTest( "TestReifier", TestReifier.suite() );   
         addTest( "TestTypedLiterals", TestTypedLiterals.suite() );
+        addTest( "TestGraphQuery", QueryTest.suite() );
         }
 
     private void addTest(String name, TestSuite tc) {
