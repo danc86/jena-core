@@ -103,10 +103,6 @@ public class TestOWLRules extends TestCase {
         suite.addTest(new TestOWLRules("I5.24/Manifest004-mod.rdf"));  // bx - long
         suite.addTest(new TestOWLRules("cardinality/Manifest001-mod.rdf")); // bx gets lost
         suite.addTest(new TestOWLRules("cardinality/Manifest002-mod.rdf")); // bx gets lost
-        suite.addTest(new TestOWLRules("cardinality/Manifest002-mod.rdf")); // bx gets lost
-        suite.addTest(new TestOWLRules("cardinality/Manifest002-mod.rdf")); // bx gets lost
-        suite.addTest(new TestOWLRules("cardinality/Manifest002-mod.rdf")); // bx gets lost
-        suite.addTest(new TestOWLRules("cardinality/Manifest002-mod.rdf")); // bx gets lost
         suite.addTest(new TestOWLRules("cardinality/Manifest003-mod.rdf")); // bx gets lost
         suite.addTest(new TestOWLRules("cardinality/Manifest004-mod.rdf")); // bx gets lost
         suite.addTest(new TestOWLRules("I5.24/Manifest003-mod.rdf"));

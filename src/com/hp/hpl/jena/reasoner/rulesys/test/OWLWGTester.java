@@ -210,15 +210,13 @@ public class OWLWGTester {
 //                System.out.println("Error: deductions graph was ...");
 //                FBRuleInfGraph fbGraph = (FBRuleInfGraph)graph;
 //                Graph deductions = fbGraph.getDeductionsGraph();
-//                for (Iterator i = deductions.find(null,null,null); i.hasNext();) {
-//                    logger.info(" - " + PrintUtil.print(i.next()));
-//                }
+//                com.hp.hpl.jena.util.PrintUtil.printOut(deductions.find(null,null,null));
 //            }
         }
         
         // Signal the results        
         if (testcase != null) {
-            TestCase.assertTrue("Test: " + test + "\n" +  description, correct);
+            TestCase.assertTrue("Test: " + test + "\n" +  reasonerF.getURI() + "\n" + description, correct);
         }
         return correct;
     }

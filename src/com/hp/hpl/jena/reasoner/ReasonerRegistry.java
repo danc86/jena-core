@@ -16,6 +16,8 @@ import com.hp.hpl.jena.reasoner.dig.DIGReasonerFactory;
 import com.hp.hpl.jena.reasoner.rulesys.DAMLMicroReasonerFactory;
 import com.hp.hpl.jena.reasoner.rulesys.GenericRuleReasonerFactory;
 import com.hp.hpl.jena.reasoner.rulesys.OWLFBRuleReasonerFactory;
+import com.hp.hpl.jena.reasoner.rulesys.OWLMicroReasonerFactory;
+import com.hp.hpl.jena.reasoner.rulesys.OWLMiniReasonerFactory;
 import com.hp.hpl.jena.reasoner.rulesys.RDFSRuleReasonerFactory;
 import com.hp.hpl.jena.reasoner.transitiveReasoner.TransitiveReasonerFactory;
 
@@ -58,6 +60,8 @@ public class ReasonerRegistry {
         register(GenericRuleReasonerFactory.theInstance());
         register(DAMLMicroReasonerFactory.theInstance());
         register(DIGReasonerFactory.theInstance());
+        register(OWLMicroReasonerFactory.theInstance());
+        register(OWLMiniReasonerFactory.theInstance());
     }
     
     /**
@@ -213,6 +217,31 @@ public class ReasonerRegistry {
     public static Reasoner getOWLReasoner() {
         if (theOWLReasoner == null) theOWLReasoner = OWLFBRuleReasonerFactory.theInstance().create(null);
         return theOWLReasoner;
+    }
+    
+    /** Prebuilt micro configuration OWL reasoner */
+    protected static Reasoner theOWLMicroReasoner;
+    
+    /**
+     * Prebuilt standard configuration a micro-OWL reasoner. This just supports property axioms,
+     * and class inheritance sufficient to power the OntAPI.
+     */
+    public static Reasoner getOWLMicroReasoner() {
+        if (theOWLMicroReasoner == null) theOWLMicroReasoner = OWLMicroReasonerFactory.theInstance().create(null);
+        return theOWLMicroReasoner;
+    }
+    
+    /** Prebuilt mini configuration OWL reasoner */
+    protected static Reasoner theOWLMiniReasoner;
+    
+    /**
+     * Prebuilt mini configuration for the default OWL reasoner. This omits bNode
+     * introduction rules which has significant performance gain in some cases and 
+     * avoids breaking the find contract.
+     */
+    public static Reasoner getOWLMiniReasoner() {
+        if (theOWLMiniReasoner == null) theOWLMiniReasoner = OWLMiniReasonerFactory.theInstance().create(null);
+        return theOWLMiniReasoner;
     }
     
 }

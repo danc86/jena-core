@@ -14,7 +14,6 @@ import java.util.*;
 import com.hp.hpl.jena.util.PrintUtil;
 import com.hp.hpl.jena.util.Tokenizer;
 import com.hp.hpl.jena.graph.*;
-import com.hp.hpl.jena.graph.impl.*;
 import com.hp.hpl.jena.reasoner.*;
 import com.hp.hpl.jena.datatypes.xsd.*;
 

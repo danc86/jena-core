@@ -1,56 +1,70 @@
 /******************************************************************
- * File:        TestPackage.java
+ * File:        OWLMiniReasoner.java
  * Created by:  Dave Reynolds
- * Created on:  30-Mar-03
+ * Created on:  19-Mar-2004
  * 
- * (c) Copyright 2003, Hewlett-Packard Development Company, LP
+ * (c) Copyright 2004, Hewlett-Packard Development Company, LP, all rights reserved.
  * [See end of file]
  * $Id$
  *****************************************************************/
-package com.hp.hpl.jena.reasoner.rulesys.test;
+package com.hp.hpl.jena.reasoner.rulesys;
 
+import com.hp.hpl.jena.reasoner.*;
 
-import junit.framework.*;
+import java.io.IOException;
+import java.util.*;
 
 /**
- * Aggregate tester that runs all the test associated with the rulesys package.
+ * Reasoner configuration for the OWL mini reasoner.
+ * Key limitations over the normal OWL configuration are:
+ * <UL>
+ * <li>omits the someValuesFrom => bNode entailments</li>
+ * <li>avoids any guard clauses which would break the find() contract</li>
+ * <li>omits inheritance of range implications for XSD datatype ranges</li>
+ * </UL>
  * 
  * @author <a href="mailto:der@hplb.hpl.hp.com">Dave Reynolds</a>
  * @version $Revision$ on $Date$
  */
+public class OWLMiniReasoner extends GenericRuleReasoner implements Reasoner {
 
-public class TestPackage extends TestSuite {
-
-    static public TestSuite suite() {
-        return new TestPackage();
+    /** The location of the OWL rule definitions on the class path */
+    protected static final String MINI_RULE_FILE = "etc/owl-fb-mini.rules";
+    
+    /** The parsed rules */
+    protected static List miniRuleSet;
+    
+    /**
+     * Return the rule set, loading it in if necessary
+     */
+    public static List loadRules() {
+        if (miniRuleSet == null) {
+            try {
+                miniRuleSet = Rule.parseRules(Util.loadResourceFile(MINI_RULE_FILE));
+            } catch (IOException e) {
+                throw new ReasonerException("Can't load rules file: " + MINI_RULE_FILE, e);
+            }
+        }
+        return miniRuleSet;
     }
     
-    /** Creates new TestPackage */
-    private TestPackage() {
-        super("RuleSys");
-        
-        addTest( "TestBasics", TestBasics.suite() );
-        addTest( "TestBackchainer", TestBackchainer.suite() );
-        addTest( "TestLPBasics", TestBasicLP.suite() );
-        addTest( "TestFBRules", TestFBRules.suite() );
-        addTest( "TestGenericRules", TestGenericRules.suite() );
-        addTest( "TestRETE", TestRETE.suite() );
-//        addTest( "TestOWLRules", TestOWLRules.suite() );
-        addTest( "TestOWLRules", OWLUnitTest.suite() );
-        addTest( "TestOWLConsistency", TestOWLRules.suite() );
-        addTest( "TestBugs", TestBugs.suite() );
+    
+    /**
+     * Constructor
+     */
+    public OWLMiniReasoner(ReasonerFactory factory) {
+        super(loadRules(), factory);
+        setOWLTranslation(true);
+        setMode(HYBRID);
+//        setTransitiveClosureCaching(true);
     }
-
-    // helper method
-    private void addTest(String name, TestSuite tc) {
-        tc.setName(name);
-        addTest(tc);
-    }
+    
 
 }
 
+
 /*
-    (c) Copyright 2002 Hewlett-Packard Development Company, LP
+    (c) Copyright Hewlett-Packard Development Company, LP 2004
     All rights reserved.
 
     Redistribution and use in source and binary forms, with or without
