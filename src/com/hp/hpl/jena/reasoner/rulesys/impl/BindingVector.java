@@ -322,6 +322,34 @@ public class BindingVector implements BindingEnvironment {
             }
         }
     }
+  
+    /** Equality override */
+    public boolean equals(Object o) {
+        // Pass 1 - just check basic shape
+        if (! (o instanceof BindingVector) ) return false;
+        Node[] other = ((BindingVector)o).environment;
+        if (environment.length != other.length) return false;
+        for (int i = 0; i < environment.length; i++) {
+            Node n = environment[i];
+            Node no = other[i];
+            if (n == null) {
+                if (no != null) return false;
+            } else {
+                if (! n.sameValueAs(no)) return false;
+            }
+        }
+        return true;
+    }
+        
+    /** hash function override */
+    public int hashCode() {
+        int hash = 0;
+        for (int i = 0; i < environment.length; i++) {
+            hash = (hash << 1) ^ environment[i].hashCode();
+        }
+        return hash;
+    }
+    
     
 }
 

@@ -47,6 +47,11 @@ public interface ForwardRuleInfGraphI extends InfGraph, SilentAddI {
     public ExtendedIterator findDataMatches(Node subject, Node predicate, Node object);
 
     /**
+     * Return true if derivation logging is enabled.
+     */
+    public boolean shouldLogDerivations();
+    
+    /**
      * Log a dervivation record against the given triple.
      */
     public void logDerivation(Triple t, Object derivation);

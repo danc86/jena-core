@@ -317,6 +317,13 @@ public class BasicForwardRuleInfGraph extends BaseInfGraph implements ForwardRul
     }
     
     /**
+     * Return true if derivation logging is enabled.
+     */
+    public boolean shouldLogDerivations() {
+        return recordDerivations;
+    }
+    
+    /**
      * Return the derivation of at triple.
      * The derivation is a List of DerivationRecords
      */

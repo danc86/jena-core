@@ -9,8 +9,6 @@
  *****************************************************************/
 package com.hp.hpl.jena.reasoner.rulesys.impl;
 
-import com.hp.hpl.jena.reasoner.rulesys.BindingEnvironment;
-
 /**
  * Interface for all inner nodes in the RETE network. Tokens are 
  * represented by binding environments. This representation only works
@@ -26,7 +24,7 @@ public interface RETENode {
      * @param env a set of variable bindings for the rule being processed. 
      * @param isAdd distinguishes between add and remove operations.
      */
-    public void fire(BindingEnvironment env, boolean isAdd);
+    public void fire(BindingVector env, boolean isAdd);
     
 }
 
