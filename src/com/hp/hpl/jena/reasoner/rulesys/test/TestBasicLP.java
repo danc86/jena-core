@@ -1117,6 +1117,35 @@ public class TestBasicLP  extends TestCase {
                 "        Fact (C1 q C3)\r\n");
         assertEquals(testString, TestUtil.normalizeWhiteSpace(outString.getBuffer().toString()));
     }
+
+    /**
+     * A suspect problem, originally derived from the OWL rules - risk of unbound variables escaping.
+     * Not managed to isolate are reproduce the problem yet.
+     */
+    public void testProblem9() {
+        String ruleSrc = 
+        "[test:   (?x owl:sameIndividualAs ?x) <- (?x rdf:type owl:Thing) ]" +
+        "[sameIndividualAs6: (?X rdf:type owl:Thing) <- (?X owl:sameIndividualAs ?Y) ]" +
+        "[ans:    (?x p C1) <- (?y owl:sameIndividualAs ?x)]";
+        Node sI = OWL.sameIndividualAs.asNode();
+        doTest( ruleSrc,
+                new Node[] { ty, sI },                      // Tabled predicates
+                new Triple[] {                              // init data
+                    new Triple(a, ty, OWL.Thing.asNode()),
+                    new Triple(b, sI, c),
+                },
+        new Triple(Node.ANY, p, Node.ANY),                // query
+        new Object[] {                              // result
+            new Triple(a, p, C1),
+            new Triple(b, p, C1),
+            new Triple(c, p, C1),
+        } );
+//                new Triple(Node.ANY, ty, Node.ANY),                // query
+//                new Object[] {                              // result
+//                    new Triple(a, ty, OWL.Thing.asNode()),
+//                    new Triple(b, ty, OWL.Thing.asNode())
+//                } );
+    }
     
     /** 
      * Generic test operation.
