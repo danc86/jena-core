@@ -113,10 +113,10 @@ abstract class XMLHandler
 	ARPOptions getOptions() {
 		return options;
 	}
-	void setOptions(ARPOptions newOpts) {
+	void setOptionsWith(ARPOptions newOpts) {
 		options = newOpts.copy();
 	}
-	void setHandlers(ARPHandlers newHh){
+	void setHandlersWith(ARPHandlers newHh){
 		handlers = newHh.copy();
 	}	// accessed in ARPQname.
 	XMLContext documentContext;

@@ -218,8 +218,8 @@ IOException {
      * instance's copy of the handler information.
      * @param handlers The new values to use.
      */
-    public void setHandlers(ARPHandlers handlers){
-    	arpf.setHandlers(handlers);
+    public void setHandlersWith(ARPHandlers handlers){
+    	arpf.setHandlersWith(handlers);
     }
     /**
      * The options used during parsing.
@@ -251,8 +251,8 @@ IOException {
      * instance's copy of the options.
      * @param opts The new values to use.
      */
-    public void setOptions(ARPOptions opts){
-    	arpf.setOptions(opts);
+    public void setOptionsWith(ARPOptions opts){
+    	arpf.setOptionsWith(opts);
     }
 	/**
     @deprecated Use {@link #getHandlers}.{@link ARPHandlers#setExtendedHandler setExtendedHandler(eh)}
