@@ -39,9 +39,6 @@ public interface IPSet {
 	public void setMaxLiteral(int value);
 	public void setSQLType(String value);
 	public void setSkipDuplicateCheck(boolean value);
-	public void setSkipAllocateId(boolean value );
-	public void setEmptyLiteralMarker(String value );
-	public void setInsertByProcedure(boolean value);
 	public void setCachePreparedStatements(boolean value);
 
     /**
