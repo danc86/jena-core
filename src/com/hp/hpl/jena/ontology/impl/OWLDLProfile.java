@@ -64,7 +64,6 @@ public class OWLDLProfile
 
     // External signature methods
     //////////////////////////////////
-	public Property SAME_AS() {                     return null; }
 
 
     /**
