@@ -24,6 +24,7 @@ public class TestCache extends TestCase
     public static TestSuite suite() {
         TestSuite suite = new TestSuite("Cache");       
         suite.addTest( new CacheTestCase(CacheManager.RAND));
+        // suite.addTest( new CacheTestCase(CacheManager.ENHNODECACHE));
         return suite;
     }   
            

@@ -35,8 +35,7 @@ public class EnhGraph
     static private int cnt = 0;
 
     /** Cache of enhanced nodes that have been created */
-    private Cache enhNodes = CacheManager.createCache
-        ("RAND","EnhGraph-"+cnt++,1000);
+    protected Cache enhNodes = CacheManager.createCache( CacheManager.ENHNODECACHE, "EnhGraph-" + cnt++, 1000 );
     
     /** The unique personality that is bound to this polymorphic instace */
     private Personality personality;
