@@ -458,6 +458,30 @@ public class TestBasics extends TestCase  {
         InfGraph infgraph = new BasicForwardRuleReasoner(ruleList).bind(data);
         assertEquals(infgraph.size(), 2);
     }
+    
+    /**
+     * Check validity report implementation, there had been a stupid bug here.
+     */
+    public void testValidityReport() {
+        StandardValidityReport report = new StandardValidityReport();
+        report.add(false, "dummy", "dummy1");
+        report.add(false, "dummy", "dummy3");
+        assertTrue(report.isValid());
+        report.add(true,  "dummy", "dummy2");
+        assertTrue( ! report.isValid());
+        
+        report = new StandardValidityReport();
+        report.add(false, "dummy", "dummy1");
+        report.add(true,  "dummy", "dummy2");
+        report.add(false, "dummy", "dummy3");
+        assertTrue( ! report.isValid());
+
+        report = new StandardValidityReport();
+        report.add(new ValidityReport.Report(false, "dummy", "dummy1"));
+        report.add(new ValidityReport.Report(true, "dummy", "dummy2"));
+        report.add(new ValidityReport.Report(false, "dummy", "dummy3"));
+        assertTrue( ! report.isValid());
+    }
        
     /**
      * Test the list conversion utility that is used in some of the builtins.

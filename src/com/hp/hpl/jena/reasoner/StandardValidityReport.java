@@ -45,7 +45,9 @@ public class StandardValidityReport implements ValidityReport {
      */
     public void add(boolean error, String type, String description, Object extension) {
         reports.add(new Report(error, type, description, extension));
-        isError = error;
+        if (error) {
+            isError = true;
+        }
     }
     
     /**
@@ -55,7 +57,9 @@ public class StandardValidityReport implements ValidityReport {
     public void add(ValidityReport.Report report) {
         if (report == null) return;
         reports.add(report);
-        isError = report.isError;
+        if (report.isError) {
+            isError = true;
+        }
     }
     
     /**
