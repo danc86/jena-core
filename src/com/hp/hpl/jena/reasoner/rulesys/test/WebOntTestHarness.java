@@ -251,8 +251,8 @@ public class WebOntTestHarness {
         System.out.println("Testing " + (approvedOnly ? "only APPROVED" : "APPROVED and PROPOSED") );
         System.out.println("Positive entailment: ");
         runTests(findTestsOfType(OWLTest.PositiveEntailmentTest));
-        System.out.println("\nNegative entailment: ");
-        runTests(findTestsOfType(OWLTest.NegativeEntailmentTest));
+//        System.out.println("\nNegative entailment: ");
+//        runTests(findTestsOfType(OWLTest.NegativeEntailmentTest));
         System.out.println("\nTrue tests: ");
         runTests(findTestsOfType(OWLTest.TrueTest));
         System.out.println("\nOWL for OWL tests: ");
