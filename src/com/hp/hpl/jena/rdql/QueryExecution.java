@@ -32,7 +32,7 @@ public interface QueryExecution
 	public QueryResults exec();
 
 	/** Do a query, given an initail starting set of bindings*/
-	public QueryResults exec(ResultBindingImpl startBinding) ;
+	//public QueryResults exec(ResultBindingImpl startBinding) ;
 
 	/** Stop in mid execution.
 	 *  No guarantee that the concrete implementation actual will stop or

@@ -137,8 +137,11 @@ public class QueryTestProgrammatic extends TestSuite
             // Currently "success" is executing the query at all!
             Query query = new Query(queryString) ;
             query.setSource(model);
-            QueryExecution qe = new QueryEngine(query) ;
-            QueryResults results = qe.exec(binding) ;
+            // Not query execution - we wish to prebind. 
+            QueryEngine _qe = new QueryEngine(query) ;
+            QueryResults results = _qe.exec(binding) ;
+            QueryExecution qe = _qe ;
+            
             long count = 0 ;
             for ( ; results.hasNext() ; )
             {
