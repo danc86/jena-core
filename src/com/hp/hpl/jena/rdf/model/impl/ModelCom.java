@@ -397,6 +397,71 @@ abstract public class ModelCom extends EnhGraph
         }
     }
     
+    public StmtIterator listStatements(Resource subject,
+                                        Property predicate,
+                                        RDFNode  object)
+      throws RDFException {
+        return listStatements(
+                  new SimpleSelector(subject, predicate, object));
+    }
+    
+    public StmtIterator listStatements(Resource subject,
+                                        Property predicate,
+                                        boolean object)
+      throws RDFException {
+        return listStatements(
+                  new SimpleSelector(subject, predicate, object));
+    }
+    
+    public StmtIterator listStatements(Resource subject,
+                                        Property predicate,
+                                        long    object)
+      throws RDFException {
+        return listStatements(
+                  new SimpleSelector(subject, predicate, object));
+    }
+    
+    public StmtIterator listStatements(Resource subject,
+                                        Property predicate,
+                                        char  object)
+      throws RDFException {
+        return listStatements(
+                  new SimpleSelector(subject, predicate, object));
+    }
+    
+    public StmtIterator listStatements(Resource subject,
+                                        Property predicate,
+                                        float   object)
+      throws RDFException {
+        return listStatements(
+                  new SimpleSelector(subject, predicate, object));
+    }
+    
+    public StmtIterator listStatements(Resource subject,
+                                        Property predicate,
+                                        double  object)
+      throws RDFException {
+        return listStatements(
+                  new SimpleSelector(subject, predicate, object));
+    }
+    
+    public StmtIterator listStatements(Resource subject,
+                                        Property predicate,
+                                        String   object)
+      throws RDFException {
+        return listStatements(
+                  new SimpleSelector(subject, predicate, object));
+    }
+    
+    public StmtIterator listStatements(Resource subject,
+                                        Property predicate,
+                                        String   object,
+                                        String   lang)
+      throws RDFException {
+        return listStatements(
+                  new SimpleSelector(subject, predicate, object, lang));
+    }
+    
     public ResIterator listSubjectsWithProperty(Property p, boolean o)
     throws RDFException {
         return listSubjectsWithProperty(p, String.valueOf( o ) );
