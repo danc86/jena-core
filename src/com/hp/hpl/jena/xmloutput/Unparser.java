@@ -402,6 +402,7 @@ class Unparser {
 		wPropertyEltDamlCollection(wt,prop, s, val) || // choice daml.1
 		wPropertyEltLiteral(wt,prop, s, val) || // choice 2
 		wPropertyEltResource(wt,prop, s, val) || // choice 3
+        wPropertyEltDatatype(wt,prop,s,val) ||
 		wPropertyEltValue(wt,prop, s, val); // choice 1.
 	}
 	/* [6.12.4] propertyElt    ::= '<' propName idRefAttr? bagIdAttr? propAttr* '/>'
@@ -463,6 +464,25 @@ class Unparser {
 		print(">");
 		return true;
 	}
+    private boolean wPropertyEltDatatype(WType wt,Property prop, Statement s, RDFNode r)
+        throws RDFException {
+        if (!((r instanceof Literal) && ((Literal) r).getDatatypeURI()!=null)) {
+            return false;
+        }
+        // print out.
+        done(s);
+        tab();
+        print("<");
+        wt.wTypeStart(prop);
+        wIdAttrReified(s);
+        wDatatype(((Literal) r).getDatatypeURI());
+        print(">");
+        print(((Literal) r).getLexicalForm());
+        print("</");
+        wt.wTypeEnd(prop);
+        print(">");
+        return true;
+    }
 	/*
 	[6.12.3] propertyElt    ::=  '<' propName idAttr? parseResource '>'
 	                             propertyElt* '</' propName '>'
@@ -1062,6 +1082,12 @@ class Unparser {
 		printRdfAt("parseType");
 		print("='Literal'");
 	}
+        private void wDatatype(String dtURI) throws RDFException {
+            print(" ");
+            printRdfAt("datatype");
+            print("=");
+            print(quote(dtURI));
+        }
 	/*
 	[6.33] parseResource  ::= ' parseType="Resource"'
 	 */
@@ -1382,6 +1408,8 @@ class Unparser {
 
 		if (s.getObject() instanceof Literal) {
 			Literal l = s.getLiteral();
+            if (l.getDatatypeURI()!=null)
+                return false;
 			if (l.getLanguage().equals("")) {
 				String str = l.getString();
 				if (str.length() < 40) {
