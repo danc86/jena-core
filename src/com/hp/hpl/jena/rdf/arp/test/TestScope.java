@@ -33,9 +33,12 @@ public class TestScope extends TestCase {
 		check("testing/arp/scope/test03.rdf");
 	}
 	
-	
+
 	public void test04() throws Exception {
 		check("testing/arp/scope/test04.rdf");
+	}
+	public void test05() throws Exception {
+	//	check("testing/arp/scope/test05.rdf");
 	}
 	RDFErrorHandler suppress = new RDFErrorHandler(){
 
