@@ -9,13 +9,13 @@ package com.hp.hpl.jena.regression;
 import com.hp.hpl.jena.rdf.model.impl.*;
 import com.hp.hpl.jena.rdf.model.*;
 
-import com.hp.hpl.jena.util.*;
 import com.hp.hpl.jena.vocabulary.*;
 import com.hp.hpl.jena.shared.*;
 import com.hp.hpl.jena.graph.*;
 
 import java.net.*;
 import java.util.*;
+import java.io.*;
 
 import org.apache.log4j.Logger;
 
@@ -3738,6 +3738,7 @@ public class Regression extends Object {
                 Throwable th = rdfx.getCause();
                 if ( th instanceof NoRouteToHostException
                  || th instanceof UnknownHostException
+                 || th instanceof IOException
                  || th instanceof ConnectException) {
                     logger.warn( "Cannot access public internet- part of test not executed" );
                 } else {
