@@ -107,8 +107,8 @@ public class ReasonerVocabulary {
             PROPtraceOn = ResourceFactory.createProperty(PropURI+"#", "traceOn");
             PROPruleMode = ResourceFactory.createProperty(PropURI+"#", "ruleMode");
             PROPruleSet = ResourceFactory.createProperty(PropURI+"#", "ruleSet");
-            PROPenableOWLTranslation= ResourceFactory.createProperty(PropURI+"#", "enableOWLTranslation");
-            PROPenableOWLTranslation= ResourceFactory.createProperty(PropURI+"#", "enableTGCCaching");
+            PROPenableOWLTranslation = ResourceFactory.createProperty(PropURI+"#", "enableOWLTranslation");
+            PROPenableTGCCaching = ResourceFactory.createProperty(PropURI+"#", "enableTGCCaching");
         } catch (Exception e) {
             System.err.println("Initialization error: " + e);
             e.printStackTrace(System.err);
