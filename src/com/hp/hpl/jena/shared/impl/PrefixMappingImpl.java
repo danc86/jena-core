@@ -57,8 +57,8 @@ public class PrefixMappingImpl implements PrefixMapping
         { if (locked) throw new JenaLockedException( this ); }
         
     private void checkProper( String uri )
-        {
-        if (!isNiceURI( uri )) throw new NamespaceEndsWithNameCharException( uri );
+        { // suppressed by popular demand. TODO consider optionality
+        // if (!isNiceURI( uri )) throw new NamespaceEndsWithNameCharException( uri );
         }
         
     public static boolean isNiceURI( String uri )

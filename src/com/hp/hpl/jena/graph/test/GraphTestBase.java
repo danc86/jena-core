@@ -144,8 +144,11 @@ public class GraphTestBase extends JenaTestBase
             b.append( already );
             }
         else
-            b.append( n.toString( PrefixMapping.Extended, true ) );
+            b.append( nice( n ) );
         }
+    
+    protected static String nice( Node n )
+        { return n.toString( PrefixMapping.Extended, true ); }
             
     public static void assertIsomorphic( Graph expected, Graph got )
         { assertIsomorphic( "graphs must be isomorphic", expected, got ); }

@@ -36,6 +36,9 @@ public class ModelTestBase extends GraphTestBase
         return result;
         }
     
+    protected static String nice( RDFNode n )
+        { return nice( n.asNode() ); }
+    
      /**
         create a Statement in a given Model with (S, P, O) extracted by parsing a string.
         

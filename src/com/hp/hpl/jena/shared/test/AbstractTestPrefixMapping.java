@@ -390,10 +390,9 @@ public abstract class AbstractTestPrefixMapping extends GraphTestBase
         assertEquals( bURI, A.getNsPrefixURI( "br" ) );
         }
     
-    public void testTrapNastyNamespace()
-        {
-        try { getMapping().setNsPrefix( "abc", "def" ); fail( "" ); }
-        catch (NamespaceEndsWithNameCharException e) { pass(); }
+    public void testAllowNastyNamespace()
+        { // we now allow namespaces to end with non-punctuational characters
+        getMapping().setNsPrefix( "abc", "def" ); 
         }
         
     public void testLock()
