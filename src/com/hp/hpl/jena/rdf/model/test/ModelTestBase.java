@@ -110,7 +110,18 @@ public class ModelTestBase extends GraphTestBase
         @return a model containing those facts
     */
     public static Model modelWithStatements( String facts )
-        { return modelAdd( ModelFactory.createDefaultModel(), facts ); }
+        { return modelWithStatements( Reifier.Standard, facts ); }
+
+    /**
+        makes a model with a given reiifcation style, initialised with statements parsed 
+        from a string.
+        
+        @param style the required reification style
+        @param facts a string in semicolon-separated "S P O" format
+        @return a model containing those facts
+    */        
+    public static Model modelWithStatements( Reifier.Style style, String facts )
+        { return modelAdd( ModelFactory.createDefaultModel( style ), facts ); }
          
      /**
         test that two models are isomorphic and fail if they are not.

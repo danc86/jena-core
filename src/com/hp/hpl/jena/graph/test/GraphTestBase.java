@@ -78,12 +78,6 @@ public class GraphTestBase extends JenaTestBase
         return graphAdd( new GraphMem(), s );
         }
         
-    public static void printGraph( PrintStream sink, Graph g )
-    	{
-    	ClosableIterator it = GraphUtil.findAll( g );
-    	while (it.hasNext()) sink.println( it.next() );
-    	}
-        
     public static void assertEqualsTemplate( String title, Graph g, String template )
         {
         assertTrue( title, g.isIsomorphicWith( graphWith( template ) ) );
@@ -93,7 +87,6 @@ public class GraphTestBase extends JenaTestBase
         {
         if (!wanted.isIsomorphicWith( obtained ))
             fail( name + ": wanted " + wanted + " but got " + obtained );
-        // assertTrue( wanted.isIsomorphicWith( obtained ) );
         }
     
     public static void assertContains( String name, String s, Graph g )

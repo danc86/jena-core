@@ -20,7 +20,7 @@ public interface Reifier extends GetTriple
     {
     public static final Style Standard = new Style( true, false );
     public static final Style Convenient = new Style( true, true );
-    public static final Style Minimal = new Style( false, false );
+    public static final Style Minimal = new Style( false, true );
     
     /**
         Reification styles have two boolean components: whether the
