@@ -351,6 +351,15 @@ public interface RDFList
     
     
     /**
+     * <p>Answer an iterator of the elements of this list, to each of which
+     * the given map function has been applied.</p>
+     * @param fn A Map function
+     * @return The iterator of the elements of this list mapped with the given map function.
+     */
+    public ExtendedIterator mapWith( Map1 fn );
+    
+    
+    /**
      * <p>
      * Remove the value from the head of the list.  The tail of the list remains
      * in the model.  Note that no changes are made to list cells that point to
@@ -439,7 +448,7 @@ public interface RDFList
     /**
      * <p>
      * Set a flag to indicate whether to strictly check the well-formedness of
-     * lists at each operation. Default false.  Note that the flag that is
+     * lists at each operation. Default false.  <strong>Note</strong> that the flag that is
      * manipulated is actually a static: it applies to all lists. However, RDFList
      * is a Java interface, and Java does not permit static methods in interfaces.
      * </p>

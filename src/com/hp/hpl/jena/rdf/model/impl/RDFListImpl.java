@@ -603,6 +603,17 @@ public class RDFListImpl
     
     
     /**
+     * <p>Answer an iterator of the elements of this list, to each of which
+     * the given map function has been applied.</p>
+     * @param fn A Map function
+     * @return The iterator of the elements of this list mapped with the given map function.
+     */
+    public ExtendedIterator mapWith( Map1 fn ) {
+        return iterator().mapWith( fn );
+    }
+        
+        
+    /**
      * <p>
      * Remove the value from the head of the list.  The tail of the list remains
      * in the model.  Note that no changes are made to list cells that point to
