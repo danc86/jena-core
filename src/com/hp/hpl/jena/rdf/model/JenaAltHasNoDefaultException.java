@@ -4,9 +4,7 @@
   $Id$
 */
 
-package com.hp.hpl.jena.shared;
-
-import com.hp.hpl.jena.rdf.model.*;
+package com.hp.hpl.jena.rdf.model;
 
 /**
     Exception thrown if an Alt has no default statement.
