@@ -248,7 +248,7 @@ class ARPResource implements  AResourceInternal {
     }
     
     public String toString() {
-        return uri==null?"_"+genId:uri;
+        return uri==null?("_:"+getAnonymousID()):("<"+uri+">");
     }
     
     public int hashCode() {
