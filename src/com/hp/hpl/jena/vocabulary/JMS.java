@@ -227,7 +227,6 @@ public class JMS
         .add( JMS.importMaker, RDFS.domain, JMS.OntModelSpec )
         .add( JMS.ontLanguage, RDFS.domain, JMS.OntModelSpec )
         .add( JMS.reasonsWith, RDFS.domain, JMS.InfModelSpec )
-        
         ;
 
     /**
