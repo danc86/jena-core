@@ -11,6 +11,7 @@ import com.hp.hpl.jena.mem.ModelMem;
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.xmloutput.impl.*;
 import com.hp.hpl.jena.rdf.model.impl.*;
+import com.hp.hpl.jena.shared.*;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -63,11 +64,8 @@ public class testWriterInterface extends TestCase {
             m1.setWriterClassName("foobar", "");
             m1.getWriter("foobar");
             fail("Missing Writer undetected.");
-        } catch (RDFException e) {
-            assertEquals(
-                "Missing Writer misdiagnosed",
-                e.getErrorCode(),
-                RDFException.NOWRITERFORLANG);
+        } catch (JenaNoWriterForLangException jx) {
+            // that's what we expected
         }
     }
 

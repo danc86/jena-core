@@ -50,9 +50,6 @@ public class BagImpl extends ContainerImpl implements Bag {
             return new BagImpl(n,eg);
         }
     };
-    
-    private BagImpl( Resource r )
-        { super( r ); }
         
     /** Creates new BagMem */
     public BagImpl(Model model) throws RDFException {

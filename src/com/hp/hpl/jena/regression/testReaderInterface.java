@@ -74,10 +74,8 @@ public class testReaderInterface extends Object {
                     m1.setReaderClassName("foobar", "");
                     reader = m1.getReader("foobar");
                     error(test, n);
-                 } catch (RDFException e) {
-                     if (e.getErrorCode() != RDFException.NOREADERFORLANG) {
-                         error(test, n);
-                     }
+                 } catch (JenaNoReaderForLangException jx) {
+                     // that's what we expect
                  }
 
             n++; m1.setReaderClassName("foobar",
