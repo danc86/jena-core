@@ -316,6 +316,9 @@
 [someRec2: (?C owl:equivalentClass some(?P, ?D)) ->
      [someRec2b: (?X rdf:type ?C) <- (?X ?P ?A) (?A rdf:type ?D) ] ]
     
+[someRec2b: (?C owl:equivalentClass some(?P, ?D)), (?D rdf:type rdfs:Datatype)->
+     [someRec2b: (?X rdf:type ?C) <- (?X ?P ?A), isDType(?A, ?D) ] ]
+    
 #------------------------------------------------------------------
 # allValuesFrom
 #------------------------------------------------------------------

@@ -49,7 +49,7 @@ public class TestBugs extends TestCase {
     public static TestSuite suite() {
         return new TestSuite( TestBugs.class );
 //        TestSuite suite = new TestSuite();
-//        suite.addTest(new TestBugs( "testGenericDeleteBug" ));
+//        suite.addTest(new TestBugs( "testSomeDatatype" ));
 //        return suite;
     }  
 
@@ -408,6 +408,30 @@ public class TestBugs extends TestCase {
         InfModel inf = ModelFactory.createInfModel(r, data);
         StmtIterator things = inf.listStatements(null, RDF.type, OWL.Thing);
         TestUtil.assertIteratorLength(things, 0);
+    }
+    
+    /**
+     * Limitation of someValuesFrom applied to datatype properties.
+     */
+    public void testSomeDatatype() {
+        String dataString = "@prefix owl: <http://www.w3.org/2002/07/owl#> .\n" +
+        "@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .\n" +
+        "@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .\n" +
+        "@prefix eg: <http://jena.hpl.hp.com/eg#> .\n" +
+        "@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .\n" +
+        
+        "eg:hasValue rdf:type owl:DatatypeProperty.\n" +
+        "eg:Test a owl:Class; owl:equivalentClass [\n" +
+        "   a owl:Restriction; owl:onProperty eg:hasValue; owl:someValuesFrom xsd:integer].\n" +
+        "eg:me eg:hasValue '42'^^xsd:integer.\n";
+        
+        Model data = ModelFactory.createDefaultModel();
+        data.read(new StringReader(dataString), null, "N3");
+        InfModel inf = ModelFactory.createInfModel(ReasonerRegistry.getOWLReasoner(), data);
+        String egNS = "http://jena.hpl.hp.com/eg#";
+        Resource meR = inf.getResource(egNS + "me");
+        Resource TestR = inf.getResource(egNS + "Test");
+        assertTrue("somevalues inf for datatypes", inf.contains(meR, RDF.type, TestR));
     }
     
     // debug assistant
