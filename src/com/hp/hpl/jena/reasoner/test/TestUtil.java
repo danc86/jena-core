@@ -54,7 +54,7 @@ public class TestUtil {
         for (int i = 0; i < vals.length; i++) found[i] = false;
         while (it.hasNext()) {
             Object n = it.next();
-            System.err.println( "Iterator " + n );
+            // System.err.println( "Iterator " + n );
             boolean gotit = false;
             
             // do bNodes separately
