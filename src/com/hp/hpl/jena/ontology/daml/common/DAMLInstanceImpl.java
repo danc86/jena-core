@@ -188,8 +188,7 @@ public class DAMLInstanceImpl
 
 
     /**
-     * Answer a property accessor for a user defined property.  TODO: think of
-     * a better name for this method!
+     * Answer a property accessor for a user defined property.
      *
      * @param property An RDF or DAML property
      * @return a property accessor, that simplifies some of the basic operations

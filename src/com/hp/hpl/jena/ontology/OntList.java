@@ -26,7 +26,6 @@ package com.hp.hpl.jena.ontology;
 ///////////////
 import com.hp.hpl.jena.util.iterator.ClosableIterator;
 import com.hp.hpl.jena.rdf.model.*;
-import com.hp.hpl.jena.enhanced.*;
 
 import java.util.*;
 
@@ -57,11 +56,6 @@ import java.util.*;
  * TODO Still to investigate: interaction of lists with writers to generate
  * appropriately compact serialisations, such as <code>rdf:parseType=&quot;
  * Collection&quot;</code>
- * </p>
- * <p>
- * TODO This class currently extends RDFNode, to give a common abstraction base.
- * This will change in future, when the decision is taken as to the correct top
- * type for the presentation layer, possibly Polymorphic or EnhNode.
  * </p>
  * 
  * @author Ian Dickinson, HP Labs 
