@@ -24,8 +24,9 @@ public class TestPackage {
     public static TestSuite suite() {
         TestSuite suite = new TestSuite();
         String langs[] =
-            new String[] { //"RDF/XML", //"RDF/XML-ABBREV", 
-             //   "N-TRIPLE",
+            new String[] { "RDF/XML", "RDF/XML-ABBREV", 
+                //
+               "N-TRIPLE",
             //"N3" 
         };
         // add all the tests defined in this class to the suite

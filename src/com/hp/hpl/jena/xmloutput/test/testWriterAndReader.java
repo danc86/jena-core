@@ -38,8 +38,8 @@ public class testWriterAndReader extends TestCase implements RDFErrorHandler {
     static private boolean showProgress = false;
     static private boolean keepFiles = false;
     static private boolean errorDetail = false;
-    static private int firstTest = 8;
-    static private int lastTest = 8;
+    static private int firstTest = 5;
+    static private int lastTest = 9;
     static private int repetitionsJ = 6;
     String lang;
     String test;
@@ -83,7 +83,7 @@ public class testWriterAndReader extends TestCase implements RDFErrorHandler {
         for (int k = firstTest; k <= lastTest; k++) {
           //  if ( k==7 )
           //    continue;
-            /* */
+            /* * /
             langsuite.addTest(new testWriterAndReader("testRandom", lang, k));
             /* */
             if (lang.indexOf("XML") > 0) {
@@ -239,7 +239,7 @@ public class testWriterAndReader extends TestCase implements RDFErrorHandler {
             /* * /
             langsuite.addTest(
                 new TestXMLFeatures("testNoStripes", lang));
-            /* */
+            /* * /
             langsuite.addTest(
                 new TestXMLFeatures("testNoReification", lang));
             /* */
@@ -328,7 +328,7 @@ public class testWriterAndReader extends TestCase implements RDFErrorHandler {
         for (int jjj = 0; jjj < jjjMax; jjj++) {
             //  System.out.println(tmpFile1.toString());
             String fileName = "t" + (fileNumber * 1000) + ".rdf";
-            empty(m1);
+            m1 = new ModelMem();
             String baseUriRead;
             if (fileNumber < baseUris.length)
                 baseUriRead = baseUris[fileNumber];
@@ -357,7 +357,8 @@ public class testWriterAndReader extends TestCase implements RDFErrorHandler {
                 OutputStream pw = new FileOutputStream(tmpFile1);
                 rdfWtr.write(m1, pw, baseUriWrite);
                 pw.close();
-                empty(m2);
+                m2 = new ModelMem();
+                //empty(m2);
                 InputStream in = new FileInputStream(tmpFile1);
                 rdfRdr.read(m2, in, baseUriWrite);
                 in.close();
@@ -375,7 +376,7 @@ public class testWriterAndReader extends TestCase implements RDFErrorHandler {
                     "Comparison of file written out, and file read in. See "
                     + tmpFile1.getAbsolutePath(),
                     s1.isIsomorphicWith(s2));
-                System.err.println("OK");
+         //       System.err.println("OK");
 
                 if (!keepFiles) {
                     tmpFile1.delete();
@@ -484,6 +485,7 @@ public class testWriterAndReader extends TestCase implements RDFErrorHandler {
         error(e);
         throw new RDFException(e);
     }
+    /*
     static public void empty(Model m) throws RDFException {
         StmtIterator iter = m.listStatements();
         while (iter.hasNext()) {
@@ -491,6 +493,7 @@ public class testWriterAndReader extends TestCase implements RDFErrorHandler {
             iter.remove();
         }
     }
+    */
 
 }
 
