@@ -78,6 +78,7 @@ public class LocationMapper
             return ;
         }
         
+        // Make a file manager to look for the location mapping file
         FileManager fm = new FileManager() ;
         fm.addLocatorFile() ;
         fm.addLocatorSystemClassLoader() ;
