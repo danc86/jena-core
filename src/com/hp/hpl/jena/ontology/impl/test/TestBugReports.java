@@ -1269,7 +1269,7 @@ public class TestBugReports
         //System.out.println( "level = " + level );
         for (Iterator i = problems.iterator(); i.hasNext(); ) {
             SyntaxProblem sp = (SyntaxProblem) i.next();
-            System.out.println( "problem = " + sp.longDescription() );
+            //System.out.println( "problem = " + sp.longDescription() );
         }
     }
     
