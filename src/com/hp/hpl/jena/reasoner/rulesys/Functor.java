@@ -197,12 +197,11 @@ public class Functor implements ClauseEntry {
         buff.append("(");
         for (int i = 0; i < args.length; i++) {
             buff.append(PrintUtil.print(args[i]));
-            if (i == args.length - 1) {
-                buff.append(")");
-            } else {
+            if (i < args.length - 1) {
                 buff.append(" ");
             }
         }
+        buff.append(")");
         return buff.toString();
     }
 
