@@ -492,7 +492,6 @@ public abstract class DriverRDB implements IRDBDriver {
 	private IPSet createIPSetInstanceFromName(String className, String tblName) {
 		IPSet pSet = null;		
 		try {
-			String tblname;
 			// get PSet
 			pSet = (IPSet) Class.forName(className).newInstance();
 			pSet.setDriver(this);
@@ -1752,11 +1751,11 @@ public abstract class DriverRDB implements IRDBDriver {
 			colAliasToString(rhsAlias,rhsCol);
 	}
 	
-	public String genSQLResList( int resIndex[], VarIndex[] binding ) {
+	public String genSQLResList( int resIndex[], VarDesc[] binding ) {
 		String resList = "";
 		int i,j;
 		for(i=0,j=0;i<binding.length;i++) {
-			VarIndex b = binding[i];
+			VarDesc b = binding[i];
 			if ( !b.isArgVar() ) {
 				// next result variable
 				resList += (j>0?", ":"") + colAliasToString(b.alias,b.column);

@@ -49,19 +49,20 @@ public class DBQueryStage extends Stage
     private static final DBQueryStageCompiler compiler = new DBQueryStageCompiler();
         
 	protected void run(Pipe source, Pipe sink) {
-		PreparedStatement ps;
+		PreparedStatement ps = null;
 		Domain current;
 		Domain useme;
 		IDBConnection conn = compiled.driver.getConnection();
-		while (source.hasNext()) {
+		 try {
+			 ps = conn.getConnection().prepareStatement(compiled.stmt);
+		 } catch (Exception e) {
+			 throw new JenaException("Query prepare failed: " + e);
+		 }
+
+		if ( ps != null) while (source.hasNext()) {
 			current = source.get();
-			try {
-				ps = conn.getConnection().prepareStatement(compiled.stmt);
-				setArgs(current, ps);
+			setArgs(current, ps);
 // System.out.println(compiled.stmt);
-			} catch (Exception e) {
-				throw new JenaException("Query prepare failed: " + e);
-			}
 
 			try {
 				ResultSetIterator it = new ResultSetIterator();
@@ -80,10 +81,14 @@ public class DBQueryStage extends Stage
 					sink.put(useme);
 				}
 				it.close();
-				ps.close();
 			} catch (Exception e) {
 				throw new JenaException("Query execute failed: " + e);
 			}
+		}
+		if ( ps != null ) try {
+			ps.close();
+		} catch (Exception e) {
+			throw new JenaException("Close on repared stmt failed: " + e);
 		}
 		sink.close();
 	}
