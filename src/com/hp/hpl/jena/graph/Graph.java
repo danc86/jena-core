@@ -54,12 +54,10 @@ public interface Graph  {
     PrefixMapping getPrefixMapping();
     
     /** adds the triple t (if possible) to the set belong to the graph */
-	void add(Triple t) throws UnsupportedOperationException, VirtualTripleException;
+	void add(Triple t) throws UnsupportedOperationException;
     
     /** removes the triple t (if possible) from the set belonging to this graph */   
-	void delete(Triple t) throws UnsupportedOperationException,
-	  NoSuchTripleException,
-	  VirtualTripleException;
+	void delete(Triple t) throws UnsupportedOperationException;
       
 	  /** Returns an iterator over Triple.
 	   */
