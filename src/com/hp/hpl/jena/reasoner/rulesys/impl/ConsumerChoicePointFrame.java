@@ -12,6 +12,8 @@ package com.hp.hpl.jena.reasoner.rulesys.impl;
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.reasoner.rulesys.Node_RuleVariable;
 
+import java.util.*;
+
 /**
  * Frame in the LPInterpreter's control stack used to represent matching
  * to the results of a tabled predicate. Conventionally the system state which
@@ -34,8 +36,8 @@ public class ConsumerChoicePointFrame extends GenericTripleMatchFrame
     /** The index in the generator's result set that we have reached so far. */
     protected int resultIndex;
     
-    /** The preserved argument registers for the pickled interpreter */
-    protected Node[] argVars = new Node[RuleClauseCode.MAX_ARGUMENT_VARS];
+    /** The preserved permanent registers for the pickled interpreter */
+    protected Node[] pVars;
 
     /** The preserved trail variables for the picked interpreter */
     protected Node_RuleVariable[] trailVars;
@@ -69,6 +71,45 @@ public class ConsumerChoicePointFrame extends GenericTripleMatchFrame
         generator = interpreter.getEngine().generatorFor(goal);
         generator.addConsumer(this);
         resultIndex = 0;
+    }
+    
+    /**
+     * Preserve the state of an interpreter into this frame.
+     */
+    public void preserveState(List trail) {
+        // Save the trail state
+        int trailLen = trail.size();
+        if (trailLen > trailLength) {
+            trailValues = new Node[trailLen];
+            trailVars = new Node_RuleVariable[trailLen];
+        }
+        trailLength = trailLen;
+        for (int i = 0; i < trailLen; i++) {
+            Node_RuleVariable var = (Node_RuleVariable) trail.get(i);
+            trailVars[i] = var;
+            trailValues[i] = var.getRawBoundValue();
+        }
+        // Save the permanent variables
+        Node[] currentPVars = envFrame.pVars;
+        if (currentPVars != null) {
+            if (pVars == null || pVars.length < currentPVars.length) {
+                pVars = new Node[currentPVars.length];
+            }
+            System.arraycopy(currentPVars, 0, pVars, 0, currentPVars.length);
+        }
+    }
+    
+    /**
+     * Restore the state of an interpreter from this frame
+     */
+    public void restoreState(LPInterpreter interp) {
+        interp.unwindTrail(0);
+        for (int i = 0; i < trailLength; i++) {
+            interp.bind(trailVars[i], trailValues[i]);
+        }
+        if (pVars != null) {
+            System.arraycopy(pVars, 0, envFrame.pVars, 0, pVars.length);
+        }
     }
     
     /**

@@ -254,7 +254,7 @@ public class LPInterpreter {
                 if (!choice.hasNext()) {
                     // No more choices left in this choice point
                     cpFrame = choice.getLink();
-                    if (traceOn) logger.info("FAIL clause choices");
+                    if (traceOn) logger.info("FAIL clause choices exhausted");
                     continue main;
                 }
                 
@@ -673,20 +673,7 @@ public class LPInterpreter {
      * of the choice point tree.
      */
     public void preserveState(ConsumerChoicePointFrame ccp) {
-        // Save the args
-        System.arraycopy(argVars, 0, ccp.argVars, 0, argVars.length);
-        // Save the trail state
-        int trailLen = trail.size();
-        if (trailLen > ccp.trailLength) {
-            ccp.trailValues = new Node[trailLen];
-            ccp.trailVars = new Node_RuleVariable[trailLen];
-        }
-        ccp.trailLength = trailLen;
-        for (int i = 0; i < trailLen; i++) {
-            Node_RuleVariable var = (Node_RuleVariable) trail.get(i);
-            ccp.trailVars[i] = var;
-            ccp.trailValues[i] = var.getRawBoundValue();
-        }
+        ccp.preserveState(trail);
     }
     
     /**
@@ -694,11 +681,7 @@ public class LPInterpreter {
      */
     public void restoreState(ConsumerChoicePointFrame ccp) {
         cpFrame = ccp;
-        System.arraycopy(ccp.argVars, 0, argVars, 0, argVars.length);
-        unwindTrail(0);
-        for (int i = 0; i < ccp.trailLength; i++) {
-            bind(ccp.trailVars[i], ccp.trailValues[i]);
-        }
+        ccp.restoreState(this);
         iContext = ccp.context;
     }
     

@@ -588,7 +588,10 @@ public class RuleClauseCode {
             }
             for (int i = 0; i < fargs.length; i++) {
                 Node node = fargs[i];
-                emitBodyPut(node, i, true);
+                // We optionally force an eager dereference of variables here.
+                // We used to force this but the current builtin implementations
+                // now robust against it (the do a deref themselves anyway).
+                 emitBodyPut(node, i, true);
             }
             code[p++] = CALL_BUILTIN;
             code[p++] = (byte)fargs.length;
@@ -798,7 +801,8 @@ public class RuleClauseCode {
             String testLong = "(?P p ?C) <- (?P q ?D), (?D r xsd(?B, ?S1, ?L1)),(?P p ?E), notEqual(?D, ?E) " +
                     "(?E e xsd(?B, ?S2, ?L2)),min(?S1, ?S2, ?S3),min(?L1, ?L2, ?L3), (?C r xsd(?B, ?S3, ?L3)).";
             String test21 = "(?a p ?y) <- (?x s ?y) (?a p ?x).";
-            store.addRule(Rule.parseRule(test21));
+            String test22 = "(?C p ?D) <- (?C rb:xsdBase ?BC), (?D rb:xsdBase ?BD), notEqual(?BC, ?BD).";
+            store.addRule(Rule.parseRule(test22));
             System.out.println("Code for p:");
             List codeList = store.codeFor(Node.createURI("p"));
             RuleClauseCode code = (RuleClauseCode)codeList.get(0);
