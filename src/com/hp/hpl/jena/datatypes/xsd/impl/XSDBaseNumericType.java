@@ -15,6 +15,7 @@ import java.math.BigInteger;
 import com.hp.hpl.jena.datatypes.*;
 import com.hp.hpl.jena.datatypes.xsd.*;
 import com.hp.hpl.jena.graph.impl.LiteralLabel;
+import com.hp.hpl.jena.shared.impl.JenaParameters;
 
 /**
  * Base implementation for all numeric datatypes derinved from
@@ -59,7 +60,16 @@ public class XSDBaseNumericType extends XSDDatatype {
         RDFDatatype dt = lit.getDatatype();
         if (this.equals(dt)) return true;
         if (dt instanceof XSDBaseNumericType) {
-            return isValid(lit.getLexicalForm());
+            String lex = lit.getLexicalForm();
+            if (JenaParameters.enableWhitespaceCheckingOfTypedLiterals) {
+                if (lex.trim().equals(lex)) {
+                    return isValid(lit.getLexicalForm());
+                } else {
+                    return false;
+                }
+            } else {
+                return isValid(lit.getLexicalForm());
+            }
         } else {
             return false;
         }
@@ -75,6 +85,19 @@ public class XSDBaseNumericType extends XSDDatatype {
         } else {
             return false;
         }
+    }
+   
+    /**
+     * Parse a lexical form of this datatype to a value
+     * @throws DatatypeFormatException if the lexical form is not legal
+     */
+    public Object parse(String lexicalForm) throws DatatypeFormatException {        
+        if (JenaParameters.enableWhitespaceCheckingOfTypedLiterals) {
+            if ( ! lexicalForm.trim().equals(lexicalForm)) {
+                throw new DatatypeFormatException(lexicalForm, this, "whitespace violation");
+            }
+        }
+        return super.parse(lexicalForm);
     }
     
     /**

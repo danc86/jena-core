@@ -317,7 +317,7 @@ final public class LiteralLabel {
 	public boolean sameValueAs(LiteralLabel other) {
 		if (other == null)
 			return false;
-		if (!wellformed) {
+		if (!wellformed || !other.wellformed) {
 			if (!other.wellformed) {
 				// Need to support this comparison in order for the WG tests on ill formed
 				// literals to be testable using isIsomorphic to
