@@ -6,7 +6,8 @@
 
 package com.hp.hpl.jena.rdql;
 import java.util.* ;
-import com.hp.hpl.jena.rdf.model.Model; 
+import com.hp.hpl.jena.rdf.model.Model;
+//import com.hp.hpl.jena.rdf.model.RDFNode;
 
 /** rdql2.ResultBinding
  * 
@@ -23,14 +24,10 @@ public interface ResultBinding
      */
     public ResultBindingIterator iterator();
 
-    /** Return the value of the named variable in this binding */
+    /** Return the value of the named variable in this binding.  Object will ne an RDFNode. */
     public Object get(String varName);
 
-    //public Value getValue(String varName);
-
-    /** Iterate over the variable names (strings) in this ResultBinding.
-     * @return Iterator of strings
-     */ 
+    /** Iterator over the names in this binding */ 
     public Iterator names() ;
 
     // Operations that map results into triples that originally matched.

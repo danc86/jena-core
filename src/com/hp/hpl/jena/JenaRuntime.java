@@ -27,13 +27,14 @@ public class JenaRuntime
     static Map features = new HashMap() ;
     static {
         if ( System.getProperty(featureNoSecurity) != null )
-            features.put(featureNoSecurity, "true") ;
+            setFeature(featureNoSecurity) ;
         if ( System.getProperty(featureNoCharset) != null )
-            features.put(featureNoCharset, "true") ;
+            setFeature(featureNoCharset) ;
     }
     
-    static boolean runUnder(String featureName) { return features.containsKey(featureName) ; }
-    static boolean runNotUnder(String featureName) { return ! features.containsKey(featureName) ; }
+    public static void setFeature(String featureName) { features.put(featureName, "true") ; }
+    public static boolean runUnder(String featureName) { return features.containsKey(featureName) ; }
+    public static boolean runNotUnder(String featureName) { return ! features.containsKey(featureName) ; }
     
     
     static final String lineSeparator = getSystemProperty("line.separator", "\n") ; 
