@@ -9,8 +9,15 @@ package com.hp.hpl.jena.graph.test;
 import java.lang.reflect.Constructor;
 
 import com.hp.hpl.jena.graph.*;
+import com.hp.hpl.jena.graph.impl.GraphBase;
+import com.hp.hpl.jena.graph.impl.ReifierFragmentsMap;
+import com.hp.hpl.jena.graph.impl.ReifierTripleMap;
+import com.hp.hpl.jena.graph.impl.SimpleReifier;
+import com.hp.hpl.jena.graph.impl.SimpleReifierFragmentsMap;
+import com.hp.hpl.jena.graph.impl.SimpleReifierTripleMap;
 import com.hp.hpl.jena.mem.*;
 import com.hp.hpl.jena.shared.*;
+import com.hp.hpl.jena.util.iterator.ExtendedIterator;
 
 import junit.framework.*;
 
@@ -56,6 +63,20 @@ public class TestReifier extends AbstractTestReifier
         catch (Exception e)
             { throw new JenaException( e ); }
         }        
+    
+    public void testExtendedConstructorExists()
+        {
+        GraphBase parent = new GraphBase() {
+
+            public ExtendedIterator find( TripleMatch m )
+                {
+                // TODO Auto-generated method stub
+                return null;
+                }};
+        ReifierTripleMap tm = new SimpleReifierTripleMap();
+        ReifierFragmentsMap fm = new SimpleReifierFragmentsMap();
+        SimpleReifier sr = new SimpleReifier( parent, tm, fm, ReificationStyle.Minimal );
+        }
     }
 
 /*
