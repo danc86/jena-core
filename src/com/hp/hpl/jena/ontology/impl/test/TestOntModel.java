@@ -130,6 +130,14 @@ public class TestOntModel
         assertTrue( "InputStream write/read cycle failed (2)", mIn2.isIsomorphicWith( m.getBaseModel() ) );
     }
     
+    public void testGetBaseModelPrefixes()
+        {
+        OntModel om = ModelFactory.createOntologyModel();
+        om.setNsPrefix( "bill", "http://bill.and.ben/flowerpot#" );
+        om.setNsPrefix( "grue", "ftp://grue.and.bleen/2000#" );
+        assertEquals( om.getNsPrefixMap(), om.getBaseModel().getNsPrefixMap() );    
+        }
+        
     /** Test writing the base model to an output stream */
     public void testWriteWriter() {
         OntModel m = ModelFactory.createOntologyModel();

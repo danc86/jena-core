@@ -1610,7 +1610,9 @@ public class OntModelImpl
      * @return The base model for this ontology model
      */
     public Model getBaseModel() {
-        return ModelFactory.createModelForGraph( getBaseGraph() );
+        Model result = ModelFactory.createModelForGraph( getBaseGraph() );
+        result.setNsPrefixes( this );
+        return result;
     }
     
     
