@@ -566,7 +566,7 @@ public abstract class DriverRDB implements IRDBDriver {
 				// Starting a transaction could require us to lose any cached prepared statements
 				// for some jdbc drivers, currently I think all the drivers we use are safe and
 				// is a major performance hit so commented out for now.
-			  m_sql.flushPreparedStatementCache();
+			  //m_sql.flushPreparedStatementCache();
 			  Connection c = m_sql.getConnection();
 			  c.setTransactionIsolation(Connection.TRANSACTION_READ_COMMITTED);
 			  c.setAutoCommit(false);
