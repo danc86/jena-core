@@ -20,7 +20,7 @@ import com.hp.hpl.jena.util.iterator.WrappedIterator;
 */
 public class TrackingTripleIterator extends WrappedIterator
     {
-    TrackingTripleIterator( Iterator it ) 
+    public TrackingTripleIterator( Iterator it ) 
         { super( it ); }    
     
     /**

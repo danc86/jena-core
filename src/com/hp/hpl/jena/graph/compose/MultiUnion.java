@@ -25,6 +25,7 @@ package com.hp.hpl.jena.graph.compose;
 // Imports
 ///////////////
 import com.hp.hpl.jena.graph.*;
+import com.hp.hpl.jena.mem.TrackingTripleIterator;
 import com.hp.hpl.jena.shared.JenaException;
 import com.hp.hpl.jena.util.CollectionFactory;
 import com.hp.hpl.jena.util.iterator.*;
@@ -172,26 +173,36 @@ public class MultiUnion
      * @return An iterator of all triples matching t in the union of the graphs.
      */
     public ExtendedIterator graphBaseFind( final TripleMatch t ) {
-        // anything in this model?
-        if (m_subGraphs.size() == 0) {
-            // the default NiceIterator has no elements
-            return NullIterator.instance;
+        Set seen = CollectionFactory.createHashedSet();
+        ExtendedIterator i = NullIterator.instance;
+        
+        // now add the rest of the chain
+        for (Iterator graphs = m_subGraphs.iterator(); graphs.hasNext(); ) {
+            ExtendedIterator newTriples = recording( rejecting( ((Graph) graphs.next()).find( t ), seen ), seen );
+            i = i.andThen( newTriples );
         }
-        else {
-            // start building the iterator chain
-            Set seen = CollectionFactory.createHashedSet();
-            ExtendedIterator i = null;
-            
-            // now add the rest of the chain
-            for (Iterator graphs = m_subGraphs.iterator(); graphs.hasNext(); ) {
-                ExtendedIterator newTriples = recording( rejecting( ((Graph) graphs.next()).find( t ), seen ), seen );
-                 
-                i = (i == null) ? newTriples : i.andThen( newTriples );
-            }
-            
-            return i;
-        }
+        
+        // ensure that .remove notifies this graph's event manager
+        return notifyingRemove( MultiUnion.this, i );
     }
+
+
+    /**
+     * Answer an iterator which wraps <code>i</code> to ensure that if a .remove()
+     * is executed on it, the graph <code>g</code> will be notified.
+    */
+    public static ExtendedIterator notifyingRemove( final Graph g, ExtendedIterator i )
+        {
+        return new TrackingTripleIterator( i )
+            {            
+            protected final GraphEventManager gem = g.getEventManager();
+            public void remove()
+                {
+                super.remove();
+                gem.notifyDeleteTriple( g, current );
+                }
+            };
+        }
 
 
     /**

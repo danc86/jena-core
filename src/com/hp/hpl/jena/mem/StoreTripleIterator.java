@@ -7,6 +7,8 @@ package com.hp.hpl.jena.mem;
 
 import java.util.Iterator;
 
+import com.hp.hpl.jena.graph.Graph;
+
 /**
      An iterator wrapper for NodeToTriplesMap iterators which ensures that
      a .remove on the base iterator is copied to the other two maps of this
@@ -21,12 +23,14 @@ public class StoreTripleIterator extends TrackingTripleIterator
 	{
     protected NodeToTriplesMap A;
     protected NodeToTriplesMap B;
+    protected Graph toNotify;
     
-    StoreTripleIterator( Iterator it, NodeToTriplesMap A, NodeToTriplesMap B )
+    public StoreTripleIterator( Graph toNotify, Iterator it, NodeToTriplesMap A, NodeToTriplesMap B )
     	{ 
         super( it ); 
         this.A = A; 
         this.B = B; 
+        this.toNotify = toNotify;
         }
 
     public void remove()
@@ -34,6 +38,7 @@ public class StoreTripleIterator extends TrackingTripleIterator
         super.remove();
         A.remove( current );
         B.remove( current );
+        toNotify.getEventManager().notifyDeleteTriple( toNotify, current );
         }
 	}
 

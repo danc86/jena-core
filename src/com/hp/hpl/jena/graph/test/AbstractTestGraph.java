@@ -15,6 +15,8 @@ import com.hp.hpl.jena.shared.*;
 
 import java.util.*;
 
+import junit.framework.Assert;
+
 /**
     AbstractTestGraph provides a bunch of basic tests for something that
     purports to be a Graph. The abstract method getGraph must be overridden
@@ -402,6 +404,26 @@ public /* abstract */ class AbstractTestGraph extends GraphTestBase
         L.assertHas( new Object[] { "delete", g, SPO} );
         }
         
+    public void testEventDeleteByFind()
+        {
+        Graph g = getAndRegister( L );
+        if (g.getCapabilities().iteratorRemoveAllowed())
+            {
+            Triple toRemove = triple( "remove this triple" );
+            g.add( toRemove );
+            ExtendedIterator spo = g.find( toRemove );
+            assertTrue( "ensure a(t least) one triple", spo.hasNext() );
+            spo.next();
+            spo.remove();
+            /* */
+            ;
+            List things = Arrays.asList( (new Object[] { "add", g, toRemove, "delete", g, toRemove}) );
+            if (L.has( things ) == false) 
+                System.err.println( ">> failed, graph type = " + g.getClass() );
+            L.assertHas( new Object[] { "add", g, toRemove, "delete", g, toRemove} );
+            }
+        }
+    
     public void testTwoListeners()
         {
         RecordingListener L1 = new RecordingListener();

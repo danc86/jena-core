@@ -18,7 +18,7 @@ import com.hp.hpl.jena.util.iterator.*;
 */
 public class GraphMem extends GraphMemBase implements Graph 
     {
-    protected TripleStore store = new GraphTripleStore();
+    protected TripleStore store = new GraphTripleStore( this );
     
     /**
         Initialises a GraphMem with the Minimal reification style

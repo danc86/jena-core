@@ -18,10 +18,15 @@ import com.hp.hpl.jena.util.iterator.*;
 */
 public class MixedGraphMem extends GraphMemBase implements Graph
     {    
-    protected Thing thing = new Thing();
+    protected Thing thing = new Thing( this );
     
     public static class Thing 
     	{
+        protected final Graph parent;
+        
+        public Thing( Graph parent )
+            { this.parent = parent; }
+        
         protected Map map = CollectionFactory.createHashedMap();
 
         protected int size = 0;
@@ -96,6 +101,7 @@ public class MixedGraphMem extends GraphMemBase implements Graph
                         excise( remember.getSubject(), remember );
                         excise( remember.getPredicate(), remember );
                         excise( remember.getObject(), remember );
+                        parent.getEventManager().notifyDeleteTriple( parent, remember );
                         }
                     
                 	}  .filterKeep( new TripleMatchFilter( pattern ) );
@@ -165,6 +171,7 @@ public class MixedGraphMem extends GraphMemBase implements Graph
                     excise( remember.getSubject(), remember );
                     excise( remember.getPredicate(), remember );
                     excise( remember.getObject(), remember );
+                    parent.getEventManager().notifyDeleteTriple( parent, remember );
                     }
                 }; 
             }
