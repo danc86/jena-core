@@ -286,8 +286,7 @@ public class OWLProfile
         },
         {  InverseFunctionalProperty.class, new SupportsCheck() {
                                             public boolean doCheck( Node n, EnhGraph g ) {
-                                                return g.asGraph().contains( n, RDF.type.asNode(), OWL.InverseFunctionalProperty.asNode() ) &&
-                                                      !g.asGraph().contains( n, RDF.type.asNode(), OWL.DatatypeProperty.asNode() );
+                                                return g.asGraph().contains( n, RDF.type.asNode(), OWL.InverseFunctionalProperty.asNode() );
                                             }
                                         }
         },

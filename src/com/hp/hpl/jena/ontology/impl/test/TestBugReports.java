@@ -1125,6 +1125,7 @@ public class TestBugReports
         TestUtil.assertIteratorValues( this, m.listIndividuals(), new Object[] {a} );
     }
     
+    /** Test case for SF bug 945436 - a xml:lang='' in the dataset causes sring index exception in getLabel() */
     public void test_sf_945436() {
         String SOURCE=
             "<?xml version='1.0'?>" +
@@ -1150,6 +1151,36 @@ public class TestBugReports
         assertEquals( "Label on resource x", "a_label", x.getLabel( "" ) );
         assertSame( "fr label on resource x", null, x.getLabel( "fr" ) );
     }
+    
+    /** Test case for SF bug 948995  - OWL full should allow inverse functional datatype properties */
+    public void test_sf_948995() {
+        OntModel m = ModelFactory.createOntologyModel( OntModelSpec.OWL_DL_MEM );  // OWL dl
+        DatatypeProperty dp = m.createDatatypeProperty( NS + "dp" );
+        dp.addRDFType( OWL.InverseFunctionalProperty );
+        
+        boolean ex = false;
+        try {
+            dp.as( InverseFunctionalProperty.class );
+        }
+        catch (ConversionException e) {
+            ex = true;
+        }
+        assertTrue( "Should have been a conversion exception", ex );
+        
+        m = ModelFactory.createOntologyModel( OntModelSpec.OWL_MEM );  // OWL full
+        dp = m.createDatatypeProperty( NS + "dp" );
+        dp.addRDFType( OWL.InverseFunctionalProperty );
+        
+        ex = false;
+        try {
+            dp.as( InverseFunctionalProperty.class );
+        }
+        catch (ConversionException e) {
+            ex = true;
+        }
+        assertFalse( "Should not have been a conversion exception", ex );
+    }
+    
     
     // Internal implementation methods
     //////////////////////////////////
