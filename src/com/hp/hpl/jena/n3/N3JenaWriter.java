@@ -4,7 +4,8 @@
  */
 
 // To do:
-//   Split into different writers for fast and pretty
+//   Split into different writers for fast and pretty with common superclass
+//     Superclass has common operations (formatting), output stream, prefix map
 //   Options
 //     Make some of the config variable depend on system properties
 //     Document the environment variables including I/O howto.

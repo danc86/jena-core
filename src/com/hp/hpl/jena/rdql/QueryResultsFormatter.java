@@ -137,7 +137,8 @@ public class QueryResultsFormatter
                 Object tmp = env.get(rVar) ;
                 RDFNode n = null ;
                 if ( tmp == null )
-                    //Unbound!
+                    // This variable was not found in the results.
+                    // Encode the result set with an explicit "not defined" 
                     n = ResultSet.undefined ;
                 else if ( ! (tmp instanceof RDFNode) )
                 {
