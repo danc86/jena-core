@@ -135,7 +135,17 @@ public class TestBugReports
         assertTrue(ontModel.listAllDifferent().hasNext());
         AllDifferent allDifferent = (AllDifferent)ontModel.listAllDifferent().next();
         //allDifferent.setDistinct(ontModel.createList());
-        assertFalse(allDifferent.listDistinct().hasNext());
+        assertFalse(allDifferent.listDistinctMembers().hasNext());
+    }
+    
+    /** Bug report from Holger Knublauch on Aug 19th, 2003. Initialisation error */
+    public void test_hk_03() {
+        OntModelSpec spec = new OntModelSpec(OntModelSpec.OWL_MEM);
+        spec.setReasoner(null);
+        OntModel ontModel = ModelFactory.createOntologyModel(spec, null);
+        OntProperty property = ontModel.createObjectProperty("http://www.aldi.de#property");
+        MinCardinalityRestriction testClass = ontModel.createMinCardinalityRestriction( null, property, 42);
+        
     }
     
     /**
