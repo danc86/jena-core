@@ -992,7 +992,9 @@ public interface OntModel
     /**
      * <p>
      * Answer a list of the imported URI's in this ontology model. Detection of <code>imports</code>
-     * statments will be according to the local language profile
+     * statments will be according to the local language profile.  Note that, in order to allow this
+     * method to be called during the imports closure process, we <b>only query the base model</b>,
+     * thus side-stepping the any attached reasoner.
      * </p>
      * 
      * @return The imported ontology URI's as a list. Note that since the underlying graph is
