@@ -315,6 +315,23 @@ public abstract class AbstractTestReifier extends GraphTestBase
         r.reifyAs( node( "x" ), triple( "a B c" ) );
         assertIsomorphic( wanted, h );
         }
+            
+		public void testQuadRemove()
+			{
+			Graph g = getGraph( Standard );
+			assertEquals( 0, g.size() );
+		
+			Triple s = Triple.create( "x rdf:subject s" );
+			Triple p = Triple.create( "x rdf:predicate p" );
+			Triple o = Triple.create( "x rdf:object o" );
+			Triple t = Triple.create( "x rdf:type rdf:Statement");
+			g.add(s); g.add(p); g.add(o); g.add(t);
+			assertEquals( 4, g.size() );
+
+			g.delete(s); g.delete(p); g.delete(o); g.delete(t);
+			assertEquals( 0, g.size() );
+			}
+
 
 //    public void testKevinCaseC()
 //        {
