@@ -589,9 +589,15 @@ public class FBRuleInfGraph  extends BasicForwardRuleInfGraph implements Backwar
                 isPrepared = false;
             }
         } 
+        // Full incremental remove processing requires reference counting
+        // of all deductions. It's not clear the cost of maintaining the
+        // reference counts is worth it so the current implementation
+        // forces a recompute if any external deletes are performed.
         if (isPrepared) {
-            getDeductionsGraph().delete(t);
-            if (removeIsFromBase) engine.delete(t);
+            bEngine.deleteAllRules();
+            isPrepared = false;
+            // Re-enable the code below when/if ref counting is added and remove above
+            // if (removeIsFromBase) engine.delete(t);
         }
         bEngine.reset();
     }

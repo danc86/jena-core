@@ -304,7 +304,8 @@ public class RETEEngine implements FRuleEngineI {
         if (deduction) {
             infGraph.getDeductionsGraph().delete(triple);
             Graph raw = infGraph.getRawGraph();
-            raw.delete(triple);
+            // deduction retractions should not remove asserted facts, so commented out next line
+            // raw.delete(triple);
             if (raw.contains(triple)) {
                 // Built in a graph which can't delete this triple
                 // so block further processing of this delete to avoid loops
