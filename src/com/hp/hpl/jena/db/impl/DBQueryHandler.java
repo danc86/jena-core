@@ -44,7 +44,7 @@ public class DBQueryHandler extends SimpleQueryHandler {
 
 	public Stage patternStage(
 		Mapping varMap,
-		Graph constraints,
+		ExpressionSet constraints,
 		Triple[] ptn) {
 		final Stage[] stages = new Stage[ptn.length];
 		int stageCnt = 0;

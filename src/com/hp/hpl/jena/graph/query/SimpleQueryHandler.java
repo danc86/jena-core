@@ -27,9 +27,9 @@ public class SimpleQueryHandler implements QueryHandler
     public SimpleQueryHandler( Graph graph )
         { this.graph = graph; }
 
-    public Stage patternStage( Mapping map, Graph constraints, Triple [] t )
+    public Stage patternStage( Mapping map, ExpressionSet constraints, Triple [] t )
         { return new PatternStage( graph, map, constraints, t ); }
-        
+                
     public BindingQueryPlan prepareBindings( Query q, Node [] variables )   
         { return new SimpleQueryPlan( graph, q, variables ); }
         

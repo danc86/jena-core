@@ -15,6 +15,7 @@ import com.hp.hpl.jena.db.IDBConnection;
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.graph.query.BufferPipe;
 import com.hp.hpl.jena.graph.query.Domain;
+import com.hp.hpl.jena.graph.query.ExpressionSet;
 import com.hp.hpl.jena.graph.query.Pipe;
 import com.hp.hpl.jena.graph.query.Stage;
 import com.hp.hpl.jena.shared.JenaException;
@@ -29,17 +30,17 @@ public class DBQueryStage extends Stage
     protected DBQuery compiled;
             
 	public DBQueryStage( GraphRDB graph, SpecializedGraph sg, 
-					List varList, List dbPat, Graph constraints )
+					List varList, List dbPat, ExpressionSet constraints )
 		{
 		this.graph = graph;
 		this.compiled = compile (sg, varList, dbPat, constraints);
 		}
 
-	protected DBQuery compile( SpecializedGraph sg, List varList, List dbPat, Graph constraints )
+	protected DBQuery compile( SpecializedGraph sg, List varList, List dbPat, ExpressionSet constraints )
         { return compile( compiler, sg, varList, dbPat, constraints ); }
         
     protected DBQuery compile( DBQueryStageCompiler compiler, SpecializedGraph sg,
-    			List varList, List dbPat, Graph constraints )
+    			List varList, List dbPat, ExpressionSet constraints )
         {
         return DBQueryStageCompiler.compile( compiler, (DBQueryHandler) graph.queryHandler(),
         			sg, varList, dbPat, constraints );
