@@ -45,11 +45,6 @@ package com.hp.hpl.jena.ontology.daml;
 
 // Imports
 ///////////////
-
-import com.hp.hpl.jena.rdf.model.ResIterator;
-
-import com.hp.hpl.jena.util.iterator.ConcatenatedIterator;
-
 import java.util.Iterator;
 
 
