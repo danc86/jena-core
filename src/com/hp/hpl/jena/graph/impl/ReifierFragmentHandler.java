@@ -4,33 +4,46 @@
      $Id$
 */
 
-package com.hp.hpl.jena.graph.test;
+package com.hp.hpl.jena.graph.impl;
 
-import com.hp.hpl.jena.graph.*;
-import com.hp.hpl.jena.graph.impl.ReifierFragmentsMap;
+import com.hp.hpl.jena.graph.Node;
+import com.hp.hpl.jena.graph.Triple;
 
 /**
-     @author hedgehog
+     ReifierFragmentHandler: instances of this class handle fragments of reifications,
+     ie the triples (tag rdf:subject/predicate/object X) and (tag rdf:type Statement).
+     They are delivered from FragmentHandler instances and remain bound to
+     their originating instance.
+     
+     @author kers
 */
-
-public abstract class AbstractTestReifierFragmentsMap extends GraphTestBase
+public interface ReifierFragmentHandler
     {
-    public AbstractTestReifierFragmentsMap( String name ) 
-        { super( name ); }
+    /**
+         
+     * @param n
+     * @param reified
+     * @return
+     */
+    public abstract boolean clashedWith( Node n, Triple reified );
 
-    public abstract ReifierFragmentsMap getFragmentsMap();
-    
-    protected ReifierFragmentsMap fragMap;
-    
-    public void setUp()
-        { fragMap = getFragmentsMap(); }
+    /**
+     * @param fragment
+     * @param tag
+     * @param object
+     * @return
+     */
+    public abstract Triple reifyCompleteQuad( Triple fragment, Node tag,
+            Node object );
 
-    public void testEmpty_emptyGraph()
-        { assertIsomorphic( Graph.emptyGraph, fragMap.asGraph() ); }
-    
-    public void testPutFragments()
-        {
-        }
+    /**
+     * @param tag
+     * @param already
+     * @param fragment
+     * @return
+     */
+    public abstract Triple removeFragment( Node tag, Triple already,
+            Triple fragment );
     }
 
 /*
