@@ -14,6 +14,7 @@ import java.lang.reflect.*;
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.graph.test.*;
 import com.hp.hpl.jena.mem.*;
+import com.hp.hpl.jena.shared.*;
 
 /**
  *
@@ -33,7 +34,7 @@ public class TestCaseBasic extends com.hp.hpl.jena.regression.TestCaseBasic
     private Graph newGraph( Constructor cons )
     	{
     	try { return (Graph) cons.newInstance( new Object [] { new GraphMem(), new GraphMem() } ); }
-    	catch (Exception e) { throw new RuntimeException( "Alas: " + e ); }
+    	catch (Exception e) { throw new JenaException( "newGraph failed:", e ); }
     	}
     	
     public void setUp() 

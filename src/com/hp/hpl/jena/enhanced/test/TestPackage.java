@@ -390,6 +390,33 @@ public class TestPackage extends GraphTestBase  {
         assertFalse( "Blank node cannot be an Example", eBlank.supports( Example.class ) );
         }
         
+    static class AnotherExample 
+        {
+        static final Implementation factory = new Implementation()
+            {
+            public EnhNode wrap( Node n, EnhGraph g ) { return new EnhNode( n, g ); }
+            
+            public boolean canWrap( Node n, EnhGraph g ) { return n.isURI(); }
+            };
+        }
+    
+    public void testAlreadyLinkedViewException()
+        {
+         Graph g = new GraphMem();
+         Personality ours = BuiltinPersonalities.model.copy().add( Example.class, Example.factory );
+         EnhGraph eg = new EnhGraph( g, ours ); 
+         Node n = Node.create( "spoo:bar" );
+         EnhNode eNode = new EnhNode( n, eg );
+         eNode.viewAs( Example.class );
+         try
+            { 
+            eNode.addView( eNode ); 
+            fail( "should raise an AlreadyLinkedViewException " );
+            }
+        catch (AlreadyLinkedViewException e)
+            {}                
+        }
+        
     /**
         Test that an attempt to polymorph an enhanced node into a class that isn't
         supported by the enhanced graph generates an UnsupportedPolymorphism

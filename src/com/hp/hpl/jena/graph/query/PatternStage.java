@@ -56,7 +56,6 @@ public class PatternStage extends Stage
 
     public Pipe deliver( final Pipe result )
         {
-        // if (patterns.length != 1) throw new RuntimeException( "only single patterns implemented" );
         final Pipe stream = previous.deliver( new BufferPipe() );
 		new Thread() { public void run() { PatternStage.this.run( stream, result ); } } .start();
         return result;

@@ -252,7 +252,7 @@ public class RDFSOld extends Dyadic implements Vocabulary
                 }
             else
                 {
-                throw new RuntimeException( "only StandardTripleMatch works" );
+                throw new UnsupportedOperationException( "only StandardTripleMatch works" );
                 }
         if (wouldMatch( tm, null, rdfType, rdfsResource ))
         	{ /* have to deliver all resource-type things */

@@ -1,5 +1,5 @@
 /*
- *  (c) Copyright Hewlett-Packard Company 2002
+ *  (c) Copyright Hewlett-Packard Company 2002, 2003
  *  
  *  All rights reserved.
  * 
@@ -12,9 +12,7 @@ import java.util.*;
 
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.util.iterator.*;
-
-
-
+import com.hp.hpl.jena.shared.*;
 
 /**
  * An implemantation of graph isomorphism for Graph equality.
@@ -871,15 +869,19 @@ public class GraphMatcher extends java.lang.Object {
         if (( state & s) == 0 ) 
             impossible();
     }
+    
     private void in(int s) {
         state = s;
         other.state = s;
     }
+    
     static private void impossible() {
-        throw new RuntimeException("Cannot happen!");
+        throw new JenaException( "Cannot happen!" );
     }
+    
     static private int col = 0;
     static private boolean lastDir = false;
+    
     static private void trace(boolean dir, String s) {
         if (TRACE) {
             if ( dir != lastDir ) {
@@ -905,7 +907,7 @@ public class GraphMatcher extends java.lang.Object {
     
 }
 /*
- *  (c) Copyright Hewlett-Packard Company 2002
+ *  (c) Copyright Hewlett-Packard Company 2002, 2003
  *  
  *  All rights reserved.
  * 

@@ -35,30 +35,18 @@ public class TestDyadic extends GraphTestBase
 			};
 		}
 		
-	static void checkEq( Object x, Object y )
-		{
-		if (x.equals( y ) == false)
-			throw new RuntimeException( "expected " + x + ", got " + y );
-		}
-		
-	static void checkEq( String title, boolean x, boolean y )
-		{
-		if (x != y)
-			throw new RuntimeException( title + ": expected " + x + ", got " + y );			
-		}
-		
 	public void testDyadic() 
 		{
 		ExtendedIterator it1 = things( "now is the time" );
 		ExtendedIterator it2 = things( "now is the time" );
 		ExtendedIterator mt1 = things( "" );
 		ExtendedIterator mt2 = things( "" );
-		checkEq( "mt1.hasNext()", false, mt1.hasNext() );
-		checkEq( "mt2.hasNext()", false, mt2.hasNext() );
-		checkEq( "andThen(mt1,mt2).hasNext()", false, mt1.andThen( mt2 ).hasNext() ); 		
-		checkEq( "butNot(it1,it2).hasNext()", false, Dyadic.butNot( it1, it2 ).hasNext() );
-		checkEq( "x y z @butNot z", true, Dyadic.butNot( things( "x y z" ), things( "z" ) ).hasNext() );
-		checkEq( "x y z @butNot a", true, Dyadic.butNot( things( "x y z" ), things( "z" ) ).hasNext() );
+		assertEquals( "mt1.hasNext()", false, mt1.hasNext() );
+		assertEquals( "mt2.hasNext()", false, mt2.hasNext() );
+		assertEquals( "andThen(mt1,mt2).hasNext()", false, mt1.andThen( mt2 ).hasNext() ); 		
+		assertEquals( "butNot(it1,it2).hasNext()", false, Dyadic.butNot( it1, it2 ).hasNext() );
+		assertEquals( "x y z @butNot z", true, Dyadic.butNot( things( "x y z" ), things( "z" ) ).hasNext() );
+		assertEquals( "x y z @butNot a", true, Dyadic.butNot( things( "x y z" ), things( "z" ) ).hasNext() );
 		}
 	}
 

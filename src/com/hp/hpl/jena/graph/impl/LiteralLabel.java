@@ -193,7 +193,6 @@ final public class LiteralLabel {
     */
     public String toString() {
         String lf = getLexicalForm();
-        if (false) throw new RuntimeException( "aha" );
         return dtype == null ? lf : lf + "^^" + dtype.getURI();
     }
     

@@ -40,7 +40,7 @@ public class RDFClosure extends Dyadic implements Graph
 
 	public void delete(  Triple t )
 		{
-		throw new RuntimeException( "RDFClosure::delete not implemented [yet]" );
+		throw new UnsupportedOperationException( "RDFClosure::delete not implemented [yet]" );
 		}
 		
 	static Node RDFtype = GraphTestBase.node( "rdf:type" );	
