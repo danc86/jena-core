@@ -1256,6 +1256,28 @@ public interface OntModel
     
     
     /**
+     * <p>Answer true if the given node is a member of the base model of this ontology model.
+     * This is an important distiction, because only the base model receives updates when the
+     * ontology model is updated. Thus, removing properties of a resource that is not in the base
+     * model will not actually side-effect the overall model.</p>
+     * @param node An RDF node (Resource, Property or Literal) to test
+     * @return True if the given node is from the base model
+     */
+    public boolean isInBaseModel( RDFNode node );
+    
+    
+    /**
+     * <p>Answer true if the given statement is defined in the base model of this ontology model.
+     * This is an important distiction, because only the base model receives updates when the
+     * ontology model is updated. Thus, removing a statement that is not in the base
+     * model will not actually side-effect the overall model.</p>
+     * @param stmt A statement to test
+     * @return True if the given statement is from the base model
+     */
+    public boolean isInBaseModel( Statement stmt );
+
+    
+    /**
      * <p>
      * Answer true if this model is currently in <i>strict checking mode</i>. Strict
      * mode means

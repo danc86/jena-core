@@ -34,6 +34,7 @@ import com.hp.hpl.jena.ontology.*;
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.reasoner.*;
 import com.hp.hpl.jena.reasoner.ReasonerRegistry;
+import com.hp.hpl.jena.vocabulary.*;
 import com.hp.hpl.jena.vocabulary.OWL;
 
 import junit.framework.*;
@@ -181,6 +182,28 @@ public class TestBugReports
         assertEquals("Before and after statement counts are different", oldCount, getStatementCount( ontModel ));
     }
     
+    /** Bug report from Holger Knublach: moving between ontology models - comes down to a test for a resource being in the base model */
+    public void test_hk_06()
+        throws Exception 
+    {
+        OntModel ontModel = ModelFactory.createOntologyModel( OntModelSpec.OWL_MEM, null );
+        ontModel.read( "file:testing/ontology/bugs/test_hk_06/a.owl" );
+
+        String NSa = "http://jena.hpl.hp.com/2003/03/testont/a#";
+        String NSb = "http://jena.hpl.hp.com/2003/03/testont/b#";
+
+        OntClass A = ontModel.getOntClass(NSa+"A");
+        assertTrue( "class A should be in the base model", ontModel.isInBaseModel( A ));
+        
+        OntClass B = ontModel.getOntClass(NSb+"B");
+        assertFalse( "class B should not be in the base model", ontModel.isInBaseModel( B ));
+        
+        assertTrue( "A rdf:type owl:Class should be in the base model", 
+                    ontModel.isInBaseModel( ontModel.createStatement( A, RDF.type, OWL.Class ) ) );
+        assertFalse( "B rdf:type owl:Class should not be in the base model", 
+                    ontModel.isInBaseModel( ontModel.createStatement( B, RDF.type, OWL.Class ) ) );
+    }
+
     /**
      * Bug report by federico.carbone@bt.com, 30-July-2003.   A literal can be
      * turned into an individual.
