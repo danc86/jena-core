@@ -44,6 +44,7 @@ public class TestPackage extends TestSuite {
         addTest( "DAML", com.hp.hpl.jena.ontology.daml.impl.test.TestPackage.suite() );
         addTest( "Paths", com.hp.hpl.jena.ontology.path.impl.test.TestPackage.suite() );
         addTest(com.hp.hpl.jena.ontology.tidy.test.WGTests.suite() );
+        addTest(com.hp.hpl.jena.ontology.tidy.test.Extra.suite() );
     }
 
     private void addTest(String name, TestSuite tc) {
