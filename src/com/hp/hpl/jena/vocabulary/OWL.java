@@ -34,19 +34,28 @@ import com.hp.hpl.jena.rdf.model.*;
  */
 public class OWL {
     /** <p>The RDF model that holds the vocabulary terms</p> */
-    private static Model m_model = ModelFactory.createDefaultModel();
+    protected static Model m_model = ModelFactory.createDefaultModel();
     
     /** <p>The namespace of the vocabalary as a string ({@value})</p> */
     public static final String NS = "http://www.w3.org/2002/07/owl#";
     
     /** <p>The namespace of the vocabalary as a string</p>
      *  @see #NS */
-    public static String getURI() {return NS;}
+    public static String getURI() {return NS; }
     
     /** <p>The namespace of the vocabalary as a resource</p> */
     public static final Resource NAMESPACE = m_model.createResource( NS );
     
-
+    /** A resource that denotes the OWL-full sublanguage of OWL (value &quot;{@value}&quot;) */
+    public static final Resource FULL_LANG = m_model.getResource( getURI() );
+    
+    /** A resource, not officially sanctioned by WebOnt, that denotes the OWL-DL sublanguage of OWL (value &quot;{@value}&quot; )*/
+    public static final Resource DL_LANG = m_model.getResource( "http://www.w3.org/TR/owl-features/#term_OWLDL" );
+    
+    /** A resource, not officially sanctioned by WebOnt, that denotes the OWL-Lite sublanguage of OWL (value &quot;{@value}&quot; )*/
+    public static final Resource LITE_LANG = m_model.getResource( "http://www.w3.org/TR/owl-features/#term_OWLLite" );
+    
+    
     // Vocabulary properties
     ///////////////////////////
 
