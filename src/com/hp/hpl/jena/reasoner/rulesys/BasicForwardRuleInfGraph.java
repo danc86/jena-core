@@ -198,6 +198,13 @@ public class BasicForwardRuleInfGraph extends BaseInfGraph implements ForwardRul
             return false;
         }
     }
+    
+    /**
+     * Add a new deduction to the deductions graph.
+     */
+    public void addDeduction(Triple t) {
+        getDeductionsGraph().add(t);
+    }
    
     /**
      * Extended find interface used in situations where the implementator

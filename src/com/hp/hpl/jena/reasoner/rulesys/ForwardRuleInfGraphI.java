@@ -40,6 +40,11 @@ public interface ForwardRuleInfGraphI extends InfGraph, SilentAddI {
     public Graph getDeductionsGraph();
     
     /**
+     * Add a new deduction to the deductions graph.
+     */
+    public void addDeduction(Triple t);
+    
+    /**
      * Search the combination of data and deductions graphs for the given triple pattern.
      * This may different from the normal find operation in the base of hybrid reasoners
      * where we are side-stepping the backward deduction step.

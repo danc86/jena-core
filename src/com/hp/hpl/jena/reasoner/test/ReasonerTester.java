@@ -244,7 +244,7 @@ public class ReasonerTester {
             for (Iterator i = correctG.find(null, null, null); i.hasNext(); ) {
                 Triple t = (Triple) i.next();
                 if (!resultG.contains(t)) {
-                    System.out.println("  - " + t);
+                    System.out.println("  " + t);
                 }
             }
             System.out.println("Extra triples:");
@@ -256,6 +256,7 @@ public class ReasonerTester {
             }
             
         }
+        ((FBRuleInfGraph)graph).debugListDataFind();
         */
         // ... end of debugging hack
         if (testcase != null) {

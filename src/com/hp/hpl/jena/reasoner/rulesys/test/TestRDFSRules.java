@@ -49,7 +49,7 @@ public class TestRDFSRules extends TestCase {
     public static TestSuite suite() {
         return new TestSuite(TestRDFSRules.class);
 //        TestSuite suite = new TestSuite();
-//        suite.addTest(new TestRDFSRules( "testRDFSExptReasoner" ));
+//        suite.addTest(new TestRDFSRules( "hiddenTestRDFSReasonerDebug" ));
 //        return suite;
     }  
 
@@ -62,15 +62,15 @@ public class TestRDFSRules extends TestCase {
         assertTrue("RDFS forward reasoner tests", tester.runTests(rf, this, null));
     }
 
-//    /**
-//     * Test a single RDFS case.
-//     */
-//    public void testRDFSReasonerDebug() throws IOException {
-//        ReasonerTester tester = new ReasonerTester("rdfs/manifest-nodirect-noresource.rdf");
-//        ReasonerFactory rf = RDFSFBRuleReasonerFactory.theInstance();
-//        
-//        assertTrue("RDFS forward reasoner test", tester.runTest("http://www.hpl.hp.com/semweb/2003/query_tester/rdfs/test6", rf, this, null));
-//    }
+    /**
+     * Test a single RDFS case.
+     */
+    public void hiddenTestRDFSReasonerDebug() throws IOException {
+        ReasonerTester tester = new ReasonerTester("rdfs/manifest-nodirect-noresource.rdf");
+        ReasonerFactory rf = RDFSExptRuleReasonerFactory.theInstance();
+        
+        assertTrue("RDFS hybrid-tgc reasoner test", tester.runTest("http://www.hpl.hp.com/semweb/2003/query_tester/rdfs/test11", rf, this, null));
+    }
 
     /**
      * Test the basic functioning of the hybrid RDFS rule reasoner

@@ -75,12 +75,27 @@ public class TransitiveGraphCache implements Finder {
      * Register a new relation instance in the cache
      */
     public void addRelation(Node start, Node end) {
+        clearClosureCache();
+        getGraphNode(start).addDirectLink(getGraphNode(end));
+    }
+    
+    /**
+     * Remove an instance of a relation from the cache.
+     */
+    public void removeRelation(Node start, Node end) {
+        clearClosureCache();
+        getGraphNode(start).removeLink(getGraphNode(end));
+    }
+    
+    /**
+     * Clear the closure cache, if any.
+     */
+    private void clearClosureCache() {
         if (cacheOn) {
             // blow away the cache, don't try to do incremental updates
             if (cacheClosureBackward.size() > 0) cacheClosureBackward = new HashMap();
             if (cacheClosureForward.size() > 0) cacheClosureForward = new HashMap();
         }
-        getGraphNode(start).addDirectLink(getGraphNode(end));
     }
     
     /**
@@ -394,6 +409,12 @@ public class TransitiveGraphCache implements Finder {
                 successors.add(n);
                 n.predecessors.add(this);
             }
+        }
+        
+        /** Remove a link, if any, from this node to the given graph node */
+        void removeLink(GraphNode n) {
+            successors.remove(n);
+            n.predecessors.remove(this);
         }
                
         /** Add a new forward link retaining only direct links */

@@ -137,13 +137,12 @@ public class BFRuleContext implements RuleContext {
     /**
      * Take all the pending triples and add them to both the given graph and
      * to the processing stack.
-     * @param deductions the graph to which the pending triples should be added
      */
-    public void flushPending(Graph deductions) {
+    public void flushPending() {
         for (Iterator i = pending.iterator(); i.hasNext(); ) {
             Triple t = (Triple)i.next();
             stack.add(t);
-            deductions.add(t);
+            graph.addDeduction(t);
             i.remove();
             // pendingCache.delete(t);
         }

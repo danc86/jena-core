@@ -273,7 +273,7 @@ public class RETEEngine implements FRuleEngineI {
         if (deletesPending.size() > 0) deletesPending.remove(triple);
         addsPending.add(triple);
         if (deduction) {
-            infGraph.getDeductionsGraph().add(triple);
+            infGraph.addDeduction(triple);
         }
     }
 

@@ -244,6 +244,7 @@ public class DebugOWL {
      */
     public void run() {
         run(3,5,10);
+        run(3,5,10);
         run(4,5,10);
         run(5,5,10);
         run(3,5,30);

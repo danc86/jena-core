@@ -40,7 +40,7 @@ public class GenericRuleReasoner extends FBRuleReasoner {
     /** Flag, if true we cache the closure of the pure rule set with its axioms */
     protected static final boolean cachePreload = true;
     
-    /** Flag, if true then subClass and subProperty lattices will be optimized using TGCs */
+    /** Flag, if true then subClass and subProperty lattices will be optimized using TGCs, only applicable to HYBRID reasoners */
     protected boolean enableTGCCaching = false;
     
     /** Flag, if true then rules will be augmented by OWL translations of the schema */

@@ -334,7 +334,7 @@ public class FRuleEngine implements FRuleEngineI {
         if (matched) {
             // We have new deductions stashed which now want to be
             // asserted as deductions and then added to processing stack
-            context.flushPending(infGraph.getDeductionsGraph());
+            context.flushPending();
         }
         return matched;
     }

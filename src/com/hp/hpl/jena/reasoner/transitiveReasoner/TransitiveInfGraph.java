@@ -175,7 +175,7 @@ public class TransitiveInfGraph extends BaseInfGraph {
      * SIZE.
      */
     public int capabilities() {
-        return ADD | SIZE;
+        return ADD | SIZE | DELETE;
     }
     
     /** 
@@ -183,7 +183,17 @@ public class TransitiveInfGraph extends BaseInfGraph {
      * TODO: This will not work on subClass/subPropertOf yet. 
      */   
     public void delete(Triple t) {
-        if (!isPrepared) prepare();
+        if (isPrepared) {
+            Node predicate = t.getPredicate();
+            if (specialPredicates.contains(predicate)) {
+                if (predicate.equals(TransitiveReasoner.directSubClassOf)  
+                || predicate.equals(TransitiveReasoner.subClassOf)) {
+                    subClassCache.removeRelation(t.getSubject(), t.getObject());
+                } else {
+                    subPropertyCache.removeRelation(t.getSubject(), t.getObject());
+                }
+            }
+        }
         fdata.getGraph().delete(t);
     }
 

@@ -131,6 +131,71 @@ public class TestReasoners extends TestCase {
     }
     
     /**
+     * Test delete operation for Transtive reasoner.
+     */
+    public void testTransitiveRemove() {
+        Graph data = new GraphMem();
+        Node a = Node.createURI("a");
+        Node b = Node.createURI("b");
+        Node c = Node.createURI("c");
+        Node d = Node.createURI("d");
+        Node e = Node.createURI("e");
+        Node closedP = RDFS.subClassOf.asNode();
+        data.add( new Triple(a, RDFS.subClassOf.asNode(), b) );
+        data.add( new Triple(a, RDFS.subClassOf.asNode(), c) );
+        data.add( new Triple(b, RDFS.subClassOf.asNode(), d) );
+        data.add( new Triple(c, RDFS.subClassOf.asNode(), d) );
+        data.add( new Triple(d, RDFS.subClassOf.asNode(), e) );
+        Reasoner reasoner = TransitiveReasonerFactory.theInstance().create(null);
+        InfGraph infgraph = reasoner.bind(data);
+        TestUtil.assertIteratorValues(this, infgraph.find(a, RDFS.subClassOf.asNode(), null),
+            new Object[] {
+                new Triple(a, closedP, a),
+                new Triple(a, closedP, b),
+                new Triple(a, closedP, b),
+                new Triple(a, closedP, c),
+                new Triple(a, closedP, d),
+                new Triple(a, closedP, e)
+            });
+        TestUtil.assertIteratorValues(this, infgraph.find(b, RDFS.subClassOf.asNode(), null),
+            new Object[] {
+                new Triple(b, closedP, b),
+                new Triple(b, closedP, d),
+                new Triple(b, closedP, e)
+            });
+        infgraph.delete(new Triple(b, closedP, d));
+        TestUtil.assertIteratorValues(this, infgraph.find(a, RDFS.subClassOf.asNode(), null),
+            new Object[] {
+                new Triple(a, closedP, a),
+                new Triple(a, closedP, b),
+                new Triple(a, closedP, b),
+                new Triple(a, closedP, c),
+                new Triple(a, closedP, d),
+                new Triple(a, closedP, e)
+            });
+        TestUtil.assertIteratorValues(this, infgraph.find(b, RDFS.subClassOf.asNode(), null),
+            new Object[] {
+                new Triple(b, closedP, b),
+            });
+        infgraph.delete(new Triple(a, closedP, c));
+        TestUtil.assertIteratorValues(this, infgraph.find(a, RDFS.subClassOf.asNode(), null),
+            new Object[] {
+                new Triple(a, closedP, a),
+                new Triple(a, closedP, b)
+            });
+        TestUtil.assertIteratorValues(this, infgraph.find(b, RDFS.subClassOf.asNode(), null),
+            new Object[] {
+                new Triple(b, closedP, b)
+            });
+        TestUtil.assertIteratorValues(this, data.find(null, RDFS.subClassOf.asNode(), null),
+            new Object[] {
+                new Triple(a, closedP, b),
+                new Triple(c, closedP, d),
+                new Triple(d, closedP, e)
+            });
+    }
+    
+    /**
      * Test the basic functioning of an RDFS reasoner
      */
     // /*
