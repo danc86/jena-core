@@ -14,7 +14,6 @@ import com.hp.hpl.jena.shared.*;
 import com.hp.hpl.jena.datatypes.*;
 import com.hp.hpl.jena.vocabulary.*;
 
-import java.util.*;
 import junit.framework.*;
 
 /**

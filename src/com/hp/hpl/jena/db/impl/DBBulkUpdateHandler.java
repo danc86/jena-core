@@ -21,15 +21,18 @@ import com.hp.hpl.jena.db.*;
 
 public class DBBulkUpdateHandler implements BulkUpdateHandler {
 	private GraphRDB graph;
-
+    private GraphEventManager manager;
+    
 	protected static int CHUNK_SIZE = 50;
 
 	public DBBulkUpdateHandler(GraphRDB graph) {
 		this.graph = graph;
+        this.manager = graph.getEventManager();
 	}
 
 	public void add(Triple[] triples) {
 		add(Arrays.asList(triples));
+        manager.notifyAdd( triples );
 	}
 
 	public void add(List triples) {
@@ -55,6 +58,7 @@ public class DBBulkUpdateHandler implements BulkUpdateHandler {
 
 	public void delete(Triple[] triples) {
 		delete(Arrays.asList(triples));
+        manager.notifyDelete( triples );
 	}
 
 	public void delete(List triples) {
