@@ -7,14 +7,11 @@
 package com.hp.hpl.jena.graph.query;
 
 import com.hp.hpl.jena.graph.*;
-import com.hp.hpl.jena.graph.test.*;
 import com.hp.hpl.jena.mem.*;
-
+import com.hp.hpl.jena.util.iterator.*;
 import com.hp.hpl.jena.shared.*;
 
 import java.util.*;
-
-import com.hp.hpl.jena.util.iterator.*;
 
 /**
 	The class of graph queries, plus some machinery (which should move) for
@@ -63,7 +60,7 @@ public class Query
     /**
         The built-in constraint operator not-equals.
     */
-    public static final Node NE = GraphTestBase.node( "&ne" );
+    public static final Node NE = Node.create( "&ne" );
         
     /**
         Initialiser for Query; makes an empty Query [no matches, no constraints]
