@@ -131,7 +131,7 @@ public interface Model
 
 	/** 
         Return a Property instance with the given URI in this model. <i>This method
-        behaves identically to <code>createProperty(String,String)</code><i> and exists as
+        behaves identically to <code>createProperty(String,String)</code></i> and exists as
         legacy: createProperty is now capable of, and allowed to, reuse existing objects.
     <p>
         Subsequent operations on the returned property may modify this model.
