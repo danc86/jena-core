@@ -232,7 +232,7 @@
 	-> (?E owl:equivalentClass ?C)]
 	
 [cardRec3: (?C owl:equivalentClass card(?P, '0')) ->
-	[cardRec2b: (?X rdf:type ?C) <- (?X rdf:type max(P, '0'))] ]
+	[cardRec2b: (?X rdf:type ?C) <- (?X rdf:type max(?P, '0'))] ]
 
 #------------------------------------------------------------------
 # cardinality 1
