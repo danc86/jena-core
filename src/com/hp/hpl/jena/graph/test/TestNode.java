@@ -297,6 +297,35 @@ public class TestNode extends GraphTestBase
         assertEquals( null, n.getLiteral().getDatatypeURI() );
         }
     
+    public void testCreateLiteralBackslashEscape()
+        {
+        testStringConversion( "xx\\x", "'xx\\\\x'" );
+        testStringConversion( "xx\\x\\y", "'xx\\\\x\\\\y'" );
+        testStringConversion( "\\xyz\\", "'\\\\xyz\\\\'" );
+        }
+    
+    public void testCreateLiteralQuoteEscapes()
+        {
+        testStringConversion( "x\'y", "'x\\'y'" );
+        testStringConversion( "x\"y", "'x\\\"y'" );
+        testStringConversion( "x\'y\"z", "'x\\\'y\\\"z'" );
+        }
+    
+    public void testCreateLiteralOtherEscapes()
+        {
+        testStringConversion( " ", "'\\s'" );
+        testStringConversion( "\t", "'\\t'" );
+        testStringConversion( "\n", "'\\n'" );
+        }
+    
+    protected void testStringConversion( String wanted, String template )
+        {
+        Node n = Node.create( template );
+        assertEquals( wanted, n.getLiteral().getLexicalForm() );
+        assertEquals( "", n.getLiteral().language() );
+        assertEquals( null, n.getLiteral().getDatatypeURI() );
+        }
+
     public void testCreateLanguagedLiteralEN()
         {
         Node n = Node.create( "'chat'en-UK" );
