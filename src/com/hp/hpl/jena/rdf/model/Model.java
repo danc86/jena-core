@@ -88,18 +88,16 @@ public interface Model
     */
     boolean isEmpty();
     
-	// @deprecated Too difficult to implement scalably.
 	/** List all resources which are subjects of statements.
 	 *
 	 * <p>Subsequent operations on those resource may modify this model.</p>
 	 
 	 * @return an iterator over a set of resources which are subjects of statements
-	 *         in the model.
+	 *         in the model. .remove() is not implemented on this iterator.
 	 * 
 	 */
 	ResIterator listSubjects() ;
 
-	//* @deprecated Too difficult to implement scalably.
 	/** 
         List the namespaces used by predicates and types in the model. This method is
         really intended for use by the RDF/XML writer, which needs to know these
@@ -583,14 +581,16 @@ public interface Model
     */
     Statement getProperty( Resource s, Property p );
 
-	/** List all subjects with a given property.
+	/** List all subjects with a given property. .remove() is not implemented on
+     *  this iterator.
 	 * @return an iterator over the subjects
 	 * @param p the property sought.
 	 
 	 */
 	ResIterator listSubjectsWithProperty(Property p) ;
 
-	/** List all subjects with a given property and property value
+	/** List all subjects with a given property and property value.  .remove() is not
+     *  implemented on this iterator.
 	 * @return an iterator over the subjects
 	 * @param p The predicate sought
 	 * @param o The value sought
@@ -599,18 +599,18 @@ public interface Model
 		;
 
 	/** List all objects in a model.
-	 * @return an iterator over the objects
+	 * @return an iterator over the objects.  .remove() is not implemented on this iterator.
 	 */
 	NodeIterator listObjects() ;
 
-	/** List all objects of a given property.
+	/** List all objects of a given property.  .remove() is not implemented on this iterator.
 	 * @return an iterator over the objects
 	 * @param p The predicate sought
 	 */
 	NodeIterator listObjectsOfProperty(Property p) ;
 
 	/** List the values of a property of a resource.
-	 * @return an iterator over the objects
+	 * @return an iterator over the objects.  .remove() is not implemented on this iterator.
 	 * @param p The predicate sought
 	 */
 	NodeIterator listObjectsOfProperty(Resource s, Property p);

@@ -1,5 +1,5 @@
 /*
-  (c) Copyright 2002, Hewlett-Packard Development Company, LP
+  (c) Copyright 2002, 2004, Hewlett-Packard Development Company, LP
   [See end of file]
   $Id$
 */
@@ -36,10 +36,21 @@ public class TestWrappedIterator extends GraphTestBase
         assertEquals( "", "ben", e.next() );
         assertFalse( "wrapper is now empty", e.hasNext() );
         }
+    
+    public void testWrappedNoRemove()
+        {
+        Iterator base = nodeSet( "a b c" ).iterator();
+        base.next();
+        base.remove();
+        ExtendedIterator wrapped = WrappedIterator.createNoRemove( base );
+        wrapped.next();
+        try { wrapped.remove(); fail( "wrapped-no-remove iterator should deny .remove()" ); }
+        catch (UnsupportedOperationException e) { pass(); }
+        }
     }
 
 /*
-    (c) Copyright 2002 Hewlett-Packard Development Company, LP
+    (c) Copyright 2002, 2004 Hewlett-Packard Development Company, LP
     All rights reserved.
 
     Redistribution and use in source and binary forms, with or without

@@ -46,7 +46,7 @@ public class UniqueExtendedIterator extends WrappedIterator {
      * iterator exactly once.  If <code>it</code> is already a unique
      * extended iteator, it is not further wrapped.
      */
-    public static WrappedIterator create( Iterator it ) {
+    public static ExtendedIterator create( Iterator it ) {
         return (it instanceof UniqueExtendedIterator) ? 
                     ((UniqueExtendedIterator) it) : new UniqueExtendedIterator( it );
     }

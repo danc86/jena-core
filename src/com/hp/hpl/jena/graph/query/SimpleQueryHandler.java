@@ -51,7 +51,7 @@ public class SimpleQueryHandler implements QueryHandler
         Set objects = CollectionFactory.createHashedSet();
         ClosableIterator it = g.find( s, p, Node.ANY );
         while (it.hasNext()) objects.add( ((Triple) it.next()).getObject() );
-        return WrappedIterator.create( objects.iterator() );
+        return WrappedIterator.createNoRemove( objects.iterator() );
         }
         
     public static ExtendedIterator subjectsFor( Graph g, Node p, Node o )
@@ -59,7 +59,7 @@ public class SimpleQueryHandler implements QueryHandler
         Set objects = CollectionFactory.createHashedSet();
         ClosableIterator it = g.find( Node.ANY, p, o );
         while (it.hasNext()) objects.add( ((Triple) it.next()).getSubject() );
-        return WrappedIterator.create( objects.iterator() );
+        return WrappedIterator.createNoRemove( objects.iterator() );
         }
     
     public static ExtendedIterator predicatesFor( Graph g, Node s, Node o )
@@ -67,7 +67,7 @@ public class SimpleQueryHandler implements QueryHandler
         Set predicates = CollectionFactory.createHashedSet();
         ClosableIterator it = g.find( s, Node.ANY, o );
         while (it.hasNext()) predicates.add( ((Triple) it.next()).getPredicate() );
-        return WrappedIterator.create( predicates.iterator() );
+        return WrappedIterator.createNoRemove( predicates.iterator() );
         }
         
     /**

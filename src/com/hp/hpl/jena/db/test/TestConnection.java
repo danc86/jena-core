@@ -575,7 +575,7 @@ public class TestConnection extends TestCase {
     
 	syncOnCount s;
 
-    public void SUPPRESSEDtestConcurrentThread() {
+    public void testConcurrentThread() {
 		class thread1 extends Thread {
 			syncOnCount s;
 

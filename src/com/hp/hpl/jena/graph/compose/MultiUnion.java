@@ -25,7 +25,7 @@ package com.hp.hpl.jena.graph.compose;
 // Imports
 ///////////////
 import com.hp.hpl.jena.graph.*;
-import com.hp.hpl.jena.mem.TrackingTripleIterator;
+import com.hp.hpl.jena.graph.impl.SimpleEventManager;
 import com.hp.hpl.jena.shared.JenaException;
 import com.hp.hpl.jena.util.CollectionFactory;
 import com.hp.hpl.jena.util.iterator.*;
@@ -183,26 +183,8 @@ public class MultiUnion
         }
         
         // ensure that .remove notifies this graph's event manager
-        return notifyingRemove( MultiUnion.this, i );
+        return SimpleEventManager.notifyingRemove( MultiUnion.this, i );
     }
-
-
-    /**
-     * Answer an iterator which wraps <code>i</code> to ensure that if a .remove()
-     * is executed on it, the graph <code>g</code> will be notified.
-    */
-    public static ExtendedIterator notifyingRemove( final Graph g, ExtendedIterator i )
-        {
-        return new TrackingTripleIterator( i )
-            {            
-            protected final GraphEventManager gem = g.getEventManager();
-            public void remove()
-                {
-                super.remove();
-                gem.notifyDeleteTriple( g, current );
-                }
-            };
-        }
 
 
     /**

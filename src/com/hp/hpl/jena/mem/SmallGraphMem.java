@@ -8,6 +8,7 @@ package com.hp.hpl.jena.mem;
 import java.util.Set;
 
 import com.hp.hpl.jena.graph.*;
+import com.hp.hpl.jena.graph.impl.SimpleEventManager;
 import com.hp.hpl.jena.shared.ReificationStyle;
 import com.hp.hpl.jena.util.CollectionFactory;
 import com.hp.hpl.jena.util.iterator.ExtendedIterator;
@@ -65,17 +66,9 @@ public class SmallGraphMem extends GraphMemBase
     
     public ExtendedIterator graphBaseFind( TripleMatch m ) 
         {
-        return new TrackingTripleIterator( triples.iterator() ) 
-            {
-            final Graph parent = SmallGraphMem.this;
-            final GraphEventManager man = parent.getEventManager();
-            
-            public void remove() 
-                {
-                super.remove();
-                man.notifyDeleteTriple( parent, current );
-                }
-            } .filterKeep ( new TripleMatchFilter( m.asTriple() ) );
+        return 
+            SimpleEventManager.notifyingRemove( this, triples.iterator() ) 
+            .filterKeep ( new TripleMatchFilter( m.asTriple() ) );
         }
     }
 

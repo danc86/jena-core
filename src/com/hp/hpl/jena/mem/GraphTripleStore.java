@@ -76,13 +76,13 @@ public class GraphTripleStore implements TripleStore
         { return subjects.isEmpty(); }
     
     public ExtendedIterator listSubjects()
-        { return WrappedIterator.create( subjects.domain() ); }
+        { return WrappedIterator.createNoRemove( subjects.domain() ); }
 
     public ExtendedIterator listPredicates()
-        { return WrappedIterator.create( predicates.domain() ); }
+        { return WrappedIterator.createNoRemove( predicates.domain() ); }
     
     public ExtendedIterator listObjects()
-        { return WrappedIterator.create( objects.domain() ); }
+        { return WrappedIterator.createNoRemove( objects.domain() ); }
     
     /**
          Answer true iff this triple store contains the (concrete) triple <code>t</code>.
