@@ -102,7 +102,7 @@ public class QueryResultsMem implements QueryResultsRewindable
     /** Read in a result set encoded in RDF according to
      * <code>http://jena.hpl.hp.com/2003/03/result-set#</code>
      *
-     * @param model
+     * @param urlStr  URL string
      */
 
     public QueryResultsMem(String urlStr)

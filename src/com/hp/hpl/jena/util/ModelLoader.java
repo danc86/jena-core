@@ -142,10 +142,10 @@ public class ModelLoader
     }
 
     /** Load a model from a file into a model.
-     * @param model
-     * @param uriStr
-     * @param lang  Null mean guess based on the URI String
-     * @return Resturns the model passed in.
+     * @param model   Model to read into
+     * @param urlStr  URL (or filename) to read from
+     * @param lang    Null mean guess based on the URI String
+     * @return Returns the model passed in.
      * @throws java.io.FileNotFoundException
      */
 

@@ -65,8 +65,8 @@ public class Query
      *  After it has been created, an application should set the data source, then
      *  call the QueryEngine.
      *
-     * @param String The query string
-     * @throws QueryException Thrown when a parse error occurs
+     * @param s                The query string
+     * @throws QueryException  Thrown when a parse error occurs
      */
 
     public Query(String s)
@@ -146,7 +146,7 @@ public class Query
      *  The remote data is loaded into the local application.
      *
      *  @param     queryString      The query: the FROM clause will be overridden
-     *  @param     datatURL         The remote data source
+     *  @param     dataURL         The remote data source
      *  @throws    QueryException   Runtime exception
      */
     public static QueryResults exec(String queryString, String dataURL)

@@ -264,25 +264,25 @@ public class QueryResultsFormatter
     /** Textual representation : default layout using " | " to separate columns
      *  @param printwriter Output
      */
-    public void printAll(PrintWriter pw) { printAll(pw, " | ", null) ; }
+    public void printAll(PrintWriter printwriter) { printAll(printwriter, " | ", null) ; }
     
     /** Textual representation : layout using given separator
-     *  @param PrintWriter Output
-     *  @param String      Column separator
+     *  @param printwriter Output
+     *  @param colSep      Column separator
      */
-    public void printAll(PrintWriter pw, String colSep) { printAll(pw, colSep, null) ; }
+    public void printAll(PrintWriter printwriter, String colSep) { printAll(printwriter, colSep, null) ; }
     
     /** Textual representation : layout using given separator
-     *  @param PrintWriter Output
-     *  @param String      Column separator
-     *  @param String      String to add to end of lines
+     *  @param printwriter Output
+     *  @param colSep      Column separator
+     *  @param lineEnd     String to add to end of lines
      */
-    public void printAll(PrintWriter pw, String colSep, String lineEnd)
+    public void printAll(PrintWriter printwriter, String colSep, String lineEnd)
     {
         if ( queryResults.getResultVars().size() == 0 )
         {
-            pw.println("==== No variables ====") ;
-            pw.flush() ;
+            printwriter.println("==== No variables ====") ;
+            printwriter.flush() ;
             return ;
         }
 
@@ -302,11 +302,11 @@ public class QueryResultsFormatter
             if ( col > 0 )
                 lineWidth += colSep.length() ;
         }
-        printRow(pw, row, colSep, lineEnd) ;
+        printRow(printwriter, row, colSep, lineEnd) ;
 
         for ( int i = 0 ; i < lineWidth ; i++ )
-            pw.print('=') ;
-        pw.println() ;
+            printwriter.print('=') ;
+        printwriter.println() ;
 
         for ( Iterator tableIter = all ; tableIter.hasNext() ; )
         {
@@ -316,10 +316,10 @@ public class QueryResultsFormatter
                 String rVar = (String)queryResults.getResultVars().get(col) ;
                 row[col] = this.getVarAsString(env, rVar );
             }
-            printRow(pw, row, colSep, lineEnd) ;
+            printRow(printwriter, row, colSep, lineEnd) ;
         }
         all.reset() ;
-        pw.flush() ;
+        printwriter.flush() ;
     }
 
 
