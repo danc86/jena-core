@@ -201,7 +201,7 @@ public class TestDAMLProperty
                     iteratorTest( p.getSuperProperties( true ), new Object[] {q,r} );
                 }
             },
-            new OntTestCase( "DAMLClass.getSameProperties" ) {
+            new OntTestCase( "DAMLProperty.getSameProperties" ) {
                 public void doTest( DAMLModel m ) throws Exception {
                     DAMLProperty p = m.createDAMLProperty( NS + "p" );
                     DAMLProperty q = m.createDAMLProperty( NS + "q" );
@@ -216,6 +216,12 @@ public class TestDAMLProperty
                     p.prop_samePropertyAs().add( r );   // could be inferred
                     
                     iteratorTest( p.getSameProperties(), new Object[] {q,r} );
+                }
+            },
+            new OntTestCase( "Datatype property" ) {
+                public void doTest( DAMLModel m ) throws Exception {
+                    DAMLDatatypeProperty p = m.createDAMLDatatypeProperty( NS + "p" );
+                    assertNotNull( p );
                 }
             },
         };
