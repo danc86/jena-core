@@ -24,7 +24,9 @@ public interface ResultBinding
      */
     public ResultBindingIterator iterator();
 
-    /** Return the value of the named variable in this binding.  Object will ne an RDFNode. */
+    /** Return the value of the named variable in this binding.  Object will be
+        an RDFNode.
+     */
     public Object get(String varName);
 
     /** Iterator over the names in this binding */ 
