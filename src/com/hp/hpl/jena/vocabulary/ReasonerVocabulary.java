@@ -71,6 +71,10 @@ public class ReasonerVocabulary {
      *  Value should be "true" to enable OWL translation */
     public static Property PROPenableOWLTranslation;
     
+    /** Property used to switch on/off use of the dedicated subclass/subproperty
+     *  caching in a generic rule reasoner. Set to "true" to enable caching. */
+    public static Property PROPenableTGCCaching;
+    
     /** A namespace used for Rubric specific properties */
     public static final String RBNamespace = "urn:x-hp-jena:rubrik/";
             
@@ -104,6 +108,7 @@ public class ReasonerVocabulary {
             PROPruleMode = ResourceFactory.createProperty(PropURI+"#", "ruleMode");
             PROPruleSet = ResourceFactory.createProperty(PropURI+"#", "ruleSet");
             PROPenableOWLTranslation= ResourceFactory.createProperty(PropURI+"#", "enableOWLTranslation");
+            PROPenableOWLTranslation= ResourceFactory.createProperty(PropURI+"#", "enableTGCCaching");
         } catch (Exception e) {
             System.err.println("Initialization error: " + e);
             e.printStackTrace(System.err);
