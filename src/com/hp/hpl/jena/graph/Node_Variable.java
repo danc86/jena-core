@@ -27,9 +27,6 @@ public class Node_Variable extends Node_Fluid
     public boolean isVariable()
         { return true; }
         
-    public boolean isConcrete()
-        { return false; }
-
     public String toString()
         { return ((String) label); }
         
