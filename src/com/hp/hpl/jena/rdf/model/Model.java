@@ -396,90 +396,91 @@ public interface Model
 	public Model read(Reader reader, String base, String lang)
 		;
 	
-	/** Write the model as an XML document.
-	*It is often better to use an OutputStream rather than a Writer, since this
-	*will avoid character encoding errors.
-	 * 
-	 * 
-	 * @return this model
-	 * @param writer a writer to which the XML will be written
-	 
-	 */
-	public Model write(Writer writer) ;
+    // output operations
+    
+    /** 
+     * <p>Write the model as an XML document.
+     * It is often better to use an OutputStream rather than a Writer, since this
+     * will avoid character encoding errors.  
+     * </p>
+     * 
+     * @param writer A writer to which the XML will be written
+     * @return this model
+     */
+	public Model write( Writer writer ) ;
 	
-	/** Write a serialized represention of a model in a specified language.
-	 *It is often better to use an OutputStream rather than a Writer, since this
-	 *will avoid character encoding errors.
-	 * 
-	 * <p>The language in which to write the model is specified by the
-	 * <code>lang</code> argument.  Predefined values are "RDF/XML",
-	 * "RDF/XML-ABBREV", "N-TRIPLE" and "N3".  The default value is
-	 * represented by <code>null<code> is "RDF/XML".</p>
-	 * @param writer the output writer
-	 * @param lang the output langauge
-	 * @return this model
-	 */
-	public Model write(Writer writer, String lang) ;
-// @deprecated
+    /** 
+     * <p>Write a serialized represention of a model in a specified language.
+     * It is often better to use an OutputStream rather than a Writer, since this
+     * will avoid character encoding errors.
+     * </p>
+     * <p>The language in which to write the model is specified by the
+     * <code>lang</code> argument.  Predefined values are "RDF/XML",
+     * "RDF/XML-ABBREV", "N-TRIPLE" and "N3".  The default value,
+     * represented by <code>null</code> is "RDF/XML".</p>
+     * @param writer The output writer
+     * @param lang The output language
+     * @return this model
+     */
+	public Model write( Writer writer, String lang ) ;
 
-	/** Write a serialized represention of a model in a specified language.
-	 * It is often better to use an OutputStream rather than a Writer,
+    /** 
+     * <p>Write a serialized represention of a model in a specified language.
+     * It is often better to use an OutputStream rather than a Writer,
      * since this will avoid character encoding errors.
-	 * <p>The language in which to write the model is specified by the
-	 * <code>lang</code> argument.  Predefined values are "RDF/XML",
-	 * "RDF/XML-ABBREV", "N-TRIPLE" and "N3".  The default value is
-	 * represented by <code>null<code> is "RDF/XML".</p>
-	 * @param writer the output writer
-	 * @param base the base uri for relative URI calculations.
-	 * <code>null</code> means use only absolute URI's.
-	 * @param lang the language in which the RDF should be written
-	 
-	 * @return this model
-	 */
-	public Model write(Writer writer, String lang, String base)
-		;
+     * </p>
+     * <p>The language in which to write the model is specified by the
+     * <code>lang</code> argument.  Predefined values are "RDF/XML",
+     * "RDF/XML-ABBREV", "N-TRIPLE" and "N3".  The default value,
+     * represented by <code>null</code>, is "RDF/XML".</p>
+     * @param writer The output writer
+     * @param base The base uri for relative URI calculations.
+     * <code>null</code> means use only absolute URI's.
+     * @param lang The language in which the RDF should be written
+     * @return this model
+     */
+	public Model write( Writer writer, String lang, String base );
 	
 
-	/** Write the model as an XML document.
-	*
-	 * <p>The language in which to write the model is specified by the
-	 * <code>lang</code> argument.  Predefined values are "RDF/XML",
-	 * "RDF/XML-ABBREV", "N-TRIPLE" and "N3".  The default value is
-	 * represented by <code>null<code> is "RDF/XML".</p>
-	 *
-	 * @return this model
-	 * @param out to which the XML will be written
-	 
-	 */
+    /** 
+     * <p>Write a serialization of this model as an XML document.
+     * </p>
+     * <p>The language in which to write the model is specified by the
+     * <code>lang</code> argument.  Predefined values are "RDF/XML",
+     * "RDF/XML-ABBREV", "N-TRIPLE" and "N3".  The default value is
+     * represented by <code>null</code> is "RDF/XML".</p>
+     * @param out The output stream to which the XML will be written
+     * @return This model
+     */
 	public Model write(OutputStream out) ;
 
-	/** write a serialized represention of a model in a specified language.
-	 *
-	 * <p>The language in which to write the model is specified by the
-	 * <code>lang</code> argument.  Predefined values are "RDF/XML",
-	 * "RDF/XML-ABBREV", "N-TRIPLE" and "N3".  The default value is
-	 * represented by <code>null<code> is "RDF/XML".</p>
-	 * @param out where the RDF is written
-	 * @param lang the output langauge
-	 * @return this model
-	 */
-	public Model write(OutputStream out, String lang) ;
+    /** 
+     * <p>Write a serialized represention of this model in a specified language.
+     * </p>
+     * <p>The language in which to write the model is specified by the
+     * <code>lang</code> argument.  Predefined values are "RDF/XML",
+     * "RDF/XML-ABBREV", "N-TRIPLE" and "N3".  The default value,
+     * represented by <code>null</code>, is "RDF/XML".</p>
+     * @param out The output stream to which the RDF is written
+     * @param lang The output langauge
+     * @return This model
+     */
+	public Model write( OutputStream out, String lang ) ;
 
-	/** write a serialized represention of a model in a specified language.
-	 *
-	 * <p>The language in which to write the model is specified by the
-	 * <code>lang</code> argument.  Predefined values are "RDF/XML",
-	 * "RDF/XML-ABBREV", "N-TRIPLE" and "N3".  The default value is
-	 * represented by <code>null<code> is "RDF/XML".</p>
-	 * @param out where the RDF is written
-	 * @param base The base uri for relative URI calculations. <code>null</code>
-	 * means use only absolute URI's.
-	 * @param lang the language in which the RDF should be written
-	 
-	 * @return this model
-	 */
-	public Model write(OutputStream out, String lang, String base)
-		;
+    /** 
+     * <p>Write a serialized represention of a model in a specified language.
+     * </p>
+     * <p>The language in which to write the model is specified by the
+     * <code>lang</code> argument.  Predefined values are "RDF/XML",
+     * "RDF/XML-ABBREV", "N-TRIPLE" and "N3".  The default value,
+     * represented by <code>null</code>, is "RDF/XML".</p>
+     * @param out The output stream to which the RDF is written
+     * @param base The base uri to use when writing relative URI's. <code>null</code>
+     * means use only absolute URI's.
+     * @param lang The language in which the RDF should be written
+     * @return This model
+     */
+	public Model write( OutputStream out, String lang, String base );
 
 	/** Removes a statement.
 	 *
