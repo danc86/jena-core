@@ -92,6 +92,13 @@ public class BasicBackwardRuleInfGraph extends BaseInfGraph implements BackwardR
         // Set up the backchaining engine
         engine = new BRuleEngine(this, ruleStore);
     }    
+
+    /**
+     * Return the schema graph, if any, bound into this inference graph.
+     */
+    public Graph getSchemaGraph() {
+        return fschema.getGraph();
+    }
     
     /**
      * Perform any initial processing and caching. This call is optional. Most

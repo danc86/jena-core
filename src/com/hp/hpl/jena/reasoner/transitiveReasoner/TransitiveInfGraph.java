@@ -37,6 +37,9 @@ public class TransitiveInfGraph extends BaseInfGraph {
     /** The graph registered as the schema, if any */
     protected Finder tbox = null;
     
+    /** The combined data and schema finder */
+    protected Finder dataFind;
+    
     /**
      * Constructor. Called by the TransitiveReasoner when it
      * is bound to a data graph.
@@ -63,10 +66,22 @@ public class TransitiveInfGraph extends BaseInfGraph {
                                                  ((TransitiveReasoner)reasoner).getSubPropertyCache());
 
         // But need to check if the data graph defines schema data as well
-        tbox = transitiveEngine.insert(tbox, fdata);
+        dataFind = transitiveEngine.insert(tbox, fdata);
         transitiveEngine.setCaching(true, true);
         
         isPrepared = true;
+    }
+
+    /**
+     * Return the schema graph, if any, bound into this inference graph.
+     */
+    public Graph getSchemaGraph() {
+        if (tbox == null) return null;
+        if (tbox instanceof FGraph) {
+            return ((FGraph)tbox).getGraph();
+        } else {
+            throw new ReasonerException("Transitive reasoner got into an illegal state");
+        }
     }
     
     /**

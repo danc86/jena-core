@@ -149,10 +149,7 @@ public class RDFSInfGraph extends BaseInfGraph {
 
     /**
      * Constructor
-     * @param tbox the vocabularly data being reasoned over
      * @param data the raw data graph being bound to the reasoner
-     * @param sPropertyCache a cache of subPropertyOf relations from the box
-     * @param sClassCache a cache of subClassOf relations from the tbox
      * @param reasoner the RDFSReasoner which spawned this InfGraph
      */
     public RDFSInfGraph( RDFSReasoner reasoner, Graph data) {
@@ -197,6 +194,18 @@ public class RDFSInfGraph extends BaseInfGraph {
 
 //=======================================================================
 // methods
+
+   /**
+    * Return the schema graph, if any, bound into this inference graph.
+    */
+   public Graph getSchemaGraph() {
+       if (tbox == null) return null;
+       if (tbox instanceof FGraph) {
+           return ((FGraph)tbox).getGraph();
+       } else {
+           throw new ReasonerException("RDFS1 reasoner got into an illegal state");
+       }
+   }
     
    /**
     * Perform any initial processing and caching. This call is optional. Most

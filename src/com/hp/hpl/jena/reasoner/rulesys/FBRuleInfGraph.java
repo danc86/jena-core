@@ -14,6 +14,7 @@ import com.hp.hpl.jena.reasoner.rulesys.impl.*;
 import com.hp.hpl.jena.reasoner.transitiveReasoner.*;
 import com.hp.hpl.jena.reasoner.*;
 import com.hp.hpl.jena.graph.*;
+
 import java.util.*;
 
 //import com.hp.hpl.jena.util.PrintUtil;
@@ -533,6 +534,27 @@ public class FBRuleInfGraph  extends BasicForwardRuleInfGraph implements Backwar
             engine.delete(t);
         }
         bEngine.reset();
+    }
+    
+    /**
+     * Return a new inference graph which is a clone of the current graph
+     * together with an additional set of data premises. Attempts to the replace
+     * the default brute force implementation by one that can reuse some of the
+     * existing deductions.
+     */
+    public InfGraph cloneWithPremises(Graph premises) {
+        prepare();
+        FBRuleInfGraph graph = new FBRuleInfGraph(getReasoner(), rawRules, this);
+        if (useTGCCaching) graph.setUseTGCCache();
+        graph.setDerivationLogging(recordDerivations);
+        graph.setTraceOn(traceOn);
+        // Implementation note:  whilst current tests pass its not clear that 
+        // the nested passing of FBRuleInfGraph's will correctly handle all
+        // cases of indirectly bound schema data. If we do uncover a problem here
+        // then either include the raw schema in a Union with the premises or
+        // revert of a more brute force version. 
+        graph.rebind(premises);
+        return graph;
     }
 
 //  =======================================================================

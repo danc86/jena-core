@@ -152,7 +152,14 @@ public class BasicForwardRuleInfGraph extends BaseInfGraph implements ForwardRul
     public void rebind() {
         isPrepared = false;
     }
-    
+
+    /**
+     * Return the schema graph, if any, bound into this inference graph.
+     */
+    public Graph getSchemaGraph() {
+        return schemaGraph;
+    }
+        
     /**
      * Perform any initial processing and caching. This call is optional. Most
      * engines either have negligable set up work or will perform an implicit

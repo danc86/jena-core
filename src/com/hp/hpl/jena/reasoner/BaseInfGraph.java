@@ -10,6 +10,7 @@
 package com.hp.hpl.jena.reasoner;
 
 import com.hp.hpl.jena.graph.*;
+import com.hp.hpl.jena.graph.compose.Union;
 import com.hp.hpl.jena.graph.impl.*;
 import com.hp.hpl.jena.util.iterator.*;
 import java.util.Iterator;
@@ -160,7 +161,7 @@ public abstract class BaseInfGraph extends GraphBase implements InfGraph {
      * object nodes refer.
      */
     public ExtendedIterator find(Node subject, Node property, Node object, Graph param) {
-        return find(subject, property, object);
+        return cloneWithPremises(param).find(subject, property, object);
     }
     
     /** 
@@ -282,6 +283,21 @@ public abstract class BaseInfGraph extends GraphBase implements InfGraph {
         fdata.getGraph().delete(t);
     }
 
+    /**
+     * Return the schema graph, if any, bound into this inference graph.
+     */
+    public abstract Graph getSchemaGraph();
+    
+    /**
+     * Return a new inference graph which is a clone of the current graph
+     * together with an additional set of data premises. The default
+     * implementation loses ALL partial deductions so far. Some subclasses
+     * may be able to a more efficient job.
+     */
+    public InfGraph cloneWithPremises(Graph premises) {
+        return getReasoner().bindSchema(getSchemaGraph()).bind(new Union(getRawGraph(), premises));
+    }
+    
 }
 
 /*
