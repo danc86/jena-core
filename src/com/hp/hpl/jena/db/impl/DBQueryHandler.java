@@ -24,6 +24,7 @@ public class DBQueryHandler extends SimpleQueryHandler {
 	boolean queryOnlyStmt;  // if true, query only asserted stmt (ignore reification)
 	boolean queryOnlyReif;  // if true, query only reified stmt (ignore asserted)
 	boolean queryFullReif;  // if true, ignore partially reified statements
+	private boolean doFastpath;  // if true, enable fastpath optimization
 
 	/** make an instance, remember the graph */
 	public DBQueryHandler ( GraphRDB graph ) {
@@ -35,7 +36,11 @@ public class DBQueryHandler extends SimpleQueryHandler {
 			queryFullReif = queryOnlyReif = false;
 			queryOnlyStmt = true;
 		}
+		doFastpath = true;
 	}
+
+	public void setFastpath ( boolean val ) { doFastpath = val; }
+	public boolean getFastpath () { return doFastpath; }
 
 	public Stage patternStage(
 		Mapping varMap,
@@ -53,10 +58,11 @@ public class DBQueryHandler extends SimpleQueryHandler {
 		DBPattern src;
 		int reifBehavior = graph.reificationBehavior();
 		
-		if (patternsToDo == 1) {
-			// fastpath fastpath; assumes it's faster to do a find for single pattern queries
-			stages[stageCnt++] =
-				super.patternStage( varMap, constraints, new Triple[] { ptn[0] });
+		if ((patternsToDo == 1) || (doFastpath == false)) {
+			// fastpath fastpath; assumes it's faster to do a find for single pattern queries		
+			for(i=0;i<patternsToDo;i++)
+				stages[stageCnt++] =
+					super.patternStage( varMap, constraints, new Triple[] { ptn[i] });
 		} else {
 			for (i = 0; i < ptn.length; i++) {
 				pat = ptn[i];
