@@ -220,10 +220,10 @@ public class WebOntTestHarness {
         }
         WebOntTestHarness harness = new WebOntTestHarness();
 //        harness.runTests();
-//        harness.runTest("http://www.w3.org/2002/03owlt/I5.8/Manifest006#test");
-//        harness.runTest("http://www.w3.org/2002/03owlt/I5.8/Manifest008#test");
-//        harness.runTest("http://www.w3.org/2002/03owlt/I5.8/Manifest009#test");
-//        harness.runTest("http://www.w3.org/2002/03owlt/I5.3/Manifest015#test");
+        harness.runTest("http://www.w3.org/2002/03owlt/I5.8/Manifest006#test");
+        harness.runTest("http://www.w3.org/2002/03owlt/I5.8/Manifest008#test");
+        harness.runTest("http://www.w3.org/2002/03owlt/I5.8/Manifest009#test");
+        harness.runTest("http://www.w3.org/2002/03owlt/I5.3/Manifest015#test");
         RDFWriter writer = harness.testResults.getWriter("RDF/XML-ABBREV");
         OutputStream stream = new FileOutputStream(resultFile);
         writer.setProperty("showXmlDeclaration", "true");

@@ -46,7 +46,7 @@ public class LPInterpreter {
     protected Node[] argVars = new Node[RuleClauseCode.MAX_ARGUMENT_VARS];
         
     /** The set of "permanent" variables (Yi) in use by this interpreter */
-    protected Node[] pVars = new Node[RuleClauseCode.MAX_PERMANENT_VARS];
+    protected Node[] pVars = null;
 
     /** The current environment frame */
     protected EnvironmentFrame envFrame;
@@ -409,7 +409,8 @@ public class LPInterpreter {
                             break;
                             
                         case RuleClauseCode.ALLOCATE:
-                            envFrame.allocate(RuleClauseCode.MAX_PERMANENT_VARS);
+                            int envSize = code[pc++];
+                            envFrame.allocate(envSize);
                             pVars = envFrame.pVars;
                             break;
                             
