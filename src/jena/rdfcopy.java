@@ -118,16 +118,6 @@ public class rdfcopy extends java.lang.Object {
                 rdr.read(m, new FileInputStream(in), base) ;
             }
 			//rdr.read(m, in);
-			try {
-				Runtime rt = Runtime.getRuntime();
-				rt.gc();
-				rt.gc();
-				System.err.println(rt.totalMemory()-rt.freeMemory());
-				System.err.println("Kill now!");
-				Thread.sleep(30000);
-			} 
-			catch (Exception e) {
-			}
 			RDFWriter w = m.getWriter(outlang);
 			j++;
 			for (; j < lastOutProp; j++) {
