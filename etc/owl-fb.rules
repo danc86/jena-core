@@ -631,7 +631,7 @@
 [range2: (?P rdfs:range xsd:byte) <- (?P rdfs:range xsd:nonNegativeInteger),
 					(?P rdfs:range xsd:nonPositiveInteger)]
 
-[range3: (?P rdfs:range owl:Nothing) <- (?P rdfs:range ?C), (?P rdfs:range ?D), 
+[range3: (?P rdfs:range owl:Nothing) <- (?P rdfs:range ?C), (?P rdfs:range ?D), notEqual(?C, ?D) 
 							 (?C owl:disjointWith ?D) ]
 
 [xsd3: (?C owl:disjointWith ?D) <- (?C rb:xsdBase ?BC), (?D rb:xsdBase ?BD), notEqual(?BC, ?BD) ]
