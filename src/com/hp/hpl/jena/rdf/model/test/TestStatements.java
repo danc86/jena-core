@@ -106,7 +106,7 @@ public class TestStatements extends ModelTestBase
         String fakeURI = "fake:URI";
         Resource S = m.createResource( ) ; 
         Property P = property( m, "PP" );
-        RDFNode O = m.createTypedLiteral( "42", "", fakeURI);
+        RDFNode O = m.createTypedLiteral( "42",  fakeURI);
         Statement st = m.createStatement( S, P, O );
         assertTrue( st.toString().indexOf( fakeURI ) > 0 );  
         }

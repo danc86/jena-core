@@ -209,7 +209,7 @@ public interface Model
 	   @return a new literal representing the value v with the given language
 	 */
 	public Literal createLiteral(String v, String language, boolean wellFormed);
-
+	
     /**
         Build a typed literal from its lexical form. The
         lexical form will be parsed now and the value stored. If

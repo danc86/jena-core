@@ -12,4 +12,4 @@
 #
 #####################################################################
 <http://example.org/foo> <http://example.org/bar> "10"^^<http://www.w3.org/2001/XMLSchema#integer> .
-<http://example.org/foo> <http://example.org/baz> "10"@fr^^<http://www.w3.org/2001/XMLSchema#integer> .
+<http://example.org/foo> <http://example.org/baz> "10"^^<http://www.w3.org/2001/XMLSchema#integer> .

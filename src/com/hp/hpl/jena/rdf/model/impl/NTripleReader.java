@@ -268,7 +268,7 @@ public class NTripleReader extends Object implements RDFReader {
                 if (wellFormed) {
                     return model.createLiteral(
                         lit.toString(),
-                        lang,
+                        "",
                         wellFormed);
                 } else if ('^' == in.nextChar()) {
                     String datatypeURI = null;
@@ -279,9 +279,11 @@ public class NTripleReader extends Object implements RDFReader {
                     datatypeURI = readURI();
                     if (datatypeURI == null || !expect(">"))
                         return null;
+					if ( lang.length() > 0 )
+					   deprecated("Language tags are not permitted on typed literals.");
+                    
                     return model.createTypedLiteral(
                         lit.toString(),
-                        lang,
                         datatypeURI);
                 } else {
                     return model.createLiteral(lit.toString(), lang);
