@@ -44,6 +44,7 @@ public class BuiltinPersonalities {
         .add( InverseFunctionalProperty.class, InverseFunctionalPropertyImpl.factory )
         .add( AllDifferent.class, AllDifferentImpl.factory )
         .add( Individual.class, IndividualImpl.factory )
+        .add( AnnotationProperty.class, AnnotationPropertyImpl.factory )
         ;	
         
         
