@@ -130,7 +130,10 @@ public class LPRuleStore extends RuleStore {
      * tabled predictes exist.
      */
     public boolean isTabled(TriplePattern goal) {
-        return isTabled(goal.getPredicate());
+        // This version forces tabling of all goals anyway
+        return true;
+        // Original used selective tabling, small perf disadvantage on early tests
+//        return isTabled(goal.getPredicate());
     }
     
     /**

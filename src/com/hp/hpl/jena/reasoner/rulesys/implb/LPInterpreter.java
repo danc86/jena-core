@@ -365,6 +365,22 @@ public class LPInterpreter {
         
                 codeloop: while (true) {
                     switch (code[pc++]) {
+                        case RuleClauseCode.TEST_BOUND:
+                            ai = code[pc++];
+                            if (deref(argVars[ai]).isVariable()) {
+                                if (traceOn) logger.info("FAIL " + clause);
+                                continue main;  
+                            }
+                            break;
+                            
+                        case RuleClauseCode.TEST_UNBOUND:
+                            ai = code[pc++];
+                            if (! deref(argVars[ai]).isVariable()) {
+                                if (traceOn) logger.info("FAIL " + clause);
+                                continue main;  
+                            }
+                            break;
+                            
                         case RuleClauseCode.ALLOCATE:
                             envFrame.allocate(RuleClauseCode.MAX_PERMANENT_VARS);
                             pVars = envFrame.pVars;

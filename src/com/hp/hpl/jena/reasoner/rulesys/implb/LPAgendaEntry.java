@@ -29,6 +29,11 @@ public interface LPAgendaEntry {
      */
     public boolean isReady();
     
+    /**
+     * Return the generator associated with this entry (might be the entry itself)
+     */
+    public Generator getGenerator();
+    
 }
 
 

@@ -54,7 +54,7 @@ public class LPTopGoalIterator implements ClosableIterator, LPInterpreterContext
 //        engine.setState(this);
         engine.setTopInterpreter(this);
     }
-    
+        
     /**
      * Find the next result in the goal state and put it in the
      * lookahead buffer.
@@ -134,13 +134,15 @@ public class LPTopGoalIterator implements ClosableIterator, LPInterpreterContext
      */
     public void close() {
         if (interpreter != null) {
-            lookAhead = null;
-            interpreter.close();
-            interpreter = null;
-            isReady = false;
-            checkReadyNeeded = false;
-            nextToRun = null;
-            choicePoints = null;
+            synchronized (interpreter.getEngine().getInfGraph()) {
+                lookAhead = null;
+                interpreter.close();
+                interpreter = null;
+                isReady = false;
+                checkReadyNeeded = false;
+                nextToRun = null;
+//                choicePoints = null;  // disabled to prevent async close causing problems
+            }
         }
     }
 

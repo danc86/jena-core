@@ -128,6 +128,13 @@ public class ConsumerChoicePointFrame extends GenericTripleMatchFrame
         }
     }
     
+    /**
+     * Return the generator associated with this entry (might be the entry itself)
+     */
+    public Generator getGenerator() {
+        return generator;
+    }
+
 }
 
 

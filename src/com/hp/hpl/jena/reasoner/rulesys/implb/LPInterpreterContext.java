@@ -33,6 +33,9 @@ public interface LPInterpreterContext extends LPInterpreterState {
     /** Called by a generating choice point to indicate we can be run
      * because the indicated choice point is ready. */
     public void setReady(ConsumerChoicePointFrame ccp);
+    
+//    /** Return an estimate of the distance of this context from the top level one */
+//    public int getDepth();
 }
 
 

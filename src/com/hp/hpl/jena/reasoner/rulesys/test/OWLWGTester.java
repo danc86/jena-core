@@ -177,7 +177,7 @@ public class OWLWGTester {
         Model result = ModelFactory.createModelForGraph(graph);
         
         if (stats && graph instanceof FBLPRuleInfGraph) {
-            ((FBLPRuleInfGraph)graph).resetLPProfile(true);
+//            ((FBLPRuleInfGraph)graph).resetLPProfile(true);
         }
         
         // Check the results against the official conclusions
