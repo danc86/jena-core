@@ -509,7 +509,8 @@ public class OntModelSpec extends ModelSpecImpl implements ModelSpec {
     }
 
     /**
-        Answer a ReasonerFactory as described by the reasonsWith part of this discription.
+        Answer a ReasonerFactory as described by the reasonsWith part of this discription,
+        or null if no reasoner specification has been supplied.
         
         @param description the description of this OntModel
         @param root the root of this OntModel's description
@@ -518,9 +519,7 @@ public class OntModelSpec extends ModelSpecImpl implements ModelSpec {
     public static ReasonerFactory getReasonerFactory( Model description, Resource root ) {
         Statement factStatement = description.getProperty( root, JMS.reasonsWith );
         if (factStatement == null) return null;
-        Statement reStatement = description.getProperty( factStatement.getResource(), JMS.reasoner );
-        String factoryURI = reStatement.getResource().getURI();
-        return ReasonerRegistry.theRegistry().getFactory( factoryURI );
+        return ModelSpecImpl.getReasonerFactory( factStatement.getResource(), description );
     }
 
     /**
