@@ -156,11 +156,13 @@ public class SimpleReifier implements Reifier
             }
         else
             {
-            if (s.clashesWith( object, reified ))
-                {
+            if (s.clashedWith( fragmentsMap, object, reified )) 
                 tripleMap.removeTriple( tag, reified );
-                fragmentsMap.putAugmentedTriple( s, tag, object, reified );
-                }
+//            if (s.clashesWith( fragmentsMap, object, reified ))
+//                {
+//                tripleMap.removeTriple( tag, reified );
+//                fragmentsMap.putAugmentedTriple( s, tag, object, reified );
+//                }
             }
         }
 
