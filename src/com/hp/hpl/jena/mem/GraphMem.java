@@ -34,7 +34,7 @@ public class GraphMem extends GraphBase implements Graph {
     public GraphMem( Reifier.Style style )
         { super( style ); }
 
-    public void add( Triple t )
+    public void performAdd( Triple t )
         {
         if (getReifier().handledAdd( t ) || triples.contains( t ))
             return;
@@ -47,7 +47,7 @@ public class GraphMem extends GraphBase implements Graph {
             }
         }
 
-    public void delete( Triple t )
+    public void performDelete( Triple t )
         {
         if (getReifier().handledRemove( t ))
             return;

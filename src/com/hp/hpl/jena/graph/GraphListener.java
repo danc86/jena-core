@@ -11,7 +11,8 @@ package com.hp.hpl.jena.graph;
 */
 public interface GraphListener 
     {
-
+    void notifyAdd( Triple t );
+    void notifyDelete( Triple t );
     }
 
 /*

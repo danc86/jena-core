@@ -214,13 +214,60 @@ public abstract class AbstractTestGraph extends GraphTestBase
     
     static class HistoryListener implements GraphListener
         {
+        List history = new ArrayList();
+        
+        public void notifyAdd( Triple t )
+            { history.add( "add" ); history.add( t ); }
+            
+        public void notifyDelete( Triple t )
+            { history.add( "delete" ); history.add( t ); }
+            
+        public void clear()
+            { history.clear(); }
+            
+        public boolean has( Object [] things )
+            { return history.equals( Arrays.asList( things ) ); }
+            
         }
         
     public void testEventRegister()
         {
         Graph g = getGraph();
         GraphEventManager gem = g.getEventManager();
-        assertSame( g, g.getEventManager().register( new HistoryListener() ) );
+        assertSame( g, gem.register( new HistoryListener() ) );
+        }
+        
+    public void testEventUnregister()
+        {
+        Graph g = getGraph();
+        GraphEventManager gem = g.getEventManager();
+        GraphListener L = new HistoryListener();
+        gem.register( L );
+        gem.unregister( L );
+        }
+        
+    public void testAddTriple()
+        {
+        Graph g = getGraph();
+        GraphEventManager gem = g.getEventManager();
+        HistoryListener L = new HistoryListener();
+        Triple SPO = Triple.create( "S P O" );
+        gem.register( L );
+        g.add( SPO );
+        assertTrue( L.has( new Object[] {"add", SPO} ) );
+        }
+        
+    public void testDeleteTriple()
+        {        
+        Graph g = getGraph();
+        GraphEventManager gem = g.getEventManager();
+        HistoryListener L = new HistoryListener();
+        Triple SPO = Triple.create( "S P O" );
+        gem.register( L );
+        g.add( SPO );
+        L.clear();
+        g.delete( SPO );
+        assertTrue( L.has( new Object[] { "delete", SPO} ) );
         }
     }
 

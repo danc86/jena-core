@@ -13,6 +13,10 @@ package com.hp.hpl.jena.graph;
 public interface GraphEventManager
     {
     Graph register( GraphListener listener );
+    void unregister( GraphListener listener );
+    
+    void notifyAdd( Triple t );
+    void notifyDelete( Triple t );
     }
 
 
