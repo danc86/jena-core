@@ -79,6 +79,20 @@ public class RDFSReasoner extends TransitiveReasoner implements Reasoner {
         super(tbox, subClassCache, subPropertyCache);
         this.scanProperties = scanProperties;
     }
+
+    /**
+     * Determine whether the given property is recognized and treated specially
+     * by this reasoner. This is a convenience packaging of a special case of getCapabilities.
+     * @param property the property which we want to ask the reasoner about, given as a Node since
+     * this is part of the SPI rather than API
+     * @return true if the given property is handled specially by the reasoner.
+     */
+    public boolean supportsProperty(Property property) {
+        ReasonerFactory rf = RDFSReasonerFactory.theInstance();
+        Model caps = rf.getCapabilities();
+        Resource root = caps.getResource(rf.getURI());
+        return caps.contains(root, ReasonerRegistry.supportsP, property);
+    }
      
     /**
      * Helper method - extracts the truth of a boolean configuration

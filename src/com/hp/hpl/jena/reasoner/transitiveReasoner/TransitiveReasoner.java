@@ -9,7 +9,7 @@
  *****************************************************************/
 package com.hp.hpl.jena.reasoner.transitiveReasoner;
 
-import com.hp.hpl.jena.rdf.model.Model;
+import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.reasoner.*;
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.vocabulary.RDFS;
@@ -82,6 +82,30 @@ public class TransitiveReasoner implements Reasoner {
         this.tbox = tbox;
         this.subClassCache = subClassCache;
         this.subPropertyCache = subPropertyCache;
+    }
+
+    /**
+     * Return a description of the capabilities of this reasoner encoded in
+     * RDF. These capabilities may be static or may depend on configuration
+     * information supplied at construction time. May be null if there are
+     * no useful capabilities registered.
+     */
+    public Model getCapabilities() {
+        return TransitiveReasonerFactory.theInstance().getCapabilities();
+    }
+
+    /**
+     * Determine whether the given property is recognized and treated specially
+     * by this reasoner. This is a convenience packaging of a special case of getCapabilities.
+     * @param property the property which we want to ask the reasoner about, given as a Node since
+     * this is part of the SPI rather than API
+     * @return true if the given property is handled specially by the reasoner.
+     */
+    public boolean supportsProperty(Property property) {
+        ReasonerFactory rf = TransitiveReasonerFactory.theInstance();
+        Model caps = rf.getCapabilities();
+        Resource root = caps.getResource(rf.getURI());
+        return caps.contains(root, ReasonerRegistry.supportsP, property);
     }
      
     /**

@@ -30,6 +30,9 @@ public class RDFSReasonerFactory implements ReasonerFactory {
     /** Static URI for this reasoner type */
     public static final String URI = "http://www.hpl.hp.com/semweb/2003/RDFSReasoner1";
     
+    /** Cache of the capabilities description */
+    protected Model capabilities;
+    
     /** Property used to configure the scan behaviour of the reasoner.
      *  Set to "true" to enable scanning of triples looking for rdf:_1 assertions. */
     public static final Property scanProperties = new PropertyImpl(URI+"#", "scanProperties");
@@ -56,21 +59,23 @@ public class RDFSReasonerFactory implements ReasonerFactory {
      * the resulting information so dynamically creating here is not really an overhead.
      */
     public Model getCapabilities() {
-        Model capabilities = new ModelMem();
-        Resource base = capabilities.createResource(getURI());
-        base.addProperty(ReasonerRegistry.nameP, "RDFS Reasoner 1")
-            .addProperty(ReasonerRegistry.descriptionP, "Complete RDFS implementation supporting metalevel statements.\n"
-                                        + "Eager caching of schema information, back chaining for most entailments\n"
-                                        + "Can separate tbox and abox data if desired to reuse tbox caching or mix them.")
-            .addProperty(ReasonerRegistry.configurationP, scanProperties)
-            .addProperty(ReasonerRegistry.supportsP, RDFS.subClassOf)
-            .addProperty(ReasonerRegistry.supportsP, RDFS.subPropertyOf)
-            .addProperty(ReasonerRegistry.supportsP, RDFS.member)
-            .addProperty(ReasonerRegistry.supportsP, RDFS.range)
-            .addProperty(ReasonerRegistry.supportsP, RDFS.domain)
-            .addProperty(ReasonerRegistry.supportsP, TransitiveReasoner.directSubClassOf)
-            .addProperty(ReasonerRegistry.supportsP, TransitiveReasoner.directSubPropertyOf)
-            .addProperty(ReasonerRegistry.versionP, "0.1");
+        if (capabilities == null) {
+            capabilities = new ModelMem();
+            Resource base = capabilities.createResource(getURI());
+            base.addProperty(ReasonerRegistry.nameP, "RDFS Reasoner 1")
+                .addProperty(ReasonerRegistry.descriptionP, "Complete RDFS implementation supporting metalevel statements.\n"
+                                            + "Eager caching of schema information, back chaining for most entailments\n"
+                                            + "Can separate tbox and abox data if desired to reuse tbox caching or mix them.")
+                .addProperty(ReasonerRegistry.configurationP, scanProperties)
+                .addProperty(ReasonerRegistry.supportsP, RDFS.subClassOf)
+                .addProperty(ReasonerRegistry.supportsP, RDFS.subPropertyOf)
+                .addProperty(ReasonerRegistry.supportsP, RDFS.member)
+                .addProperty(ReasonerRegistry.supportsP, RDFS.range)
+                .addProperty(ReasonerRegistry.supportsP, RDFS.domain)
+                .addProperty(ReasonerRegistry.supportsP, TransitiveReasoner.directSubClassOf)
+                .addProperty(ReasonerRegistry.supportsP, TransitiveReasoner.directSubPropertyOf)
+                .addProperty(ReasonerRegistry.versionP, "0.1");
+        }
         return capabilities;
     }
     

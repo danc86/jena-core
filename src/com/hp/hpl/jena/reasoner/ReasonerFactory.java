@@ -9,7 +9,7 @@
  *****************************************************************/
 package com.hp.hpl.jena.reasoner;
 
-import com.hp.hpl.jena.rdf.model.Model;
+import com.hp.hpl.jena.rdf.model.*;
 
 /**
  * The interface through which a reasoner (inference engine) can be

@@ -49,7 +49,7 @@ public class OWLRuleReasoner extends BasicForwardRuleReasoner {
      * Constructor
      */
     public OWLRuleReasoner() {
-        super(loadRules());
+        super(loadRules(), OWLRuleReasonerFactory.theInstance());
         
     }
     
@@ -58,7 +58,7 @@ public class OWLRuleReasoner extends BasicForwardRuleReasoner {
      * to a rule reasoner instance.
      */
     private OWLRuleReasoner(List rules, InfGraph schemaGraph) {
-        super(rules);
+        super(rules, OWLRuleReasonerFactory.theInstance());
         this.rules = rules;
         this.schemaGraph = schemaGraph;
     }

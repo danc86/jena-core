@@ -26,6 +26,9 @@ public class RDFSBRuleReasonerFactory implements ReasonerFactory {
     /** Static URI for this reasoner type */
     public static final String URI = "http://www.hpl.hp.com/semweb/2003/RDFSBRuleReasoner";
     
+    /** Cache of the capabilities description */
+    protected Model capabilities;
+    
     /**
      * Return the single global instance of this factory
      */
@@ -49,17 +52,19 @@ public class RDFSBRuleReasonerFactory implements ReasonerFactory {
      * the resulting information so dynamically creating here is not really an overhead.
      */
     public Model getCapabilities() {
-        Model capabilities = ModelFactory.createDefaultModel();
-        Resource base = capabilities.createResource(getURI());
-        base.addProperty(ReasonerRegistry.nameP, "RDFS BRule Reasoner")
-            .addProperty(ReasonerRegistry.descriptionP, "Complete RDFS implementation supporting metalevel statements.\n"
-                                        + "Can separate tbox and abox data if desired to reuse tbox caching or mix them.")
-            .addProperty(ReasonerRegistry.supportsP, RDFS.subClassOf)
-            .addProperty(ReasonerRegistry.supportsP, RDFS.subPropertyOf)
-            .addProperty(ReasonerRegistry.supportsP, RDFS.member)
-            .addProperty(ReasonerRegistry.supportsP, RDFS.range)
-            .addProperty(ReasonerRegistry.supportsP, RDFS.domain)
-            .addProperty(ReasonerRegistry.versionP, "0.1");
+        if (capabilities == null) {
+            capabilities = ModelFactory.createDefaultModel();
+            Resource base = capabilities.createResource(getURI());
+            base.addProperty(ReasonerRegistry.nameP, "RDFS BRule Reasoner")
+                .addProperty(ReasonerRegistry.descriptionP, "Complete RDFS implementation supporting metalevel statements.\n"
+                                            + "Can separate tbox and abox data if desired to reuse tbox caching or mix them.")
+                .addProperty(ReasonerRegistry.supportsP, RDFS.subClassOf)
+                .addProperty(ReasonerRegistry.supportsP, RDFS.subPropertyOf)
+                .addProperty(ReasonerRegistry.supportsP, RDFS.member)
+                .addProperty(ReasonerRegistry.supportsP, RDFS.range)
+                .addProperty(ReasonerRegistry.supportsP, RDFS.domain)
+                .addProperty(ReasonerRegistry.versionP, "0.1");
+        }
         return capabilities;
     }
     

@@ -13,7 +13,9 @@ import com.hp.hpl.jena.reasoner.*;
 import com.hp.hpl.jena.reasoner.test.*;
 import com.hp.hpl.jena.util.ModelLoader;
 // import com.hp.hpl.jena.util.PrintUtil;
+import com.hp.hpl.jena.vocabulary.OWL;
 import com.hp.hpl.jena.vocabulary.RDF;
+import com.hp.hpl.jena.vocabulary.RDFS;
 import com.hp.hpl.jena.reasoner.rdfsReasoner1.RDFSReasonerFactory;
 import com.hp.hpl.jena.reasoner.rulesys.*;
 import com.hp.hpl.jena.rdf.model.*;
@@ -66,6 +68,17 @@ public class TestRDFSRules extends TestCase {
         assertTrue("RDFS reasoner tests", tester.runTests(rf, this, null));
     }
 
+    /**
+     * Test the capabilities description.
+     */
+    public void testRDFSDescription() {
+        ReasonerFactory rf = RDFSBRuleReasonerFactory.theInstance();
+        Reasoner r = rf.create(null);
+        assertTrue(r.supportsProperty(RDFS.subClassOf));        
+        assertTrue(r.supportsProperty(RDFS.domain));        
+        assertTrue( ! r.supportsProperty(OWL.allValuesFrom));        
+    }
+    
     /**
      * Time a trial list of results from an inf graph.
      */

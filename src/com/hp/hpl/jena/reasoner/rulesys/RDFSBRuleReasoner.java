@@ -36,7 +36,7 @@ public class RDFSBRuleReasoner extends BasicBackwardRuleReasoner {
      * Constructor
      */
     public RDFSBRuleReasoner() {
-        super(loadRules());
+        super(loadRules(), RDFSBRuleReasonerFactory.theInstance());
     }
     
     /**

@@ -1,28 +1,35 @@
 /******************************************************************
- * File:        RDFSRuleReasonerFactory.java
+ * File:        TransitiveReasonerFactory.java
  * Created by:  Dave Reynolds
- * Created on:  08-Apr-03
+ * Created on:  19-Jan-03
  * 
  * (c) Copyright 2003, Hewlett-Packard Company, all rights reserved.
  * [See end of file]
  * $Id$
  *****************************************************************/
-package com.hp.hpl.jena.reasoner.rulesys;
-import com.hp.hpl.jena.reasoner.*;
+package com.hp.hpl.jena.reasoner.transitiveReasoner;
+
+import com.hp.hpl.jena.mem.ModelMem;
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.vocabulary.*;
+import com.hp.hpl.jena.reasoner.*;
 
-/** * Factory class for creating blank instances of the RDFS reasoner.
- * * @author <a href="mailto:der@hplb.hpl.hp.com">Dave Reynolds</a> * @version $Revision$ on $Date$ */
-public class RDFSRuleReasonerFactory implements ReasonerFactory {    
-    /** Single global instance of this factory */
-    private static ReasonerFactory theInstance = new RDFSRuleReasonerFactory();
+/**
+ * Factory class for creating blank instances of the transitive reasoner.
+ * 
+ * @author <a href="mailto:der@hplb.hpl.hp.com">Dave Reynolds</a>
+ * @version $Revision$ on $Date$
+ */
+public class TransitiveReasonerFactory implements ReasonerFactory {
     
-    /** Static URI for this reasoner type */
-    public static final String URI = "http://www.hpl.hp.com/semweb/2003/RDFSRuleReasoner";
+    /** Single global instance of this factory */
+    private static ReasonerFactory theInstance = new TransitiveReasonerFactory();
     
     /** Cache of the capabilities description */
     protected Model capabilities;
+    
+    /** Static URI for this reasoner type */
+    public static final String URI = "http://www.hpl.hp.com/semweb/2003/TransitiveReasoner";
     
     /**
      * Return the single global instance of this factory
@@ -34,11 +41,10 @@ public class RDFSRuleReasonerFactory implements ReasonerFactory {
     /**
      * Constructor method that builds an instance of the associated Reasoner
      * @param configuration a set of arbitrary configuration information to be 
-     * passed the reasoner encoded within an RDF graph, the current implemenation
-     * is not configurable and will ignore this parameter.
+     * passed the reasoner encoded within an RDF graph.
      */
     public Reasoner create(Model configuration) {
-        return new RDFSRuleReasoner();
+        return new TransitiveReasoner();
     }
    
     /**
@@ -48,17 +54,14 @@ public class RDFSRuleReasonerFactory implements ReasonerFactory {
      */
     public Model getCapabilities() {
         if (capabilities == null) {
-            capabilities = ModelFactory.createDefaultModel();
+            capabilities = new ModelMem();
             Resource base = capabilities.createResource(getURI());
-            base.addProperty(ReasonerRegistry.nameP, "RDFS Rule Reasoner")
-                .addProperty(ReasonerRegistry.descriptionP, "Complete RDFS implementation supporting metalevel statements.\n"
-                                            + "Pure forward chaining so all entailments are immediate calculated\n"
-                                            + "Can separate tbox and abox data if desired to reuse tbox caching or mix them.")
+            base.addProperty(ReasonerRegistry.nameP, "Transitive Reasoner")
+                .addProperty(ReasonerRegistry.descriptionP, "Provides reflexive-transitive closure of subClassOf and subPropertyOf")
                 .addProperty(ReasonerRegistry.supportsP, RDFS.subClassOf)
                 .addProperty(ReasonerRegistry.supportsP, RDFS.subPropertyOf)
-                .addProperty(ReasonerRegistry.supportsP, RDFS.member)
-                .addProperty(ReasonerRegistry.supportsP, RDFS.range)
-                .addProperty(ReasonerRegistry.supportsP, RDFS.domain)
+                .addProperty(ReasonerRegistry.supportsP, TransitiveReasoner.directSubClassOf)
+                .addProperty(ReasonerRegistry.supportsP, TransitiveReasoner.directSubPropertyOf)
                 .addProperty(ReasonerRegistry.versionP, "0.1");
         }
         return capabilities;
@@ -71,17 +74,6 @@ public class RDFSRuleReasonerFactory implements ReasonerFactory {
         return URI;
     }
     
-    /**
-     * Temporary testing hack
-     */
-    public static void main(String[] args) {
-        Resource rdfsDescr = ReasonerRegistry.theRegistry().getDescription(URI);
-        System.out.println("Reasoner: " + rdfsDescr);
-        for (StmtIterator i = rdfsDescr.listProperties(); i.hasNext(); ) {
-            Statement s = i.nextStatement();
-            System.out.println(s.getPredicate().getLocalName() + " = " + s.getObject());
-        }
-    }
 }
 
 /*

@@ -50,7 +50,7 @@ public class OWLBRuleReasoner extends BasicBackwardRuleReasoner {
      * Constructor
      */
     public OWLBRuleReasoner() {
-        super(loadRules());
+        super(loadRules(), OWLBRuleReasonerFactory.theInstance());
         
     }
     

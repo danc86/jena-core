@@ -32,7 +32,7 @@ public class RDFSRuleReasoner extends BasicForwardRuleReasoner {
      * Constructor
      */
     public RDFSRuleReasoner() {
-        super(loadRules());
+        super(loadRules(), RDFSRuleReasonerFactory.theInstance());
     }
     
     /**
