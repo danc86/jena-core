@@ -89,6 +89,9 @@ public class RETEQueue implements RETESinkNode, RETESourceNode {
                 count.inc();
             } else {
                 count.dec();
+                if (count.getCount() == 0) {
+                    queue.remove(env);
+                }
             }
         }
         
