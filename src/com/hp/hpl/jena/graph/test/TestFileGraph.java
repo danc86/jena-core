@@ -78,10 +78,10 @@ public class TestFileGraph extends GraphTestBase
             {
             File foo = tempFileName( prefix, suffix );
             Graph original = graphWith( content );
-            Graph g = new FileGraph( foo, true );
+            Graph g = new FileGraph( foo, true, true );
             g.getBulkUpdateHandler().add( original );
             g.close();
-            Graph g2 = new FileGraph( foo, false );
+            Graph g2 = new FileGraph( foo, false, true );
             assertEquals( "", original, g2 );
             g2.close();
             }

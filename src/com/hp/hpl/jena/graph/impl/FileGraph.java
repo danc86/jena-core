@@ -37,21 +37,22 @@ public class FileGraph extends GraphMem
         
      	@param f the File naming the associated file-system file
      	@param create true to create a new one, false to read an existing one
+        @param failAllowed if true, can throw an exception
      */
-    public FileGraph( File f, boolean create )
+    public FileGraph( File f, boolean create, boolean strict )
         {
         this.name = f;
         this.model = new ModelCom( this );
         this.lang = guessLang( this.name.toString() );
         if (create)
             { 
-            if (f.exists()) throw new AlreadyExistsException( f.toString() );
+            if (f.exists()  && strict) throw new AlreadyExistsException( f.toString() );
             }
         else
-            readModel( this.model, name.toString(), this.lang );
+            readModel( this.model, name.toString(), this.lang, strict );
         }
         
-    private void readModel( Model m, String name, String lang )
+    private void readModel( Model m, String name, String lang, boolean strict )
         {
         try
             {
@@ -59,17 +60,17 @@ public class FileGraph extends GraphMem
             model.read( in, "", this.lang );
             }
         catch (FileNotFoundException f)
-            { throw new DoesNotExistException( name ); }
+            { if (strict) throw new DoesNotExistException( name ); }
         }
         
     /**
         As for FileGraph(File,boolean), except the name is given as a String.
      */
     public FileGraph( String s, boolean create )
-        { this( new File( s ), create ); }
+        { this( new File( s ), create, true ); }
         
     public static FileGraph create()
-        { return new FileGraph( GraphTestBase.tempFileName( "xxx", ".rdf" ), true );
+        { return new FileGraph( GraphTestBase.tempFileName( "xxx", ".rdf" ), true, true );
         }
         
     /**
