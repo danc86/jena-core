@@ -1382,6 +1382,19 @@ public class OntModelImpl
     
     
     /**
+     * <p>Answer a new empty list.  This method overrides the list create method in ModelCom,
+     * to allow both DAML and RDFS lists to be created.</p>
+     * @return An RDF-encoded list of no elements, using the current language profile
+     */
+    public RDFList createList() {
+        Resource list = getResource( getProfile().NIL().getURI() );
+        list.addProperty( RDF.type, getProfile().LIST() );
+        
+        return (RDFList) list.as( RDFList.class );
+    }
+    
+    
+    /**
      * <p>
      * Answer the language profile (for example, OWL or DAML+OIL) that this model is 
      * working to.
