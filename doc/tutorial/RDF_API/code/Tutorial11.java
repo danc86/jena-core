@@ -27,8 +27,7 @@ public class Tutorial11 extends Object {
       // add the property
       r.addProperty(RDFS.label, model.createLiteral("chat", "en"))
        .addProperty(RDFS.label, model.createLiteral("chat", "fr"))
-       .addProperty(RDFS.label, model.createLiteral("<em>chat</em>", "em",
-                                                                     true));
+       .addProperty(RDFS.label, model.createLiteral("<em>chat</em>", true));
       
       // write out the graph
       model.write(new PrintWriter(System.out));
