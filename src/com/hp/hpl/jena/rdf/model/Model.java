@@ -400,7 +400,7 @@ public interface Model
 	  convert.
 	  A base URI of "" may permit relative URIs to be used in the
 	   model.
-	 * @param lang the langauge of the serialization <code>null<code>
+	 * @param lang the langauge of the serialization <code>null</code>
 	 * selects the default
 	 * @param in the source of the input serialization
 	 */
@@ -459,7 +459,7 @@ public interface Model
 	  A base URI of "" may permit relative URIs to be used in the
 	   model.
 	   
-	 * @param lang the langauge of the serialization <code>null<code>
+	 * @param lang the langauge of the serialization <code>null</code>
 	 * selects the default
 	 * @param reader the source of the input serialization
 	 */
