@@ -29,6 +29,7 @@ public class TestPackage extends TestSuite {
         addTest( "TestTriple", TestTriple.suite() );
         addTest( TestNodeToTriplesMap.suite() );
         addTest( TestSimpleReifierTripleMap.suite() );   
+        addTest( TestSimpleReifierFragmentsMap.suite() );   
         addTest( "TestReifier", TestReifier.suite() );   
         addTest( "TestTypedLiterals", TestTypedLiterals.suite() );
         addTest( "TestGraphQuery", TestGraphQueryPackage.suite() );

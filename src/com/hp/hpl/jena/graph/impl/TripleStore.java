@@ -7,7 +7,7 @@
 package com.hp.hpl.jena.graph.impl;
 
 import com.hp.hpl.jena.graph.*;
-import com.hp.hpl.jena.util.iterator.*;
+import com.hp.hpl.jena.util.iterator.ExtendedIterator;
 
 /**
      TripleStore - interface for bulk storage of triples used in composed graphs.

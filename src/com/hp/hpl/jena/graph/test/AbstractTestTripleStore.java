@@ -84,6 +84,17 @@ public abstract class AbstractTestTripleStore extends GraphTestBase
         assertEquals( tripleSet( "q R 17" ), iteratorToSet( store.find( triple( "?? ?? 17" ) ) ) );
         }
     
+    public void testRemove()
+        {
+        store.add( triple( "nothing before ace" ) );
+        store.add( triple( "ace before king" ) );
+        store.add( triple( "king before queen" ) );
+        store.delete( triple( "ace before king" ) );
+        assertEquals( tripleSet( "king before queen; nothing before ace" ), iteratorToSet( store.find( triple( "?? ?? ??" ) ) ) );
+        store.delete( triple( "king before queen" ) );
+        assertEquals( tripleSet( "nothing before ace" ), iteratorToSet( store.find( triple( "?? ?? ??" ) ) ) );
+        }
+    
     public void someStatements( TripleStore ts )
         {
         ts.add( triple( "a P b" ) );
