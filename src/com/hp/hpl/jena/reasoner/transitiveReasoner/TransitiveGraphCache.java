@@ -552,6 +552,93 @@ public class TransitiveGraphCache implements Finder {
     } // End of GraphWalker inner class    
     
     /**
+     * Inner class used to do a complete walk over the graph
+     */
+    private static class FullGraphWalker extends NiceIterator implements ExtendedIterator {
+
+        /** Flag whether we are walking over the closed or direct relations */
+        boolean closed;
+        
+        /** Iterator over the start nodes in the node map */
+        Iterator baseNodeIt;
+        
+        /** The current node being visited */
+        GraphNode node;
+        
+        /** The root node for reconstructing triples */
+        Node nodeN;
+        
+        /** The predicate for reconstructing triples */
+        Node predicate; 
+        
+        /** Iterator over the successor nodes for the baseNode */
+        Iterator succIt = null;
+        
+        /** Iterator over the aliases for the current successor */
+        Iterator aliasesIt = null;
+        
+        /** The next value to be returned */
+        Triple next;
+        
+        /** Construct a walker for the full closed or direct graph */
+        FullGraphWalker(boolean closed, Node predicate, HashMap nodes) {
+            this.predicate = predicate;
+            this.closed = closed;
+            baseNodeIt = nodes.values().iterator();
+            walkOne();
+        }
+        
+        /** Iterator interface - test if more values available */
+        public boolean hasNext() {
+            return next != null;
+        }
+        
+        /** Iterator interface - get next value */
+        public Object next() {
+            Object toReturn = next;
+            walkOne();
+            return toReturn;
+        }
+                
+        /**
+         * Walk one step
+         */
+        protected void walkOne() {
+            if (aliasesIt != null) {
+                if (aliasesIt.hasNext()) {
+                    next = new Triple(nodeN, predicate, ((GraphNode)aliasesIt.next()).rdfNode);
+                    return;
+                } else {
+                    aliasesIt = null;      // End of aliases
+                }
+            }
+            
+            if (succIt != null) {
+                if (succIt.hasNext()) {
+                    GraphNode succ = (GraphNode)succIt.next();
+                    if (succ.aliases instanceof Set) {
+                        aliasesIt = ((Set)succ.aliases).iterator();
+                    }
+                    next = new Triple(nodeN, predicate, succ.rdfNode);
+                    return;
+                } else {
+                    succIt = null;      // End of the successors
+                }
+            }
+            
+            if (baseNodeIt.hasNext()) {
+                node = (GraphNode)baseNodeIt.next();
+                nodeN = node.rdfNode;
+                succIt = (closed ? node.succClosed : node.succ).iterator();
+                next = new Triple(nodeN, predicate, nodeN); // Implicit reflexive case
+            } else {
+                next = null; // End of walk
+            }
+        }
+        
+    } // End of FullGraphWalker inner class
+    
+    /**
      * Constructor - create a new cache to hold the given relation information.
      * @param directPredicate The RDF predicate representing the direct relation
      * @param closedPredicate The RDF predicate representing the closed relation
@@ -793,19 +880,19 @@ public class TransitiveGraphCache implements Finder {
             if (s.isVariable()) {
                 if (o.isVariable()) {
                     // list all the graph contents
-                    ExtendedIterator result = null;
-                    for (Iterator i = nodeMap.values().iterator(); i.hasNext(); ) {
-                        ExtendedIterator nexti = ((GraphNode)i.next()).listTriples(closed, this);
-                        if (result == null) {
-                            result = nexti;
-                        } else {
-                            result = result.andThen(nexti);
-                        }
-                    }
-                    if (result == null) {
-                        return NullIterator.instance;
-                    }
-                    return result;
+//                    ExtendedIterator result = null;
+//                    for (Iterator i = nodeMap.values().iterator(); i.hasNext(); ) {
+//                        ExtendedIterator nexti = ((GraphNode)i.next()).listTriples(closed, this);
+//                        if (result == null) {
+//                            result = nexti;
+//                        } else {
+//                            result = result.andThen(nexti);
+//                        }
+//                    }
+//                    if (result == null) {
+//                        return NullIterator.instance;
+//                    }
+                    return new FullGraphWalker(closed, closedPredicate, nodeMap);
                 } else {
                     // list all backwards from o
                     GraphNode gn_o = (GraphNode)nodeMap.get(o);
