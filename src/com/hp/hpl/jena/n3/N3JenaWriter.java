@@ -22,6 +22,7 @@
 package com.hp.hpl.jena.n3;
 
 import com.hp.hpl.jena.rdf.model.*;
+import com.hp.hpl.jena.rdf.model.impl.ModelCom ;
 import com.hp.hpl.jena.vocabulary.*;
 import com.hp.hpl.jena.util.Log;
 import com.hp.hpl.jena.vocabulary.OWL ;
@@ -135,8 +136,10 @@ public class N3JenaWriter implements RDFWriter
 	 * </pre>
 	 */
 	
-    public void write(Model model, Writer _out, String base) throws RDFException
+    public void write(Model baseModel, Writer _out, String base) throws RDFException
     {
+        Model model = ModelCom.withHiddenStatements( baseModel );
+
         Object obj = writerPropertyMap.get(propWriteSimple);
 
         try {
