@@ -10,7 +10,7 @@ package com.hp.hpl.jena.rdf.arp;
  * @author Jeremy J. Carroll
  *
  */
-public class RDFTailCollection extends RDFCollection {
+class RDFTailCollection extends RDFCollection {
 	RDFTailCollection(ParserSupport x, ARPResource cell) {
 		super(x);
 		last = cell;

@@ -10,7 +10,7 @@ package com.hp.hpl.jena.rdf.arp;
  * @author Jeremy J. Carroll
  *
  */
-public class DAMLTailCollection extends DAMLCollection {
+class DAMLTailCollection extends DAMLCollection {
 	DAMLTailCollection(ParserSupport x,ARPResource cell) {
 		super(x);
 		last = cell;
