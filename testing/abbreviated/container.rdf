@@ -15,7 +15,11 @@
   <eg:a />
   <rdf:li rdf:nodeID="x" />
   <rdf:li rdf:nodeID="x" />
-  <eg:b> <eg:c /> </eg:b>
+  <eg:b> 
+    <rdf:Description>
+     <eg:c rdf:resource="#aa"/> 
+    </rdf:Description>
+  </eg:b>
   <rdf:li eg:z="foobar" />
 </rdfs:Class>
 

@@ -1081,7 +1081,7 @@ public class URI implements Serializable {
 	 *                                  URI does not conform to the generic
 	 *                                  URI syntax or if the path is null
 	 */
-	private void setFragment(String p_fragment) throws MalformedURIException {
+	public void setFragment(String p_fragment) throws MalformedURIException {
 		if (p_fragment == null) {
 			m_fragment = null;
 		} else if (!isGenericURI()) {
