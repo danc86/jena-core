@@ -768,7 +768,7 @@ public class schemagen {
     protected void writeNamespace() {
         String nsURI = determineNamespaceURI();
 
-        writeln( 1, "/** <p>The namespace of the vocabulary as a string ({@value})</p> */" );
+        writeln( 1, "/** <p>The namespace of the vocabulary as a string</p> */" );
         writeln( 1, "public static final String NS = \"" + nsURI + "\";" );
         writeln( 1 );
 

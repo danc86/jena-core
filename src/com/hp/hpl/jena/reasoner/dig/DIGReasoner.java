@@ -26,8 +26,6 @@ package com.hp.hpl.jena.reasoner.dig;
 // Imports
 ///////////////
 import java.io.*;
-import java.io.FileInputStream;
-import java.io.InputStream;
 
 import org.apache.commons.logging.LogFactory;
 
@@ -92,7 +90,7 @@ public class DIGReasoner
      * reasoners, pre-binding a tbox to a DIG reasoner does not allow any 
      * efficiencies to be exploited.
      * @param factory The reasoner factory that created this reasoner
-     * @param configuraton Optional resource to which is attached configuration
+     * @param configuration Optional resource to which is attached configuration
      * parameters for this reasoner
      */
     public DIGReasoner( Graph tbox, ReasonerFactory factory, Resource configuration ) {

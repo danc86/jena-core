@@ -62,7 +62,7 @@ public class DIGQueryEquivalentsTranslator
     /**
      * <p>Construct a translator for the DIG query 'equivalents'.</p>
      * @param predicate The predicate URI to trigger on
-     * @param lhs If true, the free variable is the subject of the triple
+     * @param subjectFree If true, the free variable is the subject of the triple
      */
     public DIGQueryEquivalentsTranslator( String predicate, boolean subjectFree ) {
         super( null, predicate, null );

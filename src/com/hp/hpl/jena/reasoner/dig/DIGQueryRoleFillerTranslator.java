@@ -69,7 +69,6 @@ public class DIGQueryRoleFillerTranslator
 
     /**
      * <p>Construct a translator for the DIG query 'roleFillers'.</p>
-     * @param predicate The predicate URI to trigger on
      */
     public DIGQueryRoleFillerTranslator() {
         super( null, null, null );

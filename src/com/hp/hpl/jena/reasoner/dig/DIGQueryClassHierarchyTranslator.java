@@ -70,7 +70,6 @@ public class DIGQueryClassHierarchyTranslator
     /**
      * <p>Construct a translator for the DIG class hierarchy queries.</p>
      * @param predicate The predicate URI to trigger on
-     * @param ancestors If true, we are searching for parents of the class; if false, the descendants
      */
     public DIGQueryClassHierarchyTranslator( String predicate ) {
         super( ALL, predicate, ALL );

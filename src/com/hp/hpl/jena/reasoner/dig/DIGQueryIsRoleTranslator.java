@@ -65,7 +65,6 @@ public class DIGQueryIsRoleTranslator
 
     /**
      * <p>Construct a translator for the DIG for a role name.</p>
-     * @param classType denotes a class type (owl:class, daml:class etc)
      */
     public DIGQueryIsRoleTranslator() {
         super( null, RDF.type.getURI(), null );

@@ -52,7 +52,7 @@ public interface OntEventHandler
     /**
      * <p>Handle the occurrence of the ontology event denoted by the given
      * event code.  Standard OWL event contstants are defined in 
-     * {@linkplain com.hp.hpl.vocabulary.OntEvents the Ontology events vocabulary}.
+     * {@linkplain com.hp.hpl.jena.vocabulary.OntEventsVocab the Ontology events vocabulary}.
      * </p>
      * 
      * @param event The event code as a resource

@@ -319,7 +319,7 @@ public class DIGConnection {
             
             // now parse into a document
             DocumentBuilder builder = m_factory.newDocumentBuilder();
-            return builder.parse( new StringBufferInputStream( buf.toString() ) );
+            return builder.parse( new ByteArrayInputStream( buf.toString().getBytes() ) );
         }
         catch (Exception e) {
             throw new DIGWrappedException( e );

@@ -41,7 +41,7 @@ import com.hp.hpl.jena.vocabulary.OntEventsVocab;
  * ontology model can produce makes the traditional Java style of listener interface
  * impractical. Instead, this event manager allows the user to register 
  * {@linkplain OntEventHandler handlers}, based on command pattern, against specific
- * {@linkplain OntEvents event types}. 
+ * {@linkplain OntEventsVocab event types}. 
  * </p>
  * <p>
  * For example, to register a handler for the declaration of an ontology class:
@@ -213,7 +213,6 @@ public class OntEventManager
     /**
      * <p>Add the given handler as the default event handler, which will be invoked if
      * no other handler is applicable to a given event.</p>
-     * @param event The event type to be handled, as a resource
      * @param handler The event handler object
      */
     public void addDefaultHandler( OntEventHandler handler ) {

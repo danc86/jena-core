@@ -1479,22 +1479,22 @@ public interface OntModel
      * <p>If this OntModel is presenting an OWL model, answer the minimum OWL language 
      * level that the constructs
      * used in this model lie entirely within.  The three possible return values are 
-     * {@link OWL#FULL_LANG} for OWL-full, 
-     * {@link OWL#DL_LANG} for OWL-DL or
-     * {@link OWL#LITE_LANG} for OWL-lite.
+     * {@link com.hp.hpl.jena.vocabulary.OWL#FULL_LANG FULL_LANG} for OWL-full, 
+     * {@link com.hp.hpl.jena.vocabulary.OWL#DL_LANG DL_LANG} for OWL-DL or
+     * {@link com.hp.hpl.jena.vocabulary.OWL#LITE_LANG LITE_LANG} for OWL-lite.
      * Note that these URI's are <strong>not</strong> officially sanctioned by the WebOnt 
      * working group.  For unknown reasons, the working group chose not to assign official
      * URI's to represent the different OWL language levels. There is a slim chance that this
      * may change in future, in which case these return values will change apropriately.
      * In addition to the method return value, 
      * the given <code>problems</problems> list, if non-null, will be filled with the syntax
-     * problems detected by the {@link com.hp.hpl.jena.ontology.tidy.Checker syntax checker}.
+     * problems detected by the {@linkplain com.hp.hpl.jena.ontology.tidy.Checker syntax checker}.
      * </p>
      * <p>
      * The Jena OWL syntax checker will normally list as problems those constructs used in
      * this model that are in OWL Full but not permitted in OWL DL.  The exception to this
      * is if the {@linkplain #getProfile() language profile} for this model is  
-     * {@linkplain OWLLiteProfile OWL Lite}, then the syntax checker will
+     * {@linkplain com.hp.hpl.jena.ontology.impl.OWLLiteProfile OWL Lite}, then the syntax checker will
      * test for constructs that lie in OWL-DL or OWL-Full and hence outside in OWL-Lite.
      * </p>
      * <p>

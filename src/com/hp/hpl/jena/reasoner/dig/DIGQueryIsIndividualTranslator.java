@@ -68,7 +68,6 @@ public class DIGQueryIsIndividualTranslator
 
     /**
      * <p>Construct a translator for the DIG for an individual name.</p>
-     * @param classType denotes a class type (owl:class, daml:class etc)
      */
     public DIGQueryIsIndividualTranslator() {
         super( null, RDF.type.getURI(), null );
