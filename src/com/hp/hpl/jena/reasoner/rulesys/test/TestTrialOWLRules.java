@@ -170,8 +170,8 @@ public class TestTrialOWLRules extends TestCase {
      * The test runner
      */
     protected void runTest() throws IOException {
-//        OWLWGTester tester = new OWLWGTester(GenericRuleReasonerFactory.theInstance(), this, configuration);
-        OWLWGTester tester = new OWLWGTester(OWLExptRuleReasonerFactory.theInstance(), this, null);
+        OWLWGTester tester = new OWLWGTester(GenericRuleReasonerFactory.theInstance(), this, configuration);
+//        OWLWGTester tester = new OWLWGTester(OWLExptRuleReasonerFactory.theInstance(), this, null);
         tester.runTests(manifest, enableTracing, printStats);
     }
 
@@ -192,16 +192,25 @@ public class TestTrialOWLRules extends TestCase {
         Resource i = conclusions.getResource("http://www.w3.org/2002/03owlt/someValuesFrom/premises001#i");
         Property p = conclusions.getProperty("http://www.w3.org/2002/03owlt/someValuesFrom/premises001#p");
         Resource c = conclusions.getResource("http://www.w3.org/2002/03owlt/someValuesFrom/premises001#c");
+        Resource r = conclusions.getResource("http://www.w3.org/2002/03owlt/someValuesFrom/premises001#r");
         Resource v = (Resource)i.getProperty(p).getObject();
-        System.out.println("Value if i.p = " + v);
-        System.out.println("Types of i are: ");
-        for (Iterator it = conclusions.listStatements(i, RDF.type, (RDFNode)null); it.hasNext(); ) {
-            System.out.println(" - " + it.next());
-        }
+        System.out.println("Value of i.p = " + v);
         System.out.println("Types of v are: ");
         for (Iterator it2 = conclusions.listStatements(v, RDF.type, (RDFNode)null); it2.hasNext(); ) {
             System.out.println(" - " + it2.next());
         }
+//        System.out.println("Things of type r are: ");
+//        for (Iterator it = conclusions.listStatements(null, RDF.type, r); it.hasNext(); ) {
+//            System.out.println(" - " + it.next());
+//        }
+//        System.out.println("Types of i are: ");
+//        for (Iterator it = conclusions.listStatements(i, RDF.type, (RDFNode)null); it.hasNext(); ) {
+//            System.out.println(" - " + it.next());
+//        }
+//        System.out.println("Things of type r are: ");
+//        for (Iterator it = conclusions.listStatements(null, RDF.type, r); it.hasNext(); ) {
+//            System.out.println(" - " + it.next());
+//        }
         
     }
 }

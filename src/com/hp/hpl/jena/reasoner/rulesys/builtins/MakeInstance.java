@@ -44,6 +44,10 @@ public class MakeInstance extends BaseBuiltin {
      * the current environment
      */
     public boolean bodyCall(Node[] args, RuleContext context) {
+//        System.out.println("MakeInstance on ");
+//        for (int i = 0; i < args.length; i++) {
+//            System.out.println(" - " + PrintUtil.print(args[i]));
+//        }
         if (args.length == 3 || args.length == 4) {
             Node inst = args[0];
             Node prop = args[1];

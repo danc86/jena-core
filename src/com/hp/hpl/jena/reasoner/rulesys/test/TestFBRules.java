@@ -521,6 +521,28 @@ public class TestFBRules extends TestCase {
     }
     
     /**
+     * Test case for makeInstance which failed during development.
+     */
+    public void testMakeInstanceBug() {
+        Graph data = new GraphMem();
+        data.add(new Triple(a, ty, r));
+        data.add(new Triple(r, sC, Functor.makeFunctorNode("some", new Node[] {p, C1})));
+        List rules = Rule.parseRules(
+        "[some1: (?C rdfs:subClassOf some(?P, ?D)) ->"
+        + "[some1b: (?X ?P ?T) <- (?X rdf:type ?C), unbound(?T), noValue(?X, ?P), makeInstance(?X, ?P, ?D, ?T) ]" 
+        + "[some1b2: (?T rdf:type ?D) <- (?X rdf:type ?C), bound(?T), makeInstance(?X, ?P, ?D, ?T) ]"
+        + "]");
+        Reasoner reasoner =  new FBRuleReasoner(rules);
+        InfGraph infgraph = reasoner.bind(data);
+        
+        Node valueInstance = getValue(infgraph, a, p);
+        assertNotNull(valueInstance);
+        Node valueType = getValue(infgraph, valueInstance, ty);
+        assertEquals(valueType, C1);
+        
+    }
+    
+    /**
      * Helper - returns the single object value for an s/p pair, asserts an error
      * if there is more than one.
      */

@@ -108,6 +108,7 @@ public class BRuleEngine {
      * should be reset() before future queries. 
      */
     public void addRule(Rule rule) {
+//        System.out.println("Adding rule: " + rule);
         ruleStore.addRule(rule);
     }
     

@@ -74,6 +74,9 @@ public class DebugOWL {
     /** reasoner config: experimental RDFS - hybrid + TGC */
     public static final int RDFSExpt = 5;
     
+    /** reasoner config: experimental OWL */
+    public static final int OWLExpt = 6;
+    
     
     /**
      * Construct an empty test harness.
@@ -115,6 +118,11 @@ public class DebugOWL {
             
             case RDFSExpt:
                 reasoner = RDFSRuleReasonerFactory.theInstance().create(null);
+                break;
+            
+            case OWLExpt:
+                reasoner = OWLExptRuleReasonerFactory.theInstance().create(null);
+//                ((OWLExptRuleReasoner)reasoner).setTraceOn(true);
                 break;
             
         } 
@@ -300,7 +308,7 @@ public class DebugOWL {
             String food = "file:testing/reasoners/bugs/food.owl";
 
             // Example from ontology development which takes s rather than ms            
-            new DebugOWL(OWLFB).listClassesOn(dataFile2);
+            new DebugOWL(OWLExpt).listClassesOn(dataFile2);
             
             // owl.owl goes into meltdown with even the forward rules
 //            new DebugOWL(OWLFB).run(schemaFile);
