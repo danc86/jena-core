@@ -310,7 +310,8 @@ public class DAML_OILProfile
         {  OntClass.class,              new SupportsCheck() {
                                             public boolean doCheck( Node n, EnhGraph g ) {
                                                 return g.asGraph().contains( n, RDF.type.asNode(), DAML_OIL.Class.asNode() ) ||
-                                                       g.asGraph().contains( n, RDF.type.asNode(), DAML_OIL.Restriction.asNode() );
+                                                       g.asGraph().contains( n, RDF.type.asNode(), DAML_OIL.Restriction.asNode() ) || 
+                                                       g.asGraph().contains( n, RDF.type.asNode(), RDFS.Class.asNode() );
                                             }
                                         }
         },

@@ -26,8 +26,7 @@ package com.hp.hpl.jena.ontology;
 ///////////////
 import com.hp.hpl.jena.ontology.path.PathSet;
 import com.hp.hpl.jena.rdf.model.*;
-
-import java.util.Iterator;
+import com.hp.hpl.jena.util.iterator.ExtendedIterator;
 
 
 
@@ -93,7 +92,7 @@ public interface OntResource
      * @return An iterator over the resources equivalent to this resource.
      * @exception OntProfileException If the {@link Profile#SAME_AS()} property is not supported in the current language profile.   
      */ 
-    public Iterator listSameAs();
+    public ExtendedIterator listSameAs();
 
     /**
      * <p>Answer true if this resource is the same as the given resource.</p>
@@ -141,7 +140,7 @@ public interface OntResource
      * @return An iterator over the resources different from this resource.
      * @exception OntProfileException If the {@link Profile#DIFFERENT_FROM()} property is not supported in the current language profile.   
      */ 
-    public Iterator listDifferentFrom();
+    public ExtendedIterator listDifferentFrom();
 
     /**
      * <p>Answer true if this resource is different from the given resource.</p>
@@ -187,7 +186,7 @@ public interface OntResource
      * @return An iterator over the resources providing additional definition on this resource.
      * @exception OntProfileException If the {@link Profile#SEE_ALSO()} property is not supported in the current language profile.   
      */ 
-    public Iterator listSeeAlso();
+    public ExtendedIterator listSeeAlso();
 
     /**
      * <p>Answer true if this resource has the given resource as a source of additional information.</p>
@@ -235,7 +234,7 @@ public interface OntResource
      * @return An iterator over the resources defining this resource.
      * @exception OntProfileException If the {@link Profile#IS_DEFINED_BY()} property is not supported in the current language profile.   
      */ 
-    public Iterator listIsDefinedBy();
+    public ExtendedIterator listIsDefinedBy();
 
     /**
      * <p>Answer true if this resource is defined by the given resource.</p>
@@ -281,7 +280,7 @@ public interface OntResource
      * @return An iterator over the version info strings for this resource.
      * @exception OntProfileException If the {@link Profile#VERSION_INFO()} property is not supported in the current language profile.   
      */ 
-    public Iterator listVersionInfo();
+    public ExtendedIterator listVersionInfo();
 
     /**
      * <p>Answer true if this resource has the given version information</p>
@@ -340,7 +339,7 @@ public interface OntResource
      * @return An iterator over RDF {@link Literal}'s.
      * @exception OntProfileException If the {@link Profile#LABEL()} property is not supported in the current language profile.   
      */ 
-    public Iterator listLabels( String lang );
+    public ExtendedIterator listLabels( String lang );
 
     /**
      * <p>Answer true if this resource has the given label</p>
@@ -416,7 +415,7 @@ public interface OntResource
      * @return An iterator over RDF {@link Literal}'s.
      * @exception OntProfileException If the {@link Profile#COMMENT()} property is not supported in the current language profile.   
      */ 
-    public Iterator listComments( String lang );
+    public ExtendedIterator listComments( String lang );
 
     /**
      * <p>Answer true if this resource has the given comment.</p>
@@ -507,7 +506,7 @@ public interface OntResource
      * of this resource, not the super-classes of the class etc. 
      * @return An iterator over the set of this resource's classes
      */
-    public Iterator listRDFTypes( boolean direct );
+    public ExtendedIterator listRDFTypes( boolean direct );
 
     /**
      * <p>

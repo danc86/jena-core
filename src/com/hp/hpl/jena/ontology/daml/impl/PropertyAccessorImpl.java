@@ -24,6 +24,8 @@ package com.hp.hpl.jena.ontology.daml.impl;
 // Imports
 ///////////////
 import com.hp.hpl.jena.rdf.model.*;
+import com.hp.hpl.jena.rdf.model.impl.NodeIteratorImpl;
+import com.hp.hpl.jena.util.iterator.*;
 import com.hp.hpl.jena.ontology.*;
 import com.hp.hpl.jena.ontology.daml.*;
 
@@ -111,7 +113,7 @@ public class PropertyAccessorImpl
      * @return An iteration over the values of the encapsulated property.
      */
     public NodeIterator getAll() {
-        return m_val.listPropertyValues( getProperty() );
+        return new NodeIteratorImpl( new UniqueExtendedIterator( m_val.listPropertyValues( getProperty() ) ), null );
     }
 
 

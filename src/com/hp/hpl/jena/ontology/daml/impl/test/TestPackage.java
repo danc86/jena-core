@@ -48,6 +48,8 @@ public class TestPackage
         super("ontology.daml.impl");
         addTest( "TestDAMLClass", TestDAMLClass.suite() );
         addTest( "TestDAMLList", TestDAMLList.suite() );
+        addTest( "TestDAMLProperty", TestDAMLProperty.suite() );
+        addTest( "Legacy tests", DAMLTest.suite() );
     }
 
     private void addTest(String name, TestSuite tc) {

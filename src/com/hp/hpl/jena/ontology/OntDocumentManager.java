@@ -621,6 +621,8 @@ public class OntDocumentManager
      * @param readState Cumulate read state for this operation
      */
     protected void loadImport( OntModel model, String importURI, List readQueue ) {
+        Logger.getLogger( getClass() ).debug( "OntDocumentManager loading " + importURI );
+        
         // add this model to occurs check list
         model.addLoadedImport( importURI );
 
