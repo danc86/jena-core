@@ -1,4 +1,32 @@
 /*
+    (c) Copyright 2001, 2002, 2003, Hewlett-Packard Development Company, LP
+    [See end of file]
+    $Id$
+*/
+ 
+package com.hp.hpl.jena.mem;
+
+/**
+ *
+ * @author  bwm
+ * @version $Name$ $Revision$ $Date$
+ */
+
+public class TestCaseBasic extends com.hp.hpl.jena.regression.TestCaseBasic {
+
+    public TestCaseBasic(String name) {
+        super(name);
+    }
+    
+    public void setUp() {
+        m1 = new ModelMem();
+        m2 = new ModelMem();
+        m3 = new ModelMem();
+        m4 = new ModelMem();
+    }
+}
+
+/*
  *  (c) Copyright 2000, 2001 Hewlett-Packard Development Company, LP
  *  All rights reserved.
  *
@@ -26,25 +54,3 @@
  *
  * $Id$
  */
-
-package com.hp.hpl.jena.mem;
-
-
-/**
- *
- * @author  bwm
- * @version $Name$ $Revision$ $Date$
- */
-public class TestCaseBasic extends com.hp.hpl.jena.regression.TestCaseBasic {
-
-    public TestCaseBasic(String name) {
-        super(name);
-    }
-    
-    public void setUp() {
-        m1 = new ModelMem();
-        m2 = new ModelMem();
-        m3 = new ModelMem();
-        m4 = new ModelMem();
-    }
-}

@@ -31,11 +31,9 @@ package jena;
 
 import com.hp.hpl.jena.shared.JenaException ;
 import com.hp.hpl.jena.rdf.model.*;
-import com.hp.hpl.jena.mem.ModelMem;
 
 import java.net.*;
 import java.io.*;
-import java.io.FileInputStream;
 
 /** A program which read an RDF model and copy it to the standard output stream.
  *
@@ -97,7 +95,7 @@ public class rdfcopy extends java.lang.Object {
 		}
 
 		try {
-			Model m = new ModelMem();
+			Model m = ModelFactory.createDefaultModel();
             String base = in ;
 			RDFReader rdr = m.getReader(inlang);
 			for (j = 1; j < lastInProp; j++) {

@@ -8,9 +8,8 @@ package jena ;
 import java.io.* ;
 import jena.cmdline.*;
 
-import java.util.* ;
-import com.hp.hpl.jena.rdf.model.* ;
-import com.hp.hpl.jena.mem.* ;
+import java.util.*;
+import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.shared.*;
 
 import com.hp.hpl.jena.n3.* ;
@@ -224,7 +223,7 @@ public class n3
 	{
 		try
 		{
-			Model model = new ModelMem();
+			Model model = ModelFactory.createDefaultModel();
 			//RDFReader n3Reader = new N3JenaReader();
 			//n3Reader.read(model, reader, baseName);
 			model.read(reader, baseName, "N3") ;

@@ -9,7 +9,6 @@
  *****************************************************************/
 package com.hp.hpl.jena.reasoner.test;
 
-import com.hp.hpl.jena.mem.ModelMem;
 //import com.hp.hpl.jena.reasoner.rdfsReasoner1.RDFSReasoner;
 //import com.hp.hpl.jena.reasoner.rdfsReasoner1.RDFSReasonerFactory;
 import com.hp.hpl.jena.reasoner.rulesys.RDFSRuleReasonerFactory;
@@ -31,7 +30,7 @@ import org.apache.log4j.Logger;
  * @author <a href="mailto:der@hplb.hpl.hp.com">Dave Reynolds</a>
  * @version $Revision$ on $Date$
  */
-public class TestCurrentRDFWG extends TestCase {
+public class TestCurrentRDFWG extends ReasonerTestBase {
     
     /** Location of the test file directory */
     public static final String TEST_DIR = "testing/wg20030725/";    
@@ -46,7 +45,7 @@ public class TestCurrentRDFWG extends TestCase {
     public TestCurrentRDFWG( String name ) {
         super( name ); 
     }
-    
+        
     /**
      * Boilerplate for junit.
      * This is its own test suite
@@ -54,7 +53,7 @@ public class TestCurrentRDFWG extends TestCase {
     public static TestSuite suite() {
         TestSuite suite = new TestSuite();
         try {
-            Resource config = new ModelMem().createResource().addProperty(ReasonerVocabulary.PROPenableCMPScan, true);
+            Resource config = newResource().addProperty(ReasonerVocabulary.PROPenableCMPScan, true);
             config.addProperty(ReasonerVocabulary.PROPtraceOn, true);
             constructRDFWGtests(suite, RDFSRuleReasonerFactory.theInstance(), null);
 //            constructRDFWGtests(suite, RDFSReasonerFactory.theInstance(), null);

@@ -828,7 +828,7 @@ public class DAMLTest
         assertTrue( "loadStatus should be true for successful load", m.getLoadSuccessful() );
 
         // create a normal rdf model
-        Model m0 = new ModelMem();
+        Model m0 = ModelFactory.createDefaultModel();
         m0.read( "file:testing/ontology/daml/test-add-1.daml" );
 
         // should be 0 instances in the daml model so far
@@ -941,7 +941,7 @@ public class DAMLTest
         DAMLModel m1 = ModelFactory.createDAMLModel();
         test.java(m1);
 
-        Model m2 = new ModelMem();
+        Model m2 = ModelFactory.createDefaultModel();
         Reader rdr = new StringReader(
           "<rdf:RDF " +
     "xmlns:daml='http://www.daml.org/2001/03/daml+oil#' " +

@@ -30,7 +30,6 @@
 package jena;
 
 import com.hp.hpl.jena.rdf.model.*;
-import com.hp.hpl.jena.mem.ModelMem;
 
 import java.net.URL;
 import java.io.FileInputStream;
@@ -82,8 +81,8 @@ public class rdfcompare extends java.lang.Object {
         
         System.out.println(in1 + " " + in2 + " " + lang1 + " " + lang2);
         try {
-            Model m1 = new ModelMem();
-            Model m2 = new ModelMem();
+            Model m1 = ModelFactory.createDefaultModel();
+            Model m2 = ModelFactory.createDefaultModel();
         
             read(m1, in1, lang1);
             read(m2, in2, lang2);

@@ -11,9 +11,7 @@ package com.hp.hpl.jena.reasoner.test;
 
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.graph.*;
-import com.hp.hpl.jena.rdf.model.impl.PropertyImpl;
-import com.hp.hpl.jena.rdf.model.impl.ResourceImpl;
-import com.hp.hpl.jena.mem.ModelMem;
+import com.hp.hpl.jena.rdf.model.impl.*;
 import com.hp.hpl.jena.mem.GraphMem;
 import com.hp.hpl.jena.reasoner.*;
 import com.hp.hpl.jena.reasoner.rulesys.Node_RuleVariable;
@@ -121,7 +119,7 @@ public class ReasonerTester {
         } else if (file.endsWith("n3")) {
             langType = "N3";
         }
-        Model result = new ModelMem();
+        Model result = ModelFactory.createDefaultModel();
         Reader reader = new BufferedReader(new FileReader(baseDir + file));
         result.read(reader, BASE_URI + file, langType);
         if (cache) {

@@ -376,7 +376,7 @@ public class QueryTestScripts extends TestSuite
     {
         String queryString = "SELECT * WHERE (?x, ?y, ?z)" ;
         Query query = new Query(queryString) ;
-        query.setSource(new ModelMem());
+        query.setSource( ModelFactory.createDefaultModel() );
         QueryExecution qe = new QueryEngine(query) ;
         QueryResults qr = qe.exec() ;
         QueryResultsFormatter fmt = new QueryResultsFormatter(qr) ;

@@ -33,7 +33,6 @@ import com.hp.hpl.jena.rdf.model.impl.Util;
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.vocabulary.RDF;
 import com.hp.hpl.jena.vocabulary.RDFS;
-import com.hp.hpl.jena.mem.ModelMem;
 
 import java.net.URL;
 import java.io.FileOutputStream;
@@ -94,7 +93,7 @@ public class schemagen_orig extends java.lang.Object {
         }
 
         try {
-            Model schema = new ModelMem();
+            Model schema = ModelFactory.createDefaultModel();
 
             read(schema, input, lang);
 

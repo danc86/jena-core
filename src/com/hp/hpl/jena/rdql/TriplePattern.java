@@ -60,7 +60,7 @@ import com.hp.hpl.jena.shared.*;
 	}
 	
 	// Hack - somewhere to base creating resources, predicate and statements if nowhere else.
-	static Model groundingModel = new ModelMem() ;
+	static Model groundingModel = ModelFactory.createDefaultModel() ;
 
 	/** Get the statement for this TriplePattern
 	 * 	@return A statement if this TriplePattern is grounded (no variables) else return null.
