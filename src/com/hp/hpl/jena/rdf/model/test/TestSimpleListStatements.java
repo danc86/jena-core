@@ -17,7 +17,7 @@ import java.util.*;
 
 import junit.framework.*;
 
-public class TestSimpleListStatements extends TestCase
+public class TestSimpleListStatements extends ModelTestBase
     {    
         
     public TestSimpleListStatements( String name )
@@ -25,10 +25,6 @@ public class TestSimpleListStatements extends TestCase
     
     public static TestSuite suite()
         { return new TestSuite( TestSimpleListStatements.class ); }   
- /*           
-    public void assertFalse( String name, boolean b )
-        { assertTrue( name, !b ); } */
-        
     
     Model model = null; 
     
@@ -154,28 +150,7 @@ public class TestSimpleListStatements extends TestCase
     	assertEquals(7, i);
     }
 
-    public static Statement statement( Model m, String fact )
-         {
-         StringTokenizer st = new StringTokenizer( fact );
-         Resource sub = m.createResource( st.nextToken() );
-         Property pred = m.createProperty( st.nextToken() );
-         RDFNode obj = m.createResource( st.nextToken() );
-         return m.createStatement( sub, pred, obj );    
-         }
-         
-    public static Model modelAdd( Model m, String s )
-        {
-        StringTokenizer semis = new StringTokenizer( s, ";" );
-        while (semis.hasMoreTokens()) m.add( statement( m, semis.nextToken() ) );     
-        return m;
-        }
-        
-    public static Model modelWithStatements( String statements )
-        {
-        Model m = ModelFactory.createDefaultModel();
-        return modelAdd( m, statements );
-        }
-             
+
     public Model modelWithStatements( StmtIterator it )
         {
         Model m = ModelFactory.createDefaultModel();

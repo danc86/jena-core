@@ -28,7 +28,7 @@ public class TestGraph extends GraphTestBase
     public static TestSuite suite()
         { return new TestSuite( TestGraph.class ); }   
 
-    public static void testAGraph( String title, Graph g )
+    public void testAGraph( String title, Graph g )
         {
         graphAdd( g, "x R y; p S q; a T b" );
     /* */
@@ -48,7 +48,7 @@ public class TestGraph extends GraphTestBase
         assertFalse( title + ": finds exactly one triple", it.hasNext() );
         }
 
-    public static void testStuff()
+    public void testStuff()
         {
         testAGraph( "StoreMem", new GraphMem() );
         testAGraph( "StoreMemBySubject", new GraphMem() );

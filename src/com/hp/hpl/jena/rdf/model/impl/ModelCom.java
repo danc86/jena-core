@@ -877,6 +877,15 @@ public class ModelCom extends EnhGraph
     public boolean contains(Statement s) throws RDFException {
         return graph.contains( s.asTriple() );
     }
+    
+    public boolean containsResource( RDFNode r )
+        {
+        return 
+            listStatements( (Resource) r, null, (RDFNode) null ).hasNext()
+            || listStatements( null, (Property) r.as(Property.class), (RDFNode) null ).hasNext()
+            || listStatements( null, null, r ).hasNext()
+            ;
+        }
   
     public boolean contains(Resource s, Property p) throws RDFException {
         ClosableIterator it = graph.find( s.asNode(), p.asNode(), null );

@@ -486,6 +486,16 @@ public interface Model extends ModelCon, RDFReaderF, RDFWriterF {
 	 * @throws RDFException Generic RDF Exception
 	 */
 	boolean contains(Resource s, Property p) throws RDFException;
+    
+    /**
+        determine if the RDFNode r appears in any statement of this model.
+        (containsRDFNode is a horrible name, and in any case, even literals
+        will be resources one day)
+        
+        @param r the RDFNode to be searched for
+        @return true iff r appears as some subject, predicate, or object
+    */
+    boolean containsResource( RDFNode r );
 
 	/** Determine if a statement is present in this model.
 	 * @return true if the statement with subject s, property p and object o
