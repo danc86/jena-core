@@ -38,10 +38,7 @@ public class EnvironmentFrame extends FrameObject {
     /** The continuation argument counter offset in the parent clause's arg stream */
     int cac;
     
-    /** A derivation record for this frame, only used if recording derivations. */
-    LPPartialDerivation derivation;
-        
-    /** 
+     /** 
      * Constructor 
      * @param clause the compiled code being interpreted by this env frame 
      */
@@ -65,21 +62,6 @@ public class EnvironmentFrame extends FrameObject {
         } else {
             return null;
         }
-    }
-    
-    /**
-     * Create an initial derivation record for this frame, based on the given
-     * argument registers.
-     */
-    public void initDerivationRecord(Node[] args) {
-        derivation = new LPPartialDerivation(args);
-    }
-    
-    /**
-     * Return the derivation record for this frame.
-     */
-    public LPPartialDerivation getDerivationRecord() {
-        return derivation;
     }
     
     /**

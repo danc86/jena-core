@@ -107,14 +107,18 @@ public class LPInterpreter {
         this.goal = goal;       // Used for debug only
         
         // Construct dummy top environemnt which is a call into the clauses for this goal
-        envFrame = new EnvironmentFrame(RuleClauseCode.returnCodeBlock);
+        if (engine.getDerivationLogging()) {
+            envFrame = new EnvironmentFrameWithDerivation(RuleClauseCode.returnCodeBlock);
+        } else {
+            envFrame = new EnvironmentFrame(RuleClauseCode.returnCodeBlock);
+        }
         envFrame.allocate(RuleClauseCode.MAX_PERMANENT_VARS);
         HashMap mappedVars = new HashMap();
         envFrame.pVars[0] = argVars[0] = standardize(goal.getSubject(), mappedVars);
         envFrame.pVars[1] = argVars[1] = standardize(goal.getPredicate(), mappedVars);
         envFrame.pVars[2] = argVars[2] = standardize(goal.getObject(), mappedVars);
         if (engine.getDerivationLogging()) {
-            envFrame.initDerivationRecord(argVars);
+            ((EnvironmentFrameWithDerivation)envFrame).initDerivationRecord(argVars);
         }
         
         if (clauses != null && clauses.size() > 0) {
@@ -249,7 +253,11 @@ public class LPInterpreter {
                 
                 clause = (RuleClauseCode)choice.nextClause();
                 // Create an execution environment for the new choice of clause
-                envFrame = new EnvironmentFrame(clause);
+                if (recordDerivations) {
+                    envFrame = new EnvironmentFrameWithDerivation(clause);
+                } else {
+                    envFrame = new EnvironmentFrame(clause);
+                }
                 envFrame.linkTo(choice.envFrame);
                 envFrame.cpc = choice.cpc;
                 envFrame.cac = choice.cac;
@@ -262,7 +270,7 @@ public class LPInterpreter {
                 }
                 pc = ac = 0;
                 if (recordDerivations) {
-                    envFrame.initDerivationRecord(argVars);
+                    ((EnvironmentFrameWithDerivation)envFrame).initDerivationRecord(argVars);
                 }
                 
                 if (traceOn) logger.info("ENTER " + clause + " : " + getArgTrace());
@@ -293,7 +301,9 @@ public class LPInterpreter {
                 }
                      
                 if (recordDerivations) {
-                    envFrame.getDerivationRecord().noteMatch(tmFrame.goal);
+                    if (envFrame instanceof EnvironmentFrameWithDerivation) {
+                        ((EnvironmentFrameWithDerivation)envFrame).noteMatch(tmFrame.goal);
+                    }
                 }
                 
                 pc = tmFrame.cpc;
@@ -345,7 +355,9 @@ public class LPInterpreter {
                 }
                 
                 if (recordDerivations) {
-                    envFrame.getDerivationRecord().noteMatch(ccp.goal);
+                    if (envFrame instanceof EnvironmentFrameWithDerivation) {
+                        ((EnvironmentFrameWithDerivation)envFrame).noteMatch(ccp.goal);
+                    }
                 }
 
                 pc = ccp.cpc;
@@ -563,10 +575,10 @@ public class LPInterpreter {
                             ac = envFrame.cac;
                             if (traceOn) logger.info("EXIT " + clause);
                             if (recordDerivations && envFrame.getRule() != null) {
-                                LPPartialDerivation pdr = (LPPartialDerivation)envFrame.getDerivationRecord();
-                                if (pdr != null) {
-                                    Triple result = pdr.getResult();
-                                    List matches = pdr.getMatchList();
+                                if (envFrame instanceof EnvironmentFrameWithDerivation) {
+                                    EnvironmentFrameWithDerivation efd = (EnvironmentFrameWithDerivation) envFrame;
+                                    Triple result = efd.getResult();
+                                    List matches = efd.getMatchList();
                                     BackwardRuleInfGraphI infGraph = engine.getInfGraph();
                                     RuleDerivation d = new RuleDerivation(envFrame.getRule(), result, matches, infGraph);
                                     infGraph.logDerivation(result, d);
