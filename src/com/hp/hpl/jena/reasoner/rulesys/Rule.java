@@ -578,7 +578,8 @@ public class Rule implements ClauseEntry {
                 // Skip the trailing quote
                 nextToken();
                 return Node.createLiteral(lit, "", false);
-            } else if ( Character.isDigit(token.charAt(0)) ) {
+            } else  if ( Character.isDigit(token.charAt(0)) || 
+                         (token.charAt(0) == '-' && token.length() > 1 && Character.isDigit(token.charAt(1))) ) {
                 // A number literal
                return parseNumber(token);
             } else {
@@ -592,7 +593,8 @@ public class Rule implements ClauseEntry {
          * @return the constructed literal node
          */
         Node parseNumber(String lit) {
-            if ( Character.isDigit(lit.charAt(0)) ) {
+            if ( Character.isDigit(lit.charAt(0)) || 
+                (lit.charAt(0) == '-' && lit.length() > 1 && Character.isDigit(lit.charAt(1))) ) {
                 if (lit.indexOf(".") != -1) {
                     // Float?
                     if (XSDDatatype.XSDfloat.isValid(lit)) {
