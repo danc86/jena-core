@@ -67,6 +67,15 @@ public class TestModelSpec extends ModelTestBase
         assertNotNull( ModelMakerCreatorRegistry.findCreator( JMS.MemMakerSpec ) );   
         assertNotNull( ModelMakerCreatorRegistry.findCreator( JMS.RDBMakerSpec ) );    
         }
+    
+    public void testDefaultMaker()
+        {
+        Model spec = modelWithStatements( "_x jms:maker _y;  _y jms:reificationMode jms:rsMinimal" );
+        spec.write( System.out, "N3" );
+        ModelSpec ms = ModelFactory.createSpec( spec ) ;
+        Model m = ModelFactory.createModel( ms ) ;
+        assertTrue( m.getGraph() instanceof GraphMem );
+        }
         
     public void testNotFindCreator()
         {

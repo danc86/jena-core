@@ -53,12 +53,21 @@ public class ModelMakerCreatorRegistry
     */
     public static void register( Resource type, ModelMakerCreator mmc )
         { creators.put( type, mmc ); }        
-        
+    
+    /**
+        The default maker-creator, hauled out here as a constant in case we
+        consider changing it [and so it has an identifying name].
+    */
+    private static final ModelMakerCreator defaultMakerCreator =  new MemMakerCreator();
+    
     /**
         Register the three standard MakerCreators under their JMS Resources.  
+        We also recognise a non-specific MakerSpec as meaning a default
+        maker type.
     */
     static
         {
+        register( JMS.MakerSpec, defaultMakerCreator );    
         register( JMS.FileMakerSpec, new FileMakerCreator() );    
         register( JMS.MemMakerSpec, new MemMakerCreator() );    
         register( JMS.RDBMakerSpec, new RDBMakerCreator() );    

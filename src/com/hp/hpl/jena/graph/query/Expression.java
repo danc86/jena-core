@@ -31,18 +31,9 @@ import java.util.*;
 public interface Expression 
     { 
     /**
-    	Answer true iff the Expression evaluates to true given the variable bindings.
-        
-    	@param vv the mapping from variable[ name]s to their values
-    */
-    // public boolean evalBool( VariableValues vv );
-    
-    /**
-        Answer a Valuator which does the same evaluation as this Expression when
-        supplied with a mapping from variable indexes to their values. The 
-        composition of the variable->index map <code>vi</code> and the 
-        index->value map given to the valuator is equivalent to the VariableValues
-        map that would be supplied to <code>evalBool</code>.
+        Answer a Valuator which, when run with a set of index-to-value bindings, 
+        evaluates this expression in the ligh of the given variable-to-index bindings
+        [ie as though the variables were bound to the corresponding values].
      */
     public Valuator prepare( VariableIndexes vi );
     

@@ -249,8 +249,6 @@ public abstract class ModelSpecImpl implements ModelSpec
         
     public static ModelMaker createMakerByRoot( Resource root, Model fullDesc )
         { Resource type = findSpecificType( fullDesc, root, JMS.MakerSpec );
-//        System.err.println( ">> " + root + " has specific type: " + type );
-//        fullDesc.write( System.out, "N3" );
         ModelMakerCreator mmc = ModelMakerCreatorRegistry.findCreator( type );
         if (mmc == null) throw new RuntimeException( "no maker type" );  
         return mmc.create( fullDesc, root ); }

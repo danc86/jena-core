@@ -191,7 +191,7 @@ public abstract class Node {
     
     /** get the URI of this node if it has one, else die horribly */
     public String getURI()
-        { throw new UnsupportedOperationException( "this is not a URI node" ); }
+        { throw new UnsupportedOperationException( this + " is not a URI node" ); }
 
     /** get a variable nodes name, otherwise die horribly */
     public String getName()
