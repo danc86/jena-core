@@ -28,12 +28,22 @@ public class GraphMemQueryHandler extends SimpleQueryHandler
 	    {
 	    return p == null && o == null ? findObjects() : super.objectsFor( p, o );
 	    }
-	
-	public ExtendedIterator subjectsFor( Node p, Node o )
+
+    public ExtendedIterator predicatesFor( Node s, Node o )
+        {
+        return s == null && o == null ? findPredicates() : super.predicatesFor( s, o );
+        }
+    
+    public ExtendedIterator subjectsFor( Node p, Node o )
 	    {
 	    return p == null && o == null ? findSubjects() : super.subjectsFor( p, o );
 	    }   
-	
+
+    public ExtendedIterator findPredicates()
+        {
+        return ((GraphMem) graph).store.listPredicates();
+        }
+
 	public ExtendedIterator findObjects()
 	    {
 	    return ((GraphMem) graph).store.listObjects();

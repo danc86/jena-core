@@ -829,10 +829,11 @@ public class ModelCom
         
     private Iterator listPredicates()
         {
-        Set predicates = CollectionFactory.createHashedSet();
-        ClosableIterator it = graph.find( null, null, null );
-        while (it.hasNext()) predicates.add( ((Triple) it.next()).getPredicate() );
-        return predicates.iterator();
+//        Set predicates = CollectionFactory.createHashedSet();
+//        ClosableIterator it = graph.find( null, null, null );
+//        while (it.hasNext()) predicates.add( ((Triple) it.next()).getPredicate() );
+//        return predicates.iterator();
+        return getGraph().queryHandler().predicatesFor( Node.ANY, Node.ANY );
         }
      
     private Iterator listTypes()

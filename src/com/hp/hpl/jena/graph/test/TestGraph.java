@@ -88,6 +88,22 @@ public class TestGraph extends GraphTestBase
         assertFalse( "find should not have been called", called[0] );
         }   
     
+    public void testListPredicatesDoesntUseFind()
+        {
+        final boolean [] called = {false};
+        
+        Graph g = new GraphMem()
+            {
+            public ExtendedIterator graphBaseFind( TripleMatch m )
+                { called[0] = true; return super.find( m ); }
+            };
+        
+        ExtendedIterator predicates = g.queryHandler().predicatesFor( null, null );
+        Set s = CollectionFactory.createHashedSet();
+        while (predicates.hasNext()) s.add( predicates.next() );
+        assertFalse( "find should not have been called", called[0] );
+        }
+    
     public void testListObjectsDoesntUseFind()
         {
         final boolean [] called = {false};

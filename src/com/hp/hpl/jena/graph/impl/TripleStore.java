@@ -51,6 +51,11 @@ public interface TripleStore
     public ExtendedIterator listSubjects();
     
     /**
+         Answer an iterator over all the predicates of triples in this store.
+    */
+    public ExtendedIterator listPredicates();
+    
+    /**
          Answer an setwise iterator over all the objects of triples in this store.
     */    
     public ExtendedIterator listObjects();

@@ -53,6 +53,12 @@ public interface QueryHandler
     	underlying graph; nulls count as wildcards.
     */
     public ExtendedIterator subjectsFor( Node p, Node o );
+
+    /**
+         Answer an iterator over all the predicates <code>p</code> such that
+         <code>(s, p, o)</code> is in the underlying graph.
+    */
+    public ExtendedIterator predicatesFor( Node s, Node o );
     
     /**
         true iff the graph contains a triple in which n appears somewhere.
@@ -60,6 +66,7 @@ public interface QueryHandler
         so don't do that.
     */
     public boolean containsNode( Node n );
+
     }
 
 /*

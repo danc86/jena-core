@@ -75,6 +75,9 @@ public class GraphTripleStore implements TripleStore
     
     public ExtendedIterator listSubjects()
         { return WrappedIterator.create( subjects.domain() ); }
+
+    public ExtendedIterator listPredicates()
+        { return WrappedIterator.create( predicates.domain() ); }
     
     public ExtendedIterator listObjects()
         { return WrappedIterator.create( objects.domain() ); }
