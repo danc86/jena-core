@@ -91,6 +91,31 @@ public class AbstractDateTime {
             fractionalSeconds = ((double)fs) / Math.pow(10.0, (double)exp);
         }
     }
+    
+    /**
+     * Equality function
+     */
+    public boolean equals(Object obj) {
+        if (obj instanceof AbstractDateTime) {
+            AbstractDateTime adt = (AbstractDateTime) obj;
+            for (int i = 0; i < data.length; i++) {
+                if (data[i] != adt.data[i]) return false;
+            }
+            return true;
+        }
+        return false;
+    }
+    
+    /**
+     * hash function
+     */
+    public int hashCode() {
+        int hash = 0;
+        for (int i = 0; i < data.length; i++) {
+            hash = (hash << 1) ^ data[i];
+        }
+        return hash;
+    }
 }
 
 /*
