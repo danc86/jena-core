@@ -46,11 +46,24 @@ public class SimpleEventManager implements GraphEventManager
             ((GraphListener) listeners.get(i)).notifyAdd( t ); 
         }
     
+    public void notifyAdd( Triple [] ts )
+        {
+        for (int i = 0; i < listeners.size(); i += 1) 
+            ((GraphListener) listeners.get(i)).notifyAdd( ts ); 
+        }
+    
     public void notifyDelete( Triple t ) 
         { 
         for (int i = 0; i < listeners.size(); i += 1) 
             ((GraphListener) listeners.get(i)).notifyDelete( t ); 
         }
+        
+    public void notifyDelete( Triple [] ts )
+        {
+        for (int i = 0; i < listeners.size(); i += 1) 
+            ((GraphListener) listeners.get(i)).notifyDelete( ts ); 
+        }
+    
     }
 
 /*

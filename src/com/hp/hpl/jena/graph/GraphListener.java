@@ -18,9 +18,19 @@ public interface GraphListener
     void notifyAdd( Triple t );
     
     /**
+        Method called when an array of triples has been added to the graph.
+    */
+    void notifyAdd( Triple [] triples );
+    
+    /**
         Method called when a single triple has been deleted from the graph.
     */
     void notifyDelete( Triple t );
+    
+    /**
+        Method called when an array of triples has been deleted from the graph.
+    */
+    void notifyDelete( Triple [] triples );
     }
 
 /*

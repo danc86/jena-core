@@ -7,7 +7,6 @@
 package com.hp.hpl.jena.enhanced;
 
 import com.hp.hpl.jena.graph.*;
-import org.apache.log4j.*;
 import com.hp.hpl.jena.rdf.model.*;
 
 /**
@@ -23,9 +22,6 @@ import com.hp.hpl.jena.rdf.model.*;
 public class EnhNode 
     extends Polymorphic
 {
-    // Static variables
-    /** For writing to the log file in the context of this class */
-    private static Logger logger = Logger.getLogger( EnhNode.class );
     
     /** The graph node that this enhanced node is wrapping */
     final protected Node node;

@@ -13,8 +13,6 @@ import com.hp.hpl.jena.util.iterator.*;
 import com.hp.hpl.jena.shared.*;
 import com.hp.hpl.jena.shared.impl.PrefixMappingImpl;
 
-import java.util.*;
-
 /**
     GraphBase is an implementation of Graph that provides some convenient
     base functionality for Graph implementations.
@@ -81,8 +79,13 @@ public abstract class GraphBase implements Graph {
     public TransactionHandler getTransactionHandler()
         { return new SimpleTransactionHandler(); }
         
+    private BulkUpdateHandler bud;
+    
     public BulkUpdateHandler getBulkUpdateHandler()
-        { return new SimpleBulkUpdateHandler( this ); }
+        { 
+        if (bud == null) bud = new SimpleBulkUpdateHandler( this ); 
+        return bud;
+        }
         
     public Capabilities getCapabilities()
         { return null; }

@@ -4,48 +4,47 @@
   $Id$
 */
 
-package com.hp.hpl.jena.rdf.model.impl;
+package com.hp.hpl.jena.graph.test;
 
 import com.hp.hpl.jena.graph.*;
-import com.hp.hpl.jena.rdf.model.*;
+
+import junit.framework.*;
+import java.util.*;
 
 /**
-    Adapter class that converts a ModelChangedListener into a GraphListener.
-    The only tricky bit is that we have to implement equality as equality of the
-    underlying ModelChangedListeners/ModelCom pairs.
-    
-    @author hedgehog
-*/
-public class ModelListenerAdapter implements GraphListener
+    This testing listener records the event names and data, and provides
+    a method for comparing the actual with the expected history. 
+*/    
+class RecordingListener implements GraphListener
     {
-    protected ModelCom m;
-    protected ModelChangedListener L;
-
-    ModelListenerAdapter( ModelCom m, ModelChangedListener L )
-        { this.m = m; this.L = L; }
-
-    public void notifyAdd( Triple [] triples )
-        {}
+    List history = new ArrayList();
+    
+    public void notifyAdd( Triple t )
+        { record( "add", t ); }
+        
+    public void notifyAdd( Triple [] ts )
+        { record( "add[]", ts ); }
+        
+    public void notifyDelete( Triple t )
+        { record( "delete", t ); }
         
     public void notifyDelete( Triple [] triples )
-        {}
+        { record( "delete[]", triples ); }
         
-    public void notifyAdd( Triple t )
-        { L.addedStatement( m.asStatement( t ) ); }
-
-    public void notifyDelete( Triple t )
-        { L.removedStatement( m.asStatement( t ) ); }
-
-    public boolean equals( Object other )
-        { 
-        return 
-            other instanceof ModelListenerAdapter 
-            && ((ModelListenerAdapter) other).sameAs( this )
-            ; 
-        }
+    protected void record( String tag, Object info )
+        { history.add( tag ); history.add( info ); }
         
-    public boolean sameAs( ModelListenerAdapter other )
-        { return this.L.equals( other.L ) && this.m.equals( other.m ); }
+    public void clear()
+        { history.clear(); }
+        
+    public boolean has( Object [] things )
+        { return history.equals( Arrays.asList( things ) ); } 
+        
+    void assertHas( Object [] things )
+        {
+        if (has( things ) == false)
+            Assert.fail( "expected " + Arrays.asList( things ) + " but got " + history );
+        }   
     }
 
 /*

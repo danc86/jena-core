@@ -39,10 +39,22 @@ public interface GraphEventManager
     void notifyAdd( Triple t );
     
     /**
+        Notify all attached listeners that the triple array <code>triples</code> has
+        been added, by calling their <code>notifyAdd(Triple [])</code> methods.
+    */
+    void notifyAdd( Triple [] ts );
+    
+    /**
         Notify all attached listeners that the triple <code>t</code> has been removed,
         by calling their <code>notifyDelete(Triple)</code> methods.
     */
     void notifyDelete( Triple t );
+    
+    /**
+        Notify all attached listeners that the triple array <code>triples</code> has
+        been removed, by calling their <code>notifyDelete(Triple [])</code> methods,
+    */
+    void notifyDelete( Triple [] triples );
     }
 
 /*
