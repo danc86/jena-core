@@ -4,20 +4,50 @@
   $Id$
 */
 
-package com.hp.hpl.jena.util.iterator.test;
+package com.hp.hpl.jena.util.iterator;
 
-import junit.framework.TestSuite;
+import java.util.*;
 
-public class TestPackage extends TestSuite
+/**
+    a WrappedIterator is an ExtendedIterator wrapping around a plain (or
+    presented as plain) Iterator. The wrapping allows the usual extended
+    operations (filtering, concatenating) to be done on an Iterator derived
+    from some other source.
+<br>
+    @author kers
+*/
+
+public class WrappedIterator extends NiceIterator
     {
-    static public TestSuite suite()
-        { return new TestPackage(); }
+    /**
+        factory method for creating a wrapper arounf _it_. We reserve
+        the right to deliver the argument if it's already an extended iterator.
+    */
+    public static WrappedIterator create( Iterator it )
+        { return new WrappedIterator( it ); }
+      
+    /** the base iterator that we wrap */  
+    private Iterator base;
+    
+    /** private constructor: remember the base iterator */
+    private WrappedIterator( Iterator base )
+        { this.base = base; }
         
-    private TestPackage()
-        {
-        super( "iterators" );
-        addTest( TestWrappedIterator.suite() );
-        }
+    /** hasNext: defer to the base iterator */
+    public boolean hasNext()
+        { return base.hasNext(); }
+        
+    /** next: defer to the base iterator */
+    public Object next()
+        { return base.next(); }
+        
+    /** remove: defer to the base iterator */
+    public void remove()
+        { base.remove(); }
+        
+    /** close: defer to the base, iff it is closable */
+    public void close()
+        { if (base instanceof ClosableIterator) ((ClosableIterator) base).close(); }
     }
 
 /*

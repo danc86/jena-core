@@ -36,8 +36,6 @@ import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.graph.dt.RDFDatatype;
 import com.hp.hpl.jena.graph.dt.DatatypeFormatException;
 
-import java.util.zip.DataFormatException;
-
 import com.hp.hpl.jena.enhanced.*;
 
 /** An implementation of Literal.

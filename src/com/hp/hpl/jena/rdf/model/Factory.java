@@ -4,22 +4,22 @@
   $Id$
 */
 
-package com.hp.hpl.jena.util.iterator.test;
+package com.hp.hpl.jena.rdf.model;
 
-import junit.framework.TestSuite;
+import com.hp.hpl.jena.mem.*;
 
-public class TestPackage extends TestSuite
+/**
+    Factory provides methods for creating standard kinds of Model. This
+    initial version provides only a single default Model with no trimmings. 
+*/
+
+public class Factory
     {
-    static public TestSuite suite()
-        { return new TestPackage(); }
-        
-    private TestPackage()
-        {
-        super( "iterators" );
-        addTest( TestWrappedIterator.suite() );
-        }
+    /** deliver a new Model (implemented as a ModelMem, but that's secret) */
+    public static Model createDefaultModel()
+        { return new ModelMem(); }
     }
-
+    
 /*
     (c) Copyright Hewlett-Packard Company 2002
     All rights reserved.

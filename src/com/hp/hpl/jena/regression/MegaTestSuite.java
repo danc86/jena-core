@@ -36,7 +36,7 @@
 package com.hp.hpl.jena.regression;
 
 import junit.framework.TestSuite;
-import junit.framework.Test;
+
 /**
  * All developers should edit this file to add their tests.
  * Please try to name your tests and test suites appropriately.

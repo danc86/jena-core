@@ -4,20 +4,24 @@
   $Id$
 */
 
-package com.hp.hpl.jena.util.iterator.test;
+package com.hp.hpl.jena.rdf.model.test;
 
-import junit.framework.TestSuite;
+import com.hp.hpl.jena.graph.*;
+import com.hp.hpl.jena.rdf.model.*;
+import junit.framework.*;
 
-public class TestPackage extends TestSuite
+public class TestModel extends GraphTestBase
     {
-    static public TestSuite suite()
-        { return new TestPackage(); }
+    public static TestSuite suite()
+        { return new TestSuite( TestModel.class ); }   
         
-    private TestPackage()
+    public TestModel(String name)
+        { super(name); }
+
+    public void testCreateDefaultModel()
         {
-        super( "iterators" );
-        addTest( TestWrappedIterator.suite() );
-        }
+        Model m = Factory.createDefaultModel();
+        }    
     }
 
 /*

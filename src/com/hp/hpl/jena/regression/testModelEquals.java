@@ -30,10 +30,6 @@ package com.hp.hpl.jena.regression;
 
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.rdf.model.impl.ErrorHelper;
-
-
-import java.io.PrintWriter;
-
 import com.hp.hpl.jena.mem.ModelMem;
 
 /**

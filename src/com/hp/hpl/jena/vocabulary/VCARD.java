@@ -14,10 +14,8 @@ package com.hp.hpl.jena.vocabulary;
 import com.hp.hpl.jena.rdf.model.impl.ErrorHelper;
 import com.hp.hpl.jena.rdf.model.impl.PropertyImpl;
 import com.hp.hpl.jena.rdf.model.impl.ResourceImpl;
-import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.Resource;
 import com.hp.hpl.jena.rdf.model.Property;
-import com.hp.hpl.jena.rdf.model.RDFException;
 
 /** VCARD vocabulary class for namespace http://www.w3.org/2001/vcard-rdf/3.0#
  */

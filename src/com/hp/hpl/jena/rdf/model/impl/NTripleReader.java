@@ -33,7 +33,6 @@ import org.apache.log4j.*;
 
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.util.FileUtils;
-import com.hp.hpl.jena.util.Log;
 
 import java.net.URL;
 import java.io.InputStream;

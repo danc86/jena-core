@@ -7,14 +7,12 @@
  */
 package com.hp.hpl.jena.util.cache;
 
-import java.util.Collection;
-import java.util.HashMap;
-
 /** A factory for creating cache objects
  *
  * @author bwm
  * @version
  */
+
 public class CacheManager {
     
     public static final String RAND = "RAND";

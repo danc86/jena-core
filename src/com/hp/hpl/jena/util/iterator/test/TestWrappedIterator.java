@@ -6,17 +6,35 @@
 
 package com.hp.hpl.jena.util.iterator.test;
 
-import junit.framework.TestSuite;
+/**
+    test the WrappedIterator class. TODO: test _remove_, which means having
+    some fake base iterator to do the checking, and _close_, ditto.
+*/
 
-public class TestPackage extends TestSuite
+import com.hp.hpl.jena.graph.GraphTestBase;
+import com.hp.hpl.jena.util.iterator.*;
+import java.util.*;
+import junit.framework.*;
+
+public class TestWrappedIterator extends GraphTestBase
     {
-    static public TestSuite suite()
-        { return new TestPackage(); }
-        
-    private TestPackage()
+    public static TestSuite suite()
+        { return new TestSuite( TestWrappedIterator.class ); }   
+            
+    public TestWrappedIterator(String name)
+        { super(name); }
+
+    public void testWrappedIterator()
         {
-        super( "iterators" );
-        addTest( TestWrappedIterator.suite() );
+        Iterator i = Arrays.asList( new String [] {"bill", "and", "ben"} ).iterator();
+        ExtendedIterator e = WrappedIterator.create( i );
+        assertTrue( "wrapper has at least one element", e.hasNext() );
+        assertEquals( "", "bill", e.next() );
+        assertTrue( "wrapper has at least two elements", e.hasNext() );
+        assertEquals( "", "and", e.next() );
+        assertTrue( "wrapper has at least three elements", e.hasNext() );
+        assertEquals( "", "ben", e.next() );
+        assertFalse( "wrapper is now empty", e.hasNext() );
         }
     }
 
