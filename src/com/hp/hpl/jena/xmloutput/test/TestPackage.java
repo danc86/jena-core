@@ -1,8 +1,8 @@
 /*
- *  (c)      Copyright 2001, 2002 Hewlett-Packard Development Company, LP
- * All rights reserved.
-  [See end of file]
-  $Id$
+    (c) Copyright 2001, 2002 Hewlett-Packard Development Company, LP
+    All rights reserved.
+    [See end of file]
+    $Id$
 */
 package com.hp.hpl.jena.xmloutput.test;
 

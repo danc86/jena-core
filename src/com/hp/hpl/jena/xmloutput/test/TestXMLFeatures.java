@@ -33,7 +33,7 @@ import org.apache.log4j.*;
  * @version $Name$ $Revision$ $Date$
  */
 
-public class TestXMLFeatures extends TestCase {
+public class TestXMLFeatures extends ModelTestBase {
 	static AwkCompiler awk = PrettyWriterTest.awk;
 	static AwkMatcher matcher = PrettyWriterTest.matcher;
     
@@ -94,12 +94,12 @@ public class TestXMLFeatures extends TestCase {
 	public void testBug696057() throws IOException {
 		File f = File.createTempFile("jena", ".rdf");
 		String fileName = f.getAbsolutePath();
-		Model m = new ModelMem();
+		Model m = createMemModel();
 		m.read(
 			new FileInputStream("testing/wg/rdfms-syntax-incomplete/test001.rdf"),
 			"");
 		m.write(new FileWriter(fileName), lang);
-		Model m1 = new ModelMem();
+		Model m1 = createMemModel();
 		m1.read(new FileInputStream(fileName), "");
 		assertTrue("Use of FileWriter", m.isIsomorphicWith(m1));
 		f.delete();
@@ -181,7 +181,7 @@ public class TestXMLFeatures extends TestCase {
 		throws IOException, MalformedPatternException {
 		TestLogger tl = new TestLogger(BaseXMLWriter.class);
 		boolean errorsFound;
-		Model m = new ModelMem();
+		Model m = createMemModel();
         InputStream in = new FileInputStream(filename);
         m.read(in,base);
         in.close();
@@ -207,7 +207,7 @@ public class TestXMLFeatures extends TestCase {
 			contents = bos.toString(encoding);
 		}
 		try {
-			Model m2 = new ModelMem();
+			Model m2 = createMemModel();
 			m2.read(new StringReader(contents), base);
 			assertTrue("Data got changed.",m.isIsomorphicWith(m2));
 			if (regexPresent != null)
@@ -235,7 +235,7 @@ public class TestXMLFeatures extends TestCase {
 	}
 
 	void doBadPropTest(String lang) throws IOException {
-		Model m = new ModelMem();
+		Model m = createMemModel();
 		m.add(
 			m.createResource(),
 			m.createProperty("http://example/", "foo#"),
@@ -683,7 +683,7 @@ public class TestXMLFeatures extends TestCase {
 					fail("Bad URI <" + s + "> was not detected.");
 			}
 			// read back in
-			Model m2 = new ModelMem();
+			Model m2 = createMemModel();
 			m2.read(new StringReader(f), "http://example.org/", lang);
 
 			// check
@@ -753,7 +753,7 @@ public class TestXMLFeatures extends TestCase {
     }
     */
 	public void testRelativeAPI() {
-		RDFWriter w = new ModelMem().getWriter(lang);
+		RDFWriter w = createMemModel().getWriter(lang);
 		String old = (String) w.setProperty("relativeURIs", "");
 		assertEquals(
 			"default value check",
@@ -774,7 +774,7 @@ public class TestXMLFeatures extends TestCase {
 		Collection regexesAbsent)
 		throws IOException, MalformedPatternException {
 
-		Model m = new ModelMem();
+		Model m = createMemModel();
 		m.read("file:testing/abbreviated/relative-uris.rdf");
 
 		ByteArrayOutputStream bos = new ByteArrayOutputStream();
@@ -786,7 +786,7 @@ public class TestXMLFeatures extends TestCase {
 		String contents = bos.toString("UTF8");
 		boolean errorsFound;
 		try {
-			Model m2 = new ModelMem();
+			Model m2 = createMemModel();
 			m2.read(new StringReader(contents), base);
 			assertTrue(m.isIsomorphicWith(m2));
 			Iterator it = regexesPresent.iterator();

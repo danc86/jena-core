@@ -126,7 +126,16 @@ public class ModelTestBase extends GraphTestBase
     */        
     public static Model modelWithStatements( ReificationStyle style, String facts )
         { return modelAdd( ModelFactory.createDefaultModel( style ), facts ); }
-         
+        
+    /**
+        Answer a default model; it exists merely to abbreviate the rather long explicit
+        invocation.
+        
+     	@return a new default [aka memory-based] model
+    */ 
+    public static Model createMemModel()
+        { return ModelFactory.createDefaultModel(); }
+        
      /**
         test that two models are isomorphic and fail if they are not.
         

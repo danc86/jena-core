@@ -1,30 +1,27 @@
 /*
- *  (c)      Copyright 2001, 2002 Hewlett-Packard Development Company, LP
- * All rights reserved.
-  [See end of file]
-  $Id$
+    (c)      Copyright 2001, 2002 Hewlett-Packard Development Company, LP
+    All rights reserved.
+    [See end of file]
+    $Id$
 */
 
 package com.hp.hpl.jena.xmloutput.test;
 
 import com.hp.hpl.jena.*;
-import com.hp.hpl.jena.mem.ModelMem;
 import com.hp.hpl.jena.rdf.model.*;
+import com.hp.hpl.jena.rdf.model.test.*;
 import com.hp.hpl.jena.xmloutput.impl.*;
 import com.hp.hpl.jena.rdf.model.impl.*;
 import com.hp.hpl.jena.shared.*;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.OutputStream;
-import junit.framework.*;
+import java.io.*;
 
 /**
  *
  * @author  bwm, jjc
  * @version $Revision$
  */
-public class testWriterInterface extends TestCase {
+public class testWriterInterface extends ModelTestBase {
     private String lang;
     /**
      * Constructor requires that all tests be named
@@ -40,16 +37,9 @@ public class testWriterInterface extends TestCase {
     }
 
     public void testInterface() {
-        Model m1 = new ModelMem();
-
-        File file = null;
-        OutputStream output = null;
-        assertTrue(
-            "Default writer should be Basic.",
-            m1.getWriter() instanceof Basic);
-        assertTrue(
-            "RDF/XML writer should be Basic.",
-            m1.getWriter() instanceof Basic);
+        Model m1 = createMemModel();
+        assertTrue( "Default writer should be Basic.",  m1.getWriter() instanceof Basic );
+        assertTrue( "RDF/XML writer should be Basic.", m1.getWriter() instanceof Basic );
         assertTrue(
             "RDF/XML-ABBREV writer should be Abbreviated.",
             m1.getWriter("RDF/XML-ABBREV") instanceof Abbreviated);
@@ -59,8 +49,7 @@ public class testWriterInterface extends TestCase {
     }
 
     public void testNoWriter() {
-        Model m1 = new ModelMem();
-
+        Model m1 = createMemModel();
         try {
             m1.setWriterClassName("foobar", "");
             m1.getWriter("foobar");
@@ -71,7 +60,7 @@ public class testWriterInterface extends TestCase {
     }
 
     public void testAnotherWriter() {
-        Model m1 = new ModelMem();
+        Model m1 = createMemModel();
         m1.setWriterClassName("foobar", Jena.PATH + ".xmloutput.impl.Basic");
         assertTrue(
             "Failed to access set writer",
@@ -82,7 +71,7 @@ public class testWriterInterface extends TestCase {
         //System.err.println(lang);
         File file = null;
         OutputStream output = null;
-        Model m1 = new ModelMem();
+        Model m1 = createMemModel();
         try {
             file = File.createTempFile("~jena", ".rdf");
             output = new FileOutputStream(file);
