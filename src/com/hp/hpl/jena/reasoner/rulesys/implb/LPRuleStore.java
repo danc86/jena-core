@@ -61,6 +61,14 @@ public class LPRuleStore extends RuleStore {
     }
     
     /**
+     * Add all the rules and tabling instructions from an existing rulestore into this one.
+     */
+    public void addAll(LPRuleStore store) {
+        super.addAll(store);
+        tabledPredicates.addAll(store.tabledPredicates);
+    }
+    
+    /**
      * Register an RDF predicate as one whose presence in a goal should force
      * the goal to be tabled.
      */

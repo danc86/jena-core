@@ -406,26 +406,26 @@ public class RuleClauseCode {
             if (predicateCode == null || predicateCode.size() == 0) {
                 code[p++] = CALL_TRIPLE_MATCH;
             } else {
-                code[p++] = CALL_TABLED;
-//                if (goal.getPredicate().isVariable()) {
-//                    // Experimental. Force tabling of any wildcard predicate calls
-//                    code[p++] = CALL_TABLED;
-//                } else if (store.isTabled(goal)) {
-////                if (store.isTabled(goal)) {
-//                    code[p++] = goal.getPredicate().isVariable() ? CALL_WILD_TABLED : CALL_TABLED;
-//                } else {
-//                    if (permanentVars.size() == 0) {
-//                        code[p++] = LAST_CALL_PREDICATE;
-//                    } else {
-//                        // Normal call, but can it be indexed further?
-//                        if (store.isIndexedPredicate(goal.getPredicate()) && goal.getObject().isVariable()) {
-//                            code[p++] = CALL_PREDICATE_INDEX;
-//                        } else {
-//                            code[p++] = CALL_PREDICATE;
-//                        }
-//                    }
-//                    args.add(predicateCode);
-//                }
+//                code[p++] = CALL_TABLED;
+                if (goal.getPredicate().isVariable()) {
+                    // Experimental. Force tabling of any wildcard predicate calls
+                    code[p++] = CALL_TABLED;
+                } else if (store.isTabled(goal)) {
+//                if (store.isTabled(goal)) {
+                    code[p++] = goal.getPredicate().isVariable() ? CALL_WILD_TABLED : CALL_TABLED;
+                } else {
+                    if (permanentVars.size() == 0) {
+                        code[p++] = LAST_CALL_PREDICATE;
+                    } else {
+                        // Normal call, but can it be indexed further?
+                        if (store.isIndexedPredicate(goal.getPredicate()) && goal.getObject().isVariable()) {
+                            code[p++] = CALL_PREDICATE_INDEX;
+                        } else {
+                            code[p++] = CALL_PREDICATE;
+                        }
+                    }
+                    args.add(predicateCode);
+                }
             }
         }
         

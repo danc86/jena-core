@@ -183,7 +183,11 @@ public class LPInterpreter {
      */
     public synchronized Object next() {
         boolean traceOn = engine.isTraceOn();
+        
+//        System.out.println("next() on interpeter for goal " + goal); 
         StateFlag answer = run();
+//        System.out.println("end next() on interpeter for goal " + goal);
+        
         if (answer == StateFlag.FAIL || answer == StateFlag.SUSPEND) {
             return answer;
         } else if (answer == StateFlag.SATISFIED) {
@@ -344,6 +348,8 @@ public class LPInterpreter {
             } else {
                 throw new ReasonerException("Internal error in backward rule system, unrecognized choice point");
             }
+            
+            engine.incrementProfile(clause);
             
             interpreter: while (envFrame != null) {
 
@@ -757,7 +763,7 @@ public class LPInterpreter {
             return dnode;
         }
     }
-    
+
 }
 
 
