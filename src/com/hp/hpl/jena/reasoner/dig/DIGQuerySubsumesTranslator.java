@@ -126,11 +126,13 @@ public class DIGQuerySubsumesTranslator
     }
     
     public boolean checkSubject( com.hp.hpl.jena.graph.Node subject, DIGAdapter da, Model premises ) {
-        return da.isConcept( subject, premises );
+        boolean isSubjectConcept = da.isConcept( subject, premises );
+        return isSubjectConcept;
     }
     
     public boolean checkObject( com.hp.hpl.jena.graph.Node object, DIGAdapter da, Model premises ) {
-        return da.isConcept( object, premises );
+        boolean isObjectConcept = da.isConcept( object, premises );
+        return isObjectConcept;
     }
 
     // Internal implementation methods

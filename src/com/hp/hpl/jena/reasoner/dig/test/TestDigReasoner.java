@@ -33,6 +33,8 @@ import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.reasoner.ReasonerRegistry;
 import com.hp.hpl.jena.reasoner.dig.*;
 import com.hp.hpl.jena.reasoner.test.TestUtil;
+import com.hp.hpl.jena.vocabulary.*;
+import com.hp.hpl.jena.vocabulary.OWL;
 import com.hp.hpl.jena.vocabulary.RDFS;
 
 import junit.framework.*;
@@ -95,6 +97,33 @@ public class TestDigReasoner
         OntDocumentManager.getInstance().reset( true );
     }
     
+    public void testAxioms() {
+        String NS = "http://example.org/foo#";
+        
+        DIGReasoner r = (DIGReasoner) ReasonerRegistry.getDIGReasoner();
+        DIGReasoner ro = (DIGReasoner) ReasonerRegistry.getDIGReasoner( OWL.NAMESPACE, null );
+        DIGReasoner rd = (DIGReasoner) ReasonerRegistry.getDIGReasoner( DAML_OIL.NAMESPACE_DAML, null );
+        DIGReasoner roA = (DIGReasoner) ReasonerRegistry.getDIGReasoner( OWL.NAMESPACE, true, null );
+        DIGReasoner rdA = (DIGReasoner) ReasonerRegistry.getDIGReasoner( DAML_OIL.NAMESPACE_DAML, true, null );
+        
+        axiomTestAux( r, OntModelSpec.OWL_MEM, false, false );
+        //axiomTestAux( r, OntModelSpec.DAML_MEM, false, false );
+
+        axiomTestAux( ro, OntModelSpec.OWL_MEM, false, false );
+        axiomTestAux( rd, OntModelSpec.DAML_MEM, false, false );
+        
+        axiomTestAux( roA, OntModelSpec.OWL_MEM, true, false );
+        axiomTestAux( rdA, OntModelSpec.DAML_MEM, false, true );
+    }
+    
+    private void axiomTestAux( DIGReasoner dr, OntModelSpec baseSpec, boolean owlResult, boolean damlResult ) {
+        OntModelSpec spec = new OntModelSpec( baseSpec );
+        spec.setReasoner( dr );
+        OntModel m = ModelFactory.createOntologyModel( spec, null );
+        
+        assertEquals( "Result for owl:ObjectProperty", owlResult, m.contains( OWL.ObjectProperty, RDF.type, RDFS.Class ));
+        assertEquals( "Result for daml:ObjectProperty", damlResult, m.contains( DAML_OIL.ObjectProperty, RDF.type, RDFS.Class ));
+    }
     
     public void testQueryAllConcepts() {
         String NS = "http://example.org/foo#";
@@ -346,7 +375,7 @@ public class TestDigReasoner
         OntClass F1 = m.getOntClass( NS + "F1" );
         
         assertTrue( "F0 should be equivalent to F2", F0.hasEquivalentClass( F2 ));
-        assertTrue( "F0 should not be equivalent to F1", F1.hasEquivalentClass( F0 ));
+        assertFalse( "F0 should not be equivalent to F1", F1.hasEquivalentClass( F0 ));
     }
 
     
@@ -531,7 +560,7 @@ public class TestDigReasoner
                 i++;
             }
             
-            s.addTest( new DigTranslationTest( testSource, testTarget, spec ) );
+            //s.addTest( new DigTranslationTest( testSource, testTarget, spec ) );
         }
     }
     

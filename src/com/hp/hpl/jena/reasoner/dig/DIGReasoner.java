@@ -71,6 +71,9 @@ public class DIGReasoner
     /** The profile of the ontology language we're expecting */
     protected OntModelSpec m_ontLang = getModelSpec( ProfileRegistry.OWL_LANG );
     
+    /** The axioms that provide additional triples based on the language we're processing */
+    protected Model m_axioms = null;
+    
     
     // Constructors
     //////////////////////////////////
@@ -257,6 +260,17 @@ public class DIGReasoner
         return m_tbox;
     }
     
+
+    /**
+     * <p>Answer the model that contains the given axioms for this reasoner, or null if
+     * not defined.</p>
+     * @return The axioms model
+     */
+    public Model getAxioms() {
+        return m_axioms;
+    }
+    
+    
     // Internal implementation methods
     //////////////////////////////////
 
@@ -265,7 +279,8 @@ public class DIGReasoner
      * are:</p>
      * <ul>
      * <li>{@link ReasonerVocabulary#EXT_REASONER_URL} the URL to use to connect to the external reasoners</li>
-     * <li>{@link ReasonerVocabulary#EXT_REASONER_ONT_LANG} the URL of the ontology lanuage (OWL, DAML, etc) to process</li>
+     * <li>{@link ReasonerVocabulary#EXT_REASONER_ONT_LANG} the URI of the ontology language (OWL, DAML, etc) to process</li>
+     * <li>{@link ReasonerVocabulary#EXT_REASONER_AXIOMS} the URL of the ontology axioms model</li>
      * </ul> 
      * 
      * @param parameter the property identifying the parameter to be changed
@@ -281,6 +296,12 @@ public class DIGReasoner
         else if (parameter.equals(ReasonerVocabulary.EXT_REASONER_ONT_LANG)) {
             String lang = (value instanceof Resource) ? ((Resource) value).getURI() : value.toString();
             m_ontLang = getModelSpec( lang );
+            return true;
+        } 
+        else if (parameter.equals(ReasonerVocabulary.EXT_REASONER_AXIOMS)) {
+            String axURL = (value instanceof Resource) ? ((Resource) value).getURI() : value.toString();
+            m_axioms = ModelFactory.createDefaultModel();
+            m_axioms.read( axURL );
             return true;
         } 
         else {

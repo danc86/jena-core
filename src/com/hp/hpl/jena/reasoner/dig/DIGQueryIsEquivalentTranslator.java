@@ -156,15 +156,20 @@ public class DIGQueryIsEquivalentTranslator
         Node subject = pattern.getSubject();
         Node pred = pattern.getPredicate();
         
-        boolean pass = (object.isBlank() || da.isConcept( object, premises )) &&
-                       (subject.isBlank()) || da.isConcept( subject, premises ) &&
-                       (!subject.isBlank() || !object.isBlank());
+        // ignore patterns with vars
+        boolean pass = subject.isConcrete() && object.isConcrete() && pred.isConcrete();
         
+        // at least one of subject and object is a concept
+        pass = pass && ((object.isBlank() || da.isConcept( object, premises )) &&
+                        (subject.isBlank()) || da.isConcept( subject, premises ) &&
+                        (!subject.isBlank() || !object.isBlank()));
+        
+        // appropriate predicate
         pass = pass &&
-                pred.getURI().equals( m_predicate ) ||
-                pred.getURI().equals( da.getOntLanguage().UNION_OF().getURI() ) ||
-                pred.getURI().equals( da.getOntLanguage().INTERSECTION_OF().getURI() ) ||
-                pred.getURI().equals( da.getOntLanguage().COMPLEMENT_OF().getURI() );
+                (pred.getURI().equals( m_predicate ) ||
+                 pred.getURI().equals( da.getOntLanguage().UNION_OF().getURI() ) ||
+                 pred.getURI().equals( da.getOntLanguage().INTERSECTION_OF().getURI() ) ||
+                 pred.getURI().equals( da.getOntLanguage().COMPLEMENT_OF().getURI() ));
         
         return pass;
     }

@@ -81,7 +81,7 @@ public class DIGInfGraph
         
         // create or re-use a free connector
         DIGConnection conn = DIGConnectionPool.getInstance().allocate( reasoner.getReasonerURL() );
-        m_adapter = new DIGAdapter( reasoner.getOntLangModelSpec(), fdata.getGraph(), conn );
+        m_adapter = new DIGAdapter( reasoner.getOntLangModelSpec(), fdata.getGraph(), conn, reasoner.getAxioms() );
     }
         
 
