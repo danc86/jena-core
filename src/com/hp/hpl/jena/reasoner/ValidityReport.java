@@ -22,10 +22,11 @@ import java.util.Iterator;
 public interface ValidityReport {
     
     /**
-     * Returns true if no logical inconsistencies were detected (in which case
-     * there will be at least one error Report included). Warnings may still
+     * Returns true if no logical inconsistencies were detected. If it is false
+     * then ether will be at least one error Report included. If it is true
+     * then warnings may still
      * be present. As of Jena 2.2 we regard classes which can't be instantiated
-     * as warnings rather than errors. 
+     * as warnings (of type 'Inconsistent class') rather than errors. 
      */
     public boolean isValid();
     
