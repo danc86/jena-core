@@ -82,6 +82,9 @@ public class OntModelImpl
     /** Query that will access nodes with types whose type is Class */
     protected List m_individualsQueryAlias = null;
     
+    /** Mode switch for strict checking mode */
+    protected boolean m_strictMode = true;
+    
     
     // Constructors
     //////////////////////////////////
@@ -100,7 +103,8 @@ public class OntModelImpl
      */
     public OntModelImpl( String languageURI, Model model, OntDocumentManager docMgr, GraphFactory gf ) {
         // all ontologies are defined to be union graphs, to allow us to add the imports to the union
-        super( new MultiUnion(), BuiltinPersonalities.model );
+        //super( new MultiUnion(), BuiltinPersonalities.model );
+        super( new OntologyGraph(), BuiltinPersonalities.model );
         
         Profile lang = ProfileRegistry.getInstance().getProfile( languageURI );
         if (lang == null) {
@@ -109,8 +113,7 @@ public class OntModelImpl
         }
         
         // add the base graph to the union first, so that it will receive updates
-        MultiUnion union = (MultiUnion) graph;
-        union.addGraph( model.getGraph() );
+        getUnionGraph().addGraph( model.getGraph() );
         
         // record pointers to the helpers we're using
         m_profile = lang;
@@ -885,13 +888,47 @@ public class OntModelImpl
      * @param graph A sub-graph to add 
      */
     public void addSubGraph( Graph graph ) {
-        ((MultiUnion) getGraph()).addGraph( graph );
+        getUnionGraph().addGraph( graph );
+    }
+    
+    
+    /**
+     * <p>
+     * Answer true if this model is currently in <i>strict checking mode</i>. Strict
+     * mode means
+     * that converting a common resource to a particular language element, such as
+     * an ontology class, will be subject to some simple syntactic-level checks for
+     * appropriateness. 
+     * </p>
+     * 
+     * @return True if in strict checking mode
+     */
+    public boolean strictMode() {
+        return m_strictMode;
+    }
+    
+    
+    /**
+     * <p>
+     * Set the checking mode to strict or non-strict.
+     * </p>
+     * 
+     * @param strict
+     * @see #strictMode()
+     */
+    public void setStrictMode( boolean strict ) {
+        m_strictMode = strict;
     }
 
 
     // Internal implementation methods
     //////////////////////////////////
 
+    protected MultiUnion getUnionGraph() {
+        return ((OntologyGraph) graph).getUnion();
+    }
+    
+    
     /**
      * <p>
      * Answer an iterator over all of the resources that have 

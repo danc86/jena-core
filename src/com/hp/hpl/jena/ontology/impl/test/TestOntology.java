@@ -76,7 +76,7 @@ public class TestOntology
             {   
                 "OWL Ontology.imports",
                 new PS() { 
-                    public PathSet ps( OntModel m ) { 
+                    public PathSet ps( OntModel m ) {
                         return ((Ontology) m.getResource( BASE )
                                .as( Ontology.class )).p_imports(); } 
                 },

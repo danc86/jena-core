@@ -5,7 +5,7 @@
  * Author email       Ian.Dickinson@hp.com
  * Package            Jena 2
  * Web                http://sourceforge.net/projects/jena/
- * Created            01-Apr-2003
+ * Created            04-Apr-2003
  * Filename           $RCSfile$
  * Revision           $Revision$
  * Release status     $State$
@@ -25,24 +25,25 @@ package com.hp.hpl.jena.ontology.impl;
 
 // Imports
 ///////////////
-import com.hp.hpl.jena.enhanced.*;
 import com.hp.hpl.jena.graph.*;
-import com.hp.hpl.jena.ontology.*;
-
+import com.hp.hpl.jena.graph.compose.*;
+import com.hp.hpl.jena.graph.query.*;
+import com.hp.hpl.jena.reasoner.*;
+//import com.hp.hpl.jena.reasoner.rdfsReasoner1.RDFSReasonerFactory;
+import com.hp.hpl.jena.util.iterator.ExtendedIterator;
 
 
 /**
  * <p>
- * Implementation of the symmetric property abstraction
+ * Graph wrapper that allows inferencing to be turned on across the whole ontology model graph.
  * </p>
  *
  * @author Ian Dickinson, HP Labs
  *         (<a  href="mailto:Ian.Dickinson@hp.com" >email</a>)
  * @version CVS $Id$
  */
-public class SymmetricPropertyImpl
-    extends ObjectPropertyImpl
-    implements SymmetricProperty 
+public class OntologyGraph
+    implements Graph 
 {
     // Constants
     //////////////////////////////////
@@ -50,51 +51,102 @@ public class SymmetricPropertyImpl
     // Static variables
     //////////////////////////////////
 
-    /**
-     * A factory for generating SymmetricProperty facets from nodes in enhanced graphs.
-     * Note: should not be invoked directly by user code: use 
-     * {@link com.hp.hpl.jena.rdf.model.RDFNode#as() as()} instead.
-     */
-    public static Implementation factory = new Implementation() {
-        public EnhNode wrap( Node n, EnhGraph eg ) { 
-            if (canWrap( n, eg )) {
-                return new SymmetricPropertyImpl( n, eg );
-            }
-            else {
-                throw new OntologyException( "Cannot convert node " + n + " to SymmetricProperty");
-            } 
-        }
-            
-        public boolean canWrap( Node node, EnhGraph eg ) {
-            // node will support being an SymmetricProperty facet if it has rdf:type owl:SymmetricProperty or equivalent
-            Profile profile = (eg instanceof OntModel) ? ((OntModel) eg).getProfile() : null;
-            return (profile != null)  &&  profile.isSupported( node, eg, SymmetricProperty.class );
-        }
-    };
-
-
     // Instance variables
     //////////////////////////////////
 
+    protected MultiUnion m_unionGraph;
+    
+    protected InfGraph m_inf;
+    
     // Constructors
     //////////////////////////////////
 
-    /**
-     * <p>
-     * Construct a symmetric property node represented by the given node in the given graph.
-     * </p>
-     * 
-     * @param n The node that represents the resource
-     * @param g The enh graph that contains n
-     */
-    public SymmetricPropertyImpl( Node n, EnhGraph g ) {
-        super( n, g );
+    public OntologyGraph() {
+        m_unionGraph = new MultiUnion();
+        
+        // wrap an RDFS reasoner around the union graph
+        /* TODO talk to Dave about this - not working yet
+        Reasoner reasoner = RDFSReasonerFactory.theInstance().create( null );
+        m_inf = reasoner.bind( m_unionGraph );
+        */
     }
-
-
+    
+    
     // External signature methods
     //////////////////////////////////
 
+    /** Delegated to the union component */
+    public boolean mightContain( Graph other ) {
+        return m_unionGraph.mightContain( other );
+    }
+    
+    /** Delegated to the inf graph, or the union graoh if null */
+    public QueryHandler queryHandler() {
+        return (m_inf != null) ? m_inf.queryHandler() : m_unionGraph.queryHandler();
+    }
+    
+    /** Delegated to the union component */
+    public Reifier getReifier() {
+        return m_unionGraph.getReifier();
+    }
+    
+    /** adds the triple t (if possible) to the set belong to the graph */
+    public void add(Triple t) 
+        throws UnsupportedOperationException, VirtualTripleException
+    {
+        m_unionGraph.add( t );
+    }
+    
+    /** removes the triple t (if possible) from the set belonging to this graph */   
+    public void delete(Triple t) 
+        throws UnsupportedOperationException, NoSuchTripleException, VirtualTripleException
+    {
+        m_unionGraph.delete( t );
+    }
+      
+    public ExtendedIterator find(TripleMatch m) {
+        return (m_inf != null) ? m_inf.find( m ) : m_unionGraph.find( m );
+    }
+    
+    public ExtendedIterator find(Node s,Node p,Node o) {
+        return (m_inf != null) ? m_inf.find( s, p, o ) : m_unionGraph.find( s, p, o );
+    }
+    
+    public boolean isIsomorphicWith(Graph g) {
+        return (m_inf != null) ? m_inf.isIsomorphicWith( g ) : m_unionGraph.isIsomorphicWith( g );
+    }
+    
+    public boolean contains( Node s, Node p, Node o ) {
+        return (m_inf != null) ? m_inf.contains( s, p, o ) : m_unionGraph.contains( s, p, o );
+    }
+    
+    public boolean contains( Triple t ) {
+        return (m_inf != null) ? m_inf.contains( t ) : m_unionGraph.contains( t );
+    }
+    
+    public void close() {
+        m_unionGraph.close();
+    }
+
+    public int size() 
+        throws UnsupportedOperationException
+    {
+         return (m_inf != null) ? m_inf.size() : m_unionGraph.size();
+    }
+     
+    public int capabilities() {
+        return (m_inf != null) ? m_inf.capabilities() : m_unionGraph.capabilities();
+    }
+
+    public MultiUnion getUnion() {
+        return m_unionGraph;
+    }
+    
+    public InfGraph getInf() {
+        return m_inf;
+    }
+    
+    
     // Internal implementation methods
     //////////////////////////////////
 
@@ -134,4 +186,3 @@ public class SymmetricPropertyImpl
     (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
     THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
-

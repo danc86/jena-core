@@ -34,7 +34,7 @@ import com.hp.hpl.jena.rdf.model.*;
 
 /**
  * <p>
- * Class comment
+ * Implementation of the abstraction representing a general ontology property.
  * </p>
  *
  * @author Ian Dickinson, HP Labs
@@ -57,7 +57,20 @@ public class OntPropertyImpl
      * {@link com.hp.hpl.jena.rdf.model.RDFNode#as() as()} instead.
      */
     public static Implementation factory = new Implementation() {
-        public EnhNode wrap( Node n, EnhGraph eg ) { return new OntPropertyImpl( n, eg ); }
+        public EnhNode wrap( Node n, EnhGraph eg ) { 
+            if (canWrap( n, eg )) {
+                return new OntPropertyImpl( n, eg );
+            }
+            else {
+                throw new OntologyException( "Cannot convert node " + n + " to OntProperty");
+            } 
+        }
+            
+        public boolean canWrap( Node node, EnhGraph eg ) {
+            // node will support being an OntProperty facet if it has rdf:type owl:Property or equivalent
+            Profile profile = (eg instanceof OntModel) ? ((OntModel) eg).getProfile() : null;
+            return (profile != null)  &&  profile.isSupported( node, eg, OntProperty.class );
+        }
     };
 
 

@@ -60,7 +60,20 @@ public class OntListImpl
      * A factory for generating OntList facets from nodes in enhanced graphs.
      */
     public static Implementation factory = new Implementation() {
-        public EnhNode wrap( Node n, EnhGraph eg ) { return new OntListImpl( n, eg ); }
+        public EnhNode wrap( Node n, EnhGraph eg ) { 
+            if (canWrap( n, eg )) {
+                return new OntListImpl( n, eg );
+            }
+            else {
+                throw new OntologyException( "Cannot convert node " + n + " to OntList");
+            } 
+        }
+            
+        public boolean canWrap( Node node, EnhGraph eg ) {
+            // node will support being an OntList facet if it has rdf:type rdf:List or equivalent
+            Profile profile = (eg instanceof OntModel) ? ((OntModel) eg).getProfile() : null;
+            return (profile != null)  &&  profile.isSupported( node, eg, OntList.class );
+        }
     };
 
 

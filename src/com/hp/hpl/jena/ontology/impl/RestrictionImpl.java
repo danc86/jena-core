@@ -56,7 +56,20 @@ public class RestrictionImpl
      * {@link com.hp.hpl.jena.rdf.model.RDFNode#as() as()} instead.
      */
     public static Implementation factory = new Implementation() {
-        public EnhNode wrap( Node n, EnhGraph eg ) { return new RestrictionImpl( n, eg ); }
+        public EnhNode wrap( Node n, EnhGraph eg ) { 
+            if (canWrap( n, eg )) {
+                return new RestrictionImpl( n, eg );
+            }
+            else {
+                throw new OntologyException( "Cannot convert node " + n + " to Restriction");
+            } 
+        }
+            
+        public boolean canWrap( Node node, EnhGraph eg ) {
+            // node will support being an Restriction facet if it has rdf:type owl:Restriction or equivalent
+            Profile profile = (eg instanceof OntModel) ? ((OntModel) eg).getProfile() : null;
+            return (profile != null)  &&  profile.isSupported( node, eg, Restriction.class );
+        }
     };
 
 

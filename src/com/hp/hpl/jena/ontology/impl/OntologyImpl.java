@@ -54,7 +54,20 @@ public class OntologyImpl
      * A factory for generating Ontology facets from nodes in enhanced graphs.
      */
     public static Implementation factory = new Implementation() {
-        public EnhNode wrap( Node n, EnhGraph eg ) { return new OntologyImpl( n, eg ); }
+        public EnhNode wrap( Node n, EnhGraph eg ) { 
+            if (canWrap( n, eg )) {
+                return new OntologyImpl( n, eg );
+            }
+            else {
+                throw new OntologyException( "Cannot convert node " + n + " to Ontology");
+            } 
+        }
+            
+        public boolean canWrap( Node node, EnhGraph eg ) {
+            // node will support being an Ontology facet if it has rdf:type owl:Ontology or equivalent
+            Profile profile = (eg instanceof OntModel) ? ((OntModel) eg).getProfile() : null;
+            return (profile != null)  &&  profile.isSupported( node, eg, Ontology.class );
+        }
     };
 
 

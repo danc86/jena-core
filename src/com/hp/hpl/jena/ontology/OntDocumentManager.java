@@ -35,6 +35,7 @@ import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.graph.compose.MultiUnion;
 import com.hp.hpl.jena.vocabulary.RDF;
 import com.hp.hpl.jena.mem.*;
+import com.hp.hpl.jena.ontology.impl.OntologyGraph;
 
 
 
@@ -666,9 +667,9 @@ public class OntDocumentManager
         
         // we need to add this graph to the union
         // both the top-level source document model, and the local cache model
-        if (in instanceof MultiUnion) {
+        if (in instanceof OntologyGraph) {
             // 'in' is composite - so flatten all subgraphs into the main union
-            MultiUnion u = (MultiUnion) in;
+            MultiUnion u = ((OntologyGraph) in).getUnion();
             
             model.addSubGraph( u.getBaseGraph() );
             readState.getModel().addSubGraph( u.getBaseGraph() );

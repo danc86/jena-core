@@ -29,6 +29,7 @@ import com.hp.hpl.jena.enhanced.*;
 import com.hp.hpl.jena.graph.*;
 
 
+
 /**
  * <p>
  * Implementation of the abstraction representing first-class axioms in the ontology model.
@@ -54,7 +55,20 @@ public class AxiomImpl
      * {@link com.hp.hpl.jena.rdf.model.RDFNode#as() as()} instead.
      */
     public static Implementation factory = new Implementation() {
-        public EnhNode wrap( Node n, EnhGraph eg ) { return new AxiomImpl( n, eg ); }
+        public EnhNode wrap( Node n, EnhGraph eg ) { 
+            if (canWrap( n, eg )) {
+                return new AxiomImpl( n, eg );
+            }
+            else {
+                throw new OntologyException( "Cannot convert node " + n + " to Axiom");
+            } 
+        }
+        
+        public boolean canWrap( Node node, EnhGraph eg ) {
+            // node will support being an Axiom facet if it has rdf:type owl:AllDifferent or other axiom
+            Profile profile = (eg instanceof OntModel) ? ((OntModel) eg).getProfile() : null;
+            return (profile != null)  &&  profile.isSupported( node, eg, Axiom.class );
+        }
     };
 
 

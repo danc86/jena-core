@@ -138,6 +138,9 @@ public abstract class OntTestCase
         /////////////////////////////
         
         public void setUp() {
+            // turn off imports processing
+            OntDocumentManager.getInstance().setProcessImports( false );
+            
             m_model = ModelFactory.createOntologyModel( m_profileURI );
             m_model.read( m_source );
         }

@@ -616,6 +616,31 @@ public interface OntModel
      * @param graph A sub-graph to add 
      */
     public void addSubGraph( Graph graph );
+    
+    
+    /**
+     * <p>
+     * Answer true if this model is currently in <i>strict checking mode</i>. Strict
+     * mode means
+     * that converting a common resource to a particular language element, such as
+     * an ontology class, will be subject to some simple syntactic-level checks for
+     * appropriateness. 
+     * </p>
+     * 
+     * @return True if in strict checking mode
+     */
+    public boolean strictMode();
+    
+    
+    /**
+     * <p>
+     * Set the checking mode to strict or non-strict.
+     * </p>
+     * 
+     * @param strict
+     * @see #strictMode()
+     */
+    public void setStrictMode( boolean strict );
 }
 
 

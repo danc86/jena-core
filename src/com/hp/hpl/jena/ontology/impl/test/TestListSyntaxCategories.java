@@ -407,6 +407,7 @@ public class TestListSyntaxCategories
                 Resource res = (Resource) i.next();
                 
                 assertTrue( "Should not fail node test on " + res, test( res ));
+                // TODO remove debug System.err.println( "Found property " + res );
                 
                 actual++;
                 if (expected != null) {

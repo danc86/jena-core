@@ -56,7 +56,20 @@ public class InverseFunctionalPropertyImpl
      * {@link com.hp.hpl.jena.rdf.model.RDFNode#as() as()} instead.
      */
     public static Implementation factory = new Implementation() {
-        public EnhNode wrap( Node n, EnhGraph eg ) { return new InverseFunctionalPropertyImpl( n, eg ); }
+        public EnhNode wrap( Node n, EnhGraph eg ) { 
+            if (canWrap( n, eg )) {
+                return new InverseFunctionalPropertyImpl( n, eg );
+            }
+            else {
+                throw new OntologyException( "Cannot convert node " + n + " to InverseFunctionalProperty");
+            } 
+        }
+            
+        public boolean canWrap( Node node, EnhGraph eg ) {
+            // node will support being an InverseFunctionalProperty facet if it has rdf:type owl:InverseFunctionalProperty or equivalent
+            Profile profile = (eg instanceof OntModel) ? ((OntModel) eg).getProfile() : null;
+            return (profile != null)  &&  profile.isSupported( node, eg, InverseFunctionalProperty.class );
+        }
     };
 
 
