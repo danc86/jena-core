@@ -96,10 +96,33 @@ public class ConstraintStage extends Stage
     static final PredicateFactory makeNE = new PredicateFactory()
         { public Predicate construct( Valuator L, Valuator R ) { return new Relation_NE( L, R ); }};
 
+    static final PredicateFactory makeMATCHES = new PredicateFactory()
+        { public Predicate construct( Valuator L, Valuator R ) { return new Relation_MATCHES( L, R ); }};
+
+    static class Relation_MATCHES extends Relation
+        {
+        Relation_MATCHES( Valuator L, Valuator R ) { super( L, R ); }   
+        
+        private String asString( Node n )
+            {
+            if (n.isLiteral()) return n.getLiteral().getLexicalForm();
+            else return n.toString();    
+            }
+            
+        public boolean matches( Node L, Node R )
+            { 
+                String x = asString( L ), y = asString( R );
+                return x.indexOf( y ) > -1; }
+            
+        public boolean evaluateBool( Domain d )
+            { return matches( valueL( d ), valueR( d ) ); }
+        }
+        
     static
         {
         addFactory( "q:eq" , makeEQ );
         addFactory( "q:ne", makeNE );        
+        addFactory( "q:matches", makeMATCHES );
         }
                 
     /**

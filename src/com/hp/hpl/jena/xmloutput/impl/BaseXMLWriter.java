@@ -507,11 +507,19 @@ abstract public class BaseXMLWriter implements RDFXMLWriterI {
 		} while (charcode != 0);
 		sb.append( ESCAPE );
 	}
-
-	
+    
+    /**
+        Set the writer property propName to the value obtained from propValue. Return an
+        Object representation of the original value.
+         
+     	@see com.hp.hpl.jena.rdf.model.RDFWriter#setProperty(java.lang.String, java.lang.Object)
+     */
 	final synchronized public Object setProperty( String propName, Object propValue ) {
 		if (propName.equalsIgnoreCase("showXmlDeclaration")) {
 			return setShowXmlDeclaration(propValue);
+        } else if (propName.equalsIgnoreCase( "minimalPrefixes" )) {
+            try { return new Boolean( !writingAllModelPrefixNamespaces ); }
+            finally { writingAllModelPrefixNamespaces = !getBoolean( propValue ); }
 		} else if (propName.equalsIgnoreCase("xmlbase")) {
 			String result = xmlBase;
 			xmlBase = (String) propValue;
@@ -522,13 +530,13 @@ abstract public class BaseXMLWriter implements RDFXMLWriterI {
 			return setWidth(propValue);
 		} else if (propName.equalsIgnoreCase("longid")) {
 			Boolean result = new Boolean(longId);
-			longId = toboolean(propValue);
+			longId = getBoolean(propValue);
 			return result;
 		} else if (propName.equalsIgnoreCase("attributeQuoteChar")) {
 			return setAttributeQuoteChar(propValue);
 		} else if (propName.equalsIgnoreCase( "allowBadURIs" )) {
 			Boolean result = new Boolean( !demandGoodURIs );
-            demandGoodURIs = !toboolean(propValue);
+            demandGoodURIs = !getBoolean(propValue);
 			return result;
 		} else if (propName.equalsIgnoreCase("prettyTypes")) {
 			return setTypes((Resource[]) propValue);
@@ -607,7 +615,11 @@ abstract public class BaseXMLWriter implements RDFXMLWriterI {
 		return oldValue;
 	}
 
-	static private boolean toboolean(Object o) {
+    /**
+        Answer the boolean value corresponding to o, which must either be a Boolean,
+        or a String parsable as a Boolean.
+    */
+	static private boolean getBoolean( Object o ) {
 		if (o instanceof Boolean)
 			return ((Boolean) o).booleanValue();
 		else

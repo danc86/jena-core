@@ -21,7 +21,7 @@ public class PatternStage extends Stage
     protected Graph graph;
     protected Pattern [] compiled;
     
-    public PatternStage( Graph graph, Mapping map, Triple [] triples )
+    public PatternStage( Graph graph, Mapping map, Graph constraints, Triple [] triples )
         {
         this.graph = graph;
         this.compiled = compile( map, triples );

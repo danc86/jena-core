@@ -61,6 +61,8 @@ public class Query
         The built-in constraint operator not-equals.
     */
     public static final Node NE = Node.create( "&ne" );
+    
+    public static final Node MATCHES = Node.create( "&matches" );
         
     /**
         Initialiser for Query; makes an empty Query [no matches, no constraints]
