@@ -9,7 +9,6 @@ package com.hp.hpl.jena.enhanced;
 
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.util.cache.*;
-import com.hp.hpl.jena.graph.compose.*;
 
 /**
  * <p>

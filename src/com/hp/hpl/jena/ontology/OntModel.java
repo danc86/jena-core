@@ -214,7 +214,7 @@ public interface OntModel
      * 
      * @return An iterator over class description resources. 
      */
-    public Iterator listClassDescriptions();
+    public Iterator listClasses();
     
 
     /**
@@ -303,7 +303,7 @@ public interface OntModel
      * 
      * @return An iterator over named class resources. 
      */
-    public Iterator listOntClasses();
+    public Iterator listNamedClasses();
     
 
     /**
@@ -322,6 +322,24 @@ public interface OntModel
      * @see Profile#RESTRICTION
      */
     public Iterator listRestrictions();
+    
+    
+    /**
+     * <p>
+     * Answer an iterator that ranges over the properties in this model that are declared
+     * to be annotation properties. Not all supported languages define annotation properties
+     * (the category of annotation properties is chiefly an OWL innovation).
+     * </p>
+     * <p>
+     * <strong>Note:</strong> the number of nodes returned by this iterator will vary according to
+     * the completeness of the deductive extension of the underlying graph.  See class
+     * overview for more details.
+     * </p>
+     * 
+     * @return An iterator over annotation properties. 
+     * @see Profile#getAnnotationProperties()
+     */
+    public Iterator listAnnotationProperties();
     
     
     /**

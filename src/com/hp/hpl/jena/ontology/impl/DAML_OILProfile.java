@@ -24,9 +24,11 @@ package com.hp.hpl.jena.ontology.impl;
 
 // Imports
 ///////////////
-import com.hp.hpl.jena.ontology.*;
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.vocabulary.*;
+
+import java.util.*;
+
 
 
 /**
@@ -39,7 +41,7 @@ import com.hp.hpl.jena.vocabulary.*;
  * @version CVS $Id$
  */
 public class DAML_OILProfile
-    implements Profile
+    extends AbstractProfile
 {
     // Constants
     //////////////////////////////////
@@ -70,6 +72,7 @@ public class DAML_OILProfile
     private Resource m_ontology                     = m_vocabModel.createResource( DAML_OIL.Ontology.getURI()                  );
     private Resource m_deprecatedClass              = null;
     private Resource m_deprecatedProperty           = null;
+    private Resource m_annotationProperty           = null;
     
     private Property m_equivalentProperty           = m_vocabModel.createProperty( DAML_OIL.samePropertyAs.getNameSpace(),          DAML_OIL.samePropertyAs.getLocalName() );
     private Property m_equivalentClass              = m_vocabModel.createProperty( DAML_OIL.sameClassAs.getNameSpace(),             DAML_OIL.sameClassAs.getLocalName() );
@@ -135,7 +138,8 @@ public class DAML_OILProfile
     public Resource ONTOLOGY() {                    return m_ontology; }
     public Resource DEPRECATED_CLASS() {            return m_deprecatedClass; }
     public Resource DEPRECATED_PROPERTY() {         return m_deprecatedProperty; }
-
+    public Resource ANNOTATION_PROPERTY() {         return m_annotationProperty; }
+    
     public Property EQUIVALENT_PROPERTY() {         return m_equivalentProperty; }
     public Property EQUIVALENT_CLASS() {            return m_equivalentClass; }
     public Property DISJOINT_WITH() {               return m_disjointWith; }
@@ -165,7 +169,61 @@ public class DAML_OILProfile
     public Property DOMAIN() {                      return m_domain; }
     public Property RANGE() {                       return m_range; }
     
+    protected Resource[][] aliasTable() {
+        return new Resource[][] {
+            {DAML_OIL.subClassOf,                   RDFS.subClassOf},
+            {DAML_OIL.Literal,                      RDFS.Literal},
+            {DAML_OIL.Property,                     RDF.Property},
+            {DAML_OIL.type,                         RDF.type},
+            {DAML_OIL.value,                        RDF.value},
+            {DAML_OIL.subPropertyOf,                RDFS.subPropertyOf},
+            {DAML_OIL.domain,                       RDFS.domain},
+            {DAML_OIL.range,                        RDFS.range},
+            {DAML_OIL.label,                        RDFS.label},
+            {DAML_OIL.comment,                      RDFS.comment},
+            {DAML_OIL.seeAlso,                      RDFS.seeAlso},
+            {DAML_OIL.isDefinedBy,                  RDFS.isDefinedBy},
+
+            {DAML_OIL_2000_12.subPropertyOf,        RDFS.subPropertyOf},
+            {DAML_OIL_2000_12.Class,                RDFS.Class},
+            {DAML_OIL_2000_12.Literal,              RDFS.Literal},
+            {DAML_OIL_2000_12.Property,             RDF.Property},
+            {DAML_OIL_2000_12.type,                 RDF.type},
+            {DAML_OIL_2000_12.value,                RDF.value},
+            {DAML_OIL_2000_12.subClassOf,           RDFS.subClassOf},
+            {DAML_OIL_2000_12.domain,               RDFS.domain},
+            {DAML_OIL_2000_12.range,                RDFS.range},
+            {DAML_OIL_2000_12.label,                RDFS.label},
+            {DAML_OIL_2000_12.comment,              RDFS.comment},
+            {DAML_OIL_2000_12.seeAlso,              RDFS.seeAlso},
+            {DAML_OIL_2000_12.isDefinedBy,          RDFS.isDefinedBy}
+        };
+    }
     
+    /** There are no first-class axioms in DAML */ 
+    public Iterator getAxiomTypes() {
+        return Arrays.asList(
+            new Resource[] {
+            }
+        ).iterator();
+    }
+
+    /** The annotation properties of DAML (currently none) */
+    public Iterator getAnnotationProperties() {
+        return Arrays.asList(
+            new Resource[] {
+            }
+        ).iterator();
+    }
+    
+    public Iterator getClassDescriptionTypes() {
+        return Arrays.asList(
+            new Resource[] {
+                DAML_OIL.Class,
+                DAML_OIL.Restriction
+            }
+        ).iterator();
+    }
 
     // Internal implementation methods
     //////////////////////////////////
