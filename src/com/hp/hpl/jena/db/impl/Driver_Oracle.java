@@ -45,7 +45,7 @@ public abstract class Driver_Oracle extends DriverRDB {
 		INSERT_BY_PROCEDURE = false;
 		INDEX_KEY_LENGTH = 250;
 		LONG_OBJECT_LENGTH = 250;
-		SKIP_ALLOCATE_ID = false;
+		PRE_ALLOCATE_ID = true;
 		SKIP_DUPLICATE_CHECK = true;
 		EMPTY_LITERAL_MARKER = "EmptyLiteral";
 		SQL_FILE = "etc/oracle.sql";
