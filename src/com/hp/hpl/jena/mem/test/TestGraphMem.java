@@ -49,7 +49,7 @@ public class TestGraphMem extends AbstractTestGraph
     public void testBrokenPredicate()
         {
         Graph g = getGraphWith( "x brokenPredicate y" );
-        ExtendedIterator it = g.find( Node.ANY, node( "R"), Node.ANY );
+        ExtendedIterator it = g.find( Node.ANY, node( "brokenPredicate"), Node.ANY );
         it.next(); it.remove();
         assertFalse( g.find( Node.ANY, Node.ANY, Node.ANY ).hasNext() );
         }
