@@ -9,6 +9,7 @@ package com.hp.hpl.jena.graph;
 import com.hp.hpl.jena.rdf.model.AnonId;
 
 import com.hp.hpl.jena.datatypes.*;
+import com.hp.hpl.jena.datatypes.xsd.XSDDatatype;
 import com.hp.hpl.jena.graph.impl.*;
 import com.hp.hpl.jena.shared.*;
 
@@ -76,7 +77,7 @@ public abstract class Node {
         if (first == '\'' || first == '\"')
             return Node.createLiteral( newString( first, x ) );
         if (Character.isDigit( first )) 
-            return Node.createLiteral( new LiteralLabel( x, "", false ) );
+            return Node.createLiteral( new LiteralLabel( x, "", XSDDatatype.XSDinteger ) );
         if (first == '_')
             return Node.createAnon( new AnonId( x ) );
         if (x.equals( "??" ))
