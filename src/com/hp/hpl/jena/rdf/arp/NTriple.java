@@ -337,12 +337,14 @@ public class NTriple implements ARPErrorNumbers {
 			String lang = lit.getLang();
 			String parseType = lit.getParseType();
             lineNumber();
+            /*
 			if (parseType != null) {
 				System.out.print("# ");
 				if (parseType != null)
 					System.out.print("'" + parseType + "'");
 				System.out.println();
 			}
+            */
 			resource(subj);
 			resource(pred);
 			literal(lit);

@@ -221,8 +221,15 @@ class ParserSupport implements ARPErrorNumbers, RDFParserConstants, LanguageTagC
               "<" + rslt.getURI() + "> not in Unicode Normal Form C.");
         
              if ( !ctxt.isSameAsDocument() ) {
+                boolean bad = false;
+                try {
                  URIReference other = new URIReference(ctxt.getDocument(),val);
-                 if ( !other.equals(rslt) ) {
+                 bad = !other.equals(rslt);
+                }
+                catch (Exception e) {
+                   // Note resolving the URIReference above may not work.
+                }
+                 if ( bad  ) {
       arp.parseWarning(IGN_XMLBASE_SIGNIFICANT,t.location,
            "Use of attribute xml:base changes interpretation of relative URI: \"" + val + "\".");
                  }
