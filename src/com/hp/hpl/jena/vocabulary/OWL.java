@@ -47,7 +47,7 @@ public class OWL
     /** Model to hold the vocabulary resources only */
     private static Model m_vocabModel = ModelFactory.createDefaultModel();
     
-    /** URI denoting the OWL namespace, currently <code>http://www.w3c.org/2002/07/owl#</code> */
+    /** URI denoting the OWL namespace, currently <code>http://www.w3.org/2002/07/owl#</code> */
     public static final String NAMESPACE = "http://www.w3.org/2002/07/owl#";
     
     /** Resource denoting the class of OWL classes */
