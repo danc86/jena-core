@@ -145,6 +145,12 @@ public class LPRuleStore extends RuleStore {
             }
         }
         
+        // Now we change the semantics of the wildcard entry in the code map table
+        // to be used for any wildcard query. Doing it now enables us to easily include
+        // the allRules case in the subsequent indexing stage
+        predicateToCodeMap.put(Node_RuleVariable.ANY, allRuleClauseCodes);
+        indexPredicateToCodeMap.put(Node_RuleVariable.ANY, new HashMap());
+        
         // Now built any required two level indices
         for (Iterator i = indexPredicateToCodeMap.entrySet().iterator(); i.hasNext(); ) {
             Map.Entry entry = (Map.Entry)i.next();

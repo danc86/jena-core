@@ -268,7 +268,26 @@ public class LPInterpreter {
                                 }
                             }
                             break;
-                        
+                            
+                        case RuleClauseCode.GET_FUNCTOR:
+                            Functor func = (Functor)args[ac++];
+                            boolean match = false;
+                            Node o = argVars[2];
+                            if (Functor.isFunctor(o)) {
+                                Functor funcArg = (Functor)o.getLiteral().getValue();
+                                if (funcArg.getName().equals(func.getName())) {
+                                    if (funcArg.getArgLength() == func.getArgLength()) {
+                                        Node[] fargs = funcArg.getArgs();
+                                        for (int i = 0; i < fargs.length; i++) {
+                                            argVars[i+3] = fargs[i];
+                                        }
+                                        match = true;
+                                    }
+                                }
+                            }
+                            if (!match) continue main;      // fail to unify functor shape
+                            break;
+                            
                         case RuleClauseCode.UNIFY_VARIABLE :
                             yi = code[pc++];
                             ai = code[pc++];
@@ -319,6 +338,13 @@ public class LPInterpreter {
                         case RuleClauseCode.CLEAR_ARG:
                             ai = code[pc++];
                             argVars[ai] = new Node_RuleVariable(null, ai); 
+                            break;
+                            
+                        case RuleClauseCode.MAKE_FUNCTOR:
+                            Functor f = (Functor)args[ac++];
+                            Node[] fargs = new Node[f.getArgLength()];
+                            System.arraycopy(argVars, 3, fargs, 0, fargs.length);
+                            argVars[2] = Functor.makeFunctorNode(f.getName(), fargs);
                             break;
                         
                         case RuleClauseCode.LAST_CALL_PREDICATE:
