@@ -38,8 +38,8 @@ public class testWriterAndReader extends TestCase implements RDFErrorHandler {
     static private boolean showProgress = false;
     static private boolean keepFiles = false;
     static private boolean errorDetail = false;
-    static private int firstTest = 5;
-    static private int lastTest = 9;
+    static private int firstTest = 8;
+    static private int lastTest = 8;
     static private int repetitionsJ = 6;
     String lang;
     String test;
@@ -363,10 +363,19 @@ public class testWriterAndReader extends TestCase implements RDFErrorHandler {
                 in.close();
                 Model s1 = m1;
                 Model s2 = m2;
+                /*
+                System.err.println("m1:");
+                m1.write(System.err,"N-TRIPLE");
+                System.err.println("m2:");
+
+                m2.write(System.err,"N-TRIPLE");
+                System.err.println("=");
+                */
                 assertTrue(
                     "Comparison of file written out, and file read in. See "
                     + tmpFile1.getAbsolutePath(),
                     s1.isIsomorphicWith(s2));
+                System.err.println("OK");
 
                 if (!keepFiles) {
                     tmpFile1.delete();

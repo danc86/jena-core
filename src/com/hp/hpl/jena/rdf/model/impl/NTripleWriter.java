@@ -66,6 +66,7 @@ public class NTripleWriter extends Object implements RDFWriter {
     public void write(Model model, Writer writer, String base)
         throws RDFException {
         try {
+            model = model.withHiddenStatements();
             PrintWriter pw;
             if (writer instanceof PrintWriter) {
                 pw = (PrintWriter) writer;

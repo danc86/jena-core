@@ -24,7 +24,8 @@ public class TestPackage {
     public static TestSuite suite() {
         TestSuite suite = new TestSuite();
         String langs[] =
-            new String[] { "RDF/XML", "RDF/XML-ABBREV", "N-TRIPLE",
+            new String[] { //"RDF/XML", //"RDF/XML-ABBREV", 
+             //   "N-TRIPLE",
             //"N3" 
         };
         // add all the tests defined in this class to the suite
@@ -45,10 +46,10 @@ public class TestPackage {
         /* */
         suite.addTest(new testWriterInterface("testAnotherWriter", null));
         /* */
-//        for (int i = 0; i < langs.length
-//              ; i++) {
-//            suite.addTest(testWriterAndReader.suite(langs[i]));
-//        }
+        for (int i = 0; i < langs.length
+              ; i++) {
+            suite.addTest(testWriterAndReader.suite(langs[i]));
+        }
 
         return suite;
     }

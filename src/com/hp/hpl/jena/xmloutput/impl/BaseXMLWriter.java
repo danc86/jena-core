@@ -401,6 +401,7 @@ abstract public class BaseXMLWriter implements RDFXMLWriterI {
 	final synchronized public void write(Model model, Writer out, String base)
 		throws RDFException {
 		//ns = new HashMap();
+        model = model.withHiddenStatements();
 		this.namespacesNeeded = new HashSet();
 		ns = null;
 		count = 0;
