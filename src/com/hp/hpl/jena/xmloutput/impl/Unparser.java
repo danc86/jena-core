@@ -380,6 +380,7 @@ class Unparser {
 		if (!doing.contains(r)) {
 			wPropAttrAll(r);
 		} else if (isGenuineAnon(r)) {
+			// ???
 			error("Genuine anon resource in cycle?");
 		}
 		indentMinus();
