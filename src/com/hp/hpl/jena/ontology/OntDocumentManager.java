@@ -30,12 +30,10 @@ import org.apache.log4j.*;
 
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.graph.*;
+import com.hp.hpl.jena.graph.impl.*;
 import com.hp.hpl.jena.graph.compose.MultiUnion;
 import com.hp.hpl.jena.vocabulary.RDF;
-import com.hp.hpl.jena.ontology.impl.*;
 import com.hp.hpl.jena.ontology.impl.OntologyGraph;
-
-
 
 /**
  * <p>
@@ -397,7 +395,7 @@ public class OntDocumentManager
     public GraphFactory getDefaultGraphFactory() {
         if (m_graphFactory == null) {
             // construct the default graph factory
-            m_graphFactory = new DefaultGraphFactory();
+            m_graphFactory = new SimpleGraphFactory();
         }
 
         return m_graphFactory;

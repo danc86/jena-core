@@ -14,6 +14,8 @@ import com.hp.hpl.jena.mem.GraphMem;
  * I pulled this out of the OntDocumentManager file (method
  * getDefaultGraphFactory, in order to reuse it.
  * @author <a href="mailto:Jeremy.Carroll@hp.com">Jeremy Carroll</a>
+ * 
+ * @deprecated Subsumed by SimpleGraphFactory
  *
  */
 
