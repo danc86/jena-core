@@ -6,11 +6,12 @@
 package com.hp.hpl.jena.db.impl;
 
 import com.hp.hpl.jena.graph.*;
+import com.hp.hpl.jena.util.iterator.ExtendedIterator;
 import com.hp.hpl.jena.vocabulary.DB;
 
 /**
  *
- * DBStoreDesc
+ * DBPropPrefix
  * 
  * A wrapper to assist in getting and setting DB information from 
  * a persistent store.
@@ -23,30 +24,33 @@ import com.hp.hpl.jena.vocabulary.DB;
  * in the persistent store system description, we can avoid any
  * need to handle polymorhphism).
  * 
+ * @since Jena 2.0
  * 
  * @author csayers
-* @version $Revision$
+ * @version $Revision$
  */
-public class DBPropPSet extends DBProp {
+public class DBPropPrefix extends DBProp {
 
-	/**
-	 * @since Jena 2.0
-	 */
-
-	public static Node_URI pSetType = (Node_URI)DB.pSetType.getNode();
+	public static Node_URI prefixValue = (Node_URI)DB.prefixValue.getNode();
+	public static Node_URI prefixURI = (Node_URI)DB.prefixURI.getNode();
 	
-	public DBPropPSet( SpecializedGraph g, String name, String type) {
-		super( g, new Node_URI(DB.getURI()+name));
-		putPropString(pSetType, type);
+	public DBPropPrefix( SpecializedGraph g, String value, String uri) {
+		super( g, Node.createAnon());
+		putPropString(prefixValue, value);
+		putPropString(prefixURI, uri);
 	}
 	
-	public DBPropPSet( SpecializedGraph g, Node n) {
+	public DBPropPrefix( SpecializedGraph g, Node n) {
 		super(g,n);
 	}	
+		
+	public String getValue() { return getPropString( prefixValue); }
+	public String getURI() { return getPropString( prefixURI); };
 	
-	public String getName() { return self.getURI().substring(DB.getURI().length()); }
-	public String getType() { return getPropString( pSetType); };
 
+	public ExtendedIterator listTriples() {
+		return DBProp.listTriples(graph, self);
+	}	
 }
 
 /*

@@ -64,11 +64,11 @@ public class DBPropLSet extends DBProp {
 			return null;
 	}
 
-	public void remove( SpecializedGraph graph) {
+	public void remove() {
 		DBPropPSet pSet = getPset();
 		if (pSet != null )
-			pSet.remove( graph);
-		super.remove( graph);
+			pSet.remove();
+		super.remove();
 	}
 
 	public ExtendedIterator listTriples() {

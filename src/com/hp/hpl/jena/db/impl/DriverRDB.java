@@ -401,7 +401,7 @@ public abstract class DriverRDB implements IRDBDriver {
 			// remove from system properties table
 			// It is sufficient just to remove the lSet properties (it will
 			// take care of deleting any pset properties automatically).			
-			lProp.remove(m_sysProperties);
+			lProp.remove();
 			
 		}
 		
