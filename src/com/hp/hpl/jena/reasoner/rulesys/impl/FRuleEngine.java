@@ -581,17 +581,6 @@ public class FRuleEngine {
     }
     
     /**
-     * Generic exception used to report problems with rule semantics
-     */
-    public static class BFRException extends RuntimeException {
-        
-        public BFRException(String msg) {
-            super(msg);
-        }
-        
-    }
-    
-    /**
      * Structure used to wrap up processed rule indexes.
      */
     public static class RuleStore {
