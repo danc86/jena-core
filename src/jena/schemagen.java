@@ -907,23 +907,27 @@ public class schemagen {
             Statement candidate = i.nextStatement();
 
             if (candidate.getObject() instanceof Resource) {
-                String uri = ((Resource) candidate.getObject()).getURI();
-
-                for (Iterator j = m_includeURI.iterator();  j.hasNext(); ) {
-                    if (uri.startsWith( (String) j.next() )) {
-                        // the subject has an included type
-                        Resource ind = candidate.getSubject();
-
-                        // do we have a local class resource
-                        String varName = (String) m_resourcesToNames.get( candidate.getObject() );
-                        String valType = (varName != null) ? varName : "m_model.createClass( \"" + uri + "\" )";
-
-                        // push the individuals type onto the stack
-                        addReplacementPattern( "valtype", valType );
-                        writeValue( ind, template, "Individual", "createIndividual", "_INSTANCE" );
-                        pop( 1 );
-
-                        break;
+                Resource candObj = (Resource)candidate.getObject();
+                
+                if (!candObj.isAnon()) {
+                    String uri = candObj.getURI();
+    
+                    for (Iterator j = m_includeURI.iterator();  j.hasNext(); ) {
+                        if (uri.startsWith( (String) j.next() )) {
+                            // the subject has an included type
+                            Resource ind = candidate.getSubject();
+    
+                            // do we have a local class resource
+                            String varName = (String) m_resourcesToNames.get( candidate.getObject() );
+                            String valType = (varName != null) ? varName : "m_model.createClass( \"" + uri + "\" )";
+    
+                            // push the individuals type onto the stack
+                            addReplacementPattern( "valtype", valType );
+                            writeValue( ind, template, "Individual", "createIndividual", "_INSTANCE" );
+                            pop( 1 );
+    
+                            break;
+                        }
                     }
                 }
             }
