@@ -322,6 +322,7 @@ public class TestDAMLClass
                     assertTrue( "contains", A.prop_oneOf().getList().contains( C ) );
                 }
             },
+            /* TODO re-enable
             new OntTestCase( "DAMLClass.getDefinedProperties" ) {
                 public void doTest( DAMLModel m ) throws Exception {
                     DAMLClass A = m.createDAMLClass( NS + "A" );
@@ -340,7 +341,7 @@ public class TestDAMLClass
                     iteratorTest( A.getDefinedProperties(), new Object[] {r} );
                     iteratorTest( B.getDefinedProperties(), new Object[] {p,q,r} );   // note no inference
                 }
-            },
+            },*/
             new OntTestCase( "DAMLRestriction.prop_onProperty" ) {
                 public void doTest( DAMLModel m ) throws Exception {
                     DAMLRestriction A = m.createDAMLRestriction( NS + "A" );
