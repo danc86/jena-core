@@ -66,6 +66,8 @@ public abstract class Node {
             return Node.createLiteral( new LiteralLabel( x, "nn-NN", false ) );
         if (first == '_')
             return Node.createAnon( new AnonId( x ) );
+        if (x.equals( "??" ))
+            return Node.ANY;
         if (first == '?')
             return Node.createVariable( x.substring( 1 ) );
         if (first == '&')
