@@ -73,7 +73,9 @@ public class GoalState {
             }
         }
         if (solutionPointer < results.numResults()) {
-            return results.getResult(solutionPointer++); 
+            return results.getResult(solutionPointer++);
+        } else if (results.isComplete() ){
+            return StateFlag.FAIL;
         } else {
             // No more results yet, the caller should block
             return StateFlag.SUSPEND;
@@ -86,6 +88,7 @@ public class GoalState {
     public void close() {
         if (tripleMatches != null) {
             tripleMatches.close();
+            tripleMatches = null;
         }
     }
     
@@ -95,6 +98,7 @@ public class GoalState {
     public String toString() {
         return "GoalState(" + results.goal.toString() + ")";
     }
+
 }
 
 

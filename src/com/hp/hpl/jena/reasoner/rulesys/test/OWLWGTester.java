@@ -10,8 +10,7 @@
 package com.hp.hpl.jena.reasoner.rulesys.test;
 
 import com.hp.hpl.jena.reasoner.*;
-import com.hp.hpl.jena.reasoner.rulesys.BasicForwardRuleInfGraph;
-import com.hp.hpl.jena.reasoner.rulesys.BasicForwardRuleReasoner;
+import com.hp.hpl.jena.reasoner.rulesys.*;
 import com.hp.hpl.jena.reasoner.test.WGReasonerTester;
 import com.hp.hpl.jena.util.ModelLoader;
 import com.hp.hpl.jena.util.PrintUtil;
@@ -164,15 +163,7 @@ public class OWLWGTester {
                          .addProperty(BasicForwardRuleReasoner.PROPderivationLogging, "true");
         }
         Reasoner reasoner = reasonerF.create(configuration);
-        // Temp ...
-            /*
-            Graph data = premises.getGraph();
-            logger.debug("Initial graph state");
-            for (Iterator i = data.find(null, null, null); i.hasNext(); ) {
-                logger.debug(i.next().toString());
-            }
-            */
-        // ... end temp
+        long t1 = System.currentTimeMillis();
         InfGraph graph = reasoner.bind(premises.getGraph());
         Model result = ModelFactory.createModelForGraph(graph);
         
@@ -184,8 +175,12 @@ public class OWLWGTester {
             // A negative entailment check
             correct = !testConclusions(conclusions.getGraph(), result.getGraph());
         }
-        logger.debug("Fired " + ((BasicForwardRuleInfGraph)graph).getNRulesFired() +" rules");
-
+        long t2 = System.currentTimeMillis();
+        logger.info("Time=" + (t2-t1) + "ms for " + test.getURI());
+        //logger.debug("Fired " + ((BasicForwardRuleInfGraph)graph).getNRulesFired() +" rules");
+        // Temp ...
+        //((BasicBackwardRuleInfGraph) graph).dump();
+        // ... end temp
         // Debug output on failure
         if (!correct) {
             // Temp
@@ -205,15 +200,6 @@ public class OWLWGTester {
                     logger.debug(sw.getBuffer().toString() );
                 }
             }
-            // Temp ...
-            /*
-            data = graph.getRawGraph();
-            logger.debug("Final graph state");
-            for (Iterator i = data.find(null, null, null); i.hasNext(); ) {
-                logger.debug(PrintUtil.print((Triple)i.next()));
-            }
-            */
-            // ... end temp
         }
         
         // Signal the results        

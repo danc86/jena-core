@@ -70,9 +70,6 @@ public class BindingVector implements BindingEnvironment {
         if (node instanceof Node_RuleVariable) {
             Node val = environment[((Node_RuleVariable)node).getIndex()];
             if (val instanceof Node_RuleVariable) {
-                if (val == node) {
-                    System.out.println("Problem");
-                }
                 return getBinding(val);
             } else {
                 return val;
@@ -231,8 +228,8 @@ public class BindingVector implements BindingEnvironment {
         
         Node gObj = goal.getObject();
         Node hObj = head.getObject();
-        if (Functor.isFunctor(hObj)) {
-            if (Functor.isFunctor(gObj)) {
+        if (Functor.isFunctor(gObj)) {
+            if (Functor.isFunctor(hObj)) {
                 Functor gFunctor = (Functor)gObj.getLiteral().getValue();
                 Functor hFunctor = (Functor)hObj.getLiteral().getValue();
                 if ( ! gFunctor.getName().equals(hFunctor.getName()) ) {
@@ -253,6 +250,7 @@ public class BindingVector implements BindingEnvironment {
                 return null;
             }
         } else {
+//            if (Functor.isFunctor(hObj)) return null;
             if (!unify(gObj, hObj, gEnv, hEnv)) return null;
         } 
         // Successful bind if we get here

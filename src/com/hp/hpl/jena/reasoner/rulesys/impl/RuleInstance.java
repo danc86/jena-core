@@ -43,7 +43,7 @@ public class RuleInstance {
     protected boolean clausesReordered = false;
     
     /** If the clauses are reordered this contains the index of the second clause */
-    protected int secondClause;
+    protected int secondClause = -1;
     
     /**
      * Constructor. Create a new continuation point for a rule in

@@ -50,7 +50,7 @@ public class GoalResults {
     
     /** The set of RuleStates which are currently blocked
      *  waiting for this table entry to have more results */
-    protected Set dependents;
+    protected Set dependents = new HashSet();
     
     /** The rule engine which this table entry is part of */
     protected BRuleEngine engine; 
@@ -78,7 +78,6 @@ public class GoalResults {
         resultSet = new ArrayList();
         resultSetIndex = new HashSet();
         isComplete = false;
-        dependents = new HashSet();
         engine = ruleEngine;
         isSingleton = !(goal.getSubject().isVariable() || goal.getPredicate().isVariable() || goal.getObject().isVariable());
     }
@@ -122,7 +121,7 @@ public class GoalResults {
             RuleState dep = (RuleState)i.next();
             engine.prependToAgenda(dep);
         }
-        dependents.clear();
+//        dependents.clear();
     }
     
     /**
@@ -136,11 +135,15 @@ public class GoalResults {
      * Indicate that the goal has completed.
      */
     public void setComplete() {
-        if (engine.isTraceOn()) {
-            logger.debug("Completed " + this);
+        if (!isComplete) {
+            if (engine.isTraceOn()) {
+                logger.debug("Completed " + this);
+            }
+            isComplete = true;
+            resultSetIndex = null;
+            flushDependents();
+            dependents.clear();
         }
-        isComplete = true;
-        flushDependents();
     }
     
     /**
@@ -165,6 +168,7 @@ public class GoalResults {
                 engine.appendToAgenda(rs);
             }
         }
+        if (refCount <= 0) setComplete();
         started = true;
     }
     

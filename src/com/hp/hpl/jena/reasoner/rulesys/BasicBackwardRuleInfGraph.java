@@ -156,7 +156,7 @@ public class BasicBackwardRuleInfGraph extends BaseInfGraph {
      * will be asked for additional match results if the implementor
      * may not have completely satisfied the query.
      */
-    public synchronized ExtendedIterator findWithContinuation(TriplePattern pattern, Finder continuation) {
+    public ExtendedIterator findWithContinuation(TriplePattern pattern, Finder continuation) {
         if (!isPrepared) prepare();
         return WrappedIterator.create(
              new TopGoalIterator( engine.findGoal(pattern) )
@@ -238,6 +238,14 @@ public class BasicBackwardRuleInfGraph extends BaseInfGraph {
      */
     public boolean isTraceOn() {
         return traceOn;
+    }
+    
+    /**
+     * Dump an a summary of the goal table state to stdout.
+     * Just debugging, do not use for real.
+     */
+    public void dump() {
+        engine.dump();        
     }
     
 //  =======================================================================
@@ -326,6 +334,8 @@ public class BasicBackwardRuleInfGraph extends BaseInfGraph {
                 } else {
                     lookAhead = null;
                 }
+            } else if (lookAhead == StateFlag.FAIL) {
+                lookAhead = null;
             }
         }
         

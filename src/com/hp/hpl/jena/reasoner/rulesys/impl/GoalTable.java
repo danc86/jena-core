@@ -76,6 +76,22 @@ public class GoalTable {
             ((GoalResults)i.next()).setAllComplete();
         }
     }
+    
+    /**
+     * Dump an a summary of the goal table state to stdout.
+     * Just debugging, do not use for real.
+     */
+    public void dump() {
+        System.out.println("Final goal table");
+        for (Iterator i = table.values().iterator(); i.hasNext(); ) {
+            GoalResults gr = (GoalResults)i.next();
+            System.out.println(gr.toString() );
+            for (int j = 0; j < gr.numResults(); j++) {
+                System.out.println(" - " + gr.getResult(j));
+            }
+        }
+    }
+    
 }
 
 
