@@ -40,7 +40,7 @@ public class SimpleGraphMaker extends BaseGraphMaker
         @return JMS.MemMakerClass [as node]
     */ 
     public Node getMakerClass()
-        { return JMS.MemMakerClass.asNode(); }
+        { return JMS.MemMakerSpec.asNode(); }
        
     /**
         Augment the general description of a GraphMaker with any Simple triples [ie none]

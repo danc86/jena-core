@@ -26,8 +26,26 @@ public class JenaTestBase extends TestCase
         @param x an object to test; the subject of a .equals()
         @param y the other object; the argument of the .equals()
     */
-    public void assertDiffer( String title, Object x, Object y )
-        { assertFalse( title, x.equals( y ) ); }
+    public static void assertDiffer( String title, Object x, Object y )
+        { 
+        if (x.equals( y ))
+            fail( (title == null ? "objects should be different, but both were: " : title) + x );
+        }
+        
+    /**
+        assert that the two objects must be unequal according to .equals().
+        @param x an object to test; the subject of a .equals()
+        @param y the other object; the argument of the .equals()
+    */
+    public static void assertDiffer( Object x, Object y )
+        { assertDiffer( null, x, y ); }
+        
+    /**
+        Do nothing; a way of notating that a test has succeeded, useful in the body of a
+        catch-block to silence excessively helpful disgnostics. 
+    */
+    public static void pass()
+        {}
     }
 
 

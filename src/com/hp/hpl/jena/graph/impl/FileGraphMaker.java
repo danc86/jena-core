@@ -66,7 +66,7 @@ public class FileGraphMaker extends BaseGraphMaker
         @return JMS.FileMakerClass [node version]
     */
     public Node getMakerClass()
-        { return JMS.FileMakerClass.asNode(); }
+        { return JMS.FileMakerSpec.asNode(); }
 
     /**
         Answer the fileBase of all the graphs created by this FileGraphMaker.

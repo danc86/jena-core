@@ -46,7 +46,7 @@ public class GraphRDBMaker extends BaseGraphMaker
         @return JMS.RDBMakerClass [as node]
     */
     public Node getMakerClass()
-        { return JMS.RDBMakerClass.asNode(); }
+        { return JMS.RDBMakerSpec.asNode(); }
         
     /**
         Augment the maker description of this maker with RDB-specific properties.

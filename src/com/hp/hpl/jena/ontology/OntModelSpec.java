@@ -178,7 +178,7 @@ public class OntModelSpec extends ModelSpecImpl implements ModelSpec {
         @param description an RDF model using the JMS vocabulary
     */
     public OntModelSpec( Model description )  { 
-        this( description, findRootByType( description, JMS.OntMakerClass ) );
+        this( description, findRootByType( description, JMS.OntModelSpec ) );
     }
 
     /**
@@ -362,7 +362,7 @@ public class OntModelSpec extends ModelSpecImpl implements ModelSpec {
     */
     public static String getLanguage( Model description, Resource root ) {
         Statement langStatement = description.getRequiredProperty( root, JMS.ontLanguage );
-        return langStatement.getString(); // .getURI();
+        return langStatement.getString();
     }
     
     /**

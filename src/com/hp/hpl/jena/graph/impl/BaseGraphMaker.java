@@ -85,21 +85,13 @@ public abstract class BaseGraphMaker implements GraphMaker
                 
     public Graph addDescription( Graph desc, Node self )
         {
-        Node mode = styleAsJMS( style ); // JMS.rsStandard.asNode();
+        Node mode = JMS.styleAsJMS( style ); 
         desc.add( Triple.create( self, JMS.reificationMode.asNode(), mode ) );
-        desc.add( Triple.create( self, RDF.type.asNode(), getMakerClass() ) );
+        desc.add( Triple.create( self, RDF.Nodes.type, getMakerClass() ) );
         augmentDescription( desc, self );    
         return desc;
         }
 
-    public Node styleAsJMS( Reifier.Style style )
-        {
-        if (style == Reifier.Minimal) return JMS.rsMinimal.asNode();
-        if (style == Reifier.Convenient) return JMS.rsConvenient.asNode();
-        if (style == Reifier.Standard) return JMS.rsStandard.asNode();
-        return null;
-        }
-        
     /**
         Update the graph g with any other descriptive information for this GraphMaker.
         @param d the description to be augmented
