@@ -59,7 +59,7 @@ public class OWLConsistencyTest extends TestCase {
     protected Object culprit;
     
     /**
-     * Constructor - builds a dummy test which can't be run without setting a reasoner factroy 
+     * Constructor - builds a dummy test which can't be run without setting a reasoner factory 
      * @param tbox The tbox to be tested, relative to BASE_DIR
      * @param abox The abox to be tested, relative to BASE_DIR
      * @param expected The expected result to check against - INCONSISTENT/WARNINGS/CLEAN
@@ -100,7 +100,10 @@ public class OWLConsistencyTest extends TestCase {
     public ValidityReport testResults() {
         Model t = FileManager.get().loadModel(BASE_DIR + tbox);
         Model a = FileManager.get().loadModel(BASE_DIR + abox);
-        Reasoner r = rf.create(null).bindSchema(t);
+        // Work around non-deterministic bug in bindSchema
+//        Reasoner r = rf.create(null).bindSchema(t);
+        Reasoner r = rf.create(null);
+        a.add(t);
         InfModel im = ModelFactory.createInfModel(r, a);
         return im.validate();
     }
