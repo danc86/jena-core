@@ -33,12 +33,17 @@ public class TestFileUtils extends TestCase
         { assertEquals( "N-TRIPLE", FileUtils.langNTriple ); }
     
     public void testLangN3()
-        { assertEquals( "N3", FileUtils.langN3 ); }
-    
+    { assertEquals( "N3", FileUtils.langN3 ); }
+
+    public void testLangTurtle()
+    { assertEquals( "TURTLE", FileUtils.langTurtle ); }
+
     public void testGuessLangLowerCase()
         {
         assertEquals( FileUtils.langN3, FileUtils.guessLang( "simple.n3") );
         assertEquals( FileUtils.langN3, FileUtils.guessLang( "hello.there.n3") );
+        assertEquals( FileUtils.langTurtle, FileUtils.guessLang( "simple.ttl") );
+        assertEquals( FileUtils.langTurtle, FileUtils.guessLang( "hello.there.ttl") );
         assertEquals( FileUtils.langNTriple, FileUtils.guessLang( "simple.nt" ) );
         assertEquals( FileUtils.langNTriple, FileUtils.guessLang( "whats.up.nt" ) );
         assertEquals( FileUtils.langXML, FileUtils.guessLang( "poggle.rdf") );
@@ -50,6 +55,8 @@ public class TestFileUtils extends TestCase
         {
         assertEquals( FileUtils.langN3, FileUtils.guessLang( "simple.N3") );
         assertEquals( FileUtils.langN3, FileUtils.guessLang( "hello.there.N3") );
+        assertEquals( FileUtils.langTurtle, FileUtils.guessLang( "simple.TTL") );
+        assertEquals( FileUtils.langTurtle, FileUtils.guessLang( "hello.there.TTL") );
         assertEquals( FileUtils.langNTriple, FileUtils.guessLang( "simple.NT" ) );
         assertEquals( FileUtils.langNTriple, FileUtils.guessLang( "whats.up.Nt" ) );
         assertEquals( FileUtils.langXML, FileUtils.guessLang( "poggle.rDf") );
