@@ -417,12 +417,12 @@ public interface Statement
     */
     Triple asTriple();
     
-    /**
-     * Returns a resource representing the reification of this
-     * statement. Such a resoruce is created and added to the model
-     * if necessary.
-     */
-    Resource asResource();
+//    /**
+//     * Returns a resource representing the reification of this
+//     * statement. Such a resoruce is created and added to the model
+//     * if necessary.
+//     */
+//    Resource asResource();
     
     /**
         get the Model this Statement was created in.

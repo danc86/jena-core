@@ -1244,7 +1244,7 @@ class Unparser {
 	}
 
 	private boolean hasProperties(Resource r)  {
-		ClosableIterator ss = listProperties(r);
+		ExtendedIterator ss = listProperties(r);
 		if (avoidExplicitReification
 			&& //  ( r instanceof Statement ) &&
 		 (!r.isAnon())
@@ -1271,7 +1271,7 @@ class Unparser {
 			ss.close();
 		}
 	}
-	private ClosableIterator listProperties(Resource r)  {
+	private ExtendedIterator listProperties(Resource r)  {
 		return new MapFilterIterator(new MapFilter() {
 			public Object accept(Object o) {
 				return doneSet.contains(o)?null:o;

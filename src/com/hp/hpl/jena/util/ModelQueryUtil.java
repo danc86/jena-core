@@ -14,6 +14,13 @@ import com.hp.hpl.jena.util.iterator.*;
 import java.util.*;
 
 /**
+    A utility for using the graph query interface from a Model. Queries may be represented
+    as models, where each statement in the model corresponds to a search for matching
+    statements in the model being queried. Variables are represented as resources
+    with URIs using the ficticious "jqv" protocol.
+<p>    
+    See also <code>QueryMapper</code>.
+    
  	@author kers
 */
 public class ModelQueryUtil
