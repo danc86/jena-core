@@ -882,6 +882,12 @@ public class ModelCom
         getPrefixMapping().setNsPrefixes( map ); 
         return this;
         }
+    
+    public PrefixMapping withDefaultMappings( PrefixMapping other )
+        {
+        getPrefixMapping().withDefaultMappings( other );
+        return this;
+        }
         
     public String getNsPrefixURI( String prefix ) 
         { return getPrefixMapping().getNsPrefixURI( prefix ); }

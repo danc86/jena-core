@@ -76,6 +76,13 @@ public interface PrefixMapping
         @return this PrefixMapping
     */
     PrefixMapping setNsPrefixes( Map map );
+    
+    /**
+         Update this PrefixMapping with the bindings in <code>map</code>, only
+         adding those (p, u) pairs for which neither p nor u appears in this mapping.
+         Answer this PrefixMapping.
+    */
+    PrefixMapping withDefaultMappings( PrefixMapping map );
        
     /**
         Get the URI bound to a specific prefix, null if there isn't one.

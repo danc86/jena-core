@@ -91,6 +91,25 @@ public class PrefixMappingImpl implements PrefixMapping
     */
     public PrefixMapping setNsPrefixes( PrefixMapping other )
         { return setNsPrefixes( other.getNsPrefixMap() ); }
+    
+    /**
+         Answer this PrefixMapping after updating it with the <code>(p, u)</code> 
+         mappings in <code>other</code> where neither <code>p</code> nor
+         <code>u</code> appear in this mapping.
+    */
+    public PrefixMapping withDefaultMappings( PrefixMapping other )
+        {
+        checkUnlocked();
+        Iterator it = other.getNsPrefixMap().entrySet().iterator();
+        while (it.hasNext())
+            {
+            Map.Entry e = (Map.Entry) it.next();
+            String prefix = (String) e.getKey(), uri = (String) e.getValue();
+            if (getNsPrefixURI( prefix ) == null && getNsURIPrefix( uri ) == null)
+                setNsPrefix( prefix, uri );
+            }
+        return this;
+        }
         
     /**
         Add the bindings in the map to our own. This will fail with a ClassCastException
