@@ -18,7 +18,9 @@ import java.util.*;
 /**
  * An implementation of a binding environment that maintains
  * a single array of bound values for the variables in a rule.
- * Stack management is done externally.
+ * Stack management is done externally. This is intended for use in
+ * the Brule system and so also supports variable-variable bindings by
+ * use of reference chains.
  * 
  * @author <a href="mailto:der@hplb.hpl.hp.com">Dave Reynolds</a>
  * @version $Revision$ on $Date$
@@ -46,7 +48,8 @@ public class BindingVector implements BindingEnvironment {
     }
     
     /**
-     * Return the current array of bindings
+     * Return the current array of bindings. Useful for fast access to
+     * serveral bindings, not useful for doing updates.
      */
     public Node[] getEnvironment() {
         return environment;

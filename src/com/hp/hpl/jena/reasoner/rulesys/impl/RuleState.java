@@ -197,6 +197,7 @@ public class RuleState {
                 GoalState gs = generator.getEngine().findGoal(subgoal);
                 RuleState rs = new RuleState(ri, env, gs, clauseIndex);
                 rs.initMapping(subgoal);
+//                BRuleEngine.logger.debug("Created " + rs + ", for goal(" + goal +")");
                 return rs;
             } else {
                 if (!generator.getEngine().processBuiltin(clause, rule, env)) {
@@ -205,7 +206,7 @@ public class RuleState {
             }
         }
         // If we get to here there are no rule body clause to process
-        return new RuleState(ri, env, null, 0); 
+        return new RuleState(ri, env, null, 0);
     }
     
     /**
