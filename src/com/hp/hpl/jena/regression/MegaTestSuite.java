@@ -52,7 +52,7 @@ public class MegaTestSuite extends TestSuite {
     }
     private MegaTestSuite() {
         super( "Jena");
-        addTest( "Memory Model", com.hp.hpl.jena.mem.TestSuiteRegression.suite() );
+        addTest( "Memory Model", com.hp.hpl.jena.mem.test.TestSuiteRegression.suite() );
     }
 
     private void addTest(String name, TestSuite tc) {

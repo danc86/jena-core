@@ -4,10 +4,12 @@
   $Id$
 */
 
-package com.hp.hpl.jena.mem;
+package com.hp.hpl.jena.mem.test;
 
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.graph.test.*;
+import com.hp.hpl.jena.mem.GraphMem;
+
 import junit.framework.*;
 
 /**

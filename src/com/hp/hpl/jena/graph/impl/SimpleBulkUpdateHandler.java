@@ -127,7 +127,8 @@ public class SimpleBulkUpdateHandler implements BulkUpdateHandler
             manager.notifyDeleteIterator( L );
             }
         else
-            while (it.hasNext()) graph.performDelete( (Triple) it.next() );    
+            // while (it.hasNext()) graph.performDelete( (Triple) it.next() );    
+            delete( GraphUtil.iteratorToList( it ), notify );
          }
          
     private List triplesOf( Graph g )

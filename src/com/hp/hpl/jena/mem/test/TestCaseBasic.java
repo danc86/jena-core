@@ -4,7 +4,9 @@
     $Id$
 */
  
-package com.hp.hpl.jena.mem;
+package com.hp.hpl.jena.mem.test;
+
+import com.hp.hpl.jena.mem.ModelMem;
 
 /**
  *

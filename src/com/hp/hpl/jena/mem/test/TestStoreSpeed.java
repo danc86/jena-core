@@ -4,7 +4,7 @@
   $Id$
 */
 
-package com.hp.hpl.jena.mem;
+package com.hp.hpl.jena.mem.test;
 
 /**
 	@author kers
@@ -12,6 +12,7 @@ package com.hp.hpl.jena.mem;
 
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.graph.test.*;
+import com.hp.hpl.jena.mem.GraphMem;
 import com.hp.hpl.jena.util.iterator.*;
 
 public class TestStoreSpeed extends GraphTestBase
