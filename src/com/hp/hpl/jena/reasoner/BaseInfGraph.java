@@ -93,6 +93,12 @@ public abstract class BaseInfGraph extends GraphBase implements InfGraph {
         return bud;
         }
     
+    /**
+        InfBulkUpdateHandler - a bulk update handler specialised for inference
+        graphs by code for <code>removeAll()</code>.
+        
+        @author kers
+    */
     static class InfBulkUpdateHandler extends SimpleBulkUpdateHandler
     	{
         public InfBulkUpdateHandler( BaseInfGraph  graph ) 
@@ -100,9 +106,19 @@ public abstract class BaseInfGraph extends GraphBase implements InfGraph {
         
         public void removeAll()
             {
-            ((BaseInfGraph) graph).getRawGraph().getBulkUpdateHandler().removeAll();
+            BaseInfGraph g = (BaseInfGraph) graph;
+            g.getRawGraph().getBulkUpdateHandler().removeAll();
+            g.discardState();
+            g.rebind();
             }
     	}
+    
+    /**
+     	discard any state that depends on the content of fdata, because
+     	it's just been majorly trashed, solid gone.
+    */
+    protected void discardState()
+        {}
         
     /**
      * Return the raw RDF data Graph being processed (i.e. the argument

@@ -548,12 +548,9 @@ public abstract class AbstractTestGraph extends GraphTestBase
     public void testRemoveAll( String triples )
         {
         Graph g = getGraph();
-        if (g.getCapabilities().sizeAccurate())
-            {
-            graphAdd( g, triples );
-            g.getBulkUpdateHandler().removeAll();
-            assertEquals( 0, g .size() );
-            }
+        graphAdd( g, triples );
+        g.getBulkUpdateHandler().removeAll();
+        assertTrue( g.isEmpty() );
         }
     
     protected Graph copy( Graph g )

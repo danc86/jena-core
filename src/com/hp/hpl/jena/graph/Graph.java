@@ -118,8 +118,9 @@ public interface Graph  extends GraphAdd
 	void close();
     
     /**
-        Answer true iff this graph is empty. [Used to be in QueryHandler, but moved in
-        here because it's a more primitive operation.]
+        Answer true iff this graph is empty. "Empty" means "has as few triples as it
+        can manage", because an inference graph may have irremovable axioms
+        and their consequences.
     */
     boolean isEmpty();
     
