@@ -9,10 +9,8 @@ package com.hp.hpl.jena.graph.query.test;
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.graph.query.*;
 import com.hp.hpl.jena.graph.query.Expression.Util;
-import com.hp.hpl.jena.graph.test.*;
 
 import com.hp.hpl.jena.util.HashUtils;
-import com.hp.hpl.jena.util.iterator.Map1;
 
 import junit.framework.*;
 import java.util.*;

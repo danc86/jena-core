@@ -5,7 +5,6 @@
 */
 package com.hp.hpl.jena.rdf.model.test;
 
-import java.net.URL;
 import java.util.*;
 
 import com.hp.hpl.jena.rdf.model.*;

@@ -8,7 +8,6 @@ package com.hp.hpl.jena.rdf.model.test;
 import java.io.StringReader;
 
 import com.hp.hpl.jena.graph.*;
-import com.hp.hpl.jena.graph.test.RecordingListener;
 import com.hp.hpl.jena.rdf.model.*;
 
 import junit.framework.TestSuite;

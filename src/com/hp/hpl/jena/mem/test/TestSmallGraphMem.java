@@ -6,19 +6,10 @@
 
 package com.hp.hpl.jena.mem.test;
 
-import java.util.Set;
-
 import junit.framework.TestSuite;
 
 import com.hp.hpl.jena.graph.*;
-import com.hp.hpl.jena.graph.impl.GraphBase;
-import com.hp.hpl.jena.graph.test.AbstractTestGraph;
-import com.hp.hpl.jena.mem.GraphMem;
-import com.hp.hpl.jena.mem.GraphMemBulkUpdateHandler;
 import com.hp.hpl.jena.mem.SmallGraphMem;
-import com.hp.hpl.jena.shared.ReificationStyle;
-import com.hp.hpl.jena.util.HashUtils;
-import com.hp.hpl.jena.util.iterator.*;
 
 
 /**

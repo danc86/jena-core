@@ -7,7 +7,6 @@
 package com.hp.hpl.jena.rdf.model.impl;
 
 import com.hp.hpl.jena.rdf.model.*;
-import com.hp.hpl.jena.util.ModelLoader;
 import com.hp.hpl.jena.vocabulary.*;
 
 /**

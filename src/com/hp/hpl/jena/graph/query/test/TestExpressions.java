@@ -8,9 +8,7 @@ package com.hp.hpl.jena.graph.query.test;
 
 import junit.framework.*;
 
-import com.hp.hpl.jena.graph.Node;
 import com.hp.hpl.jena.graph.query.*;
-import com.hp.hpl.jena.graph.test.GraphTestBase;
 
 /**
  	@author hedgehog
