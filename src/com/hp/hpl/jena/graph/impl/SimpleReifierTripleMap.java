@@ -112,7 +112,7 @@ public class SimpleReifierTripleMap implements ReifierTripleMap
          Answer an interator over all of the quadlets of <code>toExplode</code> with
          the reifying node <code>tag</code> that match <code>pattern</code>.
     */
-    protected ExtendedIterator explodeTriple( Triple pattern, Node tag, Triple toExplode )
+    public static ExtendedIterator explodeTriple( Triple pattern, Node tag, Triple toExplode )
         {
         GraphAddList L = new GraphAddList( pattern );
         SimpleReifier.graphAddQuad( L, tag, toExplode ); 
