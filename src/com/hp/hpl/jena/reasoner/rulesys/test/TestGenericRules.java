@@ -75,10 +75,10 @@ public class TestGenericRules extends TestCase {
      * This is its own test suite
      */
     public static TestSuite suite() {
-//        return new TestSuite( TestGenericRules.class ); 
-        TestSuite suite = new TestSuite();
-        suite.addTest(new TestGenericRules( "testAddRemove2" ));
-        return suite;
+        return new TestSuite( TestGenericRules.class ); 
+//        TestSuite suite = new TestSuite();
+//        suite.addTest(new TestGenericRules( "testAddRemove2" ));
+//        return suite;
     }  
     
      
