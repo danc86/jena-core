@@ -8,7 +8,7 @@ import java.io.* ;
 import antlr.* ;
 import antlr.collections.*;
 
-/** Miscellaneous things in supprt of Antlr-derived parsers
+/** Miscellaneous things in support of Antlr-derived parsers
  * 
  * @author		Andy Seaborne
  * @version 	$Id$
