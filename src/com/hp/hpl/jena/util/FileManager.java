@@ -280,7 +280,7 @@ public class FileManager
         {
             if ( log.isTraceEnabled() )
                 log.trace("Failed to locate '"+mappedURI+"'") ;
-            throw new JenaException("Can't open: "+filenameOrURI) ;
+            throw new NotFoundException("Nout found: "+filenameOrURI) ;
         }
         model.read(in, baseURI, syntax) ;
         return model ;
