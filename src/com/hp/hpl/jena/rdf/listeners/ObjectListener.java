@@ -29,15 +29,15 @@ public class ObjectListener implements ModelChangedListener
     public void removed( Object x ) {}
 /* */
     public void addedStatement( Statement s ) { added( s ); }
-    public void addedStatements( Statement [] statements ) {}
-    public void addedStatements( List statements ) {}
-    public void addedStatements( StmtIterator statements ) {}
-    public void addedStatements( Model m ) {}
+    public void addedStatements( Statement [] statements ) { added( statements ); }
+    public void addedStatements( List statements ) { added( statements ); }
+    public void addedStatements( StmtIterator statements ) { added( statements ); }
+    public void addedStatements( Model m ) { added( m ); }
     public void removedStatement( Statement s ) { removed( s ); }   
-    public void removedStatements( Statement [] statements ) {}
-    public void removedStatements( List statements ) {}
-    public void removedStatements( StmtIterator statements ) {}
-    public void removedStatements( Model m ) {}               
+    public void removedStatements( Statement [] statements ) { removed( statements ); }
+    public void removedStatements( List statements ) { removed( statements ); }
+    public void removedStatements( StmtIterator statements ) { removed( statements ); }
+    public void removedStatements( Model m ) { removed( m ); }               
     }
 
 /*

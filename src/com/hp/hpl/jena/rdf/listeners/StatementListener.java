@@ -10,17 +10,19 @@ import com.hp.hpl.jena.rdf.model.*;
 import java.util.*;
 
 /**
-    A listener that filters all its listening down to the single-statement level
+    A listener that filters all its listening down to the single-statement level. Users of this
+    class override <code>addedStatement(Statement)</code> and 
+    <code>removedStatement(Statement)</code>.
  	@author kers
 */
 public class StatementListener implements ModelChangedListener
     {
     /**
-        Override this to listen to all incoming added triples
+        Override this to listen to all incoming added statements
     */
     public void addedStatement( Statement s ) {}
     /**
-        Override this to listen to all incoming removed triples
+        Override this to listen to all incoming removed statements
     */
     public void removedStatement( Statement s ) {}   
 /* */
