@@ -39,6 +39,21 @@ public class TestModelFactory extends ModelTestBase
     public void testCreateDefaultModel()
         { ModelFactory.createDefaultModel().close(); }    
 
+    public void testGetDefaultPrefixMapping()
+        {
+        assertSame( ModelCom.getDefaultModelPrefixes(), ModelFactory.getDefaultModelPrefixes() );
+        }
+    
+    public void testSetDefaultPrefixMapping()
+        {
+        PrefixMapping original = ModelCom.getDefaultModelPrefixes();
+        PrefixMapping pm = PrefixMapping.Factory.create();
+        ModelFactory.setDefaultModelPrefixes( pm );
+        assertSame( pm, ModelCom.getDefaultModelPrefixes() );
+        assertSame( pm, ModelFactory.getDefaultModelPrefixes() );
+        ModelCom.setDefaultModelPrefixes( original );
+        }
+    
     public void testCreateSpecFails()
         {
         try

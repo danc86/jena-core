@@ -48,12 +48,24 @@ implements Model, PrefixMapping, ModelLock
         { this( base, BuiltinPersonalities.model ); }
     
     public ModelCom( Graph base, Personality personality )
-        { super( base, personality ); }
+        { super( base, personality ); 
+        addDefaultPrefixMapping(); }
     
-    public ModelCom( Graph base, PrefixMapping pm )
-        { this( base ); 
-        setNsPrefixes( pm ); }
-	
+    private static PrefixMapping defaultPrefixMapping = PrefixMapping.Factory.create();
+    
+    protected void addDefaultPrefixMapping()
+        { Map temp = defaultPrefixMapping.getNsPrefixMap();
+        temp.putAll( this.getNsPrefixMap() );
+        this.setNsPrefixes( temp ); }
+    
+    public static PrefixMapping getDefaultModelPrefixes()
+        { return defaultPrefixMapping; }
+    
+    public static PrefixMapping setDefaultModelPrefixes( PrefixMapping pm )
+        { PrefixMapping result = defaultPrefixMapping;
+        defaultPrefixMapping = pm;
+        return result; }
+    
     public QueryHandler queryHandler()
     	{ return getGraph().queryHandler(); }
 		
