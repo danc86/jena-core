@@ -203,10 +203,9 @@ public class ModelLockImpl implements ModelLock
         return state ;              
     }
 
-    synchronized void removeLockState()
+    synchronized void removeLockState(Thread thread)
     {
-        Thread thisThread = Thread.currentThread() ;
-        threadStates.remove(thisThread) ;
+        threadStates.remove(thread) ;
     }
 
 	static class ModelLockState
@@ -237,7 +236,7 @@ public class ModelLockImpl implements ModelLock
                 // case of a thread looping around a critical section.
                 // The alternative, to delay now and do a more sophisticated global GC
                 // could require a global pause which is worse.
-                modelLock.removeLockState() ;
+                modelLock.removeLockState(thread) ;
             }
         }
 	}
