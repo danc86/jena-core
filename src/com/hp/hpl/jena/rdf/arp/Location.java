@@ -48,11 +48,17 @@ class Location implements Locator {
     final int endLine;
     final int endColumn;
     Location(Locator locator) {
-    	// TODO null locator
+    	if (locator==null){
+    	  inputName = "unknown-source";
+    	  publicId = "unknown-source";
+    	  endLine = -1;
+    	  endColumn = -1;
+    	}else {
         inputName = locator.getSystemId();
         endLine = locator.getLineNumber();
         endColumn = locator.getColumnNumber();
         publicId = locator.getPublicId();
+    	}
     }
     Location(String sysId,int line,int col) {
         inputName = sysId;

@@ -97,8 +97,7 @@ abstract class XMLHandler
 		else
 			handlers.getErrorHandler().error(e.rootCause());
 	}
-	// TODO narrow visibility to private
-	Map nodeIdUserData;
+	private Map nodeIdUserData;
 
 
 	Locator getLocator() {
@@ -122,7 +121,6 @@ abstract class XMLHandler
 	}	// accessed in ARPQname.
 	XMLContext documentContext;
 	//String documentURI;
-	// TODO narrow visibility to private
 	TokenPipe pipe;
 	Locator locator;
 	static final String rdfns =
@@ -630,6 +628,17 @@ abstract class XMLHandler
 			base = ParserSupport.truncateXMLBase(base);
 	
 			documentContext = new XMLContext(base);
+		}
+	}
+	void endBnodeScope() {
+		if ( getHandlers().getExtendedHandler() != ARPHandlers.nullScopeHandler ) {
+			Iterator it = nodeIdUserData.keySet().iterator();
+			while (it.hasNext()) {
+				String nodeId = (String)it.next();
+				ARPResource bn = new ARPResource(this);
+				bn.setNodeId(nodeId);
+				getHandlers().getExtendedHandler().endBNodeScope(bn);
+			}
 		}
 	}
 

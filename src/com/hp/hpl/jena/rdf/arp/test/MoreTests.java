@@ -194,7 +194,6 @@ public class MoreTests
 				AResource subj,
 				AResource pred,
 				ALiteral lit) {
-				// TODO Auto-generated method stub
 
 			}
 		});
