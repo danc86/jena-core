@@ -37,6 +37,7 @@ public class TestPackage extends TestSuite {
         addTest( new TestSuite( TestOntReasoning.class  ) );
         addTest( new TestSuite( TestOntModel.class ) );
         addTest( new TestSuite( TestBugReports.class ));
+        addTest( new TestSuite( TestOntClass.class ));
     }
 
     private void addTest(String name, TestSuite tc) {
