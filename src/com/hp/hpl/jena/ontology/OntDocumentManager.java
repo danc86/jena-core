@@ -866,15 +866,15 @@ public class OntDocumentManager
         // map to the cache URI if defined
         String resolvableURI = doAltURLMapping( uri );
         String file = resolvableURI.startsWith( "file:" ) ? resolvableURI.substring( 5 ) : resolvableURI;
-
+    
         // try to load the URI
         try {
             // try to use the extension of the url to guess what syntax to use (.n3 => "N3", etc)
-            String lang = ModelLoader.guessLang( uri );
-
+            String lang = ModelLoader.guessLang( resolvableURI );
+    
             // see if we can find the file as a system resource
             InputStream is = ClassLoader.getSystemResourceAsStream( file );
-
+    
             if (is == null) {
                 // we can't get this URI as a system resource, so just try to read it in the normal way
                 // we have to duplicate the encoding translation here, since there's no method on Model
@@ -894,7 +894,7 @@ public class OntDocumentManager
                 catch (IOException e) {
                     throw new JenaException( e);
                 }
-
+    
                 // TODO remove model.read( resolvableURI, lang );
             }
             else {
@@ -906,7 +906,7 @@ public class OntDocumentManager
                     try {is.close();} catch (IOException ignore) {}
                 }
             }
-
+    
             // success: cache the model against the uri
             addModel( uri, model );
             return true;
