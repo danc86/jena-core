@@ -43,37 +43,27 @@ import java.util.Iterator;
  * @author  bwm
  * @version Release='$Name$' Revision='$Revision$' Date='$Date$'
  */
-public class SeqNodeIteratorImpl extends Object implements NodeIterator {
+public class SeqNodeIteratorImpl extends ClosableWrapper implements NodeIterator {
     
-    Iterator  iterator;
-    Object    object;
     Statement stmt = null;
     Seq       seq;
     int       size;
     int       index=0;
     int       numDeleted=0;
-    /** Creates new SeqNodeIteratorImpl */
+    /** Creates new SeqNodeIteratorImpl 
+    */
     public SeqNodeIteratorImpl (Iterator  iterator, 
-                                Object    object,
+                                
                                 Seq       seq) throws RDFException {
-        this.iterator = iterator;
-        this.object   = object;
+        super( iterator ); 
         this.seq      = seq;
         this.size     = seq.size();
     }
 
-    public boolean hasNext() throws RDFException {
-        return iterator.hasNext();
-    }
-    
     public Object next() throws NoSuchElementException, RDFException {
-        if (iterator != null) {
-            stmt = (Statement) iterator.next();
-            index++;
-            return stmt.getObject();
-        } else {
-            throw new RDFException(RDFException.ITERATORCLOSED);  
-        }
+        stmt = (Statement) super.next();
+        index += 1;
+        return stmt.getObject();
     }
     
     public RDFNode nextNode() throws NoSuchElementException, RDFException {
@@ -88,10 +78,6 @@ public class SeqNodeIteratorImpl extends Object implements NodeIterator {
     }
     
     public void close() throws RDFException {
-        if (iterator instanceof ClosableIterator) {
-            ((ClosableIterator) iterator).close();
-        }
-        iterator = null;
-        object   = null;
+        super.close();
     }
 }
