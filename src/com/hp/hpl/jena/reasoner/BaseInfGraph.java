@@ -12,6 +12,7 @@ package com.hp.hpl.jena.reasoner;
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.graph.compose.Union;
 import com.hp.hpl.jena.graph.impl.*;
+import com.hp.hpl.jena.shared.PrefixMapping;
 import com.hp.hpl.jena.util.iterator.*;
 import java.util.Iterator;
 
@@ -34,6 +35,9 @@ public abstract class BaseInfGraph extends GraphBase implements InfGraph {
     
     /** Flag to record if the preparation call has been made and so the graph is ready for queries */
     protected boolean isPrepared = false;
+    
+    public PrefixMapping getPrefixMapping()
+        { return getRawGraph().getPrefixMapping(); }
 
     /**
      * Constructor

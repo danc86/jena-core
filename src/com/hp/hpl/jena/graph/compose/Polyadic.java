@@ -90,7 +90,14 @@ public abstract class Polyadic
             m_subGraphs.add( graphs[i] );
         }
     }
-
+    
+    private PrefixMapping pm;
+    
+    public PrefixMapping getPrefixMapping()
+        { 
+        if (pm == null) pm = new PolyadicPrefixMappingImpl( this );
+        return pm;
+        }
     
     /**
      * <p>
@@ -249,9 +256,6 @@ public abstract class Polyadic
 //        if (reifier == null) reifier = new SimpleReifier( this, style );
 //        return reifier;
 //        }
-
-    public PrefixMapping getPrefixMapping()
-        { return (getBaseGraph() == null) ? super.getPrefixMapping() : getBaseGraph().getPrefixMapping(); }
 
     // Internal implementation methods
     //////////////////////////////////

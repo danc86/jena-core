@@ -10,9 +10,10 @@ package com.hp.hpl.jena.graph.compose.test;
 	@author kers
 */
 
-import com.hp.hpl.jena.graph.compose.Difference;
-import com.hp.hpl.jena.graph.compose.Intersection;
-import com.hp.hpl.jena.graph.compose.Union;
+import com.hp.hpl.jena.graph.*;
+import com.hp.hpl.jena.graph.compose.*;
+import com.hp.hpl.jena.shared.PrefixMapping;
+import com.hp.hpl.jena.shared.test.AbstractTestPrefixMapping;
 
 import junit.framework.TestSuite;
 
@@ -25,15 +26,17 @@ public class TestPackage extends Object {
     
     public static TestSuite suite() {
     	TestSuite result = new TestSuite();
-        suite(result,Intersection.class);
-        suite(result,Union.class);
-        suite(result,Difference.class);
+        suite( result, Intersection.class );
+        suite( result, Union.class );
+        suite( result, Difference.class );
     /* */
         result.addTest( TestDelta.suite() );
         result.addTest( TestUnion.suite() );
         result.addTest( TestDifference.suite() );
         result.addTest( TestIntersection.suite() );
         result.addTest( TestMultiUnion.suite() );
+    /* */
+        result.addTest( TestPolyadicPrefixMapping.suite() );
         return  result;
     }
 
