@@ -669,7 +669,6 @@ implements Model, PrefixMapping, ModelLock
      */
     public RDFList createList() {
         Resource list = getResource( RDF.nil.getURI() );
-        list.addProperty( RDF.type, RDF.List );
         
         return (RDFList) list.as( RDFList.class );
     }
