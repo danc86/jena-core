@@ -67,7 +67,8 @@ public class ProfileRegistry {
         {OWL_LANG,      new OWLProfile()},
         {OWL_DL_LANG,   new OWLDLProfile()},
         {OWL_LITE_LANG, new OWLLiteProfile()},
-        {DAML_LANG,     new DAML_OILProfile()}
+        {DAML_LANG,     new DAML_OILProfile()},
+        {RDFS_LANG,     new RDFSProfile()}
     };
     
     

@@ -93,6 +93,15 @@ public class OntModelSpec {
     /** A specification for DAML models that are stored in memory and use the RDFS inferencer for additional entailments */
     public static final OntModelSpec DAML_MEM_RDFS_INF = new OntModelSpec( ModelFactory.createMemModelMaker(), null, RDFSFBRuleReasonerFactory.theInstance(), ProfileRegistry.DAML_LANG );
     
+    /** A specification for RDFS ontology models that are stored in memory and do no additional entailment reasoning */
+    public static final OntModelSpec RDFS_MEM = new OntModelSpec( ModelFactory.createMemModelMaker(), null, null, ProfileRegistry.RDFS_LANG );
+    
+    /** A specification for RDFS ontology models that are stored in memory and use the transitive reasoner for entailments */
+    public static final OntModelSpec RDFS_MEM_TRANS_INF = new OntModelSpec( ModelFactory.createMemModelMaker(), null, TransitiveReasonerFactory.theInstance(), ProfileRegistry.RDFS_LANG );
+    
+    /** A specification for RDFS ontology models that are stored in memory and use the RDFS inferencer for additional entailments */
+    public static final OntModelSpec RDFS_MEM_RDFS_INF = new OntModelSpec( ModelFactory.createMemModelMaker(), null, RDFSFBRuleReasonerFactory.theInstance(), ProfileRegistry.RDFS_LANG );
+    
     
     // Instance variables
     //////////////////////////////////
@@ -185,6 +194,9 @@ public class OntModelSpec {
         }
         else if (languageURI.equals( ProfileRegistry.DAML_LANG )) {
             return DAML_MEM_RDFS_INF;
+        }
+        else if (languageURI.equals( ProfileRegistry.RDFS_LANG )) {
+            return RDFS_MEM_RDFS_INF;
         }
         else {
             throw new OntologyException( "Did not recognise this language URI, so cannot determine default model spec: " + languageURI );
