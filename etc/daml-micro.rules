@@ -1,5 +1,5 @@
 #------------------------------------------------------------------
-# Mico ruleset for DAML. This is just the core RDFS rules plus
+# Micro ruleset for DAML. This is just the core RDFS rules plus
 # the extensional rules for domain/range, plus some DAML axioms.
 # $Id$
 #------------------------------------------------------------------
