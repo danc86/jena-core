@@ -23,9 +23,9 @@ import com.hp.hpl.jena.shared.*;
 public class N3JenaReader implements RDFReader
 {
 	RDFErrorHandler errorHandler = null ;
+	N3toRDF converter = null ;
 	
-	
-	public N3JenaReader() {}
+	public N3JenaReader() { converter = new N3toRDF() ; } 
 	
 	// Jena's Reader interface
 	
@@ -64,8 +64,9 @@ public class N3JenaReader implements RDFReader
 
 		try {
 		    model.notifyEvent( GraphEvents.startRead );
-			N3ParserEventHandler h = new N3toRDF(model, base) ;
-			N3Parser p = new N3Parser(r, h) ;
+            converter.base = base ;
+            converter.model = model ;
+			N3Parser p = new N3Parser(r, converter) ;
 			p.parse() ;
         }
         catch (JenaException e)
@@ -95,8 +96,10 @@ public class N3JenaReader implements RDFReader
 	public void read(Model model, InputStream in, String base, String sourceName) 
 	{
 		try {
-			N3ParserEventHandler h = new N3toRDF(model, base) ;
-			N3Parser p = new N3Parser(in, h) ;
+            model.notifyEvent( GraphEvents.startRead );
+            converter.base = base ;
+            converter.model = model ;
+			N3Parser p = new N3Parser(in, converter) ;
 			p.parse() ;
 		}
         catch (JenaException e)
@@ -110,6 +113,11 @@ public class N3JenaReader implements RDFReader
 			if ( errorHandler == null ) throw new JenaException(ex) ;
 			errorHandler.error(ex) ;
 		}
+        finally
+        {
+            model.notifyEvent( GraphEvents.finishRead );
+        }
+
 	}
 	
 	public RDFErrorHandler setErrorHandler(RDFErrorHandler errHandler)

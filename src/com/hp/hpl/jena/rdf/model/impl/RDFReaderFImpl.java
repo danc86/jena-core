@@ -50,7 +50,8 @@ public class RDFReaderFImpl extends Object implements RDFReaderF {
                                               "RDF/XML-ABBREV",
                                               "N-TRIPLE",
                                               "N-TRIPLES",
-                                              "N3"};
+                                              "N3",
+                                              "TURTLE"};
     // default readers for each language
 
     protected static final String DEFAULTREADERS[] = {
@@ -58,7 +59,8 @@ public class RDFReaderFImpl extends Object implements RDFReaderF {
         "com.hp.hpl.jena.rdf.arp.JenaReader",
         Jena.PATH + ".rdf.model.impl.NTripleReader",
         Jena.PATH + ".rdf.model.impl.NTripleReader",
-        "com.hp.hpl.jena.n3.N3JenaReader"
+        "com.hp.hpl.jena.n3.N3JenaReader",
+        "com.hp.hpl.jena.n3.TurtleJenaReader"
     };
 
     protected static final String DEFAULTLANG = LANGS[0];

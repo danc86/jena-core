@@ -107,7 +107,7 @@ public class N3JenaWriterCommon implements RDFWriter
         Object oldValue = writerPropertyMap.get(propName);
         writerPropertyMap.put(propName, propValue);
         return oldValue;
-    }
+   }
 
     /** Write the model out in N3.  The writer should be one suitable for UTF-8 which
     * excludes a PrintWriter or a FileWriter which use default character set.
