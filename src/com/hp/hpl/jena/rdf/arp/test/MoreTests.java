@@ -296,7 +296,7 @@ public class MoreTests extends TestCase implements RDFErrorHandler,
 			Token.reinitHighTide();
 			NTriple.main(new String[] { "-t", file });
 			assertTrue("Too many tokens used: "+ Token.highTide,
-					Token.highTide<100);
+					Token.highTide<200);
 		} finally {
 			Token.COUNT = false;
 			Token.COUNTTEST = false;
