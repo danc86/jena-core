@@ -17,11 +17,11 @@ public class TestPackage extends TestSuite
 {
 	/*  
 	//oracle settings
-	static String M_DB_URL = "jdbc:oracle:thin:@corfu.hpl.hp.com:1521:db1";
-	static String M_DB_USER = "genesis";
-	static String M_DB_PASSWD = "genesis";
+	static String M_DB_URL = "jdbc:oracle:oci8:@";
+	static String M_DB_USER = "scott";
+	static String M_DB_PASSWD = "tiger";
 	static String M_DB = "Oracle";
-	static String M_DBDRIVER_CLASS = "oracle.jdbc.driver.OracleDriver";
+	static String M_DBDRIVER_CLASS = "oracle.jdbc.OracleDriver";
 	// */
 	
 	// mysql settings
