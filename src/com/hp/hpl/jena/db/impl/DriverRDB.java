@@ -250,7 +250,7 @@ public abstract class DriverRDB implements IRDBDriver {
 			// Format the DB
 			return formatAndConstructSystemSpecializedGraph();
 		}
-		
+        getDbInitTablesParams();
 		// The database has already been formatted - just grab the properties
 		IPSet pSet = createIPSetInstanceFromName(m_psetClassName, SYSTEM_STMT_TABLE);
 		m_sysProperties = createLSetInstanceFromName(m_lsetClassName, pSet, DEFAULT_ID);
