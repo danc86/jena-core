@@ -10,6 +10,7 @@ import junit.framework.TestSuite;
 import com.hp.hpl.jena.graph.query.*;
 import com.hp.hpl.jena.graph.query.BufferPipe;
 import com.hp.hpl.jena.graph.test.GraphTestBase;
+import com.hp.hpl.jena.shared.*;
 import com.hp.hpl.jena.shared.JenaException;
 
 /**
@@ -43,11 +44,11 @@ public class TestBufferPipe extends GraphTestBase
     
     public void testExceptions()
         {
-//        Pipe p = new BufferPipe();
-//        JenaException bang = new JenaException( "bang" );
-//        p.close( bang );
-//        try { p.get(); fail( "bang disappeared" ); }
-//        catch (Exception e) { fail( "bango" + e ); }
+        Pipe p = new BufferPipe();
+        JenaException bang = new JenaException( "bang" );
+        p.close( bang );
+        try { p.get(); fail( "bang disappeared" ); }
+        catch (QueryStageException e) { pass(); }
         }
     }
 

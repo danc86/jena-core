@@ -6,15 +6,10 @@
 
 package com.hp.hpl.jena.db.impl;
 
-import java.sql.BatchUpdateException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Enumeration;
-import java.util.Hashtable;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 import com.hp.hpl.jena.db.RDFRDBException;
 import com.hp.hpl.jena.db.impl.DriverRDB;

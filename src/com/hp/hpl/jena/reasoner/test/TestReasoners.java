@@ -18,12 +18,10 @@ import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.mem.GraphMem;
 import com.hp.hpl.jena.ontology.*;
 import com.hp.hpl.jena.vocabulary.*;
-import com.hp.hpl.jena.rdf.model.impl.StatementImpl;
 
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 import java.io.IOException;
-import java.util.*;
 
 /**
  * Unit tests for initial experimental reasoners

@@ -10,9 +10,6 @@ package com.hp.hpl.jena.xmloutput.impl;
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.vocabulary.*;
 
-import com.hp.hpl.jena.reasoner.*;
-import com.hp.hpl.jena.shared.JenaException;
-
 import java.io.*;
 //Writer;
 //import java.io.PrintWriter;

@@ -7,8 +7,6 @@ package com.hp.hpl.jena.graph.test;
 
 import com.hp.hpl.jena.graph.impl.TripleStore;
 
-import junit.framework.TestSuite;
-
 /**
      AbstractTestTripleStore - post-hoc tests for TripleStores.
      @author kers
