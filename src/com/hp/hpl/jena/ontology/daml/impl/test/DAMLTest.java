@@ -683,7 +683,7 @@ public class DAMLTest
         DAMLProperty shoesize = (DAMLProperty) m.getDAMLValue( ns + "shoesize" );
         assertNotNull( "Property shoesize should not be null", shoesize );
 
-        DAMLDataInstance sSize = (DAMLDataInstance) ian.getProperty( shirtsize ).getObject();
+        DAMLDataInstance sSize = (DAMLDataInstance) ian.getRequiredProperty( shirtsize ).getObject();
         assertNotNull( "Object ian should have a shirtsize", sSize );
         Object x = sSize.getValue();
         assertNotNull( "Value of shirtsize should not be null", x );

@@ -360,7 +360,7 @@ public class TestBasics extends TestCase  {
         Resource foo = infModel.createResource(PrintUtil.egNS + "foo");
         Resource bar = infModel.createResource(PrintUtil.egNS + "bar");
         
-        RDFNode flit = infModel.getResource(R1.getURI()).getProperty(rbr).getObject();
+        RDFNode flit = infModel.getResource(R1.getURI()).getRequiredProperty(rbr).getObject();
         assertNotNull(flit);
         assertEquals(flit.toString(), "allOK");
 //        assertTrue(flit instanceof Literal);
@@ -369,7 +369,7 @@ public class TestBasics extends TestCase  {
 //        assertEquals(p.getNode(), func.getArgs()[0]);
 //        assertEquals(D.getNode(), func.getArgs()[1]);
         
-        Literal one = (Literal)foo.getProperty(propbar).getObject();
+        Literal one = (Literal)foo.getRequiredProperty(propbar).getObject();
         assertEquals(new Integer(1), one.getValue());
     }
     

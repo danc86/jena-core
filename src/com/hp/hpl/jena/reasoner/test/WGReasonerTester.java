@@ -144,7 +144,7 @@ public class WGReasonerTester {
      */
     private Graph loadTestFile(Resource test, Property predicate) throws IOException {
         if (test.hasProperty(predicate)) {
-            String fileName = test.getProperty(predicate).getObject().toString();
+            String fileName = test.getRequiredProperty(predicate).getObject().toString();
             return loadFile(fileName).getGraph();
         } else {
             return new GraphMem();
@@ -197,14 +197,14 @@ public class WGReasonerTester {
     public boolean runTest(String uri, ReasonerFactory reasonerF, TestCase testcase, Resource configuration) throws IOException {
         // Find the specification for the named test
         Resource test = testManifest.getResource(uri);
-        Resource testType = (Resource)test.getProperty(RDF.type).getObject();
+        Resource testType = (Resource)test.getRequiredProperty(RDF.type).getObject();
         if (!(testType.equals(NegativeEntailmentTest) ||
                testType.equals(PositiveEntailmentTest) ) ) {
             throw new JenaException("Can't find test: " + uri);
         }
 
-        String description = test.getProperty(descriptionP).getObject().toString();
-        String status = test.getProperty(statusP).getObject().toString();
+        String description = test.getRequiredProperty(descriptionP).getObject().toString();
+        String status = test.getRequiredProperty(statusP).getObject().toString();
         logger.debug("WG test " + test.getURI() + " - " + status);
         
         // Skip the test designed for only non-datatype aware processors
@@ -220,8 +220,8 @@ public class WGReasonerTester {
 
         // Load up the conclusions document
         Model conclusions = null;
-        Resource conclusionsRes = (Resource) test.getProperty(conclusionDocumentP).getObject();
-        Resource conclusionsType = (Resource) conclusionsRes.getProperty(RDF.type).getObject();
+        Resource conclusionsRes = (Resource) test.getRequiredProperty(conclusionDocumentP).getObject();
+        Resource conclusionsType = (Resource) conclusionsRes.getRequiredProperty(RDF.type).getObject();
         if (!conclusionsType.equals(FalseDocument)) {
             conclusions = loadFile(conclusionsRes.toString());
         }

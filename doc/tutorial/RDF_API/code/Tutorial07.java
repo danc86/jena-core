@@ -40,7 +40,7 @@ public class Tutorial07 extends Object {
             System.out.println("The database contains vcards for:");
             while (iter.hasNext()) {
                 System.out.println("  " + iter.nextResource()
-                                              .getProperty(VCARD.FN)
+                                              .getRequiredProperty(VCARD.FN)
                                               .getString() );
             }
         } else {

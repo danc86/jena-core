@@ -151,8 +151,11 @@ public class ResourceImpl extends EnhNode implements Resource {
 		return model;
 		}
 		
-    public Statement getProperty(Property p) 
-    	{ return mustHaveModel().getProperty( this, p ); }
+    public Statement getRequiredProperty(Property p) 
+    	{ return mustHaveModel().getRequiredProperty( this, p ); }
+        
+    public Statement getProperty( Property p )
+        { return mustHaveModel().getProperty( this, p ); }
 
     public StmtIterator listProperties(Property p) 
 		{ return mustHaveModel().listStatements( this, p, (RDFNode) null ); }

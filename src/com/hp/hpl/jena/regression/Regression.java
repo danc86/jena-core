@@ -1400,10 +1400,10 @@ public class Regression extends Object {
 
             n = 100;
 
-            n++; stmt = m.getProperty(subject[1], predicate[1]);
+            n++; stmt = m.getRequiredProperty(subject[1], predicate[1]);
 
             n++; try {
-                stmt = m.getProperty(subject[1], RDF.value); error(test,n);
+                stmt = m.getRequiredProperty(subject[1], RDF.value); error(test,n);
             } catch (JenaPropertyNotFoundException jx) {
                 // as required
             }
@@ -2560,10 +2560,10 @@ public class Regression extends Object {
                         .hasProperty(RDF.value, tvLiteral)) error(test, n);
             n++; if (! r.addProperty(RDF.value, tvResource)
                         .hasProperty(RDF.value, tvResource)) error(test, n);
-            n++; if (! r.getProperty(RDF.value).getSubject().equals(r))
+            n++; if (! r.getRequiredProperty(RDF.value).getSubject().equals(r))
                        error(test,n);
             n++; try {
-                     r.getProperty(RDF.type); error(test, n);
+                     r.getRequiredProperty(RDF.type); error(test, n);
                 } catch (JenaPropertyNotFoundException e) { // as expected
                 }
             n++; iter = r.listProperties(RDF.value);
@@ -3697,7 +3697,7 @@ public class Regression extends Object {
                              RDF.value, object1)) error(test, n++);
   * So instead lets do some rough checks its right */
             String xml = m.getResource(subject1)
-                          .getProperty(RDF.value)
+                          .getRequiredProperty(RDF.value)
                           .getString();
             n++; if ( xml.indexOf("&lt;") == -1) error(test, n);
             n++; if ( xml.indexOf("&gt;") == -1) error(test, n);
@@ -3982,11 +3982,11 @@ public class Regression extends Object {
                         .hasProperty(RDF.value, tvLiteral)) error(test, n);
             n++; if (! r.addProperty(RDF.value, tvResource)
                         .hasProperty(RDF.value, tvResource)) error(test, n);
-            n++; if (! r.getProperty(RDF.value).getSubject().equals(r))
+            n++; if (! r.getRequiredProperty(RDF.value).getSubject().equals(r))
                        error(test,n);
             n++;Property p = m.createProperty("foo/", "bar");
                 try {
-                     r.getProperty(p); error(test, n);
+                     r.getRequiredProperty(p); error(test, n);
                 } catch (JenaPropertyNotFoundException e) {
                     // as required
                 }

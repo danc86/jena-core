@@ -679,26 +679,26 @@ public class OntDocumentManager
         for (ResIterator i = metadata.listSubjectsWithProperty( RDF.type, ONTOLOGY_SPEC ); i.hasNext(); ) {
             Resource root = i.nextResource();
 
-            Statement s = root.getProperty( PUBLIC_URI );
+            Statement s = root.getRequiredProperty( PUBLIC_URI );
             if (s != null) {
                 // this will be the key in the mappings
                 String publicURI = s.getResource().getURI();
 
                 // there may be a cached copy for this ontology
                 try {
-                    s = root.getProperty( ALT_URL );
+                    s = root.getRequiredProperty( ALT_URL );
                     addAltEntry( publicURI, s.getResource().getURI() );
                 } catch (JenaException ignore) {}
 
                 // there may be a standard prefix for this ontology
                 try {
-                    s = root.getProperty( PREFIX );
+                    s = root.getRequiredProperty( PREFIX );
                     addPrefixMapping( publicURI, s.getString() );
                 } catch (JenaException ignore) {}
 
                 // there may be a language specified for this ontology
                 try {
-                    s = root.getProperty( LANGUAGE );
+                    s = root.getRequiredProperty( LANGUAGE );
                     addLanguageEntry( publicURI, s.getResource().getURI() );
                 } catch (JenaException ignore) {}
             }

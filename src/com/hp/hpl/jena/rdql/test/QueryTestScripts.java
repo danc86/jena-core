@@ -127,9 +127,9 @@ public class QueryTestScripts extends TestSuite
             {
                 // Anon node - more details
                 Resource r = (Resource) item.getAction();
-                queryFile = r.getProperty(TestQuery.query).getResource().getURI();
+                queryFile = r.getRequiredProperty(TestQuery.query).getResource().getURI();
                 if (r.hasProperty(TestQuery.data))
-                    dataFile = r.getProperty(TestQuery.data).getResource().getURI();
+                    dataFile = r.getRequiredProperty(TestQuery.data).getResource().getURI();
             }
 
             if (item.getResult() != null)

@@ -1193,7 +1193,7 @@ public class schemagen {
             }
 
             if (m_root.hasProperty( m_prop )) {
-                return m_root.getProperty( m_prop ).getBoolean();
+                return m_root.getRequiredProperty( m_prop ).getBoolean();
             }
 
             return false;
@@ -1218,7 +1218,7 @@ public class schemagen {
             }
 
             if (m_prop != null  &&  m_root.hasProperty( m_prop )) {
-                return m_root.getProperty( m_prop ).getString();
+                return m_root.getRequiredProperty( m_prop ).getString();
             }
 
             // not set
@@ -1253,7 +1253,7 @@ public class schemagen {
             }
 
             if (m_prop != null  &&  m_root.hasProperty( m_prop )) {
-                return m_root.getProperty( m_prop ).getResource();
+                return m_root.getRequiredProperty( m_prop ).getResource();
             }
 
             // not set

@@ -86,6 +86,20 @@ public abstract class AbstractTestModel extends ModelTestBase
         assertFalse( model.containsResource( resource( model, "i" ) ) );
         assertFalse( model.containsResource( resource( model, "_j" ) ) );
         }
+        
+    /**
+        Test the new version of getProperty(), which delivers null for not-found
+        properties.
+    */
+    public void testGetProperty()
+        {
+        modelAdd( model, "x P a; x P b; x R c" );
+        Resource x = resource( model, "x" );
+        assertEquals( resource( model, "c" ), x.getProperty( property( model, "R" ) ).getObject() );
+        RDFNode ob = x.getProperty( property( model, "P" ) ).getObject();
+        assertTrue( ob.equals( resource( model, "a" ) ) || ob.equals( resource( model, "b" ) ) );
+        assertNull( x.getProperty( property( model, "noSuchPropertyHere" ) ) );
+        }
     }
 
 

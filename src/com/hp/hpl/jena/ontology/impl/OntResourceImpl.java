@@ -392,7 +392,7 @@ public class OntResourceImpl
     public String getVersionInfo() {
         checkProfile( getProfile().VERSION_INFO(), "VERSION_INFO" );
         try {
-            return getProperty( getProfile().VERSION_INFO() ).getString();
+            return getRequiredProperty( getProfile().VERSION_INFO() ).getString();
         }
         catch (JenaPropertyNotFoundException ignore) {
             return null;
@@ -484,7 +484,7 @@ public class OntResourceImpl
         if (lang == null) {
             // don't care which language version we get
             try {
-                return getProperty( getProfile().LABEL() ).getString();
+                return getRequiredProperty( getProfile().LABEL() ).getString();
             }
             catch (JenaPropertyNotFoundException ignore) {
                 return null;
@@ -605,7 +605,7 @@ public class OntResourceImpl
         if (lang == null) {
             // don't care which language version we get
             try {
-                return getProperty( getProfile().COMMENT() ).getString();
+                return getRequiredProperty( getProfile().COMMENT() ).getString();
             }
             catch (JenaPropertyNotFoundException ignore) {
                 // no comment :-)
@@ -925,7 +925,7 @@ public class OntResourceImpl
      */
     public RDFNode getPropertyValue( Property property ) {
         try {
-            return getProperty( property ).getObject();
+            return getRequiredProperty( property ).getObject();
         }
         catch (JenaPropertyNotFoundException ignore) {
             return null;
@@ -1116,7 +1116,7 @@ public class OntResourceImpl
     protected Object objectAs( Property p, String name, Class asClass ) {
         checkProfile( p, name );
         try {
-            return getProperty( p ).getObject().as( asClass );
+            return getRequiredProperty( p ).getObject().as( asClass );
         }
         catch (JenaPropertyNotFoundException e) {
             return null;
@@ -1139,7 +1139,7 @@ public class OntResourceImpl
     /** Answer the int value of a statement with the given property */
     protected int objectAsInt( Property p, String name ) {
         checkProfile( p, name );
-        return getProperty( p ).getInt();
+        return getRequiredProperty( p ).getInt();
     }
 
     
@@ -1175,7 +1175,7 @@ public class OntResourceImpl
         
         // get the list value
         if (hasProperty( p )) {
-            RDFNode cur = getProperty( p ).getObject();
+            RDFNode cur = getRequiredProperty( p ).getObject();
             if (!cur.canAs( RDFList.class )) {
                 throw new OntologyException( "Tried to add a value to a list-valued property " + p + 
                                              " but the current value is not a list: " + cur ); 

@@ -44,7 +44,7 @@ public class ManualExample {
                               ReasonerVocabulary.RDFS_SIMPLE);
         InfModel inf = ModelFactory.createInfModel(reasoner, rdfsExample);
         Resource a = inf.getResource(NS+"a");
-        System.out.println("Statement: " + a.getProperty(q));
+        System.out.println("Statement: " + a.getRequiredProperty(q));
                    
     }
     

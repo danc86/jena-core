@@ -132,7 +132,7 @@ public class DAMLDataInstanceImpl
      *         serialised value is defined
      */
     public Object getValue() {
-        return hasProperty( RDF.value ) ?  getDatatype().parse( getProperty( RDF.value ).getString() ) : null;
+        return hasProperty( RDF.value ) ?  getDatatype().parse( getRequiredProperty( RDF.value ).getString() ) : null;
     }
 
 

@@ -64,7 +64,7 @@ public class Tutorial10 extends Object {
             while (iter2.hasNext()) {
                 System.out.println("  " +
                     ((Resource) iter2.next())
-                                     .getProperty(VCARD.FN)
+                                     .getRequiredProperty(VCARD.FN)
                                      .getString());
             }
         } else {

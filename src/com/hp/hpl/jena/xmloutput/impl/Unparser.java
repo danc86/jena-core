@@ -165,9 +165,9 @@ class Unparser {
 					 *  We may, on the contrary, be dealing with a random
 					 *  collection of triples that do not make sense.
 					 */
-					Statement subj = r.getProperty(RDF.subject);
-					Statement pred = r.getProperty(RDF.predicate);
-					Statement obj = r.getProperty(RDF.object);
+					Statement subj = r.getRequiredProperty(RDF.subject);
+					Statement pred = r.getRequiredProperty(RDF.predicate);
+					Statement obj = r.getRequiredProperty(RDF.object);
 					RDFNode nobj = obj.getObject();
 					Resource rsubj = (Resource) subj.getObject();
 					Resource rpred = (Resource) pred.getObject();
@@ -1434,7 +1434,7 @@ class Unparser {
 				if (rslt == null || (!rslt.getObject().equals(RDF.Statement)))
 					error("Statement type problem");
 			} else {
-				rslt = r.getProperty(RDF.type);
+				rslt = r.getRequiredProperty(RDF.type);
 			}
 		} catch (JenaPropertyNotFoundException rdfe) {
 			if (r instanceof Statement) error( "Statement type problem" ) ;

@@ -39,10 +39,10 @@ public class Tutorial06 extends Object {
         Resource vcard = model.getResource(johnSmithURI);
 
         // retrieve the value of the N property
-        Resource name = (Resource) vcard.getProperty(VCARD.N)
+        Resource name = (Resource) vcard.getRequiredProperty(VCARD.N)
                                         .getObject();
         // retrieve the given name property
-        String fullName = vcard.getProperty(VCARD.FN)
+        String fullName = vcard.getRequiredProperty(VCARD.FN)
                                .getString();
         // add two nick name properties to vcard
         vcard.addProperty(VCARD.NICKNAME, "Smithy")

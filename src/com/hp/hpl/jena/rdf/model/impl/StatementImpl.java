@@ -94,7 +94,7 @@ public class StatementImpl  implements Statement {
     }    
     
     public Statement getStatementProperty(Property p)  {
-        return asResource().getProperty(p);
+        return asResource().getRequiredProperty(p);
     }
     
     /**
@@ -115,7 +115,7 @@ public class StatementImpl  implements Statement {
         { return f.createResource( getResource() ); }
     
     public Statement getProperty(Property p)  {
-        return getResource().getProperty( p );
+        return getResource().getRequiredProperty( p );
     }    
         
     /**

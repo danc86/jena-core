@@ -156,7 +156,7 @@ public class TestList
             Resource root = m.getResource( NS + "root" );
             assertNotNull( "Root resource should not be null", root );
         
-            Resource listHead = root.getProperty( m.getProperty( NS + "p" ) ).getResource();
+            Resource listHead = root.getRequiredProperty( m.getProperty( NS + "p" ) ).getResource();
         
             RDFList l = (RDFList) listHead.as( RDFList.class );
             assertNotNull( "as(RDFList) should not return null for root", l );
@@ -203,7 +203,7 @@ public class TestList
             
             // add another node to the head of the list
             Resource badList = m.createResource();
-            m.getProperty( root, p ).remove();
+            m.getRequiredProperty( root, p ).remove();
             m.add( root, p, badList );
             m.add( badList, RDF.type, RDF.List );
             

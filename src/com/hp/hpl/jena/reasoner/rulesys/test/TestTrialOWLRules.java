@@ -193,7 +193,7 @@ public class TestTrialOWLRules extends TestCase {
         Property p = conclusions.getProperty("http://www.w3.org/2002/03owlt/someValuesFrom/premises001#p");
         Resource c = conclusions.getResource("http://www.w3.org/2002/03owlt/someValuesFrom/premises001#c");
         Resource r = conclusions.getResource("http://www.w3.org/2002/03owlt/someValuesFrom/premises001#r");
-        Resource v = (Resource)i.getProperty(p).getObject();
+        Resource v = (Resource)i.getRequiredProperty(p).getObject();
         System.out.println("Value of i.p = " + v);
         System.out.println("Types of v are: ");
         for (Iterator it2 = conclusions.listStatements(v, RDF.type, (RDFNode)null); it2.hasNext(); ) {

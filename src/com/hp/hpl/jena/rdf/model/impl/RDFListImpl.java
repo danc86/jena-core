@@ -159,7 +159,7 @@ public class RDFListImpl
         
         checkNotNil( "Tried to get the head of an empty list" );
         
-        return getProperty( listFirst() ).getObject();
+        return getRequiredProperty( listFirst() ).getObject();
     }
     
     
@@ -180,7 +180,7 @@ public class RDFListImpl
         checkNotNil( "Tried to set the head of an empty list" );
         
         // first remove the existing head
-        Statement current = getProperty( listFirst() );
+        Statement current = getRequiredProperty( listFirst() );
         RDFNode n = current.getObject();
         current.remove();
         
@@ -206,7 +206,7 @@ public class RDFListImpl
         
         checkNotNil( "Tried to get the tail of an empty list" );
         
-        Resource tail = getProperty( listRest() ).getResource();
+        Resource tail = getRequiredProperty( listRest() ).getResource();
         return (RDFList) tail.as( listAbstractionClass() );
     }
     
@@ -438,7 +438,7 @@ public class RDFListImpl
         
         // search for the element whose value is, er, value
         while (!found  &&  !l.equals( nil )) {
-            l = l.getProperty( tail ).getResource();
+            l = l.getRequiredProperty( tail ).getResource();
             index++;
             found = l.hasProperty( head, value );
         }
@@ -761,8 +761,8 @@ public class RDFListImpl
         
         // iterate through to the end of the list
         while (!(r0.equals( nil ) || r1.equals( nil ))) {
-            RDFNode n0 = r0.getProperty( head ).getObject();
-            RDFNode n1 = r1.getProperty( head ).getObject();
+            RDFNode n0 = r0.getRequiredProperty( head ).getObject();
+            RDFNode n1 = r1.getRequiredProperty( head ).getObject();
             
             if (n0 == null || !n0.equals( n1 )) {
                 // not equal at this position
@@ -770,8 +770,8 @@ public class RDFListImpl
             }
             else {
                 // advance along the lists
-                r0 = r0.getProperty( tail ).getResource();
-                r1 = r1.getProperty( tail ).getResource();
+                r0 = r0.getRequiredProperty( tail ).getResource();
+                r1 = r1.getRequiredProperty( tail ).getResource();
             }
         }
         
@@ -955,7 +955,7 @@ public class RDFListImpl
         
         // search for the element whose tail is nil, or whose index is now zero
         while (!found  &&  !l.equals( nil )) {
-            l = l.getProperty( tail ).getResource();
+            l = l.getRequiredProperty( tail ).getResource();
             found = (last && l.hasProperty( tail, nil )) || (!last && (--i == 0));
         }
         
@@ -1026,7 +1026,7 @@ public class RDFListImpl
      * @return The old tail, as a resource.
      */
     protected static Resource setTailAux( Resource root, Resource tail, Property pTail ) {
-        Statement current = root.getProperty( pTail );
+        Statement current = root.getRequiredProperty( pTail );
         Resource oldTail = current.getResource();
             
         // out with the old, in with the new

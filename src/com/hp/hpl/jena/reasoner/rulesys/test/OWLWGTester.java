@@ -140,14 +140,14 @@ public class OWLWGTester {
      */
     public boolean runTest(Resource test, boolean log, boolean stats) throws IOException {
         // Find the specification for the named test
-        RDFNode testType = test.getProperty(RDF.type).getObject();
+        RDFNode testType = test.getRequiredProperty(RDF.type).getObject();
         if (!(testType.equals(NegativeEntailmentTest) ||
                testType.equals(PositiveEntailmentTest) ) ) {
             throw new JenaException("Can't find test: " + test);
         }
 
-        String description = test.getProperty(descriptionP).getObject().toString();
-        String status = test.getProperty(statusP).getObject().toString();
+        String description = test.getRequiredProperty(descriptionP).getObject().toString();
+        String status = test.getRequiredProperty(statusP).getObject().toString();
         logger.debug("WG test " + test.getURI() + " - " + status);
         
         // Load up the premise documents
@@ -157,7 +157,7 @@ public class OWLWGTester {
         }
 
         // Load up the conclusions document
-        Resource conclusionsRes = (Resource) test.getProperty(conclusionDocumentP).getObject();
+        Resource conclusionsRes = (Resource) test.getRequiredProperty(conclusionDocumentP).getObject();
         Model conclusions = loadFile(conclusionsRes.toString() + ".rdf");
         
         // Construct the inferred graph
