@@ -16,7 +16,7 @@ class OneTwoImpl extends CGeneral implements One, Two, Blank {
 	// local *cache*, on cache miss must always go to graph.
 
 	private Triple seen[] = new Triple[3];
-
+  private boolean stripped = false;
 	void getSeen(Triple a[]) {
 
 			a[0] = seen[0];
@@ -104,6 +104,19 @@ class OneTwoImpl extends CGeneral implements One, Two, Blank {
 
 	public boolean incompleteTwo() {
 		return incomplete(2);
+	}
+	
+	public void strip(boolean indiv){
+
+		seen[0] = null; seen[1] = null;
+	  if (!indiv) seen[2] = null;
+	  stripped = true;
+	}
+	/* (non-Javadoc)
+	 * @see com.hp.hpl.jena.ontology.tidy.impl.Blank#stripped()
+	 */
+	public boolean stripped() {
+		return stripped;
 	}
 
 }
