@@ -25,7 +25,8 @@ public class GraphMem extends GraphBase implements Graph {
     NodeMap objects = new NodeMap();
 
     /** Creates new Store */
-    public GraphMem() {}
+    public GraphMem() 
+        { this( Reifier.Minimal ); }
     
     public GraphMem( Reifier.Style style )
         { super( style ); }

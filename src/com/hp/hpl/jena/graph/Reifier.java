@@ -31,10 +31,8 @@ public interface Reifier extends GetTriple
     public static final Style Convenient = new Style( true, true );
     public static final Style Minimal = new Style( false, false );
     
-    public static final Style Default = Convenient;
-    
     /**
-        Reification styles have two booean components: whether the
+        Reification styles have two boolean components: whether the
         graph+reifier will intercept reification triples or not [if not, the only
         in-Jena reification is through the reifyAs operation], and whether or
         not reification triples will be visible in the graph.
