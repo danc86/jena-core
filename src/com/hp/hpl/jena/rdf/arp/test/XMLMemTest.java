@@ -114,11 +114,12 @@ public class XMLMemTest implements ContentHandler {
 	 */
 	public void endPrefixMapping(String prefix) throws SAXException {
 	}
-
+/*
 	private void c(String s) {
 		if (s != null)
 			chksum ^= s.hashCode();
 	}
+	*/
 	/*
 	 * (non-Javadoc)
 	 * 

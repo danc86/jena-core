@@ -32,7 +32,7 @@ import org.apache.commons.logging.LogFactory;
 public class testWriterAndReader 
     extends ModelTestBase implements RDFErrorHandler {
 	static private boolean showProgress = false;
-	static private boolean errorDetail = false;
+	//static private boolean errorDetail = false;
 	static private int firstTest = 4;
 	static private int lastTest = 9;
 	static private int repetitionsJ = 6;

@@ -129,7 +129,7 @@ class WGTestSuite extends TestSuite implements ARPErrorNumbers {
         
     static String jjcNS = "http://jcarroll.hpl.hp.com/testSchema#";
     
-    static private String approved = "APPROVED";
+ //   static private String approved = "APPROVED";
     static private Property status;
     static private Property input;
     static private Property output;
@@ -148,7 +148,7 @@ class WGTestSuite extends TestSuite implements ARPErrorNumbers {
         new ResourceImpl(testNS, "RDF-XML-Document");
         
     static private Resource ntriple = new ResourceImpl(testNS, "NT-Document");
-	  static private Resource falseDoc = new ResourceImpl(testNS, "False-Document");
+	//  static private Resource falseDoc = new ResourceImpl(testNS, "False-Document");
 
     private URI testDir;
     
@@ -306,7 +306,7 @@ class WGTestSuite extends TestSuite implements ARPErrorNumbers {
             }
     }
     
-    private ZipFile zip;
+   // private ZipFile zip;
     
     static TestSuite suite(URI testDir, String d, String nm) {
         return new WGTestSuite(

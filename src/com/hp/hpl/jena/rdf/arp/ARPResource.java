@@ -47,16 +47,17 @@ class ARPResource implements  AResourceInternal {
     private final static String RDFNS =
 	"http://www.w3.org/1999/02/22-rdf-syntax-ns#";
     private final static int RDFNS_LENGTH = RDFNS.length();
+   /*
     private final static String XMLNS =
 	"http://www.w3.org/XML/1998/namespace";
-
+*/
 
 				// Element names
     private static AResourceInternal RDF_STATEMENT ; 
     static URIReference RDF_BAG;  
     static URIReference RDF_SEQ ;  
     static URIReference RDF_ALT ; 
-    private static String RDF_LI ; 
+  //  private static String RDF_LI ; 
     private static AResourceInternal RDF_TYPE ;
     private static AResourceInternal RDF_SUBJECT ;
     private static AResourceInternal RDF_PREDICATE ;
@@ -71,8 +72,8 @@ class ARPResource implements  AResourceInternal {
 	new URIReference((RDFNS + "Seq").intern());  
     RDF_ALT =
 	new URIReference((RDFNS + "Alt").intern()); 
-    RDF_LI =
-	(RDFNS + "li").intern(); 
+ //   RDF_LI =
+//	(RDFNS + "li").intern(); 
     RDF_TYPE =
 	new URIReference((RDFNS + "type").intern());
     RDF_SUBJECT =

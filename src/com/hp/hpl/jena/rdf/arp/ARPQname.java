@@ -79,19 +79,19 @@ class ARPQname extends Token {
                 // May have been relative namespace, since this is now OK.
                 // Or maybe unqualified element.
                 if ( nameSpace.length() == 0 ) {
-                  arp.parseWarning(XMLHandler.WARN_UNQUALIFIED_ELEMENT,
+                  arp.parseWarning(ARPErrorNumbers.WARN_UNQUALIFIED_ELEMENT,
                    location,
                    "Element node must be qualified.");
                 
                 } else {
-                  arp.parseWarning(XMLHandler.WARN_RELATIVE_NAMESPACE_URI_DEPRECATED,
+                  arp.parseWarning(ARPErrorNumbers.WARN_RELATIVE_NAMESPACE_URI_DEPRECATED,
                    location,
                    "The use of relative URIs in namespaces has been deprecated by the World Wide Web Consortium.");
                 }
             }
             catch ( MalformedURIException mal2 ) {
                 // Was other problem
-               arp.parseWarning(XMLHandler.WARN_MALFORMED_URI,location,"Bad URI <"+nameSpace+local+"> in qname: " + mal.getMessage());
+               arp.parseWarning(ARPErrorNumbers.WARN_MALFORMED_URI,location,"Bad URI <"+nameSpace+local+"> in qname: " + mal.getMessage());
             }
             uri = new BadURIReference(nameSpace+local);
         }

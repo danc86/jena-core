@@ -17,7 +17,6 @@ import com.hp.hpl.jena.rdf.arp.*;
  */
 public class URITests
 	extends TestCase {
-	static private Log logger = LogFactory.getLog(URITests.class);
 	static public Test suite() {
 		TestSuite suite = new TestSuite("URIs");
 		suite.addTest(new URITests("testNoDomain"));

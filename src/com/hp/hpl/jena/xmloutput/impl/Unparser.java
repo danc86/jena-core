@@ -990,7 +990,7 @@ class Unparser {
 
 	/*
 	 [6.19] Qname          ::= [ NSprefix ':' ] name
-	 */
+	 
 	private void wQnameStart(String ns, String local) {
 		print(prettyWriter.startElementTag(ns, local));
 	}
@@ -998,7 +998,7 @@ class Unparser {
 	private void wQnameEnd(String ns, String local) {
 		print(prettyWriter.endElementTag(ns, local));
 	}
-
+*/
 	private void wQNameAttr(Property p) {
 		print(prettyWriter.attributeTag(p.getURI()));
 	}
@@ -1184,11 +1184,11 @@ class Unparser {
 		if (r.isAnon()) {
 			logger.error("Internal error - Unparser.getNameSpace; giving up");
 			throw new BrokenException("Internal error: getNameSpace(bNode)");
-		} else {
+		} 
 			String uri = r.getURI();
 			int split = Util.splitNamespace(uri);
 			return uri.substring(0, split);
-		}
+		
 	}
 
 	/**
@@ -1211,7 +1211,7 @@ class Unparser {
 	}
 	/*
 	 * Utility for turning an integer into an alphabetic string.
-	 */
+	 
 	private static String getSuffix(int suffixId) {
 		if (suffixId == 0)
 			return "";
@@ -1223,6 +1223,7 @@ class Unparser {
 				+ new Character((char) ('a' + suffixId % 26));
 		}
 	}
+	*/
 
 	private String getLocalName(Resource r) {
 		if (r.isAnon()) {

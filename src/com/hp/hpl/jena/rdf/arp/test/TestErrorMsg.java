@@ -38,11 +38,12 @@ public class TestErrorMsg extends TestCase {
 	 *            Read this file
 	 * @param regex
 	 *            Error msg must match this.
-	 */
+	 *
 	private void check(String filename, String regex)
 		throws IOException, MalformedPatternException, SAXException {
 		check(filename, regex, null);
 	}
+	*/
 	private void check(
 		String filename,
 		String regexPresent,
