@@ -149,7 +149,7 @@ public class TransitiveGraphCache implements Finder {
         
         if (p.isVariable() || p.equals(directPredicate) || p.equals(closedPredicate)) {
             boolean closed = !p.equals(directPredicate);
-            Node pred = p.isVariable() ? closedPredicate : p;
+            Node pred = closedPredicate; // p.isVariable() ? closedPredicate : p;
             if (s.isVariable()) {
                 if (o.isVariable()) {
                     // list all the graph contents

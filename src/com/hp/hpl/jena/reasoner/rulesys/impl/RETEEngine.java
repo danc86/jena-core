@@ -347,7 +347,7 @@ public class RETEEngine implements FRuleEngineI {
                 isAdd = true;
             }
             if (infGraph.shouldTrace()) {
-                logger.debug("Inserting triple: " + PrintUtil.print(next));
+                logger.debug((isAdd ? "Inserting" : "Deleting") + " triple: " + PrintUtil.print(next));
             }
             Iterator i1 = clauseIndex.getAll(next.getPredicate());
             Iterator i2 = clauseIndex.getAll(Node.ANY);

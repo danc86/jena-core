@@ -256,7 +256,6 @@ public class ReasonerTester {
             }
             
         }
-        ((FBRuleInfGraph)graph).debugListDataFind();
         */
         // ... end of debugging hack
         if (testcase != null) {

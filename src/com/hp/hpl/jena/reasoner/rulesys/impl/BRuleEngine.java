@@ -112,12 +112,28 @@ public class BRuleEngine {
     }
     
     /**
+     * Remove a single rule from the store.
+     * N.B. This will invalidate current partial results and the engine
+     * should be reset() before future queries. 
+     */
+    public void deleteRule(Rule rule) {
+        ruleStore.deleteRule(rule);
+    }
+    
+    /**
      * Return an ordered list of all registered rules.
      */
     public List getAllRules() {
         return ruleStore.getAllRules();
     }
-        
+    
+    /**
+     * Delete all the rules.
+     */
+    public void deleteAllRules() {
+        ruleStore.deleteAllRules();     
+    }
+    
     /**
      * Stop the current work. This is called if the top level results iterator has
      * either finished or the calling application has had enough. We leave any completed 

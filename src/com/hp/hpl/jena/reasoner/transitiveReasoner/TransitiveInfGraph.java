@@ -180,7 +180,7 @@ public class TransitiveInfGraph extends BaseInfGraph {
     
     /** 
      * Removes the triple t (if possible) from the set belonging to this graph.
-     * TODO: This will not work on subClass/subPropertOf yet. 
+     * TODO: This will not work on subPropertyOf subClass/subPropertyOf yet. 
      */   
     public void delete(Triple t) {
         if (isPrepared) {
