@@ -53,26 +53,13 @@ binmode TARGET ;
 $_ = <TARGET> ;
 close(TARGET) ;
 
+# Remove comment
+## s/\<\!--.*?--\>//g ; 
+
 ## ---- Extract the content
 
 @sections =  ("header", "footer", "trail", "content") ;
 %sections = () ;
-
-# Bug.  Does not cope with nested sections
-## for $s (@sections)
-## {
-##     if ( m!<div\s*id="${s}"\s*>(.*?)</div>!s )
-##     {
-## 	my $t = $& ;
-## 	$sections{$s} = $t ;
-##     }
-##     else
-##     {
-## 	#print STDERR "No section '$section'\n" ;
-## 	;
-##     }
-## }
-## 
 
 for $s (@sections)
 {
