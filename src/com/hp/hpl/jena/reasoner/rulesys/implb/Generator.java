@@ -194,6 +194,11 @@ public class Generator implements LPAgendaEntry, LPInterpreterContext {
      */
     public synchronized void pump(LPInterpreterState context) {
         if (isComplete()) return;
+        if (consumingCPs.isEmpty()) {
+            System.out.println("*** Cleaning up unused generator"); // Temp
+            setComplete();
+            return;
+        }
         interpreter.setState(context);
         int priorNresults = results.size();
         while (true) {

@@ -67,11 +67,11 @@ public class TestBasicLP  extends TestCase {
      * This is its own test suite
      */
     public static TestSuite suite() {
-//        return new TestSuite( TestBasicLP.class );
+        return new TestSuite( TestBasicLP.class );
         
-        TestSuite suite = new TestSuite();
-        suite.addTest(new TestBasicLP( "testRDFSProblem20" ));
-        return suite;
+//        TestSuite suite = new TestSuite();
+//        suite.addTest(new TestBasicLP( "testRDFSProblem20" ));
+//        return suite;
     }  
    
     /**

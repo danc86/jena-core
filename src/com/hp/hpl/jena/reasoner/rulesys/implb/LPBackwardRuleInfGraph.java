@@ -51,7 +51,7 @@ public class LPBackwardRuleInfGraph extends BaseInfGraph implements BackwardRule
     protected BBRuleContext context; // TODO: change or remove
     
     /** Cache of temporary property values inferred through getTemp calls */
-    protected TempNodeCache tempNodecache = new TempNodeCache();
+    protected TempNodeCache tempNodecache;
         
     /** log4j logger*/
     static Logger logger = Logger.getLogger(LPBackwardRuleInfGraph.class);
@@ -75,6 +75,7 @@ public class LPBackwardRuleInfGraph extends BaseInfGraph implements BackwardRule
             fschema = new FGraph(schema);
         }
         engine = new LPBRuleEngine(this, ruleStore);
+        tempNodecache = new TempNodeCache(this);
     }    
 
     /**

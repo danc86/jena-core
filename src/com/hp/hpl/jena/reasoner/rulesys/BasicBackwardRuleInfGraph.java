@@ -53,7 +53,7 @@ public class BasicBackwardRuleInfGraph extends BaseInfGraph implements BackwardR
     protected BBRuleContext context;
     
     /** Cache of temporary property values inferred through getTemp calls */
-    protected TempNodeCache tempNodecache = new TempNodeCache();
+    protected TempNodeCache tempNodecache;
     
     /** performance stats - number of rules passing initial trigger */
     int nRulesTriggered = 0;
@@ -94,6 +94,7 @@ public class BasicBackwardRuleInfGraph extends BaseInfGraph implements BackwardR
         rules = ruleStore.getAllRules();
         // Set up the backchaining engine
         engine = new BRuleEngine(this, ruleStore);
+        tempNodecache = new TempNodeCache(this);
     }    
 
     /**

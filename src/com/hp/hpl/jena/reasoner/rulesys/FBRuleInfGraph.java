@@ -68,7 +68,7 @@ public class FBRuleInfGraph  extends BasicForwardRuleInfGraph implements Backwar
     protected List preprocessorHooks;
     
     /** Cache of temporary property values inferred through getTemp calls */
-    protected TempNodeCache tempNodecache = new TempNodeCache();
+    protected TempNodeCache tempNodecache;
     
     /** log4j logger*/
     static Logger logger = Logger.getLogger(FBRuleInfGraph.class);
@@ -84,6 +84,7 @@ public class FBRuleInfGraph  extends BasicForwardRuleInfGraph implements Backwar
     public FBRuleInfGraph(Reasoner reasoner, Graph schema) {
         super(reasoner, schema);
         bEngine = new BRuleEngine(this);
+        tempNodecache = new TempNodeCache(this);
     }
 
     /**
@@ -96,6 +97,7 @@ public class FBRuleInfGraph  extends BasicForwardRuleInfGraph implements Backwar
         super(reasoner, rules, schema);
         this.rawRules = rules;
         bEngine = new BRuleEngine(this);
+        tempNodecache = new TempNodeCache(this);
     }
 
     /**
@@ -109,6 +111,7 @@ public class FBRuleInfGraph  extends BasicForwardRuleInfGraph implements Backwar
         super(reasoner, rules, schema, data);
         this.rawRules = rules;        
         bEngine = new BRuleEngine(this);
+        tempNodecache = new TempNodeCache(this);
     }
 
     /**

@@ -60,22 +60,24 @@ public class LPTopGoalIterator implements ClosableIterator, LPInterpreterContext
      * lookahead buffer.
      */
     private void moveForward() {
-        started = true;
-        lookAhead = interpreter.next();
-        if (lookAhead == StateFlag.FAIL) {
-            if (choicePoints.isEmpty()) {
-                // Nothing left to try
-                close();
-            } else {
-                // Some options open, continue pumping
-                nextToRun = null;
-                interpreter.getEngine().pump(this);
-                if (nextToRun == null) {
-                    // Reached final closure
+        synchronized (interpreter.getEngine().getInfGraph()) {
+            started = true;
+            lookAhead = interpreter.next();
+            if (lookAhead == StateFlag.FAIL) {
+                if (choicePoints.isEmpty()) {
+                    // Nothing left to try
                     close();
                 } else {
-                    interpreter.setState(nextToRun);
-                    moveForward();
+                    // Some options open, continue pumping
+                    nextToRun = null;
+                    interpreter.getEngine().pump(this);
+                    if (nextToRun == null) {
+                        // Reached final closure
+                        close();
+                    } else {
+                        interpreter.setState(nextToRun);
+                        moveForward();
+                    }
                 }
             }
         }

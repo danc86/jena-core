@@ -16,7 +16,7 @@ import com.hp.hpl.jena.graph.*;
 /**
  * Create or lookup an anonymous instance of a property value. Syntax of the call is:
  * <pre>
- *    getTemp(X, P, D, T) or getTemp(X, P, T)
+ *    makeInstance(X, P, D, T) or makeInstance(X, P, T)
  * </pre>
  * where X is the instance and P the property for which a temporary
  * value is required, T will be bound to the temp value (a bNode) and D is
