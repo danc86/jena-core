@@ -29,7 +29,7 @@ import com.hp.hpl.jena.rdf.model.*;
 
 /**
  * <p>
- * A property restriction that requires the named property to have a given instance as
+ * A property restriction that requires the named property to have a given individual as
  * its value. 
  * </p>
  *
@@ -56,7 +56,7 @@ public interface HasValueRestriction
      * class defined by this restriction.
      * @exception OntProfileException If the {@link Profile#HAS_VALUE()} property is not supported in the current language profile.   
      */ 
-    public void setHasValue( Resource cls );
+    public void setHasValue( Resource individual );
 
     /**
      * <p>Answer the individual that all values of the restricted property must be equal to.</p>
@@ -78,9 +78,9 @@ public interface HasValueRestriction
      * <p>Remove the statement that this restriction requires the restricted property to have
      * the given value.  If this statement
      * is not true of the current model, nothing happens.</p>
-     * @param res A resource that is to be removed as the required value for the restricted property
+     * @param individual A resource that is to be removed as the required value for the restricted property
      */
-    public void removeHasValue( Resource res );
+    public void removeHasValue( Resource individual );
     
 
 }

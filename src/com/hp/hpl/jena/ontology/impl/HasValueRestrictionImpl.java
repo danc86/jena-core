@@ -106,8 +106,8 @@ public class HasValueRestrictionImpl
      * class defined by this restriction.
      * @exception OntProfileException If the {@link Profile#HAS_VALUE()} property is not supported in the current language profile.   
      */ 
-    public void setHasValue( Resource cls ) {
-        setPropertyValue( getProfile().HAS_VALUE(), "HAS_VALUE", cls );
+    public void setHasValue( Resource individual ) {
+        setPropertyValue( getProfile().HAS_VALUE(), "HAS_VALUE", individual );
     }
 
     /**
