@@ -1050,6 +1050,17 @@ public interface OntModel
     
     /**
      * <p>
+     * Record that this model no longer imports the document with the given
+     * URI.
+     * </p>
+     * 
+     * @param uri A document URI that is no longer imported into the model.
+     */
+    public void removeLoadedImport( String uri );
+    
+    
+    /**
+     * <p>
      * Answer the language profile (for example, OWL or DAML+OIL) that this model is 
      * working to.
      * </p>
@@ -1122,6 +1133,31 @@ public interface OntModel
     
     /**
      * <p>
+     * Remove the given model as one of the sub-models of the enclosed ontology union model.    Will 
+     * cause the associated infererence engine (if any) to update, so this may be
+     * an expensive operation in some cases. 
+     * </p>
+     *
+     * @param model A sub-model to remove 
+     * @see #addSubModel( Model, boolean )
+     */
+    public void removeSubModel( Model model );
+    
+    
+    /**
+     * <p>
+     * Remove the given model as one of the sub-models of the enclosed ontology union model.
+     * </p>
+     *
+     * @param model A sub-model to remove
+     * @param rebind If true, rebind any associated inferencing engine to the new data (which
+     * may be an expensive operation) 
+     */
+    public void removeSubModel( Model model, boolean rebind );
+    
+    
+    /**
+     * <p>
      * Answer true if this model is currently in <i>strict checking mode</i>. Strict
      * mode means
      * that converting a common resource to a particular language element, such as
@@ -1143,6 +1179,25 @@ public interface OntModel
      * @see #strictMode()
      */
     public void setStrictMode( boolean strict );
+    
+    
+    /**
+     * <p>Set the flag that controls whether adding or removing <i>imports</i>
+     * statements into the 
+     * model will result in the imports closure changing dynamically.</p>
+     * @param dynamic If true, adding or removing an imports statement to the
+     * model will result in a change in the imports closure.  If false, changes
+     * to the imports are not monitored dynamically. Default false.
+     */
+    public void setDynamicImports( boolean dynamic );
+    
+    
+    /**
+     * <p>Answer true if the imports closure of the model will be dynamically 
+     * updated as imports statements are added and removed.</p>
+     * @return True if the imports closure is updated dynamically.
+     */
+    public boolean getDynamicImports();
     
     
     /**

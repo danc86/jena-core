@@ -85,6 +85,12 @@ public class TestOntDocumentManager
         suite.addTest( new TestOntDocumentManager( "testInitialisation") );
         suite.addTest( new TestOntDocumentManager( "testManualAssociation") );
         suite.addTest( new TestOntDocumentManager( "testIgnoreImport") );
+        suite.addTest( new TestOntDocumentManager( "testRemoveImport1") );
+        suite.addTest( new TestOntDocumentManager( "testRemoveImport2") );
+        suite.addTest( new TestOntDocumentManager( "testRemoveImport3") );
+        suite.addTest( new TestOntDocumentManager( "testDynamicImports1") );
+        suite.addTest( new TestOntDocumentManager( "testDynamicImports2") );
+        suite.addTest( new TestOntDocumentManager( "testDynamicImports3") );
         
         // add the data-driven test cases
         for (int i = 0;  i < s_testData.length;  i++) {
@@ -146,8 +152,99 @@ public class TestOntDocumentManager
         assertEquals( "Marker count not correct", 2, countMarkers( m ));
     }
     
+    /** Simple case: a imports b, b imports c, remove c */
+    public void testRemoveImport1() {
+        OntModel m = ModelFactory.createOntologyModel();
+        m.read( "file:testing/ontology/testImport3/a.owl" );
+        assertEquals( "Marker count not correct", 3, countMarkers( m ) );
         
+        assertTrue( "c should be imported", m.hasLoadedImport( "file:testing/ontology/testImport3/c.owl" ) );
+        m.getDocumentManager().unloadImport( m, "file:testing/ontology/testImport3/c.owl" );
+        assertEquals( "Marker count not correct", 2, countMarkers( m ) );
+        assertFalse( "c should not be imported", m.hasLoadedImport( "file:testing/ontology/testImport3/c.owl" ) );
+    }        
         
+    /** case 2: a imports b, b imports c, remove b */
+    public void testRemoveImport2() {
+        OntModel m = ModelFactory.createOntologyModel();
+        m.read( "file:testing/ontology/testImport3/a.owl" );
+        assertEquals( "Marker count not correct", 3, countMarkers( m ) );
+        
+        assertTrue( "c should be imported", m.hasLoadedImport( "file:testing/ontology/testImport3/c.owl" ) );
+        assertTrue( "b should be imported", m.hasLoadedImport( "file:testing/ontology/testImport3/b.owl" ) );
+        m.getDocumentManager().unloadImport( m, "file:testing/ontology/testImport3/b.owl" );
+        assertEquals( "Marker count not correct", 1, countMarkers( m ) );
+        assertFalse( "c should not be imported", m.hasLoadedImport( "file:testing/ontology/testImport3/c.owl" ) );
+        assertFalse( "b should not be imported", m.hasLoadedImport( "file:testing/ontology/testImport3/b.owl" ) );
+    }        
+        
+    /** case 3: a imports b, b imports c, a imports d, d imports c, remove b */
+    public void testRemoveImport3() {
+        OntModel m = ModelFactory.createOntologyModel();
+        m.read( "file:testing/ontology/testImport6/a.owl" );
+        assertEquals( "Marker count not correct", 4, countMarkers( m ) );
+        
+        assertTrue( "c should be imported", m.hasLoadedImport( "file:testing/ontology/testImport6/c.owl" ) );
+        assertTrue( "b should be imported", m.hasLoadedImport( "file:testing/ontology/testImport6/b.owl" ) );
+        assertTrue( "d should be imported", m.hasLoadedImport( "file:testing/ontology/testImport6/d.owl" ) );
+        m.getDocumentManager().unloadImport( m, "file:testing/ontology/testImport6/b.owl" );
+        assertEquals( "Marker count not correct", 3, countMarkers( m ) );
+        assertTrue( "c should be imported", m.hasLoadedImport( "file:testing/ontology/testImport6/c.owl" ) );
+        assertTrue( "d should be imported", m.hasLoadedImport( "file:testing/ontology/testImport6/d.owl" ) );
+        assertFalse( "b should not be imported", m.hasLoadedImport( "file:testing/ontology/testImport6/b.owl" ) );
+    }        
+        
+    public void testDynamicImports1() {
+        OntModel m = ModelFactory.createOntologyModel();
+        Resource a = m.getResource( "file:testing/ontology/testImport3/a.owl" );
+        Resource b = m.getResource( "file:testing/ontology/testImport3/b.owl" );
+        m.add( a, m.getProfile().IMPORTS(), b );
+        
+        // not dymamically imported by default
+        assertEquals( "Marker count not correct", 0, countMarkers( m ) );
+        
+        assertFalse( "c should not be imported", m.hasLoadedImport( "file:testing/ontology/testImport3/c.owl" ) );
+        assertFalse( "b should not be imported", m.hasLoadedImport( "file:testing/ontology/testImport3/b.owl" ) );
+    }
+    
+    
+    public void testDynamicImports2() {
+        OntModel m = ModelFactory.createOntologyModel();
+        Resource a = m.getResource( "file:testing/ontology/testImport3/a.owl" );
+        Resource b = m.getResource( "file:testing/ontology/testImport3/b.owl" );
+        
+        m.setDynamicImports( true );
+        
+        m.add( a, m.getProfile().IMPORTS(), b );
+        
+        // dymamically imported
+        assertEquals( "Marker count not correct", 2, countMarkers( m ) );
+        
+        assertTrue( "c should be imported", m.hasLoadedImport( "file:testing/ontology/testImport3/c.owl" ) );
+        assertTrue( "b should be imported", m.hasLoadedImport( "file:testing/ontology/testImport3/b.owl" ) );
+    }
+    
+    
+    public void testDynamicImports3() {
+        OntModel m = ModelFactory.createOntologyModel();
+        m.read( "file:testing/ontology/testImport3/a.owl" );
+        assertEquals( "Marker count not correct", 3, countMarkers( m ) );
+        
+        assertTrue( "c should be imported", m.hasLoadedImport( "file:testing/ontology/testImport3/c.owl" ) );
+        assertTrue( "b should be imported", m.hasLoadedImport( "file:testing/ontology/testImport3/b.owl" ) );
+
+        m.setDynamicImports( true );
+
+        Resource a = m.getResource( "file:testing/ontology/testImport3/a.owl" );
+        Resource b = m.getResource( "file:testing/ontology/testImport3/b.owl" );
+        m.remove( m.createStatement( a, m.getProfile().IMPORTS(), b ) );
+
+        assertEquals( "Marker count not correct", 1, countMarkers( m ) );
+        assertFalse( "c should not be imported", m.hasLoadedImport( "file:testing/ontology/testImport3/c.owl" ) );
+        assertFalse( "b should not be imported", m.hasLoadedImport( "file:testing/ontology/testImport3/b.owl" ) );
+    }
+    
+    
     /* count the number of marker statements in the combined model */
     public static int countMarkers( Model m ) {
         int count = 0;
