@@ -106,7 +106,7 @@ public class TriplePattern implements ClauseEntry {
      * Return the triple pattern as a triple match
      */
     public TripleMatch asTripleMatch() {
-        return new StandardTripleMatch(toMatch(subject), 
+        return Triple.createMatch(toMatch(subject), 
                                         toMatch(predicate), 
                                         toMatch(object));
     }

@@ -241,8 +241,7 @@ public class TransitiveReasoner implements Reasoner {
      */
     public static boolean checkOccurance(Node prop, Graph graph, TransitiveGraphCache spCache) {
         boolean foundOne = false;
-        ExtendedIterator uses
-            = graph.find(new StandardTripleMatch(null, prop, null));
+        ExtendedIterator uses  = graph.find( null, prop, null );
         foundOne = uses.hasNext();
         uses.close();
         if (foundOne) return foundOne;
@@ -252,7 +251,7 @@ public class TransitiveReasoner implements Reasoner {
         while (propVariants.hasNext() && !foundOne) {
             Triple t = (Triple)propVariants.next();
             Node propVariant = t.getSubject();
-            uses = graph.find(new StandardTripleMatch(null, propVariant, null));
+            uses = graph.find( null, propVariant, null );
             foundOne = uses.hasNext();
             uses.close();
         }

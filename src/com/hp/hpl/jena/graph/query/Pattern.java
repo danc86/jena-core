@@ -26,7 +26,7 @@ public class Pattern
 		}
 		
     public TripleMatch asTripleMatch( Domain d )
-        { return new StandardTripleMatch( S.asNode( d ), P.asNode( d ), O.asNode( d ) ); }
+        { return Triple.createMatch( S.asNode( d ), P.asNode( d ), O.asNode( d ) ); }
           
     public Element [] getParts() { return new Element[] {S, P, O}; }
     

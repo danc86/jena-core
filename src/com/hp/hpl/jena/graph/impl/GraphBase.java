@@ -101,7 +101,7 @@ public abstract class GraphBase implements Graph {
 	 * @see com.hp.hpl.jena.graph.Graph#find(Node, Node, Node)
 	 */
 	public ExtendedIterator find(Node s, Node p, Node o) {
-		return find(new StandardTripleMatch(s, p, o));
+		return find( Triple.createMatch( s, p, o ) );
 	}
 
 	/**

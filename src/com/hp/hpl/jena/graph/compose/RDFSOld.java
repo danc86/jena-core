@@ -216,7 +216,7 @@ public class RDFSOld extends Dyadic implements Vocabulary
     public ExtendedIterator typedBySubclass( final Triple m, Graph g )
     	{
     	final HashMap supers = superClasses();
-        TripleMatch matcher = new StandardTripleMatch( m.getSubject(), rdfType, null );
+        TripleMatch matcher = Triple.create( m.getSubject(), rdfType, Node.ANY );
         Filter isSuper = new Filter()
             {
             public boolean accept( Object x )
@@ -240,20 +240,15 @@ public class RDFSOld extends Dyadic implements Vocabulary
        	ExtendedIterator basic = properties.find( m ).andThen( rdfsAxioms.find( m ) ).andThen( L.find( m ) );
         Triple tm = m.asTriple();
         if (wouldMatch( tm, null, rdfType, null ))
-            if (m instanceof StandardTripleMatch)
-                {
-                Filter FF = new AcceptTriples( tm );
-                ExtendedIterator t12 = typedByDomain( new Union( properties, L ) );
-                ExtendedIterator r12 = typedByRange( new Union( properties, L ) );
-                ExtendedIterator s = typedBySubclass( tm, new Union( properties, L ) );
-            /* */
-                ExtendedIterator typed = t12.filterKeep( FF ) .andThen ( r12.filterKeep( FF ) );
-                basic = basic.andThen( typed ) .andThen( s.filterKeep( FF ) );
-                }
-            else
-                {
-                throw new UnsupportedOperationException( "only StandardTripleMatch works" );
-                }
+            {
+            Filter FF = new AcceptTriples( tm );
+            ExtendedIterator t12 = typedByDomain( new Union( properties, L ) );
+            ExtendedIterator r12 = typedByRange( new Union( properties, L ) );
+            ExtendedIterator s = typedBySubclass( tm, new Union( properties, L ) );
+        /* */
+            ExtendedIterator typed = t12.filterKeep( FF ) .andThen ( r12.filterKeep( FF ) );
+            basic = basic.andThen( typed ) .andThen( s.filterKeep( FF ) );
+            }
         if (wouldMatch( tm, null, rdfType, rdfsResource ))
         	{ /* have to deliver all resource-type things */
             // System.err.println( "+  hairy " + m );
