@@ -182,6 +182,8 @@ class SubCategorize {
 							<< Grammar.ActionShift;
 					int ix = Arrays.binarySearch(Grammar.triples, triple);
 					if (ix < 0) {
+						if ( -ix-1 == Grammar.triples.length )
+						   continue;
 						if ((Grammar.triples[-ix - 1] & (~ActionMask))
 							== triple) {
 							int action = Grammar.triples[-ix - 1] & ActionMask;
