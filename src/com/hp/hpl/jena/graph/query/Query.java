@@ -113,7 +113,7 @@ public class Query
         { 
         if (e.isApply() && e.getFun().equals( ExpressionFunctionURIs.AND ))
            for (int i = 0; i < e.argCount(); i += 1) addConstraint( e.getArg( i ) ); 
-        else if (e.isApply() && e.getFun().equals( ExpressionFunctionURIs.prefix + "Q_StringMatch"))
+        else if (e.isApply() && e.argCount() == 2 && e.getFun().equals( ExpressionFunctionURIs.prefix + "Q_StringMatch"))
             constraint.add( Rewrite.rewriteStringMatch( e ) );
         else
             constraint.add( e );
