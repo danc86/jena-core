@@ -30,22 +30,7 @@ public final class FragmentTripleIterator extends NiceIterator
         this.it = it;
         this.pending = new GraphAddList( match );
         }
-    
-    /**
-        Answer an iterator over all the reification triples implied by the object
-        which match the filter.
-        
-        @param match the pattern which all the triples must match
-        @param n the node which is the subject of all the triples
-        @param tripleOrFragments the source of the triples
-        @return an iterator over all the matching implied triples
-    */
-    static ExtendedIterator toIterator( Triple match, Node n, Object tripleOrFragments )
-        {
-        GraphAddList L = new GraphAddList( match );
-        fill( L, n, tripleOrFragments );
-        return WrappedIterator.create( L.iterator() );
-        }
+
             
     /**
         Answer true iff there are any triples left, ie, there are some triples in the pending

@@ -47,6 +47,11 @@ public interface ReifierTripleMap
     public abstract void removeTriple( Node key, Triple value );
 
     /**
+         Remove every binding tag -> <code>triple</code>.
+    */
+    public abstract void removeTriple( Triple triple );
+    
+    /**
          Return the node-to-triple map as a read-only Graph of triples (ie as the
          corresponding reification quadlets). 
     */
