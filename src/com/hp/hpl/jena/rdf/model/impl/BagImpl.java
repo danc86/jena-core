@@ -43,43 +43,30 @@ import com.hp.hpl.jena.enhanced.*;
  */
 public class BagImpl extends ContainerImpl implements Bag {
     
-   static private Type[] myTypes = new Type[]{
-        Resource.type,
-        Bag.type
-    };
     final static public Implementation factory = new Implementation() {
-        public Type[] implementedTypes() {
-            return myTypes;
-        }
         public EnhNode wrap(Node n,EnhGraph eg) {
             return new BagImpl(n,eg);
         }
     };
     
-    
     private BagImpl( Resource r )
-        { super( r );
-         setTypes(myTypes); }
+        { super( r ); }
         
     /** Creates new BagMem */
     public BagImpl(Model model) throws RDFException {
         super(model);
-         setTypes(myTypes);
     }
     
     public BagImpl(String uri, Model model) throws RDFException {
         super(uri, model);
-         setTypes(myTypes);
     }
     
     public BagImpl(Resource r, Model m) throws RDFException {
         super(r, m);
-         setTypes(myTypes);
     }
     
     public BagImpl(Node n, EnhGraph g) {
         super(n,g);
-         setTypes(myTypes);
     }
     
 

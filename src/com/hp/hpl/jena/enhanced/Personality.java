@@ -41,7 +41,7 @@ public class Personality {
         @param interf The interface to add, expressed as a Type object.
         @param impl A way of implementing _interf_.
      */
-    public Personality add( Type interf, Implementation impl )
+    public Personality add( Class interf, Implementation impl )
         { 
         types.put( interf, impl ); 
         return this;
@@ -58,7 +58,7 @@ public class Personality {
         get the implemementation for the specified type, returning null if there
         isn't one available. 
     */
-    Implementation getImplementation( Type t )
+    Implementation getImplementation( Class t )
         { return (Implementation) types.get( t ); }
     
     /**
@@ -75,12 +75,12 @@ public class Personality {
         polymorphic _that_; use the implementation wrapper for _interf_ in
         _types_. 
     */
-    public Polymorphic newInstance(Type interf, Node n, Polymorphic that ) 
+    public Polymorphic newInstance(Class interf, Node n, Polymorphic that ) 
         {
         Implementation impl = (Implementation) types.get( interf );
         if (impl == null) throw new PersonalityConfigException( interf + " not in Personality." );
         Polymorphic rslt = impl.wrap(  n, (EnhGraph) that  );
-        if (!interf.accepts(rslt))
+        if (!interf.isInstance(rslt))
         	throw new PersonalityConfigException( interf + " misconfigured." );
 
         return rslt;

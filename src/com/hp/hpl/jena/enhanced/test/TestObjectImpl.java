@@ -19,8 +19,8 @@ public class TestObjectImpl extends TestCommonImpl implements TestObject {
 	 * interfaces (all of them, proceeding up the interface hierachy if
 	 * necessary).
 	 */
-    private static Type[] myTypes = new Type[]{
-       TestObject.type
+    private static Class [] myTypes = new Class []{
+       TestObject.class
     };
     /** The second required field is the factory field, of
      * class Implementation.
@@ -33,7 +33,7 @@ public class TestObjectImpl extends TestCommonImpl implements TestObject {
     	 * This method should always return the constant array already
     	 * constructed.
     	 */
-    public Type[] implementedTypes() {
+    public Class [] implementedTypes() {
         return myTypes;
     }
     /** This method should probably always just call a constructor.
@@ -53,6 +53,9 @@ public class TestObjectImpl extends TestCommonImpl implements TestObject {
         super(n,eg,myTypes);
     }
     
+    public boolean supports( Class t )
+        { return t.isInstance( this) && isObject(); }
+        
     public boolean isObject() {
         return find(O)!=null;
     }
@@ -67,7 +70,7 @@ public class TestObjectImpl extends TestCommonImpl implements TestObject {
     public TestSubject aSubject() {
         if (!isObject())
             throw new IllegalStateException("Node is not the object of a triple.");
-        return (TestSubject)enhGraph.getNodeAs(find(O).getSubject(),TestSubject.type);
+        return (TestSubject)enhGraph.getNodeAs(find(O).getSubject(),TestSubject.class);
     }
 }
 

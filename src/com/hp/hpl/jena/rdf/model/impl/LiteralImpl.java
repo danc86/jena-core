@@ -51,23 +51,19 @@ public class LiteralImpl extends EnhNode implements Literal {
                                   // does not need escaping when wriiten
                                   // as RDF/XML
   
-    static private Type[] myTypes = new Type[]{
-        Literal.type
-    };
     final static public Implementation factory = new Implementation() {
-        public Type[] implementedTypes() {
-            return myTypes;
-        }
         public EnhNode wrap(Node n,EnhGraph eg) {
             return new LiteralImpl(n,eg);
         }
-    };                                
+    };          
+                          
     private LiteralImpl( Resource r )
         { this( r.asNode(), r.getModel() ); }
           
     public LiteralImpl(Node n,Model m) {
-        super(n,(ModelCom)m,myTypes);
+        super(n,(ModelCom)m );
     }
+    
     public LiteralImpl( Node n, EnhGraph m ) {
         this( n, (Model)m );
     }

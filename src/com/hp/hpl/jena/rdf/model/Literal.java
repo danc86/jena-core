@@ -62,7 +62,6 @@ import com.hp.hpl.jena.graph.dt.RDFDatatype;
  * @version $Name$ $Revision$ $Date$
  */
 public interface Literal extends RDFNode {
-      public static final Type type = new LiteralType();
         
     /** Answer true.
      */
@@ -243,10 +242,3 @@ public interface Literal extends RDFNode {
     public boolean sameValueAs(Literal other);
 }
 
-class LiteralType implements Type
-        {
-        public boolean accepts( Polymorphic p ) { return p instanceof Literal;}
-      //  public Polymorphic coerce( Polymorphic p ) { return new LiteralImpl( (Resource) p ); }
-        public boolean supportedBy( Polymorphic p ) { return p instanceof Literal; }
-        public String toString() { return "Literal.type"; }
-        };

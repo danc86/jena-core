@@ -43,45 +43,29 @@ import com.hp.hpl.jena.enhanced.*;
  */
 public class AltImpl extends ContainerImpl implements Alt {
     
-
-    
-    static private Type[] myTypes = new Type[]{
-        Resource.type,
-        Alt.type
-    };
     final static public Implementation factory = new Implementation() {
-        public Type[] implementedTypes() {
-            return myTypes;
-        }
         public EnhNode wrap(Node n,EnhGraph eg) {
             return new AltImpl(n,eg);
         }
     };
     
     private AltImpl( Resource r )
-        { super( r );
-         setTypes(myTypes);
-        }
+        { super( r ); }
         
     /** Creates new AltMem */
-    public AltImpl(Model model) throws RDFException {
-        super(model);
-        setTypes(myTypes);
-    }
+    public AltImpl(Model model) throws RDFException 
+        { super(model); }
     
     public AltImpl(String uri, Model model) throws RDFException {
         super(uri, model);
-        setTypes(myTypes);
     }
     
     public AltImpl(Resource r, Model m) throws RDFException {
         super(r, m);
-        setTypes(myTypes);
     }
     
     public AltImpl(Node n, EnhGraph g) {
         super(n,g);
-        setTypes(myTypes);
     }
     
     /** get the default statement, explode if there isn't one */

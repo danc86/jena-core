@@ -58,14 +58,10 @@ public class OntListImpl
     // Static variables
     //////////////////////////////////
 
-    /** The types that this implementation is satisfying */
-    private static Type[] s_myTypes = {OntList.type, Resource.type};
-    
     /**
      * A factory for generating OntList facets from nodes in enhanced graphs.
      */
     public static Implementation factory = new Implementation() {
-        public Type[]  implementedTypes()          { return s_myTypes; }
         public EnhNode wrap( Node n, EnhGraph eg ) { return new OntListImpl( n, eg ); }
     };
 
@@ -110,7 +106,6 @@ public class OntListImpl
         //super( n, g, s_myTypes );
         // @todo having to call setTypes is a bug in Jeremy's design
         super( n, g );
-        setTypes( s_myTypes );
     }
     
     

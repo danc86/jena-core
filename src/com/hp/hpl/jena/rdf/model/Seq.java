@@ -65,8 +65,6 @@ import com.hp.hpl.jena.enhanced.*;
  */
 public interface Seq extends Container {
     
-    public static final Type type = new SeqType();
-    
     /** Insert a new member into the sequence at the specified position.
      *
      * <p>The existing member at that position, and all others with higher indexes,
@@ -544,10 +542,3 @@ public interface Seq extends Container {
     public Seq set(int index, Object o) throws RDFException;
 }
 
-class SeqType implements Type
-        {
-        public boolean accepts( Polymorphic p ) { return p instanceof Seq;}
-     //   public Polymorphic coerce( Polymorphic p ) { return new SeqImpl( (Resource) p ); }
-        public boolean supportedBy( Polymorphic p ) { return p instanceof Seq; }
-        public String toString() { return "Seq.type"; }
-        };

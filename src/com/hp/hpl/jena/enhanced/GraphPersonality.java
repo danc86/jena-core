@@ -26,7 +26,7 @@ public class GraphPersonality extends Personality {
 	public Personality nodePersonality() 
 		{ return nodePersonality; }
     
-    public Personality add( Type interf, Implementation t ) {
+    public Personality add( Class interf, Implementation t ) {
         nodePersonality.add( interf, t );
         return this;
     }

@@ -723,23 +723,23 @@ abstract public class ModelCom extends EnhGraph
     }
     
     public Seq getSeq(String uri) throws RDFException {
-      return (Seq)IteratorFactory.asResource(makeURI(uri),Seq.type, this);
+      return (Seq)IteratorFactory.asResource(makeURI(uri),Seq.class, this);
     }
     
     public Seq getSeq(Resource r) throws RDFException {
     	if ( r instanceof EnhNode )
-    	   return (Seq)((EnhNode)r).as( Seq.type );
+    	   return (Seq)((EnhNode)r).as( Seq.class );
         else
            return getSeq(r.getURI());
     }
     
     public Bag getBag(String uri) throws RDFException {
-      return (Bag)IteratorFactory.asResource(makeURI(uri),Bag.type, this);
+      return (Bag)IteratorFactory.asResource(makeURI(uri),Bag.class, this);
     }
     
     public Bag getBag(Resource r) throws RDFException {
     	if ( r instanceof EnhNode )
-    	   return (Bag)((EnhNode)r).as( Bag.type );
+    	   return (Bag)((EnhNode)r).as( Bag.class );
         else
            return getBag(r.getURI());
     }
@@ -752,13 +752,13 @@ abstract public class ModelCom extends EnhGraph
     }
     
     public Alt getAlt(String uri) throws RDFException {
-      return (Alt)IteratorFactory.asResource(makeURI(uri),Alt.type, this);
+      return (Alt)IteratorFactory.asResource(makeURI(uri),Alt.class, this);
     }
     
     public Alt getAlt(Resource r) throws RDFException {
     	if ( r instanceof EnhNode )
             {
-    	   return (Alt)((EnhNode)r).as( Alt.type );
+    	   return (Alt)((EnhNode)r).as( Alt.class );
             }
        else
            return getAlt(r.getURI());

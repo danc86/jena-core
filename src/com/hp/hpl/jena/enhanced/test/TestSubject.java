@@ -13,13 +13,6 @@ import com.hp.hpl.jena.enhanced.*;
  */
 public interface TestSubject  extends TestNode {
     
-    public static final Type type = new Type() {
-        public boolean accepts( Polymorphic p ) {  return p instanceof TestSubject; }
-        public boolean supportedBy( Polymorphic p ) { 
-            return ((TestSubject)p).isSubject();
-        }
-        public String toString() { return "TestSubject.type"; }
-    };
     boolean isSubject();
     TestProperty aProperty();
 }

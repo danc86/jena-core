@@ -19,13 +19,13 @@ public class BuiltinPersonalities {
 	static final private  GraphPersonality graph = new GraphPersonality();
 
 	static final public GraphPersonality model = (GraphPersonality)graph.copy()
-        .add( Resource.type, ResourceImpl.factory )
-		.add( Property.type, PropertyImpl.factory )	
-		.add( Literal.type,LiteralImpl.factory )
-        .add( Alt.type, AltImpl.factory )
-        .add( Bag.type, BagImpl.factory )
-        .add( Seq.type, SeqImpl.factory )
-        .add( OntList.type, OntListImpl.factory )
+        .add( Resource.class, ResourceImpl.factory )
+		.add( Property.class, PropertyImpl.factory )	
+		.add( Literal.class,LiteralImpl.factory )
+        .add( Alt.class, AltImpl.factory )
+        .add( Bag.class, BagImpl.factory )
+        .add( Seq.class, SeqImpl.factory )
+        .add( OntList.class, OntListImpl.factory )
         ;		
 }
 

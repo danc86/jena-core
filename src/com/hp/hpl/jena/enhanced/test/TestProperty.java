@@ -12,11 +12,6 @@ import com.hp.hpl.jena.enhanced.*;
  */
 public interface TestProperty extends TestNode {  
    
-    public static final Type type = new Type() {
-        public boolean accepts( Polymorphic p ) { return p instanceof TestProperty;}
-        public boolean supportedBy( Polymorphic p ) { return ((TestProperty)p).isProperty(); }
-        public String toString() { return "TestProperty.type"; }
-    };
     boolean isProperty();
     TestObject anObject();
 }

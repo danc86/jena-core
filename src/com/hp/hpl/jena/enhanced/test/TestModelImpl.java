@@ -32,15 +32,15 @@ public class TestModelImpl extends EnhGraph implements TestModel {
     }
         
     public TestObject anObject() {
-        return (TestObject)getNodeAs(aTriple().getObject(),TestObject.type);
+        return (TestObject)getNodeAs(aTriple().getObject(),TestObject.class);
     }
     
     public TestProperty aProperty() {
-        return (TestProperty)getNodeAs(aTriple().getPredicate(),TestProperty.type);
+        return (TestProperty)getNodeAs(aTriple().getPredicate(),TestProperty.class);
     }
     
     public TestSubject aSubject() {
-        return (TestSubject)getNodeAs(aTriple().getSubject(),TestSubject.type);
+        return (TestSubject)getNodeAs(aTriple().getSubject(),TestSubject.class);
     }
     
 }

@@ -90,20 +90,20 @@ public final class IteratorFactory {
 	}
 	    
     static  Resource asResource(Node n,ModelCom m) {
-    	return asResource(n,Resource.type,m);
+    	return asResource(n,Resource.class,m);
     	
     }	    
     
     static  Property asProperty(Node n,ModelCom m) {
-    	return (Property)asResource(n,Property.type,m);
+    	return (Property)asResource(n,Property.class,m);
     }
     
     static  Literal asLiteral(Node n,ModelCom m) {
     	// return (Literal) m.getNodeAs( n, Literal.class );
-        return (Literal) m.getNodeAs( n, Literal.type );
+        return (Literal) m.getNodeAs( n, Literal.class );
     }
     
-    static  Resource asResource(Node n, Type cl,ModelCom m) {
+    static  Resource asResource(Node n, Class cl,ModelCom m) {
     	return (Resource)m.getNodeAs(n,cl);
     }
 }

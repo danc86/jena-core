@@ -46,19 +46,12 @@ import com.hp.hpl.jena.enhanced.*;
 
 public class PropertyImpl extends ResourceImpl implements Property {
 
-    
-    static private Type[] myTypes = new Type[]{
-        Resource.type,
-        Property.type
-    };
     final static public Implementation factory = new Implementation() {
-        public Type[] implementedTypes() {
-            return myTypes;
-        }
         public EnhNode wrap(Node n,EnhGraph eg) {
             return new PropertyImpl(n,eg);
         }
     };
+    
     protected int    ordinal   = 0;
 
     private PropertyImpl( Resource r )
@@ -67,7 +60,6 @@ public class PropertyImpl extends ResourceImpl implements Property {
     /** Creates new PropertyImpl */
     public PropertyImpl(String uri) throws RDFException {
         super( uri );
-        setTypes(myTypes);
         checkLocalName();
         checkOrdinal();
     }
@@ -82,29 +74,24 @@ public class PropertyImpl extends ResourceImpl implements Property {
     public PropertyImpl(String nameSpace, String localName)
       throws RDFException {
         super(nameSpace, localName);
-        setTypes(myTypes);
         checkLocalName();
         checkOrdinal();
     }
 
     public PropertyImpl(String uri, Model m) throws RDFException {
         super(uri, m);
-        setTypes(myTypes);
-        // checkLocalName();
         checkOrdinal();
     }
 
     public PropertyImpl(String nameSpace, String localName, Model m)
       throws RDFException {
         super(nameSpace, localName, m);
-        setTypes(myTypes);
         checkOrdinal();
     }
+    
     public PropertyImpl(Node n, EnhGraph m)
       throws RDFException {
         super(n, m);
-        setTypes(myTypes);
-        // checkLocalName();
         checkOrdinal();
     }
 
@@ -113,7 +100,6 @@ public class PropertyImpl extends ResourceImpl implements Property {
                         int ordinal,
                         Model m) throws RDFException {
         super(nameSpace, localName, m);
-        setTypes(myTypes);
         checkLocalName();
         this.ordinal = ordinal;
     }
@@ -121,6 +107,7 @@ public class PropertyImpl extends ResourceImpl implements Property {
     public boolean isProperty() {
     	return true;
     }
+    
     public int getOrdinal() {
         return ordinal;
     }

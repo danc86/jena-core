@@ -227,23 +227,23 @@ public class StatementImpl //extends ResourceImpl
         }
     }
     
-   private EnhNode get(Type interf) {
+   private EnhNode get(Class interf) {
         EnhNode rslt = ((EnhNode)object).as(interf);
-        if ( ! interf.supportedBy(rslt) )
+        if ( ! rslt.supports( interf ))
             throw new RDFException(RDFException.OBJECTWRONGTYPE);
         return rslt;
     }
         
     public Bag getBag() throws RDFException {
-        return (Bag)get(Bag.type);
+        return (Bag)get(Bag.class);
     }
     
     public Alt getAlt() throws RDFException {
-        return (Alt)get(Alt.type);
+        return (Alt)get(Alt.class);
     }
     
     public Seq getSeq() throws RDFException {
-        return (Seq)get(Seq.type);
+        return (Seq)get(Seq.class);
     }    
     
     public String getLanguage() throws RDFException {

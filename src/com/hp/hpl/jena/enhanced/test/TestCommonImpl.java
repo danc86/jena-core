@@ -16,8 +16,8 @@ import com.hp.hpl.jena.util.iterator.*;
 class TestCommonImpl extends EnhNode implements TestNode, SPO {
 
     /** Creates new TestCommonImpl */
-    TestCommonImpl(Node n,EnhGraph m,Type myTypes[]) {
-        super(n,m,myTypes);
+    TestCommonImpl(Node n,EnhGraph m,Class myTypes[]) {
+        super(n,m);
     }
     TestModel getModel() {
         return (TestModel)enhGraph;
@@ -43,15 +43,15 @@ class TestCommonImpl extends EnhNode implements TestNode, SPO {
     // Convenience routines, that wrap the generic
     // routines from EnhNode.
     public TestSubject asSubject() {
-        return (TestSubject)asInternal(TestSubject.type);
+        return (TestSubject)asInternal(TestSubject.class);
     }
     
     public TestObject asObject() {
-        return (TestObject)asInternal(TestObject.type);
+        return (TestObject)asInternal(TestObject.class);
     }
     
     public TestProperty asProperty() {
-        return (TestProperty)asInternal(TestProperty.type);
+        return (TestProperty)asInternal(TestProperty.class);
     }
     
 }
