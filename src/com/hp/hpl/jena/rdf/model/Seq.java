@@ -446,7 +446,7 @@ public interface Seq extends Container {
      * sequence, then an exception is raised.</p>
      * @param index The index whose member is to be set.
      * @param o The value to be set.
-     * @throws JenaSeqIndexBoundsException
+     * @throws SeqIndexBoundsException
      * @return this object to enable cascading method calls.
      */
     public Seq set(int index, RDFNode o) ;
@@ -457,7 +457,7 @@ public interface Seq extends Container {
      * sequence, then a Jena exception is raised.</p>
      * @param index The index whose member is to be set.
      * @param o The value to be set.
-     * @throws JenaSeqIndexBoundsException
+     * @throws SeqIndexBoundsException
      * @return this object to enable cascading method calls.
      */
     public Seq set(int index, boolean o) ;
@@ -468,7 +468,7 @@ public interface Seq extends Container {
      * sequence, then a Jena exception is raised.</p>
      * @param index The index whose member is to be set.
      * @param o The value to be set.
-     * @throws JenaSeqIndexBoundsException
+     * @throws SeqIndexBoundsException
      * @return this object to enable cascading method calls.
      */
     public Seq set(int index, long o) ;
@@ -479,7 +479,7 @@ public interface Seq extends Container {
      * sequence, then a Jena exception is raised.</p>
      * @param index The index whose member is to be set.
      * @param o The value to be set.
-     * @throws JenaSeqIndexBoundsException
+     * @throws SeqIndexBoundsException
      * @return this object to enable cascading method calls.
      */
     public Seq set(int index, char o) ;
@@ -490,7 +490,7 @@ public interface Seq extends Container {
      * sequence, then a Jena exception is raised.</p>
      * @param index The index whose member is to be set.
      * @param o The value to be set.
-     * @throws JenaSeqIndexBoundsException
+     * @throws SeqIndexBoundsException
      * @return this object to enable cascading method calls.
      */
     public Seq set(int index, float o) ;
@@ -501,7 +501,7 @@ public interface Seq extends Container {
      * sequence, then a Jena exception is raised.</p>
      * @param index The index whose member is to be set.
      * @param o The value to be set.
-     * @throws JenaSeqIndexBoundsException
+     * @throws SeqIndexBoundsException
      * @return this object to enable cascading method calls.
      */
     public Seq set(int index, double o) ;
@@ -512,7 +512,7 @@ public interface Seq extends Container {
      * sequence, then a Jena exception is raised.</p>
      * @param index The index whose member is to be set.
      * @param o The value to be set.
-     * @throws JenaSeqIndexBoundsException
+     * @throws SeqIndexBoundsException
      * @return this object to enable cascading method calls.
      */
     public Seq set(int index, String o) ;
@@ -524,7 +524,7 @@ public interface Seq extends Container {
      * @param index The index whose member is to be set.
      * @param o The value to be set.
      * @param l The language of the value set.
-     * @throws JenaSeqIndexBoundsException
+     * @throws SeqIndexBoundsException
      * @return this object to enable cascading method calls.
      */
     public Seq set(int index, String o, String l) ;
@@ -535,7 +535,7 @@ public interface Seq extends Container {
      * sequence, then a Jena exception is raised.</p>
      * @param index The index whose member is to be set.
      * @param o The value to be set.
-     * @throws JenaSeqIndexBoundsException
+     * @throws SeqIndexBoundsException
      * @return this object to enable cascading method calls.
      */
     public Seq set(int index, Object o) ;

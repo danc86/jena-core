@@ -311,7 +311,7 @@ public class SeqImpl extends ContainerImpl implements Seq {
     
     protected void checkIndex(int index, int max)  {
         if (! (1 <= index && index <= max)) {
-            throw new JenaSeqIndexBoundsException( max, index );
+            throw new SeqIndexBoundsException( max, index );
         }
     }
 }

@@ -105,7 +105,7 @@ public class StatementImpl  implements Statement {
         if (n instanceof Resource)
             return (Resource) n;
         else
-            throw new JenaResourceRequiredException( n );
+            throw new ResourceRequiredException( n );
          }
         
     public Resource getResource()
@@ -120,13 +120,13 @@ public class StatementImpl  implements Statement {
         
     /**
         get the object field of this statement, insisting that it be a Literal.
-        If it isn't, throw JenaLiteralRequiredException.
+        If it isn't, throw LiteralRequiredException.
     */
     public Literal getLiteral()  {        
         if (object instanceof Literal) {
             return (Literal) object;
         } else {    
-            throw new JenaLiteralRequiredException( object );
+            throw new LiteralRequiredException( object );
         }
     }
     
@@ -249,7 +249,7 @@ public class StatementImpl  implements Statement {
     /** get the Model for this StatementImpl, and die if it doesn't have one */
 	protected Model mustHaveModel()
 		{
-      	if (model == null) throw new JenaHasNoModelException( this );
+      	if (model == null) throw new HasNoModelException( this );
 		return model; 
 		}
         

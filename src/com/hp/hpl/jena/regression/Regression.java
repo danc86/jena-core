@@ -2642,7 +2642,7 @@ public class Regression extends Object {
                        m.createStatement(r, RDF.value, false)
                         .getResource();
                        error(test,n);
-                } catch(JenaResourceRequiredException e) {
+                } catch(ResourceRequiredException e) {
                     // as required
                 }
             n++; if (! m.createStatement(r, RDF.value, true)
@@ -2652,7 +2652,7 @@ public class Regression extends Object {
                        m.createStatement(r, RDF.value, r)
                         .getLiteral();
                        error(test,n);
-                } catch(JenaLiteralRequiredException e) {
+                } catch(LiteralRequiredException e) {
                     // as required
                 }
             n = 200;
@@ -3454,12 +3454,12 @@ public class Regression extends Object {
                 n++; if (!  (seq.getSeq(16).equals(tvSeq))) error(test,n);
                 n++; try {
                         seq.getInt(17); error(test,n);
-                    } catch (JenaSeqIndexBoundsException e) {
+                    } catch (SeqIndexBoundsException e) {
                         // as required
                     }
                 n++; try {
                         seq.getInt(0); error(test,n);
-                    } catch (JenaSeqIndexBoundsException e) {
+                    } catch (SeqIndexBoundsException e) {
                         // as required
                     }
             }
@@ -3473,7 +3473,7 @@ public class Regression extends Object {
 
                      try {
                 n++;        seq.add(0, false); error(test,n);
-                     } catch (JenaSeqIndexBoundsException e) {
+                     } catch (SeqIndexBoundsException e) {
                         // as required
                      }
                      seq.add(num+1, false);
@@ -3481,7 +3481,7 @@ public class Regression extends Object {
                      seq.remove(num+1);
                      try {
                 n++;        seq.add(num+2, false); error(test,n);
-                     } catch (JenaSeqIndexBoundsException e) {
+                     } catch (SeqIndexBoundsException e) {
                         // as required
                      }
 
@@ -4599,12 +4599,12 @@ public class Regression extends Object {
                 n++; if (!  (seq4.getSeq(17).equals(tvSeq))) error(test,n);
                 n++; try {
                         seq4.getInt(18); error(test,n);
-                    } catch (JenaSeqIndexBoundsException e) {
+                    } catch (SeqIndexBoundsException e) {
                         // as required
                     }
                 n++; try {
                         seq4.getInt(0); error(test,n);
-                    } catch (JenaSeqIndexBoundsException e) {
+                    } catch (SeqIndexBoundsException e) {
                         // as required
                     }
             }
@@ -4617,7 +4617,7 @@ public class Regression extends Object {
 
                      try {
                 n++;        seq5.add(0, false); error(test,n);
-                     } catch (JenaSeqIndexBoundsException e) {
+                     } catch (SeqIndexBoundsException e) {
                         // as required
                      }
                      seq5.add(num+1, false);
@@ -4625,7 +4625,7 @@ public class Regression extends Object {
                      seq5.remove(num+1);
                      try {
                 n++;        seq5.add(num+2, false); error(test,n);
-                     } catch (JenaSeqIndexBoundsException e) {
+                     } catch (SeqIndexBoundsException e) {
                         // as required
                      }
 

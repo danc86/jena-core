@@ -147,7 +147,7 @@ public class ResourceImpl extends EnhNode implements Resource {
 	protected ModelCom mustHaveModel()
 		{
         ModelCom model = (ModelCom) getGraph();
-		if (model == null) throw new JenaHasNoModelException( this );
+		if (model == null) throw new HasNoModelException( this );
 		return model;
 		}
 		

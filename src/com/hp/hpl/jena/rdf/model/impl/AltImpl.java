@@ -72,7 +72,7 @@ public class AltImpl extends ContainerImpl implements Alt {
     private Statement needDefaultStatement() 
     	{
         Statement stmt = getDefaultStatement();
-        if (stmt == null) throw new JenaAltHasNoDefaultException( this );
+        if (stmt == null) throw new AltHasNoDefaultException( this );
         return stmt;
     	}
     	
