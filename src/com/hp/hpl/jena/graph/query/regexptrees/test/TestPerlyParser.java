@@ -49,13 +49,13 @@ public class TestPerlyParser extends GraphTestBase
         }
     
     public void testDotAtom()
-        { testSimpleSpecialAtom( new AnySingle(), "." ); }
+        { testSimpleSpecialAtom( RegexpTree.ANY, "." ); }
     
     public void testHatAtom()
-        { testSimpleSpecialAtom( new StartOfLine(), "^" );  }
+        { testSimpleSpecialAtom( RegexpTree.SOL, "^" );  }
     
     public void testDollarAtom()
-        { testSimpleSpecialAtom( new EndOfLine(), "$" ); }
+        { testSimpleSpecialAtom( RegexpTree.EOL, "$" ); }
     
     public void testClassAtoms()
         {
@@ -79,7 +79,7 @@ public class TestPerlyParser extends GraphTestBase
     
     public void testNoQuantifier()
         {
-        RegexpTree d = new AnySingle();
+        RegexpTree d = RegexpTree.ANY;
         assertSame( d, new PerlPatternParser( "" ).parseQuantifier( d ) );
         assertSame( d, new PerlPatternParser( "x" ).parseQuantifier( d ) );
         assertSame( d, new PerlPatternParser( "[" ).parseQuantifier( d ) );
@@ -90,19 +90,19 @@ public class TestPerlyParser extends GraphTestBase
     
     public void testStarQuantifier()
         {
-        RegexpTree d = new EndOfLine();
+        RegexpTree d = RegexpTree.EOL;
         assertEquals( new ZeroOrMore( d ), new PerlPatternParser( "*" ).parseQuantifier( d ) );
         }
     
     public void testPlusQuantifier()
         {
-        RegexpTree d = new StartOfLine();
+        RegexpTree d = RegexpTree.SOL;
         assertEquals( new OneOrMore( d ), new PerlPatternParser( "+" ).parseQuantifier( d ) );
         }
 
     public void testQueryQuantifier()
         {
-        RegexpTree d = new AnySingle();
+        RegexpTree d = RegexpTree.ANY;
         assertEquals( new Optional( d ), new PerlPatternParser( "?" ).parseQuantifier( d ) );
         }
 

@@ -15,8 +15,17 @@ public abstract class Repeated extends RegexpTree
     {
     protected RegexpTree operand;
     
+    /**
+         Initialise this Repeated tree with the repeated operand expression.
+    */
     protected Repeated( RegexpTree operand )
         { this.operand = operand; }
+    
+    /**
+         Answer the repeated operand of this tree.
+    */
+    public RegexpTree getOperand()
+        { return operand; }
     }
 
 /*

@@ -7,6 +7,7 @@
 package com.hp.hpl.jena.graph.query.test;
 
 import com.hp.hpl.jena.graph.query.regexptrees.test.TestPerlyParser;
+import com.hp.hpl.jena.graph.query.regexptrees.test.TestRegexpTrees;
 
 import junit.framework.*;
 
@@ -27,6 +28,7 @@ public class TestGraphQueryPackage
         result.addTest( TestExpressionConstraints.suite() );
         result.addTest( TestEarlyConstraints.suite() );
         result.addTest( TestPerlyParser.suite() );
+        result.addTest( TestRegexpTrees.suite() );
         return result;
         }
     }

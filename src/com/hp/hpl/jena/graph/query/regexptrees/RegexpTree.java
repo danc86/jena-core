@@ -15,6 +15,12 @@ package com.hp.hpl.jena.graph.query.regexptrees;
 
 public abstract class RegexpTree
     {
+    public static final RegexpTree EOL = new EndOfLine();
+    
+    public static final RegexpTree SOL = new StartOfLine();
+
+    public static final RegexpTree ANY = new AnySingle();
+
     public abstract boolean equals( Object other );
     
     public abstract int hashCode();
