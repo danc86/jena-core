@@ -922,10 +922,10 @@ implements Model, ModelI, PrefixMapping, ModelLock
         }
 
     private RDFNode asRDF( Node n )
-        { return IteratorFactory.asRDFNode( (Node) n, this ); }
+        { return IteratorFactory.asRDFNode( n, this ); }
         
     public StmtIterator listStatements()  {
-        return IteratorFactory.asStmtIterator(graph.find(null,null,null), this);
+        return IteratorFactory.asStmtIterator( GraphUtil.findAll( graph ), this);
     }
 
     /**

@@ -135,7 +135,7 @@ public abstract class AbstractTestQuery extends GraphTestBase
                 if (it.get(0).equals( node("bill") ))
                     {
                     if (bindings.hasNext())
-                        System.out.println( "! failed: more than one multiple pattern answer: " + (Domain) bindings.next() );
+                        System.out.println( "! failed: more than one multiple pattern answer: " + bindings.next() );
                     }
                 else
                     System.out.println( "! failed: multiple pattern answer should be 'bill'" );

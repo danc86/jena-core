@@ -160,7 +160,7 @@ public class ContainerImpl extends ResourceImpl
     }
 
     private Literal literal( String s, String lang )
-        { return new LiteralImpl( Node.createLiteral( s, lang, false ), (Model) getModel() ); }
+        { return new LiteralImpl( Node.createLiteral( s, lang, false ), getModel() ); }
             
     public NodeIterator iterator()  {
         return ((ModelI)getModel()).listContainerMembers(this, iteratorFactory);

@@ -78,7 +78,7 @@ public class ResourceImpl extends EnhNode implements Resource {
     }
 
     public ResourceImpl(AnonId id) {
-        this( id, (ModelCom) null );
+        this( id, null );
     }
 
     public ResourceImpl(AnonId id, Model m) {

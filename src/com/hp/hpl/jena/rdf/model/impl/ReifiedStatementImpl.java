@@ -90,7 +90,7 @@ public class ReifiedStatementImpl extends ResourceImpl implements ReifiedStateme
         Statement _s_. The mapping is remembered.
     */  
     public static ReifiedStatement create( Statement s )
-        { return create( s.getModel(), (String) null, s ); }
+        { return create( s.getModel(), null, s ); }
 
     /**
         factory method. answer a ReifiedStatement which encodes the

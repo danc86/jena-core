@@ -860,7 +860,7 @@ public class GraphMatcher extends java.lang.Object {
         if ( n.isBlank() ) {
             SomeResource anon = (SomeResource)anonLookup.get(n);
             if ( anon == null ) {
-                anon = new AnonResource((Node)n);
+                anon = new AnonResource( n );
                 anonLookup.put(n,anon);
             }
             return anon;

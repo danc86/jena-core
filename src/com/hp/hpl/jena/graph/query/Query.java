@@ -273,7 +273,7 @@ public class Query
             Map.Entry e = (Map.Entry) it2.next();
             String name = (String) e.getKey();
             Cons triples = (Cons) e.getValue();
-            Graph g = (Graph) arguments.get( name );
+            Graph g = arguments.get( name );
             int nBlocks = Cons.size( triples ), i = nBlocks;
             Triple [] nodes = new Triple[nBlocks];
             while (triples != null)

@@ -85,7 +85,7 @@ public class ModelTestBase extends GraphTestBase
         {
         ArrayList rl = new ArrayList();
         StringTokenizer st = new StringTokenizer( items );
-        while (st.hasMoreTokens()) rl.add( (Resource) resource( m, st.nextToken() ) );  
+        while (st.hasMoreTokens()) rl.add( resource( m, st.nextToken() ) );  
         return (Resource []) rl.toArray( new Resource[rl.size()] );
         }
         

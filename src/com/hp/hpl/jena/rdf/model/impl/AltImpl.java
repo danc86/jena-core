@@ -184,7 +184,7 @@ public class AltImpl extends ContainerImpl implements Alt {
     }    
     
     public Alt setDefault(String o, String l)  {
-        return setDefault( new LiteralImpl( Node.createLiteral( o,l, false ), (Model) getModel()) );
+        return setDefault( new LiteralImpl( Node.createLiteral( o,l, false ), getModel()) );
     }      
         
     protected Statement getDefaultStatement()  {
