@@ -185,12 +185,12 @@ public class LocationMapper
     {
         altPrefixes.remove(uriPrefix) ;
     }
-    public String getAltEntry(String uri, String alt)
+    public String getAltEntry(String uri)
     {
         return (String)altLocations.get(uri) ;
     }
 
-    public String getAltPrefix(String uriPrefix, String altPrefix) 
+    public String getAltPrefix(String uriPrefix) 
     {
         return (String)altPrefixes.get(uriPrefix) ;
     }
