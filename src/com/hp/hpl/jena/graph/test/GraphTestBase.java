@@ -62,7 +62,7 @@ public class GraphTestBase extends JenaTestBase
         {
         ArrayList al = new ArrayList();
         StringTokenizer semis = new StringTokenizer( facts, ";" );
-        while (semis.hasMoreTokens()) al.add( triple( semis.nextToken() ) );   
+        while (semis.hasMoreTokens()) al.add( triple( PrefixMapping.Extended, semis.nextToken() ) );   
         return (Triple []) al.toArray( new Triple [al.size()] );
         }
     

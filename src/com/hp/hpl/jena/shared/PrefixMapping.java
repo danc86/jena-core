@@ -198,6 +198,7 @@ public interface PrefixMapping
         .setNsPrefix( "rss", RSS.getURI() )
         .setNsPrefix( "vcard", VCARD.getURI() )
         .setNsPrefix( "jms", JMS.getURI() )
+        .setNsPrefix( "eg", "http://www.example.org/" )
         .lock()
         ;   
     }
