@@ -121,14 +121,14 @@ public class SimpleReifier implements Reifier
         return tag; 
     	}
         
-    /** unbind _n_ */    	
+    /**
+        If n is bound to the triple t, remove that triple. 
+    */    	
     public void remove( Node n, Triple t )
         {
         Object x = nodeMap.get( n );
-        if (x instanceof Triple)
-            { if (x.equals( t )) nodeMap.remove( n ); }
-        else
-            parentRemoveQuad( n, t );
+        if (t.equals( nodeMap.get( n ) )) 
+            { nodeMap.remove( n ); parentRemoveQuad( n, t ); }
         }
         
     public boolean hasTriple( Triple t )

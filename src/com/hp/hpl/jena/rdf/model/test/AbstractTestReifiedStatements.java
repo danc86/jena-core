@@ -298,6 +298,19 @@ public abstract class AbstractTestReifiedStatements extends ModelTestBase
         assertFalse( "st is no longer reified", st.isReified() );
         }
     
+    /**
+        Leo Bard spotted a problem whereby removing a reified statement from a model
+        with style Standard didn't leave the model empty. Here's a test for it. 
+    */
+    public void testLeosBug()
+        {
+        Model A = getModel();
+        Statement st = statement( A,  "pigs fly south" );
+        ReifiedStatement rst = st.createReifiedStatement( "eh:pointer" );
+        A.removeReification( rst );
+        assertIsoModels( ModelFactory.createDefaultModel(), A );
+        }
+    
     public void testRR()
         {
         Statement st = SPO;

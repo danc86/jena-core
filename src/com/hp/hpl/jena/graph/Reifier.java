@@ -94,7 +94,7 @@ public interface Reifier extends GetTriple
     
     /**
         remove any existing binding for _n_; hasNode(n) will return false
-        and getTriple(n) will return null. 
+        and getTriple(n) will return null. This only removes *unique, single* bindings.
     */
     void remove( Node n, Triple t );
     
