@@ -83,8 +83,9 @@ public class Query
             long startTime = 0;
             //long stopTime = 0;
 
-            ByteArrayInputStream in = new ByteArrayInputStream(s.getBytes()) ;
-
+            //ByteArrayInputStream in = new ByteArrayInputStream(s.getBytes()) ;
+            Reader in = new StringReader(s) ;
+            
             startTime = System.currentTimeMillis();
             RDQLParser parser = new RDQLParser(in) ;
             parser.CompilationUnit();
