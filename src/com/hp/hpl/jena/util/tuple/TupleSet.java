@@ -7,7 +7,8 @@ package com.hp.hpl.jena.util.tuple ;
 
 import java.io.* ;
 import java.util.* ;
-import com.hp.hpl.jena.util.Log ;
+
+import org.apache.log4j.Logger;
 
 /**
  * @author  Andy Seaborne
@@ -24,6 +25,8 @@ public class TupleSet implements Iterator
     List current = null ;
     boolean finished = false ;
 
+    protected static Logger logger = Logger.getLogger( TupleSet.class );
+    
     /** Creates new TupleSet */
     public TupleSet(Reader r)
     {
@@ -234,8 +237,7 @@ public class TupleSet implements Iterator
         //End of this line.
         if ( errorFound )
         {
-            Log.severe("Error", "TupleSet", "reader") ;
-            Log.severe(line) ;
+            logger.error( "Error in TupleSet.tuple: " + line );
             
             String s = "" ;
             int k = 0 ;
@@ -243,7 +245,7 @@ public class TupleSet implements Iterator
             s = s+"^" ;
             for ( ; k < j-1 ; k++ ) s=s+" " ;
             s = s+"^" ;
-            Log.severe(s) ;
+            logger.error( s ) ;
             return null ;
         }
 

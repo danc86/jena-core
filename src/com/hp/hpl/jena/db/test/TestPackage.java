@@ -6,7 +6,6 @@
 package com.hp.hpl.jena.db.test;
 
 import junit.framework.* ;
-import com.hp.hpl.jena.util.Log;
 
 /**
  * Based on earlier Jena tests by members of the Jena team.
@@ -40,8 +39,6 @@ public class TestPackage extends TestSuite
     /** Creates new TestPackage */
     private TestPackage() {
         super("GraphRDB");
-        Log.getInstance().setLevel(Log.FINEST);
-        Log.getInstance().setConsoleHandler();
 		addTest( "TestConnection", TestConnection.suite() );
         addTest( "TestBasicOperations", TestBasicOperations.suite() );
         addTest( "TestSimpleSelector", TestSimpleSelector.suite() );

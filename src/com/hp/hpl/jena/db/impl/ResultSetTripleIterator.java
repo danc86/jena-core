@@ -14,9 +14,9 @@ package com.hp.hpl.jena.db.impl;
 import java.sql.*;
 
 import com.hp.hpl.jena.db.RDFRDBException;
-import com.hp.hpl.jena.graph.Node;
-import com.hp.hpl.jena.graph.Triple;
-import com.hp.hpl.jena.util.Log;
+import com.hp.hpl.jena.graph.*;
+
+import org.apache.log4j.Logger;
 
 //=======================================================================
 /**
@@ -45,6 +45,8 @@ public class ResultSetTripleIterator extends ResultSetIterator {
     /** HasType flag if iterating over reified statements */
     protected boolean m_hasType;
 
+    static protected Logger logger = Logger.getLogger( ResultSetTripleIterator.class );
+    
 	// Constructor
 	public ResultSetTripleIterator(IPSet p, IDBID graphID) {
 		m_pset = p;
@@ -110,7 +112,7 @@ public class ResultSetTripleIterator extends ResultSetIterator {
 		try {
         t = m_pset.extractTripleFromRowData(subj, pred, obj);
 		} catch (RDFRDBException e) {
-			Log.debug("Extracting triple from row encountered exception: " + e);
+			logger.debug("Extracting triple from row encountered exception: ", e);
 		}
 		
 		m_triple = t;

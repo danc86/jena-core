@@ -3739,9 +3739,7 @@ public class Regression extends Object {
                 if ( th instanceof NoRouteToHostException
                  || th instanceof UnknownHostException
                  || th instanceof ConnectException) {
-                    Log.warning("Cannot access public internet" +
-                                 "- part of test note executed",
-                                                     "Regression", "test18");
+                    logger.warn( "Cannot access public internet- part of test not executed" );
                 } else {
                     throw rdfx;
                 }

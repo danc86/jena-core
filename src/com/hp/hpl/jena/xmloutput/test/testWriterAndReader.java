@@ -12,7 +12,6 @@ import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.mem.ModelMem;
 import com.hp.hpl.jena.shared.*;
 
-import com.hp.hpl.jena.util.Log;
 import com.hp.hpl.jena.vocabulary.RDFSyntax;
 import com.hp.hpl.jena.vocabulary.DAML_OIL;
 
@@ -20,6 +19,7 @@ import java.io.*;
 
 import java.util.*;
 import junit.framework.*;
+import org.apache.log4j.Logger;
 
 /**
  * This will test any Writer and Reader pair.
@@ -37,6 +37,9 @@ public class testWriterAndReader extends TestCase implements RDFErrorHandler {
 	static private int firstTest = 5;
 	static private int lastTest = 9;
 	static private int repetitionsJ = 6;
+    
+    protected static Logger logger = Logger.getLogger( testWriterAndReader.class );
+    
 	String lang;
 	String test;
 	int fileNumber;
@@ -465,7 +468,7 @@ public class testWriterAndReader extends TestCase implements RDFErrorHandler {
 	 * @param e an exception representing the error
 	 */
 	public void warning(Exception e) {
-		Log.warning(toString() + " " + e.getMessage());
+		logger.warn( toString() + " " + e.getMessage(), e );
 		throw new JenaException( e );
 	}
 	public void error(Exception e) {

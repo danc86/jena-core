@@ -5,7 +5,7 @@
 
 package com.hp.hpl.jena.rdql;
 
-import com.hp.hpl.jena.util.Log ;
+import org.apache.log4j.Logger;
 
 /** Class to define the operating environment for RDQL.
  *  Provides some utility operations like assert and handling unexpected exceptions
@@ -15,10 +15,12 @@ import com.hp.hpl.jena.util.Log ;
 
 public class QSys
 {
+    protected static Logger logger = Logger.getLogger( QSys.class );
+    
     public static void unhandledException(Throwable t, String className, String methodName)
     {
         String tmp = Thread.currentThread().getName() ;
-        Log.severe("("+tmp+") Unhandled exception", className, methodName, t) ;
+        logger.error("("+tmp+") Unhandled exception" + className + "." + methodName, t );
     }
 }
 

@@ -31,35 +31,36 @@ package com.hp.hpl.jena.rdf.model.impl;
 
 import com.hp.hpl.jena.rdf.arp.ParseException;
 import com.hp.hpl.jena.rdf.model.*;
-import com.hp.hpl.jena.util.Log;
 import com.hp.hpl.jena.shared.*;
 
+import org.apache.log4j.*;
 /**
  * The default error handler for I/O.
- * This uses the Log utility.
+ * This uses log4j as its utility.
  * @see     com.hp.hpl.jena.util.Log
  * @author  jjc,bwm
  * @version $Revision$ $Date$
  */
 public class RDFDefaultErrorHandler extends Object implements RDFErrorHandler {
 
+    protected static Logger logger = Logger.getLogger( RDFDefaultErrorHandler.class );
+    
     /** Creates new RDFDefaultErrorHandler */
     public RDFDefaultErrorHandler() {
     }
 
     public void warning(Exception e) {
-        Log.warning(ParseException.formatMessage(e));
+        logger.warn(ParseException.formatMessage(e));
     }
 
     public void error(Exception e) {
-        Log.severe(ParseException.formatMessage(e));
+        logger.error(ParseException.formatMessage(e));
     }
 
     public void fatalError(Exception e) {
-        Log.severe(ParseException.formatMessage(e));
-        if ( e instanceof RuntimeException)
-           throw (RuntimeException)e;
-           
-        throw new JenaException(e);
+        logger.error(ParseException.formatMessage(e));
+        throw e instanceof RuntimeException 
+            ? (RuntimeException) e
+            : new JenaException( e );
     }
 }

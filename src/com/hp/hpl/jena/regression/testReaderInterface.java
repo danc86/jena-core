@@ -29,7 +29,6 @@
 
 package com.hp.hpl.jena.regression;
 
-import com.hp.hpl.jena.util.Log;
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.rdf.model.impl.*;
 
@@ -101,10 +100,7 @@ public class testReaderInterface extends Object {
                         || jx.getCause() instanceof UnknownHostException
                         || jx.getCause() instanceof ConnectException
                         )
-                        {Log.warning("Cannot access public internet" +
-                            "- part of test not executed",
-                                                "Regression",
-                                                "testReaderInterface");
+                        {logger.warn("Cannot access public internet - part of test not executed" );
                         }
                     else
                         throw jx;

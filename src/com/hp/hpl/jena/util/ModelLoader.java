@@ -237,7 +237,7 @@ public class ModelLoader
             return ModelRDB.open(conn, modelName) ;
         } catch (JenaException rdfEx)
         {
-            Log.severe("Failed to open SQL database", "ModelLoader", "loadModel", rdfEx) ;
+            logger.error("Failed to open SQL database: ModelLoader.connectToDB", rdfEx) ;
             throw rdfEx ;
         }
     }

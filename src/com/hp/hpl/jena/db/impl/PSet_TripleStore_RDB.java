@@ -197,7 +197,7 @@ public  class PSet_TripleStore_RDB implements IPSet {
     	
 		try {m_sql.runSQLGroup("createStatementTable", getASTname(), String.valueOf(MAX_LITERAL));
 		} catch (SQLException e) {
-			com.hp.hpl.jena.util.Log.warning("Problem formatting database", e);
+			logger.warn("Problem formatting database", e);
 			throw new RDFRDBException("Failed to format database", e);
 		}
     }

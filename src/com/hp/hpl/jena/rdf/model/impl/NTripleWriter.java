@@ -30,15 +30,12 @@
 package com.hp.hpl.jena.rdf.model.impl;
 
 import com.hp.hpl.jena.rdf.model.*;
-import com.hp.hpl.jena.util.Log;
 import com.hp.hpl.jena.util.FileUtils;
 import com.hp.hpl.jena.shared.*;
 
-import java.io.PrintWriter;
-import java.io.Writer;
-import java.io.OutputStreamWriter;
-import java.io.OutputStream;
-import java.io.UnsupportedEncodingException;
+import java.io.*;
+
+import org.apache.log4j.*;
 
 /** Writes out an XML serialization of a model.
  *
@@ -49,6 +46,8 @@ public class NTripleWriter extends Object implements RDFWriter {
 
     RDFErrorHandler errorHandler = new RDFDefaultErrorHandler();
 
+    protected static Logger logger = Logger.getLogger( NTripleWriter.class );
+    
     public NTripleWriter() {
     }
     public void write(Model model, OutputStream out, String base)
@@ -58,11 +57,7 @@ public class NTripleWriter extends Object implements RDFWriter {
             try {
                 w = new OutputStreamWriter(out, "ascii");
             } catch (UnsupportedEncodingException e) {
-                Log.warning(
-                    "ASCII is not supported!",
-                    "NTripleWriter",
-                    "write",
-                    e);
+                logger.warn( "ASCII is not supported: in NTripleWriter.write", e );
                 w = FileUtils.asUTF8(out);
             }
             write(model, w, base);

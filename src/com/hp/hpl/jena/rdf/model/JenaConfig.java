@@ -31,7 +31,7 @@
 
 package com.hp.hpl.jena.rdf.model;
 
-import com.hp.hpl.jena.util.Log;
+import org.apache.log4j.Logger;
 
 /** A Class for configuring Jena's behaviour.
  *
@@ -56,6 +56,8 @@ public class JenaConfig {
     /** Creates new JenaConfig */
     private JenaConfig() {
     }
+    
+    protected static Logger logger = Logger.getLogger( JenaConfig.class );
     
     private static boolean oldLiteralCompare;
     
@@ -100,7 +102,7 @@ public class JenaConfig {
         } catch (Exception e) {
             // other exceptions are unexpected
             // log and ignore
-            Log.warning("Unexpected Exception", "JenaConfig", "Static Init", e);
+            logger.warn("Unexpected Exception: JenaConfig.<Static Init>", e);
             oldLiteralCompare = false;
         }
     }

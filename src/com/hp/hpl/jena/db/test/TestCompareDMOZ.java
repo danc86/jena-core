@@ -29,12 +29,9 @@ import com.hp.hpl.jena.db.IDBConnection;
 import com.hp.hpl.jena.db.ModelRDB;
 import com.hp.hpl.jena.mem.ModelMem;
 import com.hp.hpl.jena.rdf.model.*;
-import com.hp.hpl.jena.util.Log;
 
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
-
-
+import junit.framework.*;
+import org.apache.log4j.*;
 
 public class TestCompareDMOZ extends TestCase 
     {    
@@ -46,7 +43,15 @@ public class TestCompareDMOZ extends TestCase
     
     public static TestSuite suite()
         { return new TestSuite( TestCompareDMOZ.class ); }   
-     
+
+    static Logger logger = Logger.getLogger( TestCompareDMOZ.class );
+    
+    private static class Log
+        {
+        static void severe( String s ) {}
+        static void debug( String s ) {}
+        }
+             
     Model modelrdf = null;    
     Model modelmem = null;
     
