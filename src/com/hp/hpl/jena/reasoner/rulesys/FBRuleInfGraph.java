@@ -59,6 +59,9 @@ public class FBRuleInfGraph  extends BasicForwardRuleInfGraph implements Backwar
     /** Flag, if true then subClass and subProperty lattices will be optimized using TGCs */
     protected boolean useTGCCaching = false;
     
+    /** Flag, if true then find results will be filtered to remove functors and illegal RDF */
+    public boolean filterFunctors = true;
+    
     /** Optional precomputed cache of the subClass/subproperty lattices */
     protected TransitiveEngine transitiveEngine;
     
@@ -487,7 +490,11 @@ public class FBRuleInfGraph  extends BasicForwardRuleInfGraph implements Backwar
         if (continuation != null) {
             result = result.andThen(continuation.find(pattern));
         }
-        return result.filterDrop(Functor.acceptFilter);
+        if (filterFunctors) {
+            return result.filterDrop(Functor.acceptFilter);
+        } else {
+            return result;
+        }
     }
     
     /**
