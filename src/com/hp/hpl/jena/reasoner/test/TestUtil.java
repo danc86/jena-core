@@ -21,11 +21,10 @@ import org.apache.log4j.Logger;
  */
 public class TestUtil {
     
-    /** log4j logger*/
-    static Logger logger = Logger.getLogger(TestUtil.class);
-
     /** Helper function test an iterator against a list of objects - order independent */
     public static void assertIteratorValues(TestCase testCase, Iterator it, Object[] vals) {
+        Logger logger = Logger.getLogger( testCase.getClass() );
+        
         boolean[] found = new boolean[vals.length];
         for (int i = 0; i < vals.length; i++) found[i] = false;
         while (it.hasNext()) {
@@ -38,15 +37,15 @@ public class TestUtil {
                 }
             }
             if (!gotit) {
-                logger.debug("TestUtil found unexpected value: " + n);
+                logger.debug( testCase.getName() + " found unexpected iterator value: " + n);
             }
-            TestCase.assertTrue(gotit);
+            TestCase.assertTrue( testCase.getName() + " found unexpected iterator value", gotit);
         }
         for (int i = 0; i < vals.length; i++) {
             if (!found[i]) {
-                logger.debug("TestUtil failed to find expected value: " + vals[i]);
+                logger.debug( testCase.getName() + " failed to find expected iterator value: " + vals[i]);
             }
-            TestCase.assertTrue(found[i]);
+            TestCase.assertTrue(testCase.getName() + " failed to find expected iterator value", found[i]);
         }
     }
     
