@@ -420,7 +420,7 @@ abstract public class BaseXMLWriter implements RDFXMLWriterI {
 		 {
         primeNamespace( baseModel );
 		//ns = new HashMap();
-        Model model = ModelCom.withHiddenStatements( baseModel );
+        Model model = ModelFactory.withHiddenStatements( baseModel );
 		this.namespacesNeeded = new HashSet();
 		ns = null;
 		count = 0;

@@ -40,6 +40,14 @@ public class ModelFactory extends ModelFactoryBase
         { return new ModelCom( new GraphMem( Reifier.Standard ) ); }
         
     /**
+        Answer a read-only Model with all the statements of this Model and any
+        statements "hidden" by reification. That model is dynamic, ie
+        any changes this model will be reflected that one.
+    */
+    public static Model withHiddenStatements( Model m )
+        { return ModelReifier.withHiddenStatements( m ); }
+        
+    /**
         construct a new memory-based model that does not capture reification triples
         (but still handles reifyAs() and .as(ReifiedStatement).
     */

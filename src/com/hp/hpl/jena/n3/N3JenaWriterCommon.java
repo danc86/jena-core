@@ -186,7 +186,7 @@ public class N3JenaWriterCommon implements RDFWriter
     protected void processModel(Model baseModel)
     {
         prefixMap = baseModel.getNsPrefixMap() ;
-        Model model = ModelCom.withHiddenStatements( baseModel );
+        Model model = ModelFactory.withHiddenStatements( baseModel );
         bNodesMap = new HashMap() ;
 
         // If no base defined for the model, but one given to writer,

@@ -8,6 +8,7 @@ package com.hp.hpl.jena.graph.test;
 
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.graph.impl.*;
+import com.hp.hpl.jena.shared.*;
 import com.hp.hpl.jena.vocabulary.RDF;
 
 /**
@@ -158,7 +159,7 @@ public abstract class AbstractTestReifier extends GraphTestBase
         R.reifyAs( X, triple( "x R y" ) );
         R.reifyAs( X, triple( "x R y" ) );
         try { R.reifyAs( X, triple( "x R z" ) ); fail( "did not detect already reified node" ); }
-        catch (Reifier.AlreadyReifiedException e) { }      
+        catch (AlreadyReifiedException e) { }      
         }
         
     public void testKevinCaseA()
@@ -180,7 +181,7 @@ public abstract class AbstractTestReifier extends GraphTestBase
             G.getReifier().reifyAs( X, new Triple( a, b, c ) );
             fail( "X already has subject Y: cannot make it a" );
             }
-        catch (Reifier.CannotReifyException e)
+        catch (CannotReifyException e)
             { /* as required */ }
         }
         

@@ -13,7 +13,6 @@ package com.hp.hpl.jena.graph;
 */
 
 import com.hp.hpl.jena.util.iterator.*;
-import com.hp.hpl.jena.shared.*;
 
 public interface Reifier extends GetTriple
     {
@@ -102,21 +101,7 @@ public interface Reifier extends GetTriple
     /**
         true iff the Reifier has handled a remove of the triple _t_.
     */
-    boolean handledRemove( Triple t );
-    
-    /**
-        The exception thrown by reifyAs if a node is bound to bits and
-        pieces of (an)other triple(s).
-    */
-    static public class CannotReifyException extends JenaException
-        { public CannotReifyException( Node n ) { super( n.toString() ); } };    
-    
-    /**
-        The exception raised by reifyAs if a node is already bound to
-        a single reified triple.
-    */
-    static public class AlreadyReifiedException extends CannotReifyException 
-        { public AlreadyReifiedException( Node n ) { super( n ); } };
+    boolean handledRemove( Triple t );;
     }
 
 /*
