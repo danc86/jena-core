@@ -108,6 +108,7 @@ public class NTriple implements ARPErrorNumbers {
 	 */
 	static public void mainEh(String args[], ErrorHandler eh, ARPHandler ap) {
 		boolean doneOne = false;
+		startMem = -1;
 		andMeToo = ap;
 		//SH sh = new SH();
 		int i;
@@ -139,6 +140,16 @@ public class NTriple implements ARPErrorNumbers {
 		}
 		if (!doneOne) {
 			process(System.in, "http://example.org/stdin", "standard input");
+		}
+		if ( startMem != -1) {
+			rt.gc();
+			System.out.println(rt.totalMemory()-rt.freeMemory()-startMem);
+			rt.gc();
+			System.out.println(rt.totalMemory()-rt.freeMemory()-startMem);
+			rt.gc();
+			System.out.println(rt.totalMemory()-rt.freeMemory()-startMem);
+			rt.gc();
+			System.out.println(rt.totalMemory()-rt.freeMemory()-startMem);
 		}
 	}
 
@@ -219,6 +230,8 @@ public class NTriple implements ARPErrorNumbers {
 			"              Ignores numbered error/warning conditions.");
 		System.exit(1);
 	}
+	static final private Runtime rt = Runtime.getRuntime();
+    static private int startMem = -1;
 	static private int processOpts(String opts, String nextArg) {
 		boolean usedNext = false;
 		for (int i = 0; i < opts.length(); i++) {
@@ -230,12 +243,11 @@ public class NTriple implements ARPErrorNumbers {
 			}
 			switch (opt) {
 				case 'D':
+ rt.gc(); rt.gc(); 
+ startMem = (int)(rt.totalMemory()-rt.freeMemory());
 				arp.setStatementHandler(new StatementHandler(){
 int debugC = 0;
 
-Runtime rt = Runtime.getRuntime();
-{ rt.gc(); rt.gc(); }
-int startMem = (int)(rt.totalMemory()-rt.freeMemory());
 					public void statement(AResource subj, AResource pred, AResource obj) {
 						statement(null,null,(ALiteral)null);
 						

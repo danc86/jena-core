@@ -146,6 +146,14 @@ class ARPFilter
 	static private class MySAXParser extends SAXParser {
 		MySAXParser(StandardParserConfiguration c) {
 			super(c);
+			try {
+			setFeature("http://xml.org/sax/features/string-interning",false);
+			}
+			catch (SAXException e){
+				// Not supported - aggh
+				// TODO ask on xerces list why not?
+			//	e.printStackTrace();
+			}
 		}
 		ARPFilter a;
 		public void xmlDecl(
