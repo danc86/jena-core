@@ -20,6 +20,8 @@ public abstract class Stage
 	/** the previous stage of the pipeline, once connected */
 	protected Stage previous;
     
+    protected volatile boolean stillOpen = true;
+    
 	/** construct a new initial stage for the pipeline */    
 	public static Stage initial( int count )
 		{ return new InitialStage( count ); }
@@ -27,6 +29,18 @@ public abstract class Stage
     /** connect this stage to its supplier; return this for chaining. */
 	public Stage connectFrom( Stage s )
         { previous = s; return this; }
+        
+    public boolean isClosed()
+        { return !stillOpen; }
+        
+    protected final void markClosed()
+        { stillOpen = false; }
+        
+    public void close()
+        { 
+        previous.close(); 
+        markClosed();
+        }
 
 	/**
 		execute the pipeline and pump the results into _sink_; this is asynchronous.

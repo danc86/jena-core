@@ -24,6 +24,9 @@ public class InitialStage extends Stage
         
     private int count = -1;
     
+    public void close()
+        { markClosed(); }
+
     public Pipe deliver( Pipe result )
         {
         result.put( new Domain( new Node[count]  ) );

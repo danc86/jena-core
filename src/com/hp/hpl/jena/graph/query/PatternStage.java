@@ -31,17 +31,17 @@ public class PatternStage extends Stage
         {
         return PatternStageCompiler.compile( compiler, map, source );
         }
-                 
+        
     private static final PatternCompiler compiler = new PatternStageCompiler();
         
     protected void run( Pipe source, Pipe sink )
     	{
-        while (source.hasNext())
+        while (stillOpen && source.hasNext())
             {
             Domain current = source.get();
             Domain useme = current.extend();           
             ClosableIterator it = graph.find( compiled[0].asTripleMatch( current ) );
-            while (it.hasNext())
+            while (stillOpen && it.hasNext())
                 {
                 Triple t = (Triple) it.next();
                 if (compiled[0].matches( useme, t ))

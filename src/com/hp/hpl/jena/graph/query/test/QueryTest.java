@@ -498,6 +498,19 @@ public class QueryTest extends GraphTestBase
         {
         Query q = new Query();
         }
+        
+    public void testCloseQuery()
+        {
+        Graph g = graphWith( "x R y; a P b; i L j; d X f; h S g; no more heroes" );
+        for (int n = 0; n < 1000; n += 1) graphAdd( g, "ping pong X" + n );
+        Query q = new Query().addMatch( Query.S, Query.P, Query.O );
+        List stages = new ArrayList();
+        ExtendedIterator it = q.executeBindings( g, stages, new Node [] {Query.P} );
+        /* eat one answer to poke pipe */ it.next();
+        for (int i = 0; i < stages.size(); i += 1) assertFalse( ((Stage) stages.get(i)).isClosed() );
+        it.close();
+        for (int i = 0; i < stages.size(); i += 1) assertTrue( ((Stage) stages.get(i)).isClosed() );
+        }
     }
 
 /*
