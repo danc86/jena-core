@@ -6,6 +6,8 @@
 
 package com.hp.hpl.jena.graph.query;
 
+import java.util.ArrayList;
+
 import com.hp.hpl.jena.util.iterator.*;
 import com.hp.hpl.jena.graph.*;
 
@@ -29,9 +31,13 @@ public class SimpleQueryPlan implements BindingQueryPlan
         }
         
     public ExtendedIterator executeBindings()
-        { return query.executeBindings( graph, variables ); }
+        // { return query.executeBindings( graph, variables ); }
+        {
+        return new SimpleQueryEngine( query.getTriples(), query.getSorter(), query.getConstraints() )
+            .executeBindings( new ArrayList(), query.args().put( NamedTripleBunches.anon, graph ), variables );   
+        }
     }
-
+    
 /*
     (c) Copyright 2002, 2003 Hewlett-Packard Development Company, LP
     All rights reserved.

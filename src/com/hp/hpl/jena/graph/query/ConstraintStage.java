@@ -134,7 +134,7 @@ public class ConstraintStage extends Stage
                 
    private boolean evalConstraint( Domain d, ExpressionSet e )
         {
-        return constraint.evalBool( map, d );
+        return e.evalBool( map, d );
         }
     
     /**
