@@ -43,7 +43,7 @@ import org.apache.log4j.*;
  */
 public class RDFDefaultErrorHandler extends Object implements RDFErrorHandler {
 
-    protected static Logger logger = Logger.getLogger( RDFDefaultErrorHandler.class );
+    public static final Logger logger = Logger.getLogger( RDFDefaultErrorHandler.class );
     
     /** Creates new RDFDefaultErrorHandler */
     public RDFDefaultErrorHandler() {

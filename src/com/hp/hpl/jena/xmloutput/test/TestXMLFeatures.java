@@ -10,7 +10,7 @@ package com.hp.hpl.jena.xmloutput.test;
 import com.hp.hpl.jena.xmloutput.impl.BaseXMLWriter;
 import com.hp.hpl.jena.mem.*;
 import com.hp.hpl.jena.rdf.model.*;
-import com.hp.hpl.jena.rdf.model.impl.Util;
+import com.hp.hpl.jena.rdf.model.impl.*;
 import com.hp.hpl.jena.vocabulary.RDF;
 import com.hp.hpl.jena.rdf.arp.*;
 import com.hp.hpl.jena.graph.*;
@@ -25,7 +25,7 @@ import java.util.*;
 
 import java.io.*;
 import com.hp.hpl.jena.util.TestLogger;
-import org.apache.log4j.Logger;
+import org.apache.log4j.*;
 
 /**
  * @author bwm
@@ -37,6 +37,8 @@ public class TestXMLFeatures extends TestCase {
 	static AwkMatcher matcher = PrettyWriterTest.matcher;
     
     static protected Logger logger = Logger.getLogger( TestXMLFeatures.class );
+
+    static { logger.setLevel( Level.OFF ); }
     
 	static private class Change {
 		void code(RDFWriter w) {
@@ -685,11 +687,23 @@ public class TestXMLFeatures extends TestCase {
 	}
 
     public void testBadURIAsProperty1() throws IOException {
-        checkPropURI("_:aa", null, null, BadURI);
+        try
+            { 
+            RDFDefaultErrorHandler.logger.setLevel( Level.OFF );
+            checkPropURI("_:aa", null, null, BadURI);
+            }
+        finally
+            { RDFDefaultErrorHandler.logger.setLevel( Level.WARN ); }
     }
 
     public void testBadURIAsProperty2() throws IOException {
-        checkPropURI("_:aa", "allowBadURIs", "true", NoError);
+        try
+            { 
+            RDFDefaultErrorHandler.logger.setLevel( Level.OFF );
+            checkPropURI("_:aa", "allowBadURIs", "true", NoError);
+            }
+        finally
+            { RDFDefaultErrorHandler.logger.setLevel( Level.WARN ); }
     }
 
     public void testLiAsProperty1() throws IOException {
