@@ -1440,13 +1440,9 @@ class Unparser {
 			} else {
 				rslt = r.getProperty(RDF.type);
 			}
-		} catch (RDFException rdfe) {
-			if (rdfe.getErrorCode() == RDFException.PROPERTYNOTFOUND) {
-				if (r instanceof Statement)
-					error("Statement type problem");
-				rslt = null;
-			} else
-				throw rdfe;
+		} catch (JenaPropertyNotFoundException rdfe) {
+			if (r instanceof Statement) error( "Statement type problem" ) ;
+			rslt = null;
 		}
 		if (rslt == null || isOKType(rslt.getObject()) == -1)
 			return null;

@@ -216,17 +216,8 @@ public class TestXMLFeatures extends TestCase {
 			m.write(fwriter, lang);
 			fwriter.close();
 			fail("Writer did not detect bad property URI");
-		} catch (RDFException rdfe) {
-			// This loop here really shouldn't be necessary.
-			// When oh when, will we
-			//  - drop NestedExceptions altogther.
-			while (rdfe.getErrorCode() == RDFException.NESTEDEXCEPTION
-				&& rdfe.getNestedException() instanceof RDFException)
-				rdfe = (RDFException) rdfe.getNestedException();
-			assertEquals(
-				"Inappropriate exception: " + rdfe.getMessage(),
-				rdfe.getErrorCode(),
-				RDFException.INVALIDPROPERTYURI);
+        } catch (JenaInvalidPropertyURIException je) {
+                // as required, so nowt to do.
 		}
 		file.delete();
 	}
@@ -680,17 +671,9 @@ public class TestXMLFeatures extends TestCase {
         } catch (JenaBadURIException e) {
             if (behaviour == BadURI) return;
             throw e;
-		} catch (RDFException e) {
-            switch (behaviour)
-            { case BadPropURI:
-			if (e.getErrorCode() == RDFException.INVALIDPROPERTYURI )
-              return;
-              case BadURI:
-              if (e.getErrorCode() == RDFException.NESTEDEXCEPTION &&
-                  e.getNestedException() instanceof MalformedURIException )
-                  return;
-            }
-				throw e;
+        } catch (JenaInvalidPropertyURIException je) {
+            if (behaviour == BadPropURI) return;
+            throw je;
         } catch (JenaException e) {
             throw e;
 		} finally {
