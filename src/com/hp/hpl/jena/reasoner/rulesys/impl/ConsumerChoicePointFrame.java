@@ -3,7 +3,7 @@
  * Created by:  Dave Reynolds
  * Created on:  07-Aug-2003
  * 
- * (c) Copyright 2003, 2004, 2005 Hewlett-Packard Development Company, LP
+ * (c) Copyright 2003, 2004 Hewlett-Packard Development Company, LP
  * [See end of file]
  * $Id$
  *****************************************************************/
@@ -122,6 +122,10 @@ public class ConsumerChoicePointFrame extends GenericTripleMatchFrame
     public synchronized StateFlag nextMatch(LPInterpreter interpreter) {
         while (resultIndex < generator.results.size()) {
             Triple result = (Triple) generator.results.get(resultIndex++);
+            // Check if we have finished with this generator
+            if (resultIndex >= generator.results.size() && generator.isComplete()) {
+                generator.removeConsumer(this);
+            }
             if (bindResult(result, interpreter)) {
                 return StateFlag.SATISFIED;
             }            
@@ -153,7 +157,6 @@ public class ConsumerChoicePointFrame extends GenericTripleMatchFrame
      * the results of a closed generator.
      */
     public void setFinished() {
-//        System.out.println("Consumed " + resultIndex + " from " + goal);
         context.notifyFinished(this);
     }
     
@@ -186,7 +189,7 @@ public class ConsumerChoicePointFrame extends GenericTripleMatchFrame
 
 
 /*
-    (c) Copyright 2003, 2004, 2005 Hewlett-Packard Development Company, LP
+    (c) Copyright 2003, 2004 Hewlett-Packard Development Company, LP
     All rights reserved.
 
     Redistribution and use in source and binary forms, with or without

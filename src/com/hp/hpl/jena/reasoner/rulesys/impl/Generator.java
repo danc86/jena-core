@@ -3,7 +3,7 @@
  * Created by:  Dave Reynolds
  * Created on:  06-Aug-2003
  * 
- * (c) Copyright 2003, 2004, 2005 Hewlett-Packard Development Company, LP
+ * (c) Copyright 2003, 2004 Hewlett-Packard Development Company, LP
  * [See end of file]
  * $Id$
  *****************************************************************/
@@ -160,6 +160,7 @@ public class Generator implements LPAgendaEntry, LPInterpreterContext {
                 }
             }
             generatingCPs = null;
+            consumingCPs.clear();
         }
     }
     
@@ -177,12 +178,14 @@ public class Generator implements LPAgendaEntry, LPInterpreterContext {
      * Remove a terminated consuming choice point from the state set.
      */
     public void removeConsumer(ConsumerChoicePointFrame ccp) {
-        if (!isComplete()) {
-            consumingCPs.remove(ccp);
-            if (consumingCPs.isEmpty()) {
-                setComplete();
-            }
-        }
+        consumingCPs.remove(ccp);
+        // We used to set it complete if there were no consumers left.
+        // However, a generator might be part of one query, in completely consumed
+        // and then opened again on a different query it seems safe to omit this
+        // TODO review
+//        if (!isComplete() &&consumingCPs.isEmpty()) {
+//            setComplete();
+//        }
     }
         
     /**
@@ -209,7 +212,9 @@ public class Generator implements LPAgendaEntry, LPInterpreterContext {
      * and can be remove from the wait list. 
      */
     public void notifyFinished(ConsumerChoicePointFrame ccp) {
-        removeConsumer(ccp);
+        if (generatingCPs != null) {
+            generatingCPs.remove(ccp); 
+        }
         checkReadyNeeded = true;
     }
 
@@ -391,7 +396,7 @@ public class Generator implements LPAgendaEntry, LPInterpreterContext {
 
 
 /*
-    (c) Copyright 2003, 2004, 2005 Hewlett-Packard Development Company, LP
+    (c) Copyright 2003, 2004 Hewlett-Packard Development Company, LP
     All rights reserved.
 
     Redistribution and use in source and binary forms, with or without

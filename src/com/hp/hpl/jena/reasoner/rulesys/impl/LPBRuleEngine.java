@@ -151,7 +151,9 @@ public class LPBRuleEngine {
      * Stop the current work. Forcibly stop all current query instances over this engine.
      */
     public synchronized void halt() {
-        for (Iterator i = activeInterpreters.iterator(); i.hasNext(); ) {
+        ArrayList copy = new ArrayList(activeInterpreters);  
+        // Copy because closing the LPInterpreter will detach it from this engine which affects activeInterpreters
+        for (Iterator i = copy.iterator(); i.hasNext(); ) {
             ((LPInterpreter)i.next()).close();
         }
     }

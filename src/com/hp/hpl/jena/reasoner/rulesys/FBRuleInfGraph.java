@@ -227,7 +227,9 @@ public class FBRuleInfGraph  extends BasicForwardRuleInfGraph implements Backwar
      * infgraphs support this.
      */
     public void addBRule(Rule brule) {
-        logger.debug("Adding rule " + brule);
+        if (logger.isDebugEnabled()) {
+            logger.debug("Adding rule " + brule);
+        }
         bEngine.addRule(brule);
         bEngine.reset();
     }
@@ -237,7 +239,9 @@ public class FBRuleInfGraph  extends BasicForwardRuleInfGraph implements Backwar
      * infgraphs support this.
      */
     public void deleteBRule(Rule brule) {
-        logger.debug("Deleting rule " + brule);
+        if (logger.isDebugEnabled()) {
+            logger.debug("Deleting rule " + brule);
+        }
         bEngine.deleteRule(brule);
         bEngine.reset();
     }
