@@ -278,7 +278,7 @@ public class ReasonerTester {
         // Used in debugging the tests ...
         // Can't just leave it as a logger.debug because there are unit tests to which are supposed to given
         // a test failure which would then problem unwanted output.
-        // /*
+        /*
         System.out.println("Reasoner test " + test.getURI() + " - " + description);
         if (!correct) {
             System.out.println("Missing triples:");
@@ -297,7 +297,7 @@ public class ReasonerTester {
             }
             
         }
-        // */
+        */
         // ... end of debugging hack
         if (testcase != null) {
             TestCase.assertTrue(description, correct);
