@@ -192,7 +192,7 @@ public class TestExpressionConstraints extends GraphTestBase
     public void testPrepareNE()
         {
         Expression e = notEqual( X, Y );
-        VariableIndexes map = new Mapping( new Node[2] );
+        VariableIndexes map = new Mapping( new Node[0] );
         // Valuator ep = e.prepare( map );        
         }
     
