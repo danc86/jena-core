@@ -26,6 +26,10 @@ abstract class CollectionAction {
 	abstract void terminate();
 	
 	abstract CollectionAction next(AResourceInternal r);
+	/**
+	 * 
+	 */
+	abstract public void cleanUp();
 	
 
 }

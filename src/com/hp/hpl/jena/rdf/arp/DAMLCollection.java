@@ -42,6 +42,13 @@ class DAMLCollection extends CollectionAction {
 			e.printStackTrace();
 		}
 	}
+	
+	public void cleanUp() {
+		if (rslt[0]!=null) {
+			X.arp.endLocalScope(rslt[0]);
+			rslt[0] = null;
+		}
+	}
 	/* (non-Javadoc)
 	 * @see com.hp.hpl.jena.rdf.arp.CollectionAction#terminate()
 	 */

@@ -22,7 +22,7 @@ public class TestScope extends TestCase {
   public	TestScope(String nm){
 		super(nm);
 	}
-	/*
+	
 	public void test01() throws Exception {
 		check("testing/arp/scope/test01.rdf");
 	}
@@ -32,7 +32,7 @@ public class TestScope extends TestCase {
 	public void test03() throws Exception {
 		check("testing/arp/scope/test03.rdf");
 	}
-	*/
+	
 	
 	public void test04() throws Exception {
 		check("testing/arp/scope/test04.rdf");

@@ -26,6 +26,9 @@ public class DAMLTailCollection extends DAMLCollection {
 		last.setPredicateObject(rest, nil, null);
 		endLastScope();
 	}
+	public void cleanUp() {
+	  endLastScope();
+  }
 
 	/* (non-Javadoc)
 	 * @see com.hp.hpl.jena.rdf.arp.CollectionAction#next(com.hp.hpl.jena.rdf.arp.AResource)
