@@ -30,7 +30,7 @@ public class SimpleReifier implements Reifier
     protected final boolean concealing;
     protected final ReificationStyle style;
     
-    protected SimpleReifierFragmentsMap nodeMap;
+    protected ReifierFragmentsMap nodeMap;
     protected ReifierTripleMap tripleMap;
     
     protected Graph reificationTriples;
@@ -103,7 +103,7 @@ public class SimpleReifier implements Reifier
     public Node reifyAs( Node tag, Triple t )
     	{
         Triple existing = (Triple) tripleMap.getTriple( tag );
-        Object partial = nodeMap.get( tag );
+        Fragments partial = nodeMap.getFragments( tag );
         if (existing != null)
             { if (!t.equals( existing )) throw new AlreadyReifiedException( tag ); }
         else if (partial == null)
@@ -188,7 +188,7 @@ public class SimpleReifier implements Reifier
         {
         Node s = t.getSubject();
         Triple already = (Triple) tripleMap.getTriple( s );
-        Object partial = nodeMap.get( s );
+        Fragments partial = nodeMap.getFragments( s );
         return
             already != null ? explode( s, already )
             : partial == null ? nodeMap.putFragments( s, new Fragments( s ) )

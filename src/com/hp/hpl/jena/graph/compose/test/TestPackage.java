@@ -29,6 +29,7 @@ public class TestPackage extends Object {
     /* */
         result.addTest( TestDelta.suite() );
         result.addTest( TestUnion.suite() );
+        result.addTest( TestDisjointUnion.suite() );
         result.addTest( TestDifference.suite() );
         result.addTest( TestIntersection.suite() );
         result.addTest( TestMultiUnion.suite() );

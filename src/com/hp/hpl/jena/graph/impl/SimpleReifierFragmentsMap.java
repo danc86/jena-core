@@ -22,12 +22,12 @@ import com.hp.hpl.jena.util.iterator.NiceIterator;
     
     @author kers
 */
-public class SimpleReifierFragmentsMap 
+public class SimpleReifierFragmentsMap implements ReifierFragmentsMap 
     {
     protected Map forwardMap = HashUtils.createMap();
     
-    public Object get( Node tag )
-        { return forwardMap.get( tag ); }
+    public Fragments getFragments( Node tag )
+        { return (Fragments) forwardMap.get( tag ); }
     
     public void removeFragments( Node key )
         {
