@@ -32,6 +32,14 @@ public class TestTypedLiterals extends TestCase {
     /** dummy model used as a literal factory */
     private Model m = new ModelMem();
     
+    // Temporary for debug
+    /*
+    static {
+        Locale.setDefault(Locale.ITALY);
+        TimeZone.setDefault(TimeZone.getTimeZone("CEST"));
+    }
+    */
+    
     /**
      * Boilerplate for junit
      */ 
@@ -309,6 +317,16 @@ public class TestTypedLiterals extends TestCase {
         Calendar cal = xdt.asCalendar();
         Calendar testCal = new GregorianCalendar(TimeZone.getTimeZone("GMT"));
         testCal.set(1999, 5, 31, 12, 56, 32);
+        /*
+        assertEquals("calendar value", cal.get(Calendar.YEAR), testCal.get(Calendar.YEAR) );
+        assertEquals("calendar value", cal.get(Calendar.MONTH), testCal.get(Calendar.MONTH) );
+        assertEquals("calendar value", cal.get(Calendar.DATE), testCal.get(Calendar.DATE) );
+        assertEquals("calendar value", cal.get(Calendar.HOUR), testCal.get(Calendar.HOUR) );
+        assertEquals("calendar value", cal.get(Calendar.MINUTE), testCal.get(Calendar.MINUTE) );
+        assertEquals("calendar value", cal.get(Calendar.SECOND), testCal.get(Calendar.SECOND) );
+        */
+        cal.set(Calendar.MILLISECOND, 0);       // ms field can be undefined on Linux
+        testCal.set(Calendar.MILLISECOND, 0);   // ms field can be undefined on Linux
         assertEquals("calendar value", cal, testCal);
         assertEquals("equality test", l1, m.createTypedLiteral("1999-05-31T12:56:32Z", "", XSDDatatype.XSDdateTime));
         assertTrue("inequality test", l1 != m.createTypedLiteral("1999-04-31T12:56:32Z", "", XSDDatatype.XSDdateTime));
