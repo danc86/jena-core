@@ -127,6 +127,58 @@ public class ResourceUtils {
     }
 
 
+    /**
+     * <p>Answer a new resource that occupies the same position in the graph as the current
+     * resource <code>old</code>, but that has the given URI.  In the process, the existing
+     * statements referring to <code>old</code> are removed.  Since Jena does not allow the
+     * identity of a resource to change, this is the closest approximation to a rename operation
+     * that works.
+     * </p>
+     * <p><strong>Notes:</strong> This method does minimal checking, so renaming a resource
+     * to its own URI is unpredictable.  Furthermore, it is a general and simple approach, and
+     * in given applications it may be possible to do this operation more efficiently. Finally,
+     * if <code>res</code> is a property, existing statements that use the property will not
+     * be renamed, nor will occurrences of <code>res</code> in other models.
+     * </p>
+     * @param old An existing resource in a given model
+     * @param uri A new URI for resource old, or null to rename old to a bNode
+     * @return A new resource that occupies the same position in the graph as old, but which
+     * has the new given URI.
+     */
+    public static Resource renameResource( Resource old, String uri ) {
+        Model m = old.getModel();
+        List subjectRefs = new ArrayList();
+        List objectRefs = new ArrayList();
+        
+        // list the statements that mention old as a subject
+        for (Iterator i = old.listProperties();  i.hasNext(); subjectRefs.add( i.next() ) );
+        
+        // list the statements that mention old an an object
+        for (Iterator i = m.listStatements( null, null, old );  i.hasNext();  objectRefs.add( i.next() ) );
+        
+        // create a new resource to replace old
+        Resource res = (uri == null) ? m.createResource() : m.createResource( uri );
+        
+        // now move the statements to refer to res instead of old
+        for (Iterator i = subjectRefs.iterator(); i.hasNext(); ) {
+            Statement s = (Statement) i.next();
+            
+            res.addProperty( s.getPredicate(), s.getObject() );
+            s.remove();
+        }
+        
+        for (Iterator i = objectRefs.iterator(); i.hasNext(); ) {
+            Statement s = (Statement) i.next();
+            
+            s.getSubject().addProperty( s.getPredicate(), res );
+            s.remove();
+        }
+        
+        return res;
+    }
+    
+    
+
     // Internal implementation methods
     //////////////////////////////////
 
