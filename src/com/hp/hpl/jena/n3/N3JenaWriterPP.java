@@ -332,52 +332,6 @@ public class N3JenaWriterPP extends N3JenaWriterCommon
         clearDatastructures() ;
     }
 
-//    protected void writeSubject(Resource resource)
-//	{
-//		String tmp = formatResource(resource);
-//		out.print(tmp);
-//		// Currently at end of subject
-//		if (tmp.length() + minGap < indent)
-//			out.print( pad(indent - tmp.length()));
-//		else
-//		{
-//			// Does not fit this line.
-//			out.println();
-//		}
-//		out.incIndent(indent) ;
-//		writePropertyList(resource) ;
-//		out.decIndent(indent) ;
-//		out.println( " .");
-//		//out.setIndent(0) ;
-//	}
-
-//	protected void writePropertyList(Resource resource)
-//	{
-//		// Properties to do.
-//		Set properties = new HashSet() ;
-//		StmtIterator sIter = resource.listProperties();
-//		for ( ; sIter.hasNext() ; )
-//		{
-//			properties.add(sIter.nextStatement().getPredicate()) ;
-//		}
-//		sIter.close() ;
-//
-//        // Should write certain well know properties in standard order
-//        // e.g. rdf:type, rdfs:subClassOf, rdfs:subPropertyOf
-//
-//	topLevelLoop:
-//		// For each property.
-//		for (Iterator iter = properties.iterator() ; iter.hasNext();)
-//		{
-//			Property property = (Property)iter.next() ;
-//
-//			// Object list
-//			writeObjectList(resource, property) ;
-//
-//			if (iter.hasNext())
-//				out.println( " ;");
-//		}
-//	}
 
 
 	// Need to decide between one line or many.
@@ -502,15 +456,7 @@ public class N3JenaWriterPP extends N3JenaWriterCommon
 		rdfListsDone.add(resource);
 
 	}
-//
-//	private String pad(int cols)
-//	{
-//		StringBuffer sb = new StringBuffer() ;
-//		for ( int i = 0 ; i < cols ; i++ )
-//			sb.append(' ') ;
-//		return sb.toString() ;
-//	}
-//
+
 	// Called before each writing run.
 	protected void allocateDatastructures()
 	{
