@@ -51,6 +51,9 @@ public class ModelTestBase extends GraphTestBase
          RDFNode obj = rdfNode( aModel, st.nextToken() );
          return m.createStatement( sub, pred, obj );    
          }    
+    
+    public static Statement statement( String fact )
+        { return statement( aModel, fact ); }
          
      public static RDFNode rdfNode( Model m, String s )
         { 
