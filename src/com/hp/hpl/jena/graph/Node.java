@@ -7,14 +7,12 @@
 package com.hp.hpl.jena.graph;
 
 import com.hp.hpl.jena.rdf.model.AnonId;
+
 import com.hp.hpl.jena.datatypes.*;
 import com.hp.hpl.jena.graph.impl.*;
 import com.hp.hpl.jena.shared.*;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-
-import java.util.*;
+import org.apache.commons.logging.*;
 
 /**
     A Node has five subtypes: Node_Blank, Node_Anon, Node_URI,  

@@ -344,7 +344,7 @@ public class TestModelSpec extends ModelTestBase
         assertIsoModels( desc, ms.getDescription( root ) );
         }
         
-    protected void writeModel( File f, Model m ) throws FileNotFoundException, IOException
+    protected static void writeModel( File f, Model m ) throws FileNotFoundException, IOException
         {
         FileOutputStream fos = new FileOutputStream( f );
         m.write( fos );

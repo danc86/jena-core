@@ -94,7 +94,7 @@ public class ModelFactory extends ModelFactoryBase
         { return desc.createModel(); }
         
     /**
-        Answer a fresh Model created according to the given specifictaion and based on
+        Answer a fresh Model created according to the given specification and based on
         any underlying model with the given name.
         
      	@param desc the ModelSpec which describes the kind of model to create
