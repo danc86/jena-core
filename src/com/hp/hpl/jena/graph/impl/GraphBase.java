@@ -100,7 +100,7 @@ public abstract class GraphBase implements Graph {
         return bud;
         }
         
-    private Capabilities capabilities = null;
+    protected Capabilities capabilities = null;
     
     public Capabilities getCapabilities()
         { 

@@ -75,10 +75,6 @@ public class WrappedGraph implements Graph
         
     public int size() throws UnsupportedOperationException
         { return base.size(); }
-
-    public int capabilities()
-        { return base.capabilities(); }
-
     }
 
 

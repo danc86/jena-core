@@ -124,23 +124,7 @@ public interface Graph  extends GraphAdd
      * might infer additional triples it results an estimated lower bound of the number of triples.
      * For example, an inference graph might return the number of triples in the raw data graph. 
      */
-	 int size() throws UnsupportedOperationException;
-
-	 /**
-	  * Returns the bitwise or of ADD, DELETE, SIZE,
-	  * to show the capabilities of this implementation of Graph.
-	  * So a read-only graph that can tell you how many triples are in the graph 
-        returns
-	  * SIZE.
-	  */
-	 int capabilities();
-	 /** Issue listSubjects() listNameSpaces().
-	  *  Old code noted that stores could easily
-	  *  give one of each filler for subject or property.
-	  * Current code uses brute force in ModelCom to achieve
-	  * same effect.
-	  * Also consider Model.listSubjectsWithProperty()
-	  */
+	 int size();
 
 }
 

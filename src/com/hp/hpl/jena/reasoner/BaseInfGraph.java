@@ -47,6 +47,29 @@ public abstract class BaseInfGraph extends GraphBase implements InfGraph {
     }
         
     /**
+        Answer the InfCapabilities of this InfGraph.
+     */
+    public Capabilities getCapabilities()
+        {
+        if (capabilities == null) capabilities = new InfCapabilities();    
+        return capabilities;
+        }
+        
+    /**
+        An InfCapabilities notes that size may not be accurate, and some
+        triples may be irremovable.
+        
+        TODO accomodate the properties of the base graph, too.
+    
+     	@author hedgehog
+    */
+    static class InfCapabilities extends AllCapabilities
+        {
+        public boolean sizeAccurate() { return false; }
+        public boolean deleteAllowed( boolean every ) { return !every; }    
+        }
+        
+    /**
      * Return the raw RDF data Graph being processed (i.e. the argument
      * to the Reasonder.bind call that created this InfGraph).
      */

@@ -250,10 +250,6 @@ public abstract class Polyadic
     public PrefixMapping getPrefixMapping()
         { return (getBaseGraph() == null) ? super.getPrefixMapping() : getBaseGraph().getPrefixMapping(); }
 
-    public int capabilities()
-        { return (getBaseGraph() == null) ? super.capabilities() : getBaseGraph().capabilities(); }
-        
-
     // Internal implementation methods
     //////////////////////////////////
 
