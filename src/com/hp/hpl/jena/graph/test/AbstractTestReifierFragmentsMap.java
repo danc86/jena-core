@@ -6,11 +6,12 @@
 
 package com.hp.hpl.jena.graph.test;
 
+import com.hp.hpl.jena.graph.*;
+import com.hp.hpl.jena.graph.impl.Fragments;
 import com.hp.hpl.jena.graph.impl.ReifierFragmentsMap;
 
-
 /**
- @author hedgehog
+     @author hedgehog
 */
 
 public abstract class AbstractTestReifierFragmentsMap extends GraphTestBase
@@ -20,8 +21,28 @@ public abstract class AbstractTestReifierFragmentsMap extends GraphTestBase
 
     public abstract ReifierFragmentsMap getFragmentsMap();
     
-    public void testPasses()
-        {}
+    protected ReifierFragmentsMap fragMap;
+    
+    public void setUp()
+        { fragMap = getFragmentsMap(); }
+    
+    public void testEmpty_noGetFragments()
+        {
+        assertEquals( null, fragMap.getFragments( node( "a" ) ) );
+        assertEquals( null, fragMap.getFragments( node( "b" ) ) );
+        }
+    
+    public void testEmpty_emptyAllTriples()
+        {
+        assertEquals( tripleSet( "" ), iteratorToSet( fragMap.allTriples( triple( "?? ?? ??" ) ) ) );
+        }
+    
+    public void testEmpty_emptyGraph()
+        { assertIsomorphic( Graph.emptyGraph, fragMap.asGraph() ); }
+    
+    public void testPutFragments()
+        {
+        }
     }
 
 /*
