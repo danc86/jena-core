@@ -4,9 +4,9 @@
     $Id$
 */
  
-package com.hp.hpl.jena.mem.test;
+package com.hp.hpl.jena.shared.test;
 
-import com.hp.hpl.jena.mem.ModelMem;
+import com.hp.hpl.jena.shared.RandomOrderGraph;
 
 /**
  *
@@ -14,17 +14,17 @@ import com.hp.hpl.jena.mem.ModelMem;
  * @version $Name$ $Revision$ $Date$
  */
 
-public class TestCaseBasic extends com.hp.hpl.jena.regression.TestCaseBasic {
+public class RandomizedTestCaseBasic extends com.hp.hpl.jena.regression.TestCaseBasic {
 
-    public TestCaseBasic(String name) {
+    public RandomizedTestCaseBasic(String name) {
         super(name);
     }
     
     public void setUp() {
-        m1 = new ModelMem();
-        m2 = new ModelMem();
-        m3 = new ModelMem();
-        m4 = new ModelMem();
+        m1 = RandomOrderGraph.createDefaultModel();
+        m2 = RandomOrderGraph.createDefaultModel();
+        m3 = RandomOrderGraph.createDefaultModel();
+        m4 = RandomOrderGraph.createDefaultModel();
     }
     public void tearDown() {
     	m1 = null;

@@ -1,5 +1,5 @@
 /*
- *  (c) Copyright 2000, 2001 Hewlett-Packard Development Company, LP
+ *  (c) Copyright 2000, 2001, 2003 Hewlett-Packard Development Company, LP
  *  All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -27,7 +27,7 @@
  * $Id$
  */
 
-package com.hp.hpl.jena.mem.test;
+package com.hp.hpl.jena.shared.test;
 
 import junit.framework.*;
 
@@ -36,45 +36,47 @@ import junit.framework.*;
  * @author  bwm
  * @version $Name$ $Revision$ $Date$
  */
-public class TestSuiteRegression extends Object {
+public class RandomizedTestSuiteRegression extends Object {
 
     public static TestSuite suite() {
-        return suite(new TestSuite());
+    	TestSuite s = new TestSuite();
+    	s.setName("Random order models");
+        return suite(s);
     }
 
     public static TestSuite suite(TestSuite suite) {
-        suite.addTest(new TestCaseBasic("test1"));
-        suite.addTest(new TestCaseBasic("test2"));
-        suite.addTest(new TestCaseBasic("test3"));
-        suite.addTest(new TestCaseBasic("test4"));
-        suite.addTest(new TestCaseBasic("test5"));
-        suite.addTest(new TestCaseBasic("test6"));
-        suite.addTest(new TestCaseBasic("test7"));
-        suite.addTest(new TestCaseBasic("test8"));
-        suite.addTest(new TestCaseBasic("test9"));
-        suite.addTest(new TestCaseBasic("test10"));
-        suite.addTest(new TestCaseBasic("test11"));
-        suite.addTest(new TestCaseBasic("test12"));
-        suite.addTest(new TestCaseBasic("test13"));
-        suite.addTest(new TestCaseBasic("test14"));
-        suite.addTest(new TestCaseBasic("test15"));
-        suite.addTest(new TestCaseBasic("test16"));
-        suite.addTest(new TestCaseBasic("test17"));
-        suite.addTest(new TestCaseBasic("test18"));
-        suite.addTest(new TestCaseBasic("test19"));
+        suite.addTest(new RandomizedTestCaseBasic("test1"));
+        suite.addTest(new RandomizedTestCaseBasic("test2"));
+        suite.addTest(new RandomizedTestCaseBasic("test3"));
+        suite.addTest(new RandomizedTestCaseBasic("test4"));
+        suite.addTest(new RandomizedTestCaseBasic("test5"));
+        suite.addTest(new RandomizedTestCaseBasic("test6"));
+        suite.addTest(new RandomizedTestCaseBasic("test7"));
+        suite.addTest(new RandomizedTestCaseBasic("test8"));
+        suite.addTest(new RandomizedTestCaseBasic("test9"));
+        suite.addTest(new RandomizedTestCaseBasic("test10"));
+        suite.addTest(new RandomizedTestCaseBasic("test11"));
+        suite.addTest(new RandomizedTestCaseBasic("test12"));
+        suite.addTest(new RandomizedTestCaseBasic("test13"));
+        suite.addTest(new RandomizedTestCaseBasic("test14"));
+        suite.addTest(new RandomizedTestCaseBasic("test15"));
+        suite.addTest(new RandomizedTestCaseBasic("test16"));
+        suite.addTest(new RandomizedTestCaseBasic("test17"));
+        suite.addTest(new RandomizedTestCaseBasic("test18"));
+        suite.addTest(new RandomizedTestCaseBasic("test19"));
         //      suite.addTest(new TestCaseBasic("test20"));
-        suite.addTest(new TestCaseBasic("test97"));
+        suite.addTest(new RandomizedTestCaseBasic("test97"));
 
-        suite.addTest(new TestCaseBasic("testModelEquals"));
-      
-        suite.addTest(new TestCaseBasic("testMatch"));
+        suite.addTest(new RandomizedTestCaseBasic("testModelEquals"));
+        
+   
+        suite.addTest(new RandomizedTestCaseBasic("testMatch"));
         //    suite.addTest(new TestCaseBasic("testWriterAndReader"));
-        suite.addTest(new TestCaseBasic("testNTripleReader"));
+        suite.addTest(new RandomizedTestCaseBasic("testNTripleReader"));
         //    suite.addTest(new TestCaseBasic("testWriterInterface"));
-        suite.addTest(new TestCaseBasic("testReaderInterface"));
+        suite.addTest(new RandomizedTestCaseBasic("testReaderInterface"));
 
-        suite.addTest(new TestCaseBugs("bug36"));
-
+      
         return suite;
     }
 }
