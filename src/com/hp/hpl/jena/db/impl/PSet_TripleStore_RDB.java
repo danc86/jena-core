@@ -899,9 +899,9 @@ public  class PSet_TripleStore_RDB implements IPSet {
 			Triple t;
 			String cmd;
 			try {
-				Connection con = m_sql.getConnection();
-				//TODO when doing batch.  con.setAutoCommit(false);
-				Statement stmt = con.createStatement();
+				 Connection con = m_sql.getConnection();
+				//TODO when using executeBatch().  con.setAutoCommit(false);
+				//TODO when doing executeBatch() Statement stmt = con.createStatement();
 				Iterator it = triples.iterator();
 				
 				while (it.hasNext()) {
@@ -911,8 +911,7 @@ public  class PSet_TripleStore_RDB implements IPSet {
 				}
 				//TODO  stmt.executeBatch();
 				ArrayList c = new ArrayList(triples);
-				triples.removeAll(c);
-								
+				triples.removeAll(c);						
 		} catch(BatchUpdateException b) {
 					System.err.println("SQLException: " + b.getMessage());
 					System.err.println("SQLState: " + b.getSQLState());
