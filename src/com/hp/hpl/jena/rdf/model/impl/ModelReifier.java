@@ -162,19 +162,6 @@ public class ModelReifier
         }
         
     /**
-        Answer a filter that only accepts nodes that are bound to the given triple.
-        @param t the triple that the node must be bound to
-        @return a filter that accepts only those nodes
-    */
-    private Filter matching( final Triple t )
-        {
-        return new Filter()
-            {
-            public boolean accept( Object o ) { return t.equals( reifier.getTriple( (Node) o ) ); }
-            };
-        }
-        
-    /**
         A mapper that maps modes to their corresponding ReifiedStatement objects. This
         cannot be static: getRS cannot be static, because the mapping is model-specific.
     */
@@ -187,7 +174,7 @@ public class ModelReifier
         { return reifier .allNodes() .mapWith( mapToRS ); }
 
     private ExtendedIterator findReifiedStatements( Triple t )
-        { return reifier .allNodes() .filterKeep( matching( t ) ).mapWith( mapToRS ); }
+        { return reifier .allNodes( t ) .mapWith( mapToRS ); }
         
     /**
         Answer a ReifiedStatement that is based on the given node. 

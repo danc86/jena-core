@@ -78,6 +78,12 @@ public interface Reifier extends GetTriple
     ExtendedIterator allNodes();
     
     /**
+        return an iterator over all the nodes that are reifiying t in 
+        this reifier.
+    */    
+    ExtendedIterator allNodes( Triple t );
+    
+    /**
         remove any existing binding for _n_; hasNode(n) will return false
         and getTriple(n) will return null. 
     */

@@ -67,6 +67,22 @@ public class SimpleReifier implements Reifier
         return WrappedIterator.create( nodeMap.keySet().iterator() ) .filterKeep ( completeFragment );
         }
         
+    public ExtendedIterator allNodes( Triple t )
+        { return allNodes() .filterKeep( matching( this, t ) );  }
+        
+    /**
+        Answer a filter that only accepts nodes that are bound to the given triple.
+        @param t the triple that the node must be bound to
+        @return a filter that accepts only those nodes
+    */        
+    public static Filter matching( final Reifier reifier, final Triple t )
+        {
+        return new Filter()
+            {
+            public boolean accept( Object o ) { return t.equals( reifier.getTriple( (Node) o ) ); }
+            };
+        }
+                
     private Filter completeFragment = new Filter()
         { public boolean accept( Object x ) { return isComplete( (Node) x ); } };
         
