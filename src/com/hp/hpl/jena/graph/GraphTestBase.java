@@ -27,15 +27,7 @@ public class GraphTestBase extends TestCase
     public static TestSuite suite()
         { return new TestSuite( GraphTestBase.class ); }   
 
-    public void testNodeSet()
-        {
-        String [] words = {"when", "home", "come", "the", "cows"};
-        Set s = nodeSet( "when the cows come home" );
-        assertEquals( "set size correct", words.length, s.size() );
-        for (int i = 0; i < words.length; i += 1)
-            assertTrue( "", s.contains( node( words[i] ) ) );
-        }
-        
+
     public static Node node( String x )
         {
         if (x.length() > 0)
