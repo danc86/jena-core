@@ -10,6 +10,7 @@ import com.hp.hpl.jena.graph.query.*;
 import com.hp.hpl.jena.datatypes.*;
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.shared.*;
+import com.hp.hpl.jena.util.iterator.*;
 
 import java.io.*;
 import java.util.*;
@@ -90,6 +91,13 @@ public interface Model
 	 */
 	NsIterator listNameSpaces() throws RDFException;
 
+    /**
+        Answer an iterator over all the bindings implied by the query model.
+        
+        TODO complete this explanation.
+    */
+    ExtendedIterator queryBindingsWith( Model query, Resource [] variables );
+    
 	/** Return a Resource instance in this model.
 	 *
 	 * <p>Subsequent operations on the returned object may modify this model.</p>

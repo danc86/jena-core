@@ -26,6 +26,7 @@ package com.hp.hpl.jena.ontology.path.impl;
 ///////////////
 import com.hp.hpl.jena.ontology.path.*;
 import com.hp.hpl.jena.rdf.model.*;
+import com.hp.hpl.jena.util.iterator.*;
 
 import java.util.*;
 
@@ -261,7 +262,7 @@ public class PathImpl
     /**
      * <p>Implementation of statement iterator for path objects</p>
      */
-    protected class PathStmtIterator
+    protected class PathStmtIterator extends NiceIterator
         implements StmtIterator
     {
         private int i = 0;

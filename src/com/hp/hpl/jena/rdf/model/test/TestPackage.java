@@ -37,6 +37,7 @@ public class TestPackage extends TestSuite {
         addTest( "TestConcurrency", TestConcurrency.suite() ) ;
         addTest( "TestModelMakerImpl", TestModelMakerImpl.suite() );
         addTest( "TestStandardModels", TestStandardModels.suite() );
+        addTest( "TestQuery", TestQuery.suite() );
         }
 
     private void addTest(String name, TestSuite tc) {
