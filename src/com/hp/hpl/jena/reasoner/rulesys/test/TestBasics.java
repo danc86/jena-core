@@ -69,7 +69,7 @@ public class TestBasics extends TestCase  {
             "(?a rdf:type _) -> action(?a).",
             "(?a rdf:type _) -> [(?a rdf:type _) -> action(?a)].",
            "(?a rdf:type _) -> (?a rdf:type 42).",
-           "(?a rdf:type _) -> (?a rdf:type ' fool ').",
+           "(?a rdf:type _) -> (?a rdf:type ' fool that,I(am)').",
             "[rule1: (?a rdf:type _) -> (?a rdf:type 42)]"
         };
         String[] testResults = new String[] {
@@ -79,7 +79,7 @@ public class TestBasics extends TestCase  {
             "[ (?a rdf:type *) -> action(?a) ]",
             "[ (?a rdf:type *) -> [ (?a rdf:type *) -> action(?a) ] ]",
             "[ (?a rdf:type *) -> (?a rdf:type 42) ]",
-            "[ (?a rdf:type *) -> (?a rdf:type 'fool') ]",
+            "[ (?a rdf:type *) -> (?a rdf:type ' fool that,I(am)') ]",
             "[ rule1: (?a rdf:type *) -> (?a rdf:type 42) ]"
         };
         

@@ -25,6 +25,7 @@ public class TestPackage extends TestSuite {
     private TestPackage() {
         super("util");
         addTest( "TestCache",   com.hp.hpl.jena.util.test.TestCache.suite() );
+        addTest( "TestTokenzier", TestTokenizer.suite());
     }
 
     private void addTest(String name, TestSuite tc) {
