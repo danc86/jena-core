@@ -125,6 +125,20 @@ public class TestModelMakerImpl extends ModelTestBase
         checkHistory( one( "getDescription()" ) ); 
         }
 
+    public void testModelSource()
+        {
+        assertTrue( isExtensionOf( ModelMaker.class, ModelSource.class ) );
+        assertTrue( isExtensionOf( ModelSpec.class, ModelSource.class ) );
+        }
+    
+    public boolean isExtensionOf( Class subClass, Class superClass )
+        {
+        if (subClass == superClass) return true;
+        Class [] is = subClass.getInterfaces();
+        for (int i = 0; i < is.length; i += 1) if (isExtensionOf( is[i], superClass )) return true;
+        return false;
+        }
+
     private void checkHistory( List expected )
         { assertEquals( expected, history() ); }
         

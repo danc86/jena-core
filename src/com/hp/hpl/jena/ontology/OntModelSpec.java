@@ -206,7 +206,7 @@ public class OntModelSpec extends ModelSpecImpl implements ModelSpec {
      * Answer the model maker used for creating imported models.
     */
     public ModelMaker getImportModelMaker() {
-        return super.getModelMaker();
+        return importsMaker;
     }
     
     /**

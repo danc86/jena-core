@@ -10,8 +10,6 @@ import java.util.List;
 
 import com.hp.hpl.jena.graph.Node;
 import com.hp.hpl.jena.graph.query.*;
-import com.hp.hpl.jena.graph.query.Expression.Fixed;
-import com.hp.hpl.jena.graph.query.Expression.Variable;
 import com.hp.hpl.jena.graph.test.GraphTestBase;
 import com.hp.hpl.jena.util.iterator.Map1;
 

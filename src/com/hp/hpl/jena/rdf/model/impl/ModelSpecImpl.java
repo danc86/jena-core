@@ -92,6 +92,14 @@ public abstract class ModelSpecImpl implements ModelSpec
     */
     public static ModelSpec create( Resource desc )
         { return create( readModel( desc ) ); }
+    
+    /*
+     	Answer a Model, as per the specification of ModelSource; if the name
+     	is useful, use it, otherwise don't bother. Default implementation is
+     	to return a fresh model.
+    */
+    public Model openModel( String URI )
+        { return ModelFactory.createDefaultModel(); }
         
     /**
         Answer a ModelSpec created from the RDF model to be found using the URI of

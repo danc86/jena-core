@@ -11,7 +11,7 @@ package com.hp.hpl.jena.rdf.model;
     
  	@author kers
 */
-public interface ModelSpec
+public interface ModelSpec extends ModelSource
     {
     /**
         Answer a new Model which fits the specification of this ModelSpec.
