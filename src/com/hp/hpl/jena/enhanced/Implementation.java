@@ -27,8 +27,17 @@ public abstract class Implementation {
       * @return A new enhanced node which wraps node but presents the interface(s)
       *         that this factory encapsulates.
       */
-     public abstract EnhNode wrap(Node node,EnhGraph eg);
-    
+     public abstract EnhNode wrap( Node node,EnhGraph eg );
+     
+     /**
+        true iff wrapping (node, eg) would succeed.
+        @param node the node to test for suitability
+        @param eg the enhanced graph the node appears in
+        @return true iff the node can represent our type in that graph
+     */
+     public boolean canWrap( Node node, EnhGraph eg )
+        { return true; }
+     
 }
 
 /*

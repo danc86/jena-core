@@ -27,6 +27,7 @@ public class TestPackage extends TestSuite {
         addTest( "TestSimpleListStatements", TestSimpleListStatements.suite() );
         addTest( "TestModelPolymorphism", TestModelPolymorphism.suite() );
         addTest( "TestSimpleSelector", TestSimpleSelector.suite() );
+        addTest( "TestStatements", TestReifiedStatements.suite() );
         addTest( "TestReifiedStatements", TestReifiedStatements.suite() );
         }
 

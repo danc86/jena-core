@@ -1192,31 +1192,32 @@ public class Regression extends Object {
                 if (! stmtf[i]) error(test, 160+i);
             }
 
-            {
-            System.err.println( "WARNING: reification testing suppressed for the moment" );
-/* Reification is not working properly
-
-                for (int i=0; i<num; i++) {
-                    stmtf[i] = false;
-                    m.add(stmts[i], predicate[i], i);
-                }
-                sIter = m.listReifiedStatements();
-                while (sIter.hasNext()) {
-                    Statement stmt = sIter.next();
-                    found = false;
-                    for (int i=0; i<num; i++) {
-                        if (stmt.equals(stmts[i])) {
-                            found = true;
-                            if (stmtf[i]) error(test, 200);
-                            stmtf[i] = true;
-                        }
-                    }
-                    if (! found) error(test, 210);
-                }
-                for (int i=0; i<num; i++) {
-                    if (! stmtf[i]) error(test, 220+i);
-                } */
-            }
+// SEE the tests in model.test: TestReifiedStatements and TestStatementResources
+//            {
+//            System.err.println( "WARNING: reification testing suppressed for the moment" );
+///* Reification is not working properly
+//
+//                for (int i=0; i<num; i++) {
+//                    stmtf[i] = false;
+//                    m.add(stmts[i], predicate[i], i);
+//                }
+//                sIter = m.listReifiedStatements();
+//                while (sIter.hasNext()) {
+//                    Statement stmt = sIter.next();
+//                    found = false;
+//                    for (int i=0; i<num; i++) {
+//                        if (stmt.equals(stmts[i])) {
+//                            found = true;
+//                            if (stmtf[i]) error(test, 200);
+//                            stmtf[i] = true;
+//                        }
+//                    }
+//                    if (! found) error(test, 210);
+//                }
+//                for (int i=0; i<num; i++) {
+//                    if (! stmtf[i]) error(test, 220+i);
+//                } */
+//            }
 
             {
                 NodeIterator iter;

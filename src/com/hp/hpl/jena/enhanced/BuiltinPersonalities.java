@@ -26,6 +26,7 @@ public class BuiltinPersonalities {
         .add( Bag.class, BagImpl.factory )
         .add( Seq.class, SeqImpl.factory )
         .add( OntList.class, OntListImpl.factory )
+        .add( ReifiedStatement.class, ReifiedStatementImpl.factory )
         ;		
 }
 
