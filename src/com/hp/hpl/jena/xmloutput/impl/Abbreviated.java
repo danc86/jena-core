@@ -33,7 +33,7 @@ public class Abbreviated extends BaseXMLWriter implements RDFErrorHandler {
 			DAML_OIL.Ontology,
 			OWL.Ontology,
 			DAML_OIL.Datatype,
-			OWL.Datatype,
+			OWL.DataRange,       // !! TODO !! ijd - I'm not sure about this ... Jeremy please check (was OWL.Datatype)
 			RDFS.Datatype,
 			DAML_OIL.Class,
 			RDFS.Class,
