@@ -10,7 +10,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.sql.BatchUpdateException;
-import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.PreparedStatement;
@@ -33,6 +32,7 @@ import com.hp.hpl.jena.graph.Node_URI;
 import com.hp.hpl.jena.graph.StandardTripleMatch;
 import com.hp.hpl.jena.graph.Triple;
 import com.hp.hpl.jena.graph.TripleMatch;
+import com.hp.hpl.jena.graph.TripleMatchIterator;
 import com.hp.hpl.jena.rdf.model.AnonId;
 import com.hp.hpl.jena.rdf.model.RDFException;
 import com.hp.hpl.jena.util.Log;
@@ -1331,7 +1331,7 @@ public void deleteTripleAR(
 	   } catch (Exception e) {
 		 Log.debug("find encountered exception " + e);
 	   }
-	   return ((ExtendedIterator) result);
+	   return ( new TripleMatchIterator(t,(ExtendedIterator) result));
    }
 
 		/* (non-Javadoc)
