@@ -99,6 +99,8 @@ class SyntaxTest extends TestCase {
 			OntModel om = ModelFactory.createOntologyModel( 
 			new OntModelSpec(null,dm,null,ProfileRegistry.OWL_LANG)  ,
 			ent.mdl);
+		//	if (true)
+		//	  return;
 			//(InputStream) inI.next(),
 			//om.read()
 			chk.add(om.getGraph());
