@@ -51,7 +51,7 @@ public class GoalTable {
      */
     public GoalState findGoal(TriplePattern goal) {
         if (ruleEngine.getInfGraph().isTraceOn()) {
-            logger.debug("findGoal on " + goal.toString());
+            //logger.debug("findGoal on " + goal.toString());
         }
         GoalResults results = (GoalResults) table.get(goal);
         if (results == null) {

@@ -38,6 +38,9 @@ public class BasicBackwardRuleReasoner implements Reasoner {
     /** Flag to set whether the inference class should record derivations */
     protected boolean recordDerivations = false;
     
+    /** Flag which, if true, enables tracing of rule actions to logger.info */
+    boolean traceOn = false;
+    
     /** threshold on the numbers of rule firings allowed in a single operation */
     protected long nRulesThreshold = BasicForwardRuleInfGraph.DEFAULT_RULES_THRESHOLD;
 
@@ -54,7 +57,7 @@ public class BasicBackwardRuleReasoner implements Reasoner {
      * Internal constructor, used to generated a partial binding of a schema
      * to a rule reasoner instance.
      */
-    private BasicBackwardRuleReasoner(BasicBackwardRuleReasoner parent, Graph schemaGraph) {
+    protected BasicBackwardRuleReasoner(BasicBackwardRuleReasoner parent, Graph schemaGraph) {
         rules = parent.rules;
         ruleStore = parent.ruleStore;
         this.schemaGraph = schemaGraph;
@@ -119,6 +122,14 @@ public class BasicBackwardRuleReasoner implements Reasoner {
      */
     public void setRulesThreshold(long threshold) {
         nRulesThreshold = threshold;
+    }
+    
+    /**
+     * Set the state of the trace flag. If set to true then rule firings
+     * are logged out to the Logger at "INFO" level.
+     */
+    public void setTraceOn(boolean state) {
+        traceOn = state;
     }
     
     /**

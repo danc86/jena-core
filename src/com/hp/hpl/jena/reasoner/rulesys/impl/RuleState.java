@@ -42,6 +42,9 @@ public class RuleState {
     /** The continuation point for the rule clause being processed */
     protected GoalState goalState;
     
+    /** Flag to indicate that rule state is scheduled on the agenda */
+    protected boolean isScheduled;
+    
     /** The clause number in the rule to be processed next.
      *  TODO this needs revising if we enable clause reordering */
     int clauseIndex;
@@ -209,8 +212,9 @@ public class RuleState {
      * Printable string
      */
     public String toString() {
-        return "RS: clause=" + (clauseIndex-1) 
-                + ", rule=" + ruleInstance.rule.toShortString()
+        return "RuleState " 
+                + ruleInstance.rule.toShortString()
+                + "("+ (clauseIndex-1) +")"
                 + ", env=" + env 
                 + ", gs=" + goalState;
     }

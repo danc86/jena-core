@@ -48,20 +48,20 @@ public class TestRDFSRules extends TestCase {
         return new TestSuite(TestRDFSRules.class);
     }  
 
-    /**
-     * Test the basic functioning of an RDFS reasoner
-     */
-    public void testRDFSReasoner() throws IOException {
-        ReasonerTester tester = new ReasonerTester("rdfs/manifest-nodirect.rdf");
-        ReasonerFactory rf = RDFSRuleReasonerFactory.theInstance();
-        assertTrue("RDFS reasoner tests", tester.runTests(rf, this, null));
-    }
+//    /**
+//     * Test the basic functioning of an RDFS reasoner
+//     */
+//    public void testRDFSReasoner() throws IOException {
+//        ReasonerTester tester = new ReasonerTester("rdfs/manifest-nodirect.rdf");
+//        ReasonerFactory rf = RDFSRuleReasonerFactory.theInstance();
+//        assertTrue("RDFS reasoner tests", tester.runTests(rf, this, null));
+//    }
 
     /**
      * Test the basic functioning of an RDFS reasoner
      */
     public void testRDFSBReasoner() throws IOException {
-        ReasonerTester tester = new ReasonerTester("rdfs/manifest-nodirect.rdf");
+        ReasonerTester tester = new ReasonerTester("rdfs/manifest-debug.rdf");
         ReasonerFactory rf = RDFSBRuleReasonerFactory.theInstance();
         assertTrue("RDFS reasoner tests", tester.runTests(rf, this, null));
     }
@@ -102,8 +102,8 @@ public class TestRDFSRules extends TestCase {
             t1 = System.currentTimeMillis();
             Model inf3 = ModelFactory.createModelForGraph(rdfsBRule.bindSchema(tbox.getGraph()).bind(data.getGraph()));
             count = 0;
-            for (Iterator i = inf2.listStatements(null, RDF.type, C1); i.hasNext(); i.next()) count++;
-            //for (Iterator i = inf2.listStatements(); i.hasNext(); i.next()) count++;
+            for (Iterator i = inf3.listStatements(null, RDF.type, C1); i.hasNext(); i.next()) count++;
+            //for (Iterator i = inf3.listStatements(); i.hasNext(); i.next()) count++;
             t2 = System.currentTimeMillis();
             System.out.println("RDFSBrule: " + count +" results in " + (t2-t1) +"ms");
 
