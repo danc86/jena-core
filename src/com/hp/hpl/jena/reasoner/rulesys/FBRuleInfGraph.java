@@ -627,9 +627,16 @@ public class FBRuleInfGraph  extends BasicForwardRuleInfGraph implements Backwar
         checkOpen();
         StandardValidityReport report = new StandardValidityReport();
         // Switch on validation
-        add(new Triple(Node.createAnon(), 
-                        ReasonerVocabulary.RB_VALIDATION.asNode(),
-                        Functor.makeFunctorNode("on", new Node[] {})));
+        Triple validateOn = new Triple(Node.createAnon(), 
+                                ReasonerVocabulary.RB_VALIDATION.asNode(),
+                                Functor.makeFunctorNode("on", new Node[] {}));
+        // We sneak this switch directly into the engine to avoid contaminating the
+        // real data - this is only possible only the forward engine has been prepared
+//      add(validateOn);
+        if (!isPrepared) {
+            prepare();
+        }
+        engine.add(validateOn); 
         // Look for all reports
         TriplePattern pattern = new TriplePattern(null, ReasonerVocabulary.RB_VALIDATION_REPORT.asNode(), null);
         for (Iterator i = findFull(pattern); i.hasNext(); ) {
