@@ -474,6 +474,17 @@ public class GraphRDB extends GraphBase implements Graph {
 		return m_driver.getConnection();
 	}
 	
+	/**
+	 * Return the reification behavior (GraphRDB) for this graph
+	 * 
+	 * @return integer that defines the reification behavior for this graphRDB.
+	 */
+	public int reificationBehavior( )
+		{
+		return m_reificationBehaviour;
+		}
+
+	
 
 	/**
 	 * Return an iterator over the specialized graphs for this graph
@@ -483,15 +494,15 @@ public class GraphRDB extends GraphBase implements Graph {
 	public Iterator getSpecializedGraphs() {
 		return m_specializedGraphs.iterator();
 	}
-/*	
+//*	
 	private QueryHandler q = null;
-    
+   
 	public QueryHandler queryHandler()
 		{
-		if (q == null) q = new DBQueryHandler( this );
+		if (q == null) q = new DBQueryHandler( this);
 		return q;
 		}
-*/
+//*/
 }
 
 /*
