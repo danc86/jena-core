@@ -108,7 +108,7 @@ public abstract class DriverRDB implements IRDBDriver {
    protected String LAYOUT_TYPE = "TripleStore";
 
    /** Default name of the table that holds system property graph asserted statements **/
-   protected final String SYSTEM_PROP_TNAME = "JENA_SYS_STMTASSERTED";
+   protected final String SYSTEM_PROP_TNAME = "SYS_STMTASSERTED";
     
    /** Name of the grpah holding default properties (the one's that a newly-created
 	*  graph will have by default **/
