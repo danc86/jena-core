@@ -113,8 +113,8 @@ public class DebugOWL {
                 break;
             
             case OWL:
-                reasoner = OWLExptRuleReasonerFactory.theInstance().create(null);
-//                ((OWLExptRuleReasoner)reasoner).setTraceOn(true);
+                reasoner = OWLRuleReasonerFactory.theInstance().create(null);
+//                ((OWLRuleReasoner)reasoner).setTraceOn(true);
                 break;
             
             case RDFSFB:

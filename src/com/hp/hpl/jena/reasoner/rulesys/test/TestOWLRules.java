@@ -169,7 +169,7 @@ public class TestOWLRules extends TestCase {
      */
     /*
     public void testOWLReasoner() throws IOException {
-        OWLWGTester tester = new OWLWGTester(OWLFBRuleReasonerFactory.theInstance(), this, null);
+        OWLWGTester tester = new OWLWGTester(OWLRuleReasonerFactory.theInstance(), this, null);
         tester.runTests("SymmetricProperty/Manifest001.rdf");
     }
     */
@@ -179,7 +179,7 @@ public class TestOWLRules extends TestCase {
      */
     protected void runTest() throws IOException {
         if (testForward) {
-            OWLWGTester tester = new OWLWGTester(OWLFBRuleReasonerFactory.theInstance(), this, null);
+            OWLWGTester tester = new OWLWGTester(OWLRuleReasonerFactory.theInstance(), this, null);
             tester.runTests(manifest, enableTracing, printStats);
 //            OWLRuleReasoner.printStats();
         } else {
