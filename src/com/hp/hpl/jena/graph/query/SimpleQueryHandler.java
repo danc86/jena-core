@@ -28,31 +28,7 @@ public class SimpleQueryHandler implements QueryHandler
         { this.graph = graph; }
 
     public Stage patternStage( Mapping map, Graph constraints, Triple [] t )
-        {
-        if (t.length == 1)
-            return new PatternStage( graph, map, t );
-        else
-            {
-            final Stage [] stages = new Stage[t.length];
-            for (int i = 0; i < t.length; i += 1) stages[i] = patternStage( map, constraints, new Triple[] {t[i]} );
-            return new Stage() 
-                {
-                public Stage connectFrom( Stage s ) 
-                    { 
-                    for (int i = 0; i < stages.length; i += 1) 
-                        {
-                        stages[i].connectFrom( s );
-                        s = stages[i];
-                        }
-                    return super.connectFrom( s ); 
-                    }
-                public Pipe deliver( Pipe L ) 
-                    { 
-                    return stages[stages.length - 1].deliver( L ); 
-                    }
-                };
-            }       
-        }
+        { return new PatternStage( graph, map, t ); }
         
     public BindingQueryPlan prepareBindings( Query q, Node [] variables )   
         { return new SimpleQueryPlan( graph, q, variables ); }

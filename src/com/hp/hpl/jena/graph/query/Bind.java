@@ -23,15 +23,22 @@ public class Bind extends Element
 	public Bind( int n ) { super( n ); }
 	
     /**
-        accept any node, rememver its value by storing it in d[index].
-        @return true
+        Answer true after updating the domain to record the value this element binds.
+        @param d the domain in which to note this element is bound to <code>x</code>.
+        @return true [after side-effecting d]
+    */		
+    public boolean match( Domain d, Node x )
+        {
+        d.setElement( index, x );
+        return true;    
+        }
+        
+    /**
+        Answer Node.ANY, as a binding occurance of a variable can match anything.
     */
-	public boolean accepts( Domain d, Node x )
-		{
-		d.setElement( index, x );
-		return true;		
-		}
-		
+    public Node asNodeMatch( Domain d )
+        { return Node.ANY; } 
+        
 	public String toString()
 		{ return "<Bind " + index + ">"; }
 	}

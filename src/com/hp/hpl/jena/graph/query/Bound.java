@@ -25,11 +25,11 @@ public class Bound extends Element
         Answer true iff the node <code>x</code> matches the previously-seen value at
         Donain[index]. The matching uses datatype-value semantics, implemented by
         <code>Node::sameValueAs()</code>.
-    */
-	public boolean accepts( Domain d, Node x )
+    */  
+    public boolean match( Domain d, Node x )
         { return x.sameValueAs(d.get( index ) ); }
-        
-    public Node asNode( Domain d ) 
+     
+    public Node asNodeMatch( Domain d ) 
         { return (Node) d.get( index ); }
         
     public String toString()
