@@ -25,12 +25,19 @@ package com.hp.hpl.jena.reasoner.dig;
 
 // Imports
 ///////////////
+import java.io.*;
+import java.io.FileInputStream;
+import java.io.InputStream;
+
+import org.apache.commons.logging.LogFactory;
+
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.ontology.*;
 import com.hp.hpl.jena.ontology.OntModelSpec;
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.reasoner.*;
 import com.hp.hpl.jena.reasoner.rulesys.Util;
+import com.hp.hpl.jena.util.FileUtils;
 import com.hp.hpl.jena.vocabulary.ReasonerVocabulary;
 
 
@@ -301,7 +308,28 @@ public class DIGReasoner
         else if (parameter.equals(ReasonerVocabulary.EXT_REASONER_AXIOMS)) {
             String axURL = (value instanceof Resource) ? ((Resource) value).getURI() : value.toString();
             m_axioms = ModelFactory.createDefaultModel();
-            m_axioms.read( axURL );
+            
+            // if a file URL, try to load it as a stream (which means we can extract from jars etc)
+            if (axURL.startsWith( "file:")) {
+                String fileName = axURL.substring( 5 );
+                InputStream in = null;
+                try {
+                    in = FileUtils.openResourceFileAsStream( fileName );
+                    m_axioms.read( in, axURL );
+                }
+                catch (FileNotFoundException e) {
+                    LogFactory.getLog( getClass() ).error( "Could not open DIG axioms " + axURL );
+                }
+                finally { 
+                    if (in != null) {
+                        try {in.close();} catch (IOException ignore) {}
+                    }
+                }
+            }
+            else {
+                m_axioms.read( axURL );
+            }
+            
             return true;
         } 
         else {
