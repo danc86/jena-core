@@ -179,9 +179,9 @@ public class StreamingChecker extends CheckerImpl implements CheckerResults {
 		 {
 		try {
 			ARP arp = new ARP();
-			arp.setStatementHandler(sh);
+			arp.getHandlers().setStatementHandler(sh);
 
-			arp.setExtendedHandler(eh);
+			arp.getHandlers().setExtendedHandler(eh);
 			arp.load(in, url);
 
 		} catch (Exception e) {
@@ -193,9 +193,9 @@ public class StreamingChecker extends CheckerImpl implements CheckerResults {
 	public void load(Reader rdr, String url)  {
 		try {
 			ARP arp = new ARP();
-			arp.setStatementHandler(sh);
+			arp.getHandlers().setStatementHandler(sh);
 
-			arp.setExtendedHandler(eh);
+			arp.getHandlers().setExtendedHandler(eh);
 			arp.load(rdr, url);
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -35,6 +35,7 @@ import org.xml.sax.ext.LexicalHandler;
 import org.xml.sax.helpers.DefaultHandler;
 
 /**
+ * A lexical handler that does nothing.
  * @author jjchplb
  *
  */
@@ -44,48 +45,36 @@ class LexicalHandlerImpl extends DefaultHandler implements LexicalHandler {
 	 * @see org.xml.sax.ext.LexicalHandler#endCDATA()
 	 */
 	public void endCDATA() throws SAXException {
-		// TODO Auto-generated method stub
-
 	}
 
 	/* (non-Javadoc)
 	 * @see org.xml.sax.ext.LexicalHandler#endDTD()
 	 */
 	public void endDTD() throws SAXException {
-		// TODO Auto-generated method stub
-
 	}
 
 	/* (non-Javadoc)
 	 * @see org.xml.sax.ext.LexicalHandler#startCDATA()
 	 */
 	public void startCDATA() throws SAXException {
-		// TODO Auto-generated method stub
-
 	}
 
 	/* (non-Javadoc)
 	 * @see org.xml.sax.ext.LexicalHandler#comment(char[], int, int)
 	 */
 	public void comment(char[] ch, int start, int length) throws SAXException {
-		// TODO Auto-generated method stub
-
 	}
 
 	/* (non-Javadoc)
 	 * @see org.xml.sax.ext.LexicalHandler#endEntity(java.lang.String)
 	 */
 	public void endEntity(String name) throws SAXException {
-		// TODO Auto-generated method stub
-
 	}
 
 	/* (non-Javadoc)
 	 * @see org.xml.sax.ext.LexicalHandler#startEntity(java.lang.String)
 	 */
 	public void startEntity(String name) throws SAXException {
-		// TODO Auto-generated method stub
-
 	}
 
 	/* (non-Javadoc)
@@ -93,8 +82,6 @@ class LexicalHandlerImpl extends DefaultHandler implements LexicalHandler {
 	 */
 	public void startDTD(String name, String publicId, String systemId)
 			throws SAXException {
-		// TODO Auto-generated method stub
-
 	}
 
 }

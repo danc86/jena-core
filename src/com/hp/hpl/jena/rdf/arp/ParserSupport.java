@@ -52,10 +52,10 @@ import org.apache.xerces.util.XMLChar;
 class ParserSupport
 	implements ARPErrorNumbers, RDFParserConstants, LanguageTagCodes {
 	Map idsUsed = new HashMap();
-	ParserSupport(ARPFilter arp) {
+	ParserSupport(XMLHandler arp) {
 		this.arp = arp;
 	}
-	ARPFilter arp;
+	XMLHandler arp;
 	void checkWhite(StrToken st, boolean maybeMissingParseType)
 		throws ParseException {
 		String s = st.value;
@@ -521,7 +521,7 @@ class ParserSupport
 	}
 	static Map xmlNameSpace() {
 		Map rslt = new HashMap();
-		rslt.put("xml", ARPFilter.xmlns);
+		rslt.put("xml", XMLHandler.xmlns);
 		rslt.put("", "");
 		return rslt;
 	}

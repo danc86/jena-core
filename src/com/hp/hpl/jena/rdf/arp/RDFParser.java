@@ -72,11 +72,11 @@ class RDFParser implements ARPErrorNumbers, RDFParserConstants {
      tokenImage[X_SAX_EX] = ""; // suppress messages about this ...
    }
 
-   ARPFilter arp;
+   XMLHandler arp;
    ParserSupport X;
    // For creating syntax error messages.
    Token startAttr;
-   RDFParser(TokenPipe pipe, ARPFilter arp) {
+   RDFParser(TokenPipe pipe, XMLHandler arp) {
      this(pipe);
      this.arp = arp;
      X = new ParserSupport(arp);

@@ -28,10 +28,10 @@ class RDFCollection extends CollectionAction {
     private AResourceInternal rslt[];
 	static {
 		try {
-     		nil        = new URIReference(ARPFilter.rdfns+"nil");
+     		nil        = new URIReference(XMLHandler.rdfns+"nil");
             
-			first = new URIReference(ARPFilter.rdfns+"first");
-			rest       = new URIReference(ARPFilter.rdfns+"rest");
+			first = new URIReference(XMLHandler.rdfns+"first");
+			rest       = new URIReference(XMLHandler.rdfns+"rest");
 		}
 		catch (MalformedURIException e) {
 			System.err.println("Internal error: " + e.toString());

@@ -11,11 +11,11 @@ import java.util.Map;
  *
 */
 class XMLNullContext extends XMLContext implements ARPErrorNumbers {
-	final ARPFilter forErrors;
+	final XMLHandler forErrors;
 	final int errno;
 	final String errmsg;
 	
-	XMLNullContext(ARPFilter f, int eno) {
+	XMLNullContext(XMLHandler f, int eno) {
 		super(null,null);
 		forErrors = f;
 		errno = eno;

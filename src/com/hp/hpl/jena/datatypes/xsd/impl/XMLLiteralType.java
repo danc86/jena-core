@@ -75,7 +75,8 @@ public class XMLLiteralType extends BaseDatatype implements RDFDatatype {
         // status[2] the result (good if status[1] and not status[0]).
         
         ARP arp = new ARP();
-        arp.setErrorHandler(new ErrorHandler(){
+        
+        arp.getHandlers().setErrorHandler(new ErrorHandler(){
         	public void fatalError(SAXParseException e){
         		status[0] = true;
         	}
@@ -86,7 +87,7 @@ public class XMLLiteralType extends BaseDatatype implements RDFDatatype {
 				status[0] = true;
 			}
         });
-        arp.setStatementHandler(new StatementHandler(){
+        arp.getHandlers().setStatementHandler(new StatementHandler(){
         public void statement(AResource a, AResource b, ALiteral l){
         	/* this method is invoked exactly once
         	 * while parsing the dummy document.

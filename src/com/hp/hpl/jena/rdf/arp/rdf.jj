@@ -52,7 +52,7 @@ class RDFParser implements ARPErrorNumbers {
 
   static {
 // Terminal description for error messages.
-// The tokeniser (ARPFilter) defines what the tokens actually are.
+// The tokeniser (XMLHandler) defines what the tokens actually are.
      tokenImage[A_ABOUT] = "attribute rdf:about";
      tokenImage[A_ID] = "attribute rdf:ID";
      tokenImage[A_NODEID] = "attribute rdf:nodeID";
@@ -84,11 +84,11 @@ class RDFParser implements ARPErrorNumbers {
      tokenImage[X_SAX_EX] = ""; // suppress messages about this ...
    }
  
-   ARPFilter arp;
+   XMLHandler arp;
    ParserSupport X;
    // For creating syntax error messages.
    Token startAttr;
-   RDFParser(TokenPipe pipe, ARPFilter arp) {
+   RDFParser(TokenPipe pipe, XMLHandler arp) {
      this(pipe);
      this.arp = arp;
      X = new ParserSupport(arp);

@@ -50,7 +50,7 @@ public class TestErrorMsg extends TestCase {
 		throws IOException, MalformedPatternException {
 		final StringBuffer buf = new StringBuffer();
 		ARP arp = new ARP();
-		arp.setErrorHandler(new ErrorHandler() {
+		arp.getHandlers().setErrorHandler(new ErrorHandler() {
 
 			public void warning(SAXParseException exception) {
 				buf.append(exception.getMessage());

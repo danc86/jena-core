@@ -62,7 +62,7 @@ public class StanfordImpl implements org.w3c.rdf.syntax.RDFParser {
      * @param consumer For callbacks from the parser.
      */
     synchronized public void parse(InputSource source,final RDFConsumer consumer) throws SAXException {
-        arp.setStatementHandler(new StanfordStatementHandler(consumer) );
+        arp.getHandlers().setStatementHandler(new StanfordStatementHandler(consumer) );
         try {
            arp.load(source);
         }
@@ -76,7 +76,7 @@ public class StanfordImpl implements org.w3c.rdf.syntax.RDFParser {
      */
     public void setErrorHandler(ErrorHandler handler) {
         errorHandler = handler;
-        arp.setErrorHandler(handler);
+        arp.getHandlers().setErrorHandler(handler);
     }
     
     private class StanfordStatementHandler implements StatementHandler {

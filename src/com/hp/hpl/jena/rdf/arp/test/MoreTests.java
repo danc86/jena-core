@@ -179,7 +179,7 @@ public class MoreTests
 		InputStream in;
 		long start = System.currentTimeMillis();
 		in = new FileInputStream("testing/wg/miscellaneous/consistent001.rdf");
-		a.setStatementHandler(new StatementHandler() {
+		a.getHandlers().setStatementHandler(new StatementHandler() {
 			int countDown = 10;
 			public void statement(
 				AResource subj,
