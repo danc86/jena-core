@@ -131,6 +131,20 @@ public class TestBugReports extends TestCase {
         assertEquals( 3, count );
     }
     
+    /** Bug report by Dana Nadah - cannot remove import */
+    public void test_dn_02() {
+        OntModel mymod = ModelFactory.createOntologyModel( OntModelSpec.OWL_MEM, null );
+        mymod.read( "file:testing/ontology/testImport3/a.owl" );
+        
+        assertEquals( "Graph count..", 2, mymod.getSubGraphs().size() );
+        
+        for (Iterator it = mymod.listImportedModels(); it.hasNext();) {
+                mymod.removeSubModel( (Model) it.next() );
+        }
+        
+        assertEquals( "Graph count..", 0, mymod.getSubGraphs().size() );
+    }
+    
     
     /**
      * Bug report by Mariano Rico Almodóvar [Mariano.Rico@uam.es] on June 16th.
@@ -796,6 +810,28 @@ public class TestBugReports extends TestCase {
         //writer.write(baseModel, out, BASE );
     }
 
+    /** Bug report by Harry Chen - closed exception when reading many models */
+    public void test_hc_01() 
+        throws Exception 
+    {
+        for (int i = 0; i < 5; i++) {
+
+            OntModel m = ModelFactory.createOntologyModel();
+
+            FileInputStream ifs = new FileInputStream("testing/ontology/relativenames.rdf");
+
+            //System.out.println("Start reading...");
+            m.read(ifs, "http://example.org/foo");
+            //System.out.println("Done reading...");
+
+            ifs.close();
+            //System.out.println("Closed ifs");
+            m.close();
+            //System.out.println("Closed model");
+        }
+    }
+    
+    
     // Internal implementation methods
     //////////////////////////////////
 

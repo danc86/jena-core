@@ -2096,7 +2096,14 @@ public class OntModelImpl
      * may be an expensive operation) 
      */
     public void removeSubModel( Model model, boolean rebind ) {
-        getUnionGraph().removeGraph( model.getGraph() );
+        Graph subG = model.getGraph();
+        
+        if (subG instanceof MultiUnion) {
+            // we need to get the base graph when removing a ontmodel
+            subG = ((MultiUnion) subG).getBaseGraph();
+        }
+
+        getUnionGraph().removeGraph( subG );
         if (rebind) {
             rebind();
         }
