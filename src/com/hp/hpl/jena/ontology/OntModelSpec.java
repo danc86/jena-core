@@ -178,7 +178,7 @@ public class OntModelSpec extends ModelSpecImpl implements ModelSpec {
         @param description an RDF model using the JMS vocabulary
     */
     public OntModelSpec( Model description )  { 
-        this( description, findRootByType( description, JMS.OntModelSpec ) );
+        this( findRootByType( description, JMS.OntModelSpec ), description );
     }
 
     /**
@@ -190,7 +190,7 @@ public class OntModelSpec extends ModelSpecImpl implements ModelSpec {
         @param description an RDF model using the JMS vocabulary
         @param root the root of the sub-graph to use for the specification
     */    
-    public OntModelSpec( Model description, Resource root )  { 
+    public OntModelSpec( Resource root, Model description )  { 
         this( createMaker( description ), getDocumentManager( description, root ),
             getReasonerFactory( description, root ), getLanguage( description, root )  );
     }

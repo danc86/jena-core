@@ -29,9 +29,9 @@ public class InfModelSpec extends ModelSpecImpl
         Initialise an InfModelSpec using the ModelMaker specification and the value of
         the JMS.reasoner property.
     */
-    public InfModelSpec( Model description )
+    public InfModelSpec( Resource root, Model description )
         {
-        super( description );
+        super( getMaker( root, description ), description );
         Statement st = description.getRequiredProperty( null, JMS.reasoner );
         reasonerResource = st.getResource();
         }   
