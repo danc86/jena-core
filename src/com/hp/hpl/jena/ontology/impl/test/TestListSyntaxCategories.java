@@ -630,12 +630,14 @@ public class TestListSyntaxCategories
         }
         
         public void setUp() {
-            OntDocumentManager.getInstance().clearCache();
-            OntDocumentManager.getInstance().setProcessImports( true );
+            // ensure the ont doc manager is in a consistent state
+            OntDocumentManager.getInstance().reset( true );
         }
+        
         
         public void runTest() {
             OntModel m = ModelFactory.createOntologyModel( m_spec, null );
+            m.getDocumentManager().setMetadataSearchPath( "file:etc/ont-policy-test.rdf", true );
             
             m.read( m_fileName );
             

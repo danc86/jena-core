@@ -69,7 +69,10 @@ public class TestOntReasoning
     //////////////////////////////////
 
     public void setUp() {
+        // ensure the ont doc manager is in a consistent state
+        OntDocumentManager.getInstance().reset( true );
     }
+    
     
     public void tearDown() {
     }

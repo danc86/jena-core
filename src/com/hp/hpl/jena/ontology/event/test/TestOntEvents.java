@@ -94,6 +94,13 @@ public class TestOntEvents
                 }
             });
         }
+        
+        public void setUp() {
+            // ensure the ont doc manager is in a consistent state
+            OntDocumentManager.getInstance().reset( true );
+        }
+        
+        
     }
     
     private static interface ModelUpdater {

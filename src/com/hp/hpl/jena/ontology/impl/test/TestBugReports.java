@@ -75,6 +75,12 @@ public class TestBugReports extends TestCase {
     // External signature methods
     //////////////////////////////////
 
+    public void setUp() {
+        // ensure the ont doc manager is in a consistent state
+        OntDocumentManager.getInstance().reset( true );
+    }
+    
+    
     /**
      * Bug report by Mariano Rico Almodóvar [Mariano.Rico@uam.es] on June 16th.
      * Said to raise exception.
@@ -118,6 +124,7 @@ public class TestBugReports extends TestCase {
         // definition
         // note OWL_MEM => no reasoner is used
         OntModel m = ModelFactory.createOntologyModel(OntModelSpec.OWL_MEM, null);
+        m.getDocumentManager().setMetadataSearchPath( "file:etc/ont-policy-test.rdf", true );
         m.read(new ByteArrayInputStream(doc.getBytes()), base);
 
         // we need a resource corresponding to OWL Class but in m

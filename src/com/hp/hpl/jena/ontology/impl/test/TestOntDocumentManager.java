@@ -107,8 +107,14 @@ public class TestOntDocumentManager
     // External signature methods
     //////////////////////////////////
 
+    public void setUp() {
+        // ensure the ont doc manager is in a consistent state
+        OntDocumentManager.getInstance().reset( true );
+    }
+    
+    
     public void testInitialisation() {
-        OntDocumentManager mgr = new OntDocumentManager();
+        OntDocumentManager mgr = new OntDocumentManager( "file:etc/ont-policy-test.rdf" );
         
         assertTrue( "Should be at least one specification loaded", mgr.listDocuments().hasNext() );
         assertNotNull( "cache URL for owl should not be null", mgr.doAltURLMapping( "http://www.w3.org/2002/07/owl" ));

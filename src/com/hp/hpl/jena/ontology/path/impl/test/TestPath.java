@@ -100,6 +100,9 @@ public class TestPath
     //////////////////////////////////
 
     public void setUp() {
+        // ensure the ont doc manager is in a consistent state
+        OntDocumentManager.getInstance().reset( true );
+
         for (int i = 0; i < s_stmts.length;  i++) {
             Resource s = m_model.getResource( NS + ((String) s_stmts[i][0]) );
             Property p = m_model.getProperty( NS + ((String) s_stmts[i][1]) );

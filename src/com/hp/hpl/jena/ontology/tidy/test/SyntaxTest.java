@@ -89,7 +89,13 @@ class SyntaxTest extends TestCase {
 		dm.add(url, new DMEntry(url, r, in0));
 	}
 
-	protected void runTest() {
+    public void setUp() {
+        // ensure the ont doc manager is in a consistent state
+        OntDocumentManager.getInstance().reset( true );
+    }
+    
+    
+    protected void runTest() {
 		Iterator i = dm.table.keySet().iterator();
 
 		while (i.hasNext()) {

@@ -91,6 +91,12 @@ public class TestOntModel
     // External signature methods
     //////////////////////////////////
 
+    public void setUp() {
+        // ensure the ont doc manager is in a consistent state
+        OntDocumentManager.getInstance().reset( true );
+    }
+    
+    
     /** Test writing the base model to an output stream */
     public void testWriteOutputStream() {
         OntModel m = ModelFactory.createOntologyModel();

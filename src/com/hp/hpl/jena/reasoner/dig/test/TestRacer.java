@@ -30,6 +30,7 @@ import java.util.*;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+import com.hp.hpl.jena.ontology.*;
 import com.hp.hpl.jena.ontology.OntModelSpec;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
 import com.hp.hpl.jena.reasoner.dig.DIGAdapter;
@@ -64,6 +65,12 @@ public class TestRacer
     // External signature methods
     //////////////////////////////////
 
+    public void setUp() {
+        // ensure the ont doc manager is in a consistent state
+        OntDocumentManager.getInstance().reset( true );
+    }
+    
+    
     public void testRacerName() {
         DIGAdapter r = new DIGAdapter( OntModelSpec.OWL_DL_MEM, ModelFactory.createOntologyModel().getGraph() );
         assertEquals( "Name should be racer", "Racer", r.getDigIdentifier().getName() );

@@ -547,6 +547,12 @@ public class TestCreate
             assertTrue( "Result test failed", test( r ));
         }
         
+        public void setUp() {
+            // ensure the ont doc manager is in a consistent state
+            OntDocumentManager.getInstance().reset( true );
+        }
+        
+        
         /* get the resource */
         public OntResource doCreate( OntModel m ) {
             // to be overridden in sub-classes

@@ -156,6 +156,13 @@ public abstract class OntTestBase
         protected void iteratorTest( Iterator i, Object[] expected ) {
             TestUtil.assertIteratorValues( this, i, expected );
         }
+    
+        public void setUp() {
+            // ensure the ont doc manager is in a consistent state
+            OntDocumentManager.getInstance().reset( true );
+        }
+        
+        
     }
 }
 
