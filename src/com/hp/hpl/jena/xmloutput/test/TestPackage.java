@@ -8,6 +8,11 @@ package com.hp.hpl.jena.xmloutput.test;
 
 // Imports
 ///////////////
+import java.io.StringWriter;
+
+import com.hp.hpl.jena.rdf.model.*;
+import com.hp.hpl.jena.shared.BadURIException;
+
 import junit.framework.*;
 
 /**
@@ -53,8 +58,30 @@ public class TestPackage {
             suite.addTest(testWriterAndReader.suite(langs[i]));
         }
 
+        suite.addTest( new TestSuite( TestURIExceptions.class ) );
         return suite;
     }
+    
+    /**
+         Added as a place to put the test(s) which ensure that thrown URI exceptions
+         carry the bad URI with them. I (Chris) would embed them in the other tests,
+         but I can't work out how to do so ...
+        @author kers
+    */
+    public static class TestURIExceptions extends TestCase
+        {
+        public TestURIExceptions( String name )
+            { super( name ); }
+        
+        public void testBadURIExceptionContainsBadURIInMessage()
+            {
+            String badURI = "http:";            
+            Model m = ModelFactory.createDefaultModel();
+            m.add( m.createResource( badURI ), m.createProperty( "eg:B C" ), m.createResource( "eg:C D" ) );
+            try { m.write( new StringWriter() ); fail( "should detect bad URI " + badURI ); } 
+            catch (BadURIException e) { assertTrue( "message must contain failing URI", e.getMessage().indexOf( badURI ) > 0 ); }
+            }
+        }
 
 }
 

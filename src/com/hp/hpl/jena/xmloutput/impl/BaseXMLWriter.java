@@ -459,7 +459,7 @@ abstract public class BaseXMLWriter implements RDFXMLWriterI {
 				writeBody(model, pw, xmlBase, true);
 			}
 		} catch (MalformedURIException e) {
-			throw new BadURIException( "", e);
+			throw new BadURIException( e.getMessage(), e);
 		}
 	}
 
@@ -718,7 +718,7 @@ abstract public class BaseXMLWriter implements RDFXMLWriterI {
         if (demandGoodURIs)
             try { new URI( uri ); } 
             catch (MalformedURIException e) { 
-            	throw new BadURIException( "Only well-formed absolute URIrefs can be included in RDF/XML output", e ); 
+            	throw new BadURIException( "Only well-formed absolute URIrefs can be included in RDF/XML output: " + uri, e ); 
             }
         return uri;
     }
