@@ -56,13 +56,13 @@ abstract public class BaseXMLWriter implements RDFXMLWriterI {
         setupMaps();
     }
     
-	//protected static Log logger = LogFactory.getLog( BaseXMLWriter.class );
+	private static Log xlogger = LogFactory.getLog( BaseXMLWriter.class );
   protected static SimpleLogger logger = new SimpleLogger() {
   	public void warn(String s) {
-  		System.err.println(s);
+  		xlogger.warn(s);
   	}
   	public void warn(String s, Exception e) {
-  		System.err.println(s);
+  		xlogger.warn(s,e);
   	}
   };
   
