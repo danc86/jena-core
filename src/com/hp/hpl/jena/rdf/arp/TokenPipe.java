@@ -37,6 +37,7 @@
 package com.hp.hpl.jena.rdf.arp;
 import java.util.*;
 import org.xml.sax.Locator;
+import java.io.*;
 
 /**
  *
@@ -74,6 +75,8 @@ class TokenPipe implements TokenManager {
 				return (Token) pipe.get(position++);
 			if (atEOF)
 				return new Token(RDFParserConstants.EOF, null);
+		  if (Thread.interrupted())
+		    throw new WrappedException(new InterruptedIOException("ARP interrupted"));
 			position = 0;
             if ( pipe.size() > 0 )
                 last = (Token)pipe.get(pipe.size()-1);

@@ -293,7 +293,8 @@ IOException {
  * @throws SAXException More serious error during XML or RDF processing; or thrown from the fatalError method of the ErrorHandler.
  * @throws IOException Occurring during XML processing.
  */   
-    public void load(InputStream in) throws SAXException, IOException {
+    public void load(InputStream in) 
+     throws SAXException, IOException {
         load(in,"");
     }
 /** Load RDF/XML from a Reader, using base URL http://unknown.org/.
