@@ -16,7 +16,6 @@ import com.hp.hpl.jena.util.Tokenizer;
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.graph.impl.*;
 import com.hp.hpl.jena.reasoner.*;
-import com.hp.hpl.jena.shared.JenaException;
 import com.hp.hpl.jena.datatypes.xsd.*;
 
 import org.apache.log4j.Logger;
