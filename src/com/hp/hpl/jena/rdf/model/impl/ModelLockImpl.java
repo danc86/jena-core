@@ -70,7 +70,11 @@ public class ModelLockImpl implements ModelLock
         // to release the lock as it can't enter leaveCriticalSection
         
 		ModelLockState state = getLockState() ;
-
+        
+        // At this point we have the state object which is unique per
+        // model per thread.  Thus, we can do updates to via state.???
+        // because we know no other thread is active on it.
+        
         if ( log.isDebugEnabled() )
             log.debug(Thread.currentThread().getName()+" >> enterCS: "+report(state)) ;
 			
@@ -80,7 +84,7 @@ public class ModelLockImpl implements ModelLock
 		{
 			// Increment the readlock so a later leaveCriticialSection
             // keeps the counters aligned.
-    		synchronized(state) { state.readLocks++ ; }
+    		state.readLocks++ ;
             activeReadLocks.increment() ;
 
             if ( log.isDebugEnabled() )
