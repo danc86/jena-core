@@ -124,12 +124,13 @@ public class TestOWLRules extends TestCase {
         suite.addTest(new TestOWLRules("localtests/Manifest002.rdf"));
         suite.addTest(new TestOWLRules("localtests/Manifest003.rdf"));
         suite.addTest(new TestOWLRules("localtests/Manifest004.rdf"));
+        suite.addTest(new TestOWLRules("localtests/Manifest005.rdf"));
         
         // Duplications of tests included earlier
 //        suite.addTest(new TestOWLRules("differentFrom/Manifest002.rdf"));  // Duplication of AllDifferent#1
 //        suite.addTest(new TestOWLRules("distinctMembers/Manifest001.rdf"));  // Duplication of AllDifferent#1
         
-        // Consistency tests - not yet implemented by tester
+        // Consistency tests - not yet implemented by this tester
 //      suite.addTest(new TestOWLRules("I5.3/Manifest005.rdf"));
 //      suite.addTest(new TestOWLRules("I5.3/Manifest006.rdf"));
 //      suite.addTest(new TestOWLRules("I5.3/Manifest007.rdf"));
