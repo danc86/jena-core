@@ -102,7 +102,7 @@ public class TestModelEvents extends ModelTestBase
         {
         model.register( SL );
         model.add( resource( model, "S" ), property( model, "P" ), resource( model, "O" ) );
-        // assertTrue( SL.has( new Object[] { "add", statement( model, "S P O ") } ) );
+        assertTrue( SL.has( new Object[] { "add", statement( model, "S P O ") } ) );
         }
     }
 
