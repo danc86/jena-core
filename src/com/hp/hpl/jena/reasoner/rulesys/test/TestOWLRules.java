@@ -63,7 +63,7 @@ public class TestOWLRules extends TestCase {
         suite.addTest(new TestOWLRules("InverseFunctionalProperty/Manifest001.rdf"));
         suite.addTest(new TestOWLRules("InverseFunctionalProperty/Manifest002.rdf"));
         suite.addTest(new TestOWLRules("InverseFunctionalProperty/Manifest003.rdf"));
-//        
+        
         suite.addTest(new TestOWLRules("rdf-charmod-uris/Manifest.rdf"));
         suite.addTest(new TestOWLRules("I5.5/Manifest001.rdf"));
         suite.addTest(new TestOWLRules("I5.5/Manifest002.rdf"));

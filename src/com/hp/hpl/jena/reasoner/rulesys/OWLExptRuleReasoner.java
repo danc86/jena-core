@@ -29,6 +29,7 @@ public class OWLExptRuleReasoner extends FBLPRuleReasoner  {
     
     /** The location of the OWL rule definitions on the class path */
     protected static final String RULE_FILE = "etc/owl-fb-test.rules";
+//    protected static final String RULE_FILE = "etc/owl-fb.rules";
     
     /** The parsed rules */
     protected static List ruleSet;
