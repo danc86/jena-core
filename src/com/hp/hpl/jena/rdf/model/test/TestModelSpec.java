@@ -71,12 +71,22 @@ public class TestModelSpec extends ModelTestBase
     public void testDefaultMaker()
         {
         Model spec = modelWithStatements( "_x jms:maker _y;  _y jms:reificationMode jms:rsMinimal" );
-        spec.write( System.out, "N3" );
-        ModelSpec ms = ModelFactory.createSpec( spec ) ;
+        ModelSpec ms = ModelFactory.createSpec( spec );
         Model m = ModelFactory.createModel( ms ) ;
         assertTrue( m.getGraph() instanceof GraphMem );
         }
         
+    /** a spec with no maker should throw an exception 
+    */
+    public void testMakerlessException()
+        {
+        Model spec = modelWithStatements( "_x rdf:type jms:MemModelSpec; _x rdf:type jms:PlainModelSpec; _x rdf:type jms:ModelSpec" );
+        try 
+            { ModelSpec ms = ModelFactory.createSpec( spec ); 
+            fail( "makerless spec should throw a BadDescription exception" ); }
+        catch (BadDescriptionException e) { pass(); }
+        }
+    
     public void testNotFindCreator()
         {
         Resource type = resource( "jms:SomeType" );    

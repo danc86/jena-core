@@ -137,7 +137,11 @@ public abstract class ModelSpecImpl implements ModelSpec
         
     public static Resource getMaker( Resource root, Model desc )
         {
-        return desc.listStatements( root, JMS.maker, (RDFNode) null ).nextStatement().getResource();
+        StmtIterator it = desc.listStatements( root, JMS.maker, (RDFNode) null );
+        if (it.hasNext())
+        	return it.nextStatement().getResource();
+        else 
+            throw new BadDescriptionException( "no jms:maker for " + root, desc );
         }
         
     /**
