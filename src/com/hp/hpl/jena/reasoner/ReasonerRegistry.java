@@ -177,12 +177,12 @@ public class ReasonerRegistry {
      */
     public static final Reasoner TRANSITIVE = TransitiveReasonerFactory.theInstance().create(null);
     
-    /**
-     * Prebuilt stanard configuration for the default OWL reasoner. This configuration is
-     * a pure forward rule-based reasoner that will compute all entailments from the ontology + instamnce
-     * data at bind time.
-     */
-    public static final Reasoner OWL = OWLFBRuleReasonerFactory.theInstance().create(null);
+    // Suppressed to avoid the start up overhead. The above two will also disappear and 
+    // be replaced by lazilly constructed instances.
+//    /**
+//     * Prebuilt stanard configuration for the default OWL reasoner. 
+//     */
+//    public static final Reasoner OWL = OWLFBRuleReasonerFactory.theInstance().create(null);
     
 }
 
