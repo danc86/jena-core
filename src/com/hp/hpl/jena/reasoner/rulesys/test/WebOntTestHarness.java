@@ -9,6 +9,9 @@
  *****************************************************************/
 package com.hp.hpl.jena.reasoner.rulesys.test;
 
+//import java.io.*;
+//import java.util.*;
+
 /**
  * Test harness for running the WebOnt working group tests relevant 
  * to the OWL rule reasoner. See also TestOWLRules which runs the
@@ -18,6 +21,25 @@ package com.hp.hpl.jena.reasoner.rulesys.test;
  * @version $Revision$ on $Date$
  */
 public class WebOntTestHarness {
+
+    /** The base directory for the working group test files to use */
+    public static final String baseTestDir = "testing/wg";
+    
+    /** The list of subdirectories to process (omits the rdf/rdfs dirs) */
+    public static String[] testDirs= {"AllDifferent", "AllDistinct", 
+            "AnnotationProperty", "DatatypeProperty", "FunctionalProperty",
+            "I3.2", "I3.4", "I4.1", "I4.5", "I4.6", "I5.1", "I5.2", "I5.21", "I5.24",
+            "I5.26", "I5.3", "I5.5", "I5.8", "InverseFunctionalProperty", "Nothing", 
+            "Restriction", "SymmetricProperty", "Thing", "TransitiveProperty", 
+            "allValuesFrom", "amp-in-url", "cardinality", "complementOf", "datatypes", 
+            "description-logic", "differentFrom", "disjointWith", "distinctMembers", 
+            "equivalentClass", "equivalentProperty", "extra-credit", "imports", 
+            "intersectionOf", "inverseOf", "localtests", "maxCardinality", "miscellaneous",
+            "oneOf", "oneOfDistinct", "sameAs", "sameClassAs", "sameIndividualAs", 
+            "samePropertyAs", "someValuesFrom", "statement-entailment", "unionOf", 
+            "unrecognised-xml-attributes", "xmlbase"};
+            
+     
 
 }
 
