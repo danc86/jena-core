@@ -11,7 +11,9 @@ import com.hp.hpl.jena.graph.*;
 
 /**
  	WrappedBulkUpdateHandler - a base class for wrapped bulk update handlers
- 	(needed so WrappedGraph works properly with events)
+ 	(needed so WrappedGraph works properly with events). Each operation is
+ 	passed on to the base handler, and then this graph's event manager is
+ 	notified.
  	 
  	@author kers
 */
@@ -100,6 +102,7 @@ public class WrappedBulkUpdateHandler
     public void remove( Node s, Node p, Node o )
         {
         base.remove( s, p, o );
+        manager.notifyEvent( graph, GraphEvents.remove( s, p, o ) );
         }
 
     }

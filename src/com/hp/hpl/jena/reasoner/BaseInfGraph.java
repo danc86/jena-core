@@ -110,6 +110,7 @@ public abstract class BaseInfGraph extends GraphBase implements InfGraph {
             g.getRawGraph().getBulkUpdateHandler().remove( s, p, o );
             g.discardState();
             g.rebind();
+            manager.notifyEvent( graph, GraphEvents.remove( s, p, o ) );
             }
         
         public void removeAll()

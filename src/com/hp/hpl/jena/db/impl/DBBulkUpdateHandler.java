@@ -158,7 +158,8 @@ public class DBBulkUpdateHandler implements BulkUpdateHandler {
         manager.notifyEvent( graph, GraphEvents.removeAll ); }
     
     public void remove( Node s, Node p, Node o )
-        { SimpleBulkUpdateHandler.removeAll( graph, s, p, o ); }
+        { SimpleBulkUpdateHandler.removeAll( graph, s, p, o ); 
+        manager.notifyEvent( graph, GraphEvents.remove( s, p, o ) ); }
 }
 
 
