@@ -75,7 +75,7 @@ public class TestBasics extends TestCase  {
         String[] testResults = new String[] {
             "[ (?a rdf:type *) -> (?a rdf:type ?b) ]",
             "[ (?a rdf:type *) (?a rdf:type *) -> (?a rdf:type ?b) ]",
-            "[ (?a rdf:type max(?a 1)^^Functor) -> (?a rdf:type 'foo') ]",
+            "[ (?a rdf:type max(?a 1)^^urn:x-hp-jena:Functor) -> (?a rdf:type 'foo') ]",
             "[ (?a rdf:type *) -> action(?a) ]",
             "[ (?a rdf:type *) -> [ (?a rdf:type *) -> action(?a) ] ]",
             "[ (?a rdf:type *) -> (?a rdf:type 42) ]",
