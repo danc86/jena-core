@@ -91,6 +91,12 @@ public class XSDDateTime extends AbstractDateTime {
      * Return the date time as a java Calendar object. 
      * If the timezone has been specified then the object is normalized to GMT.
      * If the zone has not been specified then we use the default timezone.
+     * <p>
+     * N.B. The millisecond field will be discarded and the resulting Calendar
+     * object will have 0 in the millisecond field. This is a workaround for an
+     * apparent problem with some Linux JDK's Calendar implementations. If it
+     * causes a problem contact us to ask us to revisit this.
+     * </p>
      * 
      * @throws IllegalDateTimeFieldException if this is not a full date + time
      */
