@@ -407,6 +407,9 @@ public class FBRuleInfGraph  extends BasicForwardRuleInfGraph implements Backwar
                 dataSource = FinderUtil.cascade(dataSource, transitiveEngine.getSubClassCache(), transitiveEngine.getSubPropertyCache());
             }
             
+            // Make sure there are no Brules left over from pior runs
+            bEngine.deleteAllRules();
+
             // Call any optional preprocessing hook
             if (preprocessorHooks != null && preprocessorHooks.size() > 0) {
                 Graph inserts = new GraphMem();
