@@ -382,6 +382,59 @@ public class TestBasicLP  extends TestCase {
         i.close();
     }
     
+    /**
+     * Test axioms work.
+     */
+    public void testAxioms() {
+        doTest("[a1: -> (a r C1) ]" +
+               "[a2: -> (a r C2) ]" +
+               "[a3: (b r C1) <- ]" +
+               "[r1: (?x s ?y) <- (?x r ?y)]",
+                new Triple[] {
+                },
+                new Triple(Node.ANY, s, Node.ANY),
+                new Object[] {
+                    new Triple(a, s, C1),
+                    new Triple(a, s, C2),
+                    new Triple(b, s, C1),
+                } );
+    }
+
+    /**
+     * Test nested invocate of rules with permananet vars
+     */
+    public void testNestedPvars() {
+        doTest("[r1: (?x r ?y) <- (?x p ?z) (?z q ?y)]" +
+               "[r1: (?y t ?x) <- (?x p ?z) (?z q ?y)]" +
+               "[r3: (?x s ?y) <- (?x r ?y) (?y t ?x)]",
+                new Triple[] {
+                    new Triple(a, p, C1),
+                    new Triple(a, p, C2),
+                    new Triple(a, p, C3),
+                    new Triple(C2, q, b),
+                    new Triple(C3, q, c),
+                    new Triple(D1, q, D2),
+                },
+                new Triple(Node.ANY, s, Node.ANY),
+                new Object[] {
+                    new Triple(a, s, b),
+                    new Triple(a, s, c),
+                } );
+    }
+    
+    /**
+     * Test simple invocation of a builtin
+     */
+    public void testBuiltin1() {
+        doTest("[r1: (?x r ?y) <- print(?x, ?y)]",
+                new Triple[] {
+                },
+                new Triple(a, r, b),
+                new Object[] {
+                    new Triple(a, r, b),
+                } );
+    }
+    
     /** 
      * Generic test operation.
      * @param ruleSrc the source of the rules

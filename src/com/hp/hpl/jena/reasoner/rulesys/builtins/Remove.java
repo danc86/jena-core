@@ -34,11 +34,13 @@ public class Remove extends BaseBuiltin {
      * Such a use is only valid in a forward rule.
      * @param args the array of argument values for the builtin, this is an array 
      * of Nodes.
+     * @param length the length of the argument list, may be less than the length of the args array
+     * for some rule engines
      * @param context an execution context giving access to other relevant data
      */
-    public void headAction(Node[] args, RuleContext context) {
+    public void headAction(Node[] args, int length, RuleContext context) {
         boolean ok = false;
-        for (int i = 0; i < args.length; i++) {
+        for (int i = 0; i < length; i++) {
             Node clauseN = args[i];
             if (Util.isNumeric(clauseN)) {
                 int clauseIndex = Util.getIntValue(clauseN);

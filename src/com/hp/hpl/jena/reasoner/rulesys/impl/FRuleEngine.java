@@ -408,7 +408,7 @@ public class FRuleEngine implements FRuleEngineI {
                     Functor f = (Functor)hClause;
                     Builtin imp = f.getImplementor();
                     if (imp != null) {
-                        imp.headAction(f.getBoundArgs(env), context);
+                        imp.headAction(f.getBoundArgs(env), f.getArgLength(), context);
                     } else {
                         throw new ReasonerException("Invoking undefined Functor " + f.getName() +" in " + rule.toShortString());
                     }

@@ -28,19 +28,26 @@ public class Sum extends BaseBuiltin {
     public String getName() {
         return "sum";
     }
+    
+    /**
+     * Return the expected number of arguments for this functor or 0 if the number is flexible.
+     */
+    public int getArgLength() {
+        return 3;
+    }
 
     /**
      * This method is invoked when the builtin is called in a rule body.
      * @param args the array of argument values for the builtin, this is an array 
      * of Nodes, some of which may be Node_RuleVariables.
+     * @param length the length of the argument list, may be less than the length of the args array
+     * for some rule engines
      * @param context an execution context giving access to other relevant data
      * @return return true if the buildin predicate is deemed to have succeeded in
      * the current environment
      */
-    public boolean bodyCall(Node[] args, RuleContext context) {
-        if (args.length != 3) {
-            throw new BuiltinException(this, context, "must have 3 arguments");
-        }
+    public boolean bodyCall(Node[] args, int length, RuleContext context) {
+        checkArgs(length, context);
         BindingEnvironment env = context.getEnv();
         if (Util.isNumeric(args[0]) && Util.isNumeric(args[1])) {
             Node v = Util.makeIntNode(Util.getIntValue(args[0]) + Util.getIntValue(args[1]));

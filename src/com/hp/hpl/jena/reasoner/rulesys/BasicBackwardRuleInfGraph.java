@@ -123,7 +123,7 @@ public class BasicBackwardRuleInfGraph extends BaseInfGraph implements BackwardR
                 dataFind = FinderUtil.cascade(dataFind, fschema);
             }
             
-            context = new BBRuleContext(this, dataFind);
+            context = new BBRuleContext(this);
         }
         
         isPrepared = true;

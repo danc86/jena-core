@@ -34,16 +34,12 @@ public class BBRuleContext implements RuleContext {
     /** The enclosing inference graph. */
     protected BackwardRuleInfGraphI graph;
     
-    /** The set of ground triples to be searched by the find operations */
-    protected Finder searchpath;
-    
     /**
      * Construct an empty context. It can't be used until
      * the rule and environment have been set.
      */
-    public BBRuleContext(BackwardRuleInfGraphI graph, Finder searchpath) {
+    public BBRuleContext(BackwardRuleInfGraphI graph) {
         this.graph = graph;
-        this.searchpath = searchpath;
     }
 
     /**
@@ -67,7 +63,8 @@ public class BBRuleContext implements RuleContext {
      * @see com.hp.hpl.jena.reasoner.rulesys.RuleContext#find(com.hp.hpl.jena.graph.Node, com.hp.hpl.jena.graph.Node, com.hp.hpl.jena.graph.Node)
      */
     public ClosableIterator find(Node s, Node p, Node o) {
-        return searchpath.find(new TriplePattern(s, p, o));
+        return graph.findDataMatches(new TriplePattern(s, p, o));
+//        return searchpath.find(new TriplePattern(s, p, o));
     }
 
     /**

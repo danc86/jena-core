@@ -123,7 +123,7 @@ public class TestFBRules extends TestCase {
     public void testEmbeddedFunctors() {
         String rules = "(?C rdf:type owl:Restriction), (?C owl:onProperty ?P), (?C owl:allValuesFrom ?D) -> (?C rb:restriction all(?P, ?D))." +
                         "(?C rb:restriction all(eg:p, eg:D)) -> (?C rb:restriction 'allOK')." +
-                       "[ -> (eg:foo eg:prop functor(eg:bar, '1')) ]" +
+                       "[ -> (eg:foo eg:prop functor(eg:bar, 1)) ]" +
                        "[ (?x eg:prop functor(eg:bar, ?v)) -> (?x eg:propbar ?v) ]" +
                        "[ (?x eg:prop functor(?v, *)) -> (?x eg:propfunc ?v) ]" +
                        "";
@@ -166,9 +166,9 @@ public class TestFBRules extends TestCase {
     public void testBuiltins() {
         String rules =  //"[testRule1: (n1 ?p ?a) -> print('rule1test', ?p, ?a)]" +
                        "[r1: (n1 p ?x), addOne(?x, ?y) -> (n1 q ?y)]" +
-                       "[r2: (n1 p ?x), lessThan(?x, '3') -> (n2 q ?x)]" +
-                       "[axiom1: -> (n1 p '1')]" +
-                       "[axiom2: -> (n1 p '4')]" +
+                       "[r2: (n1 p ?x), lessThan(?x, 3) -> (n2 q ?x)]" +
+                       "[axiom1: -> (n1 p 1)]" +
+                       "[axiom2: -> (n1 p 4)]" +
                        "";
         List ruleList = Rule.parseRules(rules);
         
@@ -222,7 +222,7 @@ public class TestFBRules extends TestCase {
      */
     public void testRemoveBuiltin() {
         String rules =  
-                       "[rule1: (?x p ?y), (?x q ?y) -> remove('0')]" +
+                       "[rule1: (?x p ?y), (?x q ?y) -> remove(0)]" +
                        "";
         List ruleList = Rule.parseRules(rules);
 

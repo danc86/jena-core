@@ -100,6 +100,13 @@ public class Functor implements ClauseEntry {
     }
     
     /**
+     * Return the length of the functor argument array.
+     */
+    public int getArgLength() {
+        return args.length;
+    }
+    
+    /**
      * Returns true if the functor is fully ground, no variables
      */
     public boolean isGround() {
@@ -133,7 +140,7 @@ public class Functor implements ClauseEntry {
             logger.warn("Invoking undefined functor " + getName() + " in " + context.getRule().toShortString());
             return false;
         }
-        return implementor.bodyCall(getBoundArgs(context.getEnv()), context);
+        return implementor.bodyCall(getBoundArgs(context.getEnv()), args.length, context);
     }
     
     /**
@@ -147,7 +154,7 @@ public class Functor implements ClauseEntry {
             return false;
         }
         if (implementor.isSafe()) {
-            return implementor.bodyCall(getBoundArgs(context.getEnv()), context);
+            return implementor.bodyCall(getBoundArgs(context.getEnv()), args.length, context);
         } else {
             return false;
         }

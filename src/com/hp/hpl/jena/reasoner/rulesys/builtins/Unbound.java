@@ -28,18 +28,20 @@ public class Unbound extends BaseBuiltin {
     public String getName() {
         return "unbound";
     }
-
+    
     /**
      * This method is invoked when the builtin is called in a rule body.
      * @param args the array of argument values for the builtin, this is an array 
      * of Nodes, some of which may be Node_RuleVariables.
+     * @param length the length of the argument list, may be less than the length of the args array
+     * for some rule engines
      * @param context an execution context giving access to other relevant data
      * @return return true if the buildin predicate is deemed to have succeeded in
      * the current environment
      */
-    public boolean bodyCall(Node[] args, RuleContext context) {
+    public boolean bodyCall(Node[] args, int length, RuleContext context) {
         BindingEnvironment env = context.getEnv();
-        for (int i = 0; i < args.length; i++) {
+        for (int i = 0; i < length; i++) {
             if ( !(args[i] instanceof Node_RuleVariable) ) return false;
         }
         return true;

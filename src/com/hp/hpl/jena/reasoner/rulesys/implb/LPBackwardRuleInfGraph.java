@@ -104,7 +104,7 @@ public class LPBackwardRuleInfGraph extends BaseInfGraph implements BackwardRule
                 dataFind = FinderUtil.cascade(dataFind, fschema);
             }
             
-            context = new BBRuleContext(this, dataFind);
+            context = new BBRuleContext(this);
         }
         
         isPrepared = true;

@@ -32,12 +32,14 @@ public class MakeTemp extends BaseBuiltin {
      * This method is invoked when the builtin is called in a rule body.
      * @param args the array of argument values for the builtin, this is an array 
      * of Nodes, some of which may be Node_RuleVariables.
+     * @param length the length of the argument list, may be less than the length of the args array
+     * for some rule engines
      * @param context an execution context giving access to other relevant data
      * @return return true if the buildin predicate is deemed to have succeeded in
      * the current environment
      */
-    public boolean bodyCall(Node[] args, RuleContext context) {
-        for (int i = 0; i < args.length; i++) {
+    public boolean bodyCall(Node[] args, int length, RuleContext context) {
+        for (int i = 0; i < length; i++) {
             if (!context.getEnv().bind(args[i], Node.createAnon())) return false;
         }
         return true;   

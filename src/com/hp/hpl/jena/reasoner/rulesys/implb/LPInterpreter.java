@@ -56,10 +56,10 @@ public class LPInterpreter {
     
     /** The trail of variable bindings that have to be unwound on backtrack */
     protected ArrayList trail = new ArrayList();
-    
-    /** TEMP: The singleton result triple */
-    protected Object answer;
 
+    /** The execution context description to be passed to builtins */
+    protected RuleContext context;
+        
     /** log4j logger*/
     static Logger logger = Logger.getLogger(LPInterpreter.class);
 
@@ -93,6 +93,8 @@ public class LPInterpreter {
         tmFrame.init(this);
         tmFrame.linkTo(cpFrame);
         cpFrame = tmFrame;
+        
+        context = new BBRuleContext(engine.getInfGraph());
     }
 
     //  =======================================================================
@@ -119,7 +121,7 @@ public class LPInterpreter {
      * Return the next result from this engine.
      * @return either a StateFlag or  a result Triple
      */
-    public Object next() {
+    public synchronized Object next() {
         StateFlag answer = run();
         if (answer == StateFlag.FAIL) {
             return answer;
@@ -143,6 +145,7 @@ public class LPInterpreter {
     protected StateFlag run() {
         int pc = 0;     // Program code counter
         int ac = 0;     // Program arg code counter
+        RuleClauseCode clause = null;       // The clause being executed
         
         main: while (cpFrame != null) {
             // restore choice point
@@ -155,7 +158,7 @@ public class LPInterpreter {
                 }
                 
                 // Create an execution environment for the new choice of clause
-                RuleClauseCode clause = (RuleClauseCode)choice.clauseIterator.next();
+                clause = (RuleClauseCode)choice.clauseIterator.next();
                 envFrame = LPEnvironmentFactory.createEnvironment();
                 envFrame.init(clause);
                 envFrame.linkTo(choice.envFrame);
@@ -169,7 +172,7 @@ public class LPInterpreter {
                     unwindTrail(trailMark);
                 }
                 pc = ac = 0;
-                
+                context.setRule(clause.getRule());
                 // then fall through into the recreated execution context for the new call
                 
             } else if (cpFrame instanceof TripleMatchFrame) {
@@ -207,7 +210,6 @@ public class LPInterpreter {
                 int yi, ai, ti;
                 Node arg, constant;
                 List predicateCode;
-                RuleClauseCode clause;
                 TripleMatchFrame tmFrame;
     
                 // Debug ...
@@ -270,6 +272,12 @@ public class LPInterpreter {
                             argVars[ai] = pVars[yi];
                             break;
                         
+                        case RuleClauseCode.PUT_DEREF_VARIABLE:
+                            yi = code[pc++];
+                            ai = code[pc++];
+                            argVars[ai] = deref(pVars[yi]);
+                            break;
+                        
                         case RuleClauseCode.PUT_TEMP:
                             ti = code[pc++];
                             ai = code[pc++];
@@ -317,6 +325,11 @@ public class LPInterpreter {
                             envFrame = (EnvironmentFrame) envFrame.link;
                             continue interpreter;
                         
+                        case RuleClauseCode.CALL_BUILTIN:
+                            Builtin builtin = (Builtin)args[ac++];
+                            builtin.bodyCall(argVars, code[pc++], context);
+                            break;
+                            
                         default :
                             throw new ReasonerException("Internal error in backward rule system\nIllegal op code");
                     }

@@ -390,7 +390,7 @@ public class FBRuleInfGraph  extends BasicForwardRuleInfGraph implements Backwar
                 engine.init(true, dataSource);
             }
             // Prepare the context for builtins run in backwards engine
-            context = new BBRuleContext(this, dataFind);
+            context = new BBRuleContext(this);
             
         }
     }

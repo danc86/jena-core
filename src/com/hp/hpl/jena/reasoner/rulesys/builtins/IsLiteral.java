@@ -27,19 +27,26 @@ public class IsLiteral extends BaseBuiltin {
     public String getName() {
         return "isLiteral";
     }
+    
+    /**
+     * Return the expected number of arguments for this functor or 0 if the number is flexible.
+     */
+    public int getArgLength() {
+        return 1;
+    }
 
     /**
      * This method is invoked when the builtin is called in a rule body.
      * @param args the array of argument values for the builtin, this is an array 
      * of Nodes, some of which may be Node_RuleVariables.
+     * @param length the length of the argument list, may be less than the length of the args array
+     * for some rule engines
      * @param context an execution context giving access to other relevant data
      * @return return true if the buildin predicate is deemed to have succeeded in
      * the current environment
      */
-    public boolean bodyCall(Node[] args, RuleContext context) {
-        if (args.length != 1) {
-            throw new BuiltinException(this, context, "must have 1 arguments");
-        }
+    public boolean bodyCall(Node[] args, int length, RuleContext context) {
+        checkArgs(length, context);
         return args[0].isLiteral();
     }
     

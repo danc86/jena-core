@@ -1,65 +1,47 @@
 /******************************************************************
- * File:        addOne.java
+ * File:        LPRuleSyntaxException.java
  * Created by:  Dave Reynolds
- * Created on:  11-Apr-2003
+ * Created on:  25-Jul-2003
  * 
  * (c) Copyright 2003, Hewlett-Packard Company, all rights reserved.
  * [See end of file]
  * $Id$
  *****************************************************************/
-package com.hp.hpl.jena.reasoner.rulesys.builtins;
+package com.hp.hpl.jena.reasoner.rulesys.implb;
 
-import com.hp.hpl.jena.reasoner.rulesys.*;
-import com.hp.hpl.jena.graph.*;
+import com.hp.hpl.jena.reasoner.ReasonerException;
+import com.hp.hpl.jena.reasoner.rulesys.Rule;
 
 /**
- * Bind the second argument to 1+ the first argument. Just used for testing builtins.
+ * Exception used to indicate syntactic errors the LP version of the
+ * backward chaining rule engine.
  * 
  * @author <a href="mailto:der@hplb.hpl.hp.com">Dave Reynolds</a>
  * @version $Revision$ on $Date$
  */
-public class AddOne extends BaseBuiltin {
+public class LPRuleSyntaxException extends ReasonerException {
 
+    
     /**
-     * Return a name for this builtin, normally this will be the name of the 
-     * functor that will be used to invoke it.
+     * Constructor.
+     * @param msg a free-text message describing the problem
      */
-    public String getName() {
-        return "addOne";
+    public LPRuleSyntaxException(String msg, Rule rule) {
+        super("Syntax error in backward rule: " + rule.toShortString() 
+                +"\n" + msg);
     }
     
     /**
-     * Return the expected number of arguments for this functor or 0 if the number is flexible.
+     * Constructor.
+     * @param msg a free-text message describing the problem
+     * @param cause a nested exception which prompted this error
      */
-    public int getArgLength() {
-        return 2;
+    public LPRuleSyntaxException(String msg, Rule rule, Throwable cause) {
+        super("Syntax error in backward rule: " + rule.toShortString() 
+                +"\n" + msg, cause);
     }
-
-    /**
-     * This method is invoked when the builtin is called in a rule body.
-     * @param args the array of argument values for the builtin, this is an array 
-     * of Nodes, some of which may be Node_RuleVariables.
-     * @param context an execution context giving access to other relevant data
-     * @param length the length of the argument list, may be less than the length of the args array
-     * for some rule engines
-     * @return return true if the buildin predicate is deemed to have succeeded in
-     * the current environment
-     */
-    public boolean bodyCall(Node[] args, int length, RuleContext context) {
-        checkArgs(length, context);
-        BindingEnvironment env = context.getEnv();
-        boolean ok = false;
-        if (Util.isNumeric(args[0])) {
-            Node newVal = Util.makeIntNode( Util.getIntValue(args[0]) + 1 );
-            ok = env.bind(args[1], newVal);
-        } else if (Util.isNumeric(args[1])) {
-            Node newVal = Util.makeIntNode( Util.getIntValue(args[1]) - 1 );
-            ok = env.bind(args[0], newVal);
-        }
-        return ok;
-    }
-    
 }
+
 
 /*
     (c) Copyright Hewlett-Packard Company 2003

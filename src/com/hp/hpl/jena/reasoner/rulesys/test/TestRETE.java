@@ -207,7 +207,7 @@ public class TestRETE  extends TestCase {
                          new Triple(n2, q, n3),
                          new Triple(res, p, n3)
                      });
-        doRuleTest( "[rule1: (?x p ?y), (?x q ?y) -> remove('0')]",
+        doRuleTest( "[rule1: (?x p ?y), (?x q ?y) -> remove(0)]",
                      new Triple[] {
                          new Triple(n1, p, Util.makeIntNode(1)),
                          new Triple(n1, p, Util.makeIntNode(2)),

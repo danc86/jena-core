@@ -28,6 +28,13 @@ public class LessThan extends BaseBuiltin {
     public String getName() {
         return "lessThan";
     }
+    
+    /**
+     * Return the expected number of arguments for this functor or 0 if the number is flexible.
+     */
+    public int getArgLength() {
+        return 2;
+    }
 
     /**
      * This method is invoked when the builtin is called in a rule body.
@@ -37,10 +44,8 @@ public class LessThan extends BaseBuiltin {
      * @return return true if the buildin predicate is deemed to have succeeded in
      * the current environment
      */
-    public boolean bodyCall(Node[] args, RuleContext context) {
-        if (args.length != 2) {
-            throw new BuiltinException(this, context, "must have 2 arguments");
-        }
+    public boolean bodyCall(Node[] args, int length, RuleContext context) {
+        checkArgs(length, context);
         if ( Util.isNumeric(args[0]) && Util.isNumeric(args[1]) ) {
             return Util.getIntValue(args[0]) < Util.getIntValue(args[1]);
         } else {

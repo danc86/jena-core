@@ -28,6 +28,13 @@ public class NotFunctor extends BaseBuiltin {
     public String getName() {
         return "notFunctor";
     }
+    
+    /**
+     * Return the expected number of arguments for this functor or 0 if the number is flexible.
+     */
+    public int getArgLength() {
+        return 1;
+    }
 
     /**
      * This method is invoked when the builtin is called in a rule body.
@@ -37,10 +44,8 @@ public class NotFunctor extends BaseBuiltin {
      * @return return true if the buildin predicate is deemed to have succeeded in
      * the current environment
      */
-    public boolean bodyCall(Node[] args, RuleContext context) {
-        if (args.length != 1) {
-            throw new BuiltinException(this, context, "must have 1 arguments");
-        }
+    public boolean bodyCall(Node[] args, int length, RuleContext context) {
+        checkArgs(length, context);
         return !Functor.isFunctor(args[0]);
     }
     
