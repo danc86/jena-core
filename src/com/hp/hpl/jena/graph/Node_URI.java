@@ -6,6 +6,7 @@
 
 package com.hp.hpl.jena.graph;
 
+import com.hp.hpl.jena.rdf.model.impl.Util;
 import com.hp.hpl.jena.shared.*;
 
 /**
@@ -32,10 +33,25 @@ public class Node_URI extends Node_Concrete
         TODO fix the circularity issue
     */
     public String toString( PrefixMapping pm, boolean quoting )
-        { return pm == null ? (String) label : pm.usePrefix( (String) label ); }
+        { return pm == null ? (String) label : pm.shortForm( (String) label ); }
         
     public boolean equals( Object other )
         { return other instanceof Node_URI && label.equals( ((Node_URI) other).label ); }
+    
+    public String getNameSpace()
+        { 
+        String s = (String) label;
+        return s.substring( 0, Util.splitNamespace( s ) );
+        }
+    
+    public String getLocalName()
+        {  
+        String s = (String) label;
+        return s.substring( Util.splitNamespace( s ) );
+        }
+    
+    public boolean hasURI( String uri )
+        { return label.equals( uri ); }
     }
 
 /*

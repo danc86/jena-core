@@ -213,10 +213,22 @@ public abstract class Node {
     /** get the URI of this node if it has one, else die horribly */
     public String getURI()
         { throw new UnsupportedOperationException( this + " is not a URI node" ); }
+    
+    /** get the namespace part of this node if it's a URI node, else die horribly */
+    public String getNameSpace()
+        { throw new UnsupportedOperationException( this + " is not a URI node" ); }
+    
+    /** get the localname part of this node if it's a URI node, else die horribly */
+    public String getLocalName()
+        { throw new UnsupportedOperationException( this + " is not a URI node" ); }
 
     /** get a variable nodes name, otherwise die horribly */
     public String getName()
         { throw new UnsupportedOperationException( "this (" + this.getClass() + ") is not a variable node" ); }
+    
+    /** answer true iff this node is a URI node with the given URI */
+    public boolean hasURI( String uri )
+        { return false; }
         
     /** an abstraction to allow code sharing */
     static abstract class NodeMaker { abstract Node construct( Object x ); }

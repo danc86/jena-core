@@ -77,6 +77,12 @@ public interface Resource extends RDFNode {
   */  
   public Node getNode();
   
+  /**
+        Answer true iff this Resource is a URI resource with the given URI; otherwise
+        answer false.
+  */
+  public boolean hasURI( String uri );
+  
   /** Return the URI of the resource, or null if it's a bnode.
    * @return The URI of the resource, or null if it's a bnode.
    */

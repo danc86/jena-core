@@ -40,6 +40,28 @@ public class TestResourceImpl extends ModelTestBase
             fail( "literals cannot be resources"); }
         catch (ResourceRequiredException e)
             { pass(); }}
+    
+    public void testNameSpace()
+        { 
+        assertEquals( "eg:x", resource( "eg:xyz" ).getNameSpace() ); 
+        assertEquals( "http://d/", resource( "http://d/stuff" ).getNameSpace() ); 
+        assertEquals( "ftp://dd.com/12345", resource( "ftp://dd.com/12345" ).getNameSpace() ); 
+        assertEquals( "http://domain/spoo#", resource( "http://domain/spoo#anchor" ).getNameSpace() ); 
+        assertEquals( "ftp://abd/def#ghi#", resource( "ftp://abd/def#ghi#e11-2" ).getNameSpace() ); 
+        }
+    
+    public void testLocalName()
+        { 
+        assertEquals( "yz", resource( "eg:xyz" ).getLocalName() );
+        }
+    
+    public void testHasURI()
+        { 
+        assertTrue( resource( "eg:xyz" ).hasURI( "eg:xyz" ) );
+        assertFalse( resource( "eg:xyz" ).hasURI( "eg:1yz" ) );
+        assertFalse( ResourceFactory.createResource().hasURI( "42" ) );
+        }
+    
     }    
 
 
