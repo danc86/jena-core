@@ -111,6 +111,12 @@ public class GraphTestBase extends TestCase
         assertTrue( title, g.isIsomorphicWith( graphWith( template ) ) );
         }
         
+    public void assertEquals( String name, Graph wanted, Graph obtained )
+        {
+        Model mWanted = new ModelMem( wanted ), mObtained = new ModelMem( obtained );
+        assertTrue( name + ": wanted " + wanted + " got " + obtained, mWanted.isIsomorphicWith( mObtained ) );
+        }
+    
     public static void assertContains( String name, Graph g, String s )
         {
         assertTrue( name + " must contain " + s, g.contains( triple( s ) ) );
