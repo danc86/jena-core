@@ -31,6 +31,7 @@
 
 package com.hp.hpl.jena.rdf.model;
 
+import com.hp.hpl.jena.graph.FrontsNode;
 import com.hp.hpl.jena.graph.Node;
 /** An RDF Resource or an RDF Literal.
  *
@@ -41,7 +42,8 @@ import com.hp.hpl.jena.graph.Node;
  * @author bwm
  * @version Release='$Name$' Revision='$Revision$' Date='$Date$'
  */
-public interface RDFNode {
+public interface RDFNode extends FrontsNode
+{
     /** Return a String representation of the node.  The form of the string depends
      * on the type of the node.
      * @return a String representation of this object.
@@ -49,19 +51,12 @@ public interface RDFNode {
     public String toString();
     
     /**
-        a presentation-layer RDFNode is build on top of an SPI-layer Node; get it.
-    */
-    public Node asNode();
-    
-    /**
         RDFNodes can be converted to different implementation types. Convert
-        this RDFNode to a type supporting the _view_ interface. The resulting
-        RDFNode should be an instance of _view_ and should have any
-        internal invariants specified.
+        this RDFNode to a type supporting the <code>view</code>interface. The 
+        resulting RDFNode should be an instance of <code>view</code> and should 
+        have any internal invariants as specified.
     <p>
-        It is not clear what should happen if this RDFNode cannot be viewed as
-        a _view_. Should it deliver null or should it throw an exception? Or
-        deliver a half-baked instance?
+        If the RDFNode cannot be converted, an exception is thrown.
     */
     public RDFNode as( Class view );
     
