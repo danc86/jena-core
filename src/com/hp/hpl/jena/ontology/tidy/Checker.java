@@ -11,6 +11,8 @@ import com.hp.hpl.jena.graph.Graph;
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.reasoner.InfGraph;
 import com.hp.hpl.jena.graph.compose.MultiUnion;
+import com.hp.hpl.jena.ontology.OntModel;
+
 
 /**
  * 
@@ -129,7 +131,17 @@ public class Checker extends com.hp.hpl.jena.ontology.tidy.impl.CheckerImpl {
 	/**
 	 * Adds the model to the syntax check.
 	 * Only considers the base triples of an inferred model
-	 * (if recognised as such), processes imports.
+	 * (if recognised as such), along with any imports.
+	 * <p>
+	 * If the <code>Model</code> is an 
+	 * {@link OntModel} created with the {@link ModelFactory}
+ then the base graph with its imports (which have already
+ been collected) are added. Import processing is not redone
+ at this stage.
+ <p>
+ The behaviour is identical to that of {@link #add(Graph)};
+ better control,if needed, is achieved through the use of 
+ {@link #addGraphAndImports} and {@link #addRaw}.
 	 * @param m The Model to be added.
 	 */
 	public void add(Model m) {
