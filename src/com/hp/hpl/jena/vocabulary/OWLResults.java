@@ -36,8 +36,12 @@ public class OWLResults {
      */
     public static final Property output = m_model.createProperty( "http://www.w3.org/2002/03owlt/resultsOntology#output" );
     
+    
     /** <p>The test in question, such as an otest:PositiveEntailmentTest.</p> */
     public static final Property test = m_model.createProperty( "http://www.w3.org/2002/03owlt/resultsOntology#test" );
+    
+    /** <p>Syntactic tests.</p> */
+    public static final Property syntacticLevelTestFrom = m_model.createProperty( "http://www.w3.org/2002/03owlt/resultsOntology#syntacticLevelTestFrom" );
     
     /** <p>The complete system instance on which the test was run, conceptually including 
      *  software and hardware components. No range restriction is provided, however, 
