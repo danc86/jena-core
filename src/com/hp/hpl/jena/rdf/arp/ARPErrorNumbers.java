@@ -293,8 +293,8 @@ public interface ARPErrorNumbers {
       * 
      * @deprecated WG decision on <a href=
      * 
-"http://www.w3. org/2001/sw/RDFCore/20030123-issues/#williams-01"
-      >williams- 01</a>.
+"http://www.w3.org/2001/sw/RDFCore/20030123-issues/#williams-01"
+      >williams-01</a>.
       **/
     public int WARN_URI_COMPOSING_CHAR = 123;
 
@@ -399,8 +399,8 @@ public interface ARPErrorNumbers {
      *  (E208).
      * @deprecated WG decision on <a href=
      * 
-"http://www.w3. org/2001/sw/RDFCore/20030123-issues/#williams-01"
-      >williams- 01</a>.
+"http://www.w3.org/2001/sw/RDFCore/20030123-issues/#williams-01"
+      >williams-01</a>.
    */
     public int ERR_URI_NOT_NORMAL_FORM_C = 208;
     /**

@@ -103,8 +103,7 @@ public class ParseException extends SAXParseException implements ARPErrorNumbers
 
     private int id;
 /** The error number
- * (from <a href="ARPErrorNumbers.html"> <CODE>ARPErrorNumbers</CODE></a>)
- * related to this exception.
+ * (from {@link ARPErrorNumbers}) related to this exception.
  * @return The error number.
  */
     public int getErrorNumber() {
