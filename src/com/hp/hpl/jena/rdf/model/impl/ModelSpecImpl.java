@@ -4,20 +4,23 @@
   $Id$
 */
 
-package com.hp.hpl.jena.rdf.model;
+package com.hp.hpl.jena.rdf.model.impl;
+
+import com.hp.hpl.jena.rdf.model.*;
 
 /**
-    A ModelSpec allows Models to be created.
-    
  	@author kers
 */
-public interface ModelSpec
+public abstract class ModelSpecImpl implements ModelSpec
     {
-    Model createModel();
-    
-    Model getDescription();
-    }
+    public ModelSpecImpl()
+        {}
 
+    public abstract Model createModel();
+
+    public abstract Model getDescription();
+    
+    }
 
 /*
     (c) Copyright Hewlett-Packard Company 2003

@@ -29,6 +29,7 @@ import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.reasoner.*;
 import com.hp.hpl.jena.reasoner.rulesys.*;
 import com.hp.hpl.jena.ontology.impl.*;
+import com.hp.hpl.jena.vocabulary.*;
 import com.hp.hpl.jena.reasoner.transitiveReasoner.TransitiveReasonerFactory;
 
 
@@ -343,11 +344,53 @@ public class OntModelSpec implements ModelSpec {
         Satisfy the ModelSpec interface: create an [Ont]Model according to the specification.
         The base model comes from the underlying ModelMaker.
     */
-    public Model createModel()
-        {
+    public Model createModel() {
         return new OntModelImpl( this, m_maker.createModel() );
-        }
+    }
     
+    /**
+        Answer an RDF description of this OntModelSpec, faking a few things for the 
+        moment (MakerSpecs).
+    */
+    public Model getDescription()
+        {
+        Model d = ModelFactory.createDefaultModel();
+        d.add
+            ( JMS.current, JMS.ontLanguage, d.createLiteral( m_languageURI ) );
+        d.add
+            (
+            JMS.current,
+            JMS.docManager,
+            d.createTypedLiteral( getDocumentManager(),  "", "jms:types/DocumentManager" )
+            );
+        Resource im = d.createResource();
+        d.add
+            (
+            JMS.current,
+            JMS.importMaker,
+            im 
+            );
+        d.add
+            (
+            im,
+            RDF.type,
+            JMS.TypeMemMaker
+            );
+        Resource r = d.createResource();
+        d.add
+            (
+            JMS.current,
+            JMS.reasonsWith,
+            r
+            );
+        d.add
+            (
+            r,
+            JMS.reasoner,
+            d.createResource( getReasonerFactory().getURI() )
+            );
+        return d;
+        }
     
     // Internal implementation methods
     //////////////////////////////////
