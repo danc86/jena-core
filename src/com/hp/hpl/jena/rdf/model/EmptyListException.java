@@ -19,14 +19,14 @@
 
 // Package
 ///////////////
-package com.hp.hpl.jena.shared;
+package com.hp.hpl.jena.rdf.model;
 
-import com.hp.hpl.jena.ontology.OntologyException;
 
 
 
 // Imports
 ///////////////
+import com.hp.hpl.jena.shared.JenaException;
 
 
 /**
