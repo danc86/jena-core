@@ -36,12 +36,12 @@ public class GraphMemQueryHandler extends SimpleQueryHandler
 	
 	public ExtendedIterator findObjects()
 	    {
-	    return WrappedIterator.create( ((GraphMem) graph).store.objects.domain() );
+	    return ((GraphMem) graph).store.listObjects();
 	    }
 	
 	public ExtendedIterator findSubjects()
 	    {
-	    return WrappedIterator.create( ((GraphMem) graph).store.subjects.domain() );
+	    return ((GraphMem) graph).store.listSubjects();
 	    }
 	}
 

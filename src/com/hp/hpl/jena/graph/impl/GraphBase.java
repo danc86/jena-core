@@ -30,7 +30,6 @@ import com.hp.hpl.jena.shared.impl.PrefixMappingImpl;
 
 public abstract class GraphBase implements GraphWithPerform 
 	{
-
     protected final ReificationStyle style;
     
     protected boolean closed = false;

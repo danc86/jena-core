@@ -7,6 +7,7 @@
 package com.hp.hpl.jena.mem;
 
 import com.hp.hpl.jena.graph.*;
+import com.hp.hpl.jena.graph.impl.TripleStore;
 import com.hp.hpl.jena.graph.query.*;
 import com.hp.hpl.jena.shared.*;
 import com.hp.hpl.jena.util.iterator.*;
@@ -19,7 +20,7 @@ import java.util.*;
 */
 public class GraphMem extends GraphMemBase implements Graph 
     {
-    protected GraphTripleStore store = new GraphTripleStore();
+    protected TripleStore store = new GraphTripleStore();
     
     /**
         Initialises a GraphMem with the Minimal reification style
@@ -34,7 +35,7 @@ public class GraphMem extends GraphMemBase implements Graph
         { super( style ); }
 
     protected void destroy()
-        { store.destroy(); }
+        { store.close(); }
 
     public void performAdd( Triple t )
         { if (!getReifier().handledAdd( t )) store.add( t ); }

@@ -53,7 +53,7 @@ public class ModelReifier
         { 
         Graph mGraph = m.getGraph();
         Graph hiddenTriples = mGraph.getReifier().getHiddenTriples();
-        return new ModelCom( new Union( mGraph, hiddenTriples ) );
+        return new ModelCom( new DisjointUnion( mGraph, hiddenTriples ) );
         }
     
     /**
