@@ -74,10 +74,10 @@ public class Query
         this() ;
         com.hp.hpl.jena.rdql.parser.Q_Query query = null ;
         try {
-            long initTime = 0;
+            //long initTime = 0;
             parseTime = 0;
             long startTime = 0;
-            long stopTime = 0;
+            //long stopTime = 0;
 
             ByteArrayInputStream in = new ByteArrayInputStream(s.getBytes()) ;
 

@@ -155,7 +155,6 @@ public class ResultBinding
         {
             if ( varName.equals((String)varNames.get(i)) )
             {
-                Object tmp = values.get(i) ;
                 return values.get(i) ;
             }
         }
@@ -187,7 +186,6 @@ public class ResultBinding
         // Properties and Resources
         if ( arg instanceof Resource )
         {
-            String uri = ((Resource)arg).getURI() ;
             WorkingVar w = new WorkingVar() ;
             w.setRDFResource((Resource)arg) ;
             return w ;

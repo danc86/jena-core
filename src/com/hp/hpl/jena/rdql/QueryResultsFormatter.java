@@ -176,13 +176,11 @@ public class QueryResultsFormatter
 		}
 		else
 		{
-			boolean first = true;
 			pw.println("# Variables:");
 			for (Iterator iter = queryResults.getResultVars().iterator(); iter.hasNext();)
 			{
 				String vName = (String) iter.next();
 				pw.print("?" + vName+" ");
-				first = false;
 			}
 			pw.println(".") ;
 			pw.println("# Data:");
