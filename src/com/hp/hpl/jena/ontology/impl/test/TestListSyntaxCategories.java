@@ -608,7 +608,8 @@ public class TestListSyntaxCategories
         
         /* get the iterator */
         public Iterator doList( OntModel m ) {
-            throw new RuntimeException("This method should be overridden");
+            // should be overriden in sub-classes
+            return null;
         }
         
         /* test the Java type of the result, and other tests */

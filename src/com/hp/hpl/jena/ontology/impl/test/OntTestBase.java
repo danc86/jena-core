@@ -95,16 +95,20 @@ public abstract class OntTestBase
         protected boolean m_inOWL;
         protected boolean m_inOWLLite;
         protected boolean m_inDAML;
+        protected boolean m_inRDFS;
         protected String m_langElement;
         protected boolean m_owlLang = true;
         protected boolean m_owlLiteLang = false;
+        protected boolean m_rdfsLang = false;
+        protected boolean m_damlLang = false;
 
-        public OntTestCase( String langElement, boolean inOWL, boolean inOWLLite, boolean inDAML ) {
+        public OntTestCase( String langElement, boolean inOWL, boolean inOWLLite, boolean inDAML, boolean inRDFS ) {
             super( "Ontology API test " + langElement );
             m_langElement = langElement;
             m_inOWL = inOWL;
             m_inOWLLite = inOWLLite;
             m_inDAML = inDAML;
+            m_inRDFS = inRDFS;
         }
 
         public void runTest()
@@ -120,8 +124,15 @@ public abstract class OntTestBase
             // now DAML
             m_owlLang = false;
             m_owlLiteLang = false;
+            m_damlLang = true;
             
             runTest( ModelFactory.createOntologyModel( OntModelSpec.DAML_MEM, null ), m_inDAML );
+            
+            // now RDFS
+            
+            m_rdfsLang = true;
+            m_damlLang = false;
+            runTest( ModelFactory.createOntologyModel( OntModelSpec.RDFS_MEM, null ), m_inRDFS);
         }
     
         protected void runTest( OntModel m, boolean inModel )

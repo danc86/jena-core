@@ -71,7 +71,7 @@ public class TestOntology
 
     public OntTestCase[] getTests() {
         return new OntTestCase[] {
-            new OntTestCase( "Ontology.imports", true, true, true ) {
+            new OntTestCase( "Ontology.imports", true, true, true, false ) {
                 public void ontTest( OntModel m ) throws Exception {
                     Profile prof = m.getProfile();
                     Ontology x = m.createOntology( NS + "x" );
@@ -96,7 +96,7 @@ public class TestOntology
                     assertEquals( "Cardinality should be 0", 0, x.getCardinality( prof.IMPORTS() ) );
                 }
             },
-            new OntTestCase( "Ontology.backwardCompatibleWith", true, true, false ) {
+            new OntTestCase( "Ontology.backwardCompatibleWith", true, true, false, false ) {
                 public void ontTest( OntModel m ) throws Exception {
                     Profile prof = m.getProfile();
                     Ontology x = m.createOntology( NS + "x" );
@@ -121,7 +121,7 @@ public class TestOntology
                     assertEquals( "Cardinality should be 0", 0, x.getCardinality( prof.BACKWARD_COMPATIBLE_WITH() ) );
                 }
             },
-            new OntTestCase( "Ontology.priorVersion", true, true, false ) {
+            new OntTestCase( "Ontology.priorVersion", true, true, false, false ) {
                 public void ontTest( OntModel m ) throws Exception {
                     Profile prof = m.getProfile();
                     Ontology x = m.createOntology( NS + "x" );
@@ -146,7 +146,7 @@ public class TestOntology
                     assertEquals( "Cardinality should be 0", 0, x.getCardinality( prof.PRIOR_VERSION() ) );
                 }
             },
-            new OntTestCase( "Ontology.incompatibleWith", true, true, false ) {
+            new OntTestCase( "Ontology.incompatibleWith", true, true, false, false ) {
                 public void ontTest( OntModel m ) throws Exception {
                     Profile prof = m.getProfile();
                     Ontology x = m.createOntology( NS + "x" );

@@ -69,7 +69,7 @@ public class TestAllDifferent
 
     public OntTestCase[] getTests() {
         return new OntTestCase[] {
-            new OntTestCase( "AllDifferent.distinctMembers", true, true, false ) {
+            new OntTestCase( "AllDifferent.distinctMembers", true, true, false, false ) {
                 public void ontTest( OntModel m ) throws Exception {
                     Profile prof = m.getProfile();
                     AllDifferent a = m.createAllDifferent();

@@ -69,7 +69,7 @@ public class TestIndividual
 
     public OntTestCase[] getTests() {
         return new OntTestCase[] {
-            new OntTestCase( "Individual.sameIndividualAs", true, false, true ) {
+            new OntTestCase( "Individual.sameIndividualAs", true, false, true, false ) {
                 public void ontTest( OntModel m ) throws Exception {
                     Profile prof = m.getProfile();
                     OntClass A = m.createClass( NS + "A" );

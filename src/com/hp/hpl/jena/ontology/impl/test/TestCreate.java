@@ -547,9 +547,10 @@ public class TestCreate
             assertTrue( "Result test failed", test( r ));
         }
         
-        /* get the iterator */
+        /* get the resource */
         public OntResource doCreate( OntModel m ) {
-            throw new RuntimeException("This method should be overridden");
+            // to be overridden in sub-classes
+            return null;
         }
         
         /* test the Java type of the result, and other tests */
