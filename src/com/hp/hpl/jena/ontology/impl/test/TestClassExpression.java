@@ -964,6 +964,27 @@ public class TestClassExpression
                     }
                 }
             },
+            new OntTestCase( "OntClass.listDefinedProperties.notAll", true, true, true, true ) {
+                public void ontTest( OntModel m ) throws Exception {
+                    OntClass A = m.createClass( NS + "A" );
+                    OntClass C = m.createClass( NS + "C" );
+                    C.addSuperClass(A);
+                    
+                    OntProperty p = m.createOntProperty( NS + "p" );
+                    OntProperty q = m.createOntProperty( NS + "q" );
+                    OntProperty s = m.createOntProperty( NS + "s" );
+                    
+                    p.setDomain( A );
+                    q.setDomain( A );
+                    s.setDomain( C );
+                    
+                    iteratorTest( C.listDeclaredProperties( true ), new Object[] {p, q, s} );
+                    iteratorTest( C.listDeclaredProperties( false ), new Object[] {s} );
+                    
+                    assertTrue( "declared property should be an ont prop", C.listDeclaredProperties( true ).next() instanceof OntProperty );
+                    assertTrue( "declared property should be an ont prop", C.listDeclaredProperties( false ).next() instanceof OntProperty );
+                }
+            },
             
         };
     }
