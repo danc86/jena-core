@@ -7,17 +7,27 @@
  * [See end of file]
  * $Id$
  *****************************************************************/
-package com.hp.hpl.jena.reasoner.rulesys;
+package com.hp.hpl.jena.reasoner.rulesys.impl.oldCode;
 
 import java.util.*;
 import java.io.*;
 import org.apache.log4j.Logger;
 
 import com.hp.hpl.jena.reasoner.*;
+import com.hp.hpl.jena.reasoner.rulesys.BasicForwardRuleInfGraph;
+import com.hp.hpl.jena.reasoner.rulesys.BasicForwardRuleReasoner;
+import com.hp.hpl.jena.reasoner.rulesys.ClauseEntry;
+import com.hp.hpl.jena.reasoner.rulesys.Functor;
+import com.hp.hpl.jena.reasoner.rulesys.Node_RuleVariable;
+import com.hp.hpl.jena.reasoner.rulesys.Rule;
+import com.hp.hpl.jena.reasoner.rulesys.Util;
 import com.hp.hpl.jena.vocabulary.*;
 import com.hp.hpl.jena.graph.*;
 
 /**
+ * @deprecated Obsoleted post jena2.0, replaced by 
+ * {@link com.hp.hpl.jena.reasoner.rulesys.OWLFBRuleReasoner}.
+ * 
  * An pure forward chaining implementation of the experimental OWL closure rules
  * based upon the basic forward rule interpreter. This is not a serious or
  * usable OWL implementation, it is a tool for developing the rules.

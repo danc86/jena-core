@@ -34,7 +34,7 @@ public class BasicForwardRuleReasoner implements Reasoner {
     protected boolean recordDerivations = false;
     
     /** Flag which, if true, enables tracing of rule actions to logger.info */
-    boolean traceOn = false;
+    protected boolean traceOn = false;
     
     /**
      * Constructor. This is the raw version that does not reference a ReasonerFactory

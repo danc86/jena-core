@@ -7,14 +7,18 @@
  * [See end of file]
  * $Id$
  *****************************************************************/
-package com.hp.hpl.jena.reasoner.rulesys;
+package com.hp.hpl.jena.reasoner.rulesys.impl.oldCode;
 
 
 import com.hp.hpl.jena.reasoner.*;
+import com.hp.hpl.jena.reasoner.rulesys.Util;
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.vocabulary.*;
 
 /**
+ * @deprecated Obsoleted post jena2.0, replaced by 
+ * {@link com.hp.hpl.jena.reasoner.rulesys.OWLFBRuleReasonerFactory}.
+ * 
  * Factory class for creating blank instances of the OWL Reasoner.
  * <p>
  * The reasoner can be configured using three properties (set as
