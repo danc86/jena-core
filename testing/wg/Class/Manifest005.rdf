@@ -22,7 +22,8 @@
       xml:base='http://www.w3.org/2002/03owlt/Class/Manifest005'
 >
 <otest:NegativeEntailmentTest rdf:ID='test'>
-   <rtest:status>PROPOSED</rtest:status>
+   <rtest:status>APPROVED</rtest:status>
+   <rtest:approval rdf:resource="http://lists.w3.org/Archives/Public/www-webont-wg/2003Nov/0000.html"/>
    <dc:creator>Jeremy J. Carroll</dc:creator>
    <otest:feature rdf:resource='http://www.w3.org/2002/07/owl#Class' />
    <otest:level rdf:resource='http://www.w3.org/2002/03owlt/testOntology#DL' />

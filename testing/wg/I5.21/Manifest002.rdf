@@ -22,7 +22,7 @@
       xml:base='http://www.w3.org/2002/03owlt/I5.21/Manifest002'
 >
 <otest:PositiveEntailmentTest rdf:ID='test'>
-   <rtest:status>PROPOSED</rtest:status>
+   <rtest:status>APPROVED</rtest:status><rtest:approval rdf:resource="http://lists.w3.org/Archives/Public/www-webont-wg/2003Oct/0040"/>
    <dc:creator>Ian Horrocks</dc:creator>
    <rtest:issue rdf:resource='http://www.w3.org/2001/sw/WebOnt/webont-issues#I5.21-drop-disjointUnionOf' />
    <otest:level rdf:resource='http://www.w3.org/2002/03owlt/testOntology#DL' />

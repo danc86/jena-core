@@ -22,7 +22,7 @@
       xml:base='http://www.w3.org/2002/03owlt/imports/Manifest010'
 >
 <otest:OWLforOWLTest rdf:ID='test'>
-   <rtest:status>PROPOSED</rtest:status>
+   <rtest:status>APPROVED</rtest:status><rtest:approval rdf:resource="http://lists.w3.org/Archives/Public/www-webont-wg/2003Oct/0040"/>
    <dc:creator>Jeremy J. Carroll</dc:creator>
    <otest:feature rdf:resource='http://www.w3.org/2002/07/owl#imports' />
    <otest:level rdf:resource='http://www.w3.org/2002/03owlt/testOntology#Full' />

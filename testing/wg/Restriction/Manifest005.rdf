@@ -22,7 +22,8 @@
       xml:base='http://www.w3.org/2002/03owlt/Restriction/Manifest005'
 >
 <otest:NegativeEntailmentTest rdf:ID='test'>
-   <rtest:status>PROPOSED</rtest:status>
+   <rtest:status>APPROVED</rtest:status>
+   <rtest:approval rdf:resource="http://lists.w3.org/Archives/Public/www-webont-wg/2003Nov/0000.html"/>
    <otest:feature rdf:resource='http://www.w3.org/2002/07/owl#Restriction' />
    <otest:level rdf:resource='http://www.w3.org/2002/03owlt/testOntology#Lite' />
    <otest:level rdf:resource='http://www.w3.org/2002/03owlt/testOntology#Full' />

@@ -22,7 +22,7 @@
       xml:base='http://www.w3.org/2002/03owlt/cardinality/Manifest007'
 >
 <otest:NegativeEntailmentTest rdf:ID='test'>
-   <rtest:status>PROPOSED</rtest:status> 
+   <rtest:status>OBSOLETED</rtest:status> 
    <dc:creator>Jeremy J. Carroll</dc:creator>
    <otest:feature rdf:resource='http://www.w3.org/2002/07/owl#cardinality' />
    <otest:level rdf:resource='http://www.w3.org/2002/03owlt/testOntology#Full' />

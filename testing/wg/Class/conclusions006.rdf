@@ -30,7 +30,7 @@ may make a file fall outside OWL DL.
         <owl:unionOf rdf:parseType="Collection">
           <owl:Class rdf:about="premises006#c" />
           <rdfs:Class>
-            <owl:complementOf rdf:resource="premises#c"/>
+            <owl:complementOf rdf:resource="premises006#c"/>
           </rdfs:Class>
         </owl:unionOf>
       </owl:Class>

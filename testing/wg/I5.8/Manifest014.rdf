@@ -22,7 +22,7 @@
       xml:base='http://www.w3.org/2002/03owlt/I5.8/Manifest014'
 >
 <otest:ConsistencyTest rdf:ID='test'>
-   <rtest:status>PROPOSED</rtest:status>
+   <rtest:status>EXTRACREDIT</rtest:status><rtest:approval rdf:resource="http://lists.w3.org/Archives/Public/www-webont-wg/2003Oct/0040"/>
    <dc:creator>Jeremy J. Carroll</dc:creator>
    <rtest:issue rdf:resource='http://www.w3.org/2001/sw/WebOnt/webont-issues#I5.8-Datatypes' />
    <otest:level rdf:resource='http://www.w3.org/2002/03owlt/testOntology#Full' />
