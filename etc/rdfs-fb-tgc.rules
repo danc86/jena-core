@@ -74,10 +74,9 @@
 [rdfs2-partial: (?p rdfs:domain ?c) -> (?c rdf:type rdfs:Class)]
 [rdfs3-partial: (?p rdfs:range ?c)  -> (?c rdf:type rdfs:Class)]
 
-# Either version should work, pure back one scales better, but a bug (suspected in Brule system)
-# seems to cause problems in some cases. Stick to original version for now.
-[rdfs9:  (?x rdfs:subClassOf ?y) -> [ (?a rdf:type ?y) <- (?a rdf:type ?x)] ] 
-#[rdfs9-alt:  (?a rdf:type ?y) <- (?x rdfs:subClassOf ?y), (?a rdf:type ?x) ] 
+# Either version should work, pure back one scales better.
+# rdfs9:  (?x rdfs:subClassOf ?y) -> [ (?a rdf:type ?y) <- (?a rdf:type ?x)] ] 
+[rdfs9-alt:  (?a rdf:type ?y) <- (?x rdfs:subClassOf ?y), (?a rdf:type ?x) ] 
 
 # Not needed - replaced by TGC front end
 #[rdfs8:  (?a rdfs:subClassOf ?b), (?b rdfs:subClassOf ?c) -> (?a rdfs:subClassOf ?c)] 
