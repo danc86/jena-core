@@ -19,16 +19,18 @@ do
     done
 
 
-CP="${CP:-}"
-for jar in $JENADIR/lib/*.jar
-do
-    if [ "$CP" = "" ]
-    then
-	CP="$jar"
-    else
-	CP="$CP;$jar"
-	fi
-done
+export JENAROOT="/home/afs/Projects/Jena"
+CP="$(jena_path)"
+## CP="${CP:-}"
+## for jar in $JENADIR/lib/*.jar
+## do
+##     if [ "$CP" = "" ]
+##     then
+## 	CP="$jar"
+##     else
+## 	CP="$CP;$jar"
+## 	fi
+## done
 
 TESTFILE="${1:-_control_}"
 
