@@ -106,17 +106,18 @@ public class RETEEngine implements FRuleEngineI {
      * have already be preprocessed and the clause index already exists.
      */
     public void fastInit() {
-        if (infGraph.getRawGraph() == null) return; 
-        // Insert the data
-        if (wildcardRule) {
-            for (Iterator i = infGraph.getRawGraph().find(null, null, null); i.hasNext(); ) {
-                addTriple((Triple)i.next(), false);
-            }
-        } else {
-            for (Iterator p = predicatesUsed.iterator(); p.hasNext(); ) {
-                Node predicate = (Node)p.next();
-                for (Iterator i = infGraph.getRawGraph().find(null, predicate, null); i.hasNext(); ) {
+        if (infGraph.getRawGraph() != null) {
+            // Insert the data
+            if (wildcardRule) {
+                for (Iterator i = infGraph.getRawGraph().find(null, null, null); i.hasNext(); ) {
                     addTriple((Triple)i.next(), false);
+                }
+            } else {
+                for (Iterator p = predicatesUsed.iterator(); p.hasNext(); ) {
+                    Node predicate = (Node)p.next();
+                    for (Iterator i = infGraph.getRawGraph().find(null, predicate, null); i.hasNext(); ) {
+                        addTriple((Triple)i.next(), false);
+                    }
                 }
             }
         }
@@ -146,7 +147,7 @@ public class RETEEngine implements FRuleEngineI {
      * It will return false during the axiom bootstrap phase.
      */
     public boolean shouldTrace() {
-        return infGraph.shouldTrace();
+        return true;
 //        return processedAxioms;
     }
 
@@ -266,7 +267,7 @@ public class RETEEngine implements FRuleEngineI {
      * added to the deductions graph.
      */
     public synchronized void addTriple(Triple triple, boolean deduction) {
-        if (shouldTrace()) {
+        if (infGraph.shouldTrace()) {
             logger.debug("Add triple: " + PrintUtil.print(triple));
         }
         if (deletesPending.size() > 0) deletesPending.remove(triple);
@@ -334,7 +335,7 @@ public class RETEEngine implements FRuleEngineI {
                 if (next == null) return;       // finished
                 isAdd = true;
             }
-            if (shouldTrace()) {
+            if (infGraph.shouldTrace()) {
                 logger.debug("Inserting triple: " + PrintUtil.print(next));
             }
             Iterator i1 = clauseIndex.getAll(next.getPredicate());

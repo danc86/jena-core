@@ -58,6 +58,9 @@ public class BasicForwardRuleInfGraph extends BaseInfGraph implements ForwardRul
     /** log4j logger */
     protected static Logger logger = Logger.getLogger(BasicForwardRuleInfGraph.class);
     
+    /** Static switch from Basic to RETE implementation */
+    public static final boolean useRETE = false;
+    
 //=======================================================================
 // Core methods
 
@@ -73,8 +76,11 @@ public class BasicForwardRuleInfGraph extends BaseInfGraph implements ForwardRul
     */
    public BasicForwardRuleInfGraph(Reasoner reasoner, Graph schema) {
        super(null, reasoner);
-       engine = new FRuleEngine(this);
-//       engine = new RETEEngine(this);
+       if (useRETE) {
+           engine = new RETEEngine(this);
+       } else {
+           engine = new FRuleEngine(this);
+       }
        this.schemaGraph = schema;
    }    
 
@@ -91,8 +97,11 @@ public class BasicForwardRuleInfGraph extends BaseInfGraph implements ForwardRul
     */
    public BasicForwardRuleInfGraph(Reasoner reasoner, List rules, Graph schema) {
        super(null, reasoner);
-       engine = new FRuleEngine(this, rules);
-//       engine = new RETEEngine(this, rules);
+       if (useRETE) {
+           engine = new RETEEngine(this, rules);
+       } else {
+           engine = new FRuleEngine(this, rules);
+       }
        this.rules = rules;
        this.schemaGraph = schema;
    }    
