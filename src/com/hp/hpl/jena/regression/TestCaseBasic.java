@@ -317,7 +317,7 @@ public class TestCaseBasic extends TestCase {
 						tearDown();
 						setUp();
 					} catch (Exception e) {
-						throw new RuntimeException(e);
+						throw new RuntimeException(e.getMessage());
 					}
 					cache[0] = m1;
 					cache[1] = m2;
