@@ -29,6 +29,7 @@ public class MoreTests
 	suite.addTest(new MoreTests("testNullBaseParamError"));
 	suite.addTest(new MoreTests("testEmptyBaseParamOK"));
 	suite.addTest(new MoreTests("testEmptyBaseParamError"));
+	suite.addTest(new MoreTests("testWineDefaultNS"));
     return suite;
    }
    
@@ -39,6 +40,18 @@ public class MoreTests
     protected Model createMemModel() {
         return ModelFactory.createDefaultModel();
     }
+    
+    public void testWineDefaultNS() throws IOException {
+    	testWineNS(createMemModel());
+		  testWineNS(ModelFactory.createOntologyModel()); 
+    }
+
+	private void testWineNS(Model m) throws FileNotFoundException, IOException {
+		InputStream in =new FileInputStream("testing/arp/xmlns/wine.rdf");
+		  m.read(in,"");  
+		  in.close();
+		  assertEquals("http://www.w3.org/TR/2003/CR-owl-guide-20030818/wine#",m.getNsPrefixURI(""));
+	}
   
    public void testEncodingMismatch1() throws IOException {
       Model m = createMemModel();

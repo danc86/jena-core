@@ -26,7 +26,7 @@ public interface PrefixMapping
     /**
         Specify the prefix name for a URI prefix string. Any existing use of that prefix
         name is overwritten. Any existing prefix for the same URI is removed, unless
-        the prefix is the empty string.  (We still have to decide what happens if there are 
+        either prefix is the empty string.  (We still have to decide what happens if there are 
         *overlapping* URIs.) The result is this same prefixMapping.
   <p>      
         A prefix name must be a valid NCName, or the empty string. The empty string

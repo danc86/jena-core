@@ -276,7 +276,9 @@ class ParserSupport
 		try {
 			URIReference rslt = new URIReference(t.location, ctxt, val);
 			if (val.indexOf(':') == -1) {
-				if (!ctxt.isSameAsDocument()) {
+				if ((!arp.ignoring(IGN_XMLBASE_SIGNIFICANT))
+				  &&
+				!ctxt.isSameAsDocument()) {
 					boolean bad = false;
 					try {
 						URIReference other =

@@ -951,4 +951,8 @@ class ARPFilter
 		scopeHandler.startRDF();
 	}
 
+	public boolean ignoring(int eCode) {
+		return errorMode[eCode]==EM_IGNORE;
+	}
+
 }

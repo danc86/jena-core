@@ -37,7 +37,7 @@ public class PrefixMappingImpl implements PrefixMapping
         {
         checkUnlocked();
         checkLegal( prefix );
-        if (!prefix.equals( "" )) removeExisting( uri );
+        if (!prefix.equals( "" )) removeExistingNonDefault( uri );
         checkProper( uri );
         map.put( prefix, uri );
         return this;
@@ -65,13 +65,14 @@ public class PrefixMappingImpl implements PrefixMapping
         return last == '/' || last == '#';
         }
  
-    private void removeExisting( String uri )
+    private void removeExistingNonDefault( String uri )
         {
         Iterator it = map.entrySet().iterator();
         while (it.hasNext())
             {
             Map.Entry e = (Map.Entry) it.next();
-            if (e.getValue().equals( uri )) 
+            if (e.getValue().equals( uri )
+                && !e.getKey().equals("")) 
                 {
                 map.remove( e.getKey() );
                 return;
