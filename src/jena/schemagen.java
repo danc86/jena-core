@@ -233,7 +233,7 @@ public class schemagen extends java.lang.Object {
         // compute the package name
         String packageName;
         if (name.indexOf('.') == -1) {
-            packageName = "com.hp.hpl.mesa.rdf.jena.vocabulary";
+            packageName = "com.hp.hpl.jena.vocabulary";
         } else {
             packageName = name.substring(0, name.lastIndexOf('.'));
             name = name.substring(name.lastIndexOf('.') + 1);
