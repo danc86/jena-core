@@ -131,7 +131,7 @@ public class TestModelSpecRevised extends ModelTestBase
         {
         String uri = GenericRuleReasonerFactory.URI;
         Model rs = modelWithStatements( "_a jms:reasoner ?0; _a jms:ruleSetURL nowhere:man", new Object[] { uri } ); 
-        try { InfModelSpec.getReasonerFactory( A, rs ); fail( "should report ruleset failure" ); }
+        try { InfModelSpec.getReasonerFactory( A, rs ).create( null ); fail( "should report ruleset failure" ); }
         catch (RulesetNotFoundException e) { assertEquals( "nowhere:man", e.getURI() ); }
         }
     

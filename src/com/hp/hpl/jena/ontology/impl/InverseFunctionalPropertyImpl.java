@@ -61,7 +61,7 @@ public class InverseFunctionalPropertyImpl
                 return new InverseFunctionalPropertyImpl( n, eg );
             }
             else {
-                throw new ConversionException( "Cannot convert node " + n + " to InverseFunctionalProperty");
+                throw new ConversionException( "Cannot convert node " + n + " to InverseFunctionalProperty - it must have rdf:type owl:InverseFunctionalProperty or equivalent" );
             } 
         }
             

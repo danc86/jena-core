@@ -202,13 +202,10 @@ public class GenericRuleReasoner extends FBRuleReasoner {
         {
         if (parameter.equals( JMS.ruleSetURL )) 
             {
-//            System.err.println( ">> ruleSetURL " + value );
             addRules( Rule.rulesFromURL( value.getURI() ) );
             }
         else if (parameter.equals( JMS.ruleSet )) 
             {
-//            System.err.println( ">> ruleSet " + value );
-//            System.err.println( "++  " + IteratorCollection.iteratorToSet( value.listProperties() ) );
             StmtIterator that = value.listProperties( JMS.ruleSetURL );
             while (that.hasNext())
                 {
@@ -217,9 +214,7 @@ public class GenericRuleReasoner extends FBRuleReasoner {
             StmtIterator it = value.listProperties( JMS.hasRule );
             while (it.hasNext()) 
                 {
-                String s = it.nextStatement().getString();
-                // System.err.println( "++  " + s );
-                addRules( Rule.parseRules( s ) ); 
+                addRules( Rule.parseRules( it.nextStatement().getString() ) ); 
                 }
             }
         else
