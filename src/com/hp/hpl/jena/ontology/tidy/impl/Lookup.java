@@ -64,6 +64,14 @@ public interface Lookup {
 	  * @return
 	  */
 	public abstract byte allActions(int k);
+
+	/**
+	 * Return Failure if meet is bottom
+	 * @param c0
+	 * @param c1
+	 * @return
+	 */
+	public int meet(int c0, int c1);
 }
 /*
 	(c) Copyright Hewlett-Packard Company 2003

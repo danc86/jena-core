@@ -12,7 +12,7 @@ import com.hp.hpl.jena.shared.*;
  * @author <a href="mailto:Jeremy.Carroll@hp.com">Jeremy Carroll</a>
  *
 */
-public class CategorySet implements Comparable, Serializable {
+public class CategorySet implements Comparable, Serializable, Constants {
 	//com.hp.hpl.jena.ontology.tidy.CategorySet:
 	  static final long serialVersionUID = -1280155302467590202L;
 
@@ -186,6 +186,8 @@ public class CategorySet implements Comparable, Serializable {
 	 * @return
 	 */
 	public synchronized static int find(int s[], boolean isSorted) {
+		if (s.length == 0)
+		  return Failure;
 		if (!isSorted)
 			Arrays.sort(s);
 		CategorySet cs = new CategorySet(s);
@@ -197,10 +199,13 @@ public class CategorySet implements Comparable, Serializable {
 				return close.id;
 			}
 		}
+		if ( closed )
+		  return Failure;
 		cs.id = unsorted.size();
 		cs.init();
 		return cs.id;
 	}
+  static	boolean closed = false;
 	private void init() {
 		unsorted.add(this);
 		sorted.add(this);

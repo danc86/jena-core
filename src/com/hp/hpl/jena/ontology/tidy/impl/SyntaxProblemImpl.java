@@ -23,7 +23,6 @@ class SyntaxProblemImpl extends SyntaxProblem {
 	 */
 	public SyntaxProblemImpl(String shortD, EnhNode en, int lvl) {
 		super(shortD, en, lvl);
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
@@ -33,7 +32,6 @@ class SyntaxProblemImpl extends SyntaxProblem {
 	 */
 	public SyntaxProblemImpl(String shortD, Node n, int lvl) {
 		super(shortD, n, lvl);
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
@@ -43,7 +41,6 @@ class SyntaxProblemImpl extends SyntaxProblem {
 	 */
 	public SyntaxProblemImpl(String shortD, Graph g, int lvl) {
 		super(shortD, g, lvl);
-		// TODO Auto-generated constructor stub
 	}
 
 }
