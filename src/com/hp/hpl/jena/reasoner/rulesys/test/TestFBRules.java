@@ -802,7 +802,7 @@ public class TestFBRules extends TestCase {
         int count = 0;
         for (Iterator i = infgraph.find(null, rbPrototypeProp, null); i.hasNext(); ) {
             Object t = i.next();
-            System.out.println(" - " + PrintUtil.print(t));
+//            System.out.println(" - " + PrintUtil.print(t));
             count++;
         }
 //        listFBGraph("direct databind case", (FBRuleInfGraph)infgraph);
@@ -812,7 +812,7 @@ public class TestFBRules extends TestCase {
         count = 0;
         for (Iterator i = infgraph.find(null, rbPrototypeProp, null); i.hasNext(); ) {
             Object t = i.next();
-            System.out.println(" - " + PrintUtil.print(t));
+//            System.out.println(" - " + PrintUtil.print(t));
             count++;
         }
 //        listFBGraph("bindSchema case", (FBRuleInfGraph)infgraph);
