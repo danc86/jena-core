@@ -64,10 +64,7 @@ public class TestContains extends ModelTestBase
         }
     
     public void testCWN( boolean yes, String facts, Resource S, Property P, RDFNode O )
-        {
-        Model m = modelWithStatements( facts );
-        assertEquals( yes, m.contains( S, P, O ) );
-        }
+        { assertEquals( yes, modelWithStatements( facts ).contains( S, P, O ) ); }
     }
 
 

@@ -618,8 +618,8 @@ public interface Model
 	 *  and property.
 	 * @return true if there exists within this model a statement with
 	 * subject s and property p, false otherwise
-	 * @param s The subject sought.
-	 * @param p The predicate sought.
+	 * @param s The subject sought (null for any).
+	 * @param p The predicate sought (null for any).
 	 
 	 */
 	boolean contains(Resource s, Property p) ;
@@ -634,12 +634,13 @@ public interface Model
     */
     boolean containsResource( RDFNode r );
 
-	/** Determine if a statement is present in this model.
+	/** Determine if an (S, P, O) pattern is present in this model, with null allowed
+     * to represent a wildcard match.
 	 * @return true if the statement with subject s, property p and object o
 	 * is in the model, false otherwise
-	 * @param s The subject of the statment tested.
-	 * @param p The predicate of the statement tested.
-	 * @param o The object of the statement tested.
+	 * @param s The subject of the statment tested (null as wildcard).
+	 * @param p The predicate of the statement tested (null as wildcard).
+	 * @param o The object of the statement tested (null as wildcard).
 	 
 	 */
 	boolean contains(Resource s, Property p, RDFNode o) ;

@@ -44,15 +44,18 @@ implements Model, PrefixMapping, ModelLock
     /**
     	make a model based on the specified graph
     */
-	public ModelCom( Graph base ) {
-		this( base, BuiltinPersonalities.model );
-	}
+	public ModelCom( Graph base ) 
+        { this( base, BuiltinPersonalities.model ); }
+    
+    public ModelCom( Graph base, Personality personality )
+        { super( base, personality ); }
+    
+    public ModelCom( Graph base, PrefixMapping pm )
+        { this( base ); 
+        setNsPrefixes( pm ); }
 	
     public QueryHandler queryHandler()
     	{ return getGraph().queryHandler(); }
-	
-	public ModelCom( Graph base, Personality personality )
-		{ super( base, personality ); }
 		
     public Graph getGraph()
         { return graph; }

@@ -27,7 +27,7 @@ import java.util.*;
 public class GraphMem extends GraphBase implements Graph 
     {
     /** the set storing all the triples in this GraphMem */
-    HashSet triples = new HashSet();
+    Set triples = new HashSet();
 
     NodeToTriplesMap subjects = new NodeToTriplesMap();
     NodeToTriplesMap predicates = new NodeToTriplesMap();
