@@ -147,7 +147,7 @@ void white1(boolean warnOnPi) :         {}
 {  ( oneWhite(warnOnPi) ) * 
 }
 void whiteOrErr() :                     {}
-{  ( oneWhite(true)| warning() ) * 
+{  ( oneWhite(false)| warning() ) * 
 }
 void xOneWhite() :                     { Token w; }
 {  w=<CD_STRING>                       { X.checkWhite((StrToken)w,true); } 
