@@ -32,6 +32,7 @@ package com.hp.hpl.jena.rdf.model.impl;
 import com.hp.hpl.jena.rdf.model.*;
 
 import java.util.Properties;
+import com.hp.hpl.jena.n3.N3JenaWriter;
 
 /**
  *
@@ -45,7 +46,16 @@ public class RDFWriterFImpl extends Object implements RDFWriterF {
     // predefined languages - these should probably go in a properties file
 
     protected static final String LANGS[] =
-        { "RDF/XML", "RDF/XML-ABBREV", "N-TRIPLE", "N3" };
+        { "RDF/XML",
+          "RDF/XML-ABBREV",
+          "N-TRIPLE",
+          "N-TRIPLES",
+          "N3",
+          N3JenaWriter.n3WriterPrettyPrinter,
+          N3JenaWriter.n3WriterPlain,
+          N3JenaWriter.n3WriterTriples,
+          N3JenaWriter.n3WriterTriplesAlt,
+        };
     // default readers for each language
 
     protected static final String DEFAULTWRITERS[] =
@@ -53,7 +63,13 @@ public class RDFWriterFImpl extends Object implements RDFWriterF {
             Jena.PATH + ".xmloutput.impl.Basic",
             Jena.PATH + ".xmloutput.impl.Abbreviated",
             Jena.PATH + ".rdf.model.impl.NTripleWriter",
-            "com.hp.hpl.jena.n3.N3JenaWriter" };
+            Jena.PATH + ".rdf.model.impl.NTripleWriter",
+            Jena.PATH + ".n3.N3JenaWriter",
+            Jena.PATH + ".n3.N3JenaWriterPP",
+            Jena.PATH + ".n3.N3JenaWriterPlain",
+            Jena.PATH + ".n3.N3JenaWriterTriples",
+            Jena.PATH + ".n3.N3JenaWriterTriples",  // Same writer, different writer name
+             };
 
     protected static final String DEFAULTLANG = LANGS[0];
 

@@ -98,22 +98,10 @@ public class N3JenaWriterTests extends N3ExternalTestsCom
 			Model model_1 = new ModelMem() ;
 			model_1.read(data, uriBase, "N3") ;
             
-            // Set the writer name.
-            String oldName = System.getProperty(N3JenaWriter.propWriterName) ;
-            System.setProperty(N3JenaWriter.propWriterName, writerName) ;
 			StringWriter w = new StringWriter() ;
-            
-			//N3JenaWriter out = new N3JenaWriter() ;
-			//out.write(model_1, w, uriBase) ;
-            
-			model_1.write(w, "N3", uriBase) ;
+            model_1.write(w, writerName, uriBase) ;
+            model_1.write(System.out, writerName, uriBase) ;
 			w.close() ;
-            
-            // Set the writer name back again.
-            if ( oldName == null )
-                System.getProperties().remove(N3JenaWriter.propWriterName) ;
-            else
-                System.setProperty(N3JenaWriter.propWriterName, oldName) ;
 			
 			StringReader r = new StringReader(w.toString()) ;
 			Model model_2 = new ModelMem() ;

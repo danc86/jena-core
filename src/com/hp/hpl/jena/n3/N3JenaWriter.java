@@ -30,8 +30,8 @@ public class N3JenaWriter implements RDFWriter
 
     static public final String n3WriterPrettyPrinter = "N3-PP" ;
     static public final String n3WriterPlain         = "N3-PLAIN" ;
-    static public final String n3WriterTriples       = "N3-Triples" ;
-    static public final String n3WriterTriplesAlt    = "N3-Triple" ;
+    static public final String n3WriterTriples       = "N3-TRIPLES" ;
+    static public final String n3WriterTriplesAlt    = "N3-TRIPLE" ;
 
     RDFWriter writer = null ;
     
