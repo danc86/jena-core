@@ -69,7 +69,7 @@ public class ModelReifier
         return new GraphBase()
             {
             public ExtendedIterator graphBaseFind( TripleMatch m ) 
-                { return r.find( m, true ); }
+                { return r.findEither( m, true ); }
             };
         }
 

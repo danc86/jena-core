@@ -202,18 +202,18 @@ public class SimpleReifier implements Reifier
         else
             tripleMap.putTriple( tag, complete );
         }        
-
-    public Graph getHiddenTriples()
-        { return style == ReificationStyle.Standard ? Graph.emptyGraph : getReificationTriples(); }
     
     public Graph getReificationTriples()
         { if (reificationTriples == null) reificationTriples = new DisjointUnion( tripleMap.asGraph(), fragmentsMap.asGraph() ); 
         return reificationTriples; }
     
     public ExtendedIterator find( TripleMatch m )
+        { return tripleMap.find( m ).andThen( fragmentsMap.find( m ) ); }
+    
+    public ExtendedIterator findExposed( TripleMatch m )
         { return concealing ? NullIterator.instance : tripleMap.find( m ).andThen( fragmentsMap.find( m ) ); }
     
-    public ExtendedIterator find( TripleMatch m, boolean showHidden )
+    public ExtendedIterator findEither( TripleMatch m, boolean showHidden )
         {
         return !showHidden 
             ? (concealing ? NullIterator.instance : tripleMap.find( m ).andThen( fragmentsMap.find( m ) ))

@@ -19,22 +19,23 @@ import com.hp.hpl.jena.util.iterator.*;
 public interface Reifier extends GetTriple
     {
     /**
-        Answer a read-only graph of all the reification quadlets in this reifier. 
+         Answer an iterator over all the reification triples in this Reifier that match
+         <code>m</code>.
     */
-    Graph getReificationTriples();
+    ExtendedIterator find( TripleMatch m );
     
     /**
          Answer an iterator over all the reification triples that this Reifier exposes
          (ie all if Standard, none otherwise) that match m.
     */
-    ExtendedIterator find( TripleMatch m );
+    ExtendedIterator findExposed( TripleMatch m );
     
     /**
          Answer an iterator over the reification triples of this Reifier, or an empty 
          iterator - if showHidden is false, only the exposed triples, otherwise only
          the concealed ones.
     */
-    ExtendedIterator find( TripleMatch m, boolean showHidden );
+    ExtendedIterator findEither( TripleMatch m, boolean showHidden );
     
     /**
          Answer the number of reification quadlets held in this reifier.

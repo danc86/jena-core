@@ -155,7 +155,7 @@ public abstract class GraphBase implements GraphWithPerform
         return reifierTriples( m ) .andThen( graphBaseFind( m ) ); }
 
     protected ExtendedIterator reifierTriples( TripleMatch m )
-        { return getReifier().find( m ); }
+        { return getReifier().findExposed( m ); }
     
 	protected abstract ExtendedIterator graphBaseFind( TripleMatch m );
     
@@ -179,7 +179,7 @@ public abstract class GraphBase implements GraphWithPerform
 		return reifierContains( t ) || graphBaseContains( t );	}
     
     protected boolean reifierContains( Triple t )
-        { return getReifier().find( t ).hasNext(); }
+        { return getReifier().findExposed( t ).hasNext(); }
 
 	/**
      * @param t

@@ -66,7 +66,7 @@ public class DBReifier implements Reifier
 	/* (non-Javadoc)
 	 * @see com.hp.hpl.jena.graph.Reifier#getHiddenTriples()
 	 */
-	public Graph getReificationTriples() {
+	private Graph getReificationTriples() {
 		if( m_hiddenTriples == null) 
             m_hiddenTriples = new DBReifierGraph(m_parent, m_hidden_reifiers);
 		return m_hiddenTriples;
@@ -75,7 +75,10 @@ public class DBReifier implements Reifier
     public ExtendedIterator find( TripleMatch m )
         { return getReificationTriples().find( m ); }
     
-    public ExtendedIterator find( TripleMatch m, boolean showHidden )
+    public ExtendedIterator findExposed( TripleMatch m )
+        { return getReificationTriples().find( m ); }
+    
+    public ExtendedIterator findEither( TripleMatch m, boolean showHidden )
         { return showHidden == m_style.conceals() ? getReificationTriples().find( m ) : NullIterator.instance; }
 
     public int size() 

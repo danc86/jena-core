@@ -246,7 +246,7 @@ public /* abstract */ class AbstractTestGraph extends GraphTestBase
         {
         Graph g = getGraph();
         xSPO( g.getReifier() );
-        assertFalse( g.getReifier().getReificationTriples().isEmpty() );    
+        assertFalse( getReificationTriples( g.getReifier() ).isEmpty() );    
         }
         
     public void testBulkAddWithReification( boolean withReifications )
@@ -260,8 +260,8 @@ public /* abstract */ class AbstractTestGraph extends GraphTestBase
         bu.add( graphToAdd, withReifications );
         assertIsomorphic
             ( 
-            withReifications ? addedReifier.getReificationTriples() : graphWith( "" ), 
-            updatedReifier.getReificationTriples() 
+            withReifications ? getReificationTriples( addedReifier ) : graphWith( "" ), 
+            getReificationTriples( updatedReifier ) 
             );
         }
         
@@ -327,7 +327,7 @@ public /* abstract */ class AbstractTestGraph extends GraphTestBase
             xSPO( ar );
             aABC( ar );
             }
-        assertIsomorphic( ar.getReificationTriples(), gr.getReificationTriples() );
+        assertIsomorphic( getReificationTriples( ar ), getReificationTriples( gr ) );
         }
                                         
     public void testHasCapabilities()
