@@ -22,7 +22,7 @@ public class StateFlag {
     private String label;
 
     /** Indicates a goal has failed and return no more answers at this time */
-    public static final StateFlag FAIL = new StateFlag("FALL");
+    public static final StateFlag FAIL = new StateFlag("FAIL");
     
     /** Indicates that all currently available results have been returned and
      *  the goal should be suspended into new subgoal results have been generated */
