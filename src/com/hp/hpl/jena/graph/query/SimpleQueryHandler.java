@@ -59,7 +59,7 @@ public class SimpleQueryHandler implements QueryHandler
     public TreeQueryPlan prepareTree( Graph pattern )
     	{ return new SimpleTreeQueryPlan( graph, pattern ); }
     	
-	public ClosableIterator objectsFor( Node s, Node p )
+	public ExtendedIterator objectsFor( Node s, Node p )
 		{ 
         HashSet objects = new HashSet();
         ClosableIterator it = graph.find( s, p, null );
@@ -67,7 +67,7 @@ public class SimpleQueryHandler implements QueryHandler
 		return new ClosableIteratorImpl( objects.iterator() );
 		}
 		
-	public ClosableIterator subjectsFor( Node p, Node o )
+	public ExtendedIterator subjectsFor( Node p, Node o )
 		{ 
         HashSet objects = new HashSet();
         ClosableIterator it = graph.find( null, p, o );

@@ -46,13 +46,13 @@ public interface QueryHandler
     	deliver an iterator over all the objects _o_ such that _(s, p, o)_ is in the
     	underlying graph; nulls count as wildcards.
     */
-    public ClosableIterator objectsFor( Node s, Node p );
+    public ExtendedIterator objectsFor( Node s, Node p );
 
     /**
     	deliver an iterator over all the subjects _s_ such that _(s, p, o)_ is in the
     	underlying graph; nulls count as wildcards.
     */
-    public ClosableIterator subjectsFor( Node p, Node o );
+    public ExtendedIterator subjectsFor( Node p, Node o );
     }
 
 /*
