@@ -188,6 +188,7 @@ public class JMS
         .add( JMS.InfModelSpec, RDFS.subClassOf, JMS.PlainModelSpec )
         .add( JMS.OntModelSpec, RDFS.subClassOf, JMS.InfModelSpec )
         
+        
         .add( JMS.reificationMode, RDFS.domain, JMS.MakerSpec )
         .add( JMS.maker, RDFS.domain, JMS.PlainModelSpec )
         
