@@ -57,8 +57,6 @@ public class Main {
                                             "file:testing/reasoners/bugs/wine.owl" );
         m.getDocumentManager().addAltEntry( "http://www.w3.org/2001/sw/WebOnt/guide-src/food", 
                                             "file:testing/reasoners/bugs/food.owl" );
-        m.getDocumentManager().addAltEntry( "http://www.w3.org/2001/sw/WebOnt/guide-src/food.owl", 
-                                            "file:testing/reasoners/bugs/food.owl" );
 
         m.read( "http://www.w3.org/2001/sw/WebOnt/guide-src/wine" );
 
