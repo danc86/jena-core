@@ -156,6 +156,7 @@ public class DIGAdapter
         new DIGQueryInstanceTranslator( RDF.type.getURI() ),
         new DIGQueryInstanceTranslator( DAML_OIL.type.getURI() ),
         new DIGQueryRoleFillersTranslator(),
+        new DIGQueryRoleFillerTranslator(),
         new DIGQueryDifferentFromTranslator( OWL.differentFrom.getURI() ),
         new DIGQueryDifferentFromTranslator( DAML_OIL.differentIndividualFrom.getURI() ),
         
@@ -543,7 +544,7 @@ public class DIGAdapter
      * @return True if <code>node</code> is a known individual
      */
     public boolean isIndividual( com.hp.hpl.jena.graph.Node node ) {
-        return node.isConcrete() && getKnownIndividuals().contains( getNodeID( node ) );
+        return node.isConcrete() && !node.isLiteral() && getKnownIndividuals().contains( getNodeID( node ) );
     }    
 
 
@@ -572,7 +573,7 @@ public class DIGAdapter
      * @return True if <code>node</code> is a known concept
      */
     public boolean isConcept( com.hp.hpl.jena.graph.Node node, Model premises ) {
-        return node.isConcrete() && 
+        return node.isConcrete() && !node.isLiteral() && 
                (getKnownConcepts().contains( getNodeID( node ) ) ||
                 ((premises != null) && isPremisesClass( node, premises )) ||
                 KNOWN_CONCEPTS.contains( getNodeID( node ) ));
@@ -929,7 +930,15 @@ public class DIGAdapter
         // an anonymous enumeration of class expressions
         Element iset = addElement( expr, DIGProfile.ISET );
         for (Iterator i = cls.asEnumeratedClass().listOneOf(); i.hasNext(); ) {
-            addNamedElement( iset, DIGProfile.INDIVIDUAL, ((Resource) i.next()).getURI() );
+            RDFNode n = (RDFNode) i.next();
+            
+            if (n instanceof Resource) {
+                addNamedElement( iset, DIGProfile.INDIVIDUAL, ((Resource) n).getURI() );
+            }
+            else {
+                LogFactory.getLog( getClass() ).warn( "DIG language cannot yet represent enumerations of concrete literals: " + ((Literal) n).getLexicalForm() );
+                //translateLiteral( (Literal) n, iset );
+            }
         }
     }
 
@@ -1081,16 +1090,22 @@ public class DIGAdapter
         addNamedElement( related, DIGProfile.INDIVIDUAL, getResourceID( ind ) );
         addNamedElement( related, DIGProfile.ATTRIBUTE, p.getURI() );
         
-        if (isIntegerType( obj.getDatatype() )) {
-            Element ival = addElement( related, DIGProfile.IVAL );
-            ival.appendChild( expr.getOwnerDocument().createTextNode( obj.getLexicalForm() ) );
-        }
-        else {
-            Element sval = addElement( related, DIGProfile.SVAL );
-            sval.appendChild( expr.getOwnerDocument().createTextNode( obj.getLexicalForm() ) );
-        }
+        translateLiteral( obj, related);
     }
     
+    /** Translate an RDF literal to an IVAL or SVAL element */
+    protected void translateLiteral( Literal lit, Element parent ) {
+        if (isIntegerType( lit.getDatatype() )) {
+            Element ival = addElement( parent, DIGProfile.IVAL );
+            ival.appendChild( parent.getOwnerDocument().createTextNode( lit.getLexicalForm() ) );
+        }
+        else {
+            Element sval = addElement( parent, DIGProfile.SVAL );
+            sval.appendChild( parent.getOwnerDocument().createTextNode( lit.getLexicalForm() ) );
+        }
+    }
+
+
     /** Translate differentFrom(i0, i1) we assert disjoint( iset(i0), iset(i1) ) */
     protected void translateDifferentIndividuals( Element expr, Individual ind, Individual other ) {
         Element disjoint = addElement( expr, DIGProfile.DISJOINT );
