@@ -502,6 +502,7 @@ public class rdfquery
 
         fmt.close() ;
         results.close() ;
+        qe.close() ;
 
         long finishTime = System.currentTimeMillis();
         long totalTime = finishTime-startTime ;
