@@ -86,6 +86,16 @@ public class TestStatements extends GraphTestBase
         S2.set( S );
         // System.err.println( h.get( S2 ) );
         }
+        
+    public void testPortingBlankNodes()
+        {
+        Model A = ModelFactory.createDefaultModel();
+        Model B = ModelFactory.createDefaultModel();
+        Resource anon = A.createResource();
+        Resource bAnon = (Resource) anon.inModel( B );
+        assertTrue( "moved resource should still be blank", bAnon.isAnon() );
+        assertEquals( "move resource should equal original", anon, bAnon );
+        }
     }
 
 /*

@@ -72,19 +72,17 @@ public interface Resource extends RDFNode {
      * @return A unique id for an anonymous resource.
      */
     public AnonId getId() throws RDFException;
-    /** Return the URI of the resource, or the empty string if it is anonymous.
-     * @return The URI of the resource, or the empty string
-     * if it is anonymous.
-     */
-    /** Answer true.
-     */
-  public boolean isResource();
+
   /**
   	every Resource overlays a Node; fetch that Node. 
   */  
   public Node getNode();
   
-  public String getURI();
+  /** Return the URI of the resource, or the empty string if it is anonymous.
+   * @return The URI of the resource, or the empty string
+   * if it is anonymous.
+   */
+    public String getURI();
     
     /** Returns the namespace associated with this resource.
      * @return The namespace for this property.

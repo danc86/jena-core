@@ -40,10 +40,5 @@ import com.hp.hpl.jena.rdf.model.*;
  * @version Release='$Name$' Revision='$Revision$' Date='$Date$'
  */
 public interface ResourceI {
-    /** For internal use only
-     */
-    public Resource port(Model m)                       throws RDFException;
-    /** For internal use only
-     */
-    public Resource getEmbeddedResource();
+ 
 }

@@ -4984,8 +4984,6 @@ public class Regression extends Object {
 
     public class ResTestObjF implements ResourceF {
         public Resource createResource(Resource r)
-        throws Exception {
-            return new ResourceImpl( r, r.getModel() );
-        }
+            { return new ResourceImpl( r, r.getModel() ); }
     }
 }

@@ -67,6 +67,14 @@ public class LiteralImpl extends EnhNode implements Literal {
     public LiteralImpl( Node n, EnhGraph m ) {
         this( n, (Model)m );
     }
+    
+    /**
+        Literals are not in any particular model, and so inModel can return this.
+        @param m a model to move the literal into
+        @return this
+    */
+    public RDFNode inModel( Model m )
+        { return this; }
 
     /**
      *@deprecated Please use the createLiteral methods on Model.

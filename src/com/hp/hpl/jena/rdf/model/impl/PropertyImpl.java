@@ -63,7 +63,10 @@ public class PropertyImpl extends ResourceImpl implements Property {
         checkLocalName();
         checkOrdinal();
     }
-    
+
+    public RDFNode inModel( Model m )
+        { return getModel() == m ? this : m.createProperty( getURI() ); }
+          
     private void checkLocalName()
         {
         String localName = getLocalName();

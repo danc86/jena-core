@@ -69,4 +69,12 @@ public interface RDFNode {
         return true iff this RDFNode can be viewed as a _view_.
     */
     public boolean canAs( Class view );
+    
+    /**
+        returns a .equals() version of this node, except that its in the model m.
+        
+        @param m a model to move the node to
+        @return this, if it's already in m (or no model), a copy in m otherwise
+    */
+    public RDFNode inModel( Model m );
 }

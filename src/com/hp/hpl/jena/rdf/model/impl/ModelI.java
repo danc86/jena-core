@@ -75,25 +75,5 @@ public interface ModelI {
  */
     public boolean containerContains(Container cont, RDFNode n) 
                                         throws RDFException;
-    
-/**
- * @param r
- * @throws RDFException
- * @return the converted resource
- */
-    public Resource convert(Resource r) throws RDFException;
-/**
- * @param p
- * @throws RDFException
- * @return the converted property
- */
-    public Property convert(Property p) throws RDFException;
-/**
- * @param n
- * @throws RDFException
- * @return the converted node
- */
-    public RDFNode convert(RDFNode n) throws RDFException;
-
 
 }

@@ -7,47 +7,18 @@
 package com.hp.hpl.jena.util.iterator;
 import java.util.Iterator;
 /**
-    @author jjchplb
-    OBSOLETE: use ClosableWrapper instead.
+    @author jjc@hplb
+    @deprecated OBSOLETE: use WrappedIterator instead.
 */
 
-class ClosableIteratorImpl extends NiceIterator implements ClosableIterator {
-    final protected Iterator underlying;
-    private ClosableIteratorImpl(Iterator u) {
-    	underlying = u;
+class ClosableIteratorImpl extends WrappedIterator implements ClosableIterator 
+    {
+    /** @deprecated use WrappedIterator instead */
+    public ClosableIteratorImpl( Iterator it ) { super( it ); }
     }
-	/**
-	 * @see ClosableIterator#close()
-	 */
-	public void close() {
-		WrappedIterator.close( underlying );
-	}
-    
-	/**
-	 * @see Iterator#hasNext()
-	 */
-	public boolean hasNext() {
-		return underlying.hasNext();
-	}
-
-	/**
-	 * @see Iterator#next()
-	 */
-	public Object next() {
-		return underlying.next();
-	}
-
-	/**
-	 * @see Iterator#remove()
-	 */
-	public void remove() {
-		underlying.remove();
-	}
-
-}
 
 /*
-    (c) Copyright Hewlett-Packard Company 2002
+    (c) Copyright Hewlett-Packard Company 2002, 2003
     All rights reserved.
 
     Redistribution and use in source and binary forms, with or without

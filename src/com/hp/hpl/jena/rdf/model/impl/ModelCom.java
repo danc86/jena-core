@@ -490,6 +490,9 @@ public class ModelCom extends EnhGraph
         return createResource(null, f);
     }
     
+    public Resource createResource( AnonId id )
+        { return new ResourceImpl( id ); }
+        
     public Resource createResource(String uri, ResourceF f) throws RDFException {
         try {
             return f.createResource(createResource(uri));
@@ -1130,24 +1133,6 @@ public class ModelCom extends EnhGraph
    public boolean containerContains(Container cont, RDFNode n)
     throws RDFException {
         return containerIndexOf(cont, n) != 0;
-    }
-    
-    public Resource convert(Resource r) throws RDFException {
-            return ((ResourceI)r).port(this);
-    }
-    
-    public Property convert(Property p) throws RDFException {
-            return (Property) ((ResourceI)p).port(this);
-    }
-    
-    public RDFNode convert(RDFNode n) throws RDFException {
-        if (n instanceof Property) {
-            return convert((Property) n);
-        } else if (n instanceof Resource) {
-            return convert((Resource) n);
-        } else {
-            return n;
-        }
     }
     
     public void close() {

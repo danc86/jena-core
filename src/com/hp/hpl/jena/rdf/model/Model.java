@@ -133,6 +133,14 @@ public interface Model extends ModelCon, RDFReaderF, RDFWriterF {
 	 */
 	public Resource createResource() throws RDFException;
 
+    /**
+        create a blank node resource with a specified identifier/
+        
+        @param id the identifier to use for this blank node
+        @return a blank node with that identifier
+    */
+    public Resource createResource( AnonId id );
+    
 	/** Create a new resource.
 	 *
 	 * <p> Subsequent operations on the returned resource may modify this model.

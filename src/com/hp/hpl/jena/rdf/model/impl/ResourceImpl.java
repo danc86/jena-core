@@ -42,7 +42,7 @@ import com.hp.hpl.jena.graph.*;
  * @version  Release='$Name$' Revision='$Revision$' Date='$Date$'
  */
 
-public class ResourceImpl extends EnhNode implements Resource, ResourceI {
+public class ResourceImpl extends EnhNode implements Resource {
     
     final static public Implementation factory = new Implementation() {
         public EnhNode wrap(Node n,EnhGraph eg) {
@@ -110,9 +110,13 @@ public class ResourceImpl extends EnhNode implements Resource, ResourceI {
         this( Node.createURI( nameSpace + localName ), nameSpace.length(), m );
     }
 
-    public boolean isResource() {
-    	return true;
-    }
+    public RDFNode inModel( Model m )
+        { 
+        return 
+            getModel() == m ? this 
+            : isAnon() ? m.createResource( getId() ) 
+            : m.createResource( getURI() ); 
+        }
     
     private static int whereToSplit( String s )
         {
@@ -122,18 +126,13 @@ public class ResourceImpl extends EnhNode implements Resource, ResourceI {
         }
 
     private static Node fresh( String uri )
-        {
-        // return Node.make( uri == null ? (Object) new AnonId() : uri );
-        return uri == null ? Node.createAnon( new AnonId() ) : Node.createURI( uri );
-        }
+        { return uri == null ? Node.createAnon( new AnonId() ) : Node.createURI( uri ); }
 
-    public Node getNode() {
-        return asNode();
-    }
+    public Node getNode() 
+        { return asNode(); }
 
-    public AnonId getId() {
-        return asNode().getBlankNodeId();
-    }
+    public AnonId getId() 
+        { return asNode().getBlankNodeId(); }
 
     public String  getURI() {
         return isAnon() ? null : asNode().toString();
@@ -278,6 +277,7 @@ public class ResourceImpl extends EnhNode implements Resource, ResourceI {
         return this;
     }
 
+    
     public Resource port(Model m) throws RDFException {
         if ( getGraph() == m )
             return this;
@@ -290,9 +290,5 @@ public class ResourceImpl extends EnhNode implements Resource, ResourceI {
 
     public Model getModel() {
         return (ModelCom)getGraph();
-    }
-
-    public Resource getEmbeddedResource() {
-        return this;
     }
 }

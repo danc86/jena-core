@@ -44,8 +44,7 @@ public interface ResourceF {
     /** Create new resource instance which extends the behaviour of a supplied
      * resource.
      * @param r The core resource whose behaviour is to be extended.
-     * @throws Exception May throw any exception.
      * @return the newly created resource.
      */
-  Resource createResource(Resource r) throws Exception;
+  Resource createResource(Resource r);
 }
