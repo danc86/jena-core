@@ -170,7 +170,7 @@ public class TestGenericRules extends TestCase {
         Resource configuration= m.createResource(GenericRuleReasonerFactory.URI);
         configuration.addProperty(ReasonerVocabulary.PROPderivationLogging, "true");
         configuration.addProperty(ReasonerVocabulary.PROPruleMode, "hybrid");
-        configuration.addProperty(ReasonerVocabulary.PROPruleSet, "file:testing/reasoners/genericRuleTest.rules");
+        configuration.addProperty(ReasonerVocabulary.PROPruleSet, "testing/reasoners/genericRuleTest.rules");
         GenericRuleReasoner reasoner = (GenericRuleReasoner)GenericRuleReasonerFactory.theInstance().create(configuration);
         
         InfGraph infgraph = reasoner.bind(data);

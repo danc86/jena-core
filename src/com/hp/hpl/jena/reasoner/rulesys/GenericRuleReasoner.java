@@ -248,7 +248,7 @@ public class GenericRuleReasoner extends FBRuleReasoner {
         } else if (parameterUri.equals(ReasonerVocabulary.PROPruleSet.getURI())) {
             if (value instanceof String) {
                 try {
-                    String ruleString = Util.loadURLFile((String)value);
+                    String ruleString = Util.loadResourceFile((String)value);
                     setRules(Rule.parseRules(ruleString));
                 } catch (IOException e) {
                     throw new ReasonerException("Failed to open rule file: " + value, e);
