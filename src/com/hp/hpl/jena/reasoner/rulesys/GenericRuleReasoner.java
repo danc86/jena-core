@@ -44,13 +44,16 @@ public class GenericRuleReasoner extends FBRuleReasoner {
     protected boolean enableOWLTranslation = false;
     
     /** Constant - the mode description for pure forward chaining */
-    public static final RuleMode FORWARD = new RuleMode("Forward mode");
+    public static final RuleMode FORWARD = new RuleMode("forward");
+    
+    /** Constant - the mode description for pure forward chaining, using RETE engine */
+    public static final RuleMode FORWARD_RETE = new RuleMode("forwardRETE");
     
     /** Constant - the mode description for pure backward chaining */
-    public static final RuleMode BACKWARD = new RuleMode("Backward mode");
+    public static final RuleMode BACKWARD = new RuleMode("backward");
     
     /** Constant - the mode description for mixed forward/backward */
-    public static final RuleMode HYBRID = new RuleMode("Hybrid mode");
+    public static final RuleMode HYBRID = new RuleMode("hybrid");
     
 //  =======================================================================
 //  Constructors
@@ -180,14 +183,16 @@ public class GenericRuleReasoner extends FBRuleReasoner {
             enableOWLTranslation =  Util.convertBooleanPredicateArg(parameterUri, value);
             
         } else if (parameterUri.equals(ReasonerVocabulary.PROPruleMode.getURI())) {
-            if (value.equals("forward")) {
+            if (value.equals(FORWARD.name)) {
                 mode = FORWARD;
-            } else if (value.equals("backward")) {
+            } else if (value.equals(FORWARD_RETE.name)) {
+                mode = FORWARD_RETE;
+            } else if (value.equals(BACKWARD.name)) {
                 mode = BACKWARD;
-            } else if (value.equals("hybrid")) {
+            } else if (value.equals(HYBRID.name)) {
                 mode = HYBRID;
             } else {
-                throw new IllegalParameterException("PROPruleMode can only be 'forward', 'backward', 'hybrid', not " + value);
+                throw new IllegalParameterException("PROPruleMode can only be 'forward'm 'forwardRETE', 'backward', 'hybrid', not " + value);
             }
             
         } else if (parameterUri.equals(ReasonerVocabulary.PROPruleSet.getURI())) {
@@ -222,6 +227,9 @@ public class GenericRuleReasoner extends FBRuleReasoner {
         if (mode == FORWARD) {
             graph = new BasicForwardRuleInfGraph(this, rules, null, tbox);
             ((InfGraph)graph).prepare();
+        } else if (mode == FORWARD_RETE) {
+                graph = new RETERuleInfGraph(this, rules, null, tbox);
+                ((InfGraph)graph).prepare();
         } else if (mode == BACKWARD) {
             graph = tbox;
         } else {
@@ -255,6 +263,9 @@ public class GenericRuleReasoner extends FBRuleReasoner {
         if (mode == FORWARD) {
             graph = new BasicForwardRuleInfGraph(this, rules, schemaArg);
             ((BasicForwardRuleInfGraph)graph).setTraceOn(traceOn);
+        } else if (mode == FORWARD_RETE) {
+                graph = new RETERuleInfGraph(this, rules, schemaArg);
+                ((BasicForwardRuleInfGraph)graph).setTraceOn(traceOn);
         } else if (mode == BACKWARD) {
             graph = new BasicBackwardRuleInfGraph(this, getBruleStore(), data, schemaArg);
             ((BasicBackwardRuleInfGraph)graph).setTraceOn(traceOn);
@@ -280,6 +291,8 @@ public class GenericRuleReasoner extends FBRuleReasoner {
                 preload = new FBRuleInfGraph(this, rules, null);
             } else if (mode == FORWARD) {
                 preload = new BasicForwardRuleInfGraph(this, rules, null);
+            } else if (mode == FORWARD_RETE) {
+                preload = new RETERuleInfGraph(this, rules, null);
             }
             preload.prepare();
         }

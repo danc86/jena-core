@@ -236,6 +236,47 @@ public class TestRETE  extends TestCase {
         engine.runAll();
         TestUtil.assertIteratorValues(this, infgraph.find(null, null, null), expected);
     }
+    
+    /**
+     * Check that the rulestate cloning keeps two descendent graphs independent.
+     * 
+     */
+    public void testRuleClone() {
+        String rules = "[testRule1: (a p ?x) (b p ?x) -> (n1 p ?x) ]" +
+                       "[testRule2: (?x q ?y) -> (?x p ?y)]";
+        List ruleList = Rule.parseRules(rules);
+        Graph schema = new GraphMem();
+        schema.add(new Triple(a, q, c));
+        schema.add(new Triple(a, q, d));
+
+        Graph data1 = new GraphMem();
+        data1.add(new Triple(b, q, c));
+        
+        Graph data2 = new GraphMem();
+        data2.add(new Triple(b, q, d));
+        
+        GenericRuleReasoner reasoner =  new GenericRuleReasoner(ruleList);
+        reasoner.setMode(GenericRuleReasoner.FORWARD_RETE);
+        Reasoner boundReasoner = reasoner.bindSchema(schema);
+        InfGraph infgraph1 = boundReasoner.bind(data1);
+        InfGraph infgraph2 = boundReasoner.bind(data2);
+
+        TestUtil.assertIteratorValues(this, infgraph1.find(null, p, null),
+            new Triple[] {
+                new Triple(a, p, c),
+                new Triple(a, p, d),
+                new Triple(b, p, c),
+                new Triple(n1, p, c)
+            });
+
+        TestUtil.assertIteratorValues(this, infgraph2.find(null, p, null),
+            new Triple[] {
+                new Triple(a, p, c),
+                new Triple(a, p, d),
+                new Triple(b, p, d),
+                new Triple(n1, p, d)
+            });
+    }
 }
 
 

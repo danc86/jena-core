@@ -122,7 +122,7 @@ public class BFRuleContext implements RuleContext {
      * <p>This is needed to prevent concurrrent modification exceptions which searching
      * the deductions for matches to a given rule.
      */
-    public void addPending(Triple t) {
+    public void add(Triple t) {
         if (graph.shouldTrace()) {
             if (rule != null) {
                 logger.debug("Adding to pending (" + rule.toShortString() + "): " + PrintUtil.print(t));

@@ -38,7 +38,7 @@ public class RDFSRuleReasonerFactory implements ReasonerFactory {
      * is not configurable and will ignore this parameter.
      */
     public Reasoner create(Model configuration) {
-        return new RDFSRuleReasoner();
+        return new RDFSRuleReasoner(this);
     }
    
     /**

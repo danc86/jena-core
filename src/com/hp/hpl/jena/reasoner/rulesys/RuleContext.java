@@ -71,6 +71,11 @@ public interface RuleContext {
     public void silentAdd(Triple t);
 
     /**
+     * Assert a new triple in the deduction graph, triggering any consequent processing as appropriate.
+     */
+    public void add(Triple t);
+    
+    /**
      * Remove a triple from the deduction graph (and the original graph if relevant).
      */
     public void remove(Triple t);

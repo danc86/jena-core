@@ -58,9 +58,6 @@ public class BasicForwardRuleInfGraph extends BaseInfGraph implements ForwardRul
     /** log4j logger */
     protected static Logger logger = Logger.getLogger(BasicForwardRuleInfGraph.class);
     
-    /** Static switch from Basic to RETE implementation */
-    public static final boolean useRETE = false;
-    
 //=======================================================================
 // Core methods
 
@@ -76,11 +73,7 @@ public class BasicForwardRuleInfGraph extends BaseInfGraph implements ForwardRul
     */
    public BasicForwardRuleInfGraph(Reasoner reasoner, Graph schema) {
        super(null, reasoner);
-       if (useRETE) {
-           engine = new RETEEngine(this);
-       } else {
-           engine = new FRuleEngine(this);
-       }
+       instantiateRuleEngine(null);
        this.schemaGraph = schema;
    }    
 
@@ -97,11 +90,7 @@ public class BasicForwardRuleInfGraph extends BaseInfGraph implements ForwardRul
     */
    public BasicForwardRuleInfGraph(Reasoner reasoner, List rules, Graph schema) {
        super(null, reasoner);
-       if (useRETE) {
-           engine = new RETEEngine(this, rules);
-       } else {
-           engine = new FRuleEngine(this, rules);
-       }
+       instantiateRuleEngine(rules);
        this.rules = rules;
        this.schemaGraph = schema;
    }    
@@ -120,6 +109,19 @@ public class BasicForwardRuleInfGraph extends BaseInfGraph implements ForwardRul
         rebind(data);
     }
 
+    /**
+     * Instantiate the forward rule engine to use.
+     * Subclasses can override this to switch to, say, a RETE imlementation.
+     * @param rules the rule set or null if there are not rules bound in yet.
+     */
+    protected void instantiateRuleEngine(List rules) {
+        if (rules != null) {
+            engine = new FRuleEngine(this, rules);
+        } else {
+            engine = new FRuleEngine(this);
+        }
+    }
+    
     /**
      * Attach a compiled rule set to this inference graph.
      * @param rulestore a compiled set of rules (i.e. the result of an FRuleEngine.compile). 

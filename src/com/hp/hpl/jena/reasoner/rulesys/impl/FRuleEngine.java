@@ -384,7 +384,7 @@ public class FRuleEngine implements FRuleEngineI {
                         // E.g. RDFS rules can create assertions about literals
                         // that we can't record in RDF
                         if ( ! context.contains(t)  ) {
-                            context.addPending(t);
+                            context.add(t);
                             if (recordDerivations) {
                                 infGraph.logDerivation(t, new RuleDerivation(rule, t, matchList, infGraph));
                             }

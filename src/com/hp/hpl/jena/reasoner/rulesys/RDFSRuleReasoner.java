@@ -12,6 +12,7 @@ import java.io.*;
 import java.util.*;
 
 import com.hp.hpl.jena.reasoner.ReasonerException;
+import com.hp.hpl.jena.reasoner.ReasonerFactory;
 /** * An pure forward chaining implementation of the RDFS closure rules
  * based upon the basic forward rule interpreter. The normal mixed
  * forward/backward implementation is generally preferred but this has 
@@ -19,7 +20,7 @@ import com.hp.hpl.jena.reasoner.ReasonerException;
  * chainer. Second, if you want all the RDFS entailments for an entire 
  * dataset the forward chainer will be more efficient.
  *  * @author <a href="mailto:der@hplb.hpl.hp.com">Dave Reynolds</a> * @version $Revision$ on $Date$ */
-public class RDFSRuleReasoner extends BasicForwardRuleReasoner {    
+public class RDFSRuleReasoner extends GenericRuleReasoner {    
     /** The location of the OWL rule definitions on the class path */
     public static final String RULE_FILE = "etc/rdfs.rules";
 //    public static final String RULE_FILE = "etc/rdfs-noresource.rules";
@@ -30,8 +31,10 @@ public class RDFSRuleReasoner extends BasicForwardRuleReasoner {
     /**
      * Constructor
      */
-    public RDFSRuleReasoner() {
-        super(loadRules(), RDFSRuleReasonerFactory.theInstance());
+    public RDFSRuleReasoner(ReasonerFactory parent) {
+        super(loadRules(), parent);
+//        setMode(FORWARD_RETE);
+        setMode(FORWARD);
     }
     
     /**

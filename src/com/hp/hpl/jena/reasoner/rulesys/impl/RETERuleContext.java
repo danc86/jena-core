@@ -136,6 +136,13 @@ public class RETERuleContext implements RuleContext {
         engine.deleteTriple(t, true);
     }
 
+    /**
+     * Assert a new triple in the deduction graph, triggering any consequent processing as appropriate.
+     */
+    public void add(Triple t) {
+        engine.addTriple(t, true);
+    }
+
 }
 
 

@@ -10,7 +10,6 @@
 package com.hp.hpl.jena.reasoner.rulesys.builtins;
 
 import com.hp.hpl.jena.reasoner.rulesys.*;
-import com.hp.hpl.jena.reasoner.rulesys.impl.*;
 import com.hp.hpl.jena.vocabulary.OWL;
 import com.hp.hpl.jena.graph.*;
 import java.util.*;
@@ -49,7 +48,7 @@ public class AssertDisjointPairs extends BaseBuiltin {
             for (Iterator j = l.iterator(); j.hasNext(); ) {
                 Node y = (Node)j.next();
                 if (!x.equals(y)) {
-                    ((BFRuleContext)context).addPending( new Triple(x, OWL.differentFrom.asNode(), y) );
+                    context.add( new Triple(x, OWL.differentFrom.asNode(), y) );
                 }
             }
         }

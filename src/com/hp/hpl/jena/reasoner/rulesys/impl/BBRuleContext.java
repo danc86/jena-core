@@ -113,6 +113,14 @@ public class BBRuleContext implements RuleContext {
     }
 
     /**
+     * Assert a new triple in the deduction graph, triggering any consequent processing as appropriate.
+     * In the backward case there no immediate consequences so this is equivalent to a silentAdd.
+     */
+    public void add(Triple t) {
+        ((SilentAddI)graph).silentAdd(t);
+    }
+
+    /**
      * Remove a triple from the deduction graph (and the original graph if relevant).
      */
     public void remove(Triple t) {
