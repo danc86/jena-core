@@ -130,7 +130,7 @@ public abstract class AbstractTestGraph extends GraphTestBase
     public void testReificationControl()
         {
         Graph g1 = graphWith( "x rdf:subject S" );
-        Graph g2 = GraphBase.withReification( g1 );
+        Graph g2 = GraphBase.withReification( g1, Reifier.Standard );
         assertEquals( "should not hide reification triple", 1, g1.size() );
         assertEquals( "should not hide reification triple", 1, g2.size() );
         g2.add( triple( "x rdf:object O" ) );

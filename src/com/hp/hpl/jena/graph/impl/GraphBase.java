@@ -183,7 +183,7 @@ public abstract class GraphBase implements Graph {
 	protected Reifier reifier = null;
 	
 	public Reifier getReifier() {
-		if (reifier == null) reifier = new SimpleReifier( this, style.intercepts() );
+		if (reifier == null) reifier = new SimpleReifier( this, style );
 		return reifier;
 	}
     
@@ -235,9 +235,10 @@ public abstract class GraphBase implements Graph {
         inbound reification triples)
     */
     public static Graph withReification( Graph g )
-        {
-        return new ReifyingCaptureGraph( g ); 
-        }
+        { return withReification( g, Reifier.Standard ); }
+        
+    public static Graph withReification( Graph g, Reifier.Style style )
+        { return new ReifyingCaptureGraph( g, style ); }
         
 }
 

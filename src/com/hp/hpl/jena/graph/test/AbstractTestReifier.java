@@ -52,7 +52,7 @@ public abstract class AbstractTestReifier extends GraphTestBase
         
     public void testIntercept()
         {
-        Graph g = GraphBase.withReification( getGraph() );
+        Graph g = GraphBase.withReification( getGraph(), Reifier.Standard );
         Reifier r = g.getReifier();
         Node S = node( "sub" ), O = node( "obj" );
         Node RS = node( "http://example.org/type" );
@@ -67,7 +67,7 @@ public abstract class AbstractTestReifier extends GraphTestBase
         
     public void testHiddenTriples()
         {
-        Graph g = GraphBase.withReification( getGraph() );
+        Graph g = GraphBase.withReification( getGraph(), Reifier.Standard );
         Reifier r = g.getReifier();
         Node S = node( "SSS" ), P = node( "PPP" );
         g.add( new Triple( S, RDF.Nodes.predicate, P ) );
@@ -164,7 +164,7 @@ public abstract class AbstractTestReifier extends GraphTestBase
         
     public void testKevinCaseA()
         {
-        Graph G = GraphBase.withReification( getGraph() );
+        Graph G = GraphBase.withReification( getGraph(), Reifier.Standard );
         Node X = node( "x" ), a = node( "a" ), b = node( "b" ), c = node( "c" );
         G.add( new Triple( X, RDF.Nodes.type, RDF.Nodes.Statement ) );
         G.getReifier().reifyAs( X, new Triple( a, b, c ) ); 
@@ -172,7 +172,7 @@ public abstract class AbstractTestReifier extends GraphTestBase
         
     public void testKevinCaseB()
         {
-        Graph G = GraphBase.withReification( getGraph() );
+        Graph G = GraphBase.withReification( getGraph(), Reifier.Standard );
         Node X = node( "x" ), Y = node( "y" );
         Node a = node( "a" ), b = node( "b" ), c = node( "c" );
         G.add( new Triple( X, RDF.Nodes.subject, Y ) );
