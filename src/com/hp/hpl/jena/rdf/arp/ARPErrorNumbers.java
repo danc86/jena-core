@@ -277,8 +277,9 @@ public interface ARPErrorNumbers {
     /**
       * The idSymbol production matched a string with a colon in it.
       * This is, at best, unwise.
-      *  This is a warning in both default and strict modes (W122).
-      **/
+      *  This  is a warning in default and an errror in strict mode (W122). 
+      * 
+      * @deprecated Superceded by the more general {@link #WARN_BAD_NAME} */
     public int WARN_QNAME_AS_ID = 122;
 
     /**
