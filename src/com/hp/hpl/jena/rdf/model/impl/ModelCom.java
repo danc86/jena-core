@@ -833,7 +833,7 @@ implements Model, ModelI, PrefixMapping
     */
     private RDFWriter primeNamespace( RDFWriter w )
         {
-        Map m = pm.getNsPrefixMap();
+        Map m = getPrefixMapping().getNsPrefixMap();
         // System.err.println( "| primeNamespace: " + m );
         Iterator it  = m.entrySet().iterator();
         while (it.hasNext())
@@ -847,23 +847,24 @@ implements Model, ModelI, PrefixMapping
             }
         return w;
         }
-            
-    private PrefixMapping pm = new PrefixMappingImpl();
     
+    private PrefixMapping getPrefixMapping()
+        { return getGraph().getPrefixMapping(); }
+        
     public void setNsPrefix( String prefix, String uri )
-        { pm.setNsPrefix( prefix, uri ); }
+        { getPrefixMapping().setNsPrefix( prefix, uri ); }
         
     public String getNsPrefixURI( String prefix ) 
-        { return pm.getNsPrefixURI( prefix ); }
+        { return getPrefixMapping().getNsPrefixURI( prefix ); }
         
     public Map getNsPrefixMap()
-        { return pm.getNsPrefixMap(); }
+        { return getPrefixMapping().getNsPrefixMap(); }
         
     public String expandPrefix( String prefixed )
-        { return pm.expandPrefix( prefixed ); }
+        { return getPrefixMapping().expandPrefix( prefixed ); }
         
     public String usePrefix( String uri )
-        { return pm.usePrefix( uri ); }
+        { return getPrefixMapping().usePrefix( uri ); }
         
     /**
         Service method to update the namespaces of  a Model given the
@@ -876,7 +877,7 @@ implements Model, ModelI, PrefixMapping
     */
     public static void addNamespaces( Model m, Map ns )
         { 
-        PrefixMapping pm = ((ModelCom) m).pm;
+        PrefixMapping pm = m;
         Iterator it  = ns.entrySet().iterator();
         while (it.hasNext())
             {
