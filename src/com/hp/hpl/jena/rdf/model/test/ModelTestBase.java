@@ -50,6 +50,9 @@ public class ModelTestBase extends GraphTestBase
     public static Property property( Model m, String s )
         { return (Property) rdfNode( m, s, Property.class ); }
         
+    public static Literal literal( Model m, String s )
+        { return (Literal) rdfNode( m, s, Literal.class ); }
+        
     public static RDFNode rdfNode( Model m, String s, Class c )
         {
         Node n = Node.create( s );
