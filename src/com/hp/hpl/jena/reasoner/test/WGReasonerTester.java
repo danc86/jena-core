@@ -81,6 +81,9 @@ public class WGReasonerTester {
     /** The predicate defining the conclusion from the test */
     public static final Property conclusionDocumentP;
     
+    /** The type of the current test */
+    Resource testType;
+    
     /** List of tests block because they are only intended for non-dt aware processors */
     public static final String[] blockedTests = {
         BASE_URI + "datatypes/Manifest.rdf#language-important-for-non-dt-entailment-1",
@@ -199,6 +202,14 @@ public class WGReasonerTester {
     }
     
     /**
+     * Return the type of the last test run. Nasty hack to enable calling test harness
+     * to interpret the success/fail boolen differently according to test type.
+     */
+    public Resource getTypeOfLastTest() {
+        return testType;
+    }
+    
+    /**
      * Run a single designated test.
      * @param uri the uri of the test, as defined in the manifest file
      * @param reasonerF the factory for the reasoner to be tested
@@ -211,7 +222,7 @@ public class WGReasonerTester {
     public boolean runTest(String uri, ReasonerFactory reasonerF, TestCase testcase, Resource configuration) throws IOException {
         // Find the specification for the named test
         Resource test = testManifest.getResource(uri);
-        Resource testType = (Resource)test.getRequiredProperty(RDF.type).getObject();
+        testType = (Resource)test.getRequiredProperty(RDF.type).getObject();
         if (!(testType.equals(NegativeEntailmentTest) ||
                testType.equals(PositiveEntailmentTest) ) ) {
             throw new JenaException("Can't find test: " + uri);
