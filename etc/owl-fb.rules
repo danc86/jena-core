@@ -111,6 +111,7 @@
 
 -> (owl:FunctionalProperty rdfs:subClassOf rdf:Property).
 -> (owl:ObjectProperty rdfs:subClassOf rdf:Property).
+-> (owl:DatatypeProperty rdfs:subClassOf rdf:Property).
 -> (owl:InverseFunctionalProperty rdfs:subClassOf owl:ObjectProperty).
 -> (owl:TransitiveProperty rdfs:subClassOf owl:ObjectProperty).
 -> (owl:SymmetricProperty rdfs:subClassOf owl:ObjectProperty).
