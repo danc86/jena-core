@@ -15,11 +15,13 @@ public class TestGraphQueryPackage
     {
     public TestGraphQueryPackage()
         {}
+        
     public static TestSuite suite()
         {
         TestSuite result = new TestSuite();
         result.addTest( QueryTest.suite() );
         result.addTest( TestSimpleTripleSorter.suite() );
+        result.addTest( TestExpressionConstraints.suite() );
         return result;
         }
     }

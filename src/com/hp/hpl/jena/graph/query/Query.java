@@ -148,6 +148,14 @@ public class Query
         while (it.hasNext()) constraintGraph.add( (Triple) it.next() );
         return this;
         }
+        
+    private Expression constraint = Expression.TRUE;
+    
+    public Query addConstraint( Expression e )
+        { // TODO implement this
+        constraint = constraint.and( e );
+        return this;    
+        }
                 
     /**
         Add all the (S, P, O) triples of <code>p</code> to this Query as matches.
@@ -175,8 +183,8 @@ public class Query
         Mapping map = new Mapping( nodes );
         ArrayList stages = new ArrayList();        
         addStages( stages, args, map );
-        if (constraintGraph.size() > 0) 
-            stages.add( new ConstraintStage( map, constraintGraph ) );
+        if (constraintGraph.size() > 0 || constraint != Expression.TRUE) 
+            stages.add( new ConstraintStage( map, constraint, constraintGraph ) );
         outStages.addAll( stages );
         variableCount = map.size();
         return filter( connectStages( stages, variableCount ) );
