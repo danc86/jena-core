@@ -38,6 +38,9 @@ public abstract class BaseInfGraph extends GraphBase implements InfGraph {
     
     public PrefixMapping getPrefixMapping()
         { return getRawGraph().getPrefixMapping(); }
+    
+    public Reifier getReifier()
+        { return getRawGraph().getReifier(); }
 
     /**
      * Constructor

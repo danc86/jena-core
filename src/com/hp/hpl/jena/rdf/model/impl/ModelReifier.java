@@ -21,7 +21,7 @@ import com.hp.hpl.jena.util.iterator.*;
 public class ModelReifier
     {
     private ModelCom model;
-    private Reifier reifier;
+    public Reifier reifier;
     
     /**
         DEVEL. setting this _true_ means that nodes that reify statements

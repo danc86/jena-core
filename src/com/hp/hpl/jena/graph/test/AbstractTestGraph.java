@@ -247,16 +247,17 @@ public abstract class AbstractTestGraph extends GraphTestBase
         
     public void testBulkAddWithReification( boolean withReifications )
         {
-        Graph g = getGraph();
-        BulkUpdateHandler bu = g.getBulkUpdateHandler();
-        Graph items = graphWith( "pigs might fly; dead can dance" );
-        Reifier gr = g.getReifier(), ir = items.getReifier();
-        xSPOyXYZ( ir );
-        bu.add( items, withReifications );
+        Graph graphToUpdate = getGraph();
+        BulkUpdateHandler bu = graphToUpdate.getBulkUpdateHandler();
+        Graph graphToAdd = graphWith( "pigs might fly; dead can dance" );
+        Reifier updatedReifier = graphToUpdate.getReifier();
+        Reifier addedReifier = graphToAdd.getReifier();
+        xSPOyXYZ( addedReifier );
+        bu.add( graphToAdd, withReifications );
         assertIsomorphic
             ( 
-            withReifications ? ir.getReificationTriples() : graphWith( "" ), 
-            gr.getReificationTriples() 
+            withReifications ? addedReifier.getReificationTriples() : graphWith( "" ), 
+            updatedReifier.getReificationTriples() 
             );
         }
         

@@ -45,7 +45,7 @@ import junit.framework.*;
  * @version CVS $Id$
  */
 public class TestMultiUnion
-    extends GraphTestBase
+    extends AbstractTestGraph
 {
     // Constants
     //////////////////////////////////
@@ -72,7 +72,12 @@ public class TestMultiUnion
 
     public static TestSuite suite()
         { return new TestSuite( TestMultiUnion.class ); }   
-
+    
+    public Graph getGraph()
+        {
+        Graph gBase = graphWith( "" ), g1 = graphWith( "" );
+        return new MultiUnion( new Graph[] {gBase, g1} ); 
+        };
 
     public void testEmptyGraph() {
         Graph m = new MultiUnion();
@@ -81,6 +86,15 @@ public class TestMultiUnion
         assertEquals( "Empty model should have size zero", 0, m.size() );
         assertFalse( "Empty model should not contain another graph", m.dependsOn( g0 ) );
     }
+    
+   
+//    public void testDeferredReifier()
+//        {
+//        Graph g1 = graphWith( "" ), g2 = graphWith( "" );
+//        MultiUnion m = new MultiUnion( new Graph[] {g1, g2} );
+//        m.setBaseGraph( g1 );
+//        assertSame( m.getReifier(), g1.getReifier() );
+//        }
     
 
     public void testGraphSize1() {

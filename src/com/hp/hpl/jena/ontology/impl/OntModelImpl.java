@@ -103,13 +103,25 @@ public class OntModelImpl
      * will be used to build the imports closure of the model if its policy permits.
      * </p>
      * 
-     * @param model The base model that may contain existing statements for the ontology
+     * @param model The base model that may contain existing statements for the ontology.
+     *  if it is null, a fresh model is created as the base.
      * @param spec A specification object that allows us to specify parameters and structure for the
      *              ontology model to be constructed.
      */
     public OntModelImpl( OntModelSpec spec, Model model ) {
+        this( spec, model == null ? ModelFactory.createDefaultModel() : model, false );
+    }
+    
+    /**
+     * 
+     * @param spec the specification for the OntModel
+     * @param model the base model [must be non-null]
+     * @param overloadingTrick because otherwise this looks like  the public
+     *     OntModelImpl(spec, model)
+     */
+    private OntModelImpl( OntModelSpec spec, Model model, boolean overloadingTrick )  {
         // we haven't built the full graph yet, so we pass a vestigial form up to the super constructor
-        super( generateGraph( spec ), BuiltinPersonalities.model );
+        super( generateGraph( spec, model.getGraph() ), BuiltinPersonalities.model );
         m_spec = spec;
         
         // extract the union graph from whatever generateGraph() created
@@ -117,12 +129,8 @@ public class OntModelImpl
                         ((MultiUnion) getGraph()) :
                         (MultiUnion) ((InfGraph) getGraph()).getRawGraph();
         
-        // add the base model to the union, if we have one
-        m_union.addGraph( (model != null) ? model.getGraph() : ModelFactory.createDefaultModel().getGraph() );
-
         // cache the query plan for individuals
-        Profile lang = getProfile();
-        m_individualsQuery = queryXTypeOfType( lang.CLASS() );
+        m_individualsQuery = queryXTypeOfType( getProfile().CLASS() );
         
         // add the global prefixes, if required
         if (getDocumentManager().useDeclaredPrefixes()) {
@@ -2296,9 +2304,11 @@ public class OntModelImpl
      * @param spec The model spec to interpret
      * @param base The base model, or null
      */
-    private static Graph generateGraph( OntModelSpec spec ) {
+    private static Graph generateGraph( OntModelSpec spec, Graph base ) {
         // create a empty union graph
         MultiUnion u = new MultiUnion();
+        u.addGraph( base );
+        u.setBaseGraph( base );
         
         // if we have a reasoner in the spec, bind to the union graph and return
         return (spec.getReasoner() == null) ? (Graph) u : (Graph) spec.getReasoner().bind( u );

@@ -33,6 +33,7 @@ public class TestPackage extends TestSuite {
         addTest( "TestRDFSReasoners", TestRDFSReasoners.suite() );
         addTest( "TestRuleReasoners",  com.hp.hpl.jena.reasoner.rulesys.test.TestPackage.suite() );
         addTest( "TestReasonerPrefixMapping", TestInfPrefixMapping.suite() );
+        addTest( "TestInfGraph", TestInfGraph.suite() );
     }
 
     // helper method

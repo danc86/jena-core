@@ -15,9 +15,9 @@ import java.util.*;
     This testing listener records the event names and data, and provides
     a method for comparing the actual with the expected history. 
 */    
-class RecordingListener implements GraphListener
+public class RecordingListener implements GraphListener
     {
-    List history = new ArrayList();
+    public List history = new ArrayList();
     
     public void notifyAddTriple( Triple t )
         { record( "add", t ); }

@@ -10,10 +10,7 @@ package com.hp.hpl.jena.graph.compose.test;
 	@author kers
 */
 
-import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.graph.compose.*;
-import com.hp.hpl.jena.shared.PrefixMapping;
-import com.hp.hpl.jena.shared.test.AbstractTestPrefixMapping;
 
 import junit.framework.TestSuite;
 
