@@ -36,20 +36,18 @@ import java.util.*;
  * <p>
  * An enhanced view of a Jena model that is known to contain ontology
  * data, under a given ontology {@link Profile vocabulary} (such as OWL).
- * This class does by itself compute the deductive extension of the graph under
- * the semantic rules of the language.  Instead, we wrap an underlying graph
- * with this interface that presents a convenience syntax for accessing the
- * language elements. Depending on the capability of the inference graph, the
- * OntModel will appear to contain more or less triples. For example, if this
- * class is used to wrap a plain memory or database model, only the relationships
- * asserted by the document will be reported through this convenience API. 
- * Alternatively, if the OntModel wraps an inferencing graph, the inferred
- * triples from the extension will be reported as well. For example, assume the 
- * following ontology fragment:
- * <code><pre>
- *     :a rdf:type owl:Class .
- *     :b rdf:type owl:Class ; rdfs:subClassOf :a .
- *     :widget rdf:type :b .
+ * This class does not by itself compute the deductive extension of the graph
+ * under the semantic rules of the language.  Instead, we wrap an underlying
+ * graph with this interface that presents a convenience syntax for accessing
+ * the language elements. Depending on the capability of the inference graph,
+ * the OntModel will appear to contain more or less triples. For example, if
+ * this class is used to wrap a plain memory or database model, only the
+ * relationships asserted by the document will be reported through this
+ * convenience API. Alternatively, if the OntModel wraps an inferencing graph,
+ * the inferred triples from the extension will be reported as well. For
+ * example, assume the following ontology fragment: <code><pre>     :a rdf:type
+ * owl:Class .     :b rdf:type owl:Class ; rdfs:subClassOf :a .     :widget rdf:
+ * type :b .
  * </pre></code>
  * In a non-inferencing graph, the <code>rdf:type</code> of the widget will be
  * reported as class <code>:b</code> only.  In a graph that can process the OWL
