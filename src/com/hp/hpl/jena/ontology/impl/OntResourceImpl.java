@@ -1048,6 +1048,15 @@ public class OntResourceImpl
         }
     }
     
+    /** Answer true if the node has the given type in the graph */
+    protected static boolean hasType( Node n, EnhGraph g, Resource type ) {
+        boolean hasType = false;
+        ClosableIterator i = g.asGraph().find( n, RDF.type.asNode(), type.asNode() );
+        hasType = i.hasNext();
+        i.close();
+        return hasType;
+    }
+    
     /** 
      * Throw an exception if a term is not in the profile
      * @param term The term being checked
