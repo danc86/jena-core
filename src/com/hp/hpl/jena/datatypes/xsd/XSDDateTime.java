@@ -201,11 +201,17 @@ public class XSDDateTime extends AbstractDateTime {
         }
         if ((mask & TIME_MASK) != 0 ) {
             buff.append("T");
+            if(data[h]<10) buff.append("0");
             buff.append(data[h]);
+            
             buff.append(":");
+            if(data[m]<10) buff.append("0");
             buff.append(data[m]);
+            
             buff.append(":");
+            if(data[s]<10) buff.append("0");
             buff.append(data[s]);
+             
             if (data[ms] != 0) {
                 buff.append(".");
                 buff.append(data[ms]);

@@ -372,20 +372,20 @@ public class TestTypedLiterals extends TestCase {
         assertTrue("inequality test", l1 != m.createTypedLiteral("P1Y2M2DT5H6M7.5S", XSDDatatype.XSDduration));
         
         // dateTime
-        l1 = m.createTypedLiteral("1999-05-31T12:56:32Z", XSDDatatype.XSDdateTime);
+        l1 = m.createTypedLiteral("1999-05-31T02:09:32Z", XSDDatatype.XSDdateTime);
         XSDDateTime xdt = (XSDDateTime)l1.getValue();
         assertEquals("dateTime data type", XSDDatatype.XSDdateTime, l1.getDatatype());
         assertEquals("dateTime java type", XSDDateTime.class, l1.getValue().getClass());
         assertEquals("dateTime value", 1999, xdt.getYears());
         assertEquals("dateTime value", 5, xdt.getMonths());
         assertEquals("dateTime value", 31, xdt.getDays());
-        assertEquals("dateTime value", 12, xdt.getHours());
-        assertEquals("dateTime value", 56, xdt.getMinutes());
+        assertEquals("dateTime value", 2, xdt.getHours());
+        assertEquals("dateTime value", 9, xdt.getMinutes());
         assertEquals("dateTime value", 32, xdt.getFullSeconds());
-        assertEquals("serialization", "1999-05-31T12:56:32Z", l1.getValue().toString());
+        assertEquals("serialization", "1999-05-31T02:09:32Z", l1.getValue().toString());
         Calendar cal = xdt.asCalendar();
         Calendar testCal = new GregorianCalendar(TimeZone.getTimeZone("GMT"));
-        testCal.set(1999, 5, 31, 12, 56, 32);
+        testCal.set(1999, 5, 31, 2, 9, 32);
         /*
         assertEquals("calendar value", cal.get(Calendar.YEAR), testCal.get(Calendar.YEAR) );
         assertEquals("calendar value", cal.get(Calendar.MONTH), testCal.get(Calendar.MONTH) );
@@ -396,8 +396,8 @@ public class TestTypedLiterals extends TestCase {
         */
         testCal.set(Calendar.MILLISECOND, 0);   // ms field can be undefined on Linux
         assertEquals("calendar value", cal, testCal);
-        assertEquals("equality test", l1, m.createTypedLiteral("1999-05-31T12:56:32Z", XSDDatatype.XSDdateTime));
-        assertTrue("inequality test", l1 != m.createTypedLiteral("1999-04-31T12:56:32Z", XSDDatatype.XSDdateTime));
+        assertEquals("equality test", l1, m.createTypedLiteral("1999-05-31T02:09:32Z", XSDDatatype.XSDdateTime));
+        assertTrue("inequality test", l1 != m.createTypedLiteral("1999-04-31T02:09:32Z", XSDDatatype.XSDdateTime));
         
         // date
         l1 = m.createTypedLiteral("1999-05-31", XSDDatatype.XSDdate);
