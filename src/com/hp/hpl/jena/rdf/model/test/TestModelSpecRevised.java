@@ -29,7 +29,12 @@ public class TestModelSpecRevised extends ModelTestBase
         { super( name ); }
     
     public static TestSuite suite()
-         { return new TestSuite( TestModelSpecRevised.class ); }
+         { 
+//         TestSuite result = new TestSuite();
+//         result.addTest( new TestModelSpecRevised( "testURLRulesets" ) );
+//         return result; 
+         return new TestSuite( TestModelSpecRevised.class ); 
+         }
     
     public static final Resource A = resource( "_a" );
 

@@ -53,7 +53,9 @@ public abstract class ModelSpecImpl implements ModelSpec
         this.description = description; 
         }
     
-    protected static final Model emptyModel = ModelFactory.createDefaultModel();
+    public static final Model emptyModel = ModelFactory.createDefaultModel();
+    
+    public static final Resource emptyResource = emptyModel.createResource();
     
     protected Model description = emptyModel;
     

@@ -11,6 +11,7 @@ import junit.framework.TestSuite;
 
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.Resource;
+import com.hp.hpl.jena.rdf.model.impl.ModelSpecImpl;
 import com.hp.hpl.jena.rdf.model.test.ModelTestBase;
 import com.hp.hpl.jena.reasoner.Reasoner;
 import com.hp.hpl.jena.reasoner.rulesys.*;
@@ -84,7 +85,7 @@ public class TestSetRules extends ModelTestBase
     
     private static RuleReasonerFactory wrap( final RuleReasonerFactory rrf )
         {
-        return new WrappedReasonerFactory(rrf);
+        return new WrappedReasonerFactory(rrf, ModelSpecImpl.emptyResource );
         }
     
     private void testFactory( RuleReasonerFactory grf )

@@ -77,15 +77,21 @@ public class FBRuleReasoner implements RuleReasoner {
     public FBRuleReasoner(ReasonerFactory factory, Resource configuration) {
         this( new ArrayList(), factory);
         this.configuration = configuration;
-        if (configuration != null) {
-            StmtIterator i = configuration.listProperties();
-            while (i.hasNext()) {
-                Statement st = i.nextStatement();
-                doSetParameter(st.getPredicate(), st.getObject().toString());
-            }
-        }
+        if (configuration != null) loadConfiguration( configuration );
     }
    
+    /**
+         load the configuration from the configuring Resource (in its Model).
+    */
+    protected void loadConfiguration( Resource configuration )
+        {
+        StmtIterator i = configuration.listProperties();
+        while (i.hasNext()) {
+            Statement st = i.nextStatement();
+            doSetRDFNodeParameter( st.getPredicate(), st.getObject() ); 
+        }
+        }
+
     /**
      * Constructor
      * @param rules a list of Rule instances which defines the ruleset to process
@@ -314,6 +320,32 @@ public class FBRuleReasoner implements RuleReasoner {
         }
     }
 
+    /**
+         Set a parameter from a statement, given the property and its RDFNode value.
+         Most parameters are, historically, set from the string value of the RDFNode,
+         but newer parameters may have Resource values with embedded models,
+         for which their toString() is not just suspect, but definitively wrong. Hence the
+         introduction of this relay station.
+         
+         @param parameter the propoerty naming the value to set
+         @param value the RDFNode with the value of that property
+         @return true if the property was understood, false otherwise
+    */
+    protected boolean doSetRDFNodeParameter( Property parameter, RDFNode value )
+        {
+        return
+            (value instanceof Resource && doSetResourceParameter( parameter, (Resource) value ))
+            || doSetParameter( parameter, value.toString() )
+            ;
+        }
+    
+    /**
+         Set a parameter with a Resource value. Answer false if the parameter is not
+         understood. Default understands no parameters; subclasses may override.
+    */
+    protected boolean doSetResourceParameter( Property parameter, Resource value )
+        { return false; }
+    
     /**
      * Set a configuration parameter for the reasoner. The supported parameters
      * are:
