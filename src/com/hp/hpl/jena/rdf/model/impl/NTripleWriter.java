@@ -31,6 +31,7 @@ package com.hp.hpl.jena.rdf.model.impl;
 
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.util.Log;
+import com.hp.hpl.jena.util.FileUtils;
 
 import java.io.PrintWriter;
 import java.io.Writer;
@@ -52,21 +53,28 @@ public class NTripleWriter extends Object implements RDFWriter {
     public void write(Model model, OutputStream out, String base)
         throws RDFException {
         try {
-            write(model, new OutputStreamWriter(out, "ascii"), base);
-        } catch (UnsupportedEncodingException e) {
-            Log.warning("ASCII is not supported!", "NTripleWriter", "write", e);
+            Writer w;
             try {
-                write(model, new OutputStreamWriter(out, "utf-8"), base);
-            } catch (UnsupportedEncodingException ee) {
-                // Give up and die.
-                throw new RDFError("utf-8 *must* be a supported encoding.");
+                w = new OutputStreamWriter(out, "ascii");
+            } catch (UnsupportedEncodingException e) {
+                Log.warning(
+                    "ASCII is not supported!",
+                    "NTripleWriter",
+                    "write",
+                    e);
+                w = FileUtils.asUTF8(out);
             }
+            write(model, w, base);
+            w.flush();
+
+        } catch (Exception ioe) {
+            errorHandler.error(ioe);
         }
     }
     public void write(Model baseModel, Writer writer, String base)
         throws RDFException {
         try {
-            Model model = ModelCom.withHiddenStatements( baseModel );
+            Model model = ModelCom.withHiddenStatements(baseModel);
             PrintWriter pw;
             if (writer instanceof PrintWriter) {
                 pw = (PrintWriter) writer;
@@ -194,12 +202,7 @@ public class NTripleWriter extends Object implements RDFWriter {
         }
     }
     protected static void writeLiteral(Literal l, PrintWriter writer) {
-        String s;
-        try {
-            s = l.getString();
-        } catch (RDFException e) {
-            throw new RDFError(e);
-        }
+        String s = l.getString();
         /*
         if (l.getWellFormed())
         	writer.print("xml");
@@ -212,7 +215,7 @@ public class NTripleWriter extends Object implements RDFWriter {
             writer.print("@" + lang);
         String dt = l.getDatatypeURI();
         if (dt != null && !dt.equals(""))
-            writer.print("^^<" + dt+">");
+            writer.print("^^<" + dt + ">");
     }
 
     protected static void writeNode(RDFNode n, PrintWriter writer)

@@ -34,7 +34,7 @@ import com.hp.hpl.jena.datatypes.RDFDatatype;
 
 /** An RDF Literal.
  * 
- * <p>In RDF2002 literals can be typed. If typed then the literal comprises a
+ * <p>In RDF2003 literals can be typed. If typed then the literal comprises a
  * datatype, a lexical form and a value (together with an optional xml:lang
  * string). Old style literals have no type and are termed "plain" literals.</p>
  * 

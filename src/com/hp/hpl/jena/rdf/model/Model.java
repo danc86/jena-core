@@ -556,6 +556,7 @@ public interface Model extends ModelCon, RDFReaderF, RDFWriterF {
 	boolean isReified( Statement s );
 
 	/**
+       Find or create a {@link ReifiedStatement} corresponding to a Statement.
         @param a Statement which may or may not already be reified
         @return a Resource [ReifiedStatement] that reifies the specified Statement.
 	*/

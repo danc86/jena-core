@@ -32,7 +32,7 @@ import java.io.PrintStream;
 import java.io.PrintWriter;
 
 /**
- *
+ * @deprecated No longer used.
  * @author  bwm
  * @version $Revision$ $Date$
  */
