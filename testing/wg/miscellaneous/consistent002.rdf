@@ -15,7 +15,7 @@
 <!--
 Food example taken from the guide.
 -->
-<!-- Author: Guide editors -->
+<!-- Author: the Guide editors -->
 <!DOCTYPE owl [
      <!ENTITY vin  "http://www.w3.org/2002/03owlt/miscellaneous/consistent001#" >
      <!ENTITY food "http://www.w3.org/2002/03owlt/miscellaneous/consistent002#" >

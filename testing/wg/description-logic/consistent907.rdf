@@ -14,7 +14,7 @@
 -->
 <!--
 This test shows integer multiplication in OWL DL.<br></br>
-N is 200. M is 300. N times M is 600.
+N is 200. M is 300. N times M is 60000.
 -->
 <!-- Author: Jeremy J. Carroll -->
 <rdf:RDF

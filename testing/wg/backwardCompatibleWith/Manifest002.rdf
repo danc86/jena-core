@@ -22,8 +22,8 @@
       xml:base='http://www.w3.org/2002/03owlt/backwardCompatibleWith/Manifest002'
 >
 <otest:ConsistencyTest rdf:ID='test'>
-   <rtest:status>APPROVED</rtest:status>
-   <rtest:approval rdf:resource="http://lists.w3.org/Archives/Public/www-webont-wg/2003Nov/0000.html"/>
+   <rtest:status>EXTRACREDIT</rtest:status>
+   <rtest:approval rdf:resource="http://lists.w3.org/Archives/Public/www-webont-wg/2003Dec/0006"/>
    <dc:creator>Jeremy J. Carroll</dc:creator>
    <otest:feature rdf:resource='http://www.w3.org/2002/07/owl#backwardCompatibleWith' />
    <otest:level rdf:resource='http://www.w3.org/2002/03owlt/testOntology#Full' />

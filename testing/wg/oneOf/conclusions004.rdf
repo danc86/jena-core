@@ -25,6 +25,6 @@ This test combines some of the ugliest features of XML, RDF and OWL.
    <owl:DatatypeProperty rdf:about="premises004#p"/>
    <owl:Thing rdf:about="premises004#i">
      <first:p rdf:datatype=
-"http://www.w3.org/2001/XMLSchema#short">4</first:p>
+"http://www.w3.org/2001/XMLSchema#integer">4</first:p>
    </owl:Thing>
 </rdf:RDF>

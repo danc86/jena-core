@@ -23,7 +23,7 @@
 >
 <otest:InconsistencyTest rdf:ID='test'>
    <otest:level rdf:resource='http://www.w3.org/2002/03owlt/testOntology#Full' />
-   <rtest:status>APPROVED</rtest:status><rtest:approval rdf:resource="http://lists.w3.org/Archives/Public/www-webont-wg/2003Oct/0040"/>
+   <rtest:status>EXTRACREDIT</rtest:status><rtest:approval rdf:resource="http://lists.w3.org/Archives/Public/www-webont-wg/2003Dec/0006"/>
    <dc:creator>Jeremy J. Carroll</dc:creator>
    <otest:issuette rdf:resource='http://www.w3.org/TR/owl-test/#misc-200-xmlliteral' />
    <otest:level rdf:resource='http://www.w3.org/2002/03owlt/testOntology#Lite' />

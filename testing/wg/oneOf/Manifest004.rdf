@@ -28,7 +28,6 @@
    <otest:feature rdf:resource='http://www.w3.org/2002/07/owl#oneOf' />
    <otest:level rdf:resource='http://www.w3.org/2002/03owlt/testOntology#DL' />
    <otest:size rdf:resource='http://www.w3.org/2002/03owlt/testOntology#Large' />
-   <otest:supportedDatatype rdf:resource='http://www.w3.org/2001/XMLSchema#short'/>
    <rtest:description rdf:parseType='Literal'>
 This test illustrates the use of dataRange in OWL DL.
 This test combines some of the ugliest features of XML, RDF and OWL.</rtest:description>

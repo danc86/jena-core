@@ -23,7 +23,7 @@
 >
 <otest:PositiveEntailmentTest rdf:ID='test'>
    <otest:level rdf:resource='http://www.w3.org/2002/03owlt/testOntology#Full' />
-   <rtest:status>APPROVED</rtest:status> <rtest:approval rdf:resource="http://www.w3.org/2003/09/11-webont-irc"/>
+   <rtest:status>EXTRACREDIT</rtest:status> <rtest:approval rdf:resource="http://lists.w3.org/Archives/Public/www-webont-wg/2003Dec/0006"/>
    <dc:creator>Jeremy J. Carroll</dc:creator>
    <rtest:issue rdf:resource='http://www.w3.org/2001/sw/WebOnt/webont-issues#I5.8-Datatypes' />
    <otest:level rdf:resource='http://www.w3.org/2002/03owlt/testOntology#Lite' />

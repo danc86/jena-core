@@ -24,7 +24,7 @@
 <otest:ConsistencyTest rdf:ID='test'>
    <rtest:status>APPROVED</rtest:status>
    <rtest:approval rdf:resource='http://lists.w3.org/Archives/Public/www-webont-wg/2003Jan/0444' />
-   <dc:creator>Guide editors</dc:creator>
+   <dc:creator>the Guide editors</dc:creator>
    <otest:issuette rdf:resource='http://www.w3.org/TR/owl-test/#misc-000-guide' />
    <otest:level rdf:resource='http://www.w3.org/2002/03owlt/testOntology#DL' />
    <otest:level rdf:resource='http://www.w3.org/2002/03owlt/testOntology#Full' />
