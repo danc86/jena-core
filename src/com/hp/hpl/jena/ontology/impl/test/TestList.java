@@ -86,6 +86,7 @@ public class TestList
         s.addTest( new SetHeadTest() );
         s.addTest( new SetTailTest() );
         s.addTest( new ConsTest() );
+        s.addTest( new AddTest() );
         s.addTest( new TestListGet() );
         s.addTest( new ReplaceTest() );
         s.addTest( new IndexTest1() );
@@ -334,9 +335,12 @@ public class TestList
             
             // cons each of these resources onto the front of the list
             for (int i = 0;  i < toAdd.length;  i++) {
-                list = list.cons( toAdd[i] );
+                OntList list0 = list.cons( toAdd[i] );
                 
-                checkValid( "constest1", list, true );
+                checkValid( "constest1", list0, true );
+                assertTrue( "cons'ed lists should not be equal", !list0.equals( list ) );
+                
+                list = list0;
             }
             
             // relate the root to the list
@@ -347,6 +351,48 @@ public class TestList
             m0.read( "file:testing/ontology/list5.rdf" );
             
             assertTrue( "Cons'ed and read models should be the same", m0.isIsomorphicWith( m ) );   
+        }
+    }
+    
+    
+    protected static class AddTest extends ListTest {
+        public AddTest() {super( "AddTest" );}
+        
+        public void runTest() {
+            Model m = ModelFactory.createDefaultModel();
+            
+            Resource root = m.createResource( NS + "root" );
+            Property p = m.createProperty( NS, "p");
+            
+            Resource nil = m.getResource( OntListImpl.RDF_LIST_VOCAB.getNil().getURI() );
+            OntList list = (OntList) ((EnhNode) nil).as( OntList.type );
+            
+            Resource[] toAdd = new Resource[] {
+                                    m.createResource( NS + "a" ),
+                                    m.createResource( NS + "b" ),
+                                    m.createResource( NS + "c" ),
+                                    m.createResource( NS + "d" ),
+                                    m.createResource( NS + "e" ),
+                               };
+            
+            // cons each of these resources onto the front of the list
+            for (int i = 0;  i < toAdd.length;  i++) {
+                OntList list0 = list.add( toAdd[i] );
+                
+                checkValid( "addTest0", list0, true );
+                assertTrue( "added'ed lists should be equal", list.equals( nil ) || list0.equals( list ) );
+                
+                list = list0;
+            }
+            
+            // relate the root to the list
+            m.add( root, p, list );
+
+            // should be isomorphic with list 5
+            Model m0 = ModelFactory.createDefaultModel();
+            m0.read( "file:testing/ontology/list5.rdf" );
+            
+            assertTrue( "Add'ed and read models should be the same", m0.isIsomorphicWith( m ) );   
         }
     }
     

@@ -69,7 +69,7 @@ import java.util.*;
  * @version Release ($Id$)
  */
 public interface OntList
-    extends Resource
+    extends OntResource
 {
     // Constants
     //////////////////////////////////
@@ -174,6 +174,20 @@ public interface OntList
      * @return The new list, whose head is <code>value</code>
      */
     public OntList cons( RDFNode value );
+    
+    
+    /**
+     * <p>
+     * Add the given value to the end of the list. This means that the tail of
+     * the last list cell is side-effected to insert a cell with the given value
+     * before the nil element.  The return value is this list cell, so that
+     * chaining of add operations is possible.
+     * </p>
+     * 
+     * @param value A value to add to the end of the list
+     * @return This list
+     */
+    public OntList add( RDFNode value );
     
     
     /**
