@@ -185,7 +185,7 @@ public class RDFSProfile
                 SupportsCheck check = (SupportsCheck) s_supportsChecks.get( type );
                 
                 // a check must be defined for the test to succeed
-                return (check != null)  && check.doCheck( n, g );  
+                return (check == null)  || check.doCheck( n, g );  
             }
         }
         else {
