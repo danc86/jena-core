@@ -20,6 +20,12 @@ import org.apache.commons.logging.LogFactory;
  */
 public class RDFDefaultErrorHandler extends Object implements RDFErrorHandler {
 
+	/**
+	 * Change this global to make all RDFDefaultErrorHandler's silent!
+	 * Intended for testing purposes only.
+	 */
+	public static boolean silent = false;
+	
     public static final Log logger = LogFactory.getLog( RDFDefaultErrorHandler.class );
     
     /** Creates new RDFDefaultErrorHandler */
@@ -27,15 +33,15 @@ public class RDFDefaultErrorHandler extends Object implements RDFErrorHandler {
     }
 
     public void warning(Exception e) {
-        logger.warn(ParseException.formatMessage(e));
+        if (!silent) logger.warn(ParseException.formatMessage(e));
     }
 
     public void error(Exception e) {
-        logger.error(ParseException.formatMessage(e));
+    	if (!silent) logger.error(ParseException.formatMessage(e));
     }
 
     public void fatalError(Exception e) {
-        logger.error(ParseException.formatMessage(e));
+    	if (!silent) logger.error(ParseException.formatMessage(e));
         throw e instanceof RuntimeException 
             ? (RuntimeException) e
             : new JenaException( e );
