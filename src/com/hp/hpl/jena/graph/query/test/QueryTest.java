@@ -41,13 +41,6 @@ public class QueryTest extends GraphTestBase
         single = graphWith( "spindizzies drive cities" );
         }
         
-    private void checkQueryVariables()
-        {
-        assertEquals( X, Query.X );
-        assertEquals( Y, Query.Y );
-        assertEquals( Z, Query.Z );
-        }
-        
 	private void testTreeQuery( String title, String content, String pattern, String correct )
 		{
 		Graph gc = graphWith( content ), gp = graphWith( pattern );

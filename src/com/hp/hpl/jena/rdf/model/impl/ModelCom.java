@@ -41,7 +41,6 @@ import com.hp.hpl.jena.vocabulary.RDF;
 import com.hp.hpl.jena.datatypes.*;
 import com.hp.hpl.jena.enhanced.*;
 import com.hp.hpl.jena.mem.*;
-import com.sun.rsasign.i;
 
 import java.io.*;
 import java.util.*;
@@ -220,7 +219,7 @@ implements Model, ModelI, PrefixMapping, ModelLock
         prefixes.
     */
     public RDFWriter getWriter() throws RDFException {
-        return primeNamespace( writerFactory.getWriter() );
+        return writerFactory.getWriter();
     }
     
     /**
@@ -228,7 +227,7 @@ implements Model, ModelI, PrefixMapping, ModelLock
         prefixes.
     */
     public RDFWriter getWriter(String lang) throws RDFException {
-        return primeNamespace( writerFactory.getWriter(lang) );
+        return writerFactory.getWriter(lang);
     }
     
 
@@ -819,30 +818,6 @@ implements Model, ModelI, PrefixMapping, ModelLock
         updateNamespace( nameSpaces, listTypes() );
         return new NsIteratorImpl(nameSpaces.iterator(), nameSpaces);
     }
-    
-    /**
-        Prime a writer by adding to its namespace prefixes those remembered
-        by this model.
-        
-        @param the writer to prime
-        @return that writer after adding this's namespace entries
-    */
-    private RDFWriter primeNamespace( RDFWriter w )
-        {
-        Map m = getPrefixMapping().getNsPrefixMap();
-        // System.err.println( "| primeNamespace: " + m );
-        Iterator it  = m.entrySet().iterator();
-        while (it.hasNext())
-            {
-            Map.Entry e = (Map.Entry) it.next();
-            String key = (String) e.getKey();
-            String value = (String) e.getValue();
-            String already = w.getPrefixFor( value );
-            // System.err.println( "| key=" + key + ", value=" + value + ", already=" + already );
-            if (already == null) w.setNsPrefix( key, value );
-            }
-        return w;
-        }
     
     private PrefixMapping getPrefixMapping()
         { return getGraph().getPrefixMapping(); }

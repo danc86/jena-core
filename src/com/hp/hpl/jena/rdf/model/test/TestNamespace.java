@@ -36,6 +36,7 @@ public class TestNamespace extends ModelTestBase
         Model m = ModelFactory.createDefaultModel();
         m.read( "file:testing/wg/rdf-ns-prefix-confusion/test0014.rdf" );
         Map ns = m.getNsPrefixMap(); 
+        // System.err.println( ">> " + ns );
         assertEquals( "namespace eg", "http://example.org/", ns.get( "eg" ) );
         assertEquals( "namespace rdf", "http://www.w3.org/1999/02/22-rdf-syntax-ns#", ns.get( "rdf" ) );
         assertEquals( "not present", null, ns.get( "spoo" ) );

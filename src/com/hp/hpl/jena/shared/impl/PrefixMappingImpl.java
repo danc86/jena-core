@@ -24,23 +24,39 @@ public class PrefixMappingImpl implements PrefixMapping
     private Map map;
     
     public PrefixMappingImpl()
-        { map = new HashMap(); }
+        { 
+        map = new HashMap(); 
+        }
            
     public void setNsPrefix( String prefix, String uri ) 
         {
         checkLegal( prefix );
-        map.put( prefix, uri ); 
+        if (!prefix.equals( "" )) removeExisting( uri );
+        map.put( prefix, uri );
         }
  
+    private void removeExisting( String uri )
+        {
+        Iterator it = map.entrySet().iterator();
+        while (it.hasNext())
+            {
+            Map.Entry e = (Map.Entry) it.next();
+            if (e.getValue().equals( uri )) 
+                {
+                map.remove( e.getKey() );
+                return;
+                }
+            }
+        }
+        
     /**
-        Add the bindings of other to our own. The prefixes are unchecked,
-        on the assumption that the other mapping will only allow legal prefixes
-        itself.
+        Add the bindings of other to our own. We defer to the general case 
+        because we have to ensure the URIs are checked.
         
         @param other the PrefixMapping whose bindings we are to add to this.
     */
     public void setNsPrefixes( PrefixMapping other )
-        { map.putAll( other.getNsPrefixMap() ); }
+        { setNsPrefixes( other.getNsPrefixMap() ); }
         
     /**
         Add the bindings in the map to our own. This will fail with a ClassCastException

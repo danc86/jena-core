@@ -57,11 +57,35 @@ public class TestPrefixMapping extends AbstractTestPrefixMapping {
 		}
 	}
 
+    private String getModelName()
+        { return "test" + count++; }
+        
+    private Model getModel()
+        {
+        Model model = ModelRDB.createModel( theConnection, getModelName() );
+        models.add( model );
+        return model;
+        }
+        
 	public PrefixMapping getMapping() {
-		Model model = ModelRDB.createModel(theConnection, "test"+count++);
-		models.add(model);
+		Model model = getModel();
 		return model.getGraph().getPrefixMapping();
 	}
+    
+    public void testPrefixesPersist()
+        {
+        String name = "prefix-testing-model"; // getModelName();
+        Model m = ModelRDB.createModel( theConnection, name );
+        m.setNsPrefix( "hello", "eh:/someURI" );
+        m.setNsPrefix( "bingo", "eh:/otherURI" );
+        m.setNsPrefix( "yendi", "eh:/otherURI" );
+        m.close();
+        Model m1 = ModelRDB.open( theConnection, name );
+        assertEquals( "eh:/someURI", m1.getNsPrefixURI( "hello" ) );
+        assertEquals( "eh:/otherURI", m1.getNsPrefixURI( "yendi" ) );
+        assertEquals( null, m1.getNsPrefixURI( "bingo" ) );
+        m1.close();
+        }
 
 }
 

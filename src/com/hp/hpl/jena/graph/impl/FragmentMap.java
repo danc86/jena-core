@@ -8,9 +8,7 @@ package com.hp.hpl.jena.graph.impl;
 
 import java.util.HashMap;
 
-import com.hp.hpl.jena.graph.Node;
-import com.hp.hpl.jena.graph.Triple;
-import com.hp.hpl.jena.graph.impl.*;
+import com.hp.hpl.jena.graph.*;
 
 /**
     a FragmentMap is a Map where the domain elements are Nodes

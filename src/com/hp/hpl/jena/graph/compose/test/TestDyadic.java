@@ -7,7 +7,6 @@
 package com.hp.hpl.jena.graph.compose.test;
 
 import com.hp.hpl.jena.util.iterator.*;
-import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.graph.compose.Dyadic;
 import com.hp.hpl.jena.graph.test.*;
 

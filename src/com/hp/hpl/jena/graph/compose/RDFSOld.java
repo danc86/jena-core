@@ -232,13 +232,6 @@ public class RDFSOld extends Dyadic implements Vocabulary
     	return it .mapWith( new Map1() { public Object map1( Object x ) { return ((Triple) x).getSubject(); } } );
     	}
     	
-    private static HashSet asSet( ExtendedIterator it )
-    	{
-    	HashSet result = new HashSet();
-    	while (it.hasNext()) result.add( it.next() );
-    	return result;
-    	}
-    	
     public ExtendedIterator typedBySubclass( final TripleMatch m, Graph g )
     	{
     	final HashMap supers = superClasses();
