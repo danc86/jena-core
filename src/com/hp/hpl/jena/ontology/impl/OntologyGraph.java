@@ -90,14 +90,14 @@ public class OntologyGraph
     
     /** adds the triple t (if possible) to the set belong to the graph */
     public void add(Triple t) 
-        throws UnsupportedOperationException, VirtualTripleException
+        throws UnsupportedOperationException
     {
         m_unionGraph.add( t );
     }
     
     /** removes the triple t (if possible) from the set belonging to this graph */   
     public void delete(Triple t) 
-        throws UnsupportedOperationException, NoSuchTripleException, VirtualTripleException
+        throws UnsupportedOperationException
     {
         m_unionGraph.delete( t );
     }
