@@ -41,7 +41,7 @@ public class RDFS {
     public static final Property member  = property( "member");
 
     /**
-        The RDFS vocabulary, expressed for the SPI layer in terms of .grap.Nodes.
+        The RDFS vocabulary, expressed for the SPI layer in terms of .graph Nodes.
     */
     public static class Nodes
         {
