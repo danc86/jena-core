@@ -21,11 +21,12 @@
 ///////////////
 package com.hp.hpl.jena.ontology.path;
 
-import com.hp.hpl.jena.ontology.OntologyException;
 
 
 // Imports
 ///////////////
+import com.hp.hpl.jena.ontology.OntologyException;
+
 
 /**
  * <p>

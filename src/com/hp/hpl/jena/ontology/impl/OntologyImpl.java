@@ -95,23 +95,23 @@ public class OntologyImpl
     //////////////////////////////////
 
     public PathSet p_imports() {
-        return asPathSet( getProfile().IMPORTS() );
+        return asPathSet( getProfile().IMPORTS(), "IMPORTS" );
     }
     
     public PathSet p_backwardCompatibleWith() {
-        return asPathSet( getProfile().BACKWARD_COMPATIBLE_WITH() );
+        return asPathSet( getProfile().BACKWARD_COMPATIBLE_WITH(), "BACKWARD_COMPATIBLE_WITH" );
     } 
     
     public PathSet p_priorVersion() {
-        return asPathSet( getProfile().PRIOR_VERSION() );
+        return asPathSet( getProfile().PRIOR_VERSION(), "PRIOR_VERSION" );
     }
     
     public PathSet p_incompatibleWith() {
-        return asPathSet( getProfile().INCOMPATIBLE_WITH() );
+        return asPathSet( getProfile().INCOMPATIBLE_WITH(), "INCOMPATIBLE_WITH" );
     }
     
     public PathSet p_versionInfo() {
-        return asPathSet( getProfile().VERSION_INFO() );
+        return asPathSet( getProfile().VERSION_INFO(), "VERSION_INFO" );
     }
     
     // Internal implementation methods

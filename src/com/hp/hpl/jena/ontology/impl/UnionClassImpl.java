@@ -111,7 +111,7 @@ public class UnionClassImpl
      * @return An abstract accessor for the union class description
      */
     public PathSet p_unionOf() {
-        return asPathSet( getProfile().UNION_OF() );
+        return asPathSet( getProfile().UNION_OF(), "UNION_OF" );
     }
 
 

@@ -42,7 +42,7 @@ import com.hp.hpl.jena.vocabulary.*;
  * @version CVS $Id$
  */
 public class TestClassExpression
-    extends OntTestCase 
+    extends PathTestCase 
 {
     // Constants
     //////////////////////////////////
@@ -72,7 +72,7 @@ public class TestClassExpression
     
     
     /** Fields are testID, pathset, property, profileURI, sourceData, expected, count, valueURI, rdfTypeURI, valueLit */
-    protected Object[][] testData() {
+    protected Object[][] psTestData() {
         return new Object[][] {
             {   
                 "OWL OntClass.subClassOf",

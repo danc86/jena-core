@@ -112,7 +112,7 @@ public class OntClassImpl
      * @return An abstract accessor for the imports of an ontology element
      */
     public PathSet p_subClassOf() {
-        return asPathSet( getProfile().SUB_CLASS_OF() );
+        return asPathSet( getProfile().SUB_CLASS_OF(), "SUB_CLASS_OF" );
     }
     
     /**
@@ -126,7 +126,7 @@ public class OntClassImpl
      * @return An abstract accessor for the imports of an ontology element
      */
     public PathSet p_equivalentClass() {
-        return asPathSet( getProfile().EQUIVALENT_CLASS() );
+        return asPathSet( getProfile().EQUIVALENT_CLASS(), "EQUIVALENT_CLASS" );
     }
     
     /**
@@ -140,7 +140,7 @@ public class OntClassImpl
      * @return An abstract accessor for the imports of an ontology element
      */
     public PathSet p_disjointWith() {
-        return asPathSet( getProfile().DISJOINT_WITH() );
+        return asPathSet( getProfile().DISJOINT_WITH(), "DISJOINT_WITH" );
     }
      
     /**

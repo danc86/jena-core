@@ -1655,7 +1655,7 @@ public class OntModelImpl
     protected void checkProfileEntry( Object profileTerm, String desc ) {
         if (profileTerm == null) {
             // not in the profile
-            throw new OntologyException( "Ontology term " + desc + " is not defined in the language profile for " + getProfile().getLabel() );
+            throw new ProfileException( desc, getProfile() );
         }
     }
     

@@ -106,7 +106,7 @@ public class AllDifferentImpl
      * @return An abstract accessor for the distinct individuals in an AllDifferent axioms
      */
     public PathSet p_distinctMembers() {
-        return asPathSet( getProfile().DISTINCT_MEMBERS() );
+        return asPathSet( getProfile().DISTINCT_MEMBERS(), "DISTINCT_MEMBERS" );
     }
 
 

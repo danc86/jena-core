@@ -5,7 +5,7 @@
  * Author email       Ian.Dickinson@hp.com
  * Package            Jena 2
  * Web                http://sourceforge.net/projects/jena/
- * Created            28-Apr-2003
+ * Created            23-May-2003
  * Filename           $RCSfile$
  * Revision           $Revision$
  * Release status     $State$
@@ -19,109 +19,131 @@
 
 // Package
 ///////////////
-package com.hp.hpl.jena.ontology.impl;
+package com.hp.hpl.jena.ontology.impl.test;
 
 
 // Imports
 ///////////////
-import com.hp.hpl.jena.enhanced.*;
-import com.hp.hpl.jena.graph.Node;
+import java.util.*;
+
 import com.hp.hpl.jena.ontology.*;
-import com.hp.hpl.jena.ontology.path.PathSet;
-import com.hp.hpl.jena.rdf.model.Property;
+import com.hp.hpl.jena.rdf.model.*;
+
+import junit.framework.*;
 
 
 /**
  * <p>
- * Implementation of a node representing a complement class description.
+ * Generic test case for ontology unit testing
  * </p>
  *
  * @author Ian Dickinson, HP Labs
  *         (<a  href="mailto:Ian.Dickinson@hp.com" >email</a>)
  * @version CVS $Id$
  */
-public class ComplementClassImpl 
-    extends OntClassImpl
-    implements ComplementClass
+public abstract class OntTestBase 
+    extends TestSuite
 {
     // Constants
     //////////////////////////////////
 
+    protected String NS = "http://example.org/onttest#";
+    
+    
     // Static variables
     //////////////////////////////////
-
-    /**
-     * A factory for generating ComplementClass facets from nodes in enhanced graphs.
-     * Note: should not be invoked directly by user code: use 
-     * {@link com.hp.hpl.jena.rdf.model.RDFNode#as as()} instead.
-     */
-    public static Implementation factory = new Implementation() {
-        public EnhNode wrap( Node n, EnhGraph eg ) { 
-            if (canWrap( n, eg )) {
-                return new ComplementClassImpl( n, eg );
-            }
-            else {
-                throw new ConversionException( "Cannot convert node " + n + " to ComplementClass");
-            } 
-        }
-            
-        public boolean canWrap( Node node, EnhGraph eg ) {
-            // node will support being an ComplementClass facet if it has rdf:type owl:Class and an owl:complementOf statement (or equivalents) 
-            Profile profile = (eg instanceof OntModel) ? ((OntModel) eg).getProfile() : null;
-            Property comp = (profile == null) ? null : profile.COMPLEMENT_OF();
-
-            return (profile != null)  &&  
-                   profile.isSupported( node, eg, OntClass.class )  &&
-                   comp != null && 
-                   eg.asGraph().contains( node, comp.asNode(), null );
-        }
-    };
-
 
     // Instance variables
     //////////////////////////////////
 
+    
     // Constructors
     //////////////////////////////////
 
-    /**
-     * <p>
-     * Construct a complement class node represented by the given node in the given graph.
-     * </p>
-     * 
-     * @param n The node that represents the resource
-     * @param g The enh graph that contains n
-     */
-    public ComplementClassImpl( Node n, EnhGraph g ) {
-        super( n, g );
+    public OntTestBase( String name ) {
+        super( name );
+        TestCase[] tc = getTests();
+        
+        for (int i = 0;  i < tc.length;  i++) {
+            addTest( tc[i] );
+        }
     }
-
-
+    
     // External signature methods
     //////////////////////////////////
-
-    /**
-     * <p>
-     * Answer an {@link PathSet accessor} for the 
-     * <code>complementOf</code>
-     * property of a class or class description. The accessor
-     * can be used to perform a variety of operations, including getting and setting the value.
-     * </p>
-     * 
-     * @return An abstract accessor for the complement class description
-     */
-    public PathSet p_complementOf() {
-        return asPathSet( getProfile().COMPLEMENT_OF(), "COMPLEMENT_OF" );
-    }
 
 
     // Internal implementation methods
     //////////////////////////////////
 
+    /** Return the array of tests for the suite */
+    protected  OntTestCase[] getTests() {
+        return null;
+    }
+    
+    
     //==============================================================================
     // Inner class definitions
     //==============================================================================
 
+    protected abstract class OntTestCase
+        extends TestCase
+    {
+        protected boolean m_inOWL;
+        protected boolean m_inOWLLite;
+        protected boolean m_inDAML;
+        protected String m_langElement;
+
+        public OntTestCase( String langElement, boolean inOWL, boolean inOWLLite, boolean inDAML ) {
+            super( "Ontology API test " + langElement );
+            m_langElement = langElement;
+            m_inOWL = inOWL;
+            m_inOWLLite = inOWLLite;
+            m_inDAML = inDAML;
+        }
+
+        public void runTest()
+            throws Exception
+        {
+            runTest( ModelFactory.createOntologyModel( OntModelSpec.OWL_MEM, null ), m_inOWL );
+            runTest( ModelFactory.createOntologyModel( OntModelSpec.OWL_LITE_MEM, null ), m_inOWLLite );
+            runTest( ModelFactory.createOntologyModel( OntModelSpec.DAML_MEM, null ), m_inDAML );
+        }
+    
+        protected void runTest( OntModel m, boolean inModel )
+            throws Exception 
+        {
+            boolean profileEx = false;
+        
+            try {
+                ontTest( m );
+            }
+            catch (ProfileException e) {
+                profileEx = true;
+            }
+        
+            assertEquals( "language element " + m_langElement + " was " + (inModel ? "" : "not") + " expected in model " + m.getProfile().getLabel(), inModel, !profileEx );
+        }
+    
+        /** Does the work in the test sub-class */
+        protected abstract void ontTest( OntModel m ) throws Exception;
+    
+        /** Test that an iterator delivers the expected values */
+        protected void iteratorTest( Iterator i, Object[] expected ) {
+            List expList = new ArrayList();
+            for (int j = 0; j < expected.length; j++) {
+                expList.add( expected[j] );
+            }
+        
+            while (i.hasNext()) {
+                Object next = i.next();
+                assertTrue( "Value " + next + " was not expected as a result from this iterator ", expList.contains( next ) );
+                assertTrue( "Value " + next + " was not removed from the list ", expList.remove( next ) );
+            }
+        
+            assertEquals( "There were expected elements from the iterator that were not found", 0, expList.size() );
+        }
+    }
 }
 
 
@@ -154,5 +176,4 @@ public class ComplementClassImpl
     (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
     THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
-
 

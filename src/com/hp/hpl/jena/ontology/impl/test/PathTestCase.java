@@ -42,7 +42,7 @@ import junit.framework.*;
  *         (<a  href="mailto:Ian.Dickinson@hp.com" >email</a>)
  * @version CVS $Id$
  */
-public abstract class OntTestCase 
+public abstract class PathTestCase 
     extends TestCase
 {
     // Constants
@@ -65,7 +65,7 @@ public abstract class OntTestCase
     // Constructors
     //////////////////////////////////
 
-    public OntTestCase( String name ) {
+    public PathTestCase( String name ) {
         super( name );
     }
     
@@ -76,7 +76,7 @@ public abstract class OntTestCase
     /** Answer a test suite built from the test data supplied by the sub-class */
     protected TestSuite getSuite() {
         TestSuite s = new TestSuite( getTestName() );
-        Object[][] td = testData();
+        Object[][] td = psTestData();
         
         for (int i = 0;  i < td.length;  i++) {
             s.addTest( new OntologyPropertyTest( td[i] ) );
@@ -93,7 +93,7 @@ public abstract class OntTestCase
     protected abstract String getTestName();
     
     /** Answer the array of test data that sets up the test */
-    protected abstract Object[][] testData();
+    protected abstract Object[][] psTestData();
     
     
     //==============================================================================

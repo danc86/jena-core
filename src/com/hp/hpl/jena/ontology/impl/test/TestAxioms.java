@@ -43,7 +43,7 @@ import com.hp.hpl.jena.rdf.model.*;
  * @version CVS $Id$
  */
 public class TestAxioms
-    extends OntTestCase 
+    extends PathTestCase 
 {
     // Constants
     //////////////////////////////////
@@ -74,7 +74,7 @@ public class TestAxioms
     
     
     /** Fields are testID, pathset, property, profileURI, sourceData, expected, count, valueURI, rdfTypeURI, valueLit */
-    protected Object[][] testData() {
+    protected Object[][] psTestData() {
         return new Object[][] {
             {   
                 "OWL AllDifferent.distinctMembers",

@@ -127,7 +127,7 @@ public class OntPropertyImpl
      * @return An abstract accessor for the super-property of a property
      */
     public PathSet p_subPropertyOf() {
-        return asPathSet( getProfile().SUB_PROPERTY_OF() );
+        return asPathSet( getProfile().SUB_PROPERTY_OF(), "SUB_PROPERTY_OF" );
     }
 
     /**
@@ -141,7 +141,7 @@ public class OntPropertyImpl
      * @return An abstract accessor for the domain of a property
      */
     public PathSet p_domain() {
-        return asPathSet( getProfile().DOMAIN() );
+        return asPathSet( getProfile().DOMAIN(), "DOMAIN" );
     }
 
 
@@ -156,7 +156,7 @@ public class OntPropertyImpl
      * @return An abstract accessor for the range of a property
      */
     public PathSet p_range() {
-        return asPathSet( getProfile().RANGE() );
+        return asPathSet( getProfile().RANGE(), "RANGE" );
     }
 
     
@@ -171,7 +171,7 @@ public class OntPropertyImpl
      * @return An abstract accessor for property equivalence
      */
     public PathSet p_equivalentProperty() {
-        return asPathSet( getProfile().EQUIVALENT_PROPERTY() );
+        return asPathSet( getProfile().EQUIVALENT_PROPERTY(), "EQUIVALENT_PROPERTY" );
     }
 
 
@@ -186,7 +186,7 @@ public class OntPropertyImpl
      * @return An abstract accessor for property invserses
      */
     public PathSet p_inverseOf() {
-        return asPathSet( getProfile().INVERSE_OF() );
+        return asPathSet( getProfile().INVERSE_OF(), "INVERSE_OF" );
     }
 
     /** 

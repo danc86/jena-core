@@ -22,6 +22,7 @@ public class TestPackage extends TestSuite {
     /** Creates new TestPackage */
     private TestPackage() {
         super("ontology.impl");
+        addTest( "TestResource", TestResource.suite() );
         addTest( "TestAxioms", TestAxioms.suite() );
         addTest( "TestClassExpression", TestClassExpression.suite() );
         addTest( "TestList", TestList.suite() );

@@ -107,7 +107,7 @@ public class EnumeratedClassImpl
      * @return An abstract accessor for the imports of an ontology element
      */
     public PathSet p_oneOf() {
-        return asPathSet( getProfile().ONE_OF() );
+        return asPathSet( getProfile().ONE_OF(), "ONE_OF" );
     }
     
 

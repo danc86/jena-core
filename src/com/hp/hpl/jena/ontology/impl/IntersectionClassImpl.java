@@ -107,7 +107,7 @@ public class IntersectionClassImpl
      * @return An abstract accessor for the intersection class description
      */
     public PathSet p_intersectionOf() {
-        return asPathSet( getProfile().INTERSECTION_OF() );
+        return asPathSet( getProfile().INTERSECTION_OF(), "INTERSECTION_OF" );
     }
 
 

@@ -66,6 +66,7 @@ public class OWLLiteProfile
     public Property ONE_OF() {                      return null; }
     public Property UNION_OF() {                    return null; }
     public Property SAME_AS() {                     return null; }
+    public Property SAME_INDIVIDUAL_AS() {          return null; }
     
 
     /**
