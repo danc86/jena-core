@@ -404,9 +404,30 @@ public interface Statement  //extends Resource
 */ 
     boolean isReified();
     
-  
+    /**
+        answer a ReifiedStatement object that embodies this Statement and
+        is in the same Model (if any).
+    */
+    ReifiedStatement createReifiedStatement();
     
+    /**
+        answer a ReifiedStatement object that embodies this Statement, has
+        the same Model, and has the given _uri_.
+    */
+    ReifiedStatement createReifiedStatement( String uri );
+        
+    /**
+        answer an iterator which delivers all the reified statements in the model
+        this Statement belongs to that match this Statement.
+    */
+    RSIterator listReifiedStatements();
+    
+    /**
+        answer the Triple containing the appropriate Nodes corrsponding to
+        the subject, predicate, and object fields.
+    */
     Triple asTriple();
+    
     /**
      * Returns a resource representing the reification of this
      * statement. Such a resoruce is created and added to the model
@@ -414,6 +435,9 @@ public interface Statement  //extends Resource
      */
     Resource asResource();
     
+    /**
+        get the Model this Statement was created in.
+    */
     Model getModel();
     
     /**

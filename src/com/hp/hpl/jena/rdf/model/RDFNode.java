@@ -54,7 +54,6 @@ public interface RDFNode {
     public Node asNode();
     
     /**
-    <p>
         RDFNodes can be converted to different implementation types. Convert
         this RDFNode to a type supporting the _view_ interface. The resulting
         RDFNode should be an instance of _view_ and should have any
@@ -65,4 +64,9 @@ public interface RDFNode {
         deliver a half-baked instance?
     */
     public RDFNode as( Class view );
+    
+    /**
+        return true iff this RDFNode can be viewed as a _view_.
+    */
+    public boolean canAs( Class view );
 }
