@@ -296,9 +296,8 @@ public /* abstract */ class AbstractTestGraph extends GraphTestBase
         ExtendedIterator it = g.find( Triple.create( findRemove ) );
         try 
             {
-            it.next(); it.remove();
-            ExtendedIterator ut = g.find( Triple.create( findCheck ) );
-            assertFalse( ut.hasNext() );
+            it.next(); it.remove(); it.close();
+            assertFalse( g.contains( Triple.create( findCheck ) ) );
             }
         catch (UnsupportedOperationException e)
             { assertFalse( g.getCapabilities().iteratorRemoveAllowed() ); }
