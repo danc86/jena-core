@@ -43,6 +43,11 @@ public class ResultSet {
            static String nsolution = "solution";
     public static Property solution;
 
+    // Added - schemagen does not generate this
+           static String nundefined = "undefined" ;
+    public static Resource undefined ; 
+    
+
     static {
         try {
             ResultSolution = ResourceFactory.createResource(uri + nResultSolution);
@@ -54,6 +59,7 @@ public class ResultSet {
             size = ResourceFactory.createProperty(uri + nsize);
             binding = ResourceFactory.createProperty(uri + nbinding);
             solution = ResourceFactory.createProperty(uri + nsolution);
+            undefined = ResourceFactory.createResource(uri + nundefined) ;
         } catch (Exception e) {
             ErrorHelper.logInternalError("RDF", 1, e);
         }
