@@ -240,7 +240,7 @@ abstract public class BaseXMLWriter implements RDFXMLWriterI {
 				try {
 					new URI(uri);
 				} catch (MalformedURIException e) {
-					throw new RDFException(e);
+					throw new JenaBadURIException( "", e );
 				}
 			if (prefix.length() > 0) {
 				rslt.append(":" + prefix);
@@ -471,7 +471,7 @@ abstract public class BaseXMLWriter implements RDFXMLWriterI {
 				writeBody(model, pw, xmlBase, true);
 			}
 		} catch (MalformedURIException e) {
-			throw new RDFException(e);
+			throw new JenaBadURIException( "", e);
 		}
 		pw.flush();
 	}

@@ -9,6 +9,7 @@ import java.io.* ;
 import java.util.* ;
 import junit.framework.* ;
 
+import com.hp.hpl.jena.shared.*;
 import com.hp.hpl.jena.util.tuple.* ;
 
 /**
@@ -33,7 +34,7 @@ public abstract class N3ExternalTestsCom extends TestSuite
 		super(testName) ;
 		testFile = findFile(filename) ;
 		if ( testFile == null )
-			throw new RuntimeException("No such file: "+filename) ;
+			throw new JenaException("No such file: "+filename) ;
 		TupleSet tests = null ;
 		try {
 			Reader r = new BufferedReader(new FileReader(testFile)) ;

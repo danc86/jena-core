@@ -483,7 +483,7 @@ public class testWriterAndReader extends TestCase implements RDFErrorHandler {
 	 */
 	public void fatalError(Exception e) {
 		error(e);
-		throw new RDFException(e);
+		throw new JenaException(e);
 	}
 	/*
 	static public void empty(Model m) throws RDFException {

@@ -31,9 +31,9 @@ import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.db.*;
 import com.hp.hpl.jena.db.impl.*;
 import com.hp.hpl.jena.regression.*;
+import com.hp.hpl.jena.shared.*;
 
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
+import junit.framework.*;
 
 
 public class TestCompatability extends TestCase {    
@@ -131,7 +131,7 @@ public class TestCompatability extends TestCase {
 			try {
 				Class.forName(TestPackage.M_DBDRIVER_CLASS); // ADDED  	
 			} catch (Exception e) {
-				throw new RuntimeException("Unable to instantiate  driver: " + TestPackage.M_DBDRIVER_CLASS);
+				throw new JenaException("Unable to instantiate  driver: " + TestPackage.M_DBDRIVER_CLASS);
 			}
 
 			try { 

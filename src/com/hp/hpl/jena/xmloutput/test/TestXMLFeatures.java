@@ -678,6 +678,9 @@ public class TestXMLFeatures extends TestCase {
 					break;
 
 			}
+        } catch (JenaBadURIException e) {
+            if (behaviour == BadURI) return;
+            throw e;
 		} catch (RDFException e) {
             switch (behaviour)
             { case BadPropURI:

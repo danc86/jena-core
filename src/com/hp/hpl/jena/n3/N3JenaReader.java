@@ -51,7 +51,7 @@ public class N3JenaReader implements RDFReader
         }
         catch (Exception ex)
         {
-            if ( errorHandler == null ) throw new RDFException(ex) ;
+            if ( errorHandler == null ) throw new JenaException(ex) ;
             errorHandler.error(ex) ;
         }
 	}
@@ -74,7 +74,7 @@ public class N3JenaReader implements RDFReader
         }
         catch (Exception ex)
         {
-            if ( errorHandler == null ) throw new RDFException(ex) ;
+            if ( errorHandler == null ) throw new JenaException(ex) ;
             errorHandler.error(ex) ;
         }
 	}
@@ -101,7 +101,7 @@ public class N3JenaReader implements RDFReader
         }
         catch (Exception ex)
 		{
-			if ( errorHandler == null ) throw new RDFException(ex) ;
+			if ( errorHandler == null ) throw new JenaException(ex) ;
 			errorHandler.error(ex) ;
 		}
 	}

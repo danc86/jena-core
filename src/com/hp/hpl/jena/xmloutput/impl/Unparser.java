@@ -194,7 +194,7 @@ class Unparser {
 				u.setFragment(null);
 				localName = u.getURIString();
 			} catch (MalformedURIException e) {
-				throw new RDFException( e );
+				throw new JenaBadURIException( "", e );
 			}
 	}
 	/** Should be called exactly once for each Unparser.
