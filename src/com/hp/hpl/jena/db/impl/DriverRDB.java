@@ -562,10 +562,21 @@ public abstract class DriverRDB implements IRDBDriver {
 			while (it.hasNext()) {
 				m_sql.runSQLGroup("dropTable", (String) it.next());
 			}
+			if (PRE_ALLOCATE_ID) {
+				clearSequences();
+			}
 		} catch (SQLException e1) {
 			throw new RDFRDBException("Internal SQL error in driver", e1);
 		}
 	}
+	
+	/**
+	 * Drop all Jena-related sequences from database, if necessary.
+	 * Override in subclass if sequences must be explicitly deleted.
+	 */
+	public void clearSequences() {
+	}
+
 	
 	/**
 	 * Removes named sequence from the database, if it exists.
