@@ -120,7 +120,7 @@ public class TestOntDocumentManager
     
     public void testManualAssociation() {
         OntDocumentManager mgr = new OntDocumentManager( null );
-        
+ 
         mgr.addPrefixMapping( "http://www.w3.org/2002/07/owl#", "owl" );
         assertEquals( "prefix for owl not correct", "owl", mgr.getPrefixForURI( "http://www.w3.org/2002/07/owl#" ));
         assertEquals( "URI for owl not correct", "http://www.w3.org/2002/07/owl#", mgr.getURIForPrefix( "owl" ));

@@ -31,7 +31,7 @@ import java.net.URL;
 import java.text.SimpleDateFormat;
 
 import org.apache.oro.text.regex.*;
-import org.apache.xml.utils.XMLChar;
+import org.apache.xerces.util.XMLChar;
 
 import com.hp.hpl.jena.ontology.*;
 import com.hp.hpl.jena.rdf.model.*;

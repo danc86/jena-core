@@ -28,6 +28,7 @@ import java.io.*;
 
 import com.hp.hpl.jena.ontology.*;
 import com.hp.hpl.jena.rdf.model.*;
+import com.hp.hpl.jena.rdf.model.test.*;
 import com.hp.hpl.jena.vocabulary.RDF;
 
 import junit.framework.*;
@@ -44,7 +45,7 @@ import junit.framework.*;
  * @version CVS $Id$
  */
 public class TestOntModel 
-    extends TestCase
+    extends ModelTestBase
 {
     // Constants
     //////////////////////////////////
@@ -136,6 +137,19 @@ public class TestOntModel
         om.setNsPrefix( "bill", "http://bill.and.ben/flowerpot#" );
         om.setNsPrefix( "grue", "ftp://grue.and.bleen/2000#" );
         assertEquals( om.getNsPrefixMap(), om.getBaseModel().getNsPrefixMap() );    
+        }
+        
+    public void testWritesPrefixes()
+        {
+        OntModel om = ModelFactory.createOntologyModel();
+        om.setNsPrefix( "spoo", "http://spoo.spoo.com/spoo#" );
+        om.add( statement( om, "ping http://spoo.spoo.com/spoo#pang pilly" ) );
+        om.add( statement( om, "gg http://www.daml.org/2001/03/daml+oil#hh ii" ) );
+        StringWriter sw = new StringWriter(); 
+        om.write( sw );    
+        String s = sw.getBuffer().toString();
+        assertTrue( s.indexOf( "xmlns:spoo=\"http://spoo.spoo.com/spoo#\"" ) > 0 );
+        assertTrue( s.indexOf( "xmlns:daml=\"http://www.daml.org/2001/03/daml+oil#\"" ) > 0 );      
         }
         
     /** Test writing the base model to an output stream */
