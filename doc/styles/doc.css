@@ -56,6 +56,17 @@ th {
   text-align:center;
 }
 
+#
+# Specialised styles for displaying contrib table
+#
+
+tr.odd { background-color: #eeeeff }
+
+tr.even { background-color: #eeffee }
+
+table.framed { border: 1px solid black; rules: none }
+
+
 
 .noindent     { margin-left: -5% ; margin-right: -5%; }
 .moreindent   { margin-left:  5% ; margin-right:  5%; }
