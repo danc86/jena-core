@@ -23,6 +23,13 @@ final public class LiteralLabel {
      * setting mechanism - whatever that is.
      */
     public static boolean enableEagerValidation = false;
+
+    /** 
+     * Global flag - set to true to treat plain literals and xsd:string literals as semantically equal.
+     * </ br>@todo - this needs to be connected to or replaced by the global flag
+     * setting mechanism - whatever that is.
+     */
+    public static boolean enablePlainSameAsString = true;
     
     //=======================================================================
     // Variables
@@ -275,10 +282,25 @@ final public class LiteralLabel {
     public boolean sameValueAs(LiteralLabel other) {
         if (other == null)
             return false;
-        if (dtype == null || !wellformed) {
+        if (!wellformed) {
+            if (!other.wellformed) {
+                // Need to support this comparison in order for the WG tests on ill formed
+                // literals to be testable using isIsomorphic to
+                return lexicalForm.equals(other.lexicalForm)
+                    && lang.equalsIgnoreCase(other.lang);
+            } else {
+                return false;
+            }
+        }
+        if (dtype == null) {
             // Plain literal
-            return lexicalForm.equals(other.lexicalForm)
-                && lang.equalsIgnoreCase(other.lang);
+            if (other.dtype == null || 
+                (enablePlainSameAsString && other.dtype.equals(XSDDatatype.XSDstring))) {
+                    return lexicalForm.equals(other.lexicalForm)
+                        && lang.equalsIgnoreCase(other.lang);
+            } else {
+                return false;
+            }
         } else {
             // Typed literal
             return dtype.isEqual(this, other);

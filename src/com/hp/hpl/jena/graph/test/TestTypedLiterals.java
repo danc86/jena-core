@@ -264,6 +264,30 @@ public class TestTypedLiterals extends TestCase {
     }
     
     /**
+     * Test plain literal/xsd:string/xsd:int equality operations
+     */
+    public void testPlainSameValueAs() {
+        Literal lString = m.createTypedLiteral("10", "", XSDDatatype.XSDstring );
+        Literal lPlain = m.createTypedLiteral("10", "", (RDFDatatype)null );
+        Literal lPlain2 = m.createLiteral("10");
+        Literal lInt =  m.createTypedLiteral("10", "", XSDDatatype.XSDint );
+        
+        assertSame("Null type = plain literal", lPlain, lPlain2);
+        assertDiffer("String != int", lString, lInt);
+        assertDiffer("Plain != int", lPlain, lInt);
+        assertDiffer("Plain != int", lPlain2, lInt);
+        
+        // The correct answer to this is currently up to us
+        if (LiteralLabel.enablePlainSameAsString) {
+            assertSame("String != plain??", lString, lPlain);
+            assertSame("String != plain??", lString, lPlain2);
+        } else {
+            assertDiffer("String != plain??", lString, lPlain);
+            assertDiffer("String != plain??", lString, lPlain2);
+        }
+    }
+    
+    /**
      * Test user defined data types using the DAML+OIL standard example.
      * N.B. The file on daml.org is not legal (wrong namespace for XMLSchema, missed
      * qualifiers  onsome restriction base types) so we actually load a locally cached
