@@ -14,9 +14,9 @@ package com.hp.hpl.jena.db.impl;
 import java.sql.*;
 
 import com.hp.hpl.jena.db.RDFRDBException;
-import com.hp.hpl.jena.graph.*;
+import com.hp.hpl.jena.graph.Node;
+import com.hp.hpl.jena.graph.Triple;
 import com.hp.hpl.jena.util.Log;
-import com.hp.hpl.jena.db.impl.PSet_TripleStore_RDB;
 
 //=======================================================================
 /**
@@ -96,26 +96,19 @@ public class ResultSetTripleIterator extends ResultSetIterator {
     protected void extractRow() throws SQLException {
         int rx = 1;
         ResultSet rs = m_resultSet;
-        String subjURI = rs.getString(1);
-		String predURI = rs.getString(2);
-		String objURI = rs.getString(3);
-		String objVal = rs.getString(4);
-		Object litId = rs.getObject(5);
+        String subj = rs.getString(1);
+		String pred = rs.getString(2);
+		String obj = rs.getString(3);
 
 		if ( m_isReif ) {
-			m_stmtURI = PSet_TripleStore_RDB.RDBStringToNode(rs.getString(6));
-			m_hasType = (rs.getInt(7) == 1);
+			m_stmtURI = m_pset.driver().RDBStringToNode(rs.getString(4));
+			m_hasType = rs.getString(5).equals("T");
 		}
-		
-		String objRef = null;
-		if (litId != null) {
-			objRef = litId.toString();
-			} 
 		
 		Triple t = null;
 		
 		try {
-        t = m_pset.extractTripleFromRowData(subjURI, predURI, objURI, objVal, objRef);
+        t = m_pset.extractTripleFromRowData(subj, pred, obj);
 		} catch (RDFRDBException e) {
 			Log.debug("Extracting triple from row encountered exception: " + e);
 		}

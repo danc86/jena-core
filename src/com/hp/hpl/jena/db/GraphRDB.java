@@ -51,7 +51,7 @@ import java.util.*;
  */
 public class GraphRDB extends GraphBase implements Graph {
 
-    static final String DEFAULT = "DEFAULT_GRAPH";
+    static public final String DEFAULT = "DEFAULT";
 
 	protected IRDBDriver m_driver = null;
 	protected DBPropGraph m_properties = null; 
@@ -156,8 +156,6 @@ public class GraphRDB extends GraphBase implements Graph {
 		
 		if(graphID == null)
 			graphID = DEFAULT;
-		else
-			graphID = graphID.toUpperCase();
 			
 		// Find the driver
 		m_driver = con.getDriver();
