@@ -11,6 +11,7 @@ import com.hp.hpl.jena.graph.impl.*;
 import com.hp.hpl.jena.graph.query.*;
 import com.hp.hpl.jena.shared.*;
 import com.hp.hpl.jena.util.iterator.ExtendedIterator;
+import com.hp.hpl.jena.util.iterator.WrappedIterator;
 
 import java.util.*;
 
@@ -109,7 +110,29 @@ public class GraphMem extends GraphBase implements Graph
     private static class GraphMemQueryHandler extends SimpleQueryHandler
         {
         GraphMemQueryHandler( GraphMem graph ) 
-            { super( graph ); }
+            { 
+            super( graph );
+            }
+        
+        public ExtendedIterator objectsFor( Node p, Node o )
+            {
+            return p == null && o == null ? findObjects() : super.objectsFor( p, o );
+            }
+        
+        public ExtendedIterator subjectsFor( Node p, Node o )
+            {
+            return p == null && o == null ? findSubjects() : super.subjectsFor( p, o );
+            }   
+        
+        public ExtendedIterator findObjects()
+            {
+            return WrappedIterator.create( ((GraphMem) graph).objects.domain() );
+            }
+        
+        public ExtendedIterator findSubjects()
+            {
+            return WrappedIterator.create( ((GraphMem) graph).subjects.domain() );
+            }
         }
         
     /**

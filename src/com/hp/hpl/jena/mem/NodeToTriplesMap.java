@@ -19,6 +19,9 @@ public class NodeToTriplesMap
     {
     HashMap map = new HashMap();
     
+    public Iterator domain()
+        { return map.keySet().iterator(); }
+    
     public void add( Node o, Triple t ) {
         HashSet s = (HashSet) map.get( o );
         if (s == null) map.put( o, s = new HashSet() );
