@@ -59,18 +59,23 @@ public class QueryResultsStream implements QueryResults
     }
 
     /** Moves onto the next result possibility.
-     *  The returned object is actual the binding for this
-     *  result; it is possible to access the bound variables
-     *  for the current possibility through the additional variable
-     *  accessor opertations.
      */
-    public Object next()
+    
+    public ResultBinding nextResultBinding()
     {
         currentEnv = (ResultBinding)queryExecutionIter.next() ;
         if ( currentEnv != null )
             rowNumber++ ;
         return currentEnv ;
     }
+    
+    /** Moves onto the next result possibility.
+     *  The returned object is actual the binding for this
+     *  result; it is possible to access the bound variables
+     *  for the current possibility through the additional variable
+     *  accessor opertations.
+     */
+    public Object next() { return nextResultBinding() ; }
 
     /** Close the results iterator and stop query evaluation as soon as convenient.
      */

@@ -130,10 +130,19 @@ public class QueryResultsMem implements QueryResultsRewindable
     public boolean hasNext() { return iterator.hasNext() ; }
 
     /** Moves onto the next result possibility.
+     */
+    
+    public ResultBinding nextResultBinding()
+    {
+        rowNumber++ ;
+        return (ResultBinding)iterator.next() ;
+    }
+    
+    /** Moves onto the next result possibility.
      *  The returned object should be of class ResultBinding
      */
 
-    public Object next() { rowNumber++ ; return iterator.next() ; }
+    public Object next() { return  nextResultBinding() ; }
 
     /** Close the results set.
      *  Should be called on all QueryResults objects

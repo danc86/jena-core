@@ -35,6 +35,11 @@ public interface QueryResults extends java.util.Iterator
     public boolean hasNext() ;
 
     /** Moves onto the next result possibility.
+     */
+    
+    public ResultBinding nextResultBinding() ;
+
+    /** Moves onto the next result possibility.
      *  The returned object should be of class ResultBinding
      */
     

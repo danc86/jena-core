@@ -76,9 +76,16 @@ public class QueryEngine implements QueryExecution
     
     public QueryResults exec(ResultBinding startBinding)
     {
-        init() ;
-        resultsIter = new ResultsIterator(query, startBinding) ;
-        return new QueryResultsStream(query, this, resultsIter) ;
+        resultsIter = null ;
+        try {
+            init() ;
+            resultsIter = new ResultsIterator(query, startBinding) ;
+            return new QueryResultsStream(query, this, resultsIter) ;
+        } catch (RuntimeException ex) {
+            if ( resultsIter != null )
+                resultsIter.close();
+            throw ex ;
+        }
     }
 
     public void abort()
