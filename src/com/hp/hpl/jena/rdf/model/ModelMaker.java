@@ -6,12 +6,16 @@
 
 package com.hp.hpl.jena.rdf.model;
 
+import com.hp.hpl.jena.graph.*;
+
 /**
-    The interface for things that operate on named collections of Models.
+    A ModelMaker contains a collection of named models, methods for creating
+    new models [both named and anonymous] and opening previously-named
+    models, removing models, and accessing a single "default" Model for this
+    Maker.
+    
  	@author kers
 */
-
-import com.hp.hpl.jena.graph.*;
 
 public interface ModelMaker extends ModelSpec
     {
