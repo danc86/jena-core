@@ -25,17 +25,19 @@ package com.hp.hpl.jena.ontology.daml;
 ///////////////
 import java.util.Iterator;
 
+import com.hp.hpl.jena.ontology.OntClass;
+
 
 
 /**
- * Java representation of a DAML ontology Class. Note that the ontology classes are
- * not the same as Java classes: think of classifications rather than active data structures.
+ * <p>Java representation of a DAML ontology Class. Note that the ontology classes are
+ * not the same as Java classes: think of classifications rather than active data structures.</p>
  *
- * @author Ian Dickinson, HP Labs (<a href="mailto:Ian_Dickinson@hp.com">email</a>)
+ * @author Ian Dickinson, HP Labs (<a href="mailto:Ian.Dickinson@hp.com">email</a>)
  * @version CVS info: $Id$
  */
 public interface DAMLClass
-    extends DAMLCommon
+    extends DAMLCommon, OntClass
 {
     // Constants
     //////////////////////////////////
@@ -173,8 +175,6 @@ public interface DAMLClass
      * direct</code>, see {@link OntClass#listSubClasses(boolean)} for more details.
      * </p>
      * 
-     * @return an iterator over this class's super-classes.
-     *
      * @param closed If true, return all available values; otherwise, return
      * only local (direct) super-classes. See note for details.
      * @return an iterator over this class's super-classes.
@@ -205,24 +205,6 @@ public interface DAMLClass
      * @return an iterator ranging over every equivalent DAML class
      */
     public Iterator getEquivalentValues();
-
-
-    /**
-     * <p>Answer true if the given class is a sub-class of this class.</p>
-     *
-     * @param cls A DAML class to test against
-     * @return True if this class is a super-class of the given class.
-     */
-    public boolean hasSubClass( DAMLClass cls );
-
-
-    /**
-     * <p>Answer true if the given class is a super-class of this class.</p>
-     *
-     * @param cls A DAML class to test against
-     * @return True if this class is a sub-class of the given class.
-     */
-    public boolean hasSuperClass( DAMLClass cls );
 
 
     /**
@@ -352,7 +334,7 @@ public interface DAMLClass
 
 
 /*
-    (c) Copyright Hewlett-Packard Company 2002-2003
+    (c) Copyright Hewlett-Packard Company 2001-2003
     All rights reserved.
 
     Redistribution and use in source and binary forms, with or without

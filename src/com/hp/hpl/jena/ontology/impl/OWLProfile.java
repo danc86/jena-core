@@ -67,6 +67,7 @@ public class OWLProfile
     public Resource RESTRICTION() {                 return OWL.Restriction; }
     public Resource THING() {                       return OWL.Thing; }
     public Resource NOTHING() {                     return OWL.Nothing; }
+    public Resource PROPERTY() {                    return RDF.Property; }
     public Resource OBJECT_PROPERTY() {             return OWL.ObjectProperty; }
     public Resource DATATYPE_PROPERTY() {           return OWL.DatatypeProperty; }
     public Resource TRANSITIVE_PROPERTY() {         return OWL.TransitiveProperty; }

@@ -8,6 +8,8 @@ package com.hp.hpl.jena.enhanced;
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.rdf.model.impl.*;
 import com.hp.hpl.jena.ontology.*;
+import com.hp.hpl.jena.ontology.daml.*;
+import com.hp.hpl.jena.ontology.daml.impl.*;
 import com.hp.hpl.jena.ontology.impl.*;
 
 import java.io.*;
@@ -58,6 +60,15 @@ public class BuiltinPersonalities {
         .add( Individual.class, IndividualImpl.factory )
         .add( AnnotationProperty.class, AnnotationPropertyImpl.factory )
         
+        // daml
+        .add( DAMLCommon.class, DAMLCommonImpl.factory )
+        .add( DAMLClass.class, DAMLClassImpl.factory )
+        .add( DAMLRestriction.class, DAMLRestrictionImpl.factory )
+        .add( DAMLProperty.class, DAMLPropertyImpl.factory )
+        .add( DAMLObjectProperty.class, DAMLObjectPropertyImpl.factory )
+        .add( DAMLDatatypeProperty.class, DAMLDatatypePropertyImpl.factory )
+        .add( DAMLOntology.class, DAMLOntologyImpl.factory )
+        .add( DAMLInstance.class, DAMLInstanceImpl.factory )
         
         // Last and least ?
         .add( RDFNode.class, ResourceImpl.rdfNodeFactory )

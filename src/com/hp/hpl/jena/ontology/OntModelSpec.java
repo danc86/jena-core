@@ -27,7 +27,7 @@ package com.hp.hpl.jena.ontology;
 ///////////////
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.reasoner.*;
-import com.hp.hpl.jena.reasoner.rdfsReasoner1.RDFSReasonerFactory;
+import com.hp.hpl.jena.reasoner.rulesys.*;
 import com.hp.hpl.jena.reasoner.transitiveReasoner.TransitiveReasonerFactory;
 
 
@@ -48,29 +48,50 @@ public class OntModelSpec {
     // Static variables
     //////////////////////////////////
 
-    /** A specification for OWL models that are stored in memory and use the Transitive reasoner for simple entailments */
-    public static final OntModelSpec OWL_MEM = new OntModelSpec( ModelFactory.createMemModelMaker(), null, TransitiveReasonerFactory.theInstance(), ProfileRegistry.OWL_LANG );
+    /** A specification for OWL models that are stored in memory and do no additional entailment reasoning */
+    public static final OntModelSpec OWL_MEM = new OntModelSpec( ModelFactory.createMemModelMaker(), null, null, ProfileRegistry.OWL_LANG );
     
     /** A specification for OWL models that are stored in memory and use the RDFS inferencer for additional entailments */
-    public static final OntModelSpec OWL_MEM_RDFSINF = new OntModelSpec( ModelFactory.createMemModelMaker(), null, RDFSReasonerFactory.theInstance(), ProfileRegistry.OWL_LANG );
+    public static final OntModelSpec OWL_MEM_RDFS_INF = new OntModelSpec( ModelFactory.createMemModelMaker(), null, RDFSFBRuleReasonerFactory.theInstance(), ProfileRegistry.OWL_LANG );
     
-    /** A specification for OWL DL models that are stored in memory and use the Transitive reasoner for simple entailments */
-    public static final OntModelSpec OWL_DL_MEM = new OntModelSpec( ModelFactory.createMemModelMaker(), null, TransitiveReasonerFactory.theInstance(), ProfileRegistry.OWL_DL_LANG );
+    /** A specification for OWL models that are stored in memory and use the transitive inferencer for additional entailments */
+    public static final OntModelSpec OWL_MEM_TRANS_INF = new OntModelSpec( ModelFactory.createMemModelMaker(), null, TransitiveReasonerFactory.theInstance(), ProfileRegistry.OWL_LANG );
+    
+    /** A specification for OWL models that are stored in memory and use the OWL rules inference engine for additional entailments */
+    public static final OntModelSpec OWL_MEM_RULE_INF = new OntModelSpec( ModelFactory.createMemModelMaker(), null, OWLFBRuleReasonerFactory.theInstance(), ProfileRegistry.OWL_LANG );
+    
+    /** A specification for OWL DL models that are stored in memory and do no additional entailment reasoning */
+    public static final OntModelSpec OWL_DL_MEM = new OntModelSpec( ModelFactory.createMemModelMaker(), null, null, ProfileRegistry.OWL_DL_LANG );
     
     /** A specification for OWL DL models that are stored in memory and use the RDFS inferencer for additional entailments */
-    public static final OntModelSpec OWL_DL_MEM_RDFSINF = new OntModelSpec( ModelFactory.createMemModelMaker(), null, RDFSReasonerFactory.theInstance(), ProfileRegistry.OWL_DL_LANG );
+    public static final OntModelSpec OWL_DL_MEM_RDFS_INF = new OntModelSpec( ModelFactory.createMemModelMaker(), null, RDFSFBRuleReasonerFactory.theInstance(), ProfileRegistry.OWL_DL_LANG );
     
-    /** A specification for OWL Lite models that are stored in memory and use the Transitive reasoner for simple entailments */
-    public static final OntModelSpec OWL_LITE_MEM = new OntModelSpec( ModelFactory.createMemModelMaker(), null, TransitiveReasonerFactory.theInstance(), ProfileRegistry.OWL_LITE_LANG );
+    /** A specification for OWL DL models that are stored in memory and use the transitive inferencer for additional entailments */
+    public static final OntModelSpec OWL_DL_MEM_TRANS_INF = new OntModelSpec( ModelFactory.createMemModelMaker(), null, TransitiveReasonerFactory.theInstance(), ProfileRegistry.OWL_DL_LANG );
+    
+    /** A specification for OWL DL models that are stored in memory and use the OWL rules inference engine for additional entailments */
+    public static final OntModelSpec OWL_DL_MEM_RULE_INF = new OntModelSpec( ModelFactory.createMemModelMaker(), null, OWLFBRuleReasonerFactory.theInstance(), ProfileRegistry.OWL_DL_LANG );
+    
+    /** A specification for OWL Lite models that are stored in memory and do no entailment additional reasoning */
+    public static final OntModelSpec OWL_LITE_MEM = new OntModelSpec( ModelFactory.createMemModelMaker(), null, null, ProfileRegistry.OWL_LITE_LANG );
+    
+    /** A specification for OWL Lite models that are stored in memory and use the transitive inferencer for additional entailments */
+    public static final OntModelSpec OWL_LITE_MEM_TRANS_INF = new OntModelSpec( ModelFactory.createMemModelMaker(), null, TransitiveReasonerFactory.theInstance(), ProfileRegistry.OWL_LITE_LANG );
     
     /** A specification for OWL Lite models that are stored in memory and use the RDFS inferencer for additional entailments */
-    public static final OntModelSpec OWL_LITE_MEM_RDFSINF = new OntModelSpec( ModelFactory.createMemModelMaker(), null, RDFSReasonerFactory.theInstance(), ProfileRegistry.OWL_LITE_LANG );
+    public static final OntModelSpec OWL_LITE_MEM_RDFS_INF = new OntModelSpec( ModelFactory.createMemModelMaker(), null, RDFSFBRuleReasonerFactory.theInstance(), ProfileRegistry.OWL_LITE_LANG );
     
-    /** A specification for DAML models that are stored in memory and use the Transitive reasoner for simple entailments */
-    public static final OntModelSpec DAML_MEM = new OntModelSpec( ModelFactory.createMemModelMaker(), null, TransitiveReasonerFactory.theInstance(), ProfileRegistry.DAML_LANG );
+    /** A specification for OWL Lite models that are stored in memory and use the OWL rules inference engine for additional entailments */
+    public static final OntModelSpec OWL_LITE_MEM_RULES_INF = new OntModelSpec( ModelFactory.createMemModelMaker(), null, OWLFBRuleReasonerFactory.theInstance(), ProfileRegistry.OWL_LITE_LANG );
+    
+    /** A specification for DAML models that are stored in memory and do no additional entailment reasoning */
+    public static final OntModelSpec DAML_MEM = new OntModelSpec( ModelFactory.createMemModelMaker(), null, null, ProfileRegistry.DAML_LANG );
+    
+    /** A specification for DAML models that are stored in memory and use the transitive reasoner for entailments */
+    public static final OntModelSpec DAML_MEM_TRANS_INF = new OntModelSpec( ModelFactory.createMemModelMaker(), null, TransitiveReasonerFactory.theInstance(), ProfileRegistry.DAML_LANG );
     
     /** A specification for DAML models that are stored in memory and use the RDFS inferencer for additional entailments */
-    public static final OntModelSpec DAML_MEM_RDFSINF = new OntModelSpec( ModelFactory.createMemModelMaker(), null, RDFSReasonerFactory.theInstance(), ProfileRegistry.DAML_LANG );
+    public static final OntModelSpec DAML_MEM_RDFS_INF = new OntModelSpec( ModelFactory.createMemModelMaker(), null, RDFSFBRuleReasonerFactory.theInstance(), ProfileRegistry.DAML_LANG );
     
     
     // Instance variables
@@ -154,13 +175,13 @@ public class OntModelSpec {
      */
     public static OntModelSpec getDefaultSpec( String languageURI ) {
         if (languageURI.equals( ProfileRegistry.OWL_LANG )) {
-            return OWL_MEM;
+            return OWL_MEM_TRANS_INF;
         }
         else if (languageURI.equals( ProfileRegistry.OWL_DL_LANG )) {
-            return OWL_DL_MEM;
+            return OWL_DL_MEM_TRANS_INF;
         }
         else if (languageURI.equals( ProfileRegistry.OWL_LITE_LANG )) {
-            return OWL_LITE_MEM;
+            return OWL_LITE_MEM_TRANS_INF;
         }
         else if (languageURI.equals( ProfileRegistry.DAML_LANG )) {
             return DAML_MEM;

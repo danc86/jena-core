@@ -32,6 +32,8 @@ import junit.framework.*;
 
 import java.util.*;
 
+import org.apache.log4j.Logger;
+
 
 
 /**
@@ -565,7 +567,7 @@ public class TestListSyntaxCategories
             
             if (!exOccurred) {       
                 List expected = expected( m );
-                int actual = 0;
+                List actual = new ArrayList();
                 int extraneous = 0;
                 
                 // now we walk the iterator
@@ -573,7 +575,7 @@ public class TestListSyntaxCategories
                     Resource res = (Resource) i.next();
                     assertTrue( "Should not fail node test on " + res, test( res ));
                     
-                    actual++;
+                    actual.add( res );
                     if (expected != null) {
                         if (expected.contains( res )) {
                             expected.remove( res );
@@ -587,7 +589,16 @@ public class TestListSyntaxCategories
                     }
                 }
                 
-                assertEquals( "Wrong number of results returned", m_count, actual );
+                // debugging 
+                if (m_count != actual.size()) {
+                    Logger logger = Logger.getLogger( getClass() );
+                    logger.debug( getName() + " - expected " + m_count + " results, actual = " + actual.size() );
+                    for (Iterator j = actual.iterator(); j.hasNext(); ) {
+                        logger.debug( getName() + " - saw actual: " + j.next() );
+                    }
+                } 
+                
+                assertEquals( "Wrong number of results returned", m_count, actual.size() );
                 if (expected != null) {
                     assertTrue( "Did not find all expected resources in iterator", expected.isEmpty() );
                     assertEquals( "Found extraneous results, not in expected list", 0, extraneous );

@@ -831,10 +831,11 @@ public class OntListImpl
                                             p.toString() + 
                                             (expected == null ? "" : ( " with value " + expected )) );
         }
+        /* removed temporarily - ijd TODO 
         else if (count > 1) {
             throw new InvalidListException( "List node " + toString() + " is not valid: it has more than one value for " +
                                             p.toString() );
-        }
+        }*/
     }
     
     

@@ -100,7 +100,14 @@ public interface OntClass
      */
     public Iterator listSuperClasses( boolean direct );
 
-
+    /**
+     * <p>Answer true if the given class is a super-class of this class.</p>
+     * @param cls A class to test.
+     * @return True if the given class is a super-class of this class.
+     * @exception OntProfileException If the {@link Profile#SUB_CLASS_OF()} property is not supported in the current language profile.   
+     */
+    public boolean hasSuperClass( Resource cls );
+    
     /**
      * <p>Answer true if the given class is a super-class of this class.
      * See {@link #listSubClasses( boolean )} for a full explanation of the <em>direct</em>
@@ -202,7 +209,14 @@ public interface OntClass
      */
     public Iterator listSubClasses( boolean direct );
 
-
+    /**
+     * <p>Answer true if the given class is a sub-class of this class.</p>
+     * @param cls A class to test.
+     * @return True if the given class is a sub-class of this class.
+     * @exception OntProfileException If the {@link Profile#SUB_CLASS_OF()} property is not supported in the current language profile.   
+     */
+    public boolean hasSubClass( Resource cls );
+    
     /**
      * <p>Answer true if the given class is a sub-class of this class.
      * See {@link #listSubClasses( boolean )} for a full explanation of the <em>direct</em>

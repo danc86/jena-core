@@ -113,6 +113,17 @@ public interface Profile
     
     /**
      * <p>
+     * Answer the resource that represents the general class of properties. This will
+     * typically be <code>rdf:Property</code>.
+     * </p>
+     * 
+     * @return The resource that represents the concept of a property.
+     */
+    public Resource PROPERTY();
+    
+    
+    /**
+     * <p>
      * Answer the resource that represents the class of properties whose range
      * elements are individuals (not literals)
      * </p>

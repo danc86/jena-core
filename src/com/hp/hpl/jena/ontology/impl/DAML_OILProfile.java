@@ -65,6 +65,7 @@ public class DAML_OILProfile
     private Resource m_restriction                  = m_vocabModel.createResource( DAML_OIL.Restriction.getURI()               );
     private Resource m_thing                        = m_vocabModel.createResource( DAML_OIL.Thing.getURI()                     );
     private Resource m_nothing                      = m_vocabModel.createResource( DAML_OIL.Nothing.getURI()                   );
+    private Resource m_property                     = m_vocabModel.createResource( DAML_OIL.Property.getURI()                  );
     private Resource m_objectProperty               = m_vocabModel.createResource( DAML_OIL.ObjectProperty.getURI()            );
     private Resource m_datatypeProperty             = m_vocabModel.createResource( DAML_OIL.DatatypeProperty.getURI()          );
     private Resource m_transitiveProperty           = m_vocabModel.createResource( DAML_OIL.TransitiveProperty.getURI()        );
@@ -134,6 +135,7 @@ public class DAML_OILProfile
     public Resource RESTRICTION() {                 return m_restriction; }
     public Resource THING() {                       return m_thing; }
     public Resource NOTHING() {                     return m_nothing; }
+    public Resource PROPERTY() {                    return m_property; }
     public Resource OBJECT_PROPERTY() {             return m_objectProperty; }
     public Resource DATATYPE_PROPERTY() {           return m_datatypeProperty; }
     public Resource TRANSITIVE_PROPERTY() {         return m_transitiveProperty; }
