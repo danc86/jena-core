@@ -11,7 +11,7 @@ import com.hp.hpl.jena.graph.impl.*;
 /**
 	@author kers
 */
-public class Node_Literal extends Node
+public class Node_Literal extends Node_Concrete
 {
     public Node_Literal( Object label )
         { super( label ); }

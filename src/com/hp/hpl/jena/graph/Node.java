@@ -163,7 +163,12 @@ public abstract class Node {
     	@return the value returned by the applied method
      */
     public abstract Object visitWith( NodeVisitor v );
-                             
+        
+    /**
+        Answer true iff this node is concrete, ie not variable, ie URI, blank, or literal.
+    */                     
+    public abstract boolean isConcrete();
+        
     /** is this a literal node - overridden in Node_Literal */
     public boolean isLiteral() 
         { return false; }

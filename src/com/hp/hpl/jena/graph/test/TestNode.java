@@ -413,6 +413,16 @@ public class TestNode extends GraphTestBase
         assertTrue( "A and B must express the same value", A.sameValueAs( B ) );
         assertTrue( "matching literals must respect sameValueAs", A.matches( B ) );
         }
+        
+    public void testConcrete()
+        {
+        assertTrue( Node.create( "S" ).isConcrete() );
+        assertTrue( Node.create( "_P" ).isConcrete() );
+        assertTrue( Node.create( "11" ).isConcrete() );
+        assertTrue( Node.create( "'hello'" ).isConcrete() );
+        assertFalse( Node.create( "??" ).isConcrete() );
+        assertFalse( Node.create( "?x" ).isConcrete() );
+        }
     }
 
 /*

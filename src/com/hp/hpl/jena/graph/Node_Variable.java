@@ -14,7 +14,7 @@ package com.hp.hpl.jena.graph;
     wrong, most specifically in Query.
 */
 
-public class Node_Variable extends Node
+public class Node_Variable extends Node_Fluid
     {
     public Node_Variable( Object name )
         { super( name ); }
@@ -27,6 +27,9 @@ public class Node_Variable extends Node
         
     public boolean isVariable()
         { return true; }
+        
+    public boolean isConcrete()
+        { return false; }
 
     public String toString()
         { return ((String) label); }

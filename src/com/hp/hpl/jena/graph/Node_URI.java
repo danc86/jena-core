@@ -9,7 +9,7 @@ package com.hp.hpl.jena.graph;
 /**
 	@author kers
 */
-public class Node_URI extends Node
+public class Node_URI extends Node_Concrete
     {
     public Node_URI( Object uri )
         { super( uri ); }
