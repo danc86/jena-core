@@ -309,7 +309,7 @@ public class TestTypedLiterals extends TestCase {
         Calendar cal = xdt.asCalendar();
         Calendar testCal = new GregorianCalendar(TimeZone.getTimeZone("GMT"));
         testCal.set(1999, 5, 31, 12, 56, 32);
-        assertEquals("calendar value", cal.getTimeInMillis(), testCal.getTimeInMillis());
+        assertEquals("calendar value", cal, testCal);
         assertEquals("equality test", l1, m.createTypedLiteral("1999-05-31T12:56:32Z", "", XSDDatatype.XSDdateTime));
         assertTrue("inequality test", l1 != m.createTypedLiteral("1999-04-31T12:56:32Z", "", XSDDatatype.XSDdateTime));
         
