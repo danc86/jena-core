@@ -13,12 +13,10 @@ import com.hp.hpl.jena.graph.LiteralLabel;
 import com.hp.hpl.jena.graph.dt.*;
 import com.hp.hpl.jena.mem.ModelMem;
 import com.hp.hpl.jena.rdf.model.*;
-
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
 import java.math.*;
-import java.text.DateFormat;
 import java.util.*;
 import java.io.*;
    
@@ -30,12 +28,7 @@ import java.io.*;
  * @version $Revision$ on $Date$
  */
 public class TestTypedLiterals extends TestCase {
-    
-    // Temporary debug - to be integrated into tests
-    static {
-        // Locale.setDefault(Locale.ITALY);
-    }
-          
+              
     /** dummy model used as a literal factory */
     private Model m = new ModelMem();
     
@@ -298,6 +291,8 @@ public class TestTypedLiterals extends TestCase {
         assertEquals("duration value", 7, ((XSDDuration)l1.getValue()).getFullSeconds());
         assertFloatEquals("duration value", 18367.5, ((XSDDuration)l1.getValue()).getTimePart());
         assertEquals("serialization", "P1Y2M3DT5H6M7.5S", l1.getValue().toString());
+        assertEquals("equality test", l1, m.createTypedLiteral("P1Y2M3DT5H6M7.5S", "", XSDDatatype.XSDduration));
+        assertTrue("inequality test", l1 != m.createTypedLiteral("P1Y2M2DT5H6M7.5S", "", XSDDatatype.XSDduration));
         
         // dateTime
         l1 = m.createTypedLiteral("1999-05-31T12:56:32Z", "", XSDDatatype.XSDdateTime);
@@ -312,8 +307,11 @@ public class TestTypedLiterals extends TestCase {
         assertEquals("dateTime value", 32, xdt.getFullSeconds());
         assertEquals("serialization", "1999-5-31T12:56:32.0Z", l1.getValue().toString());
         Calendar cal = xdt.asCalendar();
-        String formatedCal = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, Locale.UK).format(cal.getTime());
-        assertEquals("serialization", "01 July 1999 13:56:32 BST", formatedCal);
+        Calendar testCal = new GregorianCalendar(TimeZone.getTimeZone("GMT"));
+        testCal.set(1999, 5, 31, 12, 56, 32);
+        assertEquals("calendar value", cal.getTimeInMillis(), testCal.getTimeInMillis());
+        assertEquals("equality test", l1, m.createTypedLiteral("1999-05-31T12:56:32Z", "", XSDDatatype.XSDdateTime));
+        assertTrue("inequality test", l1 != m.createTypedLiteral("1999-04-31T12:56:32Z", "", XSDDatatype.XSDdateTime));
         
         // date
         l1 = m.createTypedLiteral("1999-05-31", "", XSDDatatype.XSDdate);
