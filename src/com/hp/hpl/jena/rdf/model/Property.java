@@ -30,7 +30,6 @@
  */
 
 package com.hp.hpl.jena.rdf.model;
-import com.hp.hpl.jena.enhanced.*;
 
 /** An RDF Property.
  * @author bwm

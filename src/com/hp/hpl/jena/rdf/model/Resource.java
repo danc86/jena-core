@@ -30,7 +30,6 @@
  */
 
 package com.hp.hpl.jena.rdf.model;
-import com.hp.hpl.jena.enhanced.*;
 
 import com.hp.hpl.jena.graph.Node;
 

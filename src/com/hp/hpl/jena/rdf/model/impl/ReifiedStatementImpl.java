@@ -10,7 +10,6 @@ import com.hp.hpl.jena.enhanced.*;
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.rdf.model.*;
 
-import java.util.*;
 
 /**
     A ReifiedStatementImpl encodes a Statement and behaves as a Resource.

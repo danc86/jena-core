@@ -10,7 +10,6 @@ import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.graph.compose.*;
 import com.hp.hpl.jena.util.iterator.*;
-import com.hp.hpl.jena.enhanced.*;
 
 public class ModelReifier
     {

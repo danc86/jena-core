@@ -31,7 +31,6 @@
 
 package com.hp.hpl.jena.rdf.model;
 import com.hp.hpl.jena.datatypes.RDFDatatype;
-import com.hp.hpl.jena.enhanced.*;
 
 /** An RDF Literal.
  * 

@@ -49,7 +49,6 @@ package com.hp.hpl.jena.rdf.model;
  * @version Release='$Name$' Revision='$Revision$' Date='$Date$'
  */
 
-import com.hp.hpl.jena.enhanced.*;
 
 public interface Bag extends Container {
     
