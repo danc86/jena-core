@@ -94,7 +94,9 @@ public class LPInterpreter {
         tmFrame.linkTo(cpFrame);
         cpFrame = tmFrame;
         
-        context = new BBRuleContext(engine.getInfGraph());
+        BBRuleContext bbcontext = new BBRuleContext(engine.getInfGraph());
+        bbcontext.setEnv(new LPBindingEnvironment(this));
+        context = bbcontext;
     }
 
     //  =======================================================================

@@ -460,7 +460,11 @@ public class RuleClauseCode {
             for (int i = 0; i < fargs.length; i++) {
                 Node node = fargs[i];
                 if (node instanceof Node_RuleVariable) {
-                    code[p++] = PUT_DEREF_VARIABLE;
+                    if (!seen.add(node)) {
+                        code[p++] = PUT_DEREF_VARIABLE;
+                    } else {
+                        code[p++] = PUT_NEW_VARIABLE;
+                    }
                     code[p++] = (byte)((Node_RuleVariable)node).getIndex();
                     code[p++] = (byte)i;                    
                 } else {
@@ -653,7 +657,8 @@ public class RuleClauseCode {
             String test7 = "(?x p ?y) <- (?x r ?y) (?x q ?y).";
             String test8 = "(?x p ?y) <- (?x p ?z) addOne(?z, ?y).";
             String test9 = "(?x p ?y) <- (?x p ?z) sum(?z, 2, ?y).";
-            store.addRule(Rule.parseRule(test9));
+            String test10 = "(?x p ?y) <- (?x p ?v), sum(?v 2 ?y).";
+            store.addRule(Rule.parseRule(test10));
             System.out.println("Code for p:");
             List codeList = store.codeFor(Node.createURI("p"));
             RuleClauseCode code = (RuleClauseCode)codeList.get(0);

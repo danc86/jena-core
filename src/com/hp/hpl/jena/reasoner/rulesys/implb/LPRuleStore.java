@@ -39,6 +39,21 @@ public class LPRuleStore extends RuleStore {
     protected ArrayList allRuleClauseCodes;
     
     /**
+     * Construct a rule store containing the given rules.
+     * @param rules the rules to initialize the store with.
+     */
+    public LPRuleStore(List rules) {
+        super(rules);
+    }
+    
+    /**
+     * Construct an empty rule store
+     */
+    public LPRuleStore() {
+        super();
+    }
+    
+    /**
      * Return an ordered list of RuleClauseCode objects to implement the given 
      * predicate.
      * @param predicate the predicate node or Node_RuleVariable.ANY for wildcards.

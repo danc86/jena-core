@@ -61,6 +61,7 @@ public class TestBasicLP  extends TestCase {
      */
     public static TestSuite suite() {
         return new TestSuite( TestBasicLP.class );
+        
 //        TestSuite suite = new TestSuite();
 //        suite.addTest(new TestBasicLP( "testBaseRules5" ));
 //        return suite;
@@ -426,12 +427,15 @@ public class TestBasicLP  extends TestCase {
      * Test simple invocation of a builtin
      */
     public void testBuiltin1() {
-        doTest("[r1: (?x r ?y) <- print(?x, ?y)]",
+        doTest("[r1: (?x r ?y) <- (?x p ?v), sum(?v 2 ?y)]",
                 new Triple[] {
+                    new Triple(a, p, Util.makeIntNode(3)),
+                    new Triple(b, p, Util.makeIntNode(4))
                 },
-                new Triple(a, r, b),
+                new Triple(Node.ANY, r, Node.ANY),
                 new Object[] {
-                    new Triple(a, r, b),
+                    new Triple(a, r, Util.makeIntNode(5)),
+                    new Triple(b, r, Util.makeIntNode(6)),
                 } );
     }
     
