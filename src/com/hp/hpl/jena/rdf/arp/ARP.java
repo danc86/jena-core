@@ -46,6 +46,7 @@ import org.xml.sax.ErrorHandler;
 import org.xml.sax.SAXException;
 import java.io.IOException;
 import org.xml.sax.InputSource;
+import org.xml.sax.Locator;
 import java.io.InputStream;
 import java.io.Reader;
 
@@ -77,6 +78,17 @@ public class ARP implements ARPErrorNumbers {
  */    
     public ARP()  {
         arpf =  ARPFilter.create();
+    }
+    
+/**
+ * When parsing a file, this returns a Locator giving the
+ * position of the last XML event processed by ARP.
+ * This may return null or misleading results before any
+ * tokens have been processed.
+ * @return Locator
+ */
+    public Locator getLocator() {
+        return arpf.getLocator();
     }
     
 /** Sets the StatementHandler that provides the callback mechanism

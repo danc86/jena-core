@@ -42,23 +42,39 @@ import org.xml.sax.Locator;
  * @author  jjc
  * 
  */
-class Location extends java.lang.Object {
+class Location implements Locator {
     final String inputName;
+    final String publicId;
     final int endLine;
     final int endColumn;
     Location(Locator locator) {
         inputName = locator.getSystemId();
         endLine = locator.getLineNumber();
         endColumn = locator.getColumnNumber();
+        publicId = locator.getPublicId();
     }
     Location(String sysId,int line,int col) {
         inputName = sysId;
         endLine = line;
         endColumn = col;
+        publicId = null;
     }
     public String toString() {
         return //"before column " + endColumn +
         "line " + endLine + " in '"
         + inputName + "'";
     }
+    public String getSystemId() {
+        return inputName;
+    }
+    public int getLineNumber() {
+        return endLine;
+    }
+    public int getColumnNumber() {
+        return endColumn;
+    }
+    public String getPublicId() {
+        return publicId;
+    }
+    
 }

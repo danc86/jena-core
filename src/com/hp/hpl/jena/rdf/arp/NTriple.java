@@ -69,6 +69,8 @@ import org.xml.sax.*;
  * </dd><dt>
  * -f    </dt><dd>    All errors are fatal - report first one only.
  * </dd><dt>
+ * -n    </dt><dd>    Show line numbers of each triple.
+ * </dd><dt>
  * -b url </dt><dd>   Sets XML Base to the absolute url.
  * </dd><dt>
  * -e NNN[,NNN...]</dt><dd>
@@ -87,6 +89,7 @@ public class NTriple implements ARPErrorNumbers {
 
 	private static ARP arp;
 	private static String xmlBase = null;
+    private static boolean numbers = false;
 	/** Starts an RDF/XML to NTriple converter.
 	 * @param args The command-line arguments.
 	 */
@@ -126,6 +129,15 @@ public class NTriple implements ARPErrorNumbers {
 			process(System.in, "http://example.org/stdin", "standard input");
 		}
 	}
+    
+    static private void lineNumber() {
+        if (numbers) {
+            Locator locator = arp.getLocator();
+            if ( locator != null)
+          System.out.println("# "+locator.getSystemId()+":"+locator.getLineNumber()+"("+
+          locator.getColumnNumber()+")");
+        }
+    }
 
 	/*
 	 * Options:
@@ -138,6 +150,7 @@ public class NTriple implements ARPErrorNumbers {
 	 *  -e:  convert numbered warnings to errors
 	 *  -i:  suppress numbered warnings
 	 *  -w:  convert numbered errors/suppressed warnings to warnings
+     *  -n:  give line numbers
 	 *
 	 */
 	static void usage() {
@@ -158,7 +171,8 @@ public class NTriple implements ARPErrorNumbers {
 		System.err.println("    -t        No n-triple output, error checking only.");
 		System.err.println("    -x        Lax mode - warnings are suppressed.");
 		System.err.println("    -s        Strict mode - most warnings are errors.");
-		System.err.println(
+        System.err.println("    -n        Show line and column numbers.");
+        System.err.println(
 			"    -u        Allow unqualified attributes (defaults to warning).");
 		System.err.println(
 			"    -f        All errors are fatal - report first one only.");
@@ -195,6 +209,9 @@ public class NTriple implements ARPErrorNumbers {
 				case 'r' :
 					arp.setEmbedding(false);
 					break;
+                    case 'n':
+                    numbers = true;
+                    break;
 				case 'b' :
 					xmlBase = nextArg;
 					break;
@@ -310,7 +327,8 @@ public class NTriple implements ARPErrorNumbers {
 	}
 	private static class SH implements StatementHandler {
 		public void statement(AResource subj, AResource pred, AResource obj) {
-			resource(subj);
+            lineNumber();
+            resource(subj);
 			resource(pred);
 			resource(obj);
 			System.out.println(".");
@@ -318,6 +336,7 @@ public class NTriple implements ARPErrorNumbers {
 		public void statement(AResource subj, AResource pred, ALiteral lit) {
 			String lang = lit.getLang();
 			String parseType = lit.getParseType();
+            lineNumber();
 			if (parseType != null) {
 				System.out.print("# ");
 				if (parseType != null)

@@ -287,10 +287,9 @@ public interface ARPErrorNumbers {
 
     /**
       * Some xmlns declaration has a non-URI as its right hand side.
-      * This currently permits non-ASCII characters, awaiting clarification
-      * from the namespace editor.
-      *  This is a warning in default mode and an error in strict mode (W124).
-      **/
+      * This currently permits non-ASCII characters, awaiting clarification from
+      * the namespace editor.  This is a warning in default mode and an error in
+      * strict mode (W124). */
     public int WARN_BAD_NAMESPACE_URI = 124;
     /**
      * This is an internal only field, not intended for public use.
@@ -307,6 +306,22 @@ public interface ARPErrorNumbers {
     * and strict modes. (W126)
     */
     public int WARN_SAX_WARNING = 126;
+    
+    /**
+     * Within RDF, it is not permitted to define an
+     *  XML namespace that has a namespace URI with the
+     * RDF namespace URI as a proper prefix. (W127).
+     * A warning in default mode, an error in strict mode.
+     */
+    public int WARN_BAD_RDF_NAMESPACE_URI = 127;
+
+    /**
+     * Within RDF, it is not permitted to define an
+     *  XML   namespace that has a namespace URI with the  XML
+     * namespace URI as a proper prefix. (W128). A warning in default mode,an
+     * error in strict mode.
+     */
+    public int WARN_BAD_XML_NAMESPACE_URI = 128;
 
     /** Should not happen. 
         Please report occurrence to jjc@hpl.hp.com with test case, if possible. 

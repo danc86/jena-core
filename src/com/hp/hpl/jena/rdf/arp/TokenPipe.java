@@ -36,6 +36,7 @@
 
 package com.hp.hpl.jena.rdf.arp;
 import java.util.*;
+import org.xml.sax.Locator;
 
 /**
  *
@@ -55,6 +56,7 @@ class TokenPipe implements TokenManager {
 	final List pipe = new ArrayList();
 	private int position = 0;
 	final ARPFilter arp;
+    private Token last;
 	/** Creates new TokenPipe */
 	TokenPipe(ARPFilter arp) {
 		this.arp = arp;
@@ -72,6 +74,8 @@ class TokenPipe implements TokenManager {
 			if (atEOF)
 				return new Token(RDFParserConstants.EOF, null);
 			position = 0;
+            if ( pipe.size() > 0 )
+                last = (Token)pipe.get(pipe.size()-1);
 			pipe.clear();
 			while (pipe.size() == 0)
 				if (!arp.parseSome()) {
@@ -80,4 +84,12 @@ class TokenPipe implements TokenManager {
 				}
 		}
 	}
+    Locator getLocator() {
+        if ( pipe.size() > 0 ) {
+            return ((Token)pipe.get(position-1)).location;
+        } else if ( last != null )
+          return  last.location;
+        else 
+          return null;
+    }
 }
