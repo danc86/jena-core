@@ -4,16 +4,15 @@
   $Id$
 */
 package com.hp.hpl.jena.ontology.tidy;
+
 import com.hp.hpl.jena.graph.*;
 
 /**
- * @author <a href="mailto:Jeremy.Carroll@hp.com">Jeremy Carroll</a>
+ * @author jjc
  *
-*/
-interface Two extends CNodeI {
-	void first(Triple t);
-	void second(Triple t);
-	boolean incomplete();
+ */
+interface NodeAction {
+	void apply(Node n);
 }
 
 /*

@@ -27,6 +27,9 @@ class TwoImpl extends OneTwoImpl implements Two {
 	public TwoImpl(Node n, EnhGraph g) {
 		super(n, g);
 	}
+	public boolean incomplete() {
+		return incomplete(2);
+	}
 
 }
 
