@@ -142,14 +142,6 @@ public interface DAMLCommon
 
 
     /**
-     * <p>Remove all the values for a given property on the principal resource.</p>
-     *
-     * @param prop The RDF resource that defines the property to be removed
-     */
-    public void removeAll( Property prop );
-
-
-    /**
      * <p>Replace the value of the named property with the given value.  Any existing
      * values, if any, for the property are first removed.</p>
      *
@@ -247,7 +239,7 @@ public interface DAMLCommon
      * Answer true if this resource is a member of the class denoted by the
      * given class resource.  Includes all available types, so is equivalent to
      * <code><pre>
-     * hasRDF( ontClass, false );
+     * hasRDF( uri, false );
      * </pre></code>
      * </p>
      * 
