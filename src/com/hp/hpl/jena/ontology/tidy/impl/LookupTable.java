@@ -6,8 +6,9 @@
 package com.hp.hpl.jena.ontology.tidy.impl;
 import java.util.*;
 import com.hp.hpl.jena.shared.*;
+import com.hp.hpl.jena.util.FileUtils;
+
 import java.io.*;
-import com.hp.hpl.jena.reasoner.rulesys.Util;
 
 /**
  * @author <a href="mailto:Jeremy.Carroll@hp.com">Jeremy Carroll</a>
@@ -162,7 +163,7 @@ public class LookupTable
 		Lookup rslt;
 		try {
 			//  long t = System.currentTimeMillis();
-			InputStream istream = Util.openResourceFileAsStream(DATAFILE);
+			InputStream istream = FileUtils.openResourceFileAsStream(DATAFILE);
 
 			if (istream == null)
 				throw new BrokenException("Failed to find compiled table.");
