@@ -425,7 +425,7 @@ public void deleteTripleAR(
 
 	// get statement string	   	   
 	PreparedStatement ps = null;
-	stmtStr = isReif ? "deleteReifStatement" : "deleteStatement";
+	stmtStr = isReif ? "deleteReified" : "deleteStatement";
 	try {
 		ps =
 			getPreparedStatement(
@@ -586,7 +586,7 @@ public void deleteTripleAR(
 		// get statement string
 
 		PreparedStatement ps = null;
-		stmtStr = isReif ? "insertReifStatement" : "insertStatement";
+		stmtStr = isReif ? "insertReified" : "insertStatement";
 		try {
 			ps =
 				getPreparedStatement(
@@ -819,7 +819,7 @@ public void deleteTripleAR(
 		String subj = null;
 		String pred = null;
 		String obj = null;
-		String op = "SelectStatement";
+		String op = "selectStatement";
 		int args = 1;
 
 		if (subj_node != null) {
