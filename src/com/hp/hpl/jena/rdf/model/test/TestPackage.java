@@ -41,6 +41,8 @@ public class TestPackage extends TestSuite {
         addTest( "TestModelMakerImpl", TestModelMakerImpl.suite() );
         addTest( "TestModelPrefixMapping", TestModelPrefixMapping.suite() );
         addTest( "TestModelSpec", TestModelSpec.suite() );
+        addTest( "TestModelSpecMore", TestModelSpecMore.suite() );
+        addTest( "TestModelSpecRevised", TestModelSpecRevised.suite() );
         addTest( "TestStandardModels", TestStandardModels.suite() );
         addTest( "TestQuery", TestQuery.suite() );
         addTest( "TestSelectors", TestSelectors.suite() );

@@ -29,6 +29,8 @@ import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.rdf.model.impl.*;
 import com.hp.hpl.jena.reasoner.*;
 import com.hp.hpl.jena.reasoner.rulesys.BasicForwardRuleInfGraph;
+import com.hp.hpl.jena.reasoner.rulesys.RDFSRuleInfGraph;
+import com.hp.hpl.jena.reasoner.rulesys.RDFSRuleReasoner;
 import com.hp.hpl.jena.shared.JenaException;
 import com.hp.hpl.jena.util.iterator.*;
 import com.hp.hpl.jena.vocabulary.*;
@@ -2542,8 +2544,9 @@ public class OntModelImpl
         u.addGraph( base );
         u.setBaseGraph( base );
         
+        Reasoner r = spec.getReasoner();
         // if we have a reasoner in the spec, bind to the union graph and return
-        return (spec.getReasoner() == null) ? (Graph) u : (Graph) spec.getReasoner().bind( u );
+        return r == null ? (Graph) u : r.bind( u );
     }
 
 
