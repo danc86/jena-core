@@ -39,6 +39,9 @@ class SubCategorize {
 	* of the subject which is a two-slot structured node.
 	*/
 	static final int SecondOfTwo = Grammar.SecondOfTwo;
+	
+	// TODO put in link to Grammar
+	static final int DisjointWith = 55;
 
 	static private final int DL = Grammar.DL;
 
