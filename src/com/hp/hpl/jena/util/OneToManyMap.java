@@ -25,7 +25,7 @@ package com.hp.hpl.jena.util;
 ///////////////
 import java.util.*;
 
-import com.hp.hpl.jena.util.iterator.EmptyIterator;
+import com.hp.hpl.jena.util.iterator.NullIterator;
 
 
 
@@ -178,7 +178,7 @@ public class OneToManyMap
      */
     public Iterator getAll( Object key ) {
         ArrayList entry = (ArrayList) m_table.get( key );
-        return (entry != null) ? entry.iterator() : EmptyIterator.INSTANCE;
+        return (entry != null) ? entry.iterator() : NullIterator.instance;
     }
 
 
