@@ -30,7 +30,7 @@
 package com.hp.hpl.jena.rdf.model.impl;
 
 import com.hp.hpl.jena.rdf.model.*;
-
+import com.hp.hpl.jena.shared.*;
 import java.util.Properties;
 
 /**
@@ -76,11 +76,11 @@ public class RDFReaderFImpl extends Object implements RDFReaderF {
     public  RDFReaderFImpl() {
     }
 
-    public RDFReader getReader() throws RDFException {
+    public RDFReader getReader()  {
         return getReader(DEFAULTLANG);
     }
 
-    public RDFReader getReader(String lang) throws RDFException {
+    public RDFReader getReader(String lang)  {
 
         // setup default language
         if (lang==null || lang.equals("")) {
@@ -95,7 +95,7 @@ public class RDFReaderFImpl extends Object implements RDFReaderF {
           return (RDFReader) Class.forName(className)
                                   .newInstance();
         } catch (Exception e) {
-            throw new RDFException(e);
+            throw new JenaException(e);
         }
     }
 

@@ -32,6 +32,7 @@ package com.hp.hpl.jena.rdf.model.impl;
 import com.hp.hpl.jena.rdf.arp.ParseException;
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.util.Log;
+import com.hp.hpl.jena.shared.*;
 
 /**
  * The default error handler for I/O.
@@ -59,6 +60,6 @@ public class RDFDefaultErrorHandler extends Object implements RDFErrorHandler {
         if ( e instanceof RuntimeException)
            throw (RuntimeException)e;
            
-        throw new RDFException(e);
+        throw new JenaException(e);
     }
 }

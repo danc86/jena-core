@@ -25,13 +25,8 @@ import java.util.zip.CRC32;
 import com.hp.hpl.jena.datatypes.RDFDatatype;
 import com.hp.hpl.jena.datatypes.TypeMapper;
 import com.hp.hpl.jena.db.RDFRDBException;
-import com.hp.hpl.jena.graph.Node;
-import com.hp.hpl.jena.graph.Node_Literal;
-import com.hp.hpl.jena.graph.Node_URI;
-import com.hp.hpl.jena.graph.StandardTripleMatch;
-import com.hp.hpl.jena.graph.Triple;
-import com.hp.hpl.jena.graph.TripleMatch;
-import com.hp.hpl.jena.graph.TripleMatchIterator;
+import com.hp.hpl.jena.graph.*;
+import com.hp.hpl.jena.shared.*;
 import com.hp.hpl.jena.graph.impl.LiteralLabel;
 import com.hp.hpl.jena.rdf.model.AnonId;
 import com.hp.hpl.jena.rdf.model.RDFException;
@@ -766,7 +761,7 @@ public void deleteTripleAR(
 	boolean litIsPlain = true;
 
 	if ((subjURI == null) || (predURI == null) || (obj_node == null)) {
-		throw new RuntimeException("Attempt to delete triple with missing values");
+		throw new JenaException("Attempt to delete triple with missing values");
 	}
 
 	// get statement string	   	   
@@ -977,7 +972,7 @@ public void deleteTripleAR(
 
 		if ((subjURI == null) || (predURI == null) || (obj_node == null)) {
 			if (!isReif)
-				throw new RuntimeException("Attempt to assert triple with missing values");
+				throw new JenaException("Attempt to assert triple with missing values");
 		}
 		// get statement string
 

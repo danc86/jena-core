@@ -98,11 +98,25 @@ public class FileGraphMaker extends BaseGraphMaker
      */
     private String makeSafe( String name )
         {
-        return name
-            .replaceAll( "_", "_U" )
-            .replaceAll( "/", "_S" )
-            .replaceAll( ":", "_C" )
-            ;    
+        return replaceBy( name, "_/:", "USC" );
+//        return name
+//            .replaceAll( "_", "_U" )
+//            .replaceAll( "/", "_S" )
+//            .replaceAll( ":", "_C" )
+//            ;    
+        }
+        
+    private String replaceBy( String x, String from, String to )
+        {
+        int len = x.length();
+        StringBuffer result = new StringBuffer( len + 10 );
+        for (int i = 0; i < len; i += 1)
+            {
+            char ch = x.charAt( i );
+            int where = from.indexOf( ch );
+            result.append( where < 0 ? ch : to.charAt( where ) );
+            }
+        return result.toString();
         }
         
     public void removeGraph( String name )

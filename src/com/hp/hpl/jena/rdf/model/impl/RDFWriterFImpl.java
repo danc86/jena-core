@@ -32,6 +32,7 @@ package com.hp.hpl.jena.rdf.model.impl;
 import com.hp.hpl.jena.rdf.model.*;
 
 import java.util.Properties;
+import com.hp.hpl.jena.shared.*;
 import com.hp.hpl.jena.n3.N3JenaWriter;
 
 /**
@@ -88,11 +89,11 @@ public class RDFWriterFImpl extends Object implements RDFWriterF {
     public RDFWriterFImpl() {
     }
 
-    public RDFWriter getWriter() throws RDFException {
+    public RDFWriter getWriter()  {
         return getWriter(DEFAULTLANG);
     }
 
-    public RDFWriter getWriter(String lang) throws RDFException {
+    public RDFWriter getWriter(String lang)  {
 
         // setup default language
         if (lang == null || lang.equals("")) {
@@ -106,7 +107,7 @@ public class RDFWriterFImpl extends Object implements RDFWriterF {
         try {
             return (RDFWriter) Class.forName(className).newInstance();
         } catch (Exception e) {
-            throw new RDFException(e);
+            throw new JenaException(e);
         }
     }
 

@@ -9,9 +9,8 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.List;
 
-import com.hp.hpl.jena.graph.Node;
-import com.hp.hpl.jena.graph.Node_Literal;
-import com.hp.hpl.jena.graph.Triple;
+import com.hp.hpl.jena.graph.*;
+import com.hp.hpl.jena.shared.*;
 import com.hp.hpl.jena.graph.impl.LiteralLabel;
 import com.hp.hpl.jena.util.Log;
 import com.hp.hpl.jena.util.iterator.ExtendedIterator;
@@ -308,7 +307,7 @@ public class PSet_ReifStore_RDB extends PSet_TripleStore_RDB {
 			int argc = 1;
 			
 			if ( !fragMask.hasOneBit() )
-				throw new RuntimeException("Reification can only update one column");
+				throw new JenaException("Reification can only update one column");
 			PreparedStatement ps = null;
 
 			if ( fragMask.hasSubj() ) {
@@ -422,7 +421,7 @@ public class PSet_ReifStore_RDB extends PSet_TripleStore_RDB {
 
 		
 			if ( !fragMask.hasOneBit() )
-				throw new RuntimeException("Reification can only find one column");
+				throw new JenaException("Reification can only find one column");
 			PreparedStatement ps = null;
 
 			val = frag.getObject();

@@ -18,6 +18,7 @@ import java.util.List;
 
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.util.iterator.*;
+import com.hp.hpl.jena.shared.*;
 
 public class DBReifier implements Reifier
     {
@@ -46,7 +47,7 @@ public class DBReifier implements Reifier
 		
 		// For now, just take the first specializedGraphReifier
 		if (m_reifiers.size() != 1)
-			throw new RuntimeException("Internal error - DBReifier requires exactly one SpecializedGraphReifier");
+			throw new JenaBrokenException("Internal error - DBReifier requires exactly one SpecializedGraphReifier");
 		m_reifier = (SpecializedGraphReifier) m_reifiers.get(0);
 	}
             

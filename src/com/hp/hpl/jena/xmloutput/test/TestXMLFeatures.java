@@ -15,10 +15,9 @@ import com.hp.hpl.jena.vocabulary.RDF;
 import com.hp.hpl.jena.rdf.arp.*;
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.util.Log;
+import com.hp.hpl.jena.shared.*;
 
-import junit.framework.Test;
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
+import junit.framework.*;
 
 import org.apache.oro.text.awk.AwkCompiler;
 import org.apache.oro.text.awk.AwkMatcher;
@@ -690,6 +689,8 @@ public class TestXMLFeatures extends TestCase {
                   return;
             }
 				throw e;
+        } catch (JenaException e) {
+            throw e;
 		} finally {
           //          BaseXMLWriter.dbg = false;
           Log.getInstance().setLevel(oldLogLevel);
