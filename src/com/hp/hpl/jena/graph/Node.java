@@ -8,6 +8,7 @@ package com.hp.hpl.jena.graph;
 
 import com.hp.hpl.jena.rdf.model.AnonId;
 import com.hp.hpl.jena.datatypes.*;
+import com.hp.hpl.jena.graph.impl.*;
 import com.hp.hpl.jena.shared.*;
 
 import org.apache.log4j.*;

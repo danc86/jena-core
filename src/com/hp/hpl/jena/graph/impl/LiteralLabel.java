@@ -4,7 +4,7 @@
   $Id$
 */
 
-package com.hp.hpl.jena.graph;
+package com.hp.hpl.jena.graph.impl;
 
 import com.hp.hpl.jena.datatypes.*;
 import com.hp.hpl.jena.datatypes.xsd.*;

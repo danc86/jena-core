@@ -10,6 +10,7 @@
 package com.hp.hpl.jena.reasoner.rulesys;
 
 import com.hp.hpl.jena.graph.*;
+import com.hp.hpl.jena.graph.impl.*;
 import com.hp.hpl.jena.util.PrintUtil;
 import com.hp.hpl.jena.datatypes.*;
 import org.apache.log4j.Logger;

@@ -4,48 +4,50 @@
   $Id$
 */
 
-package com.hp.hpl.jena.graph;
+package com.hp.hpl.jena.graph.impl;
 
-import com.hp.hpl.jena.util.iterator.*;
+import java.util.*;
+
+import com.hp.hpl.jena.graph.*;
 
 /**
-    A Graph that is layered over another graph and defers all its
-    operations to it, except that reification triples are captured by
-    its reifier.
-<p>
-    @author kers
-*/
-public class ReifyingCaptureGraph extends GraphBase
-    {
-    Graph under;
+    A simple-minded implementation of the bulk update interface.
     
-    ReifyingCaptureGraph( Graph under )
-        { this.under = under; }
+ 	@author kers
+*/
+
+public class SimpleBulkUpdateHandler implements BulkUpdateHandler
+    {
+    private Graph graph;
+    
+    public SimpleBulkUpdateHandler( Graph graph )
+        { this.graph = graph; }
+
+    public void add( Triple [] triples )
+        { for (int i = 0; i < triples.length; i += 1) graph.add( triples[i] ); }
         
-    public Reifier getReifier() 
-        {
-        if (reifier == null) reifier = new SimpleReifier( this, true );
-        return reifier;
-        }
+    public void add( List triples )
+        { for (int i = 0; i < triples.size(); i += 1) graph.add( (Triple) triples.get(i) ); }
         
-    public ExtendedIterator find( TripleMatch m ) 
-        { return under.find( m ); }
+    public void add( Iterator it )
+        { while (it.hasNext()) graph.add( (Triple) it.next() ); }
         
-    public boolean contains( Node s, Node p, Node o )
-        { return under.contains( s, p, o ); }
-        
-    public void add( Triple t )
-        { if (getReifier().handledAdd( t ) == false) under.add( t ); }
-        
-    public void delete( Triple t )
-        { if (getReifier().handledRemove( t ) == false) under.delete( t ); }
-        
-    public int size()
-        { return under.size(); }
-        
-    public String toString()
-        { return "ReifyingCaptureGraph " + super.toString(); }
+    public void add( Graph g )
+        { add( g.find( null, null, null ) );  }
+
+    public void delete( Triple [] triples )
+        { for (int i = 0; i < triples.length; i += 1) graph.delete( triples[i] ); }
+    
+    public void delete( List triples )
+        { for (int i = 0; i < triples.size(); i += 1) graph.delete( (Triple) triples.get(i) );}
+    
+    public void delete( Iterator it )
+        {  while (it.hasNext()) graph.delete( (Triple) it.next() ); }
+    
+    public void delete( Graph g )
+        { delete( g.find( null, null, null ) ); }
     }
+
 
 /*
     (c) Copyright Hewlett-Packard Company 2003

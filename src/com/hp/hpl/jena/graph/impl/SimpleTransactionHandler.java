@@ -4,43 +4,34 @@
   $Id$
 */
 
-package com.hp.hpl.jena.graph;
+package com.hp.hpl.jena.graph.impl;
 
-import java.util.HashMap;
+import com.hp.hpl.jena.graph.impl.*;
 
 /**
-    a FragmentMap is a Map where the domain elements are Nodes
-    and the range elements are Triples or Fragments. The specialised
-    put methods return the range element that has been put, because
-    the context of use is usually of the form:
-<p>    
-    return map.putThingy( node, fragmentExpression )
-<p>
-    @author kers
+ 	@author kers
 */
-
-public class FragmentMap extends HashMap
+public class SimpleTransactionHandler extends TransactionHandlerBase
     {
-    public FragmentMap() { super(); }
-    
-    /**
-        update the map with (node -> triple); return the triple
-    */
-    public Triple putTriple( Node key, Triple value )
-        {
-        put( key, value );
-        return value;
-        }
+    public SimpleTransactionHandler()
+        { super(); }
+
+    public boolean transactionsSupported()
+        { return false; }
         
-    /**
-        update the map with (node -> fragment); return the fragment.
-    */
-    public Fragments putFragments( Node key, Fragments value )
-        {
-        put( key, value );
-        return value;
-        }        
+    public void begin()
+        { notSupported(); }
+        
+    public void abort()
+        { notSupported(); }
+        
+    public void commit()
+        { notSupported(); }
+        
+    private void notSupported()
+        { throw new UnsupportedOperationException( "oops" ); }
     }
+
 
 /*
     (c) Copyright Hewlett-Packard Company 2003

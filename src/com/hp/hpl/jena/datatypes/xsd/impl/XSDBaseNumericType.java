@@ -14,7 +14,7 @@ import java.math.BigInteger;
 
 import com.hp.hpl.jena.datatypes.*;
 import com.hp.hpl.jena.datatypes.xsd.*;
-import com.hp.hpl.jena.graph.LiteralLabel;
+import com.hp.hpl.jena.graph.impl.LiteralLabel;
 
 /**
  * Base implementation for all numeric datatypes derinved from

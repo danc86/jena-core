@@ -11,7 +11,7 @@ package com.hp.hpl.jena.datatypes.xsd.impl;
 
 import com.hp.hpl.jena.datatypes.*;
 import com.hp.hpl.jena.datatypes.xsd.*;
-import com.hp.hpl.jena.graph.LiteralLabel;
+import com.hp.hpl.jena.graph.impl.LiteralLabel;
 
 /**
  * Base implementation for all string datatypes derinved from

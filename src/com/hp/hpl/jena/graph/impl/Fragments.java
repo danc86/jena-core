@@ -4,9 +4,14 @@
   $Id$
 */
 
-package com.hp.hpl.jena.graph;
+package com.hp.hpl.jena.graph.impl;
 
 import java.util.*;
+
+import com.hp.hpl.jena.graph.Graph;
+import com.hp.hpl.jena.graph.Node;
+import com.hp.hpl.jena.graph.Reifier;
+import com.hp.hpl.jena.graph.Triple;
 
 /**
     A _Fragments_ object represents the reification triples that have been

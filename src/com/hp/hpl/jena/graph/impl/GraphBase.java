@@ -4,8 +4,11 @@
   $Id$
 */
 
-package com.hp.hpl.jena.graph;
+package com.hp.hpl.jena.graph.impl;
 
+import com.hp.hpl.jena.graph.*;
+import com.hp.hpl.jena.graph.Reifier.Style;
+import com.hp.hpl.jena.graph.impl.*;
 import com.hp.hpl.jena.graph.query.*;
 import com.hp.hpl.jena.util.iterator.*;
 

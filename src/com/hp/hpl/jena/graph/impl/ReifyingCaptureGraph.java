@@ -4,34 +4,54 @@
   $Id$
 */
 
-package com.hp.hpl.jena.graph;
+package com.hp.hpl.jena.graph.impl;
 
+import com.hp.hpl.jena.graph.Graph;
+import com.hp.hpl.jena.graph.Node;
+import com.hp.hpl.jena.graph.Reifier;
+import com.hp.hpl.jena.graph.Triple;
+import com.hp.hpl.jena.graph.TripleMatch;
 import com.hp.hpl.jena.graph.impl.*;
+import com.hp.hpl.jena.util.iterator.*;
 
 /**
- 	@author kers
+    A Graph that is layered over another graph and defers all its
+    operations to it, except that reification triples are captured by
+    its reifier.
+<p>
+    @author kers
 */
-public class SimpleTransactionHandler extends TransactionHandlerBase
+public class ReifyingCaptureGraph extends GraphBase
     {
-    public SimpleTransactionHandler()
-        { super(); }
-
-    public boolean transactionsSupported()
-        { return false; }
+    Graph under;
+    
+    ReifyingCaptureGraph( Graph under )
+        { this.under = under; }
         
-    public void begin()
-        { notSupported(); }
+    public Reifier getReifier() 
+        {
+        if (reifier == null) reifier = new SimpleReifier( this, true );
+        return reifier;
+        }
         
-    public void abort()
-        { notSupported(); }
+    public ExtendedIterator find( TripleMatch m ) 
+        { return under.find( m ); }
         
-    public void commit()
-        { notSupported(); }
+    public boolean contains( Node s, Node p, Node o )
+        { return under.contains( s, p, o ); }
         
-    private void notSupported()
-        { throw new UnsupportedOperationException( "oops" ); }
+    public void add( Triple t )
+        { if (getReifier().handledAdd( t ) == false) under.add( t ); }
+        
+    public void delete( Triple t )
+        { if (getReifier().handledRemove( t ) == false) under.delete( t ); }
+        
+    public int size()
+        { return under.size(); }
+        
+    public String toString()
+        { return "ReifyingCaptureGraph " + super.toString(); }
     }
-
 
 /*
     (c) Copyright Hewlett-Packard Company 2003

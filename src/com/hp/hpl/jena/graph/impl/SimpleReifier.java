@@ -4,7 +4,7 @@
   $Id$
 */
 
-package com.hp.hpl.jena.graph;
+package com.hp.hpl.jena.graph.impl;
 
 /**
 	@author kers
@@ -13,6 +13,8 @@ package com.hp.hpl.jena.graph;
     and obvious. It fails this test nowadays ...
 */
 
+import com.hp.hpl.jena.graph.*;
+import com.hp.hpl.jena.graph.Reifier.*;
 import com.hp.hpl.jena.mem.*;
 import com.hp.hpl.jena.util.iterator.*;
 import java.util.*;

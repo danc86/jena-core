@@ -4,48 +4,47 @@
   $Id$
 */
 
-package com.hp.hpl.jena.graph;
+package com.hp.hpl.jena.graph.impl;
 
-import java.util.*;
+import java.util.HashMap;
+
+import com.hp.hpl.jena.graph.Node;
+import com.hp.hpl.jena.graph.Triple;
+import com.hp.hpl.jena.graph.impl.*;
 
 /**
-    A simple-minded implementation of the bulk update interface.
-    
- 	@author kers
+    a FragmentMap is a Map where the domain elements are Nodes
+    and the range elements are Triples or Fragments. The specialised
+    put methods return the range element that has been put, because
+    the context of use is usually of the form:
+<p>    
+    return map.putThingy( node, fragmentExpression )
+<p>
+    @author kers
 */
 
-public class SimpleBulkUpdateHandler implements BulkUpdateHandler
+public class FragmentMap extends HashMap
     {
-    private Graph graph;
+    public FragmentMap() { super(); }
     
-    public SimpleBulkUpdateHandler( Graph graph )
-        { this.graph = graph; }
-
-    public void add( Triple [] triples )
-        { for (int i = 0; i < triples.length; i += 1) graph.add( triples[i] ); }
+    /**
+        update the map with (node -> triple); return the triple
+    */
+    public Triple putTriple( Node key, Triple value )
+        {
+        put( key, value );
+        return value;
+        }
         
-    public void add( List triples )
-        { for (int i = 0; i < triples.size(); i += 1) graph.add( (Triple) triples.get(i) ); }
-        
-    public void add( Iterator it )
-        { while (it.hasNext()) graph.add( (Triple) it.next() ); }
-        
-    public void add( Graph g )
-        { add( g.find( null, null, null ) );  }
-
-    public void delete( Triple [] triples )
-        { for (int i = 0; i < triples.length; i += 1) graph.delete( triples[i] ); }
-    
-    public void delete( List triples )
-        { for (int i = 0; i < triples.size(); i += 1) graph.delete( (Triple) triples.get(i) );}
-    
-    public void delete( Iterator it )
-        {  while (it.hasNext()) graph.delete( (Triple) it.next() ); }
-    
-    public void delete( Graph g )
-        { delete( g.find( null, null, null ) ); }
+    /**
+        update the map with (node -> fragment); return the fragment.
+    */
+    public Fragments putFragments( Node key, Fragments value )
+        {
+        put( key, value );
+        return value;
+        }        
     }
-
 
 /*
     (c) Copyright Hewlett-Packard Company 2003

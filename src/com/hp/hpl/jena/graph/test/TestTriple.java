@@ -10,9 +10,9 @@ package com.hp.hpl.jena.graph.test;
 	@author bwm out of kers
 */
 
-import com.hp.hpl.jena.graph.LiteralLabel;
 import com.hp.hpl.jena.graph.Node;
 import com.hp.hpl.jena.graph.Triple;
+import com.hp.hpl.jena.graph.impl.LiteralLabel;
 import com.hp.hpl.jena.rdf.model.AnonId;
 
 import junit.framework.TestCase;

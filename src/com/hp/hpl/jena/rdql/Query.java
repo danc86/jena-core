@@ -10,6 +10,7 @@ import java.util.* ;
 import org.apache.log4j.Logger;
 
 import com.hp.hpl.jena.graph.*;
+import com.hp.hpl.jena.graph.impl.*;
 
 import com.hp.hpl.jena.rdf.model.* ;
 

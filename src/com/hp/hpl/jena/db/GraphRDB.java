@@ -7,6 +7,7 @@ package com.hp.hpl.jena.db;
 
 import com.hp.hpl.jena.db.impl.*;
 import com.hp.hpl.jena.graph.*;
+import com.hp.hpl.jena.graph.impl.*;
 import com.hp.hpl.jena.shared.*;
 import com.hp.hpl.jena.shared.PrefixMapping;
 import com.hp.hpl.jena.util.iterator.*;

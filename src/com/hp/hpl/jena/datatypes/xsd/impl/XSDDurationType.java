@@ -1,88 +1,53 @@
 /******************************************************************
- * File:        Datatype.java
+ * File:        XSDDurationType.java
  * Created by:  Dave Reynolds
- * Created on:  07-Dec-02
+ * Created on:  16-Dec-02
  * 
  * (c) Copyright 2002, Hewlett-Packard Company, all rights reserved.
  * [See end of file]
  * $Id$
  *****************************************************************/
-package com.hp.hpl.jena.datatypes;
+package com.hp.hpl.jena.datatypes.xsd.impl;
 
+import com.hp.hpl.jena.datatypes.*;
+import com.hp.hpl.jena.datatypes.xsd.*;
 import com.hp.hpl.jena.graph.impl.LiteralLabel;
 
 /**
- * Interface on a datatype representation. An instance of this
- * interface is needed to convert typed literals between lexical
- * and value forms. 
+ * The XSD duration type, the only job of this extra layer is to
+ * wrap the return value in a more convenient accessor type. We could
+ * avoid this proliferation of trivial types by use of reflection but
+ * since that causes allergic reactions in some we use brute force.
  * 
  * @author <a href="mailto:der@hplb.hpl.hp.com">Dave Reynolds</a>
  * @version $Revision$ on $Date$
  */
-public interface RDFDatatype {
-
-    /**
-     * Return the URI which is the label for this datatype
-     */
-    public String getURI();
+public class XSDDurationType extends XSDDatatype {
     
     /**
-     * Convert a value of this datatype out
-     * to lexical form.
+     * Constructor
      */
-    public String unparse(Object value);
-    
+    public XSDDurationType() {
+        super("duration");
+    }
+        
     /**
      * Parse a lexical form of this datatype to a value
+     * @return a Duration value
      * @throws DatatypeFormatException if the lexical form is not legal
      */
-    public Object parse(String lexicalForm) throws DatatypeFormatException;
-    
-    /**
-     * Test whether the given string is a legal lexical form
-     * of this datatype.
-     */
-    public boolean isValid(String lexicalForm);
-    
-    /**
-     * Test whether the given object is a legal value form
-     * of this datatype.
-     */
-    public boolean isValidValue(Object valueForm);
-    
-    /**
-     * Test whether the given LiteralLabel is a valid instance
-     * of this datatype. This takes into accound typing information
-     * as well as lexical form - for example an xsd:string is
-     * never considered valid as an xsd:integer (even if it is
-     * lexically legal like "1").
-     */
-    public boolean isValidLiteral(LiteralLabel lit);
+    public Object parse(String lexicalForm) throws DatatypeFormatException {
+        return new XSDDuration(super.parse(lexicalForm), typeDeclaration);
+    }
     
     /**
      * Compares two instances of values of the given datatype.
-     * This defaults to just testing equality of the java value
-     * representation but datatypes can override this. We pass the
-     * entire LiteralLabel to allow the equality function to take
-     * the xml:lang tag and the datatype itself into account.
+     * This ignores lang tags and just uses the java.lang.Number 
+     * equality.
      */
-    public boolean isEqual(LiteralLabel value1, LiteralLabel value2);
-    
-    /**
-     * If this datatype is used as the cannonical representation
-     * for a particular java datatype then return that java type,
-     * otherwise returns null.
-     */
-    public Class getJavaClass();
-    
-    /**
-     * Returns an object giving more details on the datatype.
-     * This is type system dependent. In the case of XSD types
-     * this will be an instance of 
-     * <code>org.apache.xerces.impl.xs.dv.XSSimpleType</code>.
-     */
-    public Object extendedTypeDefinition();
-    
+    public boolean isEqual(LiteralLabel value1, LiteralLabel value2) {
+       return value1.getValue().equals(value2.getValue());
+    }
 }
 
 /*
@@ -114,4 +79,3 @@ public interface RDFDatatype {
     (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
     THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
-

@@ -7,9 +7,10 @@
  */
  
 
-package com.hp.hpl.jena.graph;
+package com.hp.hpl.jena.graph.impl;
 import java.util.*;
 
+import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.util.iterator.*;
 
 

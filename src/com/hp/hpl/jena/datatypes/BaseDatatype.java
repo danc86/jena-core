@@ -10,7 +10,7 @@
 
 package com.hp.hpl.jena.datatypes;
 
-import com.hp.hpl.jena.graph.LiteralLabel;
+import com.hp.hpl.jena.graph.impl.LiteralLabel;
 
 /**
  * Base level implementation of datatype from which real implementations

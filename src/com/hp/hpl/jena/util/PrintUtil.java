@@ -13,6 +13,7 @@ import java.util.*;
 import java.io.*;
 import com.hp.hpl.jena.vocabulary.*;
 import com.hp.hpl.jena.graph.*;
+import com.hp.hpl.jena.graph.impl.*;
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.reasoner.ReasonerRegistry;
 import com.hp.hpl.jena.reasoner.TriplePattern;
