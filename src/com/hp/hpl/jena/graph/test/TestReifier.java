@@ -21,10 +21,17 @@ public class TestReifier extends AbstractTestReifier
         { super( name ); }
 
     public static TestSuite suite()
-        { return new TestSuite( TestReifier.class ); }   
-                
+        { 
+        TestSuite result = new TestSuite();
+        result.addTest( new TestSuite( TestReifier.class ) );
+        return result; 
+        }   
+        
     public Graph getGraph()
-        { return new GraphMem(); }       
+        { return getGraph( Reifier.Standard ); }       
+        
+    public Graph getGraph( Reifier.Style style )
+        { return new GraphMem( style ); }
     }
 
 /*

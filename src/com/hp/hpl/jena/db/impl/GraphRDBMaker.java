@@ -10,7 +10,6 @@ import com.hp.hpl.jena.db.GraphRDB;
 import com.hp.hpl.jena.db.IDBConnection;
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.graph.impl.*;
-import com.hp.hpl.jena.shared.*;
 
 import java.util.*;
 
@@ -38,20 +37,9 @@ public class GraphRDBMaker extends BaseGraphMaker
         {
         super( style ); 
         this.c = c; 
-        this.reificationStyle = styleRDB( style );
+        this.reificationStyle = GraphRDB.styleRDB( style );
         }
      
-    private int styleRDB( Reifier.Style style )
-        {
-        if (style == Reifier.Standard) 
-            return GraphRDB.OPTIMIZE_ALL_REIFICATIONS_AND_HIDE_NOTHING;
-        if (style == Reifier.Convenient)
-            return GraphRDB.OPTIMIZE_AND_HIDE_FULL_AND_PARTIAL_REIFICATIONS;
-        if (style == Reifier.Minimal)
-            return GraphRDB.OPTIMIZE_ALL_REIFICATIONS_AND_HIDE_NOTHING;
-        throw new JenaException( "unsupported reification style" );
-        }
-        
     public Graph getGraph()
         { return createGraph( "anon_" + counter++ + "", false ); }
     
