@@ -62,6 +62,7 @@ public class OWLRuleTranslationHook implements RulePreprocessHook {
             recognitionHead.add(new TriplePattern(var, RDF.type.asNode(), className));
             Rule rr = new Rule("intersectionRecognition", recognitionHead, recognitionBody);
             rr.setBackward(true);
+//            System.out.println("translation hook => " + rr);
             infGraph.addRuleDuringPrepare(rr);
         }
     }
@@ -93,6 +94,8 @@ public class OWLRuleTranslationHook implements RulePreprocessHook {
                 elements.add(Functor.makeFunctorNode("all", new Node[] {onprop, value}));
             } else if ((value = Util.getPropValue(description, OWL.someValuesFrom.asNode(), dataFind)) != null) {
                 elements.add(Functor.makeFunctorNode("some", new Node[] {onprop, value}));
+            } else if ((value = Util.getPropValue(description, OWL.hasValue.asNode(), dataFind)) != null) {
+                elements.add(Functor.makeFunctorNode("hasValue", new Node[] {onprop, value}));
             } else if ((value = Util.getPropValue(description, OWL.minCardinality.asNode(), dataFind)) != null) {
                 elements.add(Functor.makeFunctorNode("min", new Node[] {onprop, value}));
             } else if ((value = Util.getPropValue(description, OWL.maxCardinality.asNode(), dataFind)) != null) {
@@ -100,6 +103,8 @@ public class OWLRuleTranslationHook implements RulePreprocessHook {
             } else if ((value = Util.getPropValue(description, OWL.cardinality.asNode(), dataFind)) != null) {
                 elements.add(Functor.makeFunctorNode("max", new Node[] {onprop, value}));
                 elements.add(Functor.makeFunctorNode("min", new Node[] {onprop, value}));
+            } else {
+                elements.add(description);
             }
         } else {
             // Assume its a class name
