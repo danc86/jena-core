@@ -450,14 +450,34 @@ public class OntDocumentManager
     /**
      * <p>
      * Add an entry that <code>model</code> is the appropriate model to use
-     * for the given ontology document
+     * for the given ontology document. Will not replace any existing
+     * model that is cached for this URI (see
+     * {@link #addModel(String, Model, boolean)} for an alternative
+     * that can replace existing models).
      * </p>
      *
      * @param docURI The public URI of the ontology document
      * @param model A model containing the triples from the document
      */
     public void addModel( String docURI, Model model ) {
-        if (m_cacheModels && !m_modelMap.containsKey( docURI )) {
+        addModel( docURI, model, false );
+    }
+
+
+    /**
+     * <p>
+     * Add an entry that <code>model</code> is the appropriate model to use
+     * for the given ontology document
+     * </p>
+     *
+     * @param docURI The public URI of the ontology document
+     * @param model A model containing the triples from the document
+     * @param replace If true, replace any existing entry with this one.
+     */
+    public void addModel( String docURI, Model model, boolean replace ) {
+        if (m_cacheModels &&
+            (!m_modelMap.containsKey( docURI ) || replace))
+        {
             m_modelMap.put( docURI, model );
         }
     }

@@ -14,49 +14,51 @@ import com.hp.hpl.jena.vocabulary.*;
 /**
     An RDBMakerCreator makes an RDBModelMaker from its RDF description.
     This code probably belongs in the jena.db package.
-     
+
  	@author hedgehog
  */
 
 public class RDBMakerCreator implements ModelMakerCreator
-    {                     
-    public ModelMaker create( Model desc, Resource root ) 
+    {
+    public ModelMaker create( Model desc, Resource root )
         {
-        return ModelFactory.createModelRDBMaker( createConnection( desc ) );
+        return ModelFactory.createModelRDBMaker( createConnection( desc, root ) );
         }
-        
-    public static IDBConnection createConnection( Model description )
+
+    public static IDBConnection createConnection( Model description, Resource root )
         {
-        Resource root = ModelSpecImpl.findRootByType( description, JMS.RDBMakerSpec );
+        if (root == null) {
+            root = ModelSpecImpl.findRootByType( description, JMS.RDBMakerSpec );
+        }
         String url = getString( description, root, JMS.dbURL );
         String user = getString( description, root, JMS.dbUser );
         String password = getString( description, root , JMS.dbPassword );
         String className = getClassName( description, root );
         String dbType = getString( description, root, JMS.dbType );
         loadDrivers( dbType, className );
-        return ModelFactory.createSimpleRDBConnection( url, user, password, dbType );    
+        return ModelFactory.createSimpleRDBConnection( url, user, password, dbType );
         }
-    
+
     public static String getClassName( Model description, Resource root )
         {
         Statement cnStatement = description.getProperty( root, JMS.dbClass );
         return cnStatement == null ? null : cnStatement.getString();
-        }                            
-        
+        }
+
     public static String getString( Model description, Resource root, Property p )
         {
-        return description.getRequiredProperty( root, p ).getString();  
-        }        
+        return description.getRequiredProperty( root, p ).getString();
+        }
     public static void loadDrivers( String dbType, String className )
         {
         try
-            {   
+            {
             Class.forName( "com.hp.hpl.jena.db.impl.Driver_" + dbType );
             if (className != null) Class.forName( className );
             }
         catch (ClassNotFoundException c)
             { throw new JenaException( c ); }
-        }   
+        }
 }
 
 /*
