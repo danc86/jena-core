@@ -14,7 +14,7 @@ import com.hp.hpl.jena.reasoner.rulesys.*;
 import com.hp.hpl.jena.graph.*;
 
 /**
- *  Bind the third arg to the sum of the first two args.
+ *  Bind the third arg to the min of the first two args.
  * 
  * @author <a href="mailto:der@hplb.hpl.hp.com">Dave Reynolds</a>
  * @version $Revision$ on $Date$
