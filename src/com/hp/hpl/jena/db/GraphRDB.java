@@ -297,6 +297,13 @@ public class GraphRDB extends GraphBase implements Graph {
 
 
 	/* (non-Javadoc)
+	 * @see com.hp.hpl.jena.graph.Graph#getTransactionHandler()
+	 */
+	public TransactionHandler getTransactionHandler() {
+		return new DBTransactionHandler(m_driver, this);
+	}
+
+	/* (non-Javadoc)
 	 * @see com.hp.hpl.jena.graph.Graph#close()
 	 */
 	public synchronized void close() {
