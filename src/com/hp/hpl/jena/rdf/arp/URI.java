@@ -1478,7 +1478,7 @@ public class URI implements Serializable {
 		return abs;
 	}
     static private String getLastSlash(String s) {
-        int ix = s.lastIndexOf('/',s.length()-1);
+        int ix = s.lastIndexOf('/',s.length()-2);
         return s.substring(0,ix+1);
     }
     static public String flags2str(int f) {
