@@ -203,6 +203,9 @@ public class DBReifierGraph implements Graph {
 	public int capabilities() {
 		return 0;
 	}
+    
+    public String toString()
+        { return GraphBase.toString( this ); }
 }
 
 /*

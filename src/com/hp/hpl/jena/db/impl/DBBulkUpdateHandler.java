@@ -76,17 +76,20 @@ public class DBBulkUpdateHandler implements BulkUpdateHandler {
 		ArrayList list = new ArrayList(CHUNK_SIZE);
 		while (it.hasNext()) {
 			while (it.hasNext() && list.size() < CHUNK_SIZE) {
-				list.add(it.next());
+				list.add( it.next() );
 			}
 			graph.add(list);
 			list.clear();
 		}
-	}
-
-	public void add( Graph g ) {
+    }
+        
+    public void add( Graph g )
+        { add( g, false ); }
+        
+	public void add( Graph g, boolean withReifications ) {
 		ExtendedIterator triplesToAdd = GraphUtil.findAll( g );
 		try { addIterator( triplesToAdd ); } finally { triplesToAdd.close(); }
-        SimpleBulkUpdateHandler.addReifications( graph, g );
+        if (withReifications) SimpleBulkUpdateHandler.addReifications( graph, g );
         manager.notifyAddGraph( g );
 	}
 
@@ -140,10 +143,13 @@ public class DBBulkUpdateHandler implements BulkUpdateHandler {
 		}
 	}
 
-	public void delete(Graph g) {
+	public void delete(Graph g)
+        { delete( g, false ); }
+        
+    public void delete( Graph g, boolean withReifications ) {
 		ExtendedIterator triplesToDelete = GraphUtil.findAll( g );
 		try { deleteIterator( triplesToDelete ); } finally { triplesToDelete.close(); }
-        SimpleBulkUpdateHandler.deleteReifications( graph, g );
+        if (withReifications) SimpleBulkUpdateHandler.deleteReifications( graph, g );
         manager.notifyDeleteGraph( g );
    	}
 }

@@ -686,12 +686,21 @@ public interface ModelCon {
  */ 
     Model remove(StmtIterator iter) ;
 
-/** Remove all the Statements in a given model.
+/** Remove all the Statements in a given model, including reified statements
  * @return this model
  * @param m the model containing the statements to be removed.
  
  */ 
     Model remove(Model m) ;
+    
+    /**
+        Remove from this model all the statements found in the given model.
+        If suppressreifications is true, remove the reified statements of m as well.
+        @param m the model containing the statements to remove
+        @param suppressReifications true to remove reified statements too
+        @return this model for cascading 
+    */
+    Model remove( Model m, boolean suppressReifications );
 
 /** Find all the statements matching a pattern.
  * <p>Return an iterator over all the statements in a model

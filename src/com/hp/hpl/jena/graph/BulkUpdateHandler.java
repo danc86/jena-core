@@ -1,5 +1,5 @@
 /*
-  (c) Copyright 2002, Hewlett-Packard Company, all rights reserved.
+  (c) Copyright 2002, 2003, Hewlett-Packard Company, all rights reserved.
   [See end of file]
   $Id$
 */
@@ -43,6 +43,15 @@ public interface BulkUpdateHandler
     
     /**
         Add all the triples of the given graph into the graph this is handler for.
+        Optionall add g's reified triples.
+        @param g a Graph whose triples are to be added
+        @param withReifications if true, the reified triples of g are added as well
+    */
+    void add( Graph g, boolean withReifications );
+    
+    /**
+        Add all the triples of the given graph into the graph this is handler for.
+        Leave this graph's reifications unchanged.
         @param g a Graph whose triples are to be added
     */
     void add( Graph g );
@@ -69,11 +78,19 @@ public interface BulkUpdateHandler
     
     /**
         Remove all the triples of the given graph from the graph this is handler for.
+        Do not change the reifications.
         @param g a graph whose triples are to be removed
     */
     void delete( Graph g );
+    
+    /**
+        Remove all the triples of the given graph from the graph this is handler for.
+        Reified triples may optionally be removed.
+        @param g a graph whose triples are to be removed
+        @param withReifications if true, remove g's reifications from this graph
+    */
+    void delete( Graph g, boolean withReifications );
     }
-
 
 /*
     (c) Copyright Hewlett-Packard Company 2003

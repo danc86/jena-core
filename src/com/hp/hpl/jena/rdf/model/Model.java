@@ -312,16 +312,24 @@ public interface Model
 	/** Add all the statements returned by an iterator to this model.
 	 * @return this model
 	 * @param iter An iterator which returns the statements to be added.
-	 
 	 */
 	Model add(StmtIterator iter) ;
 
-	/** Add all the statements in another model to this model.
+	/** Add all the statements in another model to this model, including the
+     * reified statements.
 	 * @return this model
 	 * @param m The model whose statements are to be added.
-	 
 	 */
 	Model add(Model m) ;
+    
+    /**
+        Add all the statements of the given model m to this model.
+        Optionally supress the addition of reified statements.
+        @param m the model containing the statements to add
+        @param suppressReifications true to suppress adding reified statements
+        @return this model for cascading 
+    */
+    Model add( Model m, boolean suppressReifications );
 
 	/** Add the RDF statements from an XML document.
 	 *

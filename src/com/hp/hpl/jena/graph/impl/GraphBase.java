@@ -195,18 +195,23 @@ public abstract class GraphBase implements Graph {
 
 	/** for little graphs only ... */
 
-	public String toString() {
-		StringBuffer b = new StringBuffer("{");
+	public String toString() 
+        { return toString( this ); }
+        
+    public static String toString( Graph that )
+        {
+		StringBuffer b = new StringBuffer( "{" );
 		String gap = "";
-		ClosableIterator it = find(null, null, null);
-		while (it.hasNext()) {
-			b.append(gap);
+		ClosableIterator it = GraphUtil.findAll( that );
+		while (it.hasNext()) 
+            {
+			b.append( gap );
 			gap = "; ";
-			b.append(it.next());
-		}
-		b.append("}");
+			b.append( it.next() );
+		    } 
+		b.append( "}" );
 		return b.toString();
-	}
+	   }
     
     /**
         return a dynamic copy of G with full reification (ie captures

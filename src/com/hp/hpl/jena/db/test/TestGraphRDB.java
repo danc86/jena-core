@@ -24,32 +24,31 @@ public class TestGraphRDB extends AbstractTestGraph
     public static TestSuite suite()
         { return new TestSuite( TestGraphRDB.class ); }
 
-    private Graph theGraph;
     private IDBConnection theConnection;
+    private int count = 0;
     
     public void setUp()
         {
         theConnection = TestConnection.makeAndCleanTestConnection();
-        theGraph = new GraphRDB
-            (
-            theConnection,
-            "bootle", 
-            theConnection.getDefaultModelProperties().getGraph(), 
-            GraphRDB.OPTIMIZE_AND_HIDE_ONLY_FULL_REIFICATIONS, 
-            true
-            );
         }
         
     public void tearDown()
-        { 
-        theGraph.close();
+        {
         try { theConnection.close(); }
         catch (Exception e) { throw new JenaException( e ); }
         }
         
     public Graph getGraph()
-        { return theGraph; }
-
+        { 
+        return new GraphRDB
+            (
+            theConnection,
+            "testGraph-" + count ++, 
+            theConnection.getDefaultModelProperties().getGraph(), 
+            GraphRDB.OPTIMIZE_AND_HIDE_ONLY_FULL_REIFICATIONS, 
+            true
+            );
+        }
     }
 
 
