@@ -63,7 +63,7 @@ public class TestOntDocumentManager
         {  "testing/ontology/testImport2",  cnt(1),             F,          null },
         {  "testing/ontology/testImport3",  cnt(3),             T,          null },
         {  "testing/ontology/testImport4",  cnt(2),             T,          null },
-        {  "testing/ontology/testImport5",  cnt(2),             T,          "file:testing/ontology/testImport5/docmanager.rdf" }
+        {  "testing/ontology/testImport5",  cnt(2),             T,          "file:testing/ontology/testImport5/ont-policy.rdf" }
     };
     
     
