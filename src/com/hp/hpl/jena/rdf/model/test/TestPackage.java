@@ -27,13 +27,14 @@ public class TestPackage extends TestSuite {
         addTest( "TestSimpleListStatements", TestSimpleListStatements.suite() );
         addTest( "TestModelPolymorphism", TestModelPolymorphism.suite() );
         addTest( "TestSimpleSelector", TestSimpleSelector.suite() );
-        addTest( "TestStatements", TestReifiedStatements.suite() );
+        addTest( "TestStatements", TestStatements.suite() );
         addTest( "TestReifiedStatements", TestReifiedStatements.suite() );
         addTest( "TestIterators", TestIterators.suite() );
         addTest( "TestContains", TestContains.suite() );
         addTest( "TestNamespace", TestNamespace.suite() );
         addTest( "TestModelBulkUpdate", TestModelBulkUpdate.suite() );
         addTest( "TestConcurrency", TestConcurrency.suite() ) ;
+        addTest( "TestModelMakerImpl", TestModelMakerImpl.suite() );
         }
 
     private void addTest(String name, TestSuite tc) {
