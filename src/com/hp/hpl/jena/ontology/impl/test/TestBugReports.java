@@ -131,7 +131,7 @@ public class TestBugReports extends TestCase {
         assertEquals( 3, count );
     }
     
-    /** Bug report by Dana Nadah - cannot remove import */
+    /** Bug report by Danah Nada - cannot remove import */
     public void test_dn_02() {
         OntModel mymod = ModelFactory.createOntologyModel( OntModelSpec.OWL_MEM, null );
         mymod.read( "file:testing/ontology/testImport3/a.owl" );
