@@ -361,8 +361,6 @@ public interface Statement
      *  <p>The statement with the old value is removed from the model and 
      *  a new statement with the new value added.</p>
      * @param o The value to be set
-     * @param wellFormed true if o is well formed XML
-     *
      * @return the new (S, P, o) statement.
      */
     public Statement changeObject(RDFNode o) ;
@@ -388,13 +386,11 @@ public interface Statement
      */
     public Statement remove() ;
     
-/** Determine if this statement is the subject of any statements its associated
- *  model.
- * @param s The statement tested.
- 
- * @return true if the statement s is the subject of a statement in the model,
-             false otherwise
-*/ 
+    /** 
+        Determine if this statement is the subject of any statements its associated
+        model.
+        @return true iff this statement is the subject of a statement in the model.
+    */ 
     boolean isReified();
     
     /**

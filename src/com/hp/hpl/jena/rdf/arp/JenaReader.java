@@ -248,7 +248,7 @@ public class JenaReader implements RDFReader, ARPErrorNumbers {
      *  Reads from inputStream, using base URI xmlbase, adding triples to model.
      * If xmlbase is "" then relative URIs may be added to model.
      * @param model A model to add triples to.
-     * @param reader The RDF/XML document.
+     * @param in The RDF/XML document stream.
      * @param xmlBase The base URI of the document or "".
      */
     public void read(final Model model, InputStream in, String xmlBase)

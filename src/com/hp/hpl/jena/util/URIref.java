@@ -50,7 +50,7 @@ public class URIref extends Object {
      * using %NN escape mechanism as appropriate.
      * The '%' character is assumed to already indicated an escape byte.
      * The '%' character must be followed by two hexadecimal digits.
-     * @param uri The uri, in characters specified by RFC 2396 + '#'
+     * @param unicode The uri, in characters specified by RFC 2396 + '#'
      * @return The corresponding Unicode String
      */ 
     static public String encode(String unicode) {

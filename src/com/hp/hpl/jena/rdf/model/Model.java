@@ -538,29 +538,24 @@ public interface Model
 	 * @return an iterator over the subjects
 	 * @param p The predicate sought
 	 * @param o The value sought
-	 
 	 */
 	ResIterator listSubjectsWithProperty(Property p, RDFNode o)
 		;
 
 	/** List all objects in a model.
 	 * @return an iterator over the objects
-	 * @param p The predicate sought
-	 
 	 */
 	NodeIterator listObjects() ;
 
 	/** List all objects of a given property.
 	 * @return an iterator over the objects
 	 * @param p The predicate sought
-	 
 	 */
 	NodeIterator listObjectsOfProperty(Property p) ;
 
 	/** List the values of a property of a resource.
 	 * @return an iterator over the objects
 	 * @param p The predicate sought
-	 
 	 */
 	NodeIterator listObjectsOfProperty(Resource s, Property p)
 		;
@@ -649,7 +644,7 @@ public interface Model
 
 	/**
        Find or create a {@link ReifiedStatement} corresponding to a Statement.
-        @param a Statement which may or may not already be reified
+        @param s Statement which may or may not already be reified
         @return a Resource [ReifiedStatement] that reifies the specified Statement.
 	*/
 	Resource getAnyReifiedStatement( Statement s );
@@ -689,10 +684,9 @@ public interface Model
      *  and whose object matches the <code>object</code> argument.
      *  If an argument is <code>null</code> it matches anything.</p>
      * @return an iterator over the subjects
-     * @param subject   The subject sought
-     * @param predicate The predicate sought
-     * @param object    The value sought
-     
+     * @param s   The subject sought
+     * @param p The predicate sought
+     * @param o    The value sought
      */ 
     
     StmtIterator listStatements( Resource s, Property p, RDFNode o );
