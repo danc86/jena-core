@@ -91,7 +91,7 @@ public class Grammar implements Constants {
     static final int rdfsrange = 84;
     static final int rdfssubClassOf = 85;
     static final int rdfssubPropertyOf = 86;
- static String catNames[] = { "--not used--",
+ static public String catNames[] = { "--not used--",
       "orphan",
       "notype",
       "cyclicRest",
