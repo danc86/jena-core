@@ -717,9 +717,10 @@ public class TestTypedLiterals extends TestCase {
     }
     
     /**
-     * Attempt to isolate a JDK-dependent bug that only appears under 1.4.1_*
+     * Attempt to isolate a JDK-dependent bug that only appears under 1.4.1_*.
+     * This failed to provoke the bug.
      */
-    public void testBinaryBug() throws IOException {
+    public void XXtestBinaryBug() throws IOException {
         Model orig = ModelFactory.createDefaultModel();
         Resource r = orig.createResource("http://jena.hpl.hp.com/test#r");
         Property p = orig.createProperty("http://jena.hpl.hp.com/test#p");

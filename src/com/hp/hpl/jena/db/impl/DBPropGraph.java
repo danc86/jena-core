@@ -81,7 +81,7 @@ public class DBPropGraph extends DBProp {
 		if( existing != null)
 			removePrefix( existing);
 		existing = getURI( prefix.getURI());
-		if( existing != null)
+		if( existing != null && !prefix.getValue().equals("")) 
 			removePrefix( existing);
 		putPropNode( graphPrefix, prefix.getNode() );
 	}

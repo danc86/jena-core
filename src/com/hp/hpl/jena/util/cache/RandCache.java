@@ -12,6 +12,9 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 /**
  *
  * @author  bwm
@@ -26,6 +29,8 @@ public class RandCache implements Cache, CacheControl {
     HashMap map;
     Collection collection;
 
+    protected static Log logger = LogFactory.getLog(RandCache.class);
+    
     long gets = 0;
     long puts = 0;
     long hits = 0;
@@ -33,7 +38,16 @@ public class RandCache implements Cache, CacheControl {
     /** Creates new RandCache */
     RandCache(String name, int size) {
         this.size = size;
-        map = new HashMap(size * 100 / 75);  // based on .75 loadfactor
+        try {
+            map = new HashMap(size * 100 / 75);  // based on .75 loadfactor
+        } catch (IllegalArgumentException e) {
+            if ("Illegal load factor: NaN".equals(e.getMessage())) {
+                logger.warn("Detected a NaN anomaly believed to be due to use of JDK 1.4.1");
+                map = new HashMap(size*100/75, 0.75f);
+            } else {
+                throw e;
+            }
+        }
         threshhold = size;
         if (threshhold < 2) {
             throw new Error("Cache size too small: " + size);

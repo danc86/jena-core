@@ -281,6 +281,23 @@ public class TestTransitiveGraphCache extends TestCase {
            
     }
     
+//    /**
+//     * Test whether direct handles cycles.
+//     */
+//    public void testBug2() {
+//        TransitiveGraphCache cache = new TransitiveGraphCache(directP, closedP);
+//        cache.addRelation(a, b);        
+//        cache.addRelation(b, c);        
+//        cache.addRelation(c, b);        
+//        TestUtil.assertIteratorValues(this, 
+//            cache.find(new TriplePattern(a, directP, null)),
+//            new Object[] {
+//                new Triple(a, closedP, a),
+//                new Triple(a, closedP, b),
+//                new Triple(a, closedP, c),
+//            });
+//    }
+    
     /**
      * Test the removeRelation functionality.
      */
