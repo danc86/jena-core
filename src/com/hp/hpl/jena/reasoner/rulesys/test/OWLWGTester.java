@@ -32,6 +32,10 @@ import java.util.*;
  * A test harness for running the OWL working group tests. This
  * differs from the RDF one in several ways (separate manifest files,
  * different namespaces, document references lack suffix ...).
+ * <p>
+ * This version is used for running the core entailment tests as part of unit testing.
+ * A separate test harness for use in reporting OWL conformance is being developed and
+ * some code rationalization might be once once that stabilizes. </p>
  * 
  * @author <a href="mailto:der@hplb.hpl.hp.com">Dave Reynolds</a>
  * @version $Revision$ on $Date$

@@ -61,6 +61,19 @@ public class WebOntTestHarness {
             "xmlbase",
 //            "extra-credit", 
         };
+    
+    /** List of tests that are blocked because they test language features beyond Lite */
+    public static final String[] BLOCK_TESTS = {
+        "http://www.w3.org/2002/03owlt/complementOf/Manifest001#test", 
+        "http://www.w3.org/2002/03owlt/description-logic/Manifest901#test", 
+        "http://www.w3.org/2002/03owlt/description-logic/Manifest903#test", 
+        "http://www.w3.org/2002/03owlt/description-logic/Manifest902#test", 
+        "http://www.w3.org/2002/03owlt/description-logic/Manifest904#test", 
+        "http://www.w3.org/2002/03owlt/oneOf/Manifest002#test", 
+        "http://www.w3.org/2002/03owlt/oneOf/Manifest003#test", 
+        "http://www.w3.org/2002/03owlt/unionOf/Manifest001#test", 
+        "http://www.w3.org/2002/03owlt/unionOf/Manifest002#test", 
+    };
             
     /** The list of status values to include. If approvedOnly then only the first
      *  entry is allowed */
@@ -113,6 +126,7 @@ public class WebOntTestHarness {
     public static void main(String[] args) {
         WebOntTestHarness harness = new WebOntTestHarness();
         List l = harness.findTestsOfType(OWLTest.PositiveEntailmentTest);
+        harness.findTestsOfType(OWLTest.NegativeEntailmentTest);
     }
     
 //  =======================================================================
@@ -138,9 +152,14 @@ public class WebOntTestHarness {
                     }
                 }
             }
+            // Check for blocked tests
+            for (int i = 0; i < BLOCK_TESTS.length; i++) {
+                if (BLOCK_TESTS[i].equals(test.toString())) {
+                    accept = false; 
+                }
+            }
             // End of filter tests
             if (accept) {
-                System.out.println(" - " + test + " status = " + status + " " + status.getClass()); 
                 result.add(test);
             }
         }
