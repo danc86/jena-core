@@ -25,7 +25,10 @@ package com.hp.hpl.jena.ontology.impl.test;
 // Imports
 ///////////////
 import java.io.*;
+import java.util.*;
+import java.util.List;
 
+import com.hp.hpl.jena.graph.Graph;
 import com.hp.hpl.jena.ontology.*;
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.rdf.model.test.*;
@@ -440,6 +443,93 @@ public class TestOntModel
         assertNull( "result of get r", m.getMaxCardinalityRestriction( NS+"r"));
     }
 
+    public void testGetSubgraphs() {
+        OntModel m = ModelFactory.createOntologyModel();
+        m.read( "file:testing/ontology/testImport6/a.owl" );
+        assertEquals( "Marker count not correct", 4, TestOntDocumentManager.countMarkers( m ) );
+        
+        List subs = m.getSubGraphs();
+        
+        assertEquals( "n subgraphs should be ", 3, subs.size() );
+        
+        boolean isGraph = true;
+        for (Iterator i = subs.iterator(); i.hasNext(); ) {
+            Object x = i.next();
+            if (!(x instanceof Graph)) {
+                isGraph = false;
+            }
+        }
+        assertTrue( "All sub-graphs should be graphs", isGraph );
+        
+    }
+    
+    
+    public void testListImportURIs() {
+        OntModel m = ModelFactory.createOntologyModel();
+        m.read( "file:testing/ontology/testImport6/a.owl" );
+        Collection c = m.listImportedOntologyURIs();
+        
+        assertEquals( "Should be two non-closed import URI's", 2, c.size() );
+        assertTrue( "b should be imported ", c.contains( "file:testing/ontology/testImport6/b.owl" ));
+        assertFalse( "c should not be imported ", c.contains( "file:testing/ontology/testImport6/c.owl" ));
+        assertTrue( "d should be imported ", c.contains( "file:testing/ontology/testImport6/d.owl" ));
+
+        c = m.listImportedOntologyURIs( true );
+        
+        assertEquals( "Should be two non-closed import URI's", 3, c.size() );
+        assertTrue( "b should be imported ", c.contains( "file:testing/ontology/testImport6/b.owl" ));
+        assertTrue( "c should be imported ", c.contains( "file:testing/ontology/testImport6/c.owl" ));
+        assertTrue( "d should be imported ", c.contains( "file:testing/ontology/testImport6/d.owl" ));
+    } 
+    
+    public void testListImportedModels() {
+        OntModel m = ModelFactory.createOntologyModel();
+        m.read( "file:testing/ontology/testImport6/a.owl" );
+        assertEquals( "Marker count not correct", 4, TestOntDocumentManager.countMarkers( m ) );
+        
+        List importModels = new ArrayList();
+        for (Iterator j = m.listImportedModels(); j.hasNext(); importModels.add( j.next() ));
+        
+        assertEquals( "n import models should be ", 3, importModels.size() );
+        
+        boolean isOntModel = true;
+        int nImports = 0;
+        
+        for (Iterator i = importModels.iterator(); i.hasNext(); ) {
+            Object x = i.next();
+            if (!(x instanceof OntModel)) {
+                isOntModel = false;
+            }
+            else {
+                // count the number of imports of each sub-model
+                OntModel mi = (OntModel) x;
+                nImports += mi.listImportedOntologyURIs().size();
+            }
+        }
+        
+        assertTrue( "All import models should be OntModels", isOntModel );
+        assertEquals( "Wrong number of sub-model imports", 2, nImports );
+    }
+    
+    public void testGetImportedModel() {
+        OntModel m = ModelFactory.createOntologyModel();
+        m.read( "file:testing/ontology/testImport6/a.owl" );
+        
+        OntModel m0 = m.getImportedModel( "file:testing/ontology/testImport6/b.owl" );
+        OntModel m1 = m.getImportedModel( "file:testing/ontology/testImport6/c.owl" );
+        OntModel m2 = m.getImportedModel( "file:testing/ontology/testImport6/d.owl" );
+        OntModel m3 = m.getImportedModel( "file:testing/ontology/testImport6/b.owl" )
+                       .getImportedModel( "file:testing/ontology/testImport6/c.owl" );
+        OntModel m4 = m.getImportedModel( "file:testing/ontology/testImport6/a.owl" );
+        
+        assertNotNull( "Import model b should not be null", m0 );
+        assertNotNull( "Import model c should not be null", m1 );
+        assertNotNull( "Import model d should not be null", m2 );
+        assertNotNull( "Import model b-c should not be null", m3 );
+        assertNull( "Import model a should be null", m4 );
+    }
+    
+    
     /**
         Added by kers to ensure that bulk update works; should really be a test
         of the ontology Graph using AbstractTestGraph, but that fails because there
