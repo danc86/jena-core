@@ -62,11 +62,23 @@ public class StandardValidityReport implements ValidityReport {
         }
     }
     
+    
     /**
-     * Return true if there are no problems reported by the validation
+     * Returns true if no logical inconsistencies were detected (in which case
+     * there will be at least one error Report included). Warnings may still
+     * be present. As of Jena 2.2 we regard classes which can't be instantiated
+     * as warnings rather than errors. 
      */
     public boolean isValid() {
         return !isError;
+    }
+    
+    /**
+     * Returns true if the model is both valid (logically consistent) and no
+     * warnings were generated. 
+     */
+    public boolean isClean() {
+        return reports.isEmpty();
     }
     
     /**

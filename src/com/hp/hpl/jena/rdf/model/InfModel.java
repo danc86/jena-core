@@ -81,6 +81,9 @@ public interface InfModel extends Model {
      * Test the consistency of the underlying data. This normally tests
      * the validity of the bound instance data against the bound
      * schema data. 
+     * <p>Logically inconsistent models will be indicated by a ValidityReport which
+     * reports isValid() as false. Additional non-fatal problems, such as uninstantiatable classes,
+     * may be reported as warnings.
      * @return a ValidityReport structure
      */
     public ValidityReport validate();    

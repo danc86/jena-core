@@ -12,8 +12,7 @@ package com.hp.hpl.jena.reasoner.rulesys.test;
 import com.hp.hpl.jena.reasoner.*;
 import com.hp.hpl.jena.reasoner.rulesys.FBRuleInfGraph;
 import com.hp.hpl.jena.reasoner.test.WGReasonerTester;
-import com.hp.hpl.jena.util.ModelLoader;
-//import com.hp.hpl.jena.util.PrintUtil;
+import com.hp.hpl.jena.util.FileManager;
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.vocabulary.*;
 import com.hp.hpl.jena.graph.*;
@@ -121,7 +120,7 @@ public class OWLWGTester {
      */
     public boolean runTests(String manifestFile, boolean log, boolean stats) throws IOException {
         // Load up the manifest
-        Model manifest = ModelLoader.loadModel(baseDir + manifestFile);
+        Model manifest = FileManager.get().loadModel(baseDir + manifestFile);
         ResIterator tests = manifest.listSubjectsWithProperty(RDF.type, PositiveEntailmentTest);
         while (tests.hasNext()) {
             Resource test = tests.nextResource();

@@ -37,10 +37,12 @@ public class TestPackage extends TestSuite {
         addTest( "TestRETE", TestRETE.suite() );
         addTest( TestSetRules.suite() );
         addTest( "TestOWLRules", TestOWLRules.suite() );
-        addTest( "TestOWLRules", OWLUnitTest.suite() );
-        addTest( "TestOWLConsistency", TestOWLRules.suite() );
+        addTest( "OWLRuleUnitTests", OWLUnitTest.suite() );
         addTest( "TestBugs", TestBugs.suite() );
         addTest( "TestCapabilities", TestCapabilities.suite() );
+        
+        // No longer needed because the tests are now subsumed in OWLUnitTest
+        // addTest( "TestOWLConsistency", TestOWLRules.suite() );
     }
 
     // helper method
