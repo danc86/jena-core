@@ -373,7 +373,7 @@ public class N3JenaWriterPP extends N3JenaWriterCommon
         {
             String padSp = null ;
             // Simple objects - allow property to be long and alignment to be lost
-            if (propStr.length() < widePropertyLen)
+            if ((propStr.length()+minGap) <= widePropertyLen)
                 padSp = pad(calcPropertyPadding(propStr)) ;
             
             if ( doObjectListsAsLists )

@@ -363,7 +363,7 @@ public class N3JenaWriterCommon implements RDFWriter
             out.print(propStr);
             out.incIndent(indentObject);
 
-            if ( propStr.length() < widePropertyLen )
+            if ( (propStr.length()+minGap) <= widePropertyLen )
             {
                 // Property col allows for min gap but widePropertyLen > propertyCol 
                 // (which looses alignment - this is intentional.
