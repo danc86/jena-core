@@ -869,33 +869,28 @@ public class OntDocumentManager
         for (ResIterator i = metadata.listSubjectsWithProperty( RDF.type, ONTOLOGY_SPEC ); i.hasNext(); ) {
             Resource root = i.nextResource();
 
-            Statement s = root.getRequiredProperty( PUBLIC_URI );
+            Statement s = root.getProperty( PUBLIC_URI );
             if (s != null) {
                 // this will be the key in the mappings
                 String publicURI = s.getResource().getURI();
 
                 // there may be a cached copy for this ontology
-                try {
-                    s = root.getRequiredProperty( ALT_URL );
-                    addAltEntry( publicURI, s.getResource().getURI() );
-                } catch (JenaException ignore) {}
-
+                s = root.getProperty( ALT_URL );
+                if (s != null) addAltEntry( publicURI, s.getResource().getURI() );
+                
                 // there may be a standard prefix for this ontology
-                try {
-                    s = root.getRequiredProperty( PREFIX );
-                    
+                s = root.getProperty( PREFIX );
+                if (s != null) {
                     // if the namespace doesn't end with a suitable split point character, add a #
                     boolean endWithNCNameCh = XMLChar.isNCName( publicURI.charAt( publicURI.length() - 1 ) );
                     String prefixExpansion = endWithNCNameCh ? (publicURI + ANCHOR) : publicURI;
                     
                     addPrefixMapping( prefixExpansion, s.getString() );
-                } catch (JenaException ignore) {}
+                }
 
                 // there may be a language specified for this ontology
-                try {
-                    s = root.getRequiredProperty( LANGUAGE );
-                    addLanguageEntry( publicURI, s.getResource().getURI() );
-                } catch (JenaException ignore) {}
+                s = root.getProperty( LANGUAGE );
+                if (s != null) addLanguageEntry( publicURI, s.getResource().getURI() );
             }
             else {
                 m_log.warn( "Ontology specification node lists no public URI - node ignored");
