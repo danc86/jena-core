@@ -17,16 +17,33 @@ import com.hp.hpl.jena.graph.*;
 
 import junit.framework.*;
 
-public class TestGraph extends AbstractTestGraph
+public class TestGraph extends GraphTestBase
     { 
 	public TestGraph( String name )
 		{ super( name ); }
 
     public static TestSuite suite()
-        { return new TestSuite( TestGraph.class ); }
+        { 
+        TestSuite result = new TestSuite();
+        result.addTest( TestDefaultGraph.suite() );
+        result.addTest( TestStandardGraph.suite() );
+        return result;
+        }
         
-    public Graph getGraph()
-        { return new GraphMem(); }
+    public static class TestDefaultGraph extends AbstractTestGraph
+        {
+        public TestDefaultGraph( String name ) { super( name ); }
+        public static TestSuite suite() { return new TestSuite( TestDefaultGraph.class ); }
+        public Graph getGraph() { return new GraphMem(); }
+        }
+        
+    public static class TestStandardGraph extends AbstractTestGraph
+        {
+        public TestStandardGraph( String name ) { super( name ); }
+        public static TestSuite suite() { return new TestSuite( TestStandardGraph.class ); }
+        public Graph getGraph() { return new GraphMem( Reifier.Standard ); }
+        }
+        
     }
 
 /*

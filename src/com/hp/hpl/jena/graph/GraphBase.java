@@ -26,6 +26,12 @@ import com.hp.hpl.jena.shared.impl.PrefixMappingImpl;
 
 public abstract class GraphBase implements Graph {
 
+    public GraphBase( Reifier.Style style )
+        {}
+        
+    public GraphBase()
+        {}
+        
 	public boolean dependsOn(Graph other) {
 		return this == other;
 	}
