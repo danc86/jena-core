@@ -52,9 +52,10 @@ public class DBQueryStage extends Stage
 		PreparedStatement ps = null;
 		Domain current;
 		Domain useme;
-		IDBConnection conn = compiled.driver.getConnection();
-		 try {
-			 ps = conn.getConnection().prepareStatement(compiled.stmt);
+		IDBConnection conn;
+		if ( !compiled.isEmpty ) try {
+			conn = compiled.driver.getConnection();
+			ps = conn.getConnection().prepareStatement(compiled.stmt);
 		 } catch (Exception e) {
 			 throw new JenaException("Query prepare failed: " + e);
 		 }

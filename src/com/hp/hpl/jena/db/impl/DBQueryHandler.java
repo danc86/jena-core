@@ -80,10 +80,11 @@ public class DBQueryHandler extends SimpleQueryHandler {
 						break;
 					}
 				}
-				if (!src.hasSource())
+				/* if (!src.hasSource())
 					throw new RDFRDBException(
 						"Pattern is not bound by any specialized graph: "
 							+ pat);
+				*/
 				source[i] = src;
 			}
 
@@ -155,10 +156,12 @@ public class DBQueryHandler extends SimpleQueryHandler {
 						}
 						doQuery = true;
 					}
-				}
+				} else if ( !src.hasSource() )
+					doQuery = true;
+					// hack to handle the case when no graphs match the pattern
 				if ( doQuery ) {
 						stages[stageCnt] =
-							new DBQueryStage(graph,src.singleSource(),varList,qryPat, constraints);
+							new DBQueryStage(graph,src.hasSource() ? src.singleSource() : null ,varList,qryPat, constraints);
 				} else {
 					stages[stageCnt] =
 							super.patternStage(varMap,constraints, new Triple[]{src.pattern});
