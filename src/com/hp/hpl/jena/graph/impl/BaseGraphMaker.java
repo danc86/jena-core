@@ -64,7 +64,7 @@ public abstract class BaseGraphMaker implements GraphMaker
         {
         Graph result = new GraphMem();
         Node self = Node.createAnon();
-        Node mode = Node.createLiteral( style.toString(), "", false );
+        Node mode = JMS.rsStandard.asNode();
         result.add( Triple.create( self, JMS.reificationMode.asNode(), mode ) );
         return result;    
         }

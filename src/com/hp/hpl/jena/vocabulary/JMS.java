@@ -29,6 +29,11 @@ public class JMS
     
     public static final Resource TypeMemMaker = resource( "type/MemMaker");
     
+    public static final Literal rsStandard = literal( "Standard" );
+    
+    public static Literal literal( String lex )
+        { return ResourceFactory.createPlainLiteral( lex ); }
+        
     public static Resource resource( String ln )
         { return ResourceFactory.createResource( baseURI + ln ); }
         

@@ -168,14 +168,31 @@ public class OntModelSpec implements ModelSpec {
      * @param spec
      */
     public OntModelSpec( OntModelSpec spec ) {
-        setDocumentManager( spec.getDocumentManager() );
-        setModelMaker( spec.getModelMaker() );
-        setReasonerFactory( spec.getReasonerFactory() );
-        setLanguage( spec.getLanguage() );
+        this
+            ( 
+            spec.getModelMaker(), 
+            spec.getDocumentManager(), 
+            spec.getReasonerFactory(), 
+            spec.getLanguage() 
+            );
+//        setDocumentManager( spec.getDocumentManager() );
+//        setModelMaker( spec.getModelMaker() );
+//        setReasonerFactory( spec.getReasonerFactory() );
+//        setLanguage( spec.getLanguage() );
     }
     
-    public OntModelSpec( Model description )
-        { this( createSpec( description ) ); }
+    /**
+        Initialise an OntModelSpec from an RDF description using the JMS vocabulary.
+    */
+    public OntModelSpec( Model description )  { 
+        this
+            ( 
+            getModelMaker( description ),
+            getDocumentManager( description ),
+            getReasonerFactory( description ),
+            getLanguage( description)
+            );
+    }
     
     
     // External signature methods
@@ -350,18 +367,38 @@ public class OntModelSpec implements ModelSpec {
         return new OntModelImpl( this, m_maker.createModel() );
     }
     
-    public static OntModelSpec createSpec( Model description ) {
-        Statement langStatement = description.getProperty( JMS.current, JMS.ontLanguage );
-        Statement manStatement = description.getProperty( JMS.current, JMS.docManager );
-        Statement factStatement = description.getProperty( JMS.current, JMS.reasonsWith );
-        ModelMaker maker = ModelFactory.createMemModelMaker();
-        OntDocumentManager manager = null;
-        String factoryURI = null;
-        ReasonerFactory factory = ReasonerRegistry.theRegistry().getFactory( factoryURI );
-        String language = null;
-        return new OntModelSpec( maker, manager, factory, language );
+    public static ModelMaker getModelMaker( Model description ) {
+        Statement makStatement = description.getProperty( JMS.current, JMS.importMaker );
+        return ModelFactory.createMemModelMaker();
     }
     
+    /**
+        Answer the URI string of the ontology language in this description
+     
+        @param description the Model from which to extract the description
+        @return the language string
+        @exception NullPointerException if there's no ontLanguage property
+        @exception something if the value isn't a URI resource
+    */
+    public static String getLanguage( Model description ) {
+        Statement langStatement = description.getProperty( JMS.current, JMS.ontLanguage );
+        return langStatement.getResource().getURI();
+    }
+    
+    public static OntDocumentManager getDocumentManager ( Model description ) {
+        Statement docStatement = description.getProperty( JMS.current, JMS.docManager );
+        Literal lit = docStatement.getLiteral();
+        return (OntDocumentManager) lit.getObject( null );
+    }
+    
+    public static ReasonerFactory getReasonerFactory( Model description ) {
+        Statement factStatement = description.getProperty( JMS.current, JMS.reasonsWith );
+        Statement reStatement = description.getProperty( factStatement.getResource(), JMS.reasoner );
+        String factoryURI = reStatement.getResource().getURI();
+        ReasonerFactory rf = ReasonerRegistry.theRegistry().getFactory( factoryURI );
+        return rf;
+    }
+
     /**
         Answer an RDF description of this OntModelSpec, faking a few things for the 
         moment (MakerSpecs).
