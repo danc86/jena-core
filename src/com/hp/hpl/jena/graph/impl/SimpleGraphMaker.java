@@ -19,7 +19,7 @@ import java.util.*;
     in a local map.
 */
 
-public class SimpleGraphFactory extends BaseGraphFactory 
+public class SimpleGraphMaker extends BaseGraphMaker
 	{
     private Map graphs = new HashMap();
     

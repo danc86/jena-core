@@ -23,7 +23,7 @@ import java.util.*;
     @author kers 
 */
 
-public class GraphRDBFactory extends BaseGraphFactory
+public class GraphRDBMaker extends BaseGraphMaker
     {
     private IDBConnection c;
     private int counter = 0;
@@ -33,7 +33,7 @@ public class GraphRDBFactory extends BaseGraphFactory
         Construct a new GraphRDB factory based on the supplied DB connection.
         @param c the database connection
     */
-    public GraphRDBFactory( IDBConnection c ) { this.c = c; }
+    public GraphRDBMaker( IDBConnection c ) { this.c = c; }
      
     /**
      	@see com.hp.hpl.jena.graph.GraphFactory#getGraph()

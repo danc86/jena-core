@@ -7,14 +7,14 @@
 package com.hp.hpl.jena.graph.impl;
 
 import com.hp.hpl.jena.graph.Graph;
-import com.hp.hpl.jena.graph.GraphFactory;
+import com.hp.hpl.jena.graph.GraphMaker;
 
 /**
  	@author kers
 */
-public abstract class BaseGraphFactory implements GraphFactory
+public abstract class BaseGraphMaker implements GraphMaker
     {
-    public BaseGraphFactory()
+    public BaseGraphMaker()
         { super(); }
         
     private int counter = 0;

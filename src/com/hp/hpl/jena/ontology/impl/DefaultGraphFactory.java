@@ -16,7 +16,7 @@ import com.hp.hpl.jena.graph.impl.*;
  *
  */
 
-public class DefaultGraphFactory extends SimpleGraphFactory 
+public class DefaultGraphFactory extends SimpleGraphMaker 
     {
 	public DefaultGraphFactory() { super();} 
     }

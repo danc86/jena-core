@@ -22,8 +22,8 @@ public class Factory
     public static Graph createDefaultGraph()
         { return new GraphMem(); }
         
-    public static GraphFactory createRDBGraphFactory( IDBConnection c )
-        { return new GraphRDBFactory( c ); }
+    public static GraphMaker createRDBGraphFactory( IDBConnection c )
+        { return new GraphRDBMaker( c ); }
               
     private Factory()
         { super(); }

@@ -25,7 +25,7 @@ package com.hp.hpl.jena.ontology;
 // Imports
 ///////////////
 import com.hp.hpl.jena.graph.Graph;
-import com.hp.hpl.jena.graph.GraphFactory;
+import com.hp.hpl.jena.graph.GraphMaker;
 import com.hp.hpl.jena.rdf.model.*;
 
 import java.util.*;
@@ -566,7 +566,7 @@ public interface OntModel
      * 
      * @return The local graph factory
      */
-    public GraphFactory getGraphFactory();
+    public GraphMaker getGraphFactory();
     
     
     /**

@@ -14,7 +14,7 @@ import junit.framework.*;
 /**
  	@author hedgehog
 */
-public class TestFileGraphFactory extends AbstractTestGraphFactory
+public class TestFileGraphFactory extends AbstractTestGraphMaker
     {
     public TestFileGraphFactory( String name )
         { super( name ); }
@@ -22,8 +22,8 @@ public class TestFileGraphFactory extends AbstractTestGraphFactory
     public static TestSuite suite()
         { return new TestSuite( TestFileGraphFactory.class ); }
 
-    public GraphFactory getGraphFactory()
-        { return new FileGraphFactory( getTempDirectory(), true ); } 
+    public GraphMaker getGraphFactory()
+        { return new FileGraphMaker( getTempDirectory(), true ); } 
     }
 
 

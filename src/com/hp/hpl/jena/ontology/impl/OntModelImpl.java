@@ -68,7 +68,7 @@ public class OntModelImpl
     protected OntDocumentManager m_docMgr;
     
     /** The graph factory this ontology model is using to build the union graph of imports */
-    protected GraphFactory m_graphFactory;
+    protected GraphMaker m_graphFactory;
     
     /** The language profile that defines what we can do in this ontology */
     protected Profile m_profile;
@@ -101,7 +101,7 @@ public class OntModelImpl
      * @param docMgr The ontology document manager to use when building the imports closure
      * @param gf The graph factory to use when building the union of the imported graphs
      */
-    public OntModelImpl( String languageURI, Model model, OntDocumentManager docMgr, GraphFactory gf ) {
+    public OntModelImpl( String languageURI, Model model, OntDocumentManager docMgr, GraphMaker gf ) {
         // all ontologies are defined to be union graphs, to allow us to add the imports to the union
         super( new OntologyGraph(), BuiltinPersonalities.model );
         
@@ -776,7 +776,7 @@ public class OntModelImpl
      * 
      * @return The local graph factory
      */
-    public GraphFactory getGraphFactory() {
+    public GraphMaker getGraphFactory() {
         return m_graphFactory;
     }
     

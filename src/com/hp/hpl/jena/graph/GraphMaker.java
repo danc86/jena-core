@@ -39,7 +39,7 @@ package com.hp.hpl.jena.graph;
  *         (<a  href="mailto:Ian.Dickinson@hp.com" >email</a>)
  * @version CVS $Id$
  */
-public interface GraphFactory 
+public interface GraphMaker 
 {
 
     /**

@@ -21,7 +21,7 @@ import junit.framework.*;
     the test.
 */
 
-public class TestGraphRDBFactory extends AbstractTestGraphFactory
+public class TestGraphRDBFactory extends AbstractTestGraphMaker
     {
     /**
         A clean test connection for all the graph factories.
@@ -37,13 +37,13 @@ public class TestGraphRDBFactory extends AbstractTestGraphFactory
     /**
         The current factory object, or null when there isn't one.
      */
-    private GraphRDBFactory current;
+    private GraphRDBMaker current;
     
     /**
         Invent a new factory on the connection, record it, and return it.    
     */
-    public GraphFactory getGraphFactory()
-        { return current = new GraphRDBFactory( connection ); }    
+    public GraphMaker getGraphFactory()
+        { return current = new GraphRDBMaker( connection ); }    
         
     /**
         Run the parent teardown, and then remove all the freshly created graphs.

@@ -123,7 +123,7 @@ public class OntDocumentManager
     protected boolean m_processImports = true;
 
     /** The factory we're using to create graphs in the union */
-    protected GraphFactory m_graphFactory = null;
+    protected GraphMaker m_graphFactory = null;
 
 
 
@@ -392,10 +392,10 @@ public class OntDocumentManager
      *
      * @return A GraphFactory that will provide a graph for building composite graphs
      */
-    public GraphFactory getDefaultGraphFactory() {
+    public GraphMaker getDefaultGraphFactory() {
         if (m_graphFactory == null) {
             // construct the default graph factory
-            m_graphFactory = new SimpleGraphFactory();
+            m_graphFactory = new SimpleGraphMaker();
         }
 
         return m_graphFactory;
@@ -410,7 +410,7 @@ public class OntDocumentManager
      *
      * @param graphFactory The new graph factory to use
      */
-    public void setDefaultGraphFactory( GraphFactory graphFactory ) {
+    public void setDefaultGraphFactory( GraphMaker graphFactory ) {
         m_graphFactory = graphFactory;
     }
 

@@ -22,14 +22,14 @@ import com.hp.hpl.jena.shared.*;
  	@author hedgehog
 */
 
-public abstract class AbstractTestGraphFactory extends GraphTestBase
+public abstract class AbstractTestGraphMaker extends GraphTestBase
     {
-    public AbstractTestGraphFactory( String name )
+    public AbstractTestGraphMaker( String name )
             { super( name ); };
             
-    public abstract GraphFactory getGraphFactory();
+    public abstract GraphMaker getGraphFactory();
     
-    private GraphFactory gf;
+    private GraphMaker gf;
     
     public void setUp()
         { gf = getGraphFactory(); }

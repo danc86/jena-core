@@ -173,14 +173,14 @@ public class ModelFactory
      * @see ProfileRegistry
      * @exception IllegalArgumentException if languageURI is null
      */
-    public static OntModel createOntologyModel( String languageURI, Model model, OntDocumentManager docMgr, GraphFactory graphFactory ) {
+    public static OntModel createOntologyModel( String languageURI, Model model, OntDocumentManager docMgr, GraphMaker graphFactory ) {
         if (languageURI == null) {
             throw new IllegalArgumentException( "Cannot create an ontology model with a null languageURI" );
         }
         
         // ensure we have all the helpers we need, getting defaults if necessary
         OntDocumentManager dm = (docMgr == null) ? OntDocumentManager.getInstance() : docMgr;
-        GraphFactory gf = (graphFactory == null) ? dm.getDefaultGraphFactory() : graphFactory;
+        GraphMaker gf = (graphFactory == null) ? dm.getDefaultGraphFactory() : graphFactory;
         Model m = (model == null) ? createModelForGraph( gf.getGraph() ) : model;
          
         return new OntModelImpl( languageURI, m, dm, gf );

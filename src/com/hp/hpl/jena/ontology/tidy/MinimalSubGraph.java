@@ -26,7 +26,7 @@ class MinimalSubGraph extends AbsChecker {
 	 * @param lite
 	 */
 	MinimalSubGraph(boolean lite, Triple problem, Checker parent) {
-		super(lite, new SimpleGraphFactory());
+		super(lite, new SimpleGraphMaker());
 		this.parent = parent;
 		if (!add(problem, false)) {
 			// Break superclass invariant - only method that can be called is
