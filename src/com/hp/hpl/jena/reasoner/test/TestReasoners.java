@@ -286,8 +286,8 @@ public class TestReasoners extends TestCase {
         Model result = ModelFactory.createRDFSModel(data);
         StmtIterator i = result.listStatements( b, RDF.type, (RDFNode)null );
         TestUtil.assertIteratorValues(this, i, new Object[] {
-            new StatementImpl(b, RDF.type, RDFS.Resource),
-            new StatementImpl(b, RDF.type, C)
+            data.createStatement(b, RDF.type, RDFS.Resource ),
+            data.createStatement(b, RDF.type, C )
         });
         
     }
