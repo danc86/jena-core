@@ -37,7 +37,7 @@ import java.util.*;
  * given property, optionally with an occurs check.
  * </p>
  * <p>
- * TODO: This needs to be extended to consider whether the underlying
+ * TO DO: This needs to be extended to consider whether the underlying
  * graph is an inferencing graph that is already able to do closure
  * on the given predicate, and if so, there's no need for the bookkeeping
  * here.

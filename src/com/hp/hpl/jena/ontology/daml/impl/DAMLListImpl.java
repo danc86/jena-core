@@ -76,9 +76,7 @@ public class DAMLListImpl
             
         public boolean canWrap( Node node, EnhGraph eg ) {
             // node will support being an RDFList facet if it has rdf:type rdf:List or equivalent
-/*TODO            return node.equals( DAML_OIL.nil.asNode() ) || 
-                   eg.asGraph().find( node, RDF.type.asNode(), DAML_OIL.List.asNode() ).hasNext();
-*/            Graph g = eg.asGraph();
+            Graph g = eg.asGraph();
             
             // node will support being an RDFList facet if it has rdf:type rdf:List, is nil, or is in the domain of a list property
             return  node.equals( DAML_OIL.nil.asNode() ) || 
