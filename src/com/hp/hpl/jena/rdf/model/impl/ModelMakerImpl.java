@@ -27,14 +27,17 @@ public class ModelMakerImpl implements ModelMaker
     public void close()
         { maker.close(); }
         
+    protected Model makeModel( Graph g )
+        { return new ModelCom( g ); }
+    
     public Model openModel( String name, boolean strict )
-        { return new ModelCom( maker.openGraph( name, strict ) ); }
+        { return makeModel( maker.openGraph( name, strict ) ); }
         
     public Model openModel( String name )
         { return openModel( name, false ); }
         
     public Model createModel( String name, boolean strict )
-        { return new ModelCom( maker.createGraph( name, strict ) ); }
+        { return makeModel( maker.createGraph( name, strict ) ); }
         
     public Model createModel( String name )
         { return createModel( name, false ); }
@@ -43,22 +46,22 @@ public class ModelMakerImpl implements ModelMaker
         { return createModel( name ); }
         
     public Model createModel()
-        { return new ModelCom( maker.createGraph() ); }
+        { return makeModel( maker.createGraph() ); }
         
     public Model getModel()
-        { return new ModelCom( maker.getGraph() ); }
+        { return makeModel( maker.getGraph() ); }
         
     public Model getDescription()
         { 
-        if (description == null) description = new ModelCom( maker.getDescription() );    
+        if (description == null) description = makeModel( maker.getDescription() );    
         return description; 
         }
         
     public Model getDescription( Resource root )
-        { return new ModelCom( maker.getDescription( root.asNode() ) ); }
+        { return makeModel( maker.getDescription( root.asNode() ) ); }
         
     public Model addDescription( Model m, Resource self )
-        { return new ModelCom( maker.addDescription( m.getGraph(), self.asNode() ) ); }
+        { return makeModel( maker.addDescription( m.getGraph(), self.asNode() ) ); }
         
     public void removeModel( String name )
         { maker.removeGraph( name ); }

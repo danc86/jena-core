@@ -36,9 +36,19 @@ public abstract class BaseInfGraph extends GraphBase implements InfGraph {
     /** Flag to record if the preparation call has been made and so the graph is ready for queries */
     protected boolean isPrepared = false;
     
+    /**
+         Inference graphs share the prefix-mapping of their underlying raw graph. 
+     	@see com.hp.hpl.jena.graph.Graph#getPrefixMapping()
+    */
     public PrefixMapping getPrefixMapping()
         { return getRawGraph().getPrefixMapping(); }
     
+    /**
+        Inference graphs share the reifiers of their underlying raw graphs. This may 
+        be too simplistic - they won't see quads flying past.
+        TODO write a test case that reveals this.  
+     	@see com.hp.hpl.jena.graph.Graph#getReifier()
+    */
     public Reifier getReifier()
         { return getRawGraph().getReifier(); }
 

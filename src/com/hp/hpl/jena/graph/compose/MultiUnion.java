@@ -97,6 +97,9 @@ public class MultiUnion
     // External signature methods
     //////////////////////////////////
 
+    /**
+        Unions share the reifiers of their base graphs. 
+    */
     public Reifier getReifier()
         { Graph base = getBaseGraph();
         return base == null ? super.getReifier() : base.getReifier(); }

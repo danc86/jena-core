@@ -89,6 +89,11 @@ public class ModelRDB extends ModelCom implements Model {
     	super( graph, p);
     	m_graphRDB = graph;
     }
+    
+    public ModelRDB( GraphRDB graph ) {
+        super( graph ); 
+        m_graphRDB = graph; 
+    }
 
     /**
      * Open the default model from an existing rdf database. The layout and 

@@ -209,8 +209,16 @@ public class ModelFactory extends ModelFactoryBase
     */        
     public static ModelMaker createModelRDBMaker
         ( IDBConnection c, ReificationStyle style )
-        { return new ModelMakerImpl( new GraphRDBMaker( c, style ) ); }
+        { return new ModelRDBMaker( new GraphRDBMaker( c, style ) ); }
         
+    static class ModelRDBMaker extends ModelMakerImpl implements ModelMaker
+        {
+        public ModelRDBMaker( GraphRDBMaker gm ) { super( gm ); }
+        
+        public Model makeModel( Graph graphRDB )
+            { return new ModelRDB( (GraphRDB) graphRDB ); }
+        }
+    
     /**
         Answer a plain IDBConnection to a database with the given URL, with
         the given user having the given password. For more complex ways of
