@@ -115,7 +115,9 @@ public class DIGQueryIsEquivalentTranslator
         if (!m_qObject.isBlank() &&
             (p.getURI().equals( da.getOntLanguage().UNION_OF().getURI()) ||
              p.getURI().equals( da.getOntLanguage().INTERSECTION_OF().getURI()) ||
-             p.getURI().equals( da.getOntLanguage().COMPLEMENT_OF().getURI()) ))
+             p.getURI().equals( da.getOntLanguage().COMPLEMENT_OF().getURI()) ) ||
+             p.getURI().equals( da.getOntLanguage().ONE_OF().getURI())
+            )
         {
             if (premises == null) {
                 LogFactory.getLog( getClass() ).warn( "Cannot add comprehension axiom bNode for query because premises model is null" );
@@ -169,7 +171,9 @@ public class DIGQueryIsEquivalentTranslator
                 (pred.getURI().equals( m_predicate ) ||
                  pred.getURI().equals( da.getOntLanguage().UNION_OF().getURI() ) ||
                  pred.getURI().equals( da.getOntLanguage().INTERSECTION_OF().getURI() ) ||
-                 pred.getURI().equals( da.getOntLanguage().COMPLEMENT_OF().getURI() ));
+                 pred.getURI().equals( da.getOntLanguage().COMPLEMENT_OF().getURI() ) ||
+                 pred.getURI().equals( da.getOntLanguage().ONE_OF().getURI() )
+                );
         
         return pass;
     }
