@@ -76,6 +76,17 @@ public class TestUtil {
         return result.toString();
     }
     
+    /**
+     * Check the length of an iterator.
+     */
+    public static void assertIteratorLength(Iterator it, int expectedLength) {
+        int length = 0;
+        while (it.hasNext()) {
+            it.next();
+            length++;
+        }
+        TestCase.assertEquals(expectedLength, length);
+    }
 }
 
 /*

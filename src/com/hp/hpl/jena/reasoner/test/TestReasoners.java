@@ -16,12 +16,14 @@ import com.hp.hpl.jena.reasoner.*;
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.mem.GraphMem;
+import com.hp.hpl.jena.ontology.*;
 import com.hp.hpl.jena.vocabulary.*;
 import com.hp.hpl.jena.rdf.model.impl.StatementImpl;
 
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 import java.io.IOException;
+import java.util.*;
 
 /**
  * Unit tests for initial experimental reasoners
@@ -334,6 +336,34 @@ public class TestReasoners extends TestCase {
         
     }
         
+    /**
+     * Test for duplicate statements in a constructed ontology.
+     */
+    public void testDuplicateStatements() {
+        String NS = "http://swt/test#"; 
+         OntModelSpec s = new OntModelSpec(ModelFactory.createMemModelMaker(), 
+                                     null, null, ProfileRegistry.DAML_LANG); 
+         OntModel model = ModelFactory.createOntologyModel(OntModelSpec.OWL_DL_MEM_RULE_INF, null); 
+ 
+         OntClass documentC = model.createClass(NS + "DOCUMENT"); 
+         OntClass topicC = model.createClass(NS + "TOPIC"); 
+ 
+         ObjectProperty hasTopicP = model.createObjectProperty(NS + "hasTopic"); 
+         hasTopicP.addDomain(documentC); 
+         hasTopicP.addRange(topicC); 
+         ObjectProperty hasDocP = model.createObjectProperty(NS + "hasDocument"); 
+         hasDocP.addDomain(topicC); 
+         hasDocP.addRange(documentC); 
+         hasDocP.setInverseOf(hasTopicP); 
+ 
+         Individual fooTopic = model.createIndividual(NS + "fooTopic", topicC); 
+         Individual fooDoc = model.createIndividual(NS + "fooDoc", documentC); 
+ 
+         fooDoc.addProperty(hasTopicP, fooTopic); 
+ 
+         TestUtil.assertIteratorLength(fooDoc.listProperties(hasTopicP), 1);
+    }
+    
 }
 
 /*

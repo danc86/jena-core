@@ -478,9 +478,9 @@ public class FBRuleInfGraph  extends BasicForwardRuleInfGraph implements Backwar
         
         ExtendedIterator result = null;
         if (continuation == null) {
-            result = WrappedIterator.create( new TopGoalIterator(bEngine, pattern) );
+            result = UniqueExtendedIterator.create( new TopGoalIterator(bEngine, pattern) );
         } else {
-            result = WrappedIterator.create( new TopGoalIterator(bEngine, pattern) )
+            result = UniqueExtendedIterator.create( new TopGoalIterator(bEngine, pattern) )
                             .andThen(continuation.find(pattern));
         }
         return result.filterDrop(Functor.acceptFilter);
