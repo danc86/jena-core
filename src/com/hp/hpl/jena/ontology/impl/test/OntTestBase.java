@@ -110,13 +110,13 @@ public abstract class OntTestBase
         {
             // we don't want inferencing for these unit tests
             OntModelSpec spec = new OntModelSpec( OntModelSpec.OWL_MEM );
-            spec.setReasoner( null );
+            spec.setReasonerFactory( null );
             runTest( ModelFactory.createOntologyModel( spec, null ), m_inOWL );
             
             m_owlLiteLang = true;
             
             spec = new OntModelSpec( OntModelSpec.OWL_LITE_MEM );
-            spec.setReasoner( null );
+            spec.setReasonerFactory( null );
             runTest( ModelFactory.createOntologyModel( spec, null ), m_inOWLLite );
             
             // now DAML
@@ -124,7 +124,7 @@ public abstract class OntTestBase
             m_owlLiteLang = false;
             
             spec = new OntModelSpec( OntModelSpec.DAML_MEM );
-            spec.setReasoner( null );
+            spec.setReasonerFactory( null );
             runTest( ModelFactory.createOntologyModel( spec, null ), m_inDAML );
         }
     

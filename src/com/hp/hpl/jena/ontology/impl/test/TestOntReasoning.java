@@ -107,7 +107,7 @@ public class TestOntReasoning
     public void testSubClassDirectTransInf2a() {
         // test the code path for generating direct sc with no reasoner
         OntModelSpec spec = new OntModelSpec( OntModelSpec.OWL_LITE_MEM );
-        spec.setReasoner( null );
+        spec.setReasonerFactory( null );
         OntModel m = ModelFactory.createOntologyModel( spec, null );
         
         OntClass A = m.createClass( NS + "A" );
@@ -126,7 +126,7 @@ public class TestOntReasoning
     public void testSubClassDirectTransInf2b() {
         // test the code path for generating direct sc with no reasoner
         OntModelSpec spec = new OntModelSpec( OntModelSpec.OWL_LITE_MEM );
-        spec.setReasoner( null );
+        spec.setReasonerFactory( null );
         OntModel m = ModelFactory.createOntologyModel( spec, null );
         
         OntClass A = m.createClass( NS + "A" );
@@ -179,7 +179,7 @@ public class TestOntReasoning
     public void testSubPropertyDirectTransInf2a() {
         // test the code path for generating direct sc with no reasoner
         OntModelSpec spec = new OntModelSpec( OntModelSpec.OWL_LITE_MEM );
-        spec.setReasoner( null );
+        spec.setReasonerFactory( null );
         OntModel m = ModelFactory.createOntologyModel( spec, null );
         
         OntProperty p = m.createObjectProperty( NS + "p" );
@@ -198,7 +198,7 @@ public class TestOntReasoning
     public void testSubPropertyDirectTransInf2b() {
         // test the code path for generating direct sc with no reasoner
         OntModelSpec spec = new OntModelSpec( OntModelSpec.OWL_LITE_MEM );
-        spec.setReasoner( null );
+        spec.setReasonerFactory( null );
         OntModel m = ModelFactory.createOntologyModel( spec, null );
         
         OntProperty p = m.createObjectProperty( NS + "p" );
