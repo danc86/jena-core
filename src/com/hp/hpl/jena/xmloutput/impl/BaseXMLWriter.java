@@ -7,6 +7,7 @@
 
 package com.hp.hpl.jena.xmloutput.impl;
 
+import com.hp.hpl.jena.xmloutput.RDFXMLWriterI;
 import com.hp.hpl.jena.rdf.model.impl.RDFDefaultErrorHandler;
 import com.hp.hpl.jena.rdf.model.impl.Util;
 import com.hp.hpl.jena.rdf.model.impl.ResourceImpl;
@@ -58,7 +59,7 @@ import org.apache.log4j.Logger;
  * @author  jjc
  * @version   Release='$Name$' Revision='$Revision$' Date='$Date$'
  */
-abstract public class BaseXMLWriter implements RDFWriter {
+abstract public class BaseXMLWriter implements RDFXMLWriterI {
 	/** log4j logger */
 	protected static Logger logger = Logger.getLogger(BaseXMLWriter.class);
 	static {
