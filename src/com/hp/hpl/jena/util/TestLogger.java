@@ -18,7 +18,7 @@ import org.apache.log4j.spi.LoggingEvent;
  * @author jjc
  *
  */
-public class TestLogger {
+class TestLogger {
     private int eCnt = 0;
     /** Suppresses the logger identified by c
      * 

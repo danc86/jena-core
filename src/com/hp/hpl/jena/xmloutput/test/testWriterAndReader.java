@@ -17,7 +17,7 @@ import java.io.*;
 import java.util.*;
 
 import junit.framework.*;
-import org.apache.log4j.Logger;
+//import org.apache.log4j.Logger;
 
 /**
  * This will test any Writer and Reader pair.
@@ -37,7 +37,7 @@ public class testWriterAndReader
 	static private int lastTest = 9;
 	static private int repetitionsJ = 6;
     
-    protected static Logger logger = Logger.getLogger( testWriterAndReader.class );
+ //   protected static Logger logger = Logger.getLogger( testWriterAndReader.class );
     
 	String lang;
 	String test;
@@ -487,7 +487,7 @@ public class testWriterAndReader
 	 * @param e an exception representing the error
 	 */
 	public void warning(Exception e) {
-		logger.warn( toString() + " " + e.getMessage(), e );
+//		logger.warn( toString() + " " + e.getMessage(), e );
 		throw new JenaException( e );
 	}
     
