@@ -59,7 +59,8 @@ public class RuleState {
      * Normal constructor. Creates a new RuleState as an extension to an existing one.
      * @param parent the parent RuleState being expanded, can't be null
      * @param trail the trail extension containing trail bindings for the match that forked this state
-     * @param clause the TriplePattern which forms the goal for this state
+     * @param clause the TriplePattern which forms the goal for this state, assumes it is sufficient instantiated
+     * to be looked up in the goal table.
      * @param index the index of the clause in the parent rule
      */
     public RuleState(RuleState parent, Trail trail, TriplePattern clause, int index) {
@@ -67,8 +68,8 @@ public class RuleState {
         this.trail = trail;
         ruleInstance = parent.ruleInstance;
         clauseIndex = index;
-        TriplePattern subgoal = parent.trail.partInstantiate((TriplePattern)clause);
-        goalState = ruleInstance.engine.findGoal(subgoal);
+//        TriplePattern subgoal = parent.trail.partInstantiate((TriplePattern)clause);
+        goalState = ruleInstance.engine.findGoal(clause);
         ruleInstance.generator.incRefCount();
     }
     
