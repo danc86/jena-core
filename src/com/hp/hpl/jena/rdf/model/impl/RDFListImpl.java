@@ -69,9 +69,13 @@ public class RDFListImpl
         }
             
         public boolean canWrap( Node node, EnhGraph eg ) {
-            // node will support being an RDFList facet if it has rdf:type rdf:List or equivalent
-            return node.equals( RDF.nil.asNode() ) || 
-                   eg.asGraph().find( node, RDF.type.asNode(), RDF.List.asNode() ).hasNext();
+            Graph g = eg.asGraph();
+            
+            // node will support being an RDFList facet if it has rdf:type rdf:List, is nil, or is in the domain of a list property
+            return  node.equals( RDF.nil.asNode() ) || 
+                    g.find( node, RDF.first.asNode(), Node.ANY ).hasNext() ||
+                    g.find( node, RDF.rest.asNode(), Node.ANY ).hasNext() ||
+                    g.find( node, RDF.type.asNode(), RDF.List.asNode() ).hasNext();
         }
     };
 
@@ -850,7 +854,8 @@ public class RDFListImpl
      * @return A new list cell as a resource
      */
     public Resource newListCell( RDFNode value, Resource tail ) {
-        Resource cell = getModel().createResource( listType() );
+        // Note: following the RDF WG decision, we no longer assert rdf:type rdf:List for list cells
+        Resource cell = getModel().createResource();
         
         // set the head and tail
         cell.addProperty( listFirst(), value );
