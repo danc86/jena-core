@@ -721,9 +721,9 @@ public class schemagen {
     protected void writeModelDeclaration() {
         if (useOntology()) {
             writeln( 1, "/** <p>The ontology model that holds the vocabulary terms</p> */" );
-            writeln( 1, "private static OntModel m_model = ModelFactory.createOntologyModel( ProfileRegistry." +
+            writeln( 1, "private static OntModel m_model = ModelFactory.createOntologyModel( OntModelSpec." +
                         (isTrue( OPT_LANG_DAML ) ? "DAML" : "OWL" ) +
-                        "_LANG );"
+                        "_MEM, null );"
                    );
         }
         else {
