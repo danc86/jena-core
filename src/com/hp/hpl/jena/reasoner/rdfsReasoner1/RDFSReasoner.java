@@ -15,6 +15,7 @@ import com.hp.hpl.jena.reasoner.transitiveReasoner.*;
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.vocabulary.RDFS;
+import com.hp.hpl.jena.vocabulary.ReasonerVocabulary;
 
 /**
  * An RDFS reasoner suited to modest vocabularies but large instance
@@ -91,7 +92,7 @@ public class RDFSReasoner extends TransitiveReasoner implements Reasoner {
         ReasonerFactory rf = RDFSReasonerFactory.theInstance();
         Model caps = rf.getCapabilities();
         Resource root = caps.getResource(rf.getURI());
-        return caps.contains(root, ReasonerRegistry.supportsP, property);
+        return caps.contains(root, ReasonerVocabulary.supportsP, property);
     }
      
     /**

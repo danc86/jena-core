@@ -18,6 +18,7 @@ import com.hp.hpl.jena.reasoner.test.TestUtil;
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.util.PrintUtil;
 import com.hp.hpl.jena.vocabulary.*;
+
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 import java.util.*;
@@ -347,7 +348,7 @@ public class TestBasics extends TestCase  {
         Property prop = data.createProperty(PrintUtil.egNS, "prop");
         Property propbar = data.createProperty(PrintUtil.egNS, "propbar");
         Property propfunc = data.createProperty(PrintUtil.egNS, "propfunc");
-        Property rbr = data.createProperty(Rule.RBNamespace, "restriction");
+        Property rbr = data.createProperty(ReasonerVocabulary.RBNamespace, "restriction");
         R1.addProperty(RDF.type, OWL.Restriction)
           .addProperty(OWL.onProperty, p)
           .addProperty(OWL.allValuesFrom, D);

@@ -79,16 +79,16 @@ public class BasicBackwardRuleInfGraph extends BaseInfGraph implements BackwardR
      * any additional schema graph.
      * 
      * @param reasoner the parent reasoner 
-     * @param data the data graph to be processed
      * @param ruleStore the indexed set of rules to use
+     * @param data the data graph to be processed
+     * @param schema optional precached schema (use null if not required)
      */
-    public BasicBackwardRuleInfGraph(BasicBackwardRuleReasoner reasoner, Graph data, RuleStore ruleStore) {
+    public BasicBackwardRuleInfGraph(Reasoner reasoner, RuleStore ruleStore, Graph data, Graph schema) {
         super(data, reasoner);
-        if (reasoner.schemaGraph != null) {
-            fschema = new FGraph(reasoner.schemaGraph);
+        if (schema != null) {
+            fschema = new FGraph(schema);
         }
-        
-        rules = reasoner.getRules();
+        rules = ruleStore.getAllRules();
         // Set up the backchaining engine
         engine = new BRuleEngine(this, ruleStore);
     }    

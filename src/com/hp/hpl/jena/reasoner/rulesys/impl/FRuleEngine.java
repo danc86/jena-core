@@ -76,6 +76,16 @@ public class FRuleEngine {
         infGraph = parent;
         this.rules = rules;
     }
+
+    /**
+     * Constructor. Build an empty engine to which rules must be added
+     * using setRuleStore().
+     * @param parent the F or FB infGraph that it using this engine, the parent graph
+     * holds the deductions graph and source data.
+     */
+    public FRuleEngine(ForwardRuleInfGraphI parent) {
+        infGraph = parent;
+    }
     
 //  =======================================================================
 //  Control methods
@@ -156,14 +166,14 @@ public class FRuleEngine {
      * Access the precomputed internal rule form. Used when precomputing the
      * internal axiom closures.
      */
-    public Object getRuleStore() {
+    public RuleStore getRuleStore() {
         return new RuleStore(clauseIndex, predicatesUsed, wildcardRule);
     }
     
     /**
      * Set the internal rule from from a precomputed state.
      */
-    public void setRuleStore(Object ruleStore) {
+    public void setRuleStore(RuleStore ruleStore) {
         RuleStore rs = (RuleStore)ruleStore;
         clauseIndex = rs.clauseIndex;
         predicatesUsed = rs.predicatesUsed;
@@ -210,37 +220,48 @@ public class FRuleEngine {
     }
     
     /**
+     * Compile a list of rules into the internal rule store representation.
+     * @param rules the list of Rule objects
+     * @param ignoreBrules set to true if rules written in backward notation should be ignored
+     * @return an object that can be installed into the engine using setRuleStore.
+     */
+    public static RuleStore compile(List rules, boolean ignoreBrules) {
+        OneToManyMap clauseIndex = new OneToManyMap();
+        HashSet predicatesUsed = new HashSet();
+        boolean wildcardRule = false;
+            
+        for (Iterator i = rules.iterator(); i.hasNext(); ) {
+            Rule r = (Rule)i.next();
+            if (ignoreBrules && r.isBackward()) continue;
+            Object[] body = r.getBody();
+            for (int j = 0; j < body.length; j++) {
+                if (body[j] instanceof TriplePattern) {
+                    Node predicate = ((TriplePattern) body[j]).getPredicate();
+                    ClausePointer cp = new ClausePointer(r, j);
+                    if (predicate.isVariable()) {
+                        clauseIndex.put(Node.ANY, cp);
+                        wildcardRule = true;
+                    } else {
+                        clauseIndex.put(predicate, cp);
+                        if (! wildcardRule) {
+                            predicatesUsed.add(predicate);
+                        }
+                    }
+                }
+            }
+        }
+            
+        if (wildcardRule) predicatesUsed = null;
+        return new RuleStore(clauseIndex, predicatesUsed, wildcardRule);
+    }
+    
+    /**
      * Index the rule clauses by predicate.
      * @param ignoreBrules set to true if rules written in backward notation should be ignored
      */
     protected void buildClauseIndex(boolean ignoreBrules) {
         if (clauseIndex == null) {
-            clauseIndex = new OneToManyMap();
-            predicatesUsed = new HashSet();
-            wildcardRule = false;
-            
-            for (Iterator i = rules.iterator(); i.hasNext(); ) {
-                Rule r = (Rule)i.next();
-                if (ignoreBrules && r.isBackward()) continue;
-                Object[] body = r.getBody();
-                for (int j = 0; j < body.length; j++) {
-                    if (body[j] instanceof TriplePattern) {
-                        Node predicate = ((TriplePattern) body[j]).getPredicate();
-                        ClausePointer cp = new ClausePointer(r, j);
-                        if (predicate.isVariable()) {
-                            clauseIndex.put(Node.ANY, cp);
-                            wildcardRule = true;
-                        } else {
-                            clauseIndex.put(predicate, cp);
-                            if (! wildcardRule) {
-                                predicatesUsed.add(predicate);
-                            }
-                        }
-                    }
-                }
-            }
-            
-            if (wildcardRule) predicatesUsed = null;
+            setRuleStore(compile(rules, ignoreBrules));
         }
     }
     
@@ -573,16 +594,16 @@ public class FRuleEngine {
     /**
      * Structure used to wrap up processed rule indexes.
      */
-    protected static class RuleStore {
+    public static class RuleStore {
     
         /** Map from predicate node to rule + clause, Node_ANY is used for wildcard predicates */
-        OneToManyMap clauseIndex;
+        protected OneToManyMap clauseIndex;
     
         /** List of predicates used in rules to assist in fast data loading */
-        HashSet predicatesUsed;
+        protected HashSet predicatesUsed;
     
         /** Flag, if true then there is a wildcard predicate in the rule set so that selective insert is not useful */
-        boolean wildcardRule;
+        protected boolean wildcardRule;
         
         /** Constructor */
         RuleStore(OneToManyMap clauseIndex, HashSet predicatesUsed, boolean wildcardRule) {

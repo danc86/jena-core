@@ -74,9 +74,6 @@ public class Rule implements ClauseEntry {
     /** Flags whether the rule was written as a forward or backward rule */
     protected boolean isBackward = false;
     
-    /** A namespace used for Rubic specific properties */
-    public static final String RBNamespace = "urn:x-hp-jena:rubik/";
-    
     /**
      * Constructor
      * @param body a list of TriplePatterns or Functors.

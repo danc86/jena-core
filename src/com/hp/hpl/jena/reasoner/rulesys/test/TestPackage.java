@@ -28,16 +28,14 @@ public class TestPackage extends TestSuite {
     /** Creates new TestPackage */
     private TestPackage() {
         super("RuleSys");
+        
         addTest( "TestBasics", TestBasics.suite() );
-        
-        // Omitted temporarily in the interests of speed?
-        // addTest( "TestOWLRules", TestOWLRules.suite() );
-        
-        // Omitted while developing backward version
         addTest( "TestBackchainer", TestBackchainer.suite() );
-        //addTest( "TestRDFSRules", TestRDFSRules.suite() );
-        
         addTest( "TestFBRules", TestFBRules.suite() );
+        addTest( "TestGenericRules", TestGenericRules.suite() );
+        
+        addTest( "TestRDFSRules", TestRDFSRules.suite() );
+        addTest( "TestOWLRules", TestOWLRules.suite() );
     }
 
     // helper method

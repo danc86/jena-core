@@ -16,6 +16,7 @@ import com.hp.hpl.jena.reasoner.IllegalParameterException;
 import com.hp.hpl.jena.vocabulary.RDF;
 
 import java.io.*;
+import java.net.*;
 import java.util.*;
 
 /**
@@ -123,6 +124,32 @@ public class Util {
             result.append("\n");
         }
         return result.toString();
+    }
+    
+    /**
+     * Open a file defined by a URL and read it into a single string.
+     * If the URL fails it will try a plain file name as well.
+     */
+    public static String loadURLFile(String urlStr) throws IOException {
+        BufferedReader dataReader;
+        try {
+            URL url = new URL(urlStr);
+            dataReader = new BufferedReader(new InputStreamReader(url.openStream())) ;
+        } catch (java.net.MalformedURLException e) {
+            // Try as a file.
+            dataReader = new BufferedReader(new FileReader(urlStr));
+        }
+        StringWriter sw = new StringWriter(1024);
+        char buff[] = new char[1024];
+        while (dataReader.ready()) {
+            int l = dataReader.read(buff);
+            if (l <= 0)
+                break;
+            sw.write(buff, 0, l);
+        }
+        dataReader.close();
+        sw.close();
+        return sw.toString();
     }
     
     /**

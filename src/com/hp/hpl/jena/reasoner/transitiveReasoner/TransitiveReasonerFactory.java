@@ -56,13 +56,13 @@ public class TransitiveReasonerFactory implements ReasonerFactory {
         if (capabilities == null) {
             capabilities = new ModelMem();
             Resource base = capabilities.createResource(getURI());
-            base.addProperty(ReasonerRegistry.nameP, "Transitive Reasoner")
-                .addProperty(ReasonerRegistry.descriptionP, "Provides reflexive-transitive closure of subClassOf and subPropertyOf")
-                .addProperty(ReasonerRegistry.supportsP, RDFS.subClassOf)
-                .addProperty(ReasonerRegistry.supportsP, RDFS.subPropertyOf)
-                .addProperty(ReasonerRegistry.supportsP, ReasonerVocabulary.directSubClassOf)
-                .addProperty(ReasonerRegistry.supportsP, ReasonerVocabulary.directSubPropertyOf)
-                .addProperty(ReasonerRegistry.versionP, "0.1");
+            base.addProperty(ReasonerVocabulary.nameP, "Transitive Reasoner")
+                .addProperty(ReasonerVocabulary.descriptionP, "Provides reflexive-transitive closure of subClassOf and subPropertyOf")
+                .addProperty(ReasonerVocabulary.supportsP, RDFS.subClassOf)
+                .addProperty(ReasonerVocabulary.supportsP, RDFS.subPropertyOf)
+                .addProperty(ReasonerVocabulary.supportsP, ReasonerVocabulary.directSubClassOf)
+                .addProperty(ReasonerVocabulary.supportsP, ReasonerVocabulary.directSubPropertyOf)
+                .addProperty(ReasonerVocabulary.versionP, "0.1");
         }
         return capabilities;
     }

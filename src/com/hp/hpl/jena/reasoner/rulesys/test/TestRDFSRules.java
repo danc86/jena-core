@@ -104,7 +104,10 @@ public class TestRDFSRules extends TestCase {
             for (Iterator i = m.listStatements(null, RDF.type, C1); i.hasNext(); i.next()) count++;
         }
         long t2 = System.currentTimeMillis();
-        System.out.println(name + ": " + count +" results in " + (t2-t1)/loop +"ms");
+        long time10 = (t2-t1)*10/loop;
+        long time = time10/10;
+        long timeFraction = time10 - (time*10);
+        System.out.println(name + ": " + count +" results in " + time + "." + timeFraction +"ms");
 //        t1 = System.currentTimeMillis();
 //        for (int j = 0; j < 10; j++) {
 //            count = 0;
@@ -133,9 +136,9 @@ public class TestRDFSRules extends TestCase {
             doTiming(rdfs1, tbox, data, "RDFS1", 1);    
             doTiming(rdfsRule, tbox, data, "RDFS F rule", 1);    
             doTiming(rdfsFBRule, tbox, data, "RDFS FB rule", 1);    
-            doTiming(rdfs1, tbox, data, "RDFS1", 10);    
+            doTiming(rdfs1, tbox, data, "RDFS1", 50);    
             doTiming(rdfsRule, tbox, data, "RDFS F rule", 10);    
-            doTiming(rdfsFBRule, tbox, data, "RDFS FB rule", 10);    
+            doTiming(rdfsFBRule, tbox, data, "RDFS FB rule", 50);    
  
         } catch (Exception e) {
             System.out.println("Problem: " + e.toString());

@@ -58,22 +58,38 @@ public class BasicForwardRuleInfGraph extends BaseInfGraph implements ForwardRul
 //=======================================================================
 // Core methods
 
-    /**
-     * Constructor. Creates a new inference graph based on the given rule set. 
-     * No data graph is attached at this stage. This is to allow
-     * any configuration parameters (such as logging) to be set before the data is added.
-     * Note that until the data is added using {@link #bindData bindData} then any operations
-     * like add, remove, find will result in errors.
-     * 
-     * @param reasoner the parent reasoner 
-     * @param rules the list of rules to use this time
-     * @param schema the (optional) schema data which is being processed
-     */
-    public BasicForwardRuleInfGraph(Reasoner reasoner, List rules, Graph schema) {
-        super(null, reasoner);
-        engine = new FRuleEngine(this, rules);
-        this.schemaGraph = schema;
-    }    
+   /**
+    * Constructor. Creates a new inference graph to which a (compiled) rule set
+    * and a data graph can be attached. This separation of binding is useful to allow
+    * any configuration parameters (such as logging) to be set before the data is added.
+    * Note that until the data is added using {@link #bindData bindData} then any operations
+    * like add, remove, find will result in errors.
+    * 
+    * @param reasoner the parent reasoner 
+    * @param schema the (optional) schema data which is being processed
+    */
+   public BasicForwardRuleInfGraph(Reasoner reasoner, Graph schema) {
+       super(null, reasoner);
+       engine = new FRuleEngine(this);
+       this.schemaGraph = schema;
+   }    
+
+   /**
+    * Constructor. Creates a new inference graph based on the given rule set. 
+    * No data graph is attached at this stage. This is to allow
+    * any configuration parameters (such as logging) to be set before the data is added.
+    * Note that until the data is added using {@link #bindData bindData} then any operations
+    * like add, remove, find will result in errors.
+    * 
+    * @param reasoner the parent reasoner 
+    * @param rules the list of rules to use this time
+    * @param schema the (optional) schema data which is being processed
+    */
+   public BasicForwardRuleInfGraph(Reasoner reasoner, List rules, Graph schema) {
+       super(null, reasoner);
+       engine = new FRuleEngine(this, rules);
+       this.schemaGraph = schema;
+   }    
 
     /**
      * Constructor. Creates a new inference graph based on the given rule set
@@ -89,6 +105,14 @@ public class BasicForwardRuleInfGraph extends BaseInfGraph implements ForwardRul
         rebind(data);
     }
 
+    /**
+     * Attach a compiled rule set to this inference graph.
+     * @param rulestore a compiled set of rules (i.e. the result of an FRuleEngine.compile). 
+     */
+    public void setRuleStore(FRuleEngine.RuleStore ruleStore) {
+        engine.setRuleStore(ruleStore);
+    }
+    
     /**
      * Replace the underlying data graph for this inference graph and start any
      * inferences over again. This is primarily using in setting up ontology imports
@@ -137,7 +161,7 @@ public class BasicForwardRuleInfGraph extends BaseInfGraph implements ForwardRul
      * in the parent Reasoner.
      * @return return true if the rule set has also been loaded, will always be false for this case but subclasses do more
      */
-    public boolean preloadDeductions(Graph preload) {
+    protected boolean preloadDeductions(Graph preload) {
         Graph d = fdeductions.getGraph();
         for (Iterator i = preload.find(null, null, null); i.hasNext(); ) {
             d.add((Triple)i.next());

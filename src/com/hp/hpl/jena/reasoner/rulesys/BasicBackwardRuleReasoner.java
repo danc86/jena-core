@@ -12,6 +12,7 @@ package com.hp.hpl.jena.reasoner.rulesys;
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.reasoner.*;
 import com.hp.hpl.jena.reasoner.rulesys.impl.RuleStore;
+import com.hp.hpl.jena.vocabulary.ReasonerVocabulary;
 import com.hp.hpl.jena.graph.*;
 import java.util.*;
 
@@ -101,7 +102,7 @@ public class BasicBackwardRuleReasoner implements Reasoner {
         if (factory == null) return false;
         Model caps = factory.getCapabilities();
         Resource root = caps.getResource(factory.getURI());
-        return caps.contains(root, ReasonerRegistry.supportsP, property);
+        return caps.contains(root, ReasonerVocabulary.supportsP, property);
     }
     
     /**
@@ -132,7 +133,7 @@ public class BasicBackwardRuleReasoner implements Reasoner {
      * constraints imposed by this reasoner.
      */
     public InfGraph bind(Graph data) throws ReasonerException {
-        BasicBackwardRuleInfGraph graph = new BasicBackwardRuleInfGraph(this, data, ruleStore);
+        BasicBackwardRuleInfGraph graph = new BasicBackwardRuleInfGraph(this, ruleStore, data, schemaGraph);
         graph.setDerivationLogging(recordDerivations);
         return graph;
     }

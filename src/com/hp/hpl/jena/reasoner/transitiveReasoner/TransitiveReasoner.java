@@ -13,6 +13,7 @@ import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.reasoner.*;
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.vocabulary.RDFS;
+import com.hp.hpl.jena.vocabulary.ReasonerVocabulary;
 import com.hp.hpl.jena.util.iterator.ExtendedIterator;
 
 import java.util.HashSet;
@@ -105,7 +106,7 @@ public class TransitiveReasoner implements Reasoner {
         ReasonerFactory rf = TransitiveReasonerFactory.theInstance();
         Model caps = rf.getCapabilities();
         Resource root = caps.getResource(rf.getURI());
-        return caps.contains(root, ReasonerRegistry.supportsP, property);
+        return caps.contains(root, ReasonerVocabulary.supportsP, property);
     }
      
     /**

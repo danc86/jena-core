@@ -32,6 +32,9 @@ public class TestOWLRules extends TestCase {
     /** Flag to control whether tracing and logging enabled */
     protected static boolean enableTracing = false;
     
+    /** Flag to control whether to print performance stats as we go */
+    protected static boolean printStats = false;
+    
     /**
      * Boilerplate for junit
      */ 
@@ -163,11 +166,11 @@ public class TestOWLRules extends TestCase {
     protected void runTest() throws IOException {
         if (testForward) {
             OWLWGTester tester = new OWLWGTester(OWLRuleReasonerFactory.theInstance(), this, null);
-            tester.runTests(manifest, enableTracing);
+            tester.runTests(manifest, enableTracing, printStats);
 //            OWLRuleReasoner.printStats();
         } else {
             OWLWGTester tester = new OWLWGTester(OWLFBRuleReasonerFactory.theInstance(), this, null);
-            tester.runTests(manifest, enableTracing);
+            tester.runTests(manifest, enableTracing, printStats);
         }
     }
 

@@ -11,6 +11,7 @@ package com.hp.hpl.jena.reasoner.rulesys;
 
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.reasoner.*;
+import com.hp.hpl.jena.vocabulary.ReasonerVocabulary;
 import com.hp.hpl.jena.graph.*;
 import java.util.*;
 
@@ -30,8 +31,11 @@ public class FBRuleReasoner implements Reasoner {
     /** The rules to be used by this instance of the forward engine */
     protected List rules;
     
+    /** A compiled version of the rules */
+    protected FBRuleInfGraph.RuleStore ruleStore;
+    
     /** A precomputed set of schema deductions */
-    protected InfGraph schemaGraph;
+    protected Graph schemaGraph;
     
     /** Flag to set whether the inference class should record derivations */
     protected boolean recordDerivations = false;
@@ -39,22 +43,13 @@ public class FBRuleReasoner implements Reasoner {
     /** Flag which, if true, enables tracing of rule actions to logger.info */
     boolean traceOn = false;
 //    boolean traceOn = true;
+
+    /** Flag, if true we cache the closure of the pure rule set with its axioms */
+    protected static final boolean cachePreload = true;
     
-    /** Base URI used for configuration properties for rule reasoners */
-    static final String URI = "http://www.hpl.hp.com/semweb/2003/RuleReasoner";
+    /** The cached empty closure, if wanted */
+    protected InfGraph preload;  
      
-    /** Property used to configure the derivation logging behaviour of the reasoner.
-     *  Set to "true" to enable logging of derivations. */
-    public static final Property PROPderivationLogging = ResourceFactory.createProperty(URI+"#", "derivationLogging");
-    
-    /** Property used to configure the tracing behaviour of the reasoner.
-     *  Set to "true" to enable internal trace message to be sent to Logger.info . */
-    public static final Property PROPtraceOn = ResourceFactory.createProperty(URI+"#", "traceOn");
-    
-    /** Property used to configure the maximum number of rule firings allowed in 
-     * a single operation. Should be an xsd:int. */
-    public static final Property PROPrulesThreshold = ResourceFactory.createProperty(URI+"#", "rulesThreshold");
-    
     /**
      * Constructor. This is the raw version that does not reference a ReasonerFactory
      * and so has no capabilities description. 
@@ -66,11 +61,19 @@ public class FBRuleReasoner implements Reasoner {
     
     /**
      * Constructor
+     * @param factory the parent reasoner factory which is consulted to answer capability questions
+     */
+    public FBRuleReasoner(ReasonerFactory factory) {
+        this(null, factory);
+    }
+    
+    /**
+     * Constructor
      * @param rules a list of Rule instances which defines the ruleset to process
      * @param factory the parent reasoner factory which is consulted to answer capability questions
      */
     public FBRuleReasoner(List rules, ReasonerFactory factory) {
-        this.rules = rules;
+        this(rules);
         this.factory = factory;
     }
     
@@ -78,10 +81,9 @@ public class FBRuleReasoner implements Reasoner {
      * Internal constructor, used to generated a partial binding of a schema
      * to a rule reasoner instance.
      */
-    protected FBRuleReasoner(List rules, InfGraph schemaGraph, ReasonerFactory factory) {
-        this.rules = rules;
+    protected FBRuleReasoner(List rules, Graph schemaGraph, ReasonerFactory factory) {
+        this(rules, factory);
         this.schemaGraph = schemaGraph;
-        this.factory = factory;
     }
 
     /**
@@ -109,7 +111,7 @@ public class FBRuleReasoner implements Reasoner {
         if (factory == null) return false;
         Model caps = factory.getCapabilities();
         Resource root = caps.getResource(factory.getURI());
-        return caps.contains(root, ReasonerRegistry.supportsP, property);
+        return caps.contains(root, ReasonerVocabulary.supportsP, property);
     }
     
     /**
@@ -117,9 +119,16 @@ public class FBRuleReasoner implements Reasoner {
      * will be combined with the data when the final InfGraph is created.
      */
     public Reasoner bindSchema(Graph tbox) throws ReasonerException {
-        FBRuleInfGraph graph = new FBRuleInfGraph(this, rules, null, tbox);
+        if (schemaGraph != null) {
+            throw new ReasonerException("Can only bind one schema at a time to an OWLRuleReasoner");
+        }
+        FBRuleInfGraph graph = new FBRuleInfGraph(this, rules, getPreload(), tbox);
+        if (!cachePreload) graph.setRuleStore(getRuleStore());
         graph.prepare();
-        return new FBRuleReasoner(rules, graph, factory);
+        FBRuleReasoner fbr  = new FBRuleReasoner(rules, graph, factory);
+        fbr.setDerivationLogging(recordDerivations);
+        fbr.setTraceOn(traceOn);
+        return fbr;
     }
     
     /**
@@ -142,11 +151,22 @@ public class FBRuleReasoner implements Reasoner {
      * constraints imposed by this reasoner.
      */
     public InfGraph bind(Graph data) throws ReasonerException {
-        FBRuleInfGraph graph = new FBRuleInfGraph(this, rules, schemaGraph);
+        Graph schemaArg = schemaGraph == null ? getPreload() : (FBRuleInfGraph)schemaGraph; 
+        FBRuleInfGraph graph = new FBRuleInfGraph(this, rules, schemaArg);
+        if (schemaArg == null) graph.setRuleStore(getRuleStore());
         graph.setDerivationLogging(recordDerivations);
         graph.setTraceOn(traceOn);
         graph.rebind(data);
         return graph;
+    }
+    
+    /**
+     * Set (or change) the rule set that this reasoner should execute.
+     * @param rules a list of Rule objects
+     */
+    public void setRules(List rules) {
+        this.rules = rules;
+        preload = null;
     }
     
     /**
@@ -156,7 +176,29 @@ public class FBRuleReasoner implements Reasoner {
     public List getRules() {
         return rules;
     } 
+    
+    /**
+     * Get the single static precomputed rule closure.
+     */
+    protected synchronized InfGraph getPreload() {
+        if (cachePreload && preload == null) {
+            preload = (new FBRuleInfGraph(this, rules, null));
+            ((FBRuleInfGraph)preload).setRuleStore(getRuleStore());
+            preload.prepare();
+        }
+        return preload;
+    }
    
+    /**
+     * Return the prepared rule set.
+     */
+    protected FBRuleInfGraph.RuleStore getRuleStore() {
+        if (ruleStore == null) {
+            ruleStore = FBRuleInfGraph.compile(rules);
+        }
+        return ruleStore;
+    }
+    
     /**
      * Switch on/off drivation logging.
      * If set to true then the InfGraph created from the bind operation will start
@@ -181,8 +223,8 @@ public class FBRuleReasoner implements Reasoner {
      * Set a configuration paramter for the reasoner. The supported parameters
      * are:
      * <ul>
-     * <li>BasicForwaredRuleReasoner.PROPderivationLogging - set to true to enable recording all rule derivations</li>
-     * <li>BasicForwaredRuleReasoner.PROPtraceOn - set to true to enable verbose trace information to be sent to the logger INFO channel</li>
+     * <li>PROPderivationLogging - set to true to enable recording all rule derivations</li>
+     * <li>PROPtraceOn - set to true to enable verbose trace information to be sent to the logger INFO channel</li>
      * </ul> 
      * 
      * @param parameterUri the uri identifying the parameter to be changed
@@ -190,9 +232,9 @@ public class FBRuleReasoner implements Reasoner {
      * java object like Boolean or Integer.
      */
     public void setParameter(String parameterUri, Object value) {
-        if (parameterUri.equals(PROPderivationLogging.getURI())) {
+        if (parameterUri.equals(ReasonerVocabulary.PROPderivationLogging.getURI())) {
             recordDerivations = Util.convertBooleanPredicateArg(parameterUri, value);
-        } else if (parameterUri.equals(PROPtraceOn.getURI())) {
+        } else if (parameterUri.equals(ReasonerVocabulary.PROPtraceOn.getURI())) {
             traceOn =  Util.convertBooleanPredicateArg(parameterUri, value);
         } else {
             throw new IllegalParameterException("Don't recognize configuration parameter " + parameterUri + " for rule-based reasoner");

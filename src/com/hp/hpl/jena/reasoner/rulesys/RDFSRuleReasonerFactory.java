@@ -50,16 +50,16 @@ public class RDFSRuleReasonerFactory implements ReasonerFactory {
         if (capabilities == null) {
             capabilities = ModelFactory.createDefaultModel();
             Resource base = capabilities.createResource(getURI());
-            base.addProperty(ReasonerRegistry.nameP, "RDFS Rule Reasoner")
-                .addProperty(ReasonerRegistry.descriptionP, "Complete RDFS implementation supporting metalevel statements.\n"
+            base.addProperty(ReasonerVocabulary.nameP, "RDFS Rule Reasoner")
+                .addProperty(ReasonerVocabulary.descriptionP, "Complete RDFS implementation supporting metalevel statements.\n"
                                             + "Pure forward chaining so all entailments are immediate calculated\n"
                                             + "Can separate tbox and abox data if desired to reuse tbox caching or mix them.")
-                .addProperty(ReasonerRegistry.supportsP, RDFS.subClassOf)
-                .addProperty(ReasonerRegistry.supportsP, RDFS.subPropertyOf)
-                .addProperty(ReasonerRegistry.supportsP, RDFS.member)
-                .addProperty(ReasonerRegistry.supportsP, RDFS.range)
-                .addProperty(ReasonerRegistry.supportsP, RDFS.domain)
-                .addProperty(ReasonerRegistry.versionP, "0.1");
+                .addProperty(ReasonerVocabulary.supportsP, RDFS.subClassOf)
+                .addProperty(ReasonerVocabulary.supportsP, RDFS.subPropertyOf)
+                .addProperty(ReasonerVocabulary.supportsP, RDFS.member)
+                .addProperty(ReasonerVocabulary.supportsP, RDFS.range)
+                .addProperty(ReasonerVocabulary.supportsP, RDFS.domain)
+                .addProperty(ReasonerVocabulary.versionP, "0.1");
         }
         return capabilities;
     }
