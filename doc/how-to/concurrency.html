@@ -77,7 +77,8 @@ threads reading the model concurrently.</p>
 
 <p>Care must be taken with iterators: unless otherwise stated, all iterators 
 must be assumed to be iterating over the datastructures in the model or graph 
-implmentation itself.&nbsp; It is not possible to safely pass these </p>
+implmentation itself.&nbsp; It is not possible to safely pass these out of
+criticial sections.</p>
 
 <h2>RDQL Query</h2>
 <p>RDQL query results are iterators and no different from other iterators in 
