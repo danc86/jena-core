@@ -15,6 +15,7 @@ import java.util.*;
 
 /**
     a FragmentMap maps Nodes to Triples/Fragments and from Triples to Nodes.
+    OBSOLETE.
     
     @author kers
 */

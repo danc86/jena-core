@@ -1,5 +1,5 @@
 /*
-  (c) Copyright 2003, Hewlett-Packard Development Company, LP
+  (c) Copyright 2003, 2004 Hewlett-Packard Development Company, LP
   [See end of file]
   $Id$
 */
@@ -77,7 +77,7 @@ public final class FragmentTripleIterator extends NiceIterator
     private static void fill( GraphAdd ga, Node n, Object tripleOrFragments )
         {
         if (tripleOrFragments instanceof Triple)
-            FragmentMap.graphAddQuad( ga, n, (Triple) tripleOrFragments ); 
+            SimpleReifier.graphAddQuad( ga, n, (Triple) tripleOrFragments ); 
         else
             ((Fragments) tripleOrFragments).includeInto( ga );    
         }
@@ -97,7 +97,7 @@ public final class FragmentTripleIterator extends NiceIterator
 }
 
 /*
-    (c) Copyright 2003 Hewlett-Packard Development Company, LP
+    (c) Copyright 2003, 2004 Hewlett-Packard Development Company, LP
     All rights reserved.
 
     Redistribution and use in source and binary forms, with or without
