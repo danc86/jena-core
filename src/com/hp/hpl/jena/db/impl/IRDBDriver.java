@@ -202,6 +202,12 @@ public interface IRDBDriver {
 	 public int graphIdAlloc ( String graphName );
 	
 	/**
+	 * Deallocate an identifier for a new graph.
+	 * @param graphId The graph identifier.
+	 */
+	 public void graphIdDealloc ( int graphId );
+
+	/**
  	* Return the identifier of the most recently inserted auto-incremented row.
  	* @return the identifier of the most recently inserted auto-increment row.
  	*/
