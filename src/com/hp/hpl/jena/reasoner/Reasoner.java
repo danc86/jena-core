@@ -50,7 +50,7 @@ public interface Reasoner {
     public Reasoner bindSchema(Graph tbox) throws ReasonerException;
     
     /**
-     * Attach the reasoner to a set of RDF ddata to process.
+     * Attach the reasoner to a set of RDF data to process.
      * The reasoner may already have been bound to specific rules or ontology
      * axioms (encoded in RDF) through earlier bindRuleset calls.
      * @param data the RDF data to be processed, some reasoners may restrict
