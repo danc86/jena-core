@@ -132,6 +132,12 @@ public interface IPSet {
 	 */
 	public void deleteTriple(Triple t, IDBID gid);
 	
+	/**
+		 * @param t the triple to be added
+		 * @param gid the id of the graph
+		 */
+	public void deleteTripleList(List triples, IDBID gid);
+	
 	
 	/**
 	 * Method extractTripleFromRowData.
