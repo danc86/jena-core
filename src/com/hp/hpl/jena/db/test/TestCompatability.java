@@ -165,7 +165,7 @@ public class TestCompatability extends TestCase {
 
 		/** Create a model of the given name for this database config */
 
-		ModelRDB createModel(String name) throws RDFException {
+		ModelRDB createModel(String name) {
 			if (supportsMultipleModels) {
 				if (m_dbconn == null) {
 					m_dbconn = new DBConnection(m_baseuri, m_user, m_password);
@@ -194,7 +194,7 @@ public class TestCompatability extends TestCase {
 		}
 		
 		// Override set up to create RDB models instead of mem models
-		public void setUp() throws RDFException {
+		public void setUp() {
 			m1 = m_config.createModel("jr1");
 			m2 = m_config.createModel("jr2");
 			m3 = m_config.createModel("jr3");

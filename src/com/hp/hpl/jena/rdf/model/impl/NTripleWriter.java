@@ -52,7 +52,7 @@ public class NTripleWriter extends Object implements RDFWriter {
     public NTripleWriter() {
     }
     public void write(Model model, OutputStream out, String base)
-        throws RDFException {
+         {
         try {
             Writer w;
             try {
@@ -73,7 +73,7 @@ public class NTripleWriter extends Object implements RDFWriter {
         }
     }
     public void write(Model baseModel, Writer writer, String base)
-        throws RDFException {
+         {
         try {
             Model model = ModelCom.withHiddenStatements(baseModel);
             PrintWriter pw;

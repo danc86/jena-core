@@ -56,17 +56,17 @@ public interface RDFReaderF {
     
 /** return an RDFReader instance for the default serialization language.
  * @return an RDFReader instance for the default serialization language.
- * @throws RDFException generic RDF exception
+ * @ generic RDF exception
  */    
-    public RDFReader getReader() throws RDFException;
+    public RDFReader getReader() ;
     
 /** return an RDFReader instance for the specified serialization language.
  * @return the RDFWriter instance
  * @param lang the serialization langauge - <code>null</code> selects the
  *            default
- * @throws RDFException generic RDF exception
+ 
  */    
-    public RDFReader getReader(String lang) throws RDFException;
+    public RDFReader getReader(String lang) ;
     
 /** set the class name for the RDFReader for a langauge
  * @param lang the language for which this class should be used

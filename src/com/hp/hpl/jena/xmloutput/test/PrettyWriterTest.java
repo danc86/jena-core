@@ -120,13 +120,13 @@ public class PrettyWriterTest extends TestCase {
 
 	}
 	public void testOWLPrefix()
-		throws RDFException, IOException, MalformedPatternException {
+		throws IOException, MalformedPatternException {
 //		check(
 //			"file:testing/abbreviated/collection.rdf",
 //			"xmlns:owl=[\"']http://www.w3.org/2002/07/owl#[\"']");
 	}
 	public void testLi()
-		throws RDFException, IOException, MalformedPatternException {
+		throws IOException, MalformedPatternException {
 		check(
 			"file:testing/abbreviated/container.rdf",
 			"<rdf:li.*<rdf:li.*<rdf:li.*<rdf:li");

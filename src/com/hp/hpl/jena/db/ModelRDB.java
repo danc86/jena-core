@@ -331,7 +331,7 @@ public class ModelRDB extends ModelCom implements Model, ModelI {
 	 * @deprecated Since Jena 2.0, this call is not recommended.  Instead use
 	 * the soon-to-be-released bulk-load functions.
 	 */
-	public Model loadAll() throws RDFException {
+	public Model loadAll()  {
 		ModelMem m = new ModelMem();
 		for (StmtIterator i = this.listStatements(); i.hasNext(); ) {
 			m.add((Statement)i.next());

@@ -58,7 +58,7 @@ public class Basic extends BaseXMLWriter {
 	}
 
 	protected void writeRDFStatements(Model model, PrintWriter writer)
-		throws RDFException {
+		 {
 		ResIterator rIter = model.listSubjects();
 		while (rIter.hasNext()) {
 			writeRDFStatements(model, rIter.nextResource(), writer);
@@ -73,7 +73,7 @@ public class Basic extends BaseXMLWriter {
 		Model model,
 		Resource subject,
 		PrintWriter writer)
-		throws RDFException {
+		 {
 		StmtIterator sIter = model.listStatements( subject, null, (RDFNode) null );
 
 		writeDescriptionHeader(subject, writer);
@@ -86,14 +86,14 @@ public class Basic extends BaseXMLWriter {
 	}
 
 	protected void writeDescriptionHeader(Resource subject, PrintWriter writer)
-		throws RDFException {
+		 {
 		writer.print(space + "<" + rdfEl("Description") + " ");
 		writeResourceId(subject, writer);
 		writer.println(">");
 	}
 
 	protected void writePredicate(Statement stmt, final PrintWriter writer)
-		throws RDFException {
+		 {
 
 		final Property predicate = stmt.getPredicate();
 		final RDFNode object = stmt.getObject();
@@ -134,7 +134,7 @@ public class Basic extends BaseXMLWriter {
 		writer.println(space + "</" + rdfEl("Description") + ">");
 	}
 	protected void writeResourceId(Resource r, PrintWriter writer)
-		throws RDFException {
+		 {
 		if (r.isAnon()) {
 			writer.print(rdfAt("nodeID") + "=" + q(anonId(r)));
 		} else {
@@ -146,7 +146,7 @@ public class Basic extends BaseXMLWriter {
 	}
 
 	protected void writeResourceReference(Resource r, PrintWriter writer)
-		throws RDFException {
+		 {
 		if (r.isAnon()) {
 			writer.print(rdfAt("nodeID") + "=" + q(anonId(r)));
 		} else {

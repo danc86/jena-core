@@ -8,10 +8,7 @@ package com.hp.hpl.jena.db.impl;
 import java.util.List;
 
 import com.hp.hpl.jena.db.RDFRDBException;
-import com.hp.hpl.jena.graph.Node_Literal;
-import com.hp.hpl.jena.graph.Triple;
-import com.hp.hpl.jena.graph.TripleMatch;
-import com.hp.hpl.jena.rdf.model.RDFException;
+import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.util.iterator.ExtendedIterator;
 
 
@@ -153,7 +150,7 @@ public interface IPSet {
 		String predURI,
 		String objURI,
 		String objVal,
-		String objRef)throws RDFException;
+		String objRef);
 		
 	/**
 	 * Method find matching entries

@@ -28,12 +28,12 @@ public class N3JenaReader implements RDFReader
 	
 	// Jena's Reader interface
 	
-	public void read(Model model, Reader r, String base) throws RDFException
+	public void read(Model model, Reader r, String base) 
 	{
 		read(model, r, base, null) ;
 	}
 
-	public void read(Model model, java.lang.String url) throws RDFException
+	public void read(Model model, java.lang.String url) 
 	{
 	      try {
         	URLConnection conn = new URL(url).openConnection();
@@ -56,7 +56,7 @@ public class N3JenaReader implements RDFReader
         }
 	}
 	
-	public void read(Model model, Reader r, String base, String sourceName) throws RDFException
+	public void read(Model model, Reader r, String base, String sourceName) 
 	{
 		// check reader is it charset safe ie not file reader
 		//i.e. InputStreamReader
@@ -80,13 +80,13 @@ public class N3JenaReader implements RDFReader
 	}
 	
 
-	public void read(Model model, InputStream in, String base) throws RDFException
+	public void read(Model model, InputStream in, String base) 
 	{
 		read(model, in, base, null) ;
 	}
 
 	
-	public void read(Model model, InputStream in, String base, String sourceName) throws RDFException
+	public void read(Model model, InputStream in, String base, String sourceName) 
 	{
 		try {
 			N3ParserEventHandler h = new N3toRDF(model, base) ;
