@@ -75,6 +75,10 @@ public class ReasonerVocabulary {
      *  caching in a generic rule reasoner. Set to "true" to enable caching. */
     public static Property PROPenableTGCCaching;
     
+    /** Property enable scanning of source data for container membership properites
+     *  during RDFS reasoning. Set to "true" to enable caching. */
+    public static Property PROPenableCMPScan;
+    
     /** A namespace used for Rubric specific properties */
     public static final String RBNamespace = "urn:x-hp-jena:rubrik/";
             
@@ -109,6 +113,7 @@ public class ReasonerVocabulary {
             PROPruleSet = ResourceFactory.createProperty(PropURI+"#", "ruleSet");
             PROPenableOWLTranslation = ResourceFactory.createProperty(PropURI+"#", "enableOWLTranslation");
             PROPenableTGCCaching = ResourceFactory.createProperty(PropURI+"#", "enableTGCCaching");
+            PROPenableCMPScan = ResourceFactory.createProperty(PropURI+"#", "enableCMPScan");
         } catch (Exception e) {
             System.err.println("Initialization error: " + e);
             e.printStackTrace(System.err);
