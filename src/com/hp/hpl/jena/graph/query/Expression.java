@@ -121,6 +121,24 @@ public interface Expression
         }
     
     /**
+     	A concrete class for representing fixed constants; each instance
+     	can hold a separate value and its valuator returns that value.
+    */
+    public static class Fixed extends Constant
+    	{
+        protected Object value;
+        
+        public Fixed( Object value )
+            { this.value = value; }
+    	
+        public Object getValue()
+            { return value; }
+        
+        public Valuator prepare( VariableIndexes vi ) 
+            { return new FixedValuator( value ); }
+    	}
+    
+    /**
         An abstract base class for variable nodes; subclasses implement getName().
     */
     public static abstract class Variable extends Base
@@ -140,6 +158,50 @@ public interface Expression
         public abstract String getFun();
         public abstract Expression getArg( int i );
         }
+    
+    public static abstract class Dyadic extends Application
+    	{
+        protected Expression L;
+        protected Expression R;
+        protected String F;
+        
+        public Dyadic( Expression L, String F, Expression R )
+            {
+            this.L = L;
+            this.F = F;
+            this.R = R;
+            }
+        
+        public int argCount()
+            { return 2; }
+        
+        public Expression getArg( int i )
+            { return i == 0 ? L : R; }
+        
+        public String getFun()
+            { return F; }
+        
+        public abstract Object eval( Object l, Object r );
+        
+        public Valuator prepare( VariableIndexes vi )
+            {
+            final Valuator l = L.prepare( vi ), r = R.prepare( vi );
+            return new Valuator()
+	            {
+
+                public boolean evalBool( IndexValues iv)
+                    {
+                    return false;
+                    }
+
+                public Object evalObject( IndexValues iv )
+                    {
+                    return eval( l.evalObject( iv ), r.evalObject( iv ) );
+                    }
+	                
+	            };
+            }
+    	}
 
     /**
         Utility methods for Expressions, captured in a class because they can't be
