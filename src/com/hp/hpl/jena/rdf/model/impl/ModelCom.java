@@ -874,30 +874,19 @@ public class ModelCom extends EnhGraph
     public ReifiedStatement createReifiedStatement( String uri, Statement s )
         { return modelReifier.createReifiedStatement( uri, s ); }
     
-    public boolean contains(Statement s) throws RDFException {
-        return graph.contains( s.asTriple() );
-    }
+    public boolean contains( Statement s )    
+        { return graph.contains( s.asTriple() ); }
     
     public boolean containsResource( RDFNode r )
-        {
-        return 
-            listStatements( (Resource) r, null, (RDFNode) null ).hasNext()
-            || listStatements( null, (Property) r.as(Property.class), (RDFNode) null ).hasNext()
-            || listStatements( null, null, r ).hasNext()
-            ;
-        }
+        { return graph.queryHandler().containsNode( r.asNode() ); }
   
     public boolean contains(Resource s, Property p) throws RDFException {
         ClosableIterator it = graph.find( s.asNode(), p.asNode(), null );
-        boolean rslt = it.hasNext();
-        it.close();
-        return rslt;
+        try { return it.hasNext(); } finally { it.close(); }
     }
     
-    public boolean contains(Resource s, Property p, RDFNode o)
-      throws RDFException {
-        return graph.contains( s.asNode(), p.asNode(), o.asNode() );
-    }
+    public boolean contains( Resource s, Property p, RDFNode o )
+        { return graph.contains( s.asNode(), p.asNode(), o.asNode() ); }
         
     public Statement getProperty(Resource s,Property p) throws RDFException {
         StmtIterator iter = null;

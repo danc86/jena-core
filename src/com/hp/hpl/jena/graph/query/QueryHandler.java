@@ -53,6 +53,11 @@ public interface QueryHandler
     	underlying graph; nulls count as wildcards.
     */
     public ExtendedIterator subjectsFor( Node p, Node o );
+    
+    /**
+        true iff the graph contains a triple in which n appears somewhere.
+    */
+    public boolean containsNode( Node n );
     }
 
 /*
