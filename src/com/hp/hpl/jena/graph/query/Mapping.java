@@ -7,7 +7,6 @@
 package com.hp.hpl.jena.graph.query;
 
 import com.hp.hpl.jena.graph.*;
-
 import java.util.*;
 
 /**
@@ -35,8 +34,12 @@ public class Mapping
         @return the index of v in the mapping
     */
 	public int indexOf( Node v )
-		{ return ((Integer) map.get( v )).intValue(); }
-		
+		{ 
+        Integer i = (Integer) map.get( v );
+        if (i == null) throw new Query.UnboundVariableException( v );
+        return i.intValue();
+        }
+
     /**
         allocate an index to the node _v_. _v_ must not already
         be mapped.

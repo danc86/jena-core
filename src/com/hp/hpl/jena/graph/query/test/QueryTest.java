@@ -501,17 +501,22 @@ public class QueryTest extends GraphTestBase
         }
         
     /**
-        PLACEHOLDER
-    */
-    public void testQueryConstraintNull()
+        test that unbound constraint variables are handled "nicely".
+    */  
+    public void testQueryConstraintUnbound()
         {
-        try 
-            { 
-            Query q = new Query().addConstraint( null, node( "ne" ), null );
-            fail( "null operands to addConstraint should be caught" );
+        Query q = new Query()
+            .addConstraint( Query.X, Query.NE, Query.Y )
+            .addMatch( Query.X, Query.ANY, Query.X )
+            ;
+        Graph g = graphWith( "x R x; x R y" );
+        try
+            {
+            ExtendedIterator it = q.executeBindings( g, new Node[] {Query.X} );
+            fail( "should spot unbound variable" );
             }
-        catch (Exception e) { /* should be more explicit */ }
-        }
+        catch (Query.UnboundVariableException b) { /* as required */ }
+        } 
         
     public void testCloseQuery()
         {

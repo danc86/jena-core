@@ -10,6 +10,8 @@ import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.graph.test.*;
 import com.hp.hpl.jena.mem.*;
 
+import com.hp.hpl.jena.shared.*;
+
 import java.util.*;
 
 import com.hp.hpl.jena.util.iterator.*;
@@ -38,7 +40,10 @@ public class Query
 	public Query()
 		{
 		}
-		
+        
+    public static class UnboundVariableException extends JenaException
+        { public UnboundVariableException( Node n ) { super( n.toString() ); } }
+        		
     public Query( Graph pattern )
         { 
         addMatches( pattern );
