@@ -266,7 +266,11 @@ public class OWLProfile
         },
         {  ObjectProperty.class,        new SupportsCheck() {
                                             public boolean doCheck( Node n, EnhGraph g ) {
-                                                return g.asGraph().contains( n, RDF.type.asNode(), OWL.ObjectProperty.asNode() );
+                                                return g.asGraph().contains( n, RDF.type.asNode(), OWL.ObjectProperty.asNode() ) ||
+                                                        g.asGraph().contains( n, RDF.type.asNode(), OWL.TransitiveProperty.asNode() ) || 
+                                                        g.asGraph().contains( n, RDF.type.asNode(), OWL.SymmetricProperty.asNode() ) || 
+                                                        g.asGraph().contains( n, RDF.type.asNode(), OWL.InverseFunctionalProperty.asNode() ) 
+                                                ;
                                             }
                                         }
         },
@@ -279,13 +283,7 @@ public class OWLProfile
         {  InverseFunctionalProperty.class, new SupportsCheck() {
                                             public boolean doCheck( Node n, EnhGraph g ) {
                                                 return g.asGraph().contains( n, RDF.type.asNode(), OWL.InverseFunctionalProperty.asNode() ) &&
-                                                !g.asGraph().contains( n, RDF.type.asNode(), OWL.DatatypeProperty.asNode() );
-                                            }
-                                        }
-        },
-        {  ObjectProperty.class,        new SupportsCheck() {
-                                            public boolean doCheck( Node n, EnhGraph g ) {
-                                                return g.asGraph().contains( n, RDF.type.asNode(), OWL.ObjectProperty.asNode() );
+                                                      !g.asGraph().contains( n, RDF.type.asNode(), OWL.DatatypeProperty.asNode() );
                                             }
                                         }
         },
@@ -301,7 +299,11 @@ public class OWLProfile
                                                 return g.asGraph().contains( n, RDF.type.asNode(), RDF.Property.asNode() ) ||
                                                        g.asGraph().contains( n, RDF.type.asNode(), OWL.ObjectProperty.asNode() ) ||
                                                        g.asGraph().contains( n, RDF.type.asNode(), OWL.DatatypeProperty.asNode() ) ||
-                                                       g.asGraph().contains( n, RDF.type.asNode(), OWL.AnnotationProperty.asNode() );
+                                                       g.asGraph().contains( n, RDF.type.asNode(), OWL.AnnotationProperty.asNode() ) ||
+                                                       g.asGraph().contains( n, RDF.type.asNode(), OWL.TransitiveProperty.asNode() ) || 
+                                                       g.asGraph().contains( n, RDF.type.asNode(), OWL.SymmetricProperty.asNode() ) || 
+                                                       g.asGraph().contains( n, RDF.type.asNode(), OWL.FunctionalProperty.asNode() ) || 
+                                                       g.asGraph().contains( n, RDF.type.asNode(), OWL.InverseFunctionalProperty.asNode() ); 
                                             }
                                         }
         },

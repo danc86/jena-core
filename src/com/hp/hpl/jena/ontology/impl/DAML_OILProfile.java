@@ -334,7 +334,9 @@ public class DAML_OILProfile
         },
         {  ObjectProperty.class,        new SupportsCheck() {
                                             public boolean doCheck( Node n, EnhGraph g ) {
-                                                return g.asGraph().contains( n, RDF.type.asNode(), DAML_OIL.ObjectProperty.asNode() );
+                                               return g.asGraph().contains( n, RDF.type.asNode(), DAML_OIL.ObjectProperty.asNode() ) ||
+                                                      g.asGraph().contains( n, RDF.type.asNode(), DAML_OIL.TransitiveProperty.asNode() ) ||
+                                                      g.asGraph().contains( n, RDF.type.asNode(), DAML_OIL.UnambiguousProperty.asNode() );
                                             }
                                         }
         },
@@ -349,12 +351,6 @@ public class DAML_OILProfile
                                             public boolean doCheck( Node n, EnhGraph g ) {
                                                 // DAML's alias for functional property is unambiguousProperty
                                                 return g.asGraph().contains( n, RDF.type.asNode(), DAML_OIL.UnambiguousProperty.asNode() );
-                                            }
-                                        }
-        },
-        {  ObjectProperty.class,        new SupportsCheck() {
-                                            public boolean doCheck( Node n, EnhGraph g ) {
-                                                return g.asGraph().contains( n, RDF.type.asNode(), DAML_OIL.ObjectProperty.asNode() );
                                             }
                                         }
         },
@@ -377,7 +373,11 @@ public class DAML_OILProfile
                                                 return g.asGraph().contains( n, RDF.type.asNode(), RDF.Property.asNode() ) ||
                                                        g.asGraph().contains( n, RDF.type.asNode(), DAML_OIL.Property.asNode() ) ||
                                                        g.asGraph().contains( n, RDF.type.asNode(), DAML_OIL.ObjectProperty.asNode() ) ||
-                                                       g.asGraph().contains( n, RDF.type.asNode(), DAML_OIL.DatatypeProperty.asNode() );
+                                                       g.asGraph().contains( n, RDF.type.asNode(), DAML_OIL.DatatypeProperty.asNode() ) ||
+                                                       g.asGraph().contains( n, RDF.type.asNode(), DAML_OIL.TransitiveProperty.asNode() ) ||
+                                                       g.asGraph().contains( n, RDF.type.asNode(), DAML_OIL.UnambiguousProperty.asNode() ) ||
+                                                       g.asGraph().contains( n, RDF.type.asNode(), DAML_OIL.UniqueProperty.asNode() )
+                                                       ;
                                             }
                                         }
         },
