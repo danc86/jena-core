@@ -42,6 +42,9 @@ public class BFRuleContext implements RuleContext {
     /** A temporary list of Triples which will be added to the stack and triples at the end of a rule scan */
     protected List pending;
 
+    /** A temporary list of Triples which will be removed from the graph at the end of a rule scan */
+    protected List deletesPending = new ArrayList();
+
     /** A searchable index into the pending triples */
     protected Graph pendingCache;
     
@@ -147,6 +150,12 @@ public class BFRuleContext implements RuleContext {
             // pendingCache.delete(t);
         }
         pending.clear();
+        // Flush out pending removes as well
+        for (Iterator i = deletesPending.iterator(); i.hasNext(); ) {
+            Triple t = (Triple)i.next();
+            graph.delete(t);
+        }
+        deletesPending.clear();
     }
     
     /**
@@ -212,7 +221,8 @@ public class BFRuleContext implements RuleContext {
      * Remove a triple from the deduction graph (and the original graph if relevant).
      */
     public void remove(Triple t) {
-        graph.delete(t);
+        deletesPending.add(t);
+//        graph.delete(t);
     }
 
 }
