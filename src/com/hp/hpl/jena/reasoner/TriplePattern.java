@@ -39,7 +39,7 @@ public class TriplePattern {
     protected Node object;
     
     /** A cached, preconstructed wildcard node */
-    public static final Node nodeWildcard = Node.makeVariable("*");
+    public static final Node nodeWildcard = Node.createVariable("*");
     
     /**
      * Constructor - builds a pattern from three nodes,

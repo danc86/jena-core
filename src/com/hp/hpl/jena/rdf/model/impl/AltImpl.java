@@ -201,12 +201,12 @@ public class AltImpl extends ContainerImpl implements Alt {
     }    
     
     public Alt setDefault(String o, String l) throws RDFException {
-        return setDefault( new LiteralImpl( Node.makeLiteral( o,l, false ), (Model) getModel()) );
+        return setDefault( new LiteralImpl( Node.createLiteral( o,l, false ), (Model) getModel()) );
     }      
         
     protected Statement getDefaultStatement() throws RDFException {
         StmtIterator iter = getModel().listStatements(
-                             new SelectorImpl(this, RDF.li(1), (RDFNode) null));
+                             new SimpleSelector(this, RDF.li(1), (RDFNode) null));
         if (!iter.hasNext()) {
             return null;
         }

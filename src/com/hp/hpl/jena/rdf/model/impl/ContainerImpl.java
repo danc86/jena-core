@@ -159,7 +159,7 @@ public class ContainerImpl extends ResourceImpl
     }
 
     private Literal literal( String s, String lang )
-        { return new LiteralImpl( Node.makeLiteral( s, lang, false ), (Model) getModel() ); }
+        { return new LiteralImpl( Node.createLiteral( s, lang, false ), (Model) getModel() ); }
             
     public NodeIterator iterator() throws RDFException {
         return ((ModelI)getModel()).listContainerMembers(this, iteratorFactory);

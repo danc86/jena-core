@@ -192,7 +192,7 @@ public class ReasonerRegistry {
      */
     public static Node makeDirect(Node node) {
         String directName = "urn:x-hp-direct-predicate:" + node.getURI().replace(':','_') ;
-        return Node.makeURI(directName);
+        return Node.createURI(directName);
     }
     
 }

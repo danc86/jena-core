@@ -301,7 +301,7 @@ public class SeqImpl extends ContainerImpl implements Seq {
     }
         
     private Literal literal( String s, String lang )
-        { return new LiteralImpl( Node.makeLiteral( s, lang, false ), (Model) getModel() ); }
+        { return new LiteralImpl( Node.createLiteral( s, lang, false ), (Model) getModel() ); }
         
     protected void shiftUp(int start, int finish) throws RDFException {
         Statement stmt = null;

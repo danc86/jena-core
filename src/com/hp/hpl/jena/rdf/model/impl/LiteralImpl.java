@@ -136,7 +136,7 @@ public class LiteralImpl extends EnhNode implements Literal {
      *Model implementors should use Literal instructors which include the Model.
      */
     public LiteralImpl(String s, String l, boolean wellFormed,Model m) {    	
-        this(Node.makeLiteral(s,l,wellFormed),m);
+        this(Node.createLiteral(s,l,wellFormed),m);
     }
     
     /**

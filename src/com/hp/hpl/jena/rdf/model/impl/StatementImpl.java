@@ -325,7 +325,7 @@ public class StatementImpl //extends ResourceImpl
         { return stringReplace( s, "", false ); };
 
     protected StatementImpl stringReplace( String s, String lang, boolean wellFormed )
-        { return replace( new LiteralImpl( Node.makeLiteral( s, lang, wellFormed ), model ) ); };
+        { return replace( new LiteralImpl( Node.createLiteral( s, lang, wellFormed ), model ) ); };
             
     /** it turns out to be handy to return this StatementImpl as the result */ 
     protected StatementImpl replace(RDFNode n) throws RDFException {
