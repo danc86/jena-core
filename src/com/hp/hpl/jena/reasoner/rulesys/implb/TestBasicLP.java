@@ -70,7 +70,7 @@ public class TestBasicLP  extends TestCase {
 //        return new TestSuite( TestBasicLP.class );
         
         TestSuite suite = new TestSuite();
-        suite.addTest(new TestBasicLP( "testProblem8" ));
+        suite.addTest(new TestBasicLP( "testRDFSProblem20" ));
         return suite;
     }  
    
@@ -1012,7 +1012,8 @@ public class TestBasicLP  extends TestCase {
     }
 
     /**
-     * A problem from the original backchainer tests - incorrect additional deduction
+     * A problem from the original backchainer tests - incorrect additional deduction.
+     * Was due to interpeter setup failing to clone input variables.
      */
     public void testProblem7() {
         String ruleSrc = 
@@ -1050,7 +1051,8 @@ public class TestBasicLP  extends TestCase {
     }
 
     /**
-     * A problem from the original backchainer tests - RDFS example which failed
+     * A problem from the original backchainer tests - RDFS example which failed.
+     * Was due to unsupported multi-head statement.
      */
     public void testProblem8() {
         String ruleSrc = 

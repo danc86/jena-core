@@ -131,13 +131,15 @@ public class LPTopGoalIterator implements ClosableIterator, LPInterpreterContext
      * @see com.hp.hpl.jena.util.iterator.ClosableIterator#close()
      */
     public void close() {
-        lookAhead = null;
-        interpreter.close();
-        interpreter = null;
-        isReady = false;
-        checkReadyNeeded = false;
-        nextToRun = null;
-        choicePoints = null;
+        if (interpreter != null) {
+            lookAhead = null;
+            interpreter.close();
+            interpreter = null;
+            isReady = false;
+            checkReadyNeeded = false;
+            nextToRun = null;
+            choicePoints = null;
+        }
     }
 
     /**

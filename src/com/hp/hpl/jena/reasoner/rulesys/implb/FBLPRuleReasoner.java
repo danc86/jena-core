@@ -12,6 +12,9 @@ package com.hp.hpl.jena.reasoner.rulesys.implb;
 
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.reasoner.*;
+import com.hp.hpl.jena.reasoner.rulesys.ClauseEntry;
+import com.hp.hpl.jena.reasoner.rulesys.Functor;
+import com.hp.hpl.jena.reasoner.rulesys.Rule;
 import com.hp.hpl.jena.reasoner.rulesys.Util;
 import com.hp.hpl.jena.vocabulary.ReasonerVocabulary;
 import com.hp.hpl.jena.graph.*;
@@ -176,6 +179,21 @@ public class FBLPRuleReasoner implements Reasoner {
     public List getRules() {
         return rules;
     } 
+    
+    /**
+     * Register an RDF predicate as one whose presence in a goal should force
+     * the goal to be tabled. This is better done directly in the rule set.
+     */
+    public synchronized void tablePredicate(Node predicate) {
+        // Create a dummy rule which tables the predicate ...
+        Rule tablePredicateRule = new Rule("", 
+                new ClauseEntry[]{
+                    new Functor("table", new Node[] { predicate })
+                }, 
+                new ClauseEntry[]{});
+        // ... end append the rule to the ruleset
+        rules.add(tablePredicateRule);
+    }
     
     /**
      * Get the single static precomputed rule closure.
