@@ -1247,9 +1247,9 @@ public void deleteTripleAR(
 	 */
 	public ExtendedIterator find(TripleMatch t, IDBID graphID) {
 	   String astName = getASTname();
-	   Node subj =  t.getSubject();
-	   Node pred =  t.getPredicate();
-	   Node obj_node = t.getObject();
+	   Node subj =  t.getMatchSubject();
+	   Node pred =  t.getMatchPredicate();
+	   Node obj_node = t.getMatchObject();
 	   Node_Literal objLit;
 	   String gid = graphID.getID().toString();
 	   ResultSetTripleIterator result= new ResultSetTripleIterator(this, graphID);

@@ -76,9 +76,9 @@ public class GraphMem extends GraphBase implements Graph {
     /** Returns an iterator over Triple.
      */
     public ExtendedIterator find(TripleMatch m) {
-        Node s = m.getSubject();
-        Node p = m.getPredicate();
-        Node o = m.getObject();
+        Node s = m.getMatchSubject();
+        Node p = m.getMatchPredicate();
+        Node o = m.getMatchObject();
         Triple tm = m.asTriple();
         // @@ some redundant compares in this code which could be improved
         if (s != null) {

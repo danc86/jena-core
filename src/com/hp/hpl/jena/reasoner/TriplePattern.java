@@ -63,9 +63,9 @@ public class TriplePattern implements ClauseEntry {
      * for separately.
      */
     public TriplePattern(TripleMatch match) {
-        this.subject   = normalize(match.getSubject());
-        this.predicate = normalize(match.getPredicate());
-        this.object    = normalize(match.getObject());
+        this.subject   = normalize(match.getMatchSubject());
+        this.predicate = normalize(match.getMatchPredicate());
+        this.object    = normalize(match.getMatchObject());
     }
     
     /**

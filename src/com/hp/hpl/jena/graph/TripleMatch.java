@@ -1,5 +1,5 @@
 /*
-  (c) Copyright 2002, Hewlett-Packard Company, all rights reserved.
+  (c) Copyright 2002, 2003, Hewlett-Packard Company, all rights reserved.
   [See end of file]
   $Id$
 */
@@ -16,23 +16,26 @@ package com.hp.hpl.jena.graph;
  */
 public interface TripleMatch {
     
-        /** If it is known that all triples selected by this filter will
-         *  have a common subject, return that node, otherwise return null */    
-        Node getSubject();
-        
-        /** If it is known that all triples selected by this match will
-         *  have a common predicate, return that node, otherwise return null */
-        Node getPredicate();
-        
-        /** If it is known that all triples selected by this match will
-         *  have a common object, return that node, otherwise return null */
-        Node getObject();
+    /** If it is known that all triples selected by this filter will
+     *  have a common subject, return that node, otherwise return null */    
+    Node getMatchSubject();
     
+    /** If it is known that all triples selected by this match will
+     *  have a common predicate, return that node, otherwise return null */
+    Node getMatchPredicate();
+    
+    /** If it is known that all triples selected by this match will
+     *  have a common object, return that node, otherwise return null */
+    Node getMatchObject();
+
+    /**
+        Answer a Triple capturing this match.
+    */
     Triple asTriple();
 }
 
 /*
-    (c) Copyright Hewlett-Packard Company 2002
+    (c) Copyright Hewlett-Packard Company 2002, 2003
     All rights reserved.
 
     Redistribution and use in source and binary forms, with or without

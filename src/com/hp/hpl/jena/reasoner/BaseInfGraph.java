@@ -167,7 +167,7 @@ public abstract class BaseInfGraph extends GraphBase implements InfGraph {
      * Returns an iterator over Triples.
      */
     public ExtendedIterator find(TripleMatch m) {
-        return find(m.getSubject(), m.getPredicate(), m.getObject())
+        return find(m.getMatchSubject(), m.getMatchPredicate(), m.getMatchObject())
              .filterKeep(new TripleMatchFilter(m.asTriple()));
     }
       
