@@ -273,11 +273,11 @@ public class DAMLTest
         // count the super-classes of a Person
         int sCount0 = countIteration( person.prop_subClassOf().getAll(  ), true, "super-class of Person (prop_subClassOf) " );
         int sCount1 = countIteration( person.getSuperClasses(), true, "super-class of Person (getSuperClasses) " );
-        assertEquals( "person should have 7 super-classes (by prop_subClassOf)", 10, sCount0 );
-        assertEquals( "person should have 9 super-classes (by getSuperClasses)", 10, sCount1 );
+        assertEquals( "person should have 10 super-classes (by prop_subClassOf)", 10, sCount0 );
+        assertEquals( "person should have 9 super-classes (by getSuperClasses)", 9, sCount1 );
 
         // count the number of sub-classes of a Person
-        assertEquals( "person should have 4 sub-classes", 4,
+        assertEquals( "person should have 3 sub-classes", 3,
                       countIteration( person.getSubClasses(), true, "Person super-class of: " ) );
 
         // person is a disjoint union of Man and Woman
@@ -363,13 +363,13 @@ public class DAMLTest
         int tl_one_supers0 = countIteration( tl_one.prop_subClassOf().getAll(  ), true, "prop_subClassOf " );
         int tl_one_supers1 = countIteration( tl_one.getSuperClasses( false ), true, "getSuperClasses ");
         assertEquals( "Should be two super-classes of tl_one by prop_subClassOf", 3, tl_one_supers0 );
-        assertEquals( "Should be two super-classes of tl_one by getSuperClasses", 3, tl_one_supers1 );
+        assertEquals( "Should be two super-classes of tl_one by getSuperClasses", 2, tl_one_supers1 );
 
         // Bug report by Andrei S. Lopatenko
         DAMLClass researcher = m0.getDAMLClass( tcNs + "Researcher" );
         assertNotNull( "Class Researcher should not be null", researcher );
         int researcherSupers = countIteration( researcher.getSuperClasses( false ), true, "Super-class of researcher" );
-        assertEquals( "Should be 2 super-classes of researcher", 3, researcherSupers );
+        assertEquals( "Should be 2 super-classes of researcher", 2, researcherSupers );
     }
 
 

@@ -85,8 +85,8 @@ public class TestOntReasoning
         A.addSubClass( C );
         C.addSubClass( D );
         
-        iteratorTest( A.listSubClasses(), new Object[] {A, B, C, D} );
-        iteratorTest( A.listSubClasses( true ), new Object[] {B, C, A} );
+        iteratorTest( A.listSubClasses(), new Object[] {B, C, D} );
+        iteratorTest( A.listSubClasses( true ), new Object[] {B, C} );
     }
     
     public void testSubClassDirectTransInf1b() {
@@ -102,8 +102,8 @@ public class TestOntReasoning
         C.addSubClass( D );
         A.addSubClass( D );     // directly asserts a link that could be inferred
         
-        iteratorTest( A.listSubClasses(), new Object[] {A, B, C, D} );
-        iteratorTest( A.listSubClasses( true ), new Object[] {B, C, A} );
+        iteratorTest( A.listSubClasses(), new Object[] {B, C, D} );
+        iteratorTest( A.listSubClasses( true ), new Object[] {B, C} );
     }
     
     public void testSubClassDirectTransInf2a() {

@@ -1371,6 +1371,15 @@ public class OntResourceImpl
             }
         }
     }
+    
+    /** Filter for accepting only the given value, based on .equals() */
+    protected class SingleEqualityFilter
+        implements Filter
+    {
+        private Object m_obj;
+        public SingleEqualityFilter( Object x ) { m_obj = x; }
+        public boolean accept( Object x ) {return m_obj.equals( x );}
+    }
 }
 
 
