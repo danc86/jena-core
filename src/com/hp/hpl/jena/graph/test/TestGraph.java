@@ -1,5 +1,5 @@
 /*
-  (c) Copyright 2002, Hewlett-Packard Company, all rights reserved.
+  (c) Copyright 2002, 2003 Hewlett-Packard Company, all rights reserved.
   [See end of file]
   $Id$
 */
@@ -23,9 +23,7 @@ import junit.framework.*;
 public class TestGraph extends GraphTestBase
     { 
 	public TestGraph( String name )
-		{
-		super( name );
-		};
+		{ super( name ); };
 		
     public static TestSuite suite()
         { return new TestSuite( TestGraph.class ); }   
