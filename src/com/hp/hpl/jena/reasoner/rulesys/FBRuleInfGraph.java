@@ -463,6 +463,14 @@ public class FBRuleInfGraph  extends BasicForwardRuleInfGraph implements Backwar
     }
    
     /**
+     * Set to true to cause functor-valued literals to be dropped from rule output.
+     * Default is true.
+     */
+    public void setFunctorFiltering(boolean param) {
+        filterFunctors = param;
+    }
+    
+    /**
      * Return the number of rules fired since this rule engine instance
      * was created and initialized. The current implementation only counts
      * forward rules and does not track dynamic backward rules needed for

@@ -91,8 +91,12 @@ public class ReasonerVocabulary {
     public static String RDFS_FULL = RDFSRuleReasoner.FULL_RULES;
     
     /** Constant for PROPsetRDFSLevel - simplified, higher performance rules. */
-    public static String RDFS_SIMPLE = RDFSRuleReasoner.SIMPLE_RULES;
+    public static String RDFS_SIMPLE = RDFSRuleReasoner.SIMPLE_RULES;    
     
+    /** Property used to switch on/off filtering of functors from returned results
+     *  in the generic rule engine. Default is filtering on. */
+    public static Property PROPenableFunctorFiltering;
+
     /** A namespace used for Rubrik specific properties */
     public static final String RBNamespace = "urn:x-hp-jena:rubrik/";
 
@@ -135,6 +139,7 @@ public class ReasonerVocabulary {
             PROPenableTGCCaching = ResourceFactory.createProperty(PropURI+"#", "enableTGCCaching");
             PROPenableCMPScan = ResourceFactory.createProperty(PropURI+"#", "enableCMPScan");
             PROPsetRDFSLevel = ResourceFactory.createProperty(PropURI+"#", "setRDFSLevel");
+            PROPenableFunctorFiltering= ResourceFactory.createProperty(PropURI+"#", "enableFunctorFiltering");
         } catch (Exception e) {
             System.err.println("Initialization error: " + e);
             e.printStackTrace(System.err);

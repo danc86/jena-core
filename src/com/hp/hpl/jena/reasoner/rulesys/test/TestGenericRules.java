@@ -213,8 +213,31 @@ public class TestGenericRules extends TestCase {
             m2.createStatement(newConfig, ReasonerVocabulary.PROPruleMode, "hybrid"),
             m2.createStatement(newConfig, ReasonerVocabulary.PROPruleSet, "testing/reasoners/genericRuleTest.rules")
             } );
+    }
+    
+    /**
+     * Test control of functor filtering
+     */
+    public void testHybridFunctorFilter() {
+        Graph data = new GraphMem();
+        data.add(new Triple(a, r, b));
+        data.add(new Triple(a, p, s));
+        List rules = Rule.parseRules( "[r0: (?x r ?y) (?x p ?z) -> (?x q func(?y, ?z)) ]" );        
+        GenericRuleReasoner reasoner = (GenericRuleReasoner)GenericRuleReasonerFactory.theInstance().create(null);
+        reasoner.setRules(rules);
+        reasoner.setMode(GenericRuleReasoner.HYBRID);
         
-        
+        InfGraph infgraph = reasoner.bind(data);
+        TestUtil.assertIteratorValues(this, 
+              infgraph.find(null, q, null), new Object[] {
+              } );
+              
+        reasoner.setFunctorFiltering(false);
+        infgraph = reasoner.bind(data);
+        TestUtil.assertIteratorValues(this, 
+              infgraph.find(null, q, null), new Object[] {
+                  new Triple(a, q, Functor.makeFunctorNode("func", new Node[]{b, s}))
+              } );
     }
 
     /**

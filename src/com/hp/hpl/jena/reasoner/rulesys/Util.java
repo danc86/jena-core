@@ -159,8 +159,12 @@ public class Util {
     public static BufferedReader openResourceFile(String filename) throws IOException {
         InputStream is = ClassLoader.getSystemResourceAsStream(filename);
         if (is == null) {
-            // Can't find it on classpath, so try relative to current directory
-            is = new FileInputStream(filename);
+            // Try non-system loader
+            is = Util.class.getResourceAsStream(filename);
+            if (is == null) {
+                // Can't find it on classpath, so try relative to current directory
+                is = new FileInputStream(filename);
+            }
         }
         return new BufferedReader(new InputStreamReader(is, "UTF-8"));
     }
