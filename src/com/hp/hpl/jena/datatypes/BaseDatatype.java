@@ -91,12 +91,11 @@ public class BaseDatatype implements RDFDatatype {
     
     /**
      * Compares two instances of values of the given datatype.
-     * This default requires value, datatype and lang tag equality.
+     * This default requires value and datatype equality.
      */
     public boolean isEqual(LiteralLabel value1, LiteralLabel value2) {
         return value1.getDatatype() == value2.getDatatype()
-             && value1.getValue().equals(value2.getValue())
-             && langTagCompatible(value1, value2);
+             && value1.getValue().equals(value2.getValue());
     }
     
     /**
