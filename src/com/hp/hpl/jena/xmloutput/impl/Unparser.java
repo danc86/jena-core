@@ -98,6 +98,8 @@ import com.hp.hpl.jena.rdf.model.impl.Util;
 import com.hp.hpl.jena.rdf.arp.*;
 import org.apache.xerces.util.XMLChar;
 
+import com.hp.hpl.jena.shared.*;
+
 import java.util.*;
 import java.io.*;
 
@@ -1109,8 +1111,8 @@ class Unparser {
 	/* Unexpected error.
 	 */
 	private void error(String msg) {
-		RuntimeException e =
-			new RuntimeException("Internal error in Unparser: " + msg);
+		JenaException e =
+			new JenaBrokenException( "Internal error in Unparser: " + msg );
 		this.prettyWriter.fatalError(e);
 		throw e; // Just in case.
 	}
@@ -1137,7 +1139,7 @@ class Unparser {
 				"Internal error - giving up",
 				"Unparser",
 				"getNameSpace");
-			throw new RuntimeException("Internal error");
+			throw new JenaBrokenException( "Internal error: getNameSpace(bNode)" );
 		} else {
 			String uri = r.getURI();
 			int split = Util.splitNamespace(uri);
@@ -1184,7 +1186,7 @@ class Unparser {
 				"Internal error - giving up",
 				"Unparser",
 				"getLocalName");
-			throw new RuntimeException("Internal error");
+			throw new JenaBrokenException( "Internal error: getLocalName(bNode)" );
 		} else {
 			String uri = r.getURI();
 			int split = Util.splitNamespace(uri);

@@ -24,6 +24,8 @@ import com.hp.hpl.jena.vocabulary.VCARD;
 import com.hp.hpl.jena.vocabulary.RDFSyntax;
 import com.hp.hpl.jena.vocabulary.DAML_OIL;
 
+import com.hp.hpl.jena.shared.*;
+
 import com.hp.hpl.jena.rdf.arp.URI;
 import com.hp.hpl.jena.rdf.arp.MalformedURIException;
 import com.hp.hpl.jena.rdf.arp.ARP;
@@ -296,6 +298,7 @@ abstract public class BaseXMLWriter implements RDFXMLWriterI {
 			true);
 	}
 	static public boolean dbg = false;
+    
 	String tag(String uri, String local, int type, boolean localIsQname) {
 		if (dbg)
 			System.err.println(uri + " - " + local);
@@ -327,7 +330,7 @@ abstract public class BaseXMLWriter implements RDFXMLWriterI {
 				"Internal error: unexpected QName URI: <"
 					+ uri
 					+ ">.  Fixing up with j.cook.up code.",
-				new RuntimeException());
+				new JenaBrokenException( "unexpected QName URI " + uri ));
 			cookUp = true;
 		} else if (prefix.length() == 0) {
 			if (type == ATTR || type == FASTATTR)
@@ -360,7 +363,7 @@ abstract public class BaseXMLWriter implements RDFXMLWriterI {
 					break;
 				case FAST :
 					logger.fatal("Unreachable code - reached.");
-					throw new RuntimeException("Shouldn't happen.");
+					throw new JenaBrokenException( "cookup reached final FAST" );
 			}
 		}
 		return prefix + ":" + local;

@@ -10,6 +10,7 @@ package com.hp.hpl.jena.xmloutput.test;
 import com.hp.hpl.jena.rdf.model.*;
 
 import com.hp.hpl.jena.mem.ModelMem;
+import com.hp.hpl.jena.shared.*;
 
 import com.hp.hpl.jena.util.Log;
 import com.hp.hpl.jena.vocabulary.RDFSyntax;
@@ -470,7 +471,7 @@ public class testWriterAndReader extends TestCase implements RDFErrorHandler {
 	 */
 	public void warning(Exception e) {
 		Log.warning(toString() + " " + e.getMessage());
-		throw new RuntimeException(e.getMessage());
+		throw new JenaException( e );
 	}
 	public void error(Exception e) {
 		fail(e.getMessage());
