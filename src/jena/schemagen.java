@@ -344,7 +344,7 @@ public class schemagen {
     
     /** Create the source model after determining which input language */
     protected void determineLanguage() {
-        m_source = ModelFactory.createOntologyModel( isTrue( OPT_LANG_DAML ) ? ProfileRegistry.DAML_LANG : ProfileRegistry.OWL_LANG );
+        m_source = ModelFactory.createOntologyModel( OntModelSpec.getDefaultSpec( isTrue( OPT_LANG_DAML ) ? ProfileRegistry.DAML_LANG : ProfileRegistry.OWL_LANG ), null );
         m_source.getDocumentManager().setProcessImports( false );
     }
     

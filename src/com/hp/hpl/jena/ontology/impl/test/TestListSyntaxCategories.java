@@ -571,7 +571,6 @@ public class TestListSyntaxCategories
                 // now we walk the iterator
                 while (i.hasNext()) {
                     Resource res = (Resource) i.next();
-                    
                     assertTrue( "Should not fail node test on " + res, test( res ));
                     
                     actual++;

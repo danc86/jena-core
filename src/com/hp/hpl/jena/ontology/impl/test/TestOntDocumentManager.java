@@ -104,8 +104,8 @@ public class TestOntDocumentManager
         OntDocumentManager mgr = new OntDocumentManager();
         
         assertTrue( "Should be at least one specification loaded", mgr.listDocuments().hasNext() );
-        assertNotNull( "cache URL for owl should not be null", mgr.getCacheURL( "http://www.w3.org/2002/07/owl" ));
-        assertEquals( "cache URL for owl not correct", "file:vocabularies/owl.owl", mgr.getCacheURL( "http://www.w3.org/2002/07/owl" ));
+        assertNotNull( "cache URL for owl should not be null", mgr.doAltURLMapping( "http://www.w3.org/2002/07/owl" ));
+        assertEquals( "cache URL for owl not correct", "file:vocabularies/owl.owl", mgr.doAltURLMapping( "http://www.w3.org/2002/07/owl" ));
         assertEquals( "prefix for owl not correct", "owl", mgr.getPrefixForURI( "http://www.w3.org/2002/07/owl" ));
         
         mgr = new OntDocumentManager( "" );
@@ -126,7 +126,7 @@ public class TestOntDocumentManager
         assertEquals( "URI for owl not correct", "http://www.w3.org/2002/07/owl", mgr.getURIForPrefix( "owl" ));
         
         mgr.addAltEntry( "http://www.w3.org/2002/07/owl", "file:foo.bar" );
-        assertEquals( "Failed to retrieve cache location", "file:foo.bar", mgr.getCacheURL( "http://www.w3.org/2002/07/owl" ) ); 
+        assertEquals( "Failed to retrieve cache location", "file:foo.bar", mgr.doAltURLMapping( "http://www.w3.org/2002/07/owl" ) ); 
         
         mgr.addLanguageEntry( "http://www.w3.org/2002/07/owl", "http://www.w3.org/2002/07/owl" );
         assertEquals( "Failed to retrieve language", "http://www.w3.org/2002/07/owl", mgr.getLanguage( "http://www.w3.org/2002/07/owl" ) ); 
@@ -182,7 +182,8 @@ public class TestOntDocumentManager
             }
             
             // now load the model - we always start from a.owl in the given directory
-            OntModel m = ModelFactory.createOntologyModel( OWL.NAMESPACE, null, dm );
+            OntModelSpec spec = new OntModelSpec( null, dm, null, ProfileRegistry.OWL_LANG );
+            OntModel m = ModelFactory.createOntologyModel( spec, null );
             assertNotNull( "Ontology model should not be null", m );
             
             m.read( "file:" + m_dir + "/a.owl" );
