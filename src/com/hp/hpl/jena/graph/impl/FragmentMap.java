@@ -40,6 +40,11 @@ public class FragmentMap
     public Object get( Node tag )
         { return forwardMap.get( tag ); }
     
+    public void removeFragments( Node key )
+        {
+        forwardMap.remove( key );
+        }
+    
     /**
      * @param value
      * @param key
@@ -59,6 +64,13 @@ public class FragmentMap
         {
         forwardMap.remove( key );
         inverseRemove( value, key );
+        }
+    
+    public void removeTriple( Node key )
+        {
+        Object t = forwardMap.get( key );
+        forwardMap.remove( key );
+        if (t instanceof Triple) inverseRemove( (Triple) t, key );
         }
         
     /**
