@@ -50,8 +50,8 @@ public class RDFWriterFImpl extends Object implements RDFWriterF {
 
     protected static final String DEFAULTWRITERS[] =
         {
-            Jena.PATH + ".xmloutput.Basic",
-            Jena.PATH + ".xmloutput.Abbreviated",
+            Jena.PATH + ".xmloutput.impl.Basic",
+            Jena.PATH + ".xmloutput.impl.Abbreviated",
             Jena.PATH + ".rdf.model.impl.NTripleWriter",
             "com.hp.hpl.jena.n3.N3JenaWriter" };
 

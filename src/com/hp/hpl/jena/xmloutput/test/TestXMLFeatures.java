@@ -7,7 +7,7 @@
 
 package com.hp.hpl.jena.xmloutput.test;
 
-import com.hp.hpl.jena.xmloutput.BaseXMLWriter;
+import com.hp.hpl.jena.xmloutput.impl.BaseXMLWriter;
 import com.hp.hpl.jena.mem.*;
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.rdf.model.impl.Util;

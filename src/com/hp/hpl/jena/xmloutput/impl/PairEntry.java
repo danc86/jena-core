@@ -28,7 +28,7 @@
  *
  */
 
-package com.hp.hpl.jena.xmloutput;
+package com.hp.hpl.jena.xmloutput.impl;
 
 /*
  * @author jjc

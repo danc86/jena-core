@@ -5,7 +5,7 @@
  *  $Id$
  */
 
-package com.hp.hpl.jena.xmloutput;
+package com.hp.hpl.jena.xmloutput.impl;
 
 /*
  * @author Jeremy Carroll

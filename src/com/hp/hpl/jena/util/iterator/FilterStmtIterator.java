@@ -38,7 +38,7 @@ import com.hp.hpl.jena.rdf.model.*;
  * @author jjc
  * @version Release='$Name$' Revision='$Revision$' Date='$Date$'
  * @see com.hp.hpl.jena.rdf.model.StmtIterator
- * @see com.hp.hpl.jena.xmloutput.FilterIterator
+ * @see com.hp.hpl.jena.xmloutput.impl.FilterIterator
  */
 public class FilterStmtIterator implements StmtIterator {
     Filter f;

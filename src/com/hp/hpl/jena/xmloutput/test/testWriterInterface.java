@@ -9,7 +9,7 @@ package com.hp.hpl.jena.xmloutput.test;
 
 import com.hp.hpl.jena.mem.ModelMem;
 import com.hp.hpl.jena.rdf.model.*;
-import com.hp.hpl.jena.xmloutput.*;
+import com.hp.hpl.jena.xmloutput.impl.*;
 import com.hp.hpl.jena.rdf.model.impl.*;
 
 import java.io.File;
@@ -73,7 +73,7 @@ public class testWriterInterface extends TestCase {
 
     public void testAnotherWriter() {
         Model m1 = new ModelMem();
-        m1.setWriterClassName("foobar", Jena.PATH + ".xmloutput.Basic");
+        m1.setWriterClassName("foobar", Jena.PATH + ".xmloutput.impl.Basic");
         assertTrue(
             "Failed to access set writer",
             (m1.getWriter("foobar") instanceof Basic));

@@ -38,7 +38,7 @@ import com.hp.hpl.jena.rdf.model.*;
  * @author jjc
  * @version Release='$Name$' Revision='$Revision$' Date='$Date$'
  * @see com.hp.hpl.jena.rdf.model.ResIterator
- * @see com.hp.hpl.jena.xmloutput.FilterIterator
+ * @see com.hp.hpl.jena.xmloutput.impl.FilterIterator
  */
 
 public class FilterResIterator implements ResIterator {

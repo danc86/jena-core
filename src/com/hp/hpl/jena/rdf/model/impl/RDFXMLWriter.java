@@ -34,10 +34,10 @@
  */
 
 package com.hp.hpl.jena.rdf.model.impl;
-import com.hp.hpl.jena.xmloutput.Basic;
+import com.hp.hpl.jena.xmloutput.impl.Basic;
 
 /** Writes out an XML serialization of a model.
- * @deprecated {@link com.hp.hpl.jena.xmloutput.Basic }
+ * @deprecated {@link com.hp.hpl.jena.xmloutput.impl.Basic }
  * @author  bwm
  * @version   Release='$Name$' Revision='$Revision$' Date='$Date$'
  */
