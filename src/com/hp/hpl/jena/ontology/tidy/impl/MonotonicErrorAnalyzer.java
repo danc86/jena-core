@@ -954,14 +954,37 @@ class MonotonicErrorAnalyzer implements Constants {
         {
             if (maybeBuiltinID(sx))
 				return TYPE_FOR_BUILTIN;
-			switch (ox) {
+			
+
+			if (isPropertyOnly(sx)) {
+
+				switch (ox) {
+				case Grammar.rdfsDatatype:
+				case Grammar.rdfsClass:
+				case Grammar.owlClass:
+				case Grammar.owlOntology:
+				case Grammar.owlDeprecatedClass:
+					case Grammar.owlOntologyProperty: // not permitted!! See http://www.w3.org/TR/owl-semantics/mapping.html#separated_vocabulary
+					return TYPE_OF_PROPERTY_ONLY_ID;
+
+				}
+				if (isUserID[ox] || isBlank[ox])
+					return TYPE_OF_PROPERTY_ONLY_ID;
+
+			}
+
+            
+            switch (ox) {
             case Grammar.owlOntology:
                 if (isClassOnly(sx))
                     return TYPE_OF_CLASS_ONLY_ID;
                 if (!isUserID[sx] && !isBlank[sx])
                     return TYPE_NEEDS_ID_OR_BLANK;
-                throw new BrokenException("Unreachable code.");
-                   
+
+                throw new BrokenException("Unreachable code. " + CategorySet.catString(sx)
+                		+" rdf:type "
+                		+CategorySet.catString(ox)
+                );   
 			case Grammar.rdfsDatatype:
 			case Grammar.rdfProperty:
 			case Grammar.owlAnnotationProperty:
@@ -977,47 +1000,43 @@ class MonotonicErrorAnalyzer implements Constants {
 					return TYPE_OF_CLASS_ONLY_ID;
                 if (!isUserID[sx] )
                     return TYPE_NEEDS_ID;
-                throw new BrokenException("Unreachable code.");
-                
+
+                throw new BrokenException("Unreachable code. " + CategorySet.catString(sx)
+                		+" rdf:type "
+                		+CategorySet.catString(ox)
+                );  
 			case Grammar.owlDeprecatedClass:
 				if (!isUserID[sx] )
 					return TYPE_NEEDS_ID;
-                throw new BrokenException("Unreachable code.");
-                
+				
+
+            throw new BrokenException("Unreachable code. " + CategorySet.catString(sx)
+            		+" rdf:type "
+            		+CategorySet.catString(ox)
+            );  
 			case Grammar.rdfList:
 			case Grammar.owlAllDifferent:
 			case Grammar.owlDataRange:
 			case Grammar.owlRestriction:
 				if (!isBlank[sx])
 					return TYPE_NEEDS_BLANK;
-                throw new BrokenException("Unreachable code.");
-                
+
+            throw new BrokenException("Unreachable code. " + CategorySet.catString(sx)
+            		+" rdf:type "
+            		+CategorySet.catString(ox)
+            );  
 			default:
-				if (isBlank[ox] || isClassOnly(ox)) {
+				if (isBlank[ox] || isUserID[ox]) {
 					if (isClassOnly(sx))
 						return TYPE_OF_CLASS_ONLY_ID;
-					if (isPropertyOnly(sx))
-						return TYPE_OF_PROPERTY_ONLY_ID;
 				}
-				if (isClassOnly(sx) && isUserID[ox])
-					return TYPE_OF_CLASS_ONLY_ID;
 			}
-			if (isPropertyOnly(sx)) {
-
-				switch (ox) {
-				case Grammar.rdfsDatatype:
-				case Grammar.rdfsClass:
-				case Grammar.owlClass:
-				case Grammar.owlOntology:
-				case Grammar.owlDeprecatedClass:
-					return TYPE_OF_PROPERTY_ONLY_ID;
-
-				}
-				if (isUserID[ox])
-					return TYPE_OF_PROPERTY_ONLY_ID;
-
-			}
-            throw new BrokenException("Unreachable code.");
+            throw new BrokenException("Unreachable code. " + CategorySet.catString(sx)
+            		+" rdf:type "
+            		+CategorySet.catString(ox)
+            );
+            
+			
         }
 
     static private boolean maybeBuiltinID(int sx) {
