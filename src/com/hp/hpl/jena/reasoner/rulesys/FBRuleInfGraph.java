@@ -563,6 +563,7 @@ public class FBRuleInfGraph  extends BasicForwardRuleInfGraph implements Backwar
      * Removes the triple t (if possible) from the set belonging to this graph. 
      */   
     public void performDelete(Triple t) {
+        boolean removeIsFromBase = fdata.getGraph().contains(t);
         fdata.getGraph().delete(t);
         if (useTGCCaching) {
             if (transitiveEngine.delete(t)) {
@@ -574,7 +575,7 @@ public class FBRuleInfGraph  extends BasicForwardRuleInfGraph implements Backwar
         } 
         if (isPrepared) {
             getDeductionsGraph().delete(t);
-            engine.delete(t);
+            if (removeIsFromBase) engine.delete(t);
         }
         bEngine.reset();
     }
