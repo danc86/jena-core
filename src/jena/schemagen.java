@@ -915,7 +915,7 @@ public class schemagen {
                         Resource ind = candidate.getSubject();
 
                         // do we have a local class resource
-                        String varName = (String) m_resourcesToNames.get( (Resource) candidate.getObject() );
+                        String varName = (String) m_resourcesToNames.get( candidate.getObject() );
                         String valType = (varName != null) ? varName : "m_model.createClass( \"" + uri + "\" )";
 
                         // push the individuals type onto the stack
