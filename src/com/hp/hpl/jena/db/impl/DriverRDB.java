@@ -656,7 +656,10 @@ public abstract class DriverRDB implements IRDBDriver {
 					alltables.close();
 					result = i >= 5;
 			} catch (Exception e1) {
-                            throw new JenaException("DB connection problem while testing formating", e1);
+                            // An exception might be a totally unformatted db (why??)
+                            // or a real connection problem.
+                            return false;  
+                            // throw new JenaException("DB connection problem while testing formating", e1);
 			}
 			return result;
 	}
