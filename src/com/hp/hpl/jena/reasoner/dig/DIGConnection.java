@@ -36,6 +36,8 @@ import org.apache.commons.logging.LogFactory;
 import org.apache.xml.serialize.*;
 import org.w3c.dom.*;
 
+import com.hp.hpl.jena.util.FileUtils;
+
 
 /**
  * <p>
@@ -119,7 +121,8 @@ public class DIGConnection {
             
             // send
             conn.connect();
-            PrintStream ps = new PrintStream( conn.getOutputStream() );
+            // PrintStream ps = new PrintStream( conn.getOutputStream() );
+            PrintWriter ps = FileUtils.asPrintWriterUTF8( conn.getOutputStream() );
             ps.print( out.getBuffer() );
             ps.flush();
             ps.close();
@@ -317,11 +320,13 @@ public class DIGConnection {
                 ch = in.read();
             }
             
+            LogFactory.getLog( getClass() ).debug( "Response buffer = " + buf.toString() );
             // now parse into a document
             DocumentBuilder builder = m_factory.newDocumentBuilder();
             return builder.parse( new ByteArrayInputStream( buf.toString().getBytes() ) );
         }
         catch (Exception e) {
+            e.printStackTrace( System.err );
             throw new DIGWrappedException( e );
         }
     }

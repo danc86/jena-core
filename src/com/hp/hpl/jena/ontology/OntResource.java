@@ -24,7 +24,6 @@ package com.hp.hpl.jena.ontology;
 
 // Imports
 ///////////////
-import com.hp.hpl.jena.ontology.path.PathSet;
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.util.iterator.ExtendedIterator;
 
@@ -567,33 +566,6 @@ public interface OntResource
      * integer greater than or equal to zero.
      */
     public int getCardinality( Property p );
-    
-    /**
-     * <p>
-     * Answer an {@link PathSet accessor} for the given
-     * property of any ontology value. The accessor
-     * can be used to perform a variety of operations, including getting and setting the value.
-     * </p>
-     * 
-     * @param p A property
-     * @param name A string name for the property, in case an error must be reported and the property is null
-     * @return An abstract accessor for the property p
-     */
-    public PathSet accessor( Property p, String name );
-    
-    
-    /**
-     * <p>
-     * Answer an {@link PathSet accessor} for the given
-     * property of any ontology value. The accessor
-     * can be used to perform a variety of operations, including getting and setting the value.
-     * </p>
-     * 
-     * @param p A property
-     * @return An abstract accessor for the property p
-     */
-    public PathSet accessor( Property p );
-    
     
     /**
      * <p>
