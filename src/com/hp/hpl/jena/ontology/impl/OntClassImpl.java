@@ -538,7 +538,7 @@ public class OntClassImpl
             Resource supClass = (Resource) i.next();
             
             // is this super-class a restriction?
-            if (supClass.canAs( Restriction.class )) {
+            if (getProfile().RESTRICTION() != null && supClass.canAs( Restriction.class )) {
                 // look up the property that this restriction applies to
                 Restriction r = (Restriction) supClass.as( Restriction.class );
                 Property p = r.getOnProperty();
