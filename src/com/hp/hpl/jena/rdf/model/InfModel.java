@@ -37,7 +37,7 @@ import java.util.Iterator;
  * @author <a href="mailto:der@hplb.hpl.hp.com">Dave Reynolds</a>
  * @version $Revision$ on $Date$
  */
-public interface InfModel {
+public interface InfModel extends Model {
 
     /**
      * Return the raw RDF model being processed (i.e. the argument
