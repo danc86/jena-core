@@ -13,19 +13,19 @@ import com.hp.hpl.jena.reasoner.*;
 import com.hp.hpl.jena.reasoner.rulesys.*;
 
 /**
-    WrappedRuleReasonerFactory - a wrapper round RuleReasonerFactories that
-    allowed rules to be accumulated that will be applied to any Reasoner it
-    generates.
+    WrappedReasonerFactory - a wrapper round ReasonerFactories that
+    allowed rules and schemas to be accumulated that will be applied to any 
+    Reasoner it generates.
     
     @author kers
- */
-public final class WrappedRuleReasonerFactory extends BaseRuleReasonerFactory 
+*/
+public final class WrappedReasonerFactory extends BaseRuleReasonerFactory 
     implements RuleReasonerFactory
     {
     private final ReasonerFactory factory;
     private List schemas = new ArrayList();
     
-    public WrappedRuleReasonerFactory( ReasonerFactory rrf )
+    public WrappedReasonerFactory( ReasonerFactory rrf )
         { super();
         this.factory = rrf; }
     
