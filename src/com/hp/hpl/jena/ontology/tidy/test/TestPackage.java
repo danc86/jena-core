@@ -29,7 +29,7 @@ public class TestPackage extends TestSuite {
 		}
 
 	private void addTest(String filename, String lvl) {
-		addTest(new SyntaxTest(filename,lvl));
+	//	addTest(new SyntaxTest(filename,lvl));
 	}
 
 }

@@ -80,6 +80,10 @@ class SubCategorize {
 				if (subj == Grammar.orphan)
 					return true;
 				if (subj == Grammar.notype) {
+					if ( prop == Grammar.rdfrest)
+					    return false;
+					if ( prop == Grammar.rdffirst)
+						return false;
 					if (prop != Grammar.rdftype)
 						return true;
 					for (int i = 0; i < notType.length; i++)
