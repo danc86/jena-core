@@ -31,6 +31,7 @@ import java.net.URL;
 import java.text.SimpleDateFormat;
 
 import org.apache.oro.text.regex.*;
+import org.apache.xml.utils.XMLChar;
 
 import com.hp.hpl.jena.ontology.*;
 import com.hp.hpl.jena.rdf.model.*;
@@ -766,7 +767,11 @@ public class schemagen {
                                    .getSubject();
 
             String uri = ont.getURI();
-            uri = (!uri.endsWith( "#" )) ? uri + "#" : uri;
+            
+            // ensure ends with namespace sep char
+            char ch = uri.charAt( uri.length() - 1 );
+            boolean endsWithNCNameCh = XMLChar.isNCNameStart( ch );
+            uri = endsWithNCNameCh ? uri + "#" : uri;
 
             // save the namespace URI as the main included uri for the filter
             m_includeURI.add( uri );
