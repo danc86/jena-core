@@ -22,7 +22,7 @@ public class TestPackage extends TestSuite {
 	private TestPackage() {
 		super("OWL Syntax");
 		addTest( "equivalentProperty/premises005", "Full" );
-		addTest( "Nothing/inconsistent001", "DL" );
+		addTest( "Nothing/inconsistent001", "Lite" );
 		addTest( "I3.4/bad001", "Full" );   
 		addTest( "I4.6/premises001", "Full" );
 		addTest( "I5.24/conclusions001", "Full");
