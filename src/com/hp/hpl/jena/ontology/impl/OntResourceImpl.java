@@ -33,6 +33,7 @@ import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.rdf.model.impl.NodeIteratorImpl;
 import com.hp.hpl.jena.rdf.model.impl.ResourceImpl;
 import com.hp.hpl.jena.reasoner.*;
+import com.hp.hpl.jena.reasoner.rulesys.BasicForwardRuleInfGraph;
 import com.hp.hpl.jena.util.ResourceUtils;
 import com.hp.hpl.jena.util.iterator.*;
 import com.hp.hpl.jena.vocabulary.*;
@@ -1020,6 +1021,24 @@ public class OntResourceImpl
     }
     
     /** 
+     * <p>Answer a view of this resource as an object property</p>
+     * @return This resource, but viewed as an ObjectProperty
+     * @exception ConversionException if the resource cannot be converted to an object property
+     */
+    public ObjectProperty asObjectProperty() {
+        return (ObjectProperty) as( ObjectProperty.class );
+    }
+    
+    /** 
+     * <p>Answer a view of this resource as a datatype property</p>
+     * @return This resource, but viewed as a DatatypeProperty
+     * @exception ConversionException if the resource cannot be converted to a datatype property
+     */
+    public DatatypeProperty asDatatypeProperty() {
+        return (DatatypeProperty) as( DatatypeProperty.class );
+    }
+    
+    /** 
      * <p>Answer a view of this resource as an individual</p>
      * @return This resource, but viewed as an Individual
      * @exception ConversionException if the resource cannot be converted to an individual
@@ -1055,6 +1074,118 @@ public class OntResourceImpl
         return (AllDifferent) as( AllDifferent.class );
     }
     
+    /** 
+     * <p>Answer a view of this resource as a data range</p>
+     * @return This resource, but viewed as a DataRange
+     * @exception ConversionException if the resource cannot be converted to a data range
+     */
+    public DataRange asDataRange() {
+        return (DataRange) as( DataRange.class );
+    }
+    
+
+    // Conversion test methods
+    
+    /** 
+     * <p>Answer true if this resource can be viewed as an annotation property</p>
+     * @return True if this resource can be viewed as an AnnotationProperty
+     */
+    public boolean isAnnotationProperty() {
+        return getProfile().ANNOTATION_PROPERTY() != null && canAs( AnnotationProperty.class );
+    }
+    
+    /** 
+     * <p>Answer true if this resource can be viewed as a property</p>
+     * @return True if this resource can be viewed as an OntProperty
+     */
+    public boolean isProperty() {
+        return canAs( OntProperty.class );
+    }
+    
+    /** 
+     * <p>Answer true if this resource can be viewed as an object property</p>
+     * @return True if this resource can be viewed as an ObjectProperty
+     */
+    public boolean isObjectProperty() {
+        return getProfile().OBJECT_PROPERTY() != null && canAs( ObjectProperty.class );
+    }
+    
+    /** 
+     * <p>Answer true if this resource can be viewed as a datatype property</p>
+     * @return True if this resource can be viewed as a DatatypeProperty
+     */
+    public boolean isDatatypeProperty() {
+        return getProfile().DATATYPE_PROPERTY() != null && canAs( DatatypeProperty.class );
+    }
+    
+    /** 
+     * <p>Answer true if this resource can be viewed as an individual</p>
+     * @return True if this resource can be viewed as an Individual
+     */
+    public boolean isIndividual() {
+        OntModel m = (getModel() instanceof OntModel) ? (OntModel) getModel() : null;
+        if (m != null) {
+            if (!(m.getGraph() instanceof BasicForwardRuleInfGraph) || 
+                m.getProfile().THING() == null) {
+                // either not using the OWL reasoner, or not using OWL
+                // look for an rdf:type of this resource that is a class
+                for (StmtIterator i = listProperties( RDF.type ); i.hasNext(); ) {
+                    Resource rType = i.nextStatement().getResource();
+                    for (StmtIterator j = rType.listProperties( RDF.type ); j.hasNext(); ) {
+                        if (j.nextStatement().getResource().equals( getProfile().CLASS() )) {
+                            // we have found an rdf:type of the subject that is an owl, rdfs or daml Class
+                            // therefore this is an individual
+                            return true;
+                        }
+                    }
+                }
+                
+                // apparently not an instance
+                return false;
+            }
+            else {
+                // using the rule reasoner on an OWL graph, so we can determine
+                // individuals as those things that have rdf:type owl:Thing
+                return hasProperty( RDF.type, getProfile().THING() );
+            }
+        }
+        
+        // default - try to convert and return false if fail
+        return canAs( Individual.class );
+    }
+    
+    /** 
+     * <p>Answer true if this resource can be viewed as a class</p>
+     * @return True if this resource can be viewed as an OntClass
+     */
+    public boolean isClass() {
+        return canAs( OntClass.class );
+    }
+    
+    /** 
+     * <p>Answer true if this resource can be viewed as an ontology description node</p>
+     * @return True if this resource can be viewed as an Ontology
+     */
+    public boolean isOntology() {
+        return getProfile().ONTOLOGY() != null && canAs( Ontology.class );
+    }
+    
+    /** 
+     * <p>Answer true if this resource can be viewed as a data range</p>
+     * @return True if this resource can be viewed as a DataRange
+     */
+    public boolean isDataRange() {
+        return getProfile().DATARANGE() != null && canAs( DataRange.class );
+    }
+    
+    /** 
+     * <p>Answer true if this resource can be viewed as an 'all different' declaration</p>
+     * @return True if this resource can be viewed as an AllDifferent node
+     */
+    public boolean isAllDifferent() {
+        return getProfile().ALL_DIFFERENT() != null && canAs( AllDifferent.class );
+    }
+
 
 
     // Internal implementation methods

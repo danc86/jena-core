@@ -662,6 +662,13 @@ public interface OntResource
     // Conversion methods
     
     /** 
+     * <p>Answer a view of this resource as a property</p>
+     * @return This resource, but viewed as an OntProperty
+     * @exception ConversionException if the resource cannot be converted to a property
+     */
+    public OntProperty asProperty();
+    
+    /** 
      * <p>Answer a view of this resource as an annotation property</p>
      * @return This resource, but viewed as an AnnotationProperty
      * @exception ConversionException if the resource cannot be converted to an annotation property
@@ -669,11 +676,18 @@ public interface OntResource
     public AnnotationProperty asAnnotationProperty();
     
     /** 
-     * <p>Answer a view of this resource as a property</p>
-     * @return This resource, but viewed as an OntProperty
-     * @exception ConversionException if the resource cannot be converted to a property
+     * <p>Answer a view of this resource as an object property</p>
+     * @return This resource, but viewed as an ObjectProperty
+     * @exception ConversionException if the resource cannot be converted to an object property
      */
-    public OntProperty asProperty();
+    public ObjectProperty asObjectProperty();
+    
+    /** 
+     * <p>Answer a view of this resource as a datatype property</p>
+     * @return This resource, but viewed as a DatatypeProperty
+     * @exception ConversionException if the resource cannot be converted to a datatype property
+     */
+    public DatatypeProperty asDatatypeProperty();
     
     /** 
      * <p>Answer a view of this resource as an individual</p>
@@ -697,11 +711,75 @@ public interface OntResource
     public Ontology asOntology();
     
     /** 
+     * <p>Answer a view of this resource as a data range</p>
+     * @return This resource, but viewed as a DataRange
+     * @exception ConversionException if the resource cannot be converted to a data range
+     */
+    public DataRange asDataRange();
+    
+    /** 
      * <p>Answer a view of this resource as an 'all different' declaration</p>
      * @return This resource, but viewed as an AllDifferent node
      * @exception ConversionException if the resource cannot be converted to an all different declaration
      */
     public AllDifferent asAllDifferent();
+
+
+    // Conversion test methods
+    
+    /** 
+     * <p>Answer true if this resource can be viewed as a property</p>
+     * @return True if this resource can be viewed as an OntProperty
+     */
+    public boolean isProperty();
+    
+    /** 
+     * <p>Answer true if this resource can be viewed as an annotation property</p>
+     * @return True if this resource can be viewed as an AnnotationProperty
+     */
+    public boolean isAnnotationProperty();
+    
+    /** 
+     * <p>Answer true if this resource can be viewed as an object property</p>
+     * @return True if this resource can be viewed as an ObjectProperty
+     */
+    public boolean isObjectProperty();
+    
+    /** 
+     * <p>Answer true if this resource can be viewed as a datatype property</p>
+     * @return True if this resource can be viewed as a DatatypeProperty
+     */
+    public boolean isDatatypeProperty();
+    
+    /** 
+     * <p>Answer true if this resource can be viewed as an individual</p>
+     * @return True if this resource can be viewed as an Individual
+     */
+    public boolean isIndividual();
+    
+    /** 
+     * <p>Answer true if this resource can be viewed as a class</p>
+     * @return True if this resource can be viewed as an OntClass
+     */
+    public boolean isClass();
+    
+    /** 
+     * <p>Answer true if this resource can be viewed as an ontology description node</p>
+     * @return True if this resource can be viewed as an Ontology
+     */
+    public boolean isOntology();
+    
+    /** 
+     * <p>Answer true if this resource can be viewed as a data range</p>
+     * @return True if this resource can be viewed as a DataRange
+     */
+    public boolean isDataRange();
+    
+    /** 
+     * <p>Answer true if this resource can be viewed as an 'all different' declaration</p>
+     * @return True if this resource can be viewed as an AllDifferent node
+     */
+    public boolean isAllDifferent();
 
 
 }

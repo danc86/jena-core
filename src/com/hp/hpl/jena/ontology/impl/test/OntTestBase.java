@@ -162,6 +162,9 @@ public abstract class OntTestBase
             OntDocumentManager.getInstance().reset( true );
         }
         
+        protected boolean owlFull() {
+            return m_owlLang && !m_owlLiteLang;
+        }
         
     }
 }
