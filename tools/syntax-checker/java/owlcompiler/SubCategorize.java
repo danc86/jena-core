@@ -490,6 +490,20 @@ public class SubCategorize extends AbsLookup implements Constants  {
 		return CategorySet.find(xx,true);
 	}
 
+	/* (non-Javadoc)
+	 * @see com.hp.hpl.jena.ontology.tidy.impl.Lookup#domain(int)
+	 */
+	public int[] domain(int p) {
+		throw new UnsupportedOperationException();
+	}
+
+	/* (non-Javadoc)
+	 * @see com.hp.hpl.jena.ontology.tidy.impl.Lookup#range(int)
+	 */
+	public int[] range(int p) {
+		throw new UnsupportedOperationException();
+	}
+
 }
 
 /*

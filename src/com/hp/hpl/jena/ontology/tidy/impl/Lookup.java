@@ -72,6 +72,19 @@ public interface Lookup {
 	 * @return
 	 */
 	public int meet(int c0, int c1);
+	
+	/**
+	 * Return the cats that can appear as subject of p.
+	 * @param p A basic category
+	 *
+	 */
+	public int[] domain(int p);
+	/**
+	 * Return the cats that can appear as object of p.
+	 * @param p A basic category
+	 *
+	 */
+	public int[] range(int p);
 }
 /*
    (c) Copyright 2003 Hewlett-Packard Development Company, LP
