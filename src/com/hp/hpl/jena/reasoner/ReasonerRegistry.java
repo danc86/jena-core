@@ -107,8 +107,8 @@ public class ReasonerRegistry {
     
     /**
      * Return information on a given Reasoner.
-     * @param the URI of the reasoner
-     * @param a Resource representing the reasoner whose properties (as obtainable
+     * @param uri the URI of the reasoner
+     * @return a Resource representing the reasoner whose properties (as obtainable
      * through listProperties etc) give a capability description of the reasoner; 
      * returns null if no such reasoner is registered.
      */
@@ -123,7 +123,7 @@ public class ReasonerRegistry {
     
     /**
      * Return the factory for the given reasoner.
-     * @param the URI of the reasoner
+     * @param uri the URI of the reasoner
      * @return the ReasonerFactory instance for this reasoner
      */
     public ReasonerFactory getFactory(String uri) {
@@ -159,7 +159,7 @@ public class ReasonerRegistry {
      * because that would be violating the web principles of namespace ownership.
      * On the other hand, this solution results in staggeringly clumsy names.</p>
      * 
-     * @param property the transitive property
+     * @param node the node representing the transitive property
      */
     public static Node makeDirect(Node node) {
         String directName = "urn:x-hp-direct-predicate:" + node.getURI().replace(':','_') ;
