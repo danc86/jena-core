@@ -24,9 +24,13 @@ public class TestModelEvents extends ModelTestBase
         { return new TestSuite( TestModelEvents.class ); }
         
     protected Model model;
+    protected SimpleListener SL;
     
     public void setUp()
-        { model = ModelFactory.createDefaultModel(); }
+        { 
+        model = ModelFactory.createDefaultModel(); 
+        SL = new SimpleListener();
+        }
         
     static class SimpleListener implements ModelChangedListener
         {
@@ -56,7 +60,6 @@ public class TestModelEvents extends ModelTestBase
         {
         Statement S1 = statement( model, "S P O" );
         Statement S2 = statement( model, "A B C" );
-        SimpleListener SL = new SimpleListener();
         assertFalse( SL.has( new Object [] { "add", S1 } ) );
         model.register( SL );
         model.add( S1 );
@@ -80,7 +83,6 @@ public class TestModelEvents extends ModelTestBase
         
     public void testUnregisterWorks()
         {
-        SimpleListener SL = new SimpleListener();
         model.register( SL );
         model.unregister( SL );
         model.add( statement( model, "X R Y" ) );
@@ -90,11 +92,17 @@ public class TestModelEvents extends ModelTestBase
     public void testRemoveSingleStatements()
         {
         Statement S = statement( model, "D E F" );
-        SimpleListener SL = new SimpleListener();
         model.register( SL );
         model.add( S );
         model.remove( S );
         assertTrue( SL.has( new Object[] { "add", S, "remove", S } ) );
+        }
+        
+    public void testAddInPieces()
+        {
+        model.register( SL );
+        model.add( resource( model, "S" ), property( model, "P" ), resource( model, "O" ) );
+        // assertTrue( SL.has( new Object[] { "add", statement( model, "S P O ") } ) );
         }
     }
 

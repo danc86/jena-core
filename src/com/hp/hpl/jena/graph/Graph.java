@@ -41,6 +41,11 @@ public interface Graph  {
     /** returns this Graph's capabilities */
     Capabilities getCapabilities();
     
+    /**
+        Answer this Graph's event manager.
+    */
+    GraphEventManager getEventManager(); 
+   
     /** 
         returns this Graph's reifier. Each call on a given Graph gets the same
         Reifier object.

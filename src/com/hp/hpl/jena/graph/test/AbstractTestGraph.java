@@ -210,6 +210,18 @@ public abstract class AbstractTestGraph extends GraphTestBase
         g.delete( Triple.create( "A B C" ) );
         assertTrue( q.isEmpty() );
         }
+        
+    
+    static class HistoryListener implements GraphListener
+        {
+        }
+        
+    public void testEventRegister()
+        {
+        Graph g = getGraph();
+        GraphEventManager gem = g.getEventManager();
+        assertSame( g, g.getEventManager().register( new HistoryListener() ) );
+        }
     }
 
 

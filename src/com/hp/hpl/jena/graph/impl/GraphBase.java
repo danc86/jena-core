@@ -43,10 +43,19 @@ public abstract class GraphBase implements Graph {
 		@see com.hp.hpl.jena.graph.Graph#queryHandler
 	*/
 
-	public QueryHandler queryHandler() {
-		return new SimpleQueryHandler(this);
-	}
+	public QueryHandler queryHandler() 
+        { return new SimpleQueryHandler(this); }
     
+    public GraphEventManager getEventManager()
+        { return new SimpleManager( this ); }
+        
+    static class SimpleManager implements GraphEventManager
+        {
+        protected Graph graph;
+        SimpleManager( Graph graph ) { this.graph = graph; }
+        public Graph register( GraphListener listener ) { return graph; }
+        }
+        
     public TransactionHandler getTransactionHandler()
         { return new SimpleTransactionHandler(); }
         

@@ -29,7 +29,7 @@ import java.util.*;
 public class DBReifierGraph implements Graph {
 
 	protected List m_specializedGraphs = null; // list of SpecializedGraphReifiers
-	protected GraphRDB m_parent = null; // parent graph;
+	protected GraphRDB m_parent = null;        // parent graph;
 	
 	/**
 	 * Construct a new DBReifierGraph
@@ -144,6 +144,9 @@ public class DBReifierGraph implements Graph {
 		m_specializedGraphs = null;
 		m_parent = null;
 	}
+    
+    public GraphEventManager getEventManager()
+        { throw new JenaBrokenException( "DB reifiers do not yet implement getEventManager" ); }
 	
 	/* (non-Javadoc)
 	 * @see com.hp.hpl.jena.graph.Graph#dependsOn(com.hp.hpl.jena.graph.Graph)

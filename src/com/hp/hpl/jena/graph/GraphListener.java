@@ -6,16 +6,13 @@
 
 package com.hp.hpl.jena.graph;
 
-import java.util.EventListener;
-
 /**
- * @author Jeremy Carroll
- *
- * 
- */
-public interface GraphListener extends EventListener {
+    @author Jeremy Carroll, extensions by kers
+*/
+public interface GraphListener 
+    {
 
-}
+    }
 
 /*
     (c) Copyright Hewlett-Packard Company 2002
