@@ -822,7 +822,7 @@ implements Model, PrefixMapping, ModelLock
     }
 
     public boolean isEmpty()
-        { return graph.queryHandler().isEmpty(); }
+        { return graph.isEmpty(); }
         
     private void updateNamespace( HashSet set, Iterator it )
         {

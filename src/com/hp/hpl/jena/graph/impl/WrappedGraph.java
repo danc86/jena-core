@@ -70,6 +70,9 @@ public class WrappedGraph implements Graph
     public void close()
         { base.close(); }
 
+    public boolean isEmpty()
+        { return base.isEmpty(); }
+        
     public int size() throws UnsupportedOperationException
         { return base.size(); }
 

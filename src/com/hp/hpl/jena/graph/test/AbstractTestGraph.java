@@ -8,7 +8,6 @@ package com.hp.hpl.jena.graph.test;
 
 import com.hp.hpl.jena.util.iterator.*;
 import com.hp.hpl.jena.graph.*;
-import com.hp.hpl.jena.graph.impl.*;
 import com.hp.hpl.jena.graph.query.*;
 import com.hp.hpl.jena.shared.*;
 
@@ -96,6 +95,28 @@ public abstract class AbstractTestGraph extends GraphTestBase
         assertFalse( g.contains( triple( "a S ??" ) ) );
         }
         
+    /**
+        test  isEmpty - moved from the QueryHandler code.
+    */
+    public void testIsEmpty()
+        {
+        Graph g = getGraph();
+        if (canBeEmpty( g ))
+            {
+            assertTrue( g.isEmpty() );
+            g.add( Triple.create( "S P O" ) );
+            assertFalse( g.isEmpty() );
+            g.add( Triple.create( "A B C" ) );
+            assertFalse( g.isEmpty() );
+            g.add( Triple.create( "S P O" ) );
+            assertFalse( g.isEmpty() );
+            g.delete( Triple.create( "S P O" ) );
+            assertFalse( g.isEmpty() );
+            g.delete( Triple.create( "A B C" ) );
+            assertTrue( g.isEmpty() );
+            }
+        }
+                
     public void testAGraph()
         {
         String title = this.getClass().getName();
@@ -296,34 +317,9 @@ public abstract class AbstractTestGraph extends GraphTestBase
          TripleIterator waitingForABigRefactoringHere = null;
          ExtendedIterator it = g.find( Node.ANY, Node.ANY, Node.ANY );
         }
-        
-    /**
-        test the isEmpty component of a query handler.
-    */
-    public void testIsEmpty()
-        {
-        Graph g = getGraph();
-        if (canBeEmpty( g ))
-            {
-            QueryHandler q = g.queryHandler();
-            assertTrue( q.isEmpty() );
-            g.add( Triple.create( "S P O" ) );
-            assertFalse( q.isEmpty() );
-            g.add( Triple.create( "A B C" ) );
-            assertFalse( q.isEmpty() );
-            g.add( Triple.create( "S P O" ) );
-            assertFalse( q.isEmpty() );
-            g.delete( Triple.create( "S P O" ) );
-            assertFalse( q.isEmpty() );
-            g.delete( Triple.create( "A B C" ) );
-            assertTrue( q.isEmpty() );
-            }
-        }
-        
+
     protected boolean canBeEmpty( Graph g )
-        {
-        return g.queryHandler().isEmpty();
-        }
+        { return g.isEmpty(); }
         
     public void testEventRegister()
         {

@@ -36,6 +36,7 @@ public class TestPrefixMapping extends AbstractTestPrefixMapping
         assertEquals( OWL.NAMESPACE, st.getNsPrefixURI( "owl" ) );
         assertEquals( RSS.getURI(), st.getNsPrefixURI( "rss" ) );
         assertEquals( VCARD.getURI(), st.getNsPrefixURI( "vcard" ) );
+        assertEquals( JMS.getURI(), st.getNsPrefixURI( "jms" ) );
         assertEquals( DAMLVocabulary.NAMESPACE_DAML_2001_03_URI, st.getNsPrefixURI( "daml" ) );
         }
         

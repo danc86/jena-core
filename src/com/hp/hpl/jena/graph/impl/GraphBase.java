@@ -198,6 +198,12 @@ public abstract class GraphBase implements Graph {
         return result;    
         }
 
+    /** 
+     	@see com.hp.hpl.jena.graph.Graph#isEmpty()
+    */
+    public boolean isEmpty()
+        { return size() == 0; }
+        
 	/**
 	 * @see com.hp.hpl.jena.graph.Graph#capabilities()
 	 */

@@ -196,6 +196,7 @@ public class TestModelSpec extends ModelTestBase
         assertTrue( mm.getGraphMaker() instanceof FileGraphMaker );
         assertEquals( Reifier.Minimal , mm.getGraphMaker().getReificationStyle() );
         }
+        
     }
 
 /*

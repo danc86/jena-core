@@ -60,11 +60,6 @@ public interface QueryHandler
         so don't do that.
     */
     public boolean containsNode( Node n );
-    
-    /**
-        Answer true iff the graph contains no explicit triples.
-    */
-    public boolean isEmpty();
     }
 
 /*

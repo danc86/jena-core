@@ -146,6 +146,7 @@ public interface PrefixMapping
         .setNsPrefix( "daml", DAMLVocabulary.NAMESPACE_DAML_2001_03_URI )
         .setNsPrefix( "vcard", VCARD.getURI() )
         .setNsPrefix( "owl", OWL.NAMESPACE )
+        .setNsPrefix( "jms", JMS.getURI() )
         .lock()
         ;   
     }

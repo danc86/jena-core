@@ -18,12 +18,21 @@ import com.hp.hpl.jena.rdf.model.*;
 */
 public class JMS
     {
-    public static final String baseURI = "jms:";
+    public static final String baseURI = "http://jana.hpl.hp.com/2003/08/jms#";
+    
+    public static String getURI()
+        { return baseURI; }
     
     public static final Property ontLanguage = property( "ontLanguage" );
     public static final Property docManager = property( "docManager" );
     public static final Property importMaker = property( "importMaker" );
     public static final Property reasonsWith = property( "reasonsWith" );
+    
+    public static final Property dbUser = property( "dbUser" );
+    public static final Property dbPassword = property( "dbPassword" );
+    public static final Property dbURL = property( "dbURL" );
+    public static final Property dbType = property( "dbType" );
+    public static final Property dbClass = property( "dbClass" );
     
     public static final Property maker = property( "maker" );
     
@@ -51,6 +60,7 @@ public class JMS
     static final public Model schema = ModelFactory.createDefaultModel()
         .add( JMS.MemMakerSpec, RDFS.subClassOf, JMS.MakerSpec )
         .add( JMS.FileMakerSpec, RDFS.subClassOf, JMS.MakerSpec )
+        .add( JMS.RDBMakerSpec, RDFS.subClassOf, JMS.MakerSpec )
         .add( JMS.reificationMode, RDFS.domain, JMS.MakerSpec )
         .add( JMS.ontLanguage, RDFS.domain, JMS.OntModelSpec )
         .add( JMS.reasoner, RDFS.domain, JMS.ReasonerSpec )

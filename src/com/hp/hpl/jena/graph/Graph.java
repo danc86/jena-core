@@ -113,6 +113,12 @@ public interface Graph  extends GraphAdd
 	 */
 	void close();
     
+    /**
+        Answer true iff this graph is empty. [Used to be in QueryHandler, but moved in
+        here because it's a more primitive operation.]
+    */
+    boolean isEmpty();
+    
 	 int size() throws UnsupportedOperationException;
 	 
 	 int ADD     = 1;

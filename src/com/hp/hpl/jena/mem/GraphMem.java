@@ -86,11 +86,18 @@ public class GraphMem extends GraphBase implements Graph {
             }
         }
 
-    public int size()  {
+    public int size()  
+        {
         checkOpen();
         return triples.size();
-    }
+        }
 
+    public boolean isEmpty()
+        {
+        checkOpen();
+        return triples.isEmpty();
+        }
+        
     private QueryHandler q;
     
     public QueryHandler queryHandler()
@@ -103,9 +110,6 @@ public class GraphMem extends GraphBase implements Graph {
         {
         GraphMemQueryHandler( GraphMem graph ) 
             { super( graph ); }
-            
-        public boolean isEmpty()
-            { return ((GraphMem) graph).triples.isEmpty(); }
         }
         
     /**

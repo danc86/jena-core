@@ -72,6 +72,9 @@ public class DBReifierGraph implements Graph {
 		return result;
 	}
 
+    public boolean isEmpty()
+        { return size() == 0; }
+        
     private void checkUnclosed()
         {
         if (m_specializedGraphs == null)
