@@ -100,6 +100,10 @@ public class DAML_OIL
     /** DAML namespace resource for the current release */
     public static final Resource NAMESPACE_DAML = new ResourceImpl( NAMESPACE_DAML_2001_03_URI );
 
+    /** DAML namespace resource for daml:collection. Note: strictly
+     * daml:collection is only a string, not a resource in the DAML namespace. */
+    public static final Resource collection = new ResourceImpl( NAMESPACE_DAML_2001_03_URI+"collection" );
+
     /** RDF resource for DAML List class.   */
     public static final DAMLClass List = new DAMLClassImpl( NAMESPACE_DAML_2001_03_URI, "List", null, s_instance );
 

@@ -24,7 +24,6 @@ import com.hp.hpl.jena.rdf.model.RDFException;
  */
 public class RDF{
     
-    // next free error code = 2
     
     protected static final String uri =
         "http://www.w3.org/1999/02/22-rdf-syntax-ns#";

@@ -11,6 +11,7 @@ import com.hp.hpl.jena.rdf.model.impl.*;
 import com.hp.hpl.jena.rdf.model.impl.Util;
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.vocabulary.RDF;
+import com.hp.hpl.jena.vocabulary.RDFSyntax;
 
 import java.io.PrintWriter;
 
@@ -151,6 +152,16 @@ public class Basic extends BaseXMLWriter {
 					+ ">");
 		}
 	}
+    void unblockAll() {
+        blockLiterals = false;
+    }
+    private boolean blockLiterals = false;
+    void blockRule(Resource r) {
+        if (r.equals(RDFSyntax.parseTypeLiteralPropertyElt)) {
+            blockLiterals = true;
+        } else
+           logger.warn("Cannot block rule <"+r.getURI()+">");
+    }
 
 	protected void writeDescriptionTrailer(PrintWriter writer) {
 		writer.println("  </" + rdfEl("Description") + ">");
@@ -218,7 +229,7 @@ public class Basic extends BaseXMLWriter {
 		if (!lang.equals("")) {
 			writer.print(" xml:lang=\'" + lang + "'");
 		}
-		if (l.getWellFormed()) {
+		if (l.getWellFormed() && !blockLiterals) {
 			writer.print(" " + rdfAt("parseType") + "='Literal'>");
 			writer.print(l.toString());
 		} else {
