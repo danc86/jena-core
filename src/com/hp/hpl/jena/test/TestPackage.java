@@ -29,6 +29,8 @@ public class TestPackage extends TestSuite {
         addTest("Util", com.hp.hpl.jena.util.test.TestPackage.suite());
         addTest(com.hp.hpl.jena.enhanced.test.TestPackage.suite());
         addTest("Output", com.hp.hpl.jena.xmloutput.test.TestPackage.suite());
+        addTest("RDQL", com.hp.hpl.jena.rdql.test.RDQLTestSuite.suite());
+        addTest("N3", com.hp.hpl.jena.n3.test.N3TestSuite.suite());
         addTest("Mega", com.hp.hpl.jena.regression.MegaTestSuite.suite());
         addTest(com.hp.hpl.jena.rdf.arp.test.TestPackage.suite());
     }

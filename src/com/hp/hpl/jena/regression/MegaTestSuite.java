@@ -63,8 +63,6 @@ public class MegaTestSuite extends TestSuite {
         addTest(
             "Memory Model",
             com.hp.hpl.jena.mem.TestSuiteRegression.suite());
-            
-   
         addTest(
             "graph.query.QueryTest",
             com.hp.hpl.jena.graph.query.QueryTest.suite());
@@ -72,12 +70,10 @@ public class MegaTestSuite extends TestSuite {
             "inference test",
             com.hp.hpl.jena.inference.InferenceTestSuite.suite());
             */
-        addTest(com.hp.hpl.jena.rdql.test.RDQLTestSuite.suite());
         if (false)
             addTest("DAML", com.hp.hpl.jena.ontology.daml.test.DAMLTest.suite());
         else
             System.err.println("WARNING: DAML tests suppressed for the moment");
-        addTest("N3", com.hp.hpl.jena.n3.test.N3TestSuite.suite());
     }
     private void addTest(String name, Test tc) {
         if (tc instanceof TestSuite)
