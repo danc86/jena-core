@@ -129,35 +129,11 @@ public class TestModelMakerImpl extends ModelTestBase
         {
         assertTrue( hasAsParent( ModelMaker.class, ModelSource.class ) );
         assertTrue( hasAsParent( ModelSpec.class, ModelSource.class ) );
-        ModelSource s = new ModelSourceImpl();
+        ModelSource s = new TestModelSource.ModelSourceImpl();
         assertNotNull( s.openModel( "henry" ) );
         assertNull( s.getExistingModel( "splendid" ) );
         }
     
-    /**
-     	Minimal test implementation of ModelSource. There should be more of
-     	these.
-     	
-     	@author hedgehog
-    */
-    protected static class ModelSourceImpl implements ModelSource
-    	{
-        public Model openModel( String name )
-            { return ModelFactory.createDefaultModel(); }
-
-        public Model getExistingModel(String name)
-            { return null; }
-
-        /* (non-Javadoc)
-         * @see com.hp.hpl.jena.rdf.model.ModelSource#createModel()
-         */
-        public Model createModel()
-            {
-            // TODO Auto-generated method stub
-            return null;
-            }
-    	}
-
     private void checkHistory( List expected )
         { assertEquals( expected, history() ); }
         

@@ -55,6 +55,8 @@ public abstract class ModelSpecImpl implements ModelSpec
     
     public static final Model emptyModel = ModelFactory.createDefaultModel();
     
+    public static final Model defaultModel = ModelFactory.createDefaultModel();
+    
     public static final Resource emptyResource = emptyModel.createResource();
     
     protected Model description = emptyModel;
@@ -67,7 +69,8 @@ public abstract class ModelSpecImpl implements ModelSpec
     */
     public abstract Model createModel();
     
-    public Model getModel() { return null; }
+    public Model getModel() 
+        { return defaultModel; }
     
     /**
         Answer a Model created according to this ModelSpec and based on an underlying

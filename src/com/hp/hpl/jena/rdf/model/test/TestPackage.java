@@ -44,6 +44,7 @@ public class TestPackage extends TestSuite {
         addTest( "TestModelSpecMore", TestModelSpecMore.suite() );
         addTest( "TestModelSpecRevised", TestModelSpecRevised.suite() );
         addTest( TestModelSpecFactory.suite() );
+        addTest( TestModelSource.suite() );
         addTest( "TestStandardModels", TestStandardModels.suite() );
         addTest( "TestQuery", TestQuery.suite() );
         addTest( "TestSelectors", TestSelectors.suite() );
