@@ -58,10 +58,7 @@ import com.hp.hpl.jena.rdf.model.impl.ResourceImpl;
 import com.hp.hpl.jena.rdf.model.impl.NodeIteratorImpl;
 import com.hp.hpl.jena.rdf.model.impl.SimpleSelector;
 
-import java.util.Iterator;
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.Vector;
+import java.util.*;
 
 import com.hp.hpl.jena.util.Log;
 import com.hp.hpl.jena.util.iterator.ConcatenatedIterator;
@@ -671,7 +668,7 @@ public abstract class DAMLCommonImpl
         }
         else {
             // otherwise return the singleton set
-            Vector single = new Vector();
+            List single = new ArrayList();
             single.add( n );
             return single.iterator();
         }
@@ -688,7 +685,7 @@ public abstract class DAMLCommonImpl
      */
     protected void removeProperties( Iterator preds, Iterator values ) {
         // we have to clone one of the sets in order to do the cross-product
-        Vector predSet = new Vector();
+        List predSet = new ArrayList();
         while (preds.hasNext()) {
             predSet.add( preds.next() );
         }

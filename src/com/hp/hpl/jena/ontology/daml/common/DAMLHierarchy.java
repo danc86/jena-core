@@ -55,9 +55,7 @@ import com.hp.hpl.jena.vocabulary.RDFS;
 import com.hp.hpl.jena.rdf.model.Resource;
 import com.hp.hpl.jena.rdf.model.Property;
 
-import java.util.Hashtable;
-import java.util.Iterator;
-import java.util.LinkedList;
+import java.util.*;
 
 
 
@@ -163,16 +161,16 @@ public class DAMLHierarchy
     };
 
     /** Super-class hierarchy hashmap */
-    protected Hashtable m_classHierarchyMap = new Hashtable();
+    protected Map m_classHierarchyMap = new HashMap();
 
     /** Flag to show initialisation of static structures has taken place */
     protected boolean m_initialised = false;
 
     /** Equivalance map */
-    protected Hashtable m_equivalenceMap = new Hashtable();
+    protected Map m_equivalenceMap = new HashMap();
 
     /** Table of transitive properties */
-    protected Hashtable m_transitiveProperties = new Hashtable();
+    protected Map m_transitiveProperties = new HashMap();
 
 
 

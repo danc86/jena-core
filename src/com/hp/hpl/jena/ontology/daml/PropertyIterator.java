@@ -46,12 +46,7 @@ package com.hp.hpl.jena.ontology.daml;
 // Imports
 ///////////////
 
-import java.util.Iterator;
-import java.util.WeakHashMap;
-import java.util.LinkedList;
-import java.util.NoSuchElementException;
-import java.util.Vector;
-import java.util.HashSet;
+import java.util.*;
 
 import com.hp.hpl.jena.rdf.model.Resource;
 import com.hp.hpl.jena.rdf.model.Property;
@@ -135,7 +130,7 @@ public class PropertyIterator
     protected Resource m_root = null;
 
     /** The resources we started from (if many) */
-    protected Vector m_roots = null;
+    protected List m_roots = null;
 
     /** The default value for the iterator, or null if no default */
     protected Object m_defaultValue = null;
@@ -255,7 +250,7 @@ public class PropertyIterator
     public PropertyIterator( Iterator roots, Property pred, Property inverse, boolean isTransitive,
                              boolean isReflexive, boolean useEquivalence ) {
         // copy the roots of the traversal
-        m_roots = new Vector();
+        m_roots = new ArrayList();
         m_pred = pred;
         m_inverse = inverse;
         m_transitive = isTransitive;

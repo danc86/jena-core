@@ -47,9 +47,7 @@ package com.hp.hpl.jena.ontology.daml.common;
 ///////////////
 import java.io.Reader;
 
-import java.util.ArrayList;
-import java.util.Hashtable;
-import java.util.Iterator;
+import java.util.*;
 
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.rdf.model.impl.SimpleSelector;
@@ -152,7 +150,7 @@ public class DAMLModelImpl
      */
 
     /** The set of indexes to different daml values */
-    protected Hashtable m_indexes = new Hashtable();
+    protected Map m_indexes = new HashMap();
 
     /** An index of values by type and name only (i&#046;e&#046; collecting namespace entries together) */
     protected OneToManyMap m_nameIndex = new OneToManyMap();

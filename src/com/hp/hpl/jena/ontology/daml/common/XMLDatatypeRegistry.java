@@ -46,8 +46,7 @@ package com.hp.hpl.jena.ontology.daml.common;
 // Imports
 ///////////////
 
-import java.util.Hashtable;
-import java.util.Iterator;
+import java.util.*;
 
 import com.hp.hpl.jena.rdf.model.RDFException;
 import com.hp.hpl.jena.rdf.model.RDFNode;
@@ -93,8 +92,8 @@ public class XMLDatatypeRegistry
     // Instance variables
     //////////////////////////////////
 
-    /** Hashtable for type URI to translator object */
-    protected Hashtable m_registry = new Hashtable();
+    /** Map for type URI to translator object */
+    protected Map m_registry = new HashMap();
 
 
     // Constructors
