@@ -22,7 +22,7 @@ public abstract class N3ExternalTestsCom extends TestSuite
 	// List of places
 	static protected final String dirbases[] = {".", "testN3",
                                                 // Jena2: correct location
-                                                "testing/testN3",
+                                                "testing/N3",
                                                 // Jena1: correct location
                                                 "modules/rdf/regression/testN3"} ;
 	
