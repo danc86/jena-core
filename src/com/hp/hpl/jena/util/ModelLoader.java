@@ -43,14 +43,14 @@ public class ModelLoader
 
     
     /** Load a model
-     *  @deprecated Use FileManager.loadModel(urlStr)
+     *  @deprecated Use FileManager.get().loadModel(urlStr)
      * @param urlStr    The URL or file name of the model
      */
 
     public static Model loadModel(String urlStr) { return loadModel(urlStr, null) ; }
 
 	/** Load a model or attached a persistent store (but not a database).
-	 *  @deprecated Use FileManager.loadModel(urlStr, lang)
+	 *  @deprecated Use FileManager.get().loadModel(urlStr, lang)
 	 * @param urlStr	The URL or file name of the model
 	 * @param lang		The language of the data - if null, the system guesses
 	 */
@@ -140,7 +140,7 @@ public class ModelLoader
     }
 
     /** Load a model from a file into a model.
-     * @deprecated Use FileManager.readModel(model, urlStr) instead
+     * @deprecated Use FileManager.get().readModel(model, urlStr) instead
      * @param model   Model to read into
      * @param urlStr  URL (or filename) to read from
      * @return Returns the model passed in.
@@ -151,6 +151,7 @@ public class ModelLoader
         return loadModel(model, urlStr, null) ;
     }
     /** Load a model from a file into a model.
+     * @deprecated Use FileManager.get().readModel(model, urlStr, lang) instead
      * @param model   Model to read into
      * @param urlStr  URL (or filename) to read from
      * @param lang    Null mean guess based on the URI String
