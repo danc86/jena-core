@@ -52,7 +52,6 @@ public class TestSimpleSelector extends TestCase
     }
     
     public void testAll() {
-    	model.write(new PrintWriter(System.out));
     	StmtIterator iter = model.listStatements(
     	  new SimpleSelector(null, null, (RDFNode) null));
     	int i =0;
@@ -64,7 +63,6 @@ public class TestSimpleSelector extends TestCase
     }
     
     public void testFindProperty() {
-    	model.write(new PrintWriter(System.out));
     	StmtIterator iter = model.listStatements(
     	  new SimpleSelector(null, RDFS.label, (RDFNode) null));
     	int i =0;
@@ -77,7 +75,6 @@ public class TestSimpleSelector extends TestCase
     }
     
     public void testFindObject() {
-    	model.write(new PrintWriter(System.out));
     	StmtIterator iter = model.listStatements(
     	  new SimpleSelector(null, null, RDFS.Resource));
     	int i =0;
@@ -90,7 +87,6 @@ public class TestSimpleSelector extends TestCase
     }
     
     public void testFindSubject() {
-    	model.write(new PrintWriter(System.out));
     	StmtIterator iter = model.listStatements(
     	  new SimpleSelector(null, null, RDFS.Resource));
     	assertTrue(iter.hasNext());
@@ -108,7 +104,6 @@ public class TestSimpleSelector extends TestCase
     }
     
     public void testFindPropertyAndObject() {
-    	model.write(new PrintWriter(System.out));
     	StmtIterator iter = model.listStatements(
     	  new SimpleSelector(null, RDF.value, 123));
     	int i =0;
