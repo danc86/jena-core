@@ -11,7 +11,6 @@ import com.hp.hpl.jena.util.iterator.Filter;
 /**
  *
  * @author  bwm
- * @version 
  */
 public class TripleMatchFilter implements Filter {
     

@@ -42,7 +42,7 @@ public class AnonId extends java.lang.Object {
     
     String id = null;
 
-    /** Creates new AnonId
+    /** Creates new AnonId.
      *
      * <p>This id is guaranteed to be unique on this machine.</p>
  */

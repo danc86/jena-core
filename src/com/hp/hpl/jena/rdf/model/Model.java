@@ -161,7 +161,7 @@ public interface Model extends ModelCon, RDFReaderF, RDFWriterF {
 	public Property createProperty(String nameSpace, String localName)
 		throws RDFException;
 
-	/** create a literal from a String value with a specified language
+	/** Create a literal from a String value with a specified language.
 	 *
 	 * <P>If v is null, then a literal with an empty string is created.</P>
 	 *
@@ -174,7 +174,7 @@ public interface Model extends ModelCon, RDFReaderF, RDFWriterF {
 	public Literal createLiteral(String v, String language)
 		throws RDFException;
 
-	/** create a literal from a String value with a specified language
+	/** Create a literal from a String value with a specified language.
 	 *
 	 * <P>If v is null, then a literal with an empty string is created.</P>
 	 *
@@ -290,9 +290,9 @@ public interface Model extends ModelCon, RDFReaderF, RDFWriterF {
     /** Using this method is often a mistake.
 	 * Add statements from an RDF/XML serialization.
      * It is generally better to use an InputStream if possible.
-     * {@link Model.read(InputStream,String)}, otherwise there is
-     * a danger of a mismatch between the character encoding of say
-     * the FileReader and the character encoding of the data in the file.
+     * {@link Model#read(InputStream,String)}, otherwise there is a danger of a
+     * mismatch between the character encoding of say the FileReader and the
+     * character encoding of the data in the file.
 	 * @param reader the source of the RDF/XML
 	 * @param base the base to use when converting relative to absolute uri's
 	 * @throws RDFException a generic RDF exception
@@ -323,10 +323,10 @@ public interface Model extends ModelCon, RDFReaderF, RDFWriterF {
 	 *and "N3".  <code>null</code> represents the default language, "RDF/XML".
 	 *"RDF/XML-ABBREV" is a synonym for "RDF/XML".
      * <br />
-	 * It is generally better to use an InputStream if possible. {@link Model.
-	 * read(InputStream,String)}, otherwise there is a danger of a mismatch
-	 * between the character encoding of say the FileReader and the character
-	 * encoding of the data in the file.
+	 * It is generally better to use an InputStream if possible. 
+     * {@link Model#read(InputStream,String)}, otherwise there is a danger of a
+     * mismatch between the character encoding of say the FileReader and the
+     * character encoding of the data in the file.
 	 * @return this model
 	 * @param base the base uri to be used when converting relative
 	 * URI's to absolute URI's.
