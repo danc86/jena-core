@@ -51,7 +51,7 @@ public interface Expression
     /**
         Answer true iff this Expression represents a literal [Java object] value.
     */
-    public boolean isLiteral();
+    public boolean isConstant();
     
     /**
         If this Expression is a literal, answer the value of that literal. Otherwise the
@@ -95,15 +95,13 @@ public interface Expression
     
     /**
         An abstract base class for Expressions; over-ride as appropriate. The
-        sub-classes may be more useful. Base provides an implementation of
-        <code>prepare</code> which produces a slow Valuator that relies
-        on the Base's <code>evalBool</code>.
+        sub-classes may be more useful. 
     */
     public static abstract class Base implements Expression
         {        
         public boolean isVariable() { return false; }
         public boolean isApply() { return false; }
-        public boolean isLiteral() { return false; }
+        public boolean isConstant() { return false; }
         public String getName() { return null; }
         public Object getValue() { return null; }
         public int argCount() { return 0; }
@@ -114,9 +112,9 @@ public interface Expression
     /**
         An abstract base class for literal nodes; subclasses implement getValue().
     */
-    public static abstract class Literal extends Base
+    public static abstract class Constant extends Base
         {
-        public boolean isLiteral() { return true; }
+        public boolean isConstant() { return true; }
         public abstract Object getValue();
         }
     
@@ -215,7 +213,7 @@ public interface Expression
         {
         private boolean value;
         public BoolConstant( boolean value ) { this.value = value; }
-        public boolean isLiteral() { return true; }
+        public boolean isConstant() { return true; }
         // TODO when moving to Jave 1.4 can use Boolean.valueOf( value )
         public Object getValue() { return value ? Boolean.TRUE : Boolean.FALSE; }
         public Valuator prepare( VariableIndexes vi ) { return this; }   

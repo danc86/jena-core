@@ -203,9 +203,9 @@ public class TestExpressionConstraints extends GraphTestBase
     
     public void testLiterals()
         {
-        assertTrue( Expression.TRUE.isLiteral() );
-        assertTrue( Expression.FALSE.isLiteral() );
-        assertFalse( notEqual( X, Y ).isLiteral() );
+        assertTrue( Expression.TRUE.isConstant() );
+        assertTrue( Expression.FALSE.isConstant() );
+        assertFalse( notEqual( X, Y ).isConstant() );
         assertEquals( Boolean.TRUE, Expression.TRUE.getValue() );
         assertEquals( Boolean.FALSE, Expression.FALSE.getValue() );
         }
