@@ -109,20 +109,25 @@ public class DIGInfGraph
     }
     
     /**
-     * Extended find interface used in situations where the implementator
+     * <p>Extended find interface used in situations where the implementator
      * may or may not be able to answer the complete query. It will
      * attempt to answer the pattern but if its answers are not known
      * to be complete then it will also pass the request on to the nested
-     * Finder to append more results. 
+     * Finder to append more results.</p><p>
+     * <strong>DIG implementation note:</strong> the default call into this
+     * method from the base inference graph makes the continuation a query
+     * of the base graph. Since {@link DIGAdapter} already queries the base
+     * graph, there is no futher need to query it through the continuation.
+     * Consequently, this implementation <em>does not call</em> the continuation.
+     * Client code that wishes to provide a non-default continuation should
+     * sub-class DIGInfGraph and provide a suitable call to the continuation.find().
+     * </p>
      * @param pattern a TriplePattern to be matched against the data
-     * @param continuation either a Finder or a normal Graph which
-     * will be asked for additional match results if the implementor
-     * may not have completely satisfied the query.
+     * @param continuation Not used in this implementation
      */
     public ExtendedIterator findWithContinuation(TriplePattern pattern, Finder continuation) {
         prepare();
-        ExtendedIterator i = m_adapter.find( pattern );
-        return (continuation == null) ? i : i.andThen( continuation.find( pattern ) ); 
+        return m_adapter.find( pattern );
     }
 
    
