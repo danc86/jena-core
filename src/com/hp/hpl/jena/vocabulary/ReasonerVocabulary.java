@@ -75,8 +75,8 @@ public class ReasonerVocabulary {
      *  caching in a generic rule reasoner. Set to "true" to enable caching. */
     public static Property PROPenableTGCCaching;
     
-    /** Property enable scanning of source data for container membership properites
-     *  during RDFS reasoning. Set to "true" to enable caching. */
+    /** Property used to switch on/off scanning of data for container membership
+     * properties in RDFS preprocessing. */
     public static Property PROPenableCMPScan;
     
     /** A namespace used for Rubric specific properties */
