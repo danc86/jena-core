@@ -33,7 +33,7 @@ public class testWriterAndReader
     extends ModelTestBase implements RDFErrorHandler {
 	static private boolean showProgress = false;
 	static private boolean errorDetail = false;
-	static private int firstTest = 5;
+	static private int firstTest = 4;
 	static private int lastTest = 9;
 	static private int repetitionsJ = 6;
     
