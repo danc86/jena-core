@@ -40,6 +40,18 @@ public interface PrefixMapping
     PrefixMapping setNsPrefix( String prefix, String uri );
     
     /**
+        Remove any existing maplet with the given prefix name and answer this
+        mapping. If the prefix is the empty string, then this removes the default
+        namespace. If the prefix is not a legal prefix string, or is not present in
+        the mapping, nothing happens.
+        
+     	@param prefix the prefix string to remove
+     	@return this PrefixMapping
+     */
+    
+    PrefixMapping removeNsPrefix( String prefix );
+    
+    /**
         Copies the prefixes from other into this. Any existing binding of the
         same prefix is lost.  The result is this same prefixMapping.
 

@@ -291,6 +291,19 @@ public abstract class AbstractTestPrefixMapping extends GraphTestBase
         assertSame( A, A.setNsPrefix( "crisp", crispURI ) );
         assertSame( A, A.setNsPrefixes( A ) );
         assertSame( A, A.setNsPrefixes( new HashMap() ) );
+        assertSame( A, A.removeNsPrefix( "rhubarb" ) );
+        }
+    
+    public void testRemovePrefix()
+        {
+        String hURI = "http://test.remove.prefixes/prefix#";
+        String bURI = "http://other.test.remove.prefixes/prefix#";
+        PrefixMapping A = getMapping();
+        A.setNsPrefix( "hr", hURI );
+        A.setNsPrefix( "br", bURI );
+        A.removeNsPrefix( "hr" );
+        assertEquals( null, A.getNsPrefixURI( "hr" ) );
+        assertEquals( bURI, A.getNsPrefixURI( "br" ) );
         }
         
     public void testLock()
@@ -305,6 +318,9 @@ public abstract class AbstractTestPrefixMapping extends GraphTestBase
         catch (PrefixMapping.JenaLockedException e) { pass(); }
     /* */
         try { A.setNsPrefixes( new HashMap() ); fail( "mapping should be frozen" ); }
+        catch (PrefixMapping.JenaLockedException e) { pass(); }
+    /* */
+        try { A.removeNsPrefix( "toast" ); fail( "mapping should be frozen" ); }
         catch (PrefixMapping.JenaLockedException e) { pass(); }
         }
     }

@@ -42,6 +42,13 @@ public class PrefixMappingImpl implements PrefixMapping
         map.put( prefix, uri );
         return this;
         }
+    
+    public PrefixMapping removeNsPrefix( String prefix )
+        {
+        checkUnlocked();
+        map.remove( prefix );
+        return this;
+        }
         
     protected void checkUnlocked()
         { if (locked) throw new JenaLockedException( this ); }

@@ -812,6 +812,12 @@ implements Model, PrefixMapping, ModelLock
         return this;
         }
         
+    public PrefixMapping removeNsPrefix( String prefix )
+        {
+        getPrefixMapping().removeNsPrefix( prefix );
+        return this;
+        }
+    
     public PrefixMapping setNsPrefixes( PrefixMapping pm )
         { 
         getPrefixMapping().setNsPrefixes( pm );
