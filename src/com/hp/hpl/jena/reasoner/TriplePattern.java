@@ -9,7 +9,6 @@
  *****************************************************************/
 package com.hp.hpl.jena.reasoner;
 
-import java.util.HashMap;
 import java.util.Map;
 
 import com.hp.hpl.jena.graph.*;

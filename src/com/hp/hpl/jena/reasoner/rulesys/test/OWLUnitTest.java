@@ -46,7 +46,6 @@ public class OWLUnitTest extends TestCase {
     
     /** The set of test cases to be used */
     public static TestDef[] testDefs = {
-
         // subClass
         new TestDef("localtests/ManifestSubclass001.rdf", FB | MICRO | MINI),
         
@@ -132,7 +131,6 @@ public class OWLUnitTest extends TestCase {
         new TestDef("localtests/Manifest003.rdf", FB | MICRO | MINI),
         new TestDef("localtests/Manifest004.rdf", FB | MINI), // Requires equality
         new TestDef("localtests/Manifest006.rdf", FB ), // a oneOF case
-
     };
 
 //  --------------  instance variables for a single test ----------------------    

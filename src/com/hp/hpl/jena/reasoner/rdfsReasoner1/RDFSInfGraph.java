@@ -261,6 +261,7 @@ public class RDFSInfGraph extends BaseInfGraph {
            ExtendedIterator it = tripleCache.findWithContinuation(new TriplePattern(null, null, null), fdata);
            HashSet properties = new HashSet();
            String memberPrefix = RDF.getURI() + "_";
+           Node sP = RDF.Property.getNode();
            while (it.hasNext()) {
                Triple triple = (Triple)it.next();
                Node prop = triple.getPredicate();
@@ -269,11 +270,11 @@ public class RDFSInfGraph extends BaseInfGraph {
                }
                if (properties.add(prop)) {
                    // Unseen property - add the subPropertyOf statement
-                   subPropertyCache.addRelation(prop, prop);
+                   subPropertyCache.addRelation(new Triple(prop, sP, prop));
                    if (prop.getURI().startsWith(memberPrefix)) {
                        // A container property
                        axioms.getGraph().add(new Triple(prop, RDF.type.getNode(), RDFS.ContainerMembershipProperty.getNode()));
-                       subPropertyCache.addRelation(prop, RDFS.member.getNode());
+                       subPropertyCache.addRelation( new Triple(prop, sP, RDFS.member.getNode()));
                    }
                }
            }
@@ -335,7 +336,7 @@ public class RDFSInfGraph extends BaseInfGraph {
      * not triples.
      */
     public ExtendedIterator findProperties() {
-        return subPropertyCache.listAllProperties();
+        return subPropertyCache.listAllSubjects();
     }
     
     /**
@@ -343,7 +344,7 @@ public class RDFSInfGraph extends BaseInfGraph {
      * to list check for a specific preregistered property.
      */
     public boolean isProperty(Node prop) {
-        return subPropertyCache.isProperty(prop);
+        return subPropertyCache.isSubject(prop);
     }
     
     /**

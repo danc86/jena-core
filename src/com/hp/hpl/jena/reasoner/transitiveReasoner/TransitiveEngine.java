@@ -227,10 +227,10 @@ public class TransitiveEngine {
         int triageClass = triage(t);
         switch (triageClass & UPDATE_MASK) {
             case SUBCLASS:
-                subClassCache.addRelation(t.getSubject(), t.getObject());
+                subClassCache.addRelation(t);
                 break;
             case SUBPROPERTY:
-                subPropertyCache.addRelation(t.getSubject(), t.getObject());
+                subPropertyCache.addRelation(t);
                 break;
             case NOT_RELEVANT:
                 return false;
@@ -255,10 +255,10 @@ public class TransitiveEngine {
         int triageClass = triage(t);
         switch (triageClass & UPDATE_MASK) {
             case SUBCLASS:
-                subClassCache.removeRelation(t.getSubject(), t.getObject());
+                subClassCache.removeRelation(t);
                 break;
             case SUBPROPERTY:
-                subPropertyCache.removeRelation(t.getSubject(), t.getObject());
+                subPropertyCache.removeRelation(t);
                 break;
             case NOT_RELEVANT:
                 return false;
