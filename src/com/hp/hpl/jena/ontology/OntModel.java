@@ -515,6 +515,42 @@ public interface OntModel
     
     /**
      * <p>
+     * Answer a new, anonymous node representing the fact that a given set of classes are all
+     * pair-wise distinct.  <code>AllDifferent</code> is a feature of OWL only, and is something
+     * of an anomoly in that it exists only to give a place to anchor the <code>distinctMembers</code>
+     * property, which is the actual expression of the fact. 
+     * </p>
+     * @param differentMembers A list of the class expressions that denote a set of mutually disjoint classes
+     * @return A new AllDifferent resource
+     */
+    public AllDifferent createAllDifferent( OntList differentMembers );
+    
+    
+    /**
+     * <p>Answer a new empty list</p>
+     * @return An RDF-encoded list of no elements
+     */
+    public OntList createList();
+    
+    
+    /**
+     * <p>Answer a new list containing the resources from the given iterator, in order.</p>
+     * @param members An iterator, each value of which is expected to be an RDFNode
+     * @return An RDF-encoded list of the elements of the iterator
+     */
+    public OntList createList( Iterator members );
+    
+    
+    /**
+     * <p>Answer a new list containing the nodes from the given array, in order</p>
+     * @param members An array of RDF nodes that will be the members of the list
+     * @return An RDF-encoded list 
+     */
+    public OntList createList( RDFNode[] members );
+    
+    
+    /**
+     * <p>
      * Answer a resource that represents a generic ontology node in this model. If a resource
      * with the given uri exists in the model, it will be re-used.  If not, a new one is created in
      * the updateable sub-graph of the ontology model. 

@@ -78,7 +78,8 @@ public class OWLProfile
     public Resource DEPRECATED_CLASS() {            return OWL.DeprecatedClass; }
     public Resource DEPRECATED_PROPERTY() {         return OWL.DeprecatedProperty; }
     public Resource ANNOTATION_PROPERTY() {         return OWL.AnnotationProperty; }
-    
+    public Resource LIST() {                        return RDF.List; }
+    public Resource NIL() {                         return RDF.nil; }
     
 
     public Property EQUIVALENT_PROPERTY() {         return OWL.equivalentProperty; }
@@ -108,6 +109,8 @@ public class OWLProfile
     public Property SUB_CLASS_OF() {                return RDFS.subClassOf; }
     public Property DOMAIN() {                      return RDFS.domain; }
     public Property RANGE() {                       return RDFS.range; }
+    public Property FIRST() {                       return RDF.first; }
+    public Property REST() {                        return RDF.rest; }
 
     // Annotations    
     public Property VERSION_INFO() {                return OWL.versionInfo; }

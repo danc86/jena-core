@@ -76,6 +76,8 @@ public class DAML_OILProfile
     private Resource m_deprecatedClass              = null;
     private Resource m_deprecatedProperty           = null;
     private Resource m_annotationProperty           = null;
+    private Resource m_list                         = m_vocabModel.createResource( DAML_OIL.List.getURI()                      );                     
+    private Resource m_nil                          = m_vocabModel.createResource( DAML_OIL.nil.getURI()                       );
     
     private Property m_equivalentProperty           = m_vocabModel.createProperty( DAML_OIL.samePropertyAs.getNameSpace(),          DAML_OIL.samePropertyAs.getLocalName() );
     private Property m_equivalentClass              = m_vocabModel.createProperty( DAML_OIL.sameClassAs.getNameSpace(),             DAML_OIL.sameClassAs.getLocalName() );
@@ -105,7 +107,8 @@ public class DAML_OILProfile
     private Property m_subClassOf                   = m_vocabModel.createProperty( DAML_OIL.subClassOf.getNameSpace(),              DAML_OIL.subClassOf.getLocalName() );
     private Property m_domain                       = m_vocabModel.createProperty( DAML_OIL.subClassOf.getNameSpace(),              DAML_OIL.domain.getLocalName() );
     private Property m_range                        = m_vocabModel.createProperty( DAML_OIL.subClassOf.getNameSpace(),              DAML_OIL.range.getLocalName() );
-
+    private Property m_first                        = m_vocabModel.createProperty( DAML_OIL.first.getNameSpace(),                   DAML_OIL.first.getLocalName() );
+    private Property m_rest                         = m_vocabModel.createProperty( DAML_OIL.rest.getNameSpace(),                    DAML_OIL.rest.getLocalName() );
 
 
     // Constructors
@@ -142,6 +145,8 @@ public class DAML_OILProfile
     public Resource DEPRECATED_CLASS() {            return m_deprecatedClass; }
     public Resource DEPRECATED_PROPERTY() {         return m_deprecatedProperty; }
     public Resource ANNOTATION_PROPERTY() {         return m_annotationProperty; }
+    public Resource LIST() {                        return m_list; }
+    public Resource NIL() {                         return m_nil; }
     
     public Property EQUIVALENT_PROPERTY() {         return m_equivalentProperty; }
     public Property EQUIVALENT_CLASS() {            return m_equivalentClass; }
@@ -170,6 +175,8 @@ public class DAML_OILProfile
     public Property SUB_PROPERTY_OF() {             return m_subPropertyOf; }
     public Property DOMAIN() {                      return m_domain; }
     public Property RANGE() {                       return m_range; }
+    public Property FIRST() {                       return m_first; }
+    public Property REST() {                        return m_rest; }
     
 
     // Annotations    
