@@ -184,7 +184,6 @@ public class QueryEngine implements QueryExecution
                     nextBinding.add(name, rdfNode) ;
                 }
                 
-                // TODO Confirm no longer needed due to move to graph query system
 //                // Verify constraints
 //                boolean passesTests = true;
 //                for (Iterator cIter = query.constraints.iterator(); cIter.hasNext();)
