@@ -18,12 +18,12 @@ import com.hp.hpl.jena.reasoner.ReasonerFactory;
 public interface RuleReasonerFactory extends ReasonerFactory
     {
     /**
-         Replace the current set of rules in this factory with a new set of
+         Augment the current set of rules in this factory with a new set of
          rules, to be used in future invocations of <code>create</code>.
          
          @param rules a List of Rule objects
     */
-    void setRules( List rules );
+    void addRules( List rules );
     }
 
 /*

@@ -9,7 +9,10 @@ import java.util.*;
 
 import junit.framework.TestSuite;
 
+import com.hp.hpl.jena.rdf.model.Model;
+import com.hp.hpl.jena.rdf.model.Resource;
 import com.hp.hpl.jena.rdf.model.test.ModelTestBase;
+import com.hp.hpl.jena.reasoner.Reasoner;
 import com.hp.hpl.jena.reasoner.rulesys.*;
 import com.hp.hpl.jena.reasoner.rulesys.impl.BaseRuleReasonerFactory;
 
@@ -19,6 +22,7 @@ import com.hp.hpl.jena.reasoner.rulesys.impl.BaseRuleReasonerFactory;
 */
 public class TestSetRules extends ModelTestBase
     {
+
     public TestSetRules( String name )
         { super( name ); }
     
@@ -43,18 +47,74 @@ public class TestSetRules extends ModelTestBase
     public void testOwlMicroSetRules()
         { testFactory( new OWLMicroReasonerFactory() ); }
     
+    public void testRuleReasonerWrapper()
+        {
+        MockFactory mock = new MockFactory();
+        RuleReasonerFactory wrapped = wrap( mock );
+        assertEquals( MockFactory.capabilities, wrapped.getCapabilities() );
+        assertEquals( MockFactory.uri, wrapped.getURI() );
+        assertEquals( MockFactory.reasoner, wrapped.create( null ) );
+        assertEquals( Arrays.asList( new Object[] {"capabilities", "uri", "create"} ),  mock.done );
+        }
+    
+    public static final class WrappedRuleReasoner extends BaseRuleReasonerFactory implements RuleReasonerFactory
+        {
+        private final RuleReasonerFactory rrf;
+
+        public WrappedRuleReasoner( RuleReasonerFactory rrf )
+            {
+            super();
+            this.rrf = rrf;
+            }
+
+        public Reasoner create(Resource configuration)
+            { FBRuleReasoner result = (FBRuleReasoner) rrf.create( configuration );
+            result.setRules( rules );
+            return result; }
+
+        public Model getCapabilities()
+            { return rrf.getCapabilities(); }
+
+        public String getURI()
+            { return rrf.getURI(); }
+        }
+
+    private static class MockFactory implements RuleReasonerFactory
+        {
+        List done = new ArrayList();
+        static final Model capabilities = modelWithStatements( "this isA Capability" );
+        static final String uri = "eg:mockURI";
+        static final Reasoner reasoner = new GenericRuleReasoner( rules );
+        
+        public void addRules( List rules )
+            { assertEquals( TestSetRules.rules, rules );
+            done.add( "addRules" ); }
+    
+        public Reasoner create(Resource configuration)
+            { done.add( "create" );
+            return reasoner; }
+    
+        public Model getCapabilities()
+            { done.add( "capabilities" );
+            return capabilities; }
+    
+        public String getURI()
+            { done.add( "uri" );
+            return uri; }
+        }
+    
+    private static RuleReasonerFactory wrap( final RuleReasonerFactory rrf )
+        {
+        return new WrappedRuleReasoner(rrf);
+        }
+    
     private void testFactory( RuleReasonerFactory grf )
         {
         FBRuleReasoner base = (FBRuleReasoner) grf.create( null );
-        grf.setRules( rules );
+        grf.addRules( rules );
         FBRuleReasoner gr = (FBRuleReasoner) grf.create( null );
         assertEquals( append( base.getRules(), rules ), gr.getRules() );
-        }
-
-    public List append( List L, List R )
-        { List result = new ArrayList( L );
-        result.addAll( R );
-        return result; }
+        }    
     }
 
 

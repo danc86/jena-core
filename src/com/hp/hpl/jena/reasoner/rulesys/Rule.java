@@ -9,12 +9,16 @@
  *****************************************************************/
 package com.hp.hpl.jena.reasoner.rulesys;
 
+import java.io.BufferedReader;
+import java.io.IOException;
 import java.util.*;
 
+import com.hp.hpl.jena.util.FileUtils;
 import com.hp.hpl.jena.util.PrintUtil;
 import com.hp.hpl.jena.util.Tokenizer;
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.reasoner.*;
+import com.hp.hpl.jena.shared.*;
 import com.hp.hpl.jena.datatypes.xsd.*;
 
 import org.apache.commons.logging.Log;
@@ -402,6 +406,41 @@ public class Rule implements ClauseEntry {
     }
     
     /**
+     * Answer the list of rules parsed from the given URL.
+     * @throws RulesetNotFoundException
+     */
+    public static List rulesFromURL( String uri ) {
+        try {
+            BufferedReader br = FileUtils.readerFromURL( uri );
+            String ruleString = Rule.rulesStringFromReader( br );
+            return parseRules( ruleString );
+        }
+        catch (WrappedIOException e)
+            { throw new RulesetNotFoundException( uri ); }
+    }
+    
+    /**
+    Answer a String which is the concatenation (with newline glue) of all the
+    non-comment lines readable from <code>src</code>. A comment line is
+    one starting "#" or "//".
+    */
+    public static String rulesStringFromReader( BufferedReader src ) {
+       try {
+           StringBuffer result = new StringBuffer();
+           String line;
+           while ((line = src.readLine()) != null) {
+               if (line.startsWith( "#" ) || line.startsWith( "//" )) continue;     // Skip comment lines
+               result.append( line );
+               result.append( "\n" );
+           }
+           return result.toString();
+       }
+       catch (IOException e) 
+           { throw new WrappedIOException( e ); }
+   }
+
+
+    /**
      * Parse a string as a list a rules.
      * @return a list of rules
      * @throws ParserException if there is a problem
@@ -762,7 +801,7 @@ public class Rule implements ClauseEntry {
      * Inner class. Exception raised if there is a problem
      * during rule parsing.
      */
-    public static class ParserException extends RuntimeException {
+    public static class ParserException extends JenaException {
         
         /** constructor */
         public ParserException(String message, Parser parser) {

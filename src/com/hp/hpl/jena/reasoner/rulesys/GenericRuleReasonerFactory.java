@@ -9,8 +9,6 @@
  *****************************************************************/
 package com.hp.hpl.jena.reasoner.rulesys;
 
-import java.util.*;
-
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.reasoner.*;
 import com.hp.hpl.jena.reasoner.rulesys.impl.BaseRuleReasonerFactory;
@@ -28,7 +26,7 @@ public class GenericRuleReasonerFactory extends BaseRuleReasonerFactory
     implements RuleReasonerFactory {
     
     /** Single global instance of this factory */
-    private static ReasonerFactory theInstance = new GenericRuleReasonerFactory();
+    private static GenericRuleReasonerFactory theInstance = new GenericRuleReasonerFactory();
     
     /** Static URI for this reasoner type */
     public static final String URI = "http://jena.hpl.hp.com/2003/GenericRuleReasoner";
@@ -39,7 +37,7 @@ public class GenericRuleReasonerFactory extends BaseRuleReasonerFactory
     /**
      * Return the single global instance of this factory
      */
-    public static ReasonerFactory theInstance() {
+    public static GenericRuleReasonerFactory theInstance() {
         return theInstance;
     }
     

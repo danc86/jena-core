@@ -107,6 +107,11 @@ public class JenaTestBase extends TestCase
             fail( "" + subClass + " should have " + superClass + " as a parent" );
         }
 
+    public List append(List L, List R)
+        { List result = new ArrayList( L );
+        result.addAll( R );
+        return result; }
+
     }
 
 

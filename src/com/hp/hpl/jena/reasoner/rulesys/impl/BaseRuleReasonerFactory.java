@@ -26,8 +26,8 @@ public class BaseRuleReasonerFactory
          Set the rules-list to be <code>rules</code>, which must be a List of 
          <code>Rule</code> objects.
     */
-    public void setRules(List rules)
-        { this.rules = rules; }
+    public void addRules(List rules)
+        { this.rules.addAll( rules ); }
     }
 
 /*

@@ -77,36 +77,40 @@ public class TestModelSpecRevised extends ModelTestBase
         catch (RulesetNotFoundException e) { assertEquals( "nowhere:man", e.getURI() ); }
         }
     
-    public void testRulesetURLWorks()
+    public void testEmptyRulesetURLWorks()
         {
-        String uri = GenericRuleReasonerFactory.URI;
-        String url = "file:testing/modelspecs/empty.rules";
-        Model rs = modelWithStatements( "_a jms:reasoner " + uri + "; _a jms:ruleSetURL " + url );
-        Resource A = resource( "_a" );
-        ReasonerFactory rf = ModelSpecImpl.getReasonerFactory( A, rs );
-        GenericRuleReasoner gr = (GenericRuleReasoner) rf.create( null );
-        assertEquals( new ArrayList(), gr.getRules() );
+        testRuleSetURL( GenericRuleReasonerFactory.URI, "file:testing/modelspecs/empty.rules" );
         }
-    public void testRulesetURL2Works()
+
+    public void testNonEmptyRulesetURLWorks()
         {
-        String uri = GenericRuleReasonerFactory.URI;
-        String url = "file:testing/modelspecs/example.rules";
-        Model rs = modelWithStatements( "_a jms:reasoner " + uri + "; _a jms:ruleSetURL " + url );
-        Resource A = resource( "_a" );
-        ReasonerFactory rf = ModelSpecImpl.getReasonerFactory( A, rs );
-        GenericRuleReasoner gr = (GenericRuleReasoner) rf.create( null );
-        assertEquals( new ArrayList(), gr.getRules() );
+        testRuleSetURL( GenericRuleReasonerFactory.URI, "file:testing/modelspecs/example.rules" );
         }
     
-    public void testRulesetURLLoads()
+    public void testMultipleRulesetURLsWork()
         {
-        String uri = GenericRuleReasonerFactory.URI;
-        String url = "file:testing/modelspecs/empty.rules";
-        Model rs = modelWithStatements( "_a jms:reasoner " + uri + "; _a jms:ruleSetURL " + url );
+        String factoryURI = GenericRuleReasonerFactory.URI;
+        String rulesA = "file:testing/modelspecs/example.rules", rulesB = "file:testing/modelspecs/extra.rules";
+        List rules = append( Rule.rulesFromURL( rulesA ), Rule.rulesFromURL( rulesB ) );
+        Model rs = modelWithStatements( "_a jms:reasoner " + factoryURI + "; _a jms:ruleSetURL " + rulesA + "; _a jms:ruleSetURL " + rulesB );
         Resource A = resource( "_a" );
         ReasonerFactory rf = ModelSpecImpl.getReasonerFactory( A, rs );
-        Set rules = HashUtils.createSet( ((FBRuleReasoner) rf.create( null )).getRules() );
-        // assertEquals( null, rules );
+        GenericRuleReasoner gr = (GenericRuleReasoner) rf.create( null );
+        assertEquals( new HashSet( rules ), new HashSet( gr.getRules() ) );
+        }
+    
+    /**
+     * @param factoryURI
+     * @param rulesURL
+    */
+    private void testRuleSetURL( String factoryURI, String rulesURL )
+        {
+        List rules = Rule.rulesFromURL( rulesURL );
+        Model rs = modelWithStatements( "_a jms:reasoner " + factoryURI + "; _a jms:ruleSetURL " + rulesURL );
+        Resource A = resource( "_a" );
+        ReasonerFactory rf = ModelSpecImpl.getReasonerFactory( A, rs );
+        GenericRuleReasoner gr = (GenericRuleReasoner) rf.create( null );
+        assertEquals( rules, gr.getRules() );
         }
     
     protected void testGetReasoner( String uri, Class wantClass )
