@@ -10,9 +10,6 @@ import com.hp.hpl.jena.n3.* ;
 import junit.framework.* ;
 
 import com.hp.hpl.jena.rdf.model.* ;
-//import com.hp.hpl.jena.rdf.model.impl.* ;
-import com.hp.hpl.jena.mem.* ;
-
 import com.hp.hpl.jena.util.ModelLoader;
 
 /**
@@ -66,7 +63,7 @@ public class N3JenaReaderTests extends N3ExternalTestsCom
 				rData = makeReader(new FileInputStream(n3File)) ;
 
 				// Check the files exist
-				dModel = new ModelMem() ;
+				dModel = ModelFactory.createDefaultModel() ;
 				
 				if ( resultsFile != null && !resultsFile.equals("") )
 				{
