@@ -168,15 +168,19 @@ public class TestCompatability extends TestCase {
 		ModelRDB createModel(String name) {
 			if (supportsMultipleModels) {
 				if (m_dbconn == null) {
-					m_dbconn = new DBConnection(m_baseuri, m_user, m_password);
+					m_dbconn = new DBConnection(m_baseuri, m_user, m_password, m_databaseType);
 					if (!m_dbconn.isFormatOK()) {
 						IRDBDriver driver = m_dbconn.getDriver(m_layout, m_databaseType);
 						driver.formatDB();
 					}
 				}
+				if ( m_dbconn.containsModel(name) )
+					ModelRDB.deleteModel(m_dbconn,name);
 				return ModelRDB.createModel(m_dbconn, name);
 			} else {
 				DBConnection dbcon = new DBConnection(m_baseuri + name, m_user, m_password);
+				if ( m_dbconn.containsDefaultModel() )
+					try {m_dbconn.cleanDB(); } catch (Exception e) {};
 				return ModelRDB.create(dbcon, m_layout, m_databaseType);
 			}
 		}
