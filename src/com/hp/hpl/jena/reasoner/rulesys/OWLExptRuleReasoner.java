@@ -34,7 +34,10 @@ public class OWLExptRuleReasoner extends FBLPRuleReasoner  {
     protected static List ruleSet;
     
     /** The precomputed axiom closure and compiled rule set */
-    protected static FBLPRuleInfGraph preload; 
+    protected static FBRuleInfGraph preload; 
+    
+    /** Flag, set to true to use the LP engine */
+    private static final boolean USE_LP = true;
     
     /** log4j logger */
     protected static Logger logger = Logger.getLogger(OWLRuleReasoner.class);
@@ -78,7 +81,7 @@ public class OWLExptRuleReasoner extends FBLPRuleReasoner  {
         if (schemaGraph != null) {
             throw new ReasonerException("Can only bind one schema at a time to an OWLRuleReasoner");
         }
-        FBLPRuleInfGraph graph = new FBLPRuleInfGraph(this, rules, getPreload(), tbox);
+        FBRuleInfGraph graph = makeInfGraph(rules, tbox, true);
         graph.addPreprocessingHook(new OWLRuleTranslationHook());
         graph.prepare();
         return new OWLExptRuleReasoner(this, graph);
@@ -96,10 +99,10 @@ public class OWLExptRuleReasoner extends FBLPRuleReasoner  {
      * constraints imposed by this reasoner.
      */
     public InfGraph bind(Graph data) throws ReasonerException {
-        FBLPRuleInfGraph graph =  null;
-        InfGraph schemaArg = schemaGraph == null ? getPreload() : (FBLPRuleInfGraph)schemaGraph; 
-        List baseRules = ((FBLPRuleInfGraph)schemaArg).getRules();
-        graph = new FBLPRuleInfGraph(this, baseRules, schemaArg);
+        FBRuleInfGraph graph =  null;
+        InfGraph schemaArg = schemaGraph == null ? getPreload() : (FBRuleInfGraph)schemaGraph; 
+        List baseRules = ((FBRuleInfGraph)schemaArg).getRules();
+        graph = makeInfGraph(baseRules, schemaArg, false);
         graph.addPreprocessingHook(new OWLRuleTranslationHook());
         graph.setDerivationLogging(recordDerivations);
         graph.setTraceOn(traceOn);
@@ -114,13 +117,32 @@ public class OWLExptRuleReasoner extends FBLPRuleReasoner  {
     public InfGraph getPreload() {
         synchronized (OWLExptRuleReasoner.class) {
             if (preload == null) {
-                preload = new FBLPRuleInfGraph(this, rules, null);
+                preload = makeInfGraph(rules, null, false);
                 preload.prepare();
             }
             return preload;
         }
     }
     
+    /**
+     * Construct an FB rule infgraph variant. Allows switching between the normal
+     * and LP implementations during development.
+     */
+    private FBRuleInfGraph makeInfGraph(List rules, Graph schema, boolean doPreload) {
+        if (USE_LP) {
+            if (doPreload) {
+                return new FBLPRuleInfGraph(this, rules, getPreload(), schema);
+            } else {
+                return new FBLPRuleInfGraph(this, rules, schema);
+            }
+        } else {
+            if (doPreload) {
+                return new FBRuleInfGraph(this, rules, getPreload(), schema);
+            } else {
+                return new FBRuleInfGraph(this, rules, schema);
+            }
+        }
+    }
 }
 
 

@@ -55,13 +55,15 @@ public class TestOWLRules extends TestCase {
         TestSuite suite = new TestSuite();
         
         // Basic property and equivalence tests
-//        suite.addTest(new TestOWLRules("SymmetricProperty/Manifest001.rdf"));
-//        suite.addTest(new TestOWLRules("FunctionalProperty/Manifest001.rdf"));
+        suite.addTest(new TestOWLRules("SymmetricProperty/Manifest001.rdf"));
+        suite.addTest(new TestOWLRules("SymmetricProperty/Manifest001.rdf"));
+        suite.addTest(new TestOWLRules("FunctionalProperty/Manifest001.rdf"));
         suite.addTest(new TestOWLRules("FunctionalProperty/Manifest002.rdf"));
-//        suite.addTest(new TestOWLRules("FunctionalProperty/Manifest003.rdf"));
-//        suite.addTest(new TestOWLRules("InverseFunctionalProperty/Manifest001.rdf"));
-//        suite.addTest(new TestOWLRules("InverseFunctionalProperty/Manifest002.rdf"));
-//        suite.addTest(new TestOWLRules("InverseFunctionalProperty/Manifest003.rdf"));
+        suite.addTest(new TestOWLRules("FunctionalProperty/Manifest003.rdf"));
+        suite.addTest(new TestOWLRules("InverseFunctionalProperty/Manifest001.rdf"));
+        suite.addTest(new TestOWLRules("InverseFunctionalProperty/Manifest002.rdf"));
+        suite.addTest(new TestOWLRules("InverseFunctionalProperty/Manifest003.rdf"));
+        
 //        suite.addTest(new TestOWLRules("rdf-charmod-uris/Manifest.rdf"));
 //        suite.addTest(new TestOWLRules("I5.5/Manifest001.rdf"));
 //        suite.addTest(new TestOWLRules("I5.5/Manifest002.rdf"));
@@ -180,6 +182,36 @@ public class TestOWLRules extends TestCase {
         }
     }
 
+    /** Dummy test which just delays for 2s */
+    private static class DelayTest extends TestCase {
+        public DelayTest(String name) {
+            super(name);
+        }
+        protected void runTest() throws InterruptedException {
+            Thread.sleep(2000);
+            assertTrue(true);
+        }
+    }
+    
+    /**
+     * Debug purposes only
+     */
+    public static void main(String[] args) {
+        try {
+            String test = "FunctionalProperty/Manifest002.rdf";
+            ReasonerFactory rf = OWLExptRuleReasonerFactory.theInstance();
+//            ReasonerFactory rf = OWLFBRuleReasonerFactory.theInstance();
+            OWLWGTester tester = new OWLWGTester(rf, null, null);
+            System.out.println("Start test ...");
+            tester.runTests(test, false /*tracing*/, true /*stats*/);
+            System.out.println("...end test\n");
+            
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
+    
 }
 
 /*
