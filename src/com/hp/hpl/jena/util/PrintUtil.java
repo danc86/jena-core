@@ -12,6 +12,7 @@ package com.hp.hpl.jena.util;
 import java.util.*;
 import java.io.*;
 import com.hp.hpl.jena.vocabulary.*;
+import com.hp.hpl.jena.datatypes.xsd.XSDDatatype;
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.graph.impl.*;
 import com.hp.hpl.jena.rdf.model.*;
@@ -52,6 +53,7 @@ public class PrintUtil {
         registerPrefix("jr", ReasonerVocabulary.getJenaReasonerNS());
         registerPrefix("rb", ReasonerVocabulary.getRBNamespace());
         registerPrefix("eg", egNS);
+        registerPrefix("xsd", XSDDatatype.XSD + "#");
     }
     
     /**
@@ -171,6 +173,15 @@ public class PrintUtil {
         StringBuffer spaces = new StringBuffer();
         for (int i = 0; i < indent; i++) spaces.append(" ");
         out.print(spaces.toString());
+    }
+    
+    /**
+     * Print all the Triple values from a find iterator.
+     */
+    public static void printOut(Iterator it) {
+        while (it.hasNext()) {
+            System.out.println("   " + print(it.next()));
+        }
     }
 }
 
