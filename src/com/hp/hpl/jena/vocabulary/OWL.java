@@ -48,7 +48,7 @@ public class OWL
     private static Model m_vocabModel = ModelFactory.createDefaultModel();
     
     /** URI denoting the OWL namespace, currently <code>http://www.w3c.org/2002/07/owl#</code> */
-    public static final String NAMESPACE = "http://www.w3c.org/2002/07/owl#";
+    public static final String NAMESPACE = "http://www.w3.org/2002/07/owl#";
     
     /** Resource denoting the class of OWL classes */
     public static final Resource Class                        = m_vocabModel.createResource( OWL.NAMESPACE + "Class"                     );
