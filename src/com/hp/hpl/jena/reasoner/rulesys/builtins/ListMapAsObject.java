@@ -15,8 +15,8 @@ import com.hp.hpl.jena.graph.*;
 import java.util.*;
 
 /**
- * For each element in the RDF list (thrid argument) it asserts 
- * triples with that as the object and subject and predicategiven by arguments
+ * For each element in the RDF list (third argument) it asserts 
+ * triples with that as the object and subject and predicate given by arguments
  * one and two. A strange and hacky function, only usable in the head of
  * forward rules.
  * 
