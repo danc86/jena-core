@@ -32,6 +32,7 @@ package com.hp.hpl.jena.rdf.model.impl;
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.util.Log;
 import com.hp.hpl.jena.util.FileUtils;
+import com.hp.hpl.jena.shared.*;
 
 import java.io.PrintWriter;
 import java.io.Writer;
@@ -111,9 +112,8 @@ public class NTripleWriter extends Object implements RDFWriter {
      * property name is not recognised
      * @return the previous value of the property
      */
-    public Object setProperty(String propName, Object propValue)
-        throws RDFException {
-        throw new RDFException(RDFException.UNKNOWNPROPERTY);
+    public Object setProperty(String propName, Object propValue) {
+        throw new JenaUnknownPropertyException( propName );
     }
 
     public void setNsPrefix(String prefix, String ns) {

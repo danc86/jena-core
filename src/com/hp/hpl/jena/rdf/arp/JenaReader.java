@@ -36,21 +36,10 @@
 
 package com.hp.hpl.jena.rdf.arp;
 
-import com.hp.hpl.jena.rdf.model.Model;
-import com.hp.hpl.jena.rdf.model.RDFReader;
-import com.hp.hpl.jena.rdf.model.RDFErrorHandler;
-import com.hp.hpl.jena.rdf.model.RDFException;
-import com.hp.hpl.jena.rdf.model.Resource;
-import com.hp.hpl.jena.rdf.model.Literal;
-import com.hp.hpl.jena.rdf.model.Property;
-import com.hp.hpl.jena.mem.ModelMem;
-import com.hp.hpl.jena.rdf.model.impl.ResourceImpl;
-import com.hp.hpl.jena.rdf.model.impl.PropertyImpl;
-import com.hp.hpl.jena.rdf.model.impl.LiteralImpl;
-import com.hp.hpl.jena.rdf.model.impl.ModelCom;
-import com.hp.hpl.jena.rdf.model.impl.RDFDefaultErrorHandler;
-import com.hp.hpl.jena.shared.JenaException;
-
+import com.hp.hpl.jena.rdf.model.*;
+import com.hp.hpl.jena.mem.*;
+import com.hp.hpl.jena.rdf.model.impl.*;
+import com.hp.hpl.jena.shared.*;
 
 import java.io.*;
 import java.net.*;
@@ -418,8 +407,7 @@ public class JenaReader implements RDFReader, ARPErrorNumbers {
                 } catch (SAXNotSupportedException ns) {
                     old = null;
                 } catch (SAXNotRecognizedException nr) {
-                    errorHandler.error(
-                        new RDFException(RDFException.UNKNOWNPROPERTY));
+                    errorHandler.error( new JenaUnknownPropertyException( str ) );
                     return null;
                 }
                 try {
@@ -427,8 +415,7 @@ public class JenaReader implements RDFReader, ARPErrorNumbers {
                 } catch (SAXNotSupportedException ns) {
                     errorHandler.error(new JenaException(ns));
                 } catch (SAXNotRecognizedException nr) {
-                    errorHandler.error(
-                        new RDFException(RDFException.UNKNOWNPROPERTY));
+                    errorHandler.error( new JenaUnknownPropertyException( str ) );
                     return null;
                 }
                 return old;
@@ -442,8 +429,7 @@ public class JenaReader implements RDFReader, ARPErrorNumbers {
                 } catch (SAXNotSupportedException ns) {
                     old = null;
                 } catch (SAXNotRecognizedException nr) {
-                    errorHandler.error(
-                        new RDFException(RDFException.UNKNOWNPROPERTY));
+                    errorHandler.error( new JenaUnknownPropertyException( str ) );
                     return null;
                 }
                 try {
@@ -451,8 +437,7 @@ public class JenaReader implements RDFReader, ARPErrorNumbers {
                 } catch (SAXNotSupportedException ns) {
                     errorHandler.error(new JenaException(ns));
                 } catch (SAXNotRecognizedException nr) {
-                    errorHandler.error(
-                        new RDFException(RDFException.UNKNOWNPROPERTY));
+                    errorHandler.error( new JenaUnknownPropertyException( str ) );
                     return null;
                 } catch (ClassCastException cc) {
                     errorHandler.error(
@@ -600,7 +585,7 @@ public class JenaReader implements RDFReader, ARPErrorNumbers {
                 return new Integer(old);
             }
         }
-        errorHandler.error(new RDFException(RDFException.UNKNOWNPROPERTY));
+        errorHandler.error(new JenaUnknownPropertyException( str ));
         return null;
     }
 

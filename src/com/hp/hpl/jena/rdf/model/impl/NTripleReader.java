@@ -102,7 +102,7 @@ public class NTripleReader extends Object implements RDFReader {
 
     public Object setProperty(String propName, Object propValue)
          {
-        errorHandler.error(new RDFException(RDFException.UNKNOWNPROPERTY));
+        errorHandler.error(new JenaUnknownPropertyException( propName ));
         return null;
     }
 
@@ -474,11 +474,7 @@ class IStream {
     }
 
     protected char nextChar() {
-        if (eof) {
-            return '\000';
-        } else {
-            return thisChar[0];
-        }
+        return eof ? '\000' : thisChar[0];
     }
 
     protected boolean eof() {
