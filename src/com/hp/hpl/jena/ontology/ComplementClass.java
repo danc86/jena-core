@@ -59,7 +59,6 @@ public interface ComplementClass
 	 * <p>Set the class that the class represented by this class expression is
 	 * a complement of. Any existing value for <code>complementOf</code> will
 	 * be replaced.</p>
-	 * @return The class that this class is a complement of.
 	 */
 	public void setOperand( Resource cls );
 }

@@ -72,7 +72,6 @@ public class Node_RuleVariable extends Node_Variable {
     /**
      * Changes the variable's index. This is used in LP rules which classify the
      * variables into different sequences.
-     * @return int
      */
     public void setIndex(int index) {
         this.index = index;

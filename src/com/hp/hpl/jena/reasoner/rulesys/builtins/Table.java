@@ -36,8 +36,6 @@ public class Table extends BaseBuiltin {
      * @param length the length of the argument list, may be less than the length of the args array
      * for some rule engines
      * @param context an execution context giving access to other relevant data
-     * @return return true if the buildin predicate is deemed to have succeeded in
-     * the current environment
      */
     public void headAction(Node[] args, int length, RuleContext context) {
         InfGraph infgraph = context.getGraph();

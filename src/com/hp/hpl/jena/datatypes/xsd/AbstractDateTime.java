@@ -210,7 +210,6 @@ public class AbstractDateTime {
       * Public to allow reuse with type objects.
       * 
       * @param date   CCYY-MM-DDThh:mm:ss+03
-      * @return CCYY-MM-DDThh:mm:ssZ
       */
      public static void normalize (int[] date, int[] timeZone) {
 
