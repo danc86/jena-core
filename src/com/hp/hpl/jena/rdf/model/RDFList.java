@@ -24,7 +24,7 @@ package com.hp.hpl.jena.rdf.model;
 
 // Imports
 ///////////////
-import com.hp.hpl.jena.util.iterator.ClosableIterator;
+import com.hp.hpl.jena.util.iterator.*;
 
 import java.util.*;
 
@@ -396,7 +396,7 @@ public interface RDFList
      * 
      * @return A closable iterator over the elements of the list.
      */
-    public ClosableIterator iterator();
+    public ExtendedIterator iterator();
     
     
     /**
@@ -427,22 +427,24 @@ public interface RDFList
     
     /**
      * <p>
-     * Answer true if this list is operating in strict mode, in which the
+     * Answer true lists are operating in strict mode, in which the
      * well- formedness of the list is checked at every operation.
      * </p>
      * 
-     * @return True if the list is being strictly checked.
+     * @return True lists are being strictly checked.
      */
-    public boolean isStrict();
+    public boolean getStrict();
     
     
     /**
      * <p>
      * Set a flag to indicate whether to strictly check the well-formedness of
-     * the list at each operation. Default false.
+     * lists at each operation. Default false.  Note that the flag that is
+     * manipulated is actually a static: it applies to all lists. However, RDFList
+     * is a Java interface, and Java does not permit static methods in interfaces.
      * </p>
      * 
-     * @param strict If true, list will be checked strictly.
+     * @param strict The <b>static</b> flag for whether lists will be checked strictly.
      */
     public void setStrict( boolean strict );
     
