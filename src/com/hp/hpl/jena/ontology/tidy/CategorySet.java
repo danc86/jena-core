@@ -100,6 +100,17 @@ class CategorySet implements Comparable {
 		  || intersect(Grammar.restrictions,all);
 	} 
 };
+   static private Q various[] = new Q[]{
+   	  cyclicSets,
+   	  untypedSets,
+   	  structuredOne,
+   	  structuredTwo,
+   };
+   static private Q orphaned[] = new Q[]{
+   	orphanSets,
+   	dlOrphanSets,
+   	cyclicOrphanSets
+   };
 	
 	
 	static private final SortedSet sorted = new TreeSet();
@@ -147,6 +158,11 @@ class CategorySet implements Comparable {
 		cs.id = unsorted.size();
 		unsorted.add(cs);
 		sorted.add(cs);
+		for (int i=0;i<various.length;i++)
+		   various[i].testAdd(cs.id,s);
+        if ( s[0]==Grammar.orphan )
+		for (int i=0;i<orphaned.length;i++)
+		   orphaned[i].testAdd(cs.id,s);
 		return cs.id;
 	}
 	static int[] getSet(int id) {
