@@ -600,7 +600,7 @@ public class Rule implements ClauseEntry {
                         return Node.createLiteral(lit, "", XSDDatatype.XSDfloat);
                     }
                 } else {
-                    // Float?
+                    // Int?
                     if (XSDDatatype.XSDint.isValid(lit)) {
                         return Node.createLiteral(lit, "", XSDDatatype.XSDint);
                     }

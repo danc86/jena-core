@@ -16,7 +16,6 @@ import org.apache.log4j.Logger;
 import com.hp.hpl.jena.reasoner.*;
 import com.hp.hpl.jena.reasoner.rulesys.FBRuleInfGraph;
 import com.hp.hpl.jena.reasoner.rulesys.FBRuleReasoner;
-import com.hp.hpl.jena.reasoner.rulesys.OWLRuleReasoner;
 import com.hp.hpl.jena.reasoner.rulesys.Rule;
 import com.hp.hpl.jena.reasoner.rulesys.Util;
 import com.hp.hpl.jena.reasoner.rulesys.impl.OWLRuleTranslationHook;
@@ -43,7 +42,7 @@ public class OWLExptRuleReasoner extends FBRuleReasoner  {
     private static final boolean USE_LP = true;
     
     /** log4j logger */
-    protected static Logger logger = Logger.getLogger(OWLRuleReasoner.class);
+    protected static Logger logger = Logger.getLogger(OWLExptRuleReasoner.class);
     
     /**
      * Constructor
