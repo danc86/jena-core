@@ -8,8 +8,6 @@ package com.hp.hpl.jena.rdf.model.test;
 
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.rdf.model.impl.*;
-import com.hp.hpl.jena.shared.*;
-import com.hp.hpl.jena.shared.impl.*;
 import com.hp.hpl.jena.shared.test.*;
 
 import java.util.*;

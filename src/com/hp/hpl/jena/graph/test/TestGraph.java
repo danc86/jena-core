@@ -13,10 +13,7 @@ package com.hp.hpl.jena.graph.test;
 */
 
 import com.hp.hpl.jena.mem.*;
-import com.hp.hpl.jena.util.iterator.*;
 import com.hp.hpl.jena.graph.*;
-
-import java.util.*;
 
 import junit.framework.*;
 

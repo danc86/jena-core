@@ -7,7 +7,6 @@
 package com.hp.hpl.jena.graph;
 
 import com.hp.hpl.jena.mem.*;
-import com.hp.hpl.jena.db.test.*;
 import com.hp.hpl.jena.db.*;
 import com.hp.hpl.jena.db.impl.*;
 

@@ -15,11 +15,8 @@ import com.hp.hpl.jena.db.*;
 import com.hp.hpl.jena.db.impl.*;
 import com.hp.hpl.jena.db.test.*;
 import com.hp.hpl.jena.shared.*;
-import com.hp.hpl.jena.util.*;
 
 import java.util.*;
-
-import java.sql.SQLException;
 
 import junit.framework.*;
 

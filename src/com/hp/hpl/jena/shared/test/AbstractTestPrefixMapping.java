@@ -7,10 +7,8 @@
 package com.hp.hpl.jena.shared.test;
 
 import com.hp.hpl.jena.shared.*;
-import com.hp.hpl.jena.shared.impl.*;
 
 import com.hp.hpl.jena.graph.*;
-import junit.framework.*;
 import java.util.*;
 
 /**
