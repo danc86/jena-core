@@ -289,7 +289,7 @@ public class ModelCom extends EnhGraph
     public Model remove(Model m) throws RDFException
         {
         StmtIterator iter = m.listStatements();
-        if (m.getGraph().mightContain( this.getGraph() ))
+        if (m.getGraph().dependsOn( this.getGraph() ))
             {
             ArrayList X = new ArrayList();
             while (iter.hasNext()) X.add( iter.nextStatement() );

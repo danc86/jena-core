@@ -23,7 +23,7 @@ import com.hp.hpl.jena.util.iterator.*;
 
 public abstract class GraphBase implements Graph {
 
-	public boolean mightContain(Graph other) {
+	public boolean dependsOn(Graph other) {
 		return this == other;
 	}
 

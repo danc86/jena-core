@@ -149,7 +149,7 @@ public abstract class Polyadic
      * @return True if the graph is this graph, or is a sub-graph of this one.
      * @see com.hp.hpl.jena.graph.Graph#mightContain(Graph)
      */
-    public boolean mightContain( Graph graph ) {
+    public boolean dependsOn( Graph graph ) {
         return (graph == this) || m_subGraphs.contains( graph );
     }
     

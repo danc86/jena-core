@@ -78,7 +78,7 @@ public class TestMultiUnion
         Graph g0 = graphWith( "x p y");
         
         assertEquals( "Empty model should have size zero", 0, m.size() );
-        assertFalse( "Empty model should not contain another graph", m.mightContain( g0 ) );
+        assertFalse( "Empty model should not contain another graph", m.dependsOn( g0 ) );
     }
     
 

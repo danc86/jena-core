@@ -34,9 +34,9 @@ public abstract class Dyadic extends CompositionBase
     	R.close();
     	}
  
-    public boolean mightContain( Graph other )
+    public boolean dependsOn( Graph other )
         {
-        return other == this || L.mightContain( other ) || R.mightContain( other );
+        return other == this || L.dependsOn( other ) || R.dependsOn( other );
         }
  				
     public Union union( Graph X )

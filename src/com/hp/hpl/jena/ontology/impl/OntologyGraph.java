@@ -73,8 +73,8 @@ public class OntologyGraph
     //////////////////////////////////
 
     /** Delegated to the union component */
-    public boolean mightContain( Graph other ) {
-        return m_unionGraph.mightContain( other );
+    public boolean dependsOn( Graph other ) {
+        return m_unionGraph.dependsOn( other );
     }
     
     /** Delegated to the inf graph, or the union graoh if null */
