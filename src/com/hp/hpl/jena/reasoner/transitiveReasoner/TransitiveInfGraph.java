@@ -96,6 +96,7 @@ public class TransitiveInfGraph extends BaseInfGraph {
      * may not have completely satisfied the query.
      */
     public ExtendedIterator findWithContinuation(TriplePattern pattern, Finder continuation) {
+        checkOpen();
         if (!isPrepared) prepare();
         Finder cascade = transitiveEngine.getFinder(pattern, FinderUtil.cascade(tbox, continuation));
         return new UniqueExtendedIterator(cascade.find(pattern));

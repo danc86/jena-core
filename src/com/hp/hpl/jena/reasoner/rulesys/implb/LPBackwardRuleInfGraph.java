@@ -151,6 +151,7 @@ public class LPBackwardRuleInfGraph extends BaseInfGraph implements BackwardRule
      * may not have completely satisfied the query.
      */
     public synchronized ExtendedIterator findWithContinuation(TriplePattern pattern, Finder continuation) {
+        checkOpen();
         if (!isPrepared) prepare();
         ExtendedIterator result = engine.find(pattern);
         if (continuation != null) {

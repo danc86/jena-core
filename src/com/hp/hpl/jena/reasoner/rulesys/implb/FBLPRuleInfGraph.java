@@ -209,6 +209,7 @@ public class FBLPRuleInfGraph  extends FBRuleInfGraph {
      * may not have completely satisfied the query.
      */
     public ExtendedIterator findWithContinuation(TriplePattern pattern, Finder continuation) {
+        checkOpen();
 //        System.out.println("FBLP find called on: " + pattern); 
         if (!isPrepared) prepare();
         ExtendedIterator result = new UniqueExtendedIterator(lpbEngine.find(pattern));

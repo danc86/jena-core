@@ -307,6 +307,7 @@ public class RDFSInfGraph extends BaseInfGraph {
      * may not have completely satisfied the query.
      */
     public ExtendedIterator findWithContinuation(TriplePattern pattern, Finder continuation) {
+        checkOpen();
         if (!isPrepared) prepare();
         return new UniqueExtendedIterator(router.find(pattern, tripleCache, continuation,this));
     }

@@ -143,6 +143,7 @@ public abstract class BaseInfGraph extends GraphBase implements InfGraph {
      * @return a ValidityReport structure
      */
     public ValidityReport validate() {
+        checkOpen();
         return new StandardValidityReport();
     }
     
@@ -191,6 +192,7 @@ public abstract class BaseInfGraph extends GraphBase implements InfGraph {
      * will have also consulted the raw data.
      */
     public ExtendedIterator find(Node subject, Node property, Node object) {
+        checkOpen();
         return findWithContinuation(new TriplePattern(subject, property, object), fdata);
     }
 
@@ -203,6 +205,7 @@ public abstract class BaseInfGraph extends GraphBase implements InfGraph {
      *  that match the pattern
      */
     public ExtendedIterator find(TriplePattern pattern) {
+        checkOpen();
         return findWithContinuation(pattern, fdata);
     }
     
@@ -212,6 +215,7 @@ public abstract class BaseInfGraph extends GraphBase implements InfGraph {
      * equivalance.
      */
     public boolean contains(Triple t) {
+        checkOpen();
         ClosableIterator i = find(t.getSubject(), t.getPredicate(), t.getObject());
         boolean contained =  i.hasNext();
         i.close();
@@ -224,6 +228,7 @@ public abstract class BaseInfGraph extends GraphBase implements InfGraph {
      * equivalance.
      */
     public boolean contains(Node s, Node p, Node o) {
+        checkOpen();
         ClosableIterator i = find(s, p, o);
         boolean contained =  i.hasNext();
         i.close();
@@ -252,6 +257,7 @@ public abstract class BaseInfGraph extends GraphBase implements InfGraph {
      * Return the number of triples in the just the base graph
      */
     public int size() {
+        checkOpen();
         return fdata.getGraph().size();
     }
         

@@ -225,6 +225,7 @@ public class BasicForwardRuleInfGraph extends BaseInfGraph implements ForwardRul
      * may not have completely satisfied the query.
      */
     public ExtendedIterator findWithContinuation(TriplePattern pattern, Finder continuation) {
+        checkOpen();
         if (!isPrepared) prepare();
         ExtendedIterator result = null;
         if (fdata == null) {
@@ -287,6 +288,7 @@ public class BasicForwardRuleInfGraph extends BaseInfGraph implements ForwardRul
      * Return the number of triples in the inferred graph
      */
     public int size() {
+        checkOpen();
         if (!isPrepared) {
             prepare();
         }

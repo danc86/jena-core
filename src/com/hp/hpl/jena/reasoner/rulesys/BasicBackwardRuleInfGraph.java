@@ -167,6 +167,7 @@ public class BasicBackwardRuleInfGraph extends BaseInfGraph implements BackwardR
      * may not have completely satisfied the query.
      */
     public ExtendedIterator findWithContinuation(TriplePattern pattern, Finder continuation) {
+        checkOpen();
         if (!isPrepared) prepare();
         ExtendedIterator result = null;
         if (continuation == null) {

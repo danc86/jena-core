@@ -477,6 +477,7 @@ public class FBRuleInfGraph  extends BasicForwardRuleInfGraph implements Backwar
      * may not have completely satisfied the query.
      */
     public ExtendedIterator findWithContinuation(TriplePattern pattern, Finder continuation) {
+        checkOpen();
         if (!isPrepared) prepare();
         
         ExtendedIterator result = null;
