@@ -218,6 +218,42 @@ public class TestBugReports
         workModel.createStatement(sub, p, obj);
     }
 
+    /** Bug report from Christoph Kunz - reification problems and UnsupportedOperationException */
+    public void test_ck_03() {
+        // part A - surprising reification
+        OntModel model1 = ModelFactory.createOntologyModel(OntModelSpec.DAML_MEM, null);
+        OntModel model2 = ModelFactory.createOntologyModel(OntModelSpec.DAML_MEM_RULE_INF, null);
+
+        Individual sub = model1.createIndividual("http://mytest#i1", model1.getProfile().CLASS());
+        OntProperty pred = model1.createOntProperty("http://mytest#");
+        Individual obj = model1.createIndividual("http://mytest#i2", model1.getProfile().CLASS());
+        OntProperty probabilityP = model1.createOntProperty("http://mytest#prob");
+
+        Statement st = model1.createStatement(sub, pred, obj);
+        model1.add(st);
+        st.createReifiedStatement().addProperty(probabilityP, 0.9);
+        assertTrue( "st should be reified", st.isReified() );
+
+        Statement st2 = model2.createStatement(sub, pred, obj);
+        model2.add(st2);
+        st2.createReifiedStatement().addProperty(probabilityP, 0.3);
+        assertTrue( "st2 should be reified", st2.isReified() );
+
+        sub.addProperty(probabilityP, 0.3);
+        sub.removeAll(probabilityP).addProperty(probabilityP, 0.3); //!!! exception
+
+        // Part B - exception in remove All
+        Individual sub2 = model2.createIndividual("http://mytest#i1", model1.getProfile().CLASS());
+
+        sub.addProperty(probabilityP, 0.3);
+        sub.removeAll(probabilityP); //!!! exception
+
+        sub2.addProperty(probabilityP, 0.3);
+        sub2.removeAll(probabilityP); //!!! exception
+
+    }
+    
+    
     /**
      * Bug report by sjooseng [sjooseng@hotmail.com].  CCE in listOneOf in Enumerated
      * Class with DAML profile.
