@@ -75,17 +75,25 @@ public class TestModelSpec extends ModelTestBase
         Model m = ModelFactory.createModel( ms ) ;
         assertTrue( m.getGraph() instanceof GraphMem );
         }
-        
-    /** a spec with no maker should throw an exception 
-    */
-    public void testMakerlessException()
+    
+    public void testAbsentDefaultMaker()
         {
-        Model spec = modelWithStatements( "_x rdf:type jms:MemModelSpec; _x rdf:type jms:PlainModelSpec; _x rdf:type jms:ModelSpec" );
-        try 
-            { ModelSpec ms = ModelFactory.createSpec( spec ); 
-            fail( "makerless spec should throw a BadDescription exception" ); }
-        catch (BadDescriptionException e) { pass(); }
+        Model spec = modelWithStatements( "_x rdf:type jms:DefaultModelSpec" );
+        ModelSpec ms = ModelFactory.createSpec( spec );
+        Model m = ModelFactory.createModel( ms ) ;
+        assertTrue( m.getGraph() instanceof GraphMem );
         }
+        
+//    /** a spec with no maker should throw an exception 
+//    */
+//    public void testMakerlessException()
+//        {
+//        Model spec = modelWithStatements( "_x rdf:type jms:MemModelSpec; _x rdf:type jms:PlainModelSpec; _x rdf:type jms:ModelSpec" );
+//        try 
+//            { ModelSpec ms = ModelFactory.createSpec( spec ); 
+//            fail( "makerless spec should throw a BadDescription exception" ); }
+//        catch (BadDescriptionException e) { pass(); }
+//        }
     
     public void testNotFindCreator()
         {

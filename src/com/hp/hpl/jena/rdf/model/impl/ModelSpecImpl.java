@@ -149,7 +149,7 @@ public abstract class ModelSpecImpl implements ModelSpec
         {
         Resource type = findSpecificType( fullDesc, root, JMS.ModelSpec );
         ModelSpecCreator sc = ModelSpecCreatorRegistry.findCreator( type );
-        if (sc == null) throw new BadDescriptionException( "neither ont nor inf nor mem", fullDesc );
+        if (sc == null) throw new BadDescriptionException( "no model-spec creator found", fullDesc );
         return sc.create( root, fullDesc );    
         }
         
@@ -159,7 +159,12 @@ public abstract class ModelSpecImpl implements ModelSpec
         if (it.hasNext())
         	return it.nextStatement().getResource();
         else 
-            throw new BadDescriptionException( "no jms:maker for " + root, desc );
+            {
+            Resource r = desc.createResource();
+            desc.add( root, JMS.maker, r );
+            return r;
+            // throw new BadDescriptionException( "no jms:maker for " + root, desc );
+            }
         }
         
     /**

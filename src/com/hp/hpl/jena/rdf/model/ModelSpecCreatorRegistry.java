@@ -1,5 +1,5 @@
 /*
-  (c) Copyright 2003, Hewlett-Packard Development Company, LP
+  (c) Copyright 2003, 2004 Hewlett-Packard Development Company, LP
   [See end of file]
   $Id$
 */
@@ -48,12 +48,14 @@ public class ModelSpecCreatorRegistry
         {
         ModelSpecCreatorRegistry.register( JMS.InfModelSpec, new InfSpecCreator() );  
         ModelSpecCreatorRegistry.register( JMS.OntModelSpec, new OntSpecCreator() );  
-        ModelSpecCreatorRegistry.register( JMS.PlainModelSpec, new PlainSpecCreator() );    
+        ModelSpecCreatorRegistry.register( JMS.PlainModelSpec, new PlainSpecCreator() );   
+        
+        ModelSpecCreatorRegistry.register( JMS.DefaultModelSpec, new PlainSpecCreator() );   
         }   
     }
 
 /*
-    (c) Copyright 2003 Hewlett-Packard Development Company, LP
+    (c) Copyright 2003, 2004 Hewlett-Packard Development Company, LP
     All rights reserved.
 
     Redistribution and use in source and binary forms, with or without

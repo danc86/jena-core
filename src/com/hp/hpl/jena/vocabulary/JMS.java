@@ -1,5 +1,5 @@
 /*
-  (c) Copyright 2003, Hewlett-Packard Development Company, LP
+  (c) Copyright 2003, 2004 Hewlett-Packard Development Company, LP
   [See end of file]
   $Id$
 */
@@ -163,6 +163,11 @@ public class JMS
     public static final Resource ModelSpec = resource( "ModelSpec" );
         
     /**
+         DefaultModelSpec, a dynamic default ModelSpec
+    */
+    public static final Resource DefaultModelSpec = resource( "DefaultModelSpec" );
+    
+    /**
         The class of PlainModelSpec resources [subclass of ModelSpec].
     */
     public static final Resource PlainModelSpec = resource( "PlainModelSpec" );
@@ -204,6 +209,7 @@ public class JMS
         .add( JMS.FileMakerSpec, RDFS.subClassOf, JMS.MakerSpec )
         .add( JMS.RDBMakerSpec, RDFS.subClassOf, JMS.MakerSpec )
         
+        .add( JMS.DefaultModelSpec, RDFS.subClassOf, JMS.ModelSpec )
         .add( JMS.PlainModelSpec, RDFS.subClassOf, JMS.ModelSpec )
         .add( JMS.InfModelSpec, RDFS.subClassOf, JMS.PlainModelSpec )
         .add( JMS.OntModelSpec, RDFS.subClassOf, JMS.InfModelSpec )
@@ -280,7 +286,7 @@ public class JMS
 
 
 /*
-    (c) Copyright 2003 Hewlett-Packard Development Company, LP
+    (c) Copyright 2003, 2004 Hewlett-Packard Development Company, LP
     All rights reserved.
 
     Redistribution and use in source and binary forms, with or without
