@@ -105,7 +105,7 @@ public class OntDocumentManager
     public static final Property USE_DECLARED_NS_PREFIXES = vocab.createProperty( NS, "useDeclaredNsPrefixes" );
 
     /** Default document manager instance */
-    private static OntDocumentManager s_instance = new OntDocumentManager();
+    private static OntDocumentManager s_instance = null;
 
 
     // Instance variables
@@ -201,6 +201,9 @@ public class OntDocumentManager
      * @return The default, global instance of a document manager
      */
     public static OntDocumentManager getInstance() {
+        if (s_instance == null) {
+            s_instance = new OntDocumentManager();
+        }
         return s_instance;
     }
 
