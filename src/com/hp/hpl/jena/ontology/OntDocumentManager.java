@@ -141,7 +141,10 @@ public class OntDocumentManager
     /** Flag to control whether we include the standard prefixes in generated models - default true. */
     protected boolean m_useDeclaredPrefixes = true;
     
-
+    /** The URL of the policy file that was loaded, or null if no external policy file has yet been loaded */
+    protected String m_policyURL = null;
+    
+    
     // Constructors
     //////////////////////////////////
 
@@ -164,7 +167,9 @@ public class OntDocumentManager
      *
      * @param path The search path to search for initial metadata, which will
      * also replace the current search path for this document manager.  Use
-     * null to prevent loading of any initial ontology metadata.
+     * null to prevent loading of any initial ontology metadata. The path is a series
+     * of URL's, separated by the {@link #PATH_DELIMITER}, which defaults to 
+     * semi-colon (;).
      */
     public OntDocumentManager( String path ) {
         m_searchPath = (path == null) ? "" : path;
@@ -227,6 +232,7 @@ public class OntDocumentManager
      */
     public void setMetadataSearchPath( String path, boolean replace ) {
         m_searchPath = path;
+        m_policyURL = null;
         initialiseMetadata( path, replace );
     }
 
@@ -667,6 +673,17 @@ public class OntDocumentManager
         }
     }
     
+    
+    /**
+     * <p>Answer the URL of the most recently loaded policy URL, or null
+     * if no document manager policy has yet been loaded since the metadata
+     * search path was last set.</p>
+     * @return The most recently loaded policy URL or null.
+     */
+    public String getLoadedPolicyURL() {
+        return m_policyURL;
+    }
+    
 
     // Internal implementation methods
     //////////////////////////////////
@@ -805,6 +822,9 @@ public class OntDocumentManager
         while (!loaded  &&  pathElems.hasMoreTokens()) {
             String mdURI = pathElems.nextToken();
             loaded = read( m, mdURI, false );
+            if (loaded) {
+                m_policyURL = mdURI;
+            }
         }
 
         // only return m if we found some metadata
