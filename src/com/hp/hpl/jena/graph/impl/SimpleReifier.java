@@ -141,13 +141,13 @@ public class SimpleReifier implements Reifier
      */
     protected void addFragment( Fragments.Slot s, Triple fragment )
         {
-        Node tag = fragment.getSubject();
+        Node tag = fragment.getSubject(), object = fragment.getObject();
         Triple reified = tripleMap.getTriple( tag );
         if (reified == null)
             {
             Fragments partial = fragmentsMap.getFragments( tag );
             if (partial == null) fragmentsMap.putFragments( tag, partial = new Fragments( tag ) );
-            partial.add( s, fragment.getObject() );
+            partial.add( s, object );
             if (partial.isComplete())
                 {
                 tripleMap.putTriple( fragment.getSubject(), partial.asTriple() );
@@ -156,12 +156,10 @@ public class SimpleReifier implements Reifier
             }
         else
             {
-            if (s.clashesWith( fragment.getObject(), reified ))
+            if (s.clashesWith( object, reified ))
                 {
-                Fragments partial = new Fragments( tag, reified );
-                partial.add( s, fragment.getObject() );
-                fragmentsMap.putFragments( tag, partial );
                 tripleMap.removeTriple( tag, reified );
+                fragmentsMap.putAugmentedTriple( s, tag, object, reified );
                 }
             }
         }
