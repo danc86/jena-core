@@ -59,7 +59,7 @@ class HyperCube extends java.lang.Object {
     
     private int id = 2000;
     /** Creates new DiHyperCube */
-    public HyperCube(int dimension,Model m) throws RDFException {
+    public HyperCube(int dimension,Model m) {
         dim = dimension;
         model = m;
         corners = new Resource[1<<dim];
@@ -71,21 +71,21 @@ class HyperCube extends java.lang.Object {
             add(i,corners[i]);
     }
     
-    private void add(int corner,Resource r) throws RDFException {
+    private void add(int corner,Resource r)  {
         for (int j=0;j<dim;j++) {
             int bit = 1<<j;
             model.add(r,RDF.value,corners[corner^bit]);
         }
     }
     
-    HyperCube dupe(int corner) throws RDFException {
+    HyperCube dupe(int corner)  {
         Resource dup = model.createResource();
      //   dup.id = id++;
         add(corner,dup);
         return this;
     }
     
-    HyperCube toggle(int from,int to) throws RDFException {
+    HyperCube toggle(int from,int to)  {
         Resource f = corners[from];
         Resource t = corners[to];
         Statement s = model.createStatement(f,RDF.value,t);

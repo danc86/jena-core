@@ -8,7 +8,6 @@ package com.hp.hpl.jena.rdf.model.impl;
 
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.enhanced.*;
-import com.hp.hpl.jena.shared.*;
 
 import com.hp.hpl.jena.graph.*;
 
@@ -193,7 +192,7 @@ public class ResourceImpl extends EnhNode implements Resource {
     }
 
     public Resource addProperty(Property p, String o, String l)
-      throws RDFException {
+    {
         mustHaveModel().add( this, p, o, l );
         return this;
     }

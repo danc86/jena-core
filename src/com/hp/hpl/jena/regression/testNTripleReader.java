@@ -66,7 +66,7 @@ public class testNTripleReader extends Object {
   //      System.out.println("End of " + test);        
     }
     
-    protected void empty(Model m) throws RDFException {
+    protected void empty(Model m) {
         StmtIterator iter = m.listStatements();
         while (iter.hasNext()) {
             iter.nextStatement();

@@ -151,7 +151,7 @@ public class ModelLoader
 
 
     public static Model loadModel(Model model, String urlStr, String lang)
-        throws RDFException, java.io.FileNotFoundException
+        throws java.io.FileNotFoundException
     {
         // Wild guess at the language!
         // Yes - repeated from above.

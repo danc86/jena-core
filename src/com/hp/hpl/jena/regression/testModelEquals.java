@@ -91,7 +91,7 @@ public class testModelEquals extends Object {
      //   System.out.println("End of " + test);        
     }
     
-    static protected void empty(Model m) throws RDFException {
+    static protected void empty(Model m) {
         StmtIterator iter = m.listStatements();
         while (iter.hasNext()) {
             iter.nextStatement();
@@ -111,7 +111,7 @@ public class testModelEquals extends Object {
     }
     
     // RUN THIS TEST ONLY
-    static public void main(String args[]) throws RDFException
+    static public void main(String args[])
     {
         doTest(new ModelMem(), new ModelMem());
     }

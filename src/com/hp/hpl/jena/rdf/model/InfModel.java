@@ -93,7 +93,6 @@ public interface InfModel {
      * @param subject   The subject sought
      * @param predicate The predicate sought
      * @param object    The value sought
-     * @throws RDFException Generic RDF Exception
      */ 
     public StmtIterator listStatements( Resource subject, Property predicate, RDFNode object, Model posit );
     

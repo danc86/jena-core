@@ -209,7 +209,7 @@ public class N3toRDF implements N3ParserEventHandler
 	
 	private Map bNodeMap = new HashMap() ;
 	
-	private RDFNode createNode(int line, AST thing) throws RDFException
+	private RDFNode createNode(int line, AST thing) 
 	{
 		//String tokenType = N3AntlrParser._tokenNames[thing.getType()] ;
 		//System.out.println("Token type: "+tokenType) ;

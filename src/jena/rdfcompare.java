@@ -119,7 +119,7 @@ public class rdfcompare extends java.lang.Object {
     }
     
     protected static void read(Model model, String in, String lang) 
-      throws RDFException, java.io.FileNotFoundException {
+      throws java.io.FileNotFoundException {
         try {
             URL url = new URL(in);
             model.read(in, lang);

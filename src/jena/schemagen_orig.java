@@ -131,7 +131,7 @@ public class schemagen_orig extends java.lang.Object {
     }
 
     protected static void read(Model model, String in, String lang)
-        throws RDFException, java.io.FileNotFoundException {
+        throws java.io.FileNotFoundException {
         try {
             new URL(in);
             model.read(in, lang);
@@ -145,7 +145,7 @@ public class schemagen_orig extends java.lang.Object {
         String uriRef,
         Model schema,
         PrintStream out)
-        throws RDFException {
+        {
         Set classNames = listNames(uriRef, schema, RDFS.Class);
         Set propertyNames = listNames(uriRef, schema, RDF.Property);
         renderPreamble(name, uriRef, out);
@@ -156,7 +156,7 @@ public class schemagen_orig extends java.lang.Object {
     }
 
     protected static Set listNames(String uriRef, Model schema, Resource type)
-        throws RDFException {
+         {
 
         Set result = new HashSet();
 
@@ -184,7 +184,7 @@ public class schemagen_orig extends java.lang.Object {
         Set names,
         String type,
         PrintStream out)
-        throws RDFException {
+         {
         Iterator iter = names.iterator();
         while (iter.hasNext()) {
             String name = (String) iter.next();
@@ -199,7 +199,7 @@ public class schemagen_orig extends java.lang.Object {
         Set classNames,
         Set propertyNames,
         PrintStream out)
-        throws RDFException {
+         {
         out.println();
         out.println("    static {");
         out.println("        try {");

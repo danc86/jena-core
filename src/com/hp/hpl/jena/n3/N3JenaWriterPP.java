@@ -113,7 +113,7 @@ public class N3JenaWriterPP extends N3JenaWriterCommon
 	}
 
 	// Validate one list element.
-    private boolean checkListElement(Resource listElement) throws RDFException
+    private boolean checkListElement(Resource listElement) 
 	{
 		if (!listElement.hasProperty(RDF.rest)
 			|| !listElement.hasProperty(RDF.first))
@@ -156,7 +156,7 @@ public class N3JenaWriterPP extends N3JenaWriterCommon
 	// which are not RDF lists.
     // Could do this testing at write time (unlike lists)
 
-    private void prepareOneRefBNodes(Model model) throws RDFException
+    private void prepareOneRefBNodes(Model model) 
 	{
 
 		NodeIterator objIter = model.listObjects() ;
@@ -491,7 +491,7 @@ public class N3JenaWriterPP extends N3JenaWriterCommon
 	// Need to out.print in short (all on one line) and long forms (multiple lines)
 	// That needs starts point depth tracking.
 	private void writeList(Resource resource)
-		throws RDFException
+		
 	{
 		out.print( "(");
 		out.incIndent(2) ;

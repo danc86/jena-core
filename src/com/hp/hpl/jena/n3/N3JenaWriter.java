@@ -111,7 +111,7 @@ public class N3JenaWriter implements RDFWriter
      * @see #write(Model,Writer,String)
      */
 
-    public void write(Model model, Writer out, String base) throws RDFException
+    public void write(Model model, Writer out, String base) 
     {
         writer.write(model, out, base) ;
     }
@@ -140,7 +140,7 @@ public class N3JenaWriter implements RDFWriter
     * @see #write(Model,Writer,String)
     */
 
-    public void write(Model model, OutputStream out, String base) throws RDFException
+    public void write(Model model, OutputStream out, String base) 
     {
         writer.write(model, out, base) ;
    }
@@ -149,7 +149,7 @@ public class N3JenaWriter implements RDFWriter
     /**
      * @see com.hp.hpl.jena.rdf.model.RDFWriter#setProperty(java.lang.String, java.lang.Object)
      */
-    public Object setProperty(String propName, Object propValue) throws RDFException
+    public Object setProperty(String propName, Object propValue) 
     {
         return writer.setProperty(propName, propValue) ;
     }

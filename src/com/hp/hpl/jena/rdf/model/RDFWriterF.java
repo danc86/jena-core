@@ -52,14 +52,14 @@ public interface RDFWriterF {
 /** return an RDFWriter instance for the default serialization language.
  * @return an RDFWriter instance for the default serialization language.
  */    
-    public RDFWriter getWriter() throws RDFException;
+    public RDFWriter getWriter();
     
 /** an RDFWriter instance for the specified serialization language.
  * @param lang the serialization langauge - <code>null</code> selects the
  *             default
  * @return the RDFWriter instance
  */    
-    public RDFWriter getWriter(String lang) throws RDFException; 
+    public RDFWriter getWriter(String lang); 
     
 /** set the class name for the RDFWriter for a langauge
  * @param lang the language for which this class should be used

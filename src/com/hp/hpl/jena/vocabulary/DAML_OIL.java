@@ -45,13 +45,7 @@ package com.hp.hpl.jena.vocabulary;
 
 // Imports
 ///////////////
-import com.hp.hpl.jena.rdf.model.impl.*;
 import com.hp.hpl.jena.rdf.model.*;
-import com.hp.hpl.jena.util.Log;
-import com.hp.hpl.jena.ontology.daml.impl.*;
-import com.hp.hpl.jena.ontology.daml.*;
-
-
 
 /**
  * <p>

@@ -58,7 +58,7 @@ class DiHyperCube extends java.lang.Object {
     
     private int id = 2000;
     /** Creates new DiHyperCube */
-    public DiHyperCube(int dimension, Model m) throws RDFException {
+    public DiHyperCube(int dimension, Model m)  {
         dim = dimension;
         model = m;
         corners = new Resource[1<<dim];
@@ -70,7 +70,7 @@ class DiHyperCube extends java.lang.Object {
             addDown(i,corners[i]);
     }
     
-    private void addDown(int corner,Resource r) throws RDFException {
+    private void addDown(int corner,Resource r)  {
         for (int j=0;j<dim;j++) {
             int bit = 1<<j;
             if ( (corner & bit) != 0 ) {
@@ -79,7 +79,7 @@ class DiHyperCube extends java.lang.Object {
         }
     }
     
-    DiHyperCube dupe(int corner) throws RDFException {
+    DiHyperCube dupe(int corner)  {
         Resource dup = model.createResource();
         //dup.id = id++;
         for (int j=0;j<dim;j++) {

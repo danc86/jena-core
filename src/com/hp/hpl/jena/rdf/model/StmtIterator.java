@@ -56,9 +56,8 @@ public interface StmtIterator extends ExtendedIterator {
     
     /** Return the next Statement of the iteration.
      * @throws NoSuchElementException if there are no more to be returned.
-     * @throws RDFException Generic RDF exception.
      * @return The next Resource from the iteration.
      */
-    public Statement nextStatement() throws  NoSuchElementException, RDFException;
+    public Statement nextStatement() throws  NoSuchElementException;
     
 }

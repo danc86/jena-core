@@ -29,7 +29,7 @@ public class ContNodeIteratorImpl
     /** Creates new ContNodeIteratorImpl */
     public ContNodeIteratorImpl (Iterator  iterator, 
                                 Object     object,
-                                Container  cont) throws RDFException {
+                                Container  cont)  {
         super( iterator ); 
         this.cont     = cont;
         this.size     = cont.size();

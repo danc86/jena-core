@@ -68,7 +68,7 @@ public class testMatch extends java.lang.Object {
         this.m1 = m1;
         this.m2 = m2;
     }
-    static private void empty(Model m) throws RDFException {
+    static private void empty(Model m) {
         StmtIterator iter = m.listStatements();
         while (iter.hasNext()) {
             iter.nextStatement();
@@ -366,7 +366,7 @@ public class testMatch extends java.lang.Object {
         return inError;
     }
     // RUN THIS TEST ONLY
-    static public void main(String args[]) throws RDFException {
+    static public void main(String args[]) {
         DIMENSION = 8;
         QUANTITY = 10;
         QUIET = false;
