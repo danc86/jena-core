@@ -221,9 +221,9 @@ public class schemagen extends java.lang.Object {
       out.println("package com.hp.hpl.jena.vocabulary;");
       out.println();
 
-      out.println("import com.hp.hpl.jena.ErrorHelper;");
-      out.println("import com.hp.hpl.jena.PropertyImpl;");
-      out.println("import com.hp.hpl.jena.ResourceImpl;");
+      out.println("import com.hp.hpl.jena.rdf.model.impl.ErrorHelper;");
+      out.println("import com.hp.hpl.jena.rdf.model.impl.PropertyImpl;");
+      out.println("import com.hp.hpl.jena.rdf.model.impl.ResourceImpl;");
       out.println("import com.hp.hpl.jena.rdf.model.Model;");
       out.println("import com.hp.hpl.jena.rdf.model.Resource;");
       out.println("import com.hp.hpl.jena.rdf.model.Property;");
