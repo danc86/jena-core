@@ -113,6 +113,11 @@ public class OntModelImpl
         Profile lang = getProfile();
         m_individualsQuery = queryXTypeOfType( lang.CLASS() );
         
+        // add the global prefixes, if required
+        if (getDocumentManager().useDeclaredPrefixes()) {
+            setNsPrefixes( getDocumentManager().getDeclaredPrefixMapping() );
+        }
+        
         // load the imports closure, according to the policies in my document manager
         getDocumentManager().loadImports( this );
         

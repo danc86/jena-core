@@ -92,5 +92,11 @@
 	<rdfs:domain rdf:resource="#DocumentManagerPolicy" />
 </rdf:Property>
 
+<rdf:Property rdf:ID="useDeclaredNsPrefixes">
+	<rdfs:label>Use declared NS prefixes</rdfs:label>
+	<rdfs:comment>Boolean flag for whether new ontology models will include the pre-declared namespace prefixes</rdfs:comment>
+	<rdfs:domain rdf:resource="#DocumentManagerPolicy" />
+</rdf:Property>
+
 
 </rdf:RDF>
