@@ -231,11 +231,7 @@ public abstract class Node {
     */
     
     /* package visibility only */ Node( Object label ) 
-        {
-        this.label = label;
-        if (present.size() > THRESHOLD) { /* System.err.println( "> trashing node cache" ); */ present.clear(); }
-        if (caching) present.put( label, this );
-        }
+        { this.label = label; }
         
     static private boolean caching = true;
     
@@ -250,6 +246,12 @@ public abstract class Node {
         caching = wantCache;
         }
         
+    private static synchronized Node cacheNewNode( Object label, Node n )
+        { 
+        if (present.size() > THRESHOLD) { /* System.err.println( "> trashing node cache" ); */ present.clear(); }
+        if (caching) present.put( label, n );
+        return n;
+        }
     /**
         We object strongly to null labels: for example, they make .equals flaky. We reuse nodes 
         from the recent cache if we can. Otherwise, the maker knows how to construct a new
@@ -259,7 +261,7 @@ public abstract class Node {
         {
         if (label == null) throw new JenaException( "Node.make: null label" );
         Node node = (Node) present.get( label );
-        if (node == null) node = maker.construct( label ); 
+        if (node == null) node = cacheNewNode( label, maker.construct( label ) ); 
         return node;
         }
         
