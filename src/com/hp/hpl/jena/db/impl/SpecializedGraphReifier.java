@@ -58,12 +58,15 @@ public interface SpecializedGraphReifier extends SpecializedGraph {
                         
 	/**
 	 * Finds matching reified triples in the specialized graph and returns their nodes.
-	 * @param t the TripleMatch
+//	 * @param t the TripleMatch
+     * @param t the Triple
 	 * @param complete is true if the graph can guarantee that no other specialized graph 
 	 * could hold any matching triples.
 	 * @return ExtendedIterator which iterates over any matching nodes
 	 */
-	public ExtendedIterator findReifiedNodes(TripleMatch t, CompletionFlag complete);
+//	public ExtendedIterator findReifiedNodes(TripleMatch t, CompletionFlag complete);
+	public ExtendedIterator findReifiedNodes(Triple t, CompletionFlag complete);
+
 
 	/**
 	 * Finds the reified triple corresponding to a particular node in the specialized graph.

@@ -89,8 +89,9 @@ public class DBReifier implements Reifier
 	 */
 	public boolean hasTriple(Triple t) {
 		SpecializedGraph.CompletionFlag complete = new SpecializedGraph.CompletionFlag();
-		TripleMatch match = new StandardTripleMatch(t.getSubject(), t.getPredicate(), t.getObject());
-		return m_reifier.findReifiedNodes(match, complete).hasNext();
+//		TripleMatch match = new StandardTripleMatch(t.getSubject(), t.getPredicate(), t.getObject());
+//		return m_reifier.findReifiedNodes(match, complete).hasNext();
+		return m_reifier.findReifiedNodes(t, complete).hasNext();
 	}
 
 	/* (non-Javadoc)
@@ -98,8 +99,9 @@ public class DBReifier implements Reifier
 	 */
 	public ExtendedIterator allNodes() {
 		SpecializedGraph.CompletionFlag complete = new SpecializedGraph.CompletionFlag();
-		TripleMatch match = new StandardTripleMatch(null, null, null);
-		return m_reifier.findReifiedNodes(match, complete);
+//		TripleMatch match = new StandardTripleMatch(null, null, null);
+//		return m_reifier.findReifiedNodes(match, complete);
+		return m_reifier.findReifiedNodes(null, complete);
 	}
 
 	/* (non-Javadoc)
