@@ -28,6 +28,7 @@ package com.hp.hpl.jena.ontology.impl;
 import com.hp.hpl.jena.enhanced.*;
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.ontology.*;
+import com.hp.hpl.jena.rdf.model.Resource;
 
 
 /**
@@ -94,6 +95,40 @@ public class SomeValuesFromRestrictionImpl
 
     // External signature methods
     //////////////////////////////////
+
+    // someValuesFrom
+    
+    /**
+     * <p>Assert that this restriction restricts the property to have at least one value
+     * that is a member of the given class. Any existing statements for <code>someValuesFrom</code>
+     * will be removed.</p>
+     * @param cls The class that at least one value of the property must belong to
+     * @exception OntProfileException If the {@link Profile#SOME_VALUES_FROM()} property is not supported in the current language profile.   
+     */ 
+    public void setSomeValuesFrom( Resource cls ) {
+        setPropertyValue( getProfile().SOME_VALUES_FROM(), "SOME_VALUES_FROM", cls );
+    }
+
+    /**
+     * <p>Answer the class that at least one value of the restricted property must belong to.</p>
+     * @return A class that some values from the restricted property must belong to
+     * @exception OntProfileException If the {@link Profile#SOME_VALUES_FROM()} property is not supported in the current language profile.   
+     */ 
+    public OntClass getSomeValuesFrom() {
+        return (OntClass) objectAs( getProfile().SOME_VALUES_FROM(), "SOME_VALUES_FROM", OntClass.class );
+    }
+
+    /**
+     * <p>Answer true if this property restriction has the given class as the class to which at least one 
+     * value of the restricted property must belong.</p>
+     * @param cls A class to test 
+     * @return True if the given class is the class to which at least one value must belong
+     * @exception OntProfileException If the {@link Profile#SOME_VALUES_FROM()} property is not supported in the current language profile.   
+     */
+    public boolean hasSomeValuesFrom( Resource cls ) {
+        return hasPropertyValue( getProfile().SOME_VALUES_FROM(), "SOME_VALUES_FROM", cls );
+    }
+    
 
     // Internal implementation methods
     //////////////////////////////////

@@ -963,7 +963,7 @@ public class OntModelImpl
                 
         checkProfileEntry( getProfile().CARDINALITY(), "CARDINALITY" );
         r.addProperty( getProfile().ON_PROPERTY(), prop );
-        r.addProperty( getProfile().CARDINALITY(), cardinality );
+        r.addProperty( getProfile().CARDINALITY(), createTypedLiteral( cardinality ) );
                 
         return (CardinalityRestriction) r.as( CardinalityRestriction.class );
     }
@@ -989,7 +989,7 @@ public class OntModelImpl
                     
         checkProfileEntry( getProfile().MIN_CARDINALITY(), "MIN_CARDINALITY" );
         r.addProperty( getProfile().ON_PROPERTY(), prop );
-        r.addProperty( getProfile().MIN_CARDINALITY(), cardinality );
+        r.addProperty( getProfile().MIN_CARDINALITY(), createTypedLiteral( cardinality ) );
                     
         return (MinCardinalityRestriction) r.as( MinCardinalityRestriction.class );
     }
@@ -1015,7 +1015,7 @@ public class OntModelImpl
                         
         checkProfileEntry( getProfile().MAX_CARDINALITY(), "MAX_CARDINALITY" );
         r.addProperty( getProfile().ON_PROPERTY(), prop );
-        r.addProperty( getProfile().MAX_CARDINALITY(), cardinality );
+        r.addProperty( getProfile().MAX_CARDINALITY(), createTypedLiteral( cardinality ) );
                         
         return (MaxCardinalityRestriction) r.as( MaxCardinalityRestriction.class );
     }

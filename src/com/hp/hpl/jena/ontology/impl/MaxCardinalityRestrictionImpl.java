@@ -94,6 +94,39 @@ public class MaxCardinalityRestrictionImpl
     // External signature methods
     //////////////////////////////////
 
+    // maxCardinality
+    
+    /**
+     * <p>Assert that this restriction restricts the property to have the given
+     * maximum cardinality. Any existing statements for <code>maxCardinality</code>
+     * will be removed.</p>
+     * @param cardinality The maximum cardinality of the restricted property
+     * @exception OntProfileException If the {@link Profile#MAX_CARDINALITY()} property is not supported in the current language profile.   
+     */ 
+    public void setMaxCardinality( int cardinality ) {
+        setPropertyValue( getProfile().MAX_CARDINALITY(), "MAX_CARDINALITY", getModel().createTypedLiteral( cardinality ) );
+    }
+
+    /**
+     * <p>Answer the maximum cardinality of the restricted property.</p>
+     * @return The maximum cardinality of the restricted property
+     * @exception OntProfileException If the {@link Profile#MAX_CARDINALITY()} property is not supported in the current language profile.   
+     */ 
+    public int getMaxCardinality() {
+        return objectAsInt( getProfile().MAX_CARDINALITY(), "MAX_CARDINALITY" );
+    }
+
+    /**
+     * <p>Answer true if this property restriction has the given maximum cardinality.</p>
+     * @param cardinality The cardinality to test against 
+     * @return True if the given cardinality is the max cardinality of the restricted property in this restriction
+     * @exception OntProfileException If the {@link Profile#MAX_CARDINALITY()} property is not supported in the current language profile.   
+     */
+    public boolean hasMaxCardinality( int cardinality ) {
+        return hasPropertyValue( getProfile().MAX_CARDINALITY(), "MAX_CARDINALITY", getModel().createTypedLiteral( cardinality ) );
+    }
+    
+
     // Internal implementation methods
     //////////////////////////////////
 

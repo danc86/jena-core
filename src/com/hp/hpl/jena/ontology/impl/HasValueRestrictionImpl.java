@@ -28,6 +28,7 @@ package com.hp.hpl.jena.ontology.impl;
 import com.hp.hpl.jena.enhanced.*;
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.ontology.*;
+import com.hp.hpl.jena.rdf.model.Resource;
 
 
 /**
@@ -95,6 +96,40 @@ public class HasValueRestrictionImpl
     // External signature methods
     //////////////////////////////////
 
+    // hasValue
+    
+    /**
+     * <p>Assert that this restriction restricts the property to have the given
+     * value. Any existing statements for <code>hasValue</code>
+     * will be removed.</p>
+     * @param individual The individual that is the value that the restricted property must have to be a member of the
+     * class defined by this restriction.
+     * @exception OntProfileException If the {@link Profile#HAS_VALUE()} property is not supported in the current language profile.   
+     */ 
+    public void setHasValue( Resource cls ) {
+        setPropertyValue( getProfile().HAS_VALUE(), "HAS_VALUE", cls );
+    }
+
+    /**
+     * <p>Answer the individual that all values of the restricted property must be equal to.</p>
+     * @return An individual that is the value of the restricted property
+     * @exception OntProfileException If the {@link Profile#HAS_VALUE()} property is not supported in the current language profile.   
+     */ 
+    public Individual getHasValue() {
+        return (Individual) objectAs( getProfile().HAS_VALUE(), "HAS_VALUE", Individual.class );
+    }
+
+    /**
+     * <p>Answer true if this property restriction has the given individual as the value which all 
+     * values of the restricted property must equal.</p>
+     * @param individual An individual to test 
+     * @return True if the given individual is the value of the restricted property in this restriction
+     * @exception OntProfileException If the {@link Profile#HAS_VALUE()} property is not supported in the current language profile.   
+     */
+    public boolean hasValue( Resource individual ) {
+        return hasPropertyValue( getProfile().HAS_VALUE(), "HAS_VALUE", individual );
+    }
+    
     // Internal implementation methods
     //////////////////////////////////
 

@@ -892,6 +892,13 @@ public class OntResourceImpl
     }
 
     
+    /** Answer the int value of a statement with the given property */
+    protected int objectAsInt( Property p, String name ) {
+        checkProfile( p, name );
+        return getProperty( p ).getInt();
+    }
+
+    
     /** Answer an iterator for the given property, whose values are .as() some class */
     protected Iterator listAs( Property p, String name, Class cls ) {
         checkProfile( p, name );
