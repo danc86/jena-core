@@ -873,17 +873,22 @@ public class OntResourceImpl
                (target.length() > desired.length() && desired.equalsIgnoreCase( target.substring( desired.length() ) ));
     }
     
+    /** Answer the object of a statement with the given property, .as() the given class */
+    protected Object objectAs( Property p, String name, Class asClass ) {
+        checkProfile( p, name );
+        return getProperty( p ).getObject().as( asClass );
+    }
+
+    
     /** Answer the object of a statement with the given property, .as() an OntResource */
     protected OntResource objectAsResource( Property p, String name ) {
-        checkProfile( p, name );
-        return (OntResource) getProperty( p ).getObject().as( OntResource.class );
+        return (OntResource) objectAs( p, name, OntResource.class );
     }
 
     
     /** Answer the object of a statement with the given property, .as() an OntProperty */
     protected OntProperty objectAsProperty( Property p, String name ) {
-        checkProfile( p, name );
-        return (OntProperty) getProperty( p ).getObject().as( OntProperty.class );
+        return (OntProperty) objectAs( p, name, OntProperty.class );
     }
 
     

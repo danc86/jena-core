@@ -76,7 +76,7 @@ public interface OntProperty
 
     /**
      * <p>Answer an iterator over all of the properties that are declared to be super-properties of
-     * this property. Each elemeent of the iterator will be an {@link #OntProperty}.</p>
+     * this property. Each element of the iterator will be an {@link #OntProperty}.</p>
      * @return An iterator over the super-properties of this property.
      * @exception OntProfileException If the {@link Profile#SUB_PROPERTY_OF()} property is not supported in the current language profile.   
      */ 
@@ -86,6 +86,7 @@ public interface OntProperty
      * <p>Answer true if the given property is a super-property of this property.</p>
      * @param prop A property to test.
      * @return True if the given property is a super-property of this property.
+     * @exception OntProfileException If the {@link Profile#SUB_PROPERTY_OF()} property is not supported in the current language profile.   
      */
     public boolean hasSuperProperty( Property prop );
     
@@ -114,7 +115,7 @@ public interface OntProperty
 
     /**
      * <p>Answer an iterator over all of the properties that are declared to be sub-properties of
-     * this property. Each elemeent of the iterator will be an {@link #OntProperty}.</p>
+     * this property. Each element of the iterator will be an {@link #OntProperty}.</p>
      * @return An iterator over the sub-properties of this property.
      * @exception OntProfileException If the {@link Profile#SUB_PROPERTY_OF()} property is not supported in the current language profile.   
      */ 
@@ -124,6 +125,7 @@ public interface OntProperty
      * <p>Answer true if the given property is a sub-property of this property.</p>
      * @param prop A property to test.
      * @return True if the given property is a sub-property of this property.
+     * @exception OntProfileException If the {@link Profile#SUB_PROPERTY_OF()} property is not supported in the current language profile.   
      */
     public boolean hasSubProperty( Property prop );
     
@@ -154,7 +156,7 @@ public interface OntProperty
 
     /**
      * <p>Answer an iterator over all of the declared domain classes of this property.
-     * Each elemeent of the iterator will be an {@link #OntResource}.</p>
+     * Each element of the iterator will be an {@link #OntResource}.</p>
      * @return An iterator over the classes that form the domain of this property.
      * @exception OntProfileException If the {@link Profile#DOMAIN()} property is not supported in the current language profile.   
      */ 
@@ -164,6 +166,7 @@ public interface OntProperty
      * <p>Answer true if the given resource a class specifying the domain of this property.</p>
      * @param res A resource representing a class
      * @return True if the given resource is one of the domain classes of this property.
+     * @exception OntProfileException If the {@link Profile#DOMAIN()} property is not supported in the current language profile.   
      */
     public boolean hasDomain( Resource res );
     
@@ -195,7 +198,7 @@ public interface OntProperty
 
     /**
      * <p>Answer an iterator over all of the declared range classes of this property.
-     * Each elemeent of the iterator will be an {@link #OntResource}.</p>
+     * Each element of the iterator will be an {@link #OntResource}.</p>
      * @return An iterator over the classes that form the range of this property.
      * @exception OntProfileException If the {@link Profile#RANGE()} property is not supported in the current language profile.   
      */ 
@@ -205,6 +208,7 @@ public interface OntProperty
      * <p>Answer true if the given resource a class specifying the range of this property.</p>
      * @param res A resource representing a class
      * @return True if the given resource is one of the range classes of this property.
+     * @exception OntProfileException If the {@link Profile#RANGE()} property is not supported in the current language profile.   
      */
     public boolean hasRange( Resource res );
     
@@ -238,7 +242,7 @@ public interface OntProperty
 
     /**
      * <p>Answer an iterator over all of the properties that are declared to be equivalent properties to
-     * this property. Each elemeent of the iterator will be an {@link #OntProperty}.</p>
+     * this property. Each element of the iterator will be an {@link #OntProperty}.</p>
      * @return An iterator over the properties equivalent to this property.
      * @exception OntProfileException If the {@link Profile#EQUIVALENT_PROPERTY()} property is not supported in the current language profile.   
      */ 
@@ -248,6 +252,7 @@ public interface OntProperty
      * <p>Answer true if the given property is equivalent to this property.</p>
      * @param prop A property to test for
      * @return True if the given property is equivalent to this property.
+     * @exception OntProfileException If the {@link Profile#EQUIVALENT_PROPERTY()} property is not supported in the current language profile.   
      */
     public boolean hasEquivalentProperty( Property prop );
     
@@ -278,7 +283,7 @@ public interface OntProperty
 
     /**
      * <p>Answer an iterator over all of the properties that this property is declared to be the inverse of.
-     * Each elemeent of the iterator will be an {@link #OntProperty}.</p>
+     * Each element of the iterator will be an {@link #OntProperty}.</p>
      * @return An iterator over the properties inverse to this property.
      * @exception OntProfileException If the {@link Profile#INVERSE_OF()} property is not supported in the current language profile.   
      */ 
@@ -288,6 +293,7 @@ public interface OntProperty
      * <p>Answer true if this property is the inverse of the given property.</p>
      * @param prop A property to test for
      * @return True if the this property is the inverse of the the given property.
+     * @exception OntProfileException If the {@link Profile#INVERSE_OF()} property is not supported in the current language profile.   
      */
     public boolean isInverseOf( Property prop );
     
