@@ -67,11 +67,14 @@ public class JenaReader implements RDFReader, ARPErrorNumbers {
 				  bulk.add(triples);
 				else 
 				  bulk.add(Arrays.asList(triples).subList(0,ix));
-				ix = 0;
+				
 			}
 			catch (JenaException e) {
 			errorHandler.error(e);
 		  }
+			finally {
+				ix = 0;
+			}
 		}
 	}
 
