@@ -26,14 +26,14 @@ public class TestIntersection extends GraphTestBase
         Graph g1 = graphWith( "x R y; p R q" );
         Graph g2 = graphWith( "r A s; x R y" );
         Intersection i = new Intersection( g1, g2 );
-        assertContains( "Intersection", i, "x R y" );
+        assertContains( "Intersection", "x R y", i );
  		assertOmits( "Intersection", i, "p R q" );
 		assertOmits( "Intersection", i, "r A s" );
         if (i.size() != 1)
             fail( "oops: size of intersection is not 1" );
         i.add( triple( "cats eat cheese" ) );
-        assertContains( "Intersection.L", g1, "cats eat cheese" );
-        assertContains( "Intersection.R", g2, "cats eat cheese" );
+        assertContains( "Intersection.L", "cats eat cheese", g1 );
+        assertContains( "Intersection.R", "cats eat cheese", g2 );
     /* */
     	Graph L = graphWith( "a pings b; b pings c; c pings a" );
     	Graph R = graphWith( "c pings a; b pings c; x captures y" );

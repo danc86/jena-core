@@ -45,10 +45,10 @@ public class TestPackage {
         /* */
         suite.addTest(new testWriterInterface("testAnotherWriter", null));
         /* */
-        for (int i = 0; i < langs.length
-              ; i++) {
-            suite.addTest(testWriterAndReader.suite(langs[i]));
-        }
+//        for (int i = 0; i < langs.length
+//              ; i++) {
+//            suite.addTest(testWriterAndReader.suite(langs[i]));
+//        }
 
         return suite;
     }

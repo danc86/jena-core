@@ -28,6 +28,7 @@ public class TestPackage extends TestSuite {
         addTest( "TestReifier", TestReifier.suite() );   
         addTest( "TestTypedLiterals", TestTypedLiterals.suite() );
         addTest( "TestGraphQuery", QueryTest.suite() );
+        addTest( "TestFactory", TestFactory.suite() );
         }
 
     private void addTest(String name, TestSuite tc) {

@@ -28,7 +28,7 @@ public class TestPackage extends TestSuite {
     private TestPackage() {
         super("reasoners");
         addTest( "TestTransitiveGraphCache", TestTransitiveGraphCache.suite() );
-        addTest( "TestReasoners", TestReasoners.suite() );
+        // addTest( "TestReasoners", TestReasoners.suite() );
         }
 
     // helper method

@@ -102,9 +102,11 @@ public class N3JenaWriterTests extends N3ExternalTestsCom
 			
             if ( ! model_1.isIsomorphicWith(model_2) )
 			{
-				//System.out.println("#### ---- "+testName+" ------------------------------") ;
-				//System.out.println(w.toString()) ;
-				//System.out.flush() ;
+				System.out.println("#### ---- "+testName+" ------------------------------") ;
+                System.out.println("#### Model 1 ---- "+testName+" ------------------------------") ;
+                model_1.write(System.out, "N3") ;
+                System.out.println("#### -Model 2 --- "+testName+" ------------------------------") ;
+                model_2.write(System.out, "N3") ;
                 assertTrue("Models don't match: "+testName, false) ;
 			}
 		}

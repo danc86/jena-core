@@ -155,7 +155,7 @@ public abstract class Node {
         if (caching) present.put( label, this );
         }
         
-    private static boolean caching = true;
+    static private boolean caching = true;
     
     /**
         provided only for testing purposes. _cache(false)_ switches off caching and

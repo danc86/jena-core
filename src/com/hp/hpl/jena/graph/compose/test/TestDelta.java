@@ -26,7 +26,7 @@ public class TestDelta extends GraphTestBase
 	public void testDelta() 
 		{
 		Graph x = graphWith( "x R y" );
-		assertContains( "x", x, "x R y" );
+		assertContains( "x", "x R y", x );
 		x.delete( triple( "x R y" ) );
 		assertOmits( "x", x, "x R y" );
 	/* */	
@@ -41,9 +41,9 @@ public class TestDelta extends GraphTestBase
 	/* */
 		assertContainsAll( "changed Delta", delta, "x R y; p S q; pins pop balloons; pigs fly winglessly" );
 		assertOmits( "changed delta", delta, "I like cheese" );
-		assertContains( "delta additions", delta.getAdditions(), "pigs fly winglessly" );
+		assertContains( "delta additions", "pigs fly winglessly", delta.getAdditions() );
 		assertOmits( "delta additions", delta.getAdditions(), "I like cheese" );
-		assertContains( "delta deletions", delta.getDeletions(), "I like cheese" );
+		assertContains( "delta deletions", "I like cheese", delta.getDeletions() );
 		assertOmits( "delta deletions", delta.getDeletions(), "pigs fly winglessly" );
 		}
 	}

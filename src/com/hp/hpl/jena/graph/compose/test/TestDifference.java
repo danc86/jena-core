@@ -28,12 +28,12 @@ public class TestDifference extends GraphTestBase
         Graph g2 = graphWith( "r A s; x R y" );
         Difference d = new Difference( g1, g2 );
         assertOmits( "Difference", d, "x R y" );
-        assertContains( "Difference", d, "p R q" ); 
+        assertContains( "Difference", "p R q", d ); 
 		assertOmits( "Difference", d, "r A s" );
         if (d.size() != 1)
             fail( "oops: size of difference is not 1" );
         d.add( triple( "cats eat cheese" ) );
-        assertContains( "Difference.L", g1, "cats eat cheese" );
+        assertContains( "Difference.L", "cats eat cheese", g1 );
         assertOmits( "Difference.R", g2, "cats eat cheese" );
 		}
 	}

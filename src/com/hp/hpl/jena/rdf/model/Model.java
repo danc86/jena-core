@@ -571,6 +571,14 @@ public interface Model extends ModelCon, RDFReaderF, RDFWriterF {
     */
     void removeReification( ReifiedStatement rs );
 
+    /**
+        a read-only Model with all the statements of this Model and any
+        statements "hidden" by reification. That model is dynamic, ie
+        any changes this model will be reflected that one.
+        [TODO: Except this implementation delivers only a static Model]
+    */
+    Model withHiddenStatements();
+    
 	/** List the statements matching a selector.
 	 *
 	 * <p>A statment is considered to match if the <CODE>test</CODE> method

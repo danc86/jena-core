@@ -42,8 +42,8 @@ public class RDFClosure extends Dyadic implements Graph
 		throw new RuntimeException( "RDFClosure::delete not implemented [yet]" );
 		}
 		
-	static Node RDFtype = Node.createURI( "rdf:type" );	
-	static Node RDFproperty = Node.createURI( "rdf:Property" );
+	static Node RDFtype = GraphTestBase.node( "rdf:type" );	
+	static Node RDFproperty = GraphTestBase.node( "rdf:Property" );
 	static Triple typeTriple = new Triple( RDFtype, RDFtype, RDFproperty );
 	
 	private boolean plausible( TripleMatch tm, Node p )

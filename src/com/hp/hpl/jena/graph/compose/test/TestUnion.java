@@ -29,13 +29,13 @@ public class TestUnion extends GraphTestBase
         Graph g1 = graphWith( "x R y; p R q" );
         Graph g2 = graphWith( "r A s; x R y" );
         Union u = new Union( g1, g2 );
-        assertContains( "Union", u, "x R y" );
-        assertContains( "Union", u, "p R q" );
-        assertContains( "Union", u, "r A s" );
+        assertContains( "Union", "x R y", u );
+        assertContains( "Union", "p R q", u );
+        assertContains( "Union", "r A s", u );
         if (u.size() != 3)
             fail( "oops: size of union is not 3" );
         u.add( triple( "cats eat cheese" ) );
-        assertContains( "Union", u, "cats eat cheese" );
+        assertContains( "Union", "cats eat cheese", u );
         if 
         	(
         	contains( g1, "cats eat cheese" ) == false

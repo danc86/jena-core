@@ -26,10 +26,10 @@ public class TestRDFClosure extends GraphTestBase
 	public void testRDFClosure()
 		{
 		Graph g = new RDFClosure( graphWith( "x R y; a S b; c R d" ) );
-		assertContains( "RDFClosure", g, "x R y" );
-		assertContains( "RDFClosure", g, "a S b" );
-		assertContains( "RDFClosure", g, "R rdf:type rdf:Property" );
-		assertContains( "RDFClosure", g, "rdf:type rdf:type rdf:Property" );
+		assertContains( "RDFClosure", "x R y", g );
+		assertContains( "RDFClosure", "a S b", g );
+		assertContains( "RDFClosure", "R rdf:type rdf:Property", g );
+		assertContains( "RDFClosure", "rdf:type rdf:type rdf:Property", g );
 		assertOmits( "RDFClosure", g, "x S y" );
 		assertOmits( "RDFClosure", g, "x rdf:type rdf:Property" );
 		}

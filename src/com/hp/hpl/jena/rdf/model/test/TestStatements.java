@@ -7,8 +7,10 @@
 package com.hp.hpl.jena.rdf.model.test;
 
 import com.hp.hpl.jena.rdf.model.*;
-import com.hp.hpl.jena.graph.GraphTestBase;
+import com.hp.hpl.jena.rdf.model.impl.*;
+import com.hp.hpl.jena.graph.*;
 import junit.framework.*;
+import com.hp.hpl.jena.vocabulary.RDF;
 
 public class TestStatements extends GraphTestBase
     {
@@ -34,6 +36,37 @@ public class TestStatements extends GraphTestBase
         Statement s = blue.createStatement( r, p, r );
         assertEquals( "subject preserved", r, s.getSubject() );
         assertEquals( "object preserved", r, s.getObject() );
+        }
+        
+    public void testOtherStuff()
+        {
+        Model A = ModelFactory.createDefaultModel();
+        Model B = ModelFactory.createDefaultModel();
+        Resource S = A.createResource( "jena:S" );
+        Resource R = A.createResource( "jena:R" );
+        Property P = A.createProperty( "jena:P" );
+        RDFNode O = A.createResource( "jena:O" );
+        A.add( S, P, O );
+        B.add( S, P, O );
+        assertTrue( "X1", A.isIsomorphicWith( B ) );
+    /* */
+        A.add( R, RDF.subject, S );
+        B.add( R, RDF.predicate, P );
+        assertFalse( "X2", A.isIsomorphicWith( B ) );
+    /* */
+        A.add( R, RDF.predicate, P );
+        B.add( R, RDF.subject, S );
+        assertTrue( "X3", A.isIsomorphicWith( B ) );
+    /* */
+        A.add( R, RDF.object, O );
+        B.add( R, RDF.type, RDF.Statement );
+        assertFalse( "X4", A.isIsomorphicWith( B ) );
+    /* */
+        A.add( R, RDF.type, RDF.Statement );
+        B.add( R, RDF.object, O );
+        assertTrue( "X5", A.isIsomorphicWith( B ) );
+        System.err.println( ">> " + A.getGraph() );
+        System.err.println( ">> " + ((ModelCom) A).getHiddenStatements().getGraph() );
         }
     }
 
