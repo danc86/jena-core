@@ -57,9 +57,6 @@ public class SeqImpl extends ContainerImpl implements Seq {
         iteratorFactory = new SeqNodeIteratorFactoryImpl();
     }
 
-    private SeqImpl( Resource r )
-        { super( r ); }
-        
     /** Creates new SeqMem */
     public SeqImpl(Model model) throws RDFException {
         super(model);

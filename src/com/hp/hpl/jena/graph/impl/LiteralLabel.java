@@ -189,7 +189,7 @@ final public class LiteralLabel {
 
     /**
         Answer a human-acceptable representation of this literal value.
-        TODO: ensure nothing uses this for machine processing. 
+        This is NOT intended for a machine-processed result. 
     */
     public String toString() {
         String lf = getLexicalForm();

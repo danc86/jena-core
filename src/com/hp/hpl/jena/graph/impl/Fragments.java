@@ -26,9 +26,6 @@ import com.hp.hpl.jena.graph.Triple;
     picking one of those seemed to make the code that *uses* them
     excessively verbose. 
 <p>
-    TODO: consider splitting .graph up to use sub-packages to
-    express the structure more clearly.
-<p>
     @author kers 
 */
 

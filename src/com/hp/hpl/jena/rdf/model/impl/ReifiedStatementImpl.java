@@ -24,12 +24,7 @@ public class ReifiedStatementImpl extends ResourceImpl implements ReifiedStateme
         private constructor, relies (ugh) on super(uri, model) generating
         bnode if uril == null. 
     */
-    private ReifiedStatementImpl( EnhGraph m, String uri, Statement s ) 
-        {
-        super( uri, (Model) m ); 
-        assertStatement( s ); 
-        }
-        
+
     private ReifiedStatementImpl( Model m, String uri, Statement s ) 
         {
         super( uri, m ); 

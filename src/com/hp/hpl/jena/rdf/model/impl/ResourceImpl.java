@@ -63,9 +63,6 @@ public class ResourceImpl extends EnhNode implements Resource {
 	}
 };
     private int splitHere = 0;
-
-    private ResourceImpl( Resource r )
-        { this( r.asNode(), r.getModel() ); }
         
     /**
         the master constructor: make a new Resource in the given model,

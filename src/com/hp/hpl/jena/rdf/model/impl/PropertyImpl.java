@@ -54,9 +54,6 @@ public class PropertyImpl extends ResourceImpl implements Property {
     
     protected int    ordinal   = 0;
 
-    private PropertyImpl( Resource r )
-        { this( r.getURI(), r.getModel() ); }
-        
     /** Creates new PropertyImpl */
     public PropertyImpl(String uri) throws RDFException {
         super( uri );

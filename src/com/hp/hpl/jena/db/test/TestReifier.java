@@ -116,8 +116,6 @@ public class TestReifier extends GraphTestBase {
     /* */
     	assertTrue( "node is known bound", R.hasTriple( M ) );
     	assertTrue( "node is known bound", R.hasTriple( N ) );
-    	// TODO check if this is valid use of Node.ANY in find
-//    	assertFalse( "node is known unbound", R.hasTriple( Node.ANY ) );
     	assertFalse( "node is known unbound", R.hasTriple( Node.createURI( "any:thing" ) ) );
     /* */
 //    	Graph GR = R.getReifiedTriples();

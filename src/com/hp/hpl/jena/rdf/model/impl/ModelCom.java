@@ -1334,7 +1334,8 @@ implements Model, ModelI, PrefixMapping, ModelLock
         { return modelReifier.getHiddenStatements(); }
         
     /**
-        TODO: consider how this might be cleaned up
+        Answer whether or not these two graphs are isomorphic, taking the
+        hidden (reification) statements into account.
     */
     public boolean isIsomorphicWith(Model m)
         {
