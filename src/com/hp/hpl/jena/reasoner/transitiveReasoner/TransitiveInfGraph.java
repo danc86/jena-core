@@ -147,5 +147,44 @@ public class TransitiveInfGraph extends BaseInfGraph {
     public ExtendedIterator find(TriplePattern pattern) {
         return findWithContinuation(pattern, fdata);
     }
+        
+    /**
+     * Add one triple to the data graph, run any rules triggered by
+     * the new data item, recursively adding any generated triples.
+     * TODO Will not correctly handle subPropertyOf subClassOf/subPropertyOf
+     */
+    public synchronized void add(Triple t) {
+        if (!isPrepared) prepare();
+        Node predicate = t.getPredicate();
+        if (specialPredicates.contains(predicate)) {
+            if (predicate.equals(TransitiveReasoner.directSubClassOf)  
+            || predicate.equals(TransitiveReasoner.subClassOf)) {
+                subClassCache.addRelation(t.getSubject(), t.getObject());
+            } else {
+                subPropertyCache.addRelation(t.getSubject(), t.getObject());
+            }
+        }
+        fdata.getGraph().add(t);
+    }
+    
+    /**
+     * Returns the bitwise or of ADD, DELETE, SIZE and ORDERED,
+     * to show the capabilities of this implementation of Graph.
+     * So a read-only graph that finds in an unordered fashion,
+     * but can tell you how many triples are in the graph returns
+     * SIZE.
+     */
+    public int capabilities() {
+        return ADD | SIZE;
+    }
+    
+    /** 
+     * Removes the triple t (if possible) from the set belonging to this graph.
+     * TODO: This will not work on subClass/subPropertOf yet. 
+     */   
+    public void delete(Triple t) {
+        if (!isPrepared) prepare();
+        fdata.getGraph().delete(t);
+    }
 
 }
