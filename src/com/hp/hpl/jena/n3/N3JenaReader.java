@@ -64,8 +64,8 @@ public class N3JenaReader implements RDFReader
 
 		try {
 		    model.notifyEvent( GraphEvents.startRead );
-            converter.base = base ;
-            converter.model = model ;
+            converter.setBase(base) ;
+            converter.setModel(model);
 			N3Parser p = new N3Parser(r, converter) ;
 			p.parse() ;
         }
@@ -97,8 +97,8 @@ public class N3JenaReader implements RDFReader
 	{
 		try {
             model.notifyEvent( GraphEvents.startRead );
-            converter.base = base ;
-            converter.model = model ;
+            converter.setBase(base) ;
+            converter.setModel(model);
 			N3Parser p = new N3Parser(in, converter) ;
 			p.parse() ;
 		}
