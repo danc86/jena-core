@@ -1,5 +1,5 @@
 /*
- *  (c) Copyright 2001  Hewlett-Packard Development Company, LP
+ *  (c) Copyright 2001-2003  Hewlett-Packard Development Company, LP
  *  All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -173,6 +173,12 @@ class ParserSupport
 	void saxException(Token t) throws ParseException {
 		SaxExceptionToken sax = (SaxExceptionToken) t;
 		arp.parseWarning(sax.errorCode, t.location, sax.toString());
+	}
+	CollectionAction collectionAction(AResource rslt[]){
+		return new RDFCollection(this,rslt);
+	}
+	CollectionAction damlCollectionAction(AResource rslt[]){
+		return new DAMLCollection(this,rslt);
 	}
 	void checkXMLLang(StrToken s) throws ParseException {
 		String lang = s.value;

@@ -46,7 +46,7 @@ class StrToken extends Token {
     StrToken(int kind,Location where,String v) {
         super(kind,where);
         value = v;
-    }
+    } 
     public String toString() {
         return "\"" + value + "\"";
     }
