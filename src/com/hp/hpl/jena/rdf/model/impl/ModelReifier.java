@@ -39,6 +39,9 @@ public class ModelReifier
         this.reifier = model.asGraph().getReifier();
         }
         
+    public Reifier.Style getReificationStyle()
+        { return reifier.getStyle(); }
+        
     /**
         Answer a version of the model, but with all its reifiying statements
         added.

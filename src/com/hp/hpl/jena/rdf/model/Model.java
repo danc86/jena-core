@@ -769,6 +769,12 @@ public interface Model
         that match the statement _st_.
     */
     RSIterator listReifiedStatements( Statement st );
+    
+    /**
+        Answer the reification style of the model.
+     	@return the reification style
+    */
+    Reifier.Style getReificationStyle();
 
 	/** Create a new model containing the statements matching a query.
 	 *
