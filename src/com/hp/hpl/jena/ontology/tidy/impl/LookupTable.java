@@ -148,7 +148,7 @@ public class LookupTable
 		return (byte) ((key & ACTIONMASK) >> ACTIONSHIFT);
 	}
 
-	static final int[] intersection(int a[], int b[]) {
+	static public final int[] intersection(int a[], int b[]) {
 		int rslt0[] = new int[a.length];
 		int k = 0;
 		for (int i = 0; i < a.length; i++)

@@ -49,6 +49,7 @@ public class TestPackage extends TestSuite {
         addTest( "Paths", com.hp.hpl.jena.ontology.path.impl.test.TestPackage.suite() );
        // addTest(com.hp.hpl.jena.ontology.tidy.test.WGTests.suite() );
         addTest(com.hp.hpl.jena.ontology.tidy.test.Extra.suite() );
+        addTest(com.hp.hpl.jena.ontology.tidy.test.ErrorMsgTest.suite() );
     }
 
     private void addTest(String name, TestSuite tc) {

@@ -48,6 +48,7 @@ public class Extra extends TestCase {
    	System.out.println(((x/(A*B)+C)%C));
    }
 */
+	
    public void testdisjointWith001() {
 	 runTest("disjointWith001", OWLTest.Full);
    }
@@ -88,10 +89,11 @@ public class Extra extends TestCase {
    public void testcycle005() {
 	 runTest("cycle005", OWLTest.Full);
    }
+   /*
    public void testsubClassOf001() {
    	 runTest("subClassOf001", OWLTest.Full);
    }
-   
+   */
    public void testsubClassOf002() {
    	runTest("subClassOf002", OWLTest.Full);
    }

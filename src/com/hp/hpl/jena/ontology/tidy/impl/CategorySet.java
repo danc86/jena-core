@@ -165,6 +165,15 @@ public class CategorySet implements Comparable, Serializable, Constants {
 	 * @author <a href="mailto:Jeremy.Carroll@hp.com">Jeremy Carroll</a>
 	 *
 	 */
+    /**
+     * @param categories
+     * @param category
+     * @return
+     */
+    public static int meet(int categories, int category) {
+        // TODO Auto-generated method stub
+        return 0;
+    }
 
 }
 

@@ -12,7 +12,6 @@ import com.hp.hpl.jena.ontology.*;
 import java.util.*;
 import java.io.*;
 import com.hp.hpl.jena.rdf.model.*;
-import com.hp.hpl.jena.util.iterator.*;
 import com.hp.hpl.jena.vocabulary.OWLTest;
 import com.hp.hpl.jena.shared.wg.*;
 import com.hp.hpl.jena.graph.*;
@@ -179,7 +178,7 @@ class SyntaxTest extends TestCase {
 				    }
 				    chk = new Checker(false);
 				    chk.addRaw(g);
-				    assertEquals(chk.getSubLanguage(),"Full");
+				    assertEquals("Counterexample is not in Full","Full",chk.getSubLanguage());
 				    
 				}
 			}
