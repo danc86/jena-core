@@ -30,6 +30,7 @@ import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.Resource;
 import com.hp.hpl.jena.reasoner.TriplePattern;
 import com.hp.hpl.jena.util.iterator.*;
+import com.hp.hpl.jena.vocabulary.*;
 import com.hp.hpl.jena.vocabulary.RDF;
 
 
@@ -112,7 +113,11 @@ public class DIGQueryRoleFillersTranslator
         // check that the predicate is not a datatype property
         if (predicate.isConcrete()) {
             Resource p = (Resource) da.m_sourceData.getRDFNode( predicate );
-            return !da.m_sourceData.contains( p, RDF.type, da.m_sourceData.getProfile().DATATYPE_PROPERTY() );
+            String pNS = p.getNameSpace();
+            return !(da.m_sourceData.contains( p, RDF.type, da.m_sourceData.getProfile().DATATYPE_PROPERTY() ) ||
+                     RDFS.getURI().equals( pNS ) ||
+                     RDF.getURI().equals( pNS ) ||
+                     OWL.getURI().equals( pNS ));
         }
         else {
             return false;

@@ -34,7 +34,9 @@ import com.hp.hpl.jena.rdf.model.Resource;
 import com.hp.hpl.jena.reasoner.TriplePattern;
 import com.hp.hpl.jena.util.iterator.*;
 import com.hp.hpl.jena.util.xml.SimpleXMLPath;
+import com.hp.hpl.jena.vocabulary.*;
 import com.hp.hpl.jena.vocabulary.RDF;
+import com.hp.hpl.jena.vocabulary.RDFS;
 
 
 
@@ -139,9 +141,14 @@ public class DIGQueryRoleFillerTranslator
 
     public boolean checkPredicate( com.hp.hpl.jena.graph.Node predicate, DIGAdapter da, Model premises ) {
         // check that the predicate is not a datatype property
+        // and that it is not an RDF or OWL reserved predicate
         if (predicate.isConcrete()) {
             Resource p = (Resource) da.m_sourceData.getRDFNode( predicate );
-            return !da.m_sourceData.contains( p, RDF.type, da.m_sourceData.getProfile().DATATYPE_PROPERTY() );
+            String pNS = p.getNameSpace();
+            return !(da.m_sourceData.contains( p, RDF.type, da.m_sourceData.getProfile().DATATYPE_PROPERTY() ) ||
+                     RDFS.getURI().equals( pNS ) ||
+                     RDF.getURI().equals( pNS ) ||
+                     OWL.getURI().equals( pNS ));
         }
         else {
             return false;
