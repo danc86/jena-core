@@ -144,6 +144,21 @@ public class OntModelImpl
 
     /**
      * <p>
+     * Answer a reference to the document manager that this model is using to manage
+     * ontology &lt;-&gt; mappings, and to load the imports closure. <strong>Note</strong>
+     * by default, an ontology model is constructed with a reference to the shared,
+     * global document manager.  Thus changing the settings via this model's document
+     * manager may affect other models also using the same instance.
+     * </p>
+     * @return A reference to this model's document manager
+     */
+    public OntDocumentManager getDocumentManager() {
+        return m_docMgr;
+    }
+    
+    
+    /**
+     * <p>
      * Answer an iterator that ranges over the ontology resources in this model, i&#046;e&#046; 
      * the resources with <code>rdf:type Ontology</code> or equivalent. These resources
      * typically contain metadata about the ontology document that contains them. 

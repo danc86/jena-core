@@ -163,7 +163,6 @@ public class DAML_OILProfile
     public Property CARDINALITY() {                 return m_cardinality; }
     public Property INVERSE_OF() {                  return m_inverseOf; }
     public Property IMPORTS() {                     return m_imports; }
-    public Property VERSION_INFO() {                return m_versionInfo; }
     public Property PRIOR_VERSION() {               return m_priorVersion; }
     public Property BACKWARD_COMPATIBLE_WITH() {    return m_backwardsCompatibleWith; }
     public Property INCOMPATIBLE_WITH() {           return m_incompatibleWith; }
@@ -172,6 +171,14 @@ public class DAML_OILProfile
     public Property DOMAIN() {                      return m_domain; }
     public Property RANGE() {                       return m_range; }
     
+
+    // Annotations    
+    public Property VERSION_INFO() {                return m_versionInfo; }
+    public Property LABEL() {                       return RDFS.label; }
+    public Property COMMENT() {                     return RDFS.comment; }
+    public Property SEE_ALSO() {                    return RDFS.seeAlso; }
+    public Property IS_DEFINED_BY() {               return RDFS.isDefinedBy; }
+
     protected Resource[][] aliasTable() {
         return new Resource[][] {
             {DAML_OIL.subClassOf,                   RDFS.subClassOf},

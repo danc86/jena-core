@@ -641,6 +641,19 @@ public interface OntModel
      * @see #strictMode()
      */
     public void setStrictMode( boolean strict );
+    
+    
+    /**
+     * <p>
+     * Answer a reference to the document manager that this model is using to manage
+     * ontology &lt;-&gt; mappings, and to load the imports closure. <strong>Note</strong>
+     * by default, an ontology model is constructed with a reference to the shared,
+     * global document manager.  Thus changing the settings via this model's document
+     * manager may affect other models also using the same instance.
+     * </p>
+     * @return A reference to this model's document manager
+     */
+    public OntDocumentManager getDocumentManager();
 }
 
 

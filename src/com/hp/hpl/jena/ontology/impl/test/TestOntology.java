@@ -154,6 +154,70 @@ public class TestOntology
                 null
             },
             {   
+                "OWL Ontology.comment",
+                new PS() { 
+                    public PathSet ps( OntModel m ) { 
+                        return ((Ontology) m.getResource( BASE )
+                               .as( Ontology.class )).p_comment(); } 
+                },
+                RDFS.comment,
+                ProfileRegistry.OWL_LANG,
+                "file:testing/ontology/owl/Ontology/test.rdf",
+                T,
+                new Integer( 1 ),
+                null,
+                null,
+                "a comment"
+            },
+            {   
+                "OWL Ontology.label",
+                new PS() { 
+                    public PathSet ps( OntModel m ) { 
+                        return ((Ontology) m.getResource( BASE )
+                               .as( Ontology.class )).p_label(); } 
+                },
+                RDFS.label,
+                ProfileRegistry.OWL_LANG,
+                "file:testing/ontology/owl/Ontology/test.rdf",
+                T,
+                new Integer( 1 ),
+                null,
+                null,
+                "a label"
+            },
+            {   
+                "OWL Ontology.seeAlso",
+                new PS() { 
+                    public PathSet ps( OntModel m ) { 
+                        return ((Ontology) m.getResource( BASE )
+                               .as( Ontology.class )).p_seeAlso(); } 
+                },
+                RDFS.seeAlso,
+                ProfileRegistry.OWL_LANG,
+                "file:testing/ontology/owl/Ontology/test.rdf",
+                T,
+                new Integer( 1 ),
+                null,
+                null,
+                "xyz"
+            },
+            {   
+                "OWL Ontology.isDefinedBy",
+                new PS() { 
+                    public PathSet ps( OntModel m ) { 
+                        return ((Ontology) m.getResource( BASE )
+                               .as( Ontology.class )).p_isDefinedBy(); } 
+                },
+                RDFS.isDefinedBy,
+                ProfileRegistry.OWL_LANG,
+                "file:testing/ontology/owl/Ontology/test.rdf",
+                T,
+                new Integer( 1 ),
+                null,
+                null,
+                "abc"
+            },
+            {   
                 "DAML Ontology.imports",
                 new PS() { 
                     public PathSet ps( OntModel m ) { 
@@ -232,7 +296,71 @@ public class TestOntology
                 null,
                 null,
                 null
-            }
+            },
+            {   
+                "DAML Ontology.comment",
+                new PS() { 
+                    public PathSet ps( OntModel m ) { 
+                        return ((Ontology) m.getResource( BASE )
+                               .as( Ontology.class )).p_comment(); } 
+                },
+                RDFS.comment,
+                ProfileRegistry.DAML_LANG,
+                "file:testing/ontology/daml/Ontology/test.rdf",
+                T,
+                new Integer( 1 ),
+                null,
+                null,
+                "a comment"
+            },
+            {   
+                "DAML Ontology.label",
+                new PS() { 
+                    public PathSet ps( OntModel m ) { 
+                        return ((Ontology) m.getResource( BASE )
+                               .as( Ontology.class )).p_label(); } 
+                },
+                RDFS.label,
+                ProfileRegistry.DAML_LANG,
+                "file:testing/ontology/daml/Ontology/test.rdf",
+                T,
+                new Integer( 1 ),
+                null,
+                null,
+                "a label"
+            },
+            {   
+                "DAML Ontology.seeAlso",
+                new PS() { 
+                    public PathSet ps( OntModel m ) { 
+                        return ((Ontology) m.getResource( BASE )
+                               .as( Ontology.class )).p_seeAlso(); } 
+                },
+                RDFS.seeAlso,
+                ProfileRegistry.DAML_LANG,
+                "file:testing/ontology/daml/Ontology/test.rdf",
+                T,
+                new Integer( 1 ),
+                null,
+                null,
+                "xyz"
+            },
+            {   
+                "DAML Ontology.isDefinedBy",
+                new PS() { 
+                    public PathSet ps( OntModel m ) { 
+                        return ((Ontology) m.getResource( BASE )
+                               .as( Ontology.class )).p_isDefinedBy(); } 
+                },
+                RDFS.isDefinedBy,
+                ProfileRegistry.DAML_LANG,
+                "file:testing/ontology/daml/Ontology/test.rdf",
+                T,
+                new Integer( 1 ),
+                null,
+                null,
+                "abc"
+            },
       };
     }
     

@@ -137,6 +137,81 @@ public abstract class OntResourceImpl
     }
 
 
+    /**
+     * <p>
+     * Answer an {@link PathSet accessor} for the 
+     * <code>versionInfo</code>
+     * property of any instance. The accessor
+     * can be used to perform a variety of operations, including getting and setting the value.
+     * </p>
+     * 
+     * @return An abstract accessor for the owl:versionInfo annotation property
+     */
+    public PathSet p_versionInfo() {
+        return asPathSet( getProfile().VERSION_INFO() );
+    }
+
+
+    /**
+     * <p>
+     * Answer an {@link PathSet accessor} for the 
+     * <code>label</code>
+     * property of any instance. The accessor
+     * can be used to perform a variety of operations, including getting and setting the value.
+     * </p>
+     * 
+     * @return An abstract accessor for the rdfs:label annotation property
+     */
+    public PathSet p_label() {
+        return asPathSet( getProfile().LABEL() );
+    }
+
+
+    /**
+     * <p>
+     * Answer an {@link PathSet accessor} for the 
+     * <code>comment</code>
+     * property of any instance. The accessor
+     * can be used to perform a variety of operations, including getting and setting the value.
+     * </p>
+     * 
+     * @return An abstract accessor for the rdfs:comment annotation property
+     */
+    public PathSet p_comment() {
+        return asPathSet( getProfile().COMMENT() );
+    }
+
+
+    /**
+     * <p>
+     * Answer an {@link PathSet accessor} for the 
+     * <code>seeAlso</code>
+     * property of any instance. The accessor
+     * can be used to perform a variety of operations, including getting and setting the value.
+     * </p>
+     * 
+     * @return An abstract accessor for the rdfs:seeAlso annotation property
+     */
+    public PathSet p_seeAlso() {
+        return asPathSet( getProfile().SEE_ALSO() );
+    }
+
+
+    /**
+     * <p>
+     * Answer an {@link PathSet accessor} for the 
+     * <code>isDefinedBy</code>
+     * property of any instance. The accessor
+     * can be used to perform a variety of operations, including getting and setting the value.
+     * </p>
+     * 
+     * @return An abstract accessor for the rdfs:isDefinedBy annotation property
+     */
+    public PathSet p_isDefinedBy() {
+        return asPathSet( getProfile().IS_DEFINED_BY() );
+    }
+    
+    
 
     // Internal implementation methods
     //////////////////////////////////

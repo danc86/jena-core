@@ -101,7 +101,6 @@ public class OWLProfile
     public Property CARDINALITY() {                 return OWL.cardinality; }
     public Property INVERSE_OF() {                  return OWL.inverseOf; }
     public Property IMPORTS() {                     return OWL.imports; }
-    public Property VERSION_INFO() {                return OWL.versionInfo; }
     public Property PRIOR_VERSION() {               return OWL.priorVersion; }
     public Property BACKWARD_COMPATIBLE_WITH() {    return OWL.backwardCompatibleWith; }
     public Property INCOMPATIBLE_WITH() {           return OWL.incompatibleWith; }
@@ -109,6 +108,14 @@ public class OWLProfile
     public Property SUB_CLASS_OF() {                return RDFS.subClassOf; }
     public Property DOMAIN() {                      return RDFS.domain; }
     public Property RANGE() {                       return RDFS.range; }
+
+    // Annotations    
+    public Property VERSION_INFO() {                return OWL.versionInfo; }
+    public Property LABEL() {                       return RDFS.label; }
+    public Property COMMENT() {                     return RDFS.comment; }
+    public Property SEE_ALSO() {                    return RDFS.seeAlso; }
+    public Property IS_DEFINED_BY() {               return RDFS.isDefinedBy; }
+    
     
     protected Resource[][] aliasTable() {
         return new Resource[][] {

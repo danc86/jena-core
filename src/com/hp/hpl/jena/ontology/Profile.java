@@ -535,6 +535,46 @@ public interface Profile
     public Property RANGE();
     
     
+    /**
+     * <p>
+     * Answer the predicate that denotes <code>label</code> annotation on an ontology element
+     * </p>
+     * 
+     * @return The property that denotes the label annotation
+     */
+    public Property LABEL();
+    
+    
+    /**
+     * <p>
+     * Answer the predicate that denotes <code>comment</code> annotation on an ontology element
+     * </p>
+     * 
+     * @return The property that denotes the comment annotation
+     */
+    public Property COMMENT();
+    
+    
+    /**
+     * <p>
+     * Answer the predicate that denotes <code>seeAlso</code> annotation on an ontology element
+     * </p>
+     * 
+     * @return The property that denotes the seeAlso annotation
+     */
+    public Property SEE_ALSO();
+    
+    
+    /**
+     * <p>
+     * Answer the predicate that denotes <code>isDefinedBy</code> annotation on an ontology element
+     * </p>
+     * 
+     * @return The property that denotes the isDefiendBy annotation
+     */
+    public Property IS_DEFINED_BY();
+    
+    
     // Particular language syntax categories
     
     /**

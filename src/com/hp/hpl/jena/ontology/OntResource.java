@@ -104,6 +104,71 @@ public interface OntResource
      */
     public PathSet p_differentFrom();
 
+
+
+    /**
+     * <p>
+     * Answer an {@link PathSet accessor} for the 
+     * <code>versionInfo</code>
+     * property of any instance. The accessor
+     * can be used to perform a variety of operations, including getting and setting the value.
+     * </p>
+     * 
+     * @return An abstract accessor for the owl:versionInfo annotation property
+     */
+    public PathSet p_versionInfo();
+
+
+    /**
+     * <p>
+     * Answer an {@link PathSet accessor} for the 
+     * <code>label</code>
+     * property of any instance. The accessor
+     * can be used to perform a variety of operations, including getting and setting the value.
+     * </p>
+     * 
+     * @return An abstract accessor for the rdfs:label annotation property
+     */
+    public PathSet p_label();
+
+
+    /**
+     * <p>
+     * Answer an {@link PathSet accessor} for the 
+     * <code>comment</code>
+     * property of any instance. The accessor
+     * can be used to perform a variety of operations, including getting and setting the value.
+     * </p>
+     * 
+     * @return An abstract accessor for the rdfs:comment annotation property
+     */
+    public PathSet p_comment();
+
+
+    /**
+     * <p>
+     * Answer an {@link PathSet accessor} for the 
+     * <code>seeAlso</code>
+     * property of any instance. The accessor
+     * can be used to perform a variety of operations, including getting and setting the value.
+     * </p>
+     * 
+     * @return An abstract accessor for the rdfs:seeAlso annotation property
+     */
+    public PathSet p_seeAlso();
+
+
+    /**
+     * <p>
+     * Answer an {@link PathSet accessor} for the 
+     * <code>isDefinedBy</code>
+     * property of any instance. The accessor
+     * can be used to perform a variety of operations, including getting and setting the value.
+     * </p>
+     * 
+     * @return An abstract accessor for the rdfs:isDefinedBy annotation property
+     */
+    public PathSet p_isDefinedBy();
 }
 
 
