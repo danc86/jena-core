@@ -25,10 +25,6 @@ package com.hp.hpl.jena.ontology;
 // Imports
 ///////////////
 import java.io.*;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.*;
-import java.net.URLConnection;
 import java.util.*;
 
 import org.apache.commons.logging.Log;
@@ -985,24 +981,10 @@ public class OntDocumentManager
             InputStream is = getClass().getClassLoader().getResourceAsStream( file );
     
             if (is == null) {
-                // we can't get this URI as a system resource, so just try to read it in the normal way
-                // we have to duplicate the encoding translation here, since there's no method on Model
-                // to read from a URL with a separate baseURI
-                // TODO clean this up when bug 791843 is fixed
-                try {
-                    URLConnection conn = new URL( resolvableURI ).openConnection();
-                    String encoding = conn.getContentEncoding();
-            
-                    if (encoding == null) {
-                        model.read( conn.getInputStream(), uri, lang );
-                    }
-                    else {
-                        model.read( new InputStreamReader(conn.getInputStream(), encoding), uri, lang );
-                    }
-                } 
-                catch (IOException e) {
-                    throw new JenaException( e);
-                }
+                // we can't get this URI as a system resource, so just try to read 
+                // it in the normal way. Uses the original URI as the base (in case xml:base 
+                // is not set in the document itself)
+                model.read( resolvableURI, uri, lang );
             }
             else {
                 try {
