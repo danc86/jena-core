@@ -11,6 +11,7 @@ package com.hp.hpl.jena.reasoner.rulesys.builtins;
 
 import com.hp.hpl.jena.reasoner.rulesys.*;
 import com.hp.hpl.jena.reasoner.rulesys.impl.BBRuleContext;
+//import com.hp.hpl.jena.util.PrintUtil;
 import com.hp.hpl.jena.graph.*;
 
 /**
