@@ -8,23 +8,17 @@
  * $Id$
  *****************************************************************/
 package com.hp.hpl.jena.reasoner.rulesys;
-
-import com.hp.hpl.jena.rdf.model.*;
+import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.reasoner.*;
 import com.hp.hpl.jena.graph.*;
 import java.util.*;
 
-/**
- * Reasoner implementation which augments or transforms an RDF graph
+/** * Reasoner implementation which augments or transforms an RDF graph
  * according to a set of rules. This trivial version does not support
  * separate schema processing. The actual work is done in the inference
  * graph implementation.
- * 
- * @author <a href="mailto:der@hplb.hpl.hp.com">Dave Reynolds</a>
- * @version $Revision$ on $Date$
- */
+ *  * @author <a href="mailto:der@hplb.hpl.hp.com">Dave Reynolds</a> * @version $Revision$ on $Date$ */
 public class BasicForwardRuleReasoner implements Reasoner {
-
     /** The rules to be used by this instance of the forward engine */
     protected List rules;
     

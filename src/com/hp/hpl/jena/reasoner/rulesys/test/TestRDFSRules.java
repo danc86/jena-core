@@ -58,6 +58,15 @@ public class TestRDFSRules extends TestCase {
     }
 
     /**
+     * Test the basic functioning of an RDFS reasoner
+     */
+    public void testRDFSBReasoner() throws IOException {
+        ReasonerTester tester = new ReasonerTester("rdfs/manifest-nodirect.rdf");
+        ReasonerFactory rf = RDFSBRuleReasonerFactory.theInstance();
+        assertTrue("RDFS reasoner tests", tester.runTests(rf, this, null));
+    }
+
+    /**
      * Simple timing test used to just a broad feel for how performance of the
      * pure FPS rules compares with the hand-crafted version.
      * The test ontology and data is very small. The test query is designed to
@@ -71,6 +80,7 @@ public class TestRDFSRules extends TestCase {
             Model data = ModelLoader.loadModel("testing/reasoners/rdfs/timing-data.rdf");
             Resource C1 = ResourceFactory.createResource("http://www.hpl.hp.com/semweb/2003/eg#C1");
             Reasoner rdfsRule = RDFSRuleReasonerFactory.theInstance().create(null);
+            Reasoner rdfsBRule = RDFSBRuleReasonerFactory.theInstance().create(null);
             Reasoner rdfs1    = RDFSReasonerFactory.theInstance().create(null);
             
             long t1 = System.currentTimeMillis();
@@ -88,6 +98,14 @@ public class TestRDFSRules extends TestCase {
             //for (Iterator i = inf2.listStatements(); i.hasNext(); i.next()) count++;
             t2 = System.currentTimeMillis();
             System.out.println("RDFSrule: " + count +" results in " + (t2-t1) +"ms");
+
+            t1 = System.currentTimeMillis();
+            Model inf3 = ModelFactory.createModelForGraph(rdfsBRule.bindSchema(tbox.getGraph()).bind(data.getGraph()));
+            count = 0;
+            for (Iterator i = inf2.listStatements(null, RDF.type, C1); i.hasNext(); i.next()) count++;
+            //for (Iterator i = inf2.listStatements(); i.hasNext(); i.next()) count++;
+            t2 = System.currentTimeMillis();
+            System.out.println("RDFSBrule: " + count +" results in " + (t2-t1) +"ms");
 
         } catch (Exception e) {
             System.out.println(e.toString());
