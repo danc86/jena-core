@@ -40,9 +40,7 @@ class SubCategorize {
 	*/
 	static final int SecondOfTwo = Grammar.SecondOfTwo;
 	
-	// TODO put in link to Grammar
-	static final int DisjointWith = 55;
-
+	
 	static private final int DL = Grammar.DL;
 
 	static private final int ObjectAction = Grammar.ObjectAction;

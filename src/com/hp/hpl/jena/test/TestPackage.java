@@ -43,7 +43,7 @@ public class TestPackage extends TestSuite {
         addTest( "Ontology", com.hp.hpl.jena.ontology.impl.test.TestPackage.suite() );
         addTest( "DAML", com.hp.hpl.jena.ontology.daml.impl.test.TestPackage.suite() );
         addTest( "Paths", com.hp.hpl.jena.ontology.path.impl.test.TestPackage.suite() );
-        addTest("OWL Syntax", com.hp.hpl.jena.ontology.tidy.test.TestPackage.suite() );
+        addTest(com.hp.hpl.jena.ontology.tidy.test.WGTests.suite() );
     }
 
     private void addTest(String name, TestSuite tc) {
