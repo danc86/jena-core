@@ -27,9 +27,11 @@ public class ModelTestBase extends GraphTestBase
     public ModelTestBase(String name)
         { super(name); }
      
-    private static Model aModel = extendedModel();
+    protected static Model aModel = extendedModel();
     
-    private static Model extendedModel()
+    protected static final Model empty = ModelFactory.createDefaultModel();
+    
+    protected static Model extendedModel()
         {
         Model result = ModelFactory.createDefaultModel();
         result.setNsPrefixes( PrefixMapping.Extended );
