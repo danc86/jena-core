@@ -53,14 +53,14 @@ public class GraphRDBMaker extends BaseGraphMaker
         }
         
     /**
-     	@see com.hp.hpl.jena.graph.GraphFactory#getGraph()
+     	@see com.hp.hpl.jena.graph.GraphMaker#getGraph()
      */
     public Graph getGraph()
         { return createGraph( "anon_" + counter++ + "", false ); }
     
     /**
      	Create an RDB graph and remember its name.
-     	@see com.hp.hpl.jena.graph.GraphFactory#createGraph(java.lang.String)
+     	@see com.hp.hpl.jena.graph.GraphMaker#createGraph(java.lang.String)
      */
     public Graph createGraph( String name, boolean strict )
         {
@@ -89,7 +89,7 @@ public class GraphRDBMaker extends BaseGraphMaker
      	Remove a graph from the database - at present, this has to be done by
         opening it first.
         
-     	@see com.hp.hpl.jena.graph.GraphFactory#removeGraph(java.lang.String)
+     	@see com.hp.hpl.jena.graph.GraphMaker#removeGraph(java.lang.String)
      */
     public void removeGraph( String name )
         {
