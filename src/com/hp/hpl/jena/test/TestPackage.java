@@ -34,8 +34,7 @@ public class TestPackage extends TestSuite {
         addTest("Util", com.hp.hpl.jena.util.test.TestPackage.suite());
         addTest( com.hp.hpl.jena.util.iterator.test.TestPackage.suite() );
         addTest("Mega", com.hp.hpl.jena.regression.MegaTestSuite.suite());
-      // TODO ARP tests
-      //  addTest( com.hp.hpl.jena.rdf.arp.test.TestPackage.suite());
+        addTest( com.hp.hpl.jena.rdf.arp.test.TestPackage.suite());
         addTest( com.hp.hpl.jena.rdf.arp.test.MoreTests.suite());
         addTest( com.hp.hpl.jena.shared.test.TestPrefixMapping.suite() );
         addTest("Reasoners", com.hp.hpl.jena.reasoner.test.TestPackage.suite());
