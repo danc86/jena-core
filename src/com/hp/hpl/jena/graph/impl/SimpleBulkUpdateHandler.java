@@ -139,6 +139,16 @@ public class SimpleBulkUpdateHandler implements BulkUpdateHandler
     public void removeAll()
         { removeAll( graph ); }
     
+    public void remove( Node s, Node p, Node o )
+        { removeAll( graph, s, p, o ); }
+    
+    public static void removeAll( Graph g, Node s, Node p, Node o )
+        {
+        ExtendedIterator it = g.find( s, p, o );
+        try { while (it.hasNext()) { it.next(); it.remove(); } }
+        finally { it.close(); }
+        }
+    
     public static void removeAll( Graph g )
         {
         ExtendedIterator it = GraphUtil.findAll( g );

@@ -7,6 +7,7 @@
 package com.hp.hpl.jena.rdf.model;
 
 import com.hp.hpl.jena.datatypes.*;
+import com.hp.hpl.jena.graph.Node;
 import com.hp.hpl.jena.shared.*;
 
 import java.io.*;
@@ -935,6 +936,11 @@ public interface Model
     	Remove all the statements from this model.
     */
     public Model removeAll();
+
+    /**
+     	Remove all the statements matching (s, p, o) from this model.
+    */
+    public Model removeAll( Resource s, Property p, RDFNode r );
     
 }
 

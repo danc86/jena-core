@@ -100,6 +100,11 @@ public interface BulkUpdateHandler
     	Remove all the statements from a graph.
     */
     void removeAll();
+    
+    /**
+       Remove all triples that would be delivered by find(s, p, o)
+    */
+    void remove( Node s, Node p, Node o );
     }
 
 /*

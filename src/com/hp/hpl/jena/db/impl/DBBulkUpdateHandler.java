@@ -155,6 +155,9 @@ public class DBBulkUpdateHandler implements BulkUpdateHandler {
     
     public void removeAll()
         { SimpleBulkUpdateHandler.removeAll( graph ); }
+    
+    public void remove( Node s, Node p, Node o )
+        { SimpleBulkUpdateHandler.removeAll( graph, s, p, o ); }
 }
 
 

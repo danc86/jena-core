@@ -101,7 +101,7 @@ public class GraphTestBase extends JenaTestBase
         if (!expected.isIsomorphicWith( got ))
             {
             Map map = new HashMap();
-            fail( "wanted " + nice( expected, map ) + "\nbut got " + nice( got, map ) );
+            fail( title + ": wanted " + nice( expected, map ) + "\nbut got " + nice( got, map ) );
             }
         }
     

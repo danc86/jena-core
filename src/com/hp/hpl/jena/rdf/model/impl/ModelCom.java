@@ -295,6 +295,12 @@ public class ModelCom
         getGraph().getBulkUpdateHandler().removeAll();
         return this; 
         }
+    
+    public Model removeAll( Resource s, Property p, RDFNode o )
+        {
+        getGraph().getBulkUpdateHandler().remove( asNode( s ), asNode( p ), asNode( o ) );
+        return this;
+        }
         
     public boolean contains( Resource s, Property p, boolean o )
         { return contains(s, p, String.valueOf( o ) ); }
