@@ -45,11 +45,13 @@ public class PlainModelSpec extends ModelSpecImpl implements ModelSpec
     
     /**
         Answer the Model obtained from the underlying ModelMaker with the given name. 
+        We use <code>open</code>, not create, because it's non-strict in any case,
+        and we want to ensure that persistent models will look at their stores.
         
      	@see com.hp.hpl.jena.rdf.model.ModelSpec#createModelOver(java.lang.String)
      */
     public Model createModelOver( String name )
-        { return maker.createModel( name, false ); }
+        { return maker.openModel( name, false ); }
 
     /**
         Answer the sub-property of JMS.maker that describes how this ModelSpec uses the
