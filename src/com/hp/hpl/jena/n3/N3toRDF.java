@@ -122,13 +122,12 @@ public class N3toRDF implements N3ParserEventHandler
 			// object: can be a literal or a URIref or a bNode name
 			// context must be zero (no formulae)
 
-            // Lists: The parser creates list elements as sequnces of triples:
-            //       anon  keyword_A list:List
+            // Lists: The parser creates list elements as sequences of triples:
             //       anon  list:first  ....
             //       anon  list:rest   resource
             // Where "resource" is nil for the last element of the list (generated first).
 
-            // The properties are inm a unique namespace to distinguish them
+            // The properties are in a unique namespace to distinguish them
             // from lists encoded explicitly, not with the () syntax.
 
 			int pType = prop.getType();
