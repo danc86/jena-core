@@ -37,6 +37,12 @@ public abstract class Node {
         constructor.
     */       
     public static final Node ANY = new Node_ANY();
+    
+	/**
+		The canonical instance of Node_NULL.
+	*/       
+	public static final Node NULL = new Node_NULL();
+
         
     static final String RDFprefix = "http://www.w3.org/1999/02/22-rdf-syntax-ns#";
     
