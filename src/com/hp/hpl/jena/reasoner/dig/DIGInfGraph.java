@@ -95,8 +95,11 @@ public class DIGInfGraph
      * this prepration is done.
      */
     public void prepare() {
-        m_adapter.resetKB();
-        isPrepared = true;
+        if (!isPrepared) {
+            m_adapter.resetKB();
+            m_adapter.uploadKB();
+            isPrepared = true;
+        }
     }
     
     /**
@@ -111,9 +114,11 @@ public class DIGInfGraph
      * may not have completely satisfied the query.
      */
     public ExtendedIterator findWithContinuation(TriplePattern pattern, Finder continuation) {
-        // TODO
-        return null;
+        prepare();
+        ExtendedIterator i = m_adapter.find( pattern );
+        return (continuation == null) ? i : i.andThen( continuation.find( pattern ) ); 
     }
+
    
     /**
      * Return the schema graph, if any, bound into this inference graph.

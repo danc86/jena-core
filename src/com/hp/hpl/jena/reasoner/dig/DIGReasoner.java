@@ -75,6 +75,16 @@ public class DIGReasoner
     // Constructors
     //////////////////////////////////
 
+    /**
+     * <p>Construct a DIG reasoner, that can generate inference graphs binding
+     * an external DIG inference engine (e.g. Racer) to a given source graph.<p>
+     * @param tbox Optional schema to bind to this reasoner instance.  Unlike other Jena
+     * reasoners, pre-binding a tbox to a DIG reasoner does not allow any 
+     * efficiencies to be exploited.
+     * @param factory The reasoner factory that created this reasoner
+     * @param configuraton Optional resource to which is attached configuration
+     * parameters for this reasoner
+     */
     public DIGReasoner( Graph tbox, ReasonerFactory factory, Resource configuration ) {
         m_tbox = tbox;
         m_factory = factory;
@@ -121,7 +131,7 @@ public class DIGReasoner
      * of the tbox and data graphs.
      */
     public InfGraph bind( Graph data ) {
-        return new DIGInfGraph( m_tbox, this );
+        return new DIGInfGraph( data, this );
     }
 
 

@@ -78,7 +78,7 @@ public class DIGReasonerFactory
     /**
      * <p>Answer the singleton instance of the factory.</p>
      */
-    public static DIGReasonerFactory getInstance() {
+    public static DIGReasonerFactory theInstance() {
         return s_instance;
     }
     

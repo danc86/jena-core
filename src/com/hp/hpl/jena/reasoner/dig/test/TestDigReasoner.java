@@ -27,10 +27,11 @@ package com.hp.hpl.jena.reasoner.dig.test;
 ///////////////
 import org.w3c.dom.*;
 
-import com.hp.hpl.jena.ontology.OntModelSpec;
+import com.hp.hpl.jena.ontology.*;
 import com.hp.hpl.jena.rdf.model.*;
-import com.hp.hpl.jena.rdf.model.Model;
+import com.hp.hpl.jena.reasoner.ReasonerRegistry;
 import com.hp.hpl.jena.reasoner.dig.*;
+import com.hp.hpl.jena.reasoner.test.TestUtil;
 
 import junit.framework.*;
 
@@ -78,11 +79,33 @@ public class TestDigReasoner
     public static TestSuite suite() {
         TestSuite s = new TestSuite( "TestDigReasoner" );
         
-        //buildConceptLangSuite( "testing/ontology/dig/owl/cl", OntModelSpec.OWL_MEM, s );
+        buildConceptLangSuite( "testing/ontology/dig/owl/cl", OntModelSpec.OWL_MEM, s );
         buildBasicQuerySuite( "testing/ontology/dig/owl/basicq", OntModelSpec.OWL_MEM, s );
 
+        // add the standard tests from this class
+        s.addTestSuite( TestDigReasoner.class );
         return s;
     }
+
+    
+    public void testQueryAllConcepts() {
+        String NS = "http://example.org/foo#";
+        
+        DIGReasoner r = (DIGReasoner) ReasonerRegistry.theRegistry().create( DIGReasonerFactory.URI, null );
+        
+        OntModelSpec spec = new OntModelSpec( OntModelSpec.OWL_DL_MEM );
+        spec.setReasoner( r );
+        OntModel m = ModelFactory.createOntologyModel( spec, null );
+        m.read( "file:testing/ontology/dig/owl/test1.xml" );
+        
+        TestUtil.assertIteratorValues( this, m.listClasses(), 
+                                       new Resource[] {m.getResource( NS + "A" ), m.getResource( NS + "B" )} );
+    }
+    
+    
+    
+    // Internal implementation methods
+    //////////////////////////////////
 
     private static void buildConceptLangSuite( String root, OntModelSpec spec, TestSuite s ) {
         int i = 0;
@@ -120,9 +143,6 @@ public class TestDigReasoner
     }
     
     
-    // Internal implementation methods
-    //////////////////////////////////
-
     
     //==============================================================================
     // Inner class definitions

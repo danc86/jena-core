@@ -21,15 +21,17 @@
 ///////////////
 package com.hp.hpl.jena.reasoner.dig;
 
-import org.w3c.dom.Document;
-
-import com.hp.hpl.jena.reasoner.TriplePattern;
-import com.hp.hpl.jena.util.iterator.ExtendedIterator;
-import com.hp.hpl.jena.util.xml.SimpleXMLPath;
-
 
 // Imports
 ///////////////
+import org.w3c.dom.*;
+
+import com.hp.hpl.jena.reasoner.TriplePattern;
+import com.hp.hpl.jena.util.iterator.*;
+import com.hp.hpl.jena.util.iterator.ExtendedIterator;
+
+import java.util.*;
+
 
 /**
  * <p>
@@ -43,7 +45,7 @@ import com.hp.hpl.jena.util.xml.SimpleXMLPath;
  * @author Ian Dickinson, HP Labs (<a href="mailto:Ian.Dickinson@hp.com">email</a>)
  * @version Release @release@ ($Id$)
  */
-public class DIGQueryAllConceptsTranslator 
+public class DIGQuerySubsumesTranslator 
     extends DIGQueryTranslator
 {
 
@@ -60,12 +62,11 @@ public class DIGQueryAllConceptsTranslator
     //////////////////////////////////
 
     /**
-     * <p>Construct a translator for the DIG query all concepts.</p>
+     * <p>Construct a translator for the DIG query 'subsumes'.</p>
      * @param predicate The predicate URI to trigger on
-     * @param object The object URI to trigger on
      */
-    public DIGQueryAllConceptsTranslator( String predicate, String object ) {
-        super( ALL, predicate, object );
+    public DIGQuerySubsumesTranslator( String predicate ) {
+        super( ALL, predicate, ALL );
     }
     
 
@@ -74,12 +75,15 @@ public class DIGQueryAllConceptsTranslator
 
 
     /**
-     * <p>Answer a query that will list all concept names</p>
+     * <p>Answer a query that will test subsumption between two classes</p>
      */
     public Document translatePattern( TriplePattern pattern, DIGAdapter da ) {
         DIGConnection dc = da.getConnection();
         Document query = dc.createDigVerb( DIGProfile.ASKS, da.getProfile() );
-        da.addElement( query.getDocumentElement(), DIGProfile.ALL_CONCEPT_NAMES );
+        Element subsumes = da.addElement( query.getDocumentElement(), DIGProfile.SUBSUMES );
+        da.addClassIdentifier( subsumes, pattern.getObject() );
+        da.addClassIdentifier( subsumes, pattern.getSubject() );
+
         return query;
     }
 
@@ -88,17 +92,15 @@ public class DIGQueryAllConceptsTranslator
      * <p>Answer an iterator of triples that match the original find query.</p>
      */
     public ExtendedIterator translateResponse( Document response, TriplePattern query, DIGAdapter da ) {
-        // evaluate a path through the return value to give us an iterator over catom names
-        ExtendedIterator catomNames = new SimpleXMLPath( true )
-                                          .appendElementPath( DIGProfile.CONCEPT_SET )
-                                          .appendElementPath( DIGProfile.SYNONYMS )
-                                          .appendElementPath( DIGProfile.CATOM )
-                                          .appendAttrPath( DIGProfile.NAME )
-                                          .getAll( response );
+        List answer = new ArrayList();
+        if (isTrue( response )) {
+            // if response is true, the subsumption relationship holds
+            answer.add( query.asTriple() );
+        }
         
-        return catomNames.mapWith( new NameToNodeMapper() )
-                         .mapWith( new TripleSubjectFiller( query.getPredicate(), query.getObject() ) );
+        return WrappedIterator.create( answer.iterator() );
     }
+    
 
     // Internal implementation methods
     //////////////////////////////////

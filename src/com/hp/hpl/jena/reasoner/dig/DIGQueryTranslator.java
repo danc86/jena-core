@@ -31,6 +31,7 @@ import org.w3c.dom.Document;
 
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.reasoner.TriplePattern;
+import com.hp.hpl.jena.reasoner.rulesys.Node_RuleVariable;
 import com.hp.hpl.jena.util.iterator.ExtendedIterator;
 
 
@@ -165,12 +166,17 @@ public abstract class DIGQueryTranslator {
     // Internal implementation methods
     //////////////////////////////////
 
+    /**
+     * <p>Answer a node corresponding to the given URI.</p>
+     * @param uri A node URI, or the special string *, or null.
+     * @return A Jena Node corresponding to the given URI
+     */
     protected Node mapNode( String uri ) {
         if (uri == null) {
             return null;
         }
         else {
-            return (uri.equals( ALL )) ? Node.ANY : Node.createURI( uri );
+            return (uri.equals( ALL )) ? Node_RuleVariable.WILD : Node.createURI( uri );
         }
     }
 
@@ -184,6 +190,12 @@ public abstract class DIGQueryTranslator {
      */
     protected boolean trigger( Node lhs, Node rhs ) {
         return (lhs == null) || lhs.equals( rhs );
+    }
+    
+    
+    protected boolean isTrue( Document response ) {
+        // TODO
+        return false;
     }
     
     

@@ -259,10 +259,19 @@ public class DIGConnection {
     }
     
     
+    /** 
+     * <p>Answer the URL of the external reasoner this connection is bound to.</p>
+     * @return The current external reasoner URL
+     */
     public String getReasonerURL() {
         return m_extReasonerURL;
     }
     
+    
+    /**
+     * <p>Set the URL of the external reasoner with which this connection communicates.</p>
+     * @param url The URL of the new external reasoner connection point
+     */
     public void setReasonerURL( String url ) {
         m_extReasonerURL = url;
         m_kbURI = null;

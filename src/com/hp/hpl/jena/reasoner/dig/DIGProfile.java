@@ -68,7 +68,7 @@ public interface DIGProfile
     public static final String ASKS             = "asks";
     public static final String NEWKB            = "newKB";
     public static final String RELEASEKB        = "releaseKB";
-    public static final String RESPONSE         = "response";
+    public static final String RESPONSE         = "responses";      // TODO Racer bug - returns <responses> not <response>
     
     // responses
     public static final String OK               = "ok";
