@@ -35,9 +35,6 @@ public class BRuleEngine {
     /** a list of active RuleStates to be processed */
     protected LinkedList agenda = new LinkedList();
     
-//    /** the RuleState currently being procssed */
-//    protected RuleState current;
-
     /** The table of all goals */
     protected GoalTable goalTable;
     
@@ -202,18 +199,18 @@ public class BRuleEngine {
     public synchronized Triple next(GoalState topGoalState) {
         GoalResults topGoal = topGoalState.getGoalResultsEntry();
         int numResults = 0;
-        BindingVector env = null;
         RuleState current = null;
         RuleState continuation = null;
         try {
             while(true) {
-//                System.gc();
                 boolean foundResult = false;
                 RuleState delayedRSClose = null;
+                Trail nexttrail = null;
                 if (current == null) {
                     // Move to the next agenda item
                     // (if empty then an exception is thrown and caught later)
                     current = nextAgendaItem();
+                    current.restoreBindings();
                     numResults = 0;
                 }
                 if (traceOn) {
@@ -235,16 +232,17 @@ public class BRuleEngine {
                         logger.debug("Suspend " + current);
                     }
                     current.goalState.results.addDependent(current);
+                    current.unwindBindings();
                     current = current.prev;
                 } else if (result == StateFlag.SATISFIED) {
                     // The rule had no clauses left to check, so return answers
                     foundResult = true;
-                    env = current.env;
                     delayedRSClose = current;
                     continuation = current.prev;
-                } else {                    // We have a result so continue extending this search tree depth first
-                    env = current.newEnvironment((Triple)result);
-                    if (env == null) {
+                } else {                    
+                    // We have a result so continue extending this search tree depth first
+                    nexttrail = new Trail();
+                    if (! nexttrail.unify((Triple)result, current.getCurrentClause()) ) {
                         // failed a functor match - so loop back to look for more results
                         // Might be better to reschedule onto the end of the agenda?
                         continue;
@@ -258,17 +256,17 @@ public class BRuleEngine {
                         if (clause instanceof TriplePattern) {
                             // found next subgoal to try
                             // Push current state onto stack 
-                            TriplePattern subgoal = env.partInstantiate((TriplePattern)clause);
+                            TriplePattern subgoal = nexttrail.partInstantiate((TriplePattern)clause);
                             if (!subgoal.isLegal()) {
                                 // branch has failed
                                 delayedRSClose = current;
                                 current = current.prev;
                             } else {                                
-                                current = new RuleState(current, subgoal, clauseIndex, env);
+                                current = new RuleState(current, nexttrail, subgoal, clauseIndex);
                             }
                             foundGoal = true;
                         } else {
-                            if (!infGraph.processBuiltin(clause, rule, env)) {
+                            if (!infGraph.processBuiltin(clause, rule, nexttrail)) {
                                 // This branch has failed
                                 delayedRSClose = current;
                                 current = current.prev;
@@ -285,11 +283,12 @@ public class BRuleEngine {
                 if (foundResult) {
                     // If we get to here then this branch has completed and we have a result
                     GoalResults resultDest = current.ruleInstance.generator;
-                    Triple finalResult = current.getResult(env);
+                    Triple finalResult = current.getResult();
                     if (traceOn) {
-                        logger.debug("Result:" + finalResult + " <- " + current +", newenv=" + env);
+                        logger.debug("Result:" + finalResult + " <- " + current);
                     }
                     boolean newresult = resultDest.addResult(finalResult);
+                    if (nexttrail != null) nexttrail.unwindBindings();
                     if (delayedRSClose != null) {
                         delayedRSClose.close();
                     }

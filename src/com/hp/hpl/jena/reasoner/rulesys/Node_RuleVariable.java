@@ -49,6 +49,17 @@ public class Node_RuleVariable extends Node_Variable {
         this.index = index;
         this.value = this;
     }
+         
+    /**
+     * Constructor
+     * @param label the text label for the variable
+     * @param index the calculated index of this variable in the rule
+     */
+    private Node_RuleVariable(VarLabel label, int index) {
+        super(label);
+        this.index = index;
+        this.value = this;
+    }
     
     /**
      * Returns the varibles index in an frule binding vector.
@@ -59,23 +70,24 @@ public class Node_RuleVariable extends Node_Variable {
     }
     
     /**
-     * Binds a value to the brule version of the variable 
+     * Return an indexable object for this Node. This is actually the 
+     * rule label. This is weird but needed because equals is (deliberately)
+     * perverse on Node_Rulelabel so if we want to put then in a Set or Map
+     * we need something with a better equals function.
+     */
+    public Object getRepresentative() {
+        return label;
+    }
+    
+    /**
+     * Binds a value to the brule version of the variable. Does not follow
+     * any reference trail, assues we have already be derefenced.
      * @param node a concrete Node value or another Node_RuleVariable
      * to alias to
-     * @return the dereferenced variable which was bound or null if the
-     * variable was already bound
      */
-    public Node bind(Node node) {
-        Node_RuleVariable var = this;
-        while (var.isRef) {
-            if (var.value == var) {
-                var.value = node;
-                var.isRef = node instanceof Node_RuleVariable;
-                return var;
-            }
-            var = (Node_RuleVariable)var.value;
-        }
-        return null;
+    public void simpleBind(Node node) {
+        value = node;
+        isRef = node instanceof Node_RuleVariable;
     }
     
     /**
@@ -100,6 +112,20 @@ public class Node_RuleVariable extends Node_Variable {
     public void unbind() {
         isRef = true;
         value = this;
+    }
+    
+    /**
+     * Test if the variable is unbound (in the brule sense).
+     */
+    public boolean isUnbound() {
+        return (isRef && (value == this));
+    }
+    
+    /**
+     * Clone the rule variable to allow multiple rule instaces to be active at the same time.
+     */
+    public Node_RuleVariable cloneNode() {
+        return new Node_RuleVariable((VarLabel)label, index);        
     }
     
     /** printable form */        

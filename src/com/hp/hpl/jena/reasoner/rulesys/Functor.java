@@ -146,6 +146,13 @@ public class Functor {
     }
     
     /**
+     * Set the Builtin that implements this functor.
+     */
+    public void setImplementor(Builtin implementor) {
+        this.implementor = implementor;
+    }
+    
+    /**
      * Printable string describing the functor
      */
     public String toString() {
@@ -194,6 +201,15 @@ public class Functor {
      */
     public static Node makeFunctorNode(String name, Node[] args) {
         Functor f = new Functor(name, args);
+        LiteralLabel ll = new LiteralLabel(f, null, FunctorDatatype.theFunctorDatatype);
+        return new Node_Literal(ll);
+    }
+    
+    /**
+     * Wrap  a functor as a Literal node
+     * @param f the functor data structure to be wrapped in a node.
+     */
+    public static Node makeFunctorNode(Functor f) {
         LiteralLabel ll = new LiteralLabel(f, null, FunctorDatatype.theFunctorDatatype);
         return new Node_Literal(ll);
     }

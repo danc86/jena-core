@@ -65,6 +65,16 @@ public class TriplePattern {
     }
     
     /**
+     * Constructor - builds a dgenerate pattern from a simple triple.
+     * This would be much easier if we merged Triples and TriplePatterns!
+     */
+    public TriplePattern(Triple match) {
+        this.subject   = normalize(match.getSubject());
+        this.predicate = normalize(match.getPredicate());
+        this.object    = normalize(match.getObject());
+    }
+    
+    /**
      * Returns the object.
      * @return Node
      */
