@@ -99,7 +99,7 @@ public class DIGQueryRoleFillerTranslator
     /**
      * <p>Answer an iterator of triples that match the original find query.</p>
      */
-    public ExtendedIterator translateResponse( Document response, TriplePattern query, DIGAdapter da ) {
+    public ExtendedIterator translateResponseHook( Document response, TriplePattern query, DIGAdapter da ) {
         // evaluate a path through the return value to give us an iterator over catom names
         SimpleXMLPath p = new SimpleXMLPath( true );
         p.appendElementPath( DIGProfile.INDIVIDUAL_SET );

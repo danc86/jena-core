@@ -108,7 +108,7 @@ public class DIGQueryIsRoleTranslator
         return null;
     }
 
-    public ExtendedIterator translateResponse( Document response, TriplePattern query, DIGAdapter da ) {
+    public ExtendedIterator translateResponseHook( Document response, TriplePattern query, DIGAdapter da ) {
         // not used
         return null;
     }

@@ -121,7 +121,7 @@ public class DIGQuerySubsumesTranslator
     /**
      * <p>Answer an iterator of triples that match the original find query.</p>
      */
-    public ExtendedIterator translateResponse( Document response, TriplePattern query, DIGAdapter da ) {
+    public ExtendedIterator translateResponseHook( Document response, TriplePattern query, DIGAdapter da ) {
         return isTrue( response ) ? (ExtendedIterator) new SingletonIterator( query.asTriple() ) : NullIterator.instance;
     }
     

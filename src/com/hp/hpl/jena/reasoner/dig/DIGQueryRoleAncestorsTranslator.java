@@ -103,7 +103,7 @@ public class DIGQueryRoleAncestorsTranslator
     /**
      * <p>Answer an iterator of triples that match the original find query.</p>
      */
-    public ExtendedIterator translateResponse( Document response, TriplePattern query, DIGAdapter da ) {
+    public ExtendedIterator translateResponseHook( Document response, TriplePattern query, DIGAdapter da ) {
         // translate the concept set to triples, but then we must add :a rdfs:subPropertyOf :a to match owl semantics
         return translateRoleSetResponse( response, query, m_ancestors );
     }

@@ -46,7 +46,7 @@ import com.hp.hpl.jena.util.iterator.*;
  * @author Ian Dickinson, HP Labs (<a href="mailto:Ian.Dickinson@hp.com">email</a>)
  * @version CVS $Id$
  */
-public class DIGQueryAncestorsTranslator 
+public class DIGQueryAncestorsTranslator
     extends DIGQueryTranslator
 {
 
@@ -61,8 +61,8 @@ public class DIGQueryAncestorsTranslator
 
     /** Flag for querying for ancestors */
     protected boolean m_ancestors;
-    
-    
+
+
     // Constructors
     //////////////////////////////////
 
@@ -72,10 +72,18 @@ public class DIGQueryAncestorsTranslator
      * @param ancestors If true, we are searching for parents of the class; if false, the descendants
      */
     public DIGQueryAncestorsTranslator( String predicate, boolean ancestors ) {
-        super( (ancestors ? null : ALL), predicate, (ancestors ? ALL : null) );
-        m_ancestors = ancestors;
+        this( (ancestors ? null : ALL), predicate, (ancestors ? ALL : null), ancestors );
     }
-    
+
+    /**
+     * <p>Constructor for sub-classes to specify the subject and object trigger
+     * values.</p>
+     */
+    protected DIGQueryAncestorsTranslator( String subj, String pred, String obj, boolean anc ) {
+        super( subj, pred, obj );
+        m_ancestors = anc;
+    }
+
 
     // External signature methods
     //////////////////////////////////
@@ -87,7 +95,7 @@ public class DIGQueryAncestorsTranslator
     public Document translatePattern( TriplePattern pattern, DIGAdapter da ) {
         DIGConnection dc = da.getConnection();
         Document query = dc.createDigVerb( DIGProfile.ASKS, da.getProfile() );
-        
+
         if (m_ancestors) {
             Element ancestors = da.createQueryElement( query, DIGProfile.ANCESTORS );
             da.addClassDescription( ancestors, pattern.getSubject() );
@@ -96,7 +104,7 @@ public class DIGQueryAncestorsTranslator
             Element descendants = da.createQueryElement( query, DIGProfile.DESCENDANTS );
             da.addClassDescription( descendants, pattern.getObject() );
         }
-        
+
         return query;
     }
 
@@ -104,16 +112,16 @@ public class DIGQueryAncestorsTranslator
     /**
      * <p>Answer an iterator of triples that match the original find query.</p>
      */
-    public ExtendedIterator translateResponse( Document response, TriplePattern query, DIGAdapter da ) {
+    public ExtendedIterator translateResponseHook( Document response, TriplePattern query, DIGAdapter da ) {
         // translate the concept set to triples, but then we must add :a rdfs:subClassOf :a to match owl semantics
-        return translateConceptSetResponse( response, query, m_ancestors )
-               .andThen( new SingletonIterator( 
+        return translateConceptSetResponse( response, query, m_ancestors, da )
+               .andThen( new SingletonIterator(
                             new Triple( m_ancestors ? query.getSubject() : query.getObject(),
                                         query.getPredicate(),
                                         m_ancestors ? query.getSubject() : query.getObject() ) ) );
     }
-    
-    
+
+
     public Document translatePattern( TriplePattern pattern, DIGAdapter da, Model premises ) {
         // not used
         return null;
@@ -122,7 +130,7 @@ public class DIGQueryAncestorsTranslator
     public boolean checkSubject( com.hp.hpl.jena.graph.Node subject, DIGAdapter da, Model premises ) {
         return !m_ancestors || da.isConcept( subject, premises );
     }
-    
+
     public boolean checkObject( com.hp.hpl.jena.graph.Node object, DIGAdapter da, Model premises ) {
         return m_ancestors || da.isConcept( object, premises );
     }

@@ -121,7 +121,7 @@ public abstract class DIGIteratedQueryTranslator
     /**
      * Not needed in this class - delegated to the specific query handlers
      */
-    public ExtendedIterator translateResponse(Document Response, TriplePattern query, DIGAdapter da) {
+    public ExtendedIterator translateResponseHook(Document Response, TriplePattern query, DIGAdapter da) {
         return null;
     }
     

@@ -95,7 +95,7 @@ public class DIGQueryDifferentFromTranslator
     /**
      * <p>Answer an iterator of triples that match the original find query.</p>
      */
-    public ExtendedIterator translateResponse( Document response, TriplePattern query, DIGAdapter da ) {
+    public ExtendedIterator translateResponseHook( Document response, TriplePattern query, DIGAdapter da ) {
         List answer = new ArrayList();
         if (isTrue( response )) {
             // if response is true, the subsumption relationship holds

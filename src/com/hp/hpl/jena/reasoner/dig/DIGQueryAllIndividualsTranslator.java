@@ -94,7 +94,7 @@ public class DIGQueryAllIndividualsTranslator
     }
 
 
-    public ExtendedIterator translateResponse( Document response, TriplePattern query, DIGAdapter da ) {
+    public ExtendedIterator translateResponseHook( Document response, TriplePattern query, DIGAdapter da ) {
         // not used
         return null;
     }

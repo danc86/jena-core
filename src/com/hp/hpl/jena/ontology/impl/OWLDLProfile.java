@@ -75,7 +75,7 @@ public class OWLDLProfile
     public String getLabel() {
         return "OWL DL";
     }
-    
+
 
     // Internal implementation methods
     //////////////////////////////////
@@ -102,9 +102,11 @@ public class OWLDLProfile
             },
             {  OntClass.class,              new SupportsCheck() {
                 public boolean doCheck( Node n, EnhGraph g ) {
-                    return g.asGraph().contains( n, RDF.type.asNode(), OWL.Class.asNode() ) ||
-                    g.asGraph().contains( n, RDF.type.asNode(), OWL.Restriction.asNode() ) || 
-                    g.asGraph().contains( n, RDF.type.asNode(), RDFS.Class.asNode() );
+                    return  OWL.Thing.asNode().equals( n ) ||
+                            OWL.Nothing.asNode().equals( n ) ||
+                            g.asGraph().contains( n, RDF.type.asNode(), OWL.Class.asNode() ) ||
+                            g.asGraph().contains( n, RDF.type.asNode(), OWL.Restriction.asNode() ) ||
+                            g.asGraph().contains( n, RDF.type.asNode(), RDFS.Class.asNode() );
                 }
             }
             },
@@ -117,8 +119,8 @@ public class OWLDLProfile
             {  ObjectProperty.class,        new SupportsCheck() {
                 public boolean doCheck( Node n, EnhGraph g ) {
                     return g.asGraph().contains( n, RDF.type.asNode(), OWL.ObjectProperty.asNode() ) ||
-                    g.asGraph().contains( n, RDF.type.asNode(), OWL.TransitiveProperty.asNode() ) || 
-                    g.asGraph().contains( n, RDF.type.asNode(), OWL.SymmetricProperty.asNode() ) || 
+                    g.asGraph().contains( n, RDF.type.asNode(), OWL.TransitiveProperty.asNode() ) ||
+                    g.asGraph().contains( n, RDF.type.asNode(), OWL.SymmetricProperty.asNode() ) ||
                     g.asGraph().contains( n, RDF.type.asNode(), OWL.InverseFunctionalProperty.asNode() );
                 }
             }
@@ -149,10 +151,10 @@ public class OWLDLProfile
                     g.asGraph().contains( n, RDF.type.asNode(), OWL.ObjectProperty.asNode() ) ||
                     g.asGraph().contains( n, RDF.type.asNode(), OWL.DatatypeProperty.asNode() ) ||
                     g.asGraph().contains( n, RDF.type.asNode(), OWL.AnnotationProperty.asNode() ) ||
-                    g.asGraph().contains( n, RDF.type.asNode(), OWL.TransitiveProperty.asNode() ) || 
-                    g.asGraph().contains( n, RDF.type.asNode(), OWL.SymmetricProperty.asNode() ) || 
-                    g.asGraph().contains( n, RDF.type.asNode(), OWL.FunctionalProperty.asNode() ) || 
-                    g.asGraph().contains( n, RDF.type.asNode(), OWL.InverseFunctionalProperty.asNode() ); 
+                    g.asGraph().contains( n, RDF.type.asNode(), OWL.TransitiveProperty.asNode() ) ||
+                    g.asGraph().contains( n, RDF.type.asNode(), OWL.SymmetricProperty.asNode() ) ||
+                    g.asGraph().contains( n, RDF.type.asNode(), OWL.FunctionalProperty.asNode() ) ||
+                    g.asGraph().contains( n, RDF.type.asNode(), OWL.InverseFunctionalProperty.asNode() );
                 }
             }
             },
@@ -212,7 +214,7 @@ public class OWLDLProfile
                 public boolean doCheck( Node n, EnhGraph g ) {
                     return g.asGraph().contains( n, RDF.type.asNode(), OWL.Restriction.asNode() ) &&
                     containsSome( g, n, OWL.maxCardinality ) &&
-                    containsSome( g, n, OWL.onProperty ); 
+                    containsSome( g, n, OWL.onProperty );
                 }
             }
             },
@@ -235,10 +237,10 @@ public class OWLDLProfile
                     if (n instanceof Node_URI || n instanceof Node_Blank) {
                         // necessary to be a uri or bNode, but not sufficient
                         Graph g = eg.asGraph();
-                        
+
                         // this check filters out OWL-full entailments from the OWL-rule reasoner
                         return !(g.contains( n, RDF.type.asNode(), RDFS.Class.asNode() ) ||
-                                g.contains( n, RDF.type.asNode(), RDF.Property.asNode() ));                            
+                                g.contains( n, RDF.type.asNode(), RDF.Property.asNode() ));
                     }
                     else {
                         return false;
@@ -254,16 +256,16 @@ public class OWLDLProfile
             }
             }
             };
-    
+
 
     // to allow concise reference in the code above.
     public static boolean containsSome( EnhGraph g, Node n, Property p ) {
-        return AbstractProfile.containsSome( g, n, p ); 
+        return AbstractProfile.containsSome( g, n, p );
     }
-    
+
     /** Map from resource to syntactic/semantic checks that a node can be seen as the given facet */
     private static HashMap s_supportsChecks = new HashMap();
-    
+
     static {
         // initialise the map of supports checks from a table of static data
         for (int i = 0;  i < s_supportsCheckData.length;  i++) {
@@ -274,7 +276,7 @@ public class OWLDLProfile
     protected Map getCheckTable() {
         return s_supportsChecks;
     }
-    
+
     //==============================================================================
     // Inner class definitions
     //==============================================================================

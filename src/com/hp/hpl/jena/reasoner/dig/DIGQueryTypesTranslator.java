@@ -44,7 +44,7 @@ import com.hp.hpl.jena.util.iterator.*;
  * @author Ian Dickinson, HP Labs (<a href="mailto:Ian.Dickinson@hp.com">email</a>)
  * @version CVS $Id$
  */
-public class DIGQueryTypesTranslator 
+public class DIGQueryTypesTranslator
     extends DIGQueryTranslator
 {
 
@@ -57,7 +57,7 @@ public class DIGQueryTypesTranslator
     // Instance variables
     //////////////////////////////////
 
-    
+
     // Constructors
     //////////////////////////////////
 
@@ -68,7 +68,7 @@ public class DIGQueryTypesTranslator
     public DIGQueryTypesTranslator( String predicate ) {
         super( null, predicate, ALL );
     }
-    
+
 
     // External signature methods
     //////////////////////////////////
@@ -80,10 +80,10 @@ public class DIGQueryTypesTranslator
     public Document translatePattern( TriplePattern pattern, DIGAdapter da ) {
         DIGConnection dc = da.getConnection();
         Document query = dc.createDigVerb( DIGProfile.ASKS, da.getProfile() );
-        
+
         Element types = da.createQueryElement( query, DIGProfile.TYPES );
         da.addNamedElement( types, DIGProfile.INDIVIDUAL, da.getNodeID( pattern.getSubject() ) );
-        
+
         return query;
     }
 
@@ -91,12 +91,12 @@ public class DIGQueryTypesTranslator
     /**
      * <p>Answer an iterator of triples that match the original find query.</p>
      */
-    public ExtendedIterator translateResponse( Document response, TriplePattern query, DIGAdapter da ) {
+    public ExtendedIterator translateResponseHook( Document response, TriplePattern query, DIGAdapter da ) {
         // translate the concept set to triples, but then we must add :a rdfs:subClassOf :a to match owl semantics
-        return translateConceptSetResponse( response, query, true );
+        return translateConceptSetResponse( response, query, true, da );
     }
-    
-    
+
+
     public Document translatePattern( TriplePattern pattern, DIGAdapter da, Model premises ) {
         // not used
         return null;
