@@ -24,7 +24,6 @@ package com.hp.hpl.jena.reasoner.dig;
 
 // Imports
 ///////////////
-import java.util.ArrayList;
 import java.util.Iterator;
 
 import org.apache.commons.logging.LogFactory;
@@ -136,7 +135,7 @@ public abstract class DIGQueryTranslator {
         Document query = translatePattern( pattern, da, premises );
         if (query == null) {
             LogFactory.getLog( getClass() ).warn( "Could not find pattern translator for nested DIG query " + pattern );
-            return WrappedIterator.create( new ArrayList().iterator() );
+            return EmptyIterator.INSTANCE;
         }
         else {
             Document response = da.getConnection().sendDigVerb( query, da.getProfile() );

@@ -25,11 +25,10 @@ package com.hp.hpl.jena.ontology.impl.test;
 
 // Imports
 ///////////////
-import java.util.ArrayList;
-
 import com.hp.hpl.jena.ontology.*;
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.util.iterator.ClosableIterator;
+import com.hp.hpl.jena.util.iterator.EmptyIterator;
 import com.hp.hpl.jena.vocabulary.*;
 import com.hp.hpl.jena.vocabulary.XSD;
 
@@ -285,7 +284,7 @@ public class TestClassExpression
                     assertTrue( "Should fail to add to a complement", ex );
                     
                     ex = false;
-                    try { A.addOperands( new ArrayList().iterator() ); } catch (UnsupportedOperationException e) {ex = true;}
+                    try { A.addOperands( EmptyIterator.INSTANCE ); } catch (UnsupportedOperationException e) {ex = true;}
                     assertTrue( "Should fail to add to a complement", ex );
                     
                     ex = false;
