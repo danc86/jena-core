@@ -15,8 +15,8 @@
   xmlns:rdf   ="&rdf;"
   xmlns:rdfs  ="&rdfs;"
   xmlns:owl   ="&owl;"
-  xmlns:vocab ="&vocab;"
-  xmlns       ="&vocab;"
+  xmlns:sgen  ="&sgen;"
+  xmlns       ="&sgen;"
   xml:base    ="&base;"
 >
 
