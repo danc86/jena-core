@@ -6,25 +6,34 @@
 
 package com.hp.hpl.jena.rdf.model;
 
-import com.hp.hpl.jena.graph.Graph;
-import com.hp.hpl.jena.graph.GraphFactory;
+import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.mem.*;
+import com.hp.hpl.jena.rdf.model.impl.*;
 import com.hp.hpl.jena.reasoner.*;
 import com.hp.hpl.jena.reasoner.rdfsReasoner1.RDFSReasonerFactory;
 import com.hp.hpl.jena.ontology.*;
 import com.hp.hpl.jena.ontology.impl.OntModelImpl;
+import com.hp.hpl.jena.enhanced.*;
 
 
 /**
-    Factory provides methods for creating standard kinds of Model. This
-    initial version provides only a single default Model with no trimmings. 
+    Factory provides methods for creating standard kinds of Model. 
 */
 
 public class ModelFactory
 {
-    /** deliver a new Model (implemented as a ModelMem, but that's secret) */
+    /** 
+        construct a new memory-based model that captures reification triples 
+    */
     public static Model createDefaultModel()
-        { return new ModelMem(); }
+        { return new ModelCom( GraphBase.withReification( new GraphMem() ), BuiltinPersonalities.model );}
+
+    /**
+        construct a new memory-based model that does not capture reification triples
+        (but still handles reifyAs() and .as(ReifiedStatement).
+    */
+    public static Model createNonreifyingModel()
+        { return new ModelCom( GraphBase.withReification( new GraphMem() ), BuiltinPersonalities.model );}
         
     /** 
      * <p>
@@ -35,9 +44,7 @@ public class ModelFactory
      * @return A model presenting an API view of graph g
      */
     public static Model createModelForGraph( Graph g ) {
-        // TODO it seems unlikely that modelmem is the right name for this operation
-        // since g could be any kind of graph - but that's the way it is right now 
-        return new ModelMem( g ); 
+        return new ModelCom( g ); 
     }
         
     /**
@@ -56,7 +63,7 @@ public class ModelFactory
          ReasonerFactory rf = RDFSReasonerFactory.theInstance();
          Reasoner reasoner  = rf.create(null);
          InfGraph graph     = reasoner.bind(model.getGraph());
-         return new ModelMem(graph);
+         return createModelForGraph(graph);
     }
         
     /**
@@ -78,7 +85,7 @@ public class ModelFactory
          ReasonerFactory rf = RDFSReasonerFactory.theInstance();
          Reasoner reasoner  = rf.create(null);
          InfGraph graph     = reasoner.bindSchema(schema.getGraph()).bind(model.getGraph());
-         return new ModelMem(graph);
+         return createModelForGraph(graph);
     }
     
     

@@ -1225,6 +1225,9 @@ public class ModelCom extends EnhGraph
         }
     }
     
+    public String toString()
+        { return "<ModelCom  " + getGraph() + ">"; }
+        
 	/**
 		a read-only Model with all the statements of this Model and any
 		statements "hidden" by reification. That model is dynamic, ie

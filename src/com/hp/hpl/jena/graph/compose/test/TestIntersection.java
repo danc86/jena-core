@@ -38,17 +38,17 @@ public class TestIntersection extends GraphTestBase
     	Graph L = graphWith( "a pings b; b pings c; c pings a" );
     	Graph R = graphWith( "c pings a; b pings c; x captures y" );
     	Graph join = new Intersection( L, R );
-    	Model mJoin = new ModelMem( join );
-    	Model mL = new ModelMem( L );
+    	Model mJoin = modelFor( join );
+    	Model mL = modelFor( L );
     	mL.remove( mJoin );
     	// mustHaveNone( L, "L after removal", "c pings a; b pings c; x captures y" );
     	// mustHave( L, "L after removal", "a pings b" );
-    	if (!new ModelMem( R ).isIsomorphicWith( (Model)new ModelMem( graphWith( "c pings a; b pings c; x captures y" ) ) ))
+    	if (!modelFor( R ).isIsomorphicWith( modelFor( graphWith( "c pings a; b pings c; x captures y" ) ) ))
     		{
     		show( "oops: R has changed", R );
     		fail( "" );
     		}
-    	if (!mL.isIsomorphicWith( (Model)new ModelMem( graphWith( "a pings b" ) ) ))
+    	if (!mL.isIsomorphicWith( modelFor( graphWith( "a pings b" ) ) ))
     		{
     		show( "oops: L is", L );
     		fail( "oops: mL should be `a pings b`" );

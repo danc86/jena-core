@@ -45,7 +45,7 @@ public class TestReifier extends GraphTestBase
         
     public void testIntercept()
         {
-        Graph g = graphWith( "" );
+        Graph g = GraphBase.withReification( graphWith( "" ) );
         Reifier r = g.getReifier();
         Node S = node( "sub" ), O = node( "obj" );
         Node RS = node( "http://example.org/type" );
@@ -60,7 +60,7 @@ public class TestReifier extends GraphTestBase
         
     public void testHiddenTriples()
         {
-        Graph g = graphWith( "" );
+        Graph g = GraphBase.withReification( graphWith( "" ) );
         Reifier r = g.getReifier();
         Node S = node( "SSS" ), P = node( "PPP" ), O = node( "OOO " );
         g.add( new Triple( S, Reifier.predicate, P ) );

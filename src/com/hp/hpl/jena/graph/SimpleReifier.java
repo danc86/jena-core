@@ -22,7 +22,7 @@ import java.util.*;
 public class SimpleReifier implements Reifier
     {
     private Graph parent;
-    private boolean passing = false;
+    public boolean passing = false;
     private FragmentMap nodeMap;
     
     /** construct a simple reifier that is bound to the parent graph */

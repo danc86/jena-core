@@ -53,6 +53,9 @@ public class GraphTestBase extends TestCase
         return Node.createURI( x );
         }
         
+    public static Model modelFor( Graph g )
+        { return ModelFactory.createModelForGraph( g ); }
+        
     public Set iteratorToSet( ClosableIterator L )
         {
         HashSet result = new HashSet();
@@ -120,7 +123,7 @@ public class GraphTestBase extends TestCase
         
     public void assertEquals( String name, Graph wanted, Graph obtained )
         {
-        Model mWanted = new ModelMem( wanted ), mObtained = new ModelMem( obtained );
+        Model mWanted = modelFor( wanted ), mObtained = modelFor( obtained );
         assertTrue( name + ": wanted " + wanted + " got " + obtained, mWanted.isIsomorphicWith( mObtained ) );
         }
     

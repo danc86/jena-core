@@ -43,10 +43,10 @@ public class TestCaseBasic extends com.hp.hpl.jena.regression.TestCaseBasic
     		{
     		Constructor constructor = graphClass.getConstructor(new Class[]{
     		   Graph.class, Graph.class });
-        	m1 = new ModelMem( newGraph( constructor ) );
-        	m2 = new ModelMem( newGraph( constructor ) );
-        	m3 = new ModelMem( newGraph( constructor ) );
-        	m4 = new ModelMem( newGraph( constructor ) );
+        	m1 = GraphTestBase.modelFor( newGraph( constructor ) );
+        	m2 = GraphTestBase.modelFor( newGraph( constructor ) );
+        	m3 = GraphTestBase.modelFor( newGraph( constructor ) );
+        	m4 = GraphTestBase.modelFor( newGraph( constructor ) );
     		}
     	catch (Exception e)
 			{}

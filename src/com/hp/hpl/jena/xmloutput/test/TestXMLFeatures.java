@@ -633,7 +633,7 @@ public class TestXMLFeatures extends TestCase {
 		Graph g = new GraphMem();
 		g.add(new Triple(blank, prop, blank));
 		// create Model
-		Model m = new ModelMem(g);
+		Model m = ModelFactory.createModelForGraph(g);
 		// serialize
 		StringWriter w = new StringWriter();
 		RDFWriter rw = m.getWriter(lang);

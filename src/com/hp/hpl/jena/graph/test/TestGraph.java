@@ -62,17 +62,21 @@ public class TestGraph extends GraphTestBase
 //        assertContainsAll( "modified simple graph", g, "p S q; spindizzies lift cities; Diracs communicate instantaneously" );
 //        assertOmitsAll( "modified simple graph", g, "x R y; a T b" );
         }
-                    
-                    
-	public static void testModelEquals()
-		{
-		Graph g1 = graphWith( "x R y; p R q" );
-        assertEquals( "model must equal a copy of itself", new ModelMem( g1 ), new ModelMem( g1 ) );
-		}
+                                      
+    public void testReificationControl()
+        {
+        Graph g1 = graphWith( "x rdf:subject S" );
+        Graph g2 = GraphBase.withReification( g1 );
+        assertEquals( "should not hide reification triple", 1, g1.size() );
+        assertEquals( "should not hide reification triple", 1, g2.size() );
+        g2.add( triple( "x rdf:object O" ) );
+        assertEquals( "", 1, g1.size() );
+        assertEquals( "", 1, g2.size() );
+        }
     }
 
 /*
-    (c) Copyright Hewlett-Packard Company 2002
+    (c) Copyright Hewlett-Packard Company 2002, 2003
     All rights reserved.
 
     Redistribution and use in source and binary forms, with or without

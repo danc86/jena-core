@@ -218,7 +218,7 @@ public class WGReasonerTester {
         // Construct the inferred graph
         Reasoner reasoner = reasonerF.create(configuration);
         InfGraph graph = reasoner.bind(premises.getGraph());
-        Model result = new ModelMem(graph);
+        Model result = ModelFactory.createModelForGraph(graph);
         
         // Check the results against the official conclusions
         boolean correct = true;
