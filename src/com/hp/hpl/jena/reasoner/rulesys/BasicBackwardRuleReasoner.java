@@ -9,6 +9,7 @@
  *****************************************************************/
 package com.hp.hpl.jena.reasoner.rulesys;
 
+import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.reasoner.*;
 import com.hp.hpl.jena.graph.*;
 import java.util.*;
@@ -54,11 +55,19 @@ public class BasicBackwardRuleReasoner implements Reasoner {
     }
     
     /**
-     * Precompute the implications of a schema graph.
-     * The practicality benefit of this has not yet been fully checked out.
+     * Precompute the implications of a schema graph. The statements in the graph
+     * will be combined with the data when the final InfGraph is created.
      */
     public Reasoner bindSchema(Graph tbox) throws ReasonerException {
         return new BasicBackwardRuleReasoner(rules, tbox);
+    }
+    
+    /**
+     * Precompute the implications of a schema Model. The statements in the graph
+     * will be combined with the data when the final InfGraph is created.
+     */
+    public Reasoner bindSchema(Model tbox) throws ReasonerException {
+        return new BasicBackwardRuleReasoner(rules, tbox.getGraph());
     }
     
     /**
@@ -104,6 +113,19 @@ public class BasicBackwardRuleReasoner implements Reasoner {
      */
     public void setRulesThreshold(long threshold) {
         nRulesThreshold = threshold;
+    }
+    
+    /**
+     * Set a configuration paramter for the reasoner. In the case of the this
+     * reasoner there are no configuration parameters and this method is simply 
+     * here to meet the interfaces specification
+     * 
+     * @param parameterUri the uri identifying the parameter to be changed
+     * @param value the new value for the parameter, typically this is a wrapped
+     * java object like Boolean or Integer.
+     */
+    public void setParameter(String parameterUri, Object value) {
+        throw new IllegalParameterException(parameterUri);
     }
 
 }

@@ -147,7 +147,7 @@ public class GoalResults {
                 return result;
             }
         }
-        // If we get here there are not results available at present
+        // If we get here there are no results available at present
         if (ruleInstances.size() == 0) setComplete();
         return isComplete ? StateFlag.FAIL : StateFlag.SUSPEND;
     }
