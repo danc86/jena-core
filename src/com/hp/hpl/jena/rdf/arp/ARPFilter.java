@@ -415,6 +415,7 @@ class ARPFilter
 		setErrorMode(WARN_RDF_NN_AS_TYPE, nonErrorMode);
 		setErrorMode(WARN_UNKNOWN_RDF_ELEMENT, warning);
 		setErrorMode(WARN_UNKNOWN_RDF_ATTRIBUTE, warning);
+        setErrorMode(WARN_UNQUALIFIED_RDF_ATTRIBUTE, warning);
 		setErrorMode(WARN_UNKNOWN_XML_ATTRIBUTE, nonErrorMode);
 		setErrorMode(WARN_QNAME_AS_ID, error);
 		//      setErrorMode(WARN_BAD_XML, error);

@@ -110,9 +110,8 @@ public interface ARPErrorNumbers {
     public int WARN_XMLBASE_MISSING = 100;
     /**
      A standard rdf attribute like type or about is used 
-     without a namespace qualifier. In default mode ARP adds the
-     *rdf: qualifier; strict mode skips to the end of the enclosing element.
-     * (W101).
+     without a namespace qualifier. In default and strict mode ARP adds the
+     *rdf: qualifier and reports a warning. (W101).
     */
     public int WARN_UNQUALIFIED_RDF_ATTRIBUTE = 101;
     /**
