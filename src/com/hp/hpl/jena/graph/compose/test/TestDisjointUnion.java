@@ -9,7 +9,6 @@ import junit.framework.TestSuite;
 
 import com.hp.hpl.jena.graph.Graph;
 import com.hp.hpl.jena.graph.compose.DisjointUnion;
-import com.hp.hpl.jena.graph.compose.Union;
 import com.hp.hpl.jena.graph.test.GraphTestBase;
 
 /**

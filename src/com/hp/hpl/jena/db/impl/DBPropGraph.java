@@ -6,7 +6,6 @@
 package com.hp.hpl.jena.db.impl;
 
 import com.hp.hpl.jena.graph.*;
-import com.hp.hpl.jena.graph.impl.*;
 import com.hp.hpl.jena.util.iterator.*;
 import com.hp.hpl.jena.vocabulary.DB;
 

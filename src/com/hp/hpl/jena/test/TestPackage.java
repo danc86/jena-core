@@ -6,8 +6,6 @@
 
 package com.hp.hpl.jena.test;
 
-import com.hp.hpl.jena.mem.test.TestMemPackage;
-
 import junit.framework.TestSuite;
 import junit.framework.Test;
 

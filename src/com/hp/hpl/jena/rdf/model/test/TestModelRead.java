@@ -37,6 +37,15 @@ public class TestModelRead extends ModelTestBase
         assertIsoModels( expected, m );
         }    
     
+    public void testLoadsSimpleModelWithoutProtocol()
+        {
+//        Model expected = ModelFactory.createDefaultModel();
+//        Model m = ModelFactory.createDefaultModel();
+//        expected.read( "testing/modelReading/simple.n3", "RDF/XML" );
+//        assertSame( m, m.read( "testing/modelReading/simple.n3", "base", "N3" ) );
+//        assertIsoModels( expected, m );
+        }    
+    
     public void testSimpleLoadImplictBase()
         {
         Model mBasedImplicit = ModelFactory.createDefaultModel();
