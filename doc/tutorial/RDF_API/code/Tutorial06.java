@@ -20,45 +20,41 @@ public class Tutorial06 extends Object {
     static final String johnSmithURI = "http://somewhere/JohnSmith/";
     
     public static void main (String args[]) {
-       try {
-            // create an empty model
-            Model model = ModelFactory.createDefaultModel();
-           
-            // use the class loader to find the input file
-            InputStream in = Tutorial06.class
-                                       .getClassLoader()
-                                       .getResourceAsStream(inputFileName);
-            if (in == null) {
-                throw new IllegalArgumentException(
-                                       "File: " + inputFileName + " not found");
-            }
-            
-            // read the RDF/XML file
-            model.read(new InputStreamReader(in), "");
-            
-            // retrieve the Adam Smith vcard resource from the model
-            Resource vcard = model.getResource(johnSmithURI);
+        // create an empty model
+        Model model = ModelFactory.createDefaultModel();
+       
+        // use the class loader to find the input file
+        InputStream in = Tutorial06.class
+                                   .getClassLoader()
+                                   .getResourceAsStream(inputFileName);
+        if (in == null) {
+            throw new IllegalArgumentException(
+                                   "File: " + inputFileName + " not found");
+        }
+        
+        // read the RDF/XML file
+        model.read(new InputStreamReader(in), "");
+        
+        // retrieve the Adam Smith vcard resource from the model
+        Resource vcard = model.getResource(johnSmithURI);
 
-            // retrieve the value of the N property
-            Resource name = (Resource) vcard.getProperty(VCARD.N)
-                                            .getObject();
-            // retrieve the given name property
-            String fullName = vcard.getProperty(VCARD.FN)
-                                   .getString();
-            // add two nick name properties to vcard
-            vcard.addProperty(VCARD.NICKNAME, "Smithy")
-                 .addProperty(VCARD.NICKNAME, "Adman");
-            
-            // set up the output
-            System.out.println("The nicknames of \"" + fullName + "\" are:");
-            // list the nicknames
-            StmtIterator iter = vcard.listProperties(VCARD.NICKNAME);
-            while (iter.hasNext()) {
-                System.out.println("    " + iter.nextStatement().getObject()
-                                                .toString());
-            }
-        } catch (Exception e) {
-            System.out.println("Failed: " + e);
+        // retrieve the value of the N property
+        Resource name = (Resource) vcard.getProperty(VCARD.N)
+                                        .getObject();
+        // retrieve the given name property
+        String fullName = vcard.getProperty(VCARD.FN)
+                               .getString();
+        // add two nick name properties to vcard
+        vcard.addProperty(VCARD.NICKNAME, "Smithy")
+             .addProperty(VCARD.NICKNAME, "Adman");
+        
+        // set up the output
+        System.out.println("The nicknames of \"" + fullName + "\" are:");
+        // list the nicknames
+        StmtIterator iter = vcard.listProperties(VCARD.NICKNAME);
+        while (iter.hasNext()) {
+            System.out.println("    " + iter.nextStatement().getObject()
+                                            .toString());
         }
     }
 }

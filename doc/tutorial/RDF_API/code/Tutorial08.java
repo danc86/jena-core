@@ -20,44 +20,39 @@ public class Tutorial08 extends Object {
     static final String inputFileName = "vc-db-1.rdf";
     
     public static void main (String args[]) {
-       try {
-            // create an empty model
-            Model model = ModelFactory.createDefaultModel();
-           
-            // use the class loader to find the input file
-            InputStream in = Tutorial08.class
-                                       .getClassLoader()
-                                       .getResourceAsStream(inputFileName);
-            if (in == null) {
-                throw new IllegalArgumentException(
-                                       "File: " + inputFileName + " not found");
-            }
-            
-            // read the RDF/XML file
-            model.read(new InputStreamReader(in), "");
-            
-            // select all the resources with a VCARD.FN property
-            // whose value ends with "Smith"
-            StmtIterator iter = model.listStatements(
-                new 
-                    SimpleSelector(null, VCARD.FN, (RDFNode) null) {
-                        public boolean isSimple() { return false; }
-                        public boolean selects(Statement s) {
-                                return s.getString().endsWith("Smith");
-                        }
-                    });
-            if (iter.hasNext()) {
-                System.out.println("The database contains vcards for:");
-                while (iter.hasNext()) {
-                    System.out.println("  " + iter.nextStatement()
-                                                  .getString());
-                }
-            } else {
-                System.out.println("No Smith's were found in the database");
-            }            
-        } catch (Exception e) {
-            System.out.println("Failed: " + e);
+        // create an empty model
+        Model model = ModelFactory.createDefaultModel();
+       
+        // use the class loader to find the input file
+        InputStream in = Tutorial08.class
+                                   .getClassLoader()
+                                   .getResourceAsStream(inputFileName);
+        if (in == null) {
+            throw new IllegalArgumentException(
+                                   "File: " + inputFileName + " not found");
         }
+        
+        // read the RDF/XML file
+        model.read(new InputStreamReader(in), "");
+        
+        // select all the resources with a VCARD.FN property
+        // whose value ends with "Smith"
+        StmtIterator iter = model.listStatements(
+            new 
+                SimpleSelector(null, VCARD.FN, (RDFNode) null) {
+                    public boolean selects(Statement s) {
+                            return s.getString().endsWith("Smith");
+                    }
+                });
+        if (iter.hasNext()) {
+            System.out.println("The database contains vcards for:");
+            while (iter.hasNext()) {
+                System.out.println("  " + iter.nextStatement()
+                                              .getString());
+            }
+        } else {
+            System.out.println("No Smith's were found in the database");
+        }            
     }
 }
 

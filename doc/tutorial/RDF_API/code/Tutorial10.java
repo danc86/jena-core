@@ -21,59 +21,54 @@ public class Tutorial10 extends Object {
     static final String inputFileName = "vc-db-1.rdf";
     
     public static void main (String args[]) {
-       try {
-            // create an empty model
-            Model model = ModelFactory.createDefaultModel();
-           
-            // use the class loader to find the input file
-            InputStream in = Tutorial10.class
-                                       .getClassLoader()
-                                       .getResourceAsStream(inputFileName);
-            if (in == null) {
-                throw new IllegalArgumentException(
-                                       "File: " + inputFileName + " not found");
+        // create an empty model
+        Model model = ModelFactory.createDefaultModel();
+       
+        // use the class loader to find the input file
+        InputStream in = Tutorial10.class
+                                   .getClassLoader()
+                                   .getResourceAsStream(inputFileName);
+        if (in == null) {
+            throw new IllegalArgumentException(
+                                   "File: " + inputFileName + " not found");
+        }
+        
+        // read the RDF/XML file
+        model.read(new InputStreamReader(in), "");
+        
+        // create a bag
+        Bag smiths = model.createBag();
+        
+        // select all the resources with a VCARD.FN property
+        // whose value ends with "Smith"
+        StmtIterator iter = model.listStatements(
+            new 
+                SimpleSelector(null, VCARD.FN, (RDFNode) null) {
+                    public boolean selects(Statement s) {
+                            return s.getString().endsWith("Smith");
+                    }
+                });
+        // add the Smith's to the bag
+        while (iter.hasNext()) {
+            smiths.add( iter.nextStatement().getSubject());
+        }
+        
+        // print the graph as RDF/XML
+        model.write(new PrintWriter(System.out));
+        System.out.println();
+        
+        // print out the members of the bag
+        NodeIterator iter2 = smiths.iterator();
+        if (iter2.hasNext()) {
+            System.out.println("The bag contains:");
+            while (iter2.hasNext()) {
+                System.out.println("  " +
+                    ((Resource) iter2.next())
+                                     .getProperty(VCARD.FN)
+                                     .getString());
             }
-            
-            // read the RDF/XML file
-            model.read(new InputStreamReader(in), "");
-            
-            // create a bag
-            Bag smiths = model.createBag();
-            
-            // select all the resources with a VCARD.FN property
-            // whose value ends with "Smith"
-            StmtIterator iter = model.listStatements(
-                new 
-                    SimpleSelector(null, VCARD.FN, (RDFNode) null) {
-                        public boolean isSimple() { return false; }
-                        public boolean selects(Statement s) {
-                                return s.getString().endsWith("Smith");
-                        }
-                    });
-            // add the Smith's to the bag
-            while (iter.hasNext()) {
-                smiths.add( iter.nextStatement().getSubject());
-            }
-            
-            // print the graph as RDF/XML
-            model.write(new PrintWriter(System.out));
-            System.out.println();
-            
-            // print out the members of the bag
-            NodeIterator iter2 = smiths.iterator();
-            if (iter2.hasNext()) {
-                System.out.println("The bag contains:");
-                while (iter2.hasNext()) {
-                    System.out.println("  " +
-                        ((Resource) iter2.next())
-                                         .getProperty(VCARD.FN)
-                                         .getString());
-                }
-            } else {
-                System.out.println("The bag is empty");
-            }
-        } catch (Exception e) {
-            System.out.println("Failed: " + e);
+        } else {
+            System.out.println("The bag is empty");
         }
     }
 }

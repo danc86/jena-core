@@ -25,28 +25,22 @@ public class Tutorial05 extends Object {
                              = "vc-db-1.rdf";
                               
     public static void main (String args[]) {
-        
-        try {
-            // create an empty model
-            Model model = ModelFactory.createDefaultModel();
+        // create an empty model
+        Model model = ModelFactory.createDefaultModel();
 
-            InputStream in = Tutorial05.class
-                                       .getClassLoader()
-                                       .getResourceAsStream(inputFileName);
-            if (in == null) {
-                throw new IllegalArgumentException(
-                                       "File: " + inputFileName + " not found");
-            }
-            
-            // read the RDF/XML file
-            model.read(new InputStreamReader(in), "");
-                        
-            // write it to standard out
-            model.write(System.out);            
-          
-        } catch (Exception e) {
-            System.out.println("Failed: " + e);
+        InputStream in = Tutorial05.class
+                                   .getClassLoader()
+                                   .getResourceAsStream(inputFileName);
+        if (in == null) {
+            throw new IllegalArgumentException(
+                                   "File: " + inputFileName + " not found");
         }
+        
+        // read the RDF/XML file
+        model.read(new InputStreamReader(in), "");
+                    
+        // write it to standard out
+        model.write(System.out);            
     }
 }
 

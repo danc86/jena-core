@@ -21,19 +21,14 @@ public class Tutorial01 extends Object {
     static String fullName     = "John Smith";
     
       public static void main (String args[]) {
-        try {
-            // create an empty model
-            Model model = ModelFactory.createDefaultModel();
+        // create an empty model
+        Model model = ModelFactory.createDefaultModel();
 
-           // create the resource
-           Resource johnSmith = model.createResource(personURI);
+       // create the resource
+       Resource johnSmith = model.createResource(personURI);
 
-          // add the property
-          johnSmith.addProperty(VCARD.FN, fullName);
-
-        } catch (Exception e) {
-            System.out.println("Failed: " + e);
-        }
+      // add the property
+      johnSmith.addProperty(VCARD.FN, fullName);
       }
 }
 

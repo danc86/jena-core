@@ -17,39 +17,34 @@ import java.io.PrintWriter;
 public class Tutorial11 extends Object {
     
       public static void main (String args[]) {
-        try {
-            // create an empty graph
-            Model model = ModelFactory.createDefaultModel();
+        // create an empty graph
+        Model model = ModelFactory.createDefaultModel();
 
-           // create the resource
-           Resource r = model.createResource();                                     
+       // create the resource
+       Resource r = model.createResource();                                     
 
-          // add the property
-          r.addProperty(RDFS.label, model.createLiteral("chat", "en"))
-           .addProperty(RDFS.label, model.createLiteral("chat", "fr"))
-           .addProperty(RDFS.label, model.createLiteral("<em>chat</em>", "em",
-                                                                         true));
-          
-          // write out the graph
-          model.write(new PrintWriter(System.out));
-          System.out.println();
-          
-          // create an empty graph
-          model = ModelFactory.createDefaultModel();
+      // add the property
+      r.addProperty(RDFS.label, model.createLiteral("chat", "en"))
+       .addProperty(RDFS.label, model.createLiteral("chat", "fr"))
+       .addProperty(RDFS.label, model.createLiteral("<em>chat</em>", "em",
+                                                                     true));
+      
+      // write out the graph
+      model.write(new PrintWriter(System.out));
+      System.out.println();
+      
+      // create an empty graph
+      model = ModelFactory.createDefaultModel();
 
-           // create the resource
-           r = model.createResource();                                     
+       // create the resource
+       r = model.createResource();                                     
 
-          // add the property
-          r.addProperty(RDFS.label, "11")
-           .addProperty(RDFS.label, 11);
-          
-          // write out the graph
-          model.write( System.out, "N-TRIPLE");
-          
-        } catch (Exception e) {
-            System.out.println("Failed: " + e);
-        }
+      // add the property
+      r.addProperty(RDFS.label, "11")
+       .addProperty(RDFS.label, 11);
+      
+      // write out the graph
+      model.write( System.out, "N-TRIPLE");
       }
 }
 

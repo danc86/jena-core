@@ -19,41 +19,36 @@ public class Tutorial09 extends Object {
     static final String inputFileName2 = "vc-db-4.rdf";
     
     public static void main (String args[]) {
-       try {
-            // create an empty model
-            Model model1 = ModelFactory.createDefaultModel();
-            Model model2 = ModelFactory.createDefaultModel();
-           
-            // use the class loader to find the input file
-            InputStream in1 = Tutorial09.class
-                                       .getClassLoader()
-                                       .getResourceAsStream(inputFileName1);
-            if (in1 == null) {
-                throw new IllegalArgumentException(
-                                       "File: " + inputFileName1 + " not found");
-            }
-            InputStream in2 = Tutorial09.class
-                                       .getClassLoader()
-                                       .getResourceAsStream(inputFileName2);
-            if (in2 == null) {
-                throw new IllegalArgumentException(
-                                       "File: " + inputFileName2 + " not found");
-            }
-            
-            // read the RDF/XML files
-            model1.read(new InputStreamReader(in1), "");
-            model2.read(new InputStreamReader(in2), "");
-            
-            // merge the graphs
-            Model model = model1.union(model2);
-            
-            // print the graph as RDF/XML
-            model.write(System.out, "RDF/XML-ABBREV");
-            System.out.println();
-            
-        } catch (Exception e) {
-            System.out.println("Failed: " + e);
+        // create an empty model
+        Model model1 = ModelFactory.createDefaultModel();
+        Model model2 = ModelFactory.createDefaultModel();
+       
+        // use the class loader to find the input file
+        InputStream in1 = Tutorial09.class
+                                   .getClassLoader()
+                                   .getResourceAsStream(inputFileName1);
+        if (in1 == null) {
+            throw new IllegalArgumentException(
+                                   "File: " + inputFileName1 + " not found");
         }
+        InputStream in2 = Tutorial09.class
+                                   .getClassLoader()
+                                   .getResourceAsStream(inputFileName2);
+        if (in2 == null) {
+            throw new IllegalArgumentException(
+                                   "File: " + inputFileName2 + " not found");
+        }
+        
+        // read the RDF/XML files
+        model1.read(new InputStreamReader(in1), "");
+        model2.read(new InputStreamReader(in2), "");
+        
+        // merge the graphs
+        Model model = model1.union(model2);
+        
+        // print the graph as RDF/XML
+        model.write(System.out, "RDF/XML-ABBREV");
+        System.out.println();
     }
 }
 

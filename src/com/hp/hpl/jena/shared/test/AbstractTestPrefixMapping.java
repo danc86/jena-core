@@ -77,6 +77,22 @@ public abstract class AbstractTestPrefixMapping extends GraphTestBase
         assertEquals( "toast should be set", toast, ns.getNsPrefixURI( "toast" ) );
         assertEquals( "butter should still be unset", null, ns.getNsPrefixURI( "butter" ) );
         } 
+        
+    /**
+        Test that we can run the prefix mapping in reverse - from URIs to prefixes.
+        uriB is a prefix of uriA to try and ensure that the ordering of the map doesn't matter.
+    */
+    public void testReversePrefixMapping()
+        {
+        PrefixMapping ns = getMapping();
+        String uriA = "http://jena.hpl.hp.com/A#", uriB = "http://jena.hpl.hp.com/";
+        String uriC = "http://jena.hpl.hp.com/Csharp/";
+        String prefixA = "aa", prefixB = "bb";
+        ns.setNsPrefix( prefixA, uriA ).setNsPrefix( prefixB, uriB );
+        assertEquals( null, ns.getNsURIPrefix( uriC) );
+        assertEquals( prefixA, ns.getNsURIPrefix( uriA ) );
+        assertEquals( prefixB, ns.getNsURIPrefix( uriB ) );
+        }
     
     /**
        test that we can extract a proper Map from a PrefixMapping

@@ -29,27 +29,21 @@ public class Tutorial04 extends Object {
         String givenName    = "John";
         String familyName   = "Smith";
         String fullName     = givenName + " " + familyName;
-        
-        try {
-            // create an empty model
-            Model model = ModelFactory.createDefaultModel();
+        // create an empty model
+        Model model = ModelFactory.createDefaultModel();
 
-            // create the resource
-            //   and add the properties cascading style
-            Resource johnSmith 
-              = model.createResource(personURI)
-                     .addProperty(VCARD.FN, fullName)
-                     .addProperty(VCARD.N, 
-                                  model.createResource()
-                                       .addProperty(VCARD.Given, givenName)
-                                       .addProperty(VCARD.Family, familyName));
-            
-            // now write the model in XML form to a file
-            model.write(System.out);
-          
-        } catch (Exception e) {
-            System.out.println("Failed: " + e);
-        }
+        // create the resource
+        //   and add the properties cascading style
+        Resource johnSmith 
+          = model.createResource(personURI)
+                 .addProperty(VCARD.FN, fullName)
+                 .addProperty(VCARD.N, 
+                              model.createResource()
+                                   .addProperty(VCARD.Given, givenName)
+                                   .addProperty(VCARD.Family, familyName));
+        
+        // now write the model in XML form to a file
+        model.write(System.out);
     }
 }
 

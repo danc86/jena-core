@@ -893,7 +893,10 @@ implements Model, ModelI, PrefixMapping, ModelLock
         
     public String getNsPrefixURI( String prefix ) 
         { return getPrefixMapping().getNsPrefixURI( prefix ); }
-        
+
+    public String getNsURIPrefix( String uri )
+        { return getPrefixMapping().getNsURIPrefix( uri ); }
+                
     public Map getNsPrefixMap()
         { return getPrefixMapping().getNsPrefixMap(); }
         

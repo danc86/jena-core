@@ -67,6 +67,14 @@ public interface PrefixMapping
     String getNsPrefixURI( String prefix );
     
     /**
+        Answer the prefix for the given URI, or null if there isn't one.
+        
+        @param uri the uri whose prefix is to be found
+        @return the prefix mapped to that uri, or null if there isn't one
+    */
+    String getNsURIPrefix( String uri );
+    
+    /**
         Return a copy of the internal mapping from names to URI strings. Updating
         this copy will have no effect on the PrefixMap.
         
