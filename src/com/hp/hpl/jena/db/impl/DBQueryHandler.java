@@ -39,8 +39,8 @@ public class DBQueryHandler extends SimpleQueryHandler {
 		doFastpath = true;
 	}
 
-	public void setFastpath ( boolean val ) { doFastpath = val; }
-	public boolean getFastpath () { return doFastpath; }
+	public void setDoFastpath ( boolean val ) { doFastpath = val; }
+	public boolean getDoFastpath () { return doFastpath; }
 
 	public Stage patternStage(
 		Mapping varMap,
