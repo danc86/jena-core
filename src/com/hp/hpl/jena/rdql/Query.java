@@ -332,7 +332,7 @@ public class Query
             LiteralLabel lit = ((Node_Literal)n).getLiteral() ;
             StringBuffer sb = new StringBuffer() ;
             sb.append('"') ;
-            sb.append(lit.toString()) ;
+            sb.append(lit.getLexicalForm()) ;
             sb.append('"') ;
             if ( lit.language() != null && lit.language().length() > 0 )
             {
