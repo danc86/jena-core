@@ -31,6 +31,8 @@ package com.hp.hpl.jena.rdf.model;
 
 import java.rmi.server.UID;
 
+import com.hp.hpl.jena.shared.impl.JenaParameters;
+
 /** Create a new id for an anonymous node.
  *
  * <p>This id is guaranteed to be unique on this machine.</p>
@@ -38,16 +40,30 @@ import java.rmi.server.UID;
  * @author bwm
  * @version $Name$ $Revision$ $Date$
  */
+
+// This version contains experimental modifications by der to 
+// switch off normal UID allocation for bNodes to assist tracking
+// down apparent non-deterministic behaviour.
+
 public class AnonId extends java.lang.Object {
     
     String id = null;
 
+    /** Support for debugging: global anonID counter */
+    private static int idCount = 0;
+    
     /** Creates new AnonId.
      *
      * <p>This id is guaranteed to be unique on this machine.</p>
- */
+     */
     public AnonId() {
-        id = (new UID()).toString();
+        if (JenaParameters.disableBNodeUIDGeneration) {
+            synchronized (AnonId.class) {
+                id = "A" + idCount++; // + rand.nextLong();
+            }
+        } else {
+            id = (new UID()).toString();
+        }
     }
     
 /** Create a new AnonId from the string argument supplied

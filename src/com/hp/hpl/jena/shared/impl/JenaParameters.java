@@ -94,6 +94,16 @@ public class JenaParameters {
      * graph over another OWL inference graph will log a warning message.
      */
     public static boolean enableOWLRuleOverOWLRuleWarnings = true;
+    
+    /**
+     * If this flag is true (default is false) then bNodes are assigned a
+     * simple count local to this JVM. This is ONLY for use in debugging
+     * systems exhibiting non-deterministic behaviour due to the 
+     * time-dependence of UIDs, not for normal production use. In particular, it
+     * breaks the contract that anonIDs should be unique on the same machine, they 
+     * will only be unique for a single JVM run.
+     */
+    public static boolean disableBNodeUIDGeneration = false;
 }
 
 
