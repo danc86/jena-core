@@ -3,7 +3,7 @@
  * Created by:  Dave Reynolds
  * Created on:  02-Feb-03
  * 
- * (c) Copyright 2003, Hewlett-Packard Development Company, LP
+ * (c) Copyright 2003, 2004 Hewlett-Packard Development Company, LP
  * [See end of file]
  * $Id$
  *****************************************************************/
@@ -150,7 +150,7 @@ public Capabilities getCapabilities()
 }
 
 /*
- * (c) Copyright 2003 Hewlett-Packard Development Company, LP
+ * (c) Copyright 2003, 2004 Hewlett-Packard Development Company, LP
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without

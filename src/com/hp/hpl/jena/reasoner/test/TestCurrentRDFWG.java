@@ -3,7 +3,7 @@
  * Created by:  Dave Reynolds
  * Created on:  25-Jul-2003
  * 
- * (c) Copyright 2003, Hewlett-Packard Development Company, LP
+ * (c) Copyright 2003, 2004 Hewlett-Packard Development Company, LP
  * [See end of file]
  * $Id$
  *****************************************************************/
@@ -156,7 +156,7 @@ public class TestCurrentRDFWG extends ReasonerTestBase {
 }
 
 /*
-    (c) Copyright 2003 Hewlett-Packard Development Company, LP
+    (c) Copyright 2003, 2004 Hewlett-Packard Development Company, LP
     All rights reserved.
 
     Redistribution and use in source and binary forms, with or without

@@ -3,7 +3,7 @@
  * Created by:  Dave Reynolds
  * Created on:  06-Aug-2003
  * 
- * (c) Copyright 2003, Hewlett-Packard Development Company, LP
+ * (c) Copyright 2003, 2004 Hewlett-Packard Development Company, LP
  * [See end of file]
  * $Id$
  *****************************************************************/
@@ -391,7 +391,7 @@ public class Generator implements LPAgendaEntry, LPInterpreterContext {
 
 
 /*
-    (c) Copyright 2003 Hewlett-Packard Development Company, LP
+    (c) Copyright 2003, 2004 Hewlett-Packard Development Company, LP
     All rights reserved.
 
     Redistribution and use in source and binary forms, with or without

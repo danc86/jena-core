@@ -3,7 +3,7 @@
  * Created by:  Dave Reynolds
  * Created on:  30-Jan-2003
  * 
- * (c) Copyright 2003, Hewlett-Packard Development Company, LP
+ * (c) Copyright 2003, 2004 Hewlett-Packard Development Company, LP
  * [See end of file]
  * $Id$
  *****************************************************************/
