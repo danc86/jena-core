@@ -289,6 +289,11 @@ public interface ARPErrorNumbers {
       *  This is particularly important if XML 1.1 compatibility is
       * required.
       *  This is a warning in default mode and ignored in strict mode (W123).
+      * 
+     * @deprecated WG decision on <a href=
+     * 
+"http://www.w3. org/2001/sw/RDFCore/20030123-issues/#williams-01"
+      >williams- 01</a>.
       **/
     public int WARN_URI_COMPOSING_CHAR = 123;
 
@@ -391,7 +396,11 @@ public interface ARPErrorNumbers {
     /**
      * URI references in RDF must be in Unicode Normal Form C
      *  (E208).
-     **/
+     * @deprecated WG decision on <a href=
+     * 
+"http://www.w3. org/2001/sw/RDFCore/20030123-issues/#williams-01"
+      >williams- 01</a>.
+   */
     public int ERR_URI_NOT_NORMAL_FORM_C = 208;
     /**
     * The SAX Parser generated an error. 

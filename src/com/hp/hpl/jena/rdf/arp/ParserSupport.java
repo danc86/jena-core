@@ -259,42 +259,11 @@ class ParserSupport
 		StrToken s = (StrToken) t;
 		//         String val = URIref.encode(s.value);
 		String val = s.value;
-		if (!CharacterModel.isNormalFormC(val))
-			arp.parseWarning(
-				ERR_URI_NOT_NORMAL_FORM_C,
-				t.location,
-				"<" + val + "> not in Unicode Normal Form C.");
 
 		checkEncoding(s);
-		boolean composing = CharacterModel.startsWithComposingCharacter(val);
-		if (composing) {
-			//  	System.err.println(val);
-			//  	System.err.println((int)val.charAt(0));
-			arp.parseWarning(
-				WARN_URI_COMPOSING_CHAR,
-				t.location,
-				"Relative URI reference <"
-					+ val
-					+ "> starts with composing char.");
-		}
 		try {
 			URIReference rslt = new URIReference(ctxt, val);
-			if (composing && !CharacterModel.isNormalFormC(rslt.getURI()))
-				arp.parseWarning(
-					ERR_URI_NOT_NORMAL_FORM_C,
-					t.location,
-					"<" + rslt.getURI() + "> not in Unicode Normal Form C.");
 			if (val.indexOf(':') == -1) {
-				if ((!ctxt.getURI().isNormalFormC())
-					&& (!composing)
-					&& !CharacterModel.isNormalFormC(rslt.getURI()))
-					arp.parseWarning(
-						ERR_URI_NOT_NORMAL_FORM_C,
-						t.location,
-						"<"
-							+ rslt.getURI()
-							+ "> not in Unicode Normal Form C.");
-
 				if (!ctxt.isSameAsDocument()) {
 					boolean bad = false;
 					try {
