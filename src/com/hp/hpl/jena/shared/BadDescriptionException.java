@@ -6,7 +6,6 @@
 
 package com.hp.hpl.jena.shared;
 
-import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.rdf.model.*;
 /**
     Exception to throw if a model (or graph) is a bad description
@@ -15,16 +14,11 @@ import com.hp.hpl.jena.rdf.model.*;
 */
 public class BadDescriptionException extends JenaException
     {
-    protected Graph badGraph;
-    
-    public BadDescriptionException( String message, Model badModel )
-        { this( message, badModel.getGraph() ); }
+    public final Model badModel;
         
-    public BadDescriptionException( String message, Graph badGraph )
-        { 
-        super( message );
-        this.badGraph = badGraph;
-        }
+    public BadDescriptionException( String message, Model badModel )
+        { super( message );
+        this.badModel = badModel; }
     }
 
 
