@@ -1408,14 +1408,9 @@ public class URI implements Serializable {
     };
     static String exact[] = { ".", "..", "../.." };
     static String sub[] = { "", "../", "../../" };
-	public String relativize(String abs, int flags) {
+	public String relativize(String abs, int flags) throws MalformedURIException {
 		URI r;
-		try {
 			r = new URI(abs);
-		} catch (MalformedURIException e) {
-			logger.error("<" + abs + "> " + e.getMessage(), e);
-			return abs;
-		}
        // logger.info("<"+Util.substituteStandardEntities(abs)+">");
        // logger.info("<"+Util.substituteStandardEntities(r.m_path)+">");
 		if (r.isGenericURI()) {
