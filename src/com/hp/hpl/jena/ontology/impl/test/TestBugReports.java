@@ -1149,6 +1149,26 @@ public class TestBugReports
         TestUtil.assertIteratorValues( this, dm.listIndividuals(), new Object[] {b} );
     }
     
+    /** Test case for SF bug 940570 - listIndividuals not working with RDFS_INF (rdfs case)
+     */
+    public void test_sf_940570_rdfs() {
+        OntModel m = ModelFactory.createOntologyModel( OntModelSpec.OWL_MEM_RDFS_INF );
+        OntClass C = m.createClass( NS + "C" );
+        Resource a = m.createResource( NS + "a", C );
+        
+        TestUtil.assertIteratorValues( this, m.listIndividuals(), new Object[] {a} );
+    }
+    
+    /** Test case for SF bug 940570 - listIndividuals not working with RDFS_INF (daml case)
+     */
+    public void test_sf_940570_daml() {
+        OntModel dm = ModelFactory.createOntologyModel( OntModelSpec.DAML_MEM_RULE_INF );
+        OntClass D = dm.createClass( NS + "D" );
+        Resource b = dm.createResource( NS + "b", D );
+        
+        TestUtil.assertIteratorValues( this, dm.listIndividuals(), new Object[] {b} );
+    }
+    
     /** Test case for SF bug 945436 - a xml:lang='' in the dataset causes sring index exception in getLabel() */
     public void test_sf_945436() {
         String SOURCE=
@@ -1374,6 +1394,38 @@ public class TestBugReports
             ex = true;
         }
         assertTrue( "Should have seen a dig wrapped exception for connection fail", ex );
+    }
+    
+    
+    /**
+     * Bug report by David Bigwood - listDeclaredProps(false) fails when props
+     * are defined in an imported model
+     */
+    public void test_dab_01() {
+        OntModel m0 = ModelFactory.createOntologyModel( OntModelSpec.OWL_MEM );
+        
+        // in model M0, p0 has class c0 in the domain
+        OntClass c0 = m0.createClass( NS + "c0" );
+        ObjectProperty p0 = m0.createObjectProperty( NS + "p0" );
+        p0.setDomain( c0 );
+        
+        // in model M1, class c1 is a subClass of c0
+        OntModel m1 = ModelFactory.createOntologyModel( OntModelSpec.OWL_MEM );
+        OntClass c1 = m1.createClass( NS + "c1" );
+        c1.addSuperClass( c0 );
+        
+        // simulate imports
+        m1.addSubModel( m0 );
+        
+        // get a c0 reference from m1
+        OntClass cc0 = m1.getOntClass( NS + "c0" );
+        assertNotNull( cc0 );
+        
+        TestUtil.assertIteratorValues( this, c1.listDeclaredProperties(), new Object[] {p0} );
+        TestUtil.assertIteratorValues( this, c0.listDeclaredProperties(false), new Object[] {p0} );
+        
+        // this is the one that fails per David's bug report
+        TestUtil.assertIteratorValues( this, cc0.listDeclaredProperties(false), new Object[] {p0} );
     }
     
     
