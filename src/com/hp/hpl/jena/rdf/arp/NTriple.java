@@ -434,10 +434,21 @@ int debugC = 0;
 		}
 	}
 	private static class NoSH implements StatementHandler {
-		public void statement(AResource subj, AResource pred, AResource obj) {
+		private int ix = 0;
+		private void userData(AResource n){
+		    if (n.isAnonymous()) {
+		        n.setUserData(new Integer(ix++));
+		    }
+		}
+	    public void statement(AResource subj, AResource pred, AResource obj) {
+		    userData(subj);
+		    userData(pred);
+		    userData(obj);
 		}
 		public void statement(AResource subj, AResource pred, ALiteral lit) {
-		}
+		    userData(subj);
+		    userData(pred);
+		    }
 	}
 	private static class SH implements StatementHandler {
 		public void statement(AResource subj, AResource pred, AResource obj) {
