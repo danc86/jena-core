@@ -447,13 +447,11 @@ public class TransitiveGraphCache implements Finder {
                 return;
             }
             // Check current successors to see if any would now be indirect
-            // Probably would be more efficient to do a reverse search from n
-            for (Iterator it = successors.iterator(); it.hasNext(); ) {
-                GraphNode suc = (GraphNode) it.next();
-                if (suc != this && n.linksTo(suc)) {
-                    it.remove();        // Delete from successor list
-                    suc.predecessors.remove(this);
-                }
+            Collection redundant = accessible(n, successors, this);
+            for (Iterator it = redundant.iterator(); it.hasNext(); ) {
+                GraphNode suc = (GraphNode)it.next();
+                successors.remove(suc);
+                suc.predecessors.remove(this);
             }
             addLink(n);
         }
@@ -468,18 +466,45 @@ public class TransitiveGraphCache implements Finder {
             for (Iterator it = successors.iterator(); it.hasNext(); ) {
                 GraphNode suc = (GraphNode)it.next();
                 // Check for duplicate visits to junction nodes
-                if (visited.contains(suc)) continue;
-                visited.add(suc);
                 if (suc == n) {
                     return true;
                 }
+                if ( ! visited.add(suc) ) continue;
                 if (suc.linksToInternal(n, visited)) {
                     return true;
                 }
             }
             return false;
         }
-          
+        
+        /**
+         * Check if any of the given list of nodes is accessible from
+         * start without going through block. Returns a collection
+         * of accessible nodes.
+         */
+        Collection accessible(GraphNode start, List targets, GraphNode block) {
+            List found = new ArrayList();
+            Set targetSet = new HashSet(targets);
+            doAccessible(start, targetSet, block, found, new HashSet());
+            return found;
+        }
+        
+        /**
+         * Internal implementation of accessible.
+         */
+        void doAccessible(GraphNode start, Collection targets, GraphNode block, List found, Set visited) {
+            visited.add(start);
+            for (Iterator it = start.successors.iterator(); it.hasNext(); ) {
+                GraphNode suc = (GraphNode)it.next();
+                if ( ! visited.add(suc) ) continue;
+                if (suc == block) return;
+                if (targets.contains(suc)) {
+                    found.add(suc);
+                }
+                doAccessible(suc, targets, block, found, visited);
+            }
+        }
+        
         /** Printable representation */
         public String toString() {
             return node.toString();

@@ -262,6 +262,26 @@ public class TestTransitiveGraphCache extends TestCase {
     }
     
     /**
+     * Test a a case where an earlier version had a bug due to removing
+     * a link which was required rather than redundant.
+     */
+    public void testBug1() {
+        TransitiveGraphCache cache = new TransitiveGraphCache(directP, closedP);
+        cache.addRelation(a, b);        
+        cache.addRelation(c, a);        
+        cache.addRelation(c, b);        
+        cache.addRelation(a, c);     
+        TestUtil.assertIteratorValues(this, 
+            cache.find(new TriplePattern(a, directP, null)),
+            new Object[] {
+                new Triple(a, closedP, a),
+                new Triple(a, closedP, b),
+                new Triple(a, closedP, c),
+            });
+           
+    }
+    
+    /**
      * Test the removeRelation functionality.
      */
     public void testRemove() {
