@@ -69,7 +69,8 @@ public class TestIndividual
 
     public OntTestCase[] getTests() {
         return new OntTestCase[] {
-            new OntTestCase( "Individual.sameIndividualAs", true, false, true, false ) {
+            new OntTestCase( "Individual.sameAs", true, false, true, false ) {
+                /** Note: 6/Nov/2003 - updated to use sameAs not sameIndividualAs, following changes to OWL spec */
                 public void ontTest( OntModel m ) throws Exception {
                     Profile prof = m.getProfile();
                     OntClass A = m.createClass( NS + "A" );
@@ -77,23 +78,23 @@ public class TestIndividual
                     Individual y = m.createIndividual( A );
                     Individual z = m.createIndividual( A );
                     
-                    x.addSameIndividualAs( y );
-                    assertEquals( "Cardinality should be 1", 1, x.getCardinality( prof.SAME_INDIVIDUAL_AS() ) );
-                    assertEquals( "x should be the same as y", y, x.getSameIndividualAs() );
-                    assertTrue( "x should be the same as y", x.isSameIndividualAs( y ) );
+                    x.addSameAs( y );
+                    assertEquals( "Cardinality should be 1", 1, x.getCardinality( prof.SAME_AS() ) );
+                    assertEquals( "x should be the same as y", y, x.getSameAs() );
+                    assertTrue( "x should be the same as y", x.isSameAs( y ) );
                     
-                    x.addSameIndividualAs( z );
-                    assertEquals( "Cardinality should be 2", 2, x.getCardinality( prof.SAME_INDIVIDUAL_AS() ) );
-                    iteratorTest( x.listSameIndividualAs(), new Object[] {z,y} );
+                    x.addSameAs( z );
+                    assertEquals( "Cardinality should be 2", 2, x.getCardinality( prof.SAME_AS() ) );
+                    iteratorTest( x.listSameAs(), new Object[] {z,y} );
                     
-                    x.setSameIndividualAs( z );
-                    assertEquals( "Cardinality should be 1", 1, x.getCardinality( prof.SAME_INDIVIDUAL_AS() ) );
-                    assertEquals( "x should be same indiv. as z", z, x.getSameIndividualAs() );
+                    x.setSameAs( z );
+                    assertEquals( "Cardinality should be 1", 1, x.getCardinality( prof.SAME_AS() ) );
+                    assertEquals( "x should be same indiv. as z", z, x.getSameAs() );
                     
-                    x.removeSameIndividualAs( y );
-                    assertEquals( "Cardinality should be 1", 1, x.getCardinality( prof.SAME_INDIVIDUAL_AS() ) );
-                    x.removeSameIndividualAs( z );
-                    assertEquals( "Cardinality should be 0", 0, x.getCardinality( prof.SAME_INDIVIDUAL_AS() ) );
+                    x.removeSameAs( y );
+                    assertEquals( "Cardinality should be 1", 1, x.getCardinality( prof.SAME_AS() ) );
+                    x.removeSameAs( z );
+                    assertEquals( "Cardinality should be 0", 0, x.getCardinality( prof.SAME_AS() ) );
                 }
             },
         };
