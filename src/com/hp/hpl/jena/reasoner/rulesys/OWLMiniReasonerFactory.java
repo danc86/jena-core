@@ -86,6 +86,12 @@ public class OWLMiniReasonerFactory implements ReasonerFactory {
                 .addProperty(ReasonerVocabulary.supportsP, TransitiveReasoner.directSubPropertyOf)
                 // TODO - add OWL elements supported
                 .addProperty(ReasonerVocabulary.supportsP, ReasonerVocabulary.individualAsThingP )
+                .addProperty(ReasonerVocabulary.supportsP, OWL.ObjectProperty )
+                .addProperty(ReasonerVocabulary.supportsP, OWL.DatatypeProperty)
+                .addProperty(ReasonerVocabulary.supportsP, OWL.FunctionalProperty )
+                .addProperty(ReasonerVocabulary.supportsP, OWL.SymmetricProperty )
+                .addProperty(ReasonerVocabulary.supportsP, OWL.TransitiveProperty )
+                .addProperty(ReasonerVocabulary.supportsP, OWL.InverseFunctionalProperty )
                 .addProperty(ReasonerVocabulary.versionP, "0.1");
         }
         return capabilities;
