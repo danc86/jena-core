@@ -66,6 +66,9 @@ public class TestFrameView
     OntClass noinfB;
     OntClass noinfC;
 
+    ObjectProperty noinfG;
+    ObjectProperty infG;
+
     ObjectProperty noinfPa;
     ObjectProperty noinfPb;
     ObjectProperty noinfPc;
@@ -97,10 +100,14 @@ public class TestFrameView
         infB = mInf.getOntClass( NS + "B" );
         infC = mInf.getOntClass( NS + "C" );
 
+
         noinfA = mNoInf.getOntClass( NS + "A" );
         noinfB = mNoInf.getOntClass( NS + "B" );
         noinfC = mNoInf.getOntClass( NS + "C" );
 
+        noinfG = mNoInf.getObjectProperty( NS + "global" );
+        infG = mInf.getObjectProperty( NS + "global" );
+        
         noinfPa = mNoInf.getObjectProperty( NS + "pA" );
         noinfPb = mNoInf.getObjectProperty( NS + "pB" );
         noinfPc = mNoInf.getObjectProperty( NS + "pC" );
@@ -118,22 +125,22 @@ public class TestFrameView
 
     public void testLDP_noinfA_nodirect() {
         TestUtil.assertIteratorValues( this, noinfA.listDeclaredProperties( false ),
-                                       new Object[] {noinfPa, noinfQa} );
+                                       new Object[] {noinfPa, noinfQa, noinfG, noinfQb} );
     }
 
     public void testLDP_noinfA_direct() {
         TestUtil.assertIteratorValues( this, noinfA.listDeclaredProperties( true ),
-                                       new Object[] {noinfPa, noinfQa} );
+                                       new Object[] {noinfPa, noinfQa, noinfG, noinfQb} );
     }
 
     public void testLDP_infA_nodirect() {
         TestUtil.assertIteratorValues( this, infA.listDeclaredProperties( false ),
-                                       new Object[] {infPa, infQa, infQb} );
+                                       new Object[] {infPa, infQa, infQb, noinfG} );
     }
 
     public void testLDP_infA_direct() {
         TestUtil.assertIteratorValues( this, infA.listDeclaredProperties( true ),
-                                       new Object[] {infPa, infQa, infQb} );
+                                       new Object[] {infPa, infQa, infQb, noinfG} );
     }
 
     // Internal implementation methods

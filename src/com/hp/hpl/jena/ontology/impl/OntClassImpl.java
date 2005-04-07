@@ -55,6 +55,16 @@ public class OntClassImpl
     // Constants
     //////////////////////////////////
 
+    /* LDP never returns properties in these namespaces */
+    private static final String[] IGNORE_NAMESPACES = new String[] {
+            OWL.NS,
+            DAMLVocabulary.NAMESPACE_DAML_2001_03_URI,
+            RDF.getURI(), 
+            RDFS.getURI(), 
+            ReasonerVocabulary.RBNamespace
+    };
+    
+    
     // Static variables
     //////////////////////////////////
 
@@ -580,16 +590,17 @@ public class OntClassImpl
      */
     public ExtendedIterator listDeclaredProperties( boolean direct ) {
         // first collect the candidate properties
-        OntModel mOnt = (OntModel) getModel();
-        List cands = new ArrayList();
+        Set candSet = new HashSet();
 
         // if the attached model does inference, it will potentially find more of these
         // than a non-inference model
-        for (StmtIterator i = mOnt.listStatements( null, getProfile().DOMAIN(), this ); i.hasNext(); ) {
-            cands.add( i.nextStatement().getSubject().as( Property.class ) );
+        for (Iterator i = listAllProperties(); i.hasNext(); ) {
+            candSet.add( ((Statement) i.next()).getSubject().as( Property.class ) );
         }
 
         // now we iterate over the candidates and check that they match all domain constraints
+        List cands = new ArrayList();
+        cands.addAll( candSet );
         for (int j = cands.size() -1; j >= 0; j--) {
             Property cand = (Property) cands.get( j );
             if (!testDomain( cand, direct )) {
@@ -922,6 +933,14 @@ public class OntClassImpl
      * @return
      */
     protected boolean testDomain( Property p, boolean direct ) {
+        // we ignore any property in the DAML, OWL, etc namespace
+        String namespace = p.getNameSpace();
+        for (int i = 0; i < IGNORE_NAMESPACES.length; i++) {
+            if (namespace.equals( IGNORE_NAMESPACES[i] )) {
+                return false;
+            }
+        }
+        
         for (StmtIterator i = getModel().listStatements( p, getProfile().DOMAIN(), (RDFNode) null ); i.hasNext();  ) {
             Resource domain = i.nextStatement().getResource();
             
@@ -939,7 +958,52 @@ public class OntClassImpl
         return true;
     }
 
-
+    /**
+     * <p>Answer an iterator over all of the properties in this model
+     * @return
+     */
+    protected ExtendedIterator listAllProperties() {
+        OntModel mOnt = (OntModel) getModel();
+        Profile prof = mOnt.getProfile();
+        
+        ExtendedIterator pi = mOnt.listStatements( null, RDF.type, RDF.Property );
+        
+        // check reasoner capabilities - major performance improvement for inf models
+        if (mOnt.getReasoner() != null) {
+            Model caps = mOnt.getReasoner().getReasonerCapabilities();
+            if (caps.contains( null, ReasonerVocabulary.supportsP, OWL.ObjectProperty) ||
+                caps.contains( null, ReasonerVocabulary.supportsP, DAML_OIL.ObjectProperty))
+            {
+                // we conclude that the reasoner can do the necessary work to infer that
+                // all owl:ObjectProperty, owl:DatatypeProperty, etc, are rdf:Property resources
+                return pi;
+            }
+        }
+        
+        // otherwise, we manually check the other property types
+        if (prof.OBJECT_PROPERTY() != null) {
+            pi = pi.andThen( mOnt.listStatements( null, RDF.type, prof.OBJECT_PROPERTY() ) );
+        }
+        if (prof.DATATYPE_PROPERTY() != null) {
+            pi = pi.andThen( mOnt.listStatements( null, RDF.type, prof.DATATYPE_PROPERTY() ) );
+        }
+        if (prof.FUNCTIONAL_PROPERTY() != null) {
+            pi = pi.andThen( mOnt.listStatements( null, RDF.type, prof.FUNCTIONAL_PROPERTY() ) );
+        }
+        if (prof.INVERSE_FUNCTIONAL_PROPERTY() != null) {
+            pi = pi.andThen( mOnt.listStatements( null, RDF.type, prof.INVERSE_FUNCTIONAL_PROPERTY() ) );
+        }
+        if (prof.SYMMETRIC_PROPERTY() != null) {
+            pi = pi.andThen( mOnt.listStatements( null, RDF.type, prof.SYMMETRIC_PROPERTY() ) );
+        }
+        if (prof.TRANSITIVE_PROPERTY() != null) {
+            pi = pi.andThen( mOnt.listStatements( null, RDF.type, prof.TRANSITIVE_PROPERTY() ) );
+        }
+        
+        return pi;
+    }
+    
+    
     //==============================================================================
     // Inner class definitions
     //==============================================================================
