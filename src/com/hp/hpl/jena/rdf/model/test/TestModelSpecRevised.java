@@ -294,14 +294,14 @@ public class TestModelSpecRevised extends ModelTestBase
     	{
         String ruleString = "[rdfs3a: (?x rdfs:range  ?y), (?y rdfs:subClassOf ?z) -> (?x rdfs:range  ?z)]";
     	Model desc = createInfModelDesc( A, GenericRuleReasonerFactory.URI, ruleString );
-    	ModelSpec s = ModelSpecImpl.create( desc );
+    	ModelSpec s = ModelSpecFactory.createSpec( desc );
     	assertIsoModels( desc, s.getDescription() );
     	}
     
     private ModelSpec createInfModelSpec( String ruleString )
         {
         Model desc = createInfModelDesc( A, GenericRuleReasonerFactory.URI, ruleString );
-        return ModelSpecImpl.create( desc );
+        return ModelSpecFactory.createSpec( desc );
         }
     
     public static Model createInfModelDesc( Resource root, String URI, String ruleString )

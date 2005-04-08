@@ -79,7 +79,7 @@ public class ModelFactory extends ModelFactoryBase
         description. The root of the description is the unique resource of type ModelSpec.
     */
     public static ModelSpec createSpec( Model desc )
-        { return ModelSpecImpl.create( desc ); }
+        { return ModelSpecFactory.createSpec( desc ); }
         
     /**
         Answer a ModelSpec which can create models to the specifcations in the RDF

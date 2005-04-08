@@ -133,7 +133,7 @@ public class TestModelSpec extends ModelTestBase
     
     public void testNamedCreatePlain()
         {
-        ModelSpec ms = ModelSpecImpl.create( createPlainModelDesc() );    
+        ModelSpec ms = ModelSpecFactory.createSpec( createPlainModelDesc() );    
         Model m = ms.createModelOver( "aName" );
         assertTrue( m.getGraph() instanceof GraphMem );
         }   
@@ -141,7 +141,7 @@ public class TestModelSpec extends ModelTestBase
     public void testNamedCreateInf()
         {
         String URI = DAMLMicroReasonerFactory.URI;
-        ModelSpec ms = ModelSpecImpl.create( createInfModelDesc( URI ) );    
+        ModelSpec ms = ModelSpecFactory.createSpec( createInfModelDesc( URI ) );    
         Model m = ms.createModelOver( "iName" );
         assertTrue( m.getGraph() instanceof InfGraph );
         }   
@@ -149,7 +149,7 @@ public class TestModelSpec extends ModelTestBase
     public void testDetectRootAmbiguity()
         {
         Model desc = createPlainModelDesc().add( createPlainModelDesc() );
-        try { ModelSpecImpl.create( desc ); fail( "must trap ambiguous description" ); }
+        try { ModelSpecFactory.createSpec( desc ); fail( "must trap ambiguous description" ); }
         catch (BadDescriptionException b) { pass(); }
         }
                                   
@@ -326,25 +326,6 @@ public class TestModelSpec extends ModelTestBase
             fail( "should generate BadDescriptionException" ); }   
         catch (BadDescriptionException e)
             { pass(); } 
-        }
-        
-    public void testCreateFromResource() throws FileNotFoundException, IOException
-        {
-        File temp = FileUtils.tempFileName( "pre", ".rdf" );   
-        Model desc = createPlainModelDesc();
-        writeModel( temp, desc );
-        ModelSpec ms = ModelSpecImpl.create( resource( "file:" + temp ) );
-        assertIsoModels( desc, ms.getDescription() );
-        }
-    
-    public void testCreateRootedFromResource() throws FileNotFoundException, IOException
-        {
-        File temp = FileUtils.tempFileName( "pre", ".rdf" );  
-        Resource root = resource( "eh:gibberish" ); 
-        Model desc = createPlainModelDesc( root );
-        writeModel( temp, desc );
-        ModelSpec ms = ModelSpecImpl.create( root, resource( "file:" + temp ) );
-        assertIsoModels( desc, ms.getDescription( root ) );
         }
         
     protected static void writeModel( File f, Model m ) throws FileNotFoundException, IOException
