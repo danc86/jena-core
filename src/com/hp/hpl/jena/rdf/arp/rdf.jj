@@ -912,6 +912,7 @@ Token  attrValue()                   : {Token t; }
     t=<AV_STRING>                      { return t; }
   | t=<AV_LITERAL>                     { return t; }
   | t=<AV_DAMLCOLLECTION>              { return t; }
+  | t=<AV_COLLECTION>                  { return t; }
   | t=<AV_RESOURCE>                    { return t; }
 }
 /**
