@@ -291,6 +291,46 @@ public class TestTypedLiterals extends TestCase {
     }
     
     /**
+     * Check that creating a typed literal from an object traps the interesting 
+     * special cases of String and Calendar.
+     */
+    public void testOverloads() {
+        // First case string overloads an explicit type
+        boolean old = JenaParameters.enableEagerLiteralValidation;
+        try {
+            JenaParameters.enableEagerLiteralValidation = true;
+            
+            // String overloading cases
+            boolean test1 = false;
+            try {
+                Literal l1 = m.createTypedLiteral("foo", "http://www.w3.org/2001/XMLSchema#integer");
+            } catch (DatatypeFormatException e1 ) {
+                test1 = true;
+            }
+            assertTrue("detected illegal string, direct", test1);
+            
+            boolean test2 = false;
+            try {
+                Object foo = "foo";
+                Literal l1 = m.createTypedLiteral(foo, "http://www.w3.org/2001/XMLSchema#integer");
+            } catch (DatatypeFormatException e2 ) {
+                test2 = true;
+            }
+            assertTrue("detected illegal string, overloaded", test2);
+            
+            // Overloading of calendar convenience functions
+            Calendar testCal = new GregorianCalendar(TimeZone.getTimeZone("GMT"));
+            testCal.set(1999, 4, 30, 15, 9, 32);
+            testCal.set(Calendar.MILLISECOND, 0);   // ms field can be undefined on Linux
+            Literal lc = m.createTypedLiteral((Object)testCal);
+            assertEquals("calendar overloading test", m.createTypedLiteral("1999-05-30T15:09:32Z", XSDDatatype.XSDdateTime), lc );
+            
+        } finally {
+            JenaParameters.enableEagerLiteralValidation = old;
+        }
+    }
+    
+    /**
      * Test plain literal/xsd:string/xsd:int equality operations
      */
     public void testPlainSameValueAs() {

@@ -607,6 +607,10 @@ public class ModelCom
      * @param value the literal value to encapsulate
      */
     public Literal createTypedLiteral(Object value) {
+        // Catch special case of a Calendar which we want to act as if it were an XSDDateTime
+        if (value instanceof Calendar) {
+            return createTypedLiteral((Calendar)value);
+        }
         LiteralLabel ll = new LiteralLabel(value);
         return new LiteralImpl(Node.createLiteral(ll), this);
     }

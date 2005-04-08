@@ -73,7 +73,7 @@ final public class LiteralLabel {
 	 */
 	public LiteralLabel(String lex, String lang, RDFDatatype dtype)
 		throws DatatypeFormatException {
-		lexicalForm = lex;
+        lexicalForm = lex;
 		this.dtype = dtype;
 		this.lang = (lang == null ? "" : lang);
 		if (dtype == null) {
@@ -93,16 +93,27 @@ final public class LiteralLabel {
 	}
 
 	/**
-	 * Build a typed literal label from its value form.
+	 * Build a typed literal label from its value form. If the value is a string we
+     * assume this is inteded to be a lexical form after all.
 	 * 
 	 * @param value the value of the literal
 	 * @param lang the optional language tag, only relevant for plain literals
 	 * @param dtype the type of the literal, null for old style "plain" literals
 	 */
-	public LiteralLabel(Object value, String lang, RDFDatatype dtype) {
+	public LiteralLabel(Object value, String lang, RDFDatatype dtype) throws DatatypeFormatException {
 		this.dtype = dtype;
 		this.lang = (lang == null ? "" : lang);
-		this.value = value;
+        if (value instanceof String) {
+            String lex = (String)value;
+            lexicalForm = lex;
+            if (dtype == null) {
+                value = lex;
+            } else {
+                setValue(lex);
+            }
+        } else {
+		    this.value = value;
+        }
 	}
 
 	/**
