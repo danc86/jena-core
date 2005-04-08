@@ -185,7 +185,7 @@ public abstract class ModelSpecImpl implements ModelSpec
     */
     public static ModelMaker createMaker( Model description )
         { Model d = ModelSpecFactory.withSchema( description );
-        return createMakerByRoot( findRootByType( d, JMS.MakerSpec ), d ); }
+        return createMakerByRoot( ModelSpecFactory.findRootByType( d, JMS.MakerSpec ), d ); }
         
     public static ModelMaker createMaker( Resource root, Model d )
         { return createMakerByRoot( root, ModelSpecFactory.withSchema( d ) ); }
