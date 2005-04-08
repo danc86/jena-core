@@ -130,7 +130,7 @@ public class MoreTests extends TestCase implements RDFErrorHandler,
 			Model m = createMemModel();
 			RDFReader rdr = m.getReader();
 			FileInputStream r = new FileInputStream(
-					"testing/arp/i18n/icubug2.rdf");
+					"testing/arp/i18n/icubugtwo.rdf");
 			rdr.setErrorHandler(this);
 			expected = new int[] { WARN_STRING_NOT_NORMAL_FORM_C };
 			rdr.read(m, r, "http://example.org/");
@@ -344,7 +344,7 @@ public class MoreTests extends TestCase implements RDFErrorHandler,
 			NTriple.main(new String[] { "-t", file });
 			//System.err.println("["+Token.highTide+"]");
 			assertTrue("Too many tokens used: "+ Token.highTide,
-					Token.highTide<200);
+					Token.highTide<2000);
 		} finally {
 			Token.COUNT = false;
 			Token.COUNTTEST = false;
