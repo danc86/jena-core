@@ -418,6 +418,17 @@ public interface OntClass
     public Individual createIndividual( String uri );
 
 
+    /**
+     * <p>Answer true if this class is one of the roots of the class hierarchy.
+     * This will be true if either (i) this class has <code>owl:Thing</code>
+     * (or <code>daml:Thing</code>) as a direct super-class, or (ii) it has
+     * no declared super-classes (including anonymous class expressions).</p>
+     * @return True if this class is the root of the class hierarchy in the
+     * model it is attached to
+     */
+    public boolean isHierarchyRoot();
+
+
     // access to facets
 
     /**

@@ -738,7 +738,6 @@ public class TestBugReports
 
 
     /** Bug report by David Kensche [david.kensche@post.rwth-aachen.de] - NPE in listDeclaredProperties */
-    /* TODO re-enable
     public void test_dk_01() {
         OntModel m = ModelFactory.createOntologyModel();
         m.read( "file:testing/ontology/bugs/test_dk_01.xml" );
@@ -799,7 +798,6 @@ public class TestBugReports
     }
 
     /** Bug report by Zhao Jun [jeff@seu.edu.cn] - throws no such element exception */
-    /* TODO re-enable
     public void test_zj_0() {
         String NS = "file:/C:/orel/orel0_5.owl#";
         String sourceT =
@@ -1402,8 +1400,7 @@ public class TestBugReports
     /**
      * Bug report by David Bigwood - listDeclaredProps(false) fails when props
      * are defined in an imported model
-     * TODO re-enable this test
-     * /
+     */
     public void test_dab_01() {
         OntModel m0 = ModelFactory.createOntologyModel( OntModelSpec.OWL_MEM );
 
@@ -1430,7 +1427,6 @@ public class TestBugReports
         // this is the one that fails per David's bug report
         TestUtil.assertIteratorValues( this, cc0.listDeclaredProperties(false), new Object[] {p0} );
     }
-    /* */
 
 
     // Internal implementation methods

@@ -19,7 +19,7 @@ public class TestPackage extends TestSuite {
     static public TestSuite suite() {
         return new TestPackage();
     }
-    
+
     /** Creates new TestPackage */
     private TestPackage() {
         super("ontology.impl");
@@ -38,6 +38,7 @@ public class TestPackage extends TestSuite {
         addTest( new TestSuite( TestOntModel.class ) );
         addTest( new TestSuite( TestBugReports.class ));
         addTest( new TestSuite( TestOntClass.class ));
+        addTest( new TestSuite( TestFrameView.class ));
     }
 
     private void addTest(String name, TestSuite tc) {

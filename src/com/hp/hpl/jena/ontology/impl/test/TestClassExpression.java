@@ -1152,7 +1152,6 @@ public class TestClassExpression
                     iteratorTest( A.listInstances(), new Object[] {a0, a1, b0} );
                 }
             },
-            /* TODO re-enable
             new OntTestCase( "OntClass.listDefinedProperties", true, true, true, true ) {
                 public void ontTest( OntModel m ) throws Exception {
                     OntClass A = m.createClass( NS + "A" );
@@ -1169,16 +1168,15 @@ public class TestClassExpression
                     s.setDomain( C );
 
                     if (m_rdfsLang) {
-                        iteratorTest( A.listDeclaredProperties(), new Object[] {p, q} );
+                        iteratorTest( A.listDeclaredProperties(), new Object[] {p, q, r} );
                     }
                     else {
                         Restriction r0 = m.createRestriction( r );
                         C.addSuperClass( r0 );
 
-                        iteratorTest( A.listDeclaredProperties(), new Object[] {p, q} );
+                        iteratorTest( A.listDeclaredProperties(), new Object[] {p, q, r} );
 
-                        // no longer counted, since this now relies on inference which is turned off
-                        //iteratorTest( C.listDeclaredProperties(), new Object[] {s, r} );
+                        iteratorTest( C.listDeclaredProperties(), new Object[] {s, r} );
 
                         iteratorTest( r0.listDeclaredProperties(), new Object[] {r} );
                     }
@@ -1198,14 +1196,13 @@ public class TestClassExpression
                     q.setDomain( A );
                     s.setDomain( C );
 
-                    iteratorTest( C.listDeclaredProperties( true ), new Object[] {p, q, s} );
-                    iteratorTest( C.listDeclaredProperties( false ), new Object[] {s} );
+                    iteratorTest( C.listDeclaredProperties( false ), new Object[] { p, q, s} );
+                    iteratorTest( C.listDeclaredProperties( true ), new Object[] {s} );
 
                     assertTrue( "declared property should be an ont prop", C.listDeclaredProperties( true ).next() instanceof OntProperty );
                     assertTrue( "declared property should be an ont prop", C.listDeclaredProperties( false ).next() instanceof OntProperty );
                 }
             },
-            */
             new OntTestCase( "DataRange.oneOf", true, false, false, false ) {
                 public void ontTest( OntModel m ) throws Exception {
                     Literal x = m.createTypedLiteral( 42 );
