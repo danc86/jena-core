@@ -132,6 +132,7 @@ public class ConsumerChoicePointFrame extends GenericTripleMatchFrame
         }
         if (generator.isComplete()) {
             setFinished();
+            generator.removeConsumer(this);
             return StateFlag.FAIL;
         } else {
             return StateFlag.SUSPEND;
