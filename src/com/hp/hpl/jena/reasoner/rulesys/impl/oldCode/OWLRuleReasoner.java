@@ -79,7 +79,7 @@ public class OWLRuleReasoner extends BasicForwardRuleReasoner {
     public static List loadRules() {
         if (ruleSet == null) {
             try {
-                ruleSet = Rule.parseRules(Util.loadResourceFile(RULE_FILE));
+                ruleSet = Rule.parseRules(Util.loadRuleParserFromResourceFile(RULE_FILE));
             } catch (WrappedIOException e) {
                 throw new ReasonerException("Can't load rules file: " + RULE_FILE, e);
             }

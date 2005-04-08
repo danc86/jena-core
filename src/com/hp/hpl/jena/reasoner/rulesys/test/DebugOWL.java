@@ -97,7 +97,7 @@ public class DebugOWL {
             GenericRuleReasoner grr = (GenericRuleReasoner)reasoner;
             grr.setMode(GenericRuleReasoner.HYBRID);
             try {
-                grr.setRules(Rule.parseRules(Util.loadResourceFile("etc/expt.rules")));
+                grr.setRules(Rule.parseRules(Util.loadRuleParserFromResourceFile("etc/expt.rules")));
             } catch (WrappedIOException e) {
                 System.out.println("Failed to open rules file: " + e.getCause() );
                 System.exit(1);
@@ -132,7 +132,7 @@ public class DebugOWL {
             
             case RDFSLPExpt:
                 try {
-                    List rules = Rule.parseRules(Util.loadResourceFile("etc/expt.rules"));
+                    List rules = Rule.parseRules(Util.loadRuleParserFromResourceFile("etc/expt.rules"));
                     reasoner = new FBRuleReasoner(rules);
                 } catch (WrappedIOException e) {
                     System.out.println("Failed to open rules file: " + e.getCause());

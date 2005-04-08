@@ -32,7 +32,7 @@ public class DebugRules {
     
     /** Constructor - loads the rules */
     public DebugRules(String rulefileName) throws IOException {
-        ruleset = Rule.parseRules(Util.loadResourceFile(rulefileName));
+        ruleset = Rule.parseRules(Util.loadRuleParserFromResourceFile(rulefileName));
     }
     
     /** Run a single test */

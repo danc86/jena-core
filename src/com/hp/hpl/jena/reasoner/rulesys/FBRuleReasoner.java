@@ -239,7 +239,7 @@ public class FBRuleReasoner implements RuleReasoner {
     */
     public static List loadRules( String fileName ) {
         try 
-            { return Rule.parseRules(Util.loadResourceFile( fileName ) ); }
+            { return Rule.parseRules(Util.loadRuleParserFromResourceFile( fileName ) ); }
         catch (WrappedIOException e) 
             { throw new ReasonerException("Can't load rules file: " + fileName, e.getCause() ); }
     }

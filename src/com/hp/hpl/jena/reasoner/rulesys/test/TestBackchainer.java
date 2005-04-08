@@ -892,7 +892,7 @@ public class TestBackchainer extends TestCase {
         Node r = Node.createURI("http://www.hpl.hp.com/semweb/2003/eg#r");
         Node C1 = Node.createURI("http://www.hpl.hp.com/semweb/2003/eg#C1");
         data.add(new Triple(a, p, b));
-        List rules = Rule.parseRules(Util.loadResourceFile("testing/reasoners/bugs/rdfs-error1.brules"));
+        List rules = Rule.parseRules(Util.loadRuleParserFromResourceFile("testing/reasoners/bugs/rdfs-error1.brules"));
         Reasoner reasoner =  createReasoner(rules);
         InfGraph infgraph = reasoner.bind(data);
         TestUtil.assertIteratorValues(this, 
