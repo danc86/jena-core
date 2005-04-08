@@ -108,8 +108,10 @@ public class Token implements RDFParserConstants, Cloneable {
 		if (COUNT && !isDead) {
 			isDead = true;
 			dead++;
-			countMap.put(getClass(), new Integer(((Integer) countMap
-					.get(getClass())).intValue() - 1));
+			Integer oldCnt = (Integer) countMap
+					.get(getClass());
+			if (oldCnt != null)
+            countMap.put(getClass(), new Integer(oldCnt.intValue() - 1));
 		}
 	}
 
