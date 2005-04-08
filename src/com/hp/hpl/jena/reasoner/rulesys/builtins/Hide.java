@@ -49,14 +49,14 @@ public class Hide extends BaseBuiltin {
     /**
      * This method is invoked when the builtin is called in a rule head.
      * Such a use is only valid in a forward rule.
-     * Exected args are the instance to be annotated, the property to use and the type
-     * of the resulting bNode.
      * @param args the array of argument values for the builtin, this is an array 
      * of Nodes.
+     * @param length the length of the argument list, may be less than the length of the args array
+     * for some rule engines
      * @param context an execution context giving access to other relevant data
      */
-    public void headAction(Node[] args, RuleContext context) {
-        doHide(args, args.length, context);
+     public void headAction(Node[] args, int length, RuleContext context) {
+        doHide(args, length, context);
     }
 
     /**

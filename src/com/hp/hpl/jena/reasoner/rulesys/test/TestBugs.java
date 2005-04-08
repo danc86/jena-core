@@ -357,6 +357,29 @@ public class TestBugs extends TestCase {
     }
     
     /**
+     * Also want to have hidden rb:xsdRange
+     */
+    public void testHideXSDRange() {
+        OntModelSpec[] specs = new OntModelSpec[] {
+                OntModelSpec.OWL_MEM_RULE_INF,
+                OntModelSpec.OWL_MEM_RDFS_INF,
+                OntModelSpec.OWL_MEM_MINI_RULE_INF,
+                OntModelSpec.OWL_MEM_MICRO_RULE_INF
+        };
+        for (int os = 0; os < specs.length; os++) {
+            OntModelSpec spec = specs[os];
+            OntModel m = ModelFactory.createOntologyModel(spec, null);
+            Iterator i = m.listOntProperties();
+            while (i.hasNext()) {
+                Resource r = (Resource)i.next();
+                if (r.getURI() != null && r.getURI().startsWith(ReasonerVocabulary.RBNamespace)) {
+                    assertTrue("Rubrik internal property leaked out: " + r + "(" + os + ")", false);
+                }
+            }
+        }
+    }
+    
+    /**
      * Test problem with bindSchema not interacting properly with validation.
      */
     public void testBindSchemaValidate() {

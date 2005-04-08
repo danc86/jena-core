@@ -801,7 +801,7 @@ public class FBRuleInfGraph  extends BasicForwardRuleInfGraph implements Backwar
         if (((Triple)t).getSubject().isLiteral()) return true;
         
         if (JenaParameters.enableFilteringOfHiddenInfNodes && hiddenNodes != null) {
-            if (hiddenNodes.contains(t.getSubject()) || hiddenNodes.contains(t.getObject())) {
+            if (hiddenNodes.contains(t.getSubject()) || hiddenNodes.contains(t.getObject()) || hiddenNodes.contains(t.getPredicate())) {
                 return true;
             }
         }
