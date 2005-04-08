@@ -49,6 +49,9 @@ public class ReasonerVocabulary {
     /** The property that represents the direct/minimal version of the subPropertyOf relationship */
     public static Property directSubPropertyOf; 
 
+    /** The property that represents the direct/minimal version of the rdf:type relationship */
+    public static Property directRDFType; 
+
     /** A faux property used in reasoner capabilty models to denote reasoners that infer that individuals have rdf:type owl:Thing (or daml:Thing) */
     public static Property individualAsThingP;
     
@@ -147,6 +150,7 @@ public class ReasonerVocabulary {
             configurationP = ResourceFactory.createProperty(JenaReasonerNS, "configurationProperty");
             directSubClassOf = ResourceFactory.createProperty(ReasonerRegistry.makeDirect(RDFS.subClassOf.getNode()).getURI());
             directSubPropertyOf = ResourceFactory.createProperty(ReasonerRegistry.makeDirect(RDFS.subPropertyOf.getNode()).getURI());
+            directRDFType = ResourceFactory.createProperty(ReasonerRegistry.makeDirect(RDF.type.getNode()).getURI());
             individualAsThingP = ResourceFactory.createProperty(JenaReasonerNS, "individualAsThing");
             PROPderivationLogging  = ResourceFactory.createProperty(PropURI+"#", "derivationLogging");
             PROPtraceOn = ResourceFactory.createProperty(PropURI+"#", "traceOn");
