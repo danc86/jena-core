@@ -31,7 +31,7 @@ public class TestDBSpec extends ModelTestBase
         try
             {Resource me = ResourceFactory.createResource();
             Model spec = ModelFactory.createDefaultModel()
-                .add( me, RDF.type, JMS.RDBMakerSpec );
+                .add( me, RDF.type, JenaModelSpec.RDBMakerSpec );
             ModelMaker maker = ModelSpecImpl.createMaker( spec );
             assertTrue( maker.getGraphMaker() instanceof GraphRDBMaker );
             fail( "should not be able to make RDB model from empty specification" ); 
@@ -48,14 +48,14 @@ public class TestDBSpec extends ModelTestBase
         String dbType = TestPackage.M_DB;
         String className = TestPackage.M_DBDRIVER_CLASS;
         Model spec = ModelFactory.createDefaultModel()
-            .add( me, JMS.maker, mak )
-            .add( mak, RDF.type, JMS.RDBMakerSpec )
-            .add( mak, JMS.hasConnection, con )
-            .add( con, JMS.dbUser, TestPackage.M_DB_USER )
-            .add( con, JMS.dbPassword, TestPackage.M_DB_PASSWD )
-            .add( con, JMS.dbURL, TestPackage.M_DB_URL )
-            .add( con, JMS.dbType, dbType )
-            .add( con, JMS.dbClass, className )
+            .add( me, JenaModelSpec.maker, mak )
+            .add( mak, RDF.type, JenaModelSpec.RDBMakerSpec )
+            .add( mak, JenaModelSpec.hasConnection, con )
+            .add( con, JenaModelSpec.dbUser, TestPackage.M_DB_USER )
+            .add( con, JenaModelSpec.dbPassword, TestPackage.M_DB_PASSWD )
+            .add( con, JenaModelSpec.dbURL, TestPackage.M_DB_URL )
+            .add( con, JenaModelSpec.dbType, dbType )
+            .add( con, JenaModelSpec.dbClass, className )
             ;
         ModelMaker maker = ModelSpecImpl.createMaker( spec );
         assertTrue( maker.getGraphMaker() instanceof GraphRDBMaker );
@@ -72,14 +72,14 @@ public class TestDBSpec extends ModelTestBase
         String dbType = TestPackage.M_DB;
         String className = TestPackage.M_DBDRIVER_CLASS;
         Model spec = ModelFactory.createDefaultModel()
-        	.add( me, JMS.maker, dbMaker )
-            .add( dbMaker, RDF.type, JMS.RDBMakerSpec )
-            .add( dbMaker, JMS.hasConnection, con )
-            .add( con, JMS.dbUser, TestPackage.M_DB_USER )
-            .add( con, JMS.dbPassword, TestPackage.M_DB_PASSWD )
-            .add( con, JMS.dbURL, TestPackage.M_DB_URL )
-            .add( con, JMS.dbType, dbType )
-            .add( con, JMS.dbClass, className )
+        	.add( me, JenaModelSpec.maker, dbMaker )
+            .add( dbMaker, RDF.type, JenaModelSpec.RDBMakerSpec )
+            .add( dbMaker, JenaModelSpec.hasConnection, con )
+            .add( con, JenaModelSpec.dbUser, TestPackage.M_DB_USER )
+            .add( con, JenaModelSpec.dbPassword, TestPackage.M_DB_PASSWD )
+            .add( con, JenaModelSpec.dbURL, TestPackage.M_DB_URL )
+            .add( con, JenaModelSpec.dbType, dbType )
+            .add( con, JenaModelSpec.dbClass, className )
             ;
         ModelSpec s = ModelFactory.createSpec( spec );
         Model d = s.createModel();

@@ -8,7 +8,7 @@ package com.hp.hpl.jena.rdf.model.impl;
 
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.shared.ReificationStyle;
-import com.hp.hpl.jena.vocabulary.JMS;
+import com.hp.hpl.jena.vocabulary.JenaModelSpec;
 
 /**
     Convenience superclass for the standard ModelMakerCreator classes,
@@ -20,7 +20,7 @@ class MakerCreator
     {
     /**
         Answer the reification style possessed by <code>root</code> in 
-        <code>desc</code> under the property <code>JMS.reificationMode</code>.
+        <code>desc</code> under the property <code>JenaModelSpec.reificationMode</code>.
         If no such property exists, default to <code>Standard</code>.
         
     	@param desc the model in which to search
@@ -29,8 +29,8 @@ class MakerCreator
      */
     public ReificationStyle style( Model desc, Resource root )
         {
-        Statement st = desc.getProperty( root, JMS.reificationMode );
-        return st == null ? ReificationStyle.Standard : JMS.findStyle( st.getObject() );
+        Statement st = desc.getProperty( root, JenaModelSpec.reificationMode );
+        return st == null ? ReificationStyle.Standard : JenaModelSpec.findStyle( st.getObject() );
         } 
     }
 

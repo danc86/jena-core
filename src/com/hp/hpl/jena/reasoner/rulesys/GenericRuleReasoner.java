@@ -199,18 +199,18 @@ public class GenericRuleReasoner extends FBRuleReasoner {
         
     protected boolean doSetResourceParameter( Property parameter, Resource value )
         {
-        if (parameter.equals( JMS.ruleSetURL )) 
+        if (parameter.equals( JenaModelSpec.ruleSetURL )) 
             {
             addRules( Rule.rulesFromURL( value.getURI() ) );
             }
-        else if (parameter.equals( JMS.ruleSet )) 
+        else if (parameter.equals( JenaModelSpec.ruleSet )) 
             {
-            StmtIterator that = value.listProperties( JMS.ruleSetURL );
+            StmtIterator that = value.listProperties( JenaModelSpec.ruleSetURL );
             while (that.hasNext())
                 {
                 addRules( Rule.rulesFromURL( that.nextStatement().getResource().getURI() ) );
                 }
-            StmtIterator it = value.listProperties( JMS.hasRule );
+            StmtIterator it = value.listProperties( JenaModelSpec.hasRule );
             while (it.hasNext()) 
                 {
                 addRules( Rule.parseRules( it.nextStatement().getString() ) ); 

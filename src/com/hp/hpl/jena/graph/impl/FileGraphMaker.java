@@ -67,10 +67,10 @@ public class FileGraphMaker extends BaseGraphMaker
 
     /**
         Answer the RDFS class of a FileGraphMaker
-        @return JMS.FileMakerClass [node version]
+        @return JenaModelSpec.FileMakerClass [node version]
     */
     public Node getMakerClass()
-        { return JMS.FileMakerSpec.asNode(); }
+        { return JenaModelSpec.FileMakerSpec.asNode(); }
 
     /**
         Answer the fileBase of all the graphs created by this FileGraphMaker.
@@ -80,7 +80,7 @@ public class FileGraphMaker extends BaseGraphMaker
         { return fileBase; }
         
     protected void augmentDescription( Graph g, Node self )
-        { g.add( Triple.create( self, JMS.fileBase.asNode(), Node.createLiteral( fileBase, "", false ) ) ); }
+        { g.add( Triple.create( self, JenaModelSpec.fileBase.asNode(), Node.createLiteral( fileBase, "", false ) ) ); }
                 
     /**
         Answer a new, anonynous FileGraph. See FileGraph.create().

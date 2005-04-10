@@ -38,10 +38,10 @@ public class SimpleGraphMaker extends BaseGraphMaker
        
     /**
         Answer the RDFS class of this Maker
-        @return JMS.MemMakerClass [as node]
+        @return JenaModelSpec.MemMakerClass [as node]
     */ 
     public Node getMakerClass()
-        { return JMS.MemMakerSpec.asNode(); }
+        { return JenaModelSpec.MemMakerSpec.asNode(); }
        
     /**
         Augment the general description of a GraphMaker with any Simple triples [ie none]

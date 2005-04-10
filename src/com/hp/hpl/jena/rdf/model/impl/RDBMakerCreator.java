@@ -28,19 +28,19 @@ public class RDBMakerCreator implements ModelMakerCreator
 
     public static IDBConnection createConnection( Model description, Resource root )
         {
-        Resource connection = description.listStatements( root, JMS.hasConnection, (RDFNode) null ).nextStatement().getResource();
-        String url = getString( description, connection, JMS.dbURL );
-        String user = getString( description, connection, JMS.dbUser );
-        String password = getString( description, connection , JMS.dbPassword );
+        Resource connection = description.listStatements( root, JenaModelSpec.hasConnection, (RDFNode) null ).nextStatement().getResource();
+        String url = getString( description, connection, JenaModelSpec.dbURL );
+        String user = getString( description, connection, JenaModelSpec.dbUser );
+        String password = getString( description, connection , JenaModelSpec.dbPassword );
         String className = getClassName( description, connection );
-        String dbType = getString( description, connection, JMS.dbType );
+        String dbType = getString( description, connection, JenaModelSpec.dbType );
         loadDrivers( dbType, className );
         return ModelFactory.createSimpleRDBConnection( url, user, password, dbType );
         }
 
     public static String getClassName( Model description, Resource root )
         {
-        Statement cnStatement = description.getProperty( root, JMS.dbClass );
+        Statement cnStatement = description.getProperty( root, JenaModelSpec.dbClass );
         return cnStatement == null ? null : cnStatement.getString();
         }
 

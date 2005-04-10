@@ -72,7 +72,7 @@ public abstract class BaseGraphMaker implements GraphMaker
         Answer an RDF specification of this GraphMaker, adequate to constructing one
         just like it.
         
-        @return a Graph describing the Maker using the JMS vocabulary.
+        @return a Graph describing the Maker using the JenaModelSpec vocabulary.
     */
     public Graph getDescription()
         { return getDescription( Node.createAnon() ); }
@@ -86,8 +86,8 @@ public abstract class BaseGraphMaker implements GraphMaker
                 
     public Graph addDescription( Graph desc, Node self )
         {
-        Node mode = JMS.styleAsJMS( style ); 
-        desc.add( Triple.create( self, JMS.reificationMode.asNode(), mode ) );
+        Node mode = JenaModelSpec.styleAsJMS( style ); 
+        desc.add( Triple.create( self, JenaModelSpec.reificationMode.asNode(), mode ) );
         desc.add( Triple.create( self, RDF.Nodes.type, getMakerClass() ) );
         augmentDescription( desc, self );    
         return desc;

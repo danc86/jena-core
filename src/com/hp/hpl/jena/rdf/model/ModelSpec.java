@@ -24,13 +24,13 @@ public interface ModelSpec extends ModelSource
     Model createModelOver( String name );
     
     /**
-        Answer an RDF description of this ModelSpec using the JMS vocabulary. The
+        Answer an RDF description of this ModelSpec using the JenaModelSpec vocabulary. The
         description root will be a freshly-created bnode.
     */
     Model getDescription();
     
     /**
-        Answer an RDF description of this ModelSpec using the JMS vocabulary, with
+        Answer an RDF description of this ModelSpec using the JenaModelSpec vocabulary, with
         the given Resource as root.
         
         @param root the resource to be used for all the top-level properties

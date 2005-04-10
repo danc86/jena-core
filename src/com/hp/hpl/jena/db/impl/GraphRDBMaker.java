@@ -46,10 +46,10 @@ public class GraphRDBMaker extends BaseGraphMaker
 
     /**
         Answer the RDFS class of this RDB GraphMaker
-        @return JMS.RDBMakerClass [as node]
+        @return JenaModelSpec.RDBMakerClass [as node]
     */
     public Node getMakerClass()
-        { return JMS.RDBMakerSpec.asNode(); }
+        { return JenaModelSpec.RDBMakerSpec.asNode(); }
         
     /**
         Augment the maker description of this maker with RDB-specific properties.

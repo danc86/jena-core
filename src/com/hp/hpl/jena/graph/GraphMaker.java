@@ -98,7 +98,7 @@ public interface GraphMaker
     
     /**
         Answer a Graph describing this GraphMaker using the vocabulary of
-        JMS.
+        JenaModelSpec.
         
         @return a Graph describing this Maker.
     */

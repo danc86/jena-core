@@ -19,15 +19,15 @@ import com.hp.hpl.jena.vocabulary.*;
 public class FileMakerCreator extends MakerCreator implements ModelMakerCreator
     {
     /**
-        Answer a FileModelMaker with reification style given by the JMS.reificationMode
-        of the root and file base given by the JMS.fileBase of the root. The latter
+        Answer a FileModelMaker with reification style given by the JenaModelSpec.reificationMode
+        of the root and file base given by the JenaModelSpec.fileBase of the root. The latter
         defaults to "/tmp", which probably counts as a bug.
         
         TODO replace /tmp with the non-implementation-specific temporary directory.
      */
     public ModelMaker create( Model desc, Resource root ) 
         { 
-        Statement fb = desc.getProperty( root, JMS.fileBase );
+        Statement fb = desc.getProperty( root, JenaModelSpec.fileBase );
         String fileBase = fb == null ? "/tmp" : fb.getString();
         return ModelFactory.createFileModelMaker( fileBase, style( desc, root ) );
         }

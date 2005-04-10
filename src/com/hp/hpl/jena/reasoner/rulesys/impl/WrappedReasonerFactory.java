@@ -8,7 +8,7 @@ package com.hp.hpl.jena.reasoner.rulesys.impl;
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.reasoner.*;
 import com.hp.hpl.jena.util.FileManager;
-import com.hp.hpl.jena.vocabulary.JMS;
+import com.hp.hpl.jena.vocabulary.JenaModelSpec;
 
 /**
     WrappedReasonerFactory - a wrapper round ReasonerFactories that
@@ -40,7 +40,7 @@ public final class WrappedReasonerFactory implements ReasonerFactory
     
     private static Model loadSchemas( Model schema, Resource R )
         {
-        StmtIterator schemas = R.listProperties( JMS.schemaURL );
+        StmtIterator schemas = R.listProperties( JenaModelSpec.schemaURL );
         while (schemas.hasNext())
             {
             Statement s = schemas.nextStatement();

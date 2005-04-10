@@ -73,7 +73,7 @@ public class ModelSpecCreatorRegistry
         try
             {
             Model m = FileManager.get().loadModel( name ); 
-            StmtIterator it = m.listStatements( null, JMS.typeCreatedBy, (RDFNode) null ); 
+            StmtIterator it = m.listStatements( null, JenaModelSpec.typeCreatedBy, (RDFNode) null ); 
             while (it.hasNext()) addFromStatement( it.nextStatement() );
             }
         catch (NotFoundException e)
@@ -109,12 +109,12 @@ public class ModelSpecCreatorRegistry
                         
     static
         {
-        register( JMS.InfModelSpec, new InfSpecCreator() );  
-        register( JMS.OntModelSpec, new OntSpecCreator() );  
-        register( JMS.PlainModelSpec, new PlainSpecCreator() );   
+        register( JenaModelSpec.InfModelSpec, new InfSpecCreator() );  
+        register( JenaModelSpec.OntModelSpec, new OntSpecCreator() );  
+        register( JenaModelSpec.PlainModelSpec, new PlainSpecCreator() );   
         
-        register( JMS.ModelSpec, new PlainSpecCreator() );
-        register( JMS.DefaultModelSpec, new PlainSpecCreator() );   
+        register( JenaModelSpec.ModelSpec, new PlainSpecCreator() );
+        register( JenaModelSpec.DefaultModelSpec, new PlainSpecCreator() );   
         }   
     }
 

@@ -202,7 +202,7 @@ public interface PrefixMapping
         .setNsPrefixes( Standard )
         .setNsPrefix( "rss", RSS.getURI() )
         .setNsPrefix( "vcard", VCARD.getURI() )
-        .setNsPrefix( "jms", JMS.getURI() )
+        .setNsPrefix( "jms", JenaModelSpec.getURI() )
         .setNsPrefix( "eg", "http://www.example.org/" )
         .lock()
         ;   

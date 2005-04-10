@@ -8,7 +8,7 @@ package com.hp.hpl.jena.rdf.model;
 
 /**
     A ModelMakerCreator creates ModelMakers from their RDF descriptions in the
-    JMS vocabulary.
+    JenaModelSpec vocabulary.
 
  	@author hedgehog
 */

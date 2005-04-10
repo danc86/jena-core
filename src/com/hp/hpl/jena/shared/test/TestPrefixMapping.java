@@ -47,7 +47,7 @@ public class TestPrefixMapping extends AbstractTestPrefixMapping
         testStandard( st );
         assertEquals( RSS.getURI(), st.getNsPrefixURI( "rss" ) );
         assertEquals( VCARD.getURI(), st.getNsPrefixURI( "vcard" ) );
-        assertEquals( JMS.getURI(), st.getNsPrefixURI( "jms" ) );
+        assertEquals( JenaModelSpec.getURI(), st.getNsPrefixURI( "jms" ) );
         }
         
     }
