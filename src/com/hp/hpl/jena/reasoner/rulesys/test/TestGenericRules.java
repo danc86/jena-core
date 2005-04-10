@@ -239,6 +239,32 @@ public class TestGenericRules extends TestCase {
                   new Triple(a, q, Functor.makeFunctorNode("func", new Node[]{b, s}))
               } );
     }
+    
+    /**
+     * Test the @prefix and @include extensions to the rule parser
+     */
+    public void testExtendedRuleParser() {
+        List rules = Rule.rulesFromURL("file:testing/reasoners/ruleParserTest1.rules");
+        GenericRuleReasoner reasoner = new GenericRuleReasoner(rules);
+        reasoner.setTransitiveClosureCaching(true);
+        Model base = ModelFactory.createDefaultModel();
+        InfModel m = ModelFactory.createInfModel(reasoner, base);
+        
+        // Check prefix case
+        String NS1 = "http://jena.hpl.hp.com/newprefix#";
+        String NS2 = "http://jena.hpl.hp.com/newprefix2#";
+        String NS3 = "http://jena.hpl.hp.com/newprefix3#";
+        Resource A = m.getResource(NS1 + "A"); 
+        Resource C = m.getResource(NS1 + "C"); 
+        Property p = m.getProperty(NS2 + "p");
+        Property a = m.getProperty(NS3 + "a");
+        Resource foo = m.getResource(NS1 + "foo");
+        assertTrue("@prefix test", m.contains(A, p, foo));
+        
+        // Check RDFS rule inclusion
+        assertTrue("@include RDFS test", m.contains(A, RDFS.subClassOf, C));
+        assertTrue("@include test", m.contains(a,a,a));
+    }
 
     /**
      * Test add/remove support
