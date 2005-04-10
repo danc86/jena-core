@@ -113,6 +113,7 @@ public class ModelSpecCreatorRegistry
         register( JMS.OntModelSpec, new OntSpecCreator() );  
         register( JMS.PlainModelSpec, new PlainSpecCreator() );   
         
+        register( JMS.ModelSpec, new PlainSpecCreator() );
         register( JMS.DefaultModelSpec, new PlainSpecCreator() );   
         }   
     }

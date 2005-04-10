@@ -49,6 +49,11 @@ public class JMS
         The property of an OntModelSpec that gives the document manager resource.
     */
     public static final Property docManager = property( "docManager" );
+
+    /**
+        The property of an RDBModelSpec that describes the connection 
+    */
+    public static final Property hasConnection = property( "hasConnection" );
     
     /**
         The property of an OntModelSpec that gives the MakerSpec used when 
@@ -233,11 +238,6 @@ public class JMS
             schema = FileManager.get().loadModel( "vocabularies/jena-model-spec.n3" );
         return schema;
         }
-    /**
-        Utility: answer a plain literal string with the given value.
-     */
-    protected static Literal literal( String lex )
-        { return ResourceFactory.createPlainLiteral( lex ); }
         
     /**
         Utility: answer a resource in the jms namespace with the given local name.

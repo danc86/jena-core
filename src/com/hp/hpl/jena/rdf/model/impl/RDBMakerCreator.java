@@ -9,6 +9,7 @@ package com.hp.hpl.jena.rdf.model.impl;
 import com.hp.hpl.jena.db.IDBConnection;
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.shared.*;
+import com.hp.hpl.jena.util.IteratorCollection;
 import com.hp.hpl.jena.vocabulary.*;
 
 /**
@@ -27,14 +28,12 @@ public class RDBMakerCreator implements ModelMakerCreator
 
     public static IDBConnection createConnection( Model description, Resource root )
         {
-//        if (root == null) {
-//            root = ModelSpecImpl.findRootByType( description, JMS.RDBMakerSpec );
-//        }
-        String url = getString( description, root, JMS.dbURL );
-        String user = getString( description, root, JMS.dbUser );
-        String password = getString( description, root , JMS.dbPassword );
-        String className = getClassName( description, root );
-        String dbType = getString( description, root, JMS.dbType );
+        Resource connection = description.listStatements( root, JMS.hasConnection, (RDFNode) null ).nextStatement().getResource();
+        String url = getString( description, connection, JMS.dbURL );
+        String user = getString( description, connection, JMS.dbUser );
+        String password = getString( description, connection , JMS.dbPassword );
+        String className = getClassName( description, connection );
+        String dbType = getString( description, connection, JMS.dbType );
         loadDrivers( dbType, className );
         return ModelFactory.createSimpleRDBConnection( url, user, password, dbType );
         }
@@ -49,6 +48,7 @@ public class RDBMakerCreator implements ModelMakerCreator
         {
         return description.getRequiredProperty( root, p ).getString();
         }
+    
     public static void loadDrivers( String dbType, String className )
         {
         try
