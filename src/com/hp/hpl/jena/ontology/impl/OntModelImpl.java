@@ -32,11 +32,11 @@ import com.hp.hpl.jena.util.iterator.*;
 import com.hp.hpl.jena.vocabulary.*;
 import com.hp.hpl.jena.ontology.*;
 import com.hp.hpl.jena.ontology.event.*;
-import com.hp.hpl.jena.ontology.tidy.Checker;
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.graph.compose.MultiUnion;
 import com.hp.hpl.jena.graph.query.*;
 import com.hp.hpl.jena.enhanced.*;
+import com.hp.hpl.jena.shared.*;
 
 import java.io.*;
 import java.util.*;
@@ -63,13 +63,22 @@ public class OntModelImpl
     // Constants
     //////////////////////////////////
 
+    /**
+     * This variable is how the OntModel knows how to construct
+     * a syntax checker. This part of the design may change.
+     */
+    static public String owlSyntaxCheckerClassName = "com.hp.hpl.jena.ontology.tidy.JenaChecker";
 
+    
     // Static variables
     //////////////////////////////////
 
     static private Log s_log = LogFactory.getLog( OntModelImpl.class );
     
-
+    /** Found from {@link owlSyntaxCheckerClassName}, must implement
+     * {@link OWLSyntaxChecker}. */
+    static private Class owlSyntaxCheckerClass;
+    
     // Instance variables
     //////////////////////////////////
 
@@ -1920,44 +1929,17 @@ public class OntModelImpl
      * @exception OntologyException if this model is not an OWL model
      */
     public Resource getOWLLanguageLevel( List problems ) {
-        Profile oProf = getProfile();
-        if (!(oProf instanceof OWLProfile)) {
-            throw new OntologyException( "Cannnot perform OWL language level test on non OWL model" );
+        initSyntaxCheckerClass();
+        try {
+          return
+            ((OWLSyntaxChecker)owlSyntaxCheckerClass.newInstance()).
+            getOWLLanguageLevel(this, problems);
         }
-        
-        // this process is made complicated by the design of the syntax checker, which uses
-        // two different grammars for Lite and DL checking.  in some circumstances, we have
-        // to run both kinds of check
-        
-        // using expectLite = false gives the most complete result (lite, dl or full)
-        Checker checker = new Checker( false );
-        checker.add( this );
-        
-        // do the check, and collect any problem reports
-        String lang = checker.getSubLanguage();
-        
-        // if we are expecting lite, we want to re-run to get better explanations
-        if ((oProf instanceof OWLLiteProfile ) && !lang.equals( "Lite" ) && (problems != null)) {
-            checker = new Checker( true );
-            checker.add( this );
-            checker.getSubLanguage();
+        catch (InstantiationException e){
+            throw new BrokenException("Syntax Checker misconfigured: ",e);
         }
-        
-        if (problems != null) {
-            for (Iterator i = checker.getProblems(); i.hasNext(); ) {
-                problems.add( i.next() );
-            }
-        }
-        
-        // determine the return value
-        if (lang.equals( "Lite" )) {
-            return OWL.LITE_LANG;
-        }
-        else if (lang.equals( "DL" )) {
-            return OWL.DL_LANG;
-        }
-        else {
-            return OWL.FULL_LANG;
+        catch (IllegalAccessException e){
+            throw new BrokenException("Syntax Checker misconfigured: ",e);
         }
     }
     
@@ -2549,6 +2531,19 @@ public class OntModelImpl
     
     // Internal implementation methods
     //////////////////////////////////
+    
+    
+    private static void initSyntaxCheckerClass() {
+        if (owlSyntaxCheckerClass == null ) {
+            try {
+              owlSyntaxCheckerClass = Class.forName(owlSyntaxCheckerClassName);
+              OWLSyntaxChecker chk = (OWLSyntaxChecker)owlSyntaxCheckerClass.newInstance();
+            }
+            catch (Exception e){
+                throw new ConfigException("owlsyntax.jar must be on the classpath.",e);
+            }
+        }
+    }
 
     /**
      * <p>Helper method to the constructor, which interprets the spec and generates an appropriate

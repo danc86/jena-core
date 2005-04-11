@@ -46,9 +46,7 @@ public class TestPackage extends TestSuite {
         addTest("Composed graphs", com.hp.hpl.jena.graph.compose.test.TestPackage.suite() );
         addTest( "Ontology", com.hp.hpl.jena.ontology.impl.test.TestPackage.suite() );
         addTest( "DAML", com.hp.hpl.jena.ontology.daml.impl.test.TestPackage.suite() );
-       // addTest(com.hp.hpl.jena.ontology.tidy.test.WGTests.suite() );
-        addTest(com.hp.hpl.jena.ontology.tidy.test.Extra.suite() );
-        addTest(com.hp.hpl.jena.ontology.tidy.test.ErrorMsgTest.suite() );
+
     }
 
     private void addTest(String name, TestSuite tc) {
