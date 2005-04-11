@@ -6,6 +6,8 @@
 
 package com.hp.hpl.jena.rdf.model.test;
 
+import java.util.*;
+
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.vocabulary.*;
 import com.hp.hpl.jena.graph.impl.*;
@@ -312,7 +314,39 @@ public class TestModelSpec extends ModelTestBase
         assertIsoModels( modelMaker, ms.getImportModelMaker().getDescription() );
         assertSame( odm, ms.getDocumentManager() );
         }
-
+    
+    public void testOntModelSpecWithModelName() 
+        {
+        final List record = new ArrayList();
+        ModelMaker tracker = new ModelMakerImpl( new SimpleGraphMaker(  ) )
+            {
+            public Model createModel( String name, boolean strict )
+                {
+                record.add( name );
+                return super.createModel( name, strict );
+                }
+            };
+        Model x = modelWithStatements
+            (
+            "_this jms:ontLanguage http://www.w3.org/TR/owl-features/#term_OWLLite"
+            + "; _this jms:modelName 'cranberry'"
+            + "; _this jms:docManager _DM"
+            + "; _this jms:reasonsWith _R"
+            + "; _R jms:reasoner http://jena.hpl.hp.com/2003/RDFSExptRuleReasoner"
+            );
+        OntModelSpec s = (OntModelSpec) ModelSpecFactory.createSpec( x );
+        s.setBaseModelMaker( tracker );
+        Model m = s.createModel();
+        assertEquals( list( "cranberry" ), record );
+        }
+    
+    protected List list( String element )
+        {
+        List result = new ArrayList();
+        result.add( element );
+        return result;
+        }
+    
     public void testCreateFailingMaker()
         {
         try
