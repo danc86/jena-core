@@ -87,10 +87,7 @@ abstract public class BaseXMLWriter implements RDFXMLWriterI {
     abstract void writeBody
         ( Model mdl, PrintWriter pw, String baseURI, boolean inclXMLBase );
                 
-	static {
-		ARP.initEncoding();
-	}
-    
+	
     private String attributeQuoteChar ="\"";
     
     protected String q(String s) {
@@ -470,12 +467,7 @@ abstract public class BaseXMLWriter implements RDFXMLWriterI {
 			String javaEnc = ((OutputStreamWriter) out).getEncoding();
 			// System.err.println(javaEnc);
 			if (!(javaEnc.equals("UTF8") || javaEnc.equals("UTF-16"))) {
-				//		System.out.println(javaEnc);
-				String xEnc = EncodingMap.getJava2IANAMapping(javaEnc);
 				String ianaEnc = Charset.forName(javaEnc).name();
-				if (xEnc != null && !ianaEnc.equalsIgnoreCase(xEnc)) {
-				    logger.warn("xEnc: "+xEnc+ " IanaEnc: "+ ianaEnc );
-				}
 				decl = "<?xml version="+q("1.0")+" encoding=" + q(ianaEnc) + "?>";
 			}
 		}

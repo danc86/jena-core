@@ -61,8 +61,7 @@ abstract class XMLHandler
 		//    org.apache.xerces.utils.XMLCharacterProperties.initCharFlags();
 		CharacterModel.isFullyNormalizedConstruct(
 			"make the linkage error happen early");
-		ARP.initEncoding();
-	}
+    }
 
 	boolean encodingProblems = false;
 

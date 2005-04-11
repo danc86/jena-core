@@ -52,9 +52,7 @@ import org.xml.sax.InputSource;
 import org.xml.sax.Locator;
 import java.io.InputStream;
 import java.io.Reader;
-import java.util.*;
 
-import org.apache.xerces.util.EncodingMap;
 
 /** Another RDF Parser.
  * To load an RDF file:
@@ -91,46 +89,6 @@ import org.apache.xerces.util.EncodingMap;
 public class ARP implements ARPConfig 
 {
 
-    static private class Fake extends EncodingMap {
-        static {
-        //    EncodingMap.fJava2IANAMap.put("ISO8859_15_FDIS","ISO-8859-15");
-            Iterator it = EncodingMap.fJava2IANAMap.entrySet().iterator();
-            while (it.hasNext()) {
-                Map.Entry me = (Map.Entry) it.next();
-                if (!me
-                    .getKey()
-                    .equals(EncodingMap.fIANA2JavaMap.get(me.getValue()))) {
-                //  System.err.println(
-                //      "?1? " + me.getKey() + " => " + me.getValue());
-                }
-            }
-            it = EncodingMap.fIANA2JavaMap.entrySet().iterator();
-            while (it.hasNext()) {
-                Map.Entry me = (Map.Entry) it.next();
-                if (null == EncodingMap.fJava2IANAMap.get(me.getValue())) {
-//                  System.err.println(
-//                      "?2? " + me.getKey() + " => " + me.getValue());
-                    EncodingMap.fJava2IANAMap.put(me.getValue(),me.getKey());
-                }
-            }
-
-        }
-        static void foo() {
-        }
-    }
-    /**
-     * This method is a work-around for a Xerces bug.
-     * Speicifically
-     * <a href="http://nagoya.apache.org/bugzilla/show_bug.cgi?id=18551">bug
-     * 18551</a>. It should be called before using the EncodingMap from Xerces,
-     * typically in a static initializer. This is done within Jena code, and is 
-     * not normally needed by an end user.
-     * It is not part of the ARP or Jena API; and will be removed when the 
-     * Xerces bug is fixed.
-     */
-    static public void initEncoding() {
-        Fake.foo();
-    }
     final private SingleThreadedParser arpf;
     
 /** Creates a new RDF Parser.
