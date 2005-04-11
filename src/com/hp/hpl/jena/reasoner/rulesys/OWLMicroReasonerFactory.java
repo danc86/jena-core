@@ -96,6 +96,11 @@ public class OWLMicroReasonerFactory implements ReasonerFactory {
                 .addProperty(ReasonerVocabulary.supportsP, OWL.SymmetricProperty )
                 .addProperty(ReasonerVocabulary.supportsP, OWL.TransitiveProperty )
                 .addProperty(ReasonerVocabulary.supportsP, OWL.InverseFunctionalProperty )
+
+                .addProperty(ReasonerVocabulary.supportsP, OWL.hasValue )
+                .addProperty(ReasonerVocabulary.supportsP, OWL.intersectionOf )
+                .addProperty(ReasonerVocabulary.supportsP, OWL.unionOf )        // Only partial
+                
                 .addProperty(ReasonerVocabulary.versionP, "0.1");
         }
         return capabilities;

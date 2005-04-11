@@ -95,6 +95,18 @@ public class OWLFBRuleReasonerFactory implements ReasonerFactory {
                 .addProperty(ReasonerVocabulary.supportsP, OWL.TransitiveProperty )
                 .addProperty(ReasonerVocabulary.supportsP, OWL.InverseFunctionalProperty )
 
+                .addProperty(ReasonerVocabulary.supportsP, OWL.hasValue )
+                .addProperty(ReasonerVocabulary.supportsP, OWL.intersectionOf )
+                .addProperty(ReasonerVocabulary.supportsP, OWL.unionOf )        // Only partial
+                .addProperty(ReasonerVocabulary.supportsP, OWL.minCardinality )        // Only partial
+                .addProperty(ReasonerVocabulary.supportsP, OWL.maxCardinality )        // Only partial
+                .addProperty(ReasonerVocabulary.supportsP, OWL.cardinality )           // Only partial
+                .addProperty(ReasonerVocabulary.supportsP, OWL.someValuesFrom)         // Only partial
+                .addProperty(ReasonerVocabulary.supportsP, OWL.allValuesFrom )         // Only partial
+                .addProperty(ReasonerVocabulary.supportsP, OWL.sameAs )
+                .addProperty(ReasonerVocabulary.supportsP, OWL.differentFrom )
+                .addProperty(ReasonerVocabulary.supportsP, OWL.disjointWith )
+                
                 .addProperty(ReasonerVocabulary.versionP, "0.1");
         }
         return capabilities;
