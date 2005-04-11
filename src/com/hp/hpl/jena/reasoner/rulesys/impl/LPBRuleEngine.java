@@ -53,9 +53,9 @@ public class LPBRuleEngine {
     protected HashMap tabledGoals = new HashMap();
     
     /** Set of generators waiting to be run */
-//    protected LinkedList agenda = new LinkedList();
+    protected LinkedList agenda = new LinkedList();
 //    protected List agenda = new ArrayList();
-    protected Collection agenda = new HashSet();
+//    protected Collection agenda = new HashSet();
     
     /** Optional profile of number of time each rule is entered, set to non-null to profile */
     protected HashMap profile;
@@ -295,12 +295,12 @@ public class LPBRuleEngine {
 //                System.out.println("Cycled " + this + ", " + count);
                 return;
             } 
-            Iterator ai = agenda.iterator();
-            LPAgendaEntry next = (LPAgendaEntry) ai.next();
-            ai.remove();
-//            int chosen = agenda.size() - 1;
-//            LPAgendaEntry next = (LPAgendaEntry) agenda.get(chosen);
-//            agenda.remove(chosen);
+//            Iterator ai = agenda.iterator();
+//            LPAgendaEntry next = (LPAgendaEntry) ai.next();
+//            ai.remove();
+            int chosen = agenda.size() - 1;
+            LPAgendaEntry next = (LPAgendaEntry) agenda.get(chosen);
+            agenda.remove(chosen);
 //            System.out.println("  pumping entry " + next);
             next.pump();
             count ++;
