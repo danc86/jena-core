@@ -53,7 +53,7 @@ public class TestDBSpec extends ModelTestBase
             .add( mak, JenaModelSpec.hasConnection, con )
             .add( con, JenaModelSpec.dbUser, TestPackage.M_DB_USER )
             .add( con, JenaModelSpec.dbPassword, TestPackage.M_DB_PASSWD )
-            .add( con, JenaModelSpec.dbURL, TestPackage.M_DB_URL )
+            .add( con, JenaModelSpec.dbURL, resource( TestPackage.M_DB_URL ) )
             .add( con, JenaModelSpec.dbType, dbType )
             .add( con, JenaModelSpec.dbClass, className )
             ;
@@ -77,7 +77,7 @@ public class TestDBSpec extends ModelTestBase
             .add( dbMaker, JenaModelSpec.hasConnection, con )
             .add( con, JenaModelSpec.dbUser, TestPackage.M_DB_USER )
             .add( con, JenaModelSpec.dbPassword, TestPackage.M_DB_PASSWD )
-            .add( con, JenaModelSpec.dbURL, TestPackage.M_DB_URL )
+            .add( con, JenaModelSpec.dbURL, resource( TestPackage.M_DB_URL ) )
             .add( con, JenaModelSpec.dbType, dbType )
             .add( con, JenaModelSpec.dbClass, className )
             ;
