@@ -11,7 +11,7 @@ package com.hp.hpl.jena.reasoner.rulesys.test;
 
 import com.hp.hpl.jena.reasoner.*;
 import com.hp.hpl.jena.reasoner.test.*;
-import com.hp.hpl.jena.util.ModelLoader;
+import com.hp.hpl.jena.util.FileManager;
 // import com.hp.hpl.jena.util.PrintUtil;
 import com.hp.hpl.jena.vocabulary.OWL;
 import com.hp.hpl.jena.vocabulary.RDF;
@@ -133,8 +133,8 @@ public class TestRDFSRules extends TestCase {
      */
     public static void main(String[] args) {
         try {
-            Model tbox = ModelLoader.loadModel("testing/reasoners/rdfs/timing-tbox.rdf");
-            Model data = ModelLoader.loadModel("testing/reasoners/rdfs/timing-data.rdf");
+            Model tbox = FileManager.get().loadModel("testing/reasoners/rdfs/timing-tbox.rdf");
+            Model data = FileManager.get().loadModel("testing/reasoners/rdfs/timing-data.rdf");
             Reasoner rdfsFBRule = RDFSFBRuleReasonerFactory.theInstance().create(null);
             Reasoner rdfs1    = RDFSReasonerFactory.theInstance().create(null);
             Reasoner rdfsFinal    = RDFSRuleReasonerFactory.theInstance().create(null);

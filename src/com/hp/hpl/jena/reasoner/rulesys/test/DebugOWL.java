@@ -15,7 +15,7 @@ import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.graph.compose.Union;
 import com.hp.hpl.jena.mem.GraphMem;
 //import com.hp.hpl.jena.rdf.model.*;
-import com.hp.hpl.jena.util.ModelLoader;
+import com.hp.hpl.jena.util.FileManager;
 import com.hp.hpl.jena.util.PrintUtil;
 import com.hp.hpl.jena.vocabulary.*;
 import com.hp.hpl.jena.reasoner.*;
@@ -148,7 +148,7 @@ public class DebugOWL {
      * Load a test data set from file.
      */
     public void load(String testFile) {
-        testdata = ModelLoader.loadModel(testFile).getGraph();
+        testdata = FileManager.get().loadModel(testFile).getGraph();
         schema = null;
     }
     
@@ -156,8 +156,8 @@ public class DebugOWL {
      * Load both a schema and an instance data file.
      */
     public void load(String schemaFile, String testFile) {
-        testdata = ModelLoader.loadModel(testFile).getGraph();
-        schema = ModelLoader.loadModel(schemaFile).getGraph();
+        testdata = FileManager.get().loadModel(testFile).getGraph();
+        schema = FileManager.get().loadModel(schemaFile).getGraph();
     }
     
     /**

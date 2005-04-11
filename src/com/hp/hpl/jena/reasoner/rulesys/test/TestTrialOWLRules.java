@@ -12,7 +12,7 @@ package com.hp.hpl.jena.reasoner.rulesys.test;
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.reasoner.*;
 import com.hp.hpl.jena.reasoner.rulesys.*;
-import com.hp.hpl.jena.util.ModelLoader;
+import com.hp.hpl.jena.util.FileManager;
 import com.hp.hpl.jena.vocabulary.RDF;
 import com.hp.hpl.jena.vocabulary.ReasonerVocabulary;
 
@@ -180,7 +180,7 @@ public class TestTrialOWLRules extends TestCase {
      * for use during debugging.
      */
     public static void main(String[] args) {
-        Model premises = ModelLoader.loadModel("file:testing/wg/someValuesFrom/premises001.rdf");
+        Model premises = FileManager.get().loadModel("file:testing/wg/someValuesFrom/premises001.rdf");
         Reasoner reasoner = GenericRuleReasonerFactory.theInstance().create(configuration);
         InfModel conclusions = ModelFactory.createInfModel(reasoner, premises);
         

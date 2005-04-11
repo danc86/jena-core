@@ -12,7 +12,7 @@ package com.hp.hpl.jena.reasoner.test;
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.reasoner.rulesys.*;
 import com.hp.hpl.jena.reasoner.*;
-import com.hp.hpl.jena.util.ModelLoader;
+import com.hp.hpl.jena.util.FileManager;
 import com.hp.hpl.jena.util.PrintUtil;
 import com.hp.hpl.jena.vocabulary.RDFS;
 import com.hp.hpl.jena.vocabulary.ReasonerVocabulary;
@@ -59,7 +59,7 @@ public class ManualExample {
     /** illustrate validation */
     public void test2(String fname) {
         System.out.println("Testing " + fname);
-        Model data = ModelLoader.loadModel(fname);
+        Model data = FileManager.get().loadModel(fname);
         InfModel infmodel = ModelFactory.createRDFSModel(data);
         ValidityReport validity = infmodel.validate();
         if (validity.isValid()) {

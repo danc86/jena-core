@@ -11,7 +11,7 @@ package com.hp.hpl.jena.reasoner.rulesys.test;
 
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.reasoner.*;
-import com.hp.hpl.jena.util.ModelLoader;
+import com.hp.hpl.jena.util.FileManager;
 
 //import java.util.*;
 
@@ -56,7 +56,7 @@ public class TestOWLConsistency extends TestCase {
      */
     public Reasoner makeReasoner() {
         if (reasonerCache == null) {
-            Model tbox = ModelLoader.loadModel(testTbox);
+            Model tbox = FileManager.get().loadModel(testTbox);
             reasonerCache = ReasonerRegistry.getOWLReasoner().bindSchema(tbox.getGraph());
         }
         return reasonerCache;
@@ -109,7 +109,7 @@ public class TestOWLConsistency extends TestCase {
      */
     private boolean doTestOn(String dataFile) {
 //        System.out.println("Test: " + dataFile);
-        Model data = ModelLoader.loadModel(dataFile);
+        Model data = FileManager.get().loadModel(dataFile);
         InfModel infmodel = ModelFactory.createInfModel(makeReasoner(), data);
         ValidityReport reportList = infmodel.validate();
         /* Debug only

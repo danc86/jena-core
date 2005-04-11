@@ -15,8 +15,6 @@ import com.hp.hpl.jena.util.iterator.ClosableIterator;
 
 import java.util.*;
 
-import org.apache.commons.logging.LogFactory;
-
 /**
  * Wraps up the results an LP rule engine instance into a conventional
  * iterator. Ensures that the engine is closed and detached from the

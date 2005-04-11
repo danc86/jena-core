@@ -19,7 +19,7 @@ import com.hp.hpl.jena.graph.impl.LiteralLabel;
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.shared.ClosedException;
 import com.hp.hpl.jena.shared.impl.JenaParameters;
-import com.hp.hpl.jena.util.ModelLoader;
+import com.hp.hpl.jena.util.FileManager;
 import com.hp.hpl.jena.util.PrintUtil;
 import com.hp.hpl.jena.util.iterator.ExtendedIterator;
 import com.hp.hpl.jena.vocabulary.*;
@@ -852,7 +852,7 @@ public class TestFBRules extends TestCase {
         boolean prior = JenaParameters.enableFilteringOfHiddenInfNodes;
         try {
             JenaParameters.enableFilteringOfHiddenInfNodes = false;
-            Model premisesM = ModelLoader.loadModel("file:testing/wg/equivalentClass/premises004.rdf");
+            Model premisesM = FileManager.get().loadModel("file:testing/wg/equivalentClass/premises004.rdf");
             Graph data = premisesM.getGraph();
             Reasoner reasoner =  new OWLFBRuleReasoner(OWLFBRuleReasonerFactory.theInstance());
             InfGraph infgraph = reasoner.bind(data);
