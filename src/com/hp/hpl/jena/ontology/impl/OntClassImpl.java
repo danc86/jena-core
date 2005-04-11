@@ -601,7 +601,7 @@ public class OntClassImpl
         cands.addAll( candSet );
         for (int j = cands.size() -1; j >= 0; j--) {
             Property cand = (Property) cands.get( j );
-            if (!testDomain( cand, direct )) {
+            if (!hasDeclaredProperty( cand, direct )) {
                 cands.remove( j );
             }
         }
@@ -609,6 +609,20 @@ public class OntClassImpl
         // return the results, using the ont property facet
         return WrappedIterator.create( cands.iterator() )
                               .mapWith( new AsMapper( OntProperty.class ) );
+    }
+
+
+    /**
+     * <p>Answer true if the given property is one of the declared properties
+     * of this class. For details, see {@link #listDeclaredProperties(boolean)}.</p>
+     * @param p A property to test
+     * @param direct If true, only direct associations between classes and properties
+     * are considered
+     * @return True if <code>p</code> is one of the declared properties of
+     * this class
+     */
+    public boolean hasDeclaredProperty( Property p, boolean direct ) {
+        return testDomain( p, direct );
     }
 
 
@@ -656,6 +670,11 @@ public class OntClassImpl
      * model it is attached to
      */
     public boolean isHierarchyRoot() {
+        // sanity check - :Nothing is never a root class
+        if (equals( getProfile().NOTHING() )) {
+            return false;
+        }
+
         // the only super-classes of a root class are the various aliases
         // of Top, or itself
         ExtendedIterator i = null;

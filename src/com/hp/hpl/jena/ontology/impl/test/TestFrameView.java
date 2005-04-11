@@ -160,9 +160,18 @@ public class TestFrameView
         noinfPintersect = mNoInf.getObjectProperty( NS + "intersectP" );
     }
 
+    // OntClass.listDeclaredProperties() tests ...
+
     public void testLDP_noinfA_nodirect() {
         TestUtil.assertIteratorValues( this, noinfA.listDeclaredProperties( false ),
                                        new Object[] {noinfPa, noinfQa, noinfG, noinfQb} );
+    }
+
+    public void testHasDP_noinfA_nodirect() {
+        // we only need a small number of tests on hasDP because it's the
+        // main componenet of listDP
+        assertTrue( noinfA.hasDeclaredProperty( noinfPa, false ) );
+        assertFalse( noinfA.hasDeclaredProperty( noinfPb, false ) );
     }
 
     public void testLDP_noinfA_direct() {
@@ -272,6 +281,87 @@ public class TestFrameView
                 new Object[] {infG} );
     }
 
+    // OntProperty.listDeclaringProperties() tests ...
+
+    public void testLDC_noinfPa_nodirect() {
+        TestUtil.assertIteratorValues( this, noinfPa.listDeclaringClasses( false ),
+                new Object[] {noinfA, noinfB, noinfC} );
+    }
+
+    public void testLDC_infPa_nodirect() {
+        TestUtil.assertIteratorValues( this, infPa.listDeclaringClasses( false ),
+                new Object[] {infA, infB, infC} );
+    }
+
+    public void testLDC_noinfPb_nodirect() {
+        TestUtil.assertIteratorValues( this, noinfPb.listDeclaringClasses( false ),
+                new Object[] {noinfB, noinfC} );
+    }
+
+    public void testLDC_infPb_nodirect() {
+        TestUtil.assertIteratorValues( this, infPb.listDeclaringClasses( false ),
+                new Object[] {infC, infB} );
+    }
+
+    public void testLDC_noinfPc_nodirect() {
+        TestUtil.assertIteratorValues( this, noinfPc.listDeclaringClasses( false ),
+                new Object[] {noinfC} );
+    }
+
+    public void testLDC_infPc_nodirect() {
+        TestUtil.assertIteratorValues( this, infPc.listDeclaringClasses( false ),
+                new Object[] {infC} );
+    }
+
+    public void testLDC_noinfPa_direct() {
+        TestUtil.assertIteratorValues( this, noinfPa.listDeclaringClasses( true ),
+                new Object[] {noinfA} );
+    }
+
+    public void testLDC_infPa_direct() {
+        TestUtil.assertIteratorValues( this, infPa.listDeclaringClasses( true ),
+                new Object[] {infA} );
+    }
+
+    public void testLDC_noinfPb_direct() {
+        TestUtil.assertIteratorValues( this, noinfPb.listDeclaringClasses( true ),
+                new Object[] {noinfB} );
+    }
+
+    public void testLDC_infPb_direct() {
+        TestUtil.assertIteratorValues( this, infPb.listDeclaringClasses( true ),
+                new Object[] {infB} );
+    }
+
+    public void testLDC_noinfPc_direct() {
+        TestUtil.assertIteratorValues( this, noinfPc.listDeclaringClasses( true ),
+                new Object[] {noinfC} );
+    }
+
+    public void testLDC_infPc_direct() {
+        TestUtil.assertIteratorValues( this, infPc.listDeclaringClasses( true ),
+                new Object[] {infC} );
+    }
+
+    public void testLDC_noinfG_direct() {
+        TestUtil.assertIteratorValues( this, noinfG.listDeclaringClasses( true ),
+                new Object[] {noinfA, noinfAnn, noinfUnion1, noinfUnion2, mNoInf.getOntClass(NS+"Joint"),noinfIntersect1,noinfIntersect2}, 2 );
+    }
+
+    public void testLDC_infG_direct() {
+        TestUtil.assertIteratorValues( this, infG.listDeclaringClasses( true ),
+                new Object[] {infA, infAnn, mNoInf.getOntClass(NS+"Joint"),noinfIntersect1,noinfIntersect2}, 1 );
+    }
+
+    public void testLDC_noinfG_nodirect() {
+        TestUtil.assertIteratorValues( this, noinfG.listDeclaringClasses( false ),
+                new Object[] {noinfA, noinfB, noinfC, noinfUnion1, noinfUnion2, noinfAnn, mNoInf.getOntClass(NS+"Joint"),noinfIntersect1,noinfIntersect2}, 2 );
+    }
+
+    public void testLDC_infG_nodirect() {
+        TestUtil.assertIteratorValues( this, infG.listDeclaringClasses( false ),
+                new Object[] {infA, infB, infC, infAnn, noinfUnion1, noinfUnion2, mNoInf.getOntClass(NS+"Joint"),noinfIntersect1,noinfIntersect2}, 2 );
+    }
 
 
     // Internal implementation methods

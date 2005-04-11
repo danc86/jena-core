@@ -394,6 +394,18 @@ public interface OntClass
 
 
     /**
+     * <p>Answer true if the given property is one of the declared properties
+     * of this class. For details, see {@link #listDeclaredProperties(boolean)}.</p>
+     * @param p A property to test
+     * @param direct If true, only direct associations between classes and properties
+     * are considered
+     * @return True if <code>p</code> is one of the declared properties of
+     * this class
+     */
+    public boolean hasDeclaredProperty( Property p, boolean direct );
+
+
+    /**
      * <p>Answer an iterator over the individuals in the model that have this
      * class among their types.<p>
      *
@@ -419,7 +431,7 @@ public interface OntClass
 
 
     /**
-     * <p>Answer true if this class is one of the roots of the class hierarchy.
+     * <p>Answer true if this class is one of the roots of the local class hierarchy.
      * This will be true if either (i) this class has <code>owl:Thing</code>
      * (or <code>daml:Thing</code>) as a direct super-class, or (ii) it has
      * no declared super-classes (including anonymous class expressions).</p>
