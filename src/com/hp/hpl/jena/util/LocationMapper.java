@@ -65,7 +65,7 @@ public class LocationMapper
     public LocationMapper() { }
     
     /** Create a LocationMapper from an existing model
-     * @see com.hp.hpl.jena.vocabulary.LocationMappingVocab;
+     * @see com.hp.hpl.jena.vocabulary.LocationMappingVocab
      */
     public LocationMapper(Model model)
     {
