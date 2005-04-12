@@ -48,6 +48,7 @@ public class BuiltinRegistry {
         theRegistry.register(new NoValue());
         theRegistry.register(new Remove());
         theRegistry.register(new Sum());
+        theRegistry.register(new Difference());
         theRegistry.register(new Product());
         theRegistry.register(new Bound());
         theRegistry.register(new Unbound());

@@ -55,6 +55,7 @@ public class TestFBRules extends TestCase {
     protected Node r = Node.createURI("r");
     protected Node s = Node.createURI("s");
     protected Node t = Node.createURI("t");
+    protected Node u = Node.createURI("u");
     protected Node a = Node.createURI("a");
     protected Node b = Node.createURI("b");
     protected Node c = Node.createURI("c");
@@ -710,6 +711,7 @@ public class TestFBRules extends TestCase {
         rules =  
         "[r1: (?x p ?a), (?x q ?b), sum(?a, ?b, ?c) -> (?x s ?c)]" +
         "[r2: (?x p ?a), (?x q ?b), product(?a, ?b, ?c) -> (?x t ?c)]" +
+        "[r3: (?x p ?a), (?x q ?b), difference(?b, ?a, ?c) -> (?x u ?c)]" +
                        "";
         ruleList = Rule.parseRules(rules);
         data = new GraphMem();
@@ -723,6 +725,7 @@ public class TestFBRules extends TestCase {
                 new Triple(n1, q, Util.makeIntNode(5)),
                 new Triple(n1, s, Util.makeIntNode(8)),
                 new Triple(n1, t, Util.makeIntNode(15)),
+                new Triple(n1, u, Util.makeIntNode(2)),
             });
          
         // Note type checking   
