@@ -14,6 +14,7 @@ import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.reasoner.*;
 import com.hp.hpl.jena.reasoner.rulesys.*;
 import com.hp.hpl.jena.reasoner.test.TestUtil;
+import com.hp.hpl.jena.util.PrintUtil;
 import com.hp.hpl.jena.vocabulary.RDF;
 import com.hp.hpl.jena.vocabulary.RDFS;
 import com.hp.hpl.jena.vocabulary.ReasonerVocabulary;
@@ -213,7 +214,25 @@ public class TestGenericRules extends TestCase {
             m2.createStatement(newConfig, ReasonerVocabulary.PROPruleMode, "hybrid"),
             m2.createStatement(newConfig, ReasonerVocabulary.PROPruleSet, "testing/reasoners/genericRuleTest.rules")
             } );
-    }
+        
+        // Mutiple rule file loading
+        m = ModelFactory.createDefaultModel();
+        configuration= m.createResource(GenericRuleReasonerFactory.URI);
+        configuration.addProperty(ReasonerVocabulary.PROPruleMode, "hybrid");
+        configuration.addProperty(ReasonerVocabulary.PROPruleSet, "testing/reasoners/ruleset1.rules");
+        configuration.addProperty(ReasonerVocabulary.PROPruleSet, "testing/reasoners/ruleset2.rules");
+        reasoner = (GenericRuleReasoner)GenericRuleReasonerFactory.theInstance().create(configuration);
+        
+        infgraph = reasoner.bind(new GraphMem());
+        Node an = Node.createURI(PrintUtil.egNS + "a");
+        Node C = Node.createURI(PrintUtil.egNS + "C");
+        Node D = Node.createURI(PrintUtil.egNS + "D");
+        TestUtil.assertIteratorValues(this, 
+              infgraph.find(null, null, null), new Object[] {
+                new Triple(an, RDF.Nodes.type, C),
+                new Triple(an, RDF.Nodes.type, D),
+              } );
+     }
     
     /**
      * Test control of functor filtering

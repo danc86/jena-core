@@ -260,7 +260,7 @@ public class GenericRuleReasoner extends FBRuleReasoner {
             
         } else if (parameter.equals(ReasonerVocabulary.PROPruleSet)) {
             if (value instanceof String) {
-                setRules( loadRules( (String)value ) );
+                addRules( loadRules( (String)value ) );
             } else {
                 throw new IllegalParameterException("PROPruleSet value should be a URI string. Was a " + value.getClass());
             }
