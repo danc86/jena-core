@@ -235,7 +235,8 @@ public class JenaModelSpec
     public static Model getSchema()
         {
         if (schema == null) 
-            schema = FileManager.get().loadModel( "vocabularies/jena-model-spec.n3" );
+            schema = ModelFactory.createRDFSModel( FileManager.get().loadModel
+                ( "vocabularies/jena-model-spec.n3" ) );
         return schema;
         }
         
