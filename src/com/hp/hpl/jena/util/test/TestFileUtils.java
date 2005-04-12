@@ -76,8 +76,27 @@ public class TestFileUtils extends TestCase
 	    {
         assertEquals( "spoo", FileUtils.guessLang( "stuff.left/right", "spoo" ) );
         assertEquals( "spoo", FileUtils.guessLang( "stuff.left\\right", "spoo" ) );
-        }  
+        }
+    
+    public void testFilename1()   { isFilename("foo") ; }
+    public void testFilename2()   { isFilename("foo/bar") ; }
+    public void testFilename3()   { isFilename("foo\\bar") ; }
+    public void testFilename4()   { isFilename("\\bar") ; }
+    public void testFilename5()   { isFilename("foo/bar") ; }
+    public void testFilename6()   { isFilename("c:foo") ; }
+    public void testFilename7()   { isFilename("c:\\foo") ; }
+    public void testFilename8()   { isFilename("c:\\foo\\bar") ; }
+    public void testFilename9()   { isFilename("file::foo") ; }
+    public void testFilename10()  { isNotFilename("http://www.hp.com/") ; }
+    public void testFilename11()  { isNotFilename("urn:tag:stuff") ; }
+    
+    void isFilename(String fn)
+    { assertTrue("Should be a file name : "+fn, FileUtils.isFile(fn)) ; }
+    void isNotFilename(String fn)
+    { assertFalse("Shouldn't be a  file name: "+fn, FileUtils.isFile(fn)) ; }
+    
     }
+
 
 /*
     (c) Copyright 2004, 2005 Hewlett-Packard Development Company, LP
