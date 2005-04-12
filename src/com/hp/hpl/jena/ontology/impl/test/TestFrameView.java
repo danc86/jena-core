@@ -109,9 +109,12 @@ public class TestFrameView
     //////////////////////////////////
 
     public void setUp() {
+        OntDocumentManager.getInstance().reset();
+        OntDocumentManager.getInstance().clearCache();
         mNoInf = ModelFactory.createOntologyModel( OntModelSpec.OWL_MEM );
         mNoInf.read( "file:testing/ontology/owl/list-syntax/test-ldp.rdf" );
-        mInf = ModelFactory.createOntologyModel( OntModelSpec.OWL_MEM_RULE_INF );
+        //mInf = ModelFactory.createOntologyModel( OntModelSpec.OWL_MEM_RULE_INF );
+        mInf = ModelFactory.createOntologyModel( OntModelSpec.OWL_MEM_MICRO_RULE_INF);
         mInf.read( "file:testing/ontology/owl/list-syntax/test-ldp.rdf" );
 
         infA = mInf.getOntClass( NS + "A" );
@@ -160,6 +163,22 @@ public class TestFrameView
         noinfPintersect = mNoInf.getObjectProperty( NS + "intersectP" );
     }
 
+    public void tearDown() {
+        /* assistance with monitoring space leak
+        System.gc();
+        System.gc();
+        Runtime r = Runtime.getRuntime();
+        System.out.println( getName() + 
+                            " memory = " + r.freeMemory() + 
+                            ", alloc = " + r.totalMemory() + 
+                            ", % = " + Math.round( 100.0 * (double) r.freeMemory() / (double) r.totalMemory() ));
+        */
+        mInf.close();
+        mInf = null;
+        mNoInf.close();
+        mNoInf = null;
+    }
+    
     // OntClass.listDeclaredProperties() tests ...
 
     public void testLDP_noinfA_nodirect() {
