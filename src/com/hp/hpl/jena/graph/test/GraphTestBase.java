@@ -116,7 +116,7 @@ public class GraphTestBase extends JenaTestBase
             }
         }
     
-    protected static String nice( Graph g, Map bnodes )
+    public static String nice( Graph g, Map bnodes )
         {
         StringBuffer b = new StringBuffer( g.size() * 100 );
         ExtendedIterator it = GraphUtil.findAll( g );
