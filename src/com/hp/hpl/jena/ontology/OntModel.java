@@ -1462,7 +1462,7 @@ public interface OntModel
      * may change in future, in which case these return values will change apropriately.
      * In addition to the method return value,
      * the given <code>problems</problems> list, if non-null, will be filled with the syntax
-     * problems detected by the {@linkplain com.hp.hpl.jena.ontology.tidy.Checker syntax checker}.
+     * problems detected by the syntax checker.
      * </p>
      * <p>
      * The Jena OWL syntax checker will normally list as problems those constructs used in
