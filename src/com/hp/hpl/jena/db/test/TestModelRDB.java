@@ -5,11 +5,14 @@
 */
 package com.hp.hpl.jena.db.test;
 
+import java.sql.SQLException;
+
 import junit.framework.TestSuite;
 
 import com.hp.hpl.jena.db.*;
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.rdf.model.test.*;
+import com.hp.hpl.jena.shared.JenaException;
 
 /**
  TestModelRDB
@@ -29,6 +32,10 @@ public class TestModelRDB extends AbstractTestModel
     public void setUp()
         { con = TestConnection.makeAndCleanTestConnection();
         super.setUp(); }
+    
+    public void tearDown() 
+        { try { con.close(); }
+        catch (SQLException e) { throw new JenaException( e ); } }
     
     public Model getModel()
         {

@@ -6,6 +6,8 @@
 
 package com.hp.hpl.jena.db.test;
 
+import java.sql.SQLException;
+
 import com.hp.hpl.jena.db.*;
 import com.hp.hpl.jena.db.impl.*;
 import com.hp.hpl.jena.graph.*;
@@ -54,11 +56,13 @@ public class TestGraphRDBMaker extends AbstractTestGraphMaker
         
     /**
         Run the parent teardown, and then remove all the freshly created graphs.
+     * @throws  
     */
     public void tearDown()
         {
         super.tearDown();
         if (current != null) current.removeAll();
+        try { connection.close(); } catch (Exception e) { throw new JenaException( e ); }
         }
     }
 
