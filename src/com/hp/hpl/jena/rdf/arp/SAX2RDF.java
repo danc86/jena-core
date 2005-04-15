@@ -182,6 +182,8 @@ implements ARPConfig {
 		rdr.setProperty(
 			"http://xml.org/sax/properties/lexical-handler",
 			sax2rdf);
+		rdr.setFeature(
+		        "http://apache.org/xml/features/allow-java-encodings",true);
 	
 	}
 }
