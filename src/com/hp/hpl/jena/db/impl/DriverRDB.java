@@ -319,8 +319,7 @@ public abstract class DriverRDB implements IRDBDriver {
 						// database so abort
 						throw new JenaException(
 						"The database appears to be unformatted or corrupted and\n"
-						+ "an attempt to automatically format the database has failed\n"
-						+ " (\"" + e + "\").");
+						+ "an attempt to automatically format the database has failed\n", e);
 					}
 				}
 				unlockDB();
