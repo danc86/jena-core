@@ -101,7 +101,7 @@ abstract class XMLHandler
 	StatementHandler getStatementHandler() {
 		return handlers.getStatementHandler();
 	}
-	ARPHandlers getHandlers() {
+	public ARPHandlers getHandlers() {
 		return handlers;
 	}
 
