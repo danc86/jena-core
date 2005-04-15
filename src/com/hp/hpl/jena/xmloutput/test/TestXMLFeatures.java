@@ -16,7 +16,6 @@ import com.hp.hpl.jena.vocabulary.RDF;
 import com.hp.hpl.jena.rdf.arp.*;
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.shared.*;
-//import com.hp.hpl.jena.util.*;
 
 import junit.framework.*;
 
@@ -26,8 +25,6 @@ import org.apache.oro.text.regex.MalformedPatternException;
 import java.util.*;
 
 import java.io.*;
-//import com.hp.hpl.jena.util.TestLogger;
-//import org.apache.log4j.Level;
 
 /**
  * @author bwm

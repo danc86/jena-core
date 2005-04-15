@@ -34,6 +34,7 @@ public class TestPackage extends TestCase{
                "N-TRIPLE",
             //"N3" 
         };
+        suite.addTest(TestMacEncodings.suite());
         // add all the tests defined in this class to the suite
         /* */
         suite.addTest(new PrettyWriterTest("testAnonDamlClass"));
