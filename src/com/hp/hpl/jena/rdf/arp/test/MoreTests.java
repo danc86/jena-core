@@ -50,8 +50,8 @@ public class MoreTests extends TestCase implements RDFErrorHandler,
 		suite.addTest(new MoreTests("testToString"));
 		
 //for (int i=0; i< 20; i++ ) {
-		suite.addTest(new MoreTests("testTokenGarbage1"));
-		suite.addTest(new MoreTests("testTokenGarbage2"));
+		//suite.addTest(new MoreTests("testTokenGarbage1"));
+		//suite.addTest(new MoreTests("testTokenGarbage2"));
 //		suite.addTest(new MoreTests("testTokenGarbage1"));
 //		suite.addTest(new MoreTests("testTokenGarbage2"));
 //		suite.addTest(new MoreTests("testTokenGarbage1"));
