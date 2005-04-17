@@ -10,7 +10,7 @@ package com.hp.hpl.jena.xmloutput.impl;
 import com.hp.hpl.jena.xmloutput.RDFXMLWriterI;
 import com.hp.hpl.jena.rdf.model.impl.*;
 import com.hp.hpl.jena.rdf.model.*;
-import com.hp.hpl.jena.util.CharacterEncoding;
+import com.hp.hpl.jena.util.CharEncoding;
 import com.hp.hpl.jena.util.FileUtils;
 import com.hp.hpl.jena.rdf.model.impl.Util;
 import com.hp.hpl.jena.JenaRuntime ;
@@ -468,7 +468,7 @@ abstract public class BaseXMLWriter implements RDFXMLWriterI {
 			String javaEnc = ((OutputStreamWriter) out).getEncoding();
 			// System.err.println(javaEnc);
 			if (!(javaEnc.equals("UTF8") || javaEnc.equals("UTF-16"))) {
-			    CharacterEncoding encodingInfo = CharacterEncoding.create(javaEnc);
+			    CharEncoding encodingInfo = CharEncoding.create(javaEnc);
 		        
 				String ianaEnc = encodingInfo.name();
 				decl = "<?xml version="+q("1.0")+" encoding=" + q(ianaEnc) + "?>";
