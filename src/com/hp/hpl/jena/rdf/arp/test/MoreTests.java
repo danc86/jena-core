@@ -106,10 +106,10 @@ public class MoreTests extends TestCase implements RDFErrorHandler,
 		
 		rdr.setErrorHandler(this);
 		expected = new int[] { WARN_UNSUPPORTED_ENCODING, WARN_NON_IANA_ENCODING };
+		expected[System.getProperty("java.version").startsWith("1.4")?1:0]=0;
+//		 Only one of the warnings is expected, which depends on Java version
+		
 		rdr.read(m, r, "http://example.org/");
-		// Only one of the warnings is expected, which depends on Java version
-		if (expected[0]==0)expected[1] = 0;
-		else expected[0]=0;
 		checkExpected();
 	}
 	public void testARPMacArabic() throws IOException {
@@ -120,10 +120,9 @@ public class MoreTests extends TestCase implements RDFErrorHandler,
 		
 		rdr.setErrorHandler(this);
 		expected = new int[] { WARN_UNSUPPORTED_ENCODING, WARN_NON_IANA_ENCODING };
+		expected[System.getProperty("java.version").startsWith("1.4")?1:0]=0;
+//		 Only one of the warnings is expected, which depends on Java version
 		rdr.read(m, r, "http://example.org/");
-		// Only one of the warnings is expected, which depends on Java version
-		if (expected[0]==0)expected[1] = 0;
-		else expected[0]=0;
 		checkExpected();
 	}
 	
