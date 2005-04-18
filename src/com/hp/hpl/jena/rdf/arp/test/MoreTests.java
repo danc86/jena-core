@@ -15,7 +15,7 @@ import com.hp.hpl.jena.ontology.OntDocumentManager;
 import com.hp.hpl.jena.rdf.arp.*;
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.vocabulary.RDF;
-import com.ibm.icu.text.Normalizer;
+import java.nio.charset.Charset;
 
 import org.xml.sax.*;
 
@@ -106,7 +106,7 @@ public class MoreTests extends TestCase implements RDFErrorHandler,
 		
 		rdr.setErrorHandler(this);
 		expected = new int[] { WARN_UNSUPPORTED_ENCODING, WARN_NON_IANA_ENCODING };
-		expected[System.getProperty("java.version").startsWith("1.4")?1:0]=0;
+		expected[Charset.isSupported("MacRoman")?0:1]=0;
 //		 Only one of the warnings is expected, which depends on Java version
 		
 		rdr.read(m, r, "http://example.org/");
@@ -120,7 +120,7 @@ public class MoreTests extends TestCase implements RDFErrorHandler,
 		
 		rdr.setErrorHandler(this);
 		expected = new int[] { WARN_UNSUPPORTED_ENCODING, WARN_NON_IANA_ENCODING };
-		expected[System.getProperty("java.version").startsWith("1.4")?1:0]=0;
+		expected[Charset.isSupported("MacArabic")?0:1]=0;
 //		 Only one of the warnings is expected, which depends on Java version
 		rdr.read(m, r, "http://example.org/");
 		checkExpected();
