@@ -45,3 +45,31 @@
     ; ct:linkTitle "jena files page"
     ; ct:licence "as per Jena"
     .
+
+[]
+    dc:creator "Chris Bizer"
+    ; dc:name "NG4J"
+    ; dc:description "Named Graphs API for Jena"
+    ; ct:link "http://www.wiwiss.fu-berlin.de/suhl/bizer/ng4j/"
+    ; ct:linkTitle "NG4J website"
+    ; ct:licence "BSD license"
+    .    
+
+[]
+    dc:creator "Chris Bizer"
+    ; dc:name "D2RQ"
+    ; dc:description "Treats non-RDF databases as virtual Jena RDF graphs"
+    ; ct:link "http://www.wiwiss.fu-berlin.de/suhl/bizer/d2rq/"
+    ; ct:linkTitle "D2RQ website"
+    ; ct:licence "GNU GPL License"
+    .  
+
+[]
+    dc:creator "Reto Bachmann-Gmür / wymiwyg.org"
+    ; dc:name "WYMIWYG KnoBot"
+    ; dc:description "A fully Jena based semantic CMS. Implements URIQA. File-based persistence."
+    ; ct:link "http://sourceforge.net/project/showfiles.php?group_id=83223"
+    ; ct:linkTitle "Download KnoBot"
+    ; ct:licence "Apache"
+    .
+
