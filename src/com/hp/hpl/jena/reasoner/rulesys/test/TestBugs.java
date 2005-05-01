@@ -282,6 +282,27 @@ public class TestBugs extends TestCase {
       }
     
     /**
+     * Test bug caused by caching of deductions models.
+     */
+    public void testDeteleBug2() {
+        Model m = ModelFactory.createDefaultModel();
+        String NS = PrintUtil.egNS;
+        Resource r = m.createResource(NS + "r");
+        Resource A = m.createResource(NS + "A");
+        Resource B = m.createResource(NS + "B");
+        Statement s = m.createStatement(r, RDF.type, A);
+        m.add(s);
+        String rules = "(?r rdf:type eg:A) -> (?r rdf:type eg:B).";
+        GenericRuleReasoner grr = new GenericRuleReasoner(Rule.parseRules(rules));
+        InfModel im = ModelFactory.createInfModel(grr, m);
+        assertTrue(im.contains(r, RDF.type, B));
+        assertTrue(im.getDeductionsModel().contains(r, RDF.type, B));
+        im.remove(s);
+        assertFalse(im.contains(r, RDF.type, B));
+        assertFalse(im.getDeductionsModel().contains(r, RDF.type, B));
+    }
+    
+    /**
      * Test looping on recursive someValuesFrom.
      */
     public void hiddenTestOWLLoop() {

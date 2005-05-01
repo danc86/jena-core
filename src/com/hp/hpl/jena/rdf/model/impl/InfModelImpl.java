@@ -149,9 +149,9 @@ public class InfModelImpl extends ModelCom implements InfModel {
      * engine or null if not.
      */
     public Model getDeductionsModel() {
-        if (deductionsModel == null) {
-            Graph deductionsGraph = getInfGraph().getDeductionsGraph();
-            if (deductionsGraph != null) {
+        Graph deductionsGraph = getInfGraph().getDeductionsGraph();
+        if (deductionsGraph != null) {
+            if (deductionsModel == null || (deductionsModel.getGraph() != deductionsGraph) ) {
                 deductionsModel = new ModelCom(deductionsGraph);
             }
         }
