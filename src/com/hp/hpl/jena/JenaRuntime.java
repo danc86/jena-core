@@ -26,9 +26,12 @@ public class JenaRuntime
         
     static Map features = new HashMap() ;
     static {
-        if ( System.getProperty(featureNoSecurity) != null )
+        // Note getSystemProperty uses featureNoSecurity but works if it
+        // has not been initialized
+        if ( getSystemProperty(featureNoSecurity) != null )
             setFeature(featureNoSecurity) ;
-        if ( System.getProperty(featureNoCharset) != null )
+        
+        if ( getSystemProperty(featureNoCharset) != null )
             setFeature(featureNoCharset) ;
     }
     
@@ -67,7 +70,6 @@ public class JenaRuntime
             }
         }
     }
-    
 }
 
 /*
