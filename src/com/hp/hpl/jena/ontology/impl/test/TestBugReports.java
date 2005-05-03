@@ -1393,6 +1393,16 @@ public class TestBugReports
         TestUtil.assertIteratorValues( this, cc0.listDeclaredProperties(false), new Object[] {p0} );
     }
 
+    /**
+     * Bug report by Othmane Nadjemi - DAML individual whose only type is daml:Thing
+     * returns false to isIndividual()
+     */
+    public void test_on_01() {
+        OntModel m = ModelFactory.createOntologyModel( OntModelSpec.DAML_MEM );
+        Individual i = m.createIndividual( DAML_OIL.Thing );
+        assertTrue( i.isIndividual() );
+    }
+
 
     // Internal implementation methods
     //////////////////////////////////

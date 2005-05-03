@@ -1138,30 +1138,42 @@ public class OntResourceImpl
      */
     public boolean isIndividual() {
         OntModel m = (getModel() instanceof OntModel) ? (OntModel) getModel() : null;
-        if (m != null) {
-            if (!(m.getGraph() instanceof BasicForwardRuleInfGraph) ||
-                m.getProfile().THING() == null) {
-                // either not using the OWL reasoner, or not using OWL
-                // look for an rdf:type of this resource that is a class
-                for (StmtIterator i = listProperties( RDF.type ); i.hasNext(); ) {
-                    Resource rType = i.nextStatement().getResource();
-                    for (StmtIterator j = rType.listProperties( RDF.type ); j.hasNext(); ) {
-                        if (j.nextStatement().getResource().equals( getProfile().CLASS() )) {
-                            // we have found an rdf:type of the subject that is an owl, rdfs or daml Class
-                            // therefore this is an individual
+
+        StmtIterator i = null, j = null;
+        try {
+            if (m != null) {
+                if (!(m.getGraph() instanceof BasicForwardRuleInfGraph) ||
+                    m.getProfile().THING() == null) {
+                    // either not using the OWL reasoner, or not using OWL
+                    // look for an rdf:type of this resource that is a class
+                    for (i = listProperties( RDF.type ); i.hasNext(); ) {
+                        Resource rType = i.nextStatement().getResource();
+                        if (rType.equals( m.getProfile().THING() )) {
+                            // the resource has rdf:type owl:Thing (or equivalent)
                             return true;
                         }
+                        for (j = rType.listProperties( RDF.type ); j.hasNext(); ) {
+                            if (j.nextStatement().getResource().equals( getProfile().CLASS() )) {
+                                // we have found an rdf:type of the subject that is an owl, rdfs or daml Class
+                                // therefore this is an individual
+                                return true;
+                            }
+                        }
                     }
-                }
 
-                // apparently not an instance
-                return false;
+                    // apparently not an instance
+                    return false;
+                }
+                else {
+                    // using the rule reasoner on an OWL graph, so we can determine
+                    // individuals as those things that have rdf:type owl:Thing
+                    return hasProperty( RDF.type, getProfile().THING() );
+                }
             }
-            else {
-                // using the rule reasoner on an OWL graph, so we can determine
-                // individuals as those things that have rdf:type owl:Thing
-                return hasProperty( RDF.type, getProfile().THING() );
-            }
+        }
+        finally {
+            if (i != null) { i.close(); }
+            if (j != null) { j.close(); }
         }
 
         // default - try to convert and return false if fail
