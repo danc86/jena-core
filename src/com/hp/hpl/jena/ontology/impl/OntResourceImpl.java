@@ -116,6 +116,18 @@ public class OntResourceImpl
     //////////////////////////////////
 
     /**
+     * <p>Answer the model that this resource is attached to, assuming that it
+     * is an {@link OntModel}. If this resource is not attached to any model,
+     * or is (unusally) attached to a model that is not an <code>OntModel</code>,
+     * answer null.</p>
+     * @return The ont model that this resource is attached to, or null.
+     */
+    public OntModel getOntModel() {
+        Model m = getModel();
+        return (m instanceof OntModel) ? (OntModel) m : null;
+    }
+    
+    /**
      * <p>
      * Answer the ontology language profile that governs the ontology model to which
      * this ontology resource is attached.

@@ -600,6 +600,14 @@ public class TestResource
                     assertFalse( "should not be a lang term", or.isOntLanguageTerm() );
                 }
             },
+            new OntTestCase( "OntResource.getOntModel", true, true, true, true ) {
+                public void ontTest( OntModel m ) throws Exception {
+                    OntResource or = m.createOntResource( "http://foo/bar" );
+                    OntModel m0 = or.getOntModel();
+                    assertEquals( m, m0 );
+                }
+            },
+
         };
     }
 
