@@ -62,6 +62,7 @@ public class BuiltinRegistry {
         theRegistry.register(new Max());
         theRegistry.register(new Min());
         theRegistry.register(new ListLength());
+        theRegistry.register(new ListEntry());
         theRegistry.register(new ListEqual());
         theRegistry.register(new ListNotEqual());
         theRegistry.register(new ListContains());
