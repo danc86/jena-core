@@ -100,11 +100,10 @@ public class EnhNode extends Polymorphic implements FrontsNode
         { return true; }
         
     /** 
-     * Answer an enhanced node object that presents <i>this</i> in a way which satisfies type
-     * t.
-     * @param t A type
-     * @return A polymorphic instance that conforms to t.
-     */
+        Answer an new enhanced node object that presents <i>this</i> in a way 
+        which satisfies type <code>t</code>. The new object is linked into this
+        object's sibling ring. 
+    */
     protected Polymorphic convertTo( Class t ) 
         {
         EnhGraph eg = getGraph();
