@@ -30,6 +30,7 @@ public class TestPackage extends TestSuite {
         addTest( "TestHashUtils",         TestCollectionFactory.suite() );
         addTest( "TestLocationMapper",    TestLocationMapper.suite() ) ;
         addTest( "TestFileManager",       TestFileManager.suite()) ;
+        addTest( "TestMonitors",       TestMonitors.suite()) ;
         addTest( TestIteratorCollection.suite() );
         addTestSuite( TestOneToManyMap.class );
     }

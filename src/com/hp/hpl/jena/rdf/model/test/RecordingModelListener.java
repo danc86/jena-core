@@ -17,7 +17,7 @@ import com.hp.hpl.jena.rdf.model.Statement;
 import com.hp.hpl.jena.rdf.model.StmtIterator;
 
 
-class RecordingModelListener implements ModelChangedListener
+public class RecordingModelListener implements ModelChangedListener
     {
     List history = new ArrayList();
     
@@ -60,10 +60,10 @@ class RecordingModelListener implements ModelChangedListener
     protected void record( String tag, Object info )
         { history.add( tag ); history.add( info ); }
         
-    boolean has( Object [] things ) 
+    public boolean has( Object [] things ) 
         { return history.equals( Arrays.asList( things ) ); }
         
-    void assertHas( Object [] things )
+    public void assertHas( Object [] things )
         {
         if (has( things ) == false)
             ModelTestBase.fail( "expected " + Arrays.asList( things ) + " but got " + history );
@@ -92,6 +92,10 @@ class RecordingModelListener implements ModelChangedListener
         List L = Arrays.asList( end );
         if (hasEnd( L ) == false) Assert.fail( "expected " + L + " at the end of " + history );        
         }
+    
+    public void clear()
+    { history.clear(); }
+
     }
 
 /*
