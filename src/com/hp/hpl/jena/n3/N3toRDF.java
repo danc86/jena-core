@@ -436,7 +436,9 @@ public class N3toRDF implements N3ParserEventHandler
             if ( ch == ':' )
                 return true ;
             if ( ( ch >= 'a' && ch <= 'z' ) ||
-                 ( ch >= 'A' && ch <= 'Z' ) )
+                 ( ch >= 'A' && ch <= 'Z' ) ||
+                 ( ch >= '0' && ch <= '9' ) ||
+                 ch == '+' || ch == '-' | ch== '.' ) 
                 continue ;
             return false ;
         }
