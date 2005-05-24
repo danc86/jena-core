@@ -73,14 +73,20 @@ public class GraphTestBase extends JenaTestBase
         while (semis.hasMoreTokens()) result.add( triple( semis.nextToken() ) );   
         return result;
         }
-        
-    public static Node [] nodes( String items )
+       
+    public static List nodeList( String items )
         {
         ArrayList nl = new ArrayList();
         StringTokenizer nodes = new StringTokenizer( items );
         while (nodes.hasMoreTokens()) nl.add( node( nodes.nextToken() ) );   
+        return nl;
+        }   
+    
+    public static Node [] nodes( String items )
+        {
+        List nl = nodeList( items );  
         return (Node []) nl.toArray( new Node [nl.size()] );
-        }
+        } 
         
     public static Graph graphAdd( Graph g, String s )
         {

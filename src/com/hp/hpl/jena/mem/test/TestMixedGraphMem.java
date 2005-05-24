@@ -6,9 +6,12 @@
 
 package com.hp.hpl.jena.mem.test;
 
+import java.util.*;
+
 import junit.framework.TestSuite;
 
-import com.hp.hpl.jena.graph.Graph;
+import com.hp.hpl.jena.graph.*;
+import com.hp.hpl.jena.mem.*;
 import com.hp.hpl.jena.mem.MixedGraphMem;
 
 
@@ -25,6 +28,38 @@ public class TestMixedGraphMem extends TestGraphMem
         
     public Graph getGraph()
         { return new MixedGraphMem(); }
+    
+    public void testRepeatedAddSuppressesPredicateAndObject()
+        {
+        final List history = new ArrayList();
+        MixedGraphMemStore t = new MixedGraphMemStore( getGraph() )
+            {
+            protected boolean add( Node key, Triple t )
+                {
+                history.add( key );
+                return super.add( key, t );
+                }
+            };
+        t.add( triple( "s P o" ) );
+        assertEquals( nodeList( "s P o" ), history );
+        t.add( triple( "s P o" ) );
+        assertEquals( nodeList( "s P o s" ), history );
+        }
+    
+    public void testRemoveAbsentSuppressesPredicateAndObject()
+        {
+        final List history = new ArrayList();
+        MixedGraphMemStore t = new MixedGraphMemStore( getGraph() )
+            {
+            protected boolean remove( Node key, Triple t )
+                {
+                history.add( key );
+                return super.remove( key, t );
+                }
+            };
+        t.remove( triple( "s P o" ) );
+        assertEquals( nodeList( "s" ), history );
+        }
     }
 
 /*

@@ -54,6 +54,17 @@ public /* abstract */ class AbstractTestGraph extends GraphTestBase
         assertTrue( g.contains( r, p, Node.ANY ) );
         assertTrue( g.find( r, p, Node.ANY ).hasNext() );
         }
+    
+    public void testRepeatedSubjectDoesNotConceal()
+        {
+        Graph g = getGraphWith( "s P o; s Q r" );
+        assertTrue( g.contains( triple( "s P o" ) ) );
+        assertTrue( g.contains( triple( "s Q r" ) ) );
+        assertTrue( g.contains( triple( "?? P o" ) ) );
+        assertTrue( g.contains( triple( "?? Q r" ) ) );
+        assertTrue( g.contains( triple( "?? P ??" ) ) );
+        assertTrue( g.contains( triple( "?? Q ??" ) ) );
+        }
         
     public void testFindByFluidTriple()
         {
