@@ -142,8 +142,9 @@ public class OWLUnitTest extends TestCase {
         new TestDef("localtests/Manifest004.rdf", FB | MINI), // Requires equality
         new TestDef("localtests/Manifest006.rdf", FB ), // a oneOF case
         
-        // Inheritance of domain/range by subProperties
+        // Inheritance of domain/range by subProperties, inverseof
         new TestDef("localtests/Manifest007.rdf", FB | MICRO | MINI),
+        new TestDef("localtests/Manifest008.rdf", FB | MICRO | MINI),
 
         // Consistency tests
         // clean case
