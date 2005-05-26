@@ -40,8 +40,8 @@ public class PlainModelSpec extends ModelSpecImpl implements ModelSpec
         Answer a Model that satisfies the description that this ModelSpec was constructed
         with.
     */
-    public Model createModel()
-        { return loadFiles( maker.createModel() ); }
+    public Model doCreateModel()
+        { return maker.createModel(); }
     
     /**
         Answer the Model obtained from the underlying ModelMaker with the given name. 

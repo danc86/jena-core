@@ -6,8 +6,6 @@
 
 package com.hp.hpl.jena.rdf.model.impl;
 
-import junit.framework.Assert;
-
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.reasoner.*;
@@ -52,7 +50,7 @@ public class InfModelSpec extends ModelSpecImpl
         
         @return a new InfModel reasoning over a new base graph.
     */
-    public Model createModel()
+    public Model doCreateModel()
         { return createModel( maker.getGraphMaker().createGraph() ); }
         
     /**

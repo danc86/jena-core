@@ -64,10 +64,18 @@ public abstract class ModelSpecImpl implements ModelSpec
     protected Resource root = ResourceFactory.createResource( "" );
         
     /**
-        Answer a Model created according to this ModelSpec; left abstract for subclasses
-        to implement.
+        Answer a Model created according to this ModelSpec, with any required
+        files loaded into it.
     */
-    public abstract Model createModel();
+    public final Model createModel()
+        { return loadFiles( doCreateModel() ); }
+    
+    /**
+        Answer a Model created according to this ModelSpec; subclasses must 
+        implement. The resulting model is returned by <code>createModel</code>
+        after loading any files specified by jms:loadFile properties.
+    */
+    protected abstract Model doCreateModel();
     
     public Model getModel() 
         { return defaultModel; }
@@ -207,7 +215,7 @@ public abstract class ModelSpecImpl implements ModelSpec
         return FileManager.get().loadModel( uri );
         }
 
-    protected Model loadFiles(Model m)
+    protected Model loadFiles( Model m )
         {
         StmtIterator it = description.listStatements( root, JenaModelSpec.loadWith, (RDFNode) null );
         while (it.hasNext()) FileManager.get().readModel( m, it.nextStatement().getResource().getURI() );

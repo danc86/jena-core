@@ -439,7 +439,7 @@ public class OntModelSpec extends ModelSpecImpl implements ModelSpec {
         The base model comes from the underlying ModelMaker.
         @return an OntModel satisfying this specification
     */
-    public Model createModel() {
+    public Model doCreateModel() {
         Model m = baseModelName == null ? maker.createModel() : maker.createModel( baseModelName );
         return new OntModelImpl( this, m );
     }
