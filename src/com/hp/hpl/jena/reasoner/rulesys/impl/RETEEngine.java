@@ -264,7 +264,7 @@ public class RETEEngine implements FRuleEngineI {
             
             // Finished compiling a rule - add terminal 
             if (prior != null) {
-                RETETerminal term = new RETETerminal(rule, this, infGraph);
+                RETETerminal term = createTerminal(rule);
                 prior.setContinuation(term);
             }
                     
@@ -273,6 +273,16 @@ public class RETEEngine implements FRuleEngineI {
         if (wildcardRule) predicatesUsed = null;
     }    
 
+    /**
+     * Create a terminal node for the RETE network. Normally this is RETETerminal
+     * but some people have experimented with alternative delete handling by
+     * creating RETETerminal subclasses so this hook simplifies use of that
+     * approach.
+     */
+    protected RETETerminal createTerminal(Rule rule) {
+        return new RETETerminal(rule, this, infGraph);
+    }
+    
 //  =======================================================================
 //  Internal implementation methods
 
