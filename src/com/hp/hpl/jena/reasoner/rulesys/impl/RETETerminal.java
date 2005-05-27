@@ -47,7 +47,7 @@ public class RETETerminal implements RETESinkNode {
      * @param engine the parent rule engine through which the deductions and recursive network can be reached.
      * @param graph the wider encompasing infGraph needed to for the RuleContext
      */
-    private RETETerminal(RETERuleContext context) {
+    protected RETETerminal(RETERuleContext context) {
         this.context = context;
     }
     

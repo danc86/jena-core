@@ -173,7 +173,7 @@ public class BasicForwardRuleInfGraph extends BaseInfGraph implements ForwardRul
         if (isPrepared) return;
         isPrepared = true;
         // initilize the deductions graph
-        fdeductions = new FGraph( new GraphMem() );
+        fdeductions = new FGraph( createDeductionsGraph() );
         boolean rulesLoaded = false;
         if (schemaGraph != null) {
             rulesLoaded = preloadDeductions(schemaGraph);
@@ -340,6 +340,14 @@ public class BasicForwardRuleInfGraph extends BaseInfGraph implements ForwardRul
     public Graph getDeductionsGraph() {
         prepare();
         return fdeductions.getGraph();
+    }
+   
+    /** 
+     * Create the graph used to hold the deductions. Can be overridden
+     * by subclasses that need special purpose graph implementations here. 
+     */
+    protected Graph createDeductionsGraph() {
+        return new GraphMem();
     }
     
     /**

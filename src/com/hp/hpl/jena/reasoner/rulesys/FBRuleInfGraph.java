@@ -371,7 +371,7 @@ public class FBRuleInfGraph  extends BasicForwardRuleInfGraph implements Backwar
                 Graph oldDeductions = ((FGraph)fdeductions).getGraph();
                 oldDeductions.getBulkUpdateHandler().removeAll();
             } else {
-                fdeductions = new FGraph( new GraphMem() );
+                fdeductions = new FGraph( createDeductionsGraph() );
             }
             dataFind = (data == null) ? fdeductions :  FinderUtil.cascade(fdeductions, fdata);
             Finder dataSource = fdata;
