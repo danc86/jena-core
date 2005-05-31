@@ -101,6 +101,7 @@ jms:OntModelSpec        rdfs:subClassOf     jms:InfModelSpec .
 jms:FileModelSpec       rdfs:subClassOf     jms:PlainModelSpec .
 
 jms:reificationMode     rdfs:domain         jms:MakerSpec .
+jms:loadWith            rdfs:domain         jms:ModelSpec .
 jms:maker               rdfs:domain         jms:PlainModelSpec .
 jms:importMaker         rdfs:domain         jms:OntModelSpec .
 jms:ontLanguage         rdfs:domain         jms:OntModelSpec .
