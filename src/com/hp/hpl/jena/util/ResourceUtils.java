@@ -96,34 +96,32 @@ public class ResourceUtils {
     public static List maximalLowerElements( Iterator resources, Property rel, boolean inverse ) {
         List in = new ArrayList();
         List out = new ArrayList();
+        List drop = new ArrayList();
         
         while (resources.hasNext()) {
             in.add( resources.next() );
         }
         
         while (! in.isEmpty()) {
-            boolean rCovered = false;
             Resource r = (Resource) in.remove( 0 ); 
-            
-            // check the remaining input list
-            for (Iterator i = in.iterator();  !rCovered && i.hasNext(); ) {
-                Resource next = (Resource) i.next(); 
-                rCovered = inverse ? r.hasProperty( rel, next ) : next.hasProperty( rel, r );
-            }
-            
-            // check the output list
-            for (Iterator i = out.iterator();  !rCovered && i.hasNext(); ) {
-                Resource next = (Resource) i.next(); 
-                rCovered = inverse ? r.hasProperty( rel, next ) : next.hasProperty( rel, r );
-            }
+            boolean rCovered = testResourceCovered( in, rel, inverse, r ) ||
+                               testResourceCovered( out, rel, inverse, r ) ||
+                               testResourceCovered( drop, rel, inverse, r );
             
             // if r is not covered by another resource, we can add it to the output
-            if (!rCovered) {
-                out.add( r );
-            } 
+            (rCovered ? drop : out).add( r );
         }
         
         return out;
+    }
+
+    private static boolean testResourceCovered( List l, Property rel, boolean inverse, Resource r ) {
+        boolean rCovered = false;
+        for (Iterator i = l.iterator();  !rCovered && i.hasNext(); ) {
+            Resource next = (Resource) i.next(); 
+            rCovered = inverse ? r.hasProperty( rel, next ) : next.hasProperty( rel, r );
+        }
+        return rCovered;
     }
 
     
