@@ -73,3 +73,12 @@
     ; ct:licence "Apache"
     .
 
+[]
+     dc:creator "Vineet Sinha"
+     ; dc:name "Jena Derby Driver"
+     ; dc:description "Jena driver for the Apache Derby Database"
+     ; ct:link "http://people.csail.mit.edu/vineet/jena-derby.html"
+     ; ct:linkTitle "driver website"
+     ; ct:licence "as per Jena"
+     .
+
