@@ -6,6 +6,7 @@
 
 package com.hp.hpl.jena.db.impl;
 
+import java.sql.*;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.List;
@@ -106,8 +107,8 @@ public class DBQueryStage extends Stage
     			val = compiled.driver.nodeToRDBString(arg,false);
     			ps.setString(i+1, val);	
     		}
-		} catch (Exception e) {
-			throw new JenaException("Bad query argument: " + e);
+		} catch (SQLException e) {
+			throw new JenaException( "Bad query argument", e );
 		}
 
     }

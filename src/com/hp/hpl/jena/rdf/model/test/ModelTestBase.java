@@ -118,6 +118,19 @@ public class ModelTestBase extends GraphTestBase
         StringTokenizer st = new StringTokenizer( items );
         while (st.hasMoreTokens()) rl.add( resource( m, st.nextToken() ) );  
         return (Resource []) rl.toArray( new Resource[rl.size()] );
+        }    
+    
+    /**
+        Answer the set of resources given by the space-separated 
+        <code>items</code> string. Each resource specification is interpreted
+        as per <code>resource</code>.
+    */
+    public static Set resourceSet( String items )
+        {
+        Set result = new HashSet();
+        StringTokenizer st = new StringTokenizer( items );
+        while (st.hasMoreTokens()) result.add( resource( st.nextToken() ) );  
+        return result;
         }
         
     /**
