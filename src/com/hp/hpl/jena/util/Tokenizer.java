@@ -96,7 +96,7 @@ public class Tokenizer {
      * Test if there are more tokens which can be returned.
      */
     public boolean hasMoreTokens() {
-        if (lookahead != null) lookahead = getNextToken();
+        if (lookahead == null) lookahead = getNextToken();
         return lookahead != null;
     }
     
@@ -153,6 +153,15 @@ public class Tokenizer {
             return false;
         } else {
             return true;
+        }
+    }
+    
+    public static void main(String[] args) {
+        System.out.println("Starting");
+        Tokenizer tokenizer = new Tokenizer("foo     '' ", "()[], \t\n\r", "'", true);
+        while (tokenizer.hasMoreTokens()) {
+            String t = tokenizer.nextToken();
+            System.out.println("Token: [" +  t + "]");
         }
     }
 } 

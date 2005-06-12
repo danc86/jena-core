@@ -605,6 +605,13 @@ public class Rule implements ClauseEntry {
         /** Look ahead, null if none */
         private String lookahead;
         
+        // Literal parse state flags
+        private static final int NORMAL = 0;
+        private static final int STARTED_LITERAL = 1;
+        
+        /** Literal parse state */
+        private int literalState = NORMAL;;
+        
         /** Trace back of recent tokens for error reporting */
         protected List priorTokens = new ArrayList();
         
@@ -674,8 +681,18 @@ public class Rule implements ClauseEntry {
                 return temp;
             } else {
                 String token = stream.nextToken();
-                while (isSeparator(token)) {
-                    token = stream.nextToken();
+                if (literalState == NORMAL) {
+                    // Skip separators unless within a literal
+                    while (isSeparator(token)) {
+                        token = stream.nextToken();
+                    }
+                }
+                if (token.equals("'")) {
+                    if (literalState == NORMAL) {
+                        literalState = STARTED_LITERAL;
+                    } else {
+                        literalState = NORMAL;
+                    }
                 }
                 priorTokens.add(0, token);
                 if (priorTokens.size() > maxPriors) {
@@ -684,7 +701,7 @@ public class Rule implements ClauseEntry {
                 return token;
             }
         }
-        
+                
         /**
          * Return a trace of the recently seen tokens, for use
          * in error reporting
