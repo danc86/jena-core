@@ -424,7 +424,8 @@ public class RETEEngine implements FRuleEngineI {
      * Scan the rules for any run actions and run those
      */
     protected void findAndProcessActions() {
-        RuleContext tempContext = new RETERuleContext(infGraph, this);
+        RETERuleContext tempContext = new RETERuleContext(infGraph, this);
+        tempContext.setEnv(new BindingVector());
         for (Iterator i = rules.iterator(); i.hasNext(); ) {
             Rule r = (Rule)i.next();
             if (r.bodyLength() == 0) {
