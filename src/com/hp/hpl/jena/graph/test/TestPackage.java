@@ -42,7 +42,9 @@ public class TestPackage extends TestSuite {
         addTest( "TestCapabilities", TestCapabilities.suite() );
         addTest( "TestGraphUtils", TestGraphUtils.suite() );
         addTest( "TestGraphPrefixMapping", TestGraphPrefixMapping.suite() );       
-        }
+        addTest( "RDFS-matching", TestGraphMatchWithInference.suite());
+    
+    }
 
     private void addTest(String name, TestSuite tc) {
         tc.setName(name);

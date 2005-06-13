@@ -139,7 +139,15 @@ public class GraphMatcher extends java.lang.Object {
         other = oth;
         oth.other = this;
         in(HASH_BAD);
-        if ( m.size() != other.m.size() )
+        
+        // check that the size's are the same.
+        // If the size is not accurate then it is a lower bound
+        
+        if (m.getCapabilities().sizeAccurate()
+                && m.size() < other.m.size() )
+            return null;
+        if (other.m.getCapabilities().sizeAccurate()
+                && m.size() > other.m.size() )
             return null;
         int myPrep = prepare(other.m);
         if ( myPrep == -1 || myPrep != other.prepare(m) ) {
