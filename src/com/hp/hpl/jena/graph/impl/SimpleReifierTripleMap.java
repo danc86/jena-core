@@ -88,6 +88,7 @@ public class SimpleReifierTripleMap implements ReifierTripleMap
 
     protected ExtendedIterator allTriples( TripleMatch tm )
         {
+        if (forwardMap.isEmpty()) return NullIterator.instance;
         Triple pattern = tm.asTriple();
         Node tag = pattern.getSubject();
         if (tag.isConcrete())
