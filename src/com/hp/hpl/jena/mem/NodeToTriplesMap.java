@@ -9,7 +9,6 @@ package com.hp.hpl.jena.mem;
 import java.util.*;
 
 import com.hp.hpl.jena.graph.*;
-import com.hp.hpl.jena.shared.JenaException;
 import com.hp.hpl.jena.util.CollectionFactory;
 import com.hp.hpl.jena.util.iterator.*;
 
@@ -23,6 +22,9 @@ public abstract class NodeToTriplesMap
          The map from nodes to Set(Triple).
     */
     private Map map = CollectionFactory.createHashedMap();
+    
+    public Map forTestingOnly_getMap()
+        { return map; }
     
     /**
           The number of triples held in this NTM, maintained incrementally 

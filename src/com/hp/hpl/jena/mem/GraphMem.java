@@ -20,6 +20,9 @@ public class GraphMem extends GraphMemBase implements Graph
     {
     protected TripleStore store = new GraphTripleStore( this );
     
+    public GraphTripleStore forTestingOnly_getStore() 
+        { return (GraphTripleStore) store; }
+    
     /**
         Initialises a GraphMem with the Minimal reification style
     */

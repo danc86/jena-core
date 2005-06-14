@@ -38,6 +38,9 @@ public class WrappedIterator extends NiceIterator
     /** the base iterator that we wrap */  
     private Iterator base;
     
+    public Iterator forTestingOnly_getBase()
+        { return base; }
+    
     /** constructor: remember the base iterator */
     protected WrappedIterator( Iterator base )
         { this( base, false ); }
