@@ -50,6 +50,7 @@ public class BuiltinRegistry {
         theRegistry.register(new Sum());
         theRegistry.register(new Difference());
         theRegistry.register(new Product());
+        theRegistry.register(new Quotient());
         theRegistry.register(new Bound());
         theRegistry.register(new Unbound());
         theRegistry.register(new IsLiteral());
