@@ -230,6 +230,9 @@ public abstract class GraphBase implements GraphWithPerform
     */
     protected abstract ExtendedIterator graphBaseFind( TripleMatch m );
 
+    public ExtendedIterator forTestingOnly_graphBaseFind( TripleMatch tm )
+        { return graphBaseFind( tm ); }
+    
     /**
          
     */

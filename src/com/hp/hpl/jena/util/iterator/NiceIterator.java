@@ -78,10 +78,10 @@ public class NiceIterator implements ExtendedIterator
             private boolean walkingA = true;
             
             public boolean hasNext()
-                { return (walkingA = a.hasNext()) || b.hasNext(); }
+                { return (walkingA && (walkingA = a.hasNext())) || b.hasNext(); }
                 
             public Object next()
-                { return (walkingA = a.hasNext()) ? a.next() : b.next(); }
+                { return (walkingA && (walkingA = a.hasNext())) ? a.next() : b.next(); }
                 
             public void close()
                 {
