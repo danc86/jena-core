@@ -46,6 +46,9 @@ public class TestMixedGraphMem extends TestGraphMem
         assertEquals( nodeList( "s P o s" ), history );
         }
     
+    public void testUnnecessaryMatches() { 
+        /* test not appropriate for subclass */ 
+        }
     public void testRemoveAbsentSuppressesPredicateAndObject()
         {
         final List history = new ArrayList();

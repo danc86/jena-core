@@ -20,13 +20,19 @@ import com.hp.hpl.jena.util.iterator.WrappedIterator;
 public class GraphTripleStore implements TripleStore
     {
     protected NodeToTriplesMap subjects = new NodeToTriplesMap()
-        { public Node getIndexNode( Triple t ) { return t.getSubject(); } };
+        { public Node getIndexNode( Triple t ) { return t.getSubject(); }  
+          public boolean useSubjectInFilter(Triple p) { return false; }
+        };
         
     protected NodeToTriplesMap predicates = new NodeToTriplesMap()
-        { public Node getIndexNode( Triple t ) { return t.getPredicate(); } };
+        { public Node getIndexNode( Triple t ) { return t.getPredicate(); } 
+        public boolean usePredicateInFilter(Triple p) { return false; }
+         };
         
     protected NodeToTriplesMap objects = new NodeToTriplesMap()
-        { public Node getIndexNode( Triple t ) { return t.getObject(); } };
+        { public Node getIndexNode( Triple t ) { return t.getObject(); } 
+        public boolean useObjectInFilter(Triple p) { return false; }
+        };
         
     public NodeToTriplesMap forTestingOnly_getObjects()
         { return objects; }

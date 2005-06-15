@@ -15,7 +15,7 @@ import com.hp.hpl.jena.shared.*;
 */
 public class Node_URI extends Node_Concrete
     {
-    /* package */ Node_URI( Object uri )
+    protected Node_URI( Object uri )
         { super( uri ); }
 
     public String getURI()
@@ -52,7 +52,10 @@ public class Node_URI extends Node_Concrete
     
     public boolean hasURI( String uri )
         { return label.equals( uri ); }
+    
+    
     }
+    
 
 /*
     (c) Copyright 2003, 2004, 2005 Hewlett-Packard Development Company, LP

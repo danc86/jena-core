@@ -25,6 +25,11 @@ public class TestSmallGraphMem extends TestGraphMem
         
     public Graph getGraph()
         { return new SmallGraphMem(); }
+
+    public void testUnnecessaryMatches() { 
+        /* test not appropriate for subclass */ 
+        }
+    
     }
 
 /*

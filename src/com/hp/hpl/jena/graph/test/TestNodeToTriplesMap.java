@@ -31,18 +31,23 @@ public class TestNodeToTriplesMap extends GraphTestBase
     	{ 
         public Node getIndexNode( Triple t ) { return t.getSubject(); } 
         public Node getSubindexNode( Triple t ) { return t.getPredicate(); } 
-        };
+        public boolean useSubjectInFilter(Triple t) { return false; }
+        
+    	};
     	
     protected NodeToTriplesMap ntP = new NodeToTriplesMap()
     	{ 
         public Node getIndexNode( Triple t ) { return t.getPredicate(); } 
         public Node getSubindexNode( Triple t ) { return t.getSubject(); } 
-        };
+        public boolean usePredicateInFilter(Triple t) { return false; }
+        
+    	};
     	
     protected NodeToTriplesMap ntO = new NodeToTriplesMap()
     	{ 
         public Node getIndexNode( Triple t ) { return t.getObject(); } 
         public Node getSubindexNode( Triple t ) { return t.getPredicate(); } 
+        public boolean useObjectInFilter(Triple t) { return false; }
         };
 
     protected static final Node x = node( "x" );
