@@ -31,7 +31,7 @@
 
 package com.hp.hpl.jena.rdf.model;
 
-import com.hp.hpl.jena.util.iterator.ClosableIterator;
+import com.hp.hpl.jena.util.iterator.ExtendedIterator;
 import java.util.NoSuchElementException;
 
 /** An iterator which returns RDF nodes.
@@ -44,7 +44,7 @@ import java.util.NoSuchElementException;
  * @author bwm
  * @version Release='$Name$' Revision='$Revision$' Date='$Date$'
  */
-public interface NodeIterator extends ClosableIterator {
+public interface NodeIterator extends ExtendedIterator {
     /** Determine if there any more values in the iteration.
      .
      * @return true if and only if there are more values available
