@@ -91,3 +91,13 @@
      ; ct:licence "Public Domain"
      ; rdfs:seeAlso <http://www.ldodds.com/projects/twinkle/doap.rdf>
      .
+
+[]
+    dc:creator "Ben Szekely and Joe Betz"
+    ; dc:name "Jastor"
+    ; dc:description "Code generator that emits Java Beans from OWL Web Ontologies"
+    ; ct:link <http://jastor.sourceforge.net>
+    ; ct:linkTitle "Jastor website"
+    ; ct:licence "Common Public License"
+    .
+
