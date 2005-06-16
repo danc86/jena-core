@@ -86,7 +86,7 @@ public abstract class NodeToTriplesMap
     public Iterator iterator( Node o ) 
         {
         Set s = (Set) map.get( o );
-        return s == null ? NullIterator.instance :  s.iterator();
+        return s == null ? NullIterator.instance : s.iterator();
         }
     
     /**
@@ -247,10 +247,12 @@ public abstract class NodeToTriplesMap
     protected Filter createPfilter( final Node pp )
         {
         return new Filter() {
+            private final Node myPP = pp;
+            
             public boolean accept( Object o )
                 {
                 Triple t = (Triple) o;
-                return pp.matches( t.getPredicate() );
+                return myPP.matches( t.getPredicate() );
                 }
         };
         }

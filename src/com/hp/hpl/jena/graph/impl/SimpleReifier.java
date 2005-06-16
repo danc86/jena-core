@@ -201,6 +201,7 @@ public class SimpleReifier implements Reifier
         }        
     
     public ExtendedIterator find( TripleMatch m )
+        // { return NullIterator.instance; } 
         { return tripleMap.find( m ).andThen( fragmentsMap.find( m ) ); }
     
     public ExtendedIterator findExposed( TripleMatch m )

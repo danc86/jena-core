@@ -36,10 +36,7 @@ public class Node_URI extends Node_Concrete
         { return pm == null ? (String) label : pm.shortForm( (String) label ); }
         
     public boolean equals( Object other )
-        { return other instanceof Node_URI && same( (String) label, (String) ((Node_URI) other).label ); }
-    
-    protected boolean same( String me, String other )
-        { return me.hashCode() == other.hashCode() && me.equals( other ); }
+        { return other instanceof Node_URI && label.equals( ((Node_URI) other).label ); }
 
     public String getNameSpace()
         { 
