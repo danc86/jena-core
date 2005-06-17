@@ -73,7 +73,8 @@ public class TestBasics extends TestCase  {
            "(?a rdf:type ?_) -> (?a rdf:type 4.2).",
            "(?a rdf:type ?_) -> (?a rdf:type ' fool that,I(am)').",
             "[rule1: (?a rdf:type ?_) -> (?a rdf:type a)]",
-            "-> print(' ')."
+            "-> print(' ').",
+            "-> print(' literal with embedded \\' characters ')."
         };
         String[] testResults = new String[] {
             "[ (?a rdf:type ?_) -> (?a rdf:type ?b) ]",
@@ -85,7 +86,8 @@ public class TestBasics extends TestCase  {
             "[ (?a rdf:type ?_) -> (?a rdf:type 4.2^^http://www.w3.org/2001/XMLSchema#float) ]",
             "[ (?a rdf:type ?_) -> (?a rdf:type ' fool that,I(am)') ]",
             "[ rule1: (?a rdf:type ?_) -> (?a rdf:type a) ]",
-            "[ -> print(' ') ]"
+            "[ -> print(' ') ]",
+            "[ -> print(' literal with embedded \\' characters ') ]"
         };
         
         for (int i = 0; i < testRules.length; i++) {
