@@ -157,8 +157,10 @@ public abstract class NodeToTriplesMap
         {
         Node x = getIndexNode( pattern );
         Filter f = buildFilterFromPattern( pattern );
-        return f == null ? WrappedIterator.create(iterator( x )) : new FilterIterator( f, iterator(x)); 
+        Iterator triples = iterator( x );
+        return f == null ? WrappedIterator.create( triples ) : new FilterIterator( f, triples ); 
 //        return new FilterIterator( new TripleMatchFilter( pattern ), iterator( x ) );
+//        return new FilterIterator( pattern, iterator( x ) );
         }
 
     /**
@@ -246,13 +248,11 @@ public abstract class NodeToTriplesMap
 
     protected Filter createPfilter( final Node pp )
         {
-        return new Filter() {
-            private final Node myPP = pp;
-            
+        return new Filter() {            
             public boolean accept( Object o )
                 {
                 Triple t = (Triple) o;
-                return myPP.matches( t.getPredicate() );
+                return pp.matches( t.getPredicate() );
                 }
         };
         }
