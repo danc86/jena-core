@@ -639,14 +639,14 @@ public class Rule implements ClauseEntry {
         /**
          * Register a new namespace prefix with the parser
          */
-        void registerPrefix(String prefix, String namespace ) {
+        public void registerPrefix(String prefix, String namespace ) {
             prefixMapping.setNsPrefix(prefix, namespace);
         }
         
         /**
          * Register a set of prefix to namespace mappings with the parser
          */
-        void registerPrefixMap(Map map) {
+        public void registerPrefixMap(Map map) {
             prefixMapping.setNsPrefixes(map);
         }
         
