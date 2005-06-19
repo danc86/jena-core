@@ -36,7 +36,9 @@ public class GraphTripleStore implements TripleStore
         
     public NodeToTriplesMap forTestingOnly_getObjects()
         { return objects; }
-    
+    public NodeToTriplesMap forTestingOnly_getSubjects()
+    { return subjects; }
+   
     protected Graph parent;
     
     public GraphTripleStore( Graph parent )
