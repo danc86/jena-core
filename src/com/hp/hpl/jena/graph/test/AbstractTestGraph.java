@@ -287,6 +287,7 @@ public /* abstract */ class AbstractTestGraph extends GraphTestBase
         
     public void testRemove()
         { 
+        testRemove( "?? ?? ??", "?? ?? ??" );
         testRemove( "S ?? ??", "S ?? ??" );
         testRemove( "S ?? ??", "?? P ??" );
         testRemove( "S ?? ??", "?? ?? O" );
@@ -305,6 +306,7 @@ public /* abstract */ class AbstractTestGraph extends GraphTestBase
         try 
             {
             it.next(); it.remove(); it.close();
+            assertEquals( "remove with " + findRemove + ":", 0, g.size() );
             assertFalse( g.contains( Triple.create( findCheck ) ) );
             }
         catch (UnsupportedOperationException e)

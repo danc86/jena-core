@@ -21,13 +21,15 @@ import com.hp.hpl.jena.graph.Graph;
 */
 public class StoreTripleIterator extends TrackingTripleIterator
 	{
+    protected NodeToTriplesMap X;
     protected NodeToTriplesMap A;
     protected NodeToTriplesMap B;
     protected Graph toNotify;
     
-    public StoreTripleIterator( Graph toNotify, Iterator it, NodeToTriplesMap A, NodeToTriplesMap B )
+    public StoreTripleIterator( Graph toNotify, Iterator it, NodeToTriplesMap X, NodeToTriplesMap A, NodeToTriplesMap B )
     	{ 
         super( it ); 
+        this.X = X;
         this.A = A; 
         this.B = B; 
         this.toNotify = toNotify;
@@ -36,6 +38,7 @@ public class StoreTripleIterator extends TrackingTripleIterator
     public void remove()
         {
         super.remove();
+        X.removedOneViaIterator();
         A.remove( current );
         B.remove( current );
         toNotify.getEventManager().notifyDeleteTriple( toNotify, current );

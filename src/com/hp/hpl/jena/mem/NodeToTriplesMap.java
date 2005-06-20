@@ -118,7 +118,6 @@ public abstract class NodeToTriplesMap
             public void remove()
                 {
                 current.remove();
-                size -= 1;
                 }
         	};
         }
@@ -131,6 +130,9 @@ public abstract class NodeToTriplesMap
     
     public int size()
         { return size; }
+    
+    public void removedOneViaIterator()
+        { size -= 1; }
     
     public boolean isEmpty()
         { return size == 0; }

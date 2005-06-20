@@ -81,17 +81,14 @@ public class TestGraphMem extends AbstractTestGraph
         assertEquals( 0, g.size() );
         }
     
-    public void xtestSizeAfterRemove() 
-    {
-        Graph g = getGraphWith("x p y");
-        Iterator it = g.find(triple("x ? ?"));
+    public void testSizeAfterRemove() 
+        {
+        Graph g = getGraphWith( "x p y" );
+        Iterator it = g.find( triple( "x ?? ??" ) );
         it.next();
         it.remove();
-        GraphTripleStore store = ((GraphMem)g).forTestingOnly_getStore();
-        assertEquals("objects size",store.forTestingOnly_getObjects().size(),0);
-        assertEquals("subjects size",store.forTestingOnly_getSubjects().size(),0);
-        
-    }
+        assertEquals( 0, g.size() );        
+        }
     
     public void testContainsConcreteDoesntUseFind()
         {
