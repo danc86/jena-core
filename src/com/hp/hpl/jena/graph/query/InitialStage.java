@@ -23,7 +23,7 @@ public class InitialStage extends Stage
     public InitialStage( int count )
         { this.count = count; }
         
-    private int count = -1;
+    final int count;
     
     public void close()
         { markClosed(); }

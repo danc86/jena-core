@@ -25,30 +25,26 @@ public class TestPackage extends TestSuite {
         super("graph");
         addTest( TestTripleCache.suite() );
         addTest( TestNodeCache.suite() );
-        addTest( "TestNode", TestNode.suite() );
-        addTest( "TestTriple", TestTriple.suite() );
+        addTest( TestNode.suite() );
+        addTest( TestTriple.suite() );
+        addTest( TestTripleField.suite() );
         addTest( TestNodeToTriplesMap.suite() );
         addTest( TestSimpleReifierTripleMap.suite() );   
         addTest( TestSimpleReifierFragmentsMap.suite() );   
-        addTest( "TestReifier", TestReifier.suite() );   
-        addTest( "TestTypedLiterals", TestTypedLiterals.suite() );
-        addTest( "TestGraphQuery", TestGraphQueryPackage.suite() );
-        addTest( "TestFactory", TestFactory.suite() );
-        addTest( "TestGraph", TestGraph.suite() );
-        addTest( "TestSimpleGraphMaker", TestSimpleGraphMaker.suite() );
-        addTest( "TestFileGraph", TestFileGraph.suite() );
-        addTest( "TestFileGraphMaker", TestFileGraphMaker.suite() );
+        addTest( TestReifier.suite() );   
+        addTest( TestTypedLiterals.suite() );
+        addTest( TestGraphQueryPackage.suite() );
+        addTest( TestFactory.suite() );
+        addTest( TestGraph.suite() );
+        addTest( TestSimpleGraphMaker.suite() );
+        addTest( TestFileGraph.suite() );
+        addTest( TestFileGraphMaker.suite() );
         addTest( TestGraphExtract.suite() );
-        addTest( "TestCapabilities", TestCapabilities.suite() );
-        addTest( "TestGraphUtils", TestGraphUtils.suite() );
-        addTest( "TestGraphPrefixMapping", TestGraphPrefixMapping.suite() );       
-        addTest( "RDFS-matching", TestGraphMatchWithInference.suite());
+        addTest( TestCapabilities.suite() );
+        addTest( TestGraphUtils.suite() );
+        addTest( TestGraphPrefixMapping.suite() );       
+        addTest( TestGraphMatchWithInference.suite());
     
-    }
-
-    private void addTest(String name, TestSuite tc) {
-        tc.setName(name);
-        addTest(tc);
     }
 
 }

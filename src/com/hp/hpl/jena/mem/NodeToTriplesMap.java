@@ -61,6 +61,12 @@ public abstract class NodeToTriplesMap
         if (s.add( t )) { size += 1; return true; } else return false; 
         }
 
+    protected static final Comparator compareTriples = new Comparator() 
+        {
+        public int compare( Object o1, Object o2 )
+            { return o1.hashCode() - o2.hashCode(); }
+        };
+    
     /**
          Remove <code>t</code> from this NTM. Answer <code>true</code> iff the 
          triple was previously in the set, ie, it really truly has been removed. 

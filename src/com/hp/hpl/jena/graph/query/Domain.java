@@ -56,7 +56,8 @@ public class Domain extends AbstractList implements IndexValues
 		{
 		StringBuffer b = new StringBuffer( 200 );
         b.append( "<domain" );
-        for (int i = 0; i < value.length; i += 1) b.append( " " + i + ":" + value[i] );
+        for (int i = 0; i < value.length; i += 1) 
+            b.append( " " ).append( i ).append( ":" ).append( value[i] );
         b.append( ">" );
         return b.toString();
 		}

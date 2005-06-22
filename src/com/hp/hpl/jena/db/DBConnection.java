@@ -182,8 +182,7 @@ public class DBConnection implements IDBConnection {
 			m_driver = getDriver();
 		Model resultModel = ModelFactory.createDefaultModel();
 		copySpecializedGraphToModel( m_driver.getSystemSpecializedGraph(true),
-			                         resultModel,
-			                         Triple.createMatch( null, null, null ));
+			                         resultModel, Triple.ANY );
 		return resultModel;
 	}
 	
