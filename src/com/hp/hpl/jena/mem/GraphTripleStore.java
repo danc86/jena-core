@@ -6,6 +6,7 @@
 package com.hp.hpl.jena.mem;
 
 import com.hp.hpl.jena.graph.*;
+import com.hp.hpl.jena.graph.Triple.*;
 import com.hp.hpl.jena.graph.impl.TripleStore;
 import com.hp.hpl.jena.util.iterator.ExtendedIterator;
 import com.hp.hpl.jena.util.iterator.WrappedIterator;
@@ -19,17 +20,17 @@ import com.hp.hpl.jena.util.iterator.WrappedIterator;
  */
 public class GraphTripleStore implements TripleStore
     {
-    protected NodeToTriplesMap subjects = new NodeToTriplesMap()
+    protected NodeToTriplesMap subjects = new NodeToTriplesMap( Field.getSubject )
         { public Node getIndexNode( Triple t ) { return t.getSubject(); }  
           public boolean useSubjectInFilter(Triple p) { return false; }
         };
         
-    protected NodeToTriplesMap predicates = new NodeToTriplesMap()
+    protected NodeToTriplesMap predicates = new NodeToTriplesMap( Field.getPredicate )
         { public Node getIndexNode( Triple t ) { return t.getPredicate(); } 
         public boolean usePredicateInFilter(Triple p) { return false; }
          };
         
-    protected NodeToTriplesMap objects = new NodeToTriplesMap()
+    protected NodeToTriplesMap objects = new NodeToTriplesMap( Field.getObject )
         { public Node getIndexNode( Triple t ) { return t.getObject(); } 
         public boolean useObjectInFilter(Triple p) { return false; }
         };

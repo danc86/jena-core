@@ -25,6 +25,9 @@ public abstract class NodeToTriplesMap
     */
     private Map map = CollectionFactory.createHashedMap();
     
+    public NodeToTriplesMap( Triple.Field index )
+        {}
+    
     public Map forTestingOnly_getMap()
         { return map; }
     
