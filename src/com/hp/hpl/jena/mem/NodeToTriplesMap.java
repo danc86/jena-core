@@ -25,8 +25,10 @@ public abstract class NodeToTriplesMap
     */
     private Map map = CollectionFactory.createHashedMap();
     
-    public NodeToTriplesMap( Triple.Field index )
-        {}
+    protected final Triple.Field indexField;
+    
+    public NodeToTriplesMap( Triple.Field indexField )
+        { this.indexField = indexField; }
     
     public Map forTestingOnly_getMap()
         { return map; }
@@ -49,7 +51,8 @@ public abstract class NodeToTriplesMap
          triple <code>t</code>; should be equivalent to one of getSubject(),
          getPredicate(), or getObject().
     */
-    public abstract Node getIndexNode( Triple t );
+    public final Node getIndexNode( Triple t )
+        { return indexField.getField( t ); }
     
     /**
          Add <code>t</code> to this NTM; the node <code>o</code> <i>must</i>
