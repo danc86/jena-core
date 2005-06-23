@@ -30,7 +30,6 @@ public class TestNodeToTriplesMap extends GraphTestBase
     
     protected NodeToTriplesMap ntS = new NodeToTriplesMap( Field.getSubject )
     	{ 
-        public Node getIndexNode( Triple t ) { return t.getSubject(); } 
         public Node getSubindexNode( Triple t ) { return t.getPredicate(); } 
         public boolean useSubjectInFilter(Triple t) { return false; }
         
@@ -38,7 +37,6 @@ public class TestNodeToTriplesMap extends GraphTestBase
     	
     protected NodeToTriplesMap ntP = new NodeToTriplesMap( Field.getPredicate )
     	{ 
-        public Node getIndexNode( Triple t ) { return t.getPredicate(); } 
         public Node getSubindexNode( Triple t ) { return t.getSubject(); } 
         public boolean usePredicateInFilter(Triple t) { return false; }
         
@@ -46,7 +44,6 @@ public class TestNodeToTriplesMap extends GraphTestBase
     	
     protected NodeToTriplesMap ntO = new NodeToTriplesMap( Field.getObject )
     	{ 
-        public Node getIndexNode( Triple t ) { return t.getObject(); } 
         public Node getSubindexNode( Triple t ) { return t.getPredicate(); } 
         public boolean useObjectInFilter(Triple t) { return false; }
         };
