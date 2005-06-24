@@ -6,22 +6,26 @@
 
 package com.hp.hpl.jena.util.iterator;
 
-/** A boolean function for filtering.
- * @author jjc
- * @version Release='$Name$' Revision='$Revision$' Date='$Date$'
- */
+import java.util.Iterator;
+
+/** 
+    boolean functions wrapped to be used in filtering iterators.
+    
+    @author jjc, kers
+*/
 public interface Filter
-{
-/** The object is wanted.
- * @param o The object to accept or reject.
- * @return true if the object is wanted.
- */    
-	public boolean accept(Object o);
+    {
+    /**
+        Answer true iff the object <code>o</code> is acceptable. This method
+        may also throw an exception if the argument is of a wrong type; it
+        is not required to return <code>false</code> in such a case.
+    */
+	public boolean accept( Object o );
+    
+    // public ExtendedIterator filter( Iterator it );
     
     /** 
-        a filter that accepts anything.
-        (useful when a general method wants a Filter, but we'll
-        take anything).
+        A Filter that accepts everything it's offered.
     */
     public static final Filter any = new Filter()
         { public final boolean accept( Object o ) { return true; } };
