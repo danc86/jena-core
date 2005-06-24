@@ -28,21 +28,21 @@ public class TestNodeToTriplesMap extends GraphTestBase
     public static TestSuite suite()
         { return new TestSuite( TestNodeToTriplesMap.class ); }
     
-    protected NodeToTriplesMap ntS = new NodeToTriplesMap( Field.getSubject )
+    protected NodeToTriplesMap ntS = new NodeToTriplesMap( Field.getSubject, Field.getPredicate, Field.getObject )
     	{ 
         public Node getSubindexNode( Triple t ) { return t.getPredicate(); } 
         public boolean useSubjectInFilter(Triple t) { return false; }
         
     	};
     	
-    protected NodeToTriplesMap ntP = new NodeToTriplesMap( Field.getPredicate )
+    protected NodeToTriplesMap ntP = new NodeToTriplesMap( Field.getPredicate, Field.getObject, Field.getSubject )
     	{ 
         public Node getSubindexNode( Triple t ) { return t.getSubject(); } 
         public boolean usePredicateInFilter(Triple t) { return false; }
         
     	};
     	
-    protected NodeToTriplesMap ntO = new NodeToTriplesMap( Field.getObject )
+    protected NodeToTriplesMap ntO = new NodeToTriplesMap( Field.getObject, Field.getPredicate, Field.getSubject )
     	{ 
         public Node getSubindexNode( Triple t ) { return t.getPredicate(); } 
         public boolean useObjectInFilter(Triple t) { return false; }

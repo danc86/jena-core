@@ -209,7 +209,7 @@ public class Triple implements TripleMatch
             
             public Filter filterOn( final Node n )
                 { return new Filter() 
-                    { public boolean accept( Object x ) { return n.equals( ((Triple) x).obj ); } }; }
+                    { public boolean accept( Object x ) { return n.sameValueAs( ((Triple) x).obj ); } }; }
             };
         
         public static final Field getPredicate = new Field() 
