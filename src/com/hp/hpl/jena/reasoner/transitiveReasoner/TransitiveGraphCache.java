@@ -216,12 +216,12 @@ public class TransitiveGraphCache implements Finder {
 		 */
 		public void propagateAdd(GraphNode target) {
 			Set sc = target.succClosed;
+            sc.add(target); 
 			visitPredecessors(new Visitor() {
 				public void visit(GraphNode node, Object arg1, Object target) {
 					Set sc = (Set)arg1;
 					// Add closure
 					node.succClosed.addAll(sc);
-					node.succClosed.add(target);
 					// Scan for redundant links
 					for (Iterator i = node.succ.iterator(); i.hasNext();) {
 						GraphNode s = (GraphNode)i.next();

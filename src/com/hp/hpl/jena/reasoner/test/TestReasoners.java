@@ -17,11 +17,14 @@ import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.mem.GraphMem;
 import com.hp.hpl.jena.ontology.*;
+import com.hp.hpl.jena.util.FileManager;
+import com.hp.hpl.jena.util.IteratorCollection;
 import com.hp.hpl.jena.vocabulary.*;
 
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 import java.io.IOException;
+import java.util.Set;
 
 /**
  * Unit tests for initial experimental reasoners
@@ -270,6 +273,18 @@ public class TestReasoners extends TestCase {
             } );
     }
  
+    /**
+     * Cycle bug in transitive reasoner
+     */
+    public void testTransitiveCycleBug() {
+        Model m = FileManager.get().loadModel( "file:testing/reasoners/bugs/unbroken.n3" );
+        OntModel om = ModelFactory.createOntologyModel( OntModelSpec.RDFS_MEM_TRANS_INF, m );
+        OntClass rootClass = om.getOntClass( RDFS.Resource.getURI() );
+        Resource c = m.getResource("c");
+        Set direct = IteratorCollection.iteratorToSet( rootClass.listSubClasses( true ));
+        assertFalse( direct.contains( c ) );
+        
+    }
     /**
      * Test the ModelFactory interface
      */
