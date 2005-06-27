@@ -67,6 +67,31 @@ public class XSDDateTime extends AbstractDateTime {
     }
     
     /**
+     * Return the most specific xsd type which can represent
+     * this date/time
+     */
+    public XSDDatatype getNarrowedDatatype() {
+        switch (mask) {
+        case TIME_MASK:
+            return XSDDatatype.XSDtime;
+        case MONTH_MASK:
+            return XSDDatatype.XSDgMonth;
+        case DAY_MASK:
+            return XSDDatatype.XSDgDay;
+        case YEAR_MASK:
+            return XSDDatatype.XSDgYear;
+        case MONTH_MASK | DAY_MASK:
+            return XSDDatatype.XSDgMonthDay;
+        case MONTH_MASK | YEAR_MASK:
+            return XSDDatatype.XSDgYearMonth;
+        case MONTH_MASK | YEAR_MASK | DAY_MASK:
+            return XSDDatatype.XSDdate;
+        default:
+            return XSDDatatype.XSDdateTime;
+        }
+    }
+    
+    /**
      * Convert a java calendar object to a new int[] in the format used by XSDAbstractDateTime
      */
     private static int[] convertCalendar(Calendar date) {

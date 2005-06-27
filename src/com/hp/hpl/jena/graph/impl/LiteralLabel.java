@@ -41,7 +41,7 @@ final public class LiteralLabel {
 	 * The type of the literal. A null type indicates a classic "plain" literal.
 	 * The type of a literal is fixed when it is created.
 	 */
-	final private RDFDatatype dtype;
+	private RDFDatatype dtype;
 
 	/**
 	 * The xml:lang tag. For xsd literals this is ignored and not part of
@@ -81,6 +81,7 @@ final public class LiteralLabel {
 		} else {
 			setValue(lex);
 		}
+        normalize();
 	}
 
 	/**
@@ -114,6 +115,7 @@ final public class LiteralLabel {
         } else {
 		    this.value = value;
         }
+        normalize();
 	}
 
 	/**
@@ -185,6 +187,17 @@ final public class LiteralLabel {
 			}
 		}
 	}
+    
+    /**
+     * Normalize the literal. In the future this may normalize
+     * the lexical value. At present this is used to 
+     * reduce datatypes to a minimal enclosing form when desired.
+     */
+    protected void normalize() {
+        if (dtype != null && value != null) {
+            dtype = dtype.getNarrowedDatatype(value);
+        }
+    }
 
 	//=======================================================================
 	// Methods

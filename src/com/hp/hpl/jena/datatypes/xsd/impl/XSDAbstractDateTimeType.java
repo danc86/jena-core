@@ -10,7 +10,9 @@
  *****************************************************************/
 package com.hp.hpl.jena.datatypes.xsd.impl;
 
+import com.hp.hpl.jena.datatypes.RDFDatatype;
 import com.hp.hpl.jena.datatypes.xsd.XSDDatatype;
+import com.hp.hpl.jena.datatypes.xsd.XSDDateTime;
 import com.hp.hpl.jena.graph.impl.LiteralLabel;
 
 /**
@@ -416,6 +418,22 @@ public class XSDAbstractDateTimeType extends XSDDatatype {
 //  --------------------------------------------------------------------
 //  End of code is adapated from Xerces 2.6.0 AbstractDateTimeDV.    
 //  --------------------------------------------------------------------
+     
+     /**
+      * Return a minimal datatype for this object. Used to handle
+      * cases where a single java object can represent multiple
+      * specific types and where we want narrow the type used.
+      * For example, a BigDecimal may narrow to a simple xsd:int. 
+      * Currently only used to narrow gener XSDDateTime objects
+      * to the minimal XSD date/time type.
+      */
+     public RDFDatatype getNarrowedDatatype(Object value) {
+         if (value instanceof XSDDateTime) {
+             return ((XSDDateTime)value).getNarrowedDatatype();
+         } else {
+             return this;
+         }
+     }
 
 }
 

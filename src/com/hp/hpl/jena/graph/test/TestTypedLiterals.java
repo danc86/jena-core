@@ -891,9 +891,16 @@ public class TestTypedLiterals extends TestCase {
      * Test parse/unparse pairing for problem datatypes
      */
     public void testRoundTrip() {
+        // Prior problem cases with unparsing
         doTestRoundTrip("13:20:00.000", XSDDatatype.XSDtime, false);
         doTestRoundTrip("GpM7", XSDDatatype.XSDbase64Binary, true);
         doTestRoundTrip("0FB7", XSDDatatype.XSDhexBinary, true);
+        
+        // check value round tripping
+        doTestValueRoundTrip("2005-06-27", XSDDatatype.XSDdate, true);
+        doTestValueRoundTrip("2005", XSDDatatype.XSDgYear, true);
+        doTestValueRoundTrip("2005-06", XSDDatatype.XSDgYearMonth, true);
+        doTestValueRoundTrip("13:20:00.000", XSDDatatype.XSDtime, true);
     }
     
     /**
@@ -907,6 +914,21 @@ public class TestTypedLiterals extends TestCase {
         }
         LiteralLabel ll2 = new LiteralLabel(lex2, "", dt);
         assertTrue( ll2.isWellFormed() );
+    }
+    
+    /**
+     * Check getValue/rewrap loop.
+     */
+    public void doTestValueRoundTrip(String lex, RDFDatatype dt, boolean testType) {
+        Literal l1 = m.createTypedLiteral(lex, dt);
+        Object o1 = l1.getValue();
+        Literal l2 = m.createTypedLiteral(o1);
+        assertTrue("value round trip", l1.sameValueAs(l2));
+        Object o2 = l2.getValue();
+        assertTrue("value round trip2", o1.equals(o2));
+        if (testType) {
+            assertEquals("Datatype round trip", dt, l2.getDatatype());
+        }
     }
     
     /**
