@@ -211,6 +211,16 @@ public class XSDDateTime extends AbstractDateTime {
         }
         if ((mask & TIME_MASK) != 0 ) {
             buff.append("T");
+            buff.append(timeLexicalForm());
+        }
+        return buff.toString();
+    }
+    
+    /**
+     * Return the lexical form of the time component.
+     */
+    public String timeLexicalForm() {
+        StringBuffer buff = new StringBuffer();
             if(data[h]<10) buff.append("0");
             buff.append(data[h]);
             
@@ -227,7 +237,6 @@ public class XSDDateTime extends AbstractDateTime {
                 buff.append(data[ms]);
             }
             buff.append("Z");
-        }
         return buff.toString();
     }
     

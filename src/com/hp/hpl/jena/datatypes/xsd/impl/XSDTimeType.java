@@ -53,6 +53,19 @@ public class XSDTimeType extends XSDAbstractDateTimeType {
         return new XSDDateTime(date, TIME_MASK);
     }
     
+    /**
+     * Convert a value of this datatype out
+     * to lexical form.
+     */
+    public String unparse(Object value) {
+        if (value instanceof XSDDateTime) {
+            return((XSDDateTime)value).timeLexicalForm();
+        } else {
+            // Don't think we should ever get here
+            return value.toString();
+        }
+    }
+    
 }
 
 
