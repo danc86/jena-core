@@ -192,14 +192,22 @@ public class Triple implements TripleMatch
         
         public abstract Filter filterOn( Node n );
         
+        public final Filter filterOn( Triple t )
+            { return filterOn( getField( t ) ); }
+        
         public static final Field getSubject = new Field() 
             { 
             public Node getField( Triple t ) 
                 { return t.subj; }
             
             public Filter filterOn( final Node n )
-                { return new Filter() 
-                    { public boolean accept( Object x ) { return n.equals( ((Triple) x).subj ); } }; }
+                { 
+                return n.isConcrete() 
+                    ? new Filter() 
+                        { public boolean accept( Object x ) { return n.equals( ((Triple) x).subj ); } }
+                    : Filter.any
+                    ;
+                }
             };
             
         public static final Field getObject = new Field() 
@@ -208,8 +216,11 @@ public class Triple implements TripleMatch
                 { return t.obj; } 
             
             public Filter filterOn( final Node n )
-                { return new Filter() 
-                    { public boolean accept( Object x ) { return n.sameValueAs( ((Triple) x).obj ); } }; }
+                { return n.isConcrete() 
+                    ? new Filter() 
+                        { public boolean accept( Object x ) { return n.sameValueAs( ((Triple) x).obj ); } }
+                    : Filter.any; 
+                }
             };
         
         public static final Field getPredicate = new Field() 
@@ -218,8 +229,11 @@ public class Triple implements TripleMatch
                 { return t.pred; } 
             
             public Filter filterOn( final Node n )
-                { return new Filter() 
-                    { public boolean accept( Object x ) { return n.equals( ((Triple) x).pred ); } }; }
+                { return n.isConcrete()
+                    ? new Filter() 
+                        { public boolean accept( Object x ) { return n.equals( ((Triple) x).pred ); } }
+                    : Filter.any; 
+                }
             };
         }
     }
