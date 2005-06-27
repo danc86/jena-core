@@ -14,7 +14,7 @@ import junit.framework.*;
 /**
  	@author kers
 */
-public class TestGraphQueryPackage
+public class TestGraphQueryPackage extends TestCase
     {
     public TestGraphQueryPackage()
         {}
