@@ -19,11 +19,12 @@ import com.hp.hpl.jena.util.iterator.*;
 */
 public class GraphMemQueryHandler extends SimpleQueryHandler
 	{
+    protected GraphMem graphMem;
+    
 	GraphMemQueryHandler( GraphMem graph ) 
-	    { 
-	    super( graph );
-	    }
-	
+	    { super( graph ); 
+        this.graphMem = graph; }
+
 	public ExtendedIterator objectsFor( Node p, Node o )
 	    { return bothANY( p, o ) ? findObjects() : super.objectsFor( p, o ); }
 
@@ -41,13 +42,13 @@ public class GraphMemQueryHandler extends SimpleQueryHandler
         { return (a == null || a.equals( Node.ANY )) && (b == null || b.equals( Node.ANY )); }
 
     public ExtendedIterator findPredicates()
-        { return ((GraphMem) graph).store.listPredicates(); }
+        { return graphMem.store.listPredicates(); }
 
 	public ExtendedIterator findObjects()
-	    { return ((GraphMem) graph).store.listObjects(); }
+	    { return graphMem.store.listObjects(); }
 	
 	public ExtendedIterator findSubjects()
-	    { return ((GraphMem) graph).store.listSubjects(); }
+	    { return graphMem.store.listSubjects(); }
 	}
 
 /*

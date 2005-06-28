@@ -5,6 +5,8 @@
 */
 package com.hp.hpl.jena.mem;
 
+import java.util.Iterator;
+
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.graph.Triple.*;
 import com.hp.hpl.jena.graph.impl.TripleStore;
@@ -139,7 +141,6 @@ public class GraphTripleStore implements TripleStore
         predicates.clear();
         objects.clear();
         }
-    
     }
 
 /*

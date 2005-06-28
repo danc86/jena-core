@@ -1607,7 +1607,7 @@ public class OntResourceImpl
 
     /** Filter for matching language tags on literals */
     protected class LangTagFilter
-        implements Filter
+        extends Filter
     {
         protected String m_lang;
         public LangTagFilter( String lang ) { m_lang = lang; }
@@ -1627,7 +1627,7 @@ public class OntResourceImpl
 
     /** Filter for accepting only the given value, based on .equals() */
     protected class SingleEqualityFilter
-        implements Filter
+        extends Filter
     {
         private Object m_obj;
         public SingleEqualityFilter( Object x ) { m_obj = x; }

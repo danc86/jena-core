@@ -128,12 +128,22 @@ public class PatternStage extends Stage
             {
             Pattern p = compiled[index];
             ValuatorSet guard = guards[index];
-            ClosableIterator it = graph.find( p.asTripleMatch( current ) );
+            Iterator it = find( graph, p.asTripleMatch( current ).asTriple() );
             while (stillOpen && it.hasNext())
                 if (p.match( current, (Triple) it.next()) && guard.evalBool( current )) 
                     nest( sink, current, index + 1 );
-            it.close();
+            NiceIterator.close( it );
             }
+        }
+
+    /**
+        Subclasses over-ride if they have a specialised implementation.
+        WARNING: WIP - this interface is unstable. Do not use it without
+        consulting Chris or Jeremy.
+    */
+    protected Iterator find( Graph g, Triple t )
+        {
+        return g.find( t );
         }
     }
 

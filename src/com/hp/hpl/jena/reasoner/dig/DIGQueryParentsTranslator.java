@@ -129,7 +129,7 @@ public class DIGQueryParentsTranslator
     //==============================================================================
 
     private class FilterSubjectAndObject
-        implements Filter
+        extends Filter
     {
         private Node m_subj;
         private Node m_obj;

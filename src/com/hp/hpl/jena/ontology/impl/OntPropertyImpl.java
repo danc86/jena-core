@@ -822,7 +822,7 @@ public class OntPropertyImpl
      * their declared properties.</p>
      */
     private class FilterDeclaringClass
-        implements Filter
+        extends Filter
     {
         private boolean m_direct;
         private Property m_prop;

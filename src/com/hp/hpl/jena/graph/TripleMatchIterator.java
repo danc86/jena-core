@@ -16,11 +16,11 @@ import java.util.Iterator;
  	@author  bwm, kers
 */
 public class TripleMatchIterator 
-    extends FilterIterator
+    extends FilterKeepIterator
     implements ExtendedIterator 
     {
-   public TripleMatchIterator( Triple m, Iterator iter ) 
-        { super( new TripleMatchFilter( m ), iter); }
+    public TripleMatchIterator( Triple m, Iterator iter ) 
+        { super( new TripleMatchFilter( m ), iter ); }
     }
 
 /*

@@ -40,7 +40,7 @@ import org.apache.commons.logging.LogFactory;
  * @author <a href="mailto:der@hplb.hpl.hp.com">Dave Reynolds</a>
  * @version $Revision$ on $Date$
  */
-public class FBRuleInfGraph  extends BasicForwardRuleInfGraph implements BackwardRuleInfGraphI, Filter {
+public class FBRuleInfGraph  extends BasicForwardRuleInfGraph implements BackwardRuleInfGraphI {
     
     /** Single context for the reasoner, used when passing information to builtins */
     protected BBRuleContext context;
@@ -529,7 +529,10 @@ public class FBRuleInfGraph  extends BasicForwardRuleInfGraph implements Backwar
         }
         if (filterFunctors) {
 //            return result.filterDrop(Functor.acceptFilter);
-            return result.filterDrop(this);
+            return result.filterDrop( new Filter() {
+
+                public boolean accept( Object o )
+                    { return FBRuleInfGraph.this.accept( o ); }} );
         } else {
             return result;
         }

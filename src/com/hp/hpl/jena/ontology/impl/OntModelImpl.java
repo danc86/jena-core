@@ -2884,7 +2884,7 @@ public class OntModelImpl
     }
 
     /** Filter that accepts nodes that can be mapped to the given facet */
-    protected class SubjectNodeCanAs implements Filter
+    protected class SubjectNodeCanAs extends Filter
     {
         protected Class m_asKey;
         protected SubjectNodeCanAs( Class asKey ) { m_asKey = asKey; }
