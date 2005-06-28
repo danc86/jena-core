@@ -2753,7 +2753,7 @@ public class OntModelImpl
      * @return ExtendedIterator over subjects of p.
      */
     protected ExtendedIterator findByDefiningProperty( Property p ) {
-        return getGraph().find( null, p.getNode(), null );
+        return getGraph().find( null, p.asNode(), null );
     }
 
 

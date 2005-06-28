@@ -26,16 +26,16 @@ import java.util.*;
 public class ResourceBRWRule extends BRWRule {
     
     /** node form of rdf:type */
-    private static Node TYPE = RDF.type.getNode();
+    private static Node TYPE = RDF.Nodes.type;
     
     /** node form of rdfs:Resource */
-    private static Node RESOURCE = RDFS.Resource.getNode();
+    private static Node RESOURCE = RDFS.Nodes.Resource;
 
     /**
      * Constructor
      */
     public ResourceBRWRule() {
-        super(new TriplePattern(null, RDF.type.getNode(), RDFS.Resource.getNode()),   
+        super(new TriplePattern(null, TYPE, RESOURCE ),   
                new TriplePattern(null, null, null));
     }
     

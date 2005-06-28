@@ -78,8 +78,8 @@ public class TransitiveEngine {
     static {
         directSubPropertyOf = TransitiveReasoner.directSubPropertyOf;
         directSubClassOf    = TransitiveReasoner.directSubClassOf;
-        subPropertyOf = RDFS.subPropertyOf.getNode();
-        subClassOf = RDFS.subClassOf.getNode();
+        subPropertyOf = RDFS.subPropertyOf.asNode();
+        subClassOf = RDFS.subClassOf.asNode();
     }
    
     /**

@@ -45,23 +45,23 @@ public class RDFS {
     */
     public static class Nodes
         {
-        public static final Node Class = RDFS.Class.getNode();
-        public static final Node Datatype = RDFS.Datatype.getNode();
-        public static final Node ConstraintProperty  = RDFS. ConstraintProperty.getNode();
-        public static final Node Container  = RDFS.Container.getNode();
+        public static final Node Class = RDFS.Class.asNode();
+        public static final Node Datatype = RDFS.Datatype.asNode();
+        public static final Node ConstraintProperty  = RDFS. ConstraintProperty.asNode();
+        public static final Node Container  = RDFS.Container.asNode();
         public static final Node ContainerMembershipProperty
-                                                         = RDFS.ContainerMembershipProperty.getNode();
-        public static final Node Literal = RDFS.Literal.getNode();
-        public static final Node Resource = RDFS.Resource.getNode();
-        public static final Node comment = RDFS.comment.getNode();
-        public static final Node domain = RDFS.domain.getNode();
-        public static final Node label = RDFS.label.getNode();
-        public static final Node isDefinedBy = RDFS.isDefinedBy.getNode();
-        public static final Node range = RDFS.range.getNode();
-        public static final Node seeAlso = RDFS.seeAlso.getNode();
-        public static final Node subClassOf  = RDFS.subClassOf.getNode();
-        public static final Node subPropertyOf  = RDFS.subPropertyOf.getNode();
-        public static final Node member  = RDFS.member.getNode();
+                                                         = RDFS.ContainerMembershipProperty.asNode();
+        public static final Node Literal = RDFS.Literal.asNode();
+        public static final Node Resource = RDFS.Resource.asNode();
+        public static final Node comment = RDFS.comment.asNode();
+        public static final Node domain = RDFS.domain.asNode();
+        public static final Node label = RDFS.label.asNode();
+        public static final Node isDefinedBy = RDFS.isDefinedBy.asNode();
+        public static final Node range = RDFS.range.asNode();
+        public static final Node seeAlso = RDFS.seeAlso.asNode();
+        public static final Node subClassOf  = RDFS.subClassOf.asNode();
+        public static final Node subPropertyOf  = RDFS.subPropertyOf.asNode();
+        public static final Node member  = RDFS.member.asNode();
         }
 
     /**

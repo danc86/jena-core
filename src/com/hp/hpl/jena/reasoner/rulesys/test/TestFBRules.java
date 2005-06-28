@@ -64,9 +64,9 @@ public class TestFBRules extends TestCase {
     protected Node C1 = Node.createURI("C1");
     protected Node C2 = Node.createURI("C2");
     protected Node C3 = Node.createURI("C3");
-    protected Node sP = RDFS.subPropertyOf.getNode();
-    protected Node sC = RDFS.subClassOf.getNode();
-    protected Node ty = RDF.type.getNode();
+    protected Node sP = RDFS.Nodes.subPropertyOf;
+    protected Node sC = RDFS.Nodes.subClassOf;
+    protected Node ty = RDF.Nodes.type;
      
     /**
      * Boilerplate for junit

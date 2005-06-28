@@ -54,8 +54,8 @@ public class TestGenericRules extends TestCase {
     Node C1 = Node.createURI("C1");
     Node C2 = Node.createURI("C2");
     Node C3 = Node.createURI("C3");
-    Node ty = RDF.type.getNode();
-    Node sC = RDFS.subClassOf.getNode();
+    Node ty = RDF.Nodes.type;
+    Node sC = RDFS.Nodes.subClassOf;
 
     List ruleList = Rule.parseRules("[r1: (?a p ?b), (?b p ?c) -> (?a p ?c)]" +
                                     "[r2: (?a q ?b) -> (?a p ?c)]" +

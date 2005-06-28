@@ -39,19 +39,13 @@ import com.hp.hpl.jena.vocabulary.ReasonerVocabulary;
  */
 public class RDFSReasoner extends TransitiveReasoner implements Reasoner {
     /** The domain property */
-    public static Node domainP;
+    public static final Node domainP = RDFS.Nodes.domain;
     
     /** The range property */
-    public static Node rangeP;
+    public static final Node rangeP = RDFS.Nodes.range;
     
     /** Note if the reasoner is configured to scan for member properties */
     protected boolean scanProperties = true;
-    
-    // Static initializer
-    static {
-        domainP = RDFS.domain.getNode();
-        rangeP = RDFS.range.getNode();
-    }
     
     /** Constructor */
     public RDFSReasoner() {

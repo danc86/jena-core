@@ -70,20 +70,20 @@ public class TestVocabRDF extends ModelTestBase
 
     public void testNodes()
         {
-        assertEquals( RDF.Alt.getNode(), RDF.Nodes.Alt );
-        assertEquals( RDF.Bag.getNode(), RDF.Nodes.Bag );
-        assertEquals( RDF.Property.getNode(), RDF.Nodes.Property );
-        assertEquals( RDF.Seq.getNode(), RDF.Nodes. Seq );
-        assertEquals( RDF.Statement.getNode(), RDF.Nodes. Statement );
-        assertEquals( RDF.List.getNode(), RDF.Nodes. List );
-        assertEquals( RDF.nil.getNode(), RDF.Nodes. nil );
-        assertEquals( RDF.type.getNode(), RDF.Nodes. type );
-        assertEquals( RDF.rest.getNode(), RDF.Nodes. rest );
-        assertEquals( RDF.first.getNode(), RDF.Nodes. first );
-        assertEquals( RDF.subject.getNode(), RDF.Nodes. subject );
-        assertEquals( RDF.predicate.getNode(), RDF.Nodes. predicate );
-        assertEquals( RDF.object.getNode(), RDF.Nodes. object );
-        assertEquals( RDF.value.getNode(), RDF.Nodes. value );
+        assertEquals( RDF.Alt.asNode(), RDF.Nodes.Alt );
+        assertEquals( RDF.Bag.asNode(), RDF.Nodes.Bag );
+        assertEquals( RDF.Property.asNode(), RDF.Nodes.Property );
+        assertEquals( RDF.Seq.asNode(), RDF.Nodes. Seq );
+        assertEquals( RDF.Statement.asNode(), RDF.Nodes. Statement );
+        assertEquals( RDF.List.asNode(), RDF.Nodes. List );
+        assertEquals( RDF.nil.asNode(), RDF.Nodes. nil );
+        assertEquals( RDF.type.asNode(), RDF.Nodes. type );
+        assertEquals( RDF.rest.asNode(), RDF.Nodes. rest );
+        assertEquals( RDF.first.asNode(), RDF.Nodes. first );
+        assertEquals( RDF.subject.asNode(), RDF.Nodes. subject );
+        assertEquals( RDF.predicate.asNode(), RDF.Nodes. predicate );
+        assertEquals( RDF.object.asNode(), RDF.Nodes. object );
+        assertEquals( RDF.value.asNode(), RDF.Nodes. value );
         }
     }
 

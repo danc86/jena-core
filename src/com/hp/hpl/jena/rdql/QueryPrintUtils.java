@@ -185,7 +185,7 @@ public class QueryPrintUtils
     
     public static String stringForResource(Resource r)
     {
-        return stringForNode(r.getNode(), r.getModel()) ;
+        return stringForNode(r.asNode(), r.getModel()) ;
 //        if ( r.isAnon() )
 //        {
 //            AnonId a = r.getId() ;

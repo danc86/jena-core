@@ -53,9 +53,9 @@ public class TestBasicLP  extends TestCase {
     Node D1 = Node.createURI("D1");
     Node D2 = Node.createURI("D2");
     Node D3 = Node.createURI("D3");
-    Node sP = RDFS.subPropertyOf.getNode();
-    Node sC = RDFS.subClassOf.getNode();
-    Node ty = RDF.type.getNode();
+    Node sP = RDFS.Nodes.subPropertyOf;
+    Node sC = RDFS.Nodes.subClassOf;
+    Node ty = RDF.Nodes.type;
 
     /**
      * Boilerplate for junit

@@ -869,7 +869,7 @@ public class TestList
             cell1.addProperty( RDF.first, b );
             cell1.addProperty( RDF.rest, RDF.nil );
             
-            UserList ul = new UserListImpl( cell0.getNode(), (EnhGraph) m );
+            UserList ul = new UserListImpl( cell0.asNode(), (EnhGraph) m );
             
             assertEquals( "User list length ", 2, ul.size() );
             assertEquals( "head of user list ", a, ul.getHead() );

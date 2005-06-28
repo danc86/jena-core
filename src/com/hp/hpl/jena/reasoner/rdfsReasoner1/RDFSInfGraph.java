@@ -261,11 +261,11 @@ public class RDFSInfGraph extends BaseInfGraph {
            ExtendedIterator it = tripleCache.findWithContinuation(new TriplePattern(null, null, null), fdata);
            HashSet properties = new HashSet();
            String memberPrefix = RDF.getURI() + "_";
-           Node sP = RDF.Property.getNode();
+           Node sP = RDF.Property.asNode();
            while (it.hasNext()) {
                Triple triple = (Triple)it.next();
                Node prop = triple.getPredicate();
-               if (prop.equals(RDF.type.getNode()) && prop.equals(RDF.Property.getNode()) ) {
+               if (prop.equals(RDF.type.asNode()) && prop.equals(RDF.Property.asNode()) ) {
                    prop = triple.getSubject();
                }
                if (properties.add(prop)) {
@@ -273,8 +273,8 @@ public class RDFSInfGraph extends BaseInfGraph {
                    subPropertyCache.addRelation(new Triple(prop, sP, prop));
                    if (prop.getURI().startsWith(memberPrefix)) {
                        // A container property
-                       axioms.getGraph().add(new Triple(prop, RDF.type.getNode(), RDFS.ContainerMembershipProperty.getNode()));
-                       subPropertyCache.addRelation( new Triple(prop, sP, RDFS.member.getNode()));
+                       axioms.getGraph().add(new Triple(prop, RDF.type.asNode(), RDFS.ContainerMembershipProperty.asNode()));
+                       subPropertyCache.addRelation( new Triple(prop, sP, RDFS.member.asNode()));
                    }
                }
            }

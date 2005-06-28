@@ -148,9 +148,9 @@ public class ReasonerVocabulary {
             versionP = ResourceFactory.createProperty(JenaReasonerNS, "version");
             supportsP = ResourceFactory.createProperty(JenaReasonerNS, "supports");
             configurationP = ResourceFactory.createProperty(JenaReasonerNS, "configurationProperty");
-            directSubClassOf = ResourceFactory.createProperty(ReasonerRegistry.makeDirect(RDFS.subClassOf.getNode()).getURI());
-            directSubPropertyOf = ResourceFactory.createProperty(ReasonerRegistry.makeDirect(RDFS.subPropertyOf.getNode()).getURI());
-            directRDFType = ResourceFactory.createProperty(ReasonerRegistry.makeDirect(RDF.type.getNode()).getURI());
+            directSubClassOf = ResourceFactory.createProperty(ReasonerRegistry.makeDirect(RDFS.Nodes.subClassOf).getURI());
+            directSubPropertyOf = ResourceFactory.createProperty(ReasonerRegistry.makeDirect(RDFS.Nodes.subPropertyOf).getURI());
+            directRDFType = ResourceFactory.createProperty(ReasonerRegistry.makeDirect(RDF.Nodes.type).getURI());
             individualAsThingP = ResourceFactory.createProperty(JenaReasonerNS, "individualAsThing");
             PROPderivationLogging  = ResourceFactory.createProperty(PropURI+"#", "derivationLogging");
             PROPtraceOn = ResourceFactory.createProperty(PropURI+"#", "traceOn");

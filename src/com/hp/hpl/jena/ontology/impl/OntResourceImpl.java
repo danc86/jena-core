@@ -1418,7 +1418,7 @@ public class OntResourceImpl
 
         // check for requesting direct versions of these properties
         if (direct) {
-            sc = getModel().getProperty( ReasonerRegistry.makeDirect( sc.getNode() ).getURI() );
+            sc = getModel().getProperty( ReasonerRegistry.makeDirect( sc.asNode() ).getURI() );
         }
 
         // determine the subject and object pairs for the list statements calls

@@ -102,6 +102,13 @@ public class TestRDFNodes extends ModelTestBase
         assertEquals( r1, r1.inModel( m2 ) );
         assertEquals( r2, r2.inModel( m2 ) );
         }
+    
+    public void testGetNode()
+        {
+        Model m = modelWithStatements( "" );
+        RDFNode a = m.createResource( "eh:/foo" );
+        // assertEquals( "", a.getNode() );
+        }
     }
 
 /*

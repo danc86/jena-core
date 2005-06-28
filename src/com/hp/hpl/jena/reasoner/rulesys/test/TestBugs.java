@@ -132,7 +132,7 @@ public class TestBugs extends TestCase {
         ResIterator rIter = m.listSubjects();
         while (rIter.hasNext()) { 
             Resource res = rIter.nextResource();
-            if (res.getNode().isLiteral()) {
+            if (res.asNode().isLiteral()) {
                 assertTrue("Error in resource " + res, false);
             }
         }

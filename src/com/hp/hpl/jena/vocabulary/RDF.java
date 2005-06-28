@@ -56,20 +56,20 @@ public class RDF{
     */
     public static final class Nodes
         {
-        public static final Node Alt = RDF.Alt.getNode();
-        public static final Node Bag = RDF.Bag.getNode();
-        public static final Node Property = RDF.Property.getNode();
-        public static final Node Seq = RDF.Seq.getNode();
-        public static final Node Statement = RDF.Statement.getNode();
-        public static final Node List = RDF.List.getNode();
-        public static final Node nil = RDF.nil.getNode();
-        public static final Node first = RDF.first.getNode();
-        public static final Node rest = RDF.rest.getNode();
-        public static final Node subject = RDF.subject.getNode();
-        public static final Node predicate = RDF.predicate.getNode();
-        public static final Node object = RDF.object.getNode();
-        public static final Node type = RDF.type.getNode();
-        public static final Node value = RDF.value.getNode();
+        public static final Node Alt = RDF.Alt.asNode();
+        public static final Node Bag = RDF.Bag.asNode();
+        public static final Node Property = RDF.Property.asNode();
+        public static final Node Seq = RDF.Seq.asNode();
+        public static final Node Statement = RDF.Statement.asNode();
+        public static final Node List = RDF.List.asNode();
+        public static final Node nil = RDF.nil.asNode();
+        public static final Node first = RDF.first.asNode();
+        public static final Node rest = RDF.rest.asNode();
+        public static final Node subject = RDF.subject.asNode();
+        public static final Node predicate = RDF.predicate.asNode();
+        public static final Node object = RDF.object.asNode();
+        public static final Node type = RDF.type.asNode();
+        public static final Node value = RDF.value.asNode();
         }
 
 }

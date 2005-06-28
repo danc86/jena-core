@@ -45,13 +45,13 @@ public class RDFSCMPPreprocessHook implements RulePreprocessHook {
         while (it.hasNext()) {
             Triple triple = (Triple)it.next();
             Node prop = triple.getPredicate();
-            if (prop.equals(RDF.type.getNode()) && prop.equals(RDF.Property.getNode()) ) {
+            if (prop.equals(RDF.Nodes.type) && prop.equals(RDF.Nodes.Property) ) {
                 prop = triple.getSubject();
             }
             if (properties.add(prop)) {
                 if (prop.getURI().startsWith(memberPrefix)) {
                     // A container property
-                    inserts.add(new Triple(prop, RDF.type.getNode(), RDFS.ContainerMembershipProperty.getNode()));
+                    inserts.add(new Triple(prop, RDF.Nodes.type, RDFS.Nodes.ContainerMembershipProperty));
                 }
             }
         }

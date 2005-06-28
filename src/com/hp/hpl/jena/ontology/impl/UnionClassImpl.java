@@ -72,7 +72,7 @@ public class UnionClassImpl
             return (profile != null)  &&  
                    profile.isSupported( node, eg, OntClass.class )  &&
                    union != null && 
-                   eg.asGraph().contains( node, union.getNode(), Node.ANY );
+                   eg.asGraph().contains( node, union.asNode(), Node.ANY );
         }
     };
 

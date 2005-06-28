@@ -29,7 +29,7 @@ public class PropertyBRWRule extends BRWRule {
      * Constructor
      */
     public PropertyBRWRule() {
-        super(new TriplePattern(Node.createVariable("p"), RDF.type.getNode(), RDF.Property.getNode()),   
+        super(new TriplePattern(Node.createVariable("p"), RDF.type.asNode(), RDF.Property.asNode()),   
                new TriplePattern(null, Node.createVariable("s"), null));
     }
     
@@ -84,7 +84,7 @@ public class PropertyBRWRule extends BRWRule {
         protected Object nextIfNew() {
             Node prop = (Node)super.next();
             if (seen.add(prop)) {
-                return new Triple(prop, RDF.type.getNode(), RDF.Property.getNode());
+                return new Triple(prop, RDF.type.asNode(), RDF.Property.asNode());
             } else {
                 return null;
             }

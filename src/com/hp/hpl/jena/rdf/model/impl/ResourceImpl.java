@@ -85,7 +85,7 @@ public class ResourceImpl extends EnhNode implements Resource {
     }
     
     public ResourceImpl( Resource r, ModelCom m ) {
-        this( r.getNode(), m );
+        this( r.asNode(), m );
     }
     
     public ResourceImpl(String nameSpace, String localName, ModelCom m) {
