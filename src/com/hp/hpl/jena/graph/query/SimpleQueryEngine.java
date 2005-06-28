@@ -69,7 +69,7 @@ public class SimpleQueryEngine
     public static Cons cons( Triple pattern, Object cons )
         { return new Cons( pattern, (Cons) cons ); }
         
-    private static class Cons
+    public static class Cons
         {
         Triple head;
         Cons tail;
