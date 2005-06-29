@@ -120,11 +120,6 @@ public interface Resource extends RDFNode {
      */
     public boolean equals( Object o );
 
-    /** Determine whether this resource is anonymous.
-     * @return Return true if and only if this resource is anonymous.
-     */
-    public boolean isAnon();
-
     /** Get a property value of this resource.
      *
      * <p>The model associated with the resource instance is searched for statements

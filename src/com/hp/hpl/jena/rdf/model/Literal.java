@@ -61,10 +61,6 @@ import com.hp.hpl.jena.datatypes.RDFDatatype;
  * @version $Name$ $Revision$ $Date$
  */
 public interface Literal extends RDFNode {
-        
-    /** Answer true.
-     */
-    public boolean isLiteral();
     
     /**
      * Return the value of the literal. In the case of plain literals

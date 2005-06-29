@@ -148,11 +148,6 @@ public class LiteralImpl extends EnhNode implements Literal {
      */                  
     public LiteralImpl(Object o)  {this( o.toString());}
     
-    
-    public boolean isLiteral() {
-    	return true;
-    }
-    
     public String toString() {
         return asNode().toString( PrefixMapping.Standard, false );
     }

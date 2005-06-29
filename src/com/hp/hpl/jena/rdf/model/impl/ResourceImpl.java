@@ -125,18 +125,12 @@ public class ResourceImpl extends EnhNode implements Resource {
         return isAnon() ? null : node.getLocalName(); 
     }
 
-    public boolean hasURI( String uri ) {
-        return node.hasURI( uri );
-    }
+    public boolean hasURI( String uri ) 
+        { return node.hasURI( uri ); }
     
-    public String toString() {
-    	return asNode().toString();
-    }
-
-    public boolean isAnon() {
-        return asNode().isBlank();
-    }
-
+    public String toString() 
+        { return asNode().toString(); }
+    
 	protected ModelCom mustHaveModel()
 		{
         ModelCom model = getModelCom();

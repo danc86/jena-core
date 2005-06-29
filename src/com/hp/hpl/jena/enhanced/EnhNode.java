@@ -53,6 +53,27 @@ public class EnhNode extends Polymorphic implements FrontsNode
     }
     
     /**
+        An enhanced node is Anon[ymous] iff its underlying node is Blank.
+    */
+    public final boolean isAnon() {
+        return node.isBlank();
+    }
+    
+    /**
+        An enhanced node is Literal iff its underlying node is too.
+    */
+    public final boolean isLiteral() {
+        return node.isLiteral();
+    }
+ 
+    /**
+        An enhanced node is a URI resource iff its underlying node is too.
+    */
+    public final boolean isURIResource() {
+        return node.isURI();
+    }
+    
+    /**
      * Answer a facet of this node, where that facet is denoted by the
      * given type.
      * 
