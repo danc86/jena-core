@@ -125,7 +125,7 @@ public class DIGQueryIsEquivalentTranslator
                 // create a bNode that has the same relationship to the class expression operands as the given
                 Resource comp = premises.createResource( da.getOntLanguage().CLASS() );
                 premises.add( comp, premises.getProperty( p.getURI() ), premises.getRDFNode( m_qSubject ) );
-                m_qSubject = comp.getNode();
+                m_qSubject = comp.asNode();
             }
         }
         

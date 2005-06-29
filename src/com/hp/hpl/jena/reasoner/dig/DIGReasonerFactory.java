@@ -138,7 +138,7 @@ public class DIGReasonerFactory
         
         if (configuration != null) {
             config.add( ResourceUtils.reachableClosure( configuration ) );
-            root = (Resource) config.getRDFNode( configuration.getNode() );
+            root = (Resource) config.getRDFNode( configuration.asNode() );
         }
         else {
             root = config.createResource();

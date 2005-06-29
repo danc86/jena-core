@@ -544,7 +544,7 @@ public class DIGAdapter
         // ensure we have a resource from the source data model
         Resource cls = (res.getModel() != sourceData) ? sourceData.getResource( res.getURI() ) : res;
 
-        if (!cls.isAnon() || m_conceptNames.contains( getNodeID( cls.getNode() ))) {
+        if (!cls.isAnon() || m_conceptNames.contains( getNodeID( cls.asNode() ))) {
             // a named class, or an already known bNode
             translateClassIdentifier( elem, cls );
         }

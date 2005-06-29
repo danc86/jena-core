@@ -115,7 +115,7 @@ public class DIGQueryIsConceptTranslator
     }
 
     public boolean checkObject( Node object, DIGAdapter da, Model premises ) {
-        return da.getOntLanguage().CLASS().getNode().equals( object );
+        return da.getOntLanguage().CLASS().asNode().equals( object );
     }
     
 

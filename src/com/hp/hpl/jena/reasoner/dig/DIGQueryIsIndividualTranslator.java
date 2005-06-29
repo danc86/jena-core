@@ -126,7 +126,7 @@ public class DIGQueryIsIndividualTranslator
      * @return True if this object matches the trigger condition expressed by this translator instance
      */
     public boolean checkObject( Node object, DIGAdapter da, Model premises ) {
-        return da.getOntLanguage().THING().getNode().equals( object ) ||
+        return da.getOntLanguage().THING().asNode().equals( object ) ||
                da.isConcept( object, premises );
     }
     

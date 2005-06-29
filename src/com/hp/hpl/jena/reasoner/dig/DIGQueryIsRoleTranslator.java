@@ -123,7 +123,7 @@ public class DIGQueryIsRoleTranslator
      * @return True if this object matches the trigger condition expressed by this translator instance
      */
     public boolean checkObject( Node object, DIGAdapter da, Model premises ) {
-        return da.getOntLanguage().OBJECT_PROPERTY().getNode().equals( object );
+        return da.getOntLanguage().OBJECT_PROPERTY().asNode().equals( object );
     }
     
 
