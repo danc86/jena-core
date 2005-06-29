@@ -34,7 +34,7 @@ public class TestNode extends GraphTestBase
     private static final String U = "http://some.domain.name/magic/spells.incant";
     private static final String N = "Alice";
     private static final LiteralLabel L = new LiteralLabel( "ashes are burning", "en", false );
-    private static final AnonId A = new AnonId();
+    private static final AnonId A = AnonId.create();
 
     public void testBlanks()
         {
@@ -95,7 +95,7 @@ public class TestNode extends GraphTestBase
         try
             {
             Node.cache( false );           
-            AnonId id = new AnonId();
+            AnonId id = AnonId.create();
             LiteralLabel L2 = new LiteralLabel( id.toString(), "", false );
             String U2 = id.toString();
             String N2 = id.toString();
@@ -176,7 +176,7 @@ public class TestNode extends GraphTestBase
     */
     public void testLabels()
         {
-        AnonId id = new AnonId();
+        AnonId id = AnonId.create();
         assertEquals( "get URI value", U, Node.createURI( U ).getURI() );
         assertEquals( "get blank value", id, Node.createAnon( id ).getBlankNodeId() );
         assertEquals( "get literal value", L, Node.createLiteral( L ).getLiteral() );

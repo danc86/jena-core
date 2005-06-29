@@ -105,7 +105,7 @@ public class ResourceImpl extends EnhNode implements Resource {
         }
     
     private static Node fresh( String uri )
-        { return uri == null ? Node.createAnon( new AnonId() ) : Node.createURI( uri ); }
+        { return uri == null ? Node.createAnon() : Node.createURI( uri ); }
 
     public Node getNode() 
         { return asNode(); }

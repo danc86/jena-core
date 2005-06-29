@@ -11,18 +11,18 @@ package com.hp.hpl.jena.rdf.model.test;
 
 import com.hp.hpl.jena.rdf.model.AnonId;
 import com.hp.hpl.jena.shared.impl.JenaParameters;
+import com.hp.hpl.jena.test.JenaTestBase;
 
-import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
 /**
- * Test for anonID generation. Actually test for the debugging hack
- * that switches off anonID generation.
+ * Test for anonID generation. (Originally test for the debugging hack
+ * that switches off anonID generation.)
  * 
  * @author <a href="mailto:der@hplb.hpl.hp.com">Dave Reynolds</a>
  * @version $Revision$ on $Date$
  */
-public class TestAnonID extends TestCase {
+public class TestAnonID extends JenaTestBase {
     
     /**
      * Boilerplate for junit
@@ -56,20 +56,32 @@ public class TestAnonID extends TestCase {
     }
 
     /**
-     * Check that anonIDs are distinct whichever state the flag is in.
-     */
+         Check that anonIDs are distinct whichever state the flag is in.
+    */
     public void doTestAnonID() {
-        AnonId id1 = new AnonId();
-        AnonId id2 = new AnonId();
-        AnonId id3 = new AnonId();
-        AnonId id4 = new AnonId();
+        AnonId id1 = AnonId.create();
+        AnonId id2 = AnonId.create();
+        AnonId id3 = AnonId.create();
+        AnonId id4 = AnonId.create();
         
-        assertNotSame(id1, id2);
-        assertNotSame(id1, id3);
-        assertNotSame(id1, id4);
-        assertNotSame(id2, id3);
-        assertNotSame(id2, id4);
+        assertDiffer( id1, id2 );
+        assertDiffer( id1, id3 );
+        assertDiffer( id1, id4 );
+        assertDiffer( id2, id3 );
+        assertDiffer( id2, id4 );
     }
+    
+    /**
+        Test that creation of an AnonId from an AnonId string preserves that
+        string and is equal to the original AnonId.
+    */
+    public void testAnonIdPreserved()
+        {
+        AnonId anon = AnonId.create();
+        String id = anon.toString();
+        assertEquals( anon, AnonId.create( id ) );
+        assertEquals( id, AnonId.create( id ).toString() );
+        }
 
 }
 

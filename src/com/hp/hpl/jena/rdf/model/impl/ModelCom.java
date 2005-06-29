@@ -795,10 +795,7 @@ public class ModelCom
     }
     
     static private Node makeURI(String uri) {
-        if ( uri == null )
-            return Node.createAnon(new AnonId());
-        else
-            return Node.createURI(uri);
+        return uri == null ? Node.createAnon() : Node.createURI(uri);
     }
     
     public Alt getAlt(String uri)  {
@@ -1188,7 +1185,7 @@ public class ModelCom
     }
     
     public Resource createResource()  {
-        return IteratorFactory.asResource(Node.createAnon(new AnonId()),this);
+        return IteratorFactory.asResource( Node.createAnon(),this );
     }
     
     public Resource createResource(String uri)  {
@@ -1200,29 +1197,22 @@ public class ModelCom
     }
     
     public Property createProperty(String nameSpace, String localName)
-     {
-        return getProperty(nameSpace, localName);
-    }
+        { return getProperty(nameSpace, localName); }
     
     /**
         create a Statement from the given r, p, and o.
     */
     public Statement createStatement(Resource r, Property p, RDFNode o)
-     {
-        return new StatementImpl( r, p, o, this ); 
-    }
+        { return new StatementImpl( r, p, o, this ); }
     
-    public Bag createBag(String uri)  {
-        return (Bag) getBag(uri).addProperty(RDF.type, RDF.Bag);
-    }
+    public Bag createBag(String uri)  
+        { return (Bag) getBag(uri).addProperty( RDF.type, RDF.Bag ); }
     
-    public Alt createAlt(String uri)  {
-        return (Alt) getAlt(uri).addProperty(RDF.type, RDF.Alt);
-    }
+    public Alt createAlt( String uri ) 
+        { return (Alt) getAlt(uri).addProperty( RDF.type, RDF.Alt ); }
     
-    public Seq createSeq(String uri)  {
-        return (Seq) getSeq(uri).addProperty(RDF.type, RDF.Seq);
-    }
+    public Seq createSeq(String uri)  
+        { return (Seq) getSeq(uri).addProperty( RDF.type, RDF.Seq ); }
 
     /**
         Answer a Statement in this Model whcih encodes the given Triple.

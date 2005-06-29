@@ -47,7 +47,7 @@ import com.hp.hpl.jena.shared.impl.JenaParameters;
 
 public class AnonId extends java.lang.Object {
     
-    String id = null;
+    protected String id = null;
 
     /** 
         Support for debugging: global anonID counter. The intial value is just to
@@ -55,6 +55,12 @@ public class AnonId extends java.lang.Object {
         in it.
     */
     private static int idCount = 100000;
+    
+    public static AnonId create()
+        { return new AnonId(); }
+    
+    public static AnonId create( String id )
+        { return new AnonId( id ); }
     
     /** 
         Creates new AnonId. Normally this id is guaranteed to be unique on this 
@@ -73,31 +79,31 @@ public class AnonId extends java.lang.Object {
         }
     }
     
-/** Create a new AnonId from the string argument supplied
- * @param id A string representation of the id to be created.
- */    
-    public AnonId(String id) {
+    /** Create a new AnonId from the string argument supplied
+     * @param id A string representation of the id to be created.
+     */    
+    public AnonId( String id ) {
         this.id = id;
     }
     
-/** Test whether two id's are the same
- * @param o the object to be compared
- * @return true if and only if the two id's are the same
- */    
-    public boolean equals(Object o) {
-        return (o instanceof AnonId && id.equals(((AnonId)o).id));
+    /** Test whether two id's are the same
+        @param o the object to be compared
+        @return true if and only if the two id's are the same
+    */    
+    public boolean equals( Object o ) {
+        return o instanceof AnonId && id.equals( ((AnonId) o).id );
     }
     
-/** return a string representation of the id
- * @return a string representation of the id
- */    
+    /** return a string representation of the id
+     * @return a string representation of the id
+     */    
     public String toString() {
         return id;
     }
     
-/** return a hashcode for this id
- * @return the hash code
- */    
+    /** return a hashcode for this id
+     * @return the hash code
+     */    
     public int hashCode() {
         return id.hashCode();
     }

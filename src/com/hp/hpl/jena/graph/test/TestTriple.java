@@ -35,7 +35,7 @@ public class TestTriple extends GraphTestBase
             Node.cache(false);
             
             // create some nodes to test
-            AnonId id = new AnonId();
+            AnonId id = AnonId.create();
             LiteralLabel L2 = new LiteralLabel(id.toString(), "", false);
             String U2 = id.toString();
             String N2 = id.toString();
