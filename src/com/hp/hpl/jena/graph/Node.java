@@ -144,6 +144,10 @@ public abstract class Node {
         return literal( pm, nodeString.substring( 1, close ), nodeString.substring( close + 1 ) );
         }
     
+    /** make a blank node with a fresh anon id */ 
+    public static Node createAnon()
+        { return createAnon( AnonId.create() ); }
+    
     /** make a blank node with the specified label */
     public static Node createAnon( AnonId id )
         { return create( makeAnon, id ); }
@@ -155,11 +159,6 @@ public abstract class Node {
     /** make a URI node with the specified URIref string */
     public static Node createURI( String uri )
         { return create( makeURI, uri ); }
-       
-    /** make a blank node with a fresh anon id */ 
-    public static Node createAnon()
-        { return createAnon( new AnonId() ); }
-        
     /** make a variable node with a given name */
     public static Node createVariable( String name )
         { return create( makeVariable, Node_Variable.variable( name ) ); }
@@ -168,21 +167,14 @@ public abstract class Node {
         { return createLiteral( value, "", false ); }
     
     /** make a literal with specified language and XMLishness.
-        _lit_ must *not* be null. This intermediate implementation logs
-        a warning to allow users moving over to Jena2 to correct their
-        code. When they've had the opportunity, arrange to throw an
-        exception, and delete _nullLiteralsGenerateWarnings_ and
-        update the regression tests as directed. 
-        @param isXml If true then lit is exclusive canonical XML of type rdf:XMLLiteral, and no checking will be invoked.
+        _lit_ must *not* be null.
+        @param isXml If true then lit is exclusive canonical XML of type 
+            rdf:XMLLiteral, and no checking will be invoked.
     */
     public static Node createLiteral( String lit, String lang, boolean isXml )
         {
-        if (lit == null) throw new NullPointerException( "null for literals has been illegal since Jena 2.0" );
-//            {
-//            // throw new SomeSuitableException( "null in createLiteral" );
-//            System.err.println /* log.warn */ ( "null treated as empty string in createLiteral: this will become illegal." );
-//            lit = "";
-//            } 
+        if (lit == null) throw new NullPointerException
+            ( "null for literals has been illegal since Jena 2.0" );
         return createLiteral( new LiteralLabel( lit, lang, isXml ) ); 
         }    
         
