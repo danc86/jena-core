@@ -48,23 +48,20 @@ public class Triple implements TripleMatch
     /**
         @return the subject of the triple
     */
-	public final Node getSubject() {
-		return subj;
-	}
+	public final Node getSubject() 
+        { return subj; }
     
     /**
         @return the predicate of the triple
     */
-	public final Node getPredicate() {
-		return pred;
-	}
+	public final Node getPredicate() 
+        { return pred; }
     
     /**
         @return the object of the triple
     */
-	public final Node getObject() {
-		return obj;
-	}
+	public final Node getObject() 
+        { return obj; }
 
     public Node getMatchSubject()
         { return anyToNull( subj ); }

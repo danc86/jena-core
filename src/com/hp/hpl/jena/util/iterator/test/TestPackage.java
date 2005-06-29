@@ -19,6 +19,7 @@ public class TestPackage extends TestSuite
         addTest( TestWrappedIterator.suite() );
         addTest( TestNullIterator.suite() );
         addTest( TestFilters.suite() );
+        addTest( TestAndThen.suite() );
         addTest( new TestSuite( TestResourceUtils.class ) );
         }
     }
