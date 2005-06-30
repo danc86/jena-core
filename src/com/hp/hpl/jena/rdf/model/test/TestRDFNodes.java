@@ -129,6 +129,15 @@ public class TestRDFNodes extends ModelTestBase
         assertEquals( false, m.createLiteral( 17 ).isURIResource() );
         assertEquals( false, m.createTypedLiteral( "hello" ).isURIResource() );
         }
+    
+    public void testIsResource()
+        {
+        Model m = modelWithStatements( "" );
+        assertEquals( true, m.createResource( "eh:/foo" ).isResource() );
+        assertEquals( true, m.createResource().isResource() );
+        assertEquals( false, m.createLiteral( 17 ).isResource() );
+        assertEquals( false, m.createTypedLiteral( "hello" ).isResource() );
+        }
     }
 
 /*

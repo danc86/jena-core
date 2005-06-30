@@ -74,6 +74,13 @@ public class EnhNode extends Polymorphic implements FrontsNode
     }
     
     /**
+        An enhanced node is a resource if it's node is a URI node or a blank node.
+    */
+    public final boolean isResource() {
+        return node.isURI() || node.isBlank();
+    }
+    
+    /**
      * Answer a facet of this node, where that facet is denoted by the
      * given type.
      * 
