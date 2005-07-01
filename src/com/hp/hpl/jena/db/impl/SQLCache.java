@@ -240,7 +240,7 @@ public class SQLCache {
 		/* TODO extended calling format or statement format to support different
 		 * result sets and conconcurrency modes.
 		 */
-		PreparedStatement ps;
+		PreparedStatement ps=null;
 		if (m_connection == null || opname == null) return null;
 		int attrCnt = (attr == null) ? 0 : attr.length;
 		String aop = opname;
@@ -250,7 +250,16 @@ public class SQLCache {
 		if ( attrCnt > 3 ) throw new JenaException("Too many arguments");
         
 		List psl = (List) m_preparedStatements.get(aop);
-		if (psl == null || psl.isEmpty()) {
+		// OVERRIDE: added proper PreparedStatement removal.
+		if (psl!=null && !psl.isEmpty()) {
+			ps = (PreparedStatement) psl.remove(0);
+			try{
+    			ps.clearParameters();
+    		}catch(SQLException e) {
+    			ps.close();
+    		}
+		}
+		if (ps == null) {
 			String sql = getSQLStatement(opname, attr);
 			if (sql == null) {
 				throw new SQLException("No SQL defined for operation: " + opname);
@@ -260,8 +269,6 @@ public class SQLCache {
 				m_preparedStatements.put(aop, psl);
 			} 
 			ps = doPrepareSQLStatement(sql);
-		} else {
-			ps = (PreparedStatement) psl.remove(0);
 		}
 		if ( CACHE_PREPARED_STATEMENTS ) m_cachedStmtInUse.put(ps,psl);
 		return ps;

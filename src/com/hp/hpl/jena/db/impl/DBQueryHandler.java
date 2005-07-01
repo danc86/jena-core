@@ -224,10 +224,9 @@ public class DBQueryHandler extends SimpleQueryHandler {
 	public void setQueryOnlyReified ( boolean opt ) {
 		if ( graph.reificationBehavior() != GraphRDB.OPTIMIZE_ALL_REIFICATIONS_AND_HIDE_NOTHING )
 			throw new JenaException("Reified statements cannot be queried for this model's reification style");
-		if ( (opt == true) && (queryOnlyReif==true) )
+		if ( (opt == true) && (queryOnlyStmt==true) )
 			throw new JenaException("QueryOnlyAsserted and QueryOnlyReif cannot both be true");
-		queryOnlyReif = true;
-		throw new JenaException("QueryOnlyReified is not yet supported");
+		queryOnlyReif = opt;
 	}
 
 	public boolean getQueryOnlyReified() {
@@ -237,7 +236,7 @@ public class DBQueryHandler extends SimpleQueryHandler {
 	public void setQueryFullReified ( boolean opt ) {
 		if ( graph.reificationBehavior() != GraphRDB.OPTIMIZE_ALL_REIFICATIONS_AND_HIDE_NOTHING )
 			throw new JenaException("Reified statements cannot be queried for this model's reification style");
-		queryFullReif = true;
+		queryFullReif = opt;
 	}
 
 	public boolean getQueryFullReified() {
