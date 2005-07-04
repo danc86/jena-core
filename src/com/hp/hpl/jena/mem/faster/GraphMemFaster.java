@@ -40,7 +40,7 @@ public class GraphMemFaster extends GraphMemBase
         { return store.size(); }
     
     public QueryHandler queryHandler()
-        {
+        { 
         if (queryHandler == null) queryHandler = new GraphMemFasterQueryHandler( this );
         return queryHandler;
         }

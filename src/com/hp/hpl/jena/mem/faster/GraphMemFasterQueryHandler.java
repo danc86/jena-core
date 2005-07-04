@@ -6,6 +6,7 @@
 
 package com.hp.hpl.jena.mem.faster;
 
+import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.graph.Node;
 import com.hp.hpl.jena.graph.query.*;
 import com.hp.hpl.jena.graph.query.QueryHandler;
@@ -19,6 +20,9 @@ public class GraphMemFasterQueryHandler extends SimpleQueryHandler implements Qu
         { super( graph ); 
         this.graphMem = graph; }
 
+    public Stage patternStage( Mapping map, ExpressionSet constraints, Triple [] t )
+        { return new FasterPatternStage( graph, map, constraints, t ); }
+    
     public ExtendedIterator objectsFor( Node p, Node o )
         { return bothANY( p, o ) ? findObjects() : super.objectsFor( p, o ); }
 
