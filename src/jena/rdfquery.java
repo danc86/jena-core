@@ -380,7 +380,7 @@ public class rdfquery
         /*
         // Fake the TestRunner : don't want all the dots.
         TestResult r = new TestResult() ;
-        for ( Enumeration enum = suite.tests() ; enum.hasMoreElements() ; )
+        for ( Enumeration en = suite.tests() ; enum.hasMoreElements() ; )
         {
             Test t = (Test)enum.nextElement() ;
             t.run(r) ;
