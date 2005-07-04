@@ -16,9 +16,9 @@ import com.hp.hpl.jena.graph.*;
 
 public class Pattern 
 	{
-	protected final Element S;
-	protected final Element P;
-	protected final Element O;
+	public final Element S;
+	public final Element P;
+	public final Element O;
 	
 	public Pattern( Element S, Element P, Element O )
 		{
