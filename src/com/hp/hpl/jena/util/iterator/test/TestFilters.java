@@ -86,9 +86,10 @@ public class TestFilters extends ModelTestBase
         }
     
     public void testAnyAndTrivial()
-        {
-        assertSame( containsA, Filter.any.and( containsA ) );
-        }
+        { assertSame( containsA, Filter.any.and( containsA ) ); }
+    
+    public void testSomethingAndAny()
+        { assertSame( containsA, containsA.and( Filter.any ) ); }
     
     public void testFilterDropIterator()
         {

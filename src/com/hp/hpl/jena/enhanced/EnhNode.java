@@ -113,7 +113,7 @@ public class EnhNode extends Polymorphic implements FrontsNode
     /**
      * An enhanced node is equal to another enhanced node n iff the underlying 
      * nodes are equal. We generalise to allow the other object to be any class
-     * implementing HasNode, because we allow other implemementations of
+     * implementing asNode, because we allow other implemementations of
      * Resource than EnhNodes, at least in principle.
      * This is deemed to be a complete and correct interpretation of enhanced node
      * equality, which is why this method has been marked final.

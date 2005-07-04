@@ -40,8 +40,8 @@ public class ModelCom
     implements Model, PrefixMapping, ModelLock
 {
 
-      private RDFReaderF readerFactory = new RDFReaderFImpl();
-      private RDFWriterF writerFactory = new RDFWriterFImpl();
+      private static final RDFReaderF readerFactory = new RDFReaderFImpl();
+      private static final RDFWriterF writerFactory = new RDFWriterFImpl();
       private ModelLock modelLock = null ;
       
     /**

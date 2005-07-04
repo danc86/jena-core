@@ -26,7 +26,7 @@ public abstract class Filter
         { return new FilterKeepIterator( this, it ); }
     
     public Filter and( final Filter other )
-        { return new Filter()
+        { return other == any ? this : new Filter()
             { public boolean accept( Object x ) 
                 { return Filter.this.accept( x ) && other.accept( x ); } 
             };
