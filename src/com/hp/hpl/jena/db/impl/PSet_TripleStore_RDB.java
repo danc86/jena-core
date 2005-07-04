@@ -600,9 +600,9 @@ public void deleteTripleAR(
 				storeTriple(t, my_GID, true, batchedPreparedStatements);
 			}
 
-			Enumeration enum = batchedPreparedStatements.keys();
-			while (enum.hasMoreElements()) {
-				String op = (String) enum.nextElement();
+			Enumeration en = batchedPreparedStatements.keys();
+			while (en.hasMoreElements()) {
+				String op = (String) en.nextElement();
 				PreparedStatement p = (PreparedStatement) batchedPreparedStatements
 						.get(op);
 				p.executeBatch();
@@ -637,9 +637,9 @@ public void deleteTripleAR(
 			if (autoState) drvr.xactOp(DriverRDB.xactAutoOn);
 		} finally {
 			if ( batchedPreparedStatements != null ) {
-			Enumeration enum = batchedPreparedStatements.keys();
-			while (enum.hasMoreElements()) {
-				String op = (String) enum.nextElement();
+			Enumeration en = batchedPreparedStatements.keys();
+			while (en.hasMoreElements()) {
+				String op = (String) en.nextElement();
 				PreparedStatement p = (PreparedStatement) batchedPreparedStatements
 						.get(op);
 				batchedPreparedStatements.remove(op);
@@ -698,9 +698,9 @@ public void deleteTripleAR(
 				deleteTriple(t, my_GID, true, batchedPreparedStatements);
 			}
 
-			Enumeration enum = batchedPreparedStatements.keys();
-			while (enum.hasMoreElements()) {
-				String op = (String) enum.nextElement();
+			Enumeration en = batchedPreparedStatements.keys();
+			while (en.hasMoreElements()) {
+				String op = (String) en.nextElement();
 				PreparedStatement p = (PreparedStatement) batchedPreparedStatements
 						.get(op);
 				p.executeBatch();
@@ -736,9 +736,9 @@ public void deleteTripleAR(
 		}
 		finally {
 			if ( batchedPreparedStatements != null ) {
-				Enumeration enum = batchedPreparedStatements.keys();
-				while (enum.hasMoreElements()) {
-					String op = (String) enum.nextElement();
+				Enumeration en = batchedPreparedStatements.keys();
+				while (en.hasMoreElements()) {
+					String op = (String) en.nextElement();
 					PreparedStatement p = (PreparedStatement) batchedPreparedStatements
 							.get(op);
 					batchedPreparedStatements.remove(op);
