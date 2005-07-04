@@ -106,7 +106,7 @@ public class DataRangeImpl
     /**
      * <p>Assert that this data range is exactly the enumeration of the given individuals. Any existing 
      * statements for <code>oneOf</code> will be removed.</p>
-     * @param enum A list of literals that defines the permissible values for this datarange
+     * @param en A list of literals that defines the permissible values for this datarange
      * @exception OntProfileException If the {@link Profile#ONE_OF()} property is not supported in the current language profile.   
      */ 
     public void setOneOf( RDFList en ) {
