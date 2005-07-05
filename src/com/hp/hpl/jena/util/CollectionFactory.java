@@ -35,13 +35,15 @@ public class CollectionFactory
     /**
          Answer a new Set which uses haashing for lookup.
     */
-    public static Set createHashedSet() { return new HashSet(); }
+    public static Set createHashedSet() 
+        { return new HashSet(); }
     
     /**
          Answer a new Set which uses hashing for lookup and is initialised as a copy
          of <code>toCopy</code>.
     */
-    public static Set createHashedSet( Collection  toCopy ) { return new HashSet( toCopy ); }
+    public static Set createHashedSet( Collection toCopy ) 
+        { return new HashSet( toCopy ); }
     }
 
 /*

@@ -11,8 +11,7 @@ import com.hp.hpl.jena.mem.faster.GraphMemFaster;
 import com.hp.hpl.jena.shared.*;
 
 /**
-    A factory class for creating Graphs [like ModelFactory, but for Graph;
-    the name GraphFactory already being taken.]
+    A factory class for creating Graphs.
     
     @author kers
 */
@@ -22,6 +21,7 @@ public class Factory
     private Factory()
         { super(); }
 
+    private static final boolean faster = false;
     /**
         Answer a memory-based Graph with the Standard reification style.
     */
@@ -35,10 +35,10 @@ public class Factory
         { return Factory.createGraphMem( style ); }
               
     public static Graph createGraphMem()
-        { return new GraphMem(); }
+        { return faster ? (Graph) new GraphMemFaster() : new GraphMem(); }
 
     public static Graph createGraphMem( ReificationStyle style )
-        { return new GraphMem( style ); }
+        { return faster ? (Graph) new GraphMemFaster( style ) : new GraphMem( style ); }
     }
 
 

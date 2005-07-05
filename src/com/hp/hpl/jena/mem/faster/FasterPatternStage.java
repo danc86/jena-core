@@ -8,6 +8,8 @@ package com.hp.hpl.jena.mem.faster;
 
 import java.util.*;
 
+import junit.framework.Assert;
+
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.graph.query.*;
 import com.hp.hpl.jena.util.CollectionFactory;
@@ -112,7 +114,10 @@ public class FasterPatternStage extends Stage
         catch (Exception e) { sink.close( e ); return; }
         sink.close();
         }        
-        
+
+    private static Node nullToAny( Node n )
+        { return n == null ? Node.ANY : n; }  
+    
     protected void nest( Pipe sink, Domain current, int index )
         { 
         if (index == compiled.length)
@@ -121,24 +126,16 @@ public class FasterPatternStage extends Stage
             {
             Pattern p = compiled[index];
             ValuatorSet guard = guards[index];
-            Triple t = p.asTripleMatch( current ).asTriple();
-            Iterator it = find( t.getSubject(), t.getPredicate(), t.getObject() );
-//            Iterator it = find
-//                ( p.S.asNodeMatch( current ), p.P.asNodeMatch( current ), p.O.asNodeMatch( current ) );
+            Node S = nullToAny( p.S.asNodeMatch( current ) );
+            Node P = nullToAny( p.P.asNodeMatch( current ) );
+            Node O = nullToAny( p.O.asNodeMatch( current ) );
+            Iterator it = graph.findFaster( S, P, O );
             while (stillOpen && it.hasNext())
                 if (p.match( current, (Triple) it.next()) && guard.evalBool( current )) 
                     nest( sink, current, index + 1 );
             NiceIterator.close( it );
             }
         }
-
-    /**
-        Subclasses over-ride if they have a specialised implementation.
-        WARNING: WIP - this interface is unstable. Do not use it without
-        consulting Chris or Jeremy.
-    */
-    protected Iterator find( Node S, Node P, Node O )
-        { return graph.findFaster( S, P, O ); }
     }
 
 

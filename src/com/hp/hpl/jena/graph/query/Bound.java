@@ -27,7 +27,7 @@ public class Bound extends Element
         <code>Node::sameValueAs()</code>.
     */  
     public boolean match( Domain d, Node x )
-        { return x.sameValueAs(d.get( index ) ); }
+        { return x.sameValueAs( d.get( index ) ); }
      
     public Node asNodeMatch( Domain d ) 
         { return (Node) d.get( index ); }
