@@ -73,7 +73,7 @@ public class TestModelFactory extends ModelTestBase
         ModelSpec spec = ModelFactory.createSpec( desc ); 
         assertIsoModels( desc, spec.getDescription() );
         assertTrue( spec instanceof PlainModelSpec );
-        assertTrue( spec.createModel().getGraph() instanceof GraphMem );
+        assertTrue( spec.createModel().getGraph() instanceof GraphMemBase );
         }
         
     public void testCreateOntSpec()

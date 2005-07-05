@@ -9,10 +9,10 @@
  *****************************************************************/
 package com.hp.hpl.jena.reasoner.rulesys;
 
-import com.hp.hpl.jena.mem.GraphMem;
 import com.hp.hpl.jena.reasoner.rulesys.impl.*;
 import com.hp.hpl.jena.reasoner.*;
 import com.hp.hpl.jena.graph.*;
+
 import java.util.*;
 
 import com.hp.hpl.jena.util.OneToManyMap;
@@ -91,7 +91,7 @@ public class LPBackwardRuleInfGraph extends BaseInfGraph implements BackwardRule
      */
     public void prepare() {
         if (!isPrepared) {
-            fdeductions = new FGraph( new GraphMem() );
+            fdeductions = new FGraph( Factory.createGraphMem() );
             extractAxioms();
             dataFind = fdata;
             if (fdeductions != null) {

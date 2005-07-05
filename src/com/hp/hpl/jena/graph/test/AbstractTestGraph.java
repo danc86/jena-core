@@ -10,7 +10,6 @@ import com.hp.hpl.jena.util.CollectionFactory;
 import com.hp.hpl.jena.util.iterator.*;
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.graph.query.*;
-import com.hp.hpl.jena.mem.GraphMem;
 import com.hp.hpl.jena.shared.*;
 
 import java.util.*;
@@ -33,7 +32,7 @@ public /* abstract */ class AbstractTestGraph extends GraphTestBase
     */
     // public abstract Graph getGraph();
     
-    public Graph getGraph() { return new GraphMem(); }
+    public Graph getGraph() { return Factory.createGraphMem(); }
     
     public Graph getGraphWith( String facts )
         {

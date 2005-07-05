@@ -9,12 +9,12 @@
  *****************************************************************/
 package com.hp.hpl.jena.reasoner.rulesys.impl;
 
-import com.hp.hpl.jena.mem.GraphMem;
 import com.hp.hpl.jena.reasoner.*;
 import com.hp.hpl.jena.reasoner.rulesys.*;
 import com.hp.hpl.jena.util.PrintUtil;
 import com.hp.hpl.jena.util.iterator.ClosableIterator;
 import com.hp.hpl.jena.graph.*;
+
 import java.util.*;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -60,7 +60,7 @@ public class BFRuleContext implements RuleContext {
         env = new BindingStack();
         stack = new ArrayList();
         pending = new ArrayList();
-        pendingCache = new GraphMem();
+        pendingCache = Factory.createGraphMem();
     }
     
     /**

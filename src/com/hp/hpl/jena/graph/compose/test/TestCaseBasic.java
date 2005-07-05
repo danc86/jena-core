@@ -33,7 +33,7 @@ public class TestCaseBasic extends com.hp.hpl.jena.regression.TestCaseBasic
     
     private Graph newGraph( Constructor cons )
     	{
-    	try { return (Graph) cons.newInstance( new Object [] { new GraphMem(), new GraphMem() } ); }
+    	try { return (Graph) cons.newInstance( new Object [] { Factory.createGraphMem(), Factory.createGraphMem() } ); }
     	catch (Exception e) { throw new JenaException( "newGraph failed:", e ); }
     	}
     	

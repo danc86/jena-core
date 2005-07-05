@@ -6,7 +6,7 @@
  
 package com.hp.hpl.jena.mem.test;
 
-import com.hp.hpl.jena.mem.ModelMem;
+import com.hp.hpl.jena.rdf.model.ModelFactory;
 
 /**
  *
@@ -21,10 +21,10 @@ public class TestCaseBasic extends com.hp.hpl.jena.regression.TestCaseBasic {
     }
     
     public void setUp() {
-        m1 = new ModelMem();
-        m2 = new ModelMem();
-        m3 = new ModelMem();
-        m4 = new ModelMem();
+        m1 = ModelFactory.createDefaultModel();
+        m2 = ModelFactory.createDefaultModel();
+        m3 = ModelFactory.createDefaultModel();
+        m4 = ModelFactory.createDefaultModel();
     }
     public void tearDown() {
     	m1 = null;

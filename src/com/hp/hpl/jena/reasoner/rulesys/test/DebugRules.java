@@ -10,7 +10,6 @@
 package com.hp.hpl.jena.reasoner.rulesys.test;
 
 import com.hp.hpl.jena.reasoner.rulesys.*;
-import com.hp.hpl.jena.mem.GraphMem;
 import com.hp.hpl.jena.reasoner.*;
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.util.PrintUtil;
@@ -39,7 +38,7 @@ public class DebugRules {
     public void run() {
         
         BasicForwardRuleReasoner reasoner = new BasicForwardRuleReasoner(ruleset);
-        InfGraph result = reasoner.bind(new GraphMem());
+        InfGraph result = reasoner.bind(Factory.createGraphMem());
         System.out.println("Final graph state");
         for (Iterator i = result.find(null, null, null); i.hasNext(); ) {
             System.out.println(PrintUtil.print((Triple)i.next()));

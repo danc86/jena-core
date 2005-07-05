@@ -79,7 +79,7 @@ public abstract class BaseGraphMaker implements GraphMaker
         
     public Graph getDescription( Node root )
         {
-        Graph result = new GraphMem();
+        Graph result = Factory.createGraphMem();
         addDescription( result, root );
         return result;     
         }

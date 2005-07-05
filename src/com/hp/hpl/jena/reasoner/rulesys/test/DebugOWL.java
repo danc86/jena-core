@@ -13,7 +13,6 @@ import java.util.Iterator;
 
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.graph.compose.Union;
-import com.hp.hpl.jena.mem.GraphMem;
 //import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.util.FileManager;
 import com.hp.hpl.jena.util.PrintUtil;
@@ -87,7 +86,7 @@ public class DebugOWL {
      * Construct an empty test harness.
      */
     public DebugOWL(int config) {
-        testdata = new GraphMem();
+        testdata = Factory.createGraphMem();
         schema = null;
         
         switch(config) {
@@ -183,7 +182,7 @@ public class DebugOWL {
                         + (withProps ? " with properties" : ""));
         
         // Create the tree
-        testdata = new GraphMem();
+        testdata = Factory.createGraphMem();
         // First level
         int conceptPtr = 0;
         int levelStart = 0;

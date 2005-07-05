@@ -12,7 +12,6 @@ package com.hp.hpl.jena.mem.test;
 
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.graph.test.*;
-import com.hp.hpl.jena.mem.GraphMem;
 import com.hp.hpl.jena.util.iterator.*;
 
 public class TestStoreSpeed extends GraphTestBase
@@ -26,15 +25,15 @@ public class TestStoreSpeed extends GraphTestBase
 
     public static void main( String [] args )
         {
-        new TestStoreSpeed( "vladimir taltos" ) .gonzales( "subject StoreMem", new GraphMem() );
-        new TestStoreSpeed( "vladimir taltos" ) .gonzales( "normal StoreMem", new GraphMem() );
-        new TestStoreSpeed( "vladimir taltos" ) .gonzales( "GraphMem", new GraphMem() );
-        new TestStoreSpeed( "vladimir taltos" ) .gonzales( "subject StoreMem", new GraphMem() );
-        new TestStoreSpeed( "vladimir taltos" ) .gonzales( "normal StoreMem", new GraphMem() );
-        new TestStoreSpeed( "vladimir taltos" ) .gonzales( "GraphMem", new GraphMem() );
-        new TestStoreSpeed( "vladimir taltos" ) .gonzales( "subject StoreMem", new GraphMem() );
-        new TestStoreSpeed( "vladimir taltos" ) .gonzales( "normal StoreMem", new GraphMem() );
-        new TestStoreSpeed( "vladimir taltos" ) .gonzales( "GraphMem", new GraphMem() );
+        new TestStoreSpeed( "vladimir taltos" ) .gonzales( "subject StoreMem", Factory.createGraphMem() );
+        new TestStoreSpeed( "vladimir taltos" ) .gonzales( "normal StoreMem", Factory.createGraphMem() );
+        new TestStoreSpeed( "vladimir taltos" ) .gonzales( "GraphMem", Factory.createGraphMem() );
+        new TestStoreSpeed( "vladimir taltos" ) .gonzales( "subject StoreMem", Factory.createGraphMem() );
+        new TestStoreSpeed( "vladimir taltos" ) .gonzales( "normal StoreMem", Factory.createGraphMem() );
+        new TestStoreSpeed( "vladimir taltos" ) .gonzales( "GraphMem", Factory.createGraphMem() );
+        new TestStoreSpeed( "vladimir taltos" ) .gonzales( "subject StoreMem", Factory.createGraphMem() );
+        new TestStoreSpeed( "vladimir taltos" ) .gonzales( "normal StoreMem", Factory.createGraphMem() );
+        new TestStoreSpeed( "vladimir taltos" ) .gonzales( "GraphMem", Factory.createGraphMem() );
         }
         
     private void mark()

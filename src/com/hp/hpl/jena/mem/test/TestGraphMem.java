@@ -29,7 +29,7 @@ public class TestGraphMem extends AbstractTestGraph
         { return new TestSuite( TestGraphMem.class ); }
         
     public Graph getGraph()
-        { return new GraphMem(); }
+        { return Factory.createGraphMem(); }
         
     public void testClosesReifier()
         {

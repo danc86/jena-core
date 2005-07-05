@@ -12,7 +12,6 @@ package com.hp.hpl.jena.reasoner.rulesys.test;
 import java.util.*;
 
 import com.hp.hpl.jena.graph.*;
-import com.hp.hpl.jena.mem.GraphMem;
 import com.hp.hpl.jena.reasoner.*;
 import com.hp.hpl.jena.reasoner.rulesys.*;
 import com.hp.hpl.jena.reasoner.rulesys.impl.*;
@@ -225,11 +224,11 @@ public class TestRETE  extends TestCase {
      */
     private void doRuleTest(String rules, Triple[] adds, Triple[] expected) {
         List ruleList = Rule.parseRules(rules);
-        BasicForwardRuleInfGraph infgraph = new BasicForwardRuleInfGraph(null, new ArrayList(), null, new GraphMem());
+        BasicForwardRuleInfGraph infgraph = new BasicForwardRuleInfGraph(null, new ArrayList(), null, Factory.createGraphMem());
 //        infgraph.setTraceOn(true);
         RETEEngine engine = new RETEEngine(infgraph, ruleList);
         infgraph.prepare();
-        engine.init(true, new FGraph(new GraphMem()));
+        engine.init(true, new FGraph(Factory.createGraphMem()));
         for (int i = 0; i < adds.length; i++) {
             engine.addTriple(adds[i], true);
         }
@@ -245,14 +244,14 @@ public class TestRETE  extends TestCase {
         String rules = "[testRule1: (a p ?x) (b p ?x) -> (n1 p ?x) ]" +
                        "[testRule2: (?x q ?y) -> (?x p ?y)]";
         List ruleList = Rule.parseRules(rules);
-        Graph schema = new GraphMem();
+        Graph schema = Factory.createGraphMem();
         schema.add(new Triple(a, q, c));
         schema.add(new Triple(a, q, d));
 
-        Graph data1 = new GraphMem();
+        Graph data1 = Factory.createGraphMem();
         data1.add(new Triple(b, q, c));
         
-        Graph data2 = new GraphMem();
+        Graph data2 = Factory.createGraphMem();
         data2.add(new Triple(b, q, d));
         
         GenericRuleReasoner reasoner =  new GenericRuleReasoner(ruleList);

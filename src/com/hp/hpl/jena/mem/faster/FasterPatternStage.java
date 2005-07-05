@@ -138,10 +138,7 @@ public class FasterPatternStage extends Stage
         consulting Chris or Jeremy.
     */
     protected Iterator find( Node S, Node P, Node O )
-        {
-        return graph.findFaster( S, P, O );
-        }
-    
+        { return graph.findFaster( S, P, O ); }
     }
 
 

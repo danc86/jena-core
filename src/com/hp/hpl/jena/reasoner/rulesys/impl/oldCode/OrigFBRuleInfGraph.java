@@ -9,7 +9,6 @@
  *****************************************************************/
 package com.hp.hpl.jena.reasoner.rulesys.impl.oldCode;
 
-import com.hp.hpl.jena.mem.GraphMem;
 import com.hp.hpl.jena.reasoner.rulesys.impl.*;
 import com.hp.hpl.jena.reasoner.rulesys.*;
 import com.hp.hpl.jena.reasoner.transitiveReasoner.*;
@@ -321,7 +320,7 @@ public class OrigFBRuleInfGraph  extends BasicForwardRuleInfGraph implements Bac
             if (fdata != null) data = fdata.getGraph();
             
             // initilize the deductions graph
-            fdeductions = new FGraph( new GraphMem() );
+            fdeductions = new FGraph( Factory.createGraphMem() );
             dataFind = (data == null) ? fdeductions :  FinderUtil.cascade(fdeductions, fdata);
             
             // Initialize the optional TGC caches
@@ -366,7 +365,7 @@ public class OrigFBRuleInfGraph  extends BasicForwardRuleInfGraph implements Bac
             // Call any optional preprocessing hook
             Finder dataSource = fdata;
             if (preprocessorHooks != null && preprocessorHooks.size() > 0) {
-                Graph inserts = new GraphMem();
+                Graph inserts = Factory.createGraphMem();
                 for (Iterator i = preprocessorHooks.iterator(); i.hasNext(); ) {
                     RulePreprocessHook hook = (RulePreprocessHook)i.next();
                     // The signature is wrong to do this having moved this code into the attic

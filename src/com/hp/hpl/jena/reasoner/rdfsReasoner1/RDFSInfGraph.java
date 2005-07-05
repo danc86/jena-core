@@ -14,7 +14,6 @@ import com.hp.hpl.jena.reasoner.transitiveReasoner.*;
 import com.hp.hpl.jena.datatypes.*;
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.graph.impl.*;
-import com.hp.hpl.jena.mem.GraphMem;
 import com.hp.hpl.jena.vocabulary.*;
 import com.hp.hpl.jena.util.iterator.ExtendedIterator;
 import com.hp.hpl.jena.util.iterator.UniqueExtendedIterator;
@@ -58,7 +57,7 @@ public class RDFSInfGraph extends BaseInfGraph {
     protected PatternRouter router;
     
     /** Cache of axiomatci triples to be included in the tripleCache */
-    protected FGraph axioms = new FGraph(new GraphMem());
+    protected FGraph axioms = new FGraph(Factory.createGraphMem());
 
     /** The data supplied as a tbox, may be null, will be included as part of tripleCache if not null */
     protected Finder tbox;

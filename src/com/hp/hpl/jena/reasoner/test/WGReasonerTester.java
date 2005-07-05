@@ -14,7 +14,6 @@ import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.graph.query.*;
 import com.hp.hpl.jena.rdf.model.impl.PropertyImpl;
 import com.hp.hpl.jena.rdf.model.impl.ResourceImpl;
-import com.hp.hpl.jena.mem.GraphMem;
 import com.hp.hpl.jena.reasoner.*;
 import com.hp.hpl.jena.vocabulary.RDF;
 import com.hp.hpl.jena.rdf.arp.test.ARPTests;
@@ -185,7 +184,7 @@ public class WGReasonerTester {
             String fileName = test.getRequiredProperty(predicate).getObject().toString();
             return loadFile(fileName).getGraph();
         } else {
-            return new GraphMem();
+            return Factory.createGraphMem();
         }
     }
     

@@ -10,6 +10,7 @@ import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.util.CollectionFactory;
 import com.hp.hpl.jena.util.iterator.*;
 import com.hp.hpl.jena.mem.*;
+
 import java.util.*;
 
 /**
@@ -28,7 +29,7 @@ public class SimpleTreeQueryPlan implements TreeQueryPlan
 		
 	public Graph executeTree() 
 		{ 
-		Graph result = new GraphMem();
+		Graph result = Factory.createGraphMem();
 		Set roots = getRoots( pattern );
 		for (Iterator it = roots.iterator(); it.hasNext(); handleRoot( result, (Node) it.next(), CollectionFactory.createHashedSet())) {}
 		return result;

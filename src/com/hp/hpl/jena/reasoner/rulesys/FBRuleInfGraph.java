@@ -9,7 +9,6 @@
  *****************************************************************/
 package com.hp.hpl.jena.reasoner.rulesys;
 
-import com.hp.hpl.jena.mem.GraphMem;
 import com.hp.hpl.jena.rdf.model.RDFNode;
 import com.hp.hpl.jena.rdf.model.ResourceFactory;
 import com.hp.hpl.jena.reasoner.rulesys.impl.*;
@@ -423,7 +422,7 @@ public class FBRuleInfGraph  extends BasicForwardRuleInfGraph implements Backwar
 
             // Call any optional preprocessing hook
             if (preprocessorHooks != null && preprocessorHooks.size() > 0) {
-                Graph inserts = new GraphMem();
+                Graph inserts = Factory.createGraphMem();
                 for (Iterator i = preprocessorHooks.iterator(); i.hasNext(); ) {
                     RulePreprocessHook hook = (RulePreprocessHook)i.next();
                     hook.run(this, dataFind, inserts);

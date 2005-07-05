@@ -145,7 +145,7 @@ public class Abbreviated extends BaseXMLWriter implements RDFErrorHandler {
 
 	static public void main(String args[]) throws Exception {
 		System.out.println("Test code for bug 77");
-		Model m = new com.hp.hpl.jena.mem.ModelMem();
+		Model m = ModelFactory.createDefaultModel();
 		m.read(
 			new FileInputStream("modules/rdf/regression/arp/bug51_0.rdf"),
 			"http://example.org/file");

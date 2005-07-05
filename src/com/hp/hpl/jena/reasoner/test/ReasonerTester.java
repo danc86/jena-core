@@ -12,7 +12,6 @@ package com.hp.hpl.jena.reasoner.test;
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.rdf.model.impl.*;
-import com.hp.hpl.jena.mem.GraphMem;
 import com.hp.hpl.jena.reasoner.*;
 import com.hp.hpl.jena.reasoner.rulesys.Node_RuleVariable;
 import com.hp.hpl.jena.vocabulary.RDF;
@@ -142,7 +141,7 @@ public class ReasonerTester {
             boolean cache = predicate.equals(tboxP) || predicate.equals(dataP);
             return loadFile(fileName, cache).getGraph();
         } else {
-            return new GraphMem();
+            return Factory.createGraphMem();
         }
     }
     
@@ -257,7 +256,7 @@ public class ReasonerTester {
         
         // Run each query triple and accumulate the results
         Graph queryG = loadTestFile(test, queryP);
-        Graph resultG = new GraphMem();
+        Graph resultG = Factory.createGraphMem();
 
         Iterator queries = queryG.find(null, null, null);
         while (queries.hasNext()) {

@@ -16,7 +16,6 @@ import com.hp.hpl.jena.util.MonitorGraph;
 import com.hp.hpl.jena.util.MonitorModel;
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.graph.test.RecordingListener;
-import com.hp.hpl.jena.mem.GraphMem;
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.rdf.model.test.RecordingModelListener;
 import com.hp.hpl.jena.reasoner.test.TestUtil;
@@ -63,7 +62,7 @@ public class TestMonitors extends TestCase {
      * Basic graph level test, no monitoring
      */
     public void testBasics() {
-        Graph base = new GraphMem();
+        Graph base = Factory.createGraphMem();
         MonitorGraph monitor = new MonitorGraph(base);
         
         // base data
@@ -96,7 +95,7 @@ public class TestMonitors extends TestCase {
      * Monitoring test.
      */
     public void testListener() {
-        Graph base = new GraphMem();
+        Graph base = Factory.createGraphMem();
         MonitorGraph monitor = new MonitorGraph(base);
         RecordingListener listener = new RecordingListener();
         monitor.getEventManager().register(listener);

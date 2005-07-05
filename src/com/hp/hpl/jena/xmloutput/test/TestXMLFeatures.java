@@ -744,7 +744,7 @@ public class TestXMLFeatures extends ModelTestBase {
     blockLogger();
 		Node blank = Node.createAnon();
 		Node prop = Node.createURI(s);
-		Graph g = new GraphMem();
+		Graph g = Factory.createGraphMem();
 		g.add( Triple.create( blank, prop, blank ) );
 		// create Model
 		Model m = ModelFactory.createModelForGraph(g);

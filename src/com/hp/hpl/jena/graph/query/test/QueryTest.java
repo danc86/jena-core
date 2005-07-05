@@ -32,7 +32,7 @@ public class QueryTest extends TestCase
         {
         public TestQueryGraphMem( String name ) { super( name ); }
         
-        public Graph getGraph() { return new GraphMem(); }       
+        public Graph getGraph() { return Factory.createGraphMem(); }       
         }
     
     public static class TestQuerySmallGraphMem extends AbstractTestQuery

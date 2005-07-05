@@ -11,7 +11,6 @@ package com.hp.hpl.jena.reasoner.rulesys.test;
 
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.graph.compose.Union;
-import com.hp.hpl.jena.mem.GraphMem;
 import com.hp.hpl.jena.reasoner.*;
 import com.hp.hpl.jena.reasoner.test.TestUtil;
 import com.hp.hpl.jena.vocabulary.*;
@@ -62,13 +61,13 @@ public class TestRDFS9 extends TestCase {
         Node sC = RDFS.subClassOf.asNode();
         Node ty = RDF.type.asNode();
         
-        Graph tdata = new GraphMem();
+        Graph tdata = Factory.createGraphMem();
         tdata.add(new Triple(C1, sC, C2));
         tdata.add(new Triple(C2, sC, C3));
         tdata.add(new Triple(p, RDFS.subPropertyOf.asNode(), q));
         tdata.add(new Triple(q, RDFS.subPropertyOf.asNode(), r));
         tdata.add(new Triple(r, RDFS.domain.asNode(), D));
-        Graph data = new GraphMem();
+        Graph data = Factory.createGraphMem();
         data.add(new Triple(a, p, b));
         InfGraph igraph = ReasonerRegistry.getRDFSReasoner().bind(new Union(tdata, data));
         TestUtil.assertIteratorValues(this, igraph.find(a, ty, null),

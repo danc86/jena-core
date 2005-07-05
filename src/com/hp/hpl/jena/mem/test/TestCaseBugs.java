@@ -48,7 +48,7 @@ public class TestCaseBugs
     }
     
     public void setUp() {
-        model = new ModelMem();
+        model = ModelFactory.createDefaultModel();
     }
     
     public void bug36() {

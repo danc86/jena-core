@@ -23,13 +23,17 @@ public class GraphMem extends GraphMemBase implements Graph
         { return (GraphTripleStore) store; }
     
     /**
-        Initialises a GraphMem with the Minimal reification style
+        Initialises a GraphMem with the Minimal reification style. Use the
+        factory if possible; this method is public to allow certain reflective
+        tests.
     */
     public GraphMem() 
         { this( ReificationStyle.Minimal ); }
     
     /**
-        Initialises a GraphMem with the given reification style.
+        Initialises a GraphMem with the given reification style. Use the
+        factory if possible; this method is public to allow certain reflective
+        tests.
     */
     public GraphMem( ReificationStyle style )
         { super( style ); }

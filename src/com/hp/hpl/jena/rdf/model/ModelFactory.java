@@ -117,7 +117,7 @@ public class ModelFactory extends ModelFactoryBase
         Answer a new memory-based model with the given reification style
     */
     public static Model createDefaultModel( ReificationStyle style )
-        { return new ModelCom( new GraphMem( style ) ); }
+        { return new ModelCom( Factory.createGraphMem( style ) ); }
 
     /**
         Answer a read-only Model with all the statements of this Model and any

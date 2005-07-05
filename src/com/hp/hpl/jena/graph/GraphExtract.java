@@ -9,7 +9,6 @@ package com.hp.hpl.jena.graph;
 import java.util.Iterator;
 import java.util.Set;
 
-import com.hp.hpl.jena.mem.GraphMem;
 import com.hp.hpl.jena.util.CollectionFactory;
 
 /**
@@ -32,7 +31,7 @@ public class GraphExtract
          TripleBoundary passed to the constructor.
     */
     public Graph extract( Node node, Graph graph )
-        { return extractInto( new GraphMem(), node, graph ); }
+        { return extractInto( Factory.createGraphMem(), node, graph ); }
     
     /**
          Answer the graph <code>toUpdate</code> augmented with the sub-graph of

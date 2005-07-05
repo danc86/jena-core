@@ -10,7 +10,6 @@ import com.hp.hpl.jena.util.iterator.*;
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.graph.compose.Dyadic;
 import com.hp.hpl.jena.graph.test.*;
-import com.hp.hpl.jena.mem.GraphMem;
 
 
 import java.util.*;
@@ -53,7 +52,7 @@ public class TestDyadic extends GraphTestBase
     
     public void testDyadicOperands()
         {
-        Graph g = new GraphMem(), h = new GraphMem();
+        Graph g = Factory.createGraphMem(), h = Factory.createGraphMem();
         Dyadic d = new Dyadic( g, h )
             {
             public ExtendedIterator graphBaseFind( TripleMatch m ) { return null; }

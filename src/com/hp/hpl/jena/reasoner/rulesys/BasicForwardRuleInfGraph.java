@@ -9,7 +9,6 @@
  *****************************************************************/
 package com.hp.hpl.jena.reasoner.rulesys;
 
-import com.hp.hpl.jena.mem.GraphMem;
 import com.hp.hpl.jena.reasoner.*;
 import com.hp.hpl.jena.reasoner.rulesys.impl.*;
 import com.hp.hpl.jena.graph.*;
@@ -347,7 +346,7 @@ public class BasicForwardRuleInfGraph extends BaseInfGraph implements ForwardRul
      * by subclasses that need special purpose graph implementations here. 
      */
     protected Graph createDeductionsGraph() {
-        return new GraphMem();
+        return Factory.createGraphMem();
     }
     
     /**

@@ -26,7 +26,7 @@ public class Delta extends Dyadic implements Graph
 	
 	public Delta( Graph base )
 		{
-		super( new GraphMem(), new GraphMem() );
+		super( Factory.createGraphMem(), Factory.createGraphMem() );
 		this.base = base;
 		}
 		
