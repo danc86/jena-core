@@ -209,6 +209,41 @@ public class TestBasicOperations extends TestCase {
 		}
 	}
 
+	public void testSetLongObjectLenMax() {
+		int len = dbDriver.getLongObjectLength();
+		int newLen = len;
+		int lenMax = dbDriver.getLongObjectLengthMax();
+		int hdrLen = 32; // allow 32 bytes for hdrs, etc.
+		try {
+			tearDown();
+			conn = TestConnection.makeTestConnection();
+			dbDriver = conn.getDriver();
+			len = dbDriver.getLongObjectLength();
+			lenMax = dbDriver.getLongObjectLengthMax();
+			if ( len == lenMax )
+				return; // nothing to test
+			newLen = lenMax - hdrLen;
+			dbDriver.setLongObjectLength(newLen);
+			model = ModelRDB.createModel(conn);
+		} catch (Exception e) {
+			assertTrue(false);
+		}
+		testLongObjectLen();
+
+		// now make sure longObjectValue persists
+		model.close();
+		try {
+			conn.close();
+			conn = TestConnection.makeTestConnection();
+			dbDriver = conn.getDriver();
+			assertTrue(len == dbDriver.getLongObjectLength());
+			model = ModelRDB.open(conn);
+			assertTrue(newLen == dbDriver.getLongObjectLength());
+		} catch (Exception e) {
+			assertTrue(false);
+		}
+	}
+	
 	public void testAddRemoveHugeLiteral() {
 		String base = "This is a huge string that repeats.";
 		StringBuffer buffer = new StringBuffer(4096);
