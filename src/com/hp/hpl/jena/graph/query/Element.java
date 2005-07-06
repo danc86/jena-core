@@ -18,7 +18,7 @@ import com.hp.hpl.jena.graph.*;
 
 public abstract class Element 
 	{
-	protected int index;
+	protected final int index;
 	
     /**
         Answer this Element's index in the Domains it is compiled for.
