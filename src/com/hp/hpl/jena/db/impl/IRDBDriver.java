@@ -434,6 +434,12 @@ public interface IRDBDriver {
 	}
 	
 	/**
+	 * Get the maximum possible value of LongObjectLength
+	 * @return int
+	 */
+	public int getLongObjectLengthMax();
+
+	/**
 	 * Get the value of LongObjectLength
 	 * @return int
 	 */
@@ -445,6 +451,12 @@ public interface IRDBDriver {
 	* @param int
 	*/
 	public void setLongObjectLength(int len);
+
+	/**
+	 * Get the maximum possible value of IndexKeyLength
+	 * @return int
+	 */
+	public int getIndexKeyLengthMax();
 
 	/**
 	 * Get the value of IndexKeyLength

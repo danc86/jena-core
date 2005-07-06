@@ -2449,6 +2449,10 @@ public abstract class DriverRDB implements IRDBDriver {
 	 * getters and setters for database options
 	 */
 	 
+	 public int getLongObjectLengthMax () {
+		 	return LONG_OBJECT_LENGTH_MAX;
+		 }
+		 
 	 public int getLongObjectLength () {
 	 	return LONG_OBJECT_LENGTH;
 	 }
@@ -2456,10 +2460,15 @@ public abstract class DriverRDB implements IRDBDriver {
 	 public void setLongObjectLength ( int len ) {
 		checkDbUninitialized();
 		if ( len > LONG_OBJECT_LENGTH_MAX )
-			throw new JenaException("IndexKeyLength exceeds maximum value for database");
+			throw new JenaException("LongObjectLength exceeds maximum value for database (" +
+					+ LONG_OBJECT_LENGTH_MAX + ")");
 		LONG_OBJECT_LENGTH = len;
 	}
 
+	 public int getIndexKeyLengthMax () {
+		 	return INDEX_KEY_LENGTH_MAX;
+		 }
+		 
 	public int getIndexKeyLength () {
    		return INDEX_KEY_LENGTH;
 	}
@@ -2467,7 +2476,8 @@ public abstract class DriverRDB implements IRDBDriver {
 	public void setIndexKeyLength ( int len ) {
 		checkDbUninitialized();
 		if ( len > INDEX_KEY_LENGTH_MAX )
-			throw new JenaException("IndexKeyLength exceeds maximum value for database");
+			throw new JenaException("IndexKeyLength exceeds maximum value for database ("
+					+ INDEX_KEY_LENGTH_MAX + ")");
 		INDEX_KEY_LENGTH = len;
 	}
 	
