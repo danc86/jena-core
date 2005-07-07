@@ -22,8 +22,9 @@ public class ValuatorSet
     public ValuatorSet() 
         {}
     
-    public boolean nonTrivial()
+    public boolean isNonTrivial()
         { return valuators.size() > 0; }
+    
     /**
          Answer this ValuatorSet after adding the Valuator <code>e</code> to it.
     */
