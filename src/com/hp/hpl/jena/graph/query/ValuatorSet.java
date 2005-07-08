@@ -22,6 +22,9 @@ public class ValuatorSet
     public ValuatorSet() 
         {}
     
+    /**
+        Answer true iff evaluating this ValuatorSet runs some Valuators. 
+    */
     public boolean isNonTrivial()
         { return valuators.size() > 0; }
     

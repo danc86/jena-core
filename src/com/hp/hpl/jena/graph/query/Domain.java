@@ -20,12 +20,12 @@ import java.util.*;
 */
 
 
-public class Domain extends AbstractList implements IndexValues
+public final class Domain extends AbstractList implements IndexValues
 	{
     /**
         The array holding the bound values. 
     */
-	private Node [] value;
+	private final Node [] value;
 	
     /**
         Initialise a Domain with a copy of a Node value array.
@@ -46,9 +46,11 @@ public class Domain extends AbstractList implements IndexValues
 	public int size() { return value.length; }
 	
     public Object get( int i ) { return value[i]; }	  
-	
+    
     public void setElement( int i, Node x ) { value[i] = x; }
 	
+    public Node getElement( int i ) { return value[i]; }
+    
 	public Domain copy() { return new Domain( this.value ); }
         
     public boolean equals( Object x )
