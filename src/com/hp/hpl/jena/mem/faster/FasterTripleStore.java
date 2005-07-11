@@ -10,7 +10,6 @@ import java.util.Iterator;
 
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.graph.Triple.Field;
-import com.hp.hpl.jena.mem.faster.FasterPatternStage.*;
 import com.hp.hpl.jena.util.iterator.*;
 
 public class FasterTripleStore
@@ -148,25 +147,25 @@ public class FasterTripleStore
             return subjects.iterateAll( S, P, O );
         }
     
-    public PreindexedFind findFasterFixedS( Node node )
+    public ProcessedTriple.PreindexedFind findFasterFixedS( Node node )
         { return subjects.findFasterFixedS( node ); }
 
 
-    public PreindexedFind findFasterFixedO( Node node )
+    public ProcessedTriple.PreindexedFind findFasterFixedO( Node node )
         { return objects.findFasterFixedO( node ); }
 
-    public HalfindexedFind findFasterBoundS()
+    public ProcessedTriple.HalfindexedFind findFasterBoundS()
         { 
-        return new HalfindexedFind()
+        return new ProcessedTriple.HalfindexedFind()
             {
             public Iterator find( Node X, Node Y, Node Z )
                 { return subjects.iterator( X, Y, Z ); }
             };
         }
 
-    public HalfindexedFind findFasterBoundO()
+    public ProcessedTriple.HalfindexedFind findFasterBoundO()
         {       
-        return new HalfindexedFind()
+        return new ProcessedTriple.HalfindexedFind()
             {
             public Iterator find( Node S, Node P, Node O )
                 { return objects.iterator( O, S, P ); }

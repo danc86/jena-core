@@ -8,7 +8,7 @@ package com.hp.hpl.jena.mem.faster;
 
 import java.util.*;
 
-import com.hp.hpl.jena.graph.Triple;
+import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.graph.query.*;
 import com.hp.hpl.jena.mem.faster.FasterPatternStage.*;
 import com.hp.hpl.jena.mem.faster.ProcessedNode.Bound;
@@ -128,6 +128,16 @@ public class ProcessedTriple
             }
         throw new BrokenException( "uncatered-for case in optimisation" );
         }
+    
+    public static abstract class PreindexedFind
+        {
+        public abstract Iterator find( Node X, Node Y );
+        }
+
+    public static abstract class HalfindexedFind
+        {
+        public abstract Iterator find( Node X, Node Y, Node Z );
+        }
 
     protected Finder finder( GraphMemFaster graph )
         {
@@ -141,7 +151,7 @@ public class ProcessedTriple
 
     protected FasterPatternStage.Finder finderFixedS( final GraphMemFaster graph, final ProcessedNode S, final ProcessedNode P, final ProcessedNode O )
         {
-        final FasterPatternStage.PreindexedFind f = graph.findFasterFixedS( S.node );
+        final ProcessedTriple.PreindexedFind f = graph.findFasterFixedS( S.node );
         return new FasterPatternStage.Finder()
             {
             public Iterator find( Domain current )
@@ -153,7 +163,7 @@ public class ProcessedTriple
 
     protected FasterPatternStage.Finder finderFixedO( final GraphMemFaster graph, final ProcessedNode S, final ProcessedNode P, final ProcessedNode O )
         {
-        final FasterPatternStage.PreindexedFind f = graph.findFasterFixedO( O.node );
+        final ProcessedTriple.PreindexedFind f = graph.findFasterFixedO( O.node );
         return new FasterPatternStage.Finder()
             {
             public Iterator find( Domain current )
@@ -165,7 +175,7 @@ public class ProcessedTriple
 
     protected FasterPatternStage.Finder finderBoundS( final GraphMemFaster graph, final ProcessedNode S, final ProcessedNode P, final ProcessedNode O )
         {            
-        final FasterPatternStage.HalfindexedFind f = graph.findFasterBoundS();
+        final ProcessedTriple.HalfindexedFind f = graph.findFasterBoundS();
         return new FasterPatternStage.Finder()
             {
             public Iterator find( Domain current )
@@ -177,7 +187,7 @@ public class ProcessedTriple
 
     protected FasterPatternStage.Finder finderBoundO( final GraphMemFaster graph, final ProcessedNode S, final ProcessedNode P, final ProcessedNode O )
         {
-        final FasterPatternStage.HalfindexedFind f = graph.findFasterBoundO();
+        final ProcessedTriple.HalfindexedFind f = graph.findFasterBoundO();
         return new FasterPatternStage.Finder()
             {
             public Iterator find( Domain current )

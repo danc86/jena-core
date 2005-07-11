@@ -59,10 +59,10 @@ public class GraphMemFaster extends GraphMemBase
     public Iterator findFaster( Node S, Node P, Node O )
         { return store.findFaster( S, P, O ); }
     
-    public PreindexedFind findFasterFixedS( final Node node )
+    public ProcessedTriple.PreindexedFind findFasterFixedS( final Node node )
         { return store.findFasterFixedS( node ); }
     
-    public PreindexedFind findFasterFixedO( Node node )
+    public ProcessedTriple.PreindexedFind findFasterFixedO( Node node )
         { return store.findFasterFixedO( node ); }
     
     /**
@@ -79,10 +79,10 @@ public class GraphMemFaster extends GraphMemBase
     public void clear()
         { store.clear(); }
 
-    public HalfindexedFind findFasterBoundS()
+    public ProcessedTriple.HalfindexedFind findFasterBoundS()
         { return store.findFasterBoundS(); }
 
-    public HalfindexedFind findFasterBoundO()
+    public ProcessedTriple.HalfindexedFind findFasterBoundO()
         { return store.findFasterBoundO(); }
 
     
