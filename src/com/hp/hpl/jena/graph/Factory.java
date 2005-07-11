@@ -21,7 +21,9 @@ public class Factory
     private Factory()
         { super(); }
 
-    private static final boolean faster = false;
+    private static final boolean faster = 
+        System.getProperty( "jena.faster", "no" ).equals( "yes" );
+
     /**
         Answer a memory-based Graph with the Standard reification style.
     */
