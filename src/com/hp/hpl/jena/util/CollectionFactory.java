@@ -18,20 +18,23 @@ public class CollectionFactory
     /**
          Answer a new Map which uses hashing for lookup.
     */
-    public static Map createHashedMap() { return new HashMap(); }
+    public static Map createHashedMap() 
+        { return new HashMap(); }
     
     /**
          Answer a new Map which uses hashing for lookup and has initial size
          <code>size</code>.
     */
-    public static Map createHashedMap( int size ) { return new HashMap( size ); }
+    public static Map createHashedMap( int size ) 
+        { return new HashMap( size ); }
     
     /**
          Answer a new Map which uses hashing for lookup and is initialised to be
          a copy of <code>toCopy</code>.
     */
-    public static Map createHashedMap( Map toCopy ) { return new HashMap( toCopy ); }
-        
+    public static Map createHashedMap( Map toCopy ) 
+        { return new HashMap( toCopy ); }
+    
     /**
          Answer a new Set which uses haashing for lookup.
     */

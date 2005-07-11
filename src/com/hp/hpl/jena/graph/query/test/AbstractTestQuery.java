@@ -293,7 +293,7 @@ public abstract class AbstractTestQuery extends QueryTestBase
         Q.addMatch( X, reads, Y );
         Q.addMatch( Y, inGenre, Z );
         List bindings = ebList( g, Q, new Node [] {X, Z} ); 
-        assertTrue( "testTwoPatterns: one binding", bindings.size() == 1 );
+        assertEquals( "testTwoPatterns: one binding", 1, bindings.size() );
         Domain  d = (Domain) bindings.get( 0 );
         // System.out.println( "* width = " + d.width() );
         assertTrue( "testTwoPatterns: width 2", d.size() >= 2 );
