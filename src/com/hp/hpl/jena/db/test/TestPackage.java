@@ -89,7 +89,7 @@ public class TestPackage extends TestSuite
 		addTest( "TestReifier", TestReifier.suite() );
 		addTest( "TestReifierCompareToMem", TestReifierCompareToMem.suite());
 		addTest( "TestQueryRDB", TestQueryRDB.suite());
-		addTest( "TestRDQLOptions", TestQueryRDB.suite());
+		addTest( "TestRDQLOptions", TestRDQLOptions.suite());
 		addTest( "TestQuery1", TestQuery1.suite());
         addTest( "TestModelFactory", TestModelFactory.suite() );
         }
