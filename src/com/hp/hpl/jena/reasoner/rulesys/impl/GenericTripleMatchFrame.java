@@ -78,7 +78,7 @@ public class GenericTripleMatchFrame extends GenericChoiceFrame {
     public boolean functorMatch(Triple t, LPInterpreter interpreter) {
         Node o = t.getObject();
         if (!Functor.isFunctor(o)) return false;
-        Functor f = (Functor)o.getLiteral().getValue();
+        Functor f = (Functor)o.getLiteralValue();
         if ( ! f.getName().equals(objectFunctor.getName())) return false;
         if ( f.getArgLength() != objectFunctor.getArgLength()) return false;
         Node[] fargs = f.getArgs();
@@ -103,7 +103,7 @@ public class GenericTripleMatchFrame extends GenericChoiceFrame {
         Node o = LPInterpreter.deref(interpreter.argVars[2]);
         objectVar =    (o instanceof Node_RuleVariable) ? (Node_RuleVariable) o : null;
         if (Functor.isFunctor(o)) {
-            objectFunctor = (Functor)o.getLiteral().getValue();
+            objectFunctor = (Functor)o.getLiteralValue();
             goal = new TriplePattern(s, p, null);
         } else {
             objectFunctor = null;

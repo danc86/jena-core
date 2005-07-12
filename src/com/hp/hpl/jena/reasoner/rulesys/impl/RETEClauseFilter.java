@@ -124,7 +124,7 @@ public class RETEClauseFilter implements RETESourceNode {
         if ( !n.isVariable() ) {
             if (Functor.isFunctor(n)) {
                 // Pass 2 - check functor
-                Functor f = (Functor)n.getLiteral().getValue();
+                Functor f = (Functor)n.getLiteralValue();
                 instructions[pc++] = TESTFunctorName;
                 instructions[pc++] = (byte)args.size();
                 args.add(f.getName());

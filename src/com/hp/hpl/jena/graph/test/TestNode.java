@@ -547,6 +547,43 @@ public class TestNode extends GraphTestBase
         assertEquals( "\"eccentric\"@en_UK", english.toString() );
         assertEquals( "10^^http://www.w3.org/2001/XMLSchema#int", typed.toString( false ) );
         }
+    
+    public void testGetIndexingValueURI()
+        {
+        Node u = Node.create( "eh:/telephone" );
+        assertSame( u, u.getIndexingValue() );
+        }
+    
+    public void testGetIndexingValueBlank()
+        {
+        Node b = Node.create( "_television" );
+        assertSame( b, b.getIndexingValue() );
+        }
+    
+    public void testGetIndexingValuePlainString()
+        {
+        Node s = Node.create( "'literally'" );
+        assertEquals( s.getLiteral().getIndexingValue(), s.getIndexingValue() );
+        }
+    
+    public void testGetIndexingValueLanguagedString()
+        {
+        Node s = Node.create( "'chat'fr" );
+        assertEquals( s.getLiteral().getIndexingValue(), s.getIndexingValue() );
+        }
+    
+    public void testGetIndexingValueXSDString()
+        {
+        Node s = Node.create( "'string'xsd:string" );
+        assertEquals( s.getLiteral().getIndexingValue(), s.getIndexingValue() );
+        }
+    
+    // TODO should have more of these
+    public void  testGetLiteralValuePlainString()
+        {
+        Node s = Node.create( "'aString'" );
+        assertSame( s.getLiteral().getValue(), s.getLiteralValue() );
+        }
         
     public void testConcrete()
         {
@@ -597,7 +634,7 @@ public class TestNode extends GraphTestBase
         for (int i = 0; i < someNodes.length; i += 1) testHasURI( someNodes[i] );
         }
 
-	private void testHasURI( String uri ) 
+	protected void testHasURI( String uri ) 
         {
 		Node n = Node.create( uri );
 		assertTrue( uri, !n.isURI() || n.hasURI( uri ) );

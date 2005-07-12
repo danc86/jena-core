@@ -551,8 +551,8 @@ public class FRuleEngine implements FRuleEngineI {
             return true;
         } else if (Functor.isFunctor(pattern)) {
             if (!Functor.isFunctor(node)) return false;
-            Functor patternF = (Functor) pattern.getLiteral().getValue();
-            Functor nodeF = (Functor) node.getLiteral().getValue();
+            Functor patternF = (Functor) pattern.getLiteralValue();
+            Functor nodeF = (Functor) node.getLiteralValue();
             if (!patternF.getName().equals(nodeF.getName())) return false;
             Node[] patternArgs = patternF.getArgs();
             Node[] nodeArgs = nodeF.getArgs();

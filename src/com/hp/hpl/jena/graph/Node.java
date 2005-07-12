@@ -233,6 +233,21 @@ public abstract class Node {
     /** get the literal value of a literal node, otherwise die horribly */
     public LiteralLabel getLiteral()
         { throw new UnsupportedOperationException( this + " is not a literal node" ); }
+
+    /**
+        Answer the value of this nodes literal value, if it is a literal;
+        otherwise die horribly. 
+    */
+    public final Object getLiteralValue()
+        { return getLiteral().getValue(); }
+    
+    /**
+        Answer the object which is the index value for this Node. The default
+        is this Node itself; overridden in Node_Literal for literal indexing
+        purposes. Only concrete nodes should use this method.
+    */
+    public Object getIndexingValue()
+        { return this; }
     
     /** get the URI of this node if it has one, else die horribly */
     public String getURI()

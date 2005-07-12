@@ -129,7 +129,7 @@ public class FasterPatternStage extends Stage
             return new PutBindings( sink );
         else
             {
-            Matcher m = processed[index].makeMatcher( this );
+            Matcher m = processed[index].makeMatcher();
             Finder f = processed[index].finder( graph );
             ValuatorSet s = guards[index];
             StageElement next = makeStageElementChain( sink, index + 1 );

@@ -11,7 +11,6 @@ import java.util.Iterator;
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.graph.query.QueryHandler;
 import com.hp.hpl.jena.mem.*;
-import com.hp.hpl.jena.mem.faster.FasterPatternStage.*;
 import com.hp.hpl.jena.shared.ReificationStyle;
 import com.hp.hpl.jena.util.iterator.ExtendedIterator;
 
@@ -84,8 +83,6 @@ public class GraphMemFaster extends GraphMemBase
 
     public ProcessedTriple.HalfindexedFind findFasterBoundO()
         { return store.findFasterBoundO(); }
-
-    
     }
 
 

@@ -78,7 +78,7 @@ public class BindingVector implements BindingEnvironment {
         } else if (node instanceof Node_ANY) {
             return null;
         } else if (Functor.isFunctor(node)) {
-            Functor functor = (Functor)node.getLiteral().getValue();
+            Functor functor = (Functor)node.getLiteralValue();
             if (functor.isGround()) return node;
             Node[] args = functor.getArgs();
             ArrayList boundargs = new ArrayList(args.length);
@@ -245,9 +245,9 @@ public class BindingVector implements BindingEnvironment {
         Node gObj = goal.getObject();
         Node hObj = head.getObject();
         if (Functor.isFunctor(gObj)) {
-            Functor gFunctor = (Functor)gObj.getLiteral().getValue();
+            Functor gFunctor = (Functor)gObj.getLiteralValue();
             if (Functor.isFunctor(hObj)) {
-                Functor hFunctor = (Functor)hObj.getLiteral().getValue();
+                Functor hFunctor = (Functor)hObj.getLiteralValue();
                 if ( ! gFunctor.getName().equals(hFunctor.getName()) ) {
                     return null;
                 }

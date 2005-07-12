@@ -122,7 +122,7 @@ public class BindingStack implements BindingEnvironment {
         } else if (node instanceof Node_ANY) {
             return null;
         } else if (Functor.isFunctor(node)) {
-            Functor functor = (Functor)node.getLiteral().getValue();
+            Functor functor = (Functor)node.getLiteralValue();
             if (functor.isGround()) return node;
             Node[] args = functor.getArgs();
             ArrayList boundargs = new ArrayList(args.length);

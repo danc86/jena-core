@@ -27,6 +27,9 @@ public class Node_Literal extends Node_Concrete
     public boolean isLiteral() 
         { return true; }    
         
+    public Object getIndexingValue()
+        { return getLiteral().getIndexingValue(); }
+    
     public Object visitWith( NodeVisitor v )
         { return v.visitLiteral( this, getLiteral() ); }
         

@@ -268,7 +268,7 @@ public abstract class BaseInfGraph extends GraphBase implements InfGraph {
     public boolean testGlobalProperty(Node property) {
         Node resultNode = getGlobalProperty(property);
         if (resultNode.isLiteral()) {
-            Object result = resultNode.getLiteral().getValue();
+            Object result = resultNode.getLiteralValue();
             if (result instanceof Boolean) {
                 return ((Boolean)result).booleanValue();
             }

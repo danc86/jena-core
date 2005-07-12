@@ -249,6 +249,16 @@ final public class LiteralLabel {
 				(dtype == null ? value.toString() : dtype.unparse(value));
 		return lexicalForm;
 	}
+    
+    /**
+        Answer the object value to use as the indexing value of this literal.
+        The lexical form is correct for plain strings and xsd strings; needs
+        updating.
+        
+        TODO fill in the details.
+    */
+    public Object getIndexingValue()
+        { return getLexicalForm(); }
 
 	/** An RFC 3066 lang tag or "".
 	 *  These are case insensitive,

@@ -234,7 +234,7 @@ public class Rule implements ClauseEntry {
         if (obj instanceof Node_RuleVariable) {
             max = maxVarIndex(obj, max);
         } else if (Functor.isFunctor(obj)) {
-            max = findVars((Functor)obj.getLiteral().getValue(), max);
+            max = findVars((Functor)obj.getLiteralValue(), max);
         }
         return max;
     }
@@ -339,7 +339,7 @@ public class Rule implements ClauseEntry {
             }
             return c;
         } else if (Functor.isFunctor(n)) {
-            Functor f = (Functor)n.getLiteral().getValue();
+            Functor f = (Functor)n.getLiteralValue();
             return Functor.makeFunctorNode(cloneFunctor(f, vmap, env));
         } else {
             return n;

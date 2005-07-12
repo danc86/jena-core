@@ -682,7 +682,7 @@ public class FBRuleInfGraph  extends BasicForwardRuleInfGraph implements Backwar
             Node rNode = t.getObject();
             boolean foundReport = false;
             if (rNode.isLiteral()) {
-                Object rVal = rNode.getLiteral().getValue();
+                Object rVal = rNode.getLiteralValue();
                 if (rVal instanceof Functor) {
                     Functor rFunc = (Functor)rVal;
                     foundReport = true;

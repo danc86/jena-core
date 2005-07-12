@@ -468,7 +468,7 @@ public class RuleClauseCode {
                     code[p++] = (byte)argi;
                 }
             } else if (Functor.isFunctor(node)) {
-                Functor f = (Functor)node.getLiteral().getValue();
+                Functor f = (Functor)node.getLiteralValue();
                 code[p++] = GET_FUNCTOR;
                 args.add(f);
                 Node[] fargs = f.getArgs();
@@ -558,7 +558,7 @@ public class RuleClauseCode {
                     code[p++] = (byte)argi;
                 }
             } else if (Functor.isFunctor(node)) {
-                Functor f = (Functor)node.getLiteral().getValue();
+                Functor f = (Functor)node.getLiteralValue();
                 Node[] fargs = f.getArgs();
                 for (int i = 0; i < fargs.length; i++) {
                     emitBodyPut(fargs[i], i+3, deref);
@@ -735,7 +735,7 @@ public class RuleClauseCode {
                 Node obj = goal.getObject();
                 if (Functor.isFunctor(obj)) {
                     result.add(obj);
-                    result.addAll(termVars((Functor)obj.getLiteral().getValue()));
+                    result.addAll(termVars((Functor)obj.getLiteralValue()));
                 } else {
                     result.add(obj);
                 }

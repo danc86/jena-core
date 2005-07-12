@@ -53,7 +53,7 @@ public class ProcessedTriple
             );
         }
     
-    protected Matcher makeMatcher( FasterPatternStage stage )
+    protected Matcher makeMatcher()
         {
         final int SMATCH = 4, PMATCH = 2, OMATCH = 1, NOMATCH = 0;
         int bits = 
