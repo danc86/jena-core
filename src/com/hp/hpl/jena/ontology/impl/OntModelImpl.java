@@ -2182,10 +2182,15 @@ public class OntModelImpl
 
     /**
      * <p>
-     * Add the given model as one of the sub-models of this ontology union.   Will
-     * cause the associated infererence engine (if any) to update, so this may be
-     * an expensive operation in some cases.
+     * Add the given model as one of the sub-models of the enclosed ontology union model.
+     * <strong>Note</strong> that if <code>model</code> is a composite model (i.e. an
+     * {@link OntModel} or {@link InfModel}), the model and all of its submodels will
+     * be added to the union of sub-models of this model. If this is <strong>not</strong> required,
+     * callers should explicitly add only the base model:
      * </p>
+     * <pre>
+     * parent.addSubModel( child.getBaseModel() );
+     * </pre>
      *
      * @param model A sub-model to add
      */
@@ -2197,13 +2202,27 @@ public class OntModelImpl
     /**
      * <p>
      * Add the given model as one of the sub-models of the enclosed ontology union model.
+     * <strong>Note</strong> that if <code>model</code> is a composite model (i.e. an
+     * {@link OntModel} or {@link InfModel}), the model and all of its submodels will
+     * be added to the union of sub-models of this model. If this is <strong>not</strong> required,
+     * callers should explicitly add only the base model:
      * </p>
+     * <pre>
+     * parent.addSubModel( child.getBaseModel(), true );
+     * </pre>
      *
      * @param model A sub-model to add
      * @param rebind If true, rebind any associated inferencing engine to the new data (which
      * may be an expensive operation)
      */
     public void addSubModel( Model model, boolean rebind ) {
+        Graph subG = model.getGraph();
+
+        if (subG instanceof MultiUnion) {
+            // we need to get the base graph when adding a ontmodel
+            subG = ((MultiUnion) subG).getBaseGraph();
+        }
+
         getUnionGraph().addGraph( model.getGraph() );
         if (rebind) {
             rebind();
@@ -2237,13 +2256,15 @@ public class OntModelImpl
      */
     public void removeSubModel( Model model, boolean rebind ) {
         Graph subG = model.getGraph();
+        getUnionGraph().removeGraph( subG );
 
+        // note that it may be the base graph of the given model that was added
+        // originally
         if (subG instanceof MultiUnion) {
             // we need to get the base graph when removing a ontmodel
-            subG = ((MultiUnion) subG).getBaseGraph();
+            getUnionGraph().removeGraph( ((MultiUnion) subG).getBaseGraph() );
         }
 
-        getUnionGraph().removeGraph( subG );
         if (rebind) {
             rebind();
         }
