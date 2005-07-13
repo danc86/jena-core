@@ -55,10 +55,12 @@ public class TestBasicOperations extends TestCase {
 	}
 
 	protected void tearDown() throws java.lang.Exception {
-		model.close();
+		if ( model != null ) model.close();
 		model = null;
-		conn.cleanDB();
-		conn.close();
+		if ( conn != null ) {
+			conn.cleanDB();
+			conn.close();
+		}
 		conn = null;
 	}
 
