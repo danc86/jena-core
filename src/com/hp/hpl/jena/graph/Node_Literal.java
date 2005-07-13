@@ -6,6 +6,7 @@
 
 package com.hp.hpl.jena.graph;
 
+import com.hp.hpl.jena.datatypes.RDFDatatype;
 import com.hp.hpl.jena.graph.impl.*;
 import com.hp.hpl.jena.shared.*;
 
@@ -20,7 +21,25 @@ public class Node_Literal extends Node_Concrete
 
     public LiteralLabel getLiteral()
         { return (LiteralLabel) label; }
-         
+    
+    public final Object getLiteralValue()
+        { return getLiteral().getValue(); }
+    
+    public final String getLiteralLexicalForm()
+        { return getLiteral().getLexicalForm(); }
+    
+    public final String getLiteralLanguage()
+        { return getLiteral().language(); }
+    
+    public final String getLiteralDatatypeURI()
+        { return getLiteral().getDatatypeURI(); }
+    
+    public final RDFDatatype getLiteralDatatype()
+        { return getLiteral().getDatatype(); }
+    
+    public final boolean getLiteralIsXML()
+        { return getLiteral().isXML(); }
+    
     public String toString( PrefixMapping pm, boolean quoting )
         { return ((LiteralLabel) label).toString( quoting ); }
         

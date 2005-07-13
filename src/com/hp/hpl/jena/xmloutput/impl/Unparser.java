@@ -396,7 +396,7 @@ class Unparser {
 		RDFNode r) {
 		if (prettyWriter.sParseTypeLiteralPropertyElt)
 			return false;
-		if (!((r instanceof Literal) && ((Literal) r).getWellFormed())) {
+		if (!((r instanceof Literal) && ((Literal) r).isWellFormedXML())) {
 			return false;
 		}
 		// print out.

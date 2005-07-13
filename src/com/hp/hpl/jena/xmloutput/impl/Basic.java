@@ -176,7 +176,7 @@ public class Basic extends BaseXMLWriter {
 		if (!lang.equals("")) {
 			writer.print(" xml:lang=" + q(lang));
 		}
-		if (l.getWellFormed() && !blockLiterals) {
+		if (l.isWellFormedXML() && !blockLiterals) {
 			writer.print(" " + rdfAt("parseType") + "=" + q("Literal")+">");
 			writer.print( form );
 		} else {

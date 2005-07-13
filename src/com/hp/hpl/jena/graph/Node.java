@@ -13,8 +13,6 @@ import com.hp.hpl.jena.datatypes.xsd.XSDDatatype;
 import com.hp.hpl.jena.graph.impl.*;
 import com.hp.hpl.jena.shared.*;
 
-import org.apache.commons.logging.*;
-
 /**
     A Node has five subtypes: Node_Blank, Node_Anon, Node_URI,  
     Node_Variable, and Node_ANY.
@@ -30,13 +28,9 @@ public abstract class Node {
     static final int THRESHOLD = 10000;
     
     static final NodeCache present = new NodeCache(); 
-    // static final HashMap present = new HashMap( THRESHOLD * 2 );
-
-    static final Log log = LogFactory.getLog( Node.class );
-
+    
     /**
-        The canonical instance of Node_ANY; no-one else need use the
-        constructor.
+        The canonical instance of Node_ANY. No other instances are required.
     */       
     public static final Node ANY = new Node_ANY();
        
@@ -238,20 +232,49 @@ public abstract class Node {
         Answer the value of this node's literal value, if it is a literal;
         otherwise die horribly. 
     */
-    public final Object getLiteralValue()
-        { return getLiteral().getValue(); }
+    public Object getLiteralValue()
+        { throw new NotLiteral( this ); }
     
-    public final String getLiteralLexicalForm()
-        { return getLiteral().getLexicalForm(); }
+    /**
+        Answer the lexical form of this node's literal value, if it is a literal;
+        otherwise die horribly.
+    */
+    public String getLiteralLexicalForm()
+        { throw new NotLiteral( this ); }
     
-    public final String getLiteralLanguage()
-        { return getLiteral().language(); }
+    /**
+        Answer the language of this node's literal value, if it is a literal;
+        otherwise die horribly. 
+    */
+    public String getLiteralLanguage()
+        { throw new NotLiteral( this ); }
     
-    public final String getLiteralDatatypeURI()
-        { return getLiteral().getDatatypeURI(); }
+    /**
+        Answer the data-type URI of this node's literal value, if it is a 
+        literal; otherwise die horribly. 
+    */
+    public String getLiteralDatatypeURI()
+        { throw new NotLiteral( this ); }
     
-    public final RDFDatatype getLiteralDatatype()
-        { return getLiteral().getDatatype(); }
+    /**
+        Answer the RDF datatype object of this node's literal value, if it is 
+        a literal; otherwise die horribly. 
+    */
+    public RDFDatatype getLiteralDatatype()
+        { throw new NotLiteral( this ); }
+    
+    public boolean getLiteralIsXML()
+        { throw new NotLiteral( this ); }
+    
+    /**
+        Exception thrown if a literal-access operation is attemted on a
+        non-literal node.
+    */
+    public static class NotLiteral extends JenaException
+        {
+        public NotLiteral( Node it )
+            { super( it + " is not a literal node" ); }
+        }
     
     /**
         Answer the object which is the index value for this Node. The default

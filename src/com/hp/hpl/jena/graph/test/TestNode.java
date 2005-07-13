@@ -601,7 +601,16 @@ public class TestNode extends GraphTestBase
         {
         assertEquals( null, Node.create( "'plain'" ).getLiteralDatatype() );
         }
-        
+    
+    public void testLiteralIsXML()
+        {
+        assertFalse( Node.create( "'notXML'" ).getLiteralIsXML() );
+        assertFalse( Node.create( "17" ).getLiteralIsXML() );
+        assertFalse( Node.create( "'joke'xsd:Joke" ).getLiteralIsXML() );
+        assertTrue( Node.createLiteral( "lit", "lang", true ).getLiteralIsXML() );
+        assertFalse( Node.createLiteral( "lit", "lang", false ).getLiteralIsXML() );
+        }
+   
     public void testConcrete()
         {
         assertTrue( Node.create( "S" ).isConcrete() );

@@ -190,7 +190,7 @@ public abstract class StatementBase
 
 	public boolean getWellFormed()
 		{
-		return getLiteral().getWellFormed();
+		return getLiteral().isWellFormedXML();
 		}
 
 	/**

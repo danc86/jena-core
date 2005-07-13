@@ -96,7 +96,7 @@ public class TestTypedLiterals extends TestCase {
             assertTrue("Allowed int conversion", false);
         } catch (DatatypeFormatException e) {}
         assertEquals("Extract value", l1.getValue(), "foo");
-        assertEquals("Extract xml tag", l1.getWellFormed(), false);
+        assertEquals("Extract xml tag", l1.isWellFormedXML(), false);
         
         JenaParameters.enableSilentAcceptanceOfUnknownDatatypes = false;
         boolean foundException = false;
@@ -139,7 +139,7 @@ public class TestTypedLiterals extends TestCase {
             int i = l1.getInt();
             assertTrue("Allowed int conversion", false);
         } catch (DatatypeFormatException e) {}
-        assertEquals("Extract xml tag", l1.getWellFormed(), false);
+        assertEquals("Extract xml tag", l1.isWellFormedXML(), false);
     }
 
     public void testXMLLiteral() {
@@ -147,11 +147,11 @@ public class TestTypedLiterals extends TestCase {
     	
     	ll = m.createLiteral("<bad",true);
     	
-    	assertTrue("Error checking must be off.",((EnhNode)ll).asNode().getLiteral().isXML());
+    	assertTrue("Error checking must be off.",((EnhNode)ll).asNode().getLiteralIsXML());
 		ll = m.createTypedLiteral("<bad/>",XMLLiteralType.theXMLLiteralType);
-		assertFalse("Error checking must be on.",((EnhNode)ll).asNode().getLiteral().isXML());
+		assertFalse("Error checking must be on.",((EnhNode)ll).asNode().getLiteralIsXML());
 		ll = m.createTypedLiteral("<good></good>",XMLLiteralType.theXMLLiteralType);
-		assertTrue("Well-formed XMLLiteral.",((EnhNode)ll).asNode().getLiteral().isXML());
+		assertTrue("Well-formed XMLLiteral.",((EnhNode)ll).asNode().getLiteralIsXML());
     
     }
 

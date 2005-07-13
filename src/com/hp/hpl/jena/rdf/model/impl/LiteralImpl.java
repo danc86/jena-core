@@ -300,7 +300,11 @@ public class LiteralImpl extends EnhNode implements Literal {
     }
     
     public boolean getWellFormed() {
-        return asNode().getLiteral().isXML();
+        return isWellFormedXML();
+    }     
+    
+    public boolean isWellFormedXML() {
+        return asNode().getLiteralIsXML();
     } 
    
     /**
