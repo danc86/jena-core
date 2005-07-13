@@ -45,7 +45,7 @@ public class Functor implements ClauseEntry {
                 public boolean accept(Object t) {
                     if (((Triple)t).getSubject().isLiteral()) return true;
                     Node n = ((Triple)t).getObject();
-                    return n.isLiteral() && n.getLiteral().getDatatype() == FunctorDatatype.theFunctorDatatype;
+                    return n.isLiteral() && n.getLiteralDatatype() == FunctorDatatype.theFunctorDatatype;
                 }
             };
     
@@ -210,7 +210,7 @@ public class Functor implements ClauseEntry {
      */
     public static boolean isFunctor(Node n) {
         if (n == null) return false;
-        return n.isLiteral() && n.getLiteral().getDatatype() == FunctorDatatype.theFunctorDatatype;
+        return n.isLiteral() && n.getLiteralDatatype() == FunctorDatatype.theFunctorDatatype;
     }
     
     /**

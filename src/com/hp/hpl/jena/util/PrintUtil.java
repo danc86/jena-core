@@ -72,8 +72,8 @@ public class PrintUtil {
             return node.toString( prefixMapping );
         } else if (node instanceof Node_Literal) {
             LiteralLabel ll = node.getLiteral();
-            String lf = ll.getLexicalForm();
-            return ll.getDatatype() == null ? "'" + lf + "'" : lf + "^^" + ll.getDatatypeURI();
+            String lf = node.getLiteralLexicalForm();
+            return node.getLiteralDatatype() == null ? "'" + lf + "'" : lf + "^^" + node.getLiteralDatatypeURI();
         } else if (node instanceof Node_ANY) {
             return "*";
         }

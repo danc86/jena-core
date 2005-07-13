@@ -117,7 +117,7 @@ public class RuleState {
         if (functorMatch != null) {
             Node obj = result.getObject();
             if (Functor.isFunctor(obj)) {
-                Functor objValue = (Functor)obj.getLiteral().getValue();
+                Functor objValue = (Functor)obj.getLiteralValue();
                 if (objValue.getName().equals(functorMatch.getName())) {
                     Node[] margs = functorMatch.getArgs();
                     Node[] args = objValue.getArgs();
@@ -166,7 +166,7 @@ public class RuleState {
         predicateBind = (n instanceof Node_RuleVariable) ? ((Node_RuleVariable)n).getIndex() : -1 ;
         n = goal.getObject();
         objectBind = (n instanceof Node_RuleVariable) ? ((Node_RuleVariable)n).getIndex() : -1 ;
-        if (Functor.isFunctor(n)) functorMatch = (Functor)n.getLiteral().getValue();
+        if (Functor.isFunctor(n)) functorMatch = (Functor)n.getLiteralValue();
     }
     
     /**

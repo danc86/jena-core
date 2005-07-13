@@ -235,11 +235,23 @@ public abstract class Node {
         { throw new UnsupportedOperationException( this + " is not a literal node" ); }
 
     /**
-        Answer the value of this nodes literal value, if it is a literal;
+        Answer the value of this node's literal value, if it is a literal;
         otherwise die horribly. 
     */
     public final Object getLiteralValue()
         { return getLiteral().getValue(); }
+    
+    public final String getLiteralLexicalForm()
+        { return getLiteral().getLexicalForm(); }
+    
+    public final String getLiteralLanguage()
+        { return getLiteral().language(); }
+    
+    public final String getLiteralDatatypeURI()
+        { return getLiteral().getDatatypeURI(); }
+    
+    public final RDFDatatype getLiteralDatatype()
+        { return getLiteral().getDatatype(); }
     
     /**
         Answer the object which is the index value for this Node. The default

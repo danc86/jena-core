@@ -1600,10 +1600,10 @@ public abstract class DriverRDB implements IRDBDriver {
 		} else if ( node.isLiteral() ){
 			// TODO: may need to encode literal value when datatype is not a string.
 			Node_Literal litNode = (Node_Literal) node;
-			LiteralLabel ll = litNode.getLiteral();
-			String lval = ll.getLexicalForm();
-			String lang = ll.language();
-			String dtype = ll.getDatatypeURI();
+			// LiteralLabel ll = litNode.getLiteral();
+			String lval = litNode.getLiteralLexicalForm();
+			String lang = litNode.getLiteralLanguage();
+			String dtype = litNode.getLiteralDatatypeURI();
 			String ld = litLangTypeToRDBString(lang,dtype);
 			int encodeLen = RDBCodeLiteral.length() + 2 + ld.length() + EOS_LEN;
 			boolean litIsLong = objectIsLong(encodeLen,lval);		
@@ -1887,10 +1887,10 @@ public abstract class DriverRDB implements IRDBDriver {
 		RDBLongObject	res = new RDBLongObject();
 		int				headLen;
 		int				avail;
-		LiteralLabel 	l = node.getLiteral();
-		String 			lang = l.language();
-		String 			dtype = l.getDatatypeURI();
-		String 			val = l.getLexicalForm();
+		// LiteralLabel 	l = node.getLiteral();
+		String 			lang = node.getLiteralLanguage();
+		String 			dtype = node.getLiteralDatatypeURI();
+		String 			val = node.getLiteralLexicalForm();
 		String			langType = litLangTypeToRDBString(lang,dtype);
 
 		res.head = RDBCodeLiteral + RDBCodeValue + RDBCodeDelim + langType;

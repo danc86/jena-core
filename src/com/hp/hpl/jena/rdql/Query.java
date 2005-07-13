@@ -346,20 +346,21 @@ public class Query
             
         if ( n instanceof Node_Literal)
         {
-            LiteralLabel lit = ((Node_Literal)n).getLiteral() ;
+            String language = n.getLiteralLanguage();
+            String typeURI = n.getLiteralDatatypeURI();
             StringBuffer sb = new StringBuffer() ;
             sb.append('"') ;
-            sb.append(lit.getLexicalForm()) ;
+            sb.append(n.getLiteralLexicalForm()) ;
             sb.append('"') ;
-            if ( lit.language() != null && lit.language().length() > 0 )
+            if ( language != null && language.length() > 0 )
             {
                 sb.append("@") ;
-                sb.append(lit.language()) ;
+                sb.append(language) ;
             }
-            if ( lit.getDatatypeURI() != null )
+            if ( typeURI != null )
             {
                 sb.append("^^<") ;
-                sb.append(lit.getDatatypeURI()) ;
+                sb.append(typeURI) ;
                 sb.append(">") ;
             }
                             

@@ -130,7 +130,7 @@ public class Trail implements BindingEnvironment {
             if (Functor.isFunctor(dn1)) {
                 if (Functor.isFunctor(dn2)) {
                     // Unify functors
-                    Functor f1 = (Functor)dn1.getLiteral().getValue();
+                    Functor f1 = (Functor)dn1.getLiteralValue();
                     Functor f2 = (Functor)dn2.getLiteral().getValue();
                     if ( ! f1.getName().equals(f2.getName()) ) return false;
                     Node[] args1 = f1.getArgs();
@@ -171,7 +171,7 @@ public class Trail implements BindingEnvironment {
             node = ((Node_RuleVariable)node).deref();
         }
         if (Functor.isFunctor(node)) {
-            Functor f = (Functor) node.getLiteral().getValue();
+            Functor f = (Functor) node.getLiteralValue();
             Node[] args = f.getArgs();
             Node[] cargs = new Node[args.length];
             for (int i = 0; i < args.length; i++) {

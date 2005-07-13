@@ -160,7 +160,7 @@ public class LiteralImpl extends EnhNode implements Literal {
      * java wrapper class (Integer etc) will be returned.
      */
     public Object getValue() {
-        return asNode().getLiteral().getValue();
+        return asNode().getLiteralValue();
     }
     
     /**
@@ -168,7 +168,7 @@ public class LiteralImpl extends EnhNode implements Literal {
      * case of plain literals.
      */
     public RDFDatatype getDatatype() {
-        return asNode().getLiteral().getDatatype();
+        return asNode().getLiteralDatatype();
     }
      
     /**
@@ -176,25 +176,25 @@ public class LiteralImpl extends EnhNode implements Literal {
      * case of plain literals.
      */
     public String getDatatypeURI() {
-        return asNode().getLiteral().getDatatypeURI();
+        return asNode().getLiteralDatatypeURI();
     }
     
     /**
      * Return true if this is a "plain" (i.e. old style, not typed) literal.
      */
     public boolean isPlainLiteral() {
-        return asNode().getLiteral().getDatatype() == null;
+        return asNode().getLiteralDatatype() == null;
     }
     
     /**
      * Return the lexical form of the literal.
      */
     public String getLexicalForm() {
-        return asNode().getLiteral().getLexicalForm();
+        return asNode().getLiteralLexicalForm();
     }
 
     public boolean getBoolean()  {
-        Object value = asNode().getLiteral().getValue();
+        Object value = asNode().getLiteralValue();
         if (isPlainLiteral()) {
             // old style plain literal - try parsing the string
             if (value.equals("true")) {
@@ -280,7 +280,7 @@ public class LiteralImpl extends EnhNode implements Literal {
     }
 
     public String getString()  {
-        return asNode().getLiteral().getLexicalForm();
+        return asNode().getLiteralLexicalForm();
     }
     
     public Object getObject(ObjectF f)  {
@@ -296,7 +296,7 @@ public class LiteralImpl extends EnhNode implements Literal {
     }
     
     public String getLanguage() {
-        return asNode().getLiteral().language();
+        return asNode().getLiteralLanguage();
     }
     
     public boolean getWellFormed() {

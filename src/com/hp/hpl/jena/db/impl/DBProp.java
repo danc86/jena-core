@@ -69,7 +69,7 @@ public abstract class DBProp {
 		}
 		Node result = ((Triple)it.next()).getObject();
 		it.close();
-		return result.getLiteral().getLexicalForm();
+		return result.getLiteralLexicalForm();
 	}			
 	
 	protected void remove() {

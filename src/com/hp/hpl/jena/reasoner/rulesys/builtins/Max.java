@@ -51,8 +51,8 @@ public class Max extends BaseBuiltin {
         Node n1 = getArg(0, args, context);
         Node n2 = getArg(1, args, context);
         if (n1.isLiteral() && n2.isLiteral()) {
-            Object v1 = n1.getLiteral().getValue();
-            Object v2 = n2.getLiteral().getValue();
+            Object v1 = n1.getLiteralValue();
+            Object v2 = n2.getLiteralValue();
             Node res = null;
             if (v1 instanceof Number && v2 instanceof Number) {
                 Number nv1 = (Number)v1;
