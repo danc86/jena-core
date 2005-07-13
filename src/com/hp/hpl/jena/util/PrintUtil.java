@@ -14,7 +14,6 @@ import java.io.*;
 import com.hp.hpl.jena.vocabulary.*;
 import com.hp.hpl.jena.datatypes.xsd.XSDDatatype;
 import com.hp.hpl.jena.graph.*;
-import com.hp.hpl.jena.graph.impl.*;
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.reasoner.TriplePattern;
 import com.hp.hpl.jena.shared.PrefixMapping;
@@ -71,7 +70,6 @@ public class PrintUtil {
         if (node instanceof Node_URI) {
             return node.toString( prefixMapping );
         } else if (node instanceof Node_Literal) {
-            LiteralLabel ll = node.getLiteral();
             String lf = node.getLiteralLexicalForm();
             return node.getLiteralDatatype() == null ? "'" + lf + "'" : lf + "^^" + node.getLiteralDatatypeURI();
         } else if (node instanceof Node_ANY) {

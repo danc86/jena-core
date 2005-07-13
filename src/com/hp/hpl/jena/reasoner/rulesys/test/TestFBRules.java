@@ -14,7 +14,6 @@ import com.hp.hpl.jena.reasoner.rulesys.*;
 import com.hp.hpl.jena.reasoner.test.TestUtil;
 import com.hp.hpl.jena.datatypes.xsd.*;
 import com.hp.hpl.jena.graph.*;
-import com.hp.hpl.jena.graph.impl.LiteralLabel;
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.shared.ClosedException;
 import com.hp.hpl.jena.shared.impl.JenaParameters;
@@ -599,7 +598,7 @@ public class TestFBRules extends TestCase {
         data.add(new Triple(n2, p, Functor.makeFunctorNode("f", new Node[] {
                                         a, Util.makeIntNode(0)  })));
         data.add(new Triple(n3, p, Functor.makeFunctorNode("f", new Node[] {
-               a, Node.createLiteral(new LiteralLabel("0", "", XSDDatatype.XSDnonNegativeInteger)) } )));
+               a, Node.createLiteral( "0", "", XSDDatatype.XSDnonNegativeInteger ) } )));
         InfGraph infgraph = createReasoner(ruleList).bind(data);
         
         TestUtil.assertIteratorValues(this, infgraph.find(null, s, null),

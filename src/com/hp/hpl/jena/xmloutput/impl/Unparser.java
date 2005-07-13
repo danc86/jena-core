@@ -1344,7 +1344,8 @@ class Unparser {
 			// as a string, then we avoid the attribute rule 6.10 which is
 			// ambiguous with 6.11.
 			RDFNode n = s.getObject();
-			return (n instanceof Resource) && !((Resource) n).isAnon();
+			// return (n instanceof Resource) && !((Resource) n).isAnon();
+            return n.isURIResource();
 		}
 
 		if (s.getObject() instanceof Literal) {

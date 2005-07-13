@@ -558,8 +558,7 @@ public class ModelCom
      */
     public Literal createTypedLiteral(String lex, RDFDatatype dtype) 
                                         throws DatatypeFormatException {
-        LiteralLabel ll = new LiteralLabel(lex, "", dtype);
-        return new LiteralImpl(Node.createLiteral(ll), this);
+        return new LiteralImpl( Node.createLiteral( lex, "", dtype ), this);
     }
     
     /**
@@ -584,7 +583,7 @@ public class ModelCom
      */
     public Literal createTypedLiteral(String lex, String typeURI)  {
         RDFDatatype dt = TypeMapper.getInstance().getSafeTypeByName(typeURI);
-        LiteralLabel ll = new LiteralLabel(lex, "", dt);
+        LiteralLabel ll = LiteralLabel.createLiteralLabel( lex, "", dt );
         return new LiteralImpl( Node.createLiteral(ll), this );
     }
         

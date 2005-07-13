@@ -907,12 +907,12 @@ public class TestTypedLiterals extends TestCase {
      * Check parse/unparse loop.
      */
     public void doTestRoundTrip(String lex, RDFDatatype dt, boolean testeq) {
-        LiteralLabel ll = new LiteralLabel(lex, "", dt);
+        LiteralLabel ll = LiteralLabel.createLiteralLabel( lex, "", dt );
         String lex2 = dt.unparse(ll.getValue());
         if (testeq) {
             assertEquals(lex, lex2);
         }
-        LiteralLabel ll2 = new LiteralLabel(lex2, "", dt);
+        LiteralLabel ll2 = LiteralLabel.createLiteralLabel( lex2, "", dt );
         assertTrue( ll2.isWellFormed() );
     }
     
