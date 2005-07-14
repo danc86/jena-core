@@ -486,6 +486,7 @@ public class PSet_ReifStore_RDB extends PSet_TripleStore_RDB {
 				
 			} catch (Exception e) {
 				logger.warn( "Getting prepared statement for " + stmtStr + " Caught exception ", e);
+	            throw new JenaException("Exception during database access", e);    // Rethrow in case there is a recovery option
 			}
 
 			if ( notFound )
@@ -495,6 +496,7 @@ public class PSet_ReifStore_RDB extends PSet_TripleStore_RDB {
 				m_sql.executeSQL(ps, stmtStr, result);
 			} catch (Exception e) {
 				logger.debug("find encountered exception ", e);
+                throw new JenaException("Exception during database access", e);    // Rethrow in case there is a recovery option
 			}
 		return result;
 	}
@@ -542,11 +544,13 @@ public class PSet_ReifStore_RDB extends PSet_TripleStore_RDB {
 				
 			} catch (Exception e) {
 				logger.warn( "Getting prepared statement for " + stmtStr + " Caught exception ", e);
+	            throw new JenaException("Exception during database access", e);    // Rethrow in case there is a recovery option
 			}
 			try {
 				ps.executeUpdate();
 			} catch (Exception e) {
 				logger.debug("deleteFrag encountered exception ", e);
+                throw new JenaException("Exception during database access", e);    // Rethrow in case there is a recovery option
 			}}finally { 
 				if(ps!=null)m_sql.returnPreparedSQLStatement(ps);
 			}
