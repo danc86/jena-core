@@ -1441,11 +1441,71 @@ public class TestBugReports
     /**
      * Bug report by Andrew Moreton - addSubModel/removeSubmodel not working from
      * Jena 2.1 to Jena 2.2
-     *
+     * Variant 1: base = no inf, import = no inf
      */
     public void test_am_01() {
         OntModel m0 = ModelFactory.createOntologyModel( OntModelSpec.OWL_MEM );
         OntModel m1 = ModelFactory.createOntologyModel( OntModelSpec.OWL_MEM );
+
+        OntClass c = m1.createClass( NS + "c" );
+
+        assertFalse( m0.containsResource( c ) );
+
+        m0.addSubModel( m1 );
+        assertTrue( m0.containsResource( c ) );
+
+        m0.removeSubModel( m1 );
+        assertFalse( m0.containsResource( c ) );
+    }
+
+    /**
+     * Bug report by Andrew Moreton - addSubModel/removeSubmodel not working from
+     * Jena 2.1 to Jena 2.2
+     * Variant 2: base = inf, import = no inf
+     */
+    public void test_am_02() {
+        OntModel m0 = ModelFactory.createOntologyModel( OntModelSpec.OWL_MEM_RDFS_INF );
+        OntModel m1 = ModelFactory.createOntologyModel( OntModelSpec.OWL_MEM );
+
+        OntClass c = m1.createClass( NS + "c" );
+
+        assertFalse( m0.containsResource( c ) );
+
+        m0.addSubModel( m1 );
+        assertTrue( m0.containsResource( c ) );
+
+        m0.removeSubModel( m1 );
+        assertFalse( m0.containsResource( c ) );
+    }
+
+    /**
+     * Bug report by Andrew Moreton - addSubModel/removeSubmodel not working from
+     * Jena 2.1 to Jena 2.2
+     * Variant 3: base = no inf, import = inf
+     */
+    public void test_am_03() {
+        OntModel m0 = ModelFactory.createOntologyModel( OntModelSpec.OWL_MEM );
+        OntModel m1 = ModelFactory.createOntologyModel( OntModelSpec.OWL_MEM_RDFS_INF );
+
+        OntClass c = m1.createClass( NS + "c" );
+
+        assertFalse( m0.containsResource( c ) );
+
+        m0.addSubModel( m1 );
+        assertTrue( m0.containsResource( c ) );
+
+        m0.removeSubModel( m1 );
+        assertFalse( m0.containsResource( c ) );
+    }
+
+    /**
+     * Bug report by Andrew Moreton - addSubModel/removeSubmodel not working from
+     * Jena 2.1 to Jena 2.2
+     * Variant 4: base = inf, import = inf
+     */
+    public void test_am_04() {
+        OntModel m0 = ModelFactory.createOntologyModel( OntModelSpec.OWL_MEM_RDFS_INF );
+        OntModel m1 = ModelFactory.createOntologyModel( OntModelSpec.OWL_MEM_RDFS_INF );
 
         OntClass c = m1.createClass( NS + "c" );
 
