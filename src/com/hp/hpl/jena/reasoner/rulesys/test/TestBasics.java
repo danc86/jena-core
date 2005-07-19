@@ -92,7 +92,22 @@ public class TestBasics extends TestCase  {
         for (int i = 0; i < testRules.length; i++) {
             Rule r = Rule.parseRule(testRules[i]);
             assertEquals(testResults[i], r.toString());
-        } 
+        }
+        
+        // Test for an illegal rule format
+        String[] testBadRules = new String[] {
+                "(foo(?A) eg:p ?B) <- (?a, eg:p, ?B)." ,
+                "(foo(?A) eg:p ?B) -> (?a, eg:p, ?B)." 
+        };
+        for (int i = 0; i < testBadRules.length; i++) {
+            boolean foundError = false;
+            try {
+                Rule r = Rule.parseRule(testBadRules[i]);
+            } catch (Rule.ParserException e) {
+                foundError = true;
+            }
+            assertTrue("Failed to find illegal rule", foundError);
+        }
     }
 
     /**

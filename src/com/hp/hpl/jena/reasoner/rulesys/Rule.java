@@ -865,6 +865,12 @@ public class Rule implements ClauseEntry {
                 if (nodes.size() != 3) {
                     throw new ParserException("Triple with " + nodes.size() + " nodes!", this);
                 }
+                if (Functor.isFunctor((Node)nodes.get(0))) {
+                    throw new ParserException("Functors not allowed in subject position of pattern", this);
+                }
+                if (Functor.isFunctor((Node)nodes.get(1))) {
+                    throw new ParserException("Functors not allowed in predicate position of pattern", this);
+                }
                 return new TriplePattern((Node)nodes.get(0), (Node)nodes.get(1), (Node)nodes.get(2));
             } else if (token.equals("[")) {
                 nextToken();
