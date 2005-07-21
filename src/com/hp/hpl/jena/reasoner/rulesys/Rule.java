@@ -632,7 +632,7 @@ public class Rule implements ClauseEntry {
          * @param source the string to be parsed
          */
         Parser(String source) {
-            stream = new Tokenizer(source, "()[], \t\n\r", "'", true);
+            stream = new Tokenizer(source, "()[], \t\n\r", "'\"", true);
             lookahead = null;
         }
         
@@ -796,7 +796,7 @@ public class Rule implements ClauseEntry {
             } else if (peekToken().equals("(")) {
                 Functor f = new Functor(token, parseNodeList(), BuiltinRegistry.theRegistry);
                 return Functor.makeFunctorNode( f );
-            } else if (token.equals("'")) {
+            } else if (token.equals("'") || token.equals("\"")) {
                 // A plain literal
                 String lit = nextToken();
                 // Skip the trailing quote
