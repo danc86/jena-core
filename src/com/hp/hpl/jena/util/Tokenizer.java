@@ -158,7 +158,7 @@ public class Tokenizer {
     
     public static void main(String[] args) {
         System.out.println("Starting");
-        Tokenizer tokenizer = new Tokenizer("foo     '' ", "()[], \t\n\r", "'", true);
+        Tokenizer tokenizer = new Tokenizer("foo     ''  'a literal' \"a double literal\"", "()[], \t\n\r", "'\"", true);
         while (tokenizer.hasMoreTokens()) {
             String t = tokenizer.nextToken();
             System.out.println("Token: [" +  t + "]");
