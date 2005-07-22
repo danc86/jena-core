@@ -10,7 +10,7 @@ import java.util.*;
 
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.graph.query.*;
-import com.hp.hpl.jena.mem.faster.FasterPatternStage.*;
+import com.hp.hpl.jena.mem.faster.FasterPatternStage.Finder;
 import com.hp.hpl.jena.mem.faster.ProcessedNode.Bound;
 import com.hp.hpl.jena.mem.faster.ProcessedNode.Fixed;
 import com.hp.hpl.jena.shared.BrokenException;
