@@ -38,23 +38,6 @@ public class PatternStage extends PatternStageBase
         
     private static final PatternCompiler compiler = new PatternStageCompiler();
         
-    private static int count = 0;
-    
-    public synchronized Pipe deliver( final Pipe result )
-        {
-        final Pipe stream = previous.deliver( new BufferPipe() );
-        final StageElement s = makeStageElementChain( result, 0 );
-        new Thread( "PatternStage-" + ++count ) { public void run() { PatternStage.this.run( stream, result, s ); } } .start();
-        return result;
-        }
-    
-    protected void run( Pipe source, Pipe sink, StageElement se )
-        {
-        try { while (stillOpen && source.hasNext()) se.run( source.get() ); }
-        catch (Exception e) { sink.close( e ); return; }
-        sink.close();
-        }        
-    
     protected StageElement makeStageElementChain( Pipe sink, int index )
         {
         if (index == compiled.length)

@@ -15,6 +15,7 @@ import com.hp.hpl.jena.graph.Triple;
 */
 public abstract class PatternStageBase extends Stage
     {
+    protected static int count = 0;
     protected ValuatorSet [] guards;
 
     /**
@@ -25,6 +26,25 @@ public abstract class PatternStageBase extends Stage
     */
     protected void setGuards( Mapping map, ExpressionSet constraints, Triple[] triples )
         { this.guards = new GuardArranger( triples ).makeGuards( map, constraints ); }
+
+    protected void run( Pipe source, Pipe sink, StageElement se )
+        {
+        try { while (stillOpen && source.hasNext()) se.run( source.get() ); }
+        catch (Exception e) { sink.close( e ); return; }
+        sink.close();
+        }
+
+    public synchronized Pipe deliver( final Pipe result )
+        {
+        final Pipe stream = previous.deliver( new BufferPipe() );
+        final StageElement s = makeStageElementChain( result, 0 );
+        new Thread( "PatternStage-" + ++count ) 
+            { public void run() { PatternStageBase.this.run( stream, result, s ); } } 
+            .start();
+        return result;
+        }
+    
+    protected abstract StageElement makeStageElementChain( Pipe sink, int index );
     }
 /*
     (c) Copyright 2005 Hewlett-Packard Development Company, LP
