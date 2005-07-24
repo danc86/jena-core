@@ -146,7 +146,7 @@ public class TestQueryTriple extends QueryTestBase
         {
         Mapping map = new Mapping( new Node[0] );
         QueryTriple t = QueryTriple.classify( map, toClassify );
-        Matcher m = t.getMatcher();
+        Matcher m = t.createMatcher();
         Domain d = new Domain( 3 );
         assertEquals( result, m.match( d, toMatch ) );
         StringTokenizer st = new StringTokenizer( bindings, ";" );
