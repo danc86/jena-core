@@ -13,11 +13,14 @@ import com.hp.hpl.jena.graph.query.*;
 import com.hp.hpl.jena.shared.*;
 
 /**
+    OBSOLETE - replaced by query.QueryNode.
+<p>
     Processed nodes for Query: a ProcessedNode knows its Domain index, if
     relevant, and what to do for (a) delivering the Node value to use in the
     query's called for <code>find[Faster]</code>, and (b) if and how to match
     a possible triple answer.
      
+    @deprecated replaced by query.QueryNode
     @author kers
  */
 public class ProcessedNode extends QueryNode

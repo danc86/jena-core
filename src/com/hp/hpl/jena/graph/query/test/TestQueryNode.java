@@ -9,10 +9,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import com.hp.hpl.jena.graph.Node;
-import com.hp.hpl.jena.graph.query.Domain;
-import com.hp.hpl.jena.graph.query.Mapping;
-import com.hp.hpl.jena.graph.query.QueryNode;
-import com.hp.hpl.jena.shared.BrokenException;
+import com.hp.hpl.jena.graph.query.*;
 
 import junit.framework.TestSuite;
 
