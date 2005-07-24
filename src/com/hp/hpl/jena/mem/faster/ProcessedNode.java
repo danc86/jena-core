@@ -28,9 +28,6 @@ public class ProcessedNode extends QueryNode
     public ProcessedNode( Node node, int index )
         { super( node, index ); }
     
-    public boolean mustMatch()
-        { return false; }
-    
     public boolean match( Domain d, Node X )
         { throw new BrokenException( "ARGH" ); }
     

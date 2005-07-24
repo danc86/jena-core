@@ -71,8 +71,8 @@ public class Mapping implements VariableIndexes
 		}
 
     /**
-        allocate an index to the node _v_. _v_ must not already
-        be mapped.
+        allocate an index to the node <code>v</code>. <code>v</code> 
+        must not already be mapped.
         
         @param v the node to be given an index
         @return the value of the allocated index
