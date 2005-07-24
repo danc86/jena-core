@@ -22,8 +22,8 @@ import com.hp.hpl.jena.shared.*;
  */
 public class ProcessedNode
     {    
-    public final Node node;
-    public final int index;
+    protected final Node node;
+    protected final int index;
     
     public ProcessedNode( Node node )
         { this( node, -1 ); }
