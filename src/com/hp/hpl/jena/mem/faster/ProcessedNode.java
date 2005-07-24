@@ -20,16 +20,13 @@ import com.hp.hpl.jena.shared.*;
      
     @author kers
  */
-public class ProcessedNode
-    {    
-    protected final Node node;
-    protected final int index;
-    
+public class ProcessedNode extends QueryNode
+    {        
     public ProcessedNode( Node node )
-        { this( node, -1 ); }
+        { super( node ); }
     
     public ProcessedNode( Node node, int index )
-        { this.node = node; this.index = index; }
+        { super( node, index ); }
     
     public boolean mustMatch()
         { return false; }
@@ -39,9 +36,6 @@ public class ProcessedNode
     
     public Node finder( Domain d )
         { return Node.ANY; }
-    
-    public String toString()
-        { return node.toString() + "[" + index + "]"; }
     
     public static ProcessedNode allocateBindings( Mapping map, Set local, Node X )
         {

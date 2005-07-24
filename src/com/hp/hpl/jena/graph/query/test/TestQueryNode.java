@@ -29,6 +29,15 @@ public class TestQueryNode extends QueryTestBase
         assertEquals( QueryNode.NO_INDEX, n.index );
         }
     
+    public void testBind()
+        {
+        Node bind = Node.create( "?bind" );
+        final int index = 7;
+        QueryNode n = new QueryNode.Bind( bind, index );
+        assertSame( bind, n.node );
+        assertEquals( index, n.index );
+        }
+    
     public void testBound()
         {
         Node bound = Node.create( "?bound" );
@@ -53,6 +62,7 @@ public class TestQueryNode extends QueryTestBase
         assertSame( Node.ANY, n.node );
         assertEquals( QueryNode.NO_INDEX, n.index );
         }
+
     }
 /*
  * (c) Copyright 2005 Hewlett-Packard Development Company, LP
