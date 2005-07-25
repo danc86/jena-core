@@ -48,6 +48,7 @@ public class MoreTests extends TestCase implements RDFErrorHandler,
 		suite.addTest(new MoreTests("testEmptyBaseParamError"));
 		suite.addTest(new MoreTests("testWineDefaultNS"));
 		suite.addTest(new MoreTests("testInterrupt"));
+        suite.addTest(new MoreTests("testDanBriXMLBase"));
 		suite.addTest(new MoreTests("testToString"));
 		
 //for (int i=0; i< 20; i++ ) {
@@ -249,6 +250,21 @@ public class MoreTests extends TestCase implements RDFErrorHandler,
 		assertTrue("Base URI should have no effect.", m.isIsomorphicWith(m1));
 		checkExpected();
 	}
+    public void testDanBriXMLBase() throws IOException {
+        Model m = createMemModel();
+        Model m1 = createMemModel();
+        FileInputStream fin = new FileInputStream(
+        "testing/arp/xmlbase/danbri.rdf");
+
+        m.read(fin,"http://wrong.example.org/");
+        fin.close();
+        fin = new FileInputStream(
+        "testing/arp/xmlbase/danbri.nt");
+
+        m1.read(fin,"http://wrong.example.org/","N-TRIPLE");
+        fin.close();
+        assertTrue("Dan Bri nested XML Base.", m.isIsomorphicWith(m1));
+    }
 
 	public void testNullBaseParamError() throws IOException {
 		Model m = createMemModel();

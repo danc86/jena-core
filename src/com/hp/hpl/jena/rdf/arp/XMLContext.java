@@ -71,7 +71,7 @@ class XMLContext extends Object {
         this.namespaces = namespaces;
     }
     XMLContext withBase(String b)  throws MalformedURIException {
-        return new XMLContext(document,new URI(b),b,lang,namespaces);
+        return new XMLContext(document,new URI(uri,b),b,lang,namespaces);
     }
     XMLContext revertToDocument() {
         return document.withLang(lang);
