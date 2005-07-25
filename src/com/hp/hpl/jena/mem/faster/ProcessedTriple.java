@@ -43,11 +43,12 @@ public class ProcessedTriple
     public static ProcessedTriple allocateBindings( Mapping map, Triple triple )
         {
         Set local = new HashSet();
+        QueryNodeFactory f = QueryNode.factory;
         return new ProcessedTriple
             (
-            QueryNode.classify( map, local, triple.getSubject() ),
-            QueryNode.classify( map, local, triple.getPredicate() ),
-            QueryNode.classify( map, local, triple.getObject() )
+            QueryNode.classify( f, map, local, triple.getSubject() ),
+            QueryNode.classify( f, map, local, triple.getPredicate() ),
+            QueryNode.classify( f, map, local, triple.getObject() )
             );
         }
     

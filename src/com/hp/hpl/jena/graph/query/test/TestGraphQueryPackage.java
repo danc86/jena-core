@@ -25,6 +25,7 @@ public class TestGraphQueryPackage extends TestCase
         result.addTest( TestBufferPipe.suite() );
         result.addTest( TestMatchers.suite() );
         result.addTest( TestQueryNode.suite() );
+        result.addTest( TestQueryNodeFactory.suite() );
         result.addTest( TestQueryTriple.suite() );
         result.addTest( TestStageElements.suite() );
         result.addTest( QueryTest.suite() );

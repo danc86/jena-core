@@ -7,7 +7,6 @@
 package com.hp.hpl.jena.graph.query;
 
 import com.hp.hpl.jena.graph.*;
-import com.hp.hpl.jena.shared.BrokenException;
 
 import java.util.*;
 
@@ -26,17 +25,12 @@ public class PatternStage extends PatternStageBase
     public PatternStage( Graph graph, Mapping map, ExpressionSet constraints, Triple [] triples )
         {
         this.graph = graph;
-        this.compiled = QueryTriple.classify( map, triples );
+        this.compiled = QueryTriple.classify( getFactory(), map, triples );
         setGuards( map, constraints, triples );
         }
 
-    protected Pattern [] compile( Mapping map, Triple [] triples )
-        { return compile( compiler, map, triples ); }
-        
-    protected Pattern [] compile( PatternCompiler pc, Mapping map, Triple [] source )
-        { return PatternStageCompiler.compile( pc, map, source ); }
-        
-    private static final PatternCompiler compiler = new PatternStageCompiler();
+    protected QueryNodeFactory getFactory()
+        { return QueryNode.factory; }
         
     protected StageElement makeStageElementChain( Pipe sink, int index )
         {
@@ -72,9 +66,7 @@ public class PatternStage extends PatternStageBase
                 if (m.match( current, (Triple) it.next() )) 
                     next.run( current );
             }
-        }  
-
-     
+        }       
     }
 
 /*
