@@ -324,7 +324,8 @@ public class LiteralImpl extends EnhNode implements Literal {
         if (value instanceof Number) {
             return ((Number)value);
         } else {
-            throw new DatatypeFormatException(value.toString() + " is not a Number");
+            String type = value == null ? "null" : value.getClass().toString();
+            throw new DatatypeFormatException(value.toString() + " is not a Number type, it is a " + type);
         }
     }
         
