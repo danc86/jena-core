@@ -59,6 +59,23 @@ public class TestQueryNodeFactory extends QueryTestBase
         assertTrue( U instanceof QueryNode.Bound );
         assertSame( u, U.node );
         }
+    
+    public void testTriple()
+        {
+        QueryNode S = qnf.createBound( node( "?x" ), 0 );
+        QueryNode P = qnf.createFixed( node( "P" ) );
+        QueryNode O = qnf.createBind( node( "?y" ), 1 );
+        QueryTriple t = qnf.createTriple( S, P, O );
+        assertSame( t.S, S );
+        assertSame( t.P, P );
+        assertSame( t.O, O );
+        }
+    
+    public void testArray()
+        {
+        QueryTriple [] a = qnf.createArray( 42 );
+        assertEquals( 42, a.length );
+        }
 
     }
 

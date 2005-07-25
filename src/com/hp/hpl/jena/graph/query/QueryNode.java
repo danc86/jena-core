@@ -82,23 +82,7 @@ public class QueryNode
         return new Fixed( n );
         }
     
-    public static final QueryNodeFactory factory = new QueryNodeFactory()
-        {
-        public QueryNode createAny()
-            { return new Any(); }
-        
-        public QueryNode createFixed( Node n )
-            { return new Fixed( n ); }
-
-        public QueryNode createBind( Node node, int i )
-            { return new Bind( node, i ); }
-
-        public QueryNode createJustBound( Node node, int i )
-            { return new JustBound( node, i ); }
-
-        public QueryNode createBound( Node node, int i )
-            { return new Bound( node, i ); }
-        };
+    public static final QueryNodeFactory factory = new QueryNodeFactoryBase();
 
     public static class Fixed extends QueryNode
         {

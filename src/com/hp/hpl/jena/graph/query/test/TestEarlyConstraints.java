@@ -42,6 +42,12 @@ public class TestEarlyConstraints extends QueryTestBase
             public QueryHandler queryHandler()
                 { return new SimpleQueryHandler( this ); }
             
+            public ExtendedIterator find( Node S, Node P, Node O ) 
+                {
+                if (P.equals( node( "eg:p2" ) )) count[0] += 1;
+                return super.find( S, P, O ); 
+                }
+            
             public ExtendedIterator find( TripleMatch tm ) 
                 {
                 if (tm.getMatchPredicate().equals( node( "eg:p2" ) )) count[0] += 1;

@@ -5,6 +5,8 @@
 */
 package com.hp.hpl.jena.graph.query;
 
+import java.util.Iterator;
+
 import com.hp.hpl.jena.graph.Triple;
 
 /**
@@ -17,7 +19,11 @@ public abstract class PatternStageBase extends Stage
     {
     protected static int count = 0;
     protected ValuatorSet [] guards;
-
+    
+    public abstract static class Finder
+        {   
+        public abstract Iterator find( Domain d );
+        }
     /**
         Set the <code>guards</code> from the <code>constraints</code>, using the
         variable-bindings in <code>map</code>, according to where they are fully

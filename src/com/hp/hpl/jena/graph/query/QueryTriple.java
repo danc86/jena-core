@@ -5,9 +5,10 @@
 */
 package com.hp.hpl.jena.graph.query;
 
-import java.util.HashSet;
+import java.util.*;
 
-import com.hp.hpl.jena.graph.Triple;
+import com.hp.hpl.jena.graph.*;
+import com.hp.hpl.jena.graph.query.PatternStageBase.Finder;
 import com.hp.hpl.jena.shared.BrokenException;
 
 /**
@@ -34,7 +35,7 @@ public class QueryTriple
     
     public static QueryTriple [] classify( QueryNodeFactory f, Mapping m, Triple [] t )
         {
-        QueryTriple [] result = new QueryTriple [t.length];
+        QueryTriple [] result = f.createArray( t.length );
         for (int i = 0; i < t.length; i += 1) result[i] = classify( f, m, t[i] );
         return result;
         }
@@ -42,10 +43,18 @@ public class QueryTriple
     public static QueryTriple classify( QueryNodeFactory f, Mapping m, Triple t )
         { 
         HashSet fresh = new HashSet();
-        return new QueryTriple
+        return f.createTriple
             ( QueryNode.classify( f, m, fresh, t.getSubject() ), 
             QueryNode.classify( f, m, fresh, t.getPredicate() ),
             QueryNode.classify( f, m, fresh, t.getObject() ) );
+        }
+    
+    public Finder finder( final Graph g )
+        { return new Finder()
+            {
+            public Iterator find( Domain d )
+                { return g.find( S.finder( d ), P.finder( d ), O.finder( d ) ); }
+            };
         }
     
     public Matcher createMatcher()
