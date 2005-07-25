@@ -10,6 +10,7 @@ import java.util.*;
 
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.graph.query.*;
+import com.hp.hpl.jena.graph.query.PatternStageBase.Finder;
 
 /**
     A ProcessedTriple is three QueryNodes; it knows how to deliver an
@@ -47,8 +48,9 @@ public class ProcessedTriple extends QueryTriple
         public abstract Iterator find( Node X, Node Y, Node Z );
         }
 
-    protected FasterPatternStage.Finder finder( GraphMemFaster graph )
+    public Finder finder( Graph g )
         {
+        GraphMemFaster graph = (GraphMemFaster) g;
         if (S instanceof QueryNode.Fixed) return finderFixedS( graph, S, P, O );
         if (O instanceof QueryNode.Fixed) return finderFixedO( graph, S, P, O );
         if (S instanceof QueryNode.Bound) return finderBoundS( graph, S, P, O );

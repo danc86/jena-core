@@ -20,7 +20,7 @@ public abstract class Stage
 	/** the previous stage of the pipeline, once connected */
 	protected Stage previous;
     
-    protected volatile boolean stillOpen = true;
+    public volatile boolean stillOpen = true;
     
 	/** construct a new initial stage for the pipeline */    
 	public static Stage initial( int count )

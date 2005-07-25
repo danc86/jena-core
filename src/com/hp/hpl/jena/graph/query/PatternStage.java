@@ -8,8 +8,6 @@ package com.hp.hpl.jena.graph.query;
 
 import com.hp.hpl.jena.graph.*;
 
-import java.util.*;
-
 /**
     A PatternStage is a Stage that handles some bunch of related patterns; those patterns
     are encoded as Triples.
@@ -18,56 +16,9 @@ import java.util.*;
 */
 
 public class PatternStage extends PatternStageBase
-    {
-    protected Graph graph;
-    protected QueryTriple [] compiled;
-    
+    {    
     public PatternStage( Graph graph, Mapping map, ExpressionSet constraints, Triple [] triples )
-        {
-        this.graph = graph;
-        this.compiled = QueryTriple.classify( getFactory(), map, triples );
-        setGuards( map, constraints, triples );
-        }
-
-    protected QueryNodeFactory getFactory()
-        { return QueryNode.factory; }
-        
-    protected StageElement makeStageElementChain( Pipe sink, int index )
-        {
-        if (index == compiled.length)
-            return new StageElement.PutBindings( sink );
-        else
-            {
-            QueryTriple p = compiled[index];
-            Matcher m = p.createMatcher();
-            Finder f = p.finder( graph );
-            ValuatorSet s = guards[index];
-            StageElement nextElement = makeStageElementChain( sink, index + 1 );
-            StageElement next = s.isNonTrivial() 
-                ? new StageElement.RunValuatorSet( s, nextElement ) 
-                : nextElement
-                ;
-            return new FindTriples( m, f, next );
-            }
-        }    
-    
-    protected final class FindTriples extends StageElement
-        {
-        protected final Finder f;
-        protected final Matcher m;
-        protected final StageElement next;
-        
-        public FindTriples( Matcher m, Finder f, StageElement next )
-            { this.f = f; this.next = next; this.m = m; }
-        
-        public final void run( Domain current )
-            { 
-            Iterator it = f.find( current );
-            while (stillOpen && it.hasNext())
-                if (m.match( current, (Triple) it.next() )) 
-                    next.run( current );
-            }
-        }       
+        { super( QueryNode.factory, graph, map, constraints, triples ); }
     }
 
 /*
