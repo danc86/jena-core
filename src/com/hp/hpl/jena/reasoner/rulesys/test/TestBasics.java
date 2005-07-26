@@ -444,6 +444,27 @@ public class TestBasics extends TestCase  {
     }
     
     /**
+     * The the "drop" builtin
+     */
+    public void testDropBuiltin() {
+        String rules =  
+                       "[rule1: (?x p ?y) -> drop(0)]" +
+                       "";
+        List ruleList = Rule.parseRules(rules);
+
+        InfGraph infgraph = new BasicForwardRuleReasoner(ruleList).bind(Factory.createGraphMem());
+        infgraph.add(new Triple(n1, p, Util.makeIntNode(1)));
+        infgraph.add(new Triple(n1, p, Util.makeIntNode(2)));
+        infgraph.add(new Triple(n1, q, Util.makeIntNode(2)));
+        
+        TestUtil.assertIteratorValues(this, infgraph.find(n1, null, null),
+            new Triple[] {
+                new Triple(n1, q, Util.makeIntNode(2))
+            });
+        
+    }
+    
+    /**
      * Test the rebind operation.
      */
     public void testRebind() {
