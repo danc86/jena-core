@@ -24,9 +24,9 @@ public abstract class PatternStageBase extends Stage
     protected final Graph graph;
     protected final QueryNodeFactory factory;
     
-    public abstract static class Finder
+    public abstract static class Applyer
         {   
-        public abstract Iterator find( Domain d );
+        public abstract void applyToTriples( Domain d, Matcher m, StageElement next );
         }
     
     public PatternStageBase( QueryNodeFactory factory, Graph graph, Mapping map, ExpressionSet constraints, Triple[] triples )
@@ -60,9 +60,9 @@ public abstract class PatternStageBase extends Stage
             return new StageElement.PutBindings( sink );
         else
             {
-            Matcher m = classified[index].createMatcher();
-            Finder f = classified[index].finder( graph );
             ValuatorSet s = guards[index];
+            Matcher m = classified[index].createMatcher();
+            Applyer f = classified[index].finder( graph );
             StageElement next = makeStageElementChain( sink, index + 1 );
             return new StageElement.FindTriples( this, m, f, s.isNonTrivial() ? new StageElement.RunValuatorSet( s, next ) : next );
             }

@@ -6,10 +6,7 @@
 
 package com.hp.hpl.jena.graph.query;
 
-import java.util.Iterator;
-
-import com.hp.hpl.jena.graph.Triple;
-import com.hp.hpl.jena.graph.query.PatternStageBase.Finder;
+import com.hp.hpl.jena.graph.query.PatternStageBase.Applyer;
 
 /**
     Class used internally by PatternStage to express the notion of "the
@@ -43,20 +40,15 @@ public abstract class StageElement
     public static final class FindTriples extends StageElement
         {
         protected final Matcher matcher;
-        protected final Finder finder;
+        protected final Applyer finder;
         protected final StageElement next;
         protected final Stage stage;
         
-        public FindTriples( Stage stage, Matcher matcher, Finder finder, StageElement next )
+        public FindTriples( Stage stage, Matcher matcher, Applyer finder, StageElement next )
             { this.stage = stage;  this.matcher = matcher; this.finder = finder; this.next = next; }
     
         public final void run( Domain current )
-            {
-            Iterator it = finder.find( current );
-            while (stage.stillOpen && it.hasNext())
-                if (matcher.match( current, (Triple) it.next() )) 
-                    next.run( current );
-            }
+            { if (stage.stillOpen) finder.applyToTriples( current, matcher, next ); }
         }
 
     /**
