@@ -13,7 +13,6 @@ public class FasterPatternStage extends PatternStageBase
     {
     public FasterPatternStage( Graph graph, Mapping map, ExpressionSet constraints, Triple [] triples )
         { super( ProcessedTriple.factory, (GraphMemFaster) graph, map, constraints, triples ); }
-
     }
 
 

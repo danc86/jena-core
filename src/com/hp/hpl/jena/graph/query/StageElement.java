@@ -35,6 +35,11 @@ public abstract class StageElement
             { sink.put( current.copy() ); }
         }
     
+    
+    /**
+        A FindTriples runs match-and-next over all the triples returned
+        by its finder.   
+    */
     public static final class FindTriples extends StageElement
         {
         protected final Matcher matcher;
@@ -53,7 +58,7 @@ public abstract class StageElement
                     next.run( current );
             }
         }
-    
+
     /**
         A RunValuatorSet is created with a ValuatorSet and a next StageElement;
         whenever it is run, it evaluates the ValuatorSet and only if that 
