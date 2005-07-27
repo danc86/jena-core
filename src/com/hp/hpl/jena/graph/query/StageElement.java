@@ -6,7 +6,6 @@
 
 package com.hp.hpl.jena.graph.query;
 
-import com.hp.hpl.jena.graph.query.PatternStageBase.Applyer;
 
 /**
     Class used internally by PatternStage to express the notion of "the
