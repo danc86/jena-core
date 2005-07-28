@@ -34,6 +34,9 @@ public class ProcessedNode extends QueryNode
     public boolean match( Domain d, Node X )
         { throw new BrokenException( "ARGH" ); }
     
+    public boolean matchOrBind( Domain d, Node X )
+        { throw new BrokenException( "ARGH" ); }
+    
     public Node finder( Domain d )
         { return Node.ANY; }
     
