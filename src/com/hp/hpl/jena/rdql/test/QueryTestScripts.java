@@ -56,7 +56,6 @@ public class QueryTestScripts extends TestSuite
     public QueryTestScripts(String name)
     {
         super(name) ;
-        //addTests(directory, defaultControlFilename) ;
         addTests(directory, defaultControlFilename) ;
     }
 
