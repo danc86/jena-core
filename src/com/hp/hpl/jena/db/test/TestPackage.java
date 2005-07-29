@@ -80,6 +80,7 @@ public class TestPackage extends TestSuite
     /** Creates new TestPackage */
     private TestPackage() {
         super("GraphRDB");
+        addTest( TestDriverMap.suite() );
 		addTest( "TestConnection", TestConnection.suite() );
         addTest( "TestBasicOperations", TestBasicOperations.suite() );
         addTest( "TestSimpleSelector", TestSimpleSelector.suite() );

@@ -108,6 +108,7 @@ jms:ontLanguage         rdfs:domain         jms:OntModelSpec .
 jms:reasonsWith         rdfs:domain         jms:InfModelSpec .
 jms:modelName           rdfs:domain         jms:ModelSpec .
 jms:fileBase            rdfs:domain         jms:FileMakerSpec .
+jms:hasConnection       rdfs:domain         jms:RDBMakerSpec .
 
 jms:importMaker         rdfs:subPropertyOf  jms:maker .
 
