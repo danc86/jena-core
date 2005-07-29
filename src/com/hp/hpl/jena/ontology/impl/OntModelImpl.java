@@ -821,7 +821,24 @@ public class OntModelImpl
      * @return An OntClass resource or null.
      */
     public OntClass getOntClass( String uri ) {
-        return (OntClass) findByURIAs( uri, OntClass.class );
+        OntClass c = (OntClass) findByURIAs( uri, OntClass.class );
+
+        // special case for nothing and thing
+        if (c == null) {
+            Resource thing = getProfile().THING();
+            if (thing != null) {
+                Resource nothing = getProfile().NOTHING();
+
+                if (thing.getURI().equals( uri )) {
+                    c = (OntClass) thing.inModel( this ).as( OntClass.class );
+                }
+                else if (nothing.getURI().equals( uri )) {
+                    c = (OntClass) nothing.inModel( this ).as( OntClass.class );
+                }
+            }
+        }
+
+        return c;
     }
 
 

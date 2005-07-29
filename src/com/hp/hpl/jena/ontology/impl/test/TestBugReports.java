@@ -1116,6 +1116,14 @@ public class TestBugReports
         r = (Resource) OWL.Nothing.inModel( m );
         OntClass nothingClass = (OntClass) r.as( OntClass.class );
         assertNotNull( nothingClass );
+
+        OntClass c = m.getOntClass( OWL.Thing.getURI() );
+        assertNotNull( c );
+        assertEquals( c, OWL.Thing );
+
+        c = m.getOntClass( OWL.Nothing.getURI() );
+        assertNotNull( c );
+        assertEquals( c, OWL.Nothing );
     }
 
     /** Test case for SF bug 937810 - NPE from ModelSpec.getDescription() */
@@ -1464,18 +1472,22 @@ public class TestBugReports
      * Variant 2: base = inf, import = no inf
      */
     public void test_am_02() {
-        OntModel m0 = ModelFactory.createOntologyModel( OntModelSpec.OWL_MEM_RDFS_INF );
-        OntModel m1 = ModelFactory.createOntologyModel( OntModelSpec.OWL_MEM );
+        OntDocumentManager.getInstance().setProcessImports( false );
+        OntDocumentManager.getInstance().addAltEntry( "http://www.w3.org/TR/2003/CR-owl-guide-20030818/wine",
+                                                      "file:testing/ontology/owl/Wine/wine.owl" );
+        OntModel m0 = ModelFactory.createOntologyModel(OntModelSpec.OWL_MEM_MICRO_RULE_INF);
+        OntModel m1 = ModelFactory.createOntologyModel(OntModelSpec.OWL_MEM);
 
-        OntClass c = m1.createClass( NS + "c" );
+        String namespace = "http://www.w3.org/TR/2003/CR-owl-guide-20030818/wine";
+        String classURI = namespace + "#Wine";
+        m1.read(namespace);
+        OntClass c = m1.getOntClass(classURI);
 
-        assertFalse( m0.containsResource( c ) );
-
-        m0.addSubModel( m1 );
-        assertTrue( m0.containsResource( c ) );
-
-        m0.removeSubModel( m1 );
-        assertFalse( m0.containsResource( c ) );
+        assertFalse(m0.containsResource(c));
+        m0.addSubModel(m1);
+        assertTrue(m0.containsResource(c));
+        m0.removeSubModel(m1);
+        assertFalse(m0.containsResource(c));
     }
 
     /**
