@@ -278,8 +278,28 @@ public class TestFBRules extends TestCase {
                 new Triple(n1, q, n3)
             });
     }
+
     
-   
+    /**
+     * Test that reset does actually clear out all the data.
+     * We use the RDFS configuration because uses both TGC, forward and backward
+     * rules and so is a good check.
+     */
+    public void testRebind2() {
+        String NS = "http://jena.hpl.hp.com/test#";
+        Model base = ModelFactory.createDefaultModel();
+        Resource A = base.createResource(NS + "A");
+        Resource B = base.createResource(NS + "B");
+        Resource I = base.createResource(NS + "i");
+        A.addProperty(RDFS.subClassOf, B);
+        I.addProperty(RDF.type, A);
+        InfModel inf = ModelFactory.createInfModel(ReasonerRegistry.getRDFSReasoner(), base);
+        assertTrue(inf.containsResource(A) && inf.containsResource(I));
+        base.removeAll();
+        inf.rebind();
+        assertFalse(inf.containsResource(A) || inf.containsResource(I));
+    }
+       
     /**
      * Test the close operation.
      */

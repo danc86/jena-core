@@ -171,6 +171,13 @@ public class FBRuleInfGraph  extends BasicForwardRuleInfGraph implements Backwar
      */
     public void setUseTGCCache() {
         useTGCCaching = true;
+        resetTGCCache();
+    }
+    
+    /**
+     * Rest the transitive graph caches
+     */
+    private void resetTGCCache() {
         if (schemaGraph != null) {
             transitiveEngine = new TransitiveEngine(((FBRuleInfGraph)schemaGraph).transitiveEngine);
         } else {
@@ -377,6 +384,7 @@ public class FBRuleInfGraph  extends BasicForwardRuleInfGraph implements Backwar
             
             // Initialize the optional TGC caches
             if (useTGCCaching) {
+                resetTGCCache();
                 if (schemaGraph != null) {
                     // Check if we can just reuse the copy of the raw 
                     if (

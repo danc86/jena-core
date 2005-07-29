@@ -487,7 +487,7 @@ public class TestBasics extends TestCase  {
                 new Triple(n1, q, n3)
             });
     }
-    
+     
     /**
      * Test size bug, used to blow up if size was called before any queries.
      */
