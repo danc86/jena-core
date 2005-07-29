@@ -54,15 +54,15 @@ public class TestModelMakerImpl extends ModelTestBase
         checkHistory( one( "remove(London)" ) );
         }
 
-    public void testCreate()
+    public void testCreateFreshModel()
         {
-        maker.createModel();
+        maker.createFreshModel();
         checkHistory( one( "create()" ) );
         }
 
-    public void testGet()
+    public void testCreateDefaultModel()
         {
-        maker.getModel();
+        maker.createDefaultModel();
         checkHistory( one( "get()" ) );
         }
 

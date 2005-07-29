@@ -154,7 +154,7 @@ public class TestModelSpec extends ModelTestBase
         Resource plain = resource();
         Model desc = createPlainModelDesc( plain );
         ModelSpec ms = ModelSpecFactory.createSpec( ModelSpecFactory.withSchema( desc ), plain );  
-        assertTrue( ms.createModel().getGraph() instanceof GraphMemBase );  
+        assertTrue( ms.createFreshModel().getGraph() instanceof GraphMemBase );  
         }
         
     public void testCreateByNameChoice()
@@ -164,7 +164,7 @@ public class TestModelSpec extends ModelTestBase
         String URI = DAMLMicroReasonerFactory.URI;
         Model desc = createPlainModelDesc( plain ).add( createInfModelDesc( inf, URI ) );
         ModelSpec ms = ModelSpecFactory.createSpec( ModelSpecFactory.withSchema( desc ), plain );  
-        assertTrue( ms.createModel().getGraph() instanceof GraphMemBase );  
+        assertTrue( ms.createFreshModel().getGraph() instanceof GraphMemBase );  
         }
                           
     public void testOntModeSpecIsaModelSpec()
@@ -174,7 +174,7 @@ public class TestModelSpec extends ModelTestBase
         
     public void testOntModelSpecCreatesOntModels()
         {
-        Model m = OntModelSpec.DAML_MEM_RULE_INF.createModel();
+        Model m = OntModelSpec.DAML_MEM_RULE_INF.createFreshModel();
         assertTrue( m instanceof OntModel );    
         }
         
@@ -336,7 +336,7 @@ public class TestModelSpec extends ModelTestBase
             );
         OntModelSpec s = (OntModelSpec) ModelSpecFactory.createSpec( x );
         s.setBaseModelMaker( tracker );
-        Model m = s.createModel();
+        Model m = s.createFreshModel();
         assertEquals( list( "cranberry" ), record );
         }
     

@@ -1327,7 +1327,7 @@ public class TestBugReports
         Property rms  = m.getProperty( "http://www.nuin.org/demo/kma#rdfModelSpec");
         Resource conf = root.getProperty(rms).getResource();
         OntModel om = (OntModel) ModelFactory.createSpec(conf,m)
-                                             .createModel();
+                                             .createFreshModel();
 
         OntClass A = om.createClass( "A" );
         OntClass B = om.createClass( "B" );

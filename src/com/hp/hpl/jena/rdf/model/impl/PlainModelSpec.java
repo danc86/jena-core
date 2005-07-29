@@ -41,7 +41,7 @@ public class PlainModelSpec extends ModelSpecImpl implements ModelSpec
         with.
     */
     public Model doCreateModel()
-        { return maker.createModel(); }
+        { return maker.createFreshModel(); }
     
     /**
         Answer the Model obtained from the underlying ModelMaker with the given name. 

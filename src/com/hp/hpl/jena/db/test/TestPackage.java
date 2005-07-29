@@ -110,7 +110,7 @@ public class TestPackage extends TestSuite
         public void testModelFactory()
             {
             IDBConnection c = TestConnection.makeAndCleanTestConnection();
-            assertTrue( ModelFactory.createModelRDBMaker( c ).createModel() instanceof ModelRDB );
+            assertTrue( ModelFactory.createModelRDBMaker( c ).createFreshModel() instanceof ModelRDB );
             }
         }
     

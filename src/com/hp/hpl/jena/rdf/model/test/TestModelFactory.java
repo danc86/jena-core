@@ -73,7 +73,7 @@ public class TestModelFactory extends ModelTestBase
         ModelSpec spec = ModelFactory.createSpec( desc ); 
         assertIsoModels( desc, spec.getDescription() );
         assertTrue( spec instanceof PlainModelSpec );
-        assertTrue( spec.createModel().getGraph() instanceof GraphMemBase );
+        assertTrue( spec.createFreshModel().getGraph() instanceof GraphMemBase );
         }
         
     public void testCreateOntSpec()
@@ -99,7 +99,7 @@ public class TestModelFactory extends ModelTestBase
         ModelSpec spec = ModelFactory.createSpec( desc ); 
         assertTrue( spec instanceof OntModelSpec );         
         assertIsoModels( desc, spec.getDescription() );
-        assertTrue( spec.createModel() instanceof OntModel );
+        assertTrue( spec.createFreshModel() instanceof OntModel );
         }
         
     public void testCreateOntologyModelFromSpecOnly()
@@ -118,7 +118,7 @@ public class TestModelFactory extends ModelTestBase
         ModelSpec spec = ModelFactory.createSpec( desc );
         assertTrue( spec instanceof InfModelSpec );    
         assertIsoModels( desc, spec.getDescription() );
-        assertTrue( spec.createModel() instanceof InfModel );
+        assertTrue( spec.createFreshModel() instanceof InfModel );
         }
         
     /**

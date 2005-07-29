@@ -199,7 +199,7 @@ public class TestModelSpecsWithRuleSets extends ModelTestBase
             ;
         Model desc = modelWithStatements( d, new Object[] {file("schema.n3"), file("schema2.n3")} );
 		ModelSpec spec = ModelFactory.createSpec( desc );
-		validateHasSchema( loadBoth( "schema.n3", "schema2.n3" ), spec.createModel() );
+		validateHasSchema( loadBoth( "schema.n3", "schema2.n3" ), spec.createFreshModel() );
     	}
     
 	/**
@@ -279,7 +279,7 @@ public class TestModelSpecsWithRuleSets extends ModelTestBase
         String ruleString = "[rdfs3a: (?x rdfs:range  ?y), (?y rdfs:subClassOf ?z) -> (?x rdfs:range  ?z)]";
         List wanted = Rule.parseRules( ruleString );
         ModelSpec spec = createInfModelSpec( ruleString );
-        Model m = spec.createModel();
+        Model m = spec.createFreshModel();
         Graph g = m.getGraph();
         assertTrue( g instanceof InfGraph );
         Reasoner r = ((InfGraph) g).getReasoner();

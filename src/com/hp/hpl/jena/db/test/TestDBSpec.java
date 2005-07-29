@@ -82,7 +82,7 @@ public class TestDBSpec extends ModelTestBase
             .add( con, JenaModelSpec.dbClass, className )
             ;
         ModelSpec s = ModelFactory.createSpec( spec );
-        Model d = s.createModel();
+        Model d = s.createFreshModel();
         assertTrue( d instanceof ModelRDB );
         }
 	}

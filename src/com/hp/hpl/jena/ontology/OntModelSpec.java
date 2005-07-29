@@ -447,7 +447,7 @@ public class OntModelSpec extends ModelSpecImpl implements ModelSpec {
      *  @return an OntModel satisfying this specification
      */
     public Model doCreateModel() {
-        Model m = m_baseModelName == null ? maker.createModel() : maker.createModel( m_baseModelName );
+        Model m = m_baseModelName == null ? maker.createFreshModel() : maker.createModel( m_baseModelName );
         return new OntModelImpl( this, m );
     }
 

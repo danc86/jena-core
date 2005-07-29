@@ -48,10 +48,10 @@ public class ModelMakerImpl implements ModelMaker
     public Model createModelOver( String name )
         { return createModel( name ); }
         
-    public Model createModel()
+    public Model createFreshModel()
         { return makeModel( maker.createGraph() ); }
         
-    public Model getModel()
+    public Model createDefaultModel()
         { return makeModel( maker.getGraph() ); }
         
     public Model getDescription()

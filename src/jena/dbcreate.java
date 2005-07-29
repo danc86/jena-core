@@ -51,15 +51,16 @@ public class dbcreate extends DBcmd
     {
         Model m = null;
 
+        ModelMaker maker = ModelFactory.createModelRDBMaker(getConnection());
         if (super.argModelName == null)
         {
             System.out.println("Create default model");
-            m = ModelFactory.createModelRDBMaker(getConnection()).createModel();  
+            m = maker.createDefaultModel();  
         }  
         else
         {
             System.out.println("Create named model: " + argModelName);
-            m = ModelFactory.createModelRDBMaker(getConnection()).createModel(argModelName);
+            m = maker.createModel(argModelName);
         }
         
     }
