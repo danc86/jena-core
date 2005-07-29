@@ -27,7 +27,7 @@ public class LocatorFile implements Locator
     private String altDir = null ;
     private String altDirLogStr = "" ;
     
-    LocatorFile(String dir)
+    public LocatorFile(String dir)
     {
         if ( false )
         {
