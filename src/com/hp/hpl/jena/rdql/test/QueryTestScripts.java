@@ -65,7 +65,7 @@ public class QueryTestScripts extends TestSuite
     public void addTest(TestItem item)
     {
         testCounter++ ;
-        addTest("BRQL-test-"+testCounter, item) ; 
+        addTest("RDQL-test-"+testCounter, item) ; 
     }
 
     public void addTest(String testName, TestItem item)
@@ -105,49 +105,6 @@ public class QueryTestScripts extends TestSuite
             addTest(test);
         }
     }            
-//            String queryFile = null;
-//            String dataFile = null;
-//            String resultsFile = null;
-//            
-//            
-//
-//            if (item. .getAction() instanceof Literal)
-//            {
-//                queryFile = ((Literal) item.getAction()).getString();
-//            }
-//            else if (!((Resource) item.getAction()).isAnon())
-//            {
-//                queryFile = ((Resource) item.getAction()).getURI();
-//            }
-//            else
-//            {
-//                // Anon node - more details
-//                Resource r = (Resource) item.getAction();
-//                queryFile = r.getRequiredProperty(TestQuery.query).getResource().getURI();
-//                if (r.hasProperty(TestQuery.data))
-//                    dataFile = r.getRequiredProperty(TestQuery.data).getResource().getURI();
-//            }
-//            
-//            if (item.getResult() != null)
-//            {
-//                if (item.getResult() instanceof Resource)
-//                    resultsFile = ((Resource) item.getResult()).getURI();
-//                else
-//                    resultsFile = ((Literal) item.getResult()).getString();
-//            }
-//            TestCase test =
-//                new RDQLTest(
-//                             model,
-//                             out,
-//                             item.getName(),
-//                             testDirectory,
-//                             queryFile,
-//                             dataFile,
-//                             resultsFile);
-//            addTest(test);
-//        }
-//    }
-
     
     // One test.  State and execution.
     
