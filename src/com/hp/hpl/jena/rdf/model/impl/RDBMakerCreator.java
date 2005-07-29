@@ -7,6 +7,7 @@
 package com.hp.hpl.jena.rdf.model.impl;
 
 import com.hp.hpl.jena.db.IDBConnection;
+import com.hp.hpl.jena.db.impl.DriverMap;
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.shared.*;
 import com.hp.hpl.jena.vocabulary.*;
@@ -32,15 +33,21 @@ public class RDBMakerCreator implements ModelMakerCreator
         String user = getString( description, connection, JenaModelSpec.dbUser );
         String password = getString( description, connection , JenaModelSpec.dbPassword );
         String className = getClassName( description, connection );
-        String dbType = getString( description, connection, JenaModelSpec.dbType );
+        String dbType = getDbType( description, connection );
         loadDrivers( dbType, className );
         return ModelFactory.createSimpleRDBConnection( url, user, password, dbType );
         }
 
+    public static String getDbType( Model description, Resource connection )
+        { return getString( description, connection, JenaModelSpec.dbType ); }
+
     public static String getClassName( Model description, Resource root )
         {
         Statement cnStatement = description.getProperty( root, JenaModelSpec.dbClass );
-        return cnStatement == null ? null : cnStatement.getString();
+        if (cnStatement == null)
+            return DriverMap.get( getDbType( description, root ) );
+        else
+            return cnStatement == null ? null : cnStatement.getString();
         }
     
     public static String getURL( Model description, Resource root, Property p )

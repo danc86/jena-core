@@ -22,9 +22,9 @@ import junit.framework.TestSuite;
      TestModelSpecRevised
      @author kers
 */
-public class TestModelSpecRevised extends ModelTestBase
+public class TestModelSpecsWithRuleSets extends ModelTestBase
     {
-    public TestModelSpecRevised( String name )
+    public TestModelSpecsWithRuleSets( String name )
         { super( name ); }
     
     public static TestSuite suite()
@@ -32,7 +32,7 @@ public class TestModelSpecRevised extends ModelTestBase
 //         TestSuite result = new TestSuite();
 //         result.addTest( new TestModelSpecRevised( "testURLRulesets" ) );
 //         return result; 
-         return new TestSuite( TestModelSpecRevised.class ); 
+         return new TestSuite( TestModelSpecsWithRuleSets.class ); 
          }
     
     public static final Resource A = resource( "_a" );
