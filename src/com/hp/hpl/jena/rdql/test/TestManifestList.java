@@ -22,7 +22,7 @@ import org.apache.commons.logging.*;
     The test manifest framework takes a description file or model and provides a
     set of convenience operations on the manifest.  Entries are in order they are
     in the lists in the manifest but if the manifest model conatins multiple lists,
-    i.e. theer are muitple manifest objects or a manifest object has mutiple lists,
+    i.e. there are multiple manifest objects or a manifest object has mutiple lists,
     then the order between the lists is not determined.  
   
     @author      Andy Seaborne
