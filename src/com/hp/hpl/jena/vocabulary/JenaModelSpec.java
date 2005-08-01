@@ -205,6 +205,11 @@ public class JenaModelSpec
     public static final Resource OntModelSpec = resource( "OntModelSpec" );
     
     /**
+        The class of RDBModelSpec resources [subclass of PlainModelSpec]
+    */
+    public static final Resource RDBModelSpec = resource( "RDBModelSpec" );
+    
+    /**
         The resource representing reification mode Standard.
     */
     public static final Resource rsStandard = resource( "rsStandard" );

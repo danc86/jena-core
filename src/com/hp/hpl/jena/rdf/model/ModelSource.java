@@ -66,6 +66,16 @@ public interface ModelSource
         doesn't already have one.
     */
     Model openModelIfPresent( String string );
+    
+    /**
+        @deprecated use createDefaultModel or createFreshModel as appropriate.
+    */
+    Model getModel();
+    
+    /**
+        @deprecated use createDefaultModel or createFreshModel as appropriate.
+    */
+    Model createModel();
     }
 
 /*

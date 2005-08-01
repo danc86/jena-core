@@ -7,8 +7,9 @@
 package com.hp.hpl.jena.rdf.model.test;
 
 import com.hp.hpl.jena.db.impl.DriverMap;
-import com.hp.hpl.jena.rdf.model.Model;
-import com.hp.hpl.jena.rdf.model.impl.RDBMakerCreator;
+import com.hp.hpl.jena.rdf.model.*;
+import com.hp.hpl.jena.rdf.model.impl.*;
+import com.hp.hpl.jena.vocabulary.JenaModelSpec;
 
 import junit.framework.TestSuite;
 
@@ -20,8 +21,27 @@ public class TestModelSpecRDB extends ModelTestBase
     public static TestSuite suite()
         { return new TestSuite( TestModelSpecRDB.class ); }
 
+    public void testSpecExists()
+        {
+        Model d = modelWithStatements( "" );
+        Resource r = d.createResource( "" );
+        ModelSpecImpl ms = new RDBModelSpec( r, d );
+        }
+    
+    public void testCreatorExists()
+        {
+        Model d = modelWithStatements( "" );
+        Resource r = resource( d, "_x" );
+        ModelSpecCreator c = ModelSpecCreatorRegistry.instance.getCreator
+            ( JenaModelSpec.RDBModelSpec );
+        ModelSpec x = c.create( r, d );
+        assertTrue( x instanceof RDBModelSpec );
+        }
+    
     public void testExplicitClassName()
         {
+        Model d = modelWithStatements( "_x rdf:type jms:RDBModelSpec" );
+        Resource r = resource( d, "_x" );
         Model m = modelWithStatements( "_x jms:dbClass 'some.fake.class'" );
         String name = RDBMakerCreator.getClassName( m, resource( "_x" ) );
         assertEquals( "some.fake.class", name );

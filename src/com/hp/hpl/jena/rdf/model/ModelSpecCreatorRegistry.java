@@ -99,6 +99,12 @@ public class ModelSpecCreatorRegistry
         {
         public ModelSpec create( Resource root, Model desc ) 
             { return new PlainModelSpec( root, desc ); }      
+        }  
+    
+    static class RDBSpecCreator implements ModelSpecCreator
+        {
+        public ModelSpec create( Resource root, Model desc ) 
+            { return new RDBModelSpec( root, desc ); }      
         }
             
     static class OntSpecCreator implements ModelSpecCreator
@@ -112,6 +118,7 @@ public class ModelSpecCreatorRegistry
         register( JenaModelSpec.InfModelSpec, new InfSpecCreator() );  
         register( JenaModelSpec.OntModelSpec, new OntSpecCreator() );  
         register( JenaModelSpec.PlainModelSpec, new PlainSpecCreator() );   
+        register( JenaModelSpec.RDBModelSpec, new RDBSpecCreator() );
         
         register( JenaModelSpec.ModelSpec, new PlainSpecCreator() );
         register( JenaModelSpec.DefaultModelSpec, new PlainSpecCreator() );   
