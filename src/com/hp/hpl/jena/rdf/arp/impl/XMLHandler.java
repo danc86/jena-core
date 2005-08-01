@@ -125,7 +125,7 @@ public class XMLHandler extends LexicalHandlerImpl implements ARPErrorNumbers, N
         frame =
         frame.startElement(uri,localName,rawName,atts);
         if (DEBUG)
-        System.err.println("<"+rawName + "> :: "+oldFrame.getClass().getSimpleName() + " --> " + frame.getClass().getSimpleName());
+        System.err.println("<"+rawName + "> :: "+getSimpleName(oldFrame.getClass()) + " --> " + getSimpleName(frame.getClass()));
     }
 
     public void endElement(String uri, String localName, String rawName)
@@ -133,9 +133,12 @@ public class XMLHandler extends LexicalHandlerImpl implements ARPErrorNumbers, N
         frame.endElement();
         frame = frame.getParent();
         if (DEBUG)
-        System.err.println("</"+rawName+"> :: <--" + frame.getClass().getSimpleName() );
+        System.err.println("</"+rawName+"> :: <--" + getSimpleName(frame.getClass()) );
+    }    
+    static public String getSimpleName(Class c) {
+        String rslt[] = c.getName().split("\\.");
+        return rslt[rslt.length-1];
     }
-
     public void characters(char ch[], int start, int length)
             throws SAXException {
         frame.characters(ch,start,length);
