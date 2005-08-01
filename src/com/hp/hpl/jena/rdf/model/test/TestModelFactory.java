@@ -8,7 +8,7 @@ package com.hp.hpl.jena.rdf.model.test;
 
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.rdf.model.impl.*;
-import com.hp.hpl.jena.rdf.model.modelspec.test.TestModelSpec;
+import com.hp.hpl.jena.rdf.model.spec.test.TestModelSpec;
 import com.hp.hpl.jena.vocabulary.*;
 import com.hp.hpl.jena.ontology.*;
 import com.hp.hpl.jena.reasoner.rulesys.*;

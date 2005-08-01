@@ -6,7 +6,7 @@
 
 package com.hp.hpl.jena.rdf.model.test;
 
-import com.hp.hpl.jena.rdf.model.modelspec.test.TestModelSpecPackage;
+import com.hp.hpl.jena.rdf.model.spec.test.TestModelSpecPackage;
 
 import junit.framework.*;
 
