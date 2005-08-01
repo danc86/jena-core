@@ -4,9 +4,10 @@
  	[See end of file]
 */
 
-package com.hp.hpl.jena.rdf.model.test;
+package com.hp.hpl.jena.rdf.model.modelspec.test;
 
 import com.hp.hpl.jena.rdf.model.*;
+import com.hp.hpl.jena.rdf.model.test.ModelTestBase;
 
 import junit.framework.TestSuite;
 

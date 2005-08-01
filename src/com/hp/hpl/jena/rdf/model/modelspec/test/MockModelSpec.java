@@ -1,60 +1,75 @@
 /*
  	(c) Copyright 2005 Hewlett-Packard Development Company, LP
- 	All rights reserved - see end of file.
- 	$Id$
+ 	All rights reserved.
+ 	[See end of file]
 */
 
-package com.hp.hpl.jena.rdf.model.test;
+package com.hp.hpl.jena.rdf.model.modelspec.test;
 
-import com.hp.hpl.jena.db.impl.DriverMap;
 import com.hp.hpl.jena.rdf.model.*;
-import com.hp.hpl.jena.rdf.model.impl.*;
-import com.hp.hpl.jena.vocabulary.JenaModelSpec;
 
-import junit.framework.TestSuite;
-
-public class TestModelSpecRDB extends ModelTestBase
+/**
+    A fake model-spec (has methods but broken behaviour) for testing
+    purposes (as a ModelSpec produced by referring to its class-name).
+    
+    @author kers
+*/
+public class MockModelSpec implements ModelSpec
     {
-    public TestModelSpecRDB( String name )
-        { super( name ); }
+    public MockModelSpec( Resource root, Model spec )
+        {}
     
-    public static TestSuite suite()
-        { return new TestSuite( TestModelSpecRDB.class ); }
+    public Model createModelOver( String name )
+        {
+        return null;
+        }
+    
+    public Model getDescription()
+        {        
+        return null;
+        }
+    
+    public Model getDescription( Resource root )
+        {        
+        return null;
+        }
+    
+    public Model addDescription( Model m, Resource self )
+        {        
+        return null;
+        }
+    
+    public Model createDefaultModel()
+        { return null;
+        }
+    
+    public Model createFreshModel()
+        {        
+        return null;
+        }
+    
+    public Model openModel( String name )
+        {        
+        return null;
+        }
+    
+    public Model openModelIfPresent( String string )
+        {        
+        return null;
+        }
 
-    public void testSpecExists()
+    public Model getModel()
         {
-        Model d = modelWithStatements( "" );
-        Resource r = d.createResource( "" );
-        ModelSpecImpl ms = new RDBModelSpec( r, d );
+        
+        return null;
         }
-    
-    public void testCreatorExists()
+
+    public Model createModel()
         {
-        Model d = modelWithStatements( "" );
-        Resource r = resource( d, "_x" );
-        ModelSpecCreator c = ModelSpecCreatorRegistry.instance.getCreator
-            ( JenaModelSpec.RDBModelSpec );
-        ModelSpec x = c.create( r, d );
-        assertTrue( x instanceof RDBModelSpec );
-        }
-    
-    public void testExplicitClassName()
-        {
-        Model d = modelWithStatements( "_x rdf:type jms:RDBModelSpec" );
-        Resource r = resource( d, "_x" );
-        Model m = modelWithStatements( "_x jms:dbClass 'some.fake.class'" );
-        String name = RDBMakerCreator.getClassName( m, resource( "_x" ) );
-        assertEquals( "some.fake.class", name );
-        }
-    
-    public void testImpliedClassName()
-        {
-        Model m = modelWithStatements( "_x jms:dbType 'mysql'" );
-        String name = RDBMakerCreator.getClassName( m, resource( "_x" ) );
-        assertEquals( DriverMap.get( "mysql" ), name );
+        
+        return null;
         }
     }
-
 
 /*
  * (c) Copyright 2005 Hewlett-Packard Development Company, LP
