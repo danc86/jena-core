@@ -360,6 +360,33 @@ public class TestTypedLiterals extends TestCase {
     }
     
     /**
+     * Test cases of numeric comparison.
+     */
+    public void testNumberSameValueAs() {
+        Literal lDouble = m.createTypedLiteral("5", XSDDatatype.XSDdouble);
+        Literal lDouble2 = m.createTypedLiteral("5.5", XSDDatatype.XSDdouble);
+        Literal lFloat = m.createTypedLiteral("5", XSDDatatype.XSDfloat);
+        Literal lint = m.createTypedLiteral("5", XSDDatatype.XSDint);
+        Literal linteger = m.createTypedLiteral("5", XSDDatatype.XSDinteger);
+        Literal lbyte = m.createTypedLiteral("5", XSDDatatype.XSDbyte);
+        
+        assertSameValueAs("integer subclasses equal", lint, linteger);
+        assertSameValueAs("integer subclasses equal", lint, lbyte);
+        assertSameValueAs("integer subclasses equal", linteger, lbyte);
+        
+        assertDiffer("float/double/int distinct", lDouble, lDouble2);
+        assertDiffer("float/double/int distinct", lDouble, lFloat);
+        assertDiffer("float/double/int distinct", lDouble, lint);
+        assertDiffer("float/double/int distinct", lDouble, linteger);
+        assertDiffer("float/double/int distinct", lDouble2, lint);
+        assertDiffer("float/double/int distinct", lDouble2, lbyte);
+        assertDiffer("float/double/int distinct", lint, lDouble);
+        assertDiffer("float/double/int distinct", lbyte, lDouble);
+        assertDiffer("float/double/int distinct", lint, lDouble2);
+        assertDiffer("float/double/int distinct", lbyte, lDouble2);
+    }
+    
+    /**
      * Test user defined data types using the DAML+OIL standard example.
      * N.B. The file on daml.org is not legal (wrong namespace for XMLSchema, missed
      * qualifiers  onsome restriction base types) so we actually load a locally cached

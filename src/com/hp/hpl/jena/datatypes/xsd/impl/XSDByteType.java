@@ -38,15 +38,6 @@ public class XSDByteType extends XSDBaseNumericType {
     public XSDByteType(String typeName, Class javaClass) {
         super(typeName, javaClass);
     }
-        
-    /**
-     * Compares two instances of values of the given datatype.
-     * This ignores lang tags and just uses the java.lang.Number 
-     * equality.
-     */
-    public boolean isEqual(LiteralLabel value1, LiteralLabel value2) {
-       return value1.getValue().equals(value2.getValue());
-    }
 
 }
 
