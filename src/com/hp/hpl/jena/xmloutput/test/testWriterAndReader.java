@@ -116,7 +116,11 @@ public class testWriterAndReader
                              //                        2,3,4,5,
                                                      6,7 }))
 						langsuite.addTest(
-							new testWriterAndReader("testOptions", lang, k, j));
+							new testWriterAndReader("testOptions "+k + " "+j, lang, k, j) {
+                                public void runTest() throws IOException {
+                                    testOptions();
+                                }
+                            });
 				}
 			}
 		}
@@ -305,6 +309,7 @@ public class testWriterAndReader
 			"http://daml.umbc.edu/ontologies/calendar-ont",
 			"http://www.daml.org/2001/03/daml+oil-ex" };
             
+    ByteArrayOutputStream tmpOut;
 	/**
 	 * 
 	 * @param rwLang Use Writer for this lang
@@ -366,7 +371,7 @@ public class testWriterAndReader
 				if ((j % 2) == 0 && j > 0)
 					expand(m1, random, 1 + cn / 10);
                 
-                ByteArrayOutputStream tmpOut = new ByteArrayOutputStream() ;
+                tmpOut = new ByteArrayOutputStream() ;
                 rdfWtr.write(m1, tmpOut, baseUriWrite);
                 tmpOut.flush() ;
                 tmpOut.close() ;
@@ -483,6 +488,8 @@ public class testWriterAndReader
 	 */
 	public void warning(Exception e) {
 //		logger.warn( toString() + " " + e.getMessage(), e );
+        System.out.println(new String(tmpOut.toString()));
+        
 		throw new JenaException( e );
 	}
     

@@ -6,7 +6,6 @@
  */
 
 package com.hp.hpl.jena.rdf.arp.test;
-import org.apache.commons.logging.*;
 import junit.framework.*;
 
 import com.hp.hpl.jena.rdf.arp.*;
@@ -17,6 +16,7 @@ import com.hp.hpl.jena.rdf.arp.*;
  */
 public class URITests
 	extends TestCase {
+    // TODO: what with these tests
 	static public Test suite() {
 		TestSuite suite = new TestSuite("URIs");
 		suite.addTest(new URITests("testNoDomain"));

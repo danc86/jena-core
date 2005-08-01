@@ -298,6 +298,9 @@ public class FileManager
                         File f = new File(tmp) ;
                         baseURI = "file:///"+f.getCanonicalPath() ;
                         baseURI = baseURI.replace('\\','/') ;
+
+//                        baseURI = baseURI.replace(" ","%20");
+//                        baseURI = baseURI.replace("~","%7E");
                         // Convert to URI.  Except that it removes ///
                         // Could do that and fix up (again)
                         //java.net.URL u = new java.net.URL(baseURI) ;

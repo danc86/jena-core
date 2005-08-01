@@ -36,10 +36,16 @@
 
 package com.hp.hpl.jena.rdf.arp;
 
-import java.net.*;
-import java.io.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
 
-import org.xml.sax.*;
+import org.xml.sax.ErrorHandler;
+import org.xml.sax.Locator;
+import org.xml.sax.SAXException;
+import org.xml.sax.SAXParseException;
 /** A command line interface into ARP.
  * Creates NTriple's or just error messages.
  * <pre>
@@ -375,8 +381,7 @@ int debugC = 0;
 
 	static private void process(String surl) {
 		InputStream in;
-		String xmlBase;
-
+		
 		URL url;
 		String baseURL;
 
@@ -434,20 +439,20 @@ int debugC = 0;
 		}
 	}
 	private static class NoSH implements StatementHandler {
-		private int ix = 0;
-		private void userData(AResource n){
-		    if (n.isAnonymous()) {
-		        n.setUserData(new Integer(ix++));
-		    }
-		}
+//		private int ix = 0;
+//		private void userData(AResource n){
+//		    if (n.isAnonymous()) {
+////		        n.setUserData(new Integer(ix++));
+//		    }
+//		}
 	    public void statement(AResource subj, AResource pred, AResource obj) {
-		    userData(subj);
-		    userData(pred);
-		    userData(obj);
+//		    userData(subj);
+//		    userData(pred);
+//		    userData(obj);
 		}
 		public void statement(AResource subj, AResource pred, ALiteral lit) {
-		    userData(subj);
-		    userData(pred);
+//		    userData(subj);
+//		    userData(pred);
 		    }
 	}
 	private static class SH implements StatementHandler {
@@ -461,8 +466,8 @@ int debugC = 0;
 			line.setLength(0);
 		}
 		public void statement(AResource subj, AResource pred, ALiteral lit) {
-			String lang = lit.getLang();
-			String parseType = lit.getParseType();
+//			String lang = lit.getLang();
+//			String parseType = lit.getParseType();
 			lineNumber();
 			/*
 			if (parseType != null) {

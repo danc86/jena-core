@@ -226,7 +226,7 @@ public class MoreTests extends TestCase implements RDFErrorHandler,
 			return;
 		}
 		rdr.setErrorHandler(this);
-		expected = new int[] { WARN_ENCODING_MISMATCH, ERR_ENCODING_MISMATCH };
+		expected = new int[] { WARN_ENCODING_MISMATCH, ERR_ENCODING_MISMATCH, ERR_ENCODING_MISMATCH };
 		rdr.read(m, r, "http://example.org/");
 
 		checkExpected();
@@ -317,7 +317,7 @@ public class MoreTests extends TestCase implements RDFErrorHandler,
 	public void testInterrupt() throws SAXException, IOException {
 		ARP a = new ARP();
 		InputStream in;
-		long start = System.currentTimeMillis();
+//		long start = System.currentTimeMillis();
 		in = new FileInputStream("testing/wg/miscellaneous/consistent001.rdf");
 		a.getHandlers().setStatementHandler(new StatementHandler() {
 			int countDown = 10;
@@ -393,29 +393,29 @@ public class MoreTests extends TestCase implements RDFErrorHandler,
 		fail(msg);
 	}
 
-	private void tokenGarbage(String file) {
-		try {
-			Token.COUNT = true;
-			Token.COUNTTEST = true;
-			Token.reinitHighTide();
-			NTriple.main(new String[] { "-t", file });
-			//System.err.println("["+Token.highTide+"]");
-			assertTrue("Too many tokens used: "+ Token.highTide,
-					Token.highTide<2000);
-		} finally {
-			Token.COUNT = false;
-			Token.COUNTTEST = false;
-		}
-	}
-
-	public void testTokenGarbage1() {
-		tokenGarbage("testing/ontology/owl/Wine/wine.owl");
-	}
-
-	public void testTokenGarbage2() {
-
-		tokenGarbage("testing/arp/gc/someWordNet.rdf");
-	}
+//	private void tokenGarbage(String file) {
+//		try {
+//			Token.COUNT = true;
+//			Token.COUNTTEST = true;
+//			Token.reinitHighTide();
+//			NTriple.main(new String[] { "-t", file });
+//			//System.err.println("["+Token.highTide+"]");
+//			assertTrue("Too many tokens used: "+ Token.highTide,
+//					Token.highTide<2000);
+//		} finally {
+//			Token.COUNT = false;
+//			Token.COUNTTEST = false;
+//		}
+//	}
+//
+//	public void testTokenGarbage1() {
+//		tokenGarbage("testing/ontology/owl/Wine/wine.owl");
+//	}
+//
+//	public void testTokenGarbage2() {
+//
+//		tokenGarbage("testing/arp/gc/someWordNet.rdf");
+//	}
 }
 
 /*
