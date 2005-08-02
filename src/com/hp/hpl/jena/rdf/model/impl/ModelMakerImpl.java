@@ -8,6 +8,7 @@ package com.hp.hpl.jena.rdf.model.impl;
 
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.rdf.model.*;
+import com.hp.hpl.jena.shared.BrokenException;
 import com.hp.hpl.jena.util.iterator.*;
 
 /**
@@ -27,6 +28,9 @@ public class ModelMakerImpl implements ModelMaker
     public void close()
         { maker.close(); }
        
+    public Model openModel()
+        { return new ModelCom( maker.openGraph() ); }
+    
     protected Model makeModel( Graph g )
         { return new ModelCom( g ); }
     

@@ -71,6 +71,15 @@ public class GraphRDBMaker extends BaseGraphMaker
     */
     protected Graph defaultGraph = null;
     
+    public Graph openGraph()
+        { 
+        if (defaultGraph != null)
+            return defaultGraph;
+        if (c.containsDefaultModel())
+            return defaultGraph = consGraph( null, false );
+        throw new DoesNotExistException( "no default graph in this GraphMaker" );
+        }
+    
     /**
         Answer an "anonymous", freshly-created graph. We fake this by creating 
         a graph with the name "anon_"+UID().toString. This may lead to problems 

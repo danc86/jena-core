@@ -7,7 +7,6 @@
 package com.hp.hpl.jena.graph.impl;
 
 import com.hp.hpl.jena.graph.*;
-import com.hp.hpl.jena.mem.*;
 import com.hp.hpl.jena.shared.*;
 import com.hp.hpl.jena.vocabulary.*;
 
@@ -46,6 +45,11 @@ public abstract class BaseGraphMaker implements GraphMaker
         }
         
     private Graph defaultGraph;
+    
+    public Graph openGraph()
+        { if (defaultGraph == null) 
+            throw new DoesNotExistException( "no default graph in this GraphMaker" ); 
+        return defaultGraph; }
     
     /**
         Make a fresh anonymous graph.

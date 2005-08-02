@@ -109,6 +109,12 @@ public abstract class ModelSpecImpl implements ModelSpec
     public Model openModel( String name )
         { return maker.openModel( name ); }
     
+    public Model openModel()
+        {
+        Statement s = root.getProperty( JenaModelSpec.modelName );
+        return s == null ? maker.openModel() : maker.openModel( s.getString(), true );
+        }
+    
     /**
         Answer the model hidden in the sibling maker, if it has one, and
         null otherwise.

@@ -32,6 +32,11 @@ public interface ModelSpec extends ModelSource
     Model openModel( String name );
     
     /**
+        Open the "default" model. Do not create one.
+    */
+    Model openModel();
+    
+    /**
         Answer an RDF description of this ModelSpec using the JenaModelSpec vocabulary. The
         description root will be a freshly-created bnode.
     */

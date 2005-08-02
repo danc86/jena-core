@@ -35,6 +35,12 @@ public interface GraphMaker
     public Graph getGraph();
     
     /**
+        Answer the default graph of this ModelMaker, if it has one. If not,
+        throw an exception.
+    */
+    public Graph openGraph();
+    
+    /**
         Answer a graph who's name isn't interesting. Each call delivers a different graph.
         The GraphMaker may reserve a bunch of names for this purpose, of the form
         "anon_<digits>", if it cannot support truly anonymous graphs.
