@@ -23,6 +23,7 @@ public class TestPackage extends TestSuite {
     /** Creates new TestPackage */
     private TestPackage() {
         super("graph");
+        addTest( TestFindLiterals.suite() );
         addTest( TestTripleCache.suite() );
         addTest( TestNodeCache.suite() );
         addTest( TestNode.suite() );

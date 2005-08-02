@@ -286,6 +286,7 @@ public class NodeToTriplesMapFaster
     
     public Applyer createFixedOApplyer( final ProcessedTriple Q )
         {        
+        System.err.println( ">> " + Q );
         final Bunch ss = (Bunch) map.get( Q.O.node );
         if (ss == null)
             return new EmptyApplyer();
