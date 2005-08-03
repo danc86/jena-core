@@ -76,6 +76,14 @@ public interface RDFDatatype {
     public Class getJavaClass();
     
     /**
+     * Cannonicalise a java Object value to a normal form.
+     * Primarily used in cases such as xsd:integer to reduce
+     * the Java object representation to the narrowest of the Number
+     * subclasses to ensure that indexing of typed literals works. 
+     */
+    public Object cannonicalise( Object value );
+    
+    /**
      * Returns an object giving more details on the datatype.
      * This is type system dependent. In the case of XSD types
      * this will be an instance of 
