@@ -215,7 +215,8 @@ public class Triple implements TripleMatch
             public Filter filterOn( final Node n )
                 { return n.isConcrete() 
                     ? new Filter() 
-                        { public boolean accept( Object x ) { return n.sameValueAs( ((Triple) x).obj ); } }
+                        { public boolean accept( Object x ) 
+                            { return n.sameValueAs( ((Triple) x).obj ); } }
                     : Filter.any; 
                 }
             };
