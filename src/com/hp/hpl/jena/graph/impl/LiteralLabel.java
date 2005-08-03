@@ -118,7 +118,7 @@ final public class LiteralLabel {
                 setValue(lex);
             }
         } else {
-		    this.value = value;
+		    this.value = dtype.cannonicalise( value );
         }
         normalize();
 	}
@@ -252,9 +252,16 @@ final public class LiteralLabel {
     
     /** 
      	Answer the value used to index this literal
+        TODO Consider pushing indexing decisions down to the datatype
     */
-    public Object getIndexingValue()
-        { return getLexicalForm(); }
+    public Object getIndexingValue() {
+        if (isXML()) {
+            return this;
+        } else {
+            return wellformed ? getValue() : getLexicalForm(); 
+        }
+    }
+
 
 	/** 
      	Answer the language associated with this literal (the empty string if

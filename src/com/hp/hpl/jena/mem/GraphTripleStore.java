@@ -88,7 +88,13 @@ public class GraphTripleStore implements TripleStore
         { return WrappedIterator.createNoRemove( predicates.domain() ); }
     
     public ExtendedIterator listObjects()
-        { return WrappedIterator.createNoRemove( objects.domain() ); }
+        // { return WrappedIterator.createNoRemove( objects.domain() ); }
+        {
+        return new UniqueExtendedIterator( objects.iterator().mapWith( getObject ) );
+        }
+    
+    static final Map1 getObject = new Map1() 
+        { public Object map1( Object o ) { return ((Triple) o).getObject(); } };
     
     /**
          Answer true iff this triple store contains the (concrete) triple <code>t</code>.
@@ -122,7 +128,7 @@ public class GraphTripleStore implements TripleStore
             
         if (sm.isConcrete())
             return new StoreTripleIterator( parent, subjects.iterator( t ), subjects, predicates, objects );
-        else if (om.isConcrete() && !om.isLiteral())
+        else if (om.isConcrete())
             return new StoreTripleIterator( parent, objects.iterator( t ), objects, subjects, predicates );
         else if (pm.isConcrete())
             return new StoreTripleIterator( parent, predicates.iterator( t ), predicates, subjects, objects );

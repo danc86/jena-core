@@ -47,7 +47,7 @@ public class Node_Literal extends Node_Concrete
         { return true; }    
         
     public Object getIndexingValue()
-        { return getLiteral().getIndexingValue(); }
+        { return getLiteral().getDatatype() == null && !getLiteral().language().equals( "" ) ? this : getLiteral().getIndexingValue(); }
     
     public Object visitWith( NodeVisitor v )
         { return v.visitLiteral( this, getLiteral() ); }

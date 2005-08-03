@@ -34,7 +34,7 @@ public class UniqueExtendedIterator extends WrappedIterator {
      * are already unique iterators.
      */
     public UniqueExtendedIterator(Iterator underlying) {
-        super(underlying);
+        super(underlying, true);
     }
     
     /**

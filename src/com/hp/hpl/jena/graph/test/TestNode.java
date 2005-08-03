@@ -581,7 +581,7 @@ public class TestNode extends GraphTestBase
     public void testGetIndexingValueLanguagedString()
         {
         Node s = Node.create( "'chat'fr" );
-        assertEquals( s.getLiteral().getIndexingValue(), s.getIndexingValue() );
+        assertEquals( s, s.getIndexingValue() );
         }
     
     public void testGetIndexingValueXSDString()
