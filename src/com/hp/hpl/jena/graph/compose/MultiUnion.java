@@ -120,7 +120,7 @@ public class MultiUnion
             getBaseGraph().add( t );
         }
         catch (NullPointerException e) {
-            throw new JenaException( "Tried to add to a union graph that has no component graphs." );
+            throw new JenaException( "Tried to add to a union graph that has no component graphs.", e);
         }
     }
 
@@ -138,7 +138,7 @@ public class MultiUnion
             getBaseGraph().delete( t );
         }
         catch (NullPointerException e) {
-            throw new JenaException( "Tried to delete from a union graph that has no component graphs." );
+            throw new JenaException( "Tried to delete from a union graph that has no component graphs.", e );
         }
     }
 
