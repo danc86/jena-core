@@ -159,7 +159,7 @@ class WGTestSuite extends TestSuite implements ARPErrorNumbers {
     private Act semTest = new Act() {
 		  public void act(Resource r) {
 		  	if (doSemanticTests()){
-		  		addTest(r, new ReasoningTest(r));
+//		  		addTest(r, new ReasoningTest(r));
 		  	}
 		  }
     };
@@ -254,8 +254,10 @@ class WGTestSuite extends TestSuite implements ARPErrorNumbers {
         if (dynamic)
             try {
             	String wgDir = ARPTests.wgTestDir.toString();
-            	System.err.println(wgDir);
-            	  wgReasoner = new WGReasonerTester("Manifest",wgDir);
+            	System.err.println(testDir+", "+fact.getMapBase());
+            	  wgReasoner = new WGReasonerTester("Manifest.rdf",
+                          "testing/wg/");
+//                          wgDir);
                 createMe =
                     "new "
                         + this.getClass().getName()

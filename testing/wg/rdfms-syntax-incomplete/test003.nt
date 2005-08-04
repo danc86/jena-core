@@ -12,12 +12,6 @@
 # 
 #####################################################################
 _:j0A <http://example.org/property1> "value" .
-<http://www.w3.org/2000/10/rdf-tests/rdfcore/rdfms-syntax-incomplete/test003.rdf#bag>  <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Bag> .
-<http://www.w3.org/2000/10/rdf-tests/rdfcore/rdfms-syntax-incomplete/test003.rdf#bag> <http://www.w3.org/1999/02/22-rdf-syntax-ns#_1> _:reify .
-_:reify <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Statement> .
-_:reify <http://www.w3.org/1999/02/22-rdf-syntax-ns#subject> _:j0A .
-_:reify <http://www.w3.org/1999/02/22-rdf-syntax-ns#predicate> <http://example.org/property1> .
-_:reify <http://www.w3.org/1999/02/22-rdf-syntax-ns#object> "value" .
 
 
 

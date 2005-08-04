@@ -20,6 +20,9 @@
   $Id$
 -->
 
+<!--
+Test case WITHDRAWN in light of 2396bis
+
 <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
          xmlns:eg="http://example.org/"
          xml:base="http://example.org/dir/file">
@@ -27,4 +30,4 @@
  <eg:type rdf:about="../../../absfile" />
 
 </rdf:RDF>
-
+-->

@@ -57,7 +57,7 @@ public class WGReasonerTester {
     public static final String DEFAULT_BASE_DIR = "testing/wg/";
     
     /** The base directory in which the test data is actually stored */
-    protected String baseDir = DEFAULT_BASE_DIR;
+    final protected String baseDir;
     
     /** The rdf class for positive tests */
     public static final Resource PositiveEntailmentTest;
@@ -132,7 +132,7 @@ public class WGReasonerTester {
      * tests - relative to baseDir
      */
     public WGReasonerTester(String manifest) throws IOException {
-        testManifest = loadFile(manifest);
+        this(manifest, DEFAULT_BASE_DIR);
     }
     
     /**

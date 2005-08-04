@@ -23,6 +23,6 @@
          xmlns:eg="http://example.org/">
 
  <!-- In this example the rdf:nodeID is redundant. -->
- <rdf:Description rdf:nodeID="a" eg:property1="value" rdf:bagID="bag"/>
+ <rdf:Description rdf:nodeID="a" eg:property1="value" />
 
 </rdf:RDF>

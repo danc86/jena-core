@@ -11,4 +11,5 @@
 # $Id$
 #
 #####################################################################
-<http://example.org/../../absfile> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/type> .
+#<http://example.org/../../absfile> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/type> .
+# TEST CASE WITHDRAWN in light of 2396bis.

@@ -4,7 +4,8 @@
         Author: Jeremy Carroll, HP
         $Header$
 
-        bagID on empty property element construction, with rdf:resource.        
+rdf:bagID is forbidden on property element prop with an rdf:resource or
+rdf:parseType attribute: the following is in error.
 -->
 
 <!--

@@ -14,7 +14,7 @@
   Test:  2
   Author: Dave Beckett
 
-    In-scope xml:lang applies to rdf:parseType="Literal"
+    In-scope xml:lang does not apply to rdf:parseType="Literal"
     element content values
 
   $Id$

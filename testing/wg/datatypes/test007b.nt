@@ -10,8 +10,9 @@
 #
 # Language affects the semantic equivalence of XMLLiteral
 # when doing a DT-entailment.
+# Obsoleted: no longer NTriples syntax
 #
 # $Id$
 #
 #####################################################################
-<http://example.org/foo> <http://example.org/bar> "chat"@fr^^<http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral> .
+#<http://example.org/foo> <http://example.org/bar> "chat"@fr^^<http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral> .
