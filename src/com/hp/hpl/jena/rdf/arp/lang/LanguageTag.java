@@ -130,10 +130,7 @@ public class LanguageTag implements LanguageTagCodes {
                     case 'x':
                         return LT_PRIVATE_USE; // reserved for private use.
                     case 'i':
-                        if ( iana!=null ) {
-                            return rslt;
-                        } else 
-                            return LT_ILLEGAL;
+                        return iana!=null?rslt:LT_ILLEGAL;
                     default:
                             return LT_ILLEGAL;
                 }
@@ -190,8 +187,7 @@ public class LanguageTag implements LanguageTagCodes {
                     case 'i':
                         if ( IanaLanguageTag.find(this)!=null )
                             return null;
-                        else
-                            return toString() + " not found in IANA langauge registry.";
+                        return toString() + " not found in IANA langauge registry.";
                     default:
                             return "Only 'x' and 'i' single character primary language subtags are defined in RFC3066.";
                 }

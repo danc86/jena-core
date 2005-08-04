@@ -60,13 +60,6 @@ public class Location implements Locator {
         publicId = locator.getPublicId();
     	}
     }
-    // TODO: delete this, unused.
-    Location(String sysId,int line,int col) {
-        inputName = sysId;
-        endLine = line;
-        endColumn = col;
-        publicId = null;
-    }
     public String toString() {
         return //"before column " + endColumn +
         "line " + endLine + " in '"

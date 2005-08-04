@@ -54,7 +54,6 @@ public class ARPString implements ALiteral {
     public ARPString(Frame f,String value,String lang,String parseType)
       throws SAXParseException 
       {
-        // TODO: literal error checking
         f.checkString(value);
         this.value = value;
         this.lang = "";
@@ -62,7 +61,6 @@ public class ARPString implements ALiteral {
         this.parseType = parseType;
     }
     public ARPString(Frame f, String value,String lang) throws SAXParseException {
-//      TODO: literal error checking
         f.checkString(value);
         this.value = value;
         this.lang = lang;
