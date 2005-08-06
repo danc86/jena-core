@@ -110,8 +110,6 @@ public class XMLHandler extends LexicalHandlerImpl implements ARPErrorNumbers, N
     Locator locator;
 
   
-    // TODO: where do these names belong?
-
     public void setDocumentLocator(Locator locator) {
         this.locator = locator;
     }

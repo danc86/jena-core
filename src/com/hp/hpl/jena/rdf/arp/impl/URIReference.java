@@ -147,8 +147,7 @@ public class URIReference implements AResourceInternal, ARPErrorNumbers {
      * @throws ParseException
      */
     public static URIReference fromID(Frame f, XMLContext x, String name) throws SAXParseException {
-        // TODO: what errors can occur with an rdf:ID
-        f.checkEncoding(name);
+        // Errors are checked for by the AttributeLexer
         return new URIReference(x.getBase() + "#" + name);
     }
 

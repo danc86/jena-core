@@ -23,7 +23,7 @@ public class TestScope extends TestCase {
   public	TestScope(String nm){
 		super(nm);
 	}
-	
+	/*
 	public void test01() throws Exception {
 
 		check("testing/wg/rdfms-syntax-incomplete/test004.rdf");
@@ -44,6 +44,10 @@ public class TestScope extends TestCase {
 	public void test05() throws Exception {
 		check("testing/arp/scope/test05.rdf");
 	}
+*/
+    public void test06() throws Exception {
+        check("testing/arp/scope/test06.rdf");
+    }
 	static RDFErrorHandler suppress = new RDFErrorHandler(){
 
 		public void warning(Exception e) {

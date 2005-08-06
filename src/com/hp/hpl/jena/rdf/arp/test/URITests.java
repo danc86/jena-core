@@ -20,7 +20,8 @@ public class URITests
 	static public Test suite() {
 		TestSuite suite = new TestSuite("URIs");
 		suite.addTest(new URITests("testNoDomain"));
-	//	suite.addTest(new URITests("testLong"));
+        // is this test right or wrong??
+//		suite.addTest(new URITests("testLong"));
 		return suite;
 	}
 

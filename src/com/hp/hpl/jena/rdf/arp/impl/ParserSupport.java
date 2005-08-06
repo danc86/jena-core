@@ -128,7 +128,6 @@ public class ParserSupport
 		}
 		return str;
 	}
-    // TODO: make calls to checkString inside XMLLiteral code
 	public void checkString(String t) throws SAXParseException {
 		if (!CharacterModel.isNormalFormC(t))
 			warning(
@@ -137,7 +136,6 @@ public class ParserSupport
 		checkEncoding(t);
 		checkComposingChar(t);
 	}
-    // TODO: make calls to checkComposingChar, when sewing pieces together inside XMLLiteral code
 	void checkComposingChar(String t) throws SAXParseException {
 		if (CharacterModel.startsWithComposingCharacter(t))
 			warning(

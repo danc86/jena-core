@@ -49,7 +49,6 @@ public interface ALiteral extends ANode {
     // Usually null, maybe "Literal" or something else.
 /** When <CODE>isWellFormedXML()</CODE> is true, this returns the value of the <I>rdf:parseType</I> attribute, usually "Literal".
  * Otherwise <B>null</B> is returned.
- * @deprecated Always returns "Literal" or null
  * @return The <I>parseType</I> for well formed XML, or <B>null</B> for normal literals.
  */    
     public String getParseType();
