@@ -19,7 +19,6 @@ import com.hp.hpl.jena.vocabulary.*;
 import com.hp.hpl.jena.shared.*;
 
 import com.hp.hpl.jena.rdf.arp.URI;
-import com.hp.hpl.jena.rdf.arp.ARP;
 import com.hp.hpl.jena.rdf.arp.MalformedURIException;
 
 import java.io.*;
