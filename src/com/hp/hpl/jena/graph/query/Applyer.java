@@ -16,7 +16,17 @@ package com.hp.hpl.jena.graph.query;
 public abstract class Applyer
     {   
     public abstract void applyToTriples( Domain d, Matcher m, StageElement next );
+
+    /**
+        An Applyer that never calls its <code>next</code> StageElement.
+    */
+    public static final Applyer empty = new Applyer()
+        {
+        public void applyToTriples( Domain d, Matcher m, StageElement next )
+            {}
+        };
     }
+
 
 /*
  * (c) Copyright 2005 Hewlett-Packard Development Company, LP

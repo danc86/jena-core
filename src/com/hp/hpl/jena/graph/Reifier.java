@@ -8,6 +8,7 @@ package com.hp.hpl.jena.graph;
 
 import com.hp.hpl.jena.shared.*;
 import com.hp.hpl.jena.util.iterator.*;
+import com.hp.hpl.jena.vocabulary.RDF;
 
 /**
     This interface represents the type of things that can hold reified triples
@@ -106,6 +107,30 @@ public interface Reifier extends GetTriple
         by this interface.
     */
     void close();
+    
+    public static class Util
+        {
+        public static boolean isReificationPredicate( Node node )
+            {
+            return 
+                node.equals( RDF.Nodes.subject )
+                || node.equals( RDF.Nodes.predicate )
+                || node.equals( RDF.Nodes.object )
+                ;
+            }
+
+        public static boolean couldBeStatement( Node node )
+            {
+            return
+                node.isVariable()
+                || node.equals( Node.ANY )
+                || node.equals( RDF.Nodes.Statement )
+                ;
+            }
+
+        public static boolean isReificationType( Node P, Node O )
+            { return P.equals( RDF.Nodes.type ) && couldBeStatement( O ); }
+        }
     }
 
 /*

@@ -17,14 +17,6 @@ import com.hp.hpl.jena.util.iterator.*;
 
 public class NodeToTriplesMapFaster
     {
-    protected final class EmptyApplyer extends Applyer
-        {
-        public void applyToTriples( Domain d, Matcher m, StageElement next )
-            {
-            System.err.println( ">> None" );
-            }
-        }
-
     /**
     The map from nodes to Set(Triple).
     */
@@ -286,13 +278,9 @@ public class NodeToTriplesMapFaster
     
     public Applyer createFixedOApplyer( final ProcessedTriple Q )
         {        
-        if (Q.O.node.equals( Node.createLiteral( "value" ) ) )
-            {
-            System.err.println( ">> " + Q );
-            }
         final Bunch ss = (Bunch) map.get( Q.O.node.getIndexingValue() );
         if (ss == null)
-            return new EmptyApplyer();
+            return Applyer.empty;
         else
             {
             return new Applyer() 
@@ -342,7 +330,7 @@ public class NodeToTriplesMapFaster
         {
         final Bunch ss = (Bunch) map.get( Q.S.node );
         if (ss == null)
-            return new EmptyApplyer();
+            return Applyer.empty;
         else
             {
             return new Applyer() 
