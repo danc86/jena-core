@@ -93,7 +93,7 @@ public class GraphTripleStore implements TripleStore
         return new UniqueExtendedIterator( objects.iterator().mapWith( getObject ) );
         }
     
-    static final Map1 getObject = new Map1() 
+    public static final Map1 getObject = new Map1() 
         { public Object map1( Object o ) { return ((Triple) o).getObject(); } };
     
     /**

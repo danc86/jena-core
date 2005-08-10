@@ -68,6 +68,18 @@ public abstract class QueryTestBase extends GraphTestBase
 	    }
 
     /**
+        Answer a filter that selects the <code>index</code>th element of the
+        list it's given.
+    */
+    protected Map1 select( final int index )
+        {
+        return new Map1() 
+            { 
+            public Object map1( Object o ) { return ((List) o).get( index ); }
+            };
+        }
+
+    /**
      	Answer an expression that evaluates the node <code>x</code>,
      	treating variable nodes as variables (<i>quelle surprise</i>) and other
      	nodes as constants.

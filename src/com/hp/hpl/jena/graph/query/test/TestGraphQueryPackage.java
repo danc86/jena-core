@@ -29,6 +29,7 @@ public class TestGraphQueryPackage extends TestCase
         result.addTest( TestQueryTriple.suite() );
         result.addTest( TestStageElements.suite() );
         result.addTest( QueryTest.suite() );
+        result.addTest( TestQueryReification.suite() );
         result.addTest( TestSimpleTripleSorter.suite() );
         result.addTest( TestExpressions.suite() );
         result.addTest( TestExpressionConstraints.suite() );
