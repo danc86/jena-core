@@ -51,7 +51,7 @@ public class TestQuery extends ModelTestBase
                 {"jqv:x", "?x"}
             };
         for (int i = 0; i < tests.length; i += 1)
-            testVariablesTranslate( resources( m, tests[i][0] ), nodes( tests[i][1] ) );
+            testVariablesTranslate( resources( m, tests[i][0] ), nodeArray( tests[i][1] ) );
         }
         
     private void testQueryTranslates( String model, String graph )

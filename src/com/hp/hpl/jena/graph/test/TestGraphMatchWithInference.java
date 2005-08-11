@@ -6,12 +6,7 @@
 
 package com.hp.hpl.jena.graph.test;
 
-import com.hp.hpl.jena.graph.*;
-import com.hp.hpl.jena.graph.impl.*;
 import com.hp.hpl.jena.rdf.model.*;
-import com.hp.hpl.jena.util.FileUtils;
-
-import java.io.*;
 
 import junit.framework.*;
 
@@ -40,7 +35,7 @@ public class TestGraphMatchWithInference extends GraphTestBase
         Model concrete = ModelFactory.createDefaultModel();
         concrete.add(mrdfs);
         
-        assertIsomorphic(concrete.getGraph(),  mrdfs.getGraph() );
+        assertIsomorphic( concrete.getGraph(),  mrdfs.getGraph() );
         
         assertIsomorphic( mrdfs.getGraph(), concrete.getGraph() );
         }

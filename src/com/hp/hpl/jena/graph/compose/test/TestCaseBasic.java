@@ -6,21 +6,14 @@
 
 package com.hp.hpl.jena.graph.compose.test;
 
-/**
-	@author kers
-*/
-
 import java.lang.reflect.*;
+
 import com.hp.hpl.jena.graph.*;
-import com.hp.hpl.jena.graph.test.*;
-import com.hp.hpl.jena.mem.*;
-import com.hp.hpl.jena.shared.*;
+import com.hp.hpl.jena.rdf.model.ModelFactory;
 
 /**
- *
- * @author  bwm
- * @version $Name$ $Revision$ $Date$
- */
+     @author  bwm, kers
+*/
 public class TestCaseBasic extends com.hp.hpl.jena.regression.TestCaseBasic 
 	{
     private Class graphClass;
@@ -31,26 +24,21 @@ public class TestCaseBasic extends com.hp.hpl.jena.regression.TestCaseBasic
         this.graphClass = graphClass;
     	}
     
-    private Graph newGraph( Constructor cons )
+    private Graph newGraph( Constructor cons ) throws Exception
     	{
-    	try { return (Graph) cons.newInstance( new Object [] { Factory.createGraphMem(), Factory.createGraphMem() } ); }
-    	catch (Exception e) { throw new JenaException( "newGraph failed:", e ); }
+    	return (Graph) cons.newInstance
+            ( new Object [] { Factory.createGraphMem(), Factory.createGraphMem() } ); 
     	}
     	
-    public void setUp() 
+    public void setUp() throws Exception
     	{
-    	try 
-    		{
-    		Constructor constructor = graphClass.getConstructor(new Class[]{
-    		   Graph.class, Graph.class });
-        	m1 = GraphTestBase.modelFor( newGraph( constructor ) );
-        	m2 = GraphTestBase.modelFor( newGraph( constructor ) );
-        	m3 = GraphTestBase.modelFor( newGraph( constructor ) );
-        	m4 = GraphTestBase.modelFor( newGraph( constructor ) );
-    		}
-    	catch (Exception e)
-			{}
-    	}
+		Constructor constructor = graphClass.getConstructor
+            (new Class [] { Graph.class, Graph.class } );
+    	m1 = ModelFactory.createModelForGraph( newGraph( constructor ) );
+    	m2 = ModelFactory.createModelForGraph( newGraph( constructor ) );
+    	m3 = ModelFactory.createModelForGraph( newGraph( constructor ) );
+    	m4 = ModelFactory.createModelForGraph( newGraph( constructor ) );
+		}
 	}
 
 /*

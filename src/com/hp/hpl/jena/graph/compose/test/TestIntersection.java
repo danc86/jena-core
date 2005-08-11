@@ -9,7 +9,6 @@ package com.hp.hpl.jena.graph.compose.test;
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.graph.compose.Intersection;
 import com.hp.hpl.jena.graph.test.*;
-import com.hp.hpl.jena.rdf.model.*;
 import junit.framework.*;
 
 public class TestIntersection extends GraphTestBase 
@@ -33,25 +32,16 @@ public class TestIntersection extends GraphTestBase
         i.add( triple( "cats eat cheese" ) );
         assertContains( "Intersection.L", "cats eat cheese", g1 );
         assertContains( "Intersection.R", "cats eat cheese", g2 );
-    /* */
+        }
+    
+    public void testDeleteDoesNotUpdateR()
+        {
     	Graph L = graphWith( "a pings b; b pings c; c pings a" );
     	Graph R = graphWith( "c pings a; b pings c; x captures y" );
     	Graph join = new Intersection( L, R );
-    	Model mJoin = modelFor( join );
-    	Model mL = modelFor( L );
-    	mL.remove( mJoin );
-    	// mustHaveNone( L, "L after removal", "c pings a; b pings c; x captures y" );
-    	// mustHave( L, "L after removal", "a pings b" );
-    	if (!modelFor( R ).isIsomorphicWith( modelFor( graphWith( "c pings a; b pings c; x captures y" ) ) ))
-    		{
-    		show( "oops: R has changed", R );
-    		fail( "" );
-    		}
-    	if (!mL.isIsomorphicWith( modelFor( graphWith( "a pings b" ) ) ))
-    		{
-    		show( "oops: L is", L );
-    		fail( "oops: mL should be `a pings b`" );
-    		}
+        L.getBulkUpdateHandler().delete( join );
+        assertIsomorphic( "R should not change", graphWith( "c pings a; b pings c; x captures y" ), R );
+        assertIsomorphic( graphWith( "a pings b" ), L );
 		}
 	}
 /*
