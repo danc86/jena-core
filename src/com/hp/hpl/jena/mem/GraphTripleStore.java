@@ -5,6 +5,8 @@
 */
 package com.hp.hpl.jena.mem;
 
+import java.util.*;
+
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.graph.Triple.*;
 import com.hp.hpl.jena.graph.impl.TripleStore;
@@ -88,9 +90,12 @@ public class GraphTripleStore implements TripleStore
         { return WrappedIterator.createNoRemove( predicates.domain() ); }
     
     public ExtendedIterator listObjects()
-        // { return WrappedIterator.createNoRemove( objects.domain() ); }
         {
-        return new UniqueExtendedIterator( objects.iterator().mapWith( getObject ) );
+        return new ObjectIterator( objects.domain() )
+            {
+            protected Iterator iteratorFor( Object y )
+                { return objects.get( y ).iterator(); }
+            };
         }
     
     public static final Map1 getObject = new Map1() 

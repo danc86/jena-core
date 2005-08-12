@@ -1214,7 +1214,10 @@ public class Regression extends Object {
                     iter.nextNode();
                     count++;
                 }
-                if (! (count == 25)) error(test, n+count);
+                if (! (count == 25)) 
+                    {
+                    error(test, n+count);
+                    }
             }
         } catch (Exception e) {
             logger.error( "test " + test + "[" + n + "]", e );

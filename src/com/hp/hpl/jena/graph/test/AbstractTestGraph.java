@@ -635,6 +635,16 @@ public /* abstract */ class AbstractTestGraph extends GraphTestBase
         catch (UnsupportedOperationException e) { pass(); }
         }
     
+    public void testListObjectNoDuplicates()
+        {
+        Graph g = getGraphWith( "a P 1; b P 1" );
+        int count = 0;
+        Node one = node( "1" );
+        Iterator it = g.queryHandler().objectsFor( Node.ANY, Node.ANY );
+        while (it.hasNext()) if (it.next().equals( one )) count += 1;
+        assertEquals( 1, count );
+        }
+    
     public void testPredicatesFor()
         {
         Graph g = getGraphWith( "a P b; c Q d; e R f; g P b; h Q i" );

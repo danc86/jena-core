@@ -193,7 +193,7 @@ public class NodeToTriplesMapFaster
            if (size == 0) map.put( o, null );
            return true;
         } 
-       }
+    }
     
     /**
         Answer an iterator over all the triples in this NTM which have index node
@@ -400,6 +400,9 @@ public class NodeToTriplesMapFaster
               }
           };
       }
+
+    public Bunch get( Object index )
+        { return (Bunch) map.get( index ); }
     }
 
 

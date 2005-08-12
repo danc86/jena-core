@@ -186,6 +186,9 @@ public class NodeToTriplesMap
            };
    }
 
+    public Set get( Object y )
+        { return (Set) map.get( y ); }
+
 
     }
 
