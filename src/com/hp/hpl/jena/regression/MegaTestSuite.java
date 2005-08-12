@@ -35,6 +35,8 @@
 
 package com.hp.hpl.jena.regression;
 
+import com.hp.hpl.jena.mem.test.TestSuiteRegression;
+
 import junit.framework.TestSuite;
 
 /**
@@ -52,12 +54,8 @@ public class MegaTestSuite extends TestSuite {
     }
     private MegaTestSuite() {
         super( "Jena");
-        addTest( "Memory Model", com.hp.hpl.jena.mem.test.TestSuiteRegression.suite() );
+        addTest( TestSuiteRegression.suite() );
+        addTest( NewRegression.suite() );
+    }
     }
 
-    private void addTest(String name, TestSuite tc) {
-        tc.setName(name);
-        addTest(tc);
-    }
-
-}

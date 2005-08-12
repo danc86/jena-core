@@ -20,7 +20,8 @@ import java.io.*;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-/** A common set of regression tests.
+/** A common set of regression tests. [Now being factored out into the
+ * NewRegression suite; kers.]
  *
  * @author  bwm
  * @version Release='$Name$' Revision='$Revision$' Date='$Date$'
@@ -4818,7 +4819,7 @@ public class Regression extends Object {
         return temp;
     }
 
-    public class LitTestObj {
+    public static class LitTestObj {
         protected long content;
 
         public LitTestObj(long l) {
@@ -4842,13 +4843,13 @@ public class Regression extends Object {
         }
     }
 
-    public class LitTestObjF implements ObjectF {
+    public static class LitTestObjF implements ObjectF {
         public Object createObject(String s) {
             return new LitTestObj(s);
         }
     }
 
-    public class ResTestObjF implements ResourceF {
+    public static class ResTestObjF implements ResourceF {
         public Resource createResource(Resource r)
             { return new ResourceImpl( r, (ModelCom) r.getModel() ); }
     }
