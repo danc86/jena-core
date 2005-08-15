@@ -20,8 +20,13 @@ public class PolyadicPrefixMappingImpl extends PrefixMappingImpl implements Pref
     private PrefixMapping pending = new PrefixMappingImpl();
     
     public PolyadicPrefixMappingImpl( Polyadic p )
-        { poly = p; 
-        }
+        { poly = p; }
+    
+    protected boolean equals( PrefixMappingImpl other )
+        { return equalsByMap( other ); }
+    
+    protected boolean sameAs( PrefixMappingImpl other )
+        { return equalsByMap( other ); }
            
     private PrefixMapping getBaseMapping()
         { 
