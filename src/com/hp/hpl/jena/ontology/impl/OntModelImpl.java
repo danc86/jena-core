@@ -2233,13 +2233,6 @@ public class OntModelImpl
      * may be an expensive operation)
      */
     public void addSubModel( Model model, boolean rebind ) {
-        Graph subG = model.getGraph();
-
-        if (subG instanceof MultiUnion) {
-            // we need to get the base graph when adding a ontmodel
-            subG = ((MultiUnion) subG).getBaseGraph();
-        }
-
         getUnionGraph().addGraph( model.getGraph() );
         if (rebind) {
             rebind();
