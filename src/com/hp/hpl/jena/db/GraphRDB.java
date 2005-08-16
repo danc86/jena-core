@@ -241,6 +241,20 @@ public class GraphRDB extends GraphBase implements Graph {
 		}
 		m_specializedGraphs = m_specializedGraphsAll;
 	}
+    
+    /**
+        Database graphs do not presently support the equivalence of plain
+        string literals and xsd:string literals (and other typed literals
+        in general).
+         
+        @see com.hp.hpl.jena.graph.Graph#getCapabilities()
+    */
+    public Capabilities getCapabilities()
+        { 
+        if (capabilities == null) capabilities = new AllCapabilities()
+            { public boolean handlesLiteralTyping() { return false; } };
+        return capabilities;
+        }
 	
 	/** 
 	 * Returns the Node for this model in the system properties graph.

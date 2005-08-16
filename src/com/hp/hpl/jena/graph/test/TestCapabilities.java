@@ -18,44 +18,31 @@ public class TestCapabilities extends GraphTestBase
     protected final class AllFalse implements Capabilities
         {
         public boolean sizeAccurate()
-            {
-            return false;
-            }
+            { return false; }
 
         public boolean addAllowed()
-            {
-            return false;
-            }
+            { return false; }
 
         public boolean addAllowed( boolean everyTriple )
-            {
-            return false;
-            }
+            { return false; }
 
         public boolean deleteAllowed()
-            {
-            return false;
-            }
+            { return false; }
 
         public boolean deleteAllowed( boolean everyTriple )
-            {
-            return false;
-            }
+            { return false; }
 
         public boolean iteratorRemoveAllowed()
-            {
-            return false;
-            }
+            { return false; }
 
         public boolean canBeEmpty()
-            {
-            return false;
-            }
+            { return false; }
 
         public boolean findContractSafe()
-            {
-            return false;
-            }
+            { return false; }
+
+        public boolean handlesLiteralTyping()
+            { return false; }
         }
 
     public TestCapabilities( String name )
@@ -90,6 +77,7 @@ public class TestCapabilities extends GraphTestBase
         b = c.sizeAccurate();
         b = c.iteratorRemoveAllowed();
         b = c.findContractSafe();
+        b = c.handlesLiteralTyping();
         }
     }
 

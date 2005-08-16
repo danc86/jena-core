@@ -393,7 +393,7 @@ public abstract class AbstractTestPrefixMapping extends GraphTestBase
         assertEquals( bURI, A.getNsPrefixURI( "br" ) );
         }
     
-    public void testEqualityAgainstImpl()
+    public void testEquality()
         {
         testEquals( "" );
         testEquals( "", "x=a", false );
@@ -414,8 +414,12 @@ public abstract class AbstractTestPrefixMapping extends GraphTestBase
     
     public void testEqualsBase( String S, String T, boolean expected )
         {
-        PrefixMapping A = PrefixMapping.Factory.create();
-        PrefixMapping B = getMapping();
+        testEquals( S, T, expected, getMapping(), getMapping() );
+        testEquals( S, T, expected, PrefixMapping.Factory.create(), getMapping() );
+        }
+
+    protected void testEquals( String S, String T, boolean expected, PrefixMapping A, PrefixMapping B )
+        {
         fill( A, S );
         fill( B, T );
         String title = "usual: '" + S + "', testing: '" + T + "', should be " + (expected ? "equal" : "different");

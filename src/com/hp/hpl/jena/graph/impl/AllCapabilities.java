@@ -25,6 +25,7 @@ public class AllCapabilities implements Capabilities
     public boolean canBeEmpty() { return true; }
     public boolean iteratorRemoveAllowed() { return true; }
     public boolean findContractSafe() { return true; }
+    public boolean handlesLiteralTyping() { return true; }
     }
 
 /*
