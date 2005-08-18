@@ -21,7 +21,6 @@ public class NewRegressionGet extends ModelTestBase
     public static TestSuite suite()
         { return new TestSuite( NewRegressionGet.class ); }
 
-
     protected Model getModel()
         { return ModelFactory.createDefaultModel(); }
     
