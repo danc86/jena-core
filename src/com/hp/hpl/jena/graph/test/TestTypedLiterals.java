@@ -106,6 +106,11 @@ public class TestTypedLiterals extends TestCase {
         }
         JenaParameters.enableSilentAcceptanceOfUnknownDatatypes = originalFlag;
         assertTrue("Detected unknown datatype", foundException);
+        
+        // Check we can create a literal of an unregistered java type without anything blowing up
+        Object foo = new java.sql.Date(123456l);
+        LiteralLabel ll = new LiteralLabel(foo);
+        assertEquals(ll.getLexicalForm(), foo.toString());
     }
     
     /**

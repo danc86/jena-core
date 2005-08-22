@@ -118,7 +118,7 @@ final public class LiteralLabel {
                 setValue(lex);
             }
         } else {
-		    this.value = dtype.cannonicalise( value );
+		    this.value = (dtype == null) ? value : dtype.cannonicalise( value );
         }
         normalize();
 	}
