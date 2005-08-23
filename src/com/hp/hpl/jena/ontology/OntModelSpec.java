@@ -457,7 +457,7 @@ public class OntModelSpec extends ModelSpecImpl implements ModelSpec {
      *  given name.</p>
      * @see com.hp.hpl.jena.rdf.model.ModelSpec#createModelOver(java.lang.String)
      */
-    public Model createModelOver( String name ) {
+    public Model implementCreateModelOver( String name ) {
         return new OntModelImpl( this, maker.createModel( name, false ) );
     }
 

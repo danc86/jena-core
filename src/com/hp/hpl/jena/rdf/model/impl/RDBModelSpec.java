@@ -20,12 +20,11 @@ public class RDBModelSpec extends ModelSpecImpl
     protected Model doCreateModel()
         { throw new BrokenException( "doCreateModel not implemented" ); }
 
-    public Model createModelOver( String name )
+    public Model implementCreateModelOver( String name )
         { return maker.createModel( name ); }
 
     public Property getMakerProperty()
         { throw new BrokenException( "getMakerProperty not implemented" ); }
-
     }
 
 

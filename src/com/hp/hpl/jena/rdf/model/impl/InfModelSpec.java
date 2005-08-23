@@ -57,7 +57,7 @@ public class InfModelSpec extends ModelSpecImpl
         Answer a new InfModel based over the graph named in the underlying ModelMaker. 
      	@see com.hp.hpl.jena.rdf.model.ModelSpec#createModelOver(java.lang.String)
      */
-    public Model createModelOver( String name )
+    public Model implementCreateModelOver( String name )
         { return createModel( maker.getGraphMaker().createGraph( name ) ); }
         
     /**

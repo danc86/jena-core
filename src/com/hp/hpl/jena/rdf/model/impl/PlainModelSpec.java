@@ -50,7 +50,7 @@ public class PlainModelSpec extends ModelSpecImpl implements ModelSpec
         
      	@see com.hp.hpl.jena.rdf.model.ModelSpec#createModelOver(java.lang.String)
      */
-    public Model createModelOver( String name )
+    public Model implementCreateModelOver( String name )
         { return maker.openModel( name, false ); }
 
     /**

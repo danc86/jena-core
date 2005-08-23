@@ -20,6 +20,7 @@ public class TestModelSpecPackage extends TestCase
         result.addTest( TestModelSpecsWithRuleSets.suite() );
         result.addTest( TestModelSpecFactory.suite() );
         result.addTest( TestModelSource.suite() );
+        result.addTest( TestModelSpecImplLoadFiles.suite() );
         return result;
         }
     }
