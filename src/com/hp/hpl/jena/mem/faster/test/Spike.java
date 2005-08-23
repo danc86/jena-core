@@ -31,7 +31,9 @@ public class Spike extends AbstractTestQuery
             super( QueryNode.factory, graph, map, constraints, t );
             pre = new ArrayList[t.length];
             for (int i = 0; i < t.length; i += 1)
+                {
                 pre[i] = (ArrayList) IteratorCollection.iteratorToList( graph.find( generalise( t[i] ) ) );
+                }
             }
 
         private Triple generalise( Triple t )
@@ -54,7 +56,7 @@ public class Spike extends AbstractTestQuery
                 for (int i = 0; i < pre[index].size(); i += 1)
                     {
                     Triple t = (Triple) pre[index].get(i);
-                    
+                    nest( sink, current, index + 1 );
                     }
                 }
             }
