@@ -52,12 +52,6 @@ public class MixedGraphMem extends GraphMemBase implements Graph
     public void clear()
         { store.clear(); }
     
-    public BulkUpdateHandler getBulkUpdateHandler()
-        {
-        if (bulkHandler == null) bulkHandler = new GraphMemBulkUpdateHandler( this );
-        return bulkHandler;
-        }
-    
     public ExtendedIterator graphBaseFind( TripleMatch m ) 
         {
         Triple t = m.asTriple();

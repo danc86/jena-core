@@ -17,7 +17,7 @@ import com.hp.hpl.jena.util.iterator.*;
    
  	@author hedgehog
 */
-public class GraphMemQueryHandler extends SimpleQueryHandler
+public class GraphMemQueryHandler extends GraphMemBaseQueryHandler
 	{
     protected GraphMem graphMem;
     

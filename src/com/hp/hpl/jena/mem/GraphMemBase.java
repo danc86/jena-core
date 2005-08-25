@@ -5,6 +5,7 @@
 */
 package com.hp.hpl.jena.mem;
 
+import com.hp.hpl.jena.graph.BulkUpdateHandler;
 import com.hp.hpl.jena.graph.impl.GraphBase;
 import com.hp.hpl.jena.shared.ReificationStyle;
 
@@ -68,6 +69,12 @@ public abstract class GraphMemBase extends GraphBase
          Remove all triples from this graph; used to implement removeAll.
     */
     public abstract void clear();
+
+    public BulkUpdateHandler getBulkUpdateHandler()
+        {
+        if (bulkHandler == null) bulkHandler = new GraphMemBulkUpdateHandler( this );
+        return bulkHandler;
+        }
     }
 
 

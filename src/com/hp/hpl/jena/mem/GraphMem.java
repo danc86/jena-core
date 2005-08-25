@@ -56,12 +56,6 @@ public class GraphMem extends GraphMemBase implements Graph
         return queryHandler;
         }
         
-    public BulkUpdateHandler getBulkUpdateHandler()
-        {
-        if (bulkHandler == null) bulkHandler = new GraphMemBulkUpdateHandler( this );
-        return bulkHandler;
-        }
-
     /**
          Answer an ExtendedIterator over all the triples in this graph that match the
          triple-pattern <code>m</code>. Delegated to the store.
