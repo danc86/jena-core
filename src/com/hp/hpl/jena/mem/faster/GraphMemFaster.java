@@ -45,7 +45,7 @@ public class GraphMemFaster extends GraphMemBase
         
     public BulkUpdateHandler getBulkUpdateHandler()
         {
-        if (bulkHandler == null) bulkHandler = new GraphMemFasterBulkUpdateHandler( this );
+        if (bulkHandler == null) bulkHandler = new GraphMemBulkUpdateHandler( this );
         return bulkHandler;
         }
 

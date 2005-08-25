@@ -7,8 +7,11 @@
 package com.hp.hpl.jena.mem.faster;
 
 import com.hp.hpl.jena.graph.impl.*;
-import com.hp.hpl.jena.graph.impl.SimpleBulkUpdateHandler;
+import com.hp.hpl.jena.mem.GraphMemBase;
 
+/**
+     @deprecated GraphMemBulkUpdateHandler does the job for both now.
+*/
 public class GraphMemFasterBulkUpdateHandler  extends SimpleBulkUpdateHandler
     {
     public GraphMemFasterBulkUpdateHandler( GraphWithPerform graph ) 
@@ -21,9 +24,8 @@ public class GraphMemFasterBulkUpdateHandler  extends SimpleBulkUpdateHandler
         }
     
     protected void clearComponents()
-        { ((GraphMemFaster) graph).clear(); }
+        { ((GraphMemBase) graph).clear(); }
     }
-
 
 /*
  * (c) Copyright 2005 Hewlett-Packard Development Company, LP

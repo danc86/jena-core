@@ -27,7 +27,7 @@ public class GraphMemBulkUpdateHandler extends SimpleBulkUpdateHandler
 	    }
 	
 	protected void clearComponents()
-	    { ((GraphMem) graph).clear(); }
+	    { ((GraphMemBase) graph).clear(); }
 	}
 
 /*

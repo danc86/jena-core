@@ -63,6 +63,11 @@ public abstract class GraphMemBase extends GraphBase
             super.close();
             }
         }
+    
+    /**
+         Remove all triples from this graph; used to implement removeAll.
+    */
+    public abstract void clear();
     }
 
 

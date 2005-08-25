@@ -49,13 +49,12 @@ public class MixedGraphMem extends GraphMemBase implements Graph
         return store.isEmpty();
         }
     
+    public void clear()
+        { store.clear(); }
+    
     public BulkUpdateHandler getBulkUpdateHandler()
         {
-        if (bulkHandler == null) bulkHandler = new GraphMemBulkUpdateHandler( this )
-        	{
-            protected void clearComponents()
-        	    { ((MixedGraphMem) graph).store.clear(); }
-        	};
+        if (bulkHandler == null) bulkHandler = new GraphMemBulkUpdateHandler( this );
         return bulkHandler;
         }
     
