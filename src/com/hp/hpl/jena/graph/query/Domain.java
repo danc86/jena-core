@@ -55,7 +55,9 @@ public final class Domain extends AbstractList implements IndexValues
         
     public boolean equals( Object x )
         {
-        return x instanceof Domain && Arrays.equals( this.value, ((Domain) x).value );
+        return 
+            x instanceof Domain && Arrays.equals( this.value, ((Domain) x).value )
+            || super.equals( x );
         }
 		
 	public String toString()

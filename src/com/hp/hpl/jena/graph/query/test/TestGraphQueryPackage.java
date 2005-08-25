@@ -36,6 +36,7 @@ public class TestGraphQueryPackage extends TestCase
         result.addTest( TestEarlyConstraints.suite() );
         result.addTest( TestPerlyParser.suite() );
         result.addTest( TestRegexpTrees.suite() );
+        result.addTest( TestDomain.suite() );
         return result;
         }
     }

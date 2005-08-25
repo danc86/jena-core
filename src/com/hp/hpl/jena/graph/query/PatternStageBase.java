@@ -69,6 +69,7 @@ public abstract class PatternStageBase extends Stage
         }
 
     }
+
 /*
     (c) Copyright 2005 Hewlett-Packard Development Company, LP
     All rights reserved.

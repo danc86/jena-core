@@ -144,6 +144,9 @@ public abstract class QueryNode
         
         public boolean matchOrBind( Domain d, Node x )
             { return node.matches( x ); }
+        
+        public String toString()
+            { return node.toString() + "[fixed]"; }
         }
     
     public static class Bind extends QueryNode
@@ -161,6 +164,9 @@ public abstract class QueryNode
         public boolean matchOrBind( Domain d, Node value )
             { d.setElement( index, value );
             return true; }
+        
+        public String toString()
+            { return node.toString() + "[bind " + index + "]"; }
         }
     
     public static class JustBound extends QueryNode
@@ -176,6 +182,9 @@ public abstract class QueryNode
         
         public boolean matchOrBind( Domain d, Node x )
             { return x.matches( d.getElement( index ) ); }
+
+        public String toString()
+            { return node.toString() + "[just " + index + "]"; }
         }
         
     public static class Bound extends QueryNode
@@ -188,6 +197,9 @@ public abstract class QueryNode
         
         public boolean matchOrBind( Domain d, Node x )
             { return d.getElement( index ).matches( x ); }
+        
+        public String toString()
+            { return node.toString() + "[bound " + index + "]"; }
         }        
 
     public static class Any extends QueryNode
@@ -197,6 +209,9 @@ public abstract class QueryNode
         
         public boolean matchOrBind( Domain d, Node x )
             { return true; }
+        
+        public String toString()
+            { return "ANY"; }
         }
     }
 /*
