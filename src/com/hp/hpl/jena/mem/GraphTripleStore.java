@@ -29,12 +29,6 @@ public class GraphTripleStore implements TripleStore
         
     protected NodeToTriplesMap objects = new NodeToTriplesMap
         ( Field.getObject, Field.getSubject, Field.getPredicate );
-        
-    public NodeToTriplesMap forTestingOnly_getObjects()
-        { return objects; }
-    
-    public NodeToTriplesMap forTestingOnly_getSubjects()
-        { return subjects; }
    
     protected Graph parent;
     
