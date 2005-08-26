@@ -7,6 +7,7 @@
 package com.hp.hpl.jena.mem;
 
 import com.hp.hpl.jena.graph.*;
+import com.hp.hpl.jena.graph.impl.TripleStore;
 import com.hp.hpl.jena.shared.*;
 import com.hp.hpl.jena.util.iterator.*;
 
@@ -22,6 +23,12 @@ public class MixedGraphMem extends GraphMemBase implements Graph
     
     public MixedGraphMem( ReificationStyle style )
         { super( style ); }
+    
+    /**
+        MixedGraphMem's don't use TripleStore's at present. 
+    */
+    protected TripleStore createTripleStore()
+        { return null; }
     
     public void performAdd( Triple t )
         { if (!getReifier().handledAdd( t )) store.add( t ); }

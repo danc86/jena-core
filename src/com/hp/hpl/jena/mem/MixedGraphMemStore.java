@@ -12,7 +12,6 @@ import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.util.CollectionFactory;
 import com.hp.hpl.jena.util.iterator.*;
 
-
 public class MixedGraphMemStore 
     {
     protected final Graph parent;
@@ -107,10 +106,7 @@ public class MixedGraphMemStore
             protected Triple remember = null;
             protected Node key = null;
             protected Set seen = CollectionFactory.createHashedSet();
-            protected Filter filter = new TripleMatchFilter( pattern );
-            
-            protected Triple ANY = Triple.create( "?? ?? ??" );
-            
+                        
             public Object next()
                 {
                 ensureHasNext();

@@ -7,6 +7,7 @@
 package com.hp.hpl.jena.mem;
 
 import com.hp.hpl.jena.graph.*;
+import com.hp.hpl.jena.graph.impl.TripleStore;
 import com.hp.hpl.jena.graph.query.*;
 import com.hp.hpl.jena.shared.*;
 import com.hp.hpl.jena.util.iterator.*;
@@ -16,9 +17,7 @@ import com.hp.hpl.jena.util.iterator.*;
     @author  bwm, kers
 */
 public class GraphMem extends GraphMemBase implements Graph 
-    {
-    protected GraphTripleStore store = new GraphTripleStore( this );
-    
+    {    
     public GraphTripleStore forTestingOnly_getStore() 
         { return (GraphTripleStore) store; }
     
@@ -37,6 +36,9 @@ public class GraphMem extends GraphMemBase implements Graph
     */
     public GraphMem( ReificationStyle style )
         { super( style ); }
+    
+    protected TripleStore createTripleStore()
+        { return new GraphTripleStore( this ); }
 
     protected void destroy()
         { store.close(); }

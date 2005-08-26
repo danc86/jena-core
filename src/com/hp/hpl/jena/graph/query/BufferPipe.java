@@ -86,6 +86,7 @@ public class BufferPipe implements Pipe
     public Domain get()
         {
         if (hasNext() == false) throw new NoSuchElementException(); 
+        if (!(pending instanceof Domain)) throw new RuntimeException( pending.getClass().toString() );
         try { return (Domain) pending; } finally { pending = null; } 
         }
 

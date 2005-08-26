@@ -11,11 +11,12 @@ import java.util.*;
 
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.graph.Triple.Field;
+import com.hp.hpl.jena.graph.impl.TripleStore;
 import com.hp.hpl.jena.graph.query.*;
 import com.hp.hpl.jena.mem.ObjectIterator;
 import com.hp.hpl.jena.util.iterator.*;
 
-public class FasterTripleStore
+public class FasterTripleStore implements TripleStore
     {
     protected NodeToTriplesMapFaster subjects = new NodeToTriplesMapFaster
         ( Field.getSubject, Field.getPredicate, Field.getObject );

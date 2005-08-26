@@ -10,6 +10,7 @@ import java.util.Iterator;
 
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.graph.Reifier.Util;
+import com.hp.hpl.jena.graph.impl.TripleStore;
 import com.hp.hpl.jena.graph.query.*;
 import com.hp.hpl.jena.mem.*;
 import com.hp.hpl.jena.shared.ReificationStyle;
@@ -23,7 +24,8 @@ public class GraphMemFaster extends GraphMemBase
     public GraphMemFaster( ReificationStyle style )
         { super( style ); }
 
-    protected FasterTripleStore store = new FasterTripleStore( this );
+    protected TripleStore createTripleStore()
+        { return new FasterTripleStore( this ); }
 
     protected void destroy()
         { store.close(); }
@@ -52,7 +54,7 @@ public class GraphMemFaster extends GraphMemBase
 
     public Applyer createApplyer( ProcessedTriple pt )
         { 
-        Applyer plain = store.createApplyer( pt ); 
+        Applyer plain = ((FasterTripleStore) store).createApplyer( pt ); 
         return matchesReification( pt ) && hasReifications() ? withReification( plain, pt ) : plain;
         }
 

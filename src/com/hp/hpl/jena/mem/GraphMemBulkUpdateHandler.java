@@ -1,7 +1,7 @@
 /*
-(c) Copyright 2004, 2005 Hewlett-Packard Development Company, LP
-[See end of file]
-$Id$
+    (c) Copyright 2004, 2005 Hewlett-Packard Development Company, LP
+    [See end of file]
+    $Id$
 */
 
 package com.hp.hpl.jena.mem;

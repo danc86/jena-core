@@ -7,6 +7,7 @@ package com.hp.hpl.jena.graph.query;
 
 import com.hp.hpl.jena.graph.Graph;
 import com.hp.hpl.jena.graph.Triple;
+import com.hp.hpl.jena.graph.query.StageElement.*;
 
 /**
     PatternStageBase contains the features that are common to the 
@@ -56,18 +57,34 @@ public abstract class PatternStageBase extends Stage
 
     protected StageElement makeStageElementChain( Pipe sink, int index )
         {
-        if (index == classified.length)
-            return new StageElement.PutBindings( sink );
-        else
-            {
-            ValuatorSet s = guards[index];
-            Matcher m = classified[index].createMatcher();
-            Applyer f = classified[index].createApplyer( graph );
-            StageElement next = makeStageElementChain( sink, index + 1 );
-            return new StageElement.FindTriples( this, m, f, s.isNonTrivial() ? new StageElement.RunValuatorSet( s, next ) : next );
-            }
+        return index < classified.length
+            ? makeIntermediateStageElement( sink, index )
+            : makeFinalStageElement( sink )
+            ;
         }
 
+    protected PutBindings makeFinalStageElement( Pipe sink )
+        { return new StageElement.PutBindings( sink ); }
+
+    protected StageElement makeIntermediateStageElement( Pipe sink, int index )
+        {
+        StageElement next = makeNextStageElement( sink, index );
+        return makeFindStageElement( index, next );
+        }
+
+    protected StageElement makeNextStageElement( Pipe sink, int index )
+        {
+        ValuatorSet s = guards[index];
+        StageElement rest = makeStageElementChain( sink, index + 1 );
+        return s.isNonTrivial() ? new StageElement.RunValuatorSet( s, rest ) : rest;
+        }
+
+    protected StageElement makeFindStageElement( int index, StageElement next )
+        {
+        Applyer f = classified[index].createApplyer( graph );
+        Matcher m = classified[index].createMatcher();
+        return new StageElement.FindTriples( this, m, f, next );
+        }
     }
 
 /*

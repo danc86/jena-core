@@ -6,7 +6,7 @@
 package com.hp.hpl.jena.mem;
 
 import com.hp.hpl.jena.graph.BulkUpdateHandler;
-import com.hp.hpl.jena.graph.impl.GraphBase;
+import com.hp.hpl.jena.graph.impl.*;
 import com.hp.hpl.jena.shared.ReificationStyle;
 
 /**
@@ -28,14 +28,22 @@ public abstract class GraphMemBase extends GraphBase
     protected int count;
     
     /**
+        This Graph's TripleStore. Visible for <i>read-only</i> purposes only.
+    */
+    public final TripleStore store;
+    
+    /**
          initialise a GraphMemBase withn its count set to 1.
     */
     public GraphMemBase( ReificationStyle style )
         { 
-        super( style ); 
+        super( style );
+        store = createTripleStore();
         count = 1; 
         }
-
+    
+    protected abstract TripleStore createTripleStore();
+    
     /**
          Note a re-opening of this graph by incrementing the count. Answer
          this Graph.
