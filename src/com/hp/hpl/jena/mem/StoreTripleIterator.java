@@ -21,12 +21,16 @@ import com.hp.hpl.jena.graph.Graph;
 */
 public class StoreTripleIterator extends TrackingTripleIterator
 	{
-    protected NodeToTriplesMap X;
-    protected NodeToTriplesMap A;
-    protected NodeToTriplesMap B;
+    protected NodeToTriplesMapBase X;
+    protected NodeToTriplesMapBase A;
+    protected NodeToTriplesMapBase B;
     protected Graph toNotify;
     
-    public StoreTripleIterator( Graph toNotify, Iterator it, NodeToTriplesMap X, NodeToTriplesMap A, NodeToTriplesMap B )
+    public StoreTripleIterator
+        ( Graph toNotify, Iterator it, 
+          NodeToTriplesMapBase X, 
+          NodeToTriplesMapBase A, 
+          NodeToTriplesMapBase B )
     	{ 
         super( it ); 
         this.X = X;

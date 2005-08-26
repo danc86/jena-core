@@ -132,7 +132,7 @@ public class GraphTripleStore implements TripleStore
         else if (pm.isConcrete())
             return new StoreTripleIterator( parent, predicates.iterator( t ), predicates, subjects, objects );
         else
-            return new StoreTripleIterator( parent, subjects.iterateAll( t ), subjects, predicates, objects );
+            return new StoreTripleIterator( parent, subjects.iterateAll(), subjects, predicates, objects );
         }
     
     /**

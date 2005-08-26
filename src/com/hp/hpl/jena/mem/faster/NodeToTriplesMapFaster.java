@@ -321,14 +321,14 @@ public class NodeToTriplesMapFaster extends NodeToTriplesMapBase
            indexField.filterOn( index )
            .and( f2.filterOn( n2 ) )
            .and( f3.filterOn( n3 ) )
-           .filterKeep( iterator() )
+           .filterKeep( iterateAll() )
            ;
        }
     
     /**
        Answer an iterator over all the triples in this NTM.
     */
-    public ExtendedIterator iterator()
+    public ExtendedIterator iterateAll()
       {
       final Iterator nodes = domain();
       return new NiceIterator()

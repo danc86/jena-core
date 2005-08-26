@@ -164,7 +164,7 @@ public class FasterTripleStore implements TripleStore
                 if (P.isConcrete())
                     return predicates.iterator( P, Node.ANY, Node.ANY );
                 else
-                    return subjects.iterator();
+                    return subjects.iterateAll();
                 }
     
             public void applyToTriples( Domain d, Matcher m, StageElement next )

@@ -102,14 +102,14 @@ public class NodeToTriplesMap extends NodeToTriplesMapBase
             indexField.filterOn( pattern )
             .and( f2.filterOn( pattern ) )
             .and( f3.filterOn( pattern ) )
-            .filterKeep( iterator() )
+            .filterKeep( iterateAll() )
             ;
         }
     
     /** 
-     	@see com.hp.hpl.jena.mem.Temp#iterator()
+     	@see com.hp.hpl.jena.mem.Temp#iterateAll()
     */
-    public ExtendedIterator iterator()
+    public ExtendedIterator iterateAll()
        {
        final Iterator nodes = domain();
        return new NiceIterator()
