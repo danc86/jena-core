@@ -143,14 +143,14 @@ public class TestNodeToTriplesMap extends GraphTestBase
     
     public void testSpecificIteratorWithPatternOnEmpty()
         {
-        assertEquals( tripleSet( "" ), iteratorToSet( ntS.iterator( triple( "x P b" ) ) ) );
+        assertEquals( tripleSet( "" ), iteratorToSet( ntS.obsoleteIterator( triple( "x P b" ) ) ) );
         }
     
     public void testSpecificIteratorWithPatternOnSomething()
         {
         addTriples( ntS, "x P a; y P b; y R c" );
-        assertEquals( tripleSet( "x P a" ), iteratorToSet( ntS.iterator( triple( "x P ??" ) ) ) );
-        assertEquals( tripleSet( "y P b; y R c" ), iteratorToSet( ntS.iterator( triple( "y ?? ??" ) ) ) );
+        assertEquals( tripleSet( "x P a" ), iteratorToSet( ntS.obsoleteIterator( triple( "x P ??" ) ) ) );
+        assertEquals( tripleSet( "y P b; y R c" ), iteratorToSet( ntS.obsoleteIterator( triple( "y ?? ??" ) ) ) );
         }
 
     public void testUnspecificRemoveS()

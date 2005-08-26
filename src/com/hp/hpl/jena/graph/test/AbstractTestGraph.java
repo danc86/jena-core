@@ -49,7 +49,7 @@ public /* abstract */ class AbstractTestGraph extends GraphTestBase
         {
         Graph g = getGraph();
         Node r = Node.create( "r" ), s = Node.create( "s" ), p = Node.create( "P" );
-        g.add( Triple.create( r, p,  s ) );
+        g.add( Triple.create( r, p, s ) );
         assertTrue( g.contains( r, p, Node.ANY ) );
         assertTrue( g.find( r, p, Node.ANY ).hasNext() );
         }

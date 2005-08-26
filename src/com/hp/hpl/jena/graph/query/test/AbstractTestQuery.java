@@ -278,7 +278,7 @@ public abstract class AbstractTestQuery extends QueryTestBase
         Q.addMatch( "a", X, reads, Y ).addMatch( "b", Y, inGenre, Z );
         NamedGraphMap args = Q.args().put( "a", a ).put( "b", b );
         List bindings = iteratorToList( Q.executeBindings( args, new Node [] {X, Z} ) ); // TODO
-        assertEquals( "testTwoGraphs: one binding", bindings.size(), 1 );
+        assertEquals( "testTwoGraphs: one binding", 1, bindings.size() );
         Domain  d = (Domain) bindings.get( 0 );
         assertTrue( "testTwoGraphs: width 2", d.size() >= 2 );
         assertEquals( "testTwoGraphs: X = chris", d.get(0), node("chris") );
