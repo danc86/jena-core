@@ -130,13 +130,13 @@ public class FasterTripleStore implements TripleStore
         Node sm = t.getSubject();
             
         if (sm.isConcrete())
-            return new StoreTripleIteratorFaster( parent, subjects.iterator( sm, pm, om ), subjects, predicates, objects );
+            return new StoreTripleIterator( parent, subjects.iterator( sm, pm, om ), subjects, predicates, objects );
         else if (om.isConcrete())
-            return new StoreTripleIteratorFaster( parent, objects.iterator( om, sm, pm ), objects, subjects, predicates );
+            return new StoreTripleIterator( parent, objects.iterator( om, sm, pm ), objects, subjects, predicates );
         else if (pm.isConcrete())
-            return new StoreTripleIteratorFaster( parent, predicates.iterator( pm, om, sm ), predicates, subjects, objects );
+            return new StoreTripleIterator( parent, predicates.iterator( pm, om, sm ), predicates, subjects, objects );
         else
-            return new StoreTripleIteratorFaster( parent, subjects.iterateAll( sm, pm, om ), subjects, predicates, objects );
+            return new StoreTripleIterator( parent, subjects.iterateAll( sm, pm, om ), subjects, predicates, objects );
         }
     
     public Applyer createApplyer( ProcessedTriple pt )

@@ -11,14 +11,23 @@ import java.util.Iterator;
 import com.hp.hpl.jena.graph.Graph;
 import com.hp.hpl.jena.mem.*;
 
+/**
+    @deprecated now StoreTRipleIterator can handle both kinds of
+    NodeToTriplesMap.
+    @author hedgehog
+*/
 public class StoreTripleIteratorFaster extends TrackingTripleIterator
     {
-    protected NodeToTriplesMapFaster X;
-    protected NodeToTriplesMapFaster A;
-    protected NodeToTriplesMapFaster B;
+    protected NodeToTriplesMapBase X;
+    protected NodeToTriplesMapBase A;
+    protected NodeToTriplesMapBase B;
     protected Graph toNotify;
     
-    public StoreTripleIteratorFaster( Graph toNotify, Iterator it, NodeToTriplesMapFaster X, NodeToTriplesMapFaster A, NodeToTriplesMapFaster B )
+    public StoreTripleIteratorFaster
+        ( Graph toNotify, Iterator it, 
+        NodeToTriplesMapBase X, 
+        NodeToTriplesMapBase A, 
+        NodeToTriplesMapBase B )
         { 
         super( it ); 
         this.X = X;

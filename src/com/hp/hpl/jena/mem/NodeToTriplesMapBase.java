@@ -12,6 +12,7 @@ import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.graph.Triple.Field;
 import com.hp.hpl.jena.util.CollectionFactory;
 import com.hp.hpl.jena.util.iterator.ExtendedIterator;
+import com.hp.hpl.jena.util.iterator.NullIterator;
 
 /**
     A base class for the "normal" nad "faster" NodeToTriplesMaps.
@@ -87,6 +88,8 @@ public abstract class NodeToTriplesMapBase
 
     public boolean isEmpty()
         { return size == 0; }
+
+    public abstract ExtendedIterator iterator( Node index, Node n2, Node n3 );
 
     }
 

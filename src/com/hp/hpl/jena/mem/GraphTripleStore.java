@@ -21,10 +21,10 @@ import com.hp.hpl.jena.util.iterator.*;
  */
 public class GraphTripleStore implements TripleStore
     {
-    protected NodeToTriplesMap subjects = new NodeToTriplesMap
+    protected NodeToTriplesMapBase subjects = new NodeToTriplesMap
         ( Field.getSubject, Field.getPredicate, Field.getObject );
         
-    protected NodeToTriplesMap predicates = new NodeToTriplesMap
+    protected NodeToTriplesMapBase predicates = new NodeToTriplesMap
         ( Field.getPredicate, Field.getObject, Field.getSubject );
         
     protected NodeToTriplesMap objects = new NodeToTriplesMap
