@@ -142,10 +142,15 @@ public class NodeToTriplesMap extends NodeToTriplesMapBase
     /** 
      	@see com.hp.hpl.jena.mem.Temp#get(java.lang.Object)
     */
-    public Set get( Object y )
+    protected Set get( Object y )
         { return (Set) map.get( y ); }
 
-
+    /**
+        Answer an iterator over all the triples that are indexed by the item <code>y</code>.
+        Note that <code>y</code> need not be a Node (because of indexing values).
+    */
+    public Iterator iteratorForIndexed( Object y )
+        { return get( y ).iterator();  }
     }
 
 /*

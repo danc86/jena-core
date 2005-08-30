@@ -90,6 +90,12 @@ public abstract class NodeToTriplesMapBase
         { return size == 0; }
 
     public abstract ExtendedIterator iterator( Node index, Node n2, Node n3 );
+    
+    /**
+        Answer an iterator over all the triples that are indexed by the item <code>y</code>.
+        Note that <code>y</code> need not be a Node (because of indexing values).
+    */
+    public abstract Iterator iteratorForIndexed( Object y );
 
     }
 
