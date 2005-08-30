@@ -311,39 +311,6 @@ public class NodeToTriplesMapFaster extends NodeToTriplesMapBase
             }
         }
        
-    /**
-       Answer an iterator over all the triples in this NTM.
-    */
-    public ExtendedIterator iterateAll()
-      {
-      final Iterator nodes = domain();
-      return new NiceIterator()
-          {
-          private Iterator current = NullIterator.instance;
-          
-          public Object next()
-              {
-              if (hasNext() == false) noElements( "NodeToTriples iterator" );
-              return current.next();
-              }
-          
-          public boolean hasNext()
-              {
-              while (true)
-                  {
-                  if (current.hasNext()) return true;
-                  if (nodes.hasNext() == false) return false;
-                  current = iterator( nodes.next() );
-                  }
-              }
-          
-          public void remove()
-              {
-              current.remove();
-              }
-          };
-      }
-
     protected Bunch get( Object index )
         { return (Bunch) map.get( index ); }
     

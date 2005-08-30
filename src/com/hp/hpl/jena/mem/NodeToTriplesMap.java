@@ -109,36 +109,6 @@ public class NodeToTriplesMap extends NodeToTriplesMapBase
     /** 
      	@see com.hp.hpl.jena.mem.Temp#iterateAll()
     */
-    public ExtendedIterator iterateAll()
-       {
-       final Iterator nodes = domain();
-       return new NiceIterator()
-           {
-           private Iterator current = NullIterator.instance;
-           
-           public Object next()
-               {
-               if (hasNext() == false) noElements( "NodeToTriples iterator" );
-               return current.next();
-               }
-           
-           public boolean hasNext()
-               {
-               while (true)
-                   {
-                   if (current.hasNext()) return true;
-                   if (nodes.hasNext() == false) return false;
-                   current = iterator( nodes.next() );
-                   }
-               }
-           
-           public void remove()
-               {
-               current.remove();
-               }
-           };
-   }
-
     /** 
      	@see com.hp.hpl.jena.mem.Temp#get(java.lang.Object)
     */
