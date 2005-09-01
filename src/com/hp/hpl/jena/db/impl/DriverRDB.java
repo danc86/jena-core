@@ -2287,7 +2287,8 @@ public abstract class DriverRDB implements IRDBDriver {
 		String fun, String stringToMatch ) {
 		boolean ignCase = 
 		   fun.equals(ExpressionFunctionURIs.J_startsWithInsensitive) ||
-		   fun.equals(ExpressionFunctionURIs.J_endsWithInsensitive);
+		   fun.equals(ExpressionFunctionURIs.J_endsWithInsensitive) ||
+           fun.equals(ExpressionFunctionURIs.J_containsInsensitive) ;
 		boolean pfxMatch = 
 		   fun.equals(ExpressionFunctionURIs.J_startsWith) ||
 		   fun.equals(ExpressionFunctionURIs.J_startsWithInsensitive);
