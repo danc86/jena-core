@@ -578,13 +578,13 @@ public abstract class AbstractTestQuery extends QueryTestBase
         assertEquals( desired, e2 );
         }    
     
-    public void testRewriteContainsInsensitiveExpression()
+    public void testRewritePreservesCharacterCases()
         {
         Query q = new Query();
         Expression L = constant( "x" );
         Expression R = createModifiedPattern( "coNtaIns", "i" );
         Expression provided = dyadic( L, "Q_StringMatch", R );
-        Expression desired = dyadic( L, "J_containsInsensitive", constant( "contains" ) );
+        Expression desired = dyadic( L, "J_containsInsensitive", constant( "coNtaIns" ) );
         q.addConstraint( provided );
         Expression e2 = (Expression) q.getConstraints().iterator().next();
         assertEquals( desired, e2 );

@@ -21,7 +21,7 @@ public class Factory
     private Factory()
         { super(); }
 
-    private static final boolean faster =
+    public static boolean faster =
         System.getProperty( "jena.faster", "yes" ).equals( "yes" );
 
     /**
