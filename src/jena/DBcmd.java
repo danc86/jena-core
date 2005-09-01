@@ -140,6 +140,7 @@ abstract class DBcmd
             System.exit(9) ;
         }
 
+        argDbType = argDbType.toLowerCase() ;
         String driverClass = (String)drivers.get(argDbType);
         if (cmdLine.contains(argDeclDbDriver))
             driverClass = cmdLine.getArg(argDeclDbDriver).getValue();
@@ -152,7 +153,7 @@ abstract class DBcmd
 
         try
         {
-            Class.forName(driverClass).newInstance();
+            Class.forName(driverClass); //.newInstance();
         }
         catch (Exception ex)
         {

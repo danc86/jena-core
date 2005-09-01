@@ -49,14 +49,16 @@ public class dblist extends DBcmd
     {
         super("dblist", false) ;
     }
+
+    static String defaultModelName = "DEFAULT" ;
     
     protected void exec0()
     {
-        if ( getConnection().containsDefaultModel() )
-        {
-            System.out.println("Model: <<default model>>") ;
-            properties(null) ;
-        }
+//        if ( getConnection().containsDefaultModel() )
+//        {
+//            System.out.println("Model: <<default model>>") ;
+//            properties(null) ;
+//        }
         
         ClosableIterator iter = getConnection().getAllModelNames() ;
         try {
