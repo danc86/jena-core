@@ -5,6 +5,8 @@
 */
 package com.hp.hpl.jena.graph.query;
 
+import com.hp.hpl.jena.graph.Node_Literal;
+
 /**
      Rewrite - class which does expression rewrites for Query
      @author kers
@@ -55,7 +57,15 @@ public class Rewrite
             { super( L, F, new Expression.Fixed( R ) ); }
         
         public boolean evalBool( Object l, Object r )
-            { return evalBool( l.toString(), r.toString() ); }
+            { return evalBool( nodeAsString( l ), r.toString() ); }
+        
+        protected String nodeAsString( Object x )
+            {
+            return x instanceof Node_Literal
+                ? ((Node_Literal) x).getLiteralLexicalForm()
+                : x.toString()
+                ;
+            }
         
         protected abstract boolean evalBool( String l, String r );
         }
