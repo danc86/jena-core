@@ -105,10 +105,10 @@ public abstract class GraphTripleStoreBase implements TripleStore
           Answer true iff this triple store contains the (concrete) triple <code>t</code>.
      */
      public boolean contains( Triple t )
-         { return subjects.contains( t ); }
-     
-     public boolean containsBySameValueAs( Triple t )
          { return subjects.containsBySameValueAs( t ); }
+     
+     public boolean containsByEquality( Triple t )
+         { return subjects.contains( t ); }
      
      /** 
          Answer an ExtendedIterator returning all the triples from this store that

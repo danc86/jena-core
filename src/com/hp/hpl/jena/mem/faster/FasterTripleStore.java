@@ -32,8 +32,8 @@ public class FasterTripleStore extends GraphTripleStoreBase implements TripleSto
     
     public Applyer createApplyer( ProcessedTriple pt )
         {
-        if (pt.hasNoVariables())
-            return containsApplyer( pt );
+//        if (pt.hasNoVariables())
+//            return containsApplyer( pt );
         if (pt.S instanceof QueryNode.Fixed) 
             return getSubjects().createFixedSApplyer( pt );
         if (pt.O instanceof QueryNode.Fixed) 
