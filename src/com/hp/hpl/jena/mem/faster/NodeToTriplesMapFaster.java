@@ -80,7 +80,13 @@ public class NodeToTriplesMapFaster extends NodeToTriplesMapBase
     public boolean contains( Triple t )
        { 
        TripleBunch s = (TripleBunch) map.get( getIndexField( t ) );
-       return s == null ? false : s.contains( t );
+       return s == null ? false :  s.contains( t );
+       }    
+    
+    public boolean containsBySameValueAs( Triple t )
+       { 
+       TripleBunch s = (TripleBunch) map.get( getIndexField( t ) );
+       return s == null ? false :  s.containsBySameValueAs( t );
        }
     
     /**

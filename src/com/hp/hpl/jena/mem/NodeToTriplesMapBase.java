@@ -59,6 +59,8 @@ public abstract class NodeToTriplesMapBase
          Answer true iff this NTM contains the concrete triple <code>t</code>.
     */
     public abstract boolean contains( Triple t );
+    
+    public abstract boolean containsBySameValueAs( Triple t );
 
     /**
         The nodes which appear in the index position of the stored triples; useful

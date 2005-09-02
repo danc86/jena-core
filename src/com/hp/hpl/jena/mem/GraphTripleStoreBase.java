@@ -107,6 +107,9 @@ public abstract class GraphTripleStoreBase implements TripleStore
      public boolean contains( Triple t )
          { return subjects.contains( t ); }
      
+     public boolean containsBySameValueAs( Triple t )
+         { return subjects.containsBySameValueAs( t ); }
+     
      /** 
          Answer an ExtendedIterator returning all the triples from this store that
          match the pattern <code>m = (S, P, O)</code>.

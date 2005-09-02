@@ -14,6 +14,7 @@ import com.hp.hpl.jena.util.iterator.ExtendedIterator;
 public abstract class TripleBunch 
     {
     public abstract boolean contains( Triple t );
+    public abstract boolean containsBySameValueAs( Triple t );
     public abstract int size();
     public abstract void add( Triple t );
     public abstract void remove( Triple t );

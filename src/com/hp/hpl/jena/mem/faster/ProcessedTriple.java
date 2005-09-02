@@ -32,6 +32,9 @@ public class ProcessedTriple extends QueryTriple
 
     public Applyer createApplyer( Graph g )
         { return ((GraphMemFaster) g).createApplyer( this ); }
+
+    public boolean hasNoVariables()
+        { return S.isFrozen() && P.isFrozen() && O.isFrozen(); }
     }
 
 /*

@@ -71,6 +71,13 @@ public abstract class QueryNode
     */
     public String toString()
         { return node.toString() + "[" + index + "]"; }
+
+    /**
+        Answer true iff this node is "frozen", ie its value is fixed, when it
+        is encountered; that is, it is not a Bind or JustBound node.
+    */
+    public boolean isFrozen()
+        { return true; }
     
     /**
         Answer a Node value to use when this QueryValue is used to select 
@@ -157,6 +164,9 @@ public abstract class QueryNode
         public boolean mustMatch()
             { return true; }
         
+        public boolean isFrozen()
+            { return false; }
+        
         public boolean match( Domain d, Node value )
             { d.setElement( index, value );
             return true; }
@@ -176,6 +186,9 @@ public abstract class QueryNode
         
         public boolean mustMatch()
             { return true; } 
+        
+        public boolean isFrozen()
+            { return false; }
         
         public boolean match( Domain d, Node X )
             { return X.matches( d.getElement( index ) ); }

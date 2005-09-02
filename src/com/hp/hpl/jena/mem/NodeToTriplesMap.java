@@ -66,6 +66,29 @@ public class NodeToTriplesMap extends NodeToTriplesMapBase
         Set s = (Set) map.get( getIndexField( t ) );
         return s == null ? false : s.contains( t );
         }
+
+    protected static boolean equalsObjectOK( Triple t )
+        { 
+        Node o = t.getObject();
+        return o.isLiteral() ? o.getLiteralDatatype() == null : true;
+        }
+
+    public boolean containsBySameValueAs( Triple t )
+        { return equalsObjectOK( t ) ? contains( t ) : slowContains( t ); }
+    
+    protected boolean slowContains( Triple t )
+        { 
+        Set s = (Set) map.get( getIndexField( t ) );
+        if (s == null)
+            return false;
+        else
+            {
+            Iterator it = s.iterator();
+            while (it.hasNext())
+                if (t.matches( (Triple) it.next() )) return true;
+            return false;
+            }
+        }
     
     /** 
      	@see com.hp.hpl.jena.mem.Temp#iterateAll(com.hp.hpl.jena.graph.Triple)

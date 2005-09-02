@@ -20,6 +20,13 @@ public class ArrayBunch extends TripleBunch
     protected int size = 0;
     protected Triple [] elements = new Triple[9];
     
+    public boolean containsBySameValueAs( Triple t )
+        {
+        for (int i = 0; i < size; i += 1)
+            if (t.matches( elements[i])) return true;
+        return false;
+        }
+    
     public boolean contains( Triple t )
         {
         for (int i = 0; i < size; i += 1)
