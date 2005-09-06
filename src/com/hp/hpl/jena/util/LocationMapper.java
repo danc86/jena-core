@@ -61,6 +61,15 @@ public class LocationMapper
         return theMapper ;
     }
 
+    /** Make a location mapper from the path settings */ 
+    static public LocationMapper makeGlobal()
+    {
+        LocationMapper lMap = new LocationMapper() ;
+        if ( getGlobalConfigPath() != null )
+            lMap.initFromPath(getGlobalConfigPath(), false) ;
+        return lMap ;
+    }
+    
     /** Create a LocationMapper with no mapping yet */
     public LocationMapper() { }
     
