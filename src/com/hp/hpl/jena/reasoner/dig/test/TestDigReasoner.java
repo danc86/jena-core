@@ -553,7 +553,7 @@ public class TestDigReasoner
         Individual i0 = m.getIndividual( NS + "i0" );
 
         TestUtil.assertIteratorValues( this, i0.listRDFTypes(false),
-                                       new Resource[] {F0, F2}, 1 );
+                                       new Resource[] {F0, F2, OWL.Thing}, 1 );
     }
 
     public void testInstance() {
@@ -830,6 +830,20 @@ public class TestDigReasoner
         for (StmtIterator i = m.listStatements( null, RDFS.subPropertyOf, p2 );  i.hasNext(); ) {
             System.err.println( "p2 has sub prop " + i.next() );
         }
+    }
+
+    // for debuging the basic query tests one at a time
+    public void testBasicQueryN()
+        throws Exception
+    {
+        String root = "testing/ontology/dig/owl/basicq";
+        int testN = 24;
+
+        File testSource = new File( root + "/test_" + testN + ".source.xml" );
+        File testQuery = new File( root + "/test_" + testN + ".query.xml" );
+        File testTarget = new File( root + "/test_" + testN + ".result.xml" );
+
+        new DigBasicQueryTest( testSource, testTarget, testQuery, OntModelSpec.OWL_MEM ).runTest();
     }
 
 

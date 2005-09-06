@@ -44,7 +44,7 @@ import com.hp.hpl.jena.reasoner.TriplePattern;
  * @author Ian Dickinson, HP Labs (<a href="mailto:Ian.Dickinson@hp.com">email</a>)
  * @version Release @release@ ($Id$)
  */
-public class DIGQueryRoleParentsTranslator 
+public class DIGQueryRoleParentsTranslator
     extends DIGQueryRoleAncestorsTranslator
 {
 
@@ -57,7 +57,7 @@ public class DIGQueryRoleParentsTranslator
     // Instance variables
     //////////////////////////////////
 
-    
+
     // Constructors
     //////////////////////////////////
 
@@ -69,7 +69,7 @@ public class DIGQueryRoleParentsTranslator
     public DIGQueryRoleParentsTranslator( String predicate, boolean parents ) {
         super( predicate, parents );
     }
-    
+
 
     // External signature methods
     //////////////////////////////////
@@ -81,16 +81,16 @@ public class DIGQueryRoleParentsTranslator
     public Document translatePattern( TriplePattern pattern, DIGAdapter da ) {
         DIGConnection dc = da.getConnection();
         Document query = dc.createDigVerb( DIGProfile.ASKS, da.getProfile() );
-        
+
         if (m_ancestors) {
             Element parents = da.createQueryElement( query, DIGProfile.RPARENTS );
-            da.addClassDescription( parents, pattern.getSubject() );
+            da.addNamedElement( parents, DIGProfile.RATOM, pattern.getSubject().getURI() );
         }
         else {
             Element descendants = da.createQueryElement( query, DIGProfile.RCHILDREN );
-            da.addClassDescription( descendants, pattern.getObject() );
+            da.addNamedElement( descendants, DIGProfile.RATOM, pattern.getObject().getURI() );
         }
-        
+
         return query;
     }
 

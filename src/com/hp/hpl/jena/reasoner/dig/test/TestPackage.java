@@ -36,18 +36,19 @@ import junit.framework.*;
  *         (<a  href="mailto:Ian.Dickinson@hp.com" >email</a>)
  * @version CVS $Id$
  */
-public class TestPackage 
-    extends TestSuite 
+public class TestPackage
+    extends TestSuite
 {
     static public TestSuite suite() {
         return new TestPackage();
     }
-    
+
     /** Creates new TestPackage */
     private TestPackage() {
         super("reasoner.dig");
         addTestSuite( TestConsistency.class );
-        addTestSuite( TestRacer.class );
+        //addTestSuite( TestRacer.class ); Racer is no longer the default test target
+        addTestSuite(TestPellet.class);
         addTest( "TestDigReasoner", TestDigReasoner.suite() );
     }
 
