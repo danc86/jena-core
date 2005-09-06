@@ -190,16 +190,36 @@ public class FileManager
             modelCache = new HashMap() ; 
     }
     
-    
-    
     /** return whether caching is on of off */
-    boolean getCachingModels() { return cacheModelLoads ; }
-
+    public boolean getCachingModels() { return cacheModelLoads ; }
     
     /** Read out of the cache - return null if not in the cache */ 
-    public Model readFromCache(String filenameOrURI)
-    { return (Model)modelCache.get(filenameOrURI) ; }
+    public Model getFromCache(String filenameOrURI)
+    { 
+        if ( ! getCachingModels() )
+            return null; 
+        return (Model)modelCache.get(filenameOrURI) ;
+    }
     
+    public boolean hasCachedModel(String filenameOrURI)
+    { 
+        if ( ! getCachingModels() )
+            return false ; 
+        return modelCache.containsKey(filenameOrURI) ;
+    }
+    
+    public void addCacheModel(String uri, Model m)
+    { 
+        if ( getCachingModels() )
+            modelCache.put(uri, m) ;
+    }
+
+    public void removeCacheModel(String uri)
+    { 
+        if ( getCachingModels() )
+            modelCache.remove(uri) ;
+    }
+
     // -------- Cache operations (end)
 
     /** Load a model from a file (local or remote).
