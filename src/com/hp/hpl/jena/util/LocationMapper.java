@@ -64,6 +64,14 @@ public class LocationMapper
     /** Create a LocationMapper with no mapping yet */
     public LocationMapper() { }
     
+    /** Create a LocationMapper made like another one
+     * This is a deep copy of the location and prefix maps..*/
+    public LocationMapper(LocationMapper locMapper)
+    {
+        altLocations.putAll(locMapper.altLocations) ;
+        altPrefixes.putAll(locMapper.altPrefixes) ;
+    }
+    
     /** Create a LocationMapper from an existing model
      * @see com.hp.hpl.jena.vocabulary.LocationMappingVocab
      */
