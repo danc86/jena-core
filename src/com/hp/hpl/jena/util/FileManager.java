@@ -81,7 +81,9 @@ public class FileManager
     public FileManager(FileManager filemanager)
     {
         handlers.addAll(filemanager.handlers) ;
-        mapper = new LocationMapper(filemanager.getLocationMapper()) ;
+        mapper = null ;
+        if ( filemanager.getLocationMapper() != null )
+            mapper = new LocationMapper(filemanager.getLocationMapper()) ;
         cacheModelLoads = false ;
         modelCache = null ;
     }

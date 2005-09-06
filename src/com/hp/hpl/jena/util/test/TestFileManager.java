@@ -112,6 +112,26 @@ public class TestFileManager extends TestCase
         closeInputStream(in) ;
     }
     
+    public void testFileManagerClone()
+    {
+        FileManager fileManager1 = new FileManager() ;
+        FileManager fileManager2 = new FileManager(fileManager1) ;
+        
+        // Should not affect fileManager2
+        fileManager1.addLocatorFile() ;
+        {
+            InputStream in = fileManager1.open(testingDir+"/"+filename) ;
+            assertNotNull(in) ;
+            closeInputStream(in) ;
+        }
+        // Should not work.
+        {
+            InputStream in = fileManager2.open(testingDir+"/"+filename) ;
+            assertNull(in) ;
+            closeInputStream(in) ;
+        }
+    }
+    
     
     public void testLocationMappingURLtoFileOpen()
     {
@@ -132,11 +152,6 @@ public class TestFileManager extends TestCase
         assertNull(in) ;
         closeInputStream(in) ;
     }
-
-    
-
-
-
 
 //    public void testFileManagerLocatorURL()
 //    {

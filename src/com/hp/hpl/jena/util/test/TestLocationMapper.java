@@ -88,6 +88,52 @@ public class TestLocationMapper extends TestCase
         }
     }
 
+    public void testLocationMappingClone1()
+    {
+        LocationMapper locMap1 = new LocationMapper(mapping) ;
+        // See testLocationMappingURLtoFile
+//        String alt = locMap.altMapping("http://example.org/file") ;
+//        assertNotNull(alt) ;
+//        assertEquals(alt, "file:"+testingDir+"/location-mapping-test-file") ;
+        
+        LocationMapper locMap2 = new LocationMapper(locMap1) ;
+        // Remove from original
+        locMap1.removeAltEntry("http://example.org/file") ;
+        String alt = locMap2.altMapping("http://example.org/file") ;
+        assertNotNull(alt) ;
+        assertEquals(alt, "file:"+testingDir+"/location-mapping-test-file") ;
+    }
+    
+    public void testLocationMappingClone2()
+    {
+        LocationMapper locMap1 = new LocationMapper(mapping) ;
+        // See testLocationMappingURLtoFile
+//        String alt = locMap.altMapping("http://example.org/file") ;
+//        assertNotNull(alt) ;
+//        assertEquals(alt, "file:"+testingDir+"/location-mapping-test-file") ;
+        
+        LocationMapper locMap2 = new LocationMapper(locMap1) ;
+
+        // Change this one
+        locMap2.addAltPrefix("http://example.org/OTHER", "file:OTHER") ;
+        {
+            String alt = locMap2.altMapping("http://example.org/OTHER/f") ;
+            assertNotNull(alt) ;
+            assertEquals(alt, "file:OTHER/f") ;
+        }
+        // Not the other
+        {
+            String alt = locMap1.altMapping("http://example.org/OTHER/f") ;
+            assertNotNull(alt) ;
+            // Did not change
+            assertEquals(alt, "http://example.org/OTHER/f") ;
+        }
+    }
+
+
+
+
+
 
     
 }
