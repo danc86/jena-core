@@ -231,6 +231,20 @@ public class TestGenericRules extends TestCase {
                 new Triple(an, RDF.Nodes.type, C),
                 new Triple(an, RDF.Nodes.type, D),
               } );
+        
+        // Test that the parameter initialization is not be overridden by subclasses
+        m = ModelFactory.createDefaultModel();
+        configuration = m.createResource(GenericRuleReasonerFactory.URI);
+        configuration.addProperty( ReasonerVocabulary.PROPenableTGCCaching, m.createLiteral("true") );
+        reasoner = (GenericRuleReasoner)GenericRuleReasonerFactory.theInstance().create(configuration);
+        InfModel im = ModelFactory.createInfModel(reasoner, ModelFactory.createDefaultModel());
+        Resource Ac = im.createResource(PrintUtil.egNS + "A");
+        Resource Bc = im.createResource(PrintUtil.egNS + "B");
+        Resource Cc = im.createResource(PrintUtil.egNS + "C");
+        im.add(Ac, RDFS.subClassOf, Bc);
+        im.add(Bc, RDFS.subClassOf, Cc);
+        assertTrue("TGC enabled correctly", im.contains(Ac, RDFS.subClassOf, Cc));
+        
      }
     
     /**

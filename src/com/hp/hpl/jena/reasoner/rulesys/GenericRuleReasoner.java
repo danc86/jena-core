@@ -85,7 +85,9 @@ public class GenericRuleReasoner extends FBRuleReasoner {
      * @param configuration RDF node to configure the rule set and mode, can be null
      */
     public GenericRuleReasoner(ReasonerFactory factory, Resource configuration) {
-        super(factory, configuration);
+        super(factory);
+        this.configuration = configuration;
+        if (configuration != null) loadConfiguration( configuration );
     }
     
     /**
