@@ -173,7 +173,7 @@ public class FileManager
             for ( Iterator iter = modelCache.keySet().iterator() ; iter.hasNext() ; )
             {
                 String name = (String)iter.next() ;
-                Model m = (Model)modelCache.remove(name) ;
+                Model m = (Model)modelCache.get(name) ;
                 if ( m != null )
                     m.close() ;
             }
