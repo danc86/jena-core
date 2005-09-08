@@ -861,12 +861,6 @@ public class OntClassImpl
     // Internal implementation methods
     //////////////////////////////////
 
-
-    private void collectProperty( Property p, Set props, OntModel m ) {
-        // make sure that the property is attached to the right model
-        props.add( m.getProperty( p.getURI() ) );
-    }
-
     /**
      * <p>Answer true if this class has the given class as a direct super-class, without using
      * extra help from the reasoner.</p>

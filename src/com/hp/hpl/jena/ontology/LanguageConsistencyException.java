@@ -29,18 +29,20 @@ package com.hp.hpl.jena.ontology;
  * <p>
  * An exception that denotes some inconsistency between the arguments to a method
  * in the ontology API, and the language definition for a given ontology profile.
- * For example, the arguments of an intersection class description should all be classes. 
+ * For example, the arguments of an intersection class description should all be classes.
  * </p>
  *
  * @author Ian Dickinson, HP Labs
  *         (<a  href="mailto:Ian.Dickinson@hp.com" >email</a>)
  * @version CVS $Id$
  */
-public class LanguageConsistencyException 
+public class LanguageConsistencyException
     extends OntologyException
 {
     // Constants
     //////////////////////////////////
+    private static final long serialVersionUID = 1962961408291647160L;
+
 
     // Static variables
     //////////////////////////////////
@@ -54,7 +56,7 @@ public class LanguageConsistencyException
     public LanguageConsistencyException( String message ) {
         super( message );
     }
-    
+
     // External signature methods
     //////////////////////////////////
 

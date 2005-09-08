@@ -2603,7 +2603,7 @@ public class OntModelImpl
         if (owlSyntaxCheckerClass == null ) {
             try {
               owlSyntaxCheckerClass = Class.forName(owlSyntaxCheckerClassName);
-              OWLSyntaxChecker chk = (OWLSyntaxChecker)owlSyntaxCheckerClass.newInstance();
+              owlSyntaxCheckerClass.newInstance();
             }
             catch (Exception e){
                 throw new ConfigException("owlsyntax.jar must be on the classpath.",e);

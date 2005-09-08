@@ -395,7 +395,6 @@ public class TestResource
                     Resource r = m.createResource();
                     r.addProperty( RDF.type, m.getProfile().CLASS() );
                     OntResource or = (OntResource) r.as( OntResource.class );
-                    boolean f = owlFull();
                     assertFalse( "should not be annotation prop", or.isAnnotationProperty() );
                     assertFalse( "should not be all different", or.isAllDifferent() );
                     assertTrue( "should be class", or.isClass() );
