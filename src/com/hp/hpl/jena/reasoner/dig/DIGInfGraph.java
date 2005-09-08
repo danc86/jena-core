@@ -227,6 +227,11 @@ public class DIGInfGraph
             m_adapter.collectNamedTerms( DIGProfile.ALL_INDIVIDUALS,
                                          new String[] {DIGProfile.INDIVIDUAL_SET, DIGProfile.INDIVIDUAL} );
         }
+        catch (DIGInconsistentKBException e) {
+            report.add( true, "DIG KB inconsistent", e.getMessage() );
+            // no point continuing further
+            return report;
+        }
         catch (DIGErrorResponseException e) {
             report.add( true, "DIG KB incoherent", e.getMessage() );
         }
@@ -252,13 +257,24 @@ public class DIGInfGraph
         for (Iterator j = m_adapter.getKnownIndividuals().iterator(); j.hasNext(); ) {
             String ind = (String) j.next();
             Node indNode = (Node) vMap.map1( ind );
+            ExtendedIterator i1 = null;
 
             try {
-                ExtendedIterator i1 = q1.find( new TriplePattern( indNode, RDF.type.asNode(), null ), m_adapter );
+                i1 = q1.find( new TriplePattern( indNode, RDF.type.asNode(), null ), m_adapter );
+            }
+            catch (DIGInconsistentKBException e) {
+                report.add( true, "DIG KB inconsistent", e.getMessage() );
+                // no point continuing further
+                break;
             }
             catch (DIGErrorResponseException e) {
                 // we assume this is an incoherent KB exception - should check
                 report.add( true, "meaningless individual", (indNode.isBlank() ? indNode.getBlankNodeId().toString() : indNode.getURI()), ind );
+            }
+            finally {
+                if (i1 != null) {
+                    i1.close();
+                }
             }
         }
 

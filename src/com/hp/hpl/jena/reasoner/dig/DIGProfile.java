@@ -27,7 +27,7 @@ package com.hp.hpl.jena.reasoner.dig;
 
 /**
  * <p>
- * Encapsulates the multiple extant versions of the DIG protocol, which have 
+ * Encapsulates the multiple extant versions of the DIG protocol, which have
  * different expectations as to namespaces, XML encodings, and other variables. This
  * allows us to parameterise the DIG interface to different DIG enabled tools.
  * </p>
@@ -35,41 +35,41 @@ package com.hp.hpl.jena.reasoner.dig;
  * @author Ian Dickinson, HP Labs (<a href="mailto:Ian.Dickinson@hp.com">email</a>)
  * @version Release @release@ ($Id$)
  */
-public interface DIGProfile 
+public interface DIGProfile
 {
     // Constants
     //////////////////////////////////
 
     /* DIG verbs and other constants */
-    
+
     /** The DIG verb to get the identification information on the reasoner */
     public static final String GET_IDENTIFIER = "getIdentifier";
 
     /** The DIG attribute denoting the version string of a reasoner */
     public static final String VERSION = "version";
-    
+
     /** The DIG attribute denoting the version message string of a reasoner */
     public static final String MESSAGE = "message";
-    
+
     /** The DIG element denoting the capabilities of the reasoner */
     public static final String SUPPORTS = "supports";
-    
+
     /** The DIG element denoting the language capabilities of the reasoner */
     public static final String LANGUAGE = "language";
-    
+
     /** The DIG element denoting the ask capabilities of the reasoner */
     public static final String ASK = "ask";
-    
+
     /** The DIG element denoting the tell capabilities of the reasoner */
     public static final String TELL = "tell";
-    
+
     // verbs
     public static final String TELLS            = "tells";
     public static final String ASKS             = "asks";
     public static final String NEWKB            = "newKB";
     public static final String RELEASEKB        = "releaseKB";
     public static final String RESPONSE         = "responses";      // TODO Racer bug - returns <responses> not <response>
-    
+
     // responses
     public static final String OK               = "ok";
     public static final String KB               = "kb";
@@ -83,7 +83,7 @@ public interface DIGProfile
     public static final String TRUE             = "true";
     public static final String FALSE            = "false";
     public static final String WARNING          = "warning";
-    
+
     // queries
     public static final String ALL_CONCEPT_NAMES = "allConceptNames";
     public static final String ALL_ROLE_NAMES    = "allRoleNames";
@@ -105,9 +105,9 @@ public interface DIGProfile
     public static final String ROLE_FILLERS      = "roleFillers";
     public static final String RELATED_INDIVIDUALS = "relatedIndividuals";
     public static final String TOLD_VALUES       = "toldValues";
-    
+
     // tell language
-    
+
     public static final String DEFCONCEPT       = "defconcept";
     public static final String DEFROLE          = "defrole";
     public static final String DEFFEATURE       = "deffeature";
@@ -127,9 +127,9 @@ public interface DIGProfile
     public static final String INSTANCEOF       = "instanceof";
     public static final String RELATED          = "related";
     public static final String VALUE            = "value";
-   
+
     // concept language
-    
+
     public static final String TOP              = "top";
     public static final String BOTTOM           = "bottom";
     public static final String CATOM            = "catom";
@@ -159,10 +159,10 @@ public interface DIGProfile
     public static final String NUM              = "num";
     public static final String IVAL             = "ival";
     public static final String SVAL             = "sval";
-    
-    
+
+
     // attributes
-    
+
     public static final String NAME             = "name";
     public static final String VAL              = "val";
     public static final String MIN              = "min";
@@ -171,18 +171,21 @@ public interface DIGProfile
     public static final String ID               = "id";
     public static final String CODE             = "code";
 
-    
+
     // External signature methods
     //////////////////////////////////
 
     /** Answer the root namespace for this version of the DIG protocol */
     public String getDIGNamespace();
-    
+
     /** Answer the location of the DIG schema for this version of the DIG protocol */
     public String getSchemaLocation();
-    
+
     /** Answer the HTTP Content-Type of a DIG request (e.g. text/xml) */
     public String getContentType();
+
+    /** Answer the string value of an error message denoting an inconsistent KB */
+    public String getInconsistentKBMessage();
 }
 
 

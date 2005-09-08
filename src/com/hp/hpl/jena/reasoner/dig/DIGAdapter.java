@@ -34,7 +34,6 @@ import com.hp.hpl.jena.ontology.*;
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.reasoner.TriplePattern;
 import com.hp.hpl.jena.util.iterator.*;
-import com.hp.hpl.jena.util.iterator.ExtendedIterator;
 import com.hp.hpl.jena.util.xml.SimpleXMLPath;
 import com.hp.hpl.jena.vocabulary.*;
 
@@ -58,9 +57,18 @@ public class DIGAdapter
 
     /** DIG profile for 1.7 */
     public static final DIGProfile RACER_17_PROFILE = new DIGProfile() {
-        public String getDIGNamespace()   {return "http://dl.kr.org/dig/lang"; }
-        public String getSchemaLocation() {return "http://potato.cs.man.ac.uk/dig/level0/dig.xsd"; }
-        public String getContentType()    {return "application/x-www-form-urlencoded";}
+        public String getDIGNamespace()          {return "http://dl.kr.org/dig/lang"; }
+        public String getSchemaLocation()        {return "http://potato.cs.man.ac.uk/dig/level0/dig.xsd"; }
+        public String getContentType()           {return "application/x-www-form-urlencoded";}
+        public String getInconsistentKBMessage() {return null;}
+    };
+
+    /** DIG profile for Pellet */
+    public static final DIGProfile PELLET_PROFILE = new DIGProfile() {
+        public String getDIGNamespace()          {return "http://dl.kr.org/dig/lang"; }
+        public String getSchemaLocation()        {return "http://potato.cs.man.ac.uk/dig/level0/dig.xsd"; }
+        public String getContentType()           {return "application/x-www-form-urlencoded";}
+        public String getInconsistentKBMessage() {return "Inconsistent KB";}
     };
 
     // switch codes for expression types
@@ -175,8 +183,8 @@ public class DIGAdapter
     // Instance variables
     //////////////////////////////////
 
-    /** The profile for the DIG interface this reasoner is interacting with. Defaults to Racer 1.7 */
-    protected DIGProfile m_profile = RACER_17_PROFILE;
+    /** The profile for the DIG interface this reasoner is interacting with. Pellet */
+    protected DIGProfile m_profile = PELLET_PROFILE;
 
     /** The graph that contains the data we are uploading to the external DIG reasoner */
     protected OntModel m_sourceData;
@@ -455,8 +463,8 @@ public class DIGAdapter
         for (int i = 0;  i < s_queryTable.length;  i++) {
             DIGQueryTranslator dqt = s_queryTable[i];
 
-            if (s_queryTable[i].trigger( pattern, this, premises )) {
-                return s_queryTable[i];
+            if (dqt.trigger( pattern, this, premises )) {
+                return dqt;
             }
         }
 
