@@ -92,7 +92,6 @@ public class TestOntDocumentManager
                                                      ((Boolean) s_testData[i][2]).booleanValue(),
                                                      (String) s_testData[i][3]) );
         }
-
         return suite;
     }
 
@@ -220,11 +219,10 @@ public class TestOntDocumentManager
         mgr.reset();
         assertTrue( mgr.getProcessImports() );
 
-        assertEquals( OntDocumentManager.DEFAULT_METADATA_PATH, mgr.getMetadataSearchPath() );
         mgr.setMetadataSearchPath( "file:foo.xml", true );
         assertEquals( "file:foo.xml", mgr.getMetadataSearchPath() );
         mgr.reset();
-        assertEquals( OntDocumentManager.DEFAULT_METADATA_PATH, mgr.getMetadataSearchPath() );
+        assertEquals( "file:foo.xml", mgr.getMetadataSearchPath() );
 
         assertTrue( mgr.getCacheModels() );
         mgr.setCacheModels(false );
@@ -320,7 +318,8 @@ public class TestOntDocumentManager
         OntModel m = odm.getOntology( "http://www.w3.org/2002/07/owl", OntModelSpec.OWL_MEM );
         assertNotNull( m );
         assertSame( odm, m.getDocumentManager() );
-        assertSame( m, odm.getOntology( "http://www.w3.org/2002/07/owl", OntModelSpec.OWL_MEM ) );
+        OntModel m1 = odm.getOntology( "http://www.w3.org/2002/07/owl", OntModelSpec.OWL_MEM );
+        assertSame( m, m1 );
     }
 
     public void testProcessImports() {
