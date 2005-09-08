@@ -56,7 +56,7 @@ public class LocationMapper
         {
             theMapper = new LocationMapper() ;
             if ( getGlobalConfigPath() != null )
-            theMapper.initFromPath(getGlobalConfigPath(), false) ;
+                theMapper.initFromPath(getGlobalConfigPath(), false) ;
         }
         return theMapper ;
     }
@@ -243,7 +243,7 @@ public class LocationMapper
         return s ;
     }
     
-    private void processConfig(Model m)
+    public void processConfig(Model m)
     {
         StmtIterator mappings =
             m.listStatements(null, LocationMappingVocab.mapping, (RDFNode)null) ;

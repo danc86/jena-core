@@ -303,7 +303,7 @@ public class FileManager
         if ( baseURI == null )
             baseURI = chooseBaseURI(filenameOrURI) ;
 
-        String mappedURI = remap(filenameOrURI) ;
+        String mappedURI = mapURI(filenameOrURI) ;
 
         if ( syntax == null )
         {
