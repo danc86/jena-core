@@ -132,10 +132,10 @@ public class ParseException extends SAXParseException implements
             return (file != null ? (file + ": ") : "") + msg;
 
         if (sax.getColumnNumber() == -1) {
-            return rslt + "[" + sax.getLineNumber() + "]: " + msg;
+            return rslt + "(line " + sax.getLineNumber() + "): " + msg;
         }
-        return rslt + "[" + sax.getLineNumber() + ":" + sax.getColumnNumber()
-                + "]: " + msg;
+        return rslt + "(line " + sax.getLineNumber() + " column " + sax.getColumnNumber()
+                + "): " + msg;
 
     }
 
