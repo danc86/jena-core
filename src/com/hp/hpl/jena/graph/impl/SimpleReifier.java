@@ -152,7 +152,7 @@ public class SimpleReifier implements Reifier
         Triple reified = tripleMap.getTriple( tag );
         if (reified == null)
             updateFragments( s, fragment, tag, object );
-        else if (s.clashedWith( object, reified )) 
+        else if (s.clashedWith( tag, object, reified )) 
             tripleMap.removeTriple( tag, reified );
         }
 

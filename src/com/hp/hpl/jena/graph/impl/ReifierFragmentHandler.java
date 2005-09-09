@@ -30,7 +30,7 @@ public interface ReifierFragmentHandler
          @param reified the completely reified triple
          @return true iff the fragment clashed with the triple
     */
-    public abstract boolean clashedWith( Node fragmentObject, Triple reified );
+    public abstract boolean clashedWith( Node tag, Node fragmentObject, Triple reified );
 
     /**
          If this <code>fragment</code> completes a reification for <code>tag</code>,

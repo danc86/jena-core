@@ -18,11 +18,11 @@ public abstract class SimpleReifierFragmentHandler implements ReifierFragmentHan
     
     public abstract boolean clashesWith( ReifierFragmentsMap map, Node fragmentObject, Triple reified );
     
-    public boolean clashedWith( Node fragmentObject, Triple reified )
+    public boolean clashedWith( Node tag, Node fragmentObject, Triple reified )
         {
         if (clashesWith( map, fragmentObject, reified ))
             {
-            map.putAugmentedTriple( this, reified.getSubject(), fragmentObject, reified );
+            map.putAugmentedTriple( this, tag, fragmentObject, reified );
             return true;
             }
         else
