@@ -9,8 +9,6 @@
  *****************************************************************/
 package com.hp.hpl.jena.datatypes.xsd.impl;
 
-import com.hp.hpl.jena.graph.impl.LiteralLabel;
-
 /**
  * Datatype template used to define XSD int types
  *

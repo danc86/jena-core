@@ -64,8 +64,11 @@ public class TripleCache
     public Triple get( Node s, Node p, Node o )
         { 
         Triple already = triples[(Triple.hashCode( s, p, o ) & 0x7fffffff) % SIZE]; 
-//        if (already == null || !already.sameAs( s, p, o )) misses += 1; else hits += 1;
-//        if ((hits + misses) % 1000 == 0) System.err.println( ">> cache [" + id + "] hits: " + hits + ", misses: " + misses + ", occ: " + count() + "/" + SIZE );
+        if (false)
+            {
+            if (already == null || !already.sameAs( s, p, o )) misses += 1; else hits += 1;
+            if ((hits + misses) % 1000 == 0) System.err.println( ">> cache [" + id + "] hits: " + hits + ", misses: " + misses + ", occ: " + count() + "/" + SIZE );
+            }
         return already == null || !already.sameAs( s, p, o ) ? null : already;
         }
     }

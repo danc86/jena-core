@@ -162,20 +162,22 @@ public abstract class AbstractTestReifiedStatements extends ModelTestBase
         testDoesNotReify( "model should not reify rubbish", model.createResource( "spoo:rubbish" ) );
         }
 
-//    public void testQuintetOfQuadlets() {
-//        Resource rs = model.createResource();
-//        rs.addProperty(RDF.type,RDF.Statement);
-//        model.createResource().addProperty(RDF.value,rs);
-//        rs.addProperty(RDF.subject,model.createResource());
-//        rs.addProperty(RDF.predicate,model.createProperty("http://example.org/foo"));
-//        rs.addProperty(RDF.object,model.createResource());
-//        rs.addProperty(RDF.object,model.createResource());
-//        StmtIterator it = model.listStatements();
-//        while (it.hasNext()) {
-//            Statement s = it.nextStatement();
-//            assertFalse(s.getObject().equals(s.getSubject()));
-//        }
-//    }
+    public void testQuintetOfQuadlets() 
+        {
+        Resource rs = model.createResource();
+        rs.addProperty( RDF.type, RDF.Statement );
+        model.createResource().addProperty( RDF.value, rs );
+        rs.addProperty( RDF.subject, model.createResource() );
+        rs.addProperty( RDF.predicate, model.createProperty( "http://example.org/foo" ) );
+        rs.addProperty( RDF.object, model.createResource() );
+        rs.addProperty( RDF.object, model.createResource() );
+        StmtIterator it = model.listStatements();
+        while (it.hasNext()) 
+            {
+            Statement s = it.nextStatement();
+            assertFalse(s.getObject().equals(s.getSubject()));
+            }
+        }
     
     public void testConstructionByURI()
         {

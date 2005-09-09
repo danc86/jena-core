@@ -9,9 +9,6 @@ package com.hp.hpl.jena.graph.compose;
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.util.iterator.*;
 
-import com.hp.hpl.jena.mem.*;
-
-
 /**
     Graph operation for wrapping a base graph and leaving it unchanged while recording
     all the attempted updates for later access.

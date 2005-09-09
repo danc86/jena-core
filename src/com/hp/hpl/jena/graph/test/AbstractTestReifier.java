@@ -472,6 +472,16 @@ public abstract class AbstractTestReifier extends GraphTestBase
         assertEquals(  tripleSet( triples ), iteratorToSet( r.findExposed( triple( pattern ) ) ) );
         }
 
+    public void testQuintetBug()
+        {
+        String spec = "rs rdf:type rdf:Statement; foo rdf:value rs; rs rdf:subject X; rs rdf:predicate P; rs rdf:object O1; rs rdf:object O2";
+        Graph g = getGraph( Standard );
+        graphAdd( g, spec );
+        Graph wanted = getGraph( Minimal );
+        graphAdd( wanted, spec );
+        assertIsomorphic( wanted, g );
+        }
+    
 //    public void testKevinCaseC()
 //        {
 //        Graph G = GraphBase.withReification( getGraph() );
