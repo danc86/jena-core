@@ -96,8 +96,18 @@
     dc:creator "Ben Szekely and Joe Betz"
     ; dc:name "Jastor"
     ; dc:description "Code generator that emits Java Beans from OWL Web Ontologies"
-    ; ct:link <http://jastor.sourceforge.net>
+    ; ct:link "http://jastor.sourceforge.net"
     ; ct:linkTitle "Jastor website"
     ; ct:licence "Common Public License"
     .
+
+[]
+    dc:creator "Weijian Fang"
+    ; dc:name "Jena Sesame Model"
+    ; dc:description "Jena Sesame Model - Sesame triple store for Jena models"
+    ; ct:link  "http://sourceforge.net/projects/jenasesamemodel/"
+    ; ct:linkTitle "Jena Sesame Model"
+    ; ct:licence "GNU"
+    .
+
 
