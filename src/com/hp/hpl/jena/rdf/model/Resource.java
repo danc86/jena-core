@@ -59,7 +59,7 @@ import com.hp.hpl.jena.graph.Node;
  * @version Release='$Name$' Revision='$Revision$' Date='$Date$'
  */
 public interface Resource extends RDFNode {
-      
+
     /** Returns an a unique identifier for anonymous resources.
      *
      * <p>The id is unique within the scope of a particular implementation.  All
@@ -74,7 +74,7 @@ public interface Resource extends RDFNode {
 
     /**
         Answer the underlying [SPI] Node of this Resource.
-        @deprecated: use asNode(). 
+        @deprecated use asNode().
     */
     public Node getNode();
 
@@ -136,7 +136,7 @@ public interface Resource extends RDFNode {
     /**
      Answer some statement (this, p, O) in the associated model. If there are several
      such statements, any one of them may be returned. If no such statements exist,
-     null is returned - in this is differs from getRequiredProperty. 
+     null is returned - in this is differs from getRequiredProperty.
      @param p the property sought
      @return a statement (this, p, O), or null if no such statements exist here
      */
@@ -351,7 +351,7 @@ public interface Resource extends RDFNode {
     /**
      Delete all the statements with predicate <code>p</code> for this resource
      from its associated model.
-     
+
      @param p the property to remove
      @return this resource, to permit cascading
      */
@@ -375,6 +375,6 @@ public interface Resource extends RDFNode {
     /** Return the model associated with this resource.
      * @return The model associated with this resource.
      */
-    public Model getModel(); 
+    public Model getModel();
 }
 
