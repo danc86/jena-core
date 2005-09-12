@@ -175,8 +175,7 @@ public class OntDocumentManager
      * @param path The search path to search for initial metadata, which will
      * also replace the current search path for this document manager.  Use
      * null to prevent loading of any initial ontology metadata. The path is a series
-     * of URL's, separated by the {@link #PATH_DELIMITER}, which defaults to
-     * semi-colon (;).
+     * of URL's, separated by a semi-colon (;).
      */
     public OntDocumentManager( String path ) {
         this( null, path );
