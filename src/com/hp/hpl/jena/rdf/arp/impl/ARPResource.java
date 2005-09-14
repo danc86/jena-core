@@ -41,7 +41,7 @@ package com.hp.hpl.jena.rdf.arp.impl;
  *
  * @author  jjc
  */
-public class ARPResource implements  AResourceInternal {
+public class ARPResource extends TaintImpl implements  AResourceInternal {
     // Constants cribbed from com.megginson.sax.rdf.RDFFilter
     static public final boolean DEBUG = false;
     final private XMLHandler arp;

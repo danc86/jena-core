@@ -17,56 +17,52 @@ import com.hp.hpl.jena.rdf.arp.states.Frame;
  * @author <a href="mailto:Jeremy.Carroll@hp.com">Jeremy Carroll</a>
  * 
  */
-class XMLNullContext extends XMLContext implements ARPErrorNumbers {
-    final XMLHandler forErrors;
-
+class XMLNullContext extends AbsXMLContext implements ARPErrorNumbers {
+    
     final int errno;
 
     final String errmsg;
 
     XMLNullContext(XMLHandler f, int eno)  {
-        super(f.iriFactory().create(""));
-        forErrors = f;
+        super(true,null, f.iriFactory().create(""), new TaintImpl(), "", new TaintImpl());
         errno = eno;
         errmsg = eno == ERR_RESOLVING_URI_AGAINST_NULL_BASE ? "Base URI is null, but there are relative URIs to resolve."
                 : "Base URI is \"\", relative URIs left as relative.";
     }
 
-    private XMLNullContext(XMLContext document, RDFURIReference uri, String lang,
+    private XMLNullContext(AbsXMLContext document, RDFURIReference uri, Taint baseT,String lang,Taint langT,
             XMLNullContext parent) {
-        super(document, uri, lang);
-        forErrors = parent.forErrors;
+        super(true,document, uri, baseT, lang, langT);
         errno = parent.errno;
         errmsg = parent.errmsg;
     }
-
-    XMLContext clone(XMLContext document,RDFURIReference uri,  String lang) {
-        return new XMLNullContext(document, uri, lang, this);
+    AbsXMLContext clone(RDFURIReference uri,Taint baseT,String lang, Taint langT) {
+        return new XMLNullContext(document,uri,baseT,lang,langT,this);
     }
 
-    RDFURIReference resolveAsURI(String uri) throws SAXParseException {
-        RDFURIReference rslt = this.getURI().resolve(uri);
-        if (!rslt.isAbsolute()) {
-            badBaseUsed();
-        }
-        return rslt;
+   
 
+    boolean keepDocument(XMLHandler forErrors) {
+        return !forErrors.ignoring(IGN_XMLBASE_SIGNIFICANT);
     }
 
-    private void badBaseUsed() throws SAXParseException {
-        ((Frame) forErrors.frame).warning(
-                errno,
-                errmsg);
-    }
-
+    
+    
     boolean isSameAsDocument() {
         return this == document;
     }
+
     
-    String getBase() throws SAXParseException {
-        badBaseUsed();
-        return "";
+
+    void baseUsed(XMLHandler forErrors, Taint taintMe, String relUri, String string) throws SAXParseException {
+        forErrors.warning(
+                taintMe,
+                errno,
+                errmsg + ": <"+relUri+">");
+        
     }
+    
+
 }
 
 /*
