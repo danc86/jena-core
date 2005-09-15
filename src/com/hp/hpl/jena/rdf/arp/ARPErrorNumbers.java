@@ -405,6 +405,14 @@ public interface ARPErrorNumbers {
        // TODO: javadoc here
         int WARN_NOT_RDF_NAMESPACE = 135;
         
+        /**
+         *A URI reference which is a relative reference
+         *has been used either as the starting base URI
+         *or as the outcome of a URI resolution somehow.
+         *(W136)
+         */
+        public int WARN_RELATIVE_URI = 136;
+        
     
     /** Should not happen. 
         Please report occurrence to jjc@hpl.hp.com with test case, if possible. 

@@ -272,7 +272,7 @@ public class MoreTests extends TestCase implements RDFErrorHandler,
 		FileInputStream fin = new FileInputStream(
 				"testing/wg/rdfms-difference-between-ID-and-about/test1.rdf");
 		rdr.setErrorHandler(this);
-		expected = new int[] { ERR_RESOLVING_URI_AGAINST_NULL_BASE };
+		expected = new int[] { ERR_RESOLVING_URI_AGAINST_NULL_BASE, WARN_RELATIVE_URI};
 		rdr.read(m, fin, null);
 		fin.close();
 		checkExpected();
@@ -304,7 +304,7 @@ public class MoreTests extends TestCase implements RDFErrorHandler,
 		FileInputStream fin = new FileInputStream(
 				"testing/wg/rdfms-difference-between-ID-and-about/test1.rdf");
 		rdr.setErrorHandler(this);
-		expected = new int[] { WARN_RESOLVING_URI_AGAINST_EMPTY_BASE };
+		expected = new int[] { WARN_RESOLVING_URI_AGAINST_EMPTY_BASE,WARN_RELATIVE_URI };
 		rdr.read(m, fin, "");
 		fin.close();
 		Model m1 = createMemModel();

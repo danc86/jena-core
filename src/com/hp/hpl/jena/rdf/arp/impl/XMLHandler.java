@@ -283,21 +283,7 @@ public class XMLHandler extends LexicalHandlerImpl implements ARPErrorNumbers,
         return initialContextWithBase(base).withLang(this,lang);
     }
 
-    protected void checkBadURI(Taint taintMe,RDFURIReference uri) throws SAXParseException {
-        if (uri.isRDFURIReference() || !uri.isVeryBad())
-            return;
-        // TODO: extract good message
-        String msg = "todo <"+uri+">";
-//            e.getMessage();
-//        if (msg.endsWith(uri)) {
-//            msg = msg.substring(0,msg.length()-uri.length())+"<"+uri+">";            
-//        } else {
-//            msg = "<" + uri + "> " + msg; 
-//        }
-//        URI uri2;
-//        uri2.
-        warning(taintMe,WARN_MALFORMED_URI, "Bad URI: " + msg);
-    }
+    
     private AbsXMLContext initialContextWithBase(String base) throws SAXParseException {
         
         // TODO: test tainting in general
@@ -465,6 +451,11 @@ public class XMLHandler extends LexicalHandlerImpl implements ARPErrorNumbers,
                     warning(null,WARN_BAD_XML_NAMESPACE_URI, "Namespace URI ref <"
                             + uri + "> may not be used in RDF/XML.");
              }   
+    }
+
+    public boolean allowRelativeURIs() {
+        // stub, may change in future.
+        return false;
     }
 
 }
