@@ -8,7 +8,8 @@
 package com.hp.hpl.jena.rdf.arp.test;
 import junit.framework.*;
 
-import com.hp.hpl.jena.rdf.arp.*;
+import com.hp.hpl.jena.iri.*;
+
 //import java.net.*;
 /**
  * @author jjc
@@ -16,12 +17,10 @@ import com.hp.hpl.jena.rdf.arp.*;
  */
 public class URITests
 	extends TestCase {
-    // TODO: what with these tests
 	static public Test suite() {
 		TestSuite suite = new TestSuite("URIs");
 		suite.addTest(new URITests("testNoDomain"));
-        // is this test right or wrong??
-//		suite.addTest(new URITests("testLong"));
+		suite.addTest(new URITests("testLong"));
 		return suite;
 	}
 
@@ -30,14 +29,10 @@ public class URITests
 	}
 
 	public void testURI(String uri, boolean ok) {
-		try {
-			new URI(uri);
-			assertTrue("<" + uri + "> is not a URI", ok);
-		}
-		catch (MalformedURIException e){
-	//	catch (URISyntaxException e)	{
-		 assertFalse("<" + uri + "> is a URI", ok);
-		}		
+		    RDFURIReference ref =
+            new IRIFactory().create(uri);
+			assertEquals("<" + uri + "> is"+(ok?" ":" not ")+"a URI", ok, ref.isRDFURIReference());
+            
 	}
 	public void testNoDomain()  {
        testURI("app://calendar/event",true);

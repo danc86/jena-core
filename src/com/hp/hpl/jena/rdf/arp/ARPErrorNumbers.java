@@ -416,7 +416,9 @@ public interface ARPErrorNumbers {
      (XML syntax errors are not reported with this mechanism, 
      but as {@link org.xml.sax.SAXParseException SAXParseException}'s).
      The detailed error message indicates the nature of the contravention.
-     (E201)
+     (E201).
+     Future releases may specialize these codes, it is better to
+     use {@link ParseException#isSyntaxError()} to check for syntax errors.
      */
     public int ERR_SYNTAX_ERROR = 201;
     /** Non-white character data has occurred where the RDF grammar 

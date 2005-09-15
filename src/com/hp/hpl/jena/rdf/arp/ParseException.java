@@ -70,6 +70,28 @@ public class ParseException extends SAXParseException implements
         return id;
     }
 
+    /**
+     * Is this error an RDF syntax error.
+     * A syntax error indicates that well-formed XML,
+     * uses RDF properties and attributes, and whitespace
+     * and XML elements, in a way that does not conform with
+     * the RDF/XML Syntax (Revised) specification.
+     * (Currently most such errors have code
+     * {@link ARPErrorNumbers#ERR_SYNTAX_ERROR},
+     * but this may change in the future).
+     * @return
+     */
+    public boolean isSyntaxError() {
+        switch (id) {
+        case ERR_SYNTAX_ERROR:
+        case ERR_BAD_RDF_ELEMENT:
+        case ERR_BAD_RDF_ATTRIBUTE:
+        case ERR_LI_AS_TYPE:
+        case ERR_NOT_WHITESPACE:
+            return true;
+        }
+        return false;
+    }
 
     SAXParseException rootCause() {
         Exception e = getException();

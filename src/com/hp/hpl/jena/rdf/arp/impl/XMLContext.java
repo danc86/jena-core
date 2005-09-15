@@ -86,10 +86,6 @@ boolean isSameAsDocument() {
         return this==document 
         || (uri==null?document.uri==null: uri.equals(document.uri));
     }
-    XMLContext getDocument() {
-        // TODO: change back
-        return (XMLContext)document;
-    }
     AbsXMLContext clone(RDFURIReference uri,Taint baseT,String lang, Taint langT) {
     	return new XMLContext(true,document,uri,baseT,lang,langT);
     }
@@ -97,7 +93,7 @@ boolean isSameAsDocument() {
         if (document==null)
             return;
         if (!isSameAsDocument()) {
-                String other = getDocument().uri.resolve(relUri).toString();
+                String other = document.uri.resolve(relUri).toString();
             if (!other.equals(resolvedURI)) {
                 forErrors.warning(taintMe,IGN_XMLBASE_SIGNIFICANT,
                         "Use of attribute xml:base changes interpretation of relative URI: \""

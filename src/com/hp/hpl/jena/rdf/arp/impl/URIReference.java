@@ -47,7 +47,7 @@ import com.hp.hpl.jena.rdf.arp.states.Frame;
 
 ;
 
-// TODO: IRI spec conformance
+// TODO: not for 2.3 IRI spec conformance
 
 /**
  * 
@@ -188,7 +188,7 @@ public class URIReference extends TaintImpl implements AResourceInternal, ARPErr
             throws SAXParseException {
         URIReference rslt = new URIReference(ns + local);
         f.checkEncoding(rslt,local);
-        // TODO: move some of the check upwards ...
+        // TODO: not for 2.3 move some of the check upwards ...
         RDFURIReference iri = f.arp.iriFactory().create(ns+local);
         AbsXMLContext.checkURI(f.arp,rslt,iri);
         return rslt;

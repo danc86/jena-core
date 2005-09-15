@@ -891,7 +891,7 @@ class WGTestSuite extends TestSuite implements ARPErrorNumbers {
             } catch (IOException ioe) {
                 fail(ioe.getMessage());
             }
-            // TODO: tidy up this code a bit, I don't understand it.
+            // TODO: not for 2.3. Tidy up this code a bit, I don't understand it.
             HashSet ex2 = expected==null?null:new HashSet(expected);
             if (expected==null)
             for (int j = 2; j >= 0; j--)
