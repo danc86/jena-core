@@ -185,6 +185,18 @@ public /* abstract */ class AbstractTestGraph extends GraphTestBase
         try { th.executeInTransaction( cmd ); } 
         catch (UnsupportedOperationException x) {}
         }
+    
+    public void testExecuteInTransactionCatchesThrowable()
+        {Graph g = getGraph();
+        TransactionHandler th = g.getTransactionHandler();
+        if (th.transactionsSupported())
+            {
+            Command cmd = new Command() 
+                { public Object execute() throws Error { throw new Error(); } };
+            try { th.executeInTransaction( cmd ); } 
+            catch (JenaException x) {}
+            }
+        }
 
     static final Triple [] tripleArray = tripleArray( "S P O; A R B; X Q Y" );
 
