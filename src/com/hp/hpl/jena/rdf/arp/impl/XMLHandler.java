@@ -77,17 +77,19 @@ public class XMLHandler extends LexicalHandlerImpl implements ARPErrorNumbers,
 
     public void triple(ANode s, ANode p, ANode o) {
         StatementHandler stmt;
-        if (s.isTainted() || p.isTainted() || o.isTainted()) {
+        boolean bad=s.isTainted() || p.isTainted() || o.isTainted();
+        if (bad) {
             stmt = handlers.getBadStatementHandler();
         } else {
             stmt = handlers.getStatementHandler();
         }
         AResourceInternal subj = (AResourceInternal) s;
         AResourceInternal pred = (AResourceInternal) p;
-        subj.setHasBeenUsed();
+        if (!bad)
+            subj.setHasBeenUsed();
         if (o instanceof AResource) {
             AResourceInternal obj = (AResourceInternal) o;
-            obj.setHasBeenUsed();
+            if (!bad) obj.setHasBeenUsed();
             stmt.statement(subj, pred, obj);
         } else
             stmt.statement(subj, pred, (ALiteral) o);
