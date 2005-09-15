@@ -154,7 +154,10 @@ public class URIReference extends TaintImpl implements AResourceInternal, ARPErr
     public static URIReference fromID(Frame f, AbsXMLContext x, String name)
             throws SAXParseException {
         // Other errors are checked for by the AttributeLexer
-        return resolve(f,x,"#"+name);
+        URIReference rslt = resolve(f,x,"#"+name);
+        f.checkIdSymbol(rslt,x,name);
+        return rslt;
+        
     }
 
     /**

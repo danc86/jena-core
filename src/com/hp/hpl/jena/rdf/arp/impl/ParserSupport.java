@@ -109,13 +109,12 @@ public class ParserSupport
 		}
 
 	}
-	protected String checkNodeID(Taint taintMe, String str) throws SAXParseException {
+	protected void checkNodeID(Taint taintMe, String str) throws SAXParseException {
 		if (!XMLChar.isValidNCName(str)) {
 			warning(taintMe,
 				WARN_BAD_NAME,
 				"Not an XML Name: '" + str + "'");
 		}
-		return str;
 	}
 	public void checkString(Taint taintMe,String t) throws SAXParseException {
 		if (!CharacterModel.isNormalFormC(t))

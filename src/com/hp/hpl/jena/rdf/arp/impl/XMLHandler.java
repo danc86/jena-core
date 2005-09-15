@@ -76,12 +76,12 @@ public class XMLHandler extends LexicalHandlerImpl implements ARPErrorNumbers,
     protected Map idsUsed = new HashMap();
 
     public void triple(ANode s, ANode p, ANode o) {
-        
-        if (s.isTainted() || p.isTainted() || o.isTainted())
-            return;
-        
-        // System.out.println(s + " " + p + " " + o + " .");
-        StatementHandler stmt = handlers.getStatementHandler();
+        StatementHandler stmt;
+        if (s.isTainted() || p.isTainted() || o.isTainted()) {
+            stmt = handlers.getBadStatementHandler();
+        } else {
+            stmt = handlers.getStatementHandler();
+        }
         AResourceInternal subj = (AResourceInternal) s;
         AResourceInternal pred = (AResourceInternal) p;
         subj.setHasBeenUsed();
