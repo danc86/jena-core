@@ -56,7 +56,7 @@
 
 /* Modified by Jeremy J. Carroll HP
  *
- * Was originally org/apache/xerces/utils/XercesURI.java in Xerces 1.4.4
+ * Was originally org/apache/xerces/utils/URI.java in Xerces 1.4.4
  *
  *
  * Modifications are:
