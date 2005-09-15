@@ -76,6 +76,10 @@ public class XMLHandler extends LexicalHandlerImpl implements ARPErrorNumbers,
     protected Map idsUsed = new HashMap();
 
     public void triple(ANode s, ANode p, ANode o) {
+        
+        if (s.isTainted() || p.isTainted() || o.isTainted())
+            return;
+        
         // System.out.println(s + " " + p + " " + o + " .");
         StatementHandler stmt = handlers.getStatementHandler();
         AResourceInternal subj = (AResourceInternal) s;
@@ -196,6 +200,8 @@ public class XMLHandler extends LexicalHandlerImpl implements ARPErrorNumbers,
                 handlers.getErrorHandler().warning(e);
                 break;
             case EM_ERROR:
+                if (taintMe != null)
+                    taintMe.taint();
                 handlers.getErrorHandler().error(e);
                 break;
             case EM_FATAL:
