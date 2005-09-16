@@ -508,7 +508,22 @@ public interface ARPErrorNumbers {
      * An IOException occurred. (E213).
      */
     public int ERR_GENERIC_IO = 213;
-   /**   The error recovery code failed; this can occur. (E300)
+    
+    /**
+     * The base URI, specified in the API call, or
+     * with an xml:base was malformed (@link #WARN_MALFORMED_URI}.
+     * A relative URI needs to be resolved against it,
+     * and this cannot be done correctly. (E214)
+     */
+    public int ERR_RESOLVING_AGAINST_MALFORMED_BASE = 214;
+    /**
+     * The base URI, specified in the API call, or
+     * with an xml:base was relative (@link #WARN_RELATIVE_URI}.
+     * A relative URI needs to be resolved against it,
+     * and this resulting in a relative URI. (E215)
+     */
+    public int ERR_RESOLVING_AGAINST_RELATIVE_BASE = 215;
+      /**   The error recovery code failed; this can occur. (E300)
     **/
     public int ERR_UNABLE_TO_RECOVER = 300;
 

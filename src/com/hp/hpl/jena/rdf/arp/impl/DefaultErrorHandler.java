@@ -60,6 +60,7 @@ public class DefaultErrorHandler implements org.xml.sax.ErrorHandler {
     
     public void warning(org.xml.sax.SAXParseException e) throws org.xml.sax.SAXException {
         System.err.println("Warning: " + ParseException.formatMessage(e)); 
+//        e.printStackTrace();
         
     }
     

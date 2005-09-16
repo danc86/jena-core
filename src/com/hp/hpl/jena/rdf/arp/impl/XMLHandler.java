@@ -291,17 +291,18 @@ public class XMLHandler extends LexicalHandlerImpl implements ARPErrorNumbers,
                 warning(null,IGN_NO_BASE_URI_SPECIFIED,
                         "Base URI not specified for input file; local URI references will be in error.");
 
-                return new XMLNullContext(this,
+                return new XMLBaselessContext(this,
                         ERR_RESOLVING_URI_AGAINST_NULL_BASE);
 
             } else if (base.equals("")) {
                 allowRelativeReferences = true;
                 warning(null,IGN_NO_BASE_URI_SPECIFIED,
                         "Base URI specified as \"\"; local URI references will not be resolved.");
-                return new XMLNullContext(this,
+                return new XMLBaselessContext(this,
                         WARN_RESOLVING_URI_AGAINST_EMPTY_BASE);
             } else {
-                return new XMLContext(this,base);
+                return new XMLBaselessContext(this,
+                        ERR_RESOLVING_AGAINST_RELATIVE_BASE).withBase(this,base);
             }
     }
     /*
@@ -456,6 +457,13 @@ public class XMLHandler extends LexicalHandlerImpl implements ARPErrorNumbers,
 
     public boolean allowRelativeURIs() {
         return allowRelativeReferences;
+    }
+    private RDFURIReference sameDocRef;
+    public RDFURIReference sameDocRef() {
+        if (sameDocRef==null){
+            sameDocRef = iriFactory().create("");
+        }
+        return sameDocRef;
     }
 
 }

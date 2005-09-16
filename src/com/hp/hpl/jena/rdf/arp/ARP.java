@@ -122,12 +122,12 @@ public class ARP implements ARPConfig
     public void load(Reader in,String xmlBase) throws SAXException, IOException {
         InputSource inputS = new InputSource(in);
         inputS.setSystemId(xmlBase);
-        arpf.initParse(xmlBase,"");
+//        arpf.initParse(xmlBase,"");
          arpf.parse(inputS);
     }
     void load(InputSource is)  throws SAXException, IOException {
 
-        arpf.initParse("","");
+//        arpf.initParse("","");
         arpf.parse(is);
     }
 /** Load RDF/XML from an InputStream.
@@ -141,7 +141,7 @@ IOException {
         //load(new InputStreamReader(in),xmlBase);
         InputSource inputS = new InputSource(in);
         inputS.setSystemId(xmlBase);
-        arpf.initParse(xmlBase,"");
+//        arpf.initParse(xmlBase,"");
         arpf.parse(inputS, xmlBase);
     }
 /** Load RDF/XML from an InputStream, using base URL http://unknown.org/.

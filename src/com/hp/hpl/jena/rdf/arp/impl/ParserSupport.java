@@ -76,7 +76,7 @@ public class ParserSupport
 	protected void checkIdSymbol(Taint taintMe, AbsXMLContext ctxt, String str)
 		throws SAXParseException {
 		if (!arp.ignoring(WARN_REDEFINITION_OF_ID)) {
-			RDFURIReference uri = ctxt.getURI(arp,taintMe,"#"+str);
+			RDFURIReference uri = ctxt.uri;
             Map idsUsedForBase = (Map) idsUsed().get(uri);
 			if (idsUsedForBase == null) {
 				idsUsedForBase = new HashMap();
