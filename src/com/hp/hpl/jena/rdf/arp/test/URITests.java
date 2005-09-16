@@ -17,6 +17,7 @@ import com.hp.hpl.jena.iri.*;
  */
 public class URITests
 	extends TestCase {
+    // TODO: relative/absolute tests
 	static public Test suite() {
 		TestSuite suite = new TestSuite("URIs");
 		suite.addTest(new URITests("testNoDomain"));
@@ -52,8 +53,13 @@ public class URITests
 	public void testLong()  {
 	   testURI("http://46229EFFE16A9BD60B9F1BE88B2DB047ADDED785/demo.mp3",true);
 	}
+    
     public void testBadScheme()  {
-           testURI("ht#tp://www.w3.org/demo.mp3",false);
+           testURI("ht^tp://www.w3.org/demo.mp3",false);
+        }
+
+    public void testFragmentLooksLikeScheme()  {
+           testURI("ht#tp://www.w3.org/demo.mp3",true);
         }
      
     public void testHostNoSlashWithFragment()  {
