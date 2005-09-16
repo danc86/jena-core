@@ -21,6 +21,18 @@ public class URITests
 		TestSuite suite = new TestSuite("URIs");
 		suite.addTest(new URITests("testNoDomain"));
 		suite.addTest(new URITests("testLong"));
+        suite.addTest(new URITests("testBadScheme"));
+        
+        // TODO: not for 2.3. are these tests right?
+//        suite.addTest(new URITests("testBadHost"));
+//        suite.addTest(new URITests("testBadPort"));
+//      suite.addTest(new URITests("testBadUserHost"));
+        suite.addTest(new URITests("testHostPortNoSlashWithFragment"));
+        suite.addTest(new URITests("testHostNoSlashWithFragment"));
+
+        suite.addTest(new URITests("testBadAuthority"));
+        suite.addTest(new URITests("testTwoHashes"));
+        suite.addTest(new URITests("testTwoHashes2"));
 		return suite;
 	}
 
@@ -40,7 +52,37 @@ public class URITests
 	public void testLong()  {
 	   testURI("http://46229EFFE16A9BD60B9F1BE88B2DB047ADDED785/demo.mp3",true);
 	}
+    public void testBadScheme()  {
+           testURI("ht#tp://www.w3.org/demo.mp3",false);
+        }
+     
+    public void testHostNoSlashWithFragment()  {
+        testURI("http://www.w#3.org/demo.mp3",true);
+     }
+    public void testHostPortNoSlashWithFragment()  {
+        testURI("http://www.w3.org:1#4/demo.mp3",true);
+     }
 	
+    public void testBadHost()  {
+        testURI("http://www.w+3.org/demo.mp3",false);
+     }
+    public void testBadPort()  {
+        testURI("http://www.w3.org:1+4/demo.mp3",false);
+     }
+    public void testBadUserHost()  {
+        testURI("http://jjc@www.w@3.org/demo.mp3",false);
+     }
+    public void testBadAuthority()  {
+        testURI("http://jjc^3.org/demo.mp3",false);
+     }
+    public void testTwoHashes() {
+        testURI("ht#tp://jjc3.org/demo.mp3#frag",false);
+            
+    }
+    public void testTwoHashes2() {
+        testURI("http://jjc#3.org/demo.mp3#frag",false);
+            
+    }
 }
 
 /*

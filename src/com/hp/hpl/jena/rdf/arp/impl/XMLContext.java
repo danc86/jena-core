@@ -62,7 +62,7 @@ public class XMLContext extends AbsXMLContext implements ARPErrorNumbers,  Langu
      * @throws SAXParseException */
     public XMLContext(XMLHandler h, String base) throws SAXParseException {
         
-        this(h,h.iriFactory().create(truncateXMLBase(base)));
+        this(h,h.iriFactory().create(base));
     }
 
     protected XMLContext(XMLHandler h, RDFURIReference uri,Taint baseT) {
@@ -71,8 +71,11 @@ public class XMLContext extends AbsXMLContext implements ARPErrorNumbers,  Langu
     
 
     
-    private XMLContext(XMLHandler h, RDFURIReference reference) throws SAXParseException {
-        this(h,reference,initTaint(h,reference));
+    private XMLContext(XMLHandler h, RDFURIReference baseMaybeWithFrag) throws SAXParseException {
+        this(h,baseMaybeWithFrag.resolve(""),baseMaybeWithFrag);
+    }
+    private XMLContext(XMLHandler h, RDFURIReference base, RDFURIReference baseMaybeWithFrag) throws SAXParseException {
+        this(h,base,initTaint(h,baseMaybeWithFrag));
     }
 
     XMLContext(boolean b, AbsXMLContext document, RDFURIReference uri, Taint baseT, String lang, Taint langT) {

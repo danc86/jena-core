@@ -87,7 +87,12 @@ implements ARPConfig {
 	 * @throws MalformedURIException
 	 */
 	static public SAX2RDF newInstance(String base) throws MalformedURIException { 
-		return new SAX2RDF(base,"",true); 
+        try {
+            return  create(base);    
+            }
+            catch (SAXParseException e) {
+                throw new MalformedURIException(e.getMessage());
+            }
 	}
 	/**
 	 * Factory method to create a new SAX2RDF.
@@ -111,7 +116,7 @@ implements ARPConfig {
         return  create(base,lang);    
         }
         catch (SAXParseException e) {
-            throw new MalformedURIException();
+            throw new MalformedURIException(e.getMessage());
         }
         
 	}    
@@ -185,16 +190,16 @@ implements ARPConfig {
      * @deprecated Use the other constructor.
      * @param b ignored completely
      */
-	SAX2RDF(String base, String lang, boolean b) throws MalformedURIException {
-        super(base,lang);
-        try {
-            initParse(base);
-        }
-        catch (SAXParseException e) {
-            throw new MalformedURIException(e);
-        }
-        
-    }
+//	SAX2RDF(String base, String lang, boolean b) throws MalformedURIException {
+//        super(base,lang);
+//        try {
+//            initParse(base);
+//        }
+//        catch (SAXParseException e) {
+//            throw new MalformedURIException(e);
+//        }
+//        
+//    }
     /** This is used when configuring a parser that
 	 * is not loading into a Jena Model, but is processing
 	 * the triples etc. in some other way.
