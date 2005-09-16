@@ -41,6 +41,7 @@ public class TestPackage extends TestSuite {
         addTest( com.hp.hpl.jena.rdf.arp.test.MoreTests.suite());
         addTest( com.hp.hpl.jena.rdf.arp.states.test.TestARPStates.suite());
         addTest( com.hp.hpl.jena.rdf.arp.test.URITests.suite());
+//        addTest( com.hp.hpl.jena.rdf.arp.test.TaintingTests.suite());
         addTest( "Vocabularies", com.hp.hpl.jena.vocabulary.test.TestVocabularies.suite() );
         addTest( com.hp.hpl.jena.shared.test.TestSharedPackage.suite() );
         addTest("Reasoners", com.hp.hpl.jena.reasoner.test.TestPackage.suite());
