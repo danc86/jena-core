@@ -65,7 +65,7 @@ public class URIReference extends TaintImpl implements AResourceInternal, ARPErr
     // // this.uri = new URI(ctxt.getURI(),URIref.encode(uri));
     // this.uri = ctxt.resolve(l, uri);
     // }
-    private URIReference(String uri) {
+    protected URIReference(String uri) {
         // this.uri = new URI(URIref.encode(uri));
         this.uri = uri;
         if (uri==null)
@@ -195,6 +195,6 @@ public class URIReference extends TaintImpl implements AResourceInternal, ARPErr
     }
 
     public static URIReference createNoChecks(String uri) {
-        return new URIReference(uri);
+        return new UntaintableURIReference(uri);
     }
 }

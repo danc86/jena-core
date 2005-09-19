@@ -21,10 +21,10 @@
 
 -->
 
-<!--
+
 <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
          xmlns:eg="http://example.org/">
--->
+
 <!-- Someone else registers himself under the unused name of Dürst,
         along with some other creation as its creator. -->
 <!--
@@ -36,9 +36,7 @@
         #x308 (encoded as two UTF-8 octets #xCC #x88).
         It should be displayed identically to ü (character #xFC encoded
         as two UTF-8 octets #xC3 #xBC). -->
-<!--
       <eg:Creator eg:named="Dürst"/>
 
    </rdf:Description>
 </rdf:RDF>
--->

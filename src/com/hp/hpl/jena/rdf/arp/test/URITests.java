@@ -17,7 +17,7 @@ import com.hp.hpl.jena.iri.*;
  */
 public class URITests
 	extends TestCase {
-    // TODO: relative/absolute tests
+    // TODO: not for 2.3 relative/absolute tests
 	static public Test suite() {
 		TestSuite suite = new TestSuite("URIs");
 		suite.addTest(new URITests("testNoDomain"));

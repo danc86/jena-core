@@ -100,7 +100,7 @@ public class ParserSupport
 		checkXMLName(taintMe,str);
 		checkEncoding(taintMe,str);
 	}
-	private void checkXMLName( Taint taintMe, String str) throws SAXParseException {
+	protected void checkXMLName( Taint taintMe, String str) throws SAXParseException {
 		if (!XMLChar.isValidNCName(str)) {
 			//   	System.err.println("not name (id): " + str);
 			warning(taintMe,
@@ -109,13 +109,13 @@ public class ParserSupport
 		}
 
 	}
-	protected void checkNodeID(Taint taintMe, String str) throws SAXParseException {
-		if (!XMLChar.isValidNCName(str)) {
-			warning(taintMe,
-				WARN_BAD_NAME,
-				"Not an XML Name: '" + str + "'");
-		}
-	}
+//	protected void checkNodeID(Taint taintMe, String str) throws SAXParseException {
+//		if (!XMLChar.isValidNCName(str)) {
+//			warning(taintMe,
+//				WARN_BAD_NAME,
+//				"Not an XML Name: '" + str + "'");
+//		}
+//	}
 	public void checkString(Taint taintMe,String t) throws SAXParseException {
 		if (!CharacterModel.isNormalFormC(t))
 			warning(taintMe,

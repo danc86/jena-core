@@ -20,10 +20,8 @@
 
 -->
 
-<!--
 <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
          xmlns:eg="http://example.org/">
--->
 <!-- Someone else registers himself under the unused name of Dürst,
         along with some other creation as its creator. -->
 <!--
@@ -31,8 +29,6 @@
 -->
    <!-- The ü below is two characters a u followed by 
           #x308. It should be displayed identically to  ü. -->
-<!--
       <eg:Creator eg:named="Du&#x308;rst"/>
    </rdf:Description>
 </rdf:RDF>
--->

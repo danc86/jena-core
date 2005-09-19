@@ -286,7 +286,6 @@ public class XMLHandler extends LexicalHandlerImpl implements ARPErrorNumbers,
     private boolean allowRelativeReferences = false;
     private AbsXMLContext initialContextWithBase(String base) throws SAXParseException {
         allowRelativeReferences = false;
-        // TODO: test tainting in general
             if (base == null) {
                 warning(null,IGN_NO_BASE_URI_SPECIFIED,
                         "Base URI not specified for input file; local URI references will be in error.");
