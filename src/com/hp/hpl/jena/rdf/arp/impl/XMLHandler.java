@@ -431,6 +431,15 @@ public class XMLHandler extends LexicalHandlerImpl implements ARPErrorNumbers,
         if (uri.length() != 0)
              {
                 RDFURIReference u = iriFactory().create(uri);
+                if (u.isVeryBad()) {
+                    warning(null,
+                            WARN_BAD_NAMESPACE_URI,
+                            "The namespace URI: <"
+                                    + uri
+                                    + "> is not well formed.");
+                    return;
+                 
+                }
                 if (!u.isAbsolute()) {
                     warning(null,
                             WARN_RELATIVE_NAMESPACE_URI_DEPRECATED,

@@ -23,6 +23,7 @@ public class URITests
 		suite.addTest(new URITests("testNoDomain"));
 		suite.addTest(new URITests("testLong"));
         suite.addTest(new URITests("testBadScheme"));
+        suite.addTest(new URITests("testJustScheme"));
         
         // TODO: not for 2.3. are these tests right?
 //        suite.addTest(new URITests("testBadHost"));
@@ -71,6 +72,11 @@ public class URITests
 	
     public void testBadHost()  {
         testURI("http://www.w+3.org/demo.mp3",false);
+     }
+
+    // TODO: not for 2.3. Is this test correct?
+    public void testJustScheme()  {
+        testURI("http:",false);
      }
     public void testBadPort()  {
         testURI("http://www.w3.org:1+4/demo.mp3",false);
