@@ -53,6 +53,7 @@ public class ResultSetReifIterator extends ResultSetIterator {
 	
 	/** a triple match over a reified table might return one property.
 	 *  m_propCol identifies the column number of the property to return.
+	 *  it ranges 1-4.
 	 */
 	protected int m_propCol;
 	
@@ -69,7 +70,7 @@ public class ResultSetReifIterator extends ResultSetIterator {
 	/** number of remaining fragments to generate for this row (ranges 1-4) */
 	protected int m_fragRem;
 	
-	/** number of next fragment to generate (0-4 for subj, pred, obj, type, resp). */
+	/** number of next fragment to generate (0-3 for subj, pred, obj, type). */
 	protected int m_nextFrag;
 
 
@@ -173,7 +174,7 @@ public class ResultSetReifIterator extends ResultSetIterator {
 				m_fragRem++;
 		}
 		if ( m_propCol > 0 ) {
-			m_nextFrag = m_propCol;
+			m_nextFrag = m_propCol - 1;
 			m_fragCount = m_fragRem = 1;
 		} else {
 			m_nextFrag = 0;
