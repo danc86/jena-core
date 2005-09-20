@@ -47,7 +47,7 @@ public class NodeToTriplesMap extends NodeToTriplesMapBase
             {
             boolean result = s.remove( t );
             if (result) size -= 1;
-            if (s.isEmpty()) map.put( o, null );
+            if (s.isEmpty()) map.remove( o );
             return result;
         	} 
         }

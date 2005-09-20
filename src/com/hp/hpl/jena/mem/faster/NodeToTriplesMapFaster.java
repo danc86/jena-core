@@ -59,7 +59,7 @@ public class NodeToTriplesMapFaster extends NodeToTriplesMapBase
            {
            s.remove( t );
            size -= 1;
-           if (size == 0) map.put( o, null );
+           if (s.size() == 0) map.remove( o );
            return true;
         } 
     }
