@@ -146,7 +146,7 @@ public class CommandLine
      */
     public boolean endProcessing( String argStr )
     {
-        return argStr.startsWith("-") || argStr.equals("--") || argStr.equals("-");
+        return ! argStr.startsWith("-") || argStr.equals("--") || argStr.equals("-");
     }
 
     /**
