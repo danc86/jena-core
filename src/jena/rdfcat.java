@@ -30,6 +30,7 @@ import java.util.*;
 
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.util.FileManager;
+import com.hp.hpl.jena.util.FileUtils;
 import com.hp.hpl.jena.vocabulary.*;
 
 import jena.cmdline.*;
@@ -175,7 +176,7 @@ public class rdfcat
     protected String m_outputFormat = "RDF/XML-ABBREV";
 
     /** The input format we're expecting for the next URL to be read - defaults to RDF/XML */
-    protected String m_inputFormat = null ; //"RDF/XML";
+    protected String m_inputFormat = "RDF/XML";
 
     /** Flag to indicate whether we include owl:imports and rdfs:seeAlso */
     protected boolean m_include = false;
@@ -246,7 +247,9 @@ public class rdfcat
                     inModel.read( System.in, null, m_inputFormat );
                 }
                 else {
-                    FileManager.get().readModel( inModel, inputName, m_inputFormat );
+                    // lang from extension overrides default set on command line
+                    String lang = FileUtils.guessLang( inputName, m_inputFormat );
+                    FileManager.get().readModel( inModel, inputName, lang );
                 }
 
                 // check for anything more that we need to read
