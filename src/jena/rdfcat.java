@@ -175,7 +175,7 @@ public class rdfcat
     protected String m_outputFormat = "RDF/XML-ABBREV";
 
     /** The input format we're expecting for the next URL to be read - defaults to RDF/XML */
-    protected String m_inputFormat = "RDF/XML";
+    protected String m_inputFormat = null ; //"RDF/XML";
 
     /** Flag to indicate whether we include owl:imports and rdfs:seeAlso */
     protected boolean m_include = false;

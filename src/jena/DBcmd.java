@@ -126,14 +126,14 @@ abstract class DBcmd
             System.exit(9);
         }
 
-        if ( ! takesPositionalArgs && cmdLine.items().size() != 0 )
+        if ( ! takesPositionalArgs && cmdLine.numItems() != 0 )
         {
             System.err.println(cmdName+": No positional arguments allowed") ;
             usage() ;
             System.exit(9) ;
         }
         
-        if ( takesPositionalArgs && cmdLine.items().size() == 0 )
+        if ( takesPositionalArgs && cmdLine.numItems() == 0 )
         {
             System.err.println(cmdName+": Positional argument required") ;
             usage() ;
@@ -214,7 +214,7 @@ protected ModelRDB getRDBModel()
 
     protected void exec()
     {
-        if ( cmdLine.items().size() == 0 )
+        if ( cmdLine.numItems() == 0 )
         {
             exec0() ;
             return ;
@@ -224,15 +224,18 @@ protected ModelRDB getRDBModel()
         boolean inTransaction = false ;
         try
         {
-            if ( getRDBModel().supportsTransactions() )
+            for ( int i = 0 ; i < cmdLine.numItems() ; i++ )
             {
-                inTransaction = true ;
-                getRDBModel().begin() ;
-            }
+                if ( getRDBModel().supportsTransactions() )
+                {
+                    if ( ! inTransaction )
+                    {
+                        inTransaction = true ;
+                        getRDBModel().begin() ;
+                    }
+                }
 
-            for ( Iterator iter = cmdLine.items().iterator() ; iter.hasNext() ; )
-            {
-                String arg = (String)iter.next() ;
+                String arg = cmdLine.getItem(i) ;
                 boolean contTrans = false ;
                 try {
                     contTrans = exec1(arg) ;
@@ -250,17 +253,9 @@ protected ModelRDB getRDBModel()
                     dbModel = null ;
                     System.exit(9);
                 }
-                                        
                     
                 if ( !contTrans && inTransaction )
-                {
                     getRDBModel().commit() ;
-                    if ( iter.hasNext() )
-                    {
-                        inTransaction = true ;
-                        getRDBModel().begin() ; 
-                    } 
-                }
             }
         }            
         finally
