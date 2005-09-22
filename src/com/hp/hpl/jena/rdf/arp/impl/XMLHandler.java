@@ -136,6 +136,7 @@ public class XMLHandler extends LexicalHandlerImpl implements ARPErrorNumbers,
             throws SAXException {
         frame.endElement();
         frame = frame.getParent();
+        frame.afterChild();
         if (DEBUG)
             System.err.println("</" + rawName + "> :: <--"
                     + getSimpleName(frame.getClass()));

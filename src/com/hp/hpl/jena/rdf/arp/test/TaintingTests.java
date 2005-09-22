@@ -109,10 +109,18 @@ public class TaintingTests extends TestCase implements ErrorHandler,
         "testing/arp/tainting/ptUnknown.rdf",
         "testing/arp/tainting/typedLiteral.rdf",
         
-//        "testing/arp/tainting/typedNode.rdf",
+        "testing/arp/tainting/typedNode.rdf",
         "testing/arp/tainting/property.rdf",
         
-//        "testing/arp/tainting/collection.rdf",
+        "testing/arp/tainting/collection.rdf",
+        
+
+        "testing/arp/tainting/propValueA.rdf",
+        "testing/arp/tainting/propValueB.rdf",
+        "testing/arp/tainting/propValueC.rdf",
+        "testing/arp/tainting/propValueD.rdf",
+        "testing/arp/tainting/propValueE.rdf",
+        
 
     };
 
