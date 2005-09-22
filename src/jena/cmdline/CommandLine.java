@@ -176,7 +176,7 @@ public class CommandLine
                 argDecl.trigger(arg) ;
             }
             else
-                handleUnrecognizedArg( argv[i] );
+                handleUnrecognizedArg( (String)argList.get(i) );
 //                if ( ! getIgnoreUnknown() )
 //                    // Not recognized
 //                    throw new IllegalArgumentException("Unknown argument: "+argStr) ;
