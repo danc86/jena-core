@@ -47,6 +47,7 @@ public class DefaultErrorHandler implements org.xml.sax.ErrorHandler {
 
     /** Creates new DefaultErrorHandler */
     public DefaultErrorHandler() {
+        // no initialization
     }
 
     public void error(org.xml.sax.SAXParseException e) throws org.xml.sax.SAXException {

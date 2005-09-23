@@ -30,8 +30,15 @@
 
 package com.hp.hpl.jena.xmloutput.impl;
 
-import java.util.*;
-import com.hp.hpl.jena.util.iterator.*;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Set;
+
+import com.hp.hpl.jena.util.iterator.IteratorIterator;
+import com.hp.hpl.jena.util.iterator.Map1;
+import com.hp.hpl.jena.util.iterator.Map1Iterator;
 
 /**
  * A sparse 2 dimensional array of boolean indexed by Object.

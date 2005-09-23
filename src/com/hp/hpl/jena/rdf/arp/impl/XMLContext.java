@@ -36,14 +36,11 @@
 
 package com.hp.hpl.jena.rdf.arp.impl;
 
-import com.hp.hpl.jena.iri.*;
+import org.xml.sax.SAXParseException;
+
+import com.hp.hpl.jena.iri.RDFURIReference;
 import com.hp.hpl.jena.rdf.arp.ARPErrorNumbers;
 import com.hp.hpl.jena.rdf.arp.lang.LanguageTagCodes;
-import com.hp.hpl.jena.rdf.arp.states.Frame;
-
-import java.net.URISyntaxException;
-
-import org.xml.sax.SAXParseException;
 
 /**
  * 
@@ -97,9 +94,9 @@ public class XMLContext extends AbsXMLContext implements ARPErrorNumbers,
                         .equals(document.uri));
     }
 
-    AbsXMLContext clone(RDFURIReference uri, Taint baseT, String lang,
+    AbsXMLContext clone(RDFURIReference u, Taint baseT, String lng,
             Taint langT) {
-        return new XMLContext(true, document, uri, baseT, lang, langT);
+        return new XMLContext(true, document, u, baseT, lng, langT);
     }
 
     void baseUsed(XMLHandler forErrors, Taint taintMe, String relUri,

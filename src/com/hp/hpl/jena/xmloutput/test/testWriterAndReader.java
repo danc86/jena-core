@@ -7,18 +7,33 @@
 
 package com.hp.hpl.jena.xmloutput.test;
 
-import com.hp.hpl.jena.rdf.model.*;
-import com.hp.hpl.jena.rdf.model.test.*;
-import com.hp.hpl.jena.shared.*;
-import com.hp.hpl.jena.vocabulary.RDFSyntax;
-import com.hp.hpl.jena.vocabulary.DAML_OIL;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Random;
+import java.util.Vector;
 
-import java.io.*;
-import java.util.*;
+import junit.framework.Test;
+import junit.framework.TestSuite;
 
-import junit.framework.*;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+
+import com.hp.hpl.jena.rdf.model.Model;
+import com.hp.hpl.jena.rdf.model.Property;
+import com.hp.hpl.jena.rdf.model.RDFErrorHandler;
+import com.hp.hpl.jena.rdf.model.RDFNode;
+import com.hp.hpl.jena.rdf.model.RDFReader;
+import com.hp.hpl.jena.rdf.model.RDFWriter;
+import com.hp.hpl.jena.rdf.model.Resource;
+import com.hp.hpl.jena.rdf.model.Statement;
+import com.hp.hpl.jena.rdf.model.StmtIterator;
+import com.hp.hpl.jena.rdf.model.test.ModelTestBase;
+import com.hp.hpl.jena.shared.JenaException;
+import com.hp.hpl.jena.vocabulary.DAML_OIL;
+import com.hp.hpl.jena.vocabulary.RDFSyntax;
 
 /**
  * This will test any Writer and Reader pair.
@@ -360,7 +375,6 @@ public class testWriterAndReader
 			InputStream rdr = new FileInputStream(filebase + fileName);
 			m1.read(rdr, baseUriRead);
 			rdr.close();
-			boolean problem = false;
 			for (int j = 0; j < repetitionsJ; j++) {
 
                 String baseUriWrite =
@@ -497,10 +511,6 @@ public class testWriterAndReader
 		fail(e.getMessage());
 	}
 
-	/** report a catastrophic error.  Must not return.
-	 * @param e an exception representing the error
-	 * @throws RDFError a generic RDF exception
-	 */
 	public void fatalError(Exception e) {
 		error(e);
 		throw new JenaException(e);

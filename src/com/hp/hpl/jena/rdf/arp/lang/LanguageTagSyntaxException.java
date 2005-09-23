@@ -46,6 +46,11 @@ public class LanguageTagSyntaxException extends java.lang.Exception {
 
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = 5425207434895448094L;
+
+    /**
  * Constructs an <code>LanguageTagSyntaxException</code> with the specified detail message.
      * @param msg the detail message.
      */

@@ -10,10 +10,12 @@ package com.hp.hpl.jena.xmloutput.test;
 ///////////////
 import java.io.StringWriter;
 
-import com.hp.hpl.jena.rdf.model.*;
-import com.hp.hpl.jena.shared.BadURIException;
+import junit.framework.TestCase;
+import junit.framework.TestSuite;
 
-import junit.framework.*;
+import com.hp.hpl.jena.rdf.model.Model;
+import com.hp.hpl.jena.rdf.model.ModelFactory;
+import com.hp.hpl.jena.shared.BadURIException;
 
 /**
  * JUnit regression tests for output

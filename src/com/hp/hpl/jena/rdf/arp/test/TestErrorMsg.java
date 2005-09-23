@@ -6,15 +6,22 @@
 
 package com.hp.hpl.jena.rdf.arp.test;
 
-import com.hp.hpl.jena.rdf.arp.*;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 
-import junit.framework.*;
-import org.xml.sax.*;
+import junit.framework.Test;
+import junit.framework.TestCase;
+import junit.framework.TestSuite;
+
 import org.apache.oro.text.awk.AwkCompiler;
 import org.apache.oro.text.awk.AwkMatcher;
 import org.apache.oro.text.regex.MalformedPatternException;
+import org.xml.sax.ErrorHandler;
+import org.xml.sax.SAXException;
+import org.xml.sax.SAXParseException;
 
-import java.io.*;
+import com.hp.hpl.jena.rdf.arp.ARP;
 
 public class TestErrorMsg extends TestCase {
 	static AwkCompiler awk = new AwkCompiler();

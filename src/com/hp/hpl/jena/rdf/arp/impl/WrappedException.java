@@ -46,6 +46,10 @@ import org.xml.sax.SAXException;
  
  */
 class WrappedException extends java.lang.RuntimeException {
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -4058658905253070902L;
     /** Creates new WrappedException */
     WrappedException(SAXException e) {
         Exception in0 = e.getException();

@@ -290,6 +290,7 @@ int debugC = 0;
 						    Thread.sleep(200000);
 						  }
 						  catch (Exception e){
+                              // ignore
 						  }
 						  
 						}
@@ -318,9 +319,9 @@ int debugC = 0;
 					break;
                 case 'E':
                     arp.getHandlers().setErrorHandler(new ErrorHandler(){
-                        public void warning(SAXParseException exception) {}
-                        public void error(SAXParseException exception) {}
-                        public void fatalError(SAXParseException exception) {}     
+                        public void warning(SAXParseException exception) { /* ignore */ }
+                        public void error(SAXParseException exception) { /* ignore */ }
+                        public void fatalError(SAXParseException exception) { /* ignore */ }     
                     });
                     ((ARPHandlersImpl)arp.getHandlers()).setBadStatementHandler(new SH(System.err));
                     break;

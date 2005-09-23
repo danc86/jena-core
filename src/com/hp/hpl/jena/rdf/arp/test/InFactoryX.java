@@ -6,7 +6,8 @@
  */
 package com.hp.hpl.jena.rdf.arp.test;
 
-import java.io.*;
+import java.io.IOException;
+import java.io.InputStream;
 /**
  * @author Jeremy J. Carroll
  *

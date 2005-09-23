@@ -12,17 +12,21 @@ package com.hp.hpl.jena.xmloutput.test;
 // Imports
 ///////////////
 
-import com.hp.hpl.jena.rdf.model.*;
-import com.hp.hpl.jena.rdf.model.test.*;
-import com.hp.hpl.jena.ontology.*;
-//import com.hp.hpl.jena.vocabulary.*;
-//import java.util.*;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.StringReader;
+import java.io.StringWriter;
 
 import org.apache.oro.text.awk.AwkCompiler;
 import org.apache.oro.text.awk.AwkMatcher;
 import org.apache.oro.text.regex.MalformedPatternException;
 
-import java.io.*;
+import com.hp.hpl.jena.ontology.OntModel;
+import com.hp.hpl.jena.ontology.OntModelSpec;
+import com.hp.hpl.jena.rdf.model.Model;
+import com.hp.hpl.jena.rdf.model.ModelFactory;
+import com.hp.hpl.jena.rdf.model.test.ModelTestBase;
 
 /**
  * JUnit regression tests for the Jena DAML model.

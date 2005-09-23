@@ -42,6 +42,10 @@ import com.hp.hpl.jena.rdf.arp.impl.Location;
 public class ParseException extends SAXParseException implements
         ARPErrorNumbers {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -5986976549492477885L;
     final int id;
 
     protected ParseException(int id, Location where, String msg) {

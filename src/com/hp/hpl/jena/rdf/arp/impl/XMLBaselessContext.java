@@ -9,7 +9,6 @@ import org.xml.sax.SAXParseException;
 
 import com.hp.hpl.jena.iri.RDFURIReference;
 import com.hp.hpl.jena.rdf.arp.ARPErrorNumbers;
-import com.hp.hpl.jena.rdf.arp.states.Frame;
 
 /**
  * @author <a href="mailto:Jeremy.Carroll@hp.com">Jeremy Carroll</a>
@@ -57,9 +56,9 @@ public class XMLBaselessContext extends AbsXMLContext implements ARPErrorNumbers
         errmsg = parent.errmsg;
     }
 
-    AbsXMLContext clone(RDFURIReference uri, Taint baseT, String lang,
+    AbsXMLContext clone(RDFURIReference u, Taint baseT, String lng,
             Taint langT) {
-        return new XMLBaselessContext(document, uri, baseT, lang, langT, this);
+        return new XMLBaselessContext(document, u, baseT, lng, langT, this);
     }
 
     public AbsXMLContext withBase(XMLHandler forErrors, String b)

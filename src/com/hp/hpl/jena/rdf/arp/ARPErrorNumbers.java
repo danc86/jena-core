@@ -152,7 +152,7 @@ public interface ARPErrorNumbers {
       The default mode allows this with a warning. 
      This check is expensive in memory. When processing very large files,
      it may be sensible to switch the check off by using
-     {@link ARP#setErrorMode(int,int)} to ignore this condition.
+     {@link ARPOptions#setErrorMode(int,int)} to ignore this condition.
      * (W105).
      @see #WARN_LEGAL_REUSE_OF_ID
     
@@ -423,9 +423,9 @@ public interface ARPErrorNumbers {
      (XML syntax errors are not reported with this mechanism, 
      but as {@link org.xml.sax.SAXParseException SAXParseException}'s).
      The detailed error message indicates the nature of the contravention.
-     (E201).
      Future releases may specialize these codes, it is better to
      use {@link ParseException#isSyntaxError()} to check for syntax errors.
+     (E201).
      */
     public int ERR_SYNTAX_ERROR = 201;
     /** Non-white character data has occurred where the RDF grammar 

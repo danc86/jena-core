@@ -7,12 +7,18 @@
 
 package com.hp.hpl.jena.xmloutput.impl;
 
-import com.hp.hpl.jena.rdf.model.impl.Util;
-import com.hp.hpl.jena.rdf.model.*;
-import com.hp.hpl.jena.vocabulary.RDF;
-import com.hp.hpl.jena.vocabulary.RDFSyntax;
-
 import java.io.PrintWriter;
+
+import com.hp.hpl.jena.rdf.model.Literal;
+import com.hp.hpl.jena.rdf.model.Model;
+import com.hp.hpl.jena.rdf.model.Property;
+import com.hp.hpl.jena.rdf.model.RDFNode;
+import com.hp.hpl.jena.rdf.model.ResIterator;
+import com.hp.hpl.jena.rdf.model.Resource;
+import com.hp.hpl.jena.rdf.model.Statement;
+import com.hp.hpl.jena.rdf.model.StmtIterator;
+import com.hp.hpl.jena.rdf.model.impl.Util;
+import com.hp.hpl.jena.vocabulary.RDFSyntax;
 
 /** Writes out an XML serialization of a model.
  *
@@ -21,7 +27,6 @@ import java.io.PrintWriter;
  */
 public class Basic extends BaseXMLWriter {
 
-	static String RDFNS = RDF.getURI();
 
 	public Basic() {
 	}
@@ -50,8 +55,6 @@ public class Basic extends BaseXMLWriter {
 
 	private void writeRDFHeader(Model model, PrintWriter writer) {
 		String xmlns = xmlnsDecl();
-		NsIterator nsIter = model.listNameSpaces();
-		String ns;
 
 		writer.print("<" + rdfEl("RDF") + xmlns);
 

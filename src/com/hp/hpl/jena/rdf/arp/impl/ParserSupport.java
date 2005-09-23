@@ -36,7 +36,6 @@
 
 package com.hp.hpl.jena.rdf.arp.impl;
 
-import java.net.URISyntaxException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -45,9 +44,7 @@ import org.xml.sax.SAXParseException;
 
 import com.hp.hpl.jena.iri.RDFURIReference;
 import com.hp.hpl.jena.rdf.arp.ARPErrorNumbers;
-import com.hp.hpl.jena.rdf.arp.lang.LanguageTag;
 import com.hp.hpl.jena.rdf.arp.lang.LanguageTagCodes;
-import com.hp.hpl.jena.rdf.arp.lang.LanguageTagSyntaxException;
 
 /**
  *

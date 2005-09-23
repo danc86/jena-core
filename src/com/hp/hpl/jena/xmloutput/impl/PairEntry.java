@@ -41,9 +41,9 @@ class PairEntry implements java.util.Map.Entry {
         if (o != null && (o instanceof PairEntry)) {
             PairEntry e = (PairEntry) o;
             return e.a.equals(a) && e.b.equals(b);
-        } else {
-            return false;
-        }
+        } 
+        return false;
+        
     }
     public Object getKey() {
         return a;

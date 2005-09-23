@@ -7,10 +7,17 @@
 
 package com.hp.hpl.jena.xmloutput.impl;
 
-import com.hp.hpl.jena.rdf.model.*;
-import com.hp.hpl.jena.vocabulary.*;
+import java.io.PrintWriter;
+import java.io.Writer;
 
-import java.io.*;
+import com.hp.hpl.jena.rdf.model.Model;
+import com.hp.hpl.jena.rdf.model.RDFErrorHandler;
+import com.hp.hpl.jena.rdf.model.Resource;
+import com.hp.hpl.jena.vocabulary.DAML_OIL;
+import com.hp.hpl.jena.vocabulary.OWL;
+import com.hp.hpl.jena.vocabulary.RDF;
+import com.hp.hpl.jena.vocabulary.RDFS;
+import com.hp.hpl.jena.vocabulary.RDFSyntax;
 //Writer;
 //import java.io.PrintWriter;
 
@@ -101,7 +108,7 @@ public class Abbreviated extends BaseXMLWriter implements RDFErrorHandler {
     }
 	Resource[] setTypes(Resource[] propValue) {
 		Resource[] rslt = types;
-		types = (Resource[]) propValue;
+		types = propValue;
 		return rslt;
 	}
 

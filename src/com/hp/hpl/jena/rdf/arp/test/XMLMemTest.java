@@ -4,11 +4,14 @@
  */
 package com.hp.hpl.jena.rdf.arp.test;
 
-import org.xml.sax.*;
-import org.xml.sax.ContentHandler;
+import java.net.URL;
 
-import org.apache.xerces.parsers.*;
-import java.net.*;
+import org.apache.xerces.parsers.SAXParser;
+import org.xml.sax.Attributes;
+import org.xml.sax.ContentHandler;
+import org.xml.sax.InputSource;
+import org.xml.sax.Locator;
+import org.xml.sax.SAXException;
 
 /**
  * The purpose of this class is to be a minimal example which exercises the
@@ -22,6 +25,11 @@ import java.net.*;
  */
 public class XMLMemTest implements ContentHandler {
 	static private class DeliberateEnd extends RuntimeException {
+
+        /**
+         * 
+         */
+        private static final long serialVersionUID = -1346336179419094789L;
 
 	}
 	final private int limit;

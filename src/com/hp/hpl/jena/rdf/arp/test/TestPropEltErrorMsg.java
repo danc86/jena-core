@@ -6,19 +6,22 @@
 
 package com.hp.hpl.jena.rdf.arp.test;
 
-import com.hp.hpl.jena.rdf.arp.*;
-import com.hp.hpl.jena.rdf.arp.impl.*;
+import java.util.ArrayList;
 
-import com.hp.hpl.jena.vocabulary.RDF;
+import junit.framework.Test;
+import junit.framework.TestCase;
+import junit.framework.TestSuite;
 
-import junit.framework.*;
-import org.xml.sax.*;
-import java.util.*;
 import org.apache.oro.text.awk.AwkCompiler;
 import org.apache.oro.text.awk.AwkMatcher;
 import org.apache.oro.text.regex.MalformedPatternException;
+import org.xml.sax.Attributes;
+import org.xml.sax.ErrorHandler;
+import org.xml.sax.SAXException;
+import org.xml.sax.SAXParseException;
 
-import java.io.*;
+import com.hp.hpl.jena.rdf.arp.impl.XMLHandler;
+import com.hp.hpl.jena.vocabulary.RDF;
 
 public class TestPropEltErrorMsg extends TestCase {
     

@@ -7,14 +7,17 @@
 
 package com.hp.hpl.jena.xmloutput.test;
 
-import com.hp.hpl.jena.*;
-import com.hp.hpl.jena.rdf.model.*;
-import com.hp.hpl.jena.rdf.model.test.*;
-import com.hp.hpl.jena.xmloutput.impl.*;
-import com.hp.hpl.jena.rdf.model.impl.*;
-import com.hp.hpl.jena.shared.*;
+import java.io.ByteArrayOutputStream;
+import java.io.OutputStream;
+import java.io.StringWriter;
 
-import java.io.*;
+import com.hp.hpl.jena.Jena;
+import com.hp.hpl.jena.rdf.model.Model;
+import com.hp.hpl.jena.rdf.model.impl.NTripleWriter;
+import com.hp.hpl.jena.rdf.model.test.ModelTestBase;
+import com.hp.hpl.jena.shared.NoWriterForLangException;
+import com.hp.hpl.jena.xmloutput.impl.Abbreviated;
+import com.hp.hpl.jena.xmloutput.impl.Basic;
 
 /**
  *

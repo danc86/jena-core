@@ -36,8 +36,6 @@
 
 package com.hp.hpl.jena.rdf.arp.impl;
 
-import java.net.URISyntaxException;
-
 import org.xml.sax.SAXParseException;
 
 import com.hp.hpl.jena.iri.RDFURIReference;
@@ -45,7 +43,6 @@ import com.hp.hpl.jena.rdf.arp.ARPErrorNumbers;
 import com.hp.hpl.jena.rdf.arp.ParseException;
 import com.hp.hpl.jena.rdf.arp.states.Frame;
 
-;
 
 // TODO: not for 2.3 IRI spec conformance
 
