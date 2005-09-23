@@ -75,7 +75,7 @@ public class DBQueryStage extends Stage
 					it = new ResultSetIterator();
 					ps.execute();
 					rs= ps.getResultSet();
-					it.reset(rs, ps, null, null);
+					it.reset(rs, ps);
 					while (it.hasNext()) {
 						useme = current.copy();
 						List row = (List) it.next();
