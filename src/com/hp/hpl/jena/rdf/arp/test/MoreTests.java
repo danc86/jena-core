@@ -30,7 +30,6 @@ import com.hp.hpl.jena.rdf.arp.ALiteral;
 import com.hp.hpl.jena.rdf.arp.ARP;
 import com.hp.hpl.jena.rdf.arp.ARPErrorNumbers;
 import com.hp.hpl.jena.rdf.arp.AResource;
-import com.hp.hpl.jena.rdf.arp.JenaReader;
 import com.hp.hpl.jena.rdf.arp.ParseException;
 import com.hp.hpl.jena.rdf.arp.StatementHandler;
 import com.hp.hpl.jena.rdf.model.Model;
@@ -462,7 +461,7 @@ public class MoreTests extends TestCase implements RDFErrorHandler,
 	private void checkExpected() {
 		for (int i = 0; i < expected.length; i++)
 			if (expected[i] != 0) {
-				fail("Expected error: " + JenaReader.errorCodeName(expected[i])
+				fail("Expected error: " + ParseException.errorCodeName(expected[i])
 						+ " but it did not occur.");
 			}
 	}
@@ -503,7 +502,7 @@ public class MoreTests extends TestCase implements RDFErrorHandler,
 			}
 		String msg = "Parser reports unexpected "
 				+ WGTestSuite.errorLevelName[level] + ": "
-				+ JenaReader.errorCodeName(num);
+				+ ParseException.errorCodeName(num);
 		println(msg);
 		fail(msg);
 	}

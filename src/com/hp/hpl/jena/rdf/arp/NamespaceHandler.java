@@ -6,6 +6,8 @@
 package com.hp.hpl.jena.rdf.arp;
 
 /**
+ * The interface for being notified about namespace use in an RDF/XML
+ * document.
  * This has methods copied form SAX  for
  * notifying the application of namespaces.
  * @author <a href="mailto:Jeremy.Carroll@hp.com">Jeremy Carroll</a>

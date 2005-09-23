@@ -114,7 +114,7 @@ public class ARP implements ARPConfig
 /** Load RDF/XML from a Reader.
  * @param in The input XML document.
  * @param xmlBase The base URI for the document.
- * @throws SAXException More serious error during XML or RDF processing; or thrown from the fatalError method of the ErrorHandler.
+ * @throws SAXException More serious error during XML or RDF processing; or thrown from the ErrorHandler.
  * @throws IOException Occurring during XML processing.
  */    
     public void load(Reader in,String xmlBase) throws SAXException, IOException {
@@ -131,7 +131,7 @@ public class ARP implements ARPConfig
 /** Load RDF/XML from an InputStream.
  * @param in The input XML document.
  * @param xmlBase The base URI for the document.
- * @throws SAXException More serious error during XML or RDF processing; or thrown from the fatalError method of the ErrorHandler.
+ * @throws SAXException More serious error during XML or RDF processing; or thrown from the ErrorHandler.
  * @throws IOException Occurring during XML processing.
  */    
     public void load(InputStream in,String xmlBase) throws SAXException, 
@@ -142,18 +142,18 @@ IOException {
 //        arpf.initParse(xmlBase,"");
         arpf.parse(inputS, xmlBase);
     }
-/** Load RDF/XML from an InputStream, using base URL http://unknown.org/.
+/** Load RDF/XML from an InputStream,  leaving relative URIs as relative.
  * @param in The input XML document.
- * @throws SAXException More serious error during XML or RDF processing; or thrown from the fatalError method of the ErrorHandler.
+ * @throws SAXException More serious error during XML or RDF processing; or thrown from the ErrorHandler.
  * @throws IOException Occurring during XML processing.
  */   
     public void load(InputStream in) 
      throws SAXException, IOException {
         load(in,"");
     }
-/** Load RDF/XML from a Reader, using base URL http://unknown.org/.
+/** Load RDF/XML from a Reader, leaving relative URIs as relative.
  * @param in The input XML document.
- * @throws SAXException More serious error during XML or RDF processing; or thrown from the fatalError method of the ErrorHandler.
+ * @throws SAXException More serious error during XML or RDF processing; or thrown from the ErrorHandler.
  * @throws IOException Occurring during XML processing.
  */    
     public void load(Reader in) throws SAXException, IOException {
