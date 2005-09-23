@@ -126,7 +126,7 @@ public class RuleMap {
             
             // Parse the command line
             CommandLine cl = new CommandLine();
-            String usage = "Usage:  RuleMap [-il inlang] [-ol outlang] [-d] rulefile infile"; 
+            String usage = "Usage:  RuleMap [-il inlang] [-ol outlang] [-d] rulefile infile (- for stdin)"; 
             cl.setUsage(usage);
             cl.add("il", true);
             cl.add("ol", true);
@@ -140,7 +140,14 @@ public class RuleMap {
             // Load the input data
             Arg il = cl.getArg("il");
             String inLang = (il == null) ? null : il.getValue();
-            Model inModel = FileManager.get().loadModel((String)cl.getItem(1), inLang);
+            String fname = cl.getItem(1);
+            Model inModel = null;
+            if (fname.equals("-")) {
+                inModel = ModelFactory.createDefaultModel();
+                inModel.read(System.in, null, inLang);
+            } else {
+                inModel = FileManager.get().loadModel(fname, inLang);
+            }
             
             // Determine the type of the output
             Arg ol = cl.getArg("ol");
