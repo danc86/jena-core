@@ -57,7 +57,7 @@ public class testReaderInterface extends Object {
     void test(Model m1) {
 
         String  test = "testReaderInterface";
-        String  filebase = "modules/rdf/regression/" + test + "/";
+        String  filebase = "testing/regression/" + test + "/";
     //    System.out.println("Beginning " + test);
         int n = 0;
         try {

@@ -826,7 +826,6 @@ public class TestTypedLiterals extends TestCase {
         Property p = orig.createProperty("http://jena.hpl.hp.com/test#p");
         Literal l  = orig.createTypedLiteral("GpM7", XSDDatatype.XSDbase64Binary);
         orig.add(r, p, l);
-//        orig.read("file:modules/rdf/regression/testWriterAndReader/t6000.rdf");
         for (int i = 0; i < 150; i++) {
             l  = orig.createTypedLiteral(new byte[]{(byte)i, (byte)i, (byte)i});
             orig.add(orig.createResource("urn:x-hp:" + i), p, l);

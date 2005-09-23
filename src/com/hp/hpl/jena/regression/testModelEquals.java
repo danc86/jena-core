@@ -21,7 +21,7 @@ public class testModelEquals extends Object {
     void test(GetModel gm) {
         Model m1, m2;
         String  test = "testModelEquals";
-        String  filebase = "modules/rdf/regression/" + test + "/";
+        String  filebase = "testing/regression/" + test + "/";
         boolean results[] = { 
             false, true, true, true, true, false, false, true, false };
         int n = 0;

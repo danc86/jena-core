@@ -143,17 +143,7 @@ public class Abbreviated extends BaseXMLWriter implements RDFErrorHandler {
 		errorHandler.fatalError(e);
 	}
 
-	static public void main(String args[]) throws Exception {
-		System.out.println("Test code for bug 77");
-		Model m = ModelFactory.createDefaultModel();
-		m.read(
-			new FileInputStream("modules/rdf/regression/arp/bug51_0.rdf"),
-			"http://example.org/file");
-		RDFWriter pw = m.getWriter("RDF/XML-ABBREV");
-		m.setNsPrefix("eg", "http://example.org/");
-		m.setNsPrefix("eg2", "http://example.org/foo#");
-		pw.write(m, System.out, "http://example.org/file");
-	}
+
 
 }
 /*

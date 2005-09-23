@@ -50,7 +50,7 @@ public class testNTripleReader extends Object {
     void test(Model m1) {
 
         String  test = "testNTripleReader";
-        String  filebase = "modules/rdf/regression/" + test + "/";
+        String  filebase = "testing/regression/" + test + "/";
     //    System.out.println("Beginning " + test);
         int n = 0;
         try {

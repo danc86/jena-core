@@ -331,7 +331,7 @@ public class testWriterAndReader
 		//  Model m3 = createMemModel();
 		//  Model m4 = createMemModel();
 		test = "testWriterAndReader lang=" + rwLang + " seed=" + seed;
-		String filebase = "modules/rdf/regression/testWriterAndReader/";
+		String filebase = "testing/regression/testWriterAndReader/";
 		if (showProgress)
 			System.out.println("Beginning " + test);
 		Random random = new Random(seed);
