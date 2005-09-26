@@ -48,7 +48,7 @@ public class XSDbase64Binary extends XSDDatatype {
     public String unparse(Object value) {
         if (value instanceof byte[]) {
             String enc = Base64.encode((byte[])value);
-            return enc.substring(0, enc.length() -1);   // strip terminal LF which Base64 adds, why it does that I don't know
+            return enc.substring(0, enc.length() ); 
         } else {
             throw new DatatypeFormatException("base64 asked encode an unwrapped byte array");
         }
