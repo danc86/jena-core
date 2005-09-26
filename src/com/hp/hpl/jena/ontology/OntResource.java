@@ -25,6 +25,7 @@ package com.hp.hpl.jena.ontology;
 // Imports
 ///////////////
 import com.hp.hpl.jena.rdf.model.*;
+import com.hp.hpl.jena.shared.JenaException;
 import com.hp.hpl.jena.util.iterator.ExtendedIterator;
 
 
@@ -58,7 +59,7 @@ public interface OntResource
      * @return The ont model that this resource is attached to, or null.
      */
     public OntModel getOntModel();
-    
+
     /**
      * <p>
      * Answer the ontology language profile that governs the ontology model to which
@@ -66,6 +67,8 @@ public interface OntResource
      * </p>
      *
      * @return The language profile for this ontology resource
+     * @throws JenaException if the resource is not bound to an {@link OntModel}, since
+     * that's the only way to get the profile for the resource
      */
     public Profile getProfile();
 

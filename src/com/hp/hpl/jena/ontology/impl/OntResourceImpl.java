@@ -126,7 +126,7 @@ public class OntResourceImpl
         Model m = getModel();
         return (m instanceof OntModel) ? (OntModel) m : null;
     }
-    
+
     /**
      * <p>
      * Answer the ontology language profile that governs the ontology model to which
@@ -134,9 +134,16 @@ public class OntResourceImpl
      * </p>
      *
      * @return The language profile for this ontology resource
+     * @throws JenaException if the resource is not bound to an OntModel, since
+     * that's the only way to get the profile for the resource
      */
     public Profile getProfile() {
-        return ((OntModel) getModel()).getProfile();
+        try {
+            return ((OntModel) getModel()).getProfile();
+        }
+        catch (ClassCastException e) {
+            throw new JenaException( "Resource " + toString() + " is not attached to an OntModel, so cannot access its language profile" );
+        }
     }
 
     /**
