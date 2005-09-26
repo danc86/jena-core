@@ -168,7 +168,6 @@ public class NTriple implements ARPErrorNumbers {
 
 	/**
 	 * @param b false for quiet.
-	 * @return
 	 */
 	private static StatementHandler getSH(boolean b) {
 		StatementHandler rslt = b?(StatementHandler)new SH(System.out):new NoSH();

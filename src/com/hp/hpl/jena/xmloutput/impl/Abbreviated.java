@@ -29,7 +29,7 @@ import com.hp.hpl.jena.vocabulary.RDFSyntax;
  * Use <code>setNsPrefix</code>.
  * For best results it is necessary to set the property 
    <code>"prettyTypes"</code>. See setProperty for information.
-   @see com.hp.hpl.jena.rdf.model.RDFWriterF#getWriter
+   @see com.hp.hpl.jena.rdf.model.RDFWriterF#getWriter(String)
  * @author jjc
  * @version  Release='$Name$' Revision='$Revision$' Date='$Date$'
  */

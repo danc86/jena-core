@@ -7,7 +7,6 @@
 
 package com.hp.hpl.jena.xmloutput.impl;
 
-import java.io.IOException;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
@@ -447,14 +446,13 @@ abstract public class BaseXMLWriter implements RDFXMLWriterI {
 	 * @param model the model to be serialized
 	 * @param out the OutputStream to receive the serialization
 	 * @param base The URL at which the file will be placed.
-	 * @throws IOException if an io error occurs
 	 */
 	final public void write(Model model, OutputStream out, String base)
 		 { write(model, FileUtils.asUTF8(out), base); }
 
 	/** Serialize Model <code>model</code> to Writer <code>out</out>.
 	 * @param out The Writer to which the serialization should be sent.
-	 * @param model The model to be written.
+	 * @param baseModel The model to be written.
 	 * @param base the base URI for relative URI calculations.  <code>
 	 * null</code> means use only absolute URI's.
 	 */
