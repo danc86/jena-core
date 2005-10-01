@@ -90,6 +90,7 @@ public class QueryTestScripts extends TestSuite
     private void addTests(String dir, String testsFile)
     {
         Locator locator = new LocatorFile(dir) ;
+        //Locator locator = null ;
         
         PrintWriter out = new PrintWriter(System.out);
         Model tests = FileManager.get().loadModel(testsFile);

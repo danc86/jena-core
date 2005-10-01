@@ -131,7 +131,7 @@ public class LocationMapper
             }
             String syntax = FileUtils.guessLang(uriConfig) ;
             Model model = ModelFactory.createDefaultModel() ;
-            model.read(in, null, syntax) ;
+            model.read(in, uriConfig, syntax) ;
             processConfig(model) ;
         } catch (JenaException ex)
         {

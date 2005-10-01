@@ -5,6 +5,7 @@
 */
 package com.hp.hpl.jena.rdf.model.test;
 
+import com.hp.hpl.jena.n3.RelURI;
 import com.hp.hpl.jena.rdf.model.*;
 
 import junit.framework.TestSuite;
@@ -54,15 +55,22 @@ public class TestModelRead extends ModelTestBase
     public void testSimpleLoadImplictBase()
         {
         Model mBasedImplicit = ModelFactory.createDefaultModel();
-        mBasedImplicit.read( "file:testing/modelReading/based.n3", "N3" );
-        assertIsoModels( modelWithStatements( "file:testing/modelReading/based.n3 jms:predicate jms:object" ), mBasedImplicit );
+        // TODO Kers to check these changes.
+//        mBasedImplicit.read( "file:testing/modelReading/based.n3", "N3" );
+//        assertIsoModels( modelWithStatements( "file:testing/modelReading/based.n3 jms:predicate jms:object" ), mBasedImplicit );
+        String fn = RelURI.resolveFileURL("file:testing/modelReading/based.n3") ;
+        mBasedImplicit.read( fn, "N3" );
+        assertIsoModels( modelWithStatements( fn+" jms:predicate jms:object" ), mBasedImplicit );
         }
     
     public void testSimpleLoadExplicitBase()
         {
         Model mBasedExplicit = ModelFactory.createDefaultModel();
-        mBasedExplicit.read( "file:testing/modelReading/based.n3", "base:", "N3" );
-        assertIsoModels( modelWithStatements( "base: jms:predicate jms:object" ), mBasedExplicit );
+        // TODO Kers to check these changes.
+//        mBasedExplicit.read( "file:testing/modelReading/based.n3", "base:", "N3" );
+//        assertIsoModels( modelWithStatements( "base: jms:predicate jms:object" ), mBasedExplicit );
+        mBasedExplicit.read( "file:testing/modelReading/based.n3", "http://example/", "N3" );
+        assertIsoModels( modelWithStatements( "http://example/ jms:predicate jms:object" ), mBasedExplicit );
         }
     
     public void testDefaultLangXML()

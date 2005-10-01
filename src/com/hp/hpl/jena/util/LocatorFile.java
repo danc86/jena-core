@@ -29,25 +29,25 @@ public class LocatorFile implements Locator
     
     public LocatorFile(String dir)
     {
-        if ( false )
-        {
-            if ( dir == null )
-            {
-                try {
-                    //String wd = System.getProperty("user.dir") ;
-                    String wd = new File(".").getCanonicalPath() ;
-                    log.debug("Base file directory: "+wd) ;
-                } catch (IOException ex)
-                {
-                    log.error("Failed to discover the working directory", ex) ;
-                }
-                return ;
-            }
-            else
-            {
-                log.debug("Base file directory: "+dir) ;
-            }
-        }
+//        if ( false )
+//        {
+//            if ( dir == null )
+//            {
+//                try {
+//                    //String wd = System.getProperty("user.dir") ;
+//                    String wd = new File(".").getCanonicalPath() ;
+//                    log.debug("Base file directory: "+wd) ;
+//                } catch (IOException ex)
+//                {
+//                    log.error("Failed to discover the working directory", ex) ;
+//                }
+//                return ;
+//            }
+//            else
+//            {
+//                log.debug("Base file directory: "+dir) ;
+//            }
+//        }
         if ( dir != null )
         {
             if ( dir.endsWith("/") || dir.endsWith(java.io.File.separator) )
