@@ -123,10 +123,22 @@ public class Tokenizer {
                 return source.substring(start, p);
             }
         case LITERAL_START:
-            int start = p;
-            while (isLiteral() && p < source.length()) p++;
+            char delim = source.charAt(p-1);
+            StringBuffer literal = new StringBuffer();
+            while (p < source.length()) {
+                char c = source.charAt(p);
+                if (c == '\\') {
+                    p++;
+                    if (p >= source.length()) break;
+                    c = source.charAt(p);
+                } else {
+                    if (c == delim) break;
+                }
+                literal.append(c);
+                p++;
+            }
             state = LITERAL_END;
-            return source.substring(start, p);
+            return literal.toString();
         case LITERAL_END:
             state = NORMAL;
             p++;
@@ -142,23 +154,10 @@ public class Tokenizer {
     private boolean is(String classification) {
         return classification.indexOf(source.charAt(p)) != -1;
     }
-
-    /**
-     * Returns true if the current character a legal literal innard
-     */
-    private boolean isLiteral() {
-        if (is(literalDelim)) {
-            // check for previous escape
-            if (source.charAt(p-1) == '\\') return true;
-            return false;
-        } else {
-            return true;
-        }
-    }
     
     public static void main(String[] args) {
         System.out.println("Starting");
-        Tokenizer tokenizer = new Tokenizer("foo     ''  'a literal' \"a double literal\"", "()[], \t\n\r", "'\"", true);
+        Tokenizer tokenizer = new Tokenizer("foo     ''  'a literal' \"a double literal\" 'literal with \\\" in it' 'literal with unquoted\"in it'", "()[], \t\n\r", "'\"", true);
         while (tokenizer.hasMoreTokens()) {
             String t = tokenizer.nextToken();
             System.out.println("Token: [" +  t + "]");

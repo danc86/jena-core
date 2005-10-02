@@ -87,7 +87,7 @@ public class TestBasics extends TestCase  {
             "[ (?a rdf:type ?_) -> (?a rdf:type ' fool that,I(am)') ]",
             "[ rule1: (?a rdf:type ?_) -> (?a rdf:type a) ]",
             "[ -> print(' ') ]",
-            "[ -> print(' literal with embedded \\' characters ') ]",
+            "[ -> print(' literal with embedded ' characters ') ]",
             "[ -> print(' literal characters ') ]"
         };
         
