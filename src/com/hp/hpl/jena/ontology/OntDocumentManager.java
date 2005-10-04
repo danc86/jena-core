@@ -923,7 +923,7 @@ public class OntDocumentManager
      * (assuming RDF/XML).
      * </p>
      *
-     * @param path The path to search
+     * @param configPath The path to search
      * @return A model loaded by resolving an entry on the path, or null if
      * no path entries succeed.
      */
