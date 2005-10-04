@@ -71,8 +71,19 @@
   <target name="jar-optimised"  depends="optimise-javac-flags,main"
     description="Builds ${jarfile} with javac optimisation turned on and no debug info"/>
 
-  <target name="release" depends="package"
+  <target name="release" depends="check-contributions,package"
       description="Create a complete Jena release"/>
+
+  <target name="check-contributions" if="contributions.need.updating">
+      <echo>Warning: contributions.html needs updating</echo>
+      <echo>[do `ant contrib` in the rdf-html module]</echo>
+  </target>
+
+  <uptodate 
+      targetfile="${doc.dir}/contrib/contributions.n3" 
+      srcfile="${doc.dir}/contrib/contributions.html" 
+      property="contributions.need.updating"
+  />
 
   <target name="jar-etc"
     description="Constructs a .jar file containing only the files from Jena's etc directory">
