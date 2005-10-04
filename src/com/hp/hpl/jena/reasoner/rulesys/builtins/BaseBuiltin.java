@@ -86,6 +86,14 @@ public abstract class BaseBuiltin implements Builtin {
     }
     
     /**
+     * Returns false if this builtin can invalidate other rules by retracting triples.
+     * Most JenaRules are monotonic deductive closure rules in which this should be false.
+     */
+    public boolean isMonotonic() {
+        return true;
+    }
+    
+    /**
      * Return the n'th argument node after dererencing by what ever type of
      * rule engine binding environment is appropriate.
      */

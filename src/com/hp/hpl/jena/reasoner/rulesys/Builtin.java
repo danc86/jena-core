@@ -75,6 +75,12 @@ public interface Builtin {
      * other than the binding of environment variables.
      */
     public boolean isSafe();
+    
+    /**
+     * Returns false if this builtin can invalidate other rules by retracting triples.
+     * Most JenaRules are monotonic deductive closure rules in which this should be false.
+     */
+    public boolean isMonotonic();
 }
 
 /*
