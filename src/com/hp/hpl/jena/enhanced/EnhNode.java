@@ -150,7 +150,8 @@ public class EnhNode extends Polymorphic implements FrontsNode
     */
     protected boolean canSupport( Class t )
         {
-        return getPersonality().getImplementation( t ).canWrap( asNode(), getGraph() );
+        Implementation imp = getPersonality().getImplementation( t );
+        return imp == null ? false : imp.canWrap( asNode(), getGraph() );
         }
 
     /**

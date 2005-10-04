@@ -432,6 +432,14 @@ public class TestPackage extends GraphTestBase  {
             assertTrue( "exception should have culprit class", TestPackage.class == e.getBadClass() );
             }
         }
+    
+    public void testNullPointerTrapInCanSupport()
+        {
+        EnhGraph eg = new EnhGraph( Factory.createGraphMem(), BuiltinPersonalities.model );
+        Node n = Node.create( "eh:something" );
+        EnhNode en = new EnhNode( n, eg );
+        assertFalse( en.canAs( Integer.class ) );        
+        }
 
 }
 
