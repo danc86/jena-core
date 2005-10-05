@@ -291,4 +291,8 @@ IOException {
 		
 		getOptions().setEmbedding(embed);
 	}
+    void setBadStatementHandler(StatementHandler sh) {
+        arpf.setBadStatementHandler(sh);
+        
+    }
 }

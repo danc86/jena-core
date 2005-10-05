@@ -48,7 +48,6 @@ import org.xml.sax.Locator;
 import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
 
-import com.hp.hpl.jena.rdf.arp.impl.ARPHandlersImpl;
 /** A command line interface into ARP.
  * Creates NTriple's or just error messages.
  * <pre>
@@ -322,7 +321,8 @@ int debugC = 0;
                         public void error(SAXParseException exception) { /* ignore */ }
                         public void fatalError(SAXParseException exception) { /* ignore */ }     
                     });
-                    ((ARPHandlersImpl)arp.getHandlers()).setBadStatementHandler(new SH(System.err));
+                    
+                    arp.setBadStatementHandler(new SH(System.err));
                     break;
 				case 'b' :
 					xmlBase = nextArg;
