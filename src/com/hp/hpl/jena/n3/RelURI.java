@@ -56,7 +56,17 @@ public class RelURI
         // Special case is for non-path URIs: (file: and ftp: and http:)
         
         if ( baseStr == null )
-            throw new JenaURIException("Null base for relative URI resolution") ;
+        {
+            //return relStr ;
+            // Check absolute?
+            try {
+                URI u = new URI(relStr) ;
+                if ( ! u.isAbsolute() )
+                    throw new JenaURIException("Null base for relative URI resolution") ;
+                return relStr ;
+            } catch (java.net.URISyntaxException ex)
+            { throw new JenaURIException("Illegal URI (base was null and URI is not absolute) "+relStr) ; }
+        }
         
         if ( baseStr.length() == 0 )
             throw new JenaURIException("Empty base for relative URI resolution") ;
