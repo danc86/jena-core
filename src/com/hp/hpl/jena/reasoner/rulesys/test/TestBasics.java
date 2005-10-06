@@ -74,21 +74,27 @@ public class TestBasics extends TestCase  {
             "[rule1: (?a rdf:type ?_) -> (?a rdf:type a)]",
             "-> print(' ').",
             "-> print(' literal with embedded \\' characters ').",
-            "-> print(\" literal characters \")."
+            "-> print(\" literal characters \").",
+            "-> print(42). ",
+            "-> print('42'^^xsd:byte). ",
+            "-> print('42'^^http://www.w3.org/2001/XMLSchema#int). "
         };
         String[] testResults = new String[] {
             "[ (?a rdf:type ?_) -> (?a rdf:type ?b) ]",
             "[ (?a rdf:type ?_) (?a rdf:type ?_) -> (?a rdf:type ?b) ]",
-            "[ (?a rdf:type max(?a 1^^http://www.w3.org/2001/XMLSchema#int)^^urn:x-hp-jena:Functor) -> (?a rdf:type 'foo') ]",
+            "[ (?a rdf:type 'max(?a '1'^^http://www.w3.org/2001/XMLSchema#int)'^^urn:x-hp-jena:Functor) -> (?a rdf:type 'foo') ]",
             "[ (?a rdf:type ?_) -> addOne(?a) ]",
             "[ (?a rdf:type ?_) -> [ (?a rdf:type ?_) -> addOne(?a) ] ]",
             "[ (?a rdf:type ?_) -> (?a rdf:type '42') ]",
-            "[ (?a rdf:type ?_) -> (?a rdf:type 4.2^^http://www.w3.org/2001/XMLSchema#float) ]",
+            "[ (?a rdf:type ?_) -> (?a rdf:type '4.2'^^http://www.w3.org/2001/XMLSchema#float) ]",
             "[ (?a rdf:type ?_) -> (?a rdf:type ' fool that,I(am)') ]",
             "[ rule1: (?a rdf:type ?_) -> (?a rdf:type a) ]",
             "[ -> print(' ') ]",
             "[ -> print(' literal with embedded ' characters ') ]",
-            "[ -> print(' literal characters ') ]"
+            "[ -> print(' literal characters ') ]",
+            "[ -> print('42'^^http://www.w3.org/2001/XMLSchema#int) ]",
+            "[ -> print('42'^^http://www.w3.org/2001/XMLSchema#byte) ]",
+            "[ -> print('42'^^http://www.w3.org/2001/XMLSchema#int) ]"
         };
         
         for (int i = 0; i < testRules.length; i++) {

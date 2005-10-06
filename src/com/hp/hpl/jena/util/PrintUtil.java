@@ -71,7 +71,7 @@ public class PrintUtil {
             return node.toString( prefixMapping );
         } else if (node instanceof Node_Literal) {
             String lf = node.getLiteralLexicalForm();
-            return node.getLiteralDatatype() == null ? "'" + lf + "'" : lf + "^^" + node.getLiteralDatatypeURI();
+            return "'" + lf + "'" + (node.getLiteralDatatype() == null ? "" : "^^" + node.getLiteralDatatypeURI());
         } else if (node instanceof Node_ANY) {
             return "*";
         }
