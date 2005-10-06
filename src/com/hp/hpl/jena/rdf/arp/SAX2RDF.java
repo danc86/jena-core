@@ -187,6 +187,24 @@ implements ARPConfig {
     	initParse(base);
     }
 
+    /**
+     * @deprecated
+     */
+    void initParseX(String base, String lang) throws MalformedURIException {
+        try {
+            initParse(base,lang);
+        } catch (SAXParseException e) {
+            throw new MalformedURIException(e);
+        }
+    }
+    /**
+     * Must call initParse after this.
+     * @deprecated
+     */
+    SAX2RDF(String base,  String lang, boolean dummy){
+        super(base,lang);
+        
+    }
     /**The handlers used for processing ARP events. 
      * Do not use with a {@link SAX2Model}.
 
