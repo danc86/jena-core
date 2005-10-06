@@ -797,6 +797,25 @@ public class TestDigReasoner
         assertTrue( !(ex0 || ex1) );
     }
 
+    public void test_bug_mo_3() {
+        DIGReasoner r = (DIGReasoner) ReasonerRegistry.theRegistry().create( DIGReasonerFactory.URI, null );
+        OntModelSpec spec = new OntModelSpec( OntModelSpec.OWL_DL_MEM );
+        spec.setReasoner( r );
+        OntModel model = ModelFactory.createOntologyModel( spec );
+        OntClass c0 = model.createClass( "ns:A" );
+        c0.addLabel( "this is just a test", "en" );
+        Model base = model.getBaseModel();
+
+        OntClass cls = model.getOntClass("ns:A");
+        System.out.println(cls.getLocalName());
+        for ( Iterator instances = cls.listInstances(); instances.hasNext(); ) {
+        Resource inst = (Resource) instances.next();
+//        System.out.println(" "+inst.getLabel("it"));
+        Property p = base.getProperty("http://www.w3.org/2000/01/rdf-schema#","label");
+        Statement s = inst.getProperty(p);
+        System.out.println(" "+s.getString());
+        }
+    }
 
     // for debuging the basic query tests one at a time
     public void xxtestBasicQueryN()
