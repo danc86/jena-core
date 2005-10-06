@@ -51,7 +51,7 @@ public class TestBugs extends TestCase {
     public static TestSuite suite() {
         return new TestSuite( TestBugs.class );
 //        TestSuite suite = new TestSuite();
-//        suite.addTest(new TestBugs( "xxtest_oh_01" ));
+//        suite.addTest(new TestBugs( "testNonmonotonicCR" ));
 //        return suite;
     }  
 
@@ -678,8 +678,7 @@ public class TestBugs extends TestCase {
         GenericRuleReasoner reasoner = new GenericRuleReasoner(rules);
         InfModel inf = ModelFactory.createInfModel(reasoner, data);
         Iterator values = inf.listObjectsOfProperty(i, scoreA);
-        // TODO unsupress test once 
-//        TestUtil.assertIteratorValues(this, values, new Object[] { data.createTypedLiteral(173)});
+        TestUtil.assertIteratorValues(this, values, new Object[] { data.createTypedLiteral(173)});
     }
     
     // debug assistant

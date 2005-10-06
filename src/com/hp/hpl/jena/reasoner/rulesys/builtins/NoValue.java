@@ -61,6 +61,14 @@ public class NoValue extends BaseBuiltin {
         return !context.contains(subj, pred, obj);
     }
     
+    /**
+     * Flag as non-monotonic so the guard clause will get rerun after deferal
+     * as part of a non-trivial conflict set.
+     */
+    public boolean isMonotonic() {
+        return false;
+    }
+    
 }
 
 /*

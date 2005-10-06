@@ -86,7 +86,9 @@ public abstract class BaseBuiltin implements Builtin {
     }
     
     /**
-     * Returns false if this builtin can invalidate other rules by retracting triples.
+     * Returns false if this builtin is non-monotonic. This includes non-monotonic checks like noValue
+     * and non-monotonic actions like remove/drop. A non-monotonic call in a head is assumed to 
+     * be an action and makes the overall rule and ruleset non-monotonic. 
      * Most JenaRules are monotonic deductive closure rules in which this should be false.
      */
     public boolean isMonotonic() {

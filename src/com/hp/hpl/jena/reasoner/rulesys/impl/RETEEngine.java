@@ -126,6 +126,8 @@ public class RETEEngine implements FRuleEngineI {
      */
     public void fastInit(Finder inserts) {
         conflictSet = new RETEConflictSet(new RETERuleContext(infGraph, this), isMonotonic);
+        // Below is used during testing to ensure that all ruleset work (if less efficiently) if marked as non-monotonic
+//        conflictSet = new RETEConflictSet(new RETERuleContext(infGraph, this), false);
         findAndProcessActions();
         if (infGraph.getRawGraph() != null) {
             // Insert the data
@@ -221,9 +223,7 @@ public class RETEEngine implements FRuleEngineI {
      * Add a rule firing request to the conflict set.
      */
     public void requestRuleFiring(Rule rule, BindingEnvironment env, boolean isAdd) {
-        // TODO: this is patched to enable safe checkin remove once rest of migration completed
-//        conflictSet.add(rule, env, isAdd);
-        conflictSet.execute(rule, env, isAdd);
+        conflictSet.add(rule, env, isAdd);
     }
     
 //  =======================================================================
@@ -381,7 +381,7 @@ public class RETEEngine implements FRuleEngineI {
         }
         return null;
     }
-    
+        
     /**
      * Process the queue of pending insert/deletes until the queues are empty.
      * Public to simplify unit tests - not normally called directly.
@@ -392,23 +392,34 @@ public class RETEEngine implements FRuleEngineI {
             Triple next = nextDeleteTriple();
             if (next == null) {
                 next = nextAddTriple();
-                if (next == null) return;       // finished
                 isAdd = true;
             }
-            if (infGraph.shouldTrace()) {
-                logger.debug((isAdd ? "Inserting" : "Deleting") + " triple: " + PrintUtil.print(next));
-            }
-            Iterator i1 = clauseIndex.getAll(next.getPredicate());
-            Iterator i2 = clauseIndex.getAll(Node.ANY);
-            Iterator i = new ConcatenatedIterator(i1, i2);
-            while (i.hasNext()) {
-                RETEClauseFilter cf = (RETEClauseFilter) i.next();
-                // firedRules guard in here?
-                cf.fire(next, isAdd);
+            if (next == null) {
+                // Nothing more to inject, if this is a non-mon rule set now process one rule from the conflict set
+                if (conflictSet.isEmpty()) return;   // Finished
+                conflictSet.fireOne();
+            } else {
+                inject(next, isAdd);
             }
         }
     }
     
+    /**
+     * Inject a single triple into the RETE network
+     */
+    private void inject(Triple t, boolean isAdd) {
+        if (infGraph.shouldTrace()) {
+            logger.debug((isAdd ? "Inserting" : "Deleting") + " triple: " + PrintUtil.print(t));
+        }
+        Iterator i1 = clauseIndex.getAll(t.getPredicate());
+        Iterator i2 = clauseIndex.getAll(Node.ANY);
+        Iterator i = new ConcatenatedIterator(i1, i2);
+        while (i.hasNext()) {
+            RETEClauseFilter cf = (RETEClauseFilter) i.next();
+            // firedRules guard in here?
+            cf.fire(t, isAdd);
+        }
+    }
     
     /**
      * This fires a triple into the current RETE network. 

@@ -374,14 +374,15 @@ public class TestGenericRules extends TestCase {
         Graph data = Factory.createGraphMem();
         data.add(new Triple(a, p, Util.makeIntNode(0)));
         List rules = Rule.parseRules(
-        "(?x p ?v) noValue(a r 1) -> (?x p inc(1, a)) (?x r 1).\n" +
-        "(?x p ?v) noValue(a r 2) -> (?x p inc(1, b)) (?x r 2).\n" +
-        "(?x p ?v) (?x p inc(?i, ?t)) sum(?v, ?i, ?s) -> remove(0,1), (?x p ?s).\n");
+                "(?x p ?v)-> (?x q inc(1, a)).\n" +
+                "(?x p ?v)-> (?x q inc(1, b)).\n" +
+                "(?x p ?v) (?x q inc(?i, ?t)) noValue(?x r ?t) sum(?v, ?i, ?s) -> remove(0,1), (?x p ?s) (?x r ?t).\n");
         
-        // This version doesn't work but its not clear if it should
-//        List rules = Rule.parseRules(
-//        "(?x p ?v) noValue(a r 1) addOne(?v, ?v2) -> remove(0) (?x p ?v2) (?x r 1).\n" +
-//        "(?x p ?v) noValue(a r 2) addOne(?v, ?v2) -> remove(0) (?x p ?v2) (?x r 2).\n");
+        // Older version, relied on implicit rule ordering in Jena2.2 not value in 2.3
+//        "(?x p ?v) noValue(a r 1) -> (?x q inc(1, a)) (?x r 1).\n" +
+//        "(?x p ?v) noValue(a r 2) -> (?x q inc(1, b)) (?x r 2).\n" +
+//        "(?x p ?v) (?x q inc(?i, ?t)) sum(?v, ?i, ?s) -> remove(0,1), (?x p ?s).\n");
+        
         GenericRuleReasoner reasoner = (GenericRuleReasoner)GenericRuleReasonerFactory.theInstance().create(null);
         reasoner.setRules(rules);
         reasoner.setMode(GenericRuleReasoner.FORWARD_RETE);
