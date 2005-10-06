@@ -239,7 +239,7 @@ public class OntModelSpec extends ModelSpecImpl implements ModelSpec {
 
     /**
      * <p>Initialise an OntModelSpec from an RDF description using the JenaModelSpec vocabulary. See
-     * <a href="../../../../../doc/howto/modelspec-2-2.html">the modelspec howto</a>
+     * <a href="../../../../../doc/howto/modelspec.html">the modelspec howto</a>
      * for the description of the OntModel used. The root of the
      * description is the unique resource with type <code>jms:OntMakerClass</code>.</p>
      *
@@ -251,7 +251,7 @@ public class OntModelSpec extends ModelSpecImpl implements ModelSpec {
 
     /**
      * <p>Initialise an OntModelSpec from an RDF description using the JenaModelSpec vocabulary. See
-     * <a href="../../../../../doc/howto/modelspec-2-2.html">the modelspec howto</a>
+     * <a href="../../../../../doc/howto/modelspec.html">the modelspec howto</a>
      * for the description of the OntModel used.  The root of the
      *  description is supplied as a parameter (so the description may describe several
      *  different OntModels).</p>
