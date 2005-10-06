@@ -242,6 +242,18 @@ public class TestListSyntaxCategories
                 return r instanceof Individual;
             }
         },
+        new DoListTest( "OWL list typed individuals",  "file:testing/ontology/owl/list-syntax/test.rdf",  OntModelSpec.OWL_MEM,  2,
+                new String[] {NS+"A0", NS+"A1"} )
+        {
+            public Iterator doList( OntModel m ) {
+                Model mVocab = ModelFactory.createDefaultModel();
+                Resource cA = mVocab.createResource( "http://jena.hpl.hp.com/testing/ontology#A");
+                return m.listIndividuals( cA );
+            }
+            public boolean test( Resource r ) {
+                return r instanceof Individual;
+            }
+        },
         new DoListTest( "empty OWL list individuals",  null,  OntModelSpec.OWL_MEM,  0, new String[] {} )
         {
             public Iterator doList( OntModel m ) {

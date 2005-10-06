@@ -233,6 +233,18 @@ public interface OntModel
 
     /**
      * <p>
+     * Answer an iterator that ranges over the resources in this model that are
+     * instances of the given class.
+     * </p>
+     *
+     * @return An iterator over individual resources whose <code>rdf:type</code>
+     * is <code>cls</code>.
+     */
+    public ExtendedIterator listIndividuals( Resource cls );
+
+
+    /**
+     * <p>
      * Answer an iterator that ranges over all of the various forms of class description resource
      * in this model.  Class descriptions include {@linkplain #listEnumeratedClasses enumerated}
      * classes, {@linkplain #listUnionClasses union} classes, {@linkplain #listComplementClasses complement}
@@ -1449,9 +1461,9 @@ public interface OntModel
     /**
      * <p>If this OntModel is presenting an OWL model, answer the minimum OWL language
      * level that the constructs
-     * used in this model lie entirely within.  
+     * used in this model lie entirely within.
      * This method requires that the separately downloadable
-     * owlsyntax.jar is on the classpath. 
+     * owlsyntax.jar is on the classpath.
      * The three possible return values are
      * {@link com.hp.hpl.jena.vocabulary.OWL#FULL_LANG FULL_LANG} for OWL-full,
      * {@link com.hp.hpl.jena.vocabulary.OWL#DL_LANG DL_LANG} for OWL-DL or
