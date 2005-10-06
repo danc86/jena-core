@@ -594,7 +594,23 @@ public class FBRuleInfGraph  extends BasicForwardRuleInfGraph implements Backwar
             if (transitiveEngine.add(t)) isPrepared = false;
         }
         if (isPrepared) {
-            engine.add(t);
+            boolean needReset = false;
+            if (preprocessorHooks != null && preprocessorHooks.size() > 0) {
+                if (preprocessorHooks.size() > 1) {
+                    for (Iterator i = preprocessorHooks.iterator(); i.hasNext();) {
+                        if (((RulePreprocessHook)i.next()).needsRerun(this, t)) {
+                            needReset = true; break;
+                        }
+                    }
+                } else {
+                    needReset = ((RulePreprocessHook)preprocessorHooks.get(0)).needsRerun(this, t);
+                }
+            }
+            if (needReset) {
+                isPrepared = false;
+            } else {
+                engine.add(t);
+            }
         }
         bEngine.reset();
     }

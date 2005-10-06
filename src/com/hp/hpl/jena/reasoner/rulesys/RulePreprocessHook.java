@@ -10,6 +10,7 @@
 package com.hp.hpl.jena.reasoner.rulesys;
 
 import com.hp.hpl.jena.graph.Graph;
+import com.hp.hpl.jena.graph.Triple;
 import com.hp.hpl.jena.reasoner.Finder;
 
 /**
@@ -36,6 +37,13 @@ public interface RulePreprocessHook {
      * all new deductions that should be seen by the rules.
      */
     public void run(FBRuleInfGraph infGraph, Finder dataFind, Graph inserts);
+    
+    /**
+     * Validate a triple add to see if it should reinvoke the hook. If so
+     * then the inference will be restarted at next prepare time. Incremental
+     * re-processing is not yet supported.
+     */
+    public boolean needsRerun(FBRuleInfGraph infGraph, Triple t);
     
 }
 

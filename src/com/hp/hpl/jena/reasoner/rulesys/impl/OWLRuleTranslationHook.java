@@ -120,6 +120,15 @@ public class OWLRuleTranslationHook implements RulePreprocessHook {
         Node next = Util.getPropValue(node, RDF.rest.asNode(), dataFind);
         translateIntersectionList(next, dataFind, elements);
     }
+    
+    /**
+     * Validate a triple add to see if it should reinvoke the hook. If so
+     * then the inference will be restarted at next prepare time. Incremental
+     * re-processing is not yet supported.
+     */
+    public boolean needsRerun(FBRuleInfGraph infGraph, Triple t) {
+        return (t.getPredicate().equals(OWL.intersectionOf.asNode()));
+    }
 
 }
 

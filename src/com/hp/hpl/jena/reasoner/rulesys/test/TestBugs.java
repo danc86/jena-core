@@ -51,7 +51,7 @@ public class TestBugs extends TestCase {
     public static TestSuite suite() {
         return new TestSuite( TestBugs.class );
 //        TestSuite suite = new TestSuite();
-//        suite.addTest(new TestBugs( "testNonmonotonicCR" ));
+//        suite.addTest(new TestBugs( "testIncrementalIU" ));
 //        return suite;
     }  
 
@@ -679,6 +679,37 @@ public class TestBugs extends TestCase {
         InfModel inf = ModelFactory.createInfModel(reasoner, data);
         Iterator values = inf.listObjectsOfProperty(i, scoreA);
         TestUtil.assertIteratorValues(this, values, new Object[] { data.createTypedLiteral(173)});
+    }
+    
+    /**
+     * Bug report - intersection processing does not work incrementally.
+     */
+    public void testIncrementalIU() {
+        OntModel ontmodel = ModelFactory.createOntologyModel(
+                OntModelSpec.OWL_MEM_MINI_RULE_INF );
+       String homeuri = "http://abc/bcd/";
+       
+       Individual ind[] = new Individual[6];
+       OntClass classb = ontmodel.createClass(homeuri + "C");
+       for (int i = 0; i < 6; i++){
+           ind[i] = classb.createIndividual(homeuri + String.valueOf(i));
+       }        
+       Individual subind[] = new Individual[] {ind[0], ind[1], ind[2]};
+       
+       EnumeratedClass class1 = ontmodel.createEnumeratedClass( 
+               homeuri+"C1", ontmodel.createList(subind) );
+       EnumeratedClass class2 = ontmodel.createEnumeratedClass( 
+               homeuri+"C2", ontmodel.createList(ind));
+
+       RDFList list = ontmodel.createList(new RDFNode[] { class1, class2 });
+       IntersectionClass classI = ontmodel.createIntersectionClass(null, list);
+       UnionClass classU = ontmodel.createUnionClass(null, list);
+       
+       // Works with rebind, bug is that it doesn't work without rebind
+//       ontmodel.rebind();
+
+       TestUtil.assertIteratorValues(this, classI.listInstances(), subind);
+       TestUtil.assertIteratorValues(this, classU.listInstances(), ind);  
     }
     
     // debug assistant
