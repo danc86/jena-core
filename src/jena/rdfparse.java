@@ -20,9 +20,7 @@ import com.hp.hpl.jena.shared.Command;
  * 
  * java &lt;class-path&gt; jena.rdfparse --internal-test
  * </pre>
- * <p>
- * &lt;class-path&gt; should contain <code>jena.jar</code>, <code>xerces.jar</code>, <code>junit.jar</code>,  and <code>icu4j.jar</code> or equivalents.
- * </p>
+ * 
  * <p>
  * The last two forms are for testing. <code>--test</code> runs ARP
  * against the RDF Core Working Group tests found at w3.org.

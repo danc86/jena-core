@@ -54,8 +54,6 @@ import org.xml.sax.SAXParseException;
  * java &lt;class-path&gt; com.hp.hpl.jena.arp.NTriple ( [ -[xstfurR]][ -b xmlBase -[eiw] NNN[,NNN...] ] [ file ] [ url ] )...
  * </pre>
  * <p>
- * &lt;class-path&gt; should contain <code>jena.jar</code>, <code>xerces.jar</code>,  and <code>icu4j.jar</code> or equivalents.
- * </p>
  * All options, files and URLs can be intemingled in any order.
  * They are processed from left-to-right.
  * <dl>
