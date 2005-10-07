@@ -214,7 +214,7 @@ public class PrefixMappingImpl implements PrefixMapping
         return e == null ? uri : e.getKey() + ":" + uri.substring( ((String) e.getValue()).length() );
         }
         
-    public boolean equalTo( PrefixMapping other )
+    public boolean samePrefixMappingAs( PrefixMapping other )
         {
         return other instanceof PrefixMappingImpl 
             ? equals( (PrefixMappingImpl) other )

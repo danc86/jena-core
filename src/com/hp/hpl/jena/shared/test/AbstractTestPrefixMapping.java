@@ -423,8 +423,8 @@ public abstract class AbstractTestPrefixMapping extends GraphTestBase
         fill( A, S );
         fill( B, T );
         String title = "usual: '" + S + "', testing: '" + T + "', should be " + (expected ? "equal" : "different");
-        assertEquals( title, expected, A.equalTo( B ) );
-        assertEquals( title, expected, B.equalTo( A ) );
+        assertEquals( title, expected, A.samePrefixMappingAs( B ) );
+        assertEquals( title, expected, B.samePrefixMappingAs( A ) );
         }
     
     protected void fill( PrefixMapping pm, String settings )

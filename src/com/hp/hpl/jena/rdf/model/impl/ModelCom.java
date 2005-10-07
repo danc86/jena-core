@@ -769,8 +769,8 @@ public class ModelCom
     private PrefixMapping getPrefixMapping()
         { return getGraph().getPrefixMapping(); }
     
-    public boolean equalTo( PrefixMapping other )
-        { return getPrefixMapping().equalTo( other ); }
+    public boolean samePrefixMappingAs( PrefixMapping other )
+        { return getPrefixMapping().samePrefixMappingAs( other ); }
         
     public PrefixMapping lock()
         {

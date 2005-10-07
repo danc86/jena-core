@@ -215,7 +215,7 @@ public interface PrefixMapping
         </blockquote>
         except that it may avoid unnecessary Map creations.
     */
-    boolean equalTo( PrefixMapping other );   
+    boolean samePrefixMappingAs( PrefixMapping other );   
     }
 
 /*
