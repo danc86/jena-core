@@ -32,6 +32,7 @@ public class TestPackage extends TestSuite {
         addTest( "TestBasics", TestBasics.suite() );
         addTest( "TestBackchainer", TestBackchainer.suite() );
         addTest( "TestLPBasics", TestBasicLP.suite() );
+        addTest( "TestLPDerivation", TestLPDerivation.suite() );
         addTest( "TestFBRules", TestFBRules.suite() );
         addTest( "TestGenericRules", TestGenericRules.suite() );
         addTest( "TestRETE", TestRETE.suite() );

@@ -590,6 +590,12 @@ public class LPInterpreter {
                                     BackwardRuleInfGraphI infGraph = engine.getInfGraph();
                                     RuleDerivation d = new RuleDerivation(envFrame.getRule(), result, matches, infGraph);
                                     infGraph.logDerivation(result, d);
+                                    
+                                    // Also want to record this result in the calling frame
+                                    if (envFrame.link instanceof EnvironmentFrameWithDerivation) {
+                                        EnvironmentFrameWithDerivation pefd = (EnvironmentFrameWithDerivation)envFrame.link;
+                                        pefd.noteMatch(new TriplePattern(result), pc);
+                                    }
                                 }
                             }
                             envFrame = (EnvironmentFrame) envFrame.link;
@@ -741,6 +747,14 @@ public class LPInterpreter {
         } else {
             return node;
         }
+    }
+    
+    /**
+     * Return a dereferenced copy of a triple.
+     */
+    public static Triple deref(TriplePattern t) {
+        if (t == null) return null;
+        return new Triple(deref(t.getSubject()), deref(t.getPredicate()), deref(t.getObject()));
     }
     
     /**

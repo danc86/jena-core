@@ -142,6 +142,21 @@ public class RuleDerivation implements Derivation {
         return rule;
     }
 
+    /**
+     * Compare two derivations. This is a shallow comparison, two derivations 
+     * are the same if they contain the same conclusion, rule and match list. 
+     * They do not need to be derived from the same (or any) infGraph.
+     */
+    public boolean equals(Object other) {
+        if (other instanceof RuleDerivation) {
+            RuleDerivation otherD = (RuleDerivation)other;
+            return conclusion.equals(otherD.getConclusion()) &&
+                    matches.equals(otherD.getMatches()) &&
+                    rule.equals(otherD.getRule());
+        } else {
+            return false;
+        }
+    }
 }
 
 /*
