@@ -56,6 +56,8 @@ public class MoreTests extends TestCase implements RDFErrorHandler,
         suite.addTest(TestPropEltErrorMsg.suite());
 		suite.addTest(TestScope.suite());
 		suite.addTest(ExceptionTests.suite());
+        
+        suite.addTest(new MoreDOM2RDFTest("testDOMwithARP"));
 	
 		suite.addTest(new MoreTests("testIcu"));
 		suite.addTest(new MoreTests("testLatin1"));
