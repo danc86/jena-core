@@ -37,7 +37,6 @@
 
 package com.hp.hpl.jena.rdf.arp.impl;
 
-import java.io.InterruptedIOException;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -125,7 +124,7 @@ public class XMLHandler extends LexicalHandlerImpl implements ARPErrorNumbers,
     public void startElement(String uri, String localName, String rawName,
             Attributes atts) throws SAXException {
         if (Thread.interrupted())
-            throw new WrappedException(new InterruptedIOException());
+            warning(null, ERR_IO_INTERRUPTED, "Interrupt detected.");
         FrameI oldFrame = frame;
         frame = frame.startElement(uri, localName, rawName, atts);
         if (DEBUG)

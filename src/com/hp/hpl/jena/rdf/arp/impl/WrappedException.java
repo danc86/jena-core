@@ -66,9 +66,9 @@ class WrappedException extends java.lang.RuntimeException {
         }
         initCause(e);
     }
-    WrappedException(IOException e) {
-        initCause(e);
-    }
+//    WrappedException(IOException e) {
+//        initCause(e);
+//    }
     /** Throw the exception,  falling back to be a wrapped SAXParseException.
      */
     void throwMe() throws IOException, SAXException {
