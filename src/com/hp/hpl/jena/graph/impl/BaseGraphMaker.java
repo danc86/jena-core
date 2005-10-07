@@ -40,15 +40,15 @@ public abstract class BaseGraphMaker implements GraphMaker
      */
     public Graph getGraph()
         { 
-        if (defaultGraph == null) defaultGraph = createGraph();
+        if (defaultGraph == null) { defaultGraph = createGraph(); }
         return defaultGraph;
         }
         
     private Graph defaultGraph;
     
     public Graph openGraph()
-        { if (defaultGraph == null) 
-            throw new DoesNotExistException( "no default graph in this GraphMaker" ); 
+        { if (defaultGraph == null) throw new DoesNotExistException
+            ( "no default graph in this GraphMaker [" + this.getClass() + "]" ); 
         return defaultGraph; }
     
     /**

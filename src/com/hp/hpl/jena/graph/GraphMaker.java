@@ -26,7 +26,7 @@ public interface GraphMaker
     public ReificationStyle getReificationStyle();
     
     /**
-        Answer the default graph of this ModelMaker. The same graph is returned on
+        Answer the default graph of this GraphMaker. The same graph is returned on
         each call. It may only be constructed on the first call of getGraph(), or at any
         previous time.
         
@@ -35,7 +35,7 @@ public interface GraphMaker
     public Graph getGraph();
     
     /**
-        Answer the default graph of this ModelMaker, if it has one. If not,
+        Answer the default graph of this GraphMaker, if it has one. If not,
         throw an exception.
     */
     public Graph openGraph();

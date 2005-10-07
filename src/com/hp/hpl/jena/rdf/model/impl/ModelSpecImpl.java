@@ -84,8 +84,9 @@ public abstract class ModelSpecImpl implements ModelSpec
     protected Model makeDefaultModel()
         {
         Statement s = root.getProperty( JenaModelSpec.modelName );
-        return loadFiles( s == null ? maker.createFreshModel() : maker.createModel( s.getString() ) );
+        return loadFiles( s == null ? maker.createDefaultModel() : maker.createModel( s.getString() ) );
         }
+    
     /**
         Answer a Model created according to this ModelSpec and based on an underlying
         Model with the given name.

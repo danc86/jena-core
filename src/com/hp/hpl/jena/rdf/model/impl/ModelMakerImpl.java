@@ -8,7 +8,6 @@ package com.hp.hpl.jena.rdf.model.impl;
 
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.rdf.model.*;
-import com.hp.hpl.jena.shared.BrokenException;
 import com.hp.hpl.jena.util.iterator.*;
 
 /**

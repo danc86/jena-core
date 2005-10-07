@@ -88,6 +88,9 @@ public class SimpleGraphMaker extends BaseGraphMaker
             return already.openAgain();
         }
         
+    public Graph openGraph()
+        { return getGraph(); }
+    
     /**
         Remove the mapping from name to any graph from the local map.
      */
