@@ -124,7 +124,7 @@ public class XMLHandler extends LexicalHandlerImpl implements ARPErrorNumbers,
     public void startElement(String uri, String localName, String rawName,
             Attributes atts) throws SAXException {
         if (Thread.interrupted())
-            warning(null, ERR_IO_INTERRUPTED, "Interrupt detected.");
+            warning(null, ERR_INTERRUPTED, "Interrupt detected.");
         FrameI oldFrame = frame;
         frame = frame.startElement(uri, localName, rawName, atts);
         if (DEBUG)
