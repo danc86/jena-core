@@ -6,6 +6,8 @@
 
 package com.hp.hpl.jena.test;
 
+import java.lang.reflect.Method;
+
 import junit.framework.TestSuite;
 import junit.framework.Test;
 
@@ -31,7 +33,16 @@ public class TestPackage extends TestSuite {
         addTest("Model", com.hp.hpl.jena.rdf.model.test.TestPackage.suite());
         addTest("N3", com.hp.hpl.jena.n3.test.N3TestSuite.suite());
         addTest("RDQL", com.hp.hpl.jena.rdql.test.RDQLTestSuite.suite());
-        addTest("ARQ", com.hp.hpl.jena.query.test.ARQTestSuite.suite()) ;
+        
+        // Avoid a compile time dependency on ARQ. 
+        {
+            TestSuite arqSuite = suiteByReflection("com.hp.hpl.jena.query.test.ARQTestSuite") ;
+            if ( arqSuite != null )
+                addTest("ARQ", arqSuite) ;
+            else
+                System.err.println("ARQ test suite not run") ;
+            arqSuite = null ;
+        }
         addTest("XML Output", com.hp.hpl.jena.xmloutput.test.TestPackage.suite());
         addTest("Util", com.hp.hpl.jena.util.test.TestPackage.suite());
         addTest( com.hp.hpl.jena.util.iterator.test.TestPackage.suite() );
@@ -56,7 +67,35 @@ public class TestPackage extends TestSuite {
         tc.setName(name);
         addTest(tc);
     }
-
+    
+    private static TestSuite suiteByReflection(String className)
+    {
+        // Reflection to invoke <class>.suite() and return a TestSuite.
+        Class cmd = null ;
+        try { cmd = Class.forName(className) ; }
+        catch (ClassNotFoundException ex)
+        {
+            return null ; 
+        }
+        
+        Method method = null ;
+        try { method = cmd.getMethod("suite", new Class[]{}) ; }
+        catch (NoSuchMethodException ex)
+        {
+            System.err.println("'suite' not found but the class '"+className+"' was") ;
+            return null ;
+        }
+        
+        try 
+        {
+            return (TestSuite)method.invoke(null, new Object[]{}) ;
+        } catch (Exception ex)
+        {
+            System.err.println("Failed to invoke static method 'suite'"+ex.getMessage()) ;
+            ex.printStackTrace(System.err) ;
+        }
+        return null ;
+    }
 }
 
 /*
