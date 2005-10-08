@@ -161,8 +161,8 @@ public class Main {
      */
     private static String getDefaultSource() {
         // use the ont doc mgr to map from a generic URN to a local source file
-        OntDocumentManager.getInstance().addAltEntry( ONT1, "file:doc/ontology/data/test1.owl" );
-        OntDocumentManager.getInstance().addAltEntry( ONT2, "file:doc/ontology/data/test2.owl" );
+        OntDocumentManager.getInstance().addAltEntry( ONT1, "file:src-examples/data/test1.owl" );
+        OntDocumentManager.getInstance().addAltEntry( ONT2, "file:src-examples/data/test2.owl" );
 
         return ONT1;
     }
