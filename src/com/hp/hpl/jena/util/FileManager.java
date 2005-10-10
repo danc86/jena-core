@@ -11,7 +11,6 @@ import java.util.* ;
 import org.apache.commons.logging.*; 
 //import javax.servlet.* ;
 
-import com.hp.hpl.jena.n3.RelURI;
 import com.hp.hpl.jena.rdf.model.* ;
 import com.hp.hpl.jena.shared.*;
 
@@ -329,11 +328,8 @@ public class FileManager
     // replace with RelURI.resolve()
     private static String chooseBaseURI(String baseURI)
     {
-        return RelURI.chooseBaseURI(baseURI) ;
-    }
-    
-    private static String chooseBaseURI_X(String baseURI)
-    {
+//        return RelURI.chooseBaseURI(baseURI) ;
+
         String scheme = FileUtils.getScheme(baseURI) ;
         
         if ( scheme != null )
