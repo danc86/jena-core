@@ -76,7 +76,6 @@ public class TestFileGraph extends GraphTestBase
         {
         Graph initial = graphWith( "initial hasValue 42; also hasURI hello" );
         Graph extra = graphWith( "extra hasValue 17; also hasURI world" );
-        //File foo = FileUtils.tempFileName( "fileGraph", ".n3" );
         File foo = FileUtils.tempFileName( "fileGraph", ".nt" );
         
         Graph g = new FileGraph( foo, true, true );
@@ -89,8 +88,6 @@ public class TestFileGraph extends GraphTestBase
         union.getBulkUpdateHandler().add( extra );
         assertIsomorphic( union, g );
         Model inFile = ModelFactory.createDefaultModel();
-        // TODO afs -> kers - check change 
-        //inFile.read( "file:///" + foo, "N3" );
         inFile.read( "file:///" + foo, "N-TRIPLES" );
         assertIsomorphic( union, inFile.getGraph() );
         }    
@@ -112,7 +109,6 @@ public class TestFileGraph extends GraphTestBase
         {
         Graph initial = graphWith( "A pings B; B pings C" );
         Graph extra = graphWith( "C pingedBy B; fileGraph rdf:type Graph" );
-        //File foo = FileUtils.tempFileName( "fileGraph", ".n3" );
         File foo = FileUtils.tempFileName( "fileGraph", ".nt" );
         Graph g = new FileGraph( foo, true, true );
         g.getTransactionHandler().begin();
@@ -123,8 +119,6 @@ public class TestFileGraph extends GraphTestBase
         g.getTransactionHandler().abort();
         assertIsomorphic( initial, g );
         Model inFile = ModelFactory.createDefaultModel();
-        // TODO afs -> kers - check change 
-        // inFile.read( "file:///" + foo, "N3" );
         inFile.read( "file:///" + foo, "N-TRIPLES" );
         assertIsomorphic( initial, inFile.getGraph() );
         }
