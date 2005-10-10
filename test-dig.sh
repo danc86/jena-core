@@ -28,15 +28,12 @@ do
       CP="${jar}"
   else
       CP="$CP${S}${jar}"
-      fi
-  done
+  fi
+done
 
-#echo $CP
-
-java -version
 java -classpath "$CP" junit.textui.TestRunner ${1:-com.hp.hpl.jena.reasoner.dig.test.TestPackage}
 
 if [ "$1" != "-nostart" ]; then
-	echo Terminating pellet job $pJob ...
+	echo Terminating pellet process $pJob ...
 	kill $pJob
 fi
