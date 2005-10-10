@@ -24,7 +24,9 @@ import com.hp.hpl.jena.vocabulary.*;
     
  	@author hedgehog
 */
-public class FileGraphMaker extends BaseGraphMaker
+public class FileGraphMaker 
+    extends BaseGraphMaker 
+    implements FileGraph.NotifyOnClose
     {
     private String fileBase;
     private boolean deleteOnClose;
@@ -94,7 +96,7 @@ public class FileGraphMaker extends BaseGraphMaker
         File f = withRoot( name );
         FileGraph already = (FileGraph) created.get( f );
         if (already == null)
-            return remember( f, new FileGraph( f, true, strict, style ) ); 
+            return remember( f, new FileGraph( this, f, true, strict, style ) ); 
         else
             {
             if (strict) throw new AlreadyExistsException( name );
@@ -107,10 +109,13 @@ public class FileGraphMaker extends BaseGraphMaker
         File f = withRoot( name );
         return created.containsKey( f )  
             ? ((FileGraph) created.get( f )).openAgain()
-            : remember( f, new FileGraph( f, false, strict, style ) )
+            : remember( f, new FileGraph( this, f, false, strict, style ) )
             ;
         }
 
+    public void notifyClosed( File f )
+        { created.remove( f ); }
+    
     private File withRoot( String name )
         { return new File( fileBase, toFilename( name ) ); }
         

@@ -222,14 +222,12 @@ public abstract class AbstractTestGraphMaker extends GraphTestBase
     */    
     public void testListThreeGraphs()
         { String x = "x", y = "y/sub", z = "z:boo";
-        gf.createGraph( x ).close();
-        gf.createGraph( y ).close();
-        gf.createGraph( z ).close();
-        Set s = iteratorToSet( gf.listGraphs() );
-        assertEquals( 3, s.size() ); 
-        assertTrue( s.contains( x ) );
-        assertTrue( s.contains( y ) );
-        assertTrue( s.contains( z ) ); }
+        Graph X = gf.createGraph( x );
+        Graph Y = gf.createGraph( y );
+        Graph Z = gf.createGraph( z );
+        Set wanted = setOfStrings( x + " " + y + " " + z );
+        assertEquals( wanted, iteratorToSet( gf.listGraphs() ) ); 
+        X.close(); Y.close(); Z.close(); }
         
     /**
         Test that a maker with some things put in and then some removed gets the right
@@ -237,14 +235,14 @@ public abstract class AbstractTestGraphMaker extends GraphTestBase
     */
     public void testListAfterDelete()
         { String x = "x_y", y = "y//zub", z = "a:b/c";
-        gf.createGraph( x ).close();
-        gf.createGraph( y ).close();
-        gf.createGraph( z ).close();
+        Graph X = gf.createGraph( x );
+        Graph Y = gf.createGraph( y );
+        Graph Z = gf.createGraph( z );
         gf.removeGraph( x );
         Set s = iteratorToSet( gf.listGraphs() );
-        assertEquals( 2, s.size() ); 
-        assertTrue( s.contains( y ) );
-        assertTrue( s.contains( z ) ); }
+        assertEquals( setOfStrings( y + " " + z ), s );
+        X.close(); Y.close(); Z.close();
+        }
         
     }
 

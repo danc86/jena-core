@@ -64,6 +64,18 @@ public class JenaTestBase extends TestCase
         }
     
     /**
+        Answer a Set of the substrings of <code>s</code> that are separated 
+        by spaces.
+    */
+    protected Set setOfStrings( String s )
+        {
+        Set result = new HashSet();
+        StringTokenizer st = new StringTokenizer( s );
+        while (st.hasMoreTokens()) result.add( st.nextToken() );
+        return result;
+        }
+    
+    /**
         Answer an iterator over the space-separated substrings of <code>s</code>.
     */
     protected ExtendedIterator iteratorOfStrings( String s )
