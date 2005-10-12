@@ -113,7 +113,7 @@ public class rdfcat
             }} );
 
     /** Argument setting expected input language to NTRIPLE */
-    public final ArgDecl IN_NTRIPLE = new ArgDecl( false, "t", "ntriples", "ntriple", "n-triple",
+    public final ArgDecl IN_NTRIPLE = new ArgDecl( false, "t", "ntriples", "ntriple", "n-triple", "n-triples",
             new ArgHandler() {
                 public void action( String arg, String val ) throws IllegalArgumentException {
                     expectInput("N-TRIPLE");
