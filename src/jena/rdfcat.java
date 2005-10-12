@@ -113,7 +113,7 @@ public class rdfcat
             }} );
 
     /** Argument setting expected input language to NTRIPLE */
-    public final ArgDecl IN_NTRIPLE = new ArgDecl( false, "t", "ntriples",
+    public final ArgDecl IN_NTRIPLE = new ArgDecl( false, "t", "ntriples", "ntriple", "n-triple",
             new ArgHandler() {
                 public void action( String arg, String val ) throws IllegalArgumentException {
                     expectInput("N-TRIPLE");
@@ -231,7 +231,8 @@ public class rdfcat
             m_outputFormat = "N3";
         }
         else if ("N-TRIPLE".equalsIgnoreCase( lang ) ||
-                 "ntriples".equalsIgnoreCase( lang ) ||
+                "ntriples".equalsIgnoreCase( lang ) ||
+                "ntriple".equalsIgnoreCase( lang ) ||
                  "t".equalsIgnoreCase( lang ))
         {
             m_outputFormat = "N-TRIPLE";
