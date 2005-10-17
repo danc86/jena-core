@@ -30,6 +30,9 @@ public class QueryEngine implements QueryExecution
     // Statistics
     long queryStartTime = -1 ;
 
+    /** @deprecated Migrate to com.hp.hpl.jena.query - the ARQ query engine
+     */ 
+
     public QueryEngine(Query q)
     {
         query = q ;
@@ -65,6 +68,7 @@ public class QueryEngine implements QueryExecution
     
     /** Execute a query and get back the results.
      * @return QueryResults
+     * @deprecated Migrate to com.hp.hpl.jena.query - the ARQ query engine
      */
     
     public QueryResults exec() { return exec(null) ; }

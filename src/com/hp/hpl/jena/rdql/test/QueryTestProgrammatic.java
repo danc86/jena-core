@@ -82,6 +82,9 @@ public class QueryTestProgrammatic extends TestSuite
             queryString = q ;
         }
         
+        
+        /** @deprecated */
+        // Removes the warnings
         protected void runTest() throws Throwable
         {
             if ( verbose )
@@ -126,6 +129,7 @@ public class QueryTestProgrammatic extends TestSuite
             numResults = num ;
         }
         
+        /** @deprecated */
         protected void runTest() throws Throwable
         {
             if ( verbose )

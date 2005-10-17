@@ -146,6 +146,7 @@ public class QueryTestScripts extends TestSuite
             fileManager = null ;
         }
         
+        /** @deprecated */
         protected void runTest() throws Throwable
         {
             Query query = null ;

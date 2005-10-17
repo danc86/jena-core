@@ -68,6 +68,7 @@ public class QueryTestsMisc extends TestSuite
         
         TestQueryTriplesMerge() { super("TestQueryTriplesMerge" ) ; }
         
+        /** @deprecated */
         protected void runTest() throws Throwable
         {
             Model model2 = ModelFactory.createDefaultModel() ;
@@ -95,7 +96,7 @@ public class QueryTestsMisc extends TestSuite
     {
         
         TestQueryGetTriples() { super("TestQueryGetTriples" ) ; }
-        
+        /** @deprecated */
         protected void runTest() throws Throwable
         {
             Model model2 = ModelFactory.createDefaultModel() ;
@@ -122,7 +123,7 @@ public class QueryTestsMisc extends TestSuite
     {
         
         TestQueryGetTriples2() { super("TestQueryGetTriples2" ) ; }
-        
+        /** @deprecated */
         protected void runTest() throws Throwable
         {
             Model model2 = ModelFactory.createDefaultModel() ;
