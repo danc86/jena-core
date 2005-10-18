@@ -113,13 +113,14 @@ final public class LiteralLabel {
             String lex = (String)value;
             lexicalForm = lex;
             if (dtype == null) {
-                value = lex;
+                this.value = lex;
             } else {
                 setValue(lex);
             }
         } else {
 		    this.value = (dtype == null) ? value : dtype.cannonicalise( value );
         }
+        
         normalize();
 	}
 

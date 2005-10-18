@@ -24,6 +24,7 @@ public class TestPackage extends TestSuite {
     private TestPackage() {
         super("graph");
         addTest( TestFindLiterals.suite() );
+        addTest( TestLiteralLabels.suite() );
         addTest( TestTripleCache.suite() );
         addTest( TestNodeCache.suite() );
         addTest( TestNode.suite() );
