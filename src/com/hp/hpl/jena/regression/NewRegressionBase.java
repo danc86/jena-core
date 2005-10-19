@@ -25,6 +25,8 @@ public class NewRegressionBase extends ModelTestBase
     protected static final String tvString = "test 12 string";
     protected static final Object tvLitObj = new LitTestObj(1234);
     protected static final LitTestObj tvObject = new LitTestObj(12345);
+    static final double dDelta = 0.000000005;
+    static final float fDelta = 0.000005f;
     }
 
 

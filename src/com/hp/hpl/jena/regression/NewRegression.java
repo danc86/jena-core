@@ -32,6 +32,7 @@ public class NewRegression extends ModelTestBase
         result.addTest( NewRegressionSeq.suite() );
         result.addTest( NewRegressionSet.suite() );
         result.addTest( NewRegressionResourceMethods.suite() );
+        result.addTest( NewRegressionStatementMethods.suite() );
         return result;
         }
     
