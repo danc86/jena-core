@@ -202,9 +202,10 @@ public interface Literal extends RDFNode {
     //       using the factory even for typed literals
     public Object getObject(ObjectF f) ;
     
-    /** If a language is defined for this literal return it
-     * @return the language for this literal if it exists, or null
-     */    
+    /** 
+         If a language is defined for this literal return it
+         @return the language for this literal if it exists, or empty string if none
+    */    
     public String getLanguage();
     
     /** Return whether Literal is well formed XML
