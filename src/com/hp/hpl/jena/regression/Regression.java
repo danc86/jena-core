@@ -2153,15 +2153,6 @@ public class Regression extends Object {
             }
 
 
-
-            class foo extends SimpleSelector
-            {
-                public foo(Resource s, Property p, RDFNode o) {
-                    super(s,p,o);
-                }
-                public boolean selects(Statement s) {return false;}
-            }
-
             n=110;
             count = 0;
             n++; iter = m.listStatements(
