@@ -223,6 +223,12 @@ public class FBRuleReasoner implements RuleReasoner {
     public void setRules(List rules) {
         this.rules = rules;
         preload = null;
+        if (schemaGraph != null) {
+            // The change of rules invalidates the existing precomputed schema graph
+            // This might be recoverable but for now simply flag the error and let the
+            // user reorder their code to set the rules before doing a bind!
+            throw new ReasonerException("Cannot change the rule set for a bound rule reasoner.\nSet the rules before calling bindSchema");
+        }
     }
     
     /**
