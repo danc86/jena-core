@@ -137,17 +137,13 @@ public class NewRegressionResources extends NewRegressionBase
         Resource r = new ResourceImpl( (ModelCom) m );
         testResource( m, r, 0 );
     
-    
         testResource( m, m.createBag(), 1 );
         testContainer( m, m.createBag(), m.createBag());
-        // testBag( m, m.createBag(), m.createBag(), m.createBag() );
     
-        testResource( m, m.createAlt(), 1);
+        testResource( m, m.createAlt(), 1 );
         testContainer( m, m.createAlt(), m.createAlt() );
-        // testAlt( m, m.createAlt(), m.createAlt(), m.createAlt(), m.createAlt() );
     
-    
-        testResource( m, m.createSeq(), 1);
+        testResource( m, m.createSeq(), 1 );
         testContainer( m, m.createSeq(), m.createSeq() );
         // testSeq( m, m.createSeq(), m.createSeq(), m.createSeq(),
          //                     m.createSeq(), m.createSeq(), m.createSeq(),
