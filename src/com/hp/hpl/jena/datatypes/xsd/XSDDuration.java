@@ -9,6 +9,8 @@
  *****************************************************************/
 package com.hp.hpl.jena.datatypes.xsd;
 
+import com.hp.hpl.jena.datatypes.xsd.impl.XSDAbstractDateTimeType;
+
 /**
  * Represent an XSD duration value. We use a seven dimensional space
  * with years, months, days, hours, minutes, seconds and fractional seconds.
@@ -111,7 +113,7 @@ public class XSDDuration extends AbstractDateTime {
          message.append('M');
          message.append(negate * data[s]);
          message.append('.');
-         message.append(negate * data[ms]);
+         XSDAbstractDateTimeType.appendFractionalTime(message, negate * data[ms], data[msscale]);
          message.append('S');
 
          return message.toString();
