@@ -11,11 +11,7 @@ import java.util.*;
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.graph.Triple.Field;
 import com.hp.hpl.jena.graph.query.*;
-import com.hp.hpl.jena.mem.ArrayBunch;
-import com.hp.hpl.jena.mem.SetBunch;
-import com.hp.hpl.jena.mem.TripleBunch;
-import com.hp.hpl.jena.mem.MatchOrBind;
-import com.hp.hpl.jena.mem.NodeToTriplesMapBase;
+import com.hp.hpl.jena.mem.*;
 import com.hp.hpl.jena.util.iterator.*;
 
 public class NodeToTriplesMapFaster extends NodeToTriplesMapBase
@@ -37,7 +33,7 @@ public class NodeToTriplesMapFaster extends NodeToTriplesMapBase
            return false;
        else
            {
-           if (s.size() == 9)
+           if (s.size() == 9 && s instanceof ArrayBunch)
                map.put( o, s = new SetBunch( s ) );
            s.add( t );
            size += 1; 

@@ -45,16 +45,15 @@ import java.util.Iterator;
  */
 public class SeqNodeIteratorImpl extends WrappedIterator implements NodeIterator {
     
-    Statement stmt = null;
     Seq       seq;
     int       size;
-    int       index=0;
-    int       numDeleted=0;
+    int       index = 0;
+    Statement stmt = null;
+    private int       numDeleted=0;
+    
     /** Creates new SeqNodeIteratorImpl 
     */
-    public SeqNodeIteratorImpl (Iterator  iterator, 
-                                
-                                Seq       seq)  {
+    public SeqNodeIteratorImpl ( Iterator  iterator, Seq seq )  {
         super( iterator ); 
         this.seq      = seq;
         this.size     = seq.size();
