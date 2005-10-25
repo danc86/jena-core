@@ -1,6 +1,26 @@
 /*
- *  (c) Copyright 2000, 2001, 2002, 2003, 2004, 2005 Hewlett-Packard Development Company, LP
- *  All rights reserved.
+ 	(c) Copyright 2005 Hewlett-Packard Development Company, LP
+ 	All rights reserved - see end of file.
+ 	$Id$
+*/
+
+package com.hp.hpl.jena.mem.test;
+
+import com.hp.hpl.jena.mem.*;
+
+public class TestArrayTripleBunch extends TestTripleBunch
+    {
+    public TestArrayTripleBunch( String name )
+        { super( name ); }
+    
+    public TripleBunch getBunch()
+        { return new ArrayBunch(); }
+    }
+
+
+/*
+ * (c) Copyright 2005 Hewlett-Packard Development Company, LP
+ * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -12,7 +32,7 @@
  *    documentation and/or other materials provided with the distribution.
  * 3. The name of the author may not be used to endorse or promote products
  *    derived from this software without specific prior written permission.
- 
+ *
  * THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS OR
  * IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
  * OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
@@ -23,51 +43,4 @@
  * THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
  * THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
- *
- * $Id$
- */
-
-package com.hp.hpl.jena.mem.test;
-
-import com.hp.hpl.jena.vocabulary.*;
-import com.hp.hpl.jena.rdf.model.*;
-
-/**
-    @author  bwm
-    @version $Name$ $Revision$ $Date$
 */
-public class TestCaseBugs 
-            extends TestCaseBasic {
-                
-    Model model = null;
-
-    public TestCaseBugs(String name) {
-        super(name);
-    }
-    
-    public void setUp() {
-        model = ModelFactory.createDefaultModel();
-    }
-    
-    public void bug36() {
-            Resource r    = model.createResource();
-            Object   oc   = RDFS.Class;
-            Object   op   = RDF.Property;
-            
-            Statement s = model.createStatement(r, RDF.type, oc);
-            assertTrue(s.getObject() instanceof Resource);
-            
-            s.changeObject(op);
-            assertTrue(s.getObject() instanceof Resource);
-            
-            model.add(r, RDF.type, oc);
-            RDFNode n = model.listStatements()
-                             .nextStatement()
-                             .getObject();
-            assertTrue(n instanceof Resource);
-            
-            assertTrue(model.listSubjectsWithProperty(RDF.type, oc).hasNext());
-            
-            assertTrue(model.contains(r, RDF.type, oc));  
-         }
-}

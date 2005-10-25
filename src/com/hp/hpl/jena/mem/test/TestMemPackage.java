@@ -24,10 +24,12 @@ public class TestMemPackage extends TestCase
         result.addTest( TestGraphMem.suite() );
         result.addTest( TestMixedGraphMem.suite() );
         result.addTest( TestSmallGraphMem.suite() );
+        result.addTest( new TestSuite( TestArrayTripleBunch.class ) );
+        result.addTest( new TestSuite( TestWrappedSetTripleBunch.class ) );
+        result.addTest( new TestSuite( TestHashedTripleBunch.class ) );
         return result;
         }
     }
-
 
 /*
     (c) Copyright 2004, 2005 Hewlett-Packard Development Company, LP
