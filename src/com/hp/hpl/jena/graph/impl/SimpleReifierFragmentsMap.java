@@ -108,7 +108,7 @@ public class SimpleReifierFragmentsMap implements ReifierFragmentsMap
         return x;
         }
 
-    protected void putAugmentedTriple( SimpleReifierFragmentHandler s, Node tag, Node object, Triple reified )
+    public void putAugmentedTriple( SimpleReifierFragmentHandler s, Node tag, Node object, Triple reified )
         {
         Fragments partial = new Fragments( tag, reified );
         partial.add( s, object );

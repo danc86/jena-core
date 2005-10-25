@@ -230,8 +230,11 @@ public class SeqImpl extends ContainerImpl implements Seq {
         { return listContainerMembers( seqIteratorFactory ); }
     
     public Container remove(Statement s) {
+        // System.err.println( "]] SeqImpl.remove " + s );
         getModel().remove(s);
+        // System.err.println( "]] SeqImpl.remove - about to shift down " + (s.getPredicate().getOrdinal()+1) + " to " + (size()+1) );
         shiftDown(s.getPredicate().getOrdinal()+1, size()+1);
+        // System.err.println( "]] SeqImpl.remov completed" );
         return this;
     } 
     
@@ -242,6 +245,7 @@ public class SeqImpl extends ContainerImpl implements Seq {
     }
     
     public Container remove(int index, RDFNode o)  {
+        // System.err.println( "]] SeqImpl::remove( " + index + ", " + o + ")" );
         return remove(getModel().createStatement(this, RDF.li(index), o).remove());
     }
     
@@ -293,11 +297,12 @@ public class SeqImpl extends ContainerImpl implements Seq {
         }
     }   
     protected void shiftDown(int start, int finish)  {
-        Statement stmt = null;
         for (int i=start; i<=finish; i++) {
-            stmt = getRequiredProperty(RDF.li(i));
-            addProperty(RDF.li(i-1), stmt.getObject());
+            Statement stmt = getRequiredProperty( RDF.li(i) );
+            // System.err.println( "]]* remove " + stmt );
             stmt.remove();
+            // System.err.println( "]]* addProperty( " + RDF.li(i-1) + " " + stmt.getObject() );
+            addProperty(RDF.li(i-1), stmt.getObject());
         }
     }
     
