@@ -14,11 +14,13 @@ import com.hp.hpl.jena.util.iterator.*;
 
 public class HashedTripleBunch extends TripleBunch
     {
-    protected Triple [] contents = new Triple[18];
+    protected static final double loadFactor = 0.5;
+
+    protected Triple [] contents = new Triple[28];
     
     protected int capacity = contents.length;
     protected int size = 0;
-    protected int threshold = 14;
+    protected int threshold = (int) (capacity * loadFactor);
     
     public HashedTripleBunch( TripleBunch b )
         {
@@ -30,7 +32,7 @@ public class HashedTripleBunch extends TripleBunch
         { return findSlot( t ) < 0; }
 
     protected final int initialIndexFor( Triple t )
-        { return Math.abs( t.hashCode() ) % capacity; }
+        { return (t.hashCode() & 0x7fffffff) % capacity; }
     
     protected int findSlot( Triple t )
         {
@@ -96,7 +98,7 @@ public class HashedTripleBunch extends TripleBunch
     
     protected int computeNewCapacity()
         {
-        threshold = (int) (capacity * 2 * 0.75);
+        threshold = (int) (capacity * 2 * loadFactor);
         return capacity * 2;
         }
     

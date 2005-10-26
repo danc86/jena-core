@@ -387,13 +387,11 @@ public abstract class Node {
      * <p>Default implementation is to use equals, subclasses should
      * override this.</p>
      */
-    public boolean sameValueAs(Object o) {
-        return equals(o);
-    }
+    public boolean sameValueAs(Object o) 
+        { return equals( o ); }
 
-    public int hashCode() {
-    	return label.hashCode();
-    }
+    public int hashCode() 
+        { return label.hashCode() * 31; }
     
     /**
         Answer true iff this node accepts the other one as a match.

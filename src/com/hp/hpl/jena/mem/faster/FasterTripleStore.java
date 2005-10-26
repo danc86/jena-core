@@ -24,7 +24,7 @@ public class FasterTripleStore extends GraphTripleStoreBase implements TripleSto
                 ); 
         }
      
-    protected NodeToTriplesMapFaster getSubjects()
+    public NodeToTriplesMapFaster getSubjects()
         { return (NodeToTriplesMapFaster) subjects; }
     
     protected NodeToTriplesMapFaster getObjects()

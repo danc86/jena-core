@@ -36,7 +36,7 @@ public class TestPackage extends TestSuite {
         
         // Avoid a compile time dependency on ARQ. 
         {
-            TestSuite arqSuite = suiteByReflection("com.hp.hpl.jena.query.test.ARQTestSuite") ;
+            TestSuite arqSuite = getARQsuite() ;
             if ( arqSuite != null )
                 addTest("ARQ", arqSuite) ;
             else
@@ -62,6 +62,11 @@ public class TestPackage extends TestSuite {
         addTest( "DAML", com.hp.hpl.jena.ontology.daml.impl.test.TestPackage.suite() );
 
     }
+
+    public static TestSuite getARQsuite()
+        {
+        return suiteByReflection("com.hp.hpl.jena.query.test.ARQTestSuite");
+        }
 
     private void addTest(String name, TestSuite tc) {
         tc.setName(name);

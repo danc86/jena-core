@@ -22,8 +22,8 @@ public abstract class NodeToTriplesMapBase
     /**
          The map from nodes to Bunch(Triple).
     */
-    // protected BunchMap map = new HashedBunchMap();
-    protected BunchMap map = new WrappedHashMap();
+//     public BunchMap map = new HashedBunchMap();
+    public BunchMap map = new WrappedHashMap();
 
     /**
          The number of triples held in this NTM, maintained incrementally 

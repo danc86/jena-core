@@ -15,11 +15,13 @@ import com.hp.hpl.jena.util.iterator.NiceIterator;
 */
 public class HashedBunchMap extends BunchMap
     {
-    protected Object [] keys = new Object[10];
-    protected Object [] values = new Object[10];
-    protected int capacity = keys.length;
-    protected int size = 0;
-    protected int threshold = 7;
+    protected static final double loadFactor = 0.5;
+    
+    public Object [] keys = new Object[23];
+    public int capacity = keys.length;
+    protected Object [] values = new Object[capacity];
+    public int size = 0;
+    public int threshold = (int) (capacity * loadFactor);
     
     public void clear()
         { for (int i = 0; i < capacity; i += 1) keys[i] = null; }
@@ -30,12 +32,14 @@ public class HashedBunchMap extends BunchMap
     protected int findSlot( Object key )
         {
         int index = initialIndexFor( key );
+        int count = 0;
         while (true)
             {
             Object current = keys[index];
-            if (current == null) return index;
+            if (current == null) return index; 
             if (key.equals( current )) return ~index;
             index = (index == 0 ? capacity - 1 : index - 1);
+            count += 1;
             }
         }       
     
@@ -81,7 +85,7 @@ public class HashedBunchMap extends BunchMap
     
     protected int computeNewCapacity()
         {
-        threshold = (int) (capacity * 2 * 0.75);
+        threshold = (int) (capacity * 2 * loadFactor);
         return capacity * 2;
         }
     
