@@ -6,7 +6,9 @@
 
 package com.hp.hpl.jena.rdf.model.test;
 
+import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.rdf.model.*;
+import com.hp.hpl.jena.rdf.model.impl.ModelCom;
 
 import junit.framework.*;
 
@@ -65,6 +67,22 @@ public class TestContains extends ModelTestBase
     
     public void testCWN( boolean yes, String facts, Resource S, Property P, RDFNode O )
         { assertEquals( yes, modelWithStatements( facts ).contains( S, P, O ) ); }
+    
+    public void testModelComContainsSPcallsContainsSPO()
+        {
+        Graph g = Factory.createDefaultGraph();
+        final boolean [] wasCalled = {false};
+        Model m = new ModelCom( g )
+            {
+            public boolean contains( Resource s, Property p, RDFNode o )
+                {
+                wasCalled[0] = true;
+                return super.contains( s, p, o );
+                }
+            };
+        assertFalse( m.contains( resource( "r" ), property( "p" ) ) );
+        assertTrue( "contains(S,P) should call contains(S,P,O)", wasCalled[0] );
+        }
     }
 
 

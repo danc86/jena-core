@@ -990,11 +990,9 @@ public class ModelCom
     
     public boolean containsResource( RDFNode r )
         { return graph.queryHandler().containsNode( r.asNode() ); }
-  
-    public boolean contains( Resource s, Property p )  {
-        ClosableIterator it = graph.find( asNode( s ), asNode( p ), null );
-        try { return it.hasNext(); } finally { it.close(); }
-    }
+
+    public boolean contains( Resource s, Property p ) 
+        { return contains( s, p, (RDFNode) null );  }
     
     public boolean contains( Resource s, Property p, RDFNode o )
         { return graph.contains( asNode( s ), asNode( p ), asNode( o ) ); }
