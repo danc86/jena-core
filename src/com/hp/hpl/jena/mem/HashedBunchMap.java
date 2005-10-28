@@ -23,8 +23,12 @@ public class HashedBunchMap extends HashCommon implements BunchMap
         values = new Object[capacity];
         }
     
+    /**
+        Clear this map: all entries are removed. The keys <i>and value</i> array 
+        elements are set to null (so the values may be garbage-collected).
+    */
     public void clear()
-        { for (int i = 0; i < capacity; i += 1) keys[i] = null; }  
+        { for (int i = 0; i < capacity; i += 1) keys[i] = values[i] = null; }  
     
     public Object get( Object key )
         {
@@ -81,20 +85,18 @@ public class HashedBunchMap extends HashCommon implements BunchMap
         {
         return new NiceIterator()
             {
-            int index = 0;
+            int index = capacity - 1;
             
             public boolean hasNext()
                 {
-                while (index < capacity && keys[index] == null) index += 1;
-                return index < capacity;
+                while (index >= 0 && keys[index] == null) index -= 1;
+                return index >= 0;
                 }
             
             public Object next()
                 {
-                if (hasNext() == false) throw new RuntimeException( "oops" );
-                Object answer = keys[index];
-                index += 1;
-                return answer;
+                if (hasNext() == false) noElements( "bunch map keys" );
+                return keys[index--];
                 }
             };
         }

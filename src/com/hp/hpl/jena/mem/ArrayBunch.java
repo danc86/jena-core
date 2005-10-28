@@ -14,11 +14,12 @@ import com.hp.hpl.jena.util.iterator.NiceIterator;
 
 public class ArrayBunch implements TripleBunch
     {
-    public ArrayBunch()
-        {}
     
     protected int size = 0;
-    protected Triple [] elements = new Triple[9];
+    protected Triple [] elements;
+
+    public ArrayBunch()
+        { elements = new Triple[5]; }
     
     public boolean containsBySameValueAs( Triple t )
         {
@@ -38,8 +39,24 @@ public class ArrayBunch implements TripleBunch
         { return size; }
     
     public void add( Triple t )
-        { elements[size++] = t; }
+        { 
+        if (size == elements.length) grow();
+        elements[size++] = t; 
+        }
     
+    /**
+        Note: linear growth is suboptimal (order n<sup>2</sup>) normally, but
+        ArrayBunch's are meant for <i>small</i> sets and are replaced by some
+        sort of hash- or tree- set when they get big; currently "big" means more
+        than 9 elements, so that's only one growth spurt anyway.  
+    */
+    protected void grow()
+        {
+        Triple [] newElements = new Triple[size + 4];
+        System.arraycopy( elements, 0, newElements, 0, size );
+        elements = newElements;
+        }
+
     public void remove( Triple t )
         { 
         for (int i = 0; i < size; i += 1)
