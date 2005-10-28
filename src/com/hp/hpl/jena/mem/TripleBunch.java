@@ -11,7 +11,7 @@ import com.hp.hpl.jena.graph.query.StageElement;
 
 import com.hp.hpl.jena.util.iterator.ExtendedIterator;
 
-public abstract class TripleBunch 
+public interface TripleBunch 
     {
     public abstract boolean contains( Triple t );
     public abstract boolean containsBySameValueAs( Triple t );

@@ -12,7 +12,7 @@ import com.hp.hpl.jena.shared.BrokenException;
 import com.hp.hpl.jena.util.iterator.ExtendedIterator;
 import com.hp.hpl.jena.util.iterator.NiceIterator;
 
-public class ArrayBunch extends TripleBunch
+public class ArrayBunch implements TripleBunch
     {
     public ArrayBunch()
         {}

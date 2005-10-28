@@ -13,36 +13,36 @@ import java.util.Iterator;
     
     @author kers
 */
-public abstract class BunchMap
+public interface BunchMap
     {
     /**
         Clear this map: all entries are removed.
     */
-    public abstract void clear();
+    public void clear();
 
     /**
         Answer the value associated with <code>key</code>, or <code>null</code>
         if there isn't one.
     */
-    public abstract Object get( Object key );
+    public Object get( Object key );
 
     /**
         Associate <cpde>key</code> and <code>value</code>. Any existing
         association of <code>key</code> is lost. <code>get</code> on this key
         will now deliver this value.
     */
-    public abstract void put( Object key, Object value );
+    public void put( Object key, Object value );
 
     /**
         Remove any association for <code>key</code>; <code>get</code> on this
         key will now deliver <code>null</code>.
     */
-    public abstract void remove( Object key );
+    public void remove( Object key );
 
     /**
         Answer an iterator over all the keys in this map.
     */
-    public abstract Iterator keyIterator();
+    public Iterator keyIterator();
     }
 
 /*

@@ -16,7 +16,7 @@ import com.hp.hpl.jena.graph.query.StageElement;
 import com.hp.hpl.jena.util.iterator.ExtendedIterator;
 import com.hp.hpl.jena.util.iterator.WrappedIterator;
 
-public class SetBunch extends TripleBunch
+public class SetBunch implements TripleBunch
     {
     protected Set elements = new HashSet(20);
     

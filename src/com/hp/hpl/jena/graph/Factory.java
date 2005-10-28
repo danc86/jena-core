@@ -18,12 +18,15 @@ import com.hp.hpl.jena.shared.*;
 
 public class Factory
     {
+
     private Factory()
         { super(); }
 
-    public static boolean faster =
+    public static final boolean faster =
         System.getProperty( "jena.faster", "yes" ).equals( "yes" );
 
+    public static final boolean newHashing = 
+        System.getProperty( "jena.hashing", "no" ).equals( "yes" );
     /**
         Answer a memory-based Graph with the Standard reification style.
     */

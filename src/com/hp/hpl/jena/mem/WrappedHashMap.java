@@ -13,7 +13,7 @@ import com.hp.hpl.jena.util.CollectionFactory;
 /**
     An implementation of BunchMap that delegates to a [Hashed]Map.
 */
-public class WrappedHashMap extends BunchMap
+public class WrappedHashMap implements BunchMap
     {
     protected final Map map = CollectionFactory.createHashedMap();
     
