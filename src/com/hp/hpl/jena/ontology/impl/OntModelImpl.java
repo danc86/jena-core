@@ -2578,7 +2578,7 @@ public class OntModelImpl
      */
     public StmtIterator listStatements( Resource subject, Property predicate, RDFNode object, Model posit ) {
         if (getGraph() instanceof InfGraph) {
-            Iterator iter = ((InfGraph) getGraph()).find(subject.asNode(), predicate.asNode(), object.asNode(), posit.getGraph());
+            Iterator iter = getInfGraph().find(asNode(subject), asNode(predicate), asNode(object), posit.getGraph());
             return IteratorFactory.asStmtIterator(iter,this);
         }
         else {

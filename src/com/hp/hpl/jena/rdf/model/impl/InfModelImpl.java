@@ -114,7 +114,7 @@ public class InfModelImpl extends ModelCom implements InfModel {
      * @param object    The value sought
      */ 
     public StmtIterator listStatements( Resource subject, Property predicate, RDFNode object, Model posit ) {
-        Iterator iter = getInfGraph().find(subject.asNode(), predicate.asNode(), object.asNode(), posit.getGraph());
+        Iterator iter = getInfGraph().find(asNode(subject), asNode(predicate), asNode(object), posit.getGraph());
         return IteratorFactory.asStmtIterator(iter,this);
     }
     
