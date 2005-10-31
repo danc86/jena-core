@@ -28,9 +28,7 @@ public class NewRegressionSeq extends NewRegressionBase
     protected Model m;
     
     public void setUp()
-        { 
-        m = getModel();
-        }
+        { m = getModel(); }
     
     public void tearDown()
         { m = null; }
@@ -127,16 +125,16 @@ public class NewRegressionSeq extends NewRegressionBase
         final int num = retain.length;
         Seq seq = m.createSeq();
         for (int i = 0; i < num; i += 1) seq.add( i );
-                                             
+    //                         
         List retained = new ArrayList();
-        
+    //    
         NodeIterator nIter = seq.iterator();
         for (int i = 0; i < num; i += 1) 
             {
             RDFNode x = nIter.nextNode();
             if (retain[i]) retained.add( x ); else nIter.remove();
             }
-        
+    //    
         assertFalse( nIter.hasNext() );                
         assertEquals( retained, iteratorToList( seq.iterator() ) );
         }
@@ -151,7 +149,7 @@ public class NewRegressionSeq extends NewRegressionBase
         Bag        tvBag    = m.createBag();
         Alt        tvAlt    = m.createAlt();
         Seq        tvSeq    = m.createSeq();
-        
+    //
         Seq seq = m.createSeq();
         seq.add( true );
         assertEquals( true, seq.getBoolean( 1 ) );

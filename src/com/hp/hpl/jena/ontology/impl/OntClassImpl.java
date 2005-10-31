@@ -677,9 +677,15 @@ public class OntClassImpl
 
         // the only super-classes of a root class are the various aliases
         // of Top, or itself
-        ExtendedIterator i = null;
+        
+        /**
+            Note: moved the initialisation of i outside the try-catch, otherwise an
+            exception in listSuperClasses [eg a broken Graph implementation] will
+            avoid i's initialisation but still run i.close, generating a mysterious
+            NullPointerException. Signed, Mr Burnt Spines.
+         */
+        ExtendedIterator i = listSuperClasses( true );
         try {
-            i = listSuperClasses( true );
 
             while (i.hasNext()) {
                 Resource sup = (Resource) i.next();
