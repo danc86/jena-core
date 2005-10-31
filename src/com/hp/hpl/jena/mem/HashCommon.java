@@ -82,7 +82,7 @@ public abstract class HashCommon
             Object current = keys[index];
             if (current == null) return index; 
             if (key.equals( current )) return ~index;
-            index = (index == 0 ? capacity - 1 : index - 1);
+            if (--index < 0) index += capacity;
             }
         }   
     
@@ -115,7 +115,7 @@ public abstract class HashCommon
             int scan = here;
             while (true)
                 {
-                scan = (scan == 0 ? capacity - 1 : scan -1);
+                if (--scan < 0) scan += capacity;
                 Object key = keys[scan];
                 if (key == null) return;
                 int r = initialIndexFor( key );

@@ -26,7 +26,7 @@ public class Factory
         System.getProperty( "jena.faster", "yes" ).equals( "yes" );
 
     public static final boolean newHashing = 
-        System.getProperty( "jena.hashing", "no" ).equals( "yes" );
+        System.getProperty( "jena.hashing", "yes" ).equals( "yes" );
     /**
         Answer a memory-based Graph with the Standard reification style.
     */

@@ -69,18 +69,17 @@ public class HashedTripleBunch extends HashCommon implements TripleBunch
         Object [] oldContents = keys;
         final int oldCapacity = capacity;
         growCapacityAndThreshold();
-        keys = new Triple[capacity];
+        Object [] newKeys = keys = new Triple[capacity];
         for (int i = 0; i < oldCapacity; i += 1)
             {
             Object t = oldContents[i];
-            if (t != null) keys[findSlot( t )] = t;
+            if (t != null) newKeys[findSlot( t )] = t;
             }
         }
     
     public void remove( Triple t )
         {
-        int where = findSlot( t );
-        removeFrom( ~where );
+        removeFrom( ~findSlot( t ) );
         size -= 1;
         }
     
