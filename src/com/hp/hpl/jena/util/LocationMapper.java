@@ -37,8 +37,9 @@ public class LocationMapper
     static Log log = LogFactory.getLog(LocationMapper.class)  ;
     /** The default path for searching for the location mapper */
     public static final String DEFAULT_PATH =
-        "file:location-mapping.rdf;file:location-mapping.n3;" +
-        "file:etc/location-mapping.rdf;file:etc/location-mapping.n3;" ;
+        "file:location-mapping.rdf;file:location-mapping.n3;file:location-mapping.ttl;"+
+        "file:etc/location-mapping.rdf;file:etc/location-mapping.n3;"+
+        "file:etc/location-mapping.ttl" ;
     public static final String GlobalMapperSystemProperty1 = "http://jena.hpl.hp.com/2004/08/LocationMap" ;
     public static final String GlobalMapperSystemProperty2 = "LocationMap" ;
     
