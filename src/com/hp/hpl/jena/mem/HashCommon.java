@@ -92,8 +92,22 @@ public abstract class HashCommon
     */
     protected void growCapacityAndThreshold()
         {
-        capacity = capacity * 2;
+        capacity = nextSize( capacity * 2 );
         threshold = (int) (capacity * loadFactor);
+        }
+     
+    static final int [] primes =
+        {
+        7, 19, 37, 79, 149, 307, 617, 1237, 2477, 4957, 9923,
+        19853, 39709, 79423, 158849, 317701, 635413,
+        1270849, 2541701, 5083423
+        };
+    
+    protected static int nextSize( int atLeast )
+        {
+        for (int i = 0; i < primes.length; i += 1)
+            if (primes[i] > atLeast) return primes[i];
+        return atLeast;
         }
     
     /**
