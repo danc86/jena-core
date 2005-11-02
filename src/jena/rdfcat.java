@@ -231,8 +231,8 @@ public class rdfcat
             m_outputFormat = "N3";
         }
         else if ("N-TRIPLE".equalsIgnoreCase( lang ) ||
-                "ntriples".equalsIgnoreCase( lang ) ||
-                "ntriple".equalsIgnoreCase( lang ) ||
+                 "ntriples".equalsIgnoreCase( lang ) ||
+                 "ntriple".equalsIgnoreCase( lang ) ||
                  "t".equalsIgnoreCase( lang ))
         {
             m_outputFormat = "N-TRIPLE";
@@ -267,8 +267,8 @@ public class rdfcat
                 }
                 else {
                     // lang from extension overrides default set on command line
-                    String lang = FileUtils.guessLang( inputName, m_inputFormat );
-                    FileManager.get().readModel( inModel, inputName, lang );
+                    String lang = FileUtils.guessLang( in, m_inputFormat );
+                    FileManager.get().readModel( inModel, in, lang );
                 }
 
                 // check for anything more that we need to read
@@ -295,14 +295,13 @@ public class rdfcat
         // first collect any rdfs:seeAlso statements
         StmtIterator i = inModel.listStatements( null, RDFS.seeAlso, (RDFNode) null );
         while (i.hasNext()) {
-            RDFNode n = i.nextStatement().getObject();
-            queue.add( (n.isLiteral()) ? ((Literal) n).getLexicalForm() : ((Resource) n).getURI());
+            queue.add( getURL( i.nextStatement().getObject() ));
         }
 
         // then any owl:imports
         i = inModel.listStatements( null, OWL.imports, (RDFNode) null );
         while (i.hasNext()) {
-            queue.add( i.nextStatement().getResource() );
+            queue.add( getURL( i.nextStatement().getResource() ) );
         }
     }
 
@@ -322,6 +321,11 @@ public class rdfcat
 
 
         System.exit(0);
+    }
+
+    /** Answer a URL string from a resource or literal */
+    protected String getURL( RDFNode n ) {
+        return n.isLiteral() ? ((Literal) n).getLexicalForm() : ((Resource) n).getURI();
     }
 
 
