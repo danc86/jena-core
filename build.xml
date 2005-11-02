@@ -349,6 +349,7 @@
         <exclude name="readme-site.txt"/>
 	<!-- FrontPage control files -->
 	<exclude name="**/_*"/>             
+	<exclude name="**/_*/*"/>             
         <exclude name="**/desktop.ini"/>
       </fileset>
     </copy>
