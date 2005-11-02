@@ -318,7 +318,7 @@
       <fileset dir="${bldsrc.dir}" includes="**"/>
     </copy>
     <copy todir="${dist.dir}/${src.examples.dir}">
-      <fileset dir="${bldsrc.dir}" includes="**"/>
+      <fileset dir="${src.examples.dir}" includes="**"/>
     </copy>
     <!-- Misc files -->
     <copy todir="${dist.dir}" file="build.xml"/>
