@@ -148,6 +148,13 @@ public class JenaTestBase extends TestCase
         { List result = new ArrayList( L );
         result.addAll( R );
         return result; }
+
+    protected List listOfOne( Object s )
+        {
+        List result = new ArrayList();
+        result.add( s );
+        return result;
+        }
     }
 
 
