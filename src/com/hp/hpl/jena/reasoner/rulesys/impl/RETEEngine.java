@@ -139,7 +139,8 @@ public class RETEEngine implements FRuleEngineI {
                 for (Iterator p = predicatesUsed.iterator(); p.hasNext(); ) {
                     Node predicate = (Node)p.next();
                     for (Iterator i = inserts.find(new TriplePattern(null, predicate, null)); i.hasNext(); ) {
-                        addTriple((Triple)i.next(), false);
+                        Triple t = (Triple)i.next();
+                        addTriple(t, false);
                     }
                 }
             }
@@ -442,8 +443,15 @@ public class RETEEngine implements FRuleEngineI {
     protected void findAndProcessAxioms() {
         for (Iterator i = rules.iterator(); i.hasNext(); ) {
             Rule r = (Rule)i.next();
-            if (r.bodyLength() == 0) {
+            if (r.isAxiom()) {
                 // An axiom
+                RETERuleContext context = new RETERuleContext(infGraph, this);
+                context.setEnv(new BindingVector(new Node[r.getNumVars()]));
+                context.setRule(r);
+                if (context.shouldFire(true)) {
+                    RETEConflictSet.execute(context, true);
+                }
+                /*   // Old version, left during debug and final checks
                 for (int j = 0; j < r.headLength(); j++) {
                     Object head = r.getHeadElement(j);
                     if (head instanceof TriplePattern) {
@@ -452,6 +460,7 @@ public class RETEEngine implements FRuleEngineI {
                         addTriple(t, true);
                     }
                 }
+                */
             }
         }
         processedAxioms = true;
@@ -466,7 +475,6 @@ public class RETEEngine implements FRuleEngineI {
         for (Iterator i = rules.iterator(); i.hasNext(); ) {
             Rule r = (Rule)i.next();
             if (r.bodyLength() == 0) {
-                // An axiom
                 for (int j = 0; j < r.headLength(); j++) {
                     Object head = r.getHeadElement(j);
                     if (head instanceof Functor) {

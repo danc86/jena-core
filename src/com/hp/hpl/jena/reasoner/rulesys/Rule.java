@@ -374,6 +374,19 @@ public class Rule implements ClauseEntry {
     }
     
     /**
+     * Returns true if the rule does not depend on any data, and so should 
+     * be treated as an axiom.
+     */
+    public boolean isAxiom() {
+        for (int i = 0; i < body.length; i++) {
+            if (body[i] instanceof TriplePattern) {
+                return false;
+            }
+        }
+        return true;
+    }
+    
+    /**
      * Printable string describing the rule
      */
     public String toString() {

@@ -128,7 +128,7 @@ public class RETEConflictSet {
     /**
      * Execute a single rule firing. 
      */
-    protected void execute(RETERuleContext context, boolean isAdd) {
+    public static void execute(RETERuleContext context, boolean isAdd) {
         Rule rule = context.getRule();
         BindingEnvironment env = context.getEnv();
         ForwardRuleInfGraphI infGraph = (ForwardRuleInfGraphI)context.getGraph();
