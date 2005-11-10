@@ -192,7 +192,7 @@ public class JenaModelSpec
     /**
         The class of FileModel specifications.
     */
-    public static Resource FileModelSpec = resource( "FileModelSpec" );
+    public static final Resource FileModelSpec = resource( "FileModelSpec" );
     
     /**
         The class of InfModelSpec resources [subclass of ModelSpec].
