@@ -58,7 +58,7 @@ public class TestTransitiveGraphCache extends TestCase {
     public static TestSuite suite() {
         return new TestSuite( TestTransitiveGraphCache.class ); 
 //        TestSuite suite = new TestSuite();
-//        suite.addTest( new TestTransitiveGraphCache("testBug2"));
+//        suite.addTest( new TestTransitiveGraphCache("testEquivalencesSimple"));
 //        return suite;
     }  
 
@@ -507,6 +507,24 @@ public class TestTransitiveGraphCache extends TestCase {
                 new Triple(e, closedP, a),
                 new Triple(f, closedP, a),
                 });
+    }
+    
+    /**
+     * Test simple equivalences case
+     */
+    public void testEquivalencesSimple() {
+        TransitiveGraphCache cache = new TransitiveGraphCache(directP, closedP);
+        cache.addRelation(new Triple(a, closedP, b));
+        cache.addRelation(new Triple(b, closedP, a));
+        TestUtil.assertIteratorValues(this, 
+                cache.find(new TriplePattern(null, closedP, null)),
+                new Object[] {
+                new Triple(a, closedP, b),
+                new Triple(b, closedP, a),
+                new Triple(b, closedP, b),
+                new Triple(a, closedP, a),
+        });
+        TestUtil.assertIteratorLength( cache.find(new TriplePattern(null, closedP, null)), 4);
     }
     
     /**
