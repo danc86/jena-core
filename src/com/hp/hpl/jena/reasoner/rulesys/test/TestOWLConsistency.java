@@ -105,6 +105,14 @@ public class TestOWLConsistency extends TestCase {
     }
     
     /**
+     * Should find distinct literal values for a functional property
+     * via an indirect sameAs
+     */
+    public void testInconsistent7() {
+        assertTrue( ! doTestOn("file:testing/reasoners/owl/inconsistent7.rdf"));
+    }
+    
+    /**
      * Run a single consistency test on the given data file.
      */
     private boolean doTestOn(String dataFile) {
