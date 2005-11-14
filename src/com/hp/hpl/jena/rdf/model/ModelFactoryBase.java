@@ -36,6 +36,11 @@ public class ModelFactoryBase
     public static String guessDBDriver()
         { return gp( "db.driver", null ); }
     
+    /** Return true if the databas should support concurrent read during transactions */
+    public static boolean guessDBConcurrent() {
+        return gp("db.concurrent", "true").equalsIgnoreCase("true");
+    }
+    
     /**
         Guess the database type as the string between the first and second colons of the
         URL. This method is public so that it may be invoked from test packages.

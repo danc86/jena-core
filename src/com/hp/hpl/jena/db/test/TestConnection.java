@@ -20,9 +20,11 @@ package com.hp.hpl.jena.db.test;
  * @version 0.1
 */
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 import com.hp.hpl.jena.db.*;
 import com.hp.hpl.jena.db.impl.IRDBDriver;
-
 
 import junit.framework.*;
 
@@ -31,6 +33,8 @@ import com.hp.hpl.jena.shared.*;
 import com.hp.hpl.jena.vocabulary.DB;
 
 public class TestConnection extends TestCase {
+    
+    protected static Log logger = LogFactory.getLog( TestConnection.class );
 	
 	String DefModel = GraphRDB.DEFAULT;    
         
@@ -644,6 +648,10 @@ public class TestConnection extends TestCase {
 			}
 		}
 
+        if ( ! TestPackage.M_DBCONCURRENT ) {
+            logger.warn("testConcurrentThread suppressed");
+            return;
+        }
 		syncOnCount s = new syncOnCount();
 		Thread t1 = new thread1(s);
 		Thread t2 = new thread2(s);

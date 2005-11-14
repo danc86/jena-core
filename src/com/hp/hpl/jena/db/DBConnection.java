@@ -293,7 +293,7 @@ public class DBConnection implements IDBConnection {
 			} 
 		} catch (Exception e) {
             // e.printStackTrace( System.err );
-			throw new RDFRDBException("Failure to instantiate DB Driver:"+ m_databaseType+ " "+ e.toString());
+			throw new RDFRDBException("Failure to instantiate DB Driver:"+ m_databaseType+ " "+ e.toString(), e);
 		}
 
 		return m_driver;
