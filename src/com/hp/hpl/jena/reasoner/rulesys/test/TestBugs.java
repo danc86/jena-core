@@ -722,12 +722,14 @@ public class TestBugs extends TestCase {
         Property p = facts.createProperty(NS + "p");
         List rules = Rule.parseRules("makeTemp(?x) -> (?x, eg:p, eg:z). " +
                 "makeTemp(?x) makeTemp(?y) -> (?x, eg:p, ?y) . " +
-                "(?x, eg:p, eg:z) -> (?a, eg:p, eg:b).");
+                "(?x, eg:p, eg:z) -> (?a, eg:p, eg:b). " +
+                "-> [ (eg:a eg:p eg:y) <- ]."
+                );
 
         GenericRuleReasoner reasoner = new GenericRuleReasoner(rules);
         InfModel inf = ModelFactory.createInfModel(reasoner, facts);
         inf.prepare();
-        TestUtil.assertIteratorLength(inf.listStatements(null, p, (RDFNode)null), 3);
+        TestUtil.assertIteratorLength(inf.listStatements(null, p, (RDFNode)null), 4);
     }
 
     /**
