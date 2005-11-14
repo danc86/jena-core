@@ -29,6 +29,7 @@ public abstract class TransactionHandlerBase implements TransactionHandler
         {
         begin();
         try { Object result = c.execute(); commit(); return result; }
+        catch (JenaException e) { abort(); throw e ; }
         catch (Throwable e) { abort(); throw new JenaException( e ); }
         }
     }
