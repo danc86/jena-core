@@ -9,6 +9,7 @@
  *****************************************************************/
 package com.hp.hpl.jena.reasoner.rulesys;
 
+import com.hp.hpl.jena.mem.GraphMem;
 import com.hp.hpl.jena.reasoner.*;
 import com.hp.hpl.jena.reasoner.rulesys.impl.*;
 import com.hp.hpl.jena.vocabulary.*;
@@ -358,7 +359,7 @@ public class GenericRuleReasoner extends FBRuleReasoner {
     protected synchronized InfGraph getPreload() {
         if (cachePreload && preload == null && mode == HYBRID) {
             if (mode == HYBRID) {
-                preload = new FBRuleInfGraph(this, rules, null);
+                preload = new FBRuleInfGraph(this, rules, null, new GraphMem());
                 if (enableTGCCaching) ((FBRuleInfGraph)preload).setUseTGCCache();
             } else if (mode == FORWARD) {
                 preload = new BasicForwardRuleInfGraph(this, rules, null);

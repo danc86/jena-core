@@ -756,6 +756,22 @@ public class TestBugs extends TestCase {
                     new Object[] {inf.createStatement(mother, egRange, female)} );
     }
     
+    /**
+     * test remove operator in case with empty data.
+     */
+    public void testEmptyRemove() {
+        List rules = Rule.parseRules(
+                "-> (eg:i eg:prop eg:foo) ." +
+                "(?X eg:prop ?V) -> (?X eg:prop2 ?V) ." +
+                "(?X eg:prop eg:foo) noValue(?X eg:guard 'done') -> remove(0) (?X eg:guard 'done') ." );
+        GenericRuleReasoner reasoner = new GenericRuleReasoner(rules);
+        InfModel im = ModelFactory.createInfModel(reasoner, ModelFactory.createDefaultModel());
+        Resource i = im.createResource(PrintUtil.egNS + "i");
+        Property guard = im.createProperty(PrintUtil.egNS + "guard");
+        TestUtil.assertIteratorValues(this, 
+                im.listStatements(), new Object[] {im.createStatement(i, guard, "done")});
+    }
+    
     // debug assistant
     private void tempList(Model m, Resource s, Property p, RDFNode o) {
         System.out.println("Listing of " + PrintUtil.print(s) + " " + PrintUtil.print(p) + " " + PrintUtil.print(o));
