@@ -39,21 +39,21 @@ public abstract class AbstractTestModel extends ModelTestBase
     public void testCreateResourceFromNode()
         {
         RDFNode S = model.getRDFNode( Node.create( "spoo:S" ) ); 
-        assertTrue( S instanceof Resource );
+        assertInstanceOf( Resource.class, S );
         assertEquals( "spoo:S", ((Resource) S).getURI() );
         }
         
     public void testCreateLiteralFromNode()
         {
         RDFNode S = model.getRDFNode( Node.create( "42" ) ); 
-        assertTrue( S instanceof Literal );
+        assertInstanceOf( Literal.class, S );
         assertEquals( "42", ((Literal) S).getLexicalForm() );
         }    
             
    public void testCreateBlankFromNode()
         {
         RDFNode S = model.getRDFNode( Node.create( "_Blank" ) ); 
-        assertTrue( S instanceof Resource );
+        assertInstanceOf( Resource.class, S );
         assertEquals( new AnonId( "_Blank" ), ((Resource) S).getId() );
         }
         

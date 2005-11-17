@@ -323,15 +323,15 @@ public class TestOntModel
         OntResource r0 = m.getOntResource( NS + "a" );
         assertNull( r0 );
         OntResource r1 = m.createOntResource( NS + "aaa" );
-        assertTrue( r1 instanceof OntResource );
+        assertInstanceOf( OntResource.class, r1 );
         Resource r2a = m.getResource( NS + "a" );
         Resource r2b = m.getResource( NS + "b" );
         Property p = m.getProperty( NS + "p" );
         m.add( r2a, p, r2b );
         r0 = m.getOntResource( NS + "a" );
-        assertTrue( r0 instanceof OntResource );
+        assertInstanceOf( OntResource.class, r0 );
         OntResource r3 = m.getOntResource( r2b );
-        assertTrue( r3 instanceof OntResource );
+        assertInstanceOf( OntResource.class, r3 );
     }
 
     public void testGetOntClass() {
@@ -653,7 +653,7 @@ public class TestOntModel
         Iterator i = m.listDataRanges();
         assertTrue( "Should be at least one DataRange", i.hasNext() );
         Object dr = i.next();
-        assertTrue( dr instanceof DataRange );
+        assertInstanceOf( DataRange.class, dr );
         assertFalse( "Should no more DataRange", i.hasNext() );
     }
 

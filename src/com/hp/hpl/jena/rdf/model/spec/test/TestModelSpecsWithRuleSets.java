@@ -282,9 +282,9 @@ public class TestModelSpecsWithRuleSets extends ModelTestBase
         ModelSpec spec = createInfModelSpec( ruleString );
         Model m = spec.createFreshModel();
         Graph g = m.getGraph();
-        assertTrue( g instanceof InfGraph );
+        assertInstanceOf( InfGraph.class, g );
         Reasoner r = ((InfGraph) g).getReasoner();
-        assertTrue( r instanceof RuleReasoner );
+        assertInstanceOf( RuleReasoner.class, r );
         RuleReasoner rr = (RuleReasoner) r;
         List rules = rr.getRules();
         assertSameRules( wanted, rules );

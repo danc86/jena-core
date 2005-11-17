@@ -73,8 +73,8 @@ public class TestModelFactory extends ModelTestBase
         Model desc = TestModelSpec.createPlainModelDesc();
         ModelSpec spec = ModelFactory.createSpec( desc ); 
         assertIsoModels( desc, spec.getDescription() );
-        assertTrue( spec instanceof PlainModelSpec );
-        assertTrue( spec.createFreshModel().getGraph() instanceof GraphMemBase );
+        assertInstanceOf( PlainModelSpec.class, spec );
+        assertInstanceOf( GraphMemBase.class, spec.createFreshModel().getGraph() );
         }
         
     public void testCreateOntSpec()
@@ -98,9 +98,9 @@ public class TestModelFactory extends ModelTestBase
             .add( root, JenaModelSpec.reasonsWith, reasoner )
             .add( reasoner, JenaModelSpec.reasoner, reasonerURI );
         ModelSpec spec = ModelFactory.createSpec( desc ); 
-        assertTrue( spec instanceof OntModelSpec );         
+        assertInstanceOf( OntModelSpec.class, spec );         
         assertIsoModels( desc, spec.getDescription() );
-        assertTrue( spec.createFreshModel() instanceof OntModel );
+        assertInstanceOf( OntModel.class, spec.createFreshModel() );
         }
         
     public void testCreateOntologyModelFromSpecOnly()
@@ -117,9 +117,9 @@ public class TestModelFactory extends ModelTestBase
         {
         Model desc = TestModelSpec.createInfModelDesc( DAMLMicroReasonerFactory.URI );
         ModelSpec spec = ModelFactory.createSpec( desc );
-        assertTrue( spec instanceof InfModelSpec );    
+        assertInstanceOf( InfModelSpec.class, spec );    
         assertIsoModels( desc, spec.getDescription() );
-        assertTrue( spec.createFreshModel() instanceof InfModel );
+        assertInstanceOf( InfModel.class, spec.createFreshModel() );
         }
         
     /**
@@ -156,7 +156,7 @@ public class TestModelFactory extends ModelTestBase
         Model m1 = ModelFactory.createDefaultModel();
         Model m2 = ModelFactory.createDefaultModel();
         Model m = ModelFactory.createUnion( m1, m2 );
-        assertTrue( m.getGraph() instanceof Union );
+        assertInstanceOf( Union.class, m.getGraph() );
         assertSame( m1.getGraph(), ((Union) m.getGraph()).getL() );
         assertSame( m2.getGraph(), ((Union) m.getGraph()).getR() );
         }

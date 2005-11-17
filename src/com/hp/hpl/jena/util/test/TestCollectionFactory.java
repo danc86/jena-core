@@ -27,13 +27,13 @@ public class TestCollectionFactory extends ModelTestBase
     public void testHashMapExists()
         {
         Map map = CollectionFactory.createHashedMap();
-        assertTrue( map instanceof Map );
+        assertInstanceOf( Map.class, map );
         }
     
     public void testHashMapSized()
         {
         Map map = CollectionFactory.createHashedMap( 42 );
-        assertTrue( map instanceof Map );
+        assertInstanceOf( Map.class, map );
         }
     
     public void testHashMapCopy()
@@ -48,7 +48,7 @@ public class TestCollectionFactory extends ModelTestBase
     public void testHashSetExists()
         {
         Set set = CollectionFactory.createHashedSet();
-        assertTrue( set instanceof Set );
+        assertInstanceOf( Set.class, set );
         }
     
     public void testHashSetCopy()

@@ -25,8 +25,8 @@ public class TestAndThen extends ModelTestBase
         { 
         ExtendedIterator L = iteratorOfStrings( "a b c" );
         ExtendedIterator R = iteratorOfStrings( "d e f" );
-        assertTrue( L instanceof NiceIterator );
-        assertTrue( R instanceof NiceIterator );
+        assertInstanceOf( NiceIterator.class, L );
+        assertInstanceOf( NiceIterator.class, R );
         assertEquals( listOfStrings( "a b c d e f" ), iteratorToList( L.andThen( R ) ) );
         }
     

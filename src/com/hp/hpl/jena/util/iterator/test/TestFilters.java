@@ -23,7 +23,7 @@ public class TestFilters extends ModelTestBase
         { return new TestSuite( TestFilters.class ); }
     
     public void testFilterAnyExists()
-        { assertTrue( Filter.any instanceof Filter ); }
+        { assertInstanceOf( Filter.class, Filter.any ); }
     
     public void testFilterAnyAcceptsThings()
         {

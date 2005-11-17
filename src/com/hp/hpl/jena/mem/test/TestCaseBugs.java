@@ -55,16 +55,16 @@ public class TestCaseBugs
             Object   op   = RDF.Property;
             
             Statement s = model.createStatement(r, RDF.type, oc);
-            assertTrue(s.getObject() instanceof Resource);
+            assertInstanceOf(Resource.class, s.getObject() );
             
             s.changeObject(op);
-            assertTrue(s.getObject() instanceof Resource);
+            assertInstanceOf(Resource.class, s.getObject() );
             
             model.add(r, RDF.type, oc);
             RDFNode n = model.listStatements()
                              .nextStatement()
                              .getObject();
-            assertTrue(n instanceof Resource);
+            assertInstanceOf(Resource.class, n );
             
             assertTrue(model.listSubjectsWithProperty(RDF.type, oc).hasNext());
             

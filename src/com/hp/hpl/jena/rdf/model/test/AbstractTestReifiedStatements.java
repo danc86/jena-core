@@ -292,7 +292,7 @@ public abstract class AbstractTestReifiedStatements extends ModelTestBase
     public void testGetAny()
         {
         Resource r = model.getAnyReifiedStatement( SPO );
-        assertTrue( "should get reified statement back", r instanceof ReifiedStatement );
+        assertInstanceOf( ReifiedStatement.class, r );
         assertEquals( "should get me the statement", SPO, ((ReifiedStatement) r).getStatement() );
         }
     

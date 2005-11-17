@@ -95,7 +95,7 @@ public class TestStatements extends ModelTestBase
     public void testTripleWrapper()
     	{
     	Model A = ModelFactory.createDefaultModel();
-    	assertTrue( statement( A, "s p o" ) instanceof FrontsTriple );
+    	assertInstanceOf( FrontsTriple.class, statement( A, "s p o" ) );
     	}
     
     /**

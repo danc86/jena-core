@@ -29,6 +29,7 @@
 package com.hp.hpl.jena.regression;
 
 import com.hp.hpl.jena.rdf.model.*;
+import com.hp.hpl.jena.test.JenaTestBase;
 
 
 import junit.framework.TestCase;
@@ -54,7 +55,7 @@ import junit.framework.TestCase;
  * @author bwm
  * @version $Name$ $Revision$ $Date$
  */
-public class TestCaseBasic extends TestCase {
+public class TestCaseBasic extends JenaTestBase {
 
 	protected Model m1 = null;
 	protected Model m2 = null;

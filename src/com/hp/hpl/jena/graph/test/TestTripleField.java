@@ -25,9 +25,9 @@ public class TestTripleField extends GraphTestBase
     
     public void testFieldsExistAndAreTyped()
         {
-        assertTrue( Triple.Field.getSubject instanceof Triple.Field );
-        assertTrue( Triple.Field.getObject instanceof Triple.Field );
-        assertTrue( Triple.Field.getPredicate instanceof Triple.Field );        
+        assertInstanceOf( Triple.Field.class, Triple.Field.getSubject );
+        assertInstanceOf( Triple.Field.class, Triple.Field.getObject );
+        assertInstanceOf( Triple.Field.class, Triple.Field.getPredicate );        
         }
     
     public void testGetSubject()

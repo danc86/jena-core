@@ -260,8 +260,8 @@ public class TestPerlyParser extends GraphTestBase
     
     public void testPerlParse()
         {
-        assertTrue( PerlPatternParser.parse( "this is|a pattern" ) instanceof Alternatives );
-        assertTrue( PerlPatternParser.parse( "this is|a pattern", new SimpleGenerator() ) instanceof Alternatives );
+        assertInstanceOf( Alternatives.class, PerlPatternParser.parse( "this is|a pattern" ) );
+        assertInstanceOf( Alternatives.class, PerlPatternParser.parse( "this is|a pattern", new SimpleGenerator() ) );
         }
     
     public void testOldSeq()
