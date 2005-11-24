@@ -68,7 +68,7 @@ public class N3JenaWriterPP extends N3JenaWriterCommon
 		StmtIterator listTailsIter = model.listStatements(null, RDF.rest, RDF.nil);
 
 		// For every tail of a list
-		tailLoop:
+		//tailLoop:
 		for ( ; listTailsIter.hasNext() ; )
 		{
 			// The resource for the current element being considered.
