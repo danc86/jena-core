@@ -194,7 +194,7 @@ public class ModelTestBase extends GraphTestBase
         @param got the model value to check
         @exception if the models are not isomorphic
      */    
-    public void assertIsoModels( String title, Model wanted, Model got )
+    public static void assertIsoModels( String title, Model wanted, Model got )
         {
         if (wanted.isIsomorphicWith( got ) == false)
             {
@@ -206,7 +206,7 @@ public class ModelTestBase extends GraphTestBase
     /**
         Fail if the two models are not isomorphic. See assertIsoModels(String,Model,Model).
     */
-    public void assertIsoModels( Model wanted, Model got )
+    public static  void assertIsoModels( Model wanted, Model got )
         { assertIsoModels( "models must be isomorphic", wanted, got ); }
         
     }
