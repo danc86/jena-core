@@ -41,7 +41,7 @@ public class FileGraph extends GraphMem
     /**
         The File-name of this graph, used to name it in the filing system 
     */
-    protected final File name;
+    public final File name;
     
     /**
         A model used to wrap the graph for the IO operations (since these are not
@@ -53,7 +53,7 @@ public class FileGraph extends GraphMem
         The language used to read and write the graph, guessed from the filename's
         suffix.
     */
-    protected final String lang;
+    public final String lang;
     
     protected final NotifyOnClose notify;
     
@@ -109,7 +109,7 @@ public class FileGraph extends GraphMem
         { this( new File( s ), create, true ); }
         
     public static FileGraph create()
-        { return new FileGraph( FileUtils.tempFileName( "xxx", ".rdf" ), true, true ); }
+        { return new FileGraph( FileUtils.tempFileName( "anonymousFileGraph", ".rdf" ), true, true ); }
         
     /**
         Answer true iff the filename string given is plausibly the name of a 
