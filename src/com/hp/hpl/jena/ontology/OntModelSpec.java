@@ -138,6 +138,9 @@ public class OntModelSpec extends ModelSpecImpl implements ModelSpec {
 
     /** the name of the base model in the baseModelMaker, if specified */
     protected String m_baseModelName;
+    
+    /** the ModelGetter which will be used - eventually - for imports */
+    protected ModelGetter importModelGetter;
 
     // Constructors
     //////////////////////////////////
@@ -236,7 +239,15 @@ public class OntModelSpec extends ModelSpecImpl implements ModelSpec {
     public ModelMaker getBaseModelMaker() {
         return super.getModelMaker();
     }
+    
+    public ModelGetter getImportModelGetter() {
+        return importModelGetter;
+    }
 
+    public void setImportModelGetter( ModelGetter mg ) {
+        importModelGetter = mg;
+    }
+    
     /**
      * <p>Initialise an OntModelSpec from an RDF description using the JenaModelSpec vocabulary. See
      * <a href="../../../../../doc/howto/modelspec.html">the modelspec howto</a>

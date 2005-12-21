@@ -91,7 +91,9 @@ public class ModelMakerImpl implements ModelMaker
      */
     public Model createModel()
         { return createFreshModel(); }
-         
+    
+    public Model getModel( String URL )
+        { return null; }         
     }
 
 /*

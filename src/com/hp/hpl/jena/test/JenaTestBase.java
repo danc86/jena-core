@@ -96,6 +96,16 @@ public class JenaTestBase extends TestCase
         result.add( x );
         return result;
         }
+
+    /**
+        Answer a Set containing the single object <code>x</code>.
+    */
+    protected static Set setOfOne( Object x )
+        {
+        Set result = new HashSet();
+        result.add( x );
+        return result;
+        }
     
     /**
         Answer a fresh list which is the concatenation of <code>L</code> then

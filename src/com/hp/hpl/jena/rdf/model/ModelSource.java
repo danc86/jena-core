@@ -24,7 +24,7 @@ package com.hp.hpl.jena.rdf.model;
  	
  	@author hedgehog
 */
-public interface ModelSource
+public interface ModelSource extends ModelGetter
     {
     /**
         Answer this ModelSource's default model. Every ModelSource
