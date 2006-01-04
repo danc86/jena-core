@@ -125,8 +125,6 @@ public class OWLLiteProfile
                            g.asGraph().contains( n, RDF.type.asNode(), OWL.Restriction.asNode() ) ||
                            g.asGraph().contains( n, RDF.type.asNode(), RDFS.Class.asNode() ) ||
                            // These are common cases that we should support
-                           n.equals( OWL.Thing.asNode() ) ||
-                           n.equals( OWL.Nothing.asNode() ) ||
                            g.asGraph().contains( Node.ANY, RDFS.domain.asNode(), n ) ||
                            g.asGraph().contains( Node.ANY, RDFS.range.asNode(), n )
                            ;
