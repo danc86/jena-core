@@ -160,11 +160,7 @@ public class JA
         }
 
     private static String getSchemaPath()
-        {
-        String pathIfNotSpecified = "kers/doc/vocab.n3";
-        String p = System.getProperty( "jena.assembler.vocab", pathIfNotSpecified );
-        return p;
-        }
+        { return "vocabularies/assembler.n3"; }
     }
 
 
