@@ -19,7 +19,7 @@ public class NotFoundException extends JenaException
          The entity <code>name</code> does not exist.
     */
     public NotFoundException( String name )
-        { super( name); }
+        { super( name ); }
     }
 
 /*
