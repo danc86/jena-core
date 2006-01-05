@@ -7,22 +7,23 @@
 package com.hp.hpl.jena.assembler.exceptions;
 
 import com.hp.hpl.jena.rdf.model.Resource;
-import com.hp.hpl.jena.shared.JenaException;
 
 /**
     Exception used to report an unknown reasoner factory name.
     @author kers
 */
-public class UnknownReasonerException extends JenaException
+public class UnknownReasonerException extends AssemblerException
     {
-    protected final Resource root;
     protected final Resource url;
     
     public UnknownReasonerException( Resource root, Resource url )
         {
-        super( "no reasoner called " + url + " for " + root );
-        this.root = root; this.url = url;
+        super( root, makeMessage( root, url ) );
+        this.url = url;
         }
+    
+    private static String makeMessage( Resource root, Resource url )
+        { return "no reasoner called " + url + " for " + root; }
     
     public Resource getURL()
         { return url; }

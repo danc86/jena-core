@@ -7,24 +7,27 @@
 package com.hp.hpl.jena.assembler.exceptions;
 
 import com.hp.hpl.jena.rdf.model.*;
-import com.hp.hpl.jena.shared.JenaException;
 
-public class NotUniqueException extends JenaException
+public class NotUniqueException extends AssemblerException
     {
     protected final Property property;
-    protected final Resource root;
     
     public NotUniqueException( Resource root, Property property )
         {
-        super( "multiple values for " + root + " property " + property );
-        this.root = root; this.property = property; 
+        super( root, makeMessage( root, property ) );
+        this.property = property; 
+        }
+    
+    private static String makeMessage( Resource root, Property property )
+        {
+        return 
+            "the object " + root
+            + " has multiple values for the unique property " + property
+            ;
         }
     
     public Property getProperty()
         { return property; }
-
-    public Object getRoot()
-        { return root; }
     }
 
 

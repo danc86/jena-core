@@ -85,6 +85,7 @@ public class TestModelContent extends AssemblerTestBase
             }
         catch (TransactionAbortedException  e)
             {
+            assertEquals( resource( "x" ), e.getRoot() );
             assertEquals( listOfStrings( "supports[true] begin add abort" ), history );
             assertIsoModels( expected, toDeliver );
             }        

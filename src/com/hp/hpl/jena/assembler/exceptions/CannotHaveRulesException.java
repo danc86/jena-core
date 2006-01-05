@@ -7,16 +7,18 @@
 package com.hp.hpl.jena.assembler.exceptions;
 
 import com.hp.hpl.jena.rdf.model.Resource;
-import com.hp.hpl.jena.shared.JenaException;
 
-public class CannotHaveRulesException extends JenaException
-    {
-    protected final Resource root;
-    
+public class CannotHaveRulesException extends AssemblerException
+    {    
     public CannotHaveRulesException( Resource root )
+        { super( root, makeMessage( root ) ); }
+
+    private static String makeMessage( Resource root )
         {
-        super( root + " cannot have rules, since it is not a GenericRulesReasoner" );
-        this.root = root;
+        return 
+            "the object " + root 
+            + " cannot be given rules, since it is not a GenericRulesReasoner"
+            ;
         }
 
     }

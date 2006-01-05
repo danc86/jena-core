@@ -7,21 +7,18 @@
 package com.hp.hpl.jena.assembler.exceptions;
 
 import com.hp.hpl.jena.rdf.model.Resource;
-import com.hp.hpl.jena.shared.JenaException;
 
 /**
     Exception used to report an unknown language encoding.
     @author kers
 */
-public class UnknownEncodingException extends JenaException
+public class UnknownEncodingException extends AssemblerException
     {
     protected final String encoding;
-    protected final Resource root;
     
     public UnknownEncodingException( Resource root, String encoding )
         {
-        super( makeMessage( root, encoding ) );
-        this.root = root;
+        super( root, makeMessage( root, encoding ) );
         this.encoding = encoding;
         }
     
@@ -38,13 +35,6 @@ public class UnknownEncodingException extends JenaException
     */
     public String getEncoding()
         { return encoding; }
-
-    /**
-        Answer the root object that has the unknown encoding.
-    */
-    public Resource getRoot()
-        { return root; }
-
     }
 
 

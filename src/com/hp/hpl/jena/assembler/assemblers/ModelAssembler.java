@@ -25,7 +25,7 @@ public abstract class ModelAssembler extends AssemblerBase implements Assembler
             {
             m.begin();
             try { c.fill( m ); m.commit(); }
-            catch (Throwable t) { m.abort(); throw new TransactionAbortedException( t ); }
+            catch (Throwable t) { m.abort(); throw new TransactionAbortedException( root, t ); }
             }
         else
             c.fill( m );

@@ -16,16 +16,14 @@ import com.hp.hpl.jena.shared.*;
     object's most specific type.
     @author kers
 */
-public class CannotConstructException extends JenaException
+public class CannotConstructException extends AssemblerException
     {
-    protected final Resource root;
     protected final Resource type;
     protected final Class assemblerClass;
     
     public CannotConstructException( Class assemblerClass, Resource root, Resource type )
         {
-        super( constructMessage( assemblerClass, root, type ) );
-        this.root = root; 
+        super( root, constructMessage( assemblerClass, root, type ) );
         this.type = type; 
         this.assemblerClass = assemblerClass;
         }
@@ -66,12 +64,6 @@ public class CannotConstructException extends JenaException
     */
     public Resource getType()
         { return type; }
-
-    /**
-        Answer the root object that could not be constructed.
-    */
-    public Resource getRoot()
-        { return root; }
     }
 
 

@@ -7,21 +7,18 @@
 package com.hp.hpl.jena.assembler.exceptions;
 
 import com.hp.hpl.jena.rdf.model.Resource;
-import com.hp.hpl.jena.shared.JenaException;
 
 /**
     Exception used to report an unknown reification mode.
     @author kers
 */
-public class UnknownStyleException extends JenaException
+public class UnknownStyleException extends AssemblerException
     {
     protected final Resource style;
-    protected final Resource root;
     
     public UnknownStyleException( Resource root, Resource style )
         {
-        super( makeMessage( root, style ) );
-        this.root = root;
+        super( root, makeMessage( root, style ) );
         this.style = style;
         }
 
@@ -38,13 +35,6 @@ public class UnknownStyleException extends JenaException
     */
     public Resource getStyle()
         { return style; }
-
-    /**
-        Answer the resource that is the root object that has the unknown style.
-    */
-    public Resource getRoot()
-        { return root; }
-
     }
 
 

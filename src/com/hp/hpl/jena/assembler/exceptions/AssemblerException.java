@@ -1,5 +1,5 @@
 /*
- 	(c) Copyright 2005 Hewlett-Packard Development Company, LP
+ 	(c) Copyright 2006 Hewlett-Packard Development Company, LP
  	All rights reserved - see end of file.
  	$Id$
 */
@@ -7,34 +7,40 @@
 package com.hp.hpl.jena.assembler.exceptions;
 
 import com.hp.hpl.jena.rdf.model.Resource;
+import com.hp.hpl.jena.shared.JenaException;
 
 /**
-    Exception used to report that a transaction was aborted when loading
-    content into a model.
+    Assembler Exception class: contains code shared by all the Assembler
+    exceptions.
+    
     @author kers
 */
-public class TransactionAbortedException extends AssemblerException
+public class AssemblerException extends JenaException
     {
     protected final Resource root;
     
-    public TransactionAbortedException( Resource root, Throwable t )
+    public AssemblerException( Resource root, String string, Throwable t )
         { 
-        super( root, makeMessage( root, t ), t ); 
+        super( string, t ); 
         this.root = root;
         }
 
-    private static String makeMessage( Resource root, Throwable t )
+    public AssemblerException( Resource root, String message )
         {
-        return 
-            "the loading of content into " + root 
-            + " was aborted because of " + t.getMessage()
-            ;
+        super( message );
+        this.root = root;
         }
+
+    /**
+        Answer the root object whose model-filling was aborted
+    */
+    public Resource getRoot()
+        { return root; }
     }
 
 
 /*
- * (c) Copyright 2005 Hewlett-Packard Development Company, LP
+ * (c) Copyright 2006 Hewlett-Packard Development Company, LP
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
