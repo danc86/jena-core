@@ -1962,7 +1962,7 @@ public class OntModelImpl
     }
 
     /**
-     	@deprecated use getImportModelMaker instead.
+         @deprecated use getImportModelMaker instead.
     */
     public ModelMaker getModelMaker() {
         return getImportModelMaker();
@@ -2206,9 +2206,7 @@ public class OntModelImpl
      * @return The base model for this ontology model
      */
     public Model getBaseModel() {
-        Model result = ModelFactory.createModelForGraph( getBaseGraph() );
-        result.setNsPrefixes( this );
-        return result;
+        return ModelFactory.createModelForGraph( getBaseGraph() );
     }
 
 
@@ -2891,8 +2889,8 @@ public class OntModelImpl
     }
 
     /**
-     	Answer the supplied model, unless it's null, in which case answer a new model
-     	constructed as per spec.
+         Answer the supplied model, unless it's null, in which case answer a new model
+         constructed as per spec.
     */
     private static Model makeBaseModel( OntModelSpec spec, Model model ) {
         return model == null ? spec.createBaseModel() : model;
