@@ -21,8 +21,8 @@ public class NotUniqueException extends AssemblerException
     private static String makeMessage( Resource root, Property property )
         {
         return 
-            "the object " + root
-            + " has multiple values for the unique property " + property
+            "the object " + nice( root )
+            + " has multiple values for the unique property " + nice( property )
             ;
         }
     

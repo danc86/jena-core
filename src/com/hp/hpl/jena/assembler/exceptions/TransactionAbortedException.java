@@ -26,7 +26,7 @@ public class TransactionAbortedException extends AssemblerException
     private static String makeMessage( Resource root, Throwable t )
         {
         return 
-            "the loading of content into " + root 
+            "the loading of content into " + nice( root ) 
             + " was aborted because of " + t.getMessage()
             ;
         }

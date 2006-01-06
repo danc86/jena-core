@@ -25,8 +25,8 @@ public class UnknownStyleException extends AssemblerException
     private static String makeMessage( Resource root, Resource style )
         {
         return
-            "the object " + root
-            + " has an unknown reification mode " + style
+            "the object " + nice( root )
+            + " has an unknown reification mode " + nice( style )
             ;
         }
 

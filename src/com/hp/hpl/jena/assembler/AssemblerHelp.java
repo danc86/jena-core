@@ -14,7 +14,7 @@ import com.hp.hpl.jena.graph.Graph;
 import com.hp.hpl.jena.graph.compose.MultiUnion;
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.rdf.model.impl.ModelSpecFactory;
-import com.hp.hpl.jena.shared.JenaException;
+import com.hp.hpl.jena.shared.*;
 import com.hp.hpl.jena.util.FileManager;
 import com.hp.hpl.jena.vocabulary.*;
 
@@ -29,10 +29,15 @@ public class AssemblerHelp
             return m;
         else
             {
-            return 
-                // withImports( ModelSpecFactory.withSchema( m, JA.getSchema() ) )
-                ModelSpecFactory.withSchema( withImports( m ), JA.getSchema() )
-                .add( JA.This, RDF.type, JA.Expanded );
+            Model result = ModelSpecFactory.withSchema( withImports( m ), JA.getSchema() )
+                .add( JA.This, RDF.type, JA.Expanded )
+                ;
+            result
+                .setNsPrefixes( PrefixMapping.Extended )
+                .setNsPrefixes( m )
+                .setNsPrefix( "ja", JA.getURI() )
+                ;
+            return result;
             }
         }
 

@@ -26,7 +26,7 @@ public class CannotLoadClassException extends AssemblerException
         {
         return 
             "the class " + className
-            + " required by the object " + root
+            + " required by the object " + nice( root )
             + " could not be loaded"
             ; 
         }

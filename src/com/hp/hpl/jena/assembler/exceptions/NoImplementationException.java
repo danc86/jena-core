@@ -8,7 +8,6 @@ package com.hp.hpl.jena.assembler.exceptions;
 
 import com.hp.hpl.jena.assembler.Assembler;
 import com.hp.hpl.jena.rdf.model.Resource;
-import com.hp.hpl.jena.shared.*;
 
 public class NoImplementationException extends AssemblerException
     {
@@ -24,11 +23,10 @@ public class NoImplementationException extends AssemblerException
 
     private static String messageFor( Assembler a, Resource root, Resource type )
         {
-        PrefixMapping pm = root.getModel();
         return
             "the (group) Assembler " + a 
-            + " cannot construct the object " + root.asNode().toString( pm )
-            + " because it does not have an implementation for the objects's most specific type " + type.asNode().toString( pm )
+            + " cannot construct the object " + nice( root )
+            + " because it does not have an implementation for the objects's most specific type " + nice( type )
             ;
         }
     

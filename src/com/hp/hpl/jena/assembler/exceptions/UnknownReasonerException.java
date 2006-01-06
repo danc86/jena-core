@@ -23,7 +23,7 @@ public class UnknownReasonerException extends AssemblerException
         }
     
     private static String makeMessage( Resource root, Resource url )
-        { return "no reasoner called " + url + " for " + root; }
+        { return "no reasoner called " + url + " for " + nice( root ); }
     
     public Resource getURL()
         { return url; }

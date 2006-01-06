@@ -25,7 +25,7 @@ public class UnknownEncodingException extends AssemblerException
     private static String makeMessage( Resource root, String encoding )
         {
         return 
-            "the object " + root.asNode().toString( root.getModel() )
+            "the object " + nice( root )
             + " has an unknown language encoding '" + encoding + "'"
             ;
         }

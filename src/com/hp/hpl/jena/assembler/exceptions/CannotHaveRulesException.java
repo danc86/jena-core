@@ -16,7 +16,7 @@ public class CannotHaveRulesException extends AssemblerException
     private static String makeMessage( Resource root )
         {
         return 
-            "the object " + root 
+            "the object " + nice( root ) 
             + " cannot be given rules, since it is not a GenericRulesReasoner"
             ;
         }

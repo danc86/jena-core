@@ -36,6 +36,13 @@ public class AssemblerException extends JenaException
     */
     public Resource getRoot()
         { return root; }
+    
+    /**
+         Answer a "nice" representation of <code>r</code>, suitable for appearance
+         within an exception message.
+    */
+    protected static String nice( Resource r )
+        { return r.asNode().toString( r.getModel() ); }
     }
 
 

@@ -8,7 +8,6 @@ package com.hp.hpl.jena.assembler.exceptions;
 
 import com.hp.hpl.jena.assembler.Assembler;
 import com.hp.hpl.jena.rdf.model.Resource;
-import com.hp.hpl.jena.shared.*;
 
 /**
     Exception used to report a fauluire of a group assembler to construct an
@@ -30,11 +29,10 @@ public class CannotConstructException extends AssemblerException
 
     private static String constructMessage( Class assemblerClass, Resource root, Resource type )
         {
-        PrefixMapping pm = root.getModel();
         return 
             "the assembler " + getClassName( assemblerClass )
-            + " cannot construct the object named " + root.asNode().toString( pm )
-            + " because it is not of rdf:type " + type.asNode().toString( pm ) 
+            + " cannot construct the object named " + nice( root )
+            + " because it is not of rdf:type " + nice( root ) 
             ;
         }
     

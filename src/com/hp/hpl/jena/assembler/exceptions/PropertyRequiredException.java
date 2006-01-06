@@ -25,8 +25,8 @@ public class PropertyRequiredException extends AssemblerException
     private static String makeMessage( Resource root, Property property )
         {
         return
-            "the object " + root 
-            + " could not be constructed because it is missing the required property " + property
+            "the object " + nice( root ) 
+            + " could not be constructed because it is missing the required property " + nice( property )
             ;
         }
     

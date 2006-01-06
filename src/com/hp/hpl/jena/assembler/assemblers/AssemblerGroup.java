@@ -12,7 +12,6 @@ import com.hp.hpl.jena.assembler.*;
 import com.hp.hpl.jena.assembler.exceptions.NoImplementationException;
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.rdf.model.impl.*;
-import com.hp.hpl.jena.util.ResourceUtils;
 
 public abstract class AssemblerGroup extends AssemblerBase implements Assembler
     {    
