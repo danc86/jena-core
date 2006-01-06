@@ -15,11 +15,11 @@ import com.hp.hpl.jena.shared.*;
 
 public abstract class ModelAssembler extends AssemblerBase implements Assembler
     {    
-    protected abstract Model createModel( Assembler a, Resource root );
+    protected abstract Model openModel( Assembler a, Resource root );
     
-    public Object create( Assembler a, Resource root )
+    public Object open( Assembler a, Resource root )
         { 
-        Model m = createModel( a, root );
+        Model m = openModel( a, root );
         Content c = getContent( a, root );
         if (m.supportsTransactions())
             {
@@ -53,8 +53,8 @@ public abstract class ModelAssembler extends AssemblerBase implements Assembler
             ( a, root, PrefixMapping.Factory.create() );
         }
 
-    public Model createModel( Resource resource )
-        { return (Model) create( resource ); }
+    public Model openModel( Resource resource )
+        { return (Model) open( resource ); }
 
     protected Content getContent( Assembler a, Resource root )
         { 

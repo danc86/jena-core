@@ -22,7 +22,7 @@ public class TestDefaultModelAssembler extends AssemblerTestBase
     public void testDefaultModelAssembler()
         {
         Assembler a = Assembler.defaultModel;
-        Model m = a.createModel( resourceInModel( "x rdf:type ja:DefaultModel" ) );
+        Model m = a.openModel( resourceInModel( "x rdf:type ja:DefaultModel" ) );
         assertInstanceOf( Model.class, m );
         assertInstanceOf( GraphMemFaster.class, m.getGraph() );
         }

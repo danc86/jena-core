@@ -104,7 +104,7 @@ public class TestAssemblerHelp extends AssemblerTestBase
         public Imp()
             { impIsConstructed = true; }
         
-        public Object create( Assembler a, Resource root )
+        public Object open( Assembler a, Resource root )
             { return null; }
         }
     
@@ -124,7 +124,7 @@ public class TestAssemblerHelp extends AssemblerTestBase
             gremlinInvoked = true;
             }
         
-        public Object create( Assembler a, Resource root )
+        public Object open( Assembler a, Resource root )
             { return null; }
         }
     

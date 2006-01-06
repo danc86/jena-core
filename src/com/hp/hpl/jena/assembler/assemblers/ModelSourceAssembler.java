@@ -12,7 +12,7 @@ import com.hp.hpl.jena.vocabulary.RDF;
 
 public class ModelSourceAssembler extends AssemblerBase
     {
-    public Object create( Assembler a, Resource root )
+    public Object open( Assembler a, Resource root )
         {
         checkType( root, JA.ModelSource );
         return root.hasProperty( RDF.type, JA.RDBModelSource )
@@ -25,7 +25,7 @@ public class ModelSourceAssembler extends AssemblerBase
         { return ModelFactory.createModelRDBMaker( c.getConnection() ); }
 
     private ConnectionDescription getConnection( Assembler a, Resource root )
-        { return (ConnectionDescription) a.create( getRequiredResource( root, JA.connection ) ); }
+        { return (ConnectionDescription) a.open( getRequiredResource( root, JA.connection ) ); }
     }
 
 

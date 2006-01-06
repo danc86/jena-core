@@ -14,22 +14,22 @@ import com.hp.hpl.jena.shared.*;
 
 public class RDBModelAssembler extends NamedModelAssembler implements Assembler
     {
-    protected Model createModel( Assembler a, Resource root )
+    protected Model openModel( Assembler a, Resource root )
         {
         checkType( root, JA.RDBModel );
         String name = getModelName( root );
         ReificationStyle style = getReificationStyle( root );
         ConnectionDescription c = getConnection( a, root );
-        return createModel( c, name, style );
+        return openModel( c, name, style );
         }
 
     protected ConnectionDescription getConnection( Assembler a, Resource root )
         {
         Resource C = getRequiredResource( root, JA.connection );
-        return (ConnectionDescription) a.create( C );        
+        return (ConnectionDescription) a.open( C );        
         }
     
-    protected Model createModel( ConnectionDescription c, String name, ReificationStyle style )
+    protected Model openModel( ConnectionDescription c, String name, ReificationStyle style )
         {
         IDBConnection ic = c.getConnection();
         return isDefaultName( name )

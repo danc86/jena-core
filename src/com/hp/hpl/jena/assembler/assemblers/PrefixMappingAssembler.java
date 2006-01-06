@@ -12,7 +12,7 @@ import com.hp.hpl.jena.shared.PrefixMapping;
 
 public class PrefixMappingAssembler extends AssemblerBase implements Assembler
     {
-    public Object create( Assembler a, Resource root )
+    public Object open( Assembler a, Resource root )
         {
         checkType( root, JA.PrefixMapping );
         return getPrefixes( a, root, PrefixMapping.Factory.create() ); 
@@ -30,7 +30,7 @@ public class PrefixMappingAssembler extends AssemblerBase implements Assembler
         for (StmtIterator it = root.listProperties( JA.includes ); it.hasNext();)
             {
             Statement s = it.nextStatement();
-            PrefixMapping sub = (PrefixMapping) a.create( s.getResource() );
+            PrefixMapping sub = (PrefixMapping) a.open( s.getResource() );
             result.setNsPrefixes( sub );
             }
         }

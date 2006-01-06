@@ -18,7 +18,7 @@ public class OntModelSpecAssembler extends AssemblerBase implements Assembler
     {
     private static final OntModelSpec DEFAULT = OntModelSpec.OWL_MEM_RDFS_INF;
 
-    public Object create( Assembler a, Resource root )
+    public Object open( Assembler a, Resource root )
         {
         if (root.hasProperty( null, (RDFNode) null )) 
             {
@@ -52,7 +52,7 @@ public class OntModelSpecAssembler extends AssemblerBase implements Assembler
     private ModelGetter getModelSource( Assembler a, Resource root )
         {
         Resource source = getUniqueResource( root, JA.importSource );
-        return source == null ? DEFAULT.getImportModelGetter() : (ModelGetter) a.create( source );
+        return source == null ? DEFAULT.getImportModelGetter() : (ModelGetter) a.open( source );
         }
 
     private String getLanguage( Assembler a, Resource root )
@@ -64,13 +64,13 @@ public class OntModelSpecAssembler extends AssemblerBase implements Assembler
     private ReasonerFactory getReasonerFactory( Assembler a, Resource root )
         {
         Resource rf = getUniqueResource( root, JA.reasonerURL );
-        return rf == null ? DEFAULT.getReasonerFactory() : (ReasonerFactory) a.create( rf );
+        return rf == null ? DEFAULT.getReasonerFactory() : (ReasonerFactory) a.open( rf );
         }
     
     private OntDocumentManager getDocumentManager( Assembler a, Resource root )
         { 
         Resource dm = getUniqueResource( root, JA.documentManager );
-        return dm == null ? OntDocumentManager.getInstance() : (OntDocumentManager) a.create( dm );
+        return dm == null ? OntDocumentManager.getInstance() : (OntDocumentManager) a.open( dm );
         }
     
     protected OntModelSpec getOntModelSpecField( String name )

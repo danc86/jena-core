@@ -26,7 +26,7 @@ public class TestMemoryModelAssembler extends ModelAssemblerTestBase
     public void testMemoryModelAssembler()
         {
         Assembler a = new MemoryModelAssembler();
-        Model m = a.createModel( resourceInModel( "x rdf:type ja:MemoryModel" ) );
+        Model m = a.openModel( resourceInModel( "x rdf:type ja:MemoryModel" ) );
         assertInstanceOf( Model.class, m );
         assertInstanceOf( GraphMemFaster.class, m.getGraph() );
         }

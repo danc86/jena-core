@@ -12,13 +12,13 @@ import com.hp.hpl.jena.rdf.model.*;
 
 public class MemoryModelAssembler extends ModelAssembler implements Assembler
     {
-    public Object create( Assembler a, Resource root )
+    public Object open( Assembler a, Resource root )
         {
         checkType( root, JA.MemoryModel );
-        return super.create( a, root );
+        return super.open( a, root );
         }
     
-    protected Model createModel( Assembler a, Resource root )
+    protected Model openModel( Assembler a, Resource root )
         { return ModelFactory.createDefaultModel( getReificationStyle( root )); }
     }
 

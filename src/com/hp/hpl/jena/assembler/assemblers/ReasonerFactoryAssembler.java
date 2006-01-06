@@ -16,7 +16,7 @@ import com.hp.hpl.jena.reasoner.rulesys.*;
 
 public class ReasonerFactoryAssembler extends AssemblerBase implements Assembler
     {
-    public Object create( Assembler a, Resource root )
+    public Object open( Assembler a, Resource root )
         { 
         checkType( root, JA.ReasonerFactory );
         return addRules( root, a, getReasonerFactory( root ) );

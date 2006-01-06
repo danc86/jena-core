@@ -37,7 +37,7 @@ public class TestDocumentManagerAssembler extends AssemblerTestBase
         { 
         Resource root = resourceInModel( "x rdf:type ja:DocumentManager" );
         Assembler a = new DocumentManagerAssembler();
-        Object x = a.create( root );
+        Object x = a.open( root );
         assertInstanceOf( OntDocumentManager.class, x );
         }
     
@@ -47,7 +47,7 @@ public class TestDocumentManagerAssembler extends AssemblerTestBase
         Assembler a = new DocumentManagerAssembler();
         FileManager fm = new FileManager();
         Assembler mock = new NamedObjectAssembler( resource( "f" ), fm );
-        Object x = a.create( mock, root );
+        Object x = a.open( mock, root );
         assertInstanceOf( OntDocumentManager.class, x );
         assertSame( fm, ((OntDocumentManager) x).getFileManager() );
         }
@@ -70,7 +70,7 @@ public class TestDocumentManagerAssembler extends AssemblerTestBase
                     };
                 }
             };
-        OntDocumentManager d = (OntDocumentManager) a.create( root );
+        OntDocumentManager d = (OntDocumentManager) a.open( root );
         assertEquals( listOfOne( "somePath" ), history );
         }
     
@@ -93,7 +93,7 @@ public class TestDocumentManagerAssembler extends AssemblerTestBase
                     };
                 }
             };
-        OntDocumentManager d = (OntDocumentManager) a.create( root );
+        OntDocumentManager d = (OntDocumentManager) a.open( root );
         assertEquals( listOfOne( "called" ), history );
         }
     }

@@ -18,11 +18,11 @@ import com.hp.hpl.jena.rdf.model.*;
 */
 public interface Assembler
     {    
-    public Object create( Assembler a, Resource root );
+    public Object open( Assembler a, Resource root );
     
-    public Object create( Resource root );
+    public Object open( Resource root );
 
-    public Model createModel( Resource root );
+    public Model openModel( Resource root );
     
     public static final Assembler defaultModel = new DefaultModelAssembler();
     

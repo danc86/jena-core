@@ -21,11 +21,10 @@ public class TestRDBModelAssembler extends AssemblerTestBase
 
     public void testRDBModelAssemblerType()
         { testDemandsMinimalType( new RDBModelAssembler(), JA.RDBModel );  }
-    
-    public void testAssemblerConstant()
+
+    public void testRDBModelVocabulary()
         {
-        assertInstanceOf( RDBModelAssembler.class, Assembler.rdbModel );
-        assertDomain( JA.RDBModel, JA.dbClass );
+        // TODO
         }
     
     public void testInvokesCreateModel()
@@ -35,14 +34,14 @@ public class TestRDBModelAssembler extends AssemblerTestBase
         final Model fake = ModelFactory.createDefaultModel();
         Assembler a = new RDBModelAssembler()
             {
-            public Model createModel( ConnectionDescription c, String name, ReificationStyle style )
+            public Model openModel( ConnectionDescription c, String name, ReificationStyle style )
                 {
                 assertSame( C, c );
                 return fake;
                 }
             };
         Assembler foo = new NamedObjectAssembler( resource( "C" ), C );
-        assertSame( fake, a.create( foo, root ) );
+        assertSame( fake, a.open( foo, root ) );
         }
     
     }

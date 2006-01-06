@@ -13,7 +13,7 @@ import com.hp.hpl.jena.util.*;
 
 public class DocumentManagerAssembler extends AssemblerBase 
     {    
-    public Object create( Assembler a, Resource root )
+    public Object open( Assembler a, Resource root )
         { 
         checkType( root, JA.DocumentManager );
         OntDocumentManager result = createDocumentManager();
@@ -32,7 +32,7 @@ public class DocumentManagerAssembler extends AssemblerBase
     private FileManager getFileManager( Assembler a, Resource root )
         {
         Resource fm = getUniqueResource( root, JA.fileManager );
-        return fm == null ? FileManager.get() : (FileManager) a.create( fm );
+        return fm == null ? FileManager.get() : (FileManager) a.open( fm );
         }
     
     /**

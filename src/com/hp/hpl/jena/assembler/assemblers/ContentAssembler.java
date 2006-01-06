@@ -17,7 +17,7 @@ import com.hp.hpl.jena.vocabulary.*;
 
 public class ContentAssembler extends AssemblerBase implements Assembler
     {
-    public Object create( Assembler a, Resource root )
+    public Object open( Assembler a, Resource root )
         {
         checkType( root, JA.Content );
         return new Content( loadContent( new ArrayList(), this, root ) );
@@ -35,7 +35,7 @@ public class ContentAssembler extends AssemblerBase implements Assembler
     private static void addIndirectContent( List contents, Assembler a, Resource root )
         {
         StmtIterator it = root.listProperties( JA.content );
-        while (it.hasNext()) contents.add( a.create( it.nextStatement().getResource() ) );
+        while (it.hasNext()) contents.add( a.open( it.nextStatement().getResource() ) );
         }
 
     protected static void addExternalContents( List contents, Resource root )

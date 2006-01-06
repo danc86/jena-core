@@ -38,7 +38,7 @@ public class TestUnionModelAssembler extends AssemblerTestBase
         {
         Resource root = resourceInModel( "x rdf:type ja:UnionModel" );
         Assembler a = new UnionModelAssembler();
-        Model m = a.createModel( root );
+        Model m = a.openModel( root );
         assertInstanceOf( MultiUnion.class, m.getGraph() );
         checkImmutable( m );
         }
@@ -59,10 +59,10 @@ public class TestUnionModelAssembler extends AssemblerTestBase
             return this;
             }
 
-        public Model createModel( Resource root )
-            { return (Model) create( this, root ); }
+        public Model openModel( Resource root )
+            { return (Model) open( this, root ); }
         
-        public Object create( Assembler a, Resource root )
+        public Object open( Assembler a, Resource root )
             { return (Model) map.get( root ); }
         }
     
@@ -73,7 +73,7 @@ public class TestUnionModelAssembler extends AssemblerTestBase
         Model modelA = model( "" ), modelB = model( "" );
         Set expected = new HashSet(); expected.add( modelA.getGraph() ); expected.add( modelB.getGraph() );
         Assembler mock = new SmudgeAssembler().add( "A", modelA ).add( "B", modelB );
-        Model m = (Model) a.create( mock, root );
+        Model m = (Model) a.open( mock, root );
         assertInstanceOf( MultiUnion.class, m.getGraph() );
         MultiUnion mu = (MultiUnion) m.getGraph();
         List L = mu.getSubGraphs();
@@ -88,7 +88,7 @@ public class TestUnionModelAssembler extends AssemblerTestBase
         Model modelA = model( "" ), modelB = model( "" );
         Set expected = new HashSet(); expected.add( modelA.getGraph() ); 
         Assembler mock = new SmudgeAssembler().add( "A", modelA ).add( "B", modelB );
-        Model m = (Model) a.create( mock, root );
+        Model m = (Model) a.open( mock, root );
         assertInstanceOf( MultiUnion.class, m.getGraph() );
     //
         MultiUnion mu = (MultiUnion) m.getGraph();

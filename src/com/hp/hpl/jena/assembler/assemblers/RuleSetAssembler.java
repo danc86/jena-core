@@ -14,7 +14,7 @@ import com.hp.hpl.jena.reasoner.rulesys.Rule;
 
 public class RuleSetAssembler extends AssemblerBase implements Assembler
     {
-    public Object create( Assembler a, Resource root )
+    public Object open( Assembler a, Resource root )
         { 
         checkType( root, JA.RuleSet );
         return createRuleSet( a, root ); 
@@ -37,7 +37,7 @@ public class RuleSetAssembler extends AssemblerBase implements Assembler
         while (it.hasNext()) 
             {
             Resource r = it.nextStatement().getResource();
-            RuleSet sub = (RuleSet) a.create( r );
+            RuleSet sub = (RuleSet) a.open( r );
             result.addAll( sub.getRules() );
             }
         }

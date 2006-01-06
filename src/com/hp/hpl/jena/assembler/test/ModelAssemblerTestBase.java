@@ -36,7 +36,7 @@ public abstract class ModelAssemblerTestBase extends AssemblerTestBase
         {
         Resource root = resourceInModel( base );
         root.addProperty( JA.reificationMode, resource( root.getModel(), styleString ) );
-        Model m = a.createModel( root );
+        Model m = a.openModel( root );
         assertEquals( style, m.getGraph().getReifier().getStyle() );
         }
     }

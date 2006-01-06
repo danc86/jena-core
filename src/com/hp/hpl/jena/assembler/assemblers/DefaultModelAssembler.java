@@ -11,7 +11,7 @@ import com.hp.hpl.jena.rdf.model.*;
 
 public class DefaultModelAssembler extends ModelAssembler implements Assembler
     {
-    public Model createModel( Assembler a, Resource root )
+    public Model openModel( Assembler a, Resource root )
         {
         checkType( root, JA.DefaultModel );
         return ModelFactory.createDefaultModel();

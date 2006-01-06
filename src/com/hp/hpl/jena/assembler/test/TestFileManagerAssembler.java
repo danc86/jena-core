@@ -33,7 +33,7 @@ public class TestFileManagerAssembler extends AssemblerTestBase
         {
         Resource root = resourceInModel( "r rdf:type ja:FileManager" );
         Assembler a = new FileManagerAssembler();
-        Object x = a.create( root );
+        Object x = a.open( root );
         assertInstanceOf( FileManager.class, x );
         }
     
@@ -43,7 +43,7 @@ public class TestFileManagerAssembler extends AssemblerTestBase
         LocationMapper mapper = new LocationMapper();
         Assembler mock = new NamedObjectAssembler( resource( "r" ), mapper );
         Assembler a = new FileManagerAssembler();
-        Object x = a.create( mock, root );
+        Object x = a.open( mock, root );
         assertInstanceOf( FileManager.class, x );
         assertSame( mapper, ((FileManager) x).getLocationMapper() );
         }

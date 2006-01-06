@@ -35,7 +35,7 @@ public class TestLocationMapperAssembler extends AssemblerTestBase
         {
         Resource root = resourceInModel( "r rdf:type ja:LocationMapper" );
         Assembler a = new LocationMapperAssembler();
-        Object x = a.create( root );
+        Object x = a.open( root );
         assertInstanceOf( LocationMapper.class, x );
         }
     
@@ -43,7 +43,7 @@ public class TestLocationMapperAssembler extends AssemblerTestBase
         { // TODO should really have some mroe of these
         Resource root = resourceInModel( "r rdf:type ja:LocationMapper; r lm:mapping _m; _m lm:name 'alpha'; _m lm:altName 'beta'" );
         Assembler a = new LocationMapperAssembler();
-        Object x = a.create( root );
+        Object x = a.open( root );
         assertInstanceOf( LocationMapper.class, x );
         assertEqualMaps( new LocationMapper( root.getModel() ), (LocationMapper) x );
         }

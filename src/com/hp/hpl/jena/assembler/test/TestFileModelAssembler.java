@@ -60,7 +60,7 @@ public class TestFileModelAssembler extends ModelAssemblerTestBase
                 { return model; }
             };
         Resource root = resourceInModel( "x rdf:type ja:FileModel; x ja:modelName 'junk'; x ja:directory file:" );
-        Model m = a.createModel( root  );
+        Model m = a.openModel( root  );
         assertSame( model, m );
         }
     
@@ -76,7 +76,7 @@ public class TestFileModelAssembler extends ModelAssemblerTestBase
                 return model; 
                 }
             };
-        Model m = a.createModel( root  );
+        Model m = a.openModel( root  );
         assertSame( model, m );
         }
     
@@ -99,7 +99,7 @@ public class TestFileModelAssembler extends ModelAssemblerTestBase
                 }
             };
         Resource root = resourceInModel( "x rdf:type ja:FileModel; x ja:modelName 'junk'; x ja:directory file:" + "; x ja:reificationMode " + styleString );
-        Model m = a.createModel( root  );
+        Model m = a.openModel( root  );
         assertSame( model, m );
         }
     
@@ -140,7 +140,7 @@ public class TestFileModelAssembler extends ModelAssemblerTestBase
                 return model; 
                 }
             };
-        Model m = a.createModel( root  );
+        Model m = a.openModel( root  );
         assertSame( model, m );
         }
     }

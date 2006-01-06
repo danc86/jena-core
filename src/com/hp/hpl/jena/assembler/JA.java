@@ -153,6 +153,22 @@ public class JA
 
     public static final Property fileEncoding = property( "fileEncoding" );
 
+    public static final Property dbUser = property( "dbUser" );
+
+    public static final Property dbUserProperty = property( "dbUserProperty" );
+
+    public static final Property dbPassword = property( "dbPassword" );
+
+    public static final Property dbPasswordProperty = property( "dbPasswordProperty" );
+
+    public static final Property dbURL = property( "dbURL" );
+
+    public static final Property dbURLProperty = property( "dbURLProperty" );
+
+    public static final Property dbType = property( "dbType" );
+
+    public static final Property dbTypeProperty = property( "dbTypeProperty" );
+
     public static Model getSchema()
         { // inline packagename to avoid clash with /our/ FileManager.
         if (schema == null) schema = com.hp.hpl.jena.util.FileManager.get().loadModel( getSchemaPath() );
