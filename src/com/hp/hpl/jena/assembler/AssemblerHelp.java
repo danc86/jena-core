@@ -10,6 +10,7 @@ import java.lang.reflect.*;
 import java.util.*;
 
 import com.hp.hpl.jena.assembler.assemblers.AssemblerGroup;
+import com.hp.hpl.jena.assembler.exceptions.NoSpecificTypeException;
 import com.hp.hpl.jena.graph.Graph;
 import com.hp.hpl.jena.graph.compose.MultiUnion;
 import com.hp.hpl.jena.rdf.model.*;
@@ -146,7 +147,7 @@ public class AssemblerHelp
             return (Resource) results.get(0);
         if (results.size() == 0)
             return JA.Object;
-        throw new JenaException( "could not find specific type" );
+        throw new NoSpecificTypeException( root, results );
 //        Resource type = JA.Object;
 //        StmtIterator it = root.listProperties( RDF.type );
 //        while (it.hasNext())
