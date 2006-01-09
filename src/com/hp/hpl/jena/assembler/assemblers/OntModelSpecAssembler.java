@@ -18,7 +18,7 @@ public class OntModelSpecAssembler extends AssemblerBase implements Assembler
     {
     private static final OntModelSpec DEFAULT = OntModelSpec.OWL_MEM_RDFS_INF;
 
-    public Object open( Assembler a, Resource root )
+    public Object open( Assembler a, Resource root, Mode irrelevant )
         {
         if (root.hasProperty( null, (RDFNode) null )) 
             {

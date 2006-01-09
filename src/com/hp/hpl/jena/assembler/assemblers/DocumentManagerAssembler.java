@@ -13,7 +13,7 @@ import com.hp.hpl.jena.util.*;
 
 public class DocumentManagerAssembler extends AssemblerBase 
     {    
-    public Object open( Assembler a, Resource root )
+    public Object open( Assembler a, Resource root, Mode irrelevant )
         { 
         checkType( root, JA.DocumentManager );
         OntDocumentManager result = createDocumentManager();

@@ -18,7 +18,7 @@ import com.hp.hpl.jena.util.*;
 */
 public class LocationMapperAssembler extends AssemblerBase
     {
-    public Object open( Assembler a, Resource root )
+    public Object open( Assembler a, Resource root, Mode irrelevant )
         {
         checkType( root, JA.LocationMapper );
         return new LocationMapper( ResourceUtils.reachableClosure( root ) ); 

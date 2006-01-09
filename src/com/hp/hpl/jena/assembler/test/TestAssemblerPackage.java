@@ -13,6 +13,7 @@ public class TestAssemblerPackage extends TestCase
     public static TestSuite suite()
         {
         TestSuite result = new TestSuite();
+        result.addTestSuite( TestMode.class );
         result.addTest( TestAssemblers.suite() );
         return result;
         }

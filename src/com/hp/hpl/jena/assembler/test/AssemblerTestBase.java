@@ -17,7 +17,8 @@ import com.hp.hpl.jena.vocabulary.*;
 
 public abstract class AssemblerTestBase extends ModelTestBase
     {
-    protected abstract Class getAssemblerClass();
+    protected Class getAssemblerClass()
+        { throw new BrokenException( "this class must define getAssemblerClass" ); }
     
     /**
          An assembler that always returns the same fixed object.
@@ -31,7 +32,7 @@ public abstract class AssemblerTestBase extends ModelTestBase
             { this.x = x; }
         
         
-        public Object open( Assembler a, Resource root )
+        public Object open( Assembler a, Resource root, Mode irrelevant )
             { return x; }
         }
 
@@ -48,10 +49,10 @@ public abstract class AssemblerTestBase extends ModelTestBase
             NamedObjectAssembler( Resource name, Object result )
                 { this.name = name; this.result = result; }
             
-            public Model openModel( Resource root )
-                { return (Model) open( root ); }
+            public Model openModel( Resource root, Mode mode )
+                { return (Model) open( this, root, mode ); }
             
-            public Object open( Assembler a, Resource root )
+            public Object open( Assembler a, Resource root, Mode irrelevant )
                 {
                 assertEquals( name, root );
                 return result;

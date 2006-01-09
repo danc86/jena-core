@@ -12,10 +12,10 @@ import com.hp.hpl.jena.rdf.model.*;
 
 public class OntModelAssembler extends InfModelAssembler implements Assembler
     {
-    public Model openModel( Assembler a, Resource root )
+    public Model openModel( Assembler a, Resource root, Mode mode )
         {
         checkType( root, JA.OntModel );
-        Model baseModel = getBase( a, root );
+        Model baseModel = getBase( a, root, mode );
         OntModelSpec oms = getOntModelSpec( a, root );
         return ModelFactory.createOntologyModel( oms, baseModel );
         }

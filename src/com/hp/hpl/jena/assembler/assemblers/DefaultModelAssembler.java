@@ -11,11 +11,14 @@ import com.hp.hpl.jena.rdf.model.*;
 
 public class DefaultModelAssembler extends ModelAssembler implements Assembler
     {
-    public Model openModel( Assembler a, Resource root )
+    public Object open( Assembler a, Resource root, Mode mode )
         {
         checkType( root, JA.DefaultModel );
-        return ModelFactory.createDefaultModel();
+        return super.open( a, root, mode );
         }
+    
+    protected Model openModel( Assembler a, Resource root, Mode irrelevant )
+        { return ModelFactory.createDefaultModel(); }
     }
 
 /*

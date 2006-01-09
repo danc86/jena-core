@@ -6,12 +6,24 @@
 
 package com.hp.hpl.jena.assembler.test;
 
+import com.hp.hpl.jena.assembler.Mode;
+
 public class TestMode extends AssemblerTestBase
     {
     public TestMode( String name )
         { super( name ); }
 
-    
+    public void testConstantsExist()
+        {
+        Mode a = Mode.CREATE, b = Mode.DEFAULT;
+        Mode c = Mode.REUSE, d = Mode.ANY;
+        assertDiffer( Mode.CREATE, Mode.DEFAULT );
+        assertDiffer( Mode.CREATE, Mode.REUSE );
+        assertDiffer( Mode.CREATE, Mode.ANY );
+        assertDiffer( Mode.DEFAULT, Mode.REUSE );
+        assertDiffer( Mode.DEFAULT, Mode.ANY );
+        assertDiffer( Mode.REUSE, Mode.ANY );
+        }
     }
 
 

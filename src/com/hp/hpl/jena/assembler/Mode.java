@@ -6,9 +6,20 @@
 
 package com.hp.hpl.jena.assembler;
 
+import com.hp.hpl.jena.rdf.model.Resource;
+
 public class Mode
     {
-
+    public static final Mode CREATE = new Mode();
+    public static final Mode DEFAULT = new Mode();
+    public static final Mode REUSE = new Mode();
+    public static final Mode ANY = new Mode();
+    
+    public boolean mayCreate( Resource name )
+        { return true; }
+    
+    public boolean mayReuse( Resource name )
+        { return true; }
     }
 
 

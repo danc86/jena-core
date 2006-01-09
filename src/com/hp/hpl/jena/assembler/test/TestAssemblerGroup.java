@@ -96,7 +96,7 @@ public class TestAssemblerGroup extends AssemblerTestBase
         final Object result = new Object();
         Assembler fake = new AssemblerBase() 
             {
-            public Object open( Assembler a, Resource root )
+            public Object open( Assembler a, Resource root, Mode irrelevant )
                 {
                 assertSame( "nested call should pass in assembler group:", group, a );
                 return result;

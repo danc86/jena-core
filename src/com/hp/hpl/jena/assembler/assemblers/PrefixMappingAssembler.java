@@ -12,7 +12,7 @@ import com.hp.hpl.jena.shared.PrefixMapping;
 
 public class PrefixMappingAssembler extends AssemblerBase implements Assembler
     {
-    public Object open( Assembler a, Resource root )
+    public Object open( Assembler a, Resource root, Mode irrelevant )
         {
         checkType( root, JA.PrefixMapping );
         return getPrefixes( a, root, PrefixMapping.Factory.create() ); 

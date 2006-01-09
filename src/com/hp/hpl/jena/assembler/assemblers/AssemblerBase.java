@@ -8,7 +8,7 @@ package com.hp.hpl.jena.assembler.assemblers;
 
 import java.util.List;
 
-import com.hp.hpl.jena.assembler.Assembler;
+import com.hp.hpl.jena.assembler.*;
 import com.hp.hpl.jena.assembler.exceptions.*;
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.shared.JenaException;
@@ -34,10 +34,13 @@ public abstract class AssemblerBase implements Assembler
         public Object map1( Object o ) { return ((Statement) o).getObject(); }
         };
 
-    public Object open( Resource root )
+    public final Object open( Resource root )
         { return open( this, root ); }
 
-    public abstract Object open( Assembler a, Resource root );
+    public final Object open( Assembler a, Resource root )
+        { return open( a, root, Mode.DEFAULT ); }
+
+    public abstract Object open( Assembler a, Resource root, Mode mode );
 
     protected static Resource getUniqueResource( Resource root, Property property )
         { return (Resource) getUnique( root, property ); }
@@ -59,8 +62,11 @@ public abstract class AssemblerBase implements Assembler
             throw new CannotConstructException( this.getClass(), root, type );
         }
 
-    public Model openModel( Resource root )
+    public Model openModel( Resource root, Mode mode )
         { throw new JenaException( "this Assembler cannot create a Model" ); }
+    
+    public Model openModel( Resource root )
+        { return openModel( root, Mode.DEFAULT ); }
 
     protected Resource getRequiredResource( Resource root, Property p )
         {

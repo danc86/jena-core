@@ -19,7 +19,7 @@ import com.hp.hpl.jena.util.*;
 */
 public class FileManagerAssembler extends AssemblerBase
     {
-    public Object open( Assembler a, Resource root )
+    public Object open( Assembler a, Resource root, Mode irrelevant )
         { 
         checkType( root, JA.FileManager );
         return new FileManager( getLocationMapper( a, root ) ); 

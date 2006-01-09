@@ -20,9 +20,13 @@ public interface Assembler
     {    
     public Object open( Assembler a, Resource root );
     
+    public Object open( Assembler a, Resource root, Mode mode );
+    
     public Object open( Resource root );
 
     public Model openModel( Resource root );
+    
+    public Model openModel( Resource root, Mode mode );
     
     public static final Assembler defaultModel = new DefaultModelAssembler();
     

@@ -59,10 +59,10 @@ public class TestUnionModelAssembler extends AssemblerTestBase
             return this;
             }
 
-        public Model openModel( Resource root )
-            { return (Model) open( this, root ); }
+        public Model openModel( Resource root, Mode mode )
+            { return (Model) open( this, root, mode ); }
         
-        public Object open( Assembler a, Resource root )
+        public Object open( Assembler a, Resource root, Mode irrelevant )
             { return (Model) map.get( root ); }
         }
     

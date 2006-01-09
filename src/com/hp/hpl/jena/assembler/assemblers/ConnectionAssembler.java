@@ -30,7 +30,7 @@ public class ConnectionAssembler extends AssemblerBase implements Assembler
     public ConnectionAssembler()
         { this( emptyRoot ); }
 
-    public Object open( Assembler a, Resource root )
+    public Object open( Assembler a, Resource root, Mode irrelevant )
         {
         checkType( root, JA.Connection );
         String dbUser = getUser( root ), dbPassword = getPassword( root );

@@ -17,7 +17,7 @@ import com.hp.hpl.jena.vocabulary.*;
 
 public class ContentAssembler extends AssemblerBase implements Assembler
     {
-    public Object open( Assembler a, Resource root )
+    public Object open( Assembler a, Resource root, Mode irrelevant )
         {
         checkType( root, JA.Content );
         return new Content( loadContent( new ArrayList(), this, root ) );

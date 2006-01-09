@@ -18,11 +18,11 @@ import com.hp.hpl.jena.util.FileUtils;
 
 public class FileModelAssembler extends NamedModelAssembler implements Assembler
     {
-    protected Model openModel( Assembler a, Resource root )
+    protected Model openModel( Assembler a, Resource root, Mode mode )
         {
         checkType( root, JA.FileModel );
         File fullName = getFileName( root );
-        boolean create = true, strict = false;
+        boolean create = true, strict = false; // TODO set from `mode`.
         String lang = getLanguage( root, fullName );
         ReificationStyle style = getReificationStyle( root );
         return createFileModel( fullName, lang, create, strict, style );

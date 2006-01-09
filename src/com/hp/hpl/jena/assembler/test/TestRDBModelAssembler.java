@@ -34,7 +34,7 @@ public class TestRDBModelAssembler extends AssemblerTestBase
         final Model fake = ModelFactory.createDefaultModel();
         Assembler a = new RDBModelAssembler()
             {
-            public Model openModel( ConnectionDescription c, String name, ReificationStyle style )
+            public Model openModel( ConnectionDescription c, String name, ReificationStyle style, Mode mode )
                 {
                 assertSame( C, c );
                 return fake;

@@ -80,7 +80,7 @@ public class TestOntModelAssembler extends AssemblerTestBase
         Assembler a = new OntModelAssembler();
         Assembler aa = new ModelAssembler()
             {
-            protected Model openModel( Assembler a, Resource root )
+            protected Model openModel( Assembler a, Resource root, Mode irrelevant )
                 { 
                 assertEquals( resource( "y" ), root );
                 return baseModel;  

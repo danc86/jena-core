@@ -14,7 +14,7 @@ import com.hp.hpl.jena.reasoner.rulesys.Rule;
 
 public class RuleSetAssembler extends AssemblerBase implements Assembler
     {
-    public Object open( Assembler a, Resource root )
+    public Object open( Assembler a, Resource root, Mode irrelevant )
         { 
         checkType( root, JA.RuleSet );
         return createRuleSet( a, root ); 
