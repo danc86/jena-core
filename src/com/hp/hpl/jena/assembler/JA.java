@@ -179,7 +179,6 @@ public class JA
         { return "vocabularies/assembler.n3"; }
     }
 
-
 /*
  * (c) Copyright 2005 Hewlett-Packard Development Company, LP
  * All rights reserved.

@@ -52,14 +52,14 @@ public abstract class AssemblerGroup extends AssemblerBase implements Assembler
         
         public Object open( Assembler a, Resource root )
             {
-            Resource type = ModelSpecFactory.findSpecificType( root, JA.Object );
+            Resource type = AssemblerHelp.findSpecificType( root );
             Assembler toUse = assemblerFor( type );
             if (toUse == null)
                 throw new NoImplementationException( this, root, type );
             else
                 return toUse.open( a, root );
             }
-
+        
         public AssemblerGroup implementWith( Resource type, Assembler a )
             {
             mappings.put( type, a );

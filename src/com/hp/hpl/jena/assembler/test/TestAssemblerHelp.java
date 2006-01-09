@@ -60,6 +60,22 @@ public class TestAssemblerHelp extends AssemblerTestBase
             }
         }
     
+    public void testSpecificType()
+        {
+        testSpecificType( "ja:Connectable", "x ja:connection _C" );
+        testSpecificType( "ja:NamedModel", "x ja:modelName 'name'" );
+        testSpecificType( "ja:NamedModel", "x ja:modelName 'name'; x rdf:type irrelevant" );
+        testSpecificType( "ja:RDBModel", "x rdf:type ja:RDBModel; x rdf:type ja:Model" );
+        }
+
+    private void testSpecificType( String expected, String specification )
+        { // TODO relies on fullModel, would be nice to remove this dependency
+        Resource root = resourceInModel( specification );
+        Resource rooted = (Resource) root.inModel( AssemblerHelp.fullModel( root.getModel() ) );
+        Resource mst = AssemblerHelp.findSpecificType( rooted );
+        assertEquals( resource( root.getModel(), expected ), mst );
+        }
+    
     public void testFollowOwlImports()
         {
         final Model modelToLoad = model( "this hasMarker B5" );

@@ -111,6 +111,11 @@ public class AssemblerHelp
         catch (SecurityException e) { return null; }
         catch (NoSuchMethodException e) { return null; }
         }
+
+    public static Resource findSpecificType( Resource root )
+    {
+    return ModelSpecFactory.findSpecificType( root, JA.Object );
+    }
     }
 
 /*
