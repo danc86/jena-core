@@ -171,10 +171,17 @@ public class JA
 
     public static Model getSchema()
         { // inline packagename to avoid clash with /our/ FileManager.
-        if (schema == null) schema = com.hp.hpl.jena.util.FileManager.get().loadModel( getSchemaPath() );
+        if (schema == null) schema = complete( com.hp.hpl.jena.util.FileManager.get().loadModel( getSchemaPath() ) );
         return schema;
         }
 
+    private static Model complete( Model m )
+        {
+        Model result = ModelFactory.createDefaultModel();
+        result.add( ModelFactory.createRDFSModel( m ) );
+        return result;
+        }
+    
     private static String getSchemaPath()
         { return "vocabularies/assembler.n3"; }
     }
