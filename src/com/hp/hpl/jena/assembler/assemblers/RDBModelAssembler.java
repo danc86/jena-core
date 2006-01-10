@@ -41,17 +41,14 @@ public class RDBModelAssembler extends NamedModelAssembler implements Assembler
         {
         if (ic.containsModel( name ))
             {
-            System.err.println( ">> database contains " + name );
             if (mode.permitUseExisting( root, name )) return consModel( ic, name, style, false );
-            throw new JenaException( "OOPS" );
+            throw new AlreadyExistsException( name );
             }
         else
             {
-            System.err.println( ">> database does not contain " + name );
             if (mode.permitCreateNew( root, name )) return consModel( ic, name, style, true );
-            throw new JenaException( "OOPS" );
+            throw new NotFoundException( name );
             }
-        // return consModel( ic, name, style, !ic.containsModel( name ) );
         }
     
     private static final String nameForDefault = "DEFAULT";
