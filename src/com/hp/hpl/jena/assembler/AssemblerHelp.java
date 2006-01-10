@@ -14,7 +14,6 @@ import com.hp.hpl.jena.assembler.exceptions.NoSpecificTypeException;
 import com.hp.hpl.jena.graph.Graph;
 import com.hp.hpl.jena.graph.compose.MultiUnion;
 import com.hp.hpl.jena.rdf.model.*;
-import com.hp.hpl.jena.rdf.model.impl.ModelSpecFactory;
 import com.hp.hpl.jena.shared.*;
 import com.hp.hpl.jena.util.FileManager;
 import com.hp.hpl.jena.vocabulary.*;
@@ -48,7 +47,7 @@ public class AssemblerHelp
             return m;
         else
             {
-            Model result = ModelSpecFactory.withSchema( withImports( m ), JA.getSchema() )
+            Model result = ModelExpansion.withSchema( withImports( m ), JA.getSchema() )
                 .add( JA.This, RDF.type, JA.Expanded )
                 ;
             result
