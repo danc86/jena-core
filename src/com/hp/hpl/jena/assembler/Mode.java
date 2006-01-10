@@ -10,16 +10,22 @@ import com.hp.hpl.jena.rdf.model.Resource;
 
 public class Mode
     {
-    public static final Mode CREATE = new Mode();
-    public static final Mode DEFAULT = new Mode();
-    public static final Mode REUSE = new Mode();
-    public static final Mode ANY = new Mode();
+    public static final Mode CREATE = new Mode( true, false );
+    public static final Mode DEFAULT = new Mode( false, true );
+    public static final Mode REUSE = new Mode( false, true );
+    public static final Mode ANY = new Mode( true, true );
     
-    public boolean mayCreate( Resource name )
-        { return true; }
+    protected final boolean mayCreate;
+    protected final boolean mayReuse;
     
-    public boolean mayReuse( Resource name )
-        { return true; }
+    public Mode( boolean mayCreate, boolean mayReuse )
+        { this.mayCreate = mayCreate; this.mayReuse = mayReuse; }
+    
+    public boolean permitCreateNew( Resource root, String name )
+        { return mayCreate; }
+
+    public boolean permitUseExisting( Resource root, String name )
+        { return mayReuse; }
     }
 
 

@@ -25,8 +25,8 @@ public class CannotLoadClassException extends AssemblerException
     private static String makeMessage( Resource root, String className )
         {
         return 
-            "the class " + className
-            + " required by the object " + nice( root )
+            "the class '" + className
+            + "' required by the object " + nice( root )
             + " could not be loaded"
             ; 
         }
