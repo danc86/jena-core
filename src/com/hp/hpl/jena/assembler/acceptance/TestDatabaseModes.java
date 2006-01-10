@@ -62,7 +62,7 @@ private String getDescription( String modelName )
         + "; C ja:dbUserProperty 'jena.db.user'"
         + "; C ja:dbPasswordProperty 'jena.db.password'"
         + "; C ja:dbTypeProperty 'jena.db.type'"
-        // + "; C ja:dbClass 'driver'" 
+        + "; C ja:dbClassProperty 'jena.db.driver'" 
         ).replaceAll( "spoo", modelName )
         ;
     }

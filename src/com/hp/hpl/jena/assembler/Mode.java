@@ -8,6 +8,18 @@ package com.hp.hpl.jena.assembler;
 
 import com.hp.hpl.jena.rdf.model.Resource;
 
+/**
+    A Mode object controls whether persistent objects can be created or reused
+    by an assembler. Their methods are expected to be called when an
+    assembler is about to create a new object (because no object with the given
+    name exists) or reuse an existing one (because one does).
+    
+<p>The default behaviour of the methods is dictated by booleans bound into
+    the mode object. Subclasses of mode may exploit the ability to inspect the
+    name of the object or its other RDF properties.
+    
+    @author kers
+*/
 public class Mode
     {
     /**

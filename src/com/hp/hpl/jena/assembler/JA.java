@@ -169,6 +169,8 @@ public class JA
 
     public static final Property dbTypeProperty = property( "dbTypeProperty" );
 
+    public static final Property dbClassProperty = property( "dbClassProperty" );
+
     public static Model getSchema()
         { // inline packagename to avoid clash with /our/ FileManager.
         if (schema == null) schema = complete( com.hp.hpl.jena.util.FileManager.get().loadModel( getSchemaPath() ) );

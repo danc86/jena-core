@@ -10,16 +10,32 @@ import java.util.*;
 
 import com.hp.hpl.jena.rdf.model.Model;
 
+/**
+    A Content object records content to be used to fill models. This Content
+    class contains other Content objects. 
+    @author kers
+*/
 public class Content
     {
     protected final List contents;
     
+    /**
+        Initialise a content object that includes the contents of each (Content) item
+        in the list <code>contents</code>.
+    */
     public Content( List contents )
         { this.contents = contents; }
     
+    /**
+        Initialise an empty Content object.
+    */
     public Content()
         { this( new ArrayList() ); }
 
+    /**
+        Answer the model <code>m</code> after filling it with the contents
+        described by this object.
+    */
     public Model fill( Model m )
         {
         for (int i = 0; i < contents.size(); i += 1) ((Content) contents.get(i)).fill( m );

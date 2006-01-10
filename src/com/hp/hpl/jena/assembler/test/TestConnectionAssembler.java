@@ -32,6 +32,7 @@ public class TestConnectionAssembler extends AssemblerTestBase
         assertDomain( JA.Connection, JA.dbPassword );
         assertDomain( JA.Connection, JA.dbType );
         assertDomain( JA.Connection, JA.dbURL );
+        assertDomain( JA.Connection, JA.dbClassProperty );
         assertDomain( JA.Connection, JA.dbUserProperty );
         assertDomain( JA.Connection, JA.dbPasswordProperty );
         assertDomain( JA.Connection, JA.dbTypeProperty );

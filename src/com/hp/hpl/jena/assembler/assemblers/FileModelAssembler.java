@@ -22,7 +22,10 @@ public class FileModelAssembler extends NamedModelAssembler implements Assembler
         {
         checkType( root, JA.FileModel );
         File fullName = getFileName( root );
-        boolean create = true, strict = false; // TODO set from `mode`.
+        boolean mayCreate = mode.permitCreateNew( root, fullName.toString() );
+        boolean mayReuse = mode.permitUseExisting( root, fullName.toString() );
+        boolean create = mayCreate;
+        boolean strict = mayCreate != mayReuse;
         String lang = getLanguage( root, fullName );
         ReificationStyle style = getReificationStyle( root );
         return createFileModel( fullName, lang, create, strict, style );
