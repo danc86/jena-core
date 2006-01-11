@@ -26,6 +26,17 @@
     .
 
 #
+# Alias for owl:imports
+#
+
+ja:imports a rdf:Property
+    ; rdfs:label "Assembler.imports"
+    ; rdfs:comment 
+        """property whose object is another JA description to
+        be loaded into this one; equivalent to owl:imports."""
+    .
+    
+#
 # Assembler object: those things that can be specified and created
 #
 

@@ -46,7 +46,7 @@ public class TestImportManager extends AssemblerTestBase
         assertIsoModels( modelToLoad.union( m ), m2 );
         }
     
-    public void xxtestFollowJAImports()
+    public void testFollowJAImports()
         {
         final Model modelToLoad = model( "this hasMarker B5" );
         Model  m = model( "x ja:reasoner y; _x ja:imports eh:/loadMe" );
@@ -67,6 +67,17 @@ public class TestImportManager extends AssemblerTestBase
         Model result = ImportManager.withImports( fm, m );
         assertInstanceOf( MultiUnion.class, result.getGraph() );
         assertIsoModels( m1.union(m2).union(m), result );
+        }
+    
+    public void testCatchesCircularity()
+        {
+        final Model 
+            m1 = model( "this hasMarker Mx; _x owl:imports My" ),
+            m2 = model( "this hasMarker My; _x owl:imports Mx" );
+        FileManager fm = new FixedFileManager()
+            .add( "eh:/Mx", m1 ).add( "eh:/My", m2 );
+        Model result = ImportManager.withImports( fm, m1 );
+        assertIsoModels( m1.union( m2 ), result );
         }
     
     public void testCacheModels()

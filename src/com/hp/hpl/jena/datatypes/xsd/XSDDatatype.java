@@ -589,7 +589,13 @@ public class XSDDatatype extends BaseDatatype {
     }    
     
     public int getHashCode( byte [] bytes )
-        { return bytes.length; }
+        {
+        int length = bytes.length;
+        return length == 0 
+            ? 0 
+            : (bytes[0] << 12) ^ (bytes[length / 2] << 6) ^ (bytes[length - 1]) ^ length
+            ;
+        }
         
 }
 
