@@ -34,12 +34,19 @@ public class TestLiteralLabels extends GraphTestBase
         {
         LiteralLabel ll = new LiteralLabel( (Object) "test",  "", null );
         ll.hashCode();
+        }    
+    
+    public void testHashCodesForBase64Binary()
+        {
+        LiteralLabel A = node( "'0123'http://www.w3.org/2001/XMLSchema#base64Binary" ).getLiteral();
+        LiteralLabel B = node( "'0123'http://www.w3.org/2001/XMLSchema#base64Binary" ).getLiteral();
+        assertEquals( A.hashCode(), B.hashCode() );
         }
     
-    public void xxtestHashCodesForByteArrays()
+    public void testHashCodesForHexBinary()
         {
-        LiteralLabel A = new LiteralLabel( new byte[] { 1, 2, 3 }, "", null );
-        LiteralLabel B = new LiteralLabel( new byte[] { 1, 2, 3 }, "", null );
+        LiteralLabel A = node( "'0123'http://www.w3.org/2001/XMLSchema#hexBinary" ).getLiteral();
+        LiteralLabel B = node( "'0123'http://www.w3.org/2001/XMLSchema#hexBinary" ).getLiteral();
         assertEquals( A.hashCode(), B.hashCode() );
         }
     }

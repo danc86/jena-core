@@ -361,10 +361,18 @@ final public class LiteralLabel {
         well-formed and otherwise its lexical form.
     */
 	public int hashCode() {
-		return (wellformed ? value : getLexicalForm()).hashCode();
+		return dtype == null ? getDefaultHashcode() : dtype.getHashCode( this );
 	}
 
-}
+    /**
+        Answer the default hash value, suitable for datatypes which have values
+        which support hashCode() naturally: it is derived from its value if it is 
+        well-formed and otherwise from its lexical form.
+    */
+    public int getDefaultHashcode()
+        { return (wellformed ? value : getLexicalForm()).hashCode(); }
+
+    }
 
 /*
     (c) Copyright 2003, 2004, 2005 Hewlett-Packard Development Company, LP

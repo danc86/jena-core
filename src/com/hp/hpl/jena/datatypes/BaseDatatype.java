@@ -133,6 +133,14 @@ public class BaseDatatype implements RDFDatatype {
     }
     
     /**
+         Default implementation of getHashCode() delegates to the default from
+         the literal label.
+    */
+    public int getHashCode( LiteralLabel lit ) {
+        return lit.getDefaultHashcode();
+        }
+    
+    /**
      * Helper function to compare language tag values
      */
     public boolean langTagCompatible(LiteralLabel value1, LiteralLabel value2) {

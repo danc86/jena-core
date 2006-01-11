@@ -63,7 +63,9 @@ public class XSDhexBinary extends XSDDatatype {
             && Arrays.equals((byte[])value1.getValue(), (byte[])value2.getValue());
 //      && value1.getLexicalForm().equals(value2.getLexicalForm());  // bug tracking, not real code
     }
-   
+    
+    public int getHashCode( LiteralLabel lit )
+        { return getHashCode( (byte []) lit.getValue() ); }
 
 }
 

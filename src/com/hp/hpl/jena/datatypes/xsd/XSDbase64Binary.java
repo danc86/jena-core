@@ -64,6 +64,8 @@ public class XSDbase64Binary extends XSDDatatype {
 //      && value1.getLexicalForm().equals(value2.getLexicalForm());  // bug tracking, not real code
     }
    
+    public int getHashCode( LiteralLabel lit )
+        { return getHashCode( (byte []) lit.getValue() ); }
 }
 
 

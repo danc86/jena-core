@@ -587,6 +587,9 @@ public class XSDDatatype extends BaseDatatype {
             }
         }
     }    
+    
+    public int getHashCode( byte [] bytes )
+        { return bytes.length; }
         
 }
 

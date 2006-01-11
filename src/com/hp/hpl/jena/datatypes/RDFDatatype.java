@@ -69,6 +69,13 @@ public interface RDFDatatype {
     public boolean isEqual(LiteralLabel value1, LiteralLabel value2);
     
     /**
+         Gets the hash code of a given value. This defaults to
+         lit.getValue().hashCode(), but datatypes can overide this, and array types 
+         must.
+    */
+    public int getHashCode( LiteralLabel lit );
+    
+    /**
      * If this datatype is used as the cannonical representation
      * for a particular java datatype then return that java type,
      * otherwise returns null.
