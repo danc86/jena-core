@@ -14,6 +14,7 @@ public class TestAssemblerPackage extends TestCase
         {
         TestSuite result = new TestSuite();
         result.addTestSuite( TestMode.class );
+        result.addTestSuite( TestModelExpansion.class );
         result.addTest( TestAssemblers.suite() );
         return result;
         }
