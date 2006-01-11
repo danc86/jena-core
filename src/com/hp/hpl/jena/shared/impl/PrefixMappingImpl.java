@@ -48,6 +48,7 @@ public class PrefixMappingImpl implements PrefixMapping
         checkUnlocked();
         checkLegal( prefix );
         if (!prefix.equals( "" )) checkProper( uri );
+        if (uri == null) throw new NullPointerException( "null URIs are prohibited as arguments to setNsPrefix" );
         set( prefix, uri );
         return this;
         }

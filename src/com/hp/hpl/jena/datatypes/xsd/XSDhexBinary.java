@@ -49,7 +49,7 @@ public class XSDhexBinary extends XSDDatatype {
         if (value instanceof byte[]) {
             return HexBin.encode((byte[])value);
         } else {
-            throw new DatatypeFormatException("base64 asked encode a non-byte arrary");
+            throw new DatatypeFormatException("hexBinary asked to encode a non-byte arrary");
         }
     }
     

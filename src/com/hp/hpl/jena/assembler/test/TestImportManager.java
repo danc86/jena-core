@@ -46,6 +46,16 @@ public class TestImportManager extends AssemblerTestBase
         assertIsoModels( modelToLoad.union( m ), m2 );
         }
     
+    public void xxtestFollowJAImports()
+        {
+        final Model modelToLoad = model( "this hasMarker B5" );
+        Model  m = model( "x ja:reasoner y; _x ja:imports eh:/loadMe" );
+        FileManager fm = new FixedFileManager().add( "eh:/loadMe", modelToLoad ); 
+        Model m2 = ImportManager.withImports( fm, m );
+        assertInstanceOf( MultiUnion.class, m2.getGraph() );
+        assertIsoModels( modelToLoad.union( m ), m2 );
+        }
+    
     public void testFollowOwlImportsDeeply()
         {
         final Model 

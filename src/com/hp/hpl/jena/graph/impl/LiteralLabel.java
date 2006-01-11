@@ -321,13 +321,6 @@ final public class LiteralLabel {
             return typeEqual
                 && langEqual
                 && getLexicalForm().equals(otherLiteral.getLexicalForm());
-//            if (wellformed) {
-//            	return typeEqual && langEqual && value.equals(otherLiteral.value);
-//            } else {
-//            	return typeEqual
-//            		&& langEqual
-//            		&& lexicalForm.equals(otherLiteral.lexicalForm);
-//            }
 	}
 
 	/** 

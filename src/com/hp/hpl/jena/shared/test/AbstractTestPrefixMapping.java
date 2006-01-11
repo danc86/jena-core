@@ -69,6 +69,17 @@ public abstract class AbstractTestPrefixMapping extends GraphTestBase
             catch (PrefixMapping.IllegalPrefixException e) { pass(); }
             }
         }
+    
+    public void testNullURITrapped()
+        {
+        try
+            {
+            getMapping().setNsPrefix( "xy", null );
+            fail( "shouild trap null URI in setNsPrefix" );
+            }
+        catch (NullPointerException e)
+            { pass(); }
+        }
                  
     /**
         test that a PrefixMapping maps names to URIs. The names and URIs are

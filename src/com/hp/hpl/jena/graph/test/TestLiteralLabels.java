@@ -35,6 +35,13 @@ public class TestLiteralLabels extends GraphTestBase
         LiteralLabel ll = new LiteralLabel( (Object) "test",  "", null );
         ll.hashCode();
         }
+    
+    public void xxtestHashCodesForByteArrays()
+        {
+        LiteralLabel A = new LiteralLabel( new byte[] { 1, 2, 3 }, "", null );
+        LiteralLabel B = new LiteralLabel( new byte[] { 1, 2, 3 }, "", null );
+        assertEquals( A.hashCode(), B.hashCode() );
+        }
     }
 
 

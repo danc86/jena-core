@@ -49,7 +49,7 @@ public class XSDbase64Binary extends XSDDatatype {
         if (value instanceof byte[]) {
             return Base64.encode((byte[])value);
         } else {
-            throw new DatatypeFormatException("base64 asked encode an unwrapped byte array");
+            throw new DatatypeFormatException("base64 asked to encode an unwrapped byte array");
         }
     }
     
