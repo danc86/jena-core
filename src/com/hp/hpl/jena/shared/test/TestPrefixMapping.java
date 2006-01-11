@@ -6,6 +6,7 @@
 
 package com.hp.hpl.jena.shared.test;
 
+import com.hp.hpl.jena.assembler.JA;
 import com.hp.hpl.jena.shared.*;
 import com.hp.hpl.jena.shared.impl.*;
 import com.hp.hpl.jena.vocabulary.*;
@@ -48,6 +49,8 @@ public class TestPrefixMapping extends AbstractTestPrefixMapping
         assertEquals( RSS.getURI(), st.getNsPrefixURI( "rss" ) );
         assertEquals( VCARD.getURI(), st.getNsPrefixURI( "vcard" ) );
         assertEquals( JenaModelSpec.getURI(), st.getNsPrefixURI( "jms" ) );
+        assertEquals( JA.getURI(), st.getNsPrefixURI( "ja" ) );
+        assertEquals( "http://www.example.org/", st.getNsPrefixURI( "eg" ) );
         }
         
     }

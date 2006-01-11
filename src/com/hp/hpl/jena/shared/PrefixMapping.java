@@ -7,6 +7,8 @@
 package com.hp.hpl.jena.shared;
 
 import java.util.*;
+
+import com.hp.hpl.jena.assembler.JA;
 import com.hp.hpl.jena.shared.impl.*;
 import com.hp.hpl.jena.vocabulary.*;
 
@@ -203,6 +205,7 @@ public interface PrefixMapping
         .setNsPrefix( "rss", RSS.getURI() )
         .setNsPrefix( "vcard", VCARD.getURI() )
         .setNsPrefix( "jms", JenaModelSpec.getURI() )
+        .setNsPrefix( "ja", JA.getURI() )
         .setNsPrefix( "eg", "http://www.example.org/" )
         .lock()
         ;
