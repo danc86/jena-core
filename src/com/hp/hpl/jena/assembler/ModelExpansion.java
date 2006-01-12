@@ -49,7 +49,7 @@ public class ModelExpansion
         for (StmtIterator it = schema.listStatements( ANY, RDFS.subClassOf, ANY ); it.hasNext();)
             { 
             Statement s = it.nextStatement();
-            if (!s.getSubject().isAnon() && !s.getResource().isAnon()) result.add( s ); 
+            if (s.getSubject().isURIResource() && s.getObject().isURIResource()) result.add( s ); 
             }
         }
     
@@ -83,13 +83,21 @@ public class ModelExpansion
             }
         }
     
+    protected static Resource getResource( Statement s )
+        {
+        RDFNode ob = s.getObject();
+        if (ob.isLiteral()) throw new BadObjectException( s );
+        return (Resource) ob;
+        }
+    
     protected static void addSupertypes( Model result )
         {
         Model temp = ModelFactory.createDefaultModel();
         for (StmtIterator it = result.listStatements( ANY, RDF.type, ANY ); it.hasNext();)
             {
             Statement s = it.nextStatement();
-            for (StmtIterator subclasses = result.listStatements( s.getResource(), RDFS.subClassOf, ANY ); subclasses.hasNext();)
+            Resource c = getResource( s );
+            for (StmtIterator subclasses = result.listStatements( c, RDFS.subClassOf, ANY ); subclasses.hasNext();)
                 {
                 RDFNode type = subclasses.nextStatement().getObject();
                 // System.err.println( ">> adding super type: subject " + s.getSubject() + ", type " + type );
