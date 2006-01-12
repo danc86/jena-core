@@ -6,7 +6,7 @@
 
 package com.hp.hpl.jena.assembler.exceptions;
 
-import com.hp.hpl.jena.rdf.model.Resource;
+import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.shared.JenaException;
 
 /**
@@ -43,6 +43,9 @@ public class AssemblerException extends JenaException
     */
     protected static String nice( Resource r )
         { return r.asNode().toString( r.getModel() ); }
+    
+    protected static String nice( RDFNode r )
+        { return r.isLiteral() ? r.asNode().toString(): nice( (Resource) r ); }
     }
 
 
