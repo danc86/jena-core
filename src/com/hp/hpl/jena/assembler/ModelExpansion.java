@@ -77,8 +77,8 @@ public class ModelExpansion
             Property property = (Property) s.getSubject().as( Property.class );
             for (StmtIterator x = result.listStatements( ANY, property, ANY ); x.hasNext();)
                 {
-                Statement t = x.nextStatement();
-                result.add( t.getResource(), RDF.type, type );
+                RDFNode ob = x.nextStatement().getObject();
+                if (ob.isResource()) result.add( (Resource) ob, RDF.type, type );
                 }
             }
         }
