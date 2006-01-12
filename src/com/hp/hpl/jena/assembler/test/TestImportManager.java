@@ -70,6 +70,8 @@ public class TestImportManager extends AssemblerTestBase
         {
         testBadImportObjectFails( "_bnode" );
         testBadImportObjectFails( "17" );
+        testBadImportObjectFails( "'chat'fr" );
+        testBadImportObjectFails( "'chat'xsd:wrong" );
         }
 
     private void testBadImportObjectFails( String object )
