@@ -36,9 +36,8 @@ public class RuleSetAssembler extends AssemblerBase implements Assembler
         StmtIterator it = root.listProperties( JA.rules );
         while (it.hasNext()) 
             {
-            Resource r = it.nextStatement().getResource();
-            RuleSet sub = (RuleSet) a.open( r );
-            result.addAll( sub.getRules() );
+            Resource r = getResource( it.nextStatement() );
+            result.addAll( ((RuleSet) a.open( r )).getRules() );
             }
         }
 
@@ -47,7 +46,7 @@ public class RuleSetAssembler extends AssemblerBase implements Assembler
         StmtIterator it = root.listProperties( JA.rulesFrom );
         while (it.hasNext())
             {
-            Resource s = it.nextStatement().getResource();
+            Resource s = getResource( it.nextStatement() );
             result.addAll( Rule.rulesFromURL( s.getURI() ) );
             }
         }

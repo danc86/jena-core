@@ -35,7 +35,7 @@ public class ContentAssembler extends AssemblerBase implements Assembler
     private static void addIndirectContent( List contents, Assembler a, Resource root )
         {
         StmtIterator it = root.listProperties( JA.content );
-        while (it.hasNext()) contents.add( a.open( it.nextStatement().getResource() ) );
+        while (it.hasNext()) contents.add( a.open( getResource( it.nextStatement() ) ) );
         }
 
     protected static void addExternalContents( List contents, Resource root )
@@ -49,7 +49,7 @@ public class ContentAssembler extends AssemblerBase implements Assembler
         StmtIterator it = root.listProperties( JA.quotedContent );
         while (it.hasNext())
             {
-            Resource q = it.nextStatement().getResource();
+            Resource q = getResource( it.nextStatement() );
             Model m = ResourceUtils.reachableClosure( q );
             contents.add( newModelContent( m ) );
             }
@@ -109,7 +109,7 @@ public class ContentAssembler extends AssemblerBase implements Assembler
 
     protected static Content objectAsContent( Statement s )
         {
-        Resource external = s.getResource();
+        Resource external = getResource( s );
         final Model m = FileManager.get().loadModel( external.getURI() );
         return newModelContent( m );
         }

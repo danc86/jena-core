@@ -118,7 +118,7 @@ public class AssemblerHelp
         // System.err.println( ">> considering " + root + " ---------------------------" );
         while (types.hasNext())
             {
-            Resource type = types.nextStatement().getResource();
+            Resource type = getResource( types.nextStatement() );
             // System.err.println( "]]  possible type " + type );
             if (desc.contains( type, RDFS.subClassOf, JA.Object ))
                 {
@@ -145,6 +145,17 @@ public class AssemblerHelp
         if (results.size() == 0)
             return JA.Object;
         throw new NoSpecificTypeException( root, results );
+        }
+
+    /**
+        Answer the resource that is the object of the statement <code>s</code>. If
+        the object is not a resource, throw a BadObjectException with that statement.
+    */
+    public static Resource getResource( Statement s )
+        {
+        RDFNode ob = s.getObject();
+        if (ob.isLiteral()) throw new BadObjectException( s );
+        return (Resource) ob;
         }
     }
 

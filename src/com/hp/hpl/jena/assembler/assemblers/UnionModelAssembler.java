@@ -40,7 +40,7 @@ public class UnionModelAssembler extends ModelAssembler implements Assembler
         {
         for (StmtIterator it = root.listProperties( JA.subModel ); it.hasNext();)
             {
-            Resource resource = it.nextStatement().getResource();
+            Resource resource = getResource( it.nextStatement() );
             union.addGraph( a.openModel( resource, mode ).getGraph() );        
             }
         }

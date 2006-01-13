@@ -30,7 +30,7 @@ public class PrefixMappingAssembler extends AssemblerBase implements Assembler
         for (StmtIterator it = root.listProperties( JA.includes ); it.hasNext();)
             {
             Statement s = it.nextStatement();
-            PrefixMapping sub = (PrefixMapping) a.open( s.getResource() );
+            PrefixMapping sub = (PrefixMapping) a.open( getResource( s ) );
             result.setNsPrefixes( sub );
             }
         }

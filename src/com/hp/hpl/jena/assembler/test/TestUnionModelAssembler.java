@@ -81,6 +81,22 @@ public class TestUnionModelAssembler extends AssemblerTestBase
         checkImmutable( m );
         }
     
+    public void testSubModelsCheckObject()
+        {
+        Resource root = resourceInModel( "x rdf:type ja:UnionModel; x ja:subModel 'A'" );
+        Assembler a = new UnionModelAssembler();
+        try 
+            { 
+            a.open( root ); 
+            fail( "should trap unsuitable object" );
+            }
+        catch (BadObjectException e) 
+            { 
+            assertEquals( resource( "x" ), e.getRoot() ); 
+            assertEquals( rdfNode( empty, "'A'" ), e.getObject() );
+            }
+        }
+    
     public void testCreatesUnionWithBaseModel()
         {
         Resource root = resourceInModel( "x rdf:type ja:UnionModel; x ja:subModel A; x ja:rootModel B" );

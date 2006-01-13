@@ -87,6 +87,28 @@ public class TestRuleSetAssembler extends AssemblerTestBase
         RuleSet rules = (RuleSet) a.open( root );
         assertEquals( expected, new HashSet( rules.getRules() ) );
         }
+    
+    public void testTrapsBadRulesObject()
+        {
+        testTrapsBadRuleObject( "ja:rules" );
+        testTrapsBadRuleObject( "ja:rulesFrom" );
+        }
+
+    private void testTrapsBadRuleObject( String property )
+        {
+        Assembler a = new RuleSetAssembler();
+        Resource root = resourceInModel( "x rdf:type ja:RuleSet; x <here> 'y'".replaceAll( "<here>", property ) );
+        try 
+            {
+            a.open( root );
+            fail( "should trap bad rules object" );
+            }
+        catch (BadObjectException e) 
+            { 
+            assertEquals( resource( "x" ), e.getRoot() );
+            assertEquals( rdfNode( empty, "'y'" ), e.getObject() );
+            }
+        }
 
     protected static String file( String name )
         { return "file:testing/modelspecs/" + name; }

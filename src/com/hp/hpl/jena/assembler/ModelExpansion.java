@@ -83,20 +83,13 @@ public class ModelExpansion
             }
         }
     
-    protected static Resource getResource( Statement s )
-        {
-        RDFNode ob = s.getObject();
-        if (ob.isLiteral()) throw new BadObjectException( s );
-        return (Resource) ob;
-        }
-    
     protected static void addSupertypes( Model result )
         {
         Model temp = ModelFactory.createDefaultModel();
         for (StmtIterator it = result.listStatements( ANY, RDF.type, ANY ); it.hasNext();)
             {
             Statement s = it.nextStatement();
-            Resource c = getResource( s );
+            Resource c = AssemblerHelp.getResource( s );
             for (StmtIterator subclasses = result.listStatements( c, RDFS.subClassOf, ANY ); subclasses.hasNext();)
                 {
                 RDFNode type = subclasses.nextStatement().getObject();
