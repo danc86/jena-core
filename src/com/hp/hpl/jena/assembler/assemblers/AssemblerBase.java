@@ -32,7 +32,7 @@ public abstract class AssemblerBase implements Assembler
         {
         public Object map1( Object o ) { return ((Statement) o).getObject(); }
         };
-
+        
     public final Object open( Resource root )
         { return open( this, root ); }
 
@@ -75,7 +75,7 @@ public abstract class AssemblerBase implements Assembler
     public Model openModel( Resource root )
         { return openModel( root, Mode.DEFAULT ); }
 
-    protected Resource getRequiredResource( Resource root, Property p )
+    public static Resource getRequiredResource( Resource root, Property p )
         {
         Resource R = getUniqueResource( root, p );
         if (R == null) throw new PropertyRequiredException( root, p );

@@ -24,7 +24,9 @@ public class TestRDBModelAssembler extends AssemblerTestBase
 
     public void testRDBModelVocabulary()
         {
-        // TODO
+        Model m = model( "x rdf:type ja:Connectable; x rdf:type ja:NamedModel" );
+        Model answer = ModelExpansion.withSchema( m, JA.getSchema() );
+        assertTrue( "should infer x rdf:type ja:RDBModel", answer.contains( statement( "x rdf:type ja:RDBModel" ) ) );
         }
     
     public void testInvokesCreateModel()

@@ -241,6 +241,7 @@ ja:RDBModel a rdfs:Class
     ; rdfs:subClassOf ja:NamedModel
     ; rdfs:subClassOf [owl:onProperty ja:connection; owl:cardinality 1]
     ; rdfs:subClassOf ja:Connectable
+    ; owl:equivalentClass [owl:intersectionOf (ja:Connectable ja:NamedModel)]
     ; rdfs:label "Assembler.RDBModel"
     ; rdfs:comment
         """a Model from a Jena relational database, specified by a
