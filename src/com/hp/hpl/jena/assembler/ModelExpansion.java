@@ -9,7 +9,6 @@ package com.hp.hpl.jena.assembler;
 import java.util.*;
 
 import com.hp.hpl.jena.rdf.model.*;
-import com.hp.hpl.jena.rdf.model.test.ModelTestBase;
 import com.hp.hpl.jena.util.IteratorCollection;
 import com.hp.hpl.jena.util.iterator.Map1;
 import com.hp.hpl.jena.vocabulary.*;
