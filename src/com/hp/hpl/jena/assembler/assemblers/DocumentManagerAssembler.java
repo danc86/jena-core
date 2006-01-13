@@ -25,8 +25,8 @@ public class DocumentManagerAssembler extends AssemblerBase
 
     private String getPath( Assembler a, Resource root )
         {
-        Literal L = getUniqueLiteral( root, JA.policyPath );
-        return L == null ? OntDocumentManager.DEFAULT_METADATA_PATH : L.getString();
+        String s = getUniqueString( root, JA.policyPath );
+        return s == null ? OntDocumentManager.DEFAULT_METADATA_PATH : s;
         }
 
     private FileManager getFileManager( Assembler a, Resource root )

@@ -61,8 +61,8 @@ public class ContentAssembler extends AssemblerBase implements Assembler
         StmtIterator it = root.listProperties( JA.literalContent );
         while (it.hasNext())
             {
-            Literal literal = it.nextStatement().getLiteral();
-            Model model = parseAs( root, encoding, literal.getLexicalForm() );
+            String s = getString( it.nextStatement() );
+            Model model = parseAs( root, encoding, s );
             contents.add( newModelContent( model ) );
             }
         }

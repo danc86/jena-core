@@ -63,7 +63,7 @@ public class TestFileModelAssembler extends ModelAssemblerTestBase
         Model m = a.openModel( root  );
         assertSame( model, m );
         }
-    
+
     public void testFileModelAssemblerUsesLanguage()
         {
         final Model model = ModelFactory.createDefaultModel();
@@ -78,6 +78,31 @@ public class TestFileModelAssembler extends ModelAssemblerTestBase
             };
         Model m = a.openModel( root  );
         assertSame( model, m );
+        }
+    
+    public void testFileModelAssemblerTrapsBadLanguage()
+        {
+        testTrapsBadLanguage( "badLanguage" );
+        testTrapsBadLanguage( "17" );
+        testTrapsBadLanguage( "'invalid'xsd:rhubarb" );
+        }
+
+    private void testTrapsBadLanguage( String lang )
+        {
+        final Model model = ModelFactory.createDefaultModel();
+        Resource root = resourceInModel( "x rdf:type ja:FileModel; x ja:modelName 'junk'; x ja:directory file:; x ja:fileEncoding <lang>".replaceAll( "<lang>", lang ) );
+        FileModelAssembler a = new FileModelAssembler()
+            {
+            public Model createFileModel( File fullName, String lang, boolean create, boolean strict, ReificationStyle style )
+                { return model; }
+            };
+        try 
+            { a.openModel( root  ); 
+            fail( "should trap bad fileEncoding object" ); }
+        catch (BadObjectException e)
+            { Model m = e.getRoot().getModel();
+            assertEquals( resource( "x" ), e.getRoot() ); 
+            assertEquals( rdfNode( m, lang ), e.getObject() ); }
         }
     
     public void testFileModelAssemblerUsesStyle()

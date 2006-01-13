@@ -125,20 +125,25 @@ public class TestContentAssembler extends AssemblerTestBase
     
     public void testContentTrapsBadObjects()
         {
-        testContentTrapsBadObjects( "ja:content" );
-        testContentTrapsBadObjects( "ja:externalContent" );
-        testContentTrapsBadObjects( "ja:quotedContent" );
+        testContentTrapsBadObjects( "ja:content", "17" );
+        testContentTrapsBadObjects( "ja:externalContent", "17" );
+        testContentTrapsBadObjects( "ja:quotedContent", "17" );
+        testContentTrapsBadObjects( "ja:literalContent", "aResource" );
+        testContentTrapsBadObjects( "ja:literalContent", "17" );
+        testContentTrapsBadObjects( "ja:literalContent", "'plume'fr" );
         }
 
-    private void testContentTrapsBadObjects( String property )
+    private void testContentTrapsBadObjects( String property, String value )
         {
         Assembler a = new ContentAssembler();
-        Resource root = resourceInModel( "x rdf:type ja:Content; x <here> 17".replaceAll( "<here>", property ) );
+        Resource root = resourceInModel
+            ( "x rdf:type ja:Content; x <property> <value>"
+            .replaceAll( "<property>", property ).replaceAll( "<value>", value ) );
         try { a.open( root ); fail( "should trap bad content resource" ); }
         catch (BadObjectException e) 
             {
             assertEquals( resource( "x" ), e.getRoot() );
-            assertEquals( rdfNode( empty, "17" ), e.getObject() );
+            assertEquals( rdfNode( empty, value ), e.getObject() );
             }
         }
     

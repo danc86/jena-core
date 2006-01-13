@@ -100,6 +100,27 @@ public class TestConnectionAssembler extends AssemblerTestBase
         assertEquals( "MySQL", new ConnectionAssembler().getType( root ) );
         }
     
+    public void testTrapsNonStringObjects()
+        {
+        testTrapsNonStringObjects( "ja:dbClass", "aResource" );
+        testTrapsNonStringObjects( "ja:dbClass", "17" );
+        testTrapsNonStringObjects( "ja:dbClass", "'tag'de" );
+        testTrapsNonStringObjects( "ja:dbClassProperty", "aResource" );
+        testTrapsNonStringObjects( "ja:dbClassProperty", "17" );
+        testTrapsNonStringObjects( "ja:dbClassProperty", "'tag'de" );
+        }
+    
+    private void testTrapsNonStringObjects( String property, String value )
+        {
+        Resource root = resourceInModel( "x rdf:type ja:Connection; x <property> <value>".replaceAll( "<property>", property ).replaceAll( "<value>", value ) );
+        try 
+            { new ConnectionAssembler().open( root );
+            fail( "should trap bad object " + value + " for property " + property ); }
+        catch (BadObjectException e)
+            { assertEquals( resource( "x" ), e.getRoot() );
+            assertEquals( rdfNode( empty, value ), e.getObject() ); }
+        }
+    
     public void testOpenConnectionWIthLabels()
         {
         Resource root = resourceInModel( "x rdf:type ja:Connection; x ja:dbUser 'X'; x ja:dbPassword 'P'; x ja:dbURL U:RL; x ja:dbType 'T'" );

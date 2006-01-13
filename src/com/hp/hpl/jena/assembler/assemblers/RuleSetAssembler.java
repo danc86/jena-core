@@ -56,7 +56,7 @@ public class RuleSetAssembler extends AssemblerBase implements Assembler
         StmtIterator it = root.listProperties( JA.rule );
         while (it.hasNext())
             {
-            String s = it.nextStatement().getString();
+            String s = getString( it.nextStatement() );
             result.addAll( Rule.parseRules( s ) );
             }
         }

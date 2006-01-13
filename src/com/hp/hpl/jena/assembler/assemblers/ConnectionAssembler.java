@@ -58,7 +58,7 @@ public class ConnectionAssembler extends AssemblerBase implements Assembler
         {
         for (StmtIterator it = root.listProperties( JA.dbClassProperty ); it.hasNext();)
             {
-            String propertyName = it.nextStatement().getString();
+            String propertyName = getString( it.nextStatement() );
             String className = System.getProperty( propertyName );
             try { Class.forName( className ); }
             catch (ClassNotFoundException e)
@@ -66,7 +66,7 @@ public class ConnectionAssembler extends AssemblerBase implements Assembler
             }
         for (StmtIterator it = root.listProperties( JA.dbClass ); it.hasNext();)
             {
-            String className = it.nextStatement().getString();
+            String className = getString( it.nextStatement() );
             try { Class.forName( className ); }
             catch (ClassNotFoundException e)
                 { throw new CannotLoadClassException( root, className, e ); }

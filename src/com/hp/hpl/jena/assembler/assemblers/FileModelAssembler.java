@@ -40,8 +40,8 @@ public class FileModelAssembler extends NamedModelAssembler implements Assembler
 
     protected String getLanguage( Resource root, File fullName )
         {
-        Literal L = getUniqueLiteral( root, JA.fileEncoding );
-        return L == null ? FileUtils.guessLang( fullName.toString() ) : L.getString();
+        Statement s = getUniqueStatement( root, JA.fileEncoding );
+        return s == null ? FileUtils.guessLang( fullName.toString() ) : getString( s );
         }    
 
     protected File getFileName( Resource root )

@@ -47,6 +47,14 @@ public abstract class AssemblerBase implements Assembler
     protected static Literal getUniqueLiteral( Resource root, Property property )
         { return (Literal) getUnique( root, property ); }
 
+    protected static Statement getUniqueStatement( Resource root, Property property )
+        {
+        List statements = IteratorCollection.iteratorToList( root.listProperties( property ) );
+        if (statements.size() == 0) return null;
+        if (statements.size() == 1) return (Statement) statements.get(0);
+        throw new NotUniqueException( root, property );
+        }
+    
     protected static RDFNode getUnique( Resource root, Property property )
         {
         List nodes = IteratorCollection.iteratorToList( root.listProperties( property ) .mapWith( getObject ) );
@@ -84,6 +92,14 @@ public abstract class AssemblerBase implements Assembler
     protected static Resource getResource( Statement s )
         { return AssemblerHelp.getResource( s ); }
 
+    protected static String getString( Statement s )
+        { return AssemblerHelp.getString( s ); }
+    
+    protected static String getUniqueString( Resource root, Property property )
+        {
+        Statement s = getUniqueStatement( root, property );
+        return s == null ? null : AssemblerHelp.getString( s );
+        }
     }
 
 

@@ -8,7 +8,6 @@ package com.hp.hpl.jena.assembler;
 
 import java.util.*;
 
-import com.hp.hpl.jena.datatypes.xsd.XSDDatatype;
 import com.hp.hpl.jena.graph.Graph;
 import com.hp.hpl.jena.graph.compose.MultiUnion;
 import com.hp.hpl.jena.rdf.model.*;
@@ -81,16 +80,9 @@ public class ImportManager
     private String getObjectURI( Statement s )
         {
         RDFNode ob = s.getObject();
-        if (ob.isLiteral()) return literalString( s, (Literal) ob );
+        if (ob.isLiteral()) return AssemblerHelp.getString( s );
         if (ob.isAnon()) throw new BadObjectException( s );
         return ((Resource) ob).getURI();
-        }
-
-    private String literalString( Statement s, Literal L )
-        {
-        if (L.getDatatype() == null && L.getLanguage().equals( "" )) return L.getLexicalForm();
-        if (L.getDatatype() == XSDDatatype.XSDstring) return L.getLexicalForm();
-        throw new BadObjectException( s );
         }
 
     protected Graph graphFor( FileManager fm, Set loading, String path )

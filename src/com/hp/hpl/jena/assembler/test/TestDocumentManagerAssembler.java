@@ -72,6 +72,27 @@ public class TestDocumentManagerAssembler extends AssemblerTestBase
             };
         OntDocumentManager d = (OntDocumentManager) a.open( root );
         assertEquals( listOfOne( "somePath" ), history );
+        }    
+    
+    public void testTrapsPolicyPathNotString()
+        {
+        testTrapsBadPolicyPath( "aResource" );
+        testTrapsBadPolicyPath( "17" );
+        testTrapsBadPolicyPath( "'char'en" );
+        testTrapsBadPolicyPath( "'cafe'xsd:integer" );
+        }
+
+    private void testTrapsBadPolicyPath( String path )
+        {
+        Resource root = resourceInModel( "x rdf:type ja:DocumentManager; x ja:policyPath <policy>".replaceAll( "<policy>", path ) );
+        final List history = new ArrayList();
+        Assembler a = new DocumentManagerAssembler();
+        try
+            { a.open( root );
+            fail( "should trap illegal policy path object " + path ); }
+        catch (BadObjectException e)
+            { assertEquals( resource( "x" ), e.getRoot() );
+            assertEquals( rdfNode( root.getModel(), path ), e.getObject() ); }
         }
     
     public void testSetsMetadata()
