@@ -226,6 +226,13 @@ public class TestNode extends GraphTestBase
     public void testGetLiteralFails( Node n )
         { try { n.getLiteral(); fail( n.getClass() + " should fail getLiteral()" ); } catch (UnsupportedOperationException e) {} }
         
+    
+    public void testGetBlankNodeLabelString()
+        {
+        Node n = Node.createAnon();
+        assertEquals( n.getBlankNodeId().getLabelString(), n.getBlankNodeLabel() );
+        }
+    
     public void testVariableSupport()
         {
         assertEquals( Node_Variable.variable( "xxx" ), Node_Variable.variable( "xxx" ) );

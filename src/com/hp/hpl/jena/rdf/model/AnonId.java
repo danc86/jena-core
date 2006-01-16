@@ -101,6 +101,14 @@ public class AnonId extends java.lang.Object {
         return id;
     }
     
+    /**
+        Answer the label string of this AnonId. To be used in preference to
+        toString().
+    */
+    public String getLabelString() {
+        return id;
+    }
+    
     /** return a hashcode for this id
      * @return the hash code
      */    
