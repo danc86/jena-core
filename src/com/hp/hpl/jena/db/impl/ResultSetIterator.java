@@ -1,5 +1,5 @@
 /*
- *  (c) Copyright 2003, 2004, 2005 Hewlett-Packard Development Company, LP
+ *  (c) Copyright 2003, 2004, 2005 2006 Hewlett-Packard Development Company, LP
  *  All rights reserved.
  *
  *
@@ -267,6 +267,14 @@ public class ResultSetIterator implements ExtendedIterator {
 		return NiceIterator.andThen(this, other);
 	}
 
+    public Set toSet() {
+        return NiceIterator.asSet( this ); 
+        }
+    
+    public List toList() {
+        return NiceIterator.asList( this ); 
+        }
+    
 	/* (non-Javadoc)
 	 * @see com.hp.hpl.jena.util.iterator.ExtendedIterator#filterKeep(com.hp.hpl.jena.util.iterator.Filter)
 	 */
@@ -292,7 +300,7 @@ public class ResultSetIterator implements ExtendedIterator {
 } // End class
 
 /*
- *  (c) Copyright 2003, 2004, 2005 Hewlett-Packard Development Company, LP
+ *  (c) Copyright 2003, 2004, 2005, 2006 Hewlett-Packard Development Company, LP
  *  All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
