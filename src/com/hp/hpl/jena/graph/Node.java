@@ -238,7 +238,7 @@ public abstract class Node {
         if it's not blank.
     */
     public Object getBlankNodeLabel()
-        { return getBlankNodeId().toString(); }    
+        { return getBlankNodeId().getLabelString(); }    
     
     /** 
          Answer the literal value of a literal node, or throw an UnsupportedOperationException
