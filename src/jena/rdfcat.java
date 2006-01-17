@@ -52,6 +52,7 @@ import jena.cmdline.*;
  *   -out N-TRIPLE  (aliases t, ntriple)
  *   -out RDF/XML  (aliases x, rdf, xml, rdfxml)
  *   -out RDF/XML-ABBREV (default)
+ *   -out <any Jena-supported writer name>
  *   -include
  *   -noinclude (default)
  *
