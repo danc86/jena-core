@@ -237,7 +237,7 @@ public abstract class Node {
         Answer the label of this blank node or throw an UnsupportedOperationException
         if it's not blank.
     */
-    public Object getBlankNodeLabel()
+    public String getBlankNodeLabel()
         { return getBlankNodeId().getLabelString(); }    
     
     /** 
