@@ -261,6 +261,7 @@ Options can be specified on the command line (when invoking schemagen), or may b
   are typically made distinct for clarity and ease-of-use by the ontology users,
   so the use of the disambiguation tactic is rare. Indeed, it may be taken as
   a hint that refactoring the ontology itself is desirable.</p>
+
 <h3 id="config_file">Specifying the configuration file</h3>
 <table width="650" border="0" cellspacing="0" cellpadding="1">
   <tr>
@@ -273,6 +274,7 @@ Options can be specified on the command line (when invoking schemagen), or may b
     <td class="syntaxPrompt">n/a</td>
   </tr>
 </table>
+
 <p>The default configuration file name is <code>schemagen.rdf</code> in the current
   directory. To specify a different configuration file, either as a file name
   on the local file system, or as a URL (e.g. an <code>http:</code> address),
@@ -281,6 +283,12 @@ Options can be specified on the command line (when invoking schemagen), or may b
   schemagen will continue and use default values (plus the other command line
   options) to configure the tool. If a file name or URL is given with <code>-c</code>,
   and that file cannot be located, schemagen will stop with an error.</p>
+  
+<p>Schemagen will assume the the language encoding of the configuration file
+is implied by the filename/ULRL suffix: ".n3" means N3, ".nt" means NTRIPLES,
+".rdf" and ".owl" mean "RDF/XML". By default it assumes RDF/XML.
+</p>
+
 <h3 id="config_root">Specifying the configuration root in the configuration file</h3>
 <table width="650" border="0" cellspacing="0" cellpadding="1">
   <tr>
@@ -456,7 +464,7 @@ Options can be specified on the command line (when invoking schemagen), or may b
 </table>
 <p></p>
 
-      <h3 id="input_syntax">Specifying the syntax (encoding) of the input document</h3>
+<h3 id="input_syntax">Specifying the syntax (encoding) of the input document</h3>
 <table width="650" border="0" cellspacing="0" cellpadding="0">
   <tr>
     <td width="140" class="syntaxPrompt">Command line</td>
@@ -467,12 +475,14 @@ Options can be specified on the command line (when invoking schemagen), or may b
     <td class="syntax">&lt;sgen:encoding rdf:datatype=&quot;&amp;xsd;string&quot;&gt;<i>encoding</i>&lt;/sgen:encoding&gt;</td>
   </tr>
 </table>
+
 <p>Jena can parse a number of different presentation syntaxes for RDF documents,
   including RDF/XML, N3 and NTRIPLE. By default, the encoding will be derived
   from the name of the input document (e.g. a document <code>xyz.n3</code> will
   be parsed in N3 format), or, if the extension is non-obvious the default is
   RDF/XML. The encoding, and hence the parser, to use on the input document may
   be specified by the encoding configuration option.</p>
+
 <h3 id="ontology">Choosing the style of the generated class: ontology or plain RDF</h3>
 <table width="650" border="0" cellspacing="0" cellpadding="0">
   <tr>
