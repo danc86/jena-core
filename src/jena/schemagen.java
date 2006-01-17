@@ -36,6 +36,7 @@ import org.apache.xerces.util.XMLChar;
 
 import com.hp.hpl.jena.ontology.*;
 import com.hp.hpl.jena.rdf.model.*;
+import com.hp.hpl.jena.util.FileManager;
 import com.hp.hpl.jena.vocabulary.*;
 import com.hp.hpl.jena.shared.*;
 
@@ -306,7 +307,7 @@ public class schemagen {
 
         // try to read the config URI
         try {
-            m_config.read( configURL );
+            FileManager.get().readModel( m_config, configURL );
         }
         catch (Exception e) {
             // if the user left the default config uri in place, it's not an error to fail to read it
@@ -406,12 +407,7 @@ public class schemagen {
         String syntax = getValue( OPT_ENCODING );
 
         try {
-            if (syntax == null) {
-                m_source.read( input );
-            }
-            else {
-                m_source.read( input, syntax );
-            }
+            FileManager.get().readModel( m_source, input, syntax );
         }
         catch (JenaException e) {
             abort( "Failed to read input source " + input, e );
