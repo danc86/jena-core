@@ -217,7 +217,7 @@ public class FBRuleInfGraph  extends BasicForwardRuleInfGraph implements Backwar
      * @return true if the predicate succeeds
      */
     public boolean processBuiltin(ClauseEntry clause, Rule rule, BindingEnvironment env) {
-        throw new ReasonerException("Internal error in FBLP rule engine, incorrect invocation of building in rule " + rule);
+        throw new ReasonerException("Internal error in FBLP rule engine, incorrect invocation of builtin in rule " + rule);
         // TODO: Remove 
 //        if (clause instanceof Functor) {
 //            context.setEnv(env);

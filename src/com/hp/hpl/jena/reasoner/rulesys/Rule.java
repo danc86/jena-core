@@ -129,7 +129,12 @@ public class Rule implements ClauseEntry {
         for (int i = 0; i < elts.length; i++) {
             ClauseEntry elt = elts[i];
             if (elt instanceof Functor) {
-                if ( ! ((Functor)elt).getImplementor().isMonotonic() ) return false;
+                Builtin b = ((Functor)elt).getImplementor();
+                if (b != null) {
+                    if (! b.isMonotonic() ) return false;
+                } else {
+                    throw new ReasonerException("Undefined Functor " + ((Functor)elt).getName() +" in " + toShortString());
+                }
             }
         }
         return true;
