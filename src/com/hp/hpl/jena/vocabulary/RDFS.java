@@ -22,11 +22,22 @@ public class RDFS {
 
     public static final Resource Class = resource( "Class");
     public static final Resource Datatype = resource( "Datatype");
+    
+    /**
+         @deprecated obsolete: was removed by the most recent standard
+    */
     public static final Resource ConstraintProperty  =  resource( "ConstraintProperty");
+    
     public static final Resource Container  = resource( "Container");
+    
     public static final Resource ContainerMembershipProperty
-                                                     = resource( "ContainerMembershipProperty");
+                                                     = resource( "ContainerMembershipProperty");  
+ 
+    /**
+        @deprecated obsolete: was removed by the most recent standard
+    */
     public static final Resource ConstraintResource  = resource( "ConstraintResource");
+    
     public static final Resource Literal = resource( "Literal");
     public static final Resource Resource = resource( "Resource");
 
