@@ -16,7 +16,7 @@ import java.util.* ;
  * @version $Id$
  */ 
  
-abstract class DBcmd
+public abstract class DBcmd
 {
     // Standardised names.
     protected final ArgDecl argDeclDbURL       = new ArgDecl(true, "db");
