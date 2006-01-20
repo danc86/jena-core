@@ -53,9 +53,9 @@ public class dbload extends DBcmd
         super("dbload", true);
     }
 
-    void exec0() { return ; }
+    protected void exec0() { return ; }
 
-    boolean exec1(String arg)
+    protected boolean exec1(String arg)
     {
         if ( verbose )
             System.out.println("Start load: "+arg) ;

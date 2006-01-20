@@ -56,7 +56,7 @@ public class dbdump extends DBcmd
         super("dbdump", false);
     }
 
-    void exec0()
+    protected void exec0()
     {
         // This is a streaming syntax.
         String syntax = "N-TRIPLES" ;
@@ -75,7 +75,7 @@ public class dbdump extends DBcmd
         
     }
 
-    boolean exec1(String arg) { return false ; }
+    protected boolean exec1(String arg) { return false ; }
 }
  
 
