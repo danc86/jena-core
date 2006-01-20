@@ -295,15 +295,16 @@
   </target>
 
   <target name="assembler-doc">
-      <java classname="jena.Stitch">
+      <java classname="jena.Weave">
           <classpath>
               <pathelement path="../rdf-html/bin"/>
+              <fileset dir="../rdf-html/lib" includes="*.jar"/>
               <path refid="classpath.tools"/>
           </classpath>
           <redirector
               output="doc/assembler/assembler-howto.html"
-              input="doc/assembler/assembler-howto.phtml"
           />
+          <arg value="doc/assembler/assembler-howto.phtml"/>
           <sysproperty key="vocab" value="vocabularies/assembler.n3"/>
           <sysproperty key="examples" value="doc/assembler/examples.n3"/>
       </java>
