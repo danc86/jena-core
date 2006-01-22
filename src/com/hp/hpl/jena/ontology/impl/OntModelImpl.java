@@ -478,7 +478,7 @@ public class OntModelImpl
         // look for the shortcut of using direct subClass on :Thing
         if (getReasoner() != null) {
             Model conf = getReasoner().getReasonerCapabilities();
-            if (conf.contains( null, ReasonerVocabulary.supportsP, ReasonerVocabulary.directSubClassOf ) &&
+            if (conf != null && conf.contains( null, ReasonerVocabulary.supportsP, ReasonerVocabulary.directSubClassOf ) &&
                 getProfile().THING() != null)
             {
                 // we have have both direct sub-class of and a :Thing class to test against
