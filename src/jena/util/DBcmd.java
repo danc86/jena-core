@@ -4,7 +4,7 @@
  */
 
  
-package jena;
+package jena.util;
 import jena.cmdline.* ;
 import com.hp.hpl.jena.db.* ;
 //import com.hp.hpl.jena.rdf.model.* ;

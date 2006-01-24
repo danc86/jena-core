@@ -5,6 +5,8 @@
 
 package jena;
 
+import jena.util.DBcmd;
+
 import com.hp.hpl.jena.rdf.model.* ;
 //import com.hp.hpl.jena.db.* ;
 //import com.hp.hpl.jena.util.iterator.* ;

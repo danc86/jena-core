@@ -5,6 +5,8 @@
 
 package jena;
 
+import jena.util.DBcmd;
+
 import com.hp.hpl.jena.util.FileUtils; 
  
  /** Load data files into a Jena model in a database.
