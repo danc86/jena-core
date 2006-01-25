@@ -115,13 +115,13 @@ public/* abstract */class AbstractTestGraph extends GraphTestBase
         if (getGraph().getCapabilities().handlesLiteralTyping())
             { // TODO fix the adhocness of this
             Graph g1 = getGraphWith( "x P '1'xsd:integer" );
-            assertTrue( g1.contains( triple( "x P '1'xsd:int" ) ) );
+            assertTrue( g1.contains( triple( "x P '01'xsd:int" ) ) );
         //
             Graph g2 = getGraphWith( "x P '1'xsd:int" );
             assertTrue( g2.contains( triple( "x P '1'xsd:integer" ) ) );
         //
-            Graph g3 = getGraphWith( "x P '1'xsd:string" );
-            assertTrue( g3.contains( triple( "x P '1'" ) ) );
+            Graph g3 = getGraphWith( "x P '123'xsd:string" );
+            assertTrue( g3.contains( triple( "x P '123'" ) ) );
             }
         }
     

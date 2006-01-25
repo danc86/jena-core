@@ -107,7 +107,7 @@ public class PolyadicPrefixMappingImpl extends PrefixMappingImpl implements Pref
             for (int i = 0; i < graphs.size(); i += 1)
                 {
                 String ss = ((Graph) graphs.get(i)).getPrefixMapping().getNsURIPrefix( uri );
-                if (ss != null) return ss;
+                if (ss != null && ss.length() > 0) return ss;
                 }
             }
         return s;
