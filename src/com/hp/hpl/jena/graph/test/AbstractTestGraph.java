@@ -51,7 +51,7 @@ public/* abstract */class AbstractTestGraph extends GraphTestBase
         Node r = Node.create( "r" ), s = Node.create( "s" ), p = Node.create( "P" );
         g.add( Triple.create( r, p, s ) );
         assertTrue( g.contains( r, p, Node.ANY ) );
-        assertTrue( g.find( r, p, Node.ANY ).hasNext() );
+        assertEquals( 1, g.find( r, p, Node.ANY ).toList().size() );
         }
     
     public void testRepeatedSubjectDoesNotConceal()
@@ -68,9 +68,10 @@ public/* abstract */class AbstractTestGraph extends GraphTestBase
     public void testFindByFluidTriple()
         {
         Graph g = getGraphWith( "x y z " );
-        assertTrue( g.find( triple( "?? y z" ) ).hasNext() );
-        assertTrue( g.find( triple( "x ?? z" ) ).hasNext() );
-        assertTrue( g.find( triple( "x y ??" ) ).hasNext() );
+        Set expect = tripleSet( "x y z" );
+        assertEquals( expect, g.find( triple( "?? y z" ) ).toSet() );
+        assertEquals( expect, g.find( triple( "x ?? z" ) ).toSet() );
+        assertEquals( expect, g.find( triple( "x y ??" ) ).toSet() );
         }
         
     public void testContainsConcrete()
@@ -150,6 +151,7 @@ public/* abstract */class AbstractTestGraph extends GraphTestBase
         assertTrue( title + ": finds some triple(s)", it.hasNext() );
         assertEquals( title + ": finds a 'lift' triple", triple("spindizzies lift cities"), it.next() );
         assertFalse( title + ": finds exactly one triple", it.hasNext() );
+        it.close();
         }
 
 //    public void testStuff()
@@ -322,6 +324,7 @@ public/* abstract */class AbstractTestGraph extends GraphTestBase
             }
         catch (UnsupportedOperationException e)
             { assertFalse( g.getCapabilities().iteratorRemoveAllowed() ); }
+        it.close();
         }
     
     public void testBulkRemoveWithReification()
@@ -367,15 +370,8 @@ public/* abstract */class AbstractTestGraph extends GraphTestBase
         {
         Graph g = getGraph();
         graphAdd( g, "S P O" );
-        assertTrue( g.find( Node.ANY, Node.ANY, Node.ANY ).hasNext() );
-        assertTrue( g.find( Triple.ANY ).hasNext() );
-        }
-        
-    public void testFind2()
-        {
-        Graph g = getGraphWith( "S P O" );   
-        TripleIterator waitingForABigRefactoringHere = null;
-        ExtendedIterator it = g.find( Triple.ANY );
+        assertDiffer( new HashSet(), g.find( Node.ANY, Node.ANY, Node.ANY ).toSet() );
+        assertDiffer( new HashSet(), g.find( Triple.ANY ).toSet() );
         }
 
     protected boolean canBeEmpty( Graph g )
@@ -478,8 +474,7 @@ public/* abstract */class AbstractTestGraph extends GraphTestBase
             g.add( toRemove );
             ExtendedIterator rtr = g.find( toRemove );
             assertTrue( "ensure a(t least) one triple", rtr.hasNext() );
-            rtr.next();
-            rtr.remove();
+            rtr.next(); rtr.remove(); rtr.close();
             L.assertHas( new Object[] { "add", g, toRemove, "delete", g, toRemove} );
             }
         }
