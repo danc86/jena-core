@@ -266,7 +266,7 @@ public class rdfquery
                 argi++ ;
                 if ( argi == argv.length )
                 {
-                    System.err.println("Error: no databse name  specified");
+                    System.err.println("Error: no driver specified");
                     System.exit(1) ;
                 }
                 dbDriver = argv[argi] ;
