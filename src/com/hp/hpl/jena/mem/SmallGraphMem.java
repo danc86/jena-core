@@ -52,8 +52,8 @@ public class SmallGraphMem extends GraphMemBase
         method using find.
     */
     public boolean graphBaseContains( Triple t ) 
-        { return t.isConcrete() ? triples.contains( t ) : containsByFind( t ); }
-    
+        { return isSafeForEquality( t ) ? triples.contains( t ) : containsByFind( t ); }
+
     protected void destroy()
         { triples = null; }
     

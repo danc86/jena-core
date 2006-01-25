@@ -45,7 +45,7 @@ public class MixedGraphMem extends GraphMemBase implements Graph
         method using find.
     */
     public boolean graphBaseContains( Triple t ) 
-        { return t.isConcrete() ? store.contains( t ) : containsByFind( t ); }
+        { return isSafeForEquality( t ) ? store.contains( t ) : containsByFind( t ); }
     
     protected void destroy()
         { store = null; }

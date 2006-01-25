@@ -71,7 +71,7 @@ public class GraphMem extends GraphMemBase implements Graph
          Otherwise we use the default implementation.
     */
     public boolean graphBaseContains( Triple t )
-        { return t.isConcrete() ? store.contains( t ) : super.graphBaseContains( t ); }
+        { return isSafeForEquality( t ) ? store.contains( t ) : super.graphBaseContains( t ); }
     
     /**
         Clear this GraphMem, ie remove all its triples (delegated to the store).

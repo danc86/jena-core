@@ -106,7 +106,25 @@ public/* abstract */class AbstractTestGraph extends GraphTestBase
         assertFalse( g.contains( triple( "x ?? R" ) ) );
         assertFalse( g.contains( triple( "a S ??" ) ) );
         }
-        
+    
+    /**
+        Check that contains respects by-value semantics.
+    */
+    public void testContainsByValue()
+        {
+        if (getGraph().getCapabilities().handlesLiteralTyping())
+            { // TODO fix the adhocness of this
+            Graph g1 = getGraphWith( "x P '1'xsd:integer" );
+            assertTrue( g1.contains( triple( "x P '1'xsd:int" ) ) );
+        //
+            Graph g2 = getGraphWith( "x P '1'xsd:int" );
+            assertTrue( g2.contains( triple( "x P '1'xsd:integer" ) ) );
+        //
+            Graph g3 = getGraphWith( "x P '1'xsd:string" );
+            assertTrue( g3.contains( triple( "x P '1'" ) ) );
+            }
+        }
+    
     /**
         test  isEmpty - moved from the QueryHandler code.
     */

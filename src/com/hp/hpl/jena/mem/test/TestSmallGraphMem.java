@@ -10,7 +10,6 @@ import junit.framework.TestSuite;
 
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.mem.*;
-import com.hp.hpl.jena.mem.faster.GraphMemFaster;
 
 
 /**
@@ -29,13 +28,6 @@ public class TestSmallGraphMem extends TestGraphMem
 
     public void testUnnecessaryMatches() { 
         /* test not appropriate for subclass */ 
-        }
-    
-    public void testContainsByValue()
-        {
-        Graph g = graphWith( "x P '1'xsd:integer; x P  '1'xsd:int" );
-//        System.err.println( ">> " + g );
-//        System.err.println( ">> " + g.find( Node.ANY, node( "P" ), node( "1" ) ).toList() );
         }
     }
 
