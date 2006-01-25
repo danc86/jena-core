@@ -25,13 +25,13 @@ package jena;
 // Imports
 ///////////////
 import java.util.*;
+import java.util.regex.*;
 import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 
 import org.apache.commons.logging.LogFactory;
-import org.apache.oro.text.regex.*;
 import org.apache.xerces.util.XMLChar;
 
 import com.hp.hpl.jena.ontology.*;
@@ -250,12 +250,6 @@ public class schemagen {
 
     /** Stack of replacements to apply */
     protected List m_replacements = new ArrayList();
-
-    /** Perl5 pattern compiler */
-    protected Perl5Compiler m_perlCompiler = new Perl5Compiler();
-
-    /** Perl5 pattern matcher */
-    protected PatternMatcher m_matcher = new Perl5Matcher();
 
     /** Output file newline char - default is Unix, override with --dos */
     protected String m_nl = "\n";
@@ -487,10 +481,10 @@ public class schemagen {
             marker = (marker == null) ? DEFAULT_MARKER : marker;
 
             try {
-                m_replacements.add( new Replacement( m_perlCompiler.compile( marker + key + marker ),
-                                                     new StringSubstitution( replacement ) ) );
+                m_replacements.add( new Replacement( Pattern.compile( marker + key + marker ),
+                                                     replacement ) );
             }
-            catch (MalformedPatternException e) {
+            catch (PatternSyntaxException e) {
                 abort( "Malformed regexp pattern " + marker + key + marker, e );
             }
         }
@@ -613,7 +607,7 @@ public class schemagen {
         for (Iterator i = m_replacements.iterator(); i.hasNext(); ) {
             Replacement r = (Replacement) i.next();
 
-            s = Util.substitute( m_matcher, r.pattern, r.sub, s, Util.SUBSTITUTE_ALL );
+            s = r.pattern.matcher( s ).replaceAll( r.sub );
         }
 
         return s;
@@ -1425,10 +1419,10 @@ public class schemagen {
     /** A pairing of pattern and substitution we want to apply to output */
     protected class Replacement
     {
-        protected Substitution sub;
+        protected String sub;
         protected Pattern pattern;
 
-        protected Replacement( Pattern pattern, Substitution sub) {
+        protected Replacement( Pattern pattern, String sub) {
             this.sub = sub;
             this.pattern = pattern;
         }
