@@ -18,13 +18,11 @@ import java.util.Map;
 import java.util.Set;
 import java.util.StringTokenizer;
 import java.util.Vector;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.apache.oro.text.regex.MalformedPatternException;
-import org.apache.oro.text.regex.Pattern;
-import org.apache.oro.text.regex.Perl5Compiler;
-import org.apache.oro.text.regex.Perl5Matcher;
 import org.apache.xerces.util.XMLChar;
 
 import com.hp.hpl.jena.JenaRuntime;
@@ -132,16 +130,13 @@ abstract public class BaseXMLWriter implements RDFXMLWriterI {
     
 	static String RDFNS = RDF.getURI();
     
-	static private Perl5Matcher matcher = new Perl5Matcher();
     
 	static private Pattern jenaNamespace;
     
 	static {
-		try {
-			jenaNamespace =
-				new Perl5Compiler().compile("j\\.([1-9][0-9]*|cook\\.up)");
-		} catch (MalformedPatternException e) {
-		}
+	    jenaNamespace =
+				Pattern.compile("j\\.([1-9][0-9]*|cook\\.up)");
+		
 		badRDF.add("RDF");
 		badRDF.add("Description");
 		badRDF.add("li");
@@ -755,7 +750,7 @@ abstract public class BaseXMLWriter implements RDFXMLWriterI {
             logger.warn( "Namespace prefix '" + prefix + "' is reserved by XML." );
         else if (!XMLChar.isValidNCName(prefix))
             logger.warn( "'" + prefix + "' is not a legal namespace prefix." );
-        else if (matcher.matches(prefix, jenaNamespace))
+        else if (jenaNamespace.matcher(prefix).matches())
             logger.warn( "Namespace prefix '" + prefix + "' is reserved by Jena." );
         else
             return true;

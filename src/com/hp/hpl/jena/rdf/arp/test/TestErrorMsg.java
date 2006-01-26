@@ -84,11 +84,11 @@ public class TestErrorMsg extends TestCase {
 		if (regexPresent != null)
 			assertTrue(
 				"Should find /" + regexPresent + "/",
-                Pattern.compile(regexPresent).matcher(contents).find());
+                Pattern.compile(regexPresent,Pattern.DOTALL).matcher(contents).find());
 		if (regexAbsent != null)
 			assertTrue(
 				"Should not find /" + regexAbsent + "/",
-				!Pattern.compile(regexAbsent).matcher(contents).find());
+				!Pattern.compile(regexAbsent,Pattern.DOTALL).matcher(contents).find());
 		contents = null;
 	}
 	
