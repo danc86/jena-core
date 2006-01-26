@@ -109,7 +109,9 @@ public class TaintingTests extends TestCase implements ErrorHandler,
         "testing/wg/rdfms-syntax-incomplete/error005.rdf",
         "testing/wg/rdfms-syntax-incomplete/error006.rdf",
         "testing/wg/xmlbase/error001.rdf",
+        
         "testing/arp/tainting/base.rdf",
+        
         "testing/arp/tainting/damlcollection.rdf",
         "testing/arp/tainting/lang.rdf",
         "testing/arp/tainting/ptUnknown.rdf",

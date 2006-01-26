@@ -25,8 +25,8 @@ package com.hp.hpl.jena.shared;
 */
 public class BadURIException extends JenaException
     {
-    public BadURIException( String message, Throwable e )
-        { super( message, e ); }
+    public BadURIException( String message )
+        { super( message ); }
     }
 
 

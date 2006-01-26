@@ -34,7 +34,8 @@ import com.hp.hpl.jena.graph.Factory;
 import com.hp.hpl.jena.graph.Graph;
 import com.hp.hpl.jena.graph.Node;
 import com.hp.hpl.jena.graph.Triple;
-import com.hp.hpl.jena.rdf.arp.URI;
+import com.hp.hpl.jena.iri.IRI;
+import com.hp.hpl.jena.iri.IRIFactory;
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
 import com.hp.hpl.jena.rdf.model.RDFReader;
@@ -860,7 +861,7 @@ public class TestXMLFeatures extends ModelTestBase {
     }
 
     public void testBadProperty1() throws IOException {
-        checkPropURI("http:/a.b/", null, null, BadPropURI);
+        checkPropURI("http://x/a.b/", null, null, BadPropURI);
     }
     /*
     public void testBadProperty2() throws IOException {
@@ -1155,6 +1156,8 @@ public class TestXMLFeatures extends ModelTestBase {
 			"http://www.example.org/a/b/c/d/z?x=a",
 			};
 
+
+    static IRIFactory factory = IRIFactory.jenaImplementation();
 	static public void main(String args[]) throws Exception {
 		String b[] =
 			{
@@ -1173,13 +1176,13 @@ public class TestXMLFeatures extends ModelTestBase {
 				"grandparent" };
 		for (int k = 0; k < b.length; k++) {
 			System.out.println("// " + b[k]);
-			URI bb = new URI(b[k]);
+			IRI bb = factory.create(b[k]);
 
 			for (int i = 0; i < n.length; i++) {
 				System.out.print(" { \"" + n[i] + "\", ");
 				int f = BaseXMLWriter.str2flags(n[i]);
 				for (int j = 0; j < uris.length; j++) {
-					String r = bb.relativize(uris[j], f);
+					String r = bb.relativize(uris[j], f).toString();
 					System.out.print(
 						(i != 0 && r.equals(uris[j]))
 							? "null, "

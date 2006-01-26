@@ -42,7 +42,7 @@ import java.util.Map;
 import org.apache.xerces.util.XMLChar;
 import org.xml.sax.SAXParseException;
 
-import com.hp.hpl.jena.iri.RDFURIReference;
+import com.hp.hpl.jena.iri.IRI;
 import com.hp.hpl.jena.rdf.arp.ARPErrorNumbers;
 import com.hp.hpl.jena.rdf.arp.lang.LanguageTagCodes;
 
@@ -73,7 +73,7 @@ public class ParserSupport
 	protected void checkIdSymbol(Taint taintMe, AbsXMLContext ctxt, String str)
 		throws SAXParseException {
 		if (!arp.ignoring(WARN_REDEFINITION_OF_ID)) {
-			RDFURIReference uri = ctxt.uri;
+			IRI uri = ctxt.uri;
             Map idsUsedForBase = (Map) idsUsed().get(uri);
 			if (idsUsedForBase == null) {
 				idsUsedForBase = new HashMap();
@@ -240,7 +240,7 @@ public class ParserSupport
     }
 
     protected String resolve(Taint taintMe,AbsXMLContext x, String uri) throws SAXParseException {
-        RDFURIReference ref = x.resolveAsURI(arp,taintMe,uri);
+        IRI ref = x.resolveAsURI(arp,taintMe,uri);
 //        checkBadURI(taintMe,ref);
         return ref.toString();
     }

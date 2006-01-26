@@ -347,7 +347,10 @@ public class MoreTests extends TestCase implements RDFErrorHandler,
         FileInputStream fin = new FileInputStream(
                 "testing/wg/rdfms-difference-between-ID-and-about/test1.rdf");
         rdr.setErrorHandler(this);
-        expected = new int[] { WARN_MALFORMED_URI, WARN_RELATIVE_URI, ERR_RESOLVING_AGAINST_MALFORMED_BASE};
+        expected = new int[] { WARN_MALFORMED_URI, 
+                WARN_MALFORMED_URI, 
+//        WARN_RELATIVE_URI, ERR_RESOLVING_AGAINST_MALFORMED_BASE};
+               ERR_RESOLVING_AGAINST_MALFORMED_BASE};
         rdr.read(m, fin, "http://jjc^3.org/demo.mp3");
         fin.close();
         Model m1 = createMemModel();
@@ -420,7 +423,7 @@ public class MoreTests extends TestCase implements RDFErrorHandler,
                 "testing/wg/rdfms-identity-anon-resources/test001.rdf");
 
         rdr.setErrorHandler(this);
-        expected = new int[] { WARN_MALFORMED_URI };
+        expected = new int[] { WARN_MALFORMED_URI, WARN_RELATIVE_URI };
         rdr.read(m, fin, "ht#tp://jjc3.org/demo.mp3#frag");
         fin.close();
         fin = new FileInputStream(
