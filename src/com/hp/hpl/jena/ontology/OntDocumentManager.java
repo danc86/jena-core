@@ -71,7 +71,7 @@ public class OntDocumentManager
     // Constants
     ////////////////////////////////////
 
-	/** The default path for searching for the metadata on locally cached ontologies */
+    /** The default path for searching for the metadata on locally cached ontologies */
     public static final String DEFAULT_METADATA_PATH = "file:ont-policy.rdf;file:etc/ont-policy.rdf";
 
     /** Namespace for ontology metadata resources and properties */
@@ -935,6 +935,7 @@ public class OntDocumentManager
         // Make a temporary file manager to look for the metadata file
         FileManager fm = new FileManager();
         fm.addLocatorFile();
+        fm.addLocatorURL();
         fm.addLocatorClassLoader( fm.getClass().getClassLoader() );
 
         try {
