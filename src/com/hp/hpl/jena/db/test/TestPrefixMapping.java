@@ -83,7 +83,7 @@ public class TestPrefixMapping extends AbstractTestPrefixMapping {
         Model m1 = ModelRDB.open( theConnection, name );
         assertEquals( "eh:/someURI#", m1.getNsPrefixURI( "hello" ) );
         assertEquals( "eh:/otherURI#", m1.getNsPrefixURI( "yendi" ) );
-        assertEquals( null, m1.getNsPrefixURI( "bingo" ) );
+        assertEquals( "eh:/otherURI#", m1.getNsPrefixURI( "bingo" ) );
         m1.close();
         }
     
