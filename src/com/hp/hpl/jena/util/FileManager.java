@@ -314,7 +314,7 @@ public class FileManager
                 log.debug("Syntax guess: "+syntax);
         }
 
-        InputStream in = openNoMap(mappedURI) ;
+        InputStream in = openNoMapOrNull(mappedURI) ;
         if ( in == null )
         {
             if ( log.isTraceEnabled() )
@@ -368,7 +368,7 @@ public class FileManager
         if ( log.isDebugEnabled())
             log.debug("open("+filenameOrURI+")") ;
         
-        String uri = remap(filenameOrURI) ;
+        String uri = mapURI(filenameOrURI) ;
         
         return openNoMap(uri) ;
     }
@@ -432,8 +432,21 @@ public class FileManager
     }
         
     /** Open a file using the locators of this FileManager 
-     *  but without location mapping */
+     *  but without location mapping */ 
     public InputStream openNoMap(String filenameOrURI)
+    {
+        InputStream in = openNoMapOrNull(filenameOrURI) ;
+//        if ( in == null )
+//            throw new NotFoundException(filenameOrURI) ;
+        return in ;
+    }
+    
+    /** Open a file using the locators of this FileManager 
+     *  but without location mapping.
+     *  Return null if not found
+     */ 
+    
+    public InputStream openNoMapOrNull(String filenameOrURI)
     {
         for ( Iterator iter = handlers.iterator() ; iter.hasNext() ; )
         {
