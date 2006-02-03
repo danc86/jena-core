@@ -53,9 +53,8 @@ public class DBPrefixMappingImpl extends PrefixMappingImpl {
 
     public PrefixMapping removeNsPrefix( String prefix )
         {
-        String uri = getNsPrefixURI( prefix );
         super.removeNsPrefix( prefix );
-        if (uri != null) m_graphProperties.removePrefix( prefix );
+        m_graphProperties.removePrefix( prefix );
         return this;
         }
     
