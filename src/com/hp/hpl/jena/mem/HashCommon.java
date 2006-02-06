@@ -56,6 +56,13 @@ public abstract class HashCommon
         }
 
     /**
+        Answer the item at index <code>i</code> of <code>keys</code>. This
+        method is for testing purposes <i>only</i>.
+    */
+    public Object getItemForTestingAt( int i )
+        { return keys[i]; }
+    
+    /**
         Answer the initial index for the object <code>key</code> in the table.
         With luck, this will be the final position for that object. The initial index
         will always be non-negative and less than <code>capacity</code>.

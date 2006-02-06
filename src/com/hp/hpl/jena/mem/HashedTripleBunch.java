@@ -55,8 +55,19 @@ public class HashedTripleBunch extends HashCommon implements TripleBunch
     public boolean containsBySameValueAs( Triple t )
         { return findSlotBySameValueAs( t ) < 0; }
     
+    /**
+        Answer the number of items currently in this TripleBunch. 
+        @see com.hp.hpl.jena.mem.TripleBunch#size()
+    */
     public int size()
         { return size; }
+    
+    /**
+        Answer the current capacity of this HashedTripleBunch; for testing purposes
+        only. [Note that the bunch is resized when it is more than half-occupied.] 
+    */
+    public int currentCapacity()
+        { return capacity; }
     
     public void add( Triple t )
         {
@@ -108,10 +119,17 @@ public class HashedTripleBunch extends HashCommon implements TripleBunch
                 return answer;
                 }
             
+            /**
+                Removing an element resets the iterator to continue from the removed
+                position, in case an element has been shuffled up into the vacated
+                position. 
+            */
             public void remove()
                 {
                 if (keys[lastIndex] != toRemove) throw new RuntimeException( "CME" );
                 HashedTripleBunch.this.removeFrom( lastIndex );
+                current = keys[index = lastIndex];
+                lastIndex = -1;
                 }
             };
         }

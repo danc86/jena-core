@@ -54,6 +54,7 @@ public class TestPackage extends TestSuite {
         addTest( TestListSubjectsEtc.suite() );
         addTest( TestModelExtract.suite() );
         addTest( TestModelRead.suite() );
+        addTestSuite( TestRemoveBug.class );
         }
 
     private void addTest(String name, TestSuite tc) {

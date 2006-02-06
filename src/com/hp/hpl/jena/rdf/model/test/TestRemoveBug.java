@@ -77,15 +77,19 @@ public class TestRemoveBug extends TestCase {
             ri.close();
             
             // Rewrite it to ground form
+            int originalCount = bNode.listProperties().toList().size();
             Resource newR = incoming.createResource("http://www.hp.com/people/Ian_Dickinson");
+            int runningCount = 0;
             StmtIterator si = incoming.listStatements(bNode, null, (RDFNode)null);
             Model additions = ModelFactory.createDefaultModel();
             while (si.hasNext()) {
                 Statement s = si.nextStatement();
+                runningCount += 1;
                 si.remove();
 //                System.out.println("Rewrite " + s + " base on " + newR);
                 additions.add(additions.createStatement(newR, s.getPredicate(), s.getObject()));
             }
+            assertEquals( "on iteration " + count + " with " + bNode.asNode().getBlankNodeLabel(), originalCount, runningCount );
             incoming.add(additions);
             Resource ian = incoming.getResource("http://www.hp.com/people/Ian_Dickinson");
             assertTrue("Smush failed on iteration " + count, ian.hasProperty(name));
