@@ -11,6 +11,8 @@ import com.hp.hpl.jena.shared.impl.PrefixMappingImpl;
 
 import java.util.*;
 
+import javax.sql.XAConnection;
+
 /**
  *  Implementation of prefix mapping specific to databases.
  *  This extends the base implementation, effectively turning it into
@@ -44,11 +46,13 @@ public class DBPrefixMappingImpl extends PrefixMappingImpl {
 		
 		// Populate the prefix map using data from the 
 		// persistent graph properties
+        boolean commit = m_graphProperties.begin();
 		Iterator it = m_graphProperties.getAllPrefixes();
 		while( it.hasNext()) {
 			DBPropPrefix prefix = (DBPropPrefix)it.next();
 			super.setNsPrefix( prefix.getValue(), prefix.getURI() );
 		}
+        m_graphProperties.conditionalCommit( commit );
 	}
 
     public PrefixMapping removeNsPrefix( String prefix )
