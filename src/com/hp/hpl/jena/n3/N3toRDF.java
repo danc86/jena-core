@@ -50,7 +50,7 @@ public class N3toRDF implements N3ParserEventHandler
     private String basedir = null ;
 	final String anonPrefix = "_" ;
 	
-    N3toRDF() {}
+    public N3toRDF() {}
     
     public void setBase(String str)
     {
