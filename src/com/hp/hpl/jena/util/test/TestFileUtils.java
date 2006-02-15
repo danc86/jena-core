@@ -105,7 +105,18 @@ public class TestFileUtils extends TestCase
     public void testTranslateFilename5()
     { checkToFilename("file:Dir/File%20With Enc%21", "Dir/File With Enc!") ; }
 
+    public void testTranslateFilename6()
+    { checkToFilename("file:///dir/file", "/dir/file") ; }
     
+    public void testTranslateFilename7()
+    { checkToFilename("file:///c:/dir/file", "/c:/dir/file") ; }
+    
+    public void testTranslateFilename8()
+    { checkToFilename("file:file", "file") ; }
+
+    public void testTranslateFilename9()
+    { checkToFilename("file://file", "//file") ; }
+
     void isFilename(String fn)
     { assertTrue("Should be a file name : "+fn, FileUtils.isFile(fn)) ; }
     void isNotFilename(String fn)
