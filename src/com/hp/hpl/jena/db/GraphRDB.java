@@ -506,6 +506,19 @@ public class GraphRDB extends GraphBase implements Graph {
     	m_specializedGraphs = null;
     }
 
+    /**
+     * Remove all statements from this graph. 
+     */
+    public synchronized void clear() {
+        if( m_specializedGraphs != null) {
+            Iterator it = m_specializedGraphs.iterator();
+            while( it.hasNext() ) {
+                SpecializedGraph sg = (SpecializedGraph) it.next();
+                sg.clear();
+            }
+        }
+    }
+
 	/**
 	 * Return the connection
 	 * 
