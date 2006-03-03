@@ -69,6 +69,8 @@ public interface Assembler
 
     public static final Assembler fileModel = new FileModelAssembler();
 
+    public static final Assembler unionModel = new UnionModelAssembler();
+
     public static final Assembler ontModelSpec = new OntModelSpecAssembler();
     
     public static final Assembler ruleSet = new RuleSetAssembler();
@@ -88,6 +90,7 @@ public interface Assembler
         .implementWith( JA.ContentItem, content )
         .implementWith( JA.Connection, connection )
         .implementWith( JA.RDBModel, rdbModel )
+        .implementWith( JA.UnionModel, unionModel )
         .implementWith( JA.PrefixMapping, prefixMapping )
         .implementWith( JA.FileModel, fileModel )
         .implementWith( JA.OntModel, ontModel )

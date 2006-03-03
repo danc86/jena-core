@@ -36,6 +36,7 @@ public class TestBuiltinAssemblerGroup extends AssemblerTestBase
         assertAssemblerClass( JA.LocationMapper, LocationMapperAssembler.class );
         assertAssemblerClass( JA.FileManager, FileManagerAssembler.class );
         assertAssemblerClass( JA.DocumentManager, DocumentManagerAssembler.class );
+        assertAssemblerClass( JA.UnionModel, UnionModelAssembler.class );
         }
     
     public void testVariables()
@@ -55,6 +56,7 @@ public class TestBuiltinAssemblerGroup extends AssemblerTestBase
         assertInstanceOf( LocationMapperAssembler.class, Assembler.locationMapper );
         assertInstanceOf( FileManagerAssembler.class, Assembler.fileManager );
         assertInstanceOf( DocumentManagerAssembler.class, Assembler.documentManager );
+        assertInstanceOf( UnionModelAssembler.class, Assembler.unionModel );
         }
 
     private void assertAssemblerClass( Resource type, Class C )
