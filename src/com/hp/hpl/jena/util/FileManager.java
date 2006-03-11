@@ -83,6 +83,15 @@ public class FileManager
         return instance ;
     }
     
+    /** Set the global file manager (as returned by get())
+     * If called before any call to get(), then the usual default filemanager is not created 
+     * @param globalFileManager
+     */
+    public static void setGlobalFileManager(FileManager globalFileManager)
+    {
+        instance = globalFileManager ;
+    }
+    
     /** Create an uninitialized FileManager */
     public FileManager() {}
     
@@ -117,12 +126,10 @@ public class FileManager
         fMgr.addLocatorURL() ;
         fMgr.addLocatorClassLoader(fMgr.getClass().getClassLoader()) ;
     }
-    
-    
     /** Create with the given location mapper */
     public FileManager(LocationMapper _mapper)    { setLocationMapper(_mapper) ; }
 
-    /** @deprecated USe setLocationMapper */
+    /** @deprecated Use setLocationMapper */
     public void setMapper(LocationMapper _mapper) { setLocationMapper(_mapper) ; }
     
     
