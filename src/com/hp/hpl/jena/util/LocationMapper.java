@@ -107,7 +107,7 @@ public class LocationMapper
     
     private void initFromPath(String configPath, boolean configMustExist)
     {
-        if ( configPath == null )
+        if ( configPath == null || configPath.length() == 0 )
         {
             log.warn("Null configuration") ;
             return ;
@@ -125,6 +125,9 @@ public class LocationMapper
             StringTokenizer pathElems = new StringTokenizer( configPath, FileManager.PATH_DELIMITER );
             while (pathElems.hasMoreTokens()) {
                 String uri = pathElems.nextToken();
+                if ( uri == null || uri.length() == 0 )
+                    break ;
+                
                 in = fm.openNoMap(uri) ;
                 if ( in != null )
                 {
