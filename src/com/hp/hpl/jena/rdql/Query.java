@@ -71,7 +71,7 @@ public class Query
      *
      * @param s                The query string
      * @throws QueryException  Thrown when a parse error occurs
-     * @deprecated Migrate to com.hp.hpl.jena.query - the ARQ query engine which supports SPARQL and RDQL
+     * @deprecated Migrate to package com.hp.hpl.jena.query - the ARQ query engine which supports SPARQL and RDQL
      */
 
     public Query(String s)
@@ -111,7 +111,7 @@ public class Query
 
     /** Create a blank query.  The application is expected to complete the query parts needed
      *  by calling the various "add" operations later.
-     * @deprecated Migrate to com.hp.hpl.jena.query - the ARQ query engine
+     * @deprecated Migrate to package com.hp.hpl.jena.query - the ARQ query engine which supports SPARQL and RDQL
      */
 
     public Query()
@@ -122,7 +122,7 @@ public class Query
      *
      *  @param     queryString      The query: should include FROM clause to provide the data
      *  @throws    QueryException   Runtime exception
-     * @deprecated Migrate to com.hp.hpl.jena.query - the ARQ query engine
+     * @deprecated Migrate to package com.hp.hpl.jena.query - the ARQ query engine which supports SPARQL and RDQL
      */
     public static QueryResults exec(String queryString)
     {
@@ -137,7 +137,7 @@ public class Query
      *  @param     queryString      The query: the FROM clause will be overridden
      *  @param     model            The data
      *  @throws    QueryException   Runtime exception
-     * @deprecated Migrate to com.hp.hpl.jena.query - the ARQ query engine
+     * @deprecated Migrate to package com.hp.hpl.jena.query - the ARQ query engine which supports SPARQL and RDQL
      */
     public static QueryResults exec(String queryString, Model model)
     {
@@ -156,7 +156,7 @@ public class Query
      *  @param     queryString      The query: the FROM clause will be overridden
      *  @param     dataURL         The remote data source
      *  @throws    QueryException   Runtime exception
-     * @deprecated Migrate to com.hp.hpl.jena.query - the ARQ query engine
+     * @deprecated Migrate to package com.hp.hpl.jena.query - the ARQ query engine which supports SPARQL and RDQL
      */
     public static QueryResults exec(String queryString, String dataURL)
     {
