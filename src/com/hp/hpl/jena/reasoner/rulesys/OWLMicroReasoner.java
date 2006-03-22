@@ -3,7 +3,7 @@
  * Created by:  Dave Reynolds
  * Created on:  21-Mar-2004
  * 
- * (c) Copyright 2004, 2005 Hewlett-Packard Development Company, LP, all rights reserved.
+ * (c) Copyright 2004, 2005, 2006 Hewlett-Packard Development Company, LP, all rights reserved.
  * [See end of file]
  * $Id$
  *****************************************************************/
@@ -73,7 +73,7 @@ public class OWLMicroReasoner extends GenericRuleReasoner implements Reasoner {
 
 
 /*
-    (c) Copyright 2004, 2005 Hewlett-Packard Development Company, LP
+    (c) Copyright 2004, 2005, 2006 Hewlett-Packard Development Company, LP
     All rights reserved.
 
     Redistribution and use in source and binary forms, with or without

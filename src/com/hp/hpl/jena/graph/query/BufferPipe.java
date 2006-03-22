@@ -1,5 +1,5 @@
 /*
-  (c) Copyright 2002, 2002, 2003, 2004, 2005 Hewlett-Packard Development Company, LP
+  (c) Copyright 2002, 2002, 2003, 2004, 2005, 2006 Hewlett-Packard Development Company, LP
   [See end of file]
   $Id$
 */
@@ -103,7 +103,7 @@ public class BufferPipe implements Pipe
         { BoundedBufferPutException( Exception e ) { super( e ); }  }
     }
 /*
-    (c) Copyright 2002, 2002, 2003, 2004, 2005 Hewlett-Packard Development Company, LP
+    (c) Copyright 2002, 2002, 2003, 2004, 2005, 2006 Hewlett-Packard Development Company, LP
     All rights reserved.
 
     Redistribution and use in source and binary forms, with or without
