@@ -11,6 +11,7 @@ import java.io.* ;
 import java.lang.reflect.Constructor;
 
 import com.hp.hpl.jena.util.* ;
+import com.hp.hpl.jena.db.ModelRDB;
 import com.hp.hpl.jena.rdql.* ;
 import com.hp.hpl.jena.rdf.model.* ;
 import com.hp.hpl.jena.shared.*;
@@ -84,7 +85,7 @@ public class rdfquery
 
     public static void main (String [] argv) throws Exception
     {
-
+        System.err.println("Use of the old RDQL engine is deprecated - try the command jena.sparql") ; 
         if ( argv.length == 0 )
         {
             usage() ;
@@ -435,6 +436,13 @@ public class rdfquery
                 query.setSource(ModelLoader.loadModel(dataURL, language,
                                                       dbUser, dbPassword,
                                                       dbName, dbType, dbDriver)) ;
+                if ( query.getSource() instanceof ModelRDB )
+                {
+                    ModelRDB model = (ModelRDB)query.getSource() ;
+                    model.setQueryOnlyAsserted(true) ;
+                    model.setDoFastpath(true) ;
+                }
+                
                 Model m = query.getSource() ;
                 // ------------
     
@@ -456,6 +464,9 @@ public class rdfquery
                 query.loadTime = loadTime ;
             }
     
+            if ( query.getSource() != null )
+                query.getSource().begin() ;
+            
             QueryExecution qe = new QueryEngine(query) ;
             qe.init() ;
             if ( dumpModel )
@@ -508,6 +519,8 @@ public class rdfquery
             fmt.close() ;
             results.close() ;
             qe.close() ;
+            if ( query.getSource() != null )
+                query.getSource().commit() ;
     
             long finishTime = System.currentTimeMillis();
             long totalTime = finishTime-startTime ;
