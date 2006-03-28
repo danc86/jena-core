@@ -6,6 +6,8 @@
 
 package com.hp.hpl.jena.graph.test;
 
+import java.util.Collections;
+
 import com.hp.hpl.jena.db.impl.DBReifier;
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.graph.impl.GraphBase;
@@ -488,6 +490,20 @@ public abstract class AbstractTestReifier extends GraphTestBase
         if (r instanceof DBReifier) { System.err.println( "! Db reifier must fix over-specification problem" ); }
         else throw e;
         }
+        }
+    
+    public void testBulkClearReificationTriples()
+        {
+        Graph g = getGraphWith( "x rdf:subject S" );
+        g.getBulkUpdateHandler().removeAll();
+        assertEquals( Collections.EMPTY_SET, g.find( Node.ANY, Node.ANY, Node.ANY ).toSet() );        
+        }
+    
+    public void testBulkClearReificationTriples2()
+        {
+        Graph g = getGraphWith( "x rdf:subject S; x rdf:predicate P; x rdf:object O; x rdf:type rdf:Statement" );
+        g.getBulkUpdateHandler().removeAll();
+        assertEquals( Collections.EMPTY_SET, g.find( Node.ANY, Node.ANY, Node.ANY ).toSet() );        
         }
     
 //    public void testKevinCaseC()

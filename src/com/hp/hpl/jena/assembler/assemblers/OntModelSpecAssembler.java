@@ -73,7 +73,11 @@ public class OntModelSpecAssembler extends AssemblerBase implements Assembler
         return dm == null ? OntDocumentManager.getInstance() : (OntDocumentManager) a.open( dm );
         }
     
-    protected OntModelSpec getOntModelSpecField( String name )
+    /**
+        Answer the OntModelSpec in the OntModelSpec class with the given
+        member name, or null if there isn't one.
+    */
+    public static OntModelSpec getOntModelSpecField( String name )
         {
         try 
             { 
