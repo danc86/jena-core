@@ -368,11 +368,15 @@ public class ModelCom
     public StmtIterator listStatements( Resource S, Property P, RDFNode O )
         { return listStatements( S, P, asNode( O ) ); }
     
-    public StmtIterator listStatements( Resource S, Property P, String O )
-        { return listStatements( S, P, Node.createLiteral( O ) ); }
+    public StmtIterator listStatements( Resource S, Property P, String O ) {
+        return O == null ? listStatements(S, P, Node.ANY) 
+                :  listStatements( S, P, Node.createLiteral( O ) ); 
+    }
     
-    public StmtIterator listStatements( Resource S, Property P, String O, String L )
-        { return listStatements( S, P, Node.createLiteral( O, L, false ) ); }
+    public StmtIterator listStatements( Resource S, Property P, String O, String L ) {
+        return O == null ? listStatements(S, P, Node.ANY) 
+                :  listStatements( S, P, Node.createLiteral( O, L, false ) ); 
+    }
     
     public StmtIterator listStatements( Resource S, Property P, boolean O )
         { return listStatements( S, P, String.valueOf( O ) ); }

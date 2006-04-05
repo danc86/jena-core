@@ -140,15 +140,24 @@ public class TestSimpleListStatements extends ModelTestBase
         
     
     public void testAll() {
-    	StmtIterator iter = model.listStatements(null, null, (RDFNode) null);
-    	int i =0;
-    	while (iter.hasNext()) {
-    		i++;
-    		iter.next();
-    	}
-    	assertEquals(7, i);
+        StmtIterator iter = model.listStatements(null, null, (RDFNode) null);
+        int i =0;
+        while (iter.hasNext()) {
+            i++;
+            iter.next();
+        }
+        assertEquals(7, i);
     }
-
+    
+    public void testAllString() {
+        StmtIterator iter = model.listStatements(null, null, (String) null);
+        int i =0;
+        while (iter.hasNext()) {
+            i++;
+            iter.next();
+        }
+        assertEquals(7, i);
+    }
 
     public Model modelWithStatements( StmtIterator it )
         {
