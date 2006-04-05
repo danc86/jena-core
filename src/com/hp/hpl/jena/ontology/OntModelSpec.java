@@ -376,8 +376,9 @@ public class OntModelSpec extends ModelSpecImpl implements ModelSpec {
      */
     public Reasoner getReasoner() {
         if (m_reasoner == null && m_rFactory != null) {
-            // we need to create the reasoner for the first time
-            m_reasoner = m_rFactory.create( null );
+            // we need to create the reasoner
+            // create a new one on each call since reasoners aren't guaranteed to be reusable
+            return m_rFactory.create( null );
         }
 
         return m_reasoner;
