@@ -62,9 +62,12 @@ public class TransitiveInfGraph extends BaseInfGraph {
     public void prepare() {
         tbox = ((TransitiveReasoner)reasoner).getTbox();
         // Initially just point to the reasoner's precached information
-        transitiveEngine = new TransitiveEngine(((TransitiveReasoner)reasoner).getSubClassCache(),
-                                                 ((TransitiveReasoner)reasoner).getSubPropertyCache());
-
+        transitiveEngine = new TransitiveEngine(((TransitiveReasoner)reasoner).getSubClassCache().deepCopy(),
+                                                 ((TransitiveReasoner)reasoner).getSubPropertyCache().deepCopy());
+                    // The deepCopies reduce the value of precomputing the closure in the reasoner object
+                    // but enables people to bind the same reasoner to multiple datasets.
+                    // Perhaps need a faster deepcopy
+                                                 
         // But need to check if the data graph defines schema data as well
         dataFind = transitiveEngine.insert(tbox, fdata);
         transitiveEngine.setCaching(true, true);
