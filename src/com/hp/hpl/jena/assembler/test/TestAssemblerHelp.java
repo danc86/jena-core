@@ -95,7 +95,7 @@ public class TestAssemblerHelp extends AssemblerTestBase
             { return null; }
         }
     
-    static Model gremlinModel = model( "eh:Wossname ja:assembler 'com.hp.hpl.jena.assembler.test.TestAssemblerHelp$Gremlin'" );
+    static Model gremlinModel = modelWithStatements( "eh:Wossname ja:assembler 'com.hp.hpl.jena.assembler.test.TestAssemblerHelp$Gremlin'" );
     
     static boolean gremlinInvoked = false;
     

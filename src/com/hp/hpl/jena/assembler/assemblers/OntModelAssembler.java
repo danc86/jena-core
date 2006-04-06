@@ -25,7 +25,7 @@ public class OntModelAssembler extends InfModelAssembler implements Assembler
     protected OntModelSpec getOntModelSpec( Assembler a, Resource root )
         {
         Resource r = getUniqueResource( root, JA.ontModelSpec );
-        return r == null ?defaultSpec : (OntModelSpec) a.open( r );
+        return r == null ? defaultSpec : (OntModelSpec) a.open( r );
         }
     }
 

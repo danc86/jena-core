@@ -64,7 +64,7 @@ public abstract class AssemblerTestBase extends ModelTestBase
     public AssemblerTestBase( String name )
         { super( name ); }
     
-    protected static Model model( String string )
+    protected Model model( String string )
         { 
         Model result = createModel( ReificationStyle.Standard );
         result.setNsPrefix( "ja", JA.getURI() );
@@ -72,7 +72,7 @@ public abstract class AssemblerTestBase extends ModelTestBase
         return modelAdd( result, string );
         }
 
-    protected static Resource resourceInModel( String string )
+    protected Resource resourceInModel( String string )
         {
         Model m = model( string );
         Resource r = resource( string.substring( 0, string.indexOf( ' ' ) ) );
