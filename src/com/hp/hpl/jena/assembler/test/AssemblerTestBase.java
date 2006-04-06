@@ -67,9 +67,14 @@ public abstract class AssemblerTestBase extends ModelTestBase
     protected Model model( String string )
         { 
         Model result = createModel( ReificationStyle.Standard );
+        setExtraPrefixes( result );
+        return modelAdd( result, string );
+        }
+
+    protected void setExtraPrefixes( Model result )
+        {
         result.setNsPrefix( "ja", JA.getURI() );
         result.setNsPrefix( "lm", LocationMappingVocab.getURI() );
-        return modelAdd( result, string );
         }
 
     protected Resource resourceInModel( String string )
