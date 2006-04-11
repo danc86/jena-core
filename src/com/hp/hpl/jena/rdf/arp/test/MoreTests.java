@@ -454,13 +454,13 @@ public class MoreTests extends TestCase implements RDFErrorHandler,
 		});
         a.getHandlers().setErrorHandler(new ErrorHandler(){
             public void error(SAXParseException exception) throws SAXException {
-                throw new RuntimeException("Unexpected error");
+                throw new RuntimeException("Unexpected error", exception);
             }
             public void fatalError(SAXParseException exception) throws SAXException {
               throw exception;  
             }
             public void warning(SAXParseException exception) throws SAXException {
-                throw new RuntimeException("Unexpected warning");
+                throw new RuntimeException("Unexpected warning", exception);
             }});
 		try {
 			a.load(in);
