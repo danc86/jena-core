@@ -50,7 +50,6 @@ import com.hp.hpl.jena.shared.*;
  * 
  * @see LocationMapper
  * @see FileUtils
- * @see FileUtils.asUTF8(InputStream)
  * 
  * 
  * @author     Andy Seaborne
