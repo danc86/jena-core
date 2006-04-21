@@ -180,7 +180,7 @@ public abstract class AbstractTestReifier extends GraphTestBase
             assertEquals( null, r.getTriple( node( "x" ) ) ); }
         catch (AlreadyReifiedException e) 
             {
-            if (r instanceof DBReifier) { System.err.println( "! Db reifier must fix over-specification problem" ); }
+            if (r instanceof DBReifier) { /* System.err.println( "! Db reifier must fix over-specification problem" ); */ }
             else throw e;
             }
         }
@@ -217,7 +217,7 @@ public abstract class AbstractTestReifier extends GraphTestBase
             }
         catch (AlreadyReifiedException e)
             {
-            if (g.getReifier() instanceof DBReifier) { System.err.println( "! Db reifier must fix over-specification problem" ); }
+            if (g.getReifier() instanceof DBReifier) { /* System.err.println( "! Db reifier must fix over-specification problem" ); */ }
             else throw e;
             }
         }
@@ -487,7 +487,7 @@ public abstract class AbstractTestReifier extends GraphTestBase
         }
         catch (AlreadyReifiedException e) 
         {
-        if (r instanceof DBReifier) { System.err.println( "! Db reifier must fix over-specification problem" ); }
+        if (r instanceof DBReifier) { /* System.err.println( "! Db reifier must fix over-specification problem" ); */ }
         else throw e;
         }
         }
