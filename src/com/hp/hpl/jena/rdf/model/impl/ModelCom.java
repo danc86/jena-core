@@ -284,6 +284,12 @@ public class ModelCom
         return this;
     }
     
+    public Model remove( Resource s, Property p, RDFNode o ) {
+        graph.delete( Triple.create( s.asNode(), p.asNode(), o.asNode() ) );
+        return this;
+    }
+        
+    
     public Model remove( StmtIterator iter ) 
         {
         getBulkUpdateHandler().delete( asTriples( iter ) );
