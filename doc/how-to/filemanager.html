@@ -80,6 +80,8 @@ but allowing international characters and some restrictions due to N3.</p>
 The default is RDF/XML unless one of these suffices is found.</p>
 
 <pre class="box">
+@prefix lm: &lt;http://jena.hpl.hp.com/2004/08/location-mapping#&gt;
+
 [] lm:mapping
    [ lm:name "file:foo.n3" ;     lm:altName "file:etc/foo.n3" ] ,
    [ lm:prefix "file:etc/" ;     lm:altPrefix "file:ETC/" ] ,
