@@ -55,7 +55,7 @@ public abstract class AssemblerTestBase extends ModelTestBase
             final Resource name;
             final Object result;
             
-            NamedObjectAssembler( Resource name, Object result )
+            public NamedObjectAssembler( Resource name, Object result )
                 { this.name = name; this.result = result; }
             
             public Model openModel( Resource root, Mode mode )
