@@ -12,6 +12,7 @@ import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.graph.test.*;
 import com.hp.hpl.jena.db.*;
 import com.hp.hpl.jena.shared.*;
+import com.hp.hpl.jena.util.iterator.ExtendedIterator;
 
 import junit.framework.*;
 
@@ -45,6 +46,28 @@ public class TestGraphRDB extends MetaTestGraph
         public LocalGraphRDB( ReificationStyle style )
             { super( con, "testGraph-" + count ++, properties, styleRDB( style ), true ); }   
         } 
+    
+    protected final class GraphRDBWithoutFind extends GraphRDB
+        {
+        public GraphRDBWithoutFind()
+            {
+            super( con, "testGraph-" + count ++, properties, styleRDB( ReificationStyle.Minimal ), true );
+            }
+
+        public ExtendedIterator graphBaseFind( TripleMatch t )
+            { throw new JenaException( "find is Not Allowed" ); }
+        
+        public void performDelete( Triple t )
+            { throw new JenaException( "delete is Not Allowed" ); }
+        }
+    
+    public void testRemoveAllUsesClearNotDelete()
+        {
+        Graph g = new GraphRDBWithoutFind();
+        graphAdd( g, "a P b; c Q d" );
+        g.getBulkUpdateHandler().removeAll();
+        assertEquals( 0, g.size() );
+        }
     }
 
 
