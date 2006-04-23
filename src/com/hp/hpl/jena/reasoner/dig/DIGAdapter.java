@@ -172,6 +172,7 @@ public class DIGAdapter
         new DIGQueryDifferentFromTranslator( DAML_OIL.differentIndividualFrom.getURI() ),
         new DIGQueryRoleFillersTranslator(),
         new DIGQueryRoleFillerTranslator(),
+        new DIGQueryRelatedIndividualsTranslator(),
 
         // specific type tests
         new DIGQueryIsConceptTranslator(),

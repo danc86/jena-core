@@ -2,10 +2,10 @@
  * Source code information
  * -----------------------
  * Original author    Ian Dickinson, HP Labs Bristol
- * Author email       ian.dickinson@hp.com
+ * Author email       Ian.Dickinson@hp.com
  * Package            Jena 2
  * Web                http://sourceforge.net/projects/jena/
- * Created            04-Dec-2003
+ * Created            April 23rd 2006
  * Filename           $RCSfile$
  * Revision           $Revision$
  * Release status     $State$
@@ -15,35 +15,42 @@
  *
  * (c) Copyright 2001, 2002, 2003, 2004, 2005, 2006 Hewlett-Packard Development Company, LP
  * [See end of file]
- *****************************************************************************/
+ * ****************************************************************************/
 
 // Package
 ///////////////
 package com.hp.hpl.jena.reasoner.dig;
 
 
-
 // Imports
 ///////////////
-import org.w3c.dom.Element;
+import org.w3c.dom.*;
 
-import com.hp.hpl.jena.datatypes.xsd.XSDDatatype;
-import com.hp.hpl.jena.graph.Node;
-import com.hp.hpl.jena.rdf.model.AnonId;
-import com.hp.hpl.jena.util.iterator.Map1;
+import com.hp.hpl.jena.rdf.model.Model;
+import com.hp.hpl.jena.rdf.model.Resource;
+import com.hp.hpl.jena.reasoner.TriplePattern;
+import com.hp.hpl.jena.util.iterator.*;
+import com.hp.hpl.jena.vocabulary.*;
+import com.hp.hpl.jena.vocabulary.RDF;
+
 
 
 /**
  * <p>
- * Mapper to map DIG identifier names and concrete value elements to Jena graph nodes.
+ * Translator that generates DIG relatedIndividuals queries in response to a find queries:
+ * <pre>
+ * * :r *
+ * </pre>
+ * or similar.
  * </p>
  *
- * @author Ian Dickinson, HP Labs (<a  href="mailto:Ian.Dickinson@hp.com" >email</a>)
+ * @author Ian Dickinson, HP Labs (<a href="mailto:Ian.Dickinson@hp.com">email</a>)
  * @version CVS $Id$
  */
-public class DIGValueToNodeMapper
-    implements Map1
+public class DIGQueryRelatedIndividualsTranslator
+    extends DIGQueryTranslator
 {
+
     // Constants
     //////////////////////////////////
 
@@ -53,69 +60,67 @@ public class DIGValueToNodeMapper
     // Instance variables
     //////////////////////////////////
 
+
     // Constructors
     //////////////////////////////////
+
+    /**
+     * <p>Construct a translator for the DIG query 'relatedIndividuals'.</p>
+     */
+    public DIGQueryRelatedIndividualsTranslator() {
+        super( ALL, null, ALL );
+    }
+
 
     // External signature methods
     //////////////////////////////////
 
 
     /**
-     * <p>Return the node corresponding to the given element; either a literal
-     * node for ival and sval values, or a URI node for named elements.</p>
-     * @param o An object, expected to be an XML element
-     * @return A node corresponding to the given value
+     * <p>Answer a query that will list the role fillers for an individual-role pair</p>
      */
-    public Object map1( Object o ) {
-        return mapToNode( o );
+    public Document translatePattern( TriplePattern pattern, DIGAdapter da ) {
+        DIGConnection dc = da.getConnection();
+        Document query = dc.createDigVerb( DIGProfile.ASKS, da.getProfile() );
+
+        Element instances = da.createQueryElement( query, DIGProfile.RELATED_INDIVIDUALS );
+        da.addNamedElement( instances, DIGProfile.RATOM, da.getNodeID( pattern.getPredicate() ) );
+
+        return query;
     }
 
 
     /**
-     * <p>Return the node corresponding to the given element; either a literal
-     * node for ival and sval values, or a URI node for named elements.</p>
-     * @param o An object, expected to be an XML element
-     * @return A node corresponding to the given value
+     * <p>Answer an iterator of triples that match the original find query.</p>
      */
-    public Node mapToNode( Object o ) {
-        if (o instanceof Element) {
-            // we know that this mapper is applied to lists of Elements
-            Element elem = (Element) o;
+    public ExtendedIterator translateResponseHook( Document response, TriplePattern query, DIGAdapter da ) {
+        return translateIndividualPairSetResponse( response, query );
+    }
 
-            if (elem.getNodeName().equals( DIGProfile.IVAL )) {
-                // this is an integer element
-                return Node.createLiteral( elem.getNodeValue(), null, XSDDatatype.XSDint );
-            }
-            else if (elem.getNodeName().equals( DIGProfile.SVAL )) {
-                // this is an integer element
-                return Node.createLiteral( elem.getNodeValue(), null, XSDDatatype.XSDstring );
-            }
-            else if (elem.hasAttribute( DIGProfile.NAME )) {
-                return convertNameToNode( elem.getAttribute( DIGProfile.NAME ) );
-            }
-        }
-        else if (o instanceof String) {
-            return convertNameToNode( (String) o );
-        }
 
-        throw new IllegalArgumentException( "Cannot map value " + o + " to an RDF node because it is not a recognised type" );
+    public Document translatePattern( TriplePattern pattern, DIGAdapter da, Model premises ) {
+        // not used
+        return null;
+    }
+
+    public boolean checkPredicate( com.hp.hpl.jena.graph.Node predicate, DIGAdapter da, Model premises ) {
+        // check that the predicate is not a datatype property
+        if (predicate.isConcrete()) {
+            Resource p = (Resource) da.m_sourceData.getRDFNode( predicate );
+            String pNS = p.getNameSpace();
+            return !(da.m_sourceData.contains( p, RDF.type, da.m_sourceData.getProfile().DATATYPE_PROPERTY() ) ||
+                     RDFS.getURI().equals( pNS ) ||
+                     RDF.getURI().equals( pNS ) ||
+                     OWL.getURI().equals( pNS ));
+        }
+        else {
+            return false;
+        }
     }
 
 
     // Internal implementation methods
     //////////////////////////////////
-
-    /** Answer the node with the given name. It may be the node ID of a bNode */
-    private Node convertNameToNode( String name ) {
-        if (name.startsWith( DIGAdapter.ANON_MARKER )) {
-            String anonID = name.substring( DIGAdapter.ANON_MARKER.length() );
-            return Node.createAnon( new AnonId( anonID ) );
-        }
-        else {
-            return Node.createURI( name );
-        }
-    }
-
 
     //==============================================================================
     // Inner class definitions
@@ -150,4 +155,3 @@ public class DIGValueToNodeMapper
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
  * THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-

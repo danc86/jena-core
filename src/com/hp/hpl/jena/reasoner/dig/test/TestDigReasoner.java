@@ -665,6 +665,34 @@ public class TestDigReasoner
         assertFalse( sawI0 );
     }
 
+    public void testRelatedIndividuals() {
+        String NS = "http://example.org/foo#";
+
+        DIGReasoner r = (DIGReasoner) ReasonerRegistry.theRegistry().create( DIGReasonerFactory.URI, null );
+
+        OntModelSpec spec = new OntModelSpec( OntModelSpec.OWL_DL_MEM );
+        spec.setReasoner( r );
+        OntModel m = ModelFactory.createOntologyModel( spec, null );
+
+        OntClass F0 = m.createClass( NS + "F0" );
+        Individual i0 = F0.createIndividual( NS + "i0" );
+        Individual i1 = F0.createIndividual( NS + "i1" );
+        Individual i2 = F0.createIndividual( NS + "i2" );
+        OntProperty p = m.createTransitiveProperty( NS + "p" );
+
+        i0.addProperty( p, i1 );
+        i1.addProperty( p, i2 );
+
+        //TestUtil.assertIteratorValues( this, i0.listPropertyValues( p ), new Resource[] {i1, i2}, 0 );
+
+        int count = 0;
+        for (StmtIterator i = m.listStatements( null, p, (RDFNode) null ); i.hasNext(); ) {
+            Statement s = i.nextStatement();
+            count++;
+        }
+        assertEquals( "Should find 3 statements", 3, count );
+    }
+
 
     // User bug reports
 

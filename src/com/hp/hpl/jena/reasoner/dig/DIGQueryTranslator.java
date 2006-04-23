@@ -371,6 +371,38 @@ public abstract class DIGQueryTranslator {
 
 
     /**
+     * <p>Translate an individualPairSet response, which lists pairs of related
+     * individuals for some queried relation p.</p>
+     * @param response
+     * @param query
+     * @return An iterator over triples formed from the result pairs and the known query predicate
+     */
+    protected ExtendedIterator translateIndividualPairSetResponse( Document response, TriplePattern query ) {
+        // evaluate a path through the return value to give us an iterator over individual names
+        SimpleXMLPath p = new SimpleXMLPath( true );
+        p.appendElementPath( DIGProfile.INDIVIDUAL_PAIR_SET );
+        p.appendElementPath( DIGProfile.INDIVIDUAL_PAIR );
+        p.appendElementPath( DIGProfile.INDIVIDUAL );
+        p.appendAttrPath( DIGProfile.NAME );
+
+        // collect the triples corresponding to pairs of results
+        List results = new ArrayList();
+        Node pred = query.getPredicate();
+        DIGValueToNodeMapper dvm = new DIGValueToNodeMapper();
+
+        // build triples from pairs of results from the XML path iterator
+        Iterator i = p.getAll( response );
+        while (i.hasNext()) {
+            results.add( new Triple( dvm.mapToNode( i.next() ),
+                                     pred,
+                                     dvm.mapToNode( i.next() ) ));
+        }
+
+        return WrappedIterator.create( results.iterator() );
+    }
+
+
+    /**
      * <p>Translate an document encoding a set of named entities into an extended iterator
      * of triples, placing the concept identities into either the subject
      * or object position in the returned triple.</p>
