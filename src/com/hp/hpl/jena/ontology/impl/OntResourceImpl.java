@@ -1158,11 +1158,16 @@ public class OntResourceImpl
     public boolean isIndividual() {
         OntModel m = (getModel() instanceof OntModel) ? (OntModel) getModel() : null;
 
+        // can we use the reasoner's native abilities to do the isntance test?
+        boolean useInf = false;
+        useInf = m.getProfile().THING() != null &&
+                 m.getReasoner() != null &&
+                 m.getReasoner().supportsProperty( ReasonerVocabulary.individualAsThingP );
+
         StmtIterator i = null, j = null;
         try {
             if (m != null) {
-                if (!(m.getGraph() instanceof BasicForwardRuleInfGraph) ||
-                    m.getProfile().THING() == null) {
+                if (!useInf) {
                     // either not using the OWL reasoner, or not using OWL
                     // look for an rdf:type of this resource that is a class
                     for (i = listProperties( RDF.type ); i.hasNext(); ) {
