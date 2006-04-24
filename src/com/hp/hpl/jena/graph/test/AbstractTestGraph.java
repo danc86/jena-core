@@ -340,8 +340,10 @@ public/* abstract */class AbstractTestGraph extends GraphTestBase
             assertEquals( "remove with " + findRemove + ":", 0, g.size() );
             assertFalse( g.contains( Triple.create( findCheck ) ) );
             }
-        catch (UnsupportedOperationException e)
-            { assertFalse( g.getCapabilities().iteratorRemoveAllowed() ); }
+        catch (UnsupportedOperationException e) {
+            it.close();
+            assertFalse( g.getCapabilities().iteratorRemoveAllowed() ); 
+        }
         it.close();
         }
     
