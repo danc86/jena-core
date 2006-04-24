@@ -118,6 +118,9 @@ public class LPBRuleEngine {
      */
     public synchronized void addRule(Rule rule) {
         checkSafeToUpdate();
+        if (rule.headLength() > 1) {
+            throw new ReasonerException("Backward rules only allowed one head clause");
+        }
         ruleStore.addRule(rule);
     }
     

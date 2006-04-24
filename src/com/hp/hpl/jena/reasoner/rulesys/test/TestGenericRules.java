@@ -164,6 +164,27 @@ public class TestGenericRules extends TestCase {
     }
     
     /**
+     * Test early detection of illegal backward rules.
+     */
+    public void testBRuleErrorHandling() {
+        Graph data = Factory.createGraphMem();
+        List rules = Rule.parseRules(
+                    "[a1: -> [(?x eg:p ?y) (?x eg:q ?y) <- (?x eg:r ?y)]]"
+                );
+        boolean foundException = false;
+        try {
+            GenericRuleReasoner reasoner = (GenericRuleReasoner)GenericRuleReasonerFactory.theInstance().create(null);
+            reasoner.setRules(rules);
+            reasoner.setMode(GenericRuleReasoner.HYBRID);
+            InfGraph infgraph = reasoner.bind(data);
+            infgraph.prepare();
+        } catch (ReasonerException e) {
+            foundException = true;
+        }
+        assertTrue("Catching use of multi-headed brules", foundException);
+    }
+    
+    /**
      * Test example parameter setting
      */
     public void testParameters() {
