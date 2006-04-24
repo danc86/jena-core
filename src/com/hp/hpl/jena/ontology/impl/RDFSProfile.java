@@ -233,6 +233,7 @@ public class RDFSProfile
         {  OntClass.class,              new SupportsCheck() {
                                             public boolean doCheck( Node n, EnhGraph g ) {
                                                 return g.asGraph().contains( n, RDF.type.asNode(), RDFS.Class.asNode() ) ||
+                                                       g.asGraph().contains( n, RDF.type.asNode(), RDFS.Datatype.asNode() ) ||
                                                        // These are common cases that we should support
                                                        n.equals( RDFS.Resource.asNode() ) ||
                                                        g.asGraph().contains( Node.ANY, RDFS.domain.asNode(), n ) ||

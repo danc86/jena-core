@@ -299,6 +299,35 @@ public class TestBugReports
             ontModel.isInBaseModel(ontModel.createStatement(B, RDF.type, OWL.Class)));
     }
 
+    /** Bug report 1408253 from Holger - rdfs:Datatype should be recognised as a RDFS class
+     * even without the reasoner
+     */
+    public void test_hk_07() {
+        // owl full
+        OntModel m = ModelFactory.createOntologyModel( OntModelSpec.OWL_MEM );
+        Resource c = m.createResource();
+        c.addProperty( RDF.type, RDFS.Datatype );
+        assertTrue( c.canAs( OntClass.class ));
+
+        // owl dl
+        m = ModelFactory.createOntologyModel( OntModelSpec.OWL_DL_MEM );
+        c = m.createResource();
+        c.addProperty( RDF.type, RDFS.Datatype );
+        assertTrue( c.canAs( OntClass.class ));
+
+        // owl lite
+        m = ModelFactory.createOntologyModel( OntModelSpec.OWL_LITE_MEM );
+        c = m.createResource();
+        c.addProperty( RDF.type, RDFS.Datatype );
+        assertTrue( c.canAs( OntClass.class ));
+
+        // rdfs
+        m = ModelFactory.createOntologyModel( OntModelSpec.RDFS_MEM );
+        c = m.createResource();
+        c.addProperty( RDF.type, RDFS.Datatype );
+        assertTrue( c.canAs( OntClass.class ));
+    }
+
     public void test_hk_importCache() {
         final String BASE = "http://protege.stanford.edu/plugins/owl/testdata/";
         OntModelSpec spec = new OntModelSpec(OntModelSpec.OWL_MEM);

@@ -255,6 +255,7 @@ public class OWLProfile
                                                 return g.asGraph().contains( n, RDF.type.asNode(), OWL.Class.asNode() ) ||
                                                        g.asGraph().contains( n, RDF.type.asNode(), OWL.Restriction.asNode() ) ||
                                                        g.asGraph().contains( n, RDF.type.asNode(), RDFS.Class.asNode() ) ||
+                                                       g.asGraph().contains( n, RDF.type.asNode(), RDFS.Datatype.asNode() ) ||
                                                        // These are common cases that we should support
                                                        n.equals( OWL.Thing.asNode() ) ||
                                                        n.equals( OWL.Nothing.asNode() ) ||
