@@ -185,12 +185,13 @@ public class TestBasicOperations extends TestCase {
 
 	public void testSetLongObjectLen() {
 		int len = dbDriver.getLongObjectLength();
+        int len2 = len - 2 ; 
 		try {
 			tearDown();
 			conn = TestConnection.makeTestConnection();
 			dbDriver = conn.getDriver();
 			len = dbDriver.getLongObjectLength();
-			dbDriver.setLongObjectLength(len / 2);
+			dbDriver.setLongObjectLength(len2);
 			model = ModelRDB.createModel(conn);
 		} catch (Exception e) {
 			assertTrue(false);
@@ -205,7 +206,7 @@ public class TestBasicOperations extends TestCase {
 			dbDriver = conn.getDriver();
 			assertTrue(len == dbDriver.getLongObjectLength());
 			model = ModelRDB.open(conn);
-			assertTrue(len / 2 == dbDriver.getLongObjectLength());
+			assertTrue(len2 == dbDriver.getLongObjectLength());
 		} catch (Exception e) {
 			assertTrue(false);
 		}
