@@ -285,6 +285,7 @@ public class FileManager
 
     private Model loadModelWorker(String filenameOrURI, String baseURI, String rdfSyntax)
     {
+        // Better: if ( hasCachedModel(filenameOrURI) ) return getFromCache(filenameOrURI) ;  
         if ( modelCache != null && modelCache.contains(filenameOrURI) )
         {
             if ( log.isDebugEnabled() )
