@@ -21,6 +21,7 @@ import org.apache.commons.logging.LogFactory;
 
 //java.net.URI code
 import java.net.URI ;
+import java.security.AccessControlException;
 
 /** com.hp.hpl.jena.query.util.RelURI
  * 
@@ -282,9 +283,11 @@ public class RelURI
                     if ( f.isDirectory() && ! baseURI.endsWith("/") )
                         baseURI = baseURI+"/" ;
 
-                } catch (IOException ex)
-                {
+                } catch (IOException ex) {
                     LogFactory.getLog(RelURI.class).warn("IOException in chooseBase - ignored") ;
+                    return null ;
+                } catch (AccessControlException ex)  {
+                    LogFactory.getLog(RelURI.class).warn("Security exception in chooseBase - ignored") ;
                     return null ;
                 }
             }
