@@ -22,7 +22,9 @@ public class TurtleJenaWriter extends N3JenaWriter
     public TurtleJenaWriter()
     {
         super() ;
-        writer.useWellKnownPropertySymbols = false ;
+        
+        if ( writer.getPropValue("usePropertySymbols") == null )
+            writer.useWellKnownPropertySymbols = false ;
         writer.allowTripleQuotedStrings = false ;
         writer.allowDoubles = false ;
     }

@@ -8,6 +8,7 @@ package com.hp.hpl.jena.n3;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+import com.hp.hpl.jena.JenaRuntime;
 import com.hp.hpl.jena.util.iterator.* ;
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.shared.JenaException;
@@ -825,9 +826,9 @@ public class N3JenaWriterCommon implements RDFWriter
                 logger.warn("getPropValue: N3 Property for '"+prop+"' is not a string") ;
             return (String)obj ; 
         }
-        String s = System.getProperty(prop) ;
+        String s = JenaRuntime.getSystemProperty(prop) ;
         if ( s == null )
-            s = System.getProperty(localPropName(prop)) ;
+            s = JenaRuntime.getSystemProperty(localPropName(prop)) ;
         return s ;
     }
     
