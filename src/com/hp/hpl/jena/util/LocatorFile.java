@@ -10,10 +10,9 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.security.AccessControlException;
 
 import org.apache.commons.logging.*;
-
-import com.hp.hpl.jena.JenaRuntime;
 
 /** Location files in the filing system.
  *  A FileLocator can have a "current directory" - this is separate from any
@@ -91,11 +90,16 @@ public class LocatorFile implements Locator
     {
         File f = toFile(filenameOrURI) ;
 
-        if ( f == null || !f.exists() )
-        {
-            if ( FileManager.logAllLookups && log.isTraceEnabled())
-                log.trace("Not found: "+filenameOrURI+altDirLogStr) ;
-            return null ;
+        try {
+            if ( f == null || !f.exists() )
+            {
+                if ( FileManager.logAllLookups && log.isTraceEnabled())
+                    log.trace("Not found: "+filenameOrURI+altDirLogStr) ;
+                return null ;
+            }
+        } catch (AccessControlException e) {
+            log.warn("Security problem testing for file", e);
+            return null;
         }
         
         try {
