@@ -36,7 +36,7 @@ public class Tutorial05 extends Object {
         }
         
         // read the RDF/XML file
-        model.read(new InputStreamReader(in), "");
+        model.read(in, "");
                     
         // write it to standard out
         model.write(System.out);            
