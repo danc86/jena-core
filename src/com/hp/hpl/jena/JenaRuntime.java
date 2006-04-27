@@ -27,13 +27,17 @@ public class JenaRuntime
         
     static Map features = new HashMap() ;
     static {
-        // Note getSystemProperty uses featureNoSecurity but works if it
-        // has not been initialized
-        if ( getSystemProperty(featureNoSecurity) != null )
-            setFeature(featureNoSecurity) ;
-        
-        if ( getSystemProperty(featureNoCharset) != null )
-            setFeature(featureNoCharset) ;
+        try {
+            // Note getSystemProperty uses featureNoSecurity but works if it
+            // has not been initialized
+            if ( getSystemProperty(featureNoSecurity) != null )
+                setFeature(featureNoSecurity) ;
+            
+            if ( getSystemProperty(featureNoCharset) != null )
+                setFeature(featureNoCharset) ;
+        } catch (SecurityException e) {
+               // leave as default, e.g. if running as applet
+        }
     }
     
     public static void setFeature(String featureName) { features.put(featureName, "true") ; }
