@@ -923,7 +923,7 @@ public abstract class DriverRDB implements IRDBDriver {
 		}
 		if ( cnt >= lockTryMax ) {
 			err = "Failed to lock database after "+ lockTryMax + " attempts.\n"
-			+ err + "\n."
+			+ err + "\n"
 			+ "Try later or else call DriverRDB.unlockDB() after ensuring\n" +
 			"that no other Jena applications are using the database.";
 			throw new RDFRDBException(err);
