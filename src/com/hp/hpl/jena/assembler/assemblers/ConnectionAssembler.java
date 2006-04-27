@@ -6,6 +6,7 @@
 
 package com.hp.hpl.jena.assembler.assemblers;
 
+import com.hp.hpl.jena.JenaRuntime;
 import com.hp.hpl.jena.assembler.*;
 import com.hp.hpl.jena.assembler.exceptions.CannotLoadClassException;
 import com.hp.hpl.jena.rdf.model.*;
@@ -59,7 +60,7 @@ public class ConnectionAssembler extends AssemblerBase implements Assembler
         for (StmtIterator it = root.listProperties( JA.dbClassProperty ); it.hasNext();)
             {
             String propertyName = getString( it.nextStatement() );
-            String className = System.getProperty( propertyName );
+            String className = JenaRuntime.getSystemProperty( propertyName );
             try { Class.forName( className ); }
             catch (ClassNotFoundException e)
                 { throw new CannotLoadClassException( root, className, e ); }
@@ -104,7 +105,7 @@ public class ConnectionAssembler extends AssemblerBase implements Assembler
         {
         Property property = JA.property( label + "Property" );
         Literal name = getUniqueLiteral( root, property );
-        return name == null ? ifAbsent : System.getProperty( name.getLexicalForm() ); 
+        return name == null ? ifAbsent : JenaRuntime.getSystemProperty( name.getLexicalForm() ); 
         }
     }
 

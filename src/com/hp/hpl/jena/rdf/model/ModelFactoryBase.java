@@ -6,6 +6,7 @@
 
 package com.hp.hpl.jena.rdf.model;
 
+import com.hp.hpl.jena.JenaRuntime;
 import com.hp.hpl.jena.shared.*;
 
 /**
@@ -64,7 +65,7 @@ public class ModelFactoryBase
     
     protected static String gp( String name, String ifAbsent )
         { 
-        String answer = System.getProperty( "jena." + name ); 
+        String answer = JenaRuntime.getSystemProperty( "jena." + name ); 
         return answer == null ? ifAbsent : answer;
         }
 

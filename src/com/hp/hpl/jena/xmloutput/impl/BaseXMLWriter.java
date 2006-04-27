@@ -82,7 +82,7 @@ abstract public class BaseXMLWriter implements RDFXMLWriterI {
          Introduced to cope with bug 832682: double spacing on windows platforms
     */
     private static final String newline_XMLNS = 
-        System.getProperty( "line.separator" ) + "    xmlns";
+        JenaRuntime.getSystemProperty( "line.separator" ) + "    xmlns";
     
     public BaseXMLWriter() {
         setupMaps();

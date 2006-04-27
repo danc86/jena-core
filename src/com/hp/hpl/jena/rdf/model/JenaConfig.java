@@ -95,7 +95,7 @@ public class JenaConfig {
     static {
         try {
             String str = 
-                  System.getProperty(Jena.PATH + ".oldLiteralCompare", "false");
+                  JenaRuntime.getSystemProperty(Jena.PATH + ".oldLiteralCompare", "false");
             oldLiteralCompare = 
                         (str.equalsIgnoreCase("true") || str.equals("1"));
         } catch (SecurityException se) {

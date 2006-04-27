@@ -6,6 +6,7 @@
 
 package com.hp.hpl.jena.graph;
 
+import com.hp.hpl.jena.JenaRuntime;
 import com.hp.hpl.jena.mem.*;
 import com.hp.hpl.jena.mem.faster.GraphMemFaster;
 import com.hp.hpl.jena.shared.*;
@@ -23,10 +24,10 @@ public class Factory
         { super(); }
 
     public static final boolean faster =
-        System.getProperty( "jena.faster", "yes" ).equals( "yes" );
+        JenaRuntime.getSystemProperty( "jena.faster", "yes" ).equals( "yes" );
 
     public static final boolean newHashing = 
-        System.getProperty( "jena.hashing", "yes" ).equals( "yes" );
+        JenaRuntime.getSystemProperty( "jena.hashing", "yes" ).equals( "yes" );
     /**
         Answer a memory-based Graph with the Standard reification style.
     */

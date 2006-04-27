@@ -16,6 +16,8 @@ import java.net.InetAddress ;
 import java.net.UnknownHostException ;
 import java.io.ByteArrayInputStream;
 
+import com.hp.hpl.jena.JenaRuntime;
+
 public class UUID
 {
     // The UUID is string format.
@@ -227,9 +229,9 @@ public class UUID
 		try { nid.append(InetAddress.getLocalHost().getHostAddress()) ; }
 		catch (UnknownHostException ex) { }       
 		
-        nid.append(System.getProperty("os.version")) ;
-        nid.append(System.getProperty("user.name")) ;
-        nid.append(System.getProperty("java.version")) ;
+        nid.append(JenaRuntime.getSystemProperty("os.version")) ;
+        nid.append(JenaRuntime.getSystemProperty("user.name")) ;
+        nid.append(JenaRuntime.getSystemProperty("java.version")) ;
 		nid.append(Integer.toString(Thread.activeCount())) ;
 		nid.append(Long.toString(Runtime.getRuntime().freeMemory())) ;
 		nid.append(Long.toString(Runtime.getRuntime().totalMemory())) ;
