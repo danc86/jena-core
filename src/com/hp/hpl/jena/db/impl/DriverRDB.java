@@ -2088,11 +2088,14 @@ public abstract class DriverRDB implements IRDBDriver {
 	protected String IDtoPrefix ( int prefixID ) {
 		// check cache
 		DBIDInt dbid = new DBIDInt(prefixID);
-		Object res = prefixCache.get(dbid);
+		String res = (String) prefixCache.get(dbid);
 		if ( res != null)
-			return (String) res;
-		else
-			return IDtoString ( prefixID, PREFIX_TABLE, RDBCodePrefix);
+			return res;
+		else {
+            res = IDtoString ( prefixID, PREFIX_TABLE, RDBCodePrefix);
+            prefixCache.put(dbid,res);
+			return res;
+        }
 	}
 	
 	/**
