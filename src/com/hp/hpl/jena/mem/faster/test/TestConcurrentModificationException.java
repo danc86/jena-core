@@ -24,19 +24,21 @@ public class TestConcurrentModificationException extends ModelTestBase
 
     public void testArrayBunchCME() 
         { 
-        ArrayBunch b = new ArrayBunch();
-        b.add( Triple.create( "a P b" ) );
-        b.add( Triple.create( "c Q d" ) );
-        Iterator it = b.iterator();
-        it.next();
-        b.add( Triple.create( "change its state" ) );
-        try { it.next(); fail( "should have thrown ConcurrentModificationException" ); }
-        catch (ConcurrentModificationException e) { pass(); }
+        testBunchCME( new ArrayBunch() );
         }
     
     public void testSetBunchCME()
         {
-        SetBunch b = new SetBunch( new ArrayBunch() );
+        testBunchCME( new SetBunch( new ArrayBunch() ) );
+        }
+    
+    public void testHashedBunchCME()
+        {
+        testBunchCME( new HashedTripleBunch( new ArrayBunch() ) );
+        }
+
+    private void testBunchCME( TripleBunch b )
+        {
         b.add( Triple.create( "a P b" ) );
         b.add( Triple.create( "c Q d" ) );
         Iterator it = b.iterator();
@@ -44,11 +46,6 @@ public class TestConcurrentModificationException extends ModelTestBase
         b.add( Triple.create( "change its state" ) );
         try { it.next(); fail( "should have thrown ConcurrentModificationException" ); }
         catch (ConcurrentModificationException e) { pass(); }
-        }
-    
-    public void testHashedBunchCME()
-        {
-        
         }
     }
 

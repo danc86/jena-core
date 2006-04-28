@@ -75,6 +75,7 @@ public class ModelExpansion
     
     protected static void addRangeTypes( Model result, Model schema )
         {
+        Model toAdd = ModelFactory.createDefaultModel();
         for (StmtIterator it = schema.listStatements( ANY, RDFS.range, ANY ); it.hasNext();)
             {
             Statement s = it.nextStatement();
@@ -83,9 +84,10 @@ public class ModelExpansion
             for (StmtIterator x = result.listStatements( ANY, property, ANY ); x.hasNext();)
                 {
                 RDFNode ob = x.nextStatement().getObject();
-                if (ob.isResource()) result.add( (Resource) ob, RDF.type, type );
+                if (ob.isResource()) toAdd.add( (Resource) ob, RDF.type, type );
                 }
             }
+        result.add( toAdd );
         }
     
     protected static void addSupertypes( Model result )
