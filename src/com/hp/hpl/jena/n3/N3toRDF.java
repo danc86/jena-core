@@ -286,8 +286,8 @@ public class N3toRDF implements N3ParserEventHandler
             case N3Parser.NUMBER :
                 Resource xsdType = XSD.integer ;
                 if ( text.indexOf('.') >= 0 )
-                    // The choice of XSD:double is for compatibility with N3/cwm.
-                    xsdType = XSD.xdouble ;
+                    // The choice of XSD:decimal is for compatibility with N3/cwm.
+                    xsdType = XSD.decimal ;
                 if ( text.indexOf('e') >= 0 || text.indexOf('E') >= 0 )
                     xsdType = XSD.xdouble ;
                 return model.createTypedLiteral(text, xsdType.getURI());
