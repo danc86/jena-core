@@ -79,8 +79,12 @@ public class ArrayBunch implements TripleBunch
     
     public void app( Domain d, StageElement next, MatchOrBind s )
         {
-        int i = size;
-        while (i > 0) if (s.matches( elements[--i] )) next.run( d );
+        int i = size, initialChanges = changes;
+        while (i > 0) 
+            {
+            if (changes > initialChanges) throw new ConcurrentModificationException();
+            if (s.matches( elements[--i] )) next.run( d );
+            }
         }
     
     public ExtendedIterator iterator()

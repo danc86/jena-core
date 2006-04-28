@@ -128,9 +128,10 @@ public class HashedTripleBunch extends HashCommon implements TripleBunch
     
     public void app( Domain d, StageElement next, MatchOrBind s )
         {
-        int i = capacity;
+        int i = capacity, initialChanges = changes;
         while (i > 0)
             {
+            if (changes > initialChanges) throw new ConcurrentModificationException();
             Object t = keys[--i];
             if (t != null  && s.matches( (Triple) t )) next.run( d );
             }
