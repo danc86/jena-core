@@ -7,7 +7,7 @@
 package com.hp.hpl.jena.shared.test;
 
 import com.hp.hpl.jena.shared.*;
-import com.hp.hpl.jena.shared.impl.PrefixMappingImpl;
+import com.hp.hpl.jena.shared.PrefixMapping.Factory;
 import com.hp.hpl.jena.graph.test.*;
 
 import java.util.*;
@@ -320,7 +320,7 @@ public abstract class AbstractTestPrefixMapping extends GraphTestBase
     public void testAddDefaultMap()
         {
         PrefixMapping pm = getMapping();
-        PrefixMapping root = new PrefixMappingImpl();
+        PrefixMapping root = PrefixMapping.Factory.create();
         pm.setNsPrefix( "a", "aPrefix:" );
         pm.setNsPrefix( "b", "bPrefix:" );
         root.setNsPrefix( "a", "pootle:" );
