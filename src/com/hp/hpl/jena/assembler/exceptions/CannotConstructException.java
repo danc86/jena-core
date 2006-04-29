@@ -10,7 +10,7 @@ import com.hp.hpl.jena.assembler.Assembler;
 import com.hp.hpl.jena.rdf.model.Resource;
 
 /**
-    Exception used to report a fauluire of a group assembler to construct an
+    Exception used to report a failure of a group assembler to construct an
     object because there is no component assembler associated with the
     object's most specific type.
     @author kers
