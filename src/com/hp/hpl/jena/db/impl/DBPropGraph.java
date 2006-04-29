@@ -307,12 +307,14 @@ public class DBPropGraph extends DBProp {
 	
 	public static DBPropGraph findPropGraphByName( SpecializedGraph graph, String name ) {
 		Node myNode = Node.createLiteral( name );
-		ClosableIterator it =  graph.find( null, graphName, myNode, newComplete() );
-		if( it.hasNext() )
-			try { return new DBPropGraph( graph, ((Triple)it.next()).getSubject()); }
-            finally { it.close(); }
-		else
-			return null;
+		ClosableIterator it = graph.find( null, graphName, myNode, newComplete() );
+        
+        try {
+            if( it.hasNext() )
+                return new DBPropGraph( graph, ((Triple)it.next()).getSubject());
+            return null;
+        }
+        finally { it.close(); }
 	}
 	
 	/*
