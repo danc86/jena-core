@@ -256,7 +256,9 @@ public abstract class ModelSpecImpl implements ModelSpec
     
     public Model getModel( String URL )
         { return null; }
-                
+    
+    public Model getModel( String URL, ModelReader loadIfAbsent )
+        { throw new CannotCreateException( URL ); }
     }
 
 /*

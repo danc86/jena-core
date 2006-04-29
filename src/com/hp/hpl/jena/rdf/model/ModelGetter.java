@@ -26,6 +26,13 @@ public interface ModelGetter
         and otherwise answer null.
     */
     public Model getModel( String URL );
+    
+    /**
+        Answer a model appropriate for <code>URL</code>, If none is to hand,
+        and it's possible to create one, create it and load it using <code>loadIfAbsent</code>.
+        Otherwise throw CannotCreateException. This method never returns null.
+    */
+    public Model getModel( String URL, ModelReader loadIfAbsent );
     }
 
 

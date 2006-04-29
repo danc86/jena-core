@@ -8,6 +8,7 @@ package com.hp.hpl.jena.rdf.model.impl;
 
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.rdf.model.*;
+import com.hp.hpl.jena.shared.CannotCreateException;
 import com.hp.hpl.jena.util.iterator.*;
 
 /**
@@ -94,6 +95,9 @@ public class ModelMakerImpl implements ModelMaker
     
     public Model getModel( String URL )
         { return null; }         
+    
+    public Model getModel( String URL, ModelReader loadIfAbsent )
+        { throw new CannotCreateException( URL ); }
     }
 
 /*
