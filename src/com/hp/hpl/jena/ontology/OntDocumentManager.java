@@ -1092,19 +1092,28 @@ public class OntDocumentManager
      */
     private Model fetchLoadedImportModel( OntModelSpec spec, String importURI )
         {
-        Model in;
-        // create a sub ontology model and load it from the source
-        // note that we do this to ensure we recursively load imports
-        ModelMaker maker = spec.getImportModelMaker();
-        boolean loaded = maker.hasModel( importURI );
-
-        in = maker.openModel( importURI );
-
-        // if the graph was already in existence, we don't need to read the contents (we assume)!
-        if (!loaded) {
-            read( in, importURI, true );
-        }
-        return in;
+        ModelReader loader = new ModelReader() 
+                {
+                public Model readModel( Model toRead, String URL )
+                    {
+                    read( toRead, URL, true );
+                    return toRead;
+                    }
+                };
+        return spec.getImportModelGetter().getModel( importURI, loader );
+//        Model in;
+//        // create a sub ontology model and load it from the source
+//        // note that we do this to ensure we recursively load imports
+//        ModelMaker maker = spec.getImportModelMaker();
+//        boolean loaded = maker.hasModel( importURI );
+//
+//        in = maker.openModel( importURI );
+//
+//        // if the graph was already in existence, we don't need to read the contents (we assume)!
+//        if (!loaded) {
+//            read( in, importURI, true );
+//        }
+//        return in;
         }
 
 
