@@ -11,8 +11,8 @@ import java.util.*;
 import com.hp.hpl.jena.assembler.*;
 import com.hp.hpl.jena.assembler.assemblers.ModelSourceAssembler;
 import com.hp.hpl.jena.assembler.exceptions.PropertyRequiredException;
-import com.hp.hpl.jena.graph.impl.SimpleGraphMaker;
 import com.hp.hpl.jena.rdf.model.*;
+import com.hp.hpl.jena.rdf.model.impl.MemoryModelGetter;
 
 public class TestModelSourceAssembler extends AssemblerTestBase
     {
@@ -51,8 +51,9 @@ public class TestModelSourceAssembler extends AssemblerTestBase
         {
         Assembler a = new ModelSourceAssembler();
         ModelGetter g = (ModelGetter) a.open( resourceInModel( "mg rdf:type ja:ModelSource" ) );
-        assertInstanceOf( ModelMaker.class, g );
-        assertInstanceOf( SimpleGraphMaker.class, ((ModelMaker) g).getGraphMaker() );
+        assertInstanceOf( MemoryModelGetter.class, g );
+//        assertInstanceOf( ModelMaker.class, g );
+//        assertInstanceOf( SimpleGraphMaker.class, ((ModelMaker) g).getGraphMaker() );
         }
     
     public void testRDBModelMakerSource()
