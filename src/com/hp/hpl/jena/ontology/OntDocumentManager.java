@@ -1052,23 +1052,7 @@ public class OntDocumentManager
             // add this model to occurs check list
             model.addLoadedImport( importURI );
 
-            // if we have a cached version get that, otherwise load from the URI but don't do the imports closure
-            Model in = getModel( importURI );
-
-            // if not cached, we must load it from source
-            if (in == null) {
-                // create a sub ontology model and load it from the source
-                // note that we do this to ensure we recursively load imports
-                ModelMaker maker = model.getSpecification().getImportModelMaker();
-                boolean loaded = maker.hasModel( importURI );
-
-                in = maker.openModel( importURI );
-
-                // if the graph was already in existence, we don't need to read the contents (we assume)!
-                if (!loaded) {
-                    read( in, importURI, true );
-                }
-            }
+            Model in = fetchPossiblyCachedImportModel( model, importURI );
 
             // we trap the case of importing ourself (which may happen via an indirect imports chain)
             if (in != model) {
@@ -1083,6 +1067,45 @@ public class OntDocumentManager
             }
         }
     }
+
+    /**
+      if we have a cached version get that, otherwise load from the URI but don't do the imports closure
+     * @param model
+     * @param importURI
+     * @return
+     */
+    private Model fetchPossiblyCachedImportModel( OntModel model, String importURI ) {
+        Model in = getModel( importURI );
+
+        // if not cached, we must load it from source
+        if (in == null) {
+            in = fetchLoadedImportModel( model.getSpecification(), importURI );
+        }
+        return in;
+        }
+
+
+    /**
+     * @param spec
+     * @param importURI
+     * @return
+     */
+    private Model fetchLoadedImportModel( OntModelSpec spec, String importURI )
+        {
+        Model in;
+        // create a sub ontology model and load it from the source
+        // note that we do this to ensure we recursively load imports
+        ModelMaker maker = spec.getImportModelMaker();
+        boolean loaded = maker.hasModel( importURI );
+
+        in = maker.openModel( importURI );
+
+        // if the graph was already in existence, we don't need to read the contents (we assume)!
+        if (!loaded) {
+            read( in, importURI, true );
+        }
+        return in;
+        }
 
 
     /**
