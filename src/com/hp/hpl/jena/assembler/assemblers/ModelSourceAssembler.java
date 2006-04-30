@@ -17,8 +17,8 @@ public class ModelSourceAssembler extends AssemblerBase
         {
         checkType( root, JA.ModelSource );
         return root.hasProperty( RDF.type, JA.RDBModelSource )
-             ? createRDBMaker( getConnection( a, root ) )
-            : new MemoryModelGetter()
+             ? (Object)createRDBMaker( getConnection( a, root ) )
+            : (Object)new MemoryModelGetter()
             ; 
         }
 
