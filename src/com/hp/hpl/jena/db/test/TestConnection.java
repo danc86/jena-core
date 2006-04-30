@@ -597,7 +597,7 @@ public class TestConnection extends TestCase {
 				Property p = foo.createProperty("test#predicate");
 				Resource o = foo.createResource("test#object");
 				Statement stmt = foo.createStatement(u, p, o);
-				assertFalse(foo.contains(stmt));
+				//assertFalse(foo.contains(stmt)); // Invalid test - thread2 may get in first
 				s.incCount();
 				s.waitOnCount(4);
 				assertTrue(foo.contains(stmt));
