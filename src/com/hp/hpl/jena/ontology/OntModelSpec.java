@@ -241,31 +241,31 @@ public class OntModelSpec extends ModelSpecImpl implements ModelSpec {
     }
     
     public ModelGetter getImportModelGetter() {
-        if (importModelGetter == null) importModelGetter = fabricateModelGetter();
+        if (importModelGetter == null) importModelGetter = m_importsMaker; //  fabricateModelGetter();
         return importModelGetter;
     }
 
-    private ModelGetter fabricateModelGetter()
-        {
-        return new ModelGetter()
-            {
-            public Model getModel( String URL )
-                {
-                return m_importsMaker.hasModel( URL ) ? m_importsMaker.openModel( URL ) : null;
-                }
-
-            public Model getModel( String URL, ModelReader loadIfAbsent )
-                {
-                return m_importsMaker.hasModel( URL ) ? m_importsMaker.openModel( URL ) : createAndLoad( URL, loadIfAbsent );
-                }
-
-            private Model createAndLoad( String URL, ModelReader loadIfAbsent )
-                {
-                Model result = m_importsMaker.createModel( URL );
-                return loadIfAbsent.readModel( result, URL );
-                }
-            };
-        }
+//    private ModelGetter fabricateModelGetter()
+//        {
+//        return new ModelGetter()
+//            {
+//            public Model getModel( String URL )
+//                {
+//                return m_importsMaker.hasModel( URL ) ? m_importsMaker.openModel( URL ) : null;
+//                }
+//
+//            public Model getModel( String URL, ModelReader loadIfAbsent )
+//                {
+//                return m_importsMaker.hasModel( URL ) ? m_importsMaker.openModel( URL ) : createAndLoad( URL, loadIfAbsent );
+//                }
+//
+//            private Model createAndLoad( String URL, ModelReader loadIfAbsent )
+//                {
+//                Model result = m_importsMaker.createModel( URL );
+//                return loadIfAbsent.readModel( result, URL );
+//                }
+//            };
+//        }
 
     public void setImportModelGetter( ModelGetter mg ) {
         importModelGetter = mg;

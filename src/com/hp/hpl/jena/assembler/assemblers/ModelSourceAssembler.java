@@ -17,12 +17,12 @@ public class ModelSourceAssembler extends AssemblerBase
         {
         checkType( root, JA.ModelSource );
         return root.hasProperty( RDF.type, JA.RDBModelSource )
-             ? (Object)createRDBMaker( getConnection( a, root ) )
-            : (Object)new MemoryModelGetter()
+             ? (ModelGetter) createRDBGetter( getConnection( a, root ) )
+            : new MemoryModelGetter()
             ; 
         }
 
-    protected  ModelMaker createRDBMaker( ConnectionDescription c )
+    protected  ModelGetter createRDBGetter( ConnectionDescription c )
         { return ModelFactory.createModelRDBMaker( c.getConnection() ); }
 
     private ConnectionDescription getConnection( Assembler a, Resource root )

@@ -12,6 +12,7 @@ import com.hp.hpl.jena.assembler.exceptions.NoImplementationException;
 import com.hp.hpl.jena.graph.Graph;
 import com.hp.hpl.jena.mem.GraphMemBase;
 import com.hp.hpl.jena.rdf.model.*;
+import com.hp.hpl.jena.vocabulary.RDFS;
 
 public class TestAssemblerGroup extends AssemblerTestBase
     {
@@ -77,6 +78,28 @@ public class TestAssemblerGroup extends AssemblerTestBase
         assertInstanceOf( Model.class, g.open( resourceInModel( "x rdf:type ja:DefaultModel" ) ) );
         assertInstanceOf( InfModel.class, g.open( resourceInModel( "x rdf:type ja:InfModel" ) ) );
         assertMemoryModel( g.open( resourceInModel( "x rdf:type ja:MemoryModel" ) ) );
+        }
+    
+    private Assembler mockAssembler = new AssemblerBase() 
+        {
+        public Object open( Assembler a, Resource root, Mode mode )
+            { return null; }
+        };
+    
+    public void testAddingImplAddsSubclass()
+        {
+        final Model [] fullModel = new Model[1];
+        AssemblerGroup g = new AssemblerGroup.ExpandingAssemblerGroup()
+            {
+            public void loadClasses( Model full ) { fullModel[0] = full; }
+            };
+        Resource root = resourceInModel( "root rdf:type typeA" );
+        Resource typeA = resource( "typeA" ), typeB = resource( "typeB" );
+        g.implementWith( typeA, mockAssembler );
+        g.implementWith( typeB, mockAssembler );
+        g.open( root );    
+        assertTrue( fullModel[0].contains( typeA, RDFS.subClassOf, JA.Object ) );
+        assertTrue( fullModel[0].contains( typeB, RDFS.subClassOf, JA.Object ) );
         }
     
     protected void assertMemoryModel( Object object )

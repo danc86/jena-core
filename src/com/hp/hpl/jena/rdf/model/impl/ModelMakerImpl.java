@@ -93,11 +93,17 @@ public class ModelMakerImpl implements ModelMaker
     public Model createModel()
         { return createFreshModel(); }
     
+    /**
+        ModelGetter implementation component.     
+    */
     public Model getModel( String URL )
-        { return null; }         
+        { return hasModel( URL ) ? openModel( URL ) : null; }         
     
     public Model getModel( String URL, ModelReader loadIfAbsent )
-        { throw new CannotCreateException( URL ); }
+        { 
+        Model already = getModel( URL );
+        return already == null ? loadIfAbsent.readModel( createModel( URL ), URL ) : already;
+        }
     }
 
 /*

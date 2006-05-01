@@ -11,6 +11,7 @@ import java.util.*;
 import com.hp.hpl.jena.assembler.*;
 import com.hp.hpl.jena.assembler.exceptions.NoImplementationException;
 import com.hp.hpl.jena.rdf.model.*;
+import com.hp.hpl.jena.vocabulary.RDFS;
 
 public abstract class AssemblerGroup extends AssemblerBase implements Assembler
     {    
@@ -24,19 +25,25 @@ public abstract class AssemblerGroup extends AssemblerBase implements Assembler
     public static AssemblerGroup create()
         { return new ExpandingAssemblerGroup(); }
     
-    static class ExpandingAssemblerGroup extends AssemblerGroup
+    public static class ExpandingAssemblerGroup extends AssemblerGroup
         {
         PlainAssemblerGroup internal = new PlainAssemblerGroup();
+        Model implementTypes = ModelFactory.createDefaultModel();
         
         public Object open( Assembler a, Resource suppliedRoot, Mode mode )
             {
             Resource root = AssemblerHelp.withFullModel( suppliedRoot );
-            AssemblerHelp.loadClasses( this, root.getModel() );
+            root.getModel().add( implementTypes );
+            loadClasses( root.getModel() );
             return internal.open( a, root, mode );
             }
 
+        public void loadClasses( Model model )
+            { AssemblerHelp.loadClasses( this, model ); }
+
         public AssemblerGroup implementWith( Resource type, Assembler a )
             {
+            implementTypes.add( type, RDFS.subClassOf, JA.Object );
             internal.implementWith( type, a );
             return this;
             }

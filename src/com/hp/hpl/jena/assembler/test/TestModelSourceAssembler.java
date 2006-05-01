@@ -52,8 +52,6 @@ public class TestModelSourceAssembler extends AssemblerTestBase
         Assembler a = new ModelSourceAssembler();
         ModelGetter g = (ModelGetter) a.open( resourceInModel( "mg rdf:type ja:ModelSource" ) );
         assertInstanceOf( MemoryModelGetter.class, g );
-//        assertInstanceOf( ModelMaker.class, g );
-//        assertInstanceOf( SimpleGraphMaker.class, ((ModelMaker) g).getGraphMaker() );
         }
     
     public void testRDBModelMakerSource()
@@ -62,7 +60,7 @@ public class TestModelSourceAssembler extends AssemblerTestBase
         final List history = new ArrayList();
         Assembler a = new ModelSourceAssembler() 
             {
-            protected  ModelMaker createRDBMaker( ConnectionDescription cGiven )
+            protected ModelGetter createRDBGetter( ConnectionDescription cGiven )
                 {
                 assertSame( c, cGiven );
                 history.add( "created" );
