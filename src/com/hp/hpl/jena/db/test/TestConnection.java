@@ -597,7 +597,7 @@ public class TestConnection extends TestCase {
 				Property p = foo.createProperty("test#predicate");
 				Resource o = foo.createResource("test#object");
 				Statement stmt = foo.createStatement(u, p, o);
-				//assertFalse(foo.contains(stmt)); // Invalid test - thread2 may get in first
+				assertFalse(foo.contains(stmt)); // Invalid test - thread2 may get in first
 				s.incCount();
 				s.waitOnCount(4);
 				assertTrue(foo.contains(stmt));
@@ -649,7 +649,7 @@ public class TestConnection extends TestCase {
 		}
 
         if ( ! TestPackage.M_DBCONCURRENT ) {
-            logger.warn("testConcurrentThread suppressed");
+            logger.warn("Transaction isolation test surpressed");
             return;
         }
 		syncOnCount s = new syncOnCount();
