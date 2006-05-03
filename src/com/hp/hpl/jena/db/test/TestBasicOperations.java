@@ -248,7 +248,7 @@ public class TestBasicOperations extends TestCase {
 	}
 	
 	public void testAddRemoveHugeLiteral() {
-		String base = "This is a huge string that repeats.";
+		String base = Data.str1 ; // Data from a special place that is binary-safe.
 		StringBuffer buffer = new StringBuffer(4096);
 		while (buffer.length() < 4000)
 			buffer.append(base);
