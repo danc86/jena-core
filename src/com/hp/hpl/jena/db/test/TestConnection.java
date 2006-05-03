@@ -585,6 +585,8 @@ public class TestConnection extends TestCase {
     
     public void testConcurrentThread() {
         
+        
+        
 		class thread1 extends Thread {
 			syncOnCount s;
 
@@ -593,7 +595,8 @@ public class TestConnection extends TestCase {
 				s = sc;
 			}
 
-			public void run() {
+			public void run() 
+            {
 			    IDBConnection conn = makeAndCleanTestConnection();         
 			    try {
 			        ModelRDB foo = ModelRDB.createModel(conn, "foo");
@@ -639,7 +642,8 @@ public class TestConnection extends TestCase {
 				s = sc;
 			}
 
-			public void run() {
+			public void run()
+			{
 			    s.waitOnCount(1);
 			    IDBConnection conn = makeTestConnection();
 			    try {
