@@ -247,8 +247,18 @@ public class TestBasicOperations extends TestCase {
 		}
 	}
 	
+    public void testAddRemoveUTFLiteral()
+    {
+        String str = Data.strLong ;
+        Resource s = model.createResource("test#subject");
+        Property p = model.createProperty("test#predicate");
+        Literal l = model.createLiteral(str);
+
+        addRemove(model.createStatement(s, p, l));
+    }
+    
 	public void testAddRemoveHugeLiteral() {
-		String base = Data.str1 ; // Data from a special place that is binary-safe.
+		String base = Data.strLong ;
 		StringBuffer buffer = new StringBuffer(4096);
 		while (buffer.length() < 4000)
 			buffer.append(base);
@@ -421,7 +431,7 @@ public class TestBasicOperations extends TestCase {
 	}
 
 	public void testAddRemoveHugeDatatype() {
-		String base = "This is a huge string that repeats.";
+		String base = Data.strLong ;
 		StringBuffer buffer = new StringBuffer(4096);
 		while (buffer.length() < 4000)
 			buffer.append(base);

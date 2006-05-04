@@ -230,7 +230,7 @@ public class TestMultiModel extends TestCase
 	}
 	
 	public void testAddRemoveHugeLiteral() {
-    	String base = "This is a huge string that repeats.";
+        String base = Data.strLong ;
     	StringBuffer buffer = new StringBuffer(4096);
     	while(buffer.length() < 4000 )
     		buffer.append(base);
@@ -250,7 +250,7 @@ public class TestMultiModel extends TestCase
     } 
 
     public void testAddRemoveHugeDatatype() {
-    	String base = "This is a huge string that repeats.";
+        String base = Data.strLong ;
     	StringBuffer buffer = new StringBuffer(4096);
     	while(buffer.length() < 4000 )
     		buffer.append(base);

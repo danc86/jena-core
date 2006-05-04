@@ -189,7 +189,7 @@ public class TestReifierCompareToMem extends TestCase
     } 
 
     public void testAddRemoveHugeLiteralObject() {
-    	String base = "This is a huge string that repeats.";
+        String base = Data.strLong ;
     	StringBuffer buffer = new StringBuffer(4096);
     	while(buffer.length() < 4000 )
     		buffer.append(base);
@@ -207,7 +207,7 @@ public class TestReifierCompareToMem extends TestCase
     } 
 
 	public void testAddRemoveHugeDatatypeObject() {
-		String base = "This is a huge string that repeats.";
+        String base = Data.strLong ;
 		StringBuffer buffer = new StringBuffer(4096);
 		while(buffer.length() < 4000 )
 			buffer.append(base);
@@ -218,7 +218,7 @@ public class TestReifierCompareToMem extends TestCase
 	} 
     
 	public void testAddRemoveHugeLiteral2Object() {
-		String base = "This is a huge string that repeats.";
+        String base = Data.strLong ;
 		StringBuffer buffer = new StringBuffer(4096);
 		while(buffer.length() < 4000 )
 			buffer.append(base);

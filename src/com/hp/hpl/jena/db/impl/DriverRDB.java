@@ -8,6 +8,7 @@ package com.hp.hpl.jena.db.impl;
 import java.sql.*;
 import java.util.*;
 import java.util.zip.CRC32;
+import java.io.UnsupportedEncodingException;
 import java.lang.Thread;
 
 import com.hp.hpl.jena.datatypes.RDFDatatype;
@@ -2173,7 +2174,15 @@ public abstract class DriverRDB implements IRDBDriver {
                 if ( obj instanceof String )
                     res.tail = (String)obj ;
                 else if ( obj instanceof byte[] )
-                    res.tail = new String((byte[])obj) ;
+                {
+                    try
+                    {
+                        res.tail = new String((byte[])obj, "UTF-8") ;
+                    } catch (UnsupportedEncodingException ex)
+                    {
+                        ex.printStackTrace();
+                    }
+                }
                 else
                     throw new RDFRDBException("Long object is of unexpected class: "+obj.getClass());
                 // OLD code (remove after 2.4) res.tail = rs.getString(2);			
