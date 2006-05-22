@@ -72,6 +72,11 @@ public interface ReifierTripleMap
          <code>t</code>.
     */
     public abstract ExtendedIterator tagIterator( Triple t );
+    
+    /**
+        Clear away all the triples.
+    */
+    public void clear();    
     }
 
 /*

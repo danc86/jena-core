@@ -22,7 +22,6 @@ import com.hp.hpl.jena.vocabulary.RDF;
 */
 public class SimpleReifierFragmentsMap implements ReifierFragmentsMap 
     {
-    
     protected Map forwardMap = CollectionFactory.createHashedMap();
     
     protected Fragments getFragments( Node tag )
@@ -30,6 +29,9 @@ public class SimpleReifierFragmentsMap implements ReifierFragmentsMap
     
     protected void removeFragments( Node key )
         { forwardMap.remove( key ); }
+    
+    public void clear()
+        { forwardMap.clear(); }
     
     /**
     update the map with (node -> fragment); return the fragment.

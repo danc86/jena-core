@@ -58,7 +58,10 @@ public class SmallGraphMem extends GraphMemBase
         { triples = null; }
     
     public void clear()
-        { triples.clear(); }
+        { 
+        triples.clear(); 
+        ((SimpleReifier) getReifier()).clear();
+        }
     
     public BulkUpdateHandler getBulkUpdateHandler()
         {
@@ -71,7 +74,7 @@ public class SmallGraphMem extends GraphMemBase
         return 
             SimpleEventManager.notifyingRemove( this, triples.iterator() ) 
             .filterKeep ( new TripleMatchFilter( m.asTriple() ) );
-        }
+        }    
     }
 
 /*

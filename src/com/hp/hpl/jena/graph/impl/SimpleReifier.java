@@ -73,6 +73,12 @@ public class SimpleReifier implements Reifier
     public ExtendedIterator allNodes( Triple t )
         { return tripleMap.tagIterator( t ); }
 
+    public void clear()
+        {
+        fragmentsMap.clear();
+        tripleMap.clear();
+        }
+    
     /** 
         reifiy <code>toReify</code> with tag <code>tag</code>. If a different triple is 
         already reified under <code>tag</code>, throw an AlreadyReifiedException.

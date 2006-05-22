@@ -26,6 +26,11 @@ public class SimpleReifierTripleMap implements ReifierTripleMap
     public Triple getTriple( Node tag )
         { return (Triple) forwardMap.get( tag ); }
 
+    public void clear()
+        {
+        forwardMap.clear();
+        inverseMap.clear();
+        }
     /**
          Answer true iff we have a reified triple <code>t</code>.
     */

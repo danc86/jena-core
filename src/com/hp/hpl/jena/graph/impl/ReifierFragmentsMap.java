@@ -37,6 +37,11 @@ public interface ReifierFragmentsMap
          Answer true iff this map has fragments associated with <code>tag</code>.
     */
     public abstract boolean hasFragments( Node tag );
+    
+    /**
+        Clear away all the fragments.
+    */
+    public void clear();
     }
 
 /*
