@@ -16,6 +16,7 @@ import com.hp.hpl.jena.graph.impl.SimpleReifier;
 import com.hp.hpl.jena.graph.impl.SimpleReifierFragmentsMap;
 import com.hp.hpl.jena.graph.impl.SimpleReifierTripleMap;
 import com.hp.hpl.jena.mem.*;
+import com.hp.hpl.jena.mem.faster.GraphMemFaster;
 import com.hp.hpl.jena.shared.*;
 import com.hp.hpl.jena.util.iterator.ExtendedIterator;
 
@@ -45,9 +46,13 @@ public class TestReifier extends AbstractTestReifier
         { 
         TestSuite result = new TestSuite();
         result.addTest( MetaTestGraph.suite( TestReifier.class, GraphMem.class ) );
+        result.addTest( MetaTestGraph.suite( TestReifier.class, GraphMemFaster.class ) );
         return result; 
         }   
         
+    public Graph getGraph()
+        { return getGraph( ReificationStyle.Minimal ); }
+    
     public Graph getGraph( ReificationStyle style ) 
         {
         try

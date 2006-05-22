@@ -37,6 +37,11 @@ public class MetaTestGraph extends AbstractTestGraph
     public static TestSuite suite()
         { return suite( MetaTestGraph.class, GraphMem.class, ReificationStyle.Minimal ); }
             
+    /**
+        Construct a suite of tests from the test class <code>testClass</code>
+        by instantiating it three times, once each for the three reification styles,
+        and applying it to the graph <code>graphClass</code>.
+    */
     public static TestSuite suite( Class testClass, Class graphClass )
         {
         TestSuite result = new TestSuite();

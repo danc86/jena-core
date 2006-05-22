@@ -28,11 +28,11 @@ public abstract class AbstractTestReifier extends GraphTestBase
 
     protected static final Triple ALL = Triple.create( "?? ?? ??" );
     
-    public AbstractTestReifier(String name)
-        { super(name); }
+    public AbstractTestReifier( String name )
+        { super( name ); }
         
-    public Graph getGraph()
-        { return getGraph( Minimal ); }
+    public abstract Graph getGraph()
+        ; // { return getGraph( Minimal ); }
     
     public abstract Graph getGraph( ReificationStyle style );
 
