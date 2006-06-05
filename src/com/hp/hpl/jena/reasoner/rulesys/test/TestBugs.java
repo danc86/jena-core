@@ -772,6 +772,27 @@ public class TestBugs extends TestCase {
                 im.listStatements(), new Object[] {im.createStatement(i, guard, "done")});
     }
     
+    /**
+     * test duplicate removal when using pure backward rules
+     */
+    public void testBackwardDupRemoval() {
+        String NS = PrintUtil.egNS;
+        Model base = ModelFactory.createDefaultModel();
+        Resource i = base.createResource(NS + "i");
+        Resource a = base.createResource(NS + "a");
+        Property p = base.createProperty(NS, "p");
+        Property q = base.createProperty(NS, "q");
+        Property r = base.createProperty(NS, "r");
+        base.add(i, p, a);
+        base.add(i, q, a);
+        List rules = Rule.parseRules(
+                "(eg:i eg:r eg:a) <- (eg:i eg:p eg:a). (eg:i eg:r eg:a) <- (eg:i eg:q eg:a)."); 
+        GenericRuleReasoner reasoner = new GenericRuleReasoner(rules);
+        reasoner.setMode(GenericRuleReasoner.BACKWARD);
+        InfModel im = ModelFactory.createInfModel(reasoner, base);
+        TestUtil.assertIteratorLength(im.listStatements(i, r, a), 1);
+    }
+    
     // debug assistant
     private void tempList(Model m, Resource s, Property p, RDFNode o) {
         System.out.println("Listing of " + PrintUtil.print(s) + " " + PrintUtil.print(p) + " " + PrintUtil.print(o));
