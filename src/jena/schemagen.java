@@ -1363,7 +1363,14 @@ public class schemagen {
             }
 
             if (m_prop != null  &&  m_root.hasProperty( m_prop )) {
-                return m_root.getRequiredProperty( m_prop ).getString();
+                // Was: (fixed der 19/6/06)
+                // return m_root.getRequiredProperty( m_prop ).getString();
+                RDFNode val = m_root.getRequiredProperty( m_prop ).getObject();
+                if (val instanceof Literal) {
+                    return ((Literal)val).getLexicalForm();
+                } else {
+                    return ((Resource)val).getURI().toString();
+                }
             }
 
             // not set
