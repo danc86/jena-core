@@ -634,11 +634,30 @@ public class OntClassImpl
      *         the classes to which they belong
      */
     public ExtendedIterator listInstances() {
+        return listInstances( false );
+    }
+
+
+    /**
+     * <p>Answer an iterator over the individuals in the model that have this
+     * class among their types, optionally excluding sub-classes of this class.<p>
+     *
+     * @param  direct If true, only direct instances are counted (i.e. not instances
+     * of sub-classes of this class)
+     * @return An iterator over those instances that have this class as one of
+     *         the classes to which they belong
+     */
+    public ExtendedIterator listInstances( final boolean direct ) {
         return UniqueExtendedIterator.create(
-                        getModel()
-                            .listStatements( null, RDF.type, this )
-                            .mapWith( new SubjectAsMapper( Individual.class ) )
-                   );
+                getModel()
+                .listStatements( null, RDF.type, this )
+                .mapWith( new SubjectAsMapper( Individual.class ) )
+                .filterKeep( new Filter() {
+                    public boolean accept( Object o ) {
+                        // if direct, ignore the sub-class typed resources
+                        return ((Individual) o).hasRDFType( OntClassImpl.this, direct );
+                    }} )
+        );
     }
 
 
@@ -677,7 +696,7 @@ public class OntClassImpl
 
         // the only super-classes of a root class are the various aliases
         // of Top, or itself
-        
+
         /**
             Note: moved the initialisation of i outside the try-catch, otherwise an
             exception in listSuperClasses [eg a broken Graph implementation] will

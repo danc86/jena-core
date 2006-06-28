@@ -407,12 +407,25 @@ public interface OntClass
 
     /**
      * <p>Answer an iterator over the individuals in the model that have this
-     * class among their types.<p>
+     * class among their types. Equivalent to {@link #listInstances(boolean)}
+     * with an argument <code>false</code>.<p>
      *
      * @return An iterator over those instances that have this class as one of
      *         the classes to which they belong
      */
     public ExtendedIterator listInstances();
+
+
+    /**
+     * <p>Answer an iterator over the individuals in the model that have this
+     * class among their types, optionally excluding sub-classes of this class.<p>
+     *
+     * @param  direct If true, only direct instances are counted (i.e. not instances
+     * of sub-classes of this class)
+     * @return An iterator over those instances that have this class as one of
+     *         the classes to which they belong
+     */
+    public ExtendedIterator listInstances( boolean direct );
 
 
     /**
