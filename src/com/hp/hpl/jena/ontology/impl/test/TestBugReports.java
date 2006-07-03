@@ -1643,6 +1643,13 @@ public class TestBugReports
         assertTrue( "i should be an individual", i.isIndividual() );
     }
 
+    /** Reported NPE with owl lite profile */
+    public void test_getClassOwlLite() {
+        OntModel m = ModelFactory.createOntologyModel( OntModelSpec.OWL_LITE_MEM );
+        // throws NPE
+        OntClass c = m.getOntClass( "http://example.com/foo" );
+    }
+
     /** This underpins a problem I'm having with imports processing */
     public void xxtestModelMakerOpen() {
         ModelMaker mm = ModelFactory.createMemModelMaker();

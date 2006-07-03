@@ -841,15 +841,13 @@ public class OntModelImpl
         // special case for nothing and thing
         if (c == null) {
             Resource thing = getProfile().THING();
-            if (thing != null) {
-                Resource nothing = getProfile().NOTHING();
+            if (thing != null && thing.getURI().equals( uri )) {
+                c = (OntClass) thing.inModel( this ).as( OntClass.class );
+            }
 
-                if (thing.getURI().equals( uri )) {
-                    c = (OntClass) thing.inModel( this ).as( OntClass.class );
-                }
-                else if (nothing.getURI().equals( uri )) {
-                    c = (OntClass) nothing.inModel( this ).as( OntClass.class );
-                }
+            Resource nothing = getProfile().NOTHING();
+            if (nothing != null && nothing.getURI().equals( uri )) {
+                c = (OntClass) nothing.inModel( this ).as( OntClass.class );
             }
         }
 
