@@ -128,7 +128,7 @@ final public class LiteralLabel {
             // Done here and uses this.dtype so it can use the normalized type
             wellformed = this.dtype.isValidValue( value );
             if (JenaParameters.enableEagerLiteralValidation && !wellformed) {
-                throw new DatatypeFormatException(lexicalForm,  dtype, "in literal creation");
+                throw new DatatypeFormatException(value.toString(),  dtype, "in literal creation");
             }
         }
 	}
