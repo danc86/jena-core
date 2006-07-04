@@ -16,6 +16,7 @@ import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.graph.impl.*;
 import com.hp.hpl.jena.graph.query.*;
 import com.hp.hpl.jena.rdf.model.*;
+import com.hp.hpl.jena.shared.JenaException;
 import com.hp.hpl.jena.shared.impl.JenaParameters;
 import com.hp.hpl.jena.vocabulary.XSD;
 import com.hp.hpl.jena.enhanced.EnhNode;
@@ -534,6 +535,20 @@ public class TestTypedLiterals extends TestCase {
         testCal4.set(Calendar.MILLISECOND, 2);
         doDateTimeTest(testCal4, "1999-05-30T15:09:32.002Z", 32.002);
         
+        // Illegal dateTimes
+        boolean ok = false;
+        boolean old = JenaParameters.enableEagerLiteralValidation;
+        try {
+            JenaParameters.enableEagerLiteralValidation = true;
+            l1 = m.createTypedLiteral(new Date(12345656l), XSDDatatype.XSDdateTime);
+        } catch (DatatypeFormatException e) {
+            ok = true;
+        } finally {
+            JenaParameters.enableEagerLiteralValidation = old;
+        }
+        assertTrue("Early detection of invalid literals", ok);
+            
+
         // date
         l1 = m.createTypedLiteral("1999-05-31", XSDDatatype.XSDdate);
         assertEquals("dateTime data type", XSDDatatype.XSDdate, l1.getDatatype());
