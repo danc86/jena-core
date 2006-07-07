@@ -25,6 +25,8 @@
 -> (rdf:predicate  rdf:type  rdf:Property).
 -> (rdf:first      rdf:type  rdf:Property).
 -> (rdf:rest       rdf:type  rdf:Property).
+-> (rdf:value      rdf:type  rdf:Property).
+-> (rdfs:member     rdf:type  rdf:Property).
         
 -> (rdfs:subPropertyOf rdfs:domain rdf:Property).
 -> (rdfs:subClassOf rdfs:domain rdfs:Class).
