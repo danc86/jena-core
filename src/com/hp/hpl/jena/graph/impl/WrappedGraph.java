@@ -81,6 +81,9 @@ public class WrappedGraph implements GraphWithPerform
 
     public void close()
         { base.close(); }
+    
+    public boolean isClosed()
+        { return base.isClosed(); }
 
     public boolean isEmpty()
         { return base.isEmpty(); }

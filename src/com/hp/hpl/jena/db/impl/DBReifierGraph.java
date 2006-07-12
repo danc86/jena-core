@@ -75,12 +75,6 @@ public class DBReifierGraph implements Graph {
     public boolean isEmpty()
         { return size() == 0; }
         
-    private void checkUnclosed()
-        {
-        if (m_specializedGraphs == null)
-            throw new ClosedException( "this DB Reifier has been closed", this );
-        }
-        
 	/* (non-Javadoc)
 	 * @see com.hp.hpl.jena.graph.Graph#contains(com.hp.hpl.jena.graph.Triple)
 	 */
@@ -147,6 +141,15 @@ public class DBReifierGraph implements Graph {
 		m_specializedGraphs = null;
 		m_parent = null;
 	}
+
+    public boolean isClosed()
+        { return m_specializedGraphs == null; }
+    
+    private void checkUnclosed()
+        {
+        if (isClosed())
+            throw new ClosedException( "this DB Reifier has been closed", this );
+        }
     
     public GraphEventManager getEventManager()
         { throw new BrokenException( "DB reifiers do not yet implement getEventManager" ); }

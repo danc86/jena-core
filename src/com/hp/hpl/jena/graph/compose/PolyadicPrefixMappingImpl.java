@@ -76,7 +76,7 @@ public class PolyadicPrefixMappingImpl extends PrefixMappingImpl implements Pref
         {
         PrefixMapping bm = getBaseMapping();
         String s = bm.getNsPrefixURI( prefix );
-        if (s == null)
+        if (s == null && prefix.length() > 0)
             {
             List graphs = poly.getSubGraphs();
             for (int i = 0; i < graphs.size(); i += 1)

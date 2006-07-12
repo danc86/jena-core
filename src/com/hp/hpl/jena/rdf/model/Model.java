@@ -961,6 +961,11 @@ public interface Model
     */
     public Model removeAll( Resource s, Property p, RDFNode r );
 
+    /**
+        Answer true iff .close() has been called on this Model.
+    */
+    public boolean isClosed();
+
 }
 
 /*

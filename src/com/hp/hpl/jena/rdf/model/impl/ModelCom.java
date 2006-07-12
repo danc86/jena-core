@@ -1172,6 +1172,9 @@ public class ModelCom
     public void close() 
         { graph.close(); }
     
+    public boolean isClosed()
+        { return graph.isClosed(); }
+    
     public boolean supportsSetOperations() 
         {return true;}
     

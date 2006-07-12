@@ -133,6 +133,7 @@ public abstract class Polyadic
         for (Iterator i = m_subGraphs.iterator();  i.hasNext();  ) {
             ((Graph) i.next()).close();
         }
+        super.close();
     }
 
 

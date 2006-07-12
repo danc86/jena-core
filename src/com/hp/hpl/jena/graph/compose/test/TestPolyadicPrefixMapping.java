@@ -100,6 +100,13 @@ public class TestPolyadicPrefixMapping extends AbstractTestPrefixMapping
         assertEquals( null, poly.getPrefixMapping().getNsURIPrefix( imported ) );
         }
     
+    public void testPolyDoesntSeeImportedDefaultPrefix()
+        {
+        String imported = "http://imported#";
+        g1.getPrefixMapping().setNsPrefix( "", imported );
+        assertEquals( null, poly.getPrefixMapping().getNsPrefixURI( "" ) );
+        }
+
     }
 
 /*

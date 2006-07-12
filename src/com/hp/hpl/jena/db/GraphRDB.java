@@ -287,10 +287,13 @@ public class GraphRDB extends GraphBase implements Graph {
 	}
 
 	protected boolean isOpen()
-		{ return m_specializedGraphs != null; }
+		{ return !isClosed(); }
+    
+    public boolean isClosed()
+        { return m_specializedGraphs == null; }
 
     protected void checkOpen()
-        { if (isOpen() == false) throw new ClosedException( "GraphRDB", this ); }
+        { if (isClosed()) throw new ClosedException( "GraphRDB", this ); }
 
 	/* (non-Javadoc)
 	 * @see com.hp.hpl.jena.graph.Graph#add(com.hp.hpl.jena.graph.Triple)

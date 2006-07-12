@@ -67,6 +67,9 @@ public abstract class GraphBase implements GraphWithPerform
     public void close() 
         { closed = true;
         if (reifier != null) reifier.close(); }
+    
+    public boolean isClosed()
+        { return closed; }
             
     /**
          Default implemenentation answers <code>true</code> iff this graph is the

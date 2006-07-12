@@ -174,6 +174,14 @@ public abstract class AbstractTestModel extends ModelTestBase
 	            }
 	    }
 	
+    public void testIsClosedDelegatedToGraph()
+        {
+        Model m = getModel();
+        assertFalse( m.isClosed() );
+        m.close();
+        assertTrue( m.isClosed() );
+        }
+    
 	protected Model copy( Model m )
 	    {
 	    return ModelFactory.createDefaultModel().add( m );

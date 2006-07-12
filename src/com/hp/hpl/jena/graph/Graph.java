@@ -131,7 +131,11 @@ public interface Graph  extends GraphAdd
      */
 	 int size();
 
-}
+    /**
+        Answer true iff .close() has been called onn this Graph.
+    */
+    boolean isClosed();
+    }
 
 /*
     (c) Copyright 2003, 2004, 2005, 2006 Hewlett-Packard Development Company, LP
