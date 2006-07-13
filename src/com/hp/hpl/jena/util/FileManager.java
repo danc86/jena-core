@@ -378,6 +378,7 @@ public class FileManager
             throw new NotFoundException("Not found: "+filenameOrURI) ;
         }
         model.read(in, baseURI, syntax) ;
+        try { in.close(); } catch (IOException ex) {}
         return model ;
     }
 
