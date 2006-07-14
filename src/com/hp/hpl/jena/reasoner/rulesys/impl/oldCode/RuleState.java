@@ -279,7 +279,7 @@ public class RuleState {
         if (n.isVariable()) {
             if (n == head.getSubject() || n == head.getPredicate() || n == head.getObject() ) {
                 Node val = env.getBinding(n);
-                if (n == null || n.isVariable()) return -5;
+                if (val == null || val.isVariable()) return -5;
                 return 5;
             } else {
                 return 0;
