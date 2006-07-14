@@ -77,7 +77,8 @@ public class TestBasics extends TestCase  {
             "-> print(\" literal characters \").",
             "-> print(42). ",
             "-> print('42'^^xsd:byte). ",
-            "-> print('42'^^http://www.w3.org/2001/XMLSchema#int). "
+            "-> print('42'^^http://www.w3.org/2001/XMLSchema#int). ",
+            "-> print('42'^^foobar:byte). "
         };
         String[] testResults = new String[] {
             "[ (?a rdf:type ?_) -> (?a rdf:type ?b) ]",
@@ -94,9 +95,11 @@ public class TestBasics extends TestCase  {
             "[ -> print(' literal characters ') ]",
             "[ -> print('42'^^http://www.w3.org/2001/XMLSchema#int) ]",
             "[ -> print('42'^^http://www.w3.org/2001/XMLSchema#byte) ]",
-            "[ -> print('42'^^http://www.w3.org/2001/XMLSchema#int) ]"
+            "[ -> print('42'^^http://www.w3.org/2001/XMLSchema#int) ]",
+            "[ -> print('42'^^http://foobar#byte) ]",
         };
         
+        PrintUtil.registerPrefix("foobar", "http://foobar#");
         for (int i = 0; i < testRules.length; i++) {
             Rule r = Rule.parseRule(testRules[i]);
             assertEquals(testResults[i], r.toString());
