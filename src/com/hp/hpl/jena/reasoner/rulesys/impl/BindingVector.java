@@ -34,8 +34,8 @@ public class BindingVector implements BindingEnvironment {
     /**
      * Constructor - create an empty binding environment 
      */
-    public BindingVector() {
-        environment = new Node[BindingStack.MAX_VAR]; 
+    public BindingVector(int size) {
+        environment = new Node[size]; 
     }
     
     /**
@@ -205,19 +205,6 @@ public class BindingVector implements BindingEnvironment {
         }
         return buffer.toString();
     }
-    
-    /**
-     * Unify a goal with the head of a rule. 
-     * @param goal the goal pattern which it being matched to a rule
-     * @param head the head pattern of the rule which is being instantiated
-     * @return An initialized binding environment for the rule variables
-     * or null if the unificatin fails. If a variable in the environment becomes
-     * aliased to another variable through the unification this is represented
-     * by having its value in the environment be the variable to which it is aliased.
-     */ 
-    public static BindingVector unify(TriplePattern goal, TriplePattern head) {
-        return unify(goal, head, BindingStack.MAX_VAR);
-    }
         
     /**
      * Unify a goal with the head of a rule. This is a poor-man's unification,
@@ -232,7 +219,7 @@ public class BindingVector implements BindingEnvironment {
      * by having its value in the environment be the variable to which it is aliased.
      */ 
     public static BindingVector unify(TriplePattern goal, TriplePattern head, int numRuleVars) {
-        Node[] gEnv = new Node[BindingStack.MAX_VAR];
+        Node[] gEnv = new Node[numRuleVars];       // TODO: check
         Node[] hEnv = new Node[numRuleVars];
         
         if (!unify(goal.getSubject(), head.getSubject(), gEnv, hEnv)) {

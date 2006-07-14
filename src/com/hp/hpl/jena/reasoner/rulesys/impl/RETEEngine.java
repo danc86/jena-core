@@ -471,7 +471,6 @@ public class RETEEngine implements FRuleEngineI {
      */
     protected void findAndProcessActions() {
         RETERuleContext tempContext = new RETERuleContext(infGraph, this);
-        tempContext.setEnv(new BindingVector());
         for (Iterator i = rules.iterator(); i.hasNext(); ) {
             Rule r = (Rule)i.next();
             if (r.bodyLength() == 0) {
@@ -482,6 +481,7 @@ public class RETEEngine implements FRuleEngineI {
                         Builtin imp = f.getImplementor();
                         if (imp != null) {
                             tempContext.setRule(r);
+                            tempContext.setEnv(new BindingVector( r.getNumVars() ));
                             imp.headAction(f.getArgs(), f.getArgLength(), tempContext);
                         } else {
                             throw new ReasonerException("Invoking undefined Functor " + f.getName() +" in " + r.toShortString());

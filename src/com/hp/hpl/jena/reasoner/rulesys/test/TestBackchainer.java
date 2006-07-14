@@ -36,6 +36,9 @@ import junit.framework.TestSuite;
  * @version $Revision$ on $Date$
  */
 public class TestBackchainer extends TestCase {
+    
+    // Maximum size of binding environment needed in the tests
+    private static final int MAX_VARS = 10;
 
     // Useful constants
     protected Node p = Node.createURI("p");
@@ -180,10 +183,10 @@ public class TestBackchainer extends TestCase {
         doTestUnify(gf, hf3, true, new Node[] {null, b});
         
         // Check binding environment use
-        BindingVector env = BindingVector.unify(g2, h1);
+        BindingVector env = BindingVector.unify(g2, h1, MAX_VARS);
         env.bind(xh, c);
         assertEquals(env.getBinding(yh), c);
-        env = BindingVector.unify(g2, h1);
+        env = BindingVector.unify(g2, h1, MAX_VARS);
         env.bind(yh, c);
         assertEquals(env.getBinding(xh), c);
     }
@@ -197,7 +200,7 @@ public class TestBackchainer extends TestCase {
      * 
      */
     private void doTestUnify(TriplePattern goal, TriplePattern head, boolean succeed, Node[] env) {
-        BindingVector result = BindingVector.unify(goal, head);
+        BindingVector result = BindingVector.unify(goal, head, MAX_VARS);
         if (succeed) {
             assertNotNull(result);
             if (env != null) {

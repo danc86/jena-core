@@ -30,6 +30,10 @@ import java.io.*;
  * @version $Revision$ on $Date$
  */
 public class TestBasics extends TestCase  {
+    
+    // Maximum size of binding environment needed in the tests
+    private static final int MAX_VARS = 10;
+    
     // Useful constants
     Node p = Node.createURI("p");
     Node q = Node.createURI("q");
@@ -147,6 +151,7 @@ public class TestBasics extends TestCase  {
      */
     public void testBindingEnvironment() {
         BindingStack env = new BindingStack();
+        env.reset(MAX_VARS);
         
         env.bind(3, n1);
         assertEquals(n1, env.getEnvironment()[3]);
@@ -186,6 +191,7 @@ public class TestBasics extends TestCase  {
      */
     public void testClauseMaching() {
         BindingStack env = new BindingStack();
+        env.reset(MAX_VARS);
         List rules = new ArrayList();
         BasicForwardRuleInfGraph inf = new BasicForwardRuleInfGraph(
                                             new BasicForwardRuleReasoner(rules), rules, null);

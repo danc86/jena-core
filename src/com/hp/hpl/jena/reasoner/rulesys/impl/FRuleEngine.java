@@ -220,7 +220,7 @@ public class FRuleEngine implements FRuleEngineI {
             while (i.hasNext()) {
                 ClausePointer cp = (ClausePointer) i.next();
                 if (firedRules.contains(cp.rule)) continue;
-                context.resetEnv();
+                context.resetEnv( cp.rule.getNumVars() );
                 TriplePattern trigger = (TriplePattern) cp.rule.getBodyElement(cp.index);
                 if (match(trigger, t, context.getEnvStack())) {
                     nRulesTriggered++;

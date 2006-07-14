@@ -204,10 +204,11 @@ public class BFRuleContext implements RuleContext {
     }
     
     /**
-     * Reset the binding environemnt back to empty
+     * Reset the binding environemnt back to empty.
+     * @param newSize the number of variables needed for processing the new rule
      */
-    public void resetEnv() {
-        env.reset();
+    public void resetEnv(int newSize) {
+        env.reset(newSize);
     }
     
     /**
