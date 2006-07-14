@@ -21,6 +21,9 @@ import com.hp.hpl.jena.datatypes.xsd.XSDDatatype;
  * @version $Revision$ on $Date$
  */
 public class XSD {
+    /** The XSD namespace */
+    public static String NS = XSDDatatype.XSD;
+    
     /** Resource URI for xsd:float */
     public static Resource xfloat;
     
