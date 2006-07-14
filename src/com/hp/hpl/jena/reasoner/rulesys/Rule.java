@@ -849,14 +849,29 @@ public class Rule implements ClauseEntry {
                 // Check for an explicit datatype
                 if (peekToken().startsWith("^^")) {
                     String dtURI = nextToken().substring(2);
-                    if (dtURI.startsWith("xsd:")) {
-                        dtURI = XSDDatatype.XSD + "#" + dtURI.substring(4);
-                    }
+                    if (dtURI.indexOf(':') != -1) {
+                        // Thanks to Steve Crane for pointing out the need for prefix expansion here
+                        String exp = prefixMapping.expandPrefix(dtURI); // Local map first
+                        exp = PrintUtil.expandQname(exp);  // Retain global map for backward compatibility
+                        if (exp == dtURI) {
+                            // No expansion was possible
+                            String prefix = dtURI.substring(0, dtURI.indexOf(':'));
+                            if (prefix.equals("http") || prefix.equals("urn") 
+                             || prefix.equals("ftp") || prefix.equals("mailto")) {
+                                // assume it is all OK and fall through
+                            } else {
+                                // Likely to be a typo in a qname or failure to register
+                                throw new ParserException("Unrecognized qname prefix (" + prefix + ") in rule", this);
+                            }
+                        } else {
+                            dtURI = exp;
+                        }
+                    } 
                     RDFDatatype dt = TypeMapper.getInstance().getSafeTypeByName(dtURI);
                     return Node.createLiteral(lit, "", dt);
                 } else {
                     return Node.createLiteral(lit, "", false);
-                }
+                }                
             } else  if ( Character.isDigit(token.charAt(0)) || 
                          (token.charAt(0) == '-' && token.length() > 1 && Character.isDigit(token.charAt(1))) ) {
                 // A number literal
