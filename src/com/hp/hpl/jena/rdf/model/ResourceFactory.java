@@ -10,7 +10,10 @@ import com.hp.hpl.jena.rdf.model.impl.*;
 
 /** A Factory class for creating resources.
  * 
- * <p> This class creates resources and properties and things of that ilk.</p>
+ * <p> This class creates resources and properties and things of that ilk.
+ * These resources are <i>not</i> associated with a user-modifiable
+ * model: doing getModel() on them will return null.
+ * </p>
  * 
  * <p> It is designed as a singleton.  There are static convenience
  * methods on this class itself, so the easy way to create resource
