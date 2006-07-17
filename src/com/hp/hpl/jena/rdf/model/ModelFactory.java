@@ -406,7 +406,15 @@ public class ModelFactory extends ModelFactoryBase
     }
 
     /**
-         Answer a new model that is the dynamic union of two other models.
+         Answer a new model that is the dynamic union of two other models. By
+         <i>dynamic union</i>, we mean that changes to either <code>m1</code>
+         or <code>m2</code> will be reflected in the result model, and
+         <i>vice versa</i>: specifically, additions to and removals from the union 
+         will be implemented as operations on <code>m1</code> 
+         <strong>only</strong>. See also the behaviour of OntModel
+         and the MultiUnion class.
+     <p>
+        <code>createUnion</code> only creates two-element unions.
     */
     public static Model createUnion(Model m1, Model m2)
         { return createModelForGraph( new Union( m1.getGraph(), m2.getGraph() ) );   }
