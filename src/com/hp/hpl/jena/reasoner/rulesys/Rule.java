@@ -383,6 +383,7 @@ public class Rule implements ClauseEntry {
      * be treated as an axiom.
      */
     public boolean isAxiom() {
+        if (isBackward() && body.length > 0) return false;
         for (int i = 0; i < body.length; i++) {
             if (body[i] instanceof TriplePattern) {
                 return false;
