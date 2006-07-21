@@ -63,14 +63,21 @@ public class MaxCardinalityQRestrictionImpl
             } 
         }
             
-        public boolean canWrap( Node node, EnhGraph eg ) {
-            // node will support being a QualifiedRestriction facet if it has rdf:type owl:Restriction or equivalent
-            Profile profile = (eg instanceof OntModel) ? ((OntModel) eg).getProfile() : null;
-            return (profile != null)  &&  profile.isSupported( node, eg, MaxCardinalityQRestriction.class );
-        }
+        public boolean canWrap( Node node, EnhGraph eg ) 
+            { return isMaxCardinalityQRestriction( node, eg ); }
     };
     
 
+    public static boolean isMaxCardinalityQRestriction( Node node, EnhGraph eg ) 
+        {
+        // node will support being a QualifiedRestriction facet if it has rdf:type owl:Restriction or equivalent
+        Profile profile = (eg instanceof OntModel) ? ((OntModel) eg).getProfile() : null;
+        return (profile != null)  &&  profile.isSupported( node, eg, MaxCardinalityQRestriction.class );
+        }
+    
+    public boolean isValid()
+        { return super.isValid() &&  isMaxCardinalityQRestriction( asNode(), getGraph() );  }
+    
     // Instance variables
     //////////////////////////////////
 

@@ -63,13 +63,18 @@ public class CardinalityQRestrictionImpl
             } 
         }
             
-        public boolean canWrap( Node node, EnhGraph eg ) {
-            // node will support being a QualifiedRestriction facet if it has rdf:type owl:Restriction or equivalent
-            Profile profile = (eg instanceof OntModel) ? ((OntModel) eg).getProfile() : null;
-            return (profile != null)  &&  profile.isSupported( node, eg, CardinalityQRestriction.class );
-        }
+        public boolean canWrap( Node node, EnhGraph eg ) 
+            { return isCardinalityQRestriction( node, eg ); }
     };
+
+    public static boolean isCardinalityQRestriction( Node node, EnhGraph eg ) {
+        // node will support being a QualifiedRestriction facet if it has rdf:type owl:Restriction or equivalent
+        Profile profile = (eg instanceof OntModel) ? ((OntModel) eg).getProfile() : null;
+        return (profile != null)  &&  profile.isSupported( node, eg, CardinalityQRestriction.class );
+    }
     
+    public boolean isValid()
+        { return isCardinalityQRestriction( asNode(), getGraph() ); }
 
     // Instance variables
     //////////////////////////////////

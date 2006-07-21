@@ -30,7 +30,6 @@ import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.util.iterator.ClosableIterator;
 import com.hp.hpl.jena.util.iterator.NullIterator;
 import com.hp.hpl.jena.vocabulary.*;
-import com.hp.hpl.jena.vocabulary.XSD;
 
 import junit.framework.*;
 
@@ -622,7 +621,8 @@ public class TestClassExpression
                     OntClass c = m.createClass( NS + "C" );
                     OntClass d = m.createClass( NS + "D" );
 
-                    QualifiedRestriction A = m.createMaxCardinalityQRestriction( NS + "A", p, 3, c  );
+                    String nameA = "ABCBA";
+                    QualifiedRestriction A = m.createMaxCardinalityQRestriction( NS + nameA, p, 3, c  );
 
                     assertEquals( "Restriction should hasClassQ c", c, A.getHasClassQ() );
                     assertTrue( "Restriction should be hasClassQ c", A.hasHasClassQ( c ) );
@@ -634,9 +634,9 @@ public class TestClassExpression
                     assertTrue( "Restriction should be hasClassQ d", A.hasHasClassQ( d ) );
                     assertFalse( "Restriction should not be hasClassQ c", A.hasHasClassQ( c ) );
 
-                    assertTrue( "Should be a qualified restriction", m.getResource( NS + "A" ).canAs( QualifiedRestriction.class ) );
+                    assertTrue( "Should be a qualified restriction", m.getResource( NS + nameA ).canAs( QualifiedRestriction.class ) );
                     A.removeHasClassQ( d );
-                    assertFalse( "Should not be a qualified restriction", m.getResource( NS + "A" ).canAs( QualifiedRestriction.class ) );
+                    assertFalse( "Should not be a qualified restriction", m.getResource( NS + nameA ).canAs( QualifiedRestriction.class ) );
                 }
             },
             new OntTestCase( "CardinalityQRestriction.cardinality", false, false, true, false ) {

@@ -63,14 +63,20 @@ public class MinCardinalityQRestrictionImpl
             } 
         }
             
-        public boolean canWrap( Node node, EnhGraph eg ) {
-            // node will support being a QualifiedRestriction facet if it has rdf:type owl:Restriction or equivalent
-            Profile profile = (eg instanceof OntModel) ? ((OntModel) eg).getProfile() : null;
-            return (profile != null)  &&  profile.isSupported( node, eg, MinCardinalityQRestriction.class );
-        }
+        public boolean canWrap( Node node, EnhGraph eg ) 
+            { return isMinCardinalityQRestriction( node, eg ); }
     };
     
-
+    public static boolean isMinCardinalityQRestriction( Node node, EnhGraph eg ) 
+        {
+        // node will support being a QualifiedRestriction facet if it has rdf:type owl:Restriction or equivalent
+        Profile profile = (eg instanceof OntModel) ? ((OntModel) eg).getProfile() : null;
+        return (profile != null)  &&  profile.isSupported( node, eg, MinCardinalityQRestriction.class );
+        }
+    
+    public boolean isValid()
+        { return super.isValid() && isMinCardinalityQRestriction( asNode(), getGraph() ); }
+    
     // Instance variables
     //////////////////////////////////
 

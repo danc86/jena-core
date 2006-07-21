@@ -27,7 +27,7 @@ package com.hp.hpl.jena.ontology.impl;
 import com.hp.hpl.jena.enhanced.*;
 import com.hp.hpl.jena.graph.Node;
 import com.hp.hpl.jena.ontology.*;
-import com.hp.hpl.jena.rdf.model.Resource;
+import com.hp.hpl.jena.rdf.model.*;
 
 
 /**
@@ -64,13 +64,19 @@ public class QualifiedRestrictionImpl
             }
         }
 
-        public boolean canWrap( Node node, EnhGraph eg ) {
-            // node will support being a QualifiedRestriction facet if it has rdf:type owl:Restriction or equivalent
-            Profile profile = (eg instanceof OntModel) ? ((OntModel) eg).getProfile() : null;
-            return (profile != null)  &&  profile.isSupported( node, eg, QualifiedRestriction.class );
-        }
+        public boolean canWrap( Node node, EnhGraph eg ) 
+            { return isValidQualifiedRestriction( node, eg ); }
     };
-
+    
+    private static boolean isValidQualifiedRestriction( Node node, EnhGraph eg )
+        {
+        // node will support being a QualifiedRestriction facet if it has rdf:type owl:Restriction or equivalent
+        Profile profile = (eg instanceof OntModel) ? ((OntModel) eg).getProfile() : null;
+        return (profile != null)  &&  profile.isSupported( node, eg, QualifiedRestriction.class );
+        }
+    
+    public boolean isValid() 
+        { return isValidQualifiedRestriction( asNode(), getGraph() ); }
 
     // Instance variables
     //////////////////////////////////
@@ -154,7 +160,8 @@ public class QualifiedRestrictionImpl
      * @param cls The ont class that is the object of the <code>hasClassQ</code> property.
      */
     public void removeHasClassQ( OntClass cls ) {
-        removePropertyValue( getProfile().HAS_CLASS_Q(), "HAS_CLASS_Q", cls );
+        Property has_class_q = getProfile().HAS_CLASS_Q();
+        removePropertyValue( has_class_q, "HAS_CLASS_Q", cls );
     }
 
     /**

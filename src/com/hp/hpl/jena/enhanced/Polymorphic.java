@@ -80,6 +80,14 @@ public abstract class Polymorphic {
             if (r == this) return null;
             }
         }
+    
+    /**
+        Answer true iff this polymorphic object already has a valid view of
+        type <code>t</code> in its ring (so .as()ing it doesn't need to
+        construct a new object).
+    */
+    protected boolean alreadyHasView( Class t )
+        { return findExistingView( t ) != null; }
         
     /**
         answer true iff this enhanced node is still underpinned in the graph
