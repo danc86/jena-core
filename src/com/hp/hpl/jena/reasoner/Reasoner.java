@@ -41,8 +41,7 @@ public interface Reasoner {
      * <p>A reasoner is free to simply note this set of RDF and merge with any
      * future RDF rather than do processing at this time. </p>
      * @param tbox the ontology axioms or rule set encoded in RDF
-     * @return a reasoner instace which can be used to process a data graph,
-     * it may be the same instance - bindSchema is not required to be side-effect free.
+     * @return a reasoner instace which can be used to process a data graph
      * @throws ReasonerException if the reasoner cannot be
      * bound to a rule set in this way, for example if the underlying engine
      * can only accept a single rule set in this way and one rule set has
@@ -66,8 +65,7 @@ public interface Reasoner {
      * <p>A reasoner is free to simply note this set of RDF and merge with any
      * future RDF rather than do processing at this time. </p>
      * @param tbox the ontology axioms or rule set encoded in RDF
-     * @return a reasoner instace which can be used to process a data graph,
-     * it may be the same instance - bindSchema is not required to be side-effect free.
+     * @return a reasoner instace which can be used to process a data graph
      * @throws ReasonerException if the reasoner cannot be
      * bound to a rule set in this way, for example if the underlying engine
      * can only accept a single rule set in this way and one rule set has
