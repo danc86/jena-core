@@ -851,7 +851,7 @@ public class Rule implements ClauseEntry {
                 if (peekToken().startsWith("^^")) {
                     String dtURI = nextToken().substring(2);
                     if (dtURI.indexOf(':') != -1) {
-                        // Thanks to Steve Crane for pointing out the need for prefix expansion here
+                        // Thanks to Steve Cranefield for pointing out the need for prefix expansion here
                         String exp = prefixMapping.expandPrefix(dtURI); // Local map first
                         exp = PrintUtil.expandQname(exp);  // Retain global map for backward compatibility
                         if (exp == dtURI) {
