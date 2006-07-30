@@ -32,15 +32,20 @@ public class ChoicePointFrame extends GenericChoiceFrame {
     /** Iterator over the clauses being searched */
     Iterator clauseIterator;
     
+    /** Flag that this is a singleton choice point */
+    boolean isSingleton = false;
+    
     /**
      * Constructor.
      * Initialize a choice point to preserve the current context of the given intepreter 
      * and then call the given set of predicates.
      * @param interpreter the LPInterpreter whose state is to be preserved
      * @param predicateClauses the list of predicates for this choice point
+     * @param isSingleton true if this choice should abort after one successful result
      */
-    public ChoicePointFrame(LPInterpreter interpreter, List predicateClauses) {
+    public ChoicePointFrame(LPInterpreter interpreter, List predicateClauses, boolean isSingleton) {
         init(interpreter, predicateClauses);
+        this.isSingleton = isSingleton;
     }
 
     /**
@@ -59,16 +64,30 @@ public class ChoicePointFrame extends GenericChoiceFrame {
      * Is there another clause in the sequence?
      */
     public boolean hasNext() {
-        return clauseIterator.hasNext();
+        if (clauseIterator == null) {
+            return false;
+        } else {
+            return clauseIterator.hasNext();
+        }
     }
     
     /**
      * Return the next clause in the sequence.
      */
     public RuleClauseCode nextClause() {
+        if (clauseIterator == null) return null;
         return (RuleClauseCode) clauseIterator.next();
     }
 
+    /**
+     * Note successful return from this choice point. This closes
+     * the choice point if it is a singleton.
+     */
+    public void noteSuccess() {
+        if (isSingleton) {
+            clauseIterator = null;
+        }
+    }
 }
 
 /*
