@@ -32,6 +32,7 @@ import com.hp.hpl.jena.ontology.*;
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.rdf.model.impl.*;
 import com.hp.hpl.jena.reasoner.*;
+import com.hp.hpl.jena.reasoner.rulesys.BasicForwardRuleInfGraph;
 import com.hp.hpl.jena.util.ResourceUtils;
 import com.hp.hpl.jena.util.iterator.*;
 import com.hp.hpl.jena.vocabulary.*;
@@ -474,8 +475,8 @@ public class OntResourceImpl
      */
     public void removeVersionInfo( String info ) {
         checkProfile( getProfile().VERSION_INFO(), "VERSION_INFO" );
-        StmtIterator i = getModel().listStatements( this, getProfile().VERSION_INFO(), info );
-        while (i.hasNext()) i.removeNext();
+        Literal infoAsLiteral = ResourceFactory.createPlainLiteral( info );
+        getModel().remove( this, getProfile().VERSION_INFO(), infoAsLiteral );
     }
 
     // label
@@ -934,8 +935,12 @@ public class OntResourceImpl
      *         returns null.
      */
     public RDFNode getPropertyValue( Property property ) {
-        Statement s = getProperty( property );
-        return s == null ? null : s.getObject();
+        try {
+            return getRequiredProperty( property ).getObject();
+        }
+        catch (PropertyNotFoundException ignore) {
+            return null;
+        }
     }
 
 
@@ -1018,7 +1023,7 @@ public class OntResourceImpl
      * @param value The specific value of the property to be removed
      */
     public void removeProperty( Property property, RDFNode value ) {
-          getModel().remove( this, property, value );
+        getModel().remove( this, property, value );
     }
 
 
@@ -1231,7 +1236,11 @@ public class OntResourceImpl
 
     /** Answer true if the node has the given type in the graph */
     protected static boolean hasType( Node n, EnhGraph g, Resource type ) {
-        return g.asGraph().contains( n, RDF.Nodes.type, type.asNode() );
+        boolean hasType = false;
+        ClosableIterator i = g.asGraph().find( n, RDF.type.asNode(), type.asNode() );
+        hasType = i.hasNext();
+        i.close();
+        return hasType;
     }
 
     /**
@@ -1295,8 +1304,12 @@ public class OntResourceImpl
     /** Answer the object of a statement with the given property, .as() the given class */
     protected Object objectAs( Property p, String name, Class asClass ) {
         checkProfile( p, name );
-        Statement s = getProperty( p );
-        return s == null ? null : s.getObject().as( asClass );
+        try {
+            return getRequiredProperty( p ).getObject().as( asClass );
+        }
+        catch (PropertyNotFoundException e) {
+            return null;
+        }
     }
 
 
@@ -1516,7 +1529,7 @@ public class OntResourceImpl
     /** Remove a specified property-value pair, if it exists */
     protected void removePropertyValue( Property prop, String name, RDFNode value ) {
         checkProfile( prop, name );
-        this.removeProperty( prop, value );
+        getModel().remove( this, prop, value );
     }
 
     //==============================================================================
