@@ -357,15 +357,10 @@ public class GenericRuleReasoner extends FBRuleReasoner {
      * Get the single static precomputed rule closure.
      */
     protected synchronized InfGraph getPreload() {
+        // We only support this in HYBRID mode
         if (cachePreload && preload == null && mode == HYBRID) {
-            if (mode == HYBRID) {
-                preload = new FBRuleInfGraph(this, rules, null, new GraphMem());
-                if (enableTGCCaching) ((FBRuleInfGraph)preload).setUseTGCCache();
-            } else if (mode == FORWARD) {
-                preload = new BasicForwardRuleInfGraph(this, rules, null);
-            } else if (mode == FORWARD_RETE) {
-                preload = new RETERuleInfGraph(this, rules, null);
-            }
+            preload = new FBRuleInfGraph(this, rules, null, new GraphMem());
+            if (enableTGCCaching) ((FBRuleInfGraph)preload).setUseTGCCache();
             preload.prepare();
         }
         return preload;
