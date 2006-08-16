@@ -64,6 +64,30 @@ public class PrintUtil {
     }
     
     /**
+     * Register a set of new prefix/namespace mapping which will be used to shorten
+     * the print strings for resources in known namespaces.
+     */
+    public static void registerPrefixMap(Map map) {
+        prefixMapping.setNsPrefixes( map );
+    }
+    
+    /**
+     * Remove a registered prefix from the table of known short forms
+     */
+    public static void removePrefix(String prefix) {
+        prefixMapping.removeNsPrefix(prefix);
+    }
+    
+    /**
+     * Remove a set of prefix mappings from the table of known short forms
+     */
+    public static void removePrefixMap(Map map) {
+        for(Iterator i = map.keySet().iterator(); i.hasNext(); ) {
+            prefixMapping.removeNsPrefix( (String) i.next() );
+        }
+    }
+    
+    /**
      * Return a simplified print string for a Node. 
      */
     public static String print(Node node) {

@@ -31,6 +31,7 @@ public class TestPackage extends TestSuite {
         addTest( "TestLocationMapper",    TestLocationMapper.suite() ) ;
         addTest( "TestFileManager",       TestFileManager.suite()) ;
         addTest( "TestMonitors",       TestMonitors.suite()) ;
+        addTest( "TestPrintUtil",       TestPrintUtil.suite()) ;
         addTest( TestIteratorCollection.suite() );
         addTestSuite( TestOneToManyMap.class );
     }
