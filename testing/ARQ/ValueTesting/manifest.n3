@@ -73,8 +73,8 @@
         dawgt:approval dawgt:NotApproved
       ]
 
-     [  rdf:type mf:TestBadSyntax ;
-	mf:name    "typePromotion-decimal-decimal-fail" ;
+     [  
+    	mf:name    "typePromotion-decimal-decimal-fail" ;
         rdfs:comment
             "Negative test: product of type promotion within the xsd:decimal type tree." ;
         mf:action
