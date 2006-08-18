@@ -9,6 +9,7 @@ package arq.examples;
 
 // The ARQ application API.
 import com.hp.hpl.jena.query.* ;
+import com.hp.hpl.jena.query.util.IndentedWriter;
 //import com.hp.hpl.jena.query.util.IndentedWriter;
 
 import com.hp.hpl.jena.rdf.model.*; 
@@ -40,7 +41,8 @@ public class Ex1
         
         Query query = QueryFactory.create(queryString) ;
         // Print with line numbers
-        //query.serialize(new IndentedWriter(System.out,true)) ;
+        query.serialize(new IndentedWriter(System.out,true)) ;
+        System.out.println() ;
         
         // Create a single execution of this query, apply to a model
         // which is wrapped up as a Dataset

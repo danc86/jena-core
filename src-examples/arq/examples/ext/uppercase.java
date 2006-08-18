@@ -1,21 +1,35 @@
 /*
- * (c) Copyright 2005, 2006 Hewlett-Packard Development Company, LP
+ * (c) Copyright 2006 Hewlett-Packard Development Company, LP
  * All rights reserved.
  * [See end of file]
  */
 
 package arq.examples.ext;
 
-import com.hp.hpl.jena.query.engine1.Plan;
-import com.hp.hpl.jena.query.engine1.compiler.QueryCompilerVisitor;
+import com.hp.hpl.jena.graph.Node;
+import com.hp.hpl.jena.query.pfunction.PFuncAssignToObject;
 
-public class MyQueryCompilerVisitor extends QueryCompilerVisitor
+/** Example property function that uppercases the lexcial form of a literal.
+ *  The subject must be bound, the object not bound.
+ *  <pre>
+ *     ?string ext:uppercase ?uppercase
+ *  </pre>
+ *  Else fails to match..
+ */
+
+public class uppercase extends PFuncAssignToObject
 {
-    public MyQueryCompilerVisitor(Plan plan) { super(plan) ; }
+    public Node calc(Node node)
+    {
+        if ( ! node.isLiteral() ) 
+            return null ;
+        String str = node.getLiteralLexicalForm().toUpperCase() ;
+        return Node.createLiteral(str) ;
+    }
 }
 
 /*
- * (c) Copyright 2005, 2006 Hewlett-Packard Development Company, LP
+ * (c) Copyright 2006 Hewlett-Packard Development Company, LP
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without

@@ -49,15 +49,15 @@ public class ExProg1
         
         Triple t1 = new Triple(varX, DC.title.asNode(),  varTitle) ;
         ElementTriplePattern tp1 = new ElementTriplePattern(t1) ;
-        elg.addElement(tp1) ;
+        elg.addElementTriplePattern(tp1) ;
         
         // Don't use bNodes for anon variables.  The conversion is done in parsing.
         // BNodes here are assumed to be values from the target graph.
         Triple t2 = new Triple(varX, DC.description.asNode(), Node.createVariable("desc")) ;
-        elg.addElement(new ElementTriplePattern(t2)) ;
+        elg.addElementTriplePattern(new ElementTriplePattern(t2)) ;
         
         // Attach the group to query.  
-        query.setQueryElement(elg) ;
+        query.setQueryPattern(elg) ;
 
         // Choose what we want - SELECT *
         //query.setQueryResultStar(true) ;

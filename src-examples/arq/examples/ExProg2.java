@@ -48,15 +48,15 @@ public class ExProg2
         Node varX = Node.createVariable("x") ;
         
         Triple t1 = new Triple(varX, DC.title.asNode(),  varTitle) ;
-        elg.addElement(new ElementTriplePattern(t1)) ;
+        elg.addElementTriplePattern(new ElementTriplePattern(t1)) ;
         
         // Adds a filter.  Need to wrap variable in a NodeVar.
         Expr expr = new E_Regex(new NodeVar(varTitle), "sparql", "i") ;
         ElementFilter filter = new  ElementFilter(expr) ;
-        elg.addElement(filter) ;
+        elg.addElementFilter(filter) ;
         
         // Attach the group to query.  
-        query.setQueryElement(elg) ;
+        query.setQueryPattern(elg) ;
         
         // Choose what we want - SELECT ?title
         query.addResultVar(varTitle) ;
