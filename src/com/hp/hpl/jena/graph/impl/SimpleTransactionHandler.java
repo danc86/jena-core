@@ -27,7 +27,7 @@ public class SimpleTransactionHandler extends TransactionHandlerBase
         { notSupported(); }
         
     private void notSupported()
-        { throw new UnsupportedOperationException( "oops" ); }
+        { throw new UnsupportedOperationException( "this model does not support transactions" ); }
     }
 
 
