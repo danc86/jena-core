@@ -326,7 +326,7 @@ final public class LiteralLabel {
             		? otherLiteral.dtype == null
             		: dtype.equals(otherLiteral.dtype));
             boolean langEqual =
-            	(dtype == null ? lang.equalsIgnoreCase(otherLiteral.lang) : true);
+                (dtype == null ? lang.equals(otherLiteral.lang) : true);
             return typeEqual
                 && langEqual
                 && getLexicalForm().equals(otherLiteral.getLexicalForm());

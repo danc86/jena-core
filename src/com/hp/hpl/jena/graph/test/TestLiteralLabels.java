@@ -49,7 +49,42 @@ public class TestLiteralLabels extends GraphTestBase
         LiteralLabel B = node( "'0123'http://www.w3.org/2001/XMLSchema#hexBinary" ).getLiteral();
         assertEquals( A.hashCode(), B.hashCode() );
         }
+
+    // AFS
+    public void testEquality1()
+    {
+        LiteralLabel A = new LiteralLabel("xyz") ;
+        LiteralLabel B = new LiteralLabel("xyz") ;
+        assertTrue(A.equals(B)) ;
+        assertTrue(A.sameValueAs(B)) ;
+        assertEquals(A.hashCode(), B.hashCode()) ;
     }
+    
+    public void testEquality2()
+    {
+        LiteralLabel A = new LiteralLabel("xyz") ;
+        LiteralLabel B = new LiteralLabel("XYZ") ;
+        assertFalse(A.equals(B)) ;
+        assertFalse(A.sameValueAs(B)) ;
+    }
+
+    public void testEquality3()
+    {
+        LiteralLabel A = new LiteralLabel("xyz", "en-us") ;
+        LiteralLabel B = new LiteralLabel("xyz", "en-uk") ;
+        assertFalse(A.equals(B)) ;
+        assertFalse(A.sameValueAs(B)) ;
+    }
+
+    public void testEquality4()
+    {
+        LiteralLabel A = new LiteralLabel("xyz", "en-UK") ;
+        LiteralLabel B = new LiteralLabel("xyz", "en-uk") ;
+        assertFalse(A.equals(B)) ;
+        assertTrue(A.sameValueAs(B)) ;
+    }
+    
+}
 
 
 /*
