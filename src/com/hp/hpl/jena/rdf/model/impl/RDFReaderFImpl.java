@@ -51,7 +51,8 @@ public class RDFReaderFImpl extends Object implements RDFReaderF {
                                               "N-TRIPLE",
                                               "N-TRIPLES",
                                               "N3",
-                                              "TURTLE"};
+                                              "TURTLE",
+                                              "TTL"};
     // default readers for each language
 
     protected static final String DEFAULTREADERS[] = {
@@ -60,6 +61,7 @@ public class RDFReaderFImpl extends Object implements RDFReaderF {
         Jena.PATH + ".rdf.model.impl.NTripleReader",
         Jena.PATH + ".rdf.model.impl.NTripleReader",
         "com.hp.hpl.jena.n3.N3JenaReader",
+        "com.hp.hpl.jena.n3.TurtleJenaReader",
         "com.hp.hpl.jena.n3.TurtleJenaReader"
     };
 
