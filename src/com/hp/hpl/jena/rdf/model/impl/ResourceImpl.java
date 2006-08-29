@@ -243,16 +243,7 @@ public class ResourceImpl extends EnhNode implements Resource {
     }
     
     public Resource removeAll( Property p ) {
-        Model m = mustHaveModel();
-        // In the case of an inference model we only need to consult the
-        // base model and doing avoid avois unnecessary rebinds. This code
-        // could be refactored out of here by adding a getBaseModel to ModelCom
-        if (m instanceof InfModel) {
-            Model base = ((InfModel)m).getRawModel();
-            m.remove( base.listStatements(this, p, (RDFNode)null) );
-        } else {
-            m.remove( listProperties( p ) );
-        }
+        mustHaveModel().removeAll( this, p, (RDFNode) null );
         return this;
     }
     

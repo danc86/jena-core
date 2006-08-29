@@ -98,10 +98,11 @@ public class RDFListImpl
             }
             
             // node will support being an RDFList facet if it has rdf:type rdf:List, is nil, or is in the domain of a list property
-            return  node.equals( nil.asNode() ) || 
-                    g.find( node, first.asNode(), Node.ANY ).hasNext() ||
-                    g.find( node, rest.asNode(), Node.ANY ).hasNext() ||
-                    g.find( node, RDF.type.asNode(), RDF.List.asNode() ).hasNext();
+            return  
+                node.equals( nil.asNode() ) || 
+                g.contains( node, first.asNode(), Node.ANY ) ||
+                g.contains( node, rest.asNode(), Node.ANY ) ||
+                g.contains( node, RDF.type.asNode(), RDF.List.asNode() );
         }
     };
 
