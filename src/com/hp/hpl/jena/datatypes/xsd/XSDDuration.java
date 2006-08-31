@@ -100,21 +100,35 @@ public class XSDDuration extends AbstractDateTime {
              negate=-1;
          }
          message.append('P');
-         message.append(negate * data[CY]);
-         message.append('Y');
-         message.append(negate * data[M]);
-         message.append('M');
-         message.append(negate * data[D]);
-         message.append('D');
-         message.append('T');
-         message.append(negate * data[h]);
-         message.append('H');
-         message.append(negate * data[m]);
-         message.append('M');
-         message.append(negate * data[s]);
-         message.append('.');
-         XSDAbstractDateTimeType.appendFractionalTime(message, negate * data[ms], data[msscale]);
-         message.append('S');
+         if (data[CY] != 0) {
+             message.append(negate * data[CY]);
+             message.append('Y');
+         }
+         if (data[M] != 0) {
+             message.append(negate * data[M]);
+             message.append('M');
+         }
+         if (data[D] != 0) {
+             message.append(negate * data[D]);
+             message.append('D');
+         }
+         if (data[h] != 0 && data[m] != 0 && data[s] != 0 && data[ms] != 0) {
+             message.append('T');
+             if (data[h] != 0) {
+                 message.append(negate * data[h]);
+                 message.append('H');
+             }
+             if (data[m] != 0) {
+                 message.append(negate * data[m]);
+                 message.append('M');
+             }
+             if (data[s] != 0 && data[ms] != 0) {
+                 message.append(negate * data[s]);
+                 message.append('.');
+                 XSDAbstractDateTimeType.appendFractionalTime(message, negate * data[ms], data[msscale]);
+                 message.append('S');
+             }
+         }
 
          return message.toString();
      }

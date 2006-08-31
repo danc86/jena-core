@@ -469,6 +469,14 @@ public class TestTypedLiterals extends TestCase {
         assertTrue("equality test", l1.sameValueAs( m.createTypedLiteral("P1Y2M3DT5H6M7.5S", XSDDatatype.XSDduration) ) );
         assertTrue("inequality test", l1 != m.createTypedLiteral("P1Y2M2DT5H6M7.5S", XSDDatatype.XSDduration));
 
+        l1 = m.createTypedLiteral("P1Y", XSDDatatype.XSDduration);
+        assertEquals("duration data type", XSDDatatype.XSDduration, l1.getDatatype());
+        assertEquals("duration java type", XSDDuration.class, l1.getValue().getClass());
+        assertEquals("duration value", 1, ((XSDDuration)l1.getValue()).getYears());
+        assertEquals("serialization", "P1Y", l1.getValue().toString());
+        assertTrue("equality test", l1.sameValueAs( m.createTypedLiteral("P1Y", XSDDatatype.XSDduration) ) );
+        assertTrue("inequality test", l1 != m.createTypedLiteral("P1Y", XSDDatatype.XSDduration));
+
         
         // dateTime
         l1 = m.createTypedLiteral("1999-05-31T02:09:32Z", XSDDatatype.XSDdateTime);

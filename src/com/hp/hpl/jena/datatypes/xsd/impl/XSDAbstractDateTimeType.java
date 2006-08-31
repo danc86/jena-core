@@ -403,7 +403,7 @@ public class XSDAbstractDateTimeType extends XSDDatatype {
              pad--;
          }
          int trunc = msString.length();
-         while (msString.charAt(trunc-1) == '0') trunc --;
+         while (trunc > 0 && msString.charAt(trunc-1) == '0') trunc --;
          buff.append(msString.substring(0, trunc));
      }
      
