@@ -464,11 +464,12 @@ public class TestTypedLiterals extends TestCase {
         assertEquals("duration value", 5, ((XSDDuration)l1.getValue()).getHours());
         assertEquals("duration value", 6, ((XSDDuration)l1.getValue()).getMinutes());
         assertEquals("duration value", 7, ((XSDDuration)l1.getValue()).getFullSeconds());
+        assertEquals("duration value", BigDecimal.valueOf(75,1), ((XSDDuration)l1.getValue()).getBigSeconds());
         assertFloatEquals("duration value", 18367.5, ((XSDDuration)l1.getValue()).getTimePart());
         assertEquals("serialization", "P1Y2M3DT5H6M7.5S", l1.getValue().toString());
         assertTrue("equality test", l1.sameValueAs( m.createTypedLiteral("P1Y2M3DT5H6M7.5S", XSDDatatype.XSDduration) ) );
         assertTrue("inequality test", l1 != m.createTypedLiteral("P1Y2M2DT5H6M7.5S", XSDDatatype.XSDduration));
-
+        
         l1 = m.createTypedLiteral("P1Y", XSDDatatype.XSDduration);
         assertEquals("duration data type", XSDDatatype.XSDduration, l1.getDatatype());
         assertEquals("duration java type", XSDDuration.class, l1.getValue().getClass());

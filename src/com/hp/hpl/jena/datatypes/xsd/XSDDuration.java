@@ -9,6 +9,8 @@
  *****************************************************************/
 package com.hp.hpl.jena.datatypes.xsd;
 
+import java.math.BigDecimal;
+
 import com.hp.hpl.jena.datatypes.xsd.impl.XSDAbstractDateTimeType;
 
 /**
@@ -79,6 +81,15 @@ public class XSDDuration extends AbstractDateTime {
      */
     public double getSeconds() {
         return data[s] + fractionalSeconds;
+    }
+    
+    /**
+     * Return the number of seconds in the duration, including the fractional part,
+     * in a lossless but expensive notation - i.e. a BigDecimal.
+     */
+    public BigDecimal getBigSeconds() {
+        return BigDecimal.valueOf( data[ms], data[msscale])
+                     .add( new BigDecimal(data[s]));
     }
     
     /**
