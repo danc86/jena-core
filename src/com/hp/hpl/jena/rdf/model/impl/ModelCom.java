@@ -129,9 +129,18 @@ public class ModelCom
         return this;
     }
     
+    public Model add(Resource s, Property p, String lex, RDFDatatype datatype)
+    {
+        add( s, p, literal( lex, datatype)) ;
+        return this;
+    }
+    
     private Literal literal( String s, String lang, boolean wellFormed )
         { return new LiteralImpl( Node.createLiteral( s, lang, wellFormed), this ); }
     
+    private Literal literal( String lex, RDFDatatype datatype)
+    { return new LiteralImpl( Node.createLiteral( lex, "", datatype), this ); }
+
     public Model add( Resource s, Property p, String o, String l )
         { return add( s, p, o, l, false ); }
     
@@ -1283,6 +1292,12 @@ public class ModelCom
             modelLock = new ModelLockImpl() ;
         return modelLock ;
     }
+    
+    public synchronized Lock getLock()
+    {
+        return getModelLock() ;
+    }
+    
     
     public void enterCriticalSection(boolean requestReadLock)
     {

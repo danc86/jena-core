@@ -7,6 +7,7 @@
 package com.hp.hpl.jena.rdf.model.impl;
 
 import com.hp.hpl.jena.rdf.model.*;
+import com.hp.hpl.jena.datatypes.RDFDatatype;
 import com.hp.hpl.jena.enhanced.*;
 
 import com.hp.hpl.jena.graph.*;
@@ -185,6 +186,12 @@ public class ResourceImpl extends EnhNode implements Resource {
     {
         mustHaveModel().add( this, p, o, l );
         return this;
+    }
+
+    public Resource addProperty(Property p, String lexicalForm, RDFDatatype datatype)
+    {
+        mustHaveModel().add(this, p, lexicalForm, datatype) ;
+        return this ;
     }
 
     public Resource addProperty(Property p, Object o) {

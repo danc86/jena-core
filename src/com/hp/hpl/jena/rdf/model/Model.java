@@ -931,8 +931,17 @@ public interface Model
      *
      * @see ModelLock
      * @return The ModelLock object associated with this model
+     * @deprecated Applications should use {@link #getLock()}
      */
     public ModelLock getModelLock() ;
+
+    /** Get the model lock for this model.
+     *  See also the convenience operations enterCriticalSection and leaveCriticalSection.
+     *
+     * @see ModelLock
+     * @return The ModelLock object associated with this model
+     */
+    public Lock getLock() ;
 
     /**
         Register a listener for model-changed events on this model. The methods on

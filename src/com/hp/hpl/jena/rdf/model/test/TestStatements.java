@@ -6,7 +6,7 @@
 
 package com.hp.hpl.jena.rdf.model.test;
 
-import com.hp.hpl.jena.datatypes.xsd.impl.XMLLiteralType;
+import com.hp.hpl.jena.datatypes.xsd.XSDDatatype;
 import com.hp.hpl.jena.graph.FrontsTriple;
 import com.hp.hpl.jena.rdf.model.*;
 import junit.framework.*;
@@ -120,7 +120,6 @@ public class TestStatements extends ModelTestBase
         assertFalse( statement( "S P '<x>/x>'rdf:XMLLiteral" ).hasWellFormedXML() );
         assertTrue( statement( "S P '<x></x>'rdf:XMLLiteral" ).hasWellFormedXML() );
         }
-    
     }
 
 /*
