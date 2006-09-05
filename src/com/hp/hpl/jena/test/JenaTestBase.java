@@ -26,6 +26,12 @@ public class JenaTestBase extends TestCase
         { super( name ); }
         
     /**
+        Does what it says on the can.
+    */
+    public void testToSilenceJunitComplaintsAboutNoTestMethods()
+        {}
+    
+    /**
         assert that the two objects must be unequal according to .equals().
         @param title a labelling string for the assertion failure text
         @param x an object to test; the subject of a .equals()
