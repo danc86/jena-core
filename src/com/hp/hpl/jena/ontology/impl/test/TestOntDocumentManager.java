@@ -24,9 +24,15 @@ package com.hp.hpl.jena.ontology.impl.test;
 
 // Imports
 ///////////////
+import java.io.StringReader;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 import junit.framework.*;
 
 import com.hp.hpl.jena.ontology.*;
+import com.hp.hpl.jena.ontology.OntDocumentManager.ReadFailureHandler;
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.reasoner.test.TestUtil;
 import com.hp.hpl.jena.vocabulary.*;
@@ -53,6 +59,9 @@ public class TestOntDocumentManager
 
     // Static variables
     //////////////////////////////////
+
+    /** Log for this class */
+    private static Log log = LogFactory.getLog( TestOntDocumentManager.class );
 
     public static final Integer cnt( int x ) {return new Integer(x);}
 
@@ -481,6 +490,33 @@ public class TestOntDocumentManager
         assertNull( "Most recent policy should be null", o3.getLoadedPolicyURL() );
     }
 
+    public void testReadFailHandler0() {
+        OntDocumentManager o1 = new OntDocumentManager( "file:etc/ont-policy-test.rdf" );
+        assertNull( o1.getReadFailureHandler() );
+
+        OntDocumentManager.ReadFailureHandler rfh = new OntDocumentManager.ReadFailureHandler() {
+            public void handleFailedRead( String url, Model model, Exception e ) {}};
+
+        o1.setReadFailureHandler( rfh );
+        assertSame( rfh, o1.getReadFailureHandler() );
+    }
+
+    public void testReadFailHandler1() {
+        OntDocumentManager o1 = new OntDocumentManager( "file:etc/ont-policy-test.rdf" );
+
+        TestFailHandler rfh = new TestFailHandler();
+        o1.setReadFailureHandler( rfh );
+
+        // trigger the odm to read a non-existant source
+        String source = "@prefix owl: <http://www.w3.org/2002/07/owl#> . <> a owl:Ontology ; owl:imports <http://example.com/not/exist>. ";
+        OntModelSpec spec = new OntModelSpec( OntModelSpec.OWL_MEM );
+        spec.setDocumentManager(  o1 );
+        OntModel m = ModelFactory.createOntologyModel( spec );
+        m.read( new StringReader( source ), "http://example.com/foo#", "N3" );
+
+        assertTrue( rfh.m_seen );
+    }
+
     /* count the number of marker statements in the combined model */
     public static int countMarkers( Model m ) {
         int count = 0;
@@ -551,6 +587,16 @@ public class TestOntDocumentManager
         }
     }
 
+    static class TestFailHandler
+        implements ReadFailureHandler
+    {
+        public boolean m_seen = false;
+        public void handleFailedRead( String url, Model model, Exception e ) {
+            m_seen = true;
+            log.debug( "Seeing failed read of " + url, e );
+        }
+
+    }
 }
 
 
