@@ -186,10 +186,28 @@ public class schemagen {
     /** Option to exclude instances of classes in the allowed namespaces, where the individuals themselves are in other namespaces; use <code>--strictIndividuals</code> on command line; use <code>sgen:strictIndividuals</code> in config file */
     protected static final Object OPT_STRICT_INDIVIDUALS = new Object();
 
+    /** List of Java reserved keywords, see <a href="http://java.sun.com/docs/books/tutorial/java/nutsandbolts/_keywords.html">this list</a>. */
+    public static final String[] JAVA_KEYWORDS = {
+        "abstract",    "continue",    "for",         "new",         "switch",
+        "assert",      "default",     "goto",        "package",     "synchronized",
+        "boolean",     "do",          "if",          "private",     "this",
+        "break",       "double",      "implements",  "protected",   "throw",
+        "byte",        "else",        "import",      "public",      "throws",
+        "case",        "enum",        "instanceof",  "return",      "transient",
+        "catch",       "extends",     "int",         "short",       "try",
+        "char",        "final",       "interface",   "static",      "void",
+        "class",       "finally",     "long",        "strictfp",    "volatile",
+        "const",       "float",       "native",      "super",       "while"
+    };
+
 
     // Static variables
     //////////////////////////////////
 
+    private static List KEYWORD_LIST;
+    static {
+        KEYWORD_LIST = Arrays.asList( JAVA_KEYWORDS );
+    }
 
     // Instance variables
     //////////////////////////////////
@@ -725,6 +743,11 @@ public class schemagen {
         for (++i; i < s.length(); i++) {
             char c = s.charAt( i );
             buf.append( Character.isJavaIdentifierPart( c ) ? c : '_' );
+        }
+
+        // check for illegal keyword
+        if (KEYWORD_LIST.contains( buf.toString() )) {
+            buf.append( '_' );
         }
 
         return buf.toString();
