@@ -887,10 +887,10 @@ public class schemagen {
 
             // we also write out the RDF properties, to mop up any props that are not stated as
             // object, datatype or annotation properties
-            writeRDFProperties();
+            writeRDFProperties( true );
         }
         else {
-            writeRDFProperties();
+            writeRDFProperties( false );
         }
     }
 
@@ -928,8 +928,9 @@ public class schemagen {
     }
 
     /** Write any vanilla RDF properties in the vocabulary */
-    protected void writeRDFProperties() {
+    protected void writeRDFProperties( boolean useOntProperty ) {
         String template = hasValue( OPT_PROP_TEMPLATE ) ?  getValue( OPT_PROP_TEMPLATE ) : DEFAULT_TEMPLATE;
+        String propType = useOntProperty ? "OntProperty" : "Property";
 
         // select the appropriate properties based on the language choice
         Resource[] props;
@@ -946,7 +947,7 @@ public class schemagen {
         // now write the properties
         for (int j = 0;  j < props.length; j++) {
             for (StmtIterator i = m_source.listStatements( null, RDF.type, props[j] ); i.hasNext(); ) {
-                writeValue( i.nextStatement().getSubject(), template, "Property", "createProperty", "_PROP" );
+                writeValue( i.nextStatement().getSubject(), template, propType, "create" + propType, "_PROP" );
             }
         }
     }
