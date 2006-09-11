@@ -56,12 +56,11 @@ public class TestPackage extends TestCase{
         /* */
         suite.addTest(new testWriterInterface("testAnotherWriter", null));
         /* */
-        for (int i = 0; i < langs.length
-              ; i++) {
-            suite.addTest(testWriterAndReader.suite(langs[i]));
-        }
-
+        for (int i = 0; i < langs.length; i++)
+            suite.addTest( testWriterAndReader.suite( langs[i] ) );
         suite.addTest( new TestSuite( TestURIExceptions.class ) );
+        suite.addTestSuite( TestEntityOutput.class );
+        suite.addTestSuite( TestLiteralEncoding.class );
         return suite;
     }
     
