@@ -405,9 +405,10 @@ public class testWriterAndReader
 				m2.write(System.err,"N-TRIPLE");
 				System.err.println("=");
 				*/
-				assertTrue(
-                        "Comparison of file written out, and file read in.",
-                        s1.isIsomorphicWith(s2));
+//				assertTrue(
+//                        "Comparison of file written out, and file read in.",
+//                        s1.isIsomorphicWith(s2));
+                assertIsoModels( "Comparison of file written out, and file read in.", s1, s2 );
                 // Free resources explicitily.
                 tmpOut.reset() ;
                 tmpOut = null ;
