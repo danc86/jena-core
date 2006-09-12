@@ -461,7 +461,7 @@ public class schemagen {
         String header = hasValue( OPT_HEADER ) ? getValue( OPT_HEADER ) : DEFAULT_HEADER_TEMPLATE;
 
         // user can turn of header processing, default is to have it on
-        if (!hasValue( OPT_NOHEADER )) {
+        if (!isTrue( OPT_NOHEADER )) {
             writeln( 0, substitute( header ) );
         }
         else {
