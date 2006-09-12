@@ -70,11 +70,10 @@ public class Abbreviated extends BaseXMLWriter implements RDFErrorHandler {
     boolean sParseTypeLiteralPropertyElt;
     boolean sParseTypeResourcePropertyElt;
     boolean sPropertyAttr;
-    
 
     boolean sResourcePropertyElt;
 
-	void unblockAll() {
+	protected void unblockAll() {
 		sDamlCollection = false;
 		sReification = false;
 		sResourcePropertyElt = false;
@@ -85,11 +84,13 @@ public class Abbreviated extends BaseXMLWriter implements RDFErrorHandler {
 		sPropertyAttr = false;
         sListExpand = false;
 	}
+    
     {
         unblockAll();
         blockRule(RDFSyntax.propertyAttr);
     }
-    void blockRule(Resource r) {
+    
+    protected void blockRule(Resource r) {
         if (r.equals(RDFSyntax.sectionReification)) sReification=true;
        // else if (r.equals(RDFSyntax.resourcePropertyElt)) sResourcePropertyElt=true;
         else if (r.equals(RDFSyntax.sectionListExpand)) sListExpand=true;
@@ -123,7 +124,7 @@ public class Abbreviated extends BaseXMLWriter implements RDFErrorHandler {
             super.write( baseModel, out, base );
 		}
 		
-	void writeBody(
+	protected void writeBody(
 		Model model,
 		PrintWriter pw,
 		String base,

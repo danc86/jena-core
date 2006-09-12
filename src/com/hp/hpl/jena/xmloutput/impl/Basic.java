@@ -33,7 +33,7 @@ public class Basic extends BaseXMLWriter {
     
     private String space;
 	
-    void writeBody(
+    protected void writeBody(
 		Model model,
 		PrintWriter pw,
 		String base,
@@ -126,11 +126,13 @@ public class Basic extends BaseXMLWriter {
 					+ ">");
 		}
 	}
-    void unblockAll() {
+    protected void unblockAll() {
         blockLiterals = false;
     }
+    
     private boolean blockLiterals = false;
-    void blockRule(Resource r) {
+    
+    protected void blockRule(Resource r) {
         if (r.equals(RDFSyntax.parseTypeLiteralPropertyElt)) {
      //       System.err.println("Blocking");
             blockLiterals = true;
