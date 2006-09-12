@@ -7,11 +7,11 @@
 package com.hp.hpl.jena.xmloutput.test;
 
 import java.io.*;
-import java.util.regex.Pattern;
 
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.impl.Util;
 import com.hp.hpl.jena.rdf.model.test.ModelTestBase;
+import com.hp.hpl.jena.shared.CannotEncodeCharacterException;
 
 /**
      Tests to ensure that certain literals are either encoded properly or reported
@@ -51,6 +51,8 @@ public class TestLiteralEncoding extends ModelTestBase
         assertEquals( "&#xA;", Util.substituteStandardEntities( "\n" ) );
         assertEquals( "&#xD;", Util.substituteStandardEntities( "\r" ) );
         assertEquals( "&#9;", Util.substituteStandardEntities( "\t" ) );
+    //
+        assertEquals( "a&lt;b&amp;c&gt;d", Util.substituteStandardEntities( "a<b&c>d" ) );
         assertEquals( "", Util.substituteStandardEntities( "" ) );
         assertEquals( "", Util.substituteStandardEntities( "" ) );
         assertEquals( "", Util.substituteStandardEntities( "" ) );
@@ -61,7 +63,28 @@ public class TestLiteralEncoding extends ModelTestBase
         assertEquals( "", Util.substituteStandardEntities( "" ) );
         assertEquals( "", Util.substituteStandardEntities( "" ) );
         assertEquals( "", Util.substituteStandardEntities( "" ) );
-        assertEquals( "", Util.substituteStandardEntities( "" ) );
+        }
+    
+    public void testLexicalEncodingException()
+        {
+        for (char ch = 0; ch < 32; ch += 1) 
+            if (ch != '\n' && ch != '\t' && ch != '\r')
+                testThrowsBadCharacterException( ch );
+        }
+
+    private void testThrowsBadCharacterException( char badChar )
+        {
+        String badString = "" + badChar;
+        try 
+            { 
+            Util.substituteEntitiesInElementContent( badString ); 
+            fail( "should trap bad character: (char)" + (int) badChar ); 
+            }
+        catch (CannotEncodeCharacterException e) 
+            { 
+            assertEquals( badChar, e.getBadChar() ); 
+            assertEquals( "XML", e.getEncodingContext() );
+            }
         }
     
     public void testNoApparentCData()
