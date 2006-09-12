@@ -6,7 +6,11 @@
 
 package com.hp.hpl.jena.xmloutput.test;
 
+import java.io.*;
+
+import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.test.ModelTestBase;
+import com.hp.hpl.jena.vocabulary.RDF;
 
 /**
     Tests for entities being created corresponding to prefixes.
@@ -19,7 +23,13 @@ public class TestEntityOutput extends ModelTestBase
     
     public void testPlaceHolder()
         {
-        
+        Model m = createMemModel();
+        m.setNsPrefix( "rdf", RDF.getURI() );
+        StringWriter s = new StringWriter();
+        m.write( s, "RDF/XML-ABBREV" );
+        Model m2 = modelWithStatements( "" );
+        m2.read( new StringReader( s.toString() ), null, "RDF/XML" );
+        assertTrue( s.toString().contains( "<!DOCTYPE rdf:RDF [" ) );
         }
     }
 
