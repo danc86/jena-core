@@ -455,7 +455,7 @@ abstract public class BaseXMLWriter implements RDFXMLWriterI {
 
    
 	private void writeXMLBody( Model model, PrintWriter pw, String base ) {
-        if (true || showDoctypeDeclaration.booleanValue()) 
+        if (showDoctypeDeclaration.booleanValue()) 
             {
             String rdfRDF = model.qnameFor( RDF.getURI() + "RDF" );
             pw.print( "<!DOCTYPE " + rdfRDF +" []>\n" );
