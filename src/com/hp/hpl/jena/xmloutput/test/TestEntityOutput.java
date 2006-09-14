@@ -50,7 +50,28 @@ public class TestEntityOutput extends ModelTestBase
         m2.read( new StringReader( s.toString() ), null, "RDF/XML" );
         assertTrue( s.toString().contains( "<!DOCTYPE rdf:RDF [" ) );
         }
-
+    
+    public void testUsing()
+        {
+//        Model m = modelWithStatements( "x rdf:type rdf:Property" );
+//        m.setNsPrefix(  "foo", "eh:/" );
+//        m.write( System.out, "RDF/XML" );
+        }
+    
+    public void testEntityProperty()
+        {
+        FakeBaseWriter w = new FakeBaseWriter();
+        assertEquals( false, w.getShowDoctypeDeclaration() );
+        assertEquals( "false", w.setProperty( "showDoctypeDeclaration", "true" ) );
+        assertEquals( true, w.getShowDoctypeDeclaration() );
+        assertEquals( "true", w.setProperty( "showDoctypeDeclaration", "false" ) );
+        assertEquals( false, w.getShowDoctypeDeclaration() );
+    //
+        assertEquals( "false", w.setProperty( "showDoctypeDeclaration", Boolean.TRUE ) );
+        assertEquals( true, w.getShowDoctypeDeclaration() );
+        assertEquals( "true", w.setProperty( "showDoctypeDeclaration", Boolean.FALSE ) );
+        assertEquals( false, w.getShowDoctypeDeclaration() );
+        }    
     
     private final static class FakeBaseWriter extends BaseXMLWriter
         {

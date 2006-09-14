@@ -92,7 +92,13 @@ abstract public class BaseXMLWriter implements RDFXMLWriterI {
     }
     
     protected String qq(String s) {
-        return q(Util.substituteStandardEntities(s));
+        String substituted = Util.substituteStandardEntities( s );
+        if (true) return q( substituted );
+        int split = Util.splitNamespace( substituted );
+        String namespace = substituted.substring(  0, split );
+        String prefix = (String) ns.get( namespace );
+        if (prefix == null) return q( substituted );
+        return q( "&" + prefix + ";" + substituted.substring( split ) );
     }
 
 	static private Set badRDF = new HashSet();
