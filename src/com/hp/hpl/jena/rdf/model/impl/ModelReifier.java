@@ -202,10 +202,8 @@ public class ModelReifier
         @return a ReifiedStatement associating the resource of n with the statement of t.    
     */
     private ReifiedStatement getRS( Node n )
-        {
-        Triple t = reifier.getTriple( n );
-        Statement s = model.asStatement( t );
-        return ReifiedStatementImpl.create( model, n, s );
+        { 
+        return ReifiedStatementImpl.createExistingReifiedStatement( model, n );
         }              
     }
 

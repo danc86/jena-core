@@ -455,11 +455,7 @@ abstract public class BaseXMLWriter implements RDFXMLWriterI {
 
    
 	private void writeXMLBody( Model model, PrintWriter pw, String base ) {
-        if (showDoctypeDeclaration.booleanValue()) 
-            {
-            String rdfRDF = model.qnameFor( RDF.getURI() + "RDF" );
-            pw.print( "<!DOCTYPE " + rdfRDF +" []>\n" );
-            }
+        if (showDoctypeDeclaration.booleanValue()) generateDoctypeDeclaration( model, pw );
 //		try {
         // TODO errors?
 			if (xmlBase == null) {
@@ -473,6 +469,12 @@ abstract public class BaseXMLWriter implements RDFXMLWriterI {
 //			throw new BadURIException( e.getMessage(), e);
 //		}
 	}
+
+    private void generateDoctypeDeclaration( Model model, PrintWriter pw )
+        {
+        String rdfRDF = model.qnameFor( RDF.getURI() + "RDF" );
+        pw.print( "<!DOCTYPE " + rdfRDF +" []>\n" );
+        }
 
 	private void writeXMLDeclaration(Writer out, PrintWriter pw) {
 		String decl = null;

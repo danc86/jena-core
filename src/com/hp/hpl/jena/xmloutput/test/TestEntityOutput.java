@@ -22,21 +22,7 @@ public class TestEntityOutput extends ModelTestBase
     public TestEntityOutput( String name )
         { super( name ); }
     
-    public void testPlaceHolder()
-        {
-        Model m = createMemModel();
-        m.setNsPrefix( "rdf", RDF.getURI() );
-        StringWriter s = new StringWriter();
-        RDFWriter w = m.getWriter( "RDF/XML-ABBREV" );
-        w.setProperty( "showDoctypeDeclaration", Boolean.TRUE );
-        w.write( m, s, null );
-        // m.write( s, "RDF/XML-ABBREV" );
-        Model m2 = modelWithStatements( "" );
-        m2.read( new StringReader( s.toString() ), null, "RDF/XML" );
-        assertTrue( s.toString().contains( "<!DOCTYPE rdf:RDF [" ) );
-        }
-    
-    public void testEntityProperty()
+    public void testSettingWriterEntityProperty()
         {
         FakeBaseWriter w = new FakeBaseWriter();
         assertEquals( false, w.getShowDoctypeDeclaration() );
@@ -50,6 +36,21 @@ public class TestEntityOutput extends ModelTestBase
         assertEquals( "true", w.setProperty( "showDoctypeDeclaration", Boolean.FALSE ) );
         assertEquals( false, w.getShowDoctypeDeclaration() );
         }    
+    
+    public void testPlaceHolder()
+        {
+        Model m = createMemModel();
+        m.setNsPrefix( "rdf", RDF.getURI() );
+        StringWriter s = new StringWriter();
+        RDFWriter w = m.getWriter( "RDF/XML-ABBREV" );
+        w.setProperty( "showDoctypeDeclaration", Boolean.TRUE );
+        w.write( m, s, null );
+        // m.write( s, "RDF/XML-ABBREV" );
+        Model m2 = modelWithStatements( "" );
+        m2.read( new StringReader( s.toString() ), null, "RDF/XML" );
+        assertTrue( s.toString().contains( "<!DOCTYPE rdf:RDF [" ) );
+        }
+
     
     private final static class FakeBaseWriter extends BaseXMLWriter
         {
