@@ -50,21 +50,24 @@ public class testWriterAndReader
     
   protected static Log logger = LogFactory.getLog( testWriterAndReader.class );
     
-	String lang;
-	String test;
-	int fileNumber;
-	int options = 0;
-	testWriterAndReader(String name, String lang, int fName) {
-		super(name);
-		this.lang = lang;
-		this.fileNumber = fName;
-	}
+	final String lang;
+   
+	final int fileNumber;
+
+    final int options;
+    
+    String test;
+
+    testWriterAndReader( String name, String lang, int fName ) 
+        { this( name, lang, fName, 0 ); }
+    
 	testWriterAndReader(String name, String lang, int fName, int options) {
-		super(name);
+		super( name );
 		this.lang = lang;
 		this.fileNumber = fName;
 		this.options = options;
 	}
+    
 	public String toString() {
 		return getName()
 			+ " "
@@ -242,39 +245,8 @@ public class testWriterAndReader
 			/* */
             langsuite.addTest( new TestXMLFeatures("testNullBaseWithAbbrev", lang));
 		}
-		if (lang.equals("RDF/XML-ABBREV")) {
-           
-			langsuite.addTest(
-				new TestXMLFeatures("testNoPropAttr", "RDF/XML-ABBREV"));
-			/* */
-			langsuite.addTest(
-				new TestXMLFeatures("testNoDamlCollection", "RDF/XML-ABBREV"));
-			/* */
-			langsuite.addTest(
-				new TestXMLFeatures("testNoRdfCollection", "RDF/XML-ABBREV"));
-			/* */
-			langsuite.addTest(
-				new TestXMLFeatures("testNoLi", "RDF/XML-ABBREV"));
-			/* */
-			langsuite.addTest(new TestXMLFeatures("testNoID", lang));
-			/* */
-			langsuite.addTest(new TestXMLFeatures("testNoID2", lang));
-			/* */
-			langsuite.addTest(new TestXMLFeatures("testNoResource", lang));
-			/* * /
-			langsuite.addTest(
-			    new TestXMLFeatures("testNoStripes", lang));
-			/* */
-			langsuite.addTest(
-			    new TestXMLFeatures("testNoReification", lang));
-			langsuite.addTest(
-				new TestXMLFeatures("testNoPropAttrs", lang));
-			langsuite.addTest(
-				new TestXMLFeatures("testNoCookUp", lang));
-			langsuite.addTest(
-				new TestXMLFeatures("testPropAttrs", lang));
-			/* */
-		}
+		if (lang.equals("RDF/XML-ABBREV")) 
+            langsuite.addTestSuite(  TestXMLAbbrev.class );
 		return langsuite;
 	}
 

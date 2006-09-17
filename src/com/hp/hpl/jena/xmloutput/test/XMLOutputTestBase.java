@@ -56,6 +56,9 @@ public class XMLOutputTestBase extends ModelTestBase
         public void modify( Model m ) {}
         public final void modify( Model m, RDFWriter w ) { modify(m); modify(w); }
         
+        public static Change none()
+            { return new Change(); }
+        
         public static Change setProperty( final String property, final String value )
             {
             return new Change()
@@ -63,6 +66,9 @@ public class XMLOutputTestBase extends ModelTestBase
                     { writer.setProperty( property, value ); }
                 };
             }
+           
+        public static Change blockRules( String ruleName )
+            { return setProperty( "blockrules", ruleName ); }
         }  
     
     /**
