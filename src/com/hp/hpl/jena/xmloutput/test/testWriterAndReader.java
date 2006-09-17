@@ -82,10 +82,6 @@ public class testWriterAndReader
 		return suite(lang, false);
 	}
     
-	static public Test suite() {
-		return suite("special");
-	}
-    
 	static private boolean nBits(int i, int ok[]) {
 		int cnt = 0;
 		while (i > 0) {
@@ -102,11 +98,12 @@ public class testWriterAndReader
 	static Test suite(String lang, boolean lots) {
 		TestSuite langsuite = new TestSuite();
 		langsuite.setName(lang);
-		if (lang.equals("special")) {
-			langsuite.addTest(
-				new TestXMLFeatures("testNoReification", "RDF/XML-ABBREV"));
-			return langsuite;
-		}
+// This code was never invoked. So I deaded it.
+//		if (lang.equals("special")) {
+//			langsuite.addTest(
+//				new TestXMLFeatures("testNoReification", "RDF/XML-ABBREV"));
+//			return langsuite;
+//		}
 		/* */
 		langsuite.addTest(new testWriterInterface("testWriting", lang));
         
@@ -250,6 +247,7 @@ public class testWriterAndReader
 		return langsuite;
 	}
 
+    
 	public void testRandom() throws IOException {
 		doTest(new String[] {
 		}, new Object[] {
