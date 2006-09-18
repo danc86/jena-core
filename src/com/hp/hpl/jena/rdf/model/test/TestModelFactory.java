@@ -11,6 +11,8 @@ import com.hp.hpl.jena.rdf.model.impl.*;
 import com.hp.hpl.jena.rdf.model.spec.test.TestModelSpec;
 import com.hp.hpl.jena.vocabulary.*;
 import com.hp.hpl.jena.ontology.*;
+import com.hp.hpl.jena.reasoner.InfGraph;
+import com.hp.hpl.jena.reasoner.Reasoner;
 import com.hp.hpl.jena.reasoner.rulesys.*;
 import com.hp.hpl.jena.shared.*;
 import com.hp.hpl.jena.graph.compose.Union;
@@ -121,7 +123,16 @@ public class TestModelFactory extends ModelTestBase
         assertIsoModels( desc, spec.getDescription() );
         assertInstanceOf( InfModel.class, spec.createFreshModel() );
         }
-        
+    
+    public void testCreateInfModel() {
+        String rule = "-> (eg:r eg:p eg:v).";
+        Reasoner r = new GenericRuleReasoner( Rule.parseRules(rule) );
+        InfGraph ig = r.bind( ModelFactory.createDefaultModel().getGraph() );
+        InfModel im = ModelFactory.createInfModel(ig);
+        assertInstanceOf( InfModel.class, im );
+        assertTrue( im.size() == 1);
+    }
+    
     /**
         Test that ModelFactory.createModel exists and returns models.
     */
