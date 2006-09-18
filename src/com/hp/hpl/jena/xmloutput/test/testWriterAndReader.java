@@ -78,9 +78,19 @@ public class testWriterAndReader
 			+ (options != 0 ? ("[" + options + "]") : "");
 	}
     
-	static Test suite(String lang) {
-		return suite(lang, false);
-	}
+	static private TestSuite suite( String lang ) 
+        { return suite(lang, false); }
+    
+    static TestSuite suiteXML()
+        { return suite( "RDF/XML" ); }
+    
+    static Test suiteXML_ABBREV()
+        { 
+        return suite( "RDF/XML-ABBREV" ); 
+        }
+    
+    static Test suiteN_TRIPLE()
+        { return suite( "N-TRIPLE" ); }
     
 	static private boolean nBits(int i, int ok[]) {
 		int cnt = 0;
@@ -95,7 +105,7 @@ public class testWriterAndReader
 		return false;
 	}
     
-	static Test suite(String lang, boolean lots) {
+	static TestSuite suite(String lang, boolean lots) {
 		TestSuite langsuite = new TestSuite();
 		langsuite.setName(lang);
 // This code was never invoked. So I deaded it.

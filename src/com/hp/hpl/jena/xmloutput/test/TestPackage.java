@@ -30,34 +30,19 @@ public class TestPackage extends TestCase{
      */
     public static TestSuite suite() {
         TestSuite suite = new TestSuite();
-        String langs[] =
-            new String[] { "RDF/XML", "RDF/XML-ABBREV", 
-                //
-               "N-TRIPLE",
-            //"N3" 
-        };
-        suite.addTest(TestMacEncodings.suite());
+        suite.addTest( TestMacEncodings.suite() );
         // add all the tests defined in this class to the suite
         /* */
-        suite.addTest(new PrettyWriterTest("testAnonDamlClass"));
-        /* */
-        suite.addTest(new PrettyWriterTest("testLi"));
-		suite.addTest(new PrettyWriterTest("test803804"));
-        
-    	//if ( true ) return suite;
-        /* */
-        suite.addTest(new PrettyWriterTest("testRDFCollection"));
-        /* */
-        suite.addTest(new PrettyWriterTest("testOWLPrefix"));
-        /* */
+        suite.addTestSuite( PrettyWriterTest.class );
         suite.addTest(new testWriterInterface("testInterface", null)); 
         /* */
         suite.addTest(new testWriterInterface("testNoWriter", null)); 
         /* */
         suite.addTest(new testWriterInterface("testAnotherWriter", null));
         /* */
-        for (int i = 0; i < langs.length; i++)
-            suite.addTest( testWriterAndReader.suite( langs[i] ) );
+        suite.addTest( testWriterAndReader.suiteXML() );
+        suite.addTest( testWriterAndReader.suiteXML_ABBREV() );
+        suite.addTest( testWriterAndReader.suiteN_TRIPLE() );
         suite.addTestSuite( TestURIExceptions.class );
         suite.addTestSuite( TestEntityOutput.class );
         suite.addTestSuite( TestLiteralEncoding.class );
