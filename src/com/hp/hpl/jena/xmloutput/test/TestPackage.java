@@ -40,6 +40,7 @@ public class TestPackage extends TestCase{
         /* */
         suite.addTest(new testWriterInterface("testAnotherWriter", null));
         /* */
+        if (false) suite.addTest( BigAbbrevTestPackage.suite() ); // TODO may be obsolete. Ask Jeremy.
         suite.addTest( testWriterAndReader.suiteXML() );
         suite.addTest( testWriterAndReader.suiteXML_ABBREV() );
         suite.addTest( testWriterAndReader.suiteN_TRIPLE() );

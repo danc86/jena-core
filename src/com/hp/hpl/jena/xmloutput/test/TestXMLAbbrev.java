@@ -8,8 +8,6 @@ package com.hp.hpl.jena.xmloutput.test;
 
 import java.io.IOException;
 
-import com.hp.hpl.jena.rdf.model.RDFWriter;
-
 /**
     The tests testReaderAndWriter includes for the language 
     "RDF/XML-ABBREV". Extracted from TestXMLFeatures as part 
@@ -95,11 +93,7 @@ public class TestXMLAbbrev extends XMLOutputTestBase
             (
             "testing/abbreviated/container.rdf",
             "['\"]Resource[\"']",
-            new Change() {
-            public void modify(RDFWriter writer) {
-                writer.setProperty("blockrules", "parseTypeResourcePropertyElt");
-            }
-            },
+            Change.blockRules( "parseTypeResourcePropertyElt" ),
             "http://example.org/foo#"
             );
         }

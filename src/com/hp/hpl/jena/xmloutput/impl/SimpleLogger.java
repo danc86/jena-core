@@ -9,10 +9,11 @@ package com.hp.hpl.jena.xmloutput.impl;
  * @author <a href="mailto:Jeremy.Carroll@hp.com">Jeremy Carroll</a>
  *
 */
-public interface SimpleLogger {
-  public void warn(String s);
-  public void warn(String s, Exception e);
-}
+public interface SimpleLogger 
+    {
+    public void warn( String s );
+    public void warn( String s, Exception e );
+    }
 
 /*
    (c) Copyright 2002, 2003, 2004, 2005, 2006 Hewlett-Packard Development Company, LP
