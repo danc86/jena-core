@@ -241,7 +241,7 @@ public class N3JenaWriterCommon implements RDFWriter
     {
        // Needed only for no prefixes, no blank first line. 
         boolean doingFirst = true;
-        ResIterator rIter = model.listSubjects();
+        ResIterator rIter = listSubjects(model);
         for (; rIter.hasNext();)
         {
             // Subject:
@@ -267,6 +267,8 @@ public class N3JenaWriterCommon implements RDFWriter
         }
         rIter.close();
     } 
+    
+    protected ResIterator listSubjects(Model model) { return model.listSubjects(); }
 
     protected void writeOneGraphNode(Resource subject)
     {
