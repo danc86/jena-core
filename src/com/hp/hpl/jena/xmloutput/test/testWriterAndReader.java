@@ -196,7 +196,7 @@ public class testWriterAndReader
             }
 		Resource blocked[] = new Resource[v.size()];
 		v.copyInto( blocked );
-		doTest( new String[] { "blockRules" }, new Object[] { blocked } );
+		doTest( new String[] { "blockRules" }, new Resource[][] { blocked } );
         }
     
 	public void doTest( String[] propNames, Object[] propVals ) throws IOException 

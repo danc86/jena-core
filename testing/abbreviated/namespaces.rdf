@@ -12,6 +12,7 @@
 <rdfs:Class rdf:ID="C" ex1:prop1="v1" ex2:prop2="v2" ex0:prop0="v0">
 </rdfs:Class>
 
+<ex0:Entity rdf:ID="D"><ex0:property rdf:resource="http://example.org/#spoo"/></ex0:Entity>
 
 </rdf:RDF>
 

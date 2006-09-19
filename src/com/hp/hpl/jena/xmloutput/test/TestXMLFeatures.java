@@ -250,6 +250,30 @@ public class TestXMLFeatures extends XMLOutputTestBase {
 			}
 		});
         }
+    
+    public void testEntityDeclaration() throws IOException
+        {
+        check
+            (
+            file1,
+            "<!DOCTYPE rdf:RDF \\[[^]]*<!ENTITY spoo *'goo:boo'>",
+            "SPONGLE",
+            Change
+                .setProperty( "showDoctypeDeclaration", true )
+                .andSetPrefix( "spoo", "goo:boo" )
+            );
+        }
+    
+    public void testEntityUse() throws IOException
+        {
+        check
+            (
+            file1,
+            "rdf:resource=\"&ex0;spoo\"",
+            "SPONGLE",
+            Change.setProperty( "showDoctypeDeclaration", true )
+            );
+        }
 
 	public void testDuplicatePrefix() throws IOException 
         {
@@ -265,7 +289,7 @@ public class TestXMLFeatures extends XMLOutputTestBase {
 			}
 		});
 	}
-
+    
 	void setNsPrefixSysProp(String prefix, String uri) 
         { System.setProperty( RDFWriter.NSPREFIXPROPBASE + uri, prefix ); }
 
@@ -341,7 +365,7 @@ public class TestXMLFeatures extends XMLOutputTestBase {
 
 	public void testUTF8DeclPresent() throws IOException 
         {
-		check(file1, "utf-8", "<\\?xml", null, Change.setProperty( "showXmlDeclaration", true ) );
+		check( file1, "utf-8", "<\\?xml", null, Change.setProperty( "showXmlDeclaration", true ) );
         }
 
 	public void testUTF16DeclPresent() throws IOException 
@@ -351,7 +375,7 @@ public class TestXMLFeatures extends XMLOutputTestBase {
 
 	public void testISO8859_1_DeclAbsent() throws IOException 
         {
-		check(file1, "iso-8859-1", null, "<\\?xml", Change.setProperty( "showXmlDeclaration", false ) );
+		check( file1, "iso-8859-1", null, "<\\?xml", Change.setProperty( "showXmlDeclaration", false ) );
         }
 
 	public void testISO8859_1_DeclPresent() throws IOException 
@@ -381,7 +405,7 @@ public class TestXMLFeatures extends XMLOutputTestBase {
 	static final int ExtraTriples = 2;
 	static final int BadURI = 3;
 
-	public void checkPropURI(String s, String p, Object val, int behaviour)
+	public void checkPropURI( String s, String p, Object val, int behaviour )
 		throws IOException {
 		// create triple and graph.
         //BaseXMLWriter.dbg = true;
@@ -449,7 +473,7 @@ public class TestXMLFeatures extends XMLOutputTestBase {
         try
             { 
          //   RDFDefaultErrorHandler.logger.setLevel( Level.OFF );
-            checkPropURI("_:aa", null, null, BadURI);
+            checkPropURI( "_:aa", null, null, BadURI );
             }
         finally
             { //RDFDefaultErrorHandler.logger.setLevel( Level.WARN ); 
