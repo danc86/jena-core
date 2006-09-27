@@ -288,6 +288,7 @@ public class XMLHandler extends LexicalHandlerImpl implements ARPErrorNumbers,
     }
 
     private boolean allowRelativeReferences = false;
+    
     private AbsXMLContext initialContextWithBase(String base) throws SAXParseException {
         allowRelativeReferences = false;
             if (base == null) {
