@@ -33,7 +33,7 @@ public class SimpleEventManager implements GraphEventManager
     protected Graph graph;
     protected List  listeners;
     
-    SimpleEventManager( Graph graph ) 
+    public SimpleEventManager( Graph graph ) 
         { 
         this.graph = graph;
         this.listeners = new ArrayList(); 
