@@ -75,6 +75,8 @@ public interface Assembler
     
     public static final Assembler ruleSet = new RuleSetAssembler();
     
+    public static final Assembler modelSource = new ModelSourceAssembler();
+    
     public static final Assembler locationMapper = new LocationMapperAssembler();
 
     public static final Assembler fileManager = new FileManagerAssembler();
@@ -86,6 +88,7 @@ public interface Assembler
         .implementWith( JA.MemoryModel, memoryModel )
         .implementWith( JA.InfModel, infModel )
         .implementWith( JA.ReasonerFactory, reasonerFactory )
+        .implementWith(  JA.ModelSource, modelSource )
         .implementWith( JA.Content, content )
         .implementWith( JA.ContentItem, content )
         .implementWith( JA.Connection, connection )

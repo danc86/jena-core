@@ -37,6 +37,7 @@ public class TestBuiltinAssemblerGroup extends AssemblerTestBase
         assertAssemblerClass( JA.FileManager, FileManagerAssembler.class );
         assertAssemblerClass( JA.DocumentManager, DocumentManagerAssembler.class );
         assertAssemblerClass( JA.UnionModel, UnionModelAssembler.class );
+        assertAssemblerClass( JA.ModelSource, ModelSourceAssembler.class );
         }
     
     public void testVariables()
