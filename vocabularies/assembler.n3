@@ -25,15 +25,6 @@
     dc:identifier    :
     .
 
-
-#
-# Put these in the right place, put the tests in.
-#
-
-ja:OntModelSpec rdfs:subClassOf ja:ReasonerFactory.
-ja:reasonerURL rdfs:range ja:ReasonerFactory.
-ja:ModelSource rdfs:subClassOf ja:Connectable.
-
 #
 # Alias for owl:imports
 #
@@ -276,6 +267,7 @@ ja:connection a rdf:Property
 
 ja:ModelSource a rdfs:Class
     ; rdfs:subClassOf ja:Object
+    ; rdfs:subClassOf ja:Connectable
     ; rdfs:label "Assembler.ModelSource"
     ; rdfs:comment "Source of models by name for an OntModelSpec"
     .
@@ -337,7 +329,7 @@ ja:reasonerURL a rdf:Property
     ; rdfs:comment
         """property of a ReasonerFactory specifying the URL of the reasoner
         in the reasoner registry; only one such property per reasoner."""
-    ; rdfs:domain ja:ReasonerFactory
+    ; rdfs:range ja:ReasonerFactory
     .
 
 ja:schema a rdf:Property
@@ -467,6 +459,7 @@ ja:OntModel a rdfs:Class
 
 ja:OntModelSpec a rdfs:Class
     ; rdfs:subClassOf ja:Object
+    ; rdfs:subClassOf ja:ReasonerFactory
     ; rdfs:subClassOf [owl:onProperty ja:ontLanguage; owl:maxCardinality 1]
     ; rdfs:subClassOf [owl:onProperty ja:documentManager; owl:maxCardinality 1]
     ; rdfs:subClassOf [owl:onProperty ja:importSource; owl:maxCardinality 1]
