@@ -82,6 +82,16 @@ public class LocatorURL implements Locator
         }
     }
 
+    public boolean equals( Object other )
+    {
+        return other instanceof LocatorURL;
+    }
+
+    public int hashCode()
+    {
+        return LocatorURL.class.hashCode();
+    }
+    
     public String getName() { return "LocatorURL" ; } 
     
     private boolean acceptByScheme(String filenameOrURI)

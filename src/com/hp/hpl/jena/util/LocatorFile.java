@@ -63,6 +63,23 @@ public class LocatorFile implements Locator
         this(null) ;
     }
     
+    public boolean equals( Object other )
+    {
+        return
+            other instanceof LocatorFile
+            && equals( altDir, ((LocatorFile) other).altDir );
+    }
+    
+    private boolean equals( String a, String b )
+    {
+        return a == null ? b == null : a.equals(  b  );
+    }
+
+    public int hashCode()
+    {
+        return altDir.hashCode();
+    }
+    
     private File toFile(String filenameOrURI)
     {
         String fn = FileUtils.toFilename(filenameOrURI) ;

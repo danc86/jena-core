@@ -22,7 +22,9 @@ public class FileManagerAssembler extends AssemblerBase
     public Object open( Assembler a, Resource root, Mode irrelevant )
         { 
         checkType( root, JA.FileManager );
-        return new FileManager( getLocationMapper( a, root ) ); 
+        FileManager fm = new FileManager( getLocationMapper( a, root ) );
+        FileManager.setStdLocators( fm );
+        return fm; 
         }
 
     private LocationMapper getLocationMapper( Assembler a, Resource root )

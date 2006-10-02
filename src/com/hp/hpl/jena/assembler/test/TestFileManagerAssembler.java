@@ -6,6 +6,8 @@
 
 package com.hp.hpl.jena.assembler.test;
 
+import java.util.*;
+
 import com.hp.hpl.jena.assembler.*;
 import com.hp.hpl.jena.assembler.assemblers.FileManagerAssembler;
 import com.hp.hpl.jena.rdf.model.Resource;
@@ -46,6 +48,28 @@ public class TestFileManagerAssembler extends AssemblerTestBase
         Object x = a.open( mock, root );
         assertInstanceOf( FileManager.class, x );
         assertSame( mapper, ((FileManager) x).getLocationMapper() );
+        }
+    
+    /**
+        Can't just test for equality of locators list, since locators don't support
+        equality. Weak hack: check that the sizes are the same. TODO improve.
+     */
+    public void testCreatesFileManagerWIthHandlers()
+        {
+        Resource root = resourceInModel( "f rdf:type ja:FileManager" );
+        Assembler a = new FileManagerAssembler();
+        FileManager f = (FileManager) a.open( null, root );
+        List wanted = IteratorCollection.iteratorToList( standardLocators() );
+        List obtained = IteratorCollection.iteratorToList( f.locators() );
+        assertEquals( wanted.size(), obtained.size() );
+        assertEquals( wanted, obtained );
+        }
+
+    private Iterator standardLocators()
+        {
+        FileManager fm = new FileManager();
+        FileManager.setStdLocators( fm );
+        return fm.locators();
         }
     }
 
