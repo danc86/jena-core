@@ -83,7 +83,7 @@ public class TestOntModelSpecAssembler extends AssemblerTestBase
     public void testUseSpecifiedReasoner()
         {
         Assembler a = new OntModelSpecAssembler();
-        Resource root = resourceInModel( "x rdf:type ja:OntModelSpec; x ja:reasonerURL R" );
+        Resource root = resourceInModel( "x rdf:type ja:OntModelSpec; x ja:reasonerFactory R" );
         ReasonerFactory rf = new ReasonerFactory() 
             {
             public Reasoner create( Resource configuration )

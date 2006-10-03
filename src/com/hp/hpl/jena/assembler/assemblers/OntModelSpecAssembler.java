@@ -63,7 +63,7 @@ public class OntModelSpecAssembler extends AssemblerBase implements Assembler
 
     private ReasonerFactory getReasonerFactory( Assembler a, Resource root )
         {
-        Resource rf = getUniqueResource( root, JA.reasonerURL );
+        Resource rf = getUniqueResource( root, JA.reasonerFactory );
         return rf == null ? DEFAULT.getReasonerFactory() : (ReasonerFactory) a.open( rf );
         }
     

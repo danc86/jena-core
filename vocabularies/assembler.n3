@@ -329,8 +329,15 @@ ja:reasonerURL a rdf:Property
     ; rdfs:comment
         """property of a ReasonerFactory specifying the URL of the reasoner
         in the reasoner registry; only one such property per reasoner."""
-    ; rdfs:range ja:ReasonerFactory
+    ; rdfs:domain ja:ReasonerFactory
     .
+    
+ja:reasonerFactory a rdf:Property
+	; rdfs:label "Assembler.reasonerFactory"
+	; rdfs:comment "property of an OntModelSpec giving the reasoner for the spec"
+	; rdfs:range ja:ReasonerFactory
+	; rdfs:domain ja:OntModelSpec
+	.
 
 ja:schema a rdf:Property
     ; rdfs:label "Assembler.schemaURL"
@@ -459,11 +466,10 @@ ja:OntModel a rdfs:Class
 
 ja:OntModelSpec a rdfs:Class
     ; rdfs:subClassOf ja:Object
-    ; rdfs:subClassOf ja:ReasonerFactory
     ; rdfs:subClassOf [owl:onProperty ja:ontLanguage; owl:maxCardinality 1]
     ; rdfs:subClassOf [owl:onProperty ja:documentManager; owl:maxCardinality 1]
     ; rdfs:subClassOf [owl:onProperty ja:importSource; owl:maxCardinality 1]
-    ; rdfs:subClassOf [owl:onProperty ja:reasonerURL; owl:maxcardinality 1]
+    ; rdfs:subClassOf [owl:onProperty ja:reasonerFactory; owl:maxCardinality 1]
     ; rdfs:label "Assembler.OntModelSpec"
     ; rdfs:comment "class of OntModelSpec objects for OntModel construction"
     .

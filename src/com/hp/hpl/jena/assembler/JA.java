@@ -173,6 +173,8 @@ public class JA
 
     public static final Property imports = property( "imports" );
 
+    public static final Property reasonerFactory = property( "reasonerFactory" );
+
     public static Model getSchema()
         { // inline packagename to avoid clash with /our/ FileManager.
         if (schema == null) schema = complete( com.hp.hpl.jena.util.FileManager.get().loadModel( getSchemaPath() ) );
