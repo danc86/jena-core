@@ -9,6 +9,7 @@ package com.hp.hpl.jena.assembler.assemblers;
 import java.lang.reflect.*;
 
 import com.hp.hpl.jena.assembler.*;
+import com.hp.hpl.jena.assembler.exceptions.ReasonerClashException;
 import com.hp.hpl.jena.ontology.*;
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.reasoner.ReasonerFactory;
@@ -64,6 +65,9 @@ public class OntModelSpecAssembler extends AssemblerBase implements Assembler
     private ReasonerFactory getReasonerFactory( Assembler a, Resource root )
         {
         Resource rf = getUniqueResource( root, JA.reasonerFactory );
+        Resource ru = getUniqueResource( root, JA.reasonerURL );
+        if (ru != null && rf != null) throw new ReasonerClashException( root );
+        if (ru != null) return ReasonerFactoryAssembler.getReasonerFactoryByURL( root, ru );
         return rf == null ? DEFAULT.getReasonerFactory() : (ReasonerFactory) a.open( rf );
         }
     

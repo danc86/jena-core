@@ -54,16 +54,24 @@ public class ReasonerFactoryAssembler extends AssemblerBase implements Assembler
     
     protected static ReasonerFactory getReasonerFactory( Resource root )
         {
-        Resource r = getUniqueResource( root, JA.reasonerURL );
-        if (r == null)
-            return GenericRuleReasonerFactory.theInstance(); 
-        else
-            {
-            String url = r.getURI();
-            ReasonerFactory factory = ReasonerRegistry.theRegistry().getFactory( url );
-            if (factory == null) throw new UnknownReasonerException( root, r );
-            return factory;
-            }
+        Resource reasonerURL = getUniqueResource( root, JA.reasonerURL );
+        return reasonerURL == null
+            ? GenericRuleReasonerFactory.theInstance()
+            : getReasonerFactoryByURL( root, reasonerURL )
+            ;
+        }
+
+    /**
+        Answer a ReasonerFactory which delivers reasoners with the given
+        URL <ocde>reasonerURL</code>. If there is no such reasoner, throw
+        an <code>UnknownreasonerException</code>.
+    */
+    public static ReasonerFactory getReasonerFactoryByURL( Resource root, Resource reasonerURL )
+        {
+        String url = reasonerURL.getURI();
+        ReasonerFactory factory = ReasonerRegistry.theRegistry().getFactory( url );
+        if (factory == null) throw new UnknownReasonerException( root, reasonerURL );
+        return factory;
         }
     }
 
