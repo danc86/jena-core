@@ -8,6 +8,7 @@ package com.hp.hpl.jena.rdf.model;
 
 import com.hp.hpl.jena.datatypes.RDFDatatype;
 import com.hp.hpl.jena.graph.Node;
+import com.hp.hpl.jena.graph.impl.LiteralLabel;
 import com.hp.hpl.jena.rdf.model.impl.*;
 
 /** A Factory class for creating resources.
@@ -83,7 +84,14 @@ public class ResourceFactory {
         return instance.createTypedLiteral( string , dType);
     }
     
-    
+    /**
+    Answer a typed literal.
+    @param value a java Object, the default RDFDatatype for that object will be used
+    @return a Literal node with that value
+    */
+    public static Literal createTypedLiteral( Object value ) {
+        return instance.createTypedLiteral(value);
+    }
     
     /** create a new property.
      * 
@@ -154,7 +162,15 @@ public class ResourceFactory {
         @return a Literal node with that string as value
         */
         public Literal createTypedLiteral( String string , RDFDatatype datatype) ;
-        
+
+
+        /**
+        Answer a typed literal.
+        @param value a java Object, the default RDFDatatype for that object will be used
+        @return a Literal node with that value
+        */
+        public Literal createTypedLiteral( Object value ) ;
+
         /** create a new property.
          * 
          * @param uriref URIREF of the property
@@ -203,6 +219,10 @@ public class ResourceFactory {
         public Literal createTypedLiteral( String string , RDFDatatype dType)
         {
             return new LiteralImpl(Node.createLiteral(string, "", dType), null) ;
+        }
+
+        public Literal createTypedLiteral( Object value ) {
+            return new LiteralImpl(Node.createLiteral( new LiteralLabel(value) ), null) ;
         }
         
         public Property createProperty(String uriref) {

@@ -61,6 +61,14 @@ public class TestResourceFactory extends TestCase {
         assertTrue(l.getDatatypeURI().equals(XSDDatatype.XSDinteger.getURI())) ;
         
     }
+    
+    public void testCreateTypedLiteralObject()
+    {
+        Literal l = ResourceFactory.createTypedLiteral(new Integer(22)) ;
+        assertEquals("22", l.getLexicalForm()) ;
+        assertEquals("", l.getLanguage()) ;
+        assertEquals(XSDDatatype.XSDint, l.getDatatype()) ;
+    }
 
     public void testCreateStatement() {
         Resource s = ResourceFactory.createResource();
@@ -110,6 +118,11 @@ public class TestResourceFactory extends TestCase {
         }
 
         public Literal createTypedLiteral(String string, RDFDatatype datatype)
+        {
+            return null ;
+        }
+
+        public Literal createTypedLiteral(Object value)
         {
             return null ;
         }
