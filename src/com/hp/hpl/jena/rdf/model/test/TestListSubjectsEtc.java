@@ -42,6 +42,14 @@ public class TestListSubjectsEtc extends ModelTestBase
         try { it.remove(); fail( "listObjects should not support .remove()" ); }
         catch (UnsupportedOperationException e) { pass(); }
         }
+    
+    public void PENDINGtestListSubjectsWorksAfterRemoveProperties()
+        {
+        Model m = modelWithStatements( "p1 before terminal; p2 before terminal" );
+        m.createResource( "eh:/p1" ).removeProperties();
+        assertIsoModels( modelWithStatements( "p2 before terminal" ), m );
+        assertEquals( resourceSet( "p2" ), m.listSubjects().toSet() );
+        }
     }
 
 /*
