@@ -359,7 +359,7 @@ public class GenericRuleReasoner extends FBRuleReasoner {
     protected synchronized InfGraph getPreload() {
         // We only support this in HYBRID mode
         if (cachePreload && preload == null && mode == HYBRID) {
-            preload = new FBRuleInfGraph(this, rules, null, new GraphMem());
+            preload = new FBRuleInfGraph( this, rules, null, Factory.createDefaultGraph() );
             if (enableTGCCaching) ((FBRuleInfGraph)preload).setUseTGCCache();
             preload.prepare();
         }
