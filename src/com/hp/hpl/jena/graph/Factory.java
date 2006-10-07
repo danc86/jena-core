@@ -23,11 +23,12 @@ public class Factory
     private Factory()
         { super(); }
 
-    public static final boolean faster =
-        JenaRuntime.getSystemProperty( "jena.faster", "yes" ).equals( "yes" );
+    public static final boolean faster = true;
+        // JenaRuntime.getSystemProperty( "jena.faster", "yes" ).equals( "yes" );
 
     public static final boolean newHashing = 
         JenaRuntime.getSystemProperty( "jena.hashing", "yes" ).equals( "yes" );
+    
     /**
         Answer a memory-based Graph with the Standard reification style.
     */
@@ -45,6 +46,16 @@ public class Factory
 
     public static Graph createGraphMem( ReificationStyle style )
         { return faster ? (Graph) new GraphMemFaster( style ) : new GraphMem( style ); }
+
+    public static Graph createGraphMemWithTransactionHandler( final TransactionHandler th )
+        {
+        Graph g = new GraphMem() 
+            {
+            public TransactionHandler getTransactionHandler() 
+                {  return th; }
+            };
+        return g;
+        }
     }
 
 
