@@ -55,7 +55,7 @@ public class GraphMem extends GraphMemBase implements Graph
     
     public QueryHandler queryHandler()
         {
-        if (queryHandler == null) queryHandler = new GraphMemQueryHandler( this );
+        if (queryHandler == null) queryHandler = new GraphMemBaseQueryHandler( this );
         return queryHandler;
         }
         

@@ -14,11 +14,12 @@ package com.hp.hpl.jena.mem;
    <p>All the code has ended up in the new superclass GraphMemBaseQueryHandler,
    so see that for interesting details; this class may be removed at some point.
    
+   @deprecated use GraphMemBaseQueryHandler
  	@author hedgehog
 */
 public class GraphMemQueryHandler extends GraphMemBaseQueryHandler
 	{
-    GraphMemQueryHandler( GraphMem graph ) 
+    GraphMemQueryHandler( GraphMemBase graph ) 
 	    { super( graph ); }
 	}
 
