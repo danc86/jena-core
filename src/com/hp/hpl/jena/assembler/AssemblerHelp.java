@@ -174,12 +174,45 @@ public class AssemblerHelp
         throw new BadObjectException( s );
         }
 
+    /**
+        Answer the String value of the literal <code>L</code>, which is the
+        object of the Statement <code>s</code>. If the literal is not an
+        XSD String or a plain string without a language code, throw a
+        BadObjectException.
+    */
     public static String getString( Statement s, Literal L )
         {
         if (!L.getLanguage().equals( "" )) throw new BadObjectException( s );
         if (L.getDatatype() == null) return L.getLexicalForm();
         if (L.getDatatype() == XSDDatatype.XSDstring) return L.getLexicalForm();
         throw new BadObjectException( s );
+        }
+
+    /**
+        Answer a Set of the ja:Object resources in the full expansion of
+        the assembler specification model <code>model</code>.
+    */
+    public static Set findAssemblerRoots( Model model )
+        { return findAssemblerRoots( model, JA.Object ); }
+
+    /**
+        Answer a Set of the objects in the full expansion of the assembler
+        specification <code>model</code> which have rdf:type <code>type</code>,
+        which <i>must</i> be a subtype of <code>ja:Object</code>.
+    */
+    public static Set findAssemblerRoots( Model model, Resource type )
+        { return fullModel( model ).listSubjectsWithProperty( RDF.type, type ).toSet(); }
+
+    /**
+         Answer the single resource in <code>singleRoot</code> of type
+         <code>ja:Model</code>. Otherwise throw an exception.
+    */
+    public static Resource singleModelRoot( Model singleRoot )
+        {
+        Set roots = findAssemblerRoots( singleRoot, JA.Model );
+        if (roots.size() == 1) return (Resource) roots.iterator().next();
+        if (roots.size() == 0) throw new BadDescriptionNoRootException( singleRoot, JA.Model );
+        throw new BadDescriptionMultipleRootsException( singleRoot, JA.Model );
         }
     }
 

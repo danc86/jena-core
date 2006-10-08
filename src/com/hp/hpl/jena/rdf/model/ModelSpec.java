@@ -10,6 +10,7 @@ package com.hp.hpl.jena.rdf.model;
     A ModelSpec allows Models to be created.
     
  	@author kers
+    @deprecated in favour of the Assembler system
 */
 public interface ModelSpec extends ModelSource
     {    

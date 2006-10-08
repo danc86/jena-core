@@ -49,6 +49,56 @@ public class TestAssemblerHelp extends AssemblerTestBase
         testSpecificType( "ja:RDBModel", "x rdf:type ja:RDBModel; x rdf:type ja:Model" );
         }
     
+    public void testFindRootByExplicitType()
+        {
+        Model model = model( "x rdf:type ja:Object; y rdf:type Irrelevant" );
+        Set roots = AssemblerHelp.findAssemblerRoots( model );
+        assertEquals( resourceSet( "x" ), roots );
+        }        
+    
+    public void testFindRootByImplicitType()
+        {
+        Model model = model( "x ja:reificationMode ja:Standard" );
+        Set roots = AssemblerHelp.findAssemblerRoots( model );
+        assertEquals( resourceSet( "x" ), roots );
+        }
+    
+    public void testFindMultipleRoots()
+        {
+        Model model = model( "x rdf:type ja:Object; y ja:reificationMode ja:Minimal" );
+        Set roots = AssemblerHelp.findAssemblerRoots( model );
+        assertEquals( resourceSet( "y x" ), roots );
+        }
+    
+    public void testFindRootsWithSpecifiedType()
+        {
+        Model model = model( "x rdf:type ja:Model; y rdf:type ja:Object" );
+        Set roots = AssemblerHelp.findAssemblerRoots( model, JA.Model );
+        assertEquals( resourceSet( "x" ), roots );
+        }
+    
+    public void testThrowsIfNoRoots()
+        {
+        try 
+            { AssemblerHelp.singleModelRoot( model( "" )  ); 
+            fail( "should trap if no roots" ); }
+        catch (BadDescriptionNoRootException e) { pass(); }
+        }
+    
+    public void testThrowsIfManyRoots()
+        {
+        try 
+            { AssemblerHelp.singleModelRoot( model( "a rdf:type ja:Model; b rdf:type ja:Model" )  )
+            ; fail( "should trap if many roots" ); }
+        catch (BadDescriptionMultipleRootsException e) { pass(); }
+        }
+    
+    public void testExtractsSingleRoot()
+        {
+        Resource it = AssemblerHelp.singleModelRoot( model( "a rdf:type ja:Model" )  );
+        assertEquals( resource( "a" ), it );
+        }
+    
     public void testSpecificTypeFails()
         {
         try
