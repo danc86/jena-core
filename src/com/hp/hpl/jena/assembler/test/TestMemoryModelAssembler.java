@@ -9,7 +9,7 @@ package com.hp.hpl.jena.assembler.test;
 
 import com.hp.hpl.jena.assembler.*;
 import com.hp.hpl.jena.assembler.assemblers.MemoryModelAssembler;
-import com.hp.hpl.jena.mem.faster.GraphMemFaster;
+import com.hp.hpl.jena.mem.GraphMemBase;
 import com.hp.hpl.jena.rdf.model.*;
 
 public class TestMemoryModelAssembler extends ModelAssemblerTestBase
@@ -28,7 +28,7 @@ public class TestMemoryModelAssembler extends ModelAssemblerTestBase
         Assembler a = new MemoryModelAssembler();
         Model m = a.openModel( resourceInModel( "x rdf:type ja:MemoryModel" ) );
         assertInstanceOf( Model.class, m );
-        assertInstanceOf( GraphMemFaster.class, m.getGraph() );
+        assertInstanceOf( GraphMemBase.class, m.getGraph() );
         }
     
     public void testCreatesWithStyle()

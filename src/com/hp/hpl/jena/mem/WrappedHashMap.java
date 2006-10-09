@@ -20,10 +20,10 @@ public class WrappedHashMap implements BunchMap
     public void clear()
         { map.clear(); }
 
-    public Object get( Object key )
-        { return map.get( key ); }
+    public TripleBunch get( Object key )
+        { return (TripleBunch) map.get( key ); }
 
-    public void put( Object key, Object value )
+    public void put( Object key, TripleBunch value )
         { map.put( key, value ); }
 
     public void remove( Object key )

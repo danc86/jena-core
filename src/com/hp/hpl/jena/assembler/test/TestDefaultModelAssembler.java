@@ -8,7 +8,7 @@ package com.hp.hpl.jena.assembler.test;
 
 import com.hp.hpl.jena.assembler.*;
 import com.hp.hpl.jena.assembler.assemblers.DefaultModelAssembler;
-import com.hp.hpl.jena.mem.faster.GraphMemFaster;
+import com.hp.hpl.jena.mem.GraphMemBase;
 import com.hp.hpl.jena.rdf.model.Model;
 
 public class TestDefaultModelAssembler extends AssemblerTestBase
@@ -24,7 +24,7 @@ public class TestDefaultModelAssembler extends AssemblerTestBase
         Assembler a = Assembler.defaultModel;
         Model m = a.openModel( resourceInModel( "x rdf:type ja:DefaultModel" ) );
         assertInstanceOf( Model.class, m );
-        assertInstanceOf( GraphMemFaster.class, m.getGraph() );
+        assertInstanceOf( GraphMemBase.class, m.getGraph() );
         }
     
     public void testDefaultModelAssemblerType()

@@ -19,7 +19,6 @@ import com.hp.hpl.jena.shared.*;
 
 public class Factory
     {
-
     private Factory()
         { super(); }
 
