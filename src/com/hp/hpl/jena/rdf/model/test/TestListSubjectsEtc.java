@@ -43,9 +43,18 @@ public class TestListSubjectsEtc extends ModelTestBase
         catch (UnsupportedOperationException e) { pass(); }
         }
     
-    public void PENDINGtestListSubjectsWorksAfterRemoveProperties()
+    public void testListSubjectsWorksAfterRemoveProperties()
         {
         Model m = modelWithStatements( "p1 before terminal; p2 before terminal" );
+        m.createResource( "eh:/p1" ).removeProperties();
+        assertIsoModels( modelWithStatements( "p2 before terminal" ), m );
+        assertEquals( resourceSet( "p2" ), m.listSubjects().toSet() );
+        }
+    
+    public void testListSubjectsWorksAfterRemovePropertiesWIthLots()
+        {
+        Model m = modelWithStatements( "p2 before terminal" );
+        for (int i = 0; i < 100; i += 1) modelAdd( m, "p1 hasValue " + i );
         m.createResource( "eh:/p1" ).removeProperties();
         assertIsoModels( modelWithStatements( "p2 before terminal" ), m );
         assertEquals( resourceSet( "p2" ), m.listSubjects().toSet() );

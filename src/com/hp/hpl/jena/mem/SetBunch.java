@@ -55,6 +55,11 @@ public class SetBunch implements TripleBunch
     public void remove( Triple t )
         { elements.remove( t ); }
     
+    public ExtendedIterator iterator( NotifyEmpty container )
+        {
+        return iterator();
+        }
+    
     public ExtendedIterator iterator()
         { return WrappedIterator.create( elements.iterator() ); }        
     

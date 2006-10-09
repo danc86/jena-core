@@ -10,6 +10,8 @@ import java.util.*;
 
 import com.hp.hpl.jena.graph.Triple;
 import com.hp.hpl.jena.graph.query.*;
+import com.hp.hpl.jena.mem.TripleBunch.NotifyEmpty;
+import com.hp.hpl.jena.shared.JenaException;
 import com.hp.hpl.jena.util.iterator.*;
 
 public class HashedTripleBunch extends HashCommon implements TripleBunch
@@ -84,6 +86,9 @@ public class HashedTripleBunch extends HashCommon implements TripleBunch
         }
     
     public ExtendedIterator iterator()
+        { return iterator( new NotifyEmpty() { public void emptied() {} } ); }
+    
+    public ExtendedIterator iterator( final NotifyEmpty container )
         {
         return new NiceIterator()
             {
@@ -119,9 +124,10 @@ public class HashedTripleBunch extends HashCommon implements TripleBunch
             public void remove()
                 {
                 if (keys[lastIndex] != toRemove) throw new ConcurrentModificationException();
-                HashedTripleBunch.this.removeFrom( lastIndex );
+                HashedTripleBunch.this.removeFrom( lastIndex ); size -= 1;
                 current = keys[index = lastIndex];
-                lastIndex = -1;
+                lastIndex = -1; 
+                if (size == 0) container.emptied();
                 }
             };
         }

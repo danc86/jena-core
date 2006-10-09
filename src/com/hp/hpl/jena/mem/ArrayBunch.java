@@ -89,6 +89,11 @@ public class ArrayBunch implements TripleBunch
     
     public ExtendedIterator iterator()
         {
+        return iterator( new NotifyEmpty() { public void emptied() {} } );
+        }
+    
+    public ExtendedIterator iterator( final NotifyEmpty container )
+        {
         return new NiceIterator()
             {
             protected final int initialChanges = changes;
@@ -115,6 +120,7 @@ public class ArrayBunch implements TripleBunch
                 int last = --size;
                 e[i] = e[last];
                 e[last] = null;
+                if (size == 0) container.emptied();
                 }
             };
         }

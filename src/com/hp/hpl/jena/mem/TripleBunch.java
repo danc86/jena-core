@@ -13,12 +13,16 @@ import com.hp.hpl.jena.util.iterator.ExtendedIterator;
 
 public interface TripleBunch 
     {
+    public interface NotifyEmpty
+        { public void emptied(); }
+    
     public abstract boolean contains( Triple t );
     public abstract boolean containsBySameValueAs( Triple t );
     public abstract int size();
     public abstract void add( Triple t );
     public abstract void remove( Triple t );
     public abstract ExtendedIterator iterator();
+    public abstract ExtendedIterator iterator( NotifyEmpty container );
     public abstract void app( Domain d, StageElement next, MatchOrBind s );
     }
 /*
