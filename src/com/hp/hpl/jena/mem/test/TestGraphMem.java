@@ -6,10 +6,7 @@
 
 package com.hp.hpl.jena.mem.test;
 
-import java.util.Iterator;
-
 import com.hp.hpl.jena.graph.*;
-import com.hp.hpl.jena.graph.impl.SimpleReifier;
 import com.hp.hpl.jena.mem.*;
 import com.hp.hpl.jena.shared.JenaException;
 import com.hp.hpl.jena.util.iterator.ExtendedIterator;
