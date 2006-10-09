@@ -10,8 +10,6 @@ import java.util.*;
 
 import com.hp.hpl.jena.graph.Triple;
 import com.hp.hpl.jena.graph.query.*;
-import com.hp.hpl.jena.mem.TripleBunch.NotifyEmpty;
-import com.hp.hpl.jena.shared.JenaException;
 import com.hp.hpl.jena.util.iterator.*;
 
 public class HashedTripleBunch extends HashCommon implements TripleBunch
@@ -31,7 +29,6 @@ public class HashedTripleBunch extends HashCommon implements TripleBunch
     protected int findSlotBySameValueAs( Triple key )
         {
         int index = initialIndexFor( key );
-        // int k = 1;
         while (true)
             {
             Object current = keys[index];

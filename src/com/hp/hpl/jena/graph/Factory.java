@@ -22,8 +22,8 @@ public class Factory
     private Factory()
         { super(); }
 
-    public static final boolean faster = true;
-        // JenaRuntime.getSystemProperty( "jena.faster", "yes" ).equals( "yes" );
+    public static final boolean faster = 
+        JenaRuntime.getSystemProperty( "jena.faster", "yes" ).equals( "yes" );
 
     public static final boolean newHashing = 
         JenaRuntime.getSystemProperty( "jena.hashing", "yes" ).equals( "yes" );
