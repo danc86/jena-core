@@ -117,11 +117,11 @@ public class EnhGraph
      * @param interf A type denoting the enhanced facet desired
      * @return An enhanced node
      */
-    public EnhNode getNodeAs(Node n,Class interf) {
+    public EnhNode getNodeAs( Node n, Class interf ) {
          // We use a cache to avoid reconstructing the same Node too many times.
-        EnhNode eh = (EnhNode)enhNodes.get(n);
+        EnhNode eh = (EnhNode) enhNodes.get( n );
         if ( eh != null )
-            return eh.viewAs(interf);
+            return eh.viewAs( interf );
             
         // not in the cache, so build a new one
         eh = (EnhNode) ((GraphPersonality) personality).nodePersonality()

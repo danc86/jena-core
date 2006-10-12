@@ -706,21 +706,16 @@ public class ModelCom
     }
     
     public RDFNode getRDFNode( Node n )
-        {   
-        return n.isURI() || n.isBlank()
-            ? (RDFNode) new ResourceImpl( n, this )
-            : (RDFNode) new LiteralImpl( n, this ); 
+        {   return asRDFNode( n ); }
+    
+    public Resource getResource( String uri )  
+        { return IteratorFactory.asResource(makeURI(uri),this); }
+    
+    public Property getProperty( String uri )  
+        {
+        if (uri == null) throw new InvalidPropertyURIException( null );
+        return IteratorFactory.asProperty( makeURI(uri), this );
         }
-    
-    public Resource getResource(String uri)  {
-        return IteratorFactory.asResource(makeURI(uri),this);
-    }
-    
-    public Property getProperty(String uri)  {
-        if ( uri == null )
-             throw new InvalidPropertyURIException( null );
-        return IteratorFactory.asProperty(makeURI(uri),this);
-    }
     
     public Property getProperty( String nameSpace,String localName )
         { return getProperty( nameSpace + localName ); }
