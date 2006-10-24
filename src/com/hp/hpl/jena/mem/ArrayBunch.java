@@ -94,6 +94,9 @@ public class ArrayBunch implements TripleBunch
     
     public ExtendedIterator iterator( final NotifyEmpty container )
         {
+//        System.err.println( ">> ArrayBunch::iterator: intial state" );
+//        for (int j = 0; j < size; j += 1) System.err.println( "==    " + elements[j] );
+//        System.err.println( ">> (done)" );
         return new NiceIterator()
             {
             protected final int initialChanges = changes;
@@ -117,10 +120,16 @@ public class ArrayBunch implements TripleBunch
             public void remove()
                 {
                 if (changes > initialChanges) throw new ConcurrentModificationException();
+//                System.err.println( ">> ArrayBunch.iterator::remove" );
+//                System.err.println( "++  size currently " + size );
+//                System.err.println( "++  container is " + container );
+//                System.err.println( "++  selector currently " + i + " (triple " + e[i] + ")" );
                 int last = --size;
                 e[i] = e[last];
                 e[last] = null;
                 if (size == 0) container.emptied();
+//                System.err.println( "++  post remove, triples are:" );
+//                for (int j = 0; j < size; j += 1) System.err.println( "==    " + e[j] );
                 }
             };
         }

@@ -26,8 +26,8 @@ public class GraphMemBaseQueryHandler extends SimpleQueryHandler
     public GraphMemBaseQueryHandler( GraphMemBase graph )
         { super( graph ); this.store = graph.store; }
 
-    public ExtendedIterator objectsFor( Node p, Node o )
-        { return bothANY( p, o ) ? findObjects() : super.objectsFor( p, o ); }
+    public ExtendedIterator objectsFor( Node s, Node p )
+        { return bothANY( s, p ) ? findObjects() : super.objectsFor( s, p ); }
 
     public ExtendedIterator predicatesFor( Node s, Node o )
         { return bothANY( s, o ) ? findPredicates() : super.predicatesFor( s, o ); }
