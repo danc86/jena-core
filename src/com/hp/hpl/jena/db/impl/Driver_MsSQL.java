@@ -145,6 +145,33 @@ public class Driver_MsSQL extends Driver_PostgreSQL  {
         }
         return result.getIntID();
     }
+    
+    /**
+     * Return the parameters for table creation.
+     * 1) column type for subj, prop, obj.
+     * 2) column type for head.
+     * 3) table and index name prefix.
+     * @param param array to hold table creation parameters. 
+     */
+    protected void getTblParams ( String [] param ) {
+        String spoColType;
+        String headColType;
+        
+        if ( LONG_OBJECT_LENGTH > 4000 )
+            throw new RDFRDBException("Long object length specified (" + LONG_OBJECT_LENGTH +
+                    ") exceeds maximum sane length of 4000.");
+        if ( INDEX_KEY_LENGTH > 4000 )
+            throw new RDFRDBException("Index key length specified (" + INDEX_KEY_LENGTH +
+                    ") exceeds maximum sane length of 4000.");
+
+        spoColType = "NVARCHAR(" + LONG_OBJECT_LENGTH + ")";
+        STRINGS_TRIMMED = false;
+        param[0] = spoColType;
+        headColType = "NVARCHAR(" + INDEX_KEY_LENGTH + ")";
+        STRINGS_TRIMMED = false;
+        param[1] = headColType;
+        param[2] = TABLE_NAME_PREFIX;
+    }
 
     // Suppressed. This was an attempt to force use of row level locking to
     // get round concurrency problems. Code level in comment form for future reference.
