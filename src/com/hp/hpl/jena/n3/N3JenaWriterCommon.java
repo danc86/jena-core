@@ -19,6 +19,8 @@ import com.hp.hpl.jena.vocabulary.RDF ;
 import java.util.* ;
 import java.io.* ;
 import java.math.BigDecimal;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.text.* ;
 
 /** Common framework for implementing N3 writers.
@@ -151,12 +153,10 @@ public class N3JenaWriterCommon implements RDFWriter
             _out = new BufferedWriter(_out);
         out = new IndentedWriter(_out);
 
-        // Base is (should be) a URI, not a URI ref.
-        
         if ( base != null )
         {
             baseURIref = base ;
-            if ( !base.endsWith("#"))
+            if ( !base.endsWith("#") &&! isOpaque(base) )
                 baseURIrefHash = baseURIref+"#" ;
         }
         
@@ -864,7 +864,12 @@ public class N3JenaWriterCommon implements RDFWriter
         return propName ;
     }
     
-    
+    private boolean isOpaque(String uri)
+    {
+        try {
+            return new URI(uri).isOpaque() ;
+        } catch (URISyntaxException ex) { return true ; }
+    }
 }
 
 /*
