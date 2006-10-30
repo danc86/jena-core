@@ -127,8 +127,9 @@ public abstract class HashCommon
         value. Since we resize the table when it gets fullish, we don't worry [much]
         about the overhead of the linear probing.
     */
-    protected void removeFrom( int here )
+    protected Object removeFrom( int here )
         {
+        size -= 1;
         while (true)
             {
             keys[here] = null;
@@ -138,7 +139,7 @@ public abstract class HashCommon
                 {
                 if (--scan < 0) scan += capacity;
                 Object key = keys[scan];
-                if (key == null) return;
+                if (key == null) return null;
                 int r = initialIndexFor( key );
                 if (!((scan <= r && r < here) || (r < here && here < scan) || (here < scan && scan <= r) )) break;
                 }

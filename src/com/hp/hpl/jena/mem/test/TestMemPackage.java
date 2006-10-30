@@ -27,6 +27,8 @@ public class TestMemPackage extends TestCase
         result.addTest( new TestSuite( TestArrayTripleBunch.class ) );
         result.addTest( new TestSuite( TestWrappedSetTripleBunch.class ) );
         result.addTest( new TestSuite( TestHashedTripleBunch.class ) );
+        result.addTestSuite( TestHashedBunchMap.class );
+        result.addTestSuite( TestHashCommon.class );
         return result;
         }
     }

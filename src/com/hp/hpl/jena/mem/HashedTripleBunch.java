@@ -78,7 +78,6 @@ public class HashedTripleBunch extends HashCommon implements TripleBunch
     public void remove( Triple t )
         {
         removeFrom( ~findSlot( t ) );
-        size -= 1;
         changes += 1;
         }
     
