@@ -5,10 +5,6 @@
 */
 package com.hp.hpl.jena.mem;
 
-import java.util.Iterator;
-
-import com.hp.hpl.jena.util.iterator.NiceIterator;
-
 /**
     An implementation of BunchMap that does open-addressed hashing.
     @author kers
@@ -76,52 +72,19 @@ public class HashedBunchMap extends HashCommon implements BunchMap
         if (slot < 0) removeFrom( ~slot );
         }
 
+    /**
+        Called by HashCommon when a key is removed: remove
+        associated element of the <code>values</code> array.
+    */
     protected void removeAssociatedValues( int here )
         { values[here] = null; }
     
+    /**
+        Called by HashCommon when a key is moved: move the
+        associated element of the <code>values</code> array.
+    */
     protected void moveAssociatedValues( int here, int scan )
         { values[here] = values[scan]; }
-
-    void showkeys()
-        {
-        if (false)
-            {
-            System.err.print( ">> KEYS:" );
-            for (int i = 0; i < capacity; i += 1)
-                if (keys[i] != null) System.err.print( " " + initialIndexFor( keys[i] ) + "@" + i + "::" + keys[i] );
-            System.err.println();
-            }
-        }
-    
-    public Iterator keyIterator()
-        {
-        showkeys();
-        return new NiceIterator()
-            {
-            int index = 0;
-            
-            public boolean hasNext()
-                {
-                while (index < capacity && keys[index] == null) index += 1;
-                return index < capacity;
-                }
-            
-            public Object next()
-                {
-                if (hasNext() == false) noElements( "bunch map keys" );
-                return keys[index++];
-                }
-            
-            public void remove()
-                { 
-                size -= 1;
-                // System.err.println( ">> keyIterator::remove, size := " + size + ", removing " + keys[index + 1] );
-                removeFrom( index - 1 );
-                showkeys();
-                }
-            };
-        }
-
     }
 
 /*

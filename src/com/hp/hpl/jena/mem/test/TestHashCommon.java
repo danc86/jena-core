@@ -84,7 +84,7 @@ public class TestHashCommon extends ModelTestBase
         Item moved = (Item) h.removeFrom( 1 );
         assertSame( item0X, h.getItemForTestingAt( 0 ) );
         assertSame( item2Z, h.getItemForTestingAt( 1 ) );
-        // TODO assertSame( item2Z, moved );
+        assertSame( item2Z, moved );
         }
     }
 
