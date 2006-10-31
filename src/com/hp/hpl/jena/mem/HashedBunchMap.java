@@ -66,12 +66,6 @@ public class HashedBunchMap extends HashCommon implements BunchMap
             }
         }
 
-    public void remove( Object key )
-        {
-        int slot = findSlot( key );
-        if (slot < 0) removeFrom( ~slot );
-        }
-
     /**
         Called by HashCommon when a key is removed: remove
         associated element of the <code>values</code> array.

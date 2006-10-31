@@ -6,7 +6,7 @@
 
 package com.hp.hpl.jena.mem.test;
 
-import com.hp.hpl.jena.mem.HashedBunchMap;
+import com.hp.hpl.jena.mem.*;
 import com.hp.hpl.jena.rdf.model.test.ModelTestBase;
 
 public class TestHashedBunchMap extends ModelTestBase
@@ -16,7 +16,7 @@ public class TestHashedBunchMap extends ModelTestBase
     
     public void testSize()
         {
-        HashedBunchMap b = new HashedBunchMap();
+        HashCommon b = new HashedBunchMap();
         }
 
     }
