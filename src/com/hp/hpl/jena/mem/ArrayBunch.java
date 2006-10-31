@@ -89,10 +89,10 @@ public class ArrayBunch implements TripleBunch
     
     public ExtendedIterator iterator()
         {
-        return iterator( new NotifyEmpty() { public void emptied() {} } );
+        return iterator( new HashCommon.NotifyEmpty() { public void emptied() {} } );
         }
     
-    public ExtendedIterator iterator( final NotifyEmpty container )
+    public ExtendedIterator iterator( final HashCommon.NotifyEmpty container )
         {
 //        System.err.println( ">> ArrayBunch::iterator: intial state" );
 //        for (int j = 0; j < size; j += 1) System.err.println( "==    " + elements[j] );

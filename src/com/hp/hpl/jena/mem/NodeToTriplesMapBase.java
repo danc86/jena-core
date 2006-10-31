@@ -52,7 +52,7 @@ public abstract class NodeToTriplesMapBase
     */
     public abstract boolean remove( Triple t );
 
-    public abstract Iterator iterator( Object o, TripleBunch.NotifyEmpty container );
+    public abstract Iterator iterator( Object o, HashCommon.NotifyEmpty container );
 
     /**
          Answer true iff this NTM contains the concrete triple <code>t</code>.
@@ -114,7 +114,7 @@ public abstract class NodeToTriplesMapBase
                 return current.next();
                 }
 
-            class NotifyMe implements TripleBunch.NotifyEmpty
+            class NotifyMe implements HashCommon.NotifyEmpty
                 {
                 public void emptied()
                     { 

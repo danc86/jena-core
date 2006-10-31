@@ -5,10 +5,10 @@
 */
 package com.hp.hpl.jena.mem;
 
-import java.util.Iterator;
 import java.util.Map;
 
 import com.hp.hpl.jena.util.CollectionFactory;
+import com.hp.hpl.jena.util.iterator.*;
 
 /**
     An implementation of BunchMap that delegates to a [Hashed]Map.
@@ -29,8 +29,8 @@ public class WrappedHashMap implements BunchMap
     public void remove( Object key )
         { map.remove( key ); }
 
-    public Iterator keyIterator()
-        { return map.keySet().iterator(); }
+    public ExtendedIterator keyIterator()
+        { return WrappedIterator.create( map.keySet().iterator() ); }
     }
 
 /*

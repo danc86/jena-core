@@ -66,7 +66,7 @@ public class NodeToTriplesMap extends NodeToTriplesMapBase
         	} 
         }
     
-    public Iterator iterator( Object o, TripleBunch.NotifyEmpty container )
+    public Iterator iterator( Object o, HashCommon.NotifyEmpty container )
         {
         TripleBunch b = bunchMap.get( o );
         return b == null ? NullIterator.instance : b.iterator();

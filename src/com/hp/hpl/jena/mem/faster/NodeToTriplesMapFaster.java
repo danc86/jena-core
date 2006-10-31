@@ -70,14 +70,14 @@ public class NodeToTriplesMapFaster extends NodeToTriplesMapBase
         Answer an iterator over all the triples in this NTM which have index node
         <code>o</code>.
     */
-    public Iterator iterator( Object o, TripleBunch.NotifyEmpty container ) 
+    public Iterator iterator( Object o, HashCommon.NotifyEmpty container ) 
        {
        // System.err.println( ">> BOINK" ); // if (true) throw new JenaException( "BOINK" );
        TripleBunch s = (TripleBunch) bunchMap.get( o );
        return s == null ? NullIterator.instance : s.iterator( container );
        }
     
-    public class NotifyMe implements TripleBunch.NotifyEmpty
+    public class NotifyMe implements HashCommon.NotifyEmpty
         {
         protected final Object key;
         

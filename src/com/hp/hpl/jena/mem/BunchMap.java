@@ -7,6 +7,8 @@ package com.hp.hpl.jena.mem;
 
 import java.util.Iterator;
 
+import com.hp.hpl.jena.util.iterator.ExtendedIterator;
+
 /**
     A pruned (and slightly stewed) version of Map, containing just those operations
     required by NodeToTriplesMaps. BunchMaps contain only TripleBunch's.
@@ -42,7 +44,7 @@ public interface BunchMap
     /**
         Answer an iterator over all the keys in this map.
     */
-    public Iterator keyIterator();
+    public ExtendedIterator keyIterator();
     }
 
 /*

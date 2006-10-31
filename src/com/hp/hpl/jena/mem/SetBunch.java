@@ -10,7 +10,6 @@ import java.util.Iterator;
 import java.util.Set;
 
 import com.hp.hpl.jena.graph.*;
-import com.hp.hpl.jena.graph.Triple;
 import com.hp.hpl.jena.graph.query.Domain;
 import com.hp.hpl.jena.graph.query.StageElement;
 import com.hp.hpl.jena.util.iterator.ExtendedIterator;
@@ -55,7 +54,7 @@ public class SetBunch implements TripleBunch
     public void remove( Triple t )
         { elements.remove( t ); }
     
-    public ExtendedIterator iterator( NotifyEmpty container )
+    public ExtendedIterator iterator( HashCommon.NotifyEmpty container )
         {
         return iterator();
         }
