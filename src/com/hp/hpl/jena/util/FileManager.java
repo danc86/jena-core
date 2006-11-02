@@ -355,7 +355,7 @@ public class FileManager
         if ( baseURI == null )
             baseURI = chooseBaseURI(filenameOrURI) ;
 
-        // Doen't call open() - we want to make the synatx guess based on the mapped URI.
+        // Doesn't call open() - we want to make the synatx guess based on the mapped URI.
         String mappedURI = mapURI(filenameOrURI) ;
 
         if ( log.isDebugEnabled() && ! mappedURI.equals(filenameOrURI) )

@@ -86,10 +86,11 @@ public class N3JenaWriter implements RDFWriter
 
     /**
      * Turtle writer.
-     * http://www.ilrt.bris.ac.uk/discovery/2004/01/turtle/
+     * http://www.dajobe.org/2004/01/turtle/
      */
     static public final String turtleWriter          = "TURTLE" ;
-
+    static public final String turtleWriterAlt1      = "Turtle" ;
+    static public final String turtleWriterAlt2      = "TTL" ;
     
     protected N3JenaWriterCommon writer = null ;
     

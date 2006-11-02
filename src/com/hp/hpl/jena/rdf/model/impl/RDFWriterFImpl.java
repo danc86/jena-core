@@ -59,7 +59,9 @@ public class RDFWriterFImpl extends Object implements RDFWriterF {
           N3JenaWriter.n3WriterPlain,
           N3JenaWriter.n3WriterTriples,
           N3JenaWriter.n3WriterTriplesAlt,
-          N3JenaWriter.turtleWriter 
+          N3JenaWriter.turtleWriter,
+          N3JenaWriter.turtleWriterAlt1, 
+          N3JenaWriter.turtleWriterAlt2 
         };
     // default readers for each language
 
@@ -74,6 +76,8 @@ public class RDFWriterFImpl extends Object implements RDFWriterF {
             Jena.PATH + ".n3.N3JenaWriterPlain",
             Jena.PATH + ".n3.N3JenaWriterTriples",
             Jena.PATH + ".n3.N3JenaWriterTriples",  // Same writer, different writer name
+            Jena.PATH + ".n3.TurtleJenaWriter",     // Alternative names for Turtle
+            Jena.PATH + ".n3.TurtleJenaWriter",
             Jena.PATH + ".n3.TurtleJenaWriter",
              };
 
