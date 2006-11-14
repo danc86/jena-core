@@ -157,6 +157,7 @@ public class GraphTestBase extends JenaTestBase
     /**
         Answer a new memory-based graph with initial contents as described
         by <code>s</code> in the fashion of <code>graphAdd()</code>.
+        Not over-ridable; do not use for abstraction.
     */
     public static Graph graphWith( String s )
         { return graphAdd( newGraph(), s ); }
