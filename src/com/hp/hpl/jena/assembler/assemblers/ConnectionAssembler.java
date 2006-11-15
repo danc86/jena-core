@@ -9,6 +9,7 @@ package com.hp.hpl.jena.assembler.assemblers;
 import com.hp.hpl.jena.JenaRuntime;
 import com.hp.hpl.jena.assembler.*;
 import com.hp.hpl.jena.assembler.exceptions.CannotLoadClassException;
+import com.hp.hpl.jena.assembler.exceptions.PropertyRequiredException;
 import com.hp.hpl.jena.rdf.model.*;
 
 /**
@@ -45,6 +46,10 @@ public class ConnectionAssembler extends AssemblerBase implements Assembler
         checkType( root, JA.Connection );
         String dbUser = getUser( root ), dbPassword = getPassword( root );
         String dbURL = getURL( root ), dbType = getType( root );
+        if (dbURL == null)
+        	throw new PropertyRequiredException(root, JA.property("dbURL"));
+        if (dbType == null)
+        	throw new PropertyRequiredException(root, JA.property("dbType"));
         loadClasses( root );
         return createConnection( dbURL, dbType, dbUser, dbPassword );
         }    

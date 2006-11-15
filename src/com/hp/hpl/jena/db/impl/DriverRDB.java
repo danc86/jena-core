@@ -871,14 +871,14 @@ public abstract class DriverRDB implements IRDBDriver {
 		} catch (Exception e1) {
 			// An exception might be an unformatted or corrupt
 			// db or a connection problem.
-			throw new RDFRDBException("Exception while checking db format - " + e1);
+			throw new RDFRDBException("Exception while checking db format - " + e1, e1);
 		}finally {
 			try {
 				if(alltables!=null) {
 					alltables.close();
 				}
 			}catch(SQLException e) {
-				throw new RDFRDBException("Exception while checking db format - " + e);
+				throw new RDFRDBException("Exception while checking db format - " + e, e);
 			}
 		}
 		return result;
