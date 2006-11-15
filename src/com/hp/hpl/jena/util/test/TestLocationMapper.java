@@ -41,7 +41,7 @@ public class TestLocationMapper extends TestCase
         return new TestSuite( TestLocationMapper.class );
     }
 
-    public void testLocationMapping()
+    public void testLocationMapper()
     {
         LocationMapper locMap = new LocationMapper(mapping) ;
         String alt = locMap.altMapping(filename1) ;
@@ -49,7 +49,7 @@ public class TestLocationMapper extends TestCase
         assertEquals(alt, filename2) ;
     }
 
-    public void testLocationMappingMiss()
+    public void testLocationMapperMiss()
     {
         LocationMapper locMap = new LocationMapper(mapping) ;
         String alt = locMap.altMapping(notFilename) ;
@@ -57,7 +57,7 @@ public class TestLocationMapper extends TestCase
         assertEquals(alt, notFilename) ;
     }
 
-    public void testLocationMappingURLtoFile()
+    public void testLocationMapperURLtoFile()
     {
         LocationMapper locMap = new LocationMapper(mapping) ;
         String alt = locMap.altMapping("http://example.org/file") ;
@@ -65,7 +65,7 @@ public class TestLocationMapper extends TestCase
         assertEquals(alt, "file:"+testingDir+"/location-mapping-test-file") ;
     }
     
-    public void testLocationMappingFromModel()
+    public void testLocationMapperFromModel()
     {
         Model model = FileManager.get().loadModel(testingDir+"/location-mapping-test.n3") ;
         LocationMapper loc = new LocationMapper(model) ; 
@@ -88,10 +88,10 @@ public class TestLocationMapper extends TestCase
         }
     }
 
-    public void testLocationMappingClone1()
+    public void testLocationMapperClone1()
     {
         LocationMapper locMap1 = new LocationMapper(mapping) ;
-        // See testLocationMappingURLtoFile
+        // See testLocationMapperURLtoFile
 //        String alt = locMap.altMapping("http://example.org/file") ;
 //        assertNotNull(alt) ;
 //        assertEquals(alt, "file:"+testingDir+"/location-mapping-test-file") ;
@@ -104,10 +104,10 @@ public class TestLocationMapper extends TestCase
         assertEquals(alt, "file:"+testingDir+"/location-mapping-test-file") ;
     }
     
-    public void testLocationMappingClone2()
+    public void testLocationMapperClone2()
     {
         LocationMapper locMap1 = new LocationMapper(mapping) ;
-        // See testLocationMappingURLtoFile
+        // See testLocationMapperURLtoFile
 //        String alt = locMap.altMapping("http://example.org/file") ;
 //        assertNotNull(alt) ;
 //        assertEquals(alt, "file:"+testingDir+"/location-mapping-test-file") ;
@@ -130,12 +130,38 @@ public class TestLocationMapper extends TestCase
         }
     }
 
+    public void testLocationMapperEquals1()
+    {
+        LocationMapper locMap1 = new LocationMapper(mapping) ;
+        LocationMapper locMap2 = new LocationMapper(mapping) ;
+        assertEquals(locMap1, locMap2) ;
+    }
 
+    public void testLocationMapperEquals2()
+    {
+        LocationMapper locMap1 = new LocationMapper(mapping) ;
+        LocationMapper locMap2 = new LocationMapper(mapping) ;
+        locMap2.addAltEntry("file:nowhere", "file:somewhere") ;
+        assertFalse(locMap1.equals(locMap2)) ;
+        assertFalse(locMap2.equals(locMap1)) ;
+    }
 
+    public void testLocationMapperToModel1()
+    {
+        LocationMapper locMap1 = new LocationMapper(mapping) ;
+        LocationMapper locMap2 = new LocationMapper(locMap1.toModel()) ;
+        assertEquals(locMap1, locMap2) ;
+    }
 
-
-
-    
+    public void testLocationMapperToModel2()
+    {
+        LocationMapper locMap1 = new LocationMapper(mapping) ;
+        LocationMapper locMap2 = new LocationMapper(mapping) ;
+        locMap1 = new LocationMapper(locMap1.toModel()) ;
+        locMap2.addAltEntry("file:nowhere", "file:somewhere") ;
+        assertFalse(locMap1.equals(locMap2)) ;
+        assertFalse(locMap2.equals(locMap1)) ;
+    }
 }
 
 /*
