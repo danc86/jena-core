@@ -135,6 +135,7 @@ public class TestLocationMapper extends TestCase
         LocationMapper locMap1 = new LocationMapper(mapping) ;
         LocationMapper locMap2 = new LocationMapper(mapping) ;
         assertEquals(locMap1, locMap2) ;
+        assertEquals(locMap1.hashCode(), locMap2.hashCode()) ;
     }
 
     public void testLocationMapperEquals2()
@@ -151,6 +152,7 @@ public class TestLocationMapper extends TestCase
         LocationMapper locMap1 = new LocationMapper(mapping) ;
         LocationMapper locMap2 = new LocationMapper(locMap1.toModel()) ;
         assertEquals(locMap1, locMap2) ;
+        assertEquals(locMap1.hashCode(), locMap2.hashCode()) ;
     }
 
     public void testLocationMapperToModel2()

@@ -237,6 +237,26 @@ public class LocationMapper
         return s_globalMapperPath ;
     }
     
+    public int hashCode()
+    {
+        int x = 0 ;
+        
+        
+        for ( Iterator iter = altLocations.keySet().iterator() ; iter.hasNext() ; )
+        {
+            String k = (String)iter.next() ;
+            String v = (String)altLocations.get(k) ;
+            x = x ^ k.hashCode() ^ v.hashCode() ;
+        }
+        for ( Iterator iter = altPrefixes.keySet().iterator() ; iter.hasNext() ; )
+        {
+            String k = (String)iter.next() ;
+            String v = (String)altPrefixes.get(k) ;
+            x = x ^ k.hashCode() ^ v.hashCode() ;
+        }
+        return x ;
+    }
+    
     public boolean equals(Object obj)
     {
         if ( ! ( obj instanceof LocationMapper ) )
