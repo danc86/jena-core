@@ -56,7 +56,7 @@ public class TestModelSourceAssembler extends AssemblerTestBase
     
     public void testRDBModelMakerSource()
         {
-        final ConnectionDescription c = new ConnectionDescription( "url", "user", "password", "type" );
+        final ConnectionDescription c = new ConnectionDescription( "eh:/subject", "url", "user", "password", "type" );
         final List history = new ArrayList();
         Assembler a = new ModelSourceAssembler() 
             {

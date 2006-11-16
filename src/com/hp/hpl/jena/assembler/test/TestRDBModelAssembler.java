@@ -32,7 +32,7 @@ public class TestRDBModelAssembler extends AssemblerTestBase
     public void testInvokesCreateModel()
         {
         Resource root = resourceInModel( "x rdf:type ja:RDBModel; x ja:modelName 'spoo'; x ja:connection C" );
-        final ConnectionDescription C = ConnectionDescription.create( "A", "B", "C", "D" );
+        final ConnectionDescription C = ConnectionDescription.create( "eh:/x", "A", "B", "C", "D" );
         final Model fake = ModelFactory.createDefaultModel();
         final Mode theMode = new Mode( true, true );
         Assembler a = new RDBModelAssembler()
