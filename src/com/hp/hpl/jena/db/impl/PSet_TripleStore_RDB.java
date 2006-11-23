@@ -867,6 +867,7 @@ if ( hack != 0 ) {
 		 * @see com.hp.hpl.jena.graphRDB.IPSet#removeStatementsFromDB()
 		 */
 		public void removeStatementsFromDB(IDBID graphID) {
+            // TODO optimise in the case where 
 			String gid = graphID.getID().toString();
 			
 			try {
