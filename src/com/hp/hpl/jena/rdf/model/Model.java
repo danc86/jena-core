@@ -369,6 +369,7 @@ public interface Model
     Model add( Model m, boolean suppressReifications );
 
 	/** Add the RDF statements from an XML document.
+	 * Uses content negotiation to request appropriate mime types.
 	 *
 	 * <p>See {@link Model} for a description of how to traverse a firewall.</p>
 	 * @return this model
