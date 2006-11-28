@@ -90,10 +90,12 @@ public class TestModelRead extends ModelTestBase
     
     public void testContentNegotiation() {
 		Model m = ModelFactory.createDefaultModel();
+//		Model m2 = ModelFactory.createDefaultModel();
 
 		try {
 			m.read("http://jena.sourceforge.net/test/mime/test1");
 		    assertEquals(m.size(),1);
+//		    m2.read("http://xmlns.com/foaf/0.1/");
 		} catch (JenaException jx) {
 			if (jx.getCause() instanceof NoRouteToHostException
 					|| jx.getCause() instanceof UnknownHostException
