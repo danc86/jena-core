@@ -105,6 +105,8 @@ public class LocatorFile implements Locator
     
     public InputStream open(String filenameOrURI)
     {
+        // Worry about %20.
+        // toFile calls FileUtils.toFilename(filenameOrURI) ;
         File f = toFile(filenameOrURI) ;
 
         try {
