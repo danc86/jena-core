@@ -82,6 +82,14 @@ public class TestNode extends GraphTestBase
         assertFalse( "ANY nodes aren't blank", Node.ANY.isBlank() );
         assertFalse( "ANY nodes aren't blank", Node.ANY.isBlank() );
         }
+    
+    public void testNodeVariableConstructor()
+        {
+        assertEquals( Node.createVariable( "hello" ), new Node_Variable( "hello" ) );
+        assertEquals( Node.createVariable( "world" ), new Node_Variable( "world" ) );
+        assertDiffer( Node.createVariable( "hello" ), new Node_Variable( "world" ) );
+        assertEquals( "myName", new Node_Variable( "myName" ).getName() );
+        }
         
     /**
         test cases for equality: an array of (Node, String) pairs. [It's not worth
