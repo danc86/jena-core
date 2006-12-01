@@ -5,6 +5,8 @@
 */
 package com.hp.hpl.jena.graph.query;
 
+import org.apache.commons.logging.*;
+
 import com.hp.hpl.jena.graph.Graph;
 import com.hp.hpl.jena.graph.Triple;
 import com.hp.hpl.jena.graph.query.StageElement.*;
@@ -37,11 +39,18 @@ public abstract class PatternStageBase extends Stage
         this.classified = QueryTriple.classify( factory, map, triples );
         this.guards = new GuardArranger( triples ).makeGuards( map, constraints );
         }
+
+    static Log log = LogFactory.getLog( PatternStageBase.class );
     
     protected void run( Pipe source, Pipe sink, StageElement se )
         {
         try { while (stillOpen && source.hasNext()) se.run( source.get() ); }
-        catch (Exception e) { sink.close( e ); return; }
+        catch (Exception e) 
+            {
+            log.debug( "PatternStageBase has caught and forwarded an exception", e );
+            sink.close( e ); 
+            return; 
+            }
         sink.close();
         }
 

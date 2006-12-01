@@ -71,8 +71,13 @@ public class BufferPipe implements Pipe
                     {
                     Finished end = (Finished) pending;
                     RuntimeException cause = end.getCause();
-                    if (cause == null) open = false;
-                    else throw cause;
+                    if (cause == null) 
+                        open = false;
+                    else 
+                        {
+                        PatternStageBase.log.debug( "BufferPipe has recieved and rethrown an exception", cause );
+                        throw cause;
+                        }
                     }
                 return open;
                 }
