@@ -16,6 +16,7 @@ import org.apache.commons.logging.LogFactory;
 import com.hp.hpl.jena.n3.RelURI;
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.regression.testReaderInterface;
+import com.hp.hpl.jena.shared.ConfigException;
 import com.hp.hpl.jena.shared.JenaException;
 
 import junit.framework.TestSuite;
@@ -41,6 +42,16 @@ public class TestModelRead extends ModelTestBase
         assertTrue( m.isEmpty() );
         }
     
+    public void testGRDDLConfigMessage() {
+    	Model m = ModelFactory.createDefaultModel();
+    	try {
+    		m.read("http://www.w3.org/","GRDDL");
+    		// ok.
+    	}
+    	catch (ConfigException e) {
+    		// expected.
+    	}
+    }
     public void testLoadsSimpleModel()
         {
         Model expected = ModelFactory.createDefaultModel();
