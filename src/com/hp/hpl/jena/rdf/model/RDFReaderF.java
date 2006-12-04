@@ -73,6 +73,6 @@ public interface RDFReaderF {
  * @return the old class name for this language
  */    
     public String setReaderClassName(String lang, String className);
- //* @deprecated Replaced by setReader
+ 
 }
 

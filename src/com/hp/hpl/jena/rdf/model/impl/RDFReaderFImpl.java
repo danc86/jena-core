@@ -108,10 +108,6 @@ public class RDFReaderFImpl extends Object implements RDFReaderF {
     }
 
     public String setReaderClassName( String lang,String className ) {
-        return setBaseReaderClassName( lang, className );
-    }
-    
-    public static String setBaseReaderClassName( String lang, String className ) {
         String oldClassName = langToClassName.getProperty(lang);
         langToClassName.setProperty(lang, className);
         return oldClassName;
