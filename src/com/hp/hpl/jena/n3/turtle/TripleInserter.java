@@ -1,38 +1,32 @@
 /*
- * (c) Copyright 2001, 2002, 2003, 2004, 2005, 2006 Hewlett-Packard Development Company, LP
+ * (c) Copyright 2005, 2006 Hewlett-Packard Development Company, LP
+ * All rights reserved.
  * [See end of file]
  */
 
-// To do:
-//   Better detection of illegal characters in qnames (? and = for example) 
+package com.hp.hpl.jena.n3.turtle;
 
-package com.hp.hpl.jena.n3;
-
-
-/** Turtle writer.  It is actually an appropriately configured   
- *
- * @author		Andy Seaborne
- * @version 	$Id$
- */
+import com.hp.hpl.jena.graph.Graph;
+import com.hp.hpl.jena.graph.Triple;
 
 
-
-public class TurtleJenaWriter extends N3JenaWriter
+public class TripleInserter implements TripleHandler
 {
-    public TurtleJenaWriter()
-    {
-        super() ;
-        
-        if ( writer.getPropValue("usePropertySymbols") == null )
-            writer.useWellKnownPropertySymbols = false ;
-        writer.allowTripleQuotedStrings = false ;
-        writer.allowDoubles = false ;
-    }
+    Graph graph = null ;
+    public TripleInserter(Graph graph) { this.graph = graph ; }
+    
+    public void triple(int line, int col, Triple triple) { graph.add(triple) ; }
+
+    public void startFormula(int line, int col)
+    { throw new TurtleParseException("["+line+", "+col+"] : Error: Formula found") ; }
+
+    public void endFormula(int line, int col)
+    { throw new TurtleParseException("["+line+", "+col+"] : Error: Formula found") ; }
 }
 
 /*
- *  (c) Copyright 2001, 2002, 2003, 2004, 2005, 2006 Hewlett-Packard Development Company, LP
- *  All rights reserved.
+ * (c) Copyright 2005, 2006 Hewlett-Packard Development Company, LP
+ * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions

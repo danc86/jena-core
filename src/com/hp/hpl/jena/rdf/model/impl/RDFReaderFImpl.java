@@ -43,6 +43,8 @@ import com.hp.hpl.jena.JenaRuntime ;
 public class RDFReaderFImpl extends Object implements RDFReaderF {
 
     private static final String GRDDLREADER = "com.hp.hpl.jena.grddl.GRDDLReader";
+    //private static final String TURTLEREADER = "com.hp.hpl.jena.n3.turtle.TurtleReader" ;
+    private static final String TURTLEREADER = "com.hp.hpl.jena.n3.N3TurtleJenaReader" ;
 
 	protected static Properties langToClassName = null;
 
@@ -54,7 +56,9 @@ public class RDFReaderFImpl extends Object implements RDFReaderF {
                                               "N-TRIPLES",
                                               "N3",
                                               "TURTLE",
+                                              "Turtle",
                                               "TTL",
+                                              "AFS",
                                               "GRDDL"};
     // default readers for each language
 
@@ -64,8 +68,10 @@ public class RDFReaderFImpl extends Object implements RDFReaderF {
         Jena.PATH + ".rdf.model.impl.NTripleReader",
         Jena.PATH + ".rdf.model.impl.NTripleReader",
         "com.hp.hpl.jena.n3.N3JenaReader",
-        "com.hp.hpl.jena.n3.TurtleJenaReader",
-        "com.hp.hpl.jena.n3.TurtleJenaReader",
+        TURTLEREADER,
+        TURTLEREADER,
+        TURTLEREADER,
+        "com.hp.hpl.jena.n3.turtle.TurtleReader",   // Testing :-)
         GRDDLREADER
     };
 

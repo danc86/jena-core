@@ -76,9 +76,9 @@ public class RDFWriterFImpl extends Object implements RDFWriterF {
             Jena.PATH + ".n3.N3JenaWriterPlain",
             Jena.PATH + ".n3.N3JenaWriterTriples",
             Jena.PATH + ".n3.N3JenaWriterTriples",  // Same writer, different writer name
-            Jena.PATH + ".n3.TurtleJenaWriter",     // Alternative names for Turtle
-            Jena.PATH + ".n3.TurtleJenaWriter",
-            Jena.PATH + ".n3.TurtleJenaWriter",
+            Jena.PATH + ".n3.N3TurtleJenaWriter",     // Alternative names for Turtle
+            Jena.PATH + ".n3.N3TurtleJenaWriter",
+            Jena.PATH + ".n3.N3TurtleJenaWriter",
              };
 
     protected static final String DEFAULTLANG = LANGS[0];

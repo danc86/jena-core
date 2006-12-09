@@ -1,31 +1,41 @@
 /*
- * (c) Copyright 2001, 2002, 2003, 2004, 2005, 2006 Hewlett-Packard Development Company, LP
+ * (c) Copyright 2005, 2006 Hewlett-Packard Development Company, LP
+ * All rights reserved.
  * [See end of file]
  */
 
-package com.hp.hpl.jena.n3;
+package com.hp.hpl.jena.n3.turtle.test;
 
-/**
- * @author		Andy Seaborne
- * @version 	$Id$
- */
+import com.hp.hpl.jena.n3.turtle.TurtleParseException;
+import com.hp.hpl.jena.n3.turtle.TurtleReader;
+import com.hp.hpl.jena.rdf.model.*;
+
+import junit.framework.TestCase;
 
 
-
-public class TurtleJenaReader extends N3JenaReader
+public class TestBadSyntax extends TestCase
 {
-	public TurtleJenaReader()
+    String uri ;
+    public TestBadSyntax(String name, String uri) { super(name) ; this.uri = uri ; }
+    
+    public void runTest()
     {
-	    super() ;
-        super.converter.allowPropertySymbols = false ;
-        super.converter.allowKeywordA = true ;
+        Model model = ModelFactory.createDefaultModel() ;
+        RDFReader t = new TurtleReader() ;
+        try {
+            t.read(model, uri) ;
+            fail("Bad syntax test succeed in parsing the file") ;
+        } catch (TurtleParseException ex)
+        {
+            return ;    
+        }
+
     }
-	
 }
 
 /*
- *  (c) Copyright 2001, 2002, 2003, 2004, 2005, 2006 Hewlett-Packard Development Company, LP
- *  All rights reserved.
+ * (c) Copyright 2005, 2006 Hewlett-Packard Development Company, LP
+ * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
