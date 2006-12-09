@@ -26,7 +26,7 @@ public class TurtleInternalTests extends TestSuite
 	static public final String QUOTE3 = "\"\"\"" ;
 	static public boolean VERBOSE = false ;
 	
-	TurtleInternalTests()
+	public TurtleInternalTests()
 	{
 		super("Turtle Parser Syntactic tests") ;
 		

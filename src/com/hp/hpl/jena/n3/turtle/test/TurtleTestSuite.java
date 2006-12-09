@@ -20,9 +20,9 @@ public class TurtleTestSuite extends TestSuite
 	private TurtleTestSuite()
 	{
 		super("Turtle") ;
-		addTest(new TurtleInternalTests()) ;
-        addTest(TurtleTestFactory.make("testing/Turtle/manifest.ttl")) ;
         addTestSuite(TestTurtleReader.class) ;
+        addTest(new TurtleInternalTests()) ;
+        addTest(TurtleTestFactory.make("testing/Turtle/manifest.ttl")) ;
 //		addTest(new N3ExternalTests()) ;
 //		addTest(new N3JenaReaderTests()) ;
 //		addTest(new N3JenaWriterTests()) ;
