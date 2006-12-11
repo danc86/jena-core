@@ -18,6 +18,8 @@ import com.hp.hpl.jena.db.RDFRDBException;
  */
 public abstract class DBBlob implements IDBBlob {
 
+    // NOT CURRENTLY USED (Jena 2.4)
+    
 	/** the real blob */
 	protected Object m_blob;
 	
