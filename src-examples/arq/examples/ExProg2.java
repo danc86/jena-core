@@ -44,8 +44,8 @@ public class ExProg2
         
         ElementGroup elg = new ElementGroup() ;
         
-        Node varTitle = Node.createVariable("title") ;
-        Node varX = Node.createVariable("x") ;
+        Var varTitle = Var.alloc("title") ;
+        Var varX = Var.alloc("x") ;
         
         Triple t1 = new Triple(varX, DC.title.asNode(),  varTitle) ;
         elg.addElementTriplePattern(new ElementTriplePattern(t1)) ;
