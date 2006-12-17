@@ -95,8 +95,10 @@ public class TestLiteralEncoding extends ModelTestBase
         Model m2 = modelWithStatements( "" );
         m2.read( new StringReader( s.toString() ), null, "RDF/XML" );
         assertIsoModels( m, m2 );
-        assertTrue( s.toString().contains( "]]&gt;" ) );
-        assertFalse( s.toString().contains( "]]>" ) );
+        //assertTrue( s.toString().contains( "]]&gt;" ) );  // Java 1.5-ism
+        //assertFalse( s.toString().contains( "]]>" ) );
+        assertTrue( s.toString().indexOf( "]]&gt;" ) >= 0 );
+        assertFalse( s.toString().indexOf( "]]>" ) >= 0 );
         }
     }
 
