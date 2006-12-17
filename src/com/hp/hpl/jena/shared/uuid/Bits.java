@@ -21,7 +21,7 @@ public final class Bits
     // JIT can inline these class statics.
     // Methods like XXX$ do no checking.
     public static final boolean CHECK = false ;
-    private static int LongLen = Long.SIZE ;
+    private static int LongLen = 64 ; // Long.SIZE  - java 5 and later
     
     /** Extract the value packed into bits start (inclusive) and finish (exclusive),
      *  the value is returned the low part of the returned long.
