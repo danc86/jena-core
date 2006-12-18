@@ -48,7 +48,7 @@ public class ExProg2
         Var varX = Var.alloc("x") ;
         
         Triple t1 = new Triple(varX, DC.title.asNode(),  varTitle) ;
-        elg.addElementTriplePattern(new ElementTriplePattern(t1)) ;
+        elg.addTriplePattern(t1) ;
         
         // Adds a filter.  Need to wrap variable in a NodeVar.
         Expr expr = new E_Regex(new NodeVar(varTitle), "sparql", "i") ;
