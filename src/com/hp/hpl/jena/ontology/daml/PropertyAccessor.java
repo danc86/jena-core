@@ -31,6 +31,7 @@ import com.hp.hpl.jena.rdf.model.*;
  *
  * @author Ian Dickinson, HP Labs (<a href="mailto:Ian.Dickinson@hp.com">email</a>)
  * @version CVS info: $Id$
+ * @deprecated The DAML API is scheduled to be removed from Jena 2.6 onwards. Please use the DAML profile in the main ontology API
  */
 public interface PropertyAccessor
 {
@@ -63,7 +64,7 @@ public interface PropertyAccessor
      * RDF model.</p>
      * <p><strong>Note:</strong> In Jena 1, this method took a paramter <code>closed</code>,
      * to control whether the transitive closure of the class and property hierarchies was
-     * considered.  Computing these entailments is now handled by the reaoner attached to the 
+     * considered.  Computing these entailments is now handled by the reaoner attached to the
      * DAML or Ontology model, and is not controlled by a method parameter at the API level.
      * Accordingly, this parameter has been removed.  See the documentation for details on
      * controlling the operation of the reasoners.</p>

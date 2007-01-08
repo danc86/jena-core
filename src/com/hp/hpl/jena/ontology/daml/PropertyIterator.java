@@ -58,6 +58,7 @@ import com.hp.hpl.jena.vocabulary.DAML_OIL;
  * @author Ian Dickinson, HP Labs (<a href="mailto:Ian.Dickinson@hp.com">email</a>)
  * @version CVS info: $Id$
  * @since Jena 1.3.0 (was previously in package com.hp.hpl.jena.ontology.daml.impl).
+ * @deprecated The DAML API is scheduled to be removed from Jena 2.6 onwards. Please use the DAML profile in the main ontology API
  */
 public class PropertyIterator
     implements Iterator

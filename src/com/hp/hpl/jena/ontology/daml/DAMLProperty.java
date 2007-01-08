@@ -36,6 +36,7 @@ import com.hp.hpl.jena.util.iterator.ExtendedIterator;
  *
  * @author Ian Dickinson, HP Labs (<a href="mailto:Ian.Dickinson@hp.com">email</a>)
  * @version CVS info: $Id$
+ * @deprecated The DAML API is scheduled to be removed from Jena 2.6 onwards. Please use the DAML profile in the main ontology API
  */
 public interface DAMLProperty
     extends DAMLCommon, OntProperty
@@ -168,12 +169,12 @@ public interface DAMLProperty
      * <p><strong>Note:</strong> In a change to the Jena 1 DAML API, whether
      * this iterator includes <em>inferred</em> super-properties is determined
      * not by a flag at the API level, but by the construction of the DAML
-     * model itself.  See {@linkplain com.hp.hpl.jena.rdf.model.ModelFactory the model factory} 
+     * model itself.  See {@linkplain com.hp.hpl.jena.rdf.model.ModelFactory the model factory}
      * for details. The boolean parameter
      * <code>closed</code> is now re-interpreted to mean the inverse of <code>
      * direct</code>, see {@link OntClass#listSubClasses(boolean)} for more details.
      * </p>
-     * 
+     *
      * @param closed If true, return all available values; otherwise, return
      * only local (direct) super-properties. See note for details.
      * @return An iterator over this property's super-properties.
@@ -194,12 +195,12 @@ public interface DAMLProperty
      * <p><strong>Note:</strong> In a change to the Jena 1 DAML API, whether
      * this iterator includes <em>inferred</em> sub-properties is determined
      * not by a flag at the API level, but by the construction of the DAML
-     * model itself.  See {@linkplain com.hp.hpl.jena.rdf.model.ModelFactory the model factory} 
+     * model itself.  See {@linkplain com.hp.hpl.jena.rdf.model.ModelFactory the model factory}
      * for details. The boolean parameter
      * <code>closed</code> is now re-interpreted to mean the inverse of <code>
      * direct</code>, see {@link OntClass#listSubClasses(boolean)} for more details.
      * </p>
-     * 
+     *
      * @param closed If true, return all available values; otherwise, return
      * only local (direct) sub-properties. See note for details.
      * @return An iterator over this property's sub-properties.

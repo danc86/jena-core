@@ -47,6 +47,7 @@ import com.hp.hpl.jena.vocabulary.*;
  *
  * @author Ian Dickinson, HP Labs (<a href="mailto:Ian.Dickinson@hp.com">email</a>)
  * @version CVS info: $Id$
+ * @deprecated The DAML API is scheduled to be removed from Jena 2.6 onwards. Please use the DAML profile in the main ontology API
  */
 public class DAMLListImpl
     extends RDFListImpl
@@ -61,25 +62,25 @@ public class DAMLListImpl
 
     /**
      * A factory for generating DAMLList facets from nodes in enhanced graphs.
-     * Note: should not be invoked directly by user code: use 
+     * Note: should not be invoked directly by user code: use
      * {@link com.hp.hpl.jena.rdf.model.RDFNode#as as()} instead.
      */
     public static Implementation factory = new Implementation() {
-        public EnhNode wrap( Node n, EnhGraph eg ) { 
+        public EnhNode wrap( Node n, EnhGraph eg ) {
             if (canWrap( n, eg )) {
                 return new DAMLListImpl( n, eg );
             }
             else {
                 throw new ConversionException( "Cannot convert node " + n.toString() + " to DAMLList" );
-            } 
+            }
         }
-            
+
         public boolean canWrap( Node node, EnhGraph eg ) {
             // node will support being an RDFList facet if it has rdf:type rdf:List or equivalent
             Graph g = eg.asGraph();
-            
+
             // node will support being an RDFList facet if it has rdf:type rdf:List, is nil, or is in the domain of a list property
-            return  node.equals( DAML_OIL.nil.asNode() ) || 
+            return  node.equals( DAML_OIL.nil.asNode() ) ||
                     g.find( node, DAML_OIL.first.asNode(), Node.ANY ).hasNext() ||
                     g.find( node, DAML_OIL.rest.asNode(), Node.ANY ).hasNext() ||
                     g.find( node, RDF.type.asNode(), DAML_OIL.List.asNode() ).hasNext();
@@ -91,8 +92,8 @@ public class DAMLListImpl
     // Instance variables
     //////////////////////////////////
 
-    
-    
+
+
     // Constructors
     //////////////////////////////////
 
@@ -100,7 +101,7 @@ public class DAMLListImpl
      * <p>
      * Construct a DAML list represented by the given node in the given graph.
      * </p>
-     * 
+     *
      * @param n The node that represents the resource
      * @param g The enh graph that contains n
      */

@@ -34,6 +34,7 @@ package com.hp.hpl.jena.ontology.daml;
  * @version CVS info: $Id$
  * @see DAMLClass
  * @deprecated The role of DAMLClassExpression has been combined with {@link DAMLClass}
+ * @deprecated The DAML API is scheduled to be removed from Jena 2.6 onwards. Please use the DAML profile in the main ontology API
  */
 public interface DAMLClassExpression
 {

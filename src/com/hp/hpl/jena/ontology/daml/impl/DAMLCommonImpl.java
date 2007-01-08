@@ -44,6 +44,7 @@ import com.hp.hpl.jena.vocabulary.*;
  *
  * @author Ian Dickinson, HP Labs (<a href="mailto:Ian.Dickinson@hp.com">email</a>)
  * @version CVS info: $Id$
+ * @deprecated The DAML API is scheduled to be removed from Jena 2.6 onwards. Please use the DAML profile in the main ontology API
  */
 public class DAMLCommonImpl
     extends OntResourceImpl
@@ -59,19 +60,19 @@ public class DAMLCommonImpl
 
     /**
      * A factory for generating DAMLCommon facets from nodes in enhanced graphs.
-     * Note: should not be invoked directly by user code: use 
+     * Note: should not be invoked directly by user code: use
      * {@link com.hp.hpl.jena.rdf.model.RDFNode#as as()} instead.
      */
     public static Implementation factory = new Implementation() {
-        public EnhNode wrap( Node n, EnhGraph eg ) { 
+        public EnhNode wrap( Node n, EnhGraph eg ) {
             if (canWrap( n, eg )) {
                 return new DAMLCommonImpl( n, eg );
             }
             else {
                 throw new ConversionException( "Cannot convert node " + n.toString() + " to DAMLCommon");
-            } 
+            }
         }
-            
+
         public boolean canWrap( Node node, EnhGraph eg ) {
             // node will support being an OntResource facet if it is a uri or bnode
             return node.isURI() || node.isBlank();
@@ -134,7 +135,7 @@ public class DAMLCommonImpl
      * <p>Add an RDF type property for this node in the underlying model. If the replace flag
      * is true, this type will replace any current type property for the node. Otherwise,
      * the type will be in addition to any existing type property.</p>
-     * <p>Deprecated in favour of {@link OntResource#addRDFType} for add, or 
+     * <p>Deprecated in favour of {@link OntResource#addRDFType} for add, or
      * {@link OntResource#setRDFType} for replace.</p>
      *
      * @param rdfClass The RDF resource denoting the class that will be new value for the rdf:type property.
@@ -157,7 +158,7 @@ public class DAMLCommonImpl
      * restrict the results to the most specific types, so that any class that is subsumed by
      * another class in this resource's set of types is not reported.</p>
      * <p><strong>Note:</strong> that the interpretation of the <code>complete</code> flag has
-     * changed since Jena 1.x. Previously, the boolean flag was to generated the transitive 
+     * changed since Jena 1.x. Previously, the boolean flag was to generated the transitive
      * closure of the class hierarchy; this is now handled by the underlyin inference graph
      * (if specified). Now the flag is used to restrict the returned values to the most-specific
      * types for this resource.</p>
@@ -202,7 +203,7 @@ public class DAMLCommonImpl
         // iterator of myself
         List me = new LinkedList();
         me.add( this );
-        
+
         return UniqueExtendedIterator.create( WrappedIterator.create( me.iterator() )
                    .andThen( listPropertyValues( getProfile().SAME_AS() ) ) );
     }
@@ -222,7 +223,7 @@ public class DAMLCommonImpl
         s.add( this );
         for (Iterator i = getEquivalentValues();  i.hasNext();  s.add( i.next() ) );
         s.remove( this );
-        
+
         return WrappedIterator.create( s.iterator() );
     }
 

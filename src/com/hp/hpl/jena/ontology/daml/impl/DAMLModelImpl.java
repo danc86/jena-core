@@ -51,6 +51,7 @@ import com.hp.hpl.jena.vocabulary.*;
  *
  * @author Ian Dickinson, HP Labs (<a href="mailto:Ian.Dickinson@hp.com">email</a>)
  * @version CVS info: $Id$
+ * @deprecated The DAML API is scheduled to be removed from Jena 2.6 onwards. Please use the DAML profile in the main ontology API
  */
 public class DAMLModelImpl
     extends OntModelImpl
@@ -114,13 +115,13 @@ public class DAMLModelImpl
     //////////////////////////////////
 
     /**
-     * <p>Create an (optionally anonymous) Ontology (big-'O') element, 
-     * which holds meta-information for the ontology (small-'o').  
+     * <p>Create an (optionally anonymous) Ontology (big-'O') element,
+     * which holds meta-information for the ontology (small-'o').
      * <b>N.B.</b> This does not create a new
      * ontology, it simply makes an entry in the current model.</p>
      *
-     * @param uri The URI for the new Ontology, or null to create an anonymous 
-     *            Ontology. Ideally provide the URL in which the Ontology is 
+     * @param uri The URI for the new Ontology, or null to create an anonymous
+     *            Ontology. Ideally provide the URL in which the Ontology is
      *            stored.
      *            Conventionally, in the RDF/XML serialization, we have
      *            <pre>
@@ -229,9 +230,9 @@ public class DAMLModelImpl
 
 
     /**
-     * <p>Create an (optionally anonymous) DAML datatype property. A datatype property has 
+     * <p>Create an (optionally anonymous) DAML datatype property. A datatype property has
      * concrete data literals
-     * in its range, whereas an object property has ontology individuals (instances)  
+     * in its range, whereas an object property has ontology individuals (instances)
      * in the range.</p>
      *
      * @param uri The URI for the new datatype property. May not be null.
@@ -263,13 +264,13 @@ public class DAMLModelImpl
             // put the first element on the list
             RDFNode n = (RDFNode) elements.next();
             l = (DAMLList) l.cons( n );
-            
+
             // now add the remaining elements to the end of the list
             while (elements.hasNext()) {
                 l.add( (RDFNode) elements.next() );
             }
         }
-        
+
         return l;
     }
 
@@ -324,8 +325,8 @@ public class DAMLModelImpl
      * @return An instance of a DAMLCommon value that corresponds to the given class.
      */
     public DAMLCommon createDAMLValue( String uri, Resource damlClass ) {
-        Class javaClass = DAMLInstance.class; 
-        
+        Class javaClass = DAMLInstance.class;
+
         // see if we can match the DAML class to a known type
         for (int i = 0;  i < DAML_CLASS_TABLE.length;  i++) {
             if (DAML_CLASS_TABLE[i][0].equals( damlClass )) {
@@ -423,7 +424,7 @@ public class DAMLModelImpl
             return null;
         }
     }
-    
+
     /**
      * <p>Answer a resource from the current model with the given uri, viewed as a DAML Property.</p>
      * @param uri The uri of the resource to fetch
@@ -438,7 +439,7 @@ public class DAMLModelImpl
             return null;
         }
     }
-    
+
     /**
      * <p>Answer a resource from the current model with the given uri, viewed as a DAML Instance.</p>
      * @param uri The uri of the resource to fetch
@@ -453,7 +454,7 @@ public class DAMLModelImpl
             return null;
         }
     }
-    
+
 
     /**
      * <p>Read the ontology indicated by the given uri.  Note that, depending on the settings in the

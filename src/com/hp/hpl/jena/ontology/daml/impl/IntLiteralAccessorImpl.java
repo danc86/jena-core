@@ -36,6 +36,7 @@ import com.hp.hpl.jena.ontology.daml.*;
  *
  * @author Ian Dickinson, HP Labs (<a href="mailto:Ian.Dickinson@hp.com">email</a>)
  * @version CVS info: $Id$
+ * @deprecated The DAML API is scheduled to be removed from Jena 2.6 onwards. Please use the DAML profile in the main ontology API
  */
 public class IntLiteralAccessorImpl
     extends LiteralAccessorImpl
@@ -104,7 +105,7 @@ public class IntLiteralAccessorImpl
     /**
      * <p>Answer true if the encapsulated property has the given value as one of its
      * values.</p>
-     * 
+     *
      * @param value An int value to test for
      * @return True if the RDF model contains a statement giving a value for
      *         the encapsulated property matching the given value.

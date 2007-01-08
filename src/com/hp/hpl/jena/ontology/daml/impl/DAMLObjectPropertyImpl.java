@@ -42,8 +42,9 @@ import com.hp.hpl.jena.vocabulary.*;
  *
  * @author Ian Dickinson, HP Labs (<a href="mailto:Ian.Dickinson@hp.com">email</a>)
  * @version CVS info: $Id$
+ * @deprecated The DAML API is scheduled to be removed from Jena 2.6 onwards. Please use the DAML profile in the main ontology API
  */
-public class DAMLObjectPropertyImpl 
+public class DAMLObjectPropertyImpl
     extends DAMLPropertyImpl
     implements DAMLObjectProperty
 {
@@ -56,19 +57,19 @@ public class DAMLObjectPropertyImpl
 
     /**
      * A factory for generating DAMLObjectProperty facets from nodes in enhanced graphs.
-     * Note: should not be invoked directly by user code: use 
+     * Note: should not be invoked directly by user code: use
      * {@link com.hp.hpl.jena.rdf.model.RDFNode#as as()} instead.
      */
     public static Implementation factory = new Implementation() {
-        public EnhNode wrap( Node n, EnhGraph eg ) { 
+        public EnhNode wrap( Node n, EnhGraph eg ) {
             if (canWrap( n, eg )) {
                 return new DAMLObjectPropertyImpl( n, eg );
             }
             else {
                 throw new ConversionException( "Cannot convert node " + n.toString() + " to DAMLObjectProperty" );
-            } 
+            }
         }
-            
+
         public boolean canWrap( Node n, EnhGraph g ) {
             return hasType( n, g, DAML_OIL.ObjectProperty );
         }
@@ -90,7 +91,7 @@ public class DAMLObjectPropertyImpl
      * <p>
      * Construct a DAML object property represented by the given node in the given graph.
      * </p>
-     * 
+     *
      * @param n The node that represents the resource
      * @param g The enh graph that contains n
      */

@@ -36,6 +36,7 @@ import com.hp.hpl.jena.ontology.daml.*;
  *
  * @author Ian Dickinson, HP Labs (<a href="mailto:Ian.Dickinson@hp.com">email</a>)
  * @version CVS info: $Id$
+ * @deprecated The DAML API is scheduled to be removed from Jena 2.6 onwards. Please use the DAML profile in the main ontology API
  */
 public class PropertyAccessorImpl
     implements PropertyAccessor
@@ -105,7 +106,7 @@ public class PropertyAccessorImpl
      * RDF model.</p>
      * <p><strong>Note:</strong> In Jena 1, this method took a paramter <code>closed</code>,
      * to control whether the transitive closure of the class and property hierarchies was
-     * considered.  Computing these entailments is now handled by the reaoner attached to the 
+     * considered.  Computing these entailments is now handled by the reaoner attached to the
      * DAML or Ontology model, and is not controlled by a method parameter at the API level.
      * Accordingly, this parameter has been removed.  See the documentation for details on
      * controlling the operation of the reasoners.</p>
@@ -156,12 +157,12 @@ public class PropertyAccessorImpl
         try {
             for (i = getAll();  i.hasNext(); ) {
                 RDFNode n = (RDFNode) i.next();
-                
+
                 if (n.canAs( DAMLCommon.class )) {
                     return (DAMLCommon) n.as( DAMLCommon.class );
                 }
             }
-            
+
             // no DAMLCommon value, so return null for compatability with Jena 1
             return null;
         }
