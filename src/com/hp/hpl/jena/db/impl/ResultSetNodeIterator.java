@@ -11,13 +11,7 @@ package com.hp.hpl.jena.db.impl;
 
 //=======================================================================
 // Imports
-import java.sql.*;
-import java.util.*;
-import com.hp.hpl.jena.util.iterator.*;
-import com.hp.hpl.jena.shared.*;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import java.util.ArrayList;
 
 //=======================================================================
 /**

@@ -6,12 +6,11 @@
 
 package com.hp.hpl.jena.db.impl;
 
+import java.util.Iterator;
+import java.util.Map;
+
 import com.hp.hpl.jena.shared.PrefixMapping;
 import com.hp.hpl.jena.shared.impl.PrefixMappingImpl;
-
-import java.util.*;
-
-import javax.sql.XAConnection;
 
 /**
  *  Implementation of prefix mapping specific to databases.
