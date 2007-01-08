@@ -606,15 +606,19 @@ public interface OntResource
 
 
     /**
-     * <p>Answer the value of a given RDF property for this resource, or null
-     * if it doesn't have one.  If there is more than one RDF
+     * <p>Answer the value of a given RDF property for this  resource, or null
+     * if it doesn't have one.  The value is returned as an RDFNode, from which
+     * the concrete data value can be extracted for literals. If the value is
+     * a resource, it will present the {@link OntResource} facet.
+     * If there is more than one RDF
      * statement with the given property for the current value, it is not defined
      * which of the values will be returned.</p>
      *
      * @param property An RDF property
-     * @return An RDFNode or null.
+     * @return An RDFNode whose value is the value, or one of the values, of the
+     *         given property. If the property is not defined the method returns null.
      */
-    public RDFNode getPropertyValue( Property property );
+   public RDFNode getPropertyValue( Property property );
 
 
     /**

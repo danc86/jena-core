@@ -27,6 +27,8 @@ package com.hp.hpl.jena.ontology.impl.test;
 import junit.framework.TestSuite;
 
 import com.hp.hpl.jena.ontology.*;
+import com.hp.hpl.jena.rdf.model.Literal;
+import com.hp.hpl.jena.rdf.model.NodeIterator;
 import com.hp.hpl.jena.rdf.model.RDFNode;
 import com.hp.hpl.jena.rdf.model.Resource;
 import com.hp.hpl.jena.vocabulary.RDF;
@@ -604,6 +606,36 @@ public class TestResource
                     OntResource or = m.createOntResource( "http://foo/bar" );
                     OntModel m0 = or.getOntModel();
                     assertEquals( m, m0 );
+                }
+            },
+            new OntTestCase( "OntResource.getPropertyValue - object prop", true, true, true, true ) {
+                public void ontTest( OntModel m ) throws Exception {
+                    OntResource a = m.createOntResource( "http://foo/bar#a" );
+                    Resource b = m.createResource( "http://foo/bar#b" );
+                    OntProperty p = m.createOntProperty( "http://foo/bar#p" );
+                    m.add( a, p, b );
+                    Object bb = a.getPropertyValue( p );
+                    assertEquals( b, bb );
+                    assertTrue( "Return value should be an OntResource", bb instanceof OntResource );
+                }
+            },
+            new OntTestCase( "OntResource.listPropertyValues - object prop", true, true, true, true ) {
+                public void ontTest( OntModel m ) throws Exception {
+                    OntResource a = m.createOntResource( "http://foo/bar#a" );
+                    Resource b = m.createResource( "http://foo/bar#b" );
+                    OntProperty p = m.createOntProperty( "http://foo/bar#p" );
+                    Literal l = m.createTypedLiteral( false );
+                    m.add( a, p, b );
+                    m.add( a, p, l );
+                    NodeIterator ni = a.listPropertyValues( p );
+
+                    while (ni.hasNext()) {
+                        RDFNode n = ni.nextNode();
+                        if (n.isResource()) {
+                            assertEquals( b, n );
+                            assertTrue( "Return value should be an OntResource", n instanceof OntResource );
+                        }
+                    }
                 }
             },
 
