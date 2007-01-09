@@ -1426,6 +1426,107 @@ public class TestBugReports
     }
 
     /**
+     * Bug report by David Bigwood - listUnionClasses causes conversion exception
+     */
+    public void test_dab_02a() {
+        String SOURCEA=
+            "<rdf:RDF" +
+            "    xmlns:rdf          ='http://www.w3.org/1999/02/22-rdf-syntax-ns#'" +
+            "    xmlns:owl          ='http://www.w3.org/2002/07/owl#'" +
+            "    xml:base           ='http://example.com/a#'" +
+            ">" +
+            "<rdf:Description>" +
+            "  <owl:unionOf " +
+            "  rdf:resource='http://www.w3.org/1999/02/22-rdf-syntax-ns#nil'/> " +
+            "</rdf:Description>" +
+            "</rdf:RDF>";
+
+        OntModel a0 = ModelFactory.createOntologyModel( OntModelSpec.OWL_MEM );
+        a0.read( new StringReader( SOURCEA ), null );
+
+        // throws conversion exception ...
+        for( Iterator i = a0.listUnionClasses(); i.hasNext(); ) {
+            i.next();
+        }
+
+        OntModel a1 = ModelFactory.createOntologyModel( OntModelSpec.OWL_DL_MEM );
+        a1.read( new StringReader( SOURCEA ), null );
+
+        // throws conversion exception ...
+        for( Iterator i = a1.listUnionClasses(); i.hasNext(); ) {
+            i.next();
+        }
+    }
+
+    public void test_dab_02b() {
+        String SOURCEA=
+            "<rdf:RDF" +
+            "    xmlns:rdf          ='http://www.w3.org/1999/02/22-rdf-syntax-ns#'" +
+            "    xmlns:owl          ='http://www.w3.org/2002/07/owl#'" +
+            "    xml:base           ='http://example.com/a#'" +
+            ">" +
+            "<rdf:Description>" +
+            "  <owl:intersectionOf " +
+            "  rdf:resource='http://www.w3.org/1999/02/22-rdf-syntax-ns#nil'/> " +
+            "</rdf:Description>" +
+            "</rdf:RDF>";
+
+        OntModel a0 = ModelFactory.createOntologyModel( OntModelSpec.OWL_MEM );
+        a0.read( new StringReader( SOURCEA ), null );
+
+        // throws conversion exception ...
+        for( Iterator i = a0.listIntersectionClasses(); i.hasNext(); ) {
+            i.next();
+        }
+
+        OntModel a1 = ModelFactory.createOntologyModel( OntModelSpec.OWL_DL_MEM );
+        a1.read( new StringReader( SOURCEA ), null );
+
+        // throws conversion exception ...
+        for( Iterator i = a1.listIntersectionClasses(); i.hasNext(); ) {
+            i.next();
+        }
+
+        OntModel a2 = ModelFactory.createOntologyModel( OntModelSpec.OWL_LITE_MEM );
+        a2.read( new StringReader( SOURCEA ), null );
+
+        // throws conversion exception ...
+        for( Iterator i = a2.listIntersectionClasses(); i.hasNext(); ) {
+            i.next();
+        }
+    }
+
+    public void test_dab_02c() {
+        String SOURCEA=
+            "<rdf:RDF" +
+            "    xmlns:rdf          ='http://www.w3.org/1999/02/22-rdf-syntax-ns#'" +
+            "    xmlns:owl          ='http://www.w3.org/2002/07/owl#'" +
+            "    xml:base           ='http://example.com/a#'" +
+            ">" +
+            "<rdf:Description>" +
+            "  <owl:complementOf " +
+            "  rdf:resource='http://www.w3.org/2002/07/owl#Nothing'/> " +
+            "</rdf:Description>" +
+            "</rdf:RDF>";
+
+        OntModel a0 = ModelFactory.createOntologyModel( OntModelSpec.OWL_MEM );
+        a0.read( new StringReader( SOURCEA ), null );
+
+        // throws conversion exception ...
+        for( Iterator i = a0.listComplementClasses(); i.hasNext(); ) {
+            i.next();
+        }
+
+        OntModel a1 = ModelFactory.createOntologyModel( OntModelSpec.OWL_DL_MEM );
+        a1.read( new StringReader( SOURCEA ), null );
+
+        // throws conversion exception ...
+        for( Iterator i = a1.listComplementClasses(); i.hasNext(); ) {
+            i.next();
+        }
+    }
+
+    /**
      * Bug report by Othmane Nadjemi - DAML individual whose only type is daml:Thing
      * returns false to isIndividual()
      */

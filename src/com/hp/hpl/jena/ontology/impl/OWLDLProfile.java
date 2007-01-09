@@ -101,17 +101,22 @@ public class OWLDLProfile
             }
             },
             {  OntClass.class,              new SupportsCheck() {
-                public boolean doCheck( Node n, EnhGraph g ) {
-                    return  OWL.Thing.asNode().equals( n ) ||
-                            OWL.Nothing.asNode().equals( n ) ||
-                            g.asGraph().contains( n, RDF.type.asNode(), OWL.Class.asNode() ) ||
-                            g.asGraph().contains( n, RDF.type.asNode(), OWL.Restriction.asNode() ) ||
-                            g.asGraph().contains( n, RDF.type.asNode(), RDFS.Class.asNode() ) ||
-                            g.asGraph().contains( n, RDF.type.asNode(), RDFS.Datatype.asNode() ) ||
-                            // These are common cases that we should support
-                            g.asGraph().contains( Node.ANY, RDFS.domain.asNode(), n ) ||
-                            g.asGraph().contains( Node.ANY, RDFS.range.asNode(), n )
-                            ;
+                public boolean doCheck( Node n, EnhGraph eg ) {
+                    Graph g = eg.asGraph();
+                    Node rdfTypeNode = RDF.type.asNode();
+                    return g.contains( n, rdfTypeNode, OWL.Class.asNode() ) ||
+                           g.contains( n, rdfTypeNode, OWL.Restriction.asNode() ) ||
+                           g.contains( n, rdfTypeNode, RDFS.Class.asNode() ) ||
+                           g.contains( n, rdfTypeNode, RDFS.Datatype.asNode() ) ||
+                           // These are common cases that we should support
+                           n.equals( OWL.Thing.asNode() ) ||
+                           n.equals( OWL.Nothing.asNode() ) ||
+                           g.contains( Node.ANY, RDFS.domain.asNode(), n ) ||
+                           g.contains( Node.ANY, RDFS.range.asNode(), n ) ||
+                           g.contains( n, OWL.intersectionOf.asNode(), Node.ANY ) ||
+                           g.contains( n, OWL.unionOf.asNode(), Node.ANY ) ||
+                           g.contains( n, OWL.complementOf.asNode(), Node.ANY )
+                           ;
                 }
             }
             },
