@@ -64,8 +64,7 @@ public class Min extends BaseBuiltin {
                 } else {
                     res = (nv1.longValue() > nv2.longValue()) ? n2 : n1;
                 }
-                env.bind(args[2], res);
-                return true;
+                return env.bind(args[2], res);
             }
         }
         // Doesn't (yet) handle partially bound cases

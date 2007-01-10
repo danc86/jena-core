@@ -63,8 +63,7 @@ public class Max extends BaseBuiltin {
                 } else {
                     res = (nv1.longValue() > nv2.longValue()) ? n1 : n2;
                 }
-                env.bind(args[2], res);
-                return true;
+                return env.bind(args[2], res);
             }
         }
         // Doesn't (yet) handle partially bound cases

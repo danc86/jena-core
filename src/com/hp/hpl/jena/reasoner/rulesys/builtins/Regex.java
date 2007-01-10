@@ -1,44 +1,38 @@
 /******************************************************************
- * File:        Quotient.java
+ * File:        Regexp.java
  * Created by:  Dave Reynolds
- * Created on:  14-Jun-2005
+ * Created on:  10 Jan 2007
  * 
- * (c) Copyright 2005, Hewlett-Packard Development Company, LP
+ * (c) Copyright 2007, Hewlett-Packard Development Company, LP
  * [See end of file]
  * $Id$
  *****************************************************************/
 
 package com.hp.hpl.jena.reasoner.rulesys.builtins;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import com.hp.hpl.jena.graph.Node;
 import com.hp.hpl.jena.reasoner.rulesys.BindingEnvironment;
+import com.hp.hpl.jena.reasoner.rulesys.BuiltinException;
 import com.hp.hpl.jena.reasoner.rulesys.RuleContext;
-import com.hp.hpl.jena.reasoner.rulesys.Util;
 
-
-/**
- *  Bind the third arg to the ratio of the first two args.
- * If the arguments are integers then the result will be truncated to
- * an integer.
- * 
- * @author <a href="mailto:der@hplb.hpl.hp.com">Dave Reynolds</a>
- * @version $Revision$ on $Date$
- */
-public class Quotient extends BaseBuiltin {
+public class Regex extends BaseBuiltin {
 
     /**
      * Return a name for this builtin, normally this will be the name of the 
      * functor that will be used to invoke it.
      */
     public String getName() {
-        return "quotient";
+        return "regex";
     }
     
     /**
      * Return the expected number of arguments for this functor or 0 if the number is flexible.
      */
     public int getArgLength() {
-        return 3;
+        return 0;
     }
 
     /**
@@ -52,36 +46,39 @@ public class Quotient extends BaseBuiltin {
      * the current environment
      */
     public boolean bodyCall(Node[] args, int length, RuleContext context) {
-        checkArgs(length, context);
-        BindingEnvironment env = context.getEnv();
-        Node n1 = getArg(0, args, context);
-        Node n2 = getArg(1, args, context);
-        if (n1.isLiteral() && n2.isLiteral()) {
-            Object v1 = n1.getLiteralValue();
-            Object v2 = n2.getLiteralValue();
-            Node sum = null;
-            if (v1 instanceof Number && v2 instanceof Number) {
-                Number nv1 = (Number)v1;
-                Number nv2 = (Number)v2;
-                if (v1 instanceof Float || v1 instanceof Double 
-                ||  v2 instanceof Float || v2 instanceof Double) {
-                    sum = Util.makeDoubleNode(nv1.doubleValue() / nv2.doubleValue());
-                } else {
-                    sum = Util.makeLongNode(nv1.longValue() / nv2.longValue());
-                }
-                return env.bind(args[2], sum);
+        if (length < 2) 
+            throw new BuiltinException(this, context, "Must have at least 2 arguments to " + getName());
+        String text = getString( getArg(0, args, context), context );
+        String pattern = getString( getArg(1, args, context), context );
+        Matcher m = Pattern.compile(pattern).matcher(text);
+        if ( ! m.matches()) return false;
+        if (length > 2) {
+            // bind any capture groups
+            BindingEnvironment env = context.getEnv();
+            for (int i = 0; i < Math.min(length-2, m.groupCount()); i++) {
+                Node match = Node.createLiteral( m.group(i+1) );
+                if ( !env.bind(args[i+2], match) ) return false;
             }
         }
-        // Doesn't (yet) handle partially bound cases
-        return false;
+        return true;
     }
     
+    /**
+     * Return the lexical form of a literal node, error for other node types
+     */
+    protected String getString(Node n, RuleContext context) {
+        if (n.isLiteral()) {
+            return n.getLiteralLexicalForm();
+        } else {
+            throw new BuiltinException(this, context, getName() + " takes only literal arguments");
+        }
+    }
+
 }
 
 
-
 /*
-    (c) Copyright 2005, 2006, 2007 Hewlett-Packard Development Company, LP
+    (c) Copyright 2007 Hewlett-Packard Development Company, LP
     All rights reserved.
 
     Redistribution and use in source and binary forms, with or without

@@ -63,8 +63,7 @@ public class Product extends BaseBuiltin {
                 } else {
                     sum = Util.makeLongNode(nv1.longValue() * nv2.longValue());
                 }
-                env.bind(args[2], sum);
-                return true;
+                return env.bind(args[2], sum);
             }
         }
         // Doesn't (yet) handle partially bound cases

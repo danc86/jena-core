@@ -78,6 +78,10 @@ public class BuiltinRegistry {
         
         theRegistry.register(new Hide());
         
+        theRegistry.register(new StrConcat());
+        theRegistry.register(new UriConcat());
+        theRegistry.register(new Regex());
+        
         // Special purposes support functions for OWL
         theRegistry.register(new AssertDisjointPairs());
     }
