@@ -517,6 +517,43 @@ public class TestOntDocumentManager
         assertTrue( rfh.m_seen );
     }
 
+    public void testReadHook0() {
+        TestReadHook rh = new TestReadHook( false );
+        OntDocumentManager o1 = new OntDocumentManager( "file:etc/ont-policy-test.rdf" );
+        o1.setReadHook( rh );
+        o1.reset();
+
+        String source = "@prefix owl: <http://www.w3.org/2002/07/owl#> . <> a owl:Ontology ; owl:imports <file:testing/ontology/testImport3/a.owl>. ";
+
+        OntModelSpec spec = new OntModelSpec( OntModelSpec.OWL_MEM );
+        spec.setDocumentManager(  o1 );
+        OntModel m = ModelFactory.createOntologyModel( spec );
+        m.read( new StringReader( source ), "http://example.com/foo#", "N3" );
+
+        assertEquals( "Wrong number of calls to before load hook", 3, rh.m_before );
+        assertEquals( "Wrong number of calls to before load hook", 3, rh.m_after );
+    }
+
+
+    public void xxtestReadHook1() {
+        TestReadHook rh = new TestReadHook( true );
+        OntDocumentManager o1 = new OntDocumentManager( "file:etc/ont-policy-test.rdf" );
+        o1.setReadHook( rh );
+        o1.reset();
+
+        String source = "@prefix owl: <http://www.w3.org/2002/07/owl#> . <> a owl:Ontology ; owl:imports <file:testing/ontology/testImport3/a.owl>. ";
+
+        OntModelSpec spec = new OntModelSpec( OntModelSpec.OWL_MEM );
+        spec.setDocumentManager(  o1 );
+        OntModel m = ModelFactory.createOntologyModel( spec );
+        m.read( new StringReader( source ), "http://example.com/foo#", "N3" );
+
+        assertEquals( "Wrong number of calls to before load hook", 0, rh.m_before );
+        assertEquals( "Wrong number of calls to after load hook", 1, rh.m_after );
+        assertEquals( 2, m.size() );
+    }
+
+
     /* count the number of marker statements in the combined model */
     public static int countMarkers( Model m ) {
         int count = 0;
@@ -594,6 +631,36 @@ public class TestOntDocumentManager
         public void handleFailedRead( String url, Model model, Exception e ) {
             m_seen = true;
             log.debug( "Seeing failed read of " + url, e );
+        }
+
+    }
+
+    static class TestReadHook
+        implements OntDocumentManager.ReadHook
+    {
+        private int m_before = 0;
+        private int m_after = 0;
+        private boolean m_rejecting = false;
+
+        TestReadHook( boolean rejecting ) {
+            m_rejecting = rejecting;
+        }
+
+        public void afterRead( Model model, String source, OntDocumentManager odm ) {
+            m_after++;
+//            System.err.println(" after = " + source + ", count = " + m_after );
+        }
+
+        public String beforeRead( Model model, String source, OntDocumentManager odm ) {
+            if (m_rejecting) {
+//                System.err.println(" before(R) = " + source );
+                return null;
+            }
+            else {
+//                System.err.println(" before(non-R) = " + source );
+                m_before++;
+                return source;
+            }
         }
 
     }

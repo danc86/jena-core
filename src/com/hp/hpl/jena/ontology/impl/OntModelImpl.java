@@ -2085,8 +2085,22 @@ public class OntModelImpl
         }
         addLoadedImport( uri );
 
-        String sourceURL = getDocumentManager().doAltURLMapping( uri );
-        super.read( sourceURL, base, syntax );
+        OntDocumentManager odm = getDocumentManager();
+
+        String sourceURL = odm.doAltURLMapping( uri );
+
+        // invoke the read hook from the ODM
+        String source = odm.getReadHook().beforeRead( this, sourceURL, odm );
+        if (source == null) {
+            s_log.debug( "ReadHook returned null, so skipping input: " + sourceURL );
+        }
+        else {
+            // now we can actually do the read
+            super.read( source, base, syntax );
+        }
+
+        // the post read hook
+        odm.getReadHook().afterRead( this, source, odm );
 
         // cache this model against the public uri (if caching enabled)
         getDocumentManager().addModel( uri, this );
