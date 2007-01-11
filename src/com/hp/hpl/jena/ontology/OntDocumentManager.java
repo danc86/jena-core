@@ -1190,11 +1190,12 @@ public class OntDocumentManager
             // invoke the pre-read hook
             String source = m_readHook.beforeRead( model, uri, this );
             if (source == null) {
-                log.debug( "Read hook returned null source, so will be skipped: " + uri );
+                log.warn( "Read hook returned null source, so assuming old value: " + uri );
+                source = uri;
             }
             else {
                 // do the actual read
-                getFileManager().readModel( model, uri );
+                getFileManager().readModel( model, source );
             }
 
             // now the post-read hook

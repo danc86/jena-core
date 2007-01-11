@@ -2092,7 +2092,8 @@ public class OntModelImpl
         // invoke the read hook from the ODM
         String source = odm.getReadHook().beforeRead( this, sourceURL, odm );
         if (source == null) {
-            s_log.debug( "ReadHook returned null, so skipping input: " + sourceURL );
+            s_log.warn( "ReadHook returned null, so skipping assuming previous value: " + sourceURL );
+            source = sourceURL;
         }
         else {
             // now we can actually do the read
