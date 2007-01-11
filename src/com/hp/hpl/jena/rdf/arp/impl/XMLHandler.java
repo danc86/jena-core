@@ -410,6 +410,7 @@ public class XMLHandler extends LexicalHandlerImpl implements ARPErrorNumbers,
         }
         // endRDF();
         endBnodeScope();
+        idsUsed = null;
     }
 
     void endBnodeScope() {
