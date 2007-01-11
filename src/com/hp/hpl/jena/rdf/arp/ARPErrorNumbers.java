@@ -409,7 +409,7 @@ For input involving no errors, ARP creates triples in accordance with the RDF/XM
         public int WARN_RELATIVE_URI = 136;
         
         /**
-         * After 20000 rdf:ID attributes have been
+         * After 10000 rdf:ID attributes have been
          * read, ARP no longer checks for
          * {@link #WARN_REDEFINITION_OF_ID}.
          * This warning is to inform the user that

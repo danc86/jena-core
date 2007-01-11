@@ -91,7 +91,7 @@ public class ParserSupport
 			} else {
 				idsUsedForBase.put(str, arp.location());
 				arp.idsUsedCount++;
-				if (arp.idsUsedCount > 20000) {
+				if (arp.idsUsedCount > 10000) {
 					arp.idsUsed = null;
 				arp.warning(taintMe,
 						WARN_BIG_FILE,
