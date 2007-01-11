@@ -207,6 +207,7 @@ public class BasicBackwardRuleInfGraph extends BaseInfGraph implements BackwardR
     public void reset() {
         engine.reset();
         isPrepared = false;
+        version++;
     }
         
     /**

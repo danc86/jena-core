@@ -68,11 +68,11 @@ public class TestBasicLP  extends TestCase {
      * This is its own test suite
      */
     public static TestSuite suite() {
-        return new TestSuite( TestBasicLP.class );
+//        return new TestSuite( TestBasicLP.class );
         
-//        TestSuite suite = new TestSuite();
-//        suite.addTest(new TestBasicLP( "testRuleDerivations" ));
-//        return suite;
+        TestSuite suite = new TestSuite();
+        suite.addTest(new TestBasicLP( "testCME" ));
+        return suite;
     }  
    
     /**
@@ -1266,6 +1266,41 @@ public class TestBasicLP  extends TestCase {
                 new Triple(b, r, Util.makeIntNode(3)),
                 new Triple(b, s, C2),
             }); 
+    }
+    
+    /**
+     * Test that we detect concurrent modification of LP graphs with
+     * non-closed iterators.
+     */
+    public void testCME() {
+        String ruleSrc = "(?a p 1) <- (?a p 0). (?a p 2) <- (?a p 0).";
+        List rules = Rule.parseRules(ruleSrc);
+        Graph data = Factory.createGraphMem();
+        data.add(new Triple(a, p, Util.makeIntNode(0)));
+        InfGraph infgraph =  makeInfGraph(rules, data);
+        
+        // Check the base case works
+        TestUtil.assertIteratorValues(this, 
+                infgraph.find(new Triple(a, p, Node.ANY)), 
+                new Triple[] {
+            new Triple(a, p, Util.makeIntNode(0)),
+            new Triple(a, p, Util.makeIntNode(1)),
+            new Triple(a, p, Util.makeIntNode(2)),
+                }); 
+        
+        // Now force a CME
+        boolean ok = false;
+        ExtendedIterator i = infgraph.find(new Triple(a, p, Node.ANY));
+        try {
+            i.next();
+            infgraph.add( new Triple(a, p, Util.makeIntNode(4)) );
+            i.next();
+        } catch (ConcurrentModificationException e) {
+            ok = true;
+        } finally {
+            i.close();
+        }
+        assertTrue("Expect CME on unclosed iterators", ok);
     }
     
     /** 

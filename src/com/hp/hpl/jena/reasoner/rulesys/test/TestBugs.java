@@ -842,17 +842,13 @@ public class TestBugs extends TestCase {
     }
     
     // debug assistant
-    private void tempList(Model m, Resource s, Property p, RDFNode o) {
-        System.out.println("Listing of " + PrintUtil.print(s) + " " + PrintUtil.print(p) + " " + PrintUtil.print(o));
-        for (StmtIterator i = m.listStatements(s, p, o); i.hasNext(); ) {
-            System.out.println(" - " + i.next());
-        }
-    }   
+//    private void tempList(Model m, Resource s, Property p, RDFNode o) {
+//        System.out.println("Listing of " + PrintUtil.print(s) + " " + PrintUtil.print(p) + " " + PrintUtil.print(o));
+//        for (StmtIterator i = m.listStatements(s, p, o); i.hasNext(); ) {
+//            System.out.println(" - " + i.next());
+//        }
+//    }   
     
-    public static void main(String[] args) {
-        TestBugs test = new TestBugs("test");
-//        test.hiddenTestDeleteBug();
-    } 
 }
 
 /*

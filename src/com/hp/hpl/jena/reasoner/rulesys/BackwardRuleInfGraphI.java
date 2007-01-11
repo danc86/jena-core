@@ -53,6 +53,12 @@ public interface BackwardRuleInfGraphI extends SilentAddI, InfGraph {
      * @return the bNode representing the property value 
      */
     public Node getTemp(Node instance, Node prop, Node pclass);
+
+    /**
+     * Return a version stamp for this graph which can be
+     * used to fast-fail concurrent modification exceptions.
+     */
+    public int getVersion();
     
 }
 

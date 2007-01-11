@@ -36,6 +36,9 @@ public abstract class BaseInfGraph extends GraphBase implements InfGraph {
     /** Flag to record if the preparation call has been made and so the graph is ready for queries */
     protected boolean isPrepared = false;
 
+    /** version count */
+    protected volatile int version = 0;
+    
     /**
          Inference graphs share the prefix-mapping of their underlying raw graph.
      	@see com.hp.hpl.jena.graph.Graph#getPrefixMapping()
@@ -209,6 +212,7 @@ public abstract class BaseInfGraph extends GraphBase implements InfGraph {
      * the changed data.
      */
     public void rebind() {
+        version++;
         isPrepared = false;
     }
 
@@ -219,6 +223,7 @@ public abstract class BaseInfGraph extends GraphBase implements InfGraph {
      * does not cause the raw data to be reconsulted and so is less expensive than a rebind.
      */
     public void reset() {
+        version++;
     }
 
     /**
@@ -406,10 +411,19 @@ public abstract class BaseInfGraph extends GraphBase implements InfGraph {
     }
 
     /**
+     * Return a version stamp for this graph which can be
+     * used to fast-fail concurrent modification exceptions.
+     */
+    public int getVersion() {
+        return version;
+    }
+    
+    /**
      * Add one triple to the data graph, run any rules triggered by
      * the new data item, recursively adding any generated triples.
      */
     public synchronized void performAdd(Triple t) {
+        version++;
         if (!isPrepared) prepare();
         fdata.getGraph().add(t);
     }
@@ -418,6 +432,7 @@ public abstract class BaseInfGraph extends GraphBase implements InfGraph {
      * Removes the triple t (if possible) from the set belonging to this graph.
      */
     public void performDelete(Triple t) {
+        version++;
         if (!isPrepared) prepare();
         fdata.getGraph().delete(t);
     }

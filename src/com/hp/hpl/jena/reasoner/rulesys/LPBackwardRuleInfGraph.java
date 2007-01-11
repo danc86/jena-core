@@ -127,6 +127,7 @@ public class LPBackwardRuleInfGraph extends BaseInfGraph implements BackwardRule
      * the changed data. 
      */
     public synchronized void rebind() {
+        version++;
         engine.checkSafeToUpdate();
         isPrepared = false;
     }
@@ -135,6 +136,7 @@ public class LPBackwardRuleInfGraph extends BaseInfGraph implements BackwardRule
      * Flush out all cached results. Future queries have to start from scratch.
      */
     public synchronized void reset() {
+        version++;
         engine.checkSafeToUpdate();
         engine.reset();
     }
@@ -186,6 +188,7 @@ public class LPBackwardRuleInfGraph extends BaseInfGraph implements BackwardRule
      * the new data item, recursively adding any generated triples.
      */
     public synchronized void performAdd(Triple t) {
+        version++;
         engine.checkSafeToUpdate();
         fdata.getGraph().add(t);
         isPrepared = false;
@@ -195,6 +198,7 @@ public class LPBackwardRuleInfGraph extends BaseInfGraph implements BackwardRule
      * Removes the triple t (if possible) from the set belonging to this graph. 
      */   
     public synchronized void performDelete(Triple t) {
+        version++;
         engine.checkSafeToUpdate();
         fdata.getGraph().delete(t);
         isPrepared = false;
