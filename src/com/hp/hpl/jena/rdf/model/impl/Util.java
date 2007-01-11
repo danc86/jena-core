@@ -86,7 +86,8 @@ public class Util extends Object {
     public static boolean notNameChar( char ch )
         { return !XMLChar.isNCName( ch ); }
 
-    protected static Pattern standardEntities = Pattern.compile( "&|<|>|\t|\n|\r|\'|\"" );
+    protected static Pattern standardEntities = 
+    	   Pattern.compile( "&|<|>|\t|\n|\r|\'|\"" );
     
     public static String substituteStandardEntities( String s )
         {
@@ -104,7 +105,7 @@ public class Util extends Object {
             return s;
         }
     
-    protected static Pattern elementContentEntities = Pattern.compile( "<|>|&|[\0-\37&&[^\n\r\t]]" );
+    protected static Pattern elementContentEntities = Pattern.compile( "<|>|&|[\0-\37&&[^\n\r\t]]|\uFFFF|\uFFFE" );
     /**
         Answer <code>s</code> modified to replace &lt;, &gt;, and &amp; by
         their corresponding entity references. 

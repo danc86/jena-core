@@ -1304,7 +1304,9 @@ class Unparser {
                     char buf[] = str.toCharArray();
                     for (int i = 0; i < buf.length; i++) {
                         // See http://www.w3.org/TR/REC-xml#AVNormalize
-                        if (buf[i] <= ' ')
+                        if (buf[i] <= ' ' 
+                        	|| buf[i] == 0xFFFF
+                        	|| buf[i] == 0xFFFE)
                             return false;
                     }
                     return !wantReification(s);
