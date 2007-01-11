@@ -54,8 +54,7 @@ public class TestBugs extends TestCase {
     public static TestSuite suite() {
         return new TestSuite( TestBugs.class );
 //        TestSuite suite = new TestSuite();
-//        suite.addTest(new TestBugs( "testFactRules" ));
-//        suite.addTest(new TestBugs( "testFactChainRules" ));
+//        suite.addTest(new TestBugs( "testCMEInTrans" ));
 //        return suite;
     }  
 
@@ -819,7 +818,16 @@ public class TestBugs extends TestCase {
         assertTrue( infModel.contains(a, q, b) );
         assertTrue( ! myFlag.fired );
     }
-
+    
+    /**
+     * Test case for a reported CME bug in the transitive reasoner
+     */
+    public void testCMEInTrans() {
+        OntModel model =
+            ModelFactory.createOntologyModel(OntModelSpec.OWL_DL_MEM_TRANS_INF);
+        model.read("file:testing/reasoners/bugs/tgcCMEbug.owl");
+    }
+    
     /**
      * Builtin which just records whether it has been called.
      * Used in implementing testGroundClosure.
