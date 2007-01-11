@@ -77,6 +77,7 @@ public class XMLHandler extends LexicalHandlerImpl implements ARPErrorNumbers,
     boolean encodingProblems = false;
 
     protected Map idsUsed = new HashMap();
+    protected int idsUsedCount = 0;
 
     public void triple(ANode s, ANode p, ANode o) {
         StatementHandler stmt;
@@ -384,7 +385,11 @@ public class XMLHandler extends LexicalHandlerImpl implements ARPErrorNumbers,
 
     public void initParse(String base, String lang) throws SAXParseException {
         nodeIdUserData = new HashMap();
-        idsUsed = new HashMap();
+        idsUsed = 
+        	ignoring(WARN_REDEFINITION_OF_ID)?
+        			null:
+        	        new HashMap();
+        idsUsedCount = 0;
         if (options.getEmbedding())
             frame = new LookingForRDF(this, initialContext(base, lang));
         else

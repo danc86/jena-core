@@ -72,7 +72,7 @@ public class ParserSupport
 	 */
 	protected void checkIdSymbol(Taint taintMe, AbsXMLContext ctxt, String str)
 		throws SAXParseException {
-		if (!arp.ignoring(WARN_REDEFINITION_OF_ID)) {
+		if (arp.idsUsed != null) {
 			IRI uri = ctxt.uri;
             Map idsUsedForBase = (Map) idsUsed().get(uri);
 			if (idsUsedForBase == null) {
@@ -90,6 +90,13 @@ public class ParserSupport
 					"Previous definition of '" + str + "'.");
 			} else {
 				idsUsedForBase.put(str, arp.location());
+				arp.idsUsedCount++;
+				if (arp.idsUsedCount > 20000) {
+					arp.idsUsed = null;
+				arp.warning(taintMe,
+						WARN_BIG_FILE,
+						"Input is large. Switching off checking for illegal reuse of rdf:ID's.");
+				}
 			}
 		}
 
