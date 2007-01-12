@@ -130,7 +130,6 @@ public class RDFSReasoner extends TransitiveReasoner implements Reasoner {
         sPc.setCaching(true);
         return new RDFSReasoner(ftbox, sCc, sPc, scanProperties);
     }
-    
      
     /**
      * Attach the reasoner to a set of RDF ddata to process.
@@ -142,7 +141,7 @@ public class RDFSReasoner extends TransitiveReasoner implements Reasoner {
      * @throws ReasonerException if the data is ill-formed according to the
      * constraints imposed by this reasoner.
      */
-    public InfGraph bind(Graph data) throws ReasonerException {
+    public InfGraph bind( Graph data ) throws ReasonerException {
         return new RDFSInfGraph(this, data);
     }   
     

@@ -290,7 +290,10 @@ public class BasicForwardRuleInfGraph extends BaseInfGraph implements ForwardRul
         if (!isPrepared) {
             prepare();
         }
-        return fdata.getGraph().size() + fdeductions.getGraph().size();
+        int baseSize = fdata.getGraph().size();
+        int dedSize = fdeductions.getGraph().size();
+        // System.err.println( ">> BasicForwardRuleInfGraph::size = " + baseSize + "(base) + " + dedSize + "(deductions)" );
+        return baseSize + dedSize;
     }
     
     /** 
@@ -355,7 +358,7 @@ public class BasicForwardRuleInfGraph extends BaseInfGraph implements ForwardRul
      * by subclasses that need special purpose graph implementations here. 
      */
     protected Graph createDeductionsGraph() {
-        return Factory.createGraphMem();
+        return Factory.createGraphMem( style );
     }
     
     /**
@@ -451,11 +454,11 @@ public class BasicForwardRuleInfGraph extends BaseInfGraph implements ForwardRul
     
     public Reifier constructReifier()
         { 
-        BasicFBReifier.GetReifier getReifier = new BasicFBReifier.GetReifier()
+        BasicFBReifier.GetReifier deductionsReifier = new BasicFBReifier.GetReifier()
             {
             public Reifier getReifier() { return getDeductionsGraph().getReifier(); }
             };
-        return new BasicFBReifier( this, getReifier, style ); 
+        return new BasicFBReifier( this, getRawGraph().getReifier(), deductionsReifier, style ); 
         }
             
 }

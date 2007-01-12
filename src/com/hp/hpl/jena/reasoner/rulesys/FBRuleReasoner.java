@@ -209,11 +209,11 @@ public class FBRuleReasoner implements RuleReasoner {
      */
     public InfGraph bind( Graph data ) throws ReasonerException {
         ReificationStyle style = data.getReifier().getStyle();
-        Graph schemaArg = schemaGraph == null ? getPreload() : (FBRuleInfGraph)schemaGraph; 
+        Graph schemaArg = schemaGraph == null ? getPreload() : (FBRuleInfGraph) schemaGraph; 
         FBRuleInfGraph graph = new FBRuleInfGraph( this, rules, schemaArg, style );
-        graph.setDerivationLogging(recordDerivations);
-        graph.setTraceOn(traceOn);
-        graph.rebind(data);
+        graph.setDerivationLogging( recordDerivations );
+        graph.setTraceOn( traceOn );
+        graph.rebind( data );
         return graph;
     }
     

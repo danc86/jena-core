@@ -65,7 +65,7 @@ public class RDFSRuleReasoner extends GenericRuleReasoner {
     /**
      * Constructor
      */
-    public RDFSRuleReasoner(ReasonerFactory parent) {
+    public RDFSRuleReasoner( ReasonerFactory parent ) {
         super(loadRulesLevel(DEFAULT_RULES), parent);
         setMode(HYBRID);
         setTransitiveClosureCaching(true);
