@@ -11,7 +11,7 @@ package com.hp.hpl.jena.reasoner.rulesys;
 
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.reasoner.*;
-import com.hp.hpl.jena.shared.WrappedIOException;
+import com.hp.hpl.jena.shared.*;
 import com.hp.hpl.jena.vocabulary.ReasonerVocabulary;
 import com.hp.hpl.jena.graph.*;
 
@@ -207,9 +207,10 @@ public class FBRuleReasoner implements RuleReasoner {
      * @throws ReasonerException if the data is ill-formed according to the
      * constraints imposed by this reasoner.
      */
-    public InfGraph bind(Graph data) throws ReasonerException {
+    public InfGraph bind( Graph data ) throws ReasonerException {
+        ReificationStyle style = data.getReifier().getStyle();
         Graph schemaArg = schemaGraph == null ? getPreload() : (FBRuleInfGraph)schemaGraph; 
-        FBRuleInfGraph graph = new FBRuleInfGraph(this, rules, schemaArg);
+        FBRuleInfGraph graph = new FBRuleInfGraph( this, rules, schemaArg, style );
         graph.setDerivationLogging(recordDerivations);
         graph.setTraceOn(traceOn);
         graph.rebind(data);

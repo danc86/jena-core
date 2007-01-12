@@ -11,6 +11,7 @@ package com.hp.hpl.jena.reasoner.rulesys;
 
 import com.hp.hpl.jena.reasoner.*;
 import com.hp.hpl.jena.reasoner.rulesys.impl.*;
+import com.hp.hpl.jena.shared.ReificationStyle;
 import com.hp.hpl.jena.graph.*;
 
 import java.util.*;
@@ -89,12 +90,17 @@ public class BasicForwardRuleInfGraph extends BaseInfGraph implements ForwardRul
     * @param schema the (optional) schema or preload data which is being processed
     */
    public BasicForwardRuleInfGraph(Reasoner reasoner, List rules, Graph schema) {
-       super(null, reasoner);
-       instantiateRuleEngine(rules);
-       this.rules = rules;
-       this.schemaGraph = schema;
+       this( reasoner, rules, schema, ReificationStyle.Minimal );
    }    
 
+   public BasicForwardRuleInfGraph( Reasoner reasoner, List rules, Graph schema, ReificationStyle style )
+       {       
+       super( null, reasoner, style );
+       instantiateRuleEngine( rules );
+       this.rules = rules;
+       this.schemaGraph = schema;
+       }
+   
     /**
      * Constructor. Creates a new inference graph based on the given rule set
      * then processes the initial data graph. No precomputed deductions are loaded.
@@ -194,7 +200,7 @@ public class BasicForwardRuleInfGraph extends BaseInfGraph implements ForwardRul
      */
     protected boolean preloadDeductions(Graph preloadIn) {
         Graph d = fdeductions.getGraph();
-        BasicForwardRuleInfGraph preload = (BasicForwardRuleInfGraph)preloadIn;
+        BasicForwardRuleInfGraph preload = (BasicForwardRuleInfGraph) preloadIn;
         // If the rule set is the same we can reuse those as well
         if (preload.rules == rules) {
             // Load raw deductions
@@ -442,6 +448,15 @@ public class BasicForwardRuleInfGraph extends BaseInfGraph implements ForwardRul
     public long getNRulesFired() {
         return engine.getNRulesFired();
     }
+    
+    public Reifier constructReifier()
+        { 
+        BasicFBReifier.GetReifier getReifier = new BasicFBReifier.GetReifier()
+            {
+            public Reifier getReifier() { return getDeductionsGraph().getReifier(); }
+            };
+        return new BasicFBReifier( this, getReifier, style ); 
+        }
             
 }
 

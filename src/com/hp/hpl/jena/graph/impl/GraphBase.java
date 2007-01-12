@@ -65,8 +65,10 @@ public abstract class GraphBase implements GraphWithPerform
          Close this graph. Subgraphs may extend to discard resources.
     */
     public void close() 
-        { closed = true;
-        if (reifier != null) reifier.close(); }
+        { 
+        closed = true;
+        if (reifier != null) reifier.close(); 
+        }
     
     public boolean isClosed()
         { return closed; }

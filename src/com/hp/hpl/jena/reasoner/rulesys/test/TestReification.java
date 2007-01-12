@@ -58,6 +58,12 @@ public class TestReification extends AbstractTestReifier {
         TestUtil.assertIteratorLength(m.listReifiedStatements(), 1);
     }
 
+    public void testConstructingModelDoesntForcePreparation()
+        {
+        Model m = makeInfModel( "", "" );
+        if (((BaseInfGraph) m.getGraph()).isPrepared()) fail();
+        }
+    
     /**
      * Case 1: Rules complete an exisiting partially reified statement.
      */
@@ -77,7 +83,7 @@ public class TestReification extends AbstractTestReifier {
      */    
     private InfGraph makeInfGraph(String rules, String data, ReificationStyle style ) {
         PrintUtil.registerPrefix("eh", "eh:/");
-        Graph base = graphWith(data);
+        Graph base = graphWith( data );
         List ruleList = Rule.parseRules(rules);
         return new FBRuleReasoner(ruleList).bind(base);
     }

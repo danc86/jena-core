@@ -51,9 +51,9 @@ public abstract class BaseInfGraph extends GraphBase implements InfGraph {
         be too simplistic - they won't see quads flying past.
         TODO write a test case that reveals this.
      	@see com.hp.hpl.jena.graph.Graph#getReifier()
-    */
-    public Reifier getReifier()
-        { return getRawGraph().getReifier(); }
+    */    
+    public Reifier constructReifier()
+        {  return getRawGraph().getReifier(); }
 
     /**
      * Constructor
@@ -62,9 +62,15 @@ public abstract class BaseInfGraph extends GraphBase implements InfGraph {
      * can be used to extract all entailments from the data.
      */
     public BaseInfGraph(Graph data, Reasoner reasoner) {
-        this.fdata = new FGraph(data);
-        this.reasoner = reasoner;
+       this( data, reasoner, ReificationStyle.Minimal ); // should pick style from data? TODO
     }
+
+    public BaseInfGraph( Graph data, Reasoner reasoner, ReificationStyle style )
+        {
+        super( style );
+        this.fdata = new FGraph( data );
+        this.reasoner = reasoner;
+        }
 
     /**
         Answer the InfCapabilities of this InfGraph.
@@ -451,6 +457,13 @@ public abstract class BaseInfGraph extends GraphBase implements InfGraph {
     public InfGraph cloneWithPremises(Graph premises) {
         return getReasoner().bindSchema(getSchemaGraph()).bind(new Union(getRawGraph(), premises));
     }
+
+    /**
+         Answer true iff this graph has been through the <code>prepare()</code> step.
+         For testing purposes.
+    */
+    public boolean isPrepared()
+        { return isPrepared;  }
 
 }
 

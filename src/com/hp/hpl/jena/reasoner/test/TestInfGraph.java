@@ -12,6 +12,7 @@ import com.hp.hpl.jena.graph.Graph;
 import com.hp.hpl.jena.graph.test.AbstractTestGraph;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
 import com.hp.hpl.jena.reasoner.InfGraph;
+import com.hp.hpl.jena.reasoner.rulesys.BasicFBReifier;
 
 /**
      Needs extending; relys on knowing that the only InfGraph currently used is
@@ -45,7 +46,7 @@ public class TestInfGraph extends AbstractTestGraph
     public void testInfReification()
         {
         InfGraph ig = getInfGraph();
-        assertSame( ig.getReifier(), ig.getRawGraph().getReifier() );
+        assertInstanceOf( BasicFBReifier.class, ig.getReifier() );
         }
     
     /**

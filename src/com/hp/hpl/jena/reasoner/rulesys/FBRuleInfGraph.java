@@ -14,6 +14,7 @@ import com.hp.hpl.jena.rdf.model.ResourceFactory;
 import com.hp.hpl.jena.reasoner.rulesys.impl.*;
 import com.hp.hpl.jena.reasoner.transitiveReasoner.*;
 import com.hp.hpl.jena.reasoner.*;
+import com.hp.hpl.jena.shared.ReificationStyle;
 import com.hp.hpl.jena.shared.impl.JenaParameters;
 import com.hp.hpl.jena.graph.*;
 
@@ -99,11 +100,15 @@ public class FBRuleInfGraph  extends BasicForwardRuleInfGraph implements Backwar
      * @param schema the (optional) schema graph to be included
      */
     public FBRuleInfGraph(Reasoner reasoner, List rules, Graph schema) {
-        super(reasoner, rules, schema);
-        this.rawRules = rules;
-        constructorInit(schema);    
+        this( reasoner, rules, schema, ReificationStyle.Minimal );
     }
 
+    public FBRuleInfGraph( Reasoner reasoner, List rules, Graph schema, ReificationStyle style ) {
+        super( reasoner, rules, schema, style );
+        this.rawRules = rules;
+        constructorInit( schema ); 
+    }
+    
     /**
      * Constructor.
      * @param reasoner the reasoner which created this inf graph instance
@@ -111,11 +116,12 @@ public class FBRuleInfGraph  extends BasicForwardRuleInfGraph implements Backwar
      * @param schema the (optional) schema graph to be included
      * @param data the data graph to be processed
      */
-    public FBRuleInfGraph(Reasoner reasoner, List rules, Graph schema, Graph data) {
+    public FBRuleInfGraph( Reasoner reasoner, List rules, Graph schema, Graph data ) {
         super(reasoner, rules, schema, data);
         this.rawRules = rules;  
         constructorInit(schema);    
     }
+
 
     /**
      * Common pieces of initialization code which apply in all constructor cases.
