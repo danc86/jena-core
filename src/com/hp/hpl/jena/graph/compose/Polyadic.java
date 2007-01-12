@@ -46,8 +46,7 @@ import java.util.*;
  *         (<a  href="mailto:Ian.Dickinson@hp.com" >email</a>)
  * @version CVS $Id$
  */
-public abstract class Polyadic
-    extends CompositionBase
+public abstract class Polyadic extends CompositionBase
 {
     // Constants
     //////////////////////////////////

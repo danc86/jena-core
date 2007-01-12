@@ -82,8 +82,8 @@ public abstract class GraphBase implements GraphWithPerform
 
 	/**
 		Answer a QueryHandler bound to this graph. The default implementation
-        returns the same SimpleQueryHandler each time ti is called; sub-classes
-        may override if they need specialed query handlers.
+        returns the same SimpleQueryHandler each time it is called; sub-classes
+        may override if they need specialised query handlers.
 	*/
 	public QueryHandler queryHandler() 
         { 

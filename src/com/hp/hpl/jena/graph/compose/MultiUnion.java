@@ -24,8 +24,11 @@ package com.hp.hpl.jena.graph.compose;
 
 // Imports
 ///////////////
+import com.hp.hpl.jena.JenaRuntime;
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.graph.impl.SimpleEventManager;
+import com.hp.hpl.jena.graph.query.QueryHandler;
+import com.hp.hpl.jena.rdf.model.JenaConfig;
 import com.hp.hpl.jena.shared.JenaException;
 import com.hp.hpl.jena.util.CollectionFactory;
 import com.hp.hpl.jena.util.iterator.*;
@@ -43,24 +46,8 @@ import java.util.*;
  *         (<a  href="mailto:Ian.Dickinson@hp.com" >email</a>)
  * @version CVS $Id$
  */
-public class MultiUnion
-    extends Polyadic
+public class MultiUnion extends Polyadic
 {
-    // Constants
-    //////////////////////////////////
-
-
-    // Static variables
-    //////////////////////////////////
-
-
-    // Instance variables
-    //////////////////////////////////
-
-
-    // Constructors
-    //////////////////////////////////
-
     /**
      * <p>
      * Construct a union of exactly no sub graphs.
@@ -95,12 +82,20 @@ public class MultiUnion
         super( graphs );
     }
 
-
+    /**
+        Answer true iff we're optimising find and query over unions with a
+        single element.
+    */
+    private boolean optimiseOne()
+        { return optimising && m_subGraphs.size() == 1; }
+    
+    private boolean optimising = JenaRuntime.getSystemProperty( "jena.union.optimise", "yes" ).equals( "yes" );
+    
     // External signature methods
     //////////////////////////////////
 
     /**
-        Unions share the reifiers of their base graphs.
+        Unions share the reifiers of their base graphs. THIS WILL CHANGE.
     */
     public Reifier getReifier()
         { Graph base = getBaseGraph();
@@ -141,16 +136,18 @@ public class MultiUnion
      * @param t A triple
      * @return True if any of the graphs in the union contain t
      */
-    public boolean graphBaseContains( Triple t ) {
-        for (Iterator i = m_subGraphs.iterator();  i.hasNext();  ) {
-            if (((Graph) i.next()).contains( t )) {
-                return true;
-            }
+    public boolean graphBaseContains( Triple t ) 
+        {
+        for (Iterator i = m_subGraphs.iterator();  i.hasNext(); ) 
+            if (((Graph) i.next()).contains( t )) return true;
+        return false;
         }
 
-        return false;
-    }
-
+    public QueryHandler queryHandler()
+        { return optimiseOne() ? singleGraphQueryHandler() : super.queryHandler(); }
+    
+    private QueryHandler singleGraphQueryHandler()
+        { return ((Graph) m_subGraphs.get( 0 )).queryHandler(); }
 
     /**
      * <p>
@@ -162,20 +159,34 @@ public class MultiUnion
      * @param t The matcher to match against
      * @return An iterator of all triples matching t in the union of the graphs.
      */
-    public ExtendedIterator graphBaseFind( final TripleMatch t ) {
-        Set seen = CollectionFactory.createHashedSet();
-        ExtendedIterator i = NullIterator.instance;
-
-        // now add the rest of the chain
-        for (Iterator graphs = m_subGraphs.iterator(); graphs.hasNext(); ) {
-            ExtendedIterator newTriples = recording( rejecting( ((Graph) graphs.next()).find( t ), seen ), seen );
-            i = i.andThen( newTriples );
+    public ExtendedIterator graphBaseFind( final TripleMatch t ) 
+        { // optimise the case where there's only one component graph.
+        ExtendedIterator found = optimiseOne() ? singleGraphFind( t ) : multiGraphFind( t ); 
+        return SimpleEventManager.notifyingRemove( MultiUnion.this, found );
         }
+    
+    /**
+         Answer the result of <code>find( t )</code> on the single graph in
+         this union.
+    */
+    private ExtendedIterator singleGraphFind( final TripleMatch t )
+        { return ((Graph) m_subGraphs.get( 0 )).find(  t  ); }
 
-        // ensure that .remove notifies this graph's event manager
-        return SimpleEventManager.notifyingRemove( MultiUnion.this, i );
-    }
 
+    /**
+     	Answer the concatenation of all the iterators from a-subGraph.find( t ).
+    */
+    private ExtendedIterator multiGraphFind( final TripleMatch t )
+        {
+        Set seen = CollectionFactory.createHashedSet();
+        ExtendedIterator result = NullIterator.instance;
+        for (Iterator graphs = m_subGraphs.iterator(); graphs.hasNext(); ) 
+            {
+            ExtendedIterator newTriples = recording( rejecting( ((Graph) graphs.next()).find( t ), seen ), seen );
+            result = result.andThen( newTriples );
+            }
+        return result;
+        }
 
     /**
      * <p>
