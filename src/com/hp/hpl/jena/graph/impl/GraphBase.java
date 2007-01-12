@@ -307,13 +307,21 @@ public abstract class GraphBase implements GraphWithPerform
     /**
          Answer this graph's reifier. The reifier may be lazily constructed, and it
          must be the same reifier on each call. The default implementation is a
-         SimpleReifier.
+         SimpleReifier. Generally DO NOT override this method: override
+         <code>constructReifier</code> instead.
     */
 	public Reifier getReifier() 
         {
-		if (reifier == null) reifier = new SimpleReifier( this, style );
+		if (reifier == null) reifier = constructReifier();
 		return reifier;
 	    }
+
+    /**
+         Answer a reifier approperiate to this graph. Subclasses override if
+         they need non-SimpleReifiers.
+    */
+    protected Reifier constructReifier()
+        { return new SimpleReifier( this, style ); }
     
     /**
          The cache variable for the allocated Reifier.
