@@ -14,6 +14,7 @@ import com.hp.hpl.jena.shared.*;
  * but instead uses particular Jena exceptions. Those exceptions presently
  * subclass RDFException and set the magic numbers, but This Will Change.
  * @author bwm
+ * @deprecated
  * @version $Name$ $Revision$ $Date$
  */
 public class RDFException extends JenaException {
