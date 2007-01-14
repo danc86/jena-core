@@ -31,6 +31,8 @@ import java.util.*;
 import com.hp.hpl.jena.enhanced.EnhGraph;
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.graph.impl.*;
+import com.hp.hpl.jena.graph.query.SimpleQueryHandler;
+import com.hp.hpl.jena.mem.faster.GraphMemFasterQueryHandler;
 import com.hp.hpl.jena.ontology.*;
 import com.hp.hpl.jena.ontology.daml.*;
 import com.hp.hpl.jena.ontology.impl.OntClassImpl;
@@ -1569,6 +1571,14 @@ public class TestBugReports
         r.addSubClass( g );
 
         TestUtil.assertIteratorValues( this, r.listSubClasses( true ), new Object[] {a} );
+    }
+
+    public void test_kers_02() {
+        OntModel A = ModelFactory.createOntologyModel( OntModelSpec.OWL_MEM  );
+        Model B = ModelFactory.createDefaultModel();
+        assertTrue( A.getGraph().queryHandler() instanceof SimpleQueryHandler );
+        assertTrue( B.getGraph().queryHandler() instanceof GraphMemFasterQueryHandler );
+        assertTrue( A.getBaseModel().getGraph().queryHandler() instanceof GraphMemFasterQueryHandler );
     }
 
     /**
