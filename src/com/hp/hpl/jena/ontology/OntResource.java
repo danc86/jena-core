@@ -631,6 +631,14 @@ public interface OntResource
     public NodeIterator listPropertyValues( Property property );
 
     /**
+     * <p>Remove the specific property-value pair from this resource.</p>
+     *
+     * @param property The property to be removed
+     * @param value The specific value of the property to be removed
+     */
+    public void removeProperty( Property property, RDFNode value );
+
+    /**
      * <p>Removes this resource from the ontology by deleting any statements that refer to it,
      * as either statement-subject or statement-object.
      * If this resource is a property, this method will <strong>not</strong> remove statements
@@ -648,14 +656,6 @@ public interface OntResource
      */
     public void remove();
 
-
-    /**
-     * <p>Remove the specific property-value pair from this resource.</p>
-     *
-     * @param property The property to be removed
-     * @param value The specific value of the property to be removed
-     */
-    public void removeProperty( Property property, RDFNode value );
 
 
     // Conversion methods
