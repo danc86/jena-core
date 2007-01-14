@@ -89,7 +89,7 @@ public class XSDDuration extends AbstractDateTime {
      */
     public BigDecimal getBigSeconds() {
         return BigDecimal.valueOf( data[ms], data[msscale])
-                     .add( new BigDecimal(data[s]));
+                     .add( BigDecimal.valueOf(data[s]));
     }
     
     /**
