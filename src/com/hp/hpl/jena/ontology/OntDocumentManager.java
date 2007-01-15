@@ -1282,7 +1282,7 @@ public class OntDocumentManager
     }
 
     /**
-     * The default implementation of {@link ReadHook} makes no changes.
+     * The default implementation of {@link OntDocumentManager.ReadHook} makes no changes.
      */
     public static class DefaultReadHook
         implements ReadHook
