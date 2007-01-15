@@ -554,7 +554,9 @@ public interface Model
      * represented by <code>null</code>, is "RDF/XML".</p>
      * @param out The output stream to which the RDF is written
      * @param base The base uri to use when writing relative URI's. <code>null</code>
-     * means use only absolute URI's.
+     * means use only absolute URI's. This is used for relative
+     * URIs that would be resolved against the document retrieval URL.
+     * For some values of <code>lang</code>, this value may be included in the output. 
      * @param lang The language in which the RDF should be written
      * @return This model
      */

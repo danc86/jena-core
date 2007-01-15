@@ -67,7 +67,9 @@ public interface RDFWriter {
  * @param out The OutputStream to which the serialization should be sent.
  * @param model The model to be written.
  * @param base the base URI for relative URI calculations.  <code>
-   null</code> means use only absolute URI's.
+   null</code> means use only absolute URI's. This is used for relative
+   URIs that would be resolved against the document retrieval URL.
+   Particular writers may include this value in the output. 
  */    
     public void write(Model model, OutputStream out, String base);
     
