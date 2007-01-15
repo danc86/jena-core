@@ -29,11 +29,11 @@ public class ConnectionDescription
     /**
         Initialise a description from the given arguments.
         
+        @param subject the URI of the subject node from which this description is created
         @param dbURL the URL of the database to connect to
         @param dbUser the name of the user authorising the connection
         @param dbPassword the password of that user
         @param dbType the type of the database
-     * @param string 
     */
     public ConnectionDescription( String subject, String dbURL, String dbUser, String dbPassword, String dbType )
         {
