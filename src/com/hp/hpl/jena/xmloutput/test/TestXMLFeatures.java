@@ -110,12 +110,18 @@ public class TestXMLFeatures extends XMLOutputTestBase {
 				"testing/wg/rdfms-syntax-incomplete/test001.rdf"), "");
 		RDFDefaultErrorHandler.silent = true;
 		Model m1 = null;
+		SimpleLogger old = null;
 		try {
+			old = BaseXMLWriter.setLogger(new SimpleLogger(){
+				public void warn(String s) {}
+				public void warn(String s, Exception e) {}
+			});
 			m.write(new FileWriter(fileName), lang);
 			m1 = createMemModel();
 			m1.read(new FileInputStream(fileName), "");
 		} finally {
 			RDFDefaultErrorHandler.silent = false;
+			BaseXMLWriter.setLogger(old);
 		}
 		assertTrue("Use of FileWriter", m.isIsomorphicWith(m1));
 		f.delete();
