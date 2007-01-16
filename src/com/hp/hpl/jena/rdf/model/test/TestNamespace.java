@@ -59,7 +59,7 @@ public class TestNamespace extends ModelTestBase
         File f =  File.createTempFile( "hedgehog", ".rdf" );
         m.add( statement( m, "http://spoo.net/S http://spoo.net/P http://spoo.net/O" ) );
         m.add( statement( m, "http://spoo.net/S ftp://net.fred.org/P http://spoo.net/O" ) );
-        m.write( new FileWriter( f ) );
+        m.write( new FileOutputStream( f ) );
     /* */
         Model m2 = ModelFactory.createDefaultModel();
         m2.read( "file:" + f.getAbsolutePath() );
