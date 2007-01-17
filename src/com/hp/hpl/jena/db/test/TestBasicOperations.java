@@ -257,6 +257,15 @@ public class TestBasicOperations extends TestCase {
         addRemove(model.createStatement(s, p, l));
     }
     
+    public void testAddRemoveLiteralSpecials()
+    {
+        String str = Data.strSpecial ;
+        Resource s = model.createResource("test#subject");
+        Property p = model.createProperty("test#predicate");
+        Literal l = model.createLiteral(str);
+        addRemove(model.createStatement(s, p, l));
+    }
+    
 	public void testAddRemoveHugeLiteral() {
 		String base = Data.strLong ;
 		StringBuffer buffer = new StringBuffer(4096);
