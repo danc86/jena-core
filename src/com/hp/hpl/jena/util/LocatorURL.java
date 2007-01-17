@@ -77,7 +77,7 @@ public class LocatorURL implements Locator
                     log.trace("LocatorURL: not found: "+filenameOrURI) ;
             }
             else
-                log.warn("I/O Exception opening URL: " + filenameOrURI+"  "+ex.getMessage());
+                log.warn("I/O Exception opening URL: " + filenameOrURI+"  "+ex.getMessage(), ex);
             return null;
         }
     }
