@@ -18,7 +18,7 @@
 
   <!-- Output file names and locations -->
   <property name="dist.name"       value="${Name}-${version}"/>
-  <property name="dist.zip.name"   value="${name}-${version}.zip"/>
+  <property name="dist.zip.name"   value="${Name}-${version}.zip"/>
   <property name="web.site"        value="http://jena.sourceforge.net/" />
   <property name="jarfile"         value="${name}.jar"/>
   <property name="arq.jarfile"     value="arq.jar"/>
