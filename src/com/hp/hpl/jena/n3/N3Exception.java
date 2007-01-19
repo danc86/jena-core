@@ -17,8 +17,6 @@ import com.hp.hpl.jena.shared.*;
 public class N3Exception extends SyntaxError
 {
     public N3Exception(String message) { super( message ) ; }
-    
-    public String getMessage() { return message ; }
 }
 
 
