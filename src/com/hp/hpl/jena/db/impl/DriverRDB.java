@@ -2368,6 +2368,23 @@ public abstract class DriverRDB implements IRDBDriver {
 		return aliasToString(alias) + "." + colidToColname(colid);
 	}
 
+    /** Apply SQL escapes to a string */
+    private String escapeQuoteSQLString(String str)
+    {
+        StringBuffer sBuff = new StringBuffer(str.length()+10) ;
+        sBuff.append(QUOTE_CHAR) ;
+        for ( int i = 0 ; i < str.length() ; i++ ) 
+        {
+            char ch = str.charAt(i) ;
+            // Double up quotes
+            if ( ch == QUOTE_CHAR )
+                sBuff.append(QUOTE_CHAR) ;
+            sBuff.append(ch) ;
+        }
+        sBuff.append(QUOTE_CHAR) ;
+        return sBuff.toString() ;
+    }
+    
 	/*
 	 * there's a bug in the code below in that the literal is converted to
 	 * a string BEFORE the query is run. consequently, there's a race
@@ -2384,7 +2401,8 @@ public abstract class DriverRDB implements IRDBDriver {
 			// should really optimize this and not
 			// even run the query but ok for now.
 			val = RDBCodeInvalid;
-		return colAliasToString(alias,pred) + "=" + QUOTE_CHAR + val + QUOTE_CHAR;		
+        String qval = escapeQuoteSQLString(val) ;
+		return colAliasToString(alias,pred) + "=" + qval ;		
 	}
 
 	public String genSQLReifQualConst ( int alias, char pred, Node lit ) {
@@ -2393,7 +2411,8 @@ public abstract class DriverRDB implements IRDBDriver {
 			val = "T";
 		else
 			val = nodeToRDBString(lit, false);
-		return colAliasToString(alias,pred) + "=" + QUOTE_CHAR + val + QUOTE_CHAR;		
+        String qval = escapeQuoteSQLString(val) ;
+		return colAliasToString(alias,pred) + "=" + qval ;		
 	}
 	
 	public String genSQLQualParam( int alias, char pred ) {
