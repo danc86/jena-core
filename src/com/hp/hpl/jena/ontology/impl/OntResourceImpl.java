@@ -935,12 +935,12 @@ public class OntResourceImpl
      *         given property. If the property is not defined the method returns null.
      */
     public RDFNode getPropertyValue( Property property ) {
-        RDFNode obj = getRequiredProperty( property ).getObject();
-        if (obj == null) {
+        Statement s = getProperty( property );
+        if (s == null) {
             return null;
         }
         else {
-            return asOntResource( obj );
+            return asOntResource( s.getObject() );
         }
     }
 

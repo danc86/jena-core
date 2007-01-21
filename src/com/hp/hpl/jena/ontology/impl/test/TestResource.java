@@ -619,6 +619,17 @@ public class TestResource
                     assertTrue( "Return value should be an OntResource", bb instanceof OntResource );
                 }
             },
+            new OntTestCase( "OntResource.getPropertyValue - missing prop", true, true, true, true ) {
+                public void ontTest( OntModel m ) throws Exception {
+                    OntResource a = m.createOntResource( "http://foo/bar#a" );
+                    Resource b = m.createResource( "http://foo/bar#b" );
+                    OntProperty p = m.createOntProperty( "http://foo/bar#p" );
+                    OntProperty q = m.createOntProperty( "http://foo/bar#q" );
+                    m.add( a, p, b );
+                    Object bb = a.getPropertyValue( q );
+                    assertNull( bb );
+                }
+            },
             new OntTestCase( "OntResource.listPropertyValues - object prop", true, true, true, true ) {
                 public void ontTest( OntModel m ) throws Exception {
                     OntResource a = m.createOntResource( "http://foo/bar#a" );
