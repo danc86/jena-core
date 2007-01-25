@@ -36,7 +36,7 @@ public class DBQueryStage extends Stage
 		{
 		this.graph = graph;
 		this.compiled = compile ( sg, varList, dbPat, constraints );
-        // System.err.println( ">> " + this.compiled.stmt.toString().replaceAll( " AND ", "\n  AND " ) );
+        // System.err.println( " " + this.compiled.stmt.toString().replaceAll( " AND ", "\n  AND " ).replaceAll( " Where ", "\n Where " ).replaceAll( " From ", "\n From " ) );
 		}
 
 	protected DBQuery compile( SpecializedGraph sg, List varList, List dbPat, ExpressionSet constraints )

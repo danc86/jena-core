@@ -173,7 +173,7 @@ public class rdfcat
     //////////////////////////////////
 
     /** The command line processor that handles the arguments */
-    protected CommandLine m_cmdLine = new RCCommandLine().add( IN_N3 )
+    protected RCCommandLine m_cmdLine = (RCCommandLine) new RCCommandLine().add( IN_N3 )
                                                          .add( IN_NTRIPLE )
                                                          .add( IN_RDF_XML )
                                                          .add( OUT_LANG )
@@ -218,8 +218,13 @@ public class rdfcat
     /* main loop */
     protected void go( String[] args ) {
         m_cmdLine.process( args );
+        read( m_cmdLine.getItems() );
         m_model.write( getOutputStream(), m_outputFormat );
     }
+
+    private void read( List items )
+        { for (int i = 0; i < items.size(); i += 1) readInput( (String) items.get(i) );
+        }
 
     /** Set the input language of next and subsequent reads */
     protected void expectInput( String lang ) {
@@ -384,7 +389,7 @@ public class rdfcat
         extends CommandLine
     {
         /** Don't stop processing args on the first non-arg */
-        public boolean endProcessing( String argStr ) {
+        public boolean xxendProcessing( String argStr ) {
             return false;
         }
 
@@ -404,6 +409,8 @@ public class rdfcat
         public boolean ignoreArgument( String argStr ) {
             return !argStr.startsWith("-") || argStr.length() == 1;
         }
+        
+        public List getItems() { return items; }
 
     }
 
