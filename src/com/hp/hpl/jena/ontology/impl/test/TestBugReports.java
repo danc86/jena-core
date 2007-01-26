@@ -31,7 +31,7 @@ import java.util.*;
 import com.hp.hpl.jena.enhanced.EnhGraph;
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.graph.impl.*;
-import com.hp.hpl.jena.graph.query.SimpleQueryHandler;
+import com.hp.hpl.jena.graph.query.*;
 import com.hp.hpl.jena.mem.faster.GraphMemFasterQueryHandler;
 import com.hp.hpl.jena.ontology.*;
 import com.hp.hpl.jena.ontology.daml.*;
@@ -46,6 +46,7 @@ import com.hp.hpl.jena.reasoner.test.TestUtil;
 import com.hp.hpl.jena.shared.ClosedException;
 import com.hp.hpl.jena.util.FileUtils;
 import com.hp.hpl.jena.util.iterator.ExtendedIterator;
+import com.hp.hpl.jena.util.iterator.Map1;
 import com.hp.hpl.jena.vocabulary.*;
 
 import junit.framework.*;
@@ -1361,6 +1362,26 @@ public class TestBugReports
         C.addSuperClass(B);
         B.addSuperClass(A);
         assertTrue( C.hasSuperClass(A) );
+    }
+
+    /**
+     * Bug report by Jessica Brown jessicabrown153@yahoo.com: listIndividuals() fails
+     * on a composite model in Jena 2.5
+     */
+    public void test_jb_01() {
+        Model schema = ModelFactory.createDefaultModel();
+        Model data = ModelFactory.createDefaultModel();
+        Resource c = schema.createResource( "http://example.com/foo#AClass" );
+        Resource i = data.createResource( "http://example.com/foo#anInd" );
+        schema.add( c, RDF.type, OWL.Class );
+        data.add( i, RDF.type, c );
+
+        OntModel composite = ModelFactory.createOntologyModel( OntModelSpec.OWL_MEM, schema );
+        composite.addSubModel( data );
+
+        Set s = composite.listIndividuals().toSet();
+        assertEquals( "should be one individual", 1, s.size() );
+        assertTrue( s.contains( i ));
     }
 
     /**
