@@ -21,7 +21,7 @@ import com.hp.hpl.jena.assembler.test.TestAssemblerPackage;
 public class TestPackage extends TestSuite {
 
     static public Test suite() {
-        return new TestPackage();
+        return  new TestPackage();
     }
 
     /** Creates new TestPackage */
@@ -33,7 +33,9 @@ public class TestPackage extends TestSuite {
         addTest("Model", com.hp.hpl.jena.rdf.model.test.TestPackage.suite());
         addTest("N3", com.hp.hpl.jena.n3.test.N3TestSuite.suite());
         addTest("Turtle", com.hp.hpl.jena.n3.turtle.test.TurtleTestSuite.suite()) ;
-        addTest("RDQL", com.hp.hpl.jena.rdql.test.RDQLTestSuite.suite());
+        
+        // RDQL is deprecated and will be removed
+        // addTest("RDQL", com.hp.hpl.jena.rdql.test.RDQLTestSuite.suite());
         
         // Avoid a compile time dependency on ARQ. 
         {
@@ -42,7 +44,6 @@ public class TestPackage extends TestSuite {
                 addTest("ARQ", arqSuite) ;
             else
                 System.err.println("ARQ test suite not run") ;
-            arqSuite = null ;
         }
         addTest("XML Output", com.hp.hpl.jena.xmloutput.test.TestPackage.suite());
         addTest("Util", com.hp.hpl.jena.util.test.TestPackage.suite());

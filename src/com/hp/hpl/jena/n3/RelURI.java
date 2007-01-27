@@ -95,15 +95,15 @@ public class RelURI
     static private String encode(String s)
     {
         if ( s == null ) return s ;
-        //s = s.replace("_", "__") ;
-        //s = s.replace(" ", "_20") ;
+        s = s.replace("_", "__") ;
+        s = s.replace(" ", "_20") ;
         return s ;
     }
     
     static private String decode(String s)
     {
-        //s = s.replace("_20", " ") ;
-        //s = s.replace("__", "_") ;
+        s = s.replace("_20", " ") ;
+        s = s.replace("__", "_") ;
         return s ;
         
     }
