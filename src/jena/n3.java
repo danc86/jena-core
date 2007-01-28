@@ -234,7 +234,8 @@ public class n3
                 : cause instanceof N3Exception ? cause
                 : null);
             if ( n3Ex != null )
-                System.err.println(n3Ex.getMessage()) ;
+                // Avoid a warning.
+                System.err.println(((Exception)n3Ex).getMessage()) ;
             else
             {
                 Throwable th = (cause == null ? rdfEx : cause);
