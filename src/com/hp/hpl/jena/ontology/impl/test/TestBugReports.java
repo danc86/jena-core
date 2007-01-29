@@ -1313,57 +1313,6 @@ public class TestBugReports
         assertTrue( ex );
     }
 
-    public void test_ijd_01() {
-        String SOURCE=
-            "<!DOCTYPE rdf:RDF [" +
-            "    <!ENTITY nuin      'http://www.nuin.org'>" +
-            "    <!ENTITY rdf       'http://www.w3.org/1999/02/22-rdf-syntax-ns#'>" +
-            "    <!ENTITY xsd       'http://www.w3.org/2001/XMLSchema#'>" +
-            "    <!ENTITY owl       'http://www.w3.org/2002/07/owl#'>" +
-            "    <!ENTITY jms       'http://jena.hpl.hp.com/2003/08/jms#'>" +
-            "    <!ENTITY reasoner  'http://jena.hpl.hp.com/2003/'>" +
-            "    <!ENTITY base      '&nuin;/demo/kma'>" +
-            "    <!ENTITY kma       '&base;#'>" +
-            "]>" +
-            "<rdf:RDF" +
-            "    xmlns:rdf          ='&rdf;'" +
-            "    xmlns:xsd          ='&xsd;'" +
-            "    xmlns:owl          ='&owl;'" +
-            "    xmlns:jms          ='&jms;'" +
-            "    xmlns:kma          ='&kma;'" +
-            "    xml:base           ='&base;'" +
-            ">" +
-            "  <kma:AgentConfiguration rdf:about='&kma;ijdTest'>" +
-            "          <kma:rdfModelSpec>" +
-            "            <jms:OntModelSpec>" +
-            "              <jms:ontLanguage rdf:resource='&owl;' />" +
-            "              <jms:reasonsWith>" +
-            "                <jms:Reasoner>" +
-            "                  <jms:reasoner rdf:resource='&reasoner;OWLFBRuleReasoner' />" +
-            "                </jms:Reasoner>" +
-            "              </jms:reasonsWith>" +
-            "            </jms:OntModelSpec>" +
-            "          </kma:rdfModelSpec>" +
-            "  </kma:AgentConfiguration>" +
-            "</rdf:RDF>";
-
-        Model m = ModelFactory.createDefaultModel();
-        m.read( new StringReader( SOURCE ), null );
-
-        Resource root = m.getResource( "http://www.nuin.org/demo/kma#ijdTest" );
-        Property rms  = m.getProperty( "http://www.nuin.org/demo/kma#rdfModelSpec");
-        Resource conf = root.getProperty(rms).getResource();
-        OntModel om = (OntModel) ModelFactory.createSpec(conf,m)
-                                             .createFreshModel();
-
-        OntClass A = om.createClass( "A" );
-        OntClass B = om.createClass( "B" );
-        OntClass C = om.createClass( "C" );
-        C.addSuperClass(B);
-        B.addSuperClass(A);
-        assertTrue( C.hasSuperClass(A) );
-    }
-
     /**
      * Bug report by Jessica Brown jessicabrown153@yahoo.com: listIndividuals() fails
      * on a composite model in Jena 2.5

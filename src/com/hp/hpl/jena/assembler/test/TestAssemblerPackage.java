@@ -17,6 +17,7 @@ public class TestAssemblerPackage extends TestCase
         result.addTestSuite( TestModelExpansion.class );
         result.addTestSuite( TestImportManager.class );
         result.addTest( TestAssemblers.suite() );
+        result.addTestSuite( AcceptanceTesting.class );
         return result;
         }
     }

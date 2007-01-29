@@ -41,7 +41,7 @@ public class OntModelSpecAssembler extends AssemblerBase implements Assembler
 
     private OntModelSpec getDefault( Resource root )
         {
-        if (root.getNameSpace().equals( JA.uri ))
+        if (root.isURIResource() && root.getNameSpace().equals( JA.uri ))
             {
             OntModelSpec oms = getOntModelSpecField( root.getLocalName() );
             return oms == null ? DEFAULT : oms;
