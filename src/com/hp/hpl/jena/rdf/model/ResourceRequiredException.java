@@ -7,20 +7,20 @@
 package com.hp.hpl.jena.rdf.model;
 
 import com.hp.hpl.jena.graph.*;
-import com.hp.hpl.jena.shared.PrefixMapping;
+import com.hp.hpl.jena.shared.*;
 
 /**
     Exception to throw when an RDFNode required to be a Resource isn't, or when a Node
     supposed to be a resource isn't.
  	@author kers
 */
-public class ResourceRequiredException extends RDFException
+public class ResourceRequiredException extends JenaException
     {
     public ResourceRequiredException( RDFNode n )
         { this( n.asNode() ); }
         
     public ResourceRequiredException( Node n )
-        { super( OBJECTNOTRESOURCE, n.toString( PrefixMapping.Extended, true) ); }
+        { super( n.toString( PrefixMapping.Extended, true) ); }
     }
 
 /*

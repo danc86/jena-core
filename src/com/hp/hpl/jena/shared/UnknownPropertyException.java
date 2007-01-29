@@ -6,18 +6,16 @@
 
 package com.hp.hpl.jena.shared;
 
-import com.hp.hpl.jena.rdf.model.*;
-
 /**
     Exception to throw when Jena is presented with an unknown property
     of some kind.
     
  	@author kers
 */
-public class UnknownPropertyException extends RDFException
+public class UnknownPropertyException extends JenaException
     {
     public UnknownPropertyException( String property )
-        { super( UNKNOWNPROPERTY, property ); }
+        { super( property ); }
     }
 
 

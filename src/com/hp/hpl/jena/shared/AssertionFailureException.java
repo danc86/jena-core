@@ -6,17 +6,15 @@
 
 package com.hp.hpl.jena.shared;
 
-import com.hp.hpl.jena.rdf.model.RDFException;
-
 /**
     Exception to throw when an assertion fails. Probably obsolete in 
     Java's with the assert statement ...
  	@author kers
 */
-public class AssertionFailureException extends RDFException
+public class AssertionFailureException extends JenaException
     {
     public AssertionFailureException( String message )
-        { super( ASSERTIONFAILURE, message ); }
+        { super( message ); }
     }
 
 

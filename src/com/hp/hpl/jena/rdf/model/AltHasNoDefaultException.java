@@ -6,14 +6,16 @@
 
 package com.hp.hpl.jena.rdf.model;
 
+import com.hp.hpl.jena.shared.JenaException;
+
 /**
     Exception thrown if an Alt has no default statement.
  	@author kers
 */
-public class AltHasNoDefaultException extends RDFException
+public class AltHasNoDefaultException extends JenaException
     {
     public AltHasNoDefaultException( Alt  a )
-        { super( ALTHASNODEFAULT, a.toString() ); }
+        { super( a.toString() ); }
     }
 
 

@@ -12,10 +12,10 @@ import com.hp.hpl.jena.rdf.model.*;
     Exception to throw if something does not have the specified property.
  	@author kers
 */
-public class PropertyNotFoundException extends RDFException
+public class PropertyNotFoundException extends JenaException
     {
     public PropertyNotFoundException( Property p )
-        { super( PROPERTYNOTFOUND, p.toString() ); }
+        { super( p.toString() ); }
     }
 
 

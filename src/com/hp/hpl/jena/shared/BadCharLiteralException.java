@@ -6,16 +6,14 @@
 
 package com.hp.hpl.jena.shared;
 
-import com.hp.hpl.jena.rdf.model.RDFException;
-
 /**
     Exception to throw when a literal required to be a single character isn't.
  	@author kers
 */
-public class BadCharLiteralException extends RDFException
+public class BadCharLiteralException extends JenaException
     {
     public BadCharLiteralException( String spelling )
-        { super( LITERALNOTCHAR, spelling ); }
+        { super( spelling ); }
     }
 
 

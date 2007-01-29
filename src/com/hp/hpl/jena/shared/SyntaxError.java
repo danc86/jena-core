@@ -6,16 +6,14 @@
 
 package com.hp.hpl.jena.shared;
 
-import com.hp.hpl.jena.rdf.model.RDFException;
-
 /**
     Exception to throw when a syntax error is detected in some input.
  	@author kers
 */
-public class SyntaxError extends RDFException
+public class SyntaxError extends JenaException
     {
     public SyntaxError( String message)
-        { super( SYNTAXERROR, message ); }
+        { super( message ); }
     }
 
 

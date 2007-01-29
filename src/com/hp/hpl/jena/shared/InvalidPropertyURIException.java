@@ -6,18 +6,16 @@
 
 package com.hp.hpl.jena.shared;
 
-import com.hp.hpl.jena.rdf.model.RDFException;
-
 /**
     Exception to throw when it is discovered that a property has been given
     an illegal URI.
     
  	@author kers
 */
-public class InvalidPropertyURIException extends RDFException
+public class InvalidPropertyURIException extends JenaException
     {
     public InvalidPropertyURIException( String uri )
-        { super( INVALIDPROPERTYURI, uri ); }
+        { super( uri ); }
     }
 
 

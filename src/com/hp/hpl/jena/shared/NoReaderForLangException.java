@@ -6,16 +6,14 @@
 
 package com.hp.hpl.jena.shared;
 
-import com.hp.hpl.jena.rdf.model.RDFException;
-
 /**
     Exception to throw when there is no reader with the specified language
  	@author kers
 */
-public class NoReaderForLangException extends RDFException
+public class NoReaderForLangException extends JenaException
     {
     public NoReaderForLangException( String lang )
-        { super( NOREADERFORLANG, lang ); }
+        { super( lang ); }
     }
 
 /*

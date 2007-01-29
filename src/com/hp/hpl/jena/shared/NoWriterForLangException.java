@@ -6,16 +6,14 @@
 
 package com.hp.hpl.jena.shared;
 
-import com.hp.hpl.jena.rdf.model.RDFException;
-
 /**
     Exception to throw if there is no writer for the specified language.
  	@author kers
 */
-public class NoWriterForLangException extends RDFException
+public class NoWriterForLangException extends JenaException
     {
     public NoWriterForLangException( String lang )
-        { super( NOWRITERFORLANG, lang ); }
+        { super( lang ); }
     }
 
 

@@ -7,6 +7,7 @@
 package com.hp.hpl.jena.rdf.model;
 
 import com.hp.hpl.jena.graph.*;
+import com.hp.hpl.jena.shared.JenaException;
 
 /**
     This exception may be raised when an attempt to convert an RDFNode
@@ -16,7 +17,7 @@ import com.hp.hpl.jena.graph.*;
     @author chris.dollin@hp.com
 */
 
-public class DoesNotReifyException extends RDFException
+public class DoesNotReifyException extends JenaException
     {
     public DoesNotReifyException( Node n ) { super( n.toString() ); }
     }
