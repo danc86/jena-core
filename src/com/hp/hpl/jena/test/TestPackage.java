@@ -33,11 +33,11 @@ public class TestPackage extends TestSuite {
         addTest("Model", com.hp.hpl.jena.rdf.model.test.TestPackage.suite());
         addTest("N3", com.hp.hpl.jena.n3.test.N3TestSuite.suite());
         addTest("Turtle", com.hp.hpl.jena.n3.turtle.test.TurtleTestSuite.suite()) ;
-        
+
         // RDQL is deprecated and will be removed
         // addTest("RDQL", com.hp.hpl.jena.rdql.test.RDQLTestSuite.suite());
-        
-        // Avoid a compile time dependency on ARQ. 
+
+        // Avoid a compile time dependency on ARQ.
         {
             TestSuite arqSuite = TestPackageARQ.suite() ;
             if ( arqSuite != null )
@@ -62,7 +62,7 @@ public class TestPackage extends TestSuite {
         addTest("Composed graphs", com.hp.hpl.jena.graph.compose.test.TestPackage.suite() );
         addTest( "Ontology", com.hp.hpl.jena.ontology.impl.test.TestPackage.suite() );
         addTest( "DAML", com.hp.hpl.jena.ontology.daml.impl.test.TestPackage.suite() );
-
+        addTest( "cmd line utils", jena.test.TestPackage.suite() );
     }
 
     private void addTest(String name, TestSuite tc) {
