@@ -104,18 +104,18 @@ public abstract class PatternStageBase extends Stage
             { PatternStageBase.this.run( source, sink, e ); }
         }
     
-    public static boolean oldStyle = JenaRuntime.getSystemProperty( "jena.patternstage.threads", "old" ).equals( "old" );
-    
+   public static boolean reuseThreads = JenaRuntime.getSystemProperty( "jena.reusepatternstage.threads", "no" ).equals( "yes" );
+   
     public synchronized Pipe deliver( final Pipe sink )
         {
         final Pipe source = previous.deliver( new BufferPipe() );
         final StageElement s = makeStageElementChain( sink, 0 );
-        if (oldStyle)
+        if (reuseThreads)
+            getAvailableThread().put( new Work( source, sink, s ) ); 
+        else
             new Thread( "PatternStage-" + ++count ) 
                 { public void run() { PatternStageBase.this.run( source, sink, s ); } } 
             .start();
-        else
-                getAvailableThread().put( new Work( source, sink, s ) ); 
         return sink;
         }
 
@@ -126,7 +126,7 @@ public abstract class PatternStageBase extends Stage
         synchronized (threads)
             {
             threads.add( thread );
-            System.err.println( "|| caching thread " + this + " [currently " + threads.size() + " cached threads]" );
+            log.debug( "caching thread " + this + " [currently " + threads.size() + " cached threads]" );
             }
         }
     
@@ -138,12 +138,12 @@ public abstract class PatternStageBase extends Stage
             if (size > 0)
                 {
                 PatternStageThread x = (PatternStageThread) threads.remove( size - 1 );
-                System.err.println( "|| reusing thread " + x );
+                log.debug( "reusing thread " + x );
                 return x;
                 }
             }
         PatternStageThread f = new PatternStageThread( "PatternStage-" + ++count );
-        System.err.println( "|| created new thread " + f );
+        log.debug( "created new thread " + f );
         f.start();
         return f;
         }
