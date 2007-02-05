@@ -19,8 +19,8 @@ import com.hp.hpl.jena.db.IDBConnection;
 import com.hp.hpl.jena.db.RDFRDBException;
 
 /**
- * This is a driver file for SQL Server 2000 (intended to be usable
- * with MSDE 2000 and SQL Server 2005, eventually).
+ * This is a driver file for MS SQL Server 2000, MSDE 2000 and 
+ * SQL Server 2005 (inc MS SQL Server Express).
  * <p>
  * There is very little difference from the postgres driver except for the
  * use of script inheritance to override some of the postgresql SQL commands and
