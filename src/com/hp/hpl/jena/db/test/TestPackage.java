@@ -94,7 +94,6 @@ public class TestPackage extends TestSuite
 		addTest( "TestNsPrefix", TestNsPrefix.suite());
 		addTest( "TestPrefixMapping", TestPrefixMapping.suite());
 		addTest( "TestTransactions", TestTransactions.suite() );
-        addTest( "TestDBSpec", TestDBSpec.suite() );
 		addTest( "TestReifier", TestReifier.suite() );
 		addTest( "TestReifierCompareToMem", TestReifierCompareToMem.suite());
 		addTest( "TestQueryRDB", TestQueryRDB.suite());

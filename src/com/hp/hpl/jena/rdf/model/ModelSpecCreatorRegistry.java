@@ -8,7 +8,6 @@ package com.hp.hpl.jena.rdf.model;
 
 import com.hp.hpl.jena.rdf.model.impl.*;
 import com.hp.hpl.jena.shared.NotFoundException;
-import com.hp.hpl.jena.ontology.*;
 import com.hp.hpl.jena.util.FileManager;
 import com.hp.hpl.jena.vocabulary.*;
 
@@ -88,41 +87,6 @@ public class ModelSpecCreatorRegistry
         {
         registerCreator( s.getSubject(), new ModelSpecCreatorByClassname( s.getString() ) );
         }
-    
-    static class InfSpecCreator implements ModelSpecCreator
-        {
-        public ModelSpec create( Resource root, Model desc ) 
-            { return new InfModelSpec( root, desc ); }     
-        }
-        
-    static class PlainSpecCreator implements ModelSpecCreator
-        {
-        public ModelSpec create( Resource root, Model desc ) 
-            { return new PlainModelSpec( root, desc ); }      
-        }  
-    
-    static class RDBSpecCreator implements ModelSpecCreator
-        {
-        public ModelSpec create( Resource root, Model desc ) 
-            { return new RDBModelSpec( root, desc ); }      
-        }
-            
-    static class OntSpecCreator implements ModelSpecCreator
-        {
-        public ModelSpec create( Resource root, Model desc ) 
-            { return new OntModelSpec( root, desc ); }     
-        }
-                        
-    static
-        {
-        register( JenaModelSpec.InfModelSpec, new InfSpecCreator() );  
-        register( JenaModelSpec.OntModelSpec, new OntSpecCreator() );  
-        register( JenaModelSpec.PlainModelSpec, new PlainSpecCreator() );   
-        register( JenaModelSpec.RDBModelSpec, new RDBSpecCreator() );
-        
-        register( JenaModelSpec.ModelSpec, new PlainSpecCreator() );
-        register( JenaModelSpec.DefaultModelSpec, new PlainSpecCreator() );   
-        }   
     }
 
 /*
