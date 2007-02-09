@@ -13,8 +13,6 @@ import com.hp.hpl.jena.vocabulary.*;
 import com.hp.hpl.jena.graph.impl.*;
 import com.hp.hpl.jena.rdf.model.impl.*;
 import com.hp.hpl.jena.rdf.model.test.*;
-import com.hp.hpl.jena.reasoner.*;
-import com.hp.hpl.jena.reasoner.rulesys.*;
 import com.hp.hpl.jena.shared.*;
 import com.hp.hpl.jena.ontology.*;
 
@@ -61,32 +59,6 @@ public class TestModelSpec extends ModelTestBase
         assertNotNull( ModelMakerCreatorRegistry.findCreator( JenaModelSpec.RDBMakerSpec ) );    
         }
     
-    public void testDefaultMaker()
-        {
-//        Model spec = modelWithStatements( "_x jms:maker _y; _y jms:reificationMode jms:rsMinimal" );
-//        ModelSpec ms = ModelFactory.createSpec( spec );
-//        Model m = ModelFactory.createModel( ms ) ;
-//        assertInstanceOf( GraphMemBase.class, m.getGraph() );
-        }
-    
-    public void testAbsentDefaultMaker()
-        {
-//        Model spec = modelWithStatements( "_x rdf:type jms:DefaultModelSpec" );
-//        ModelSpec ms = ModelFactory.createSpec( spec );
-//        Model m = ModelFactory.createModel( ms ) ;
-//        assertInstanceOf( GraphMemBase.class, m.getGraph() );
-        }
-        
-//    /** a spec with no maker should throw an exception 
-//    */
-//    public void testMakerlessException()
-//        {
-//        Model spec = modelWithStatements( "_x rdf:type jms:MemModelSpec; _x rdf:type jms:PlainModelSpec; _x rdf:type jms:ModelSpec" );
-//        try 
-//            { ModelSpec ms = ModelFactory.createSpec( spec ); 
-//            fail( "makerless spec should throw a BadDescription exception" ); }
-//        catch (BadDescriptionException e) { pass(); }
-//        }
     
     public void testNotFindCreator()
         {
@@ -116,12 +88,6 @@ public class TestModelSpec extends ModelTestBase
         assertSame( c1, ModelSpecCreatorRegistry.findCreator( type1 ) );   
         assertSame( c2, ModelSpecCreatorRegistry.findCreator( type2 ) );   
         } 
-        
-    public void testHasStandardCreators()
-        {
-        // assertNotNull( ModelSpecCreatorRegistry.findCreator( JenaModelSpec.InfModelSpec ) );  
-//        assertNotNull( ModelSpecCreatorRegistry.findCreator( JenaModelSpec.OntModelSpec ) );     
-        }  
         
     public void testDetectRootAmbiguity()
         {
@@ -277,31 +243,6 @@ public class TestModelSpec extends ModelTestBase
         assertIsoModels( modelMaker, ms.getImportModelMaker().getDescription() );
         assertSame( odm, ms.getDocumentManager() );
         }
-    
-//    public void testOntModelSpecWithModelName() 
-//        {
-//        final List record = new ArrayList();
-//        ModelMaker tracker = new ModelMakerImpl( new SimpleGraphMaker(  ) )
-//            {
-//            public Model createModel( String name, boolean strict )
-//                {
-//                record.add( name );
-//                return super.createModel( name, strict );
-//                }
-//            };
-//        Model x = modelWithStatements
-//            (
-//            "_this jms:ontLanguage http://www.w3.org/TR/owl-features/#term_OWLLite"
-//            + "; _this jms:modelName 'cranberry'"
-//            + "; _this jms:docManager _DM"
-//            + "; _this jms:reasonsWith _R"
-//            + "; _R jms:reasoner http://jena.hpl.hp.com/2003/RDFSExptRuleReasoner"
-//            );
-//        OntModelSpec s = (OntModelSpec) ModelSpecFactory.createSpec( x );
-//        s.setBaseModelMaker( tracker );
-//        Model m = s.createFreshModel();
-//        assertEquals( list( "cranberry" ), record );
-//        }
     
     protected List list( String element )
         {

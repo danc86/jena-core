@@ -19,6 +19,7 @@ import java.util.*;
     deliver ModelSpecs.
     
  	@author hedgehog
+    @deprecated since ModelSpec is dead
 */
 public class ModelSpecCreatorRegistry
     {

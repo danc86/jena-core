@@ -22,6 +22,7 @@ import java.util.*;
     actual document managers, and so forth.
     
  	@author kers
+    @deprecated since ModelSpec is dead
 */
 public abstract class ModelSpecImpl implements ModelSpec
     {
