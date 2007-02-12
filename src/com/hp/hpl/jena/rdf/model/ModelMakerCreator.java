@@ -11,6 +11,7 @@ package com.hp.hpl.jena.rdf.model;
     JenaModelSpec vocabulary.
 
  	@author hedgehog
+    @deprecated ModelSpec is dead
 */
 public interface ModelMakerCreator
     {

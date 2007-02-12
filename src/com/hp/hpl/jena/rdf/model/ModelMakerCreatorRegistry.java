@@ -21,6 +21,7 @@ import java.util.*;
     for Mem, File, and RDB ModelMakers.
  
  	@author hedgehog
+    @deprecated ModelSpec is dead
 */
 public class ModelMakerCreatorRegistry
     {

@@ -34,6 +34,7 @@ public class TestPackage extends TestSuite {
         addTest( "TestCreate", TestCreate.suite() );
         addTest( "TestIndividual", TestIndividual.suite() );
         addTest( "TestAllDifferent", TestAllDifferent.suite() );
+        addTestSuite( TestOntModelSpec.class );
         addTest( new TestSuite( TestOntReasoning.class  ) );
         addTest( new TestSuite( TestOntModel.class ) );
         addTest( new TestSuite( TestBugReports.class ));

@@ -6,8 +6,6 @@
 
 package com.hp.hpl.jena.rdf.model.test;
 
-import com.hp.hpl.jena.rdf.model.spec.test.TestModelSpecPackage;
-
 import junit.framework.*;
 
 /**
@@ -24,7 +22,6 @@ public class TestPackage extends TestSuite {
     /** Creates new TestPackage */
     private TestPackage() {
         super("Model");
-        addTest( TestModelSpecPackage.suite() );
         addTest( "TestModel", TestModelFactory.suite() );
         addTest( "TestModelFactory", TestModelFactory.suite() );
         addTest( "TestSimpleListStatements", TestSimpleListStatements.suite() );

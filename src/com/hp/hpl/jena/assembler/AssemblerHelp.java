@@ -208,11 +208,18 @@ public class AssemblerHelp
          <code>ja:Model</code>. Otherwise throw an exception.
     */
     public static Resource singleModelRoot( Model singleRoot )
+        { return singleRoot( singleRoot, JA.Model ); }
+
+    /**
+     	Answer the single resource in <code>singleRoot</code> of type
+         <code>type</code>. Otherwise throw an exception.
+    */
+    public static Resource singleRoot( Model singleRoot, Resource type )
         {
-        Set roots = findAssemblerRoots( singleRoot, JA.Model );
+        Set roots = findAssemblerRoots( singleRoot, type );
         if (roots.size() == 1) return (Resource) roots.iterator().next();
-        if (roots.size() == 0) throw new BadDescriptionNoRootException( singleRoot, JA.Model );
-        throw new BadDescriptionMultipleRootsException( singleRoot, JA.Model );
+        if (roots.size() == 0) throw new BadDescriptionNoRootException( singleRoot, type );
+        throw new BadDescriptionMultipleRootsException( singleRoot, type );
         }
     }
 
