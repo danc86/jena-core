@@ -6,6 +6,7 @@
 
 package com.hp.hpl.jena.rdf.model.impl;
 
+import com.hp.hpl.jena.assembler.AssemblerHelp;
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.util.*;
 import com.hp.hpl.jena.vocabulary.*;
@@ -211,7 +212,7 @@ public abstract class ModelSpecImpl implements ModelSpec
         { return createMakerByRoot( root, ModelSpecImpl.withSpecSchema( d ) ); }
         
     public static ModelMaker createMakerByRoot( Resource root, Model fullDesc )
-        { Resource type = findSpecificType( (Resource) root.inModel( fullDesc ), JenaModelSpec.MakerSpec );
+        { Resource type = AssemblerHelp.findSpecificType( (Resource) root.inModel( fullDesc ), JenaModelSpec.MakerSpec );
         ModelMakerCreator mmc = ModelMakerCreatorRegistry.findCreator( type );
         if (mmc == null) throw new RuntimeException( "no maker type" );  
         return mmc.create( fullDesc, root ); }
@@ -265,24 +266,6 @@ public abstract class ModelSpecImpl implements ModelSpec
     
     public Model getModel( String URL, ModelReader loadIfAbsent )
         { throw new CannotCreateException( URL ); }
-
-    /**
-        Answer the "most specific" type of root in desc which is an instance of type.
-        We assume a single inheritance thread starting with that type. The model
-        should contain the subclass closure (ie either be complete, or an inference
-        model which will generate completeness).
-        
-        @param root the subject whose type is to be found
-        @param type the base type for the search
-        @return T such that (root type T) and if (root type T') then (T' subclassof T)
-    */
-    public static Resource findSpecificType( Resource root, Resource type )
-        { StmtIterator it = root.listProperties( RDF.type );
-        Model desc = root.getModel();
-        while (it.hasNext())
-            { Resource candidate = it.nextStatement().getResource();
-            if (desc.contains( candidate, RDFS.subClassOf, type )) type = candidate; }
-        return type; }
 
     protected static boolean notRDF( Resource resource )
         {

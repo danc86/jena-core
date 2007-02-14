@@ -116,7 +116,7 @@ public class TestOntDocumentManager
         // forget any cached models in the model spec
         // TODO remove this once we rationalise modelmakers in the OntModel code
         Set modelNames = new HashSet();
-        ModelMaker memMaker = OntModelSpec.OWL_MEM.getModelMaker();
+        ModelMaker memMaker = OntModelSpec.OWL_MEM.getImportModelMaker();
         for (Iterator i = memMaker.listModels(); i.hasNext(); ) {
             modelNames.add( i.next() );
         }
