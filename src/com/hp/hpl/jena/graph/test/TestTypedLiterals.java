@@ -470,6 +470,9 @@ public class TestTypedLiterals extends TestCase {
         assertTrue("equality test", l1.sameValueAs( m.createTypedLiteral("P1Y2M3DT5H6M7.5S", XSDDatatype.XSDduration) ) );
         assertTrue("inequality test", l1 != m.createTypedLiteral("P1Y2M2DT5H6M7.5S", XSDDatatype.XSDduration));
         
+        l1 = m.createTypedLiteral("P1Y2M3DT5H0M", XSDDatatype.XSDduration);
+        assertEquals("serialization", "P1Y2M3DT5H", l1.getValue().toString());
+        
         l1 = m.createTypedLiteral("P1Y", XSDDatatype.XSDduration);
         assertEquals("duration data type", XSDDatatype.XSDduration, l1.getDatatype());
         assertEquals("duration java type", XSDDuration.class, l1.getValue().getClass());

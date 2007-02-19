@@ -123,7 +123,7 @@ public class XSDDuration extends AbstractDateTime {
              message.append(negate * data[D]);
              message.append('D');
          }
-         if (data[h] != 0 && data[m] != 0 && data[s] != 0 && data[ms] != 0) {
+         if (data[h] != 0 || data[m] != 0 || data[s] != 0 || data[ms] != 0) {
              message.append('T');
              if (data[h] != 0) {
                  message.append(negate * data[h]);
