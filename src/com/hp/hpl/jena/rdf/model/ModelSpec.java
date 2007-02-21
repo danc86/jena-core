@@ -25,14 +25,6 @@ public interface ModelSpec extends ModelSource
     Model createModelOver( String name );
     
     /**
-        A specialisation of ModelSource::openModel( String ). ModelSpecs will
-        return the same Model when given the same String argument.
-        
-        @see com.hp.hpl.jena.rdf.model.ModelSource#openModel(java.lang.String)
-    */
-    Model openModel( String name );
-    
-    /**
         Open the "default" model. Do not create one.
     */
     Model openModel();
