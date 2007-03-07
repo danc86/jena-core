@@ -824,13 +824,16 @@ public class Rule implements ClauseEntry {
                 throw new ParserException("Wildcard variables no longer supported", this);
 ////                return Node_RuleVariable.ANY;
 //                return Node_RuleVariable.WILD;
+            } else if (token.startsWith("<") && token.endsWith(">")) {
+                String uri = token.substring(1, token.length()-1);
+                return Node.createURI(uri);
             } else if (token.indexOf(':') != -1) {
                 String exp = prefixMapping.expandPrefix(token); // Local map first
                 exp = PrintUtil.expandQname(exp);  // Retain global map for backward compatibility
                 if (exp == token) {
                     // No expansion was possible
                     String prefix = token.substring(0, token.indexOf(':'));
-                    if (prefix.equals("http") || prefix.equals("urn") 
+                    if (prefix.equals("http") || prefix.equals("urn") || prefix.equals("file")
                      || prefix.equals("ftp") || prefix.equals("mailto")) {
                         // assume it is all OK and fall through
                     } else {
