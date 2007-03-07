@@ -46,8 +46,12 @@ public class Node_Literal extends Node_Concrete
     public boolean isLiteral() 
         { return true; }    
         
+    /**
+        Literal nodes defer their indexing value to the component literal.
+        @see com.hp.hpl.jena.graph.Node#getIndexingValue()
+    */
     public Object getIndexingValue()
-        { return getLiteral().getDatatype() == null && !getLiteral().language().equals( "" ) ? this : getLiteral().getIndexingValue(); }
+        { return getLiteral().getIndexingValue(); }
     
     public Object visitWith( NodeVisitor v )
         { return v.visitLiteral( this, getLiteral() ); }

@@ -25,7 +25,7 @@ public class ReasonerFactoryAssembler extends AssemblerBase implements Assembler
     private ReasonerFactory addRules( Resource root, Assembler a, final ReasonerFactory r )
         {
         final List rules = RuleSetAssembler.addRules( new ArrayList(), a, root );
-        if (rules.size() > 0l)
+        if (rules.size() > 0)
             if (r instanceof GenericRuleReasonerFactory)
                 {
                 return new ReasonerFactory()

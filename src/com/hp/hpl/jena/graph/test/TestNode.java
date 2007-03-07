@@ -358,14 +358,12 @@ public class TestNode extends GraphTestBase
         }    
 
     public void testCreateLanguagedLiteralEN2()
-            {
-            Node n1 = Node.create( "'chat'en-UK" );
-            Node n2 = Node.create( "'chat'EN-UK" );
-            assertTrue(n1.sameValueAs(n2)) ;
-            assertFalse(n1.equals(n2)) ;
-            }    
-
-
+        {
+        Node n1 = Node.create( "'chat'en-UK" );
+        Node n2 = Node.create( "'chat'EN-UK" );
+        assertTrue( n1.sameValueAs(n2) ) ;
+        assertFalse( n1.equals(n2) ) ;
+        }    
     
     public void testCreateLanguagedLiteralXY()
         {
@@ -606,22 +604,16 @@ public class TestNode extends GraphTestBase
         }
     
     public void testGetIndexingValuePlainString()
-        {
-        Node s = Node.create( "'literally'" );
-        assertEquals( s.getLiteral().getIndexingValue(), s.getIndexingValue() );
-        }
+        { testIndexingValueLiteral( Node.create( "'literally'" ) ); }
     
     public void testGetIndexingValueLanguagedString()
-        {
-        Node s = Node.create( "'chat'fr" );
-        assertEquals( s, s.getIndexingValue() );
-        }
+        { testIndexingValueLiteral( Node.create( "'chat'fr" ) ); }
     
     public void testGetIndexingValueXSDString()
-        {
-        Node s = Node.create( "'string'xsd:string" );
-        assertEquals( s.getLiteral().getIndexingValue(), s.getIndexingValue() );
-        }
+        { testIndexingValueLiteral( Node.create( "'string'xsd:string" ) ); }
+    
+    private void testIndexingValueLiteral( Node s )
+        { assertEquals( s.getLiteral().getIndexingValue(), s.getIndexingValue() ); }
     
     // TODO should have more of these
     public void  testGetLiteralValuePlainString()

@@ -255,8 +255,7 @@ final public class LiteralLabel {
     */
 	public String getLexicalForm() {
 		if (lexicalForm == null)
-			lexicalForm =
-				(dtype == null ? value.toString() : dtype.unparse(value));
+			lexicalForm = (dtype == null ? value.toString() : dtype.unparse(value));
 		return lexicalForm;
 	}
     
@@ -265,13 +264,13 @@ final public class LiteralLabel {
         TODO Consider pushing indexing decisions down to the datatype
     */
     public Object getIndexingValue() {
-        if (isXML()) {
-            return this;
-        } else {
-            return wellformed ? getValue() : getLexicalForm(); 
-        }
+        return
+            isXML() ? this
+            : !lang.equals( "" ) ? getLexicalForm() + "@" + lang.toLowerCase()
+            : wellformed ? getValue()
+            : getLexicalForm() 
+            ;
     }
-
 
 	/** 
      	Answer the language associated with this literal (the empty string if

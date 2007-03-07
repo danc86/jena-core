@@ -131,7 +131,7 @@ public class Trail implements BindingEnvironment {
                 if (Functor.isFunctor(dn2)) {
                     // Unify functors
                     Functor f1 = (Functor)dn1.getLiteralValue();
-                    Functor f2 = (Functor)dn2.getLiteral().getValue();
+                    Functor f2 = (Functor)dn2.getLiteralValue();
                     if ( ! f1.getName().equals(f2.getName()) ) return false;
                     Node[] args1 = f1.getArgs();
                     Node[] args2 = f2.getArgs();
