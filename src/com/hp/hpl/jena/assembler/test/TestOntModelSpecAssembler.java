@@ -53,13 +53,12 @@ public class TestOntModelSpecAssembler extends AssemblerTestBase
                     }
             }
         }    
-
+    
     protected void testSpecificSpec( OntModelSpec ontModelSpec, String specName )
         {
+        Resource root = resourceInModel( JA.getURI() + specName + " rdf:type ja:OntModelSpec" );
         Assembler a = new OntModelSpecAssembler();
-        Object  oms = a.open( resource(  JA.getURI() + specName ) );
-        assertInstanceOf( OntModelSpec.class, oms );
-        assertSame( ontModelSpec, oms );
+        assertEquals( ontModelSpec, a.open( root ) );
         }
     
     protected static Test createTest( final OntModelSpec spec, final String name )

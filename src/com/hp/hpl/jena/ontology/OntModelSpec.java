@@ -218,6 +218,26 @@ public class OntModelSpec extends OntModelSpecObsolete implements ModelSpec {
               spec.getReasonerFactory(), spec.getLanguage() );
     }
 
+    public boolean equals( Object other )
+        { return other instanceof OntModelSpec && same( (OntModelSpec) other );}
+    
+    private boolean same( OntModelSpec other )
+        {
+        return 
+            getLanguage().equals( other.getLanguage() )
+            && sameReasonerFactory( other )
+            && getDocumentManager().equals( other.getDocumentManager() )
+            && getImportModelGetter().equals( other.getImportModelGetter() )
+            ;
+        }
+        
+    private boolean sameReasonerFactory( OntModelSpec other )
+        {
+        ReasonerFactory rf = getReasonerFactory();
+        ReasonerFactory orf = other.getReasonerFactory();
+        return rf == null ? orf == null : rf.equals( orf );
+        }
+
     /**
      * Answer the model maker used for creating imported models.
      * @return The ModelMaker that is used to get or create a model used
