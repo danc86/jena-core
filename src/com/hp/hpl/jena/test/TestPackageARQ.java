@@ -20,7 +20,7 @@ public class TestPackageARQ extends TestSuite
 {
     public static TestSuite suite()
     {
-        return suiteByReflection( "com.hp.hpl.jena.query.test.ARQTestSuite" );
+        return suiteByReflection( "com.hp.hpl.jena.sparql.test.ARQTestSuite" );
     }
 
     private static TestSuite suiteByReflection(String className)
