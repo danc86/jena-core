@@ -10,7 +10,7 @@ import java.io.* ;
 
 import com.hp.hpl.jena.n3.turtle.TripleHandlerNull;
 import com.hp.hpl.jena.n3.turtle.parser.TurtleParser;
-import com.hp.hpl.jena.query.junit.TestUtils;
+import com.hp.hpl.jena.sparql.junit.TestUtils;
 
 /**
  * @author		Andy Seaborne
