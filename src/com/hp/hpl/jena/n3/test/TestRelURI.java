@@ -69,7 +69,11 @@ public class TestRelURI extends TestCase
     
     // ---- Basic
     
-    public void testURI()   { execTest("", "http://example.org/", "http://example.org/"); }
+    public void testURI_1()   { execTest("", "http://example.org/", "http://example.org/"); }
+    public void testURI_2()   { execTest("", "http://example.org/xyz_2007", "http://example.org/xyz_2007"); }
+    public void testURI_3()   { execTest("", "http://example.org/xyz 2007", "http://example.org/xyz 2007"); }
+    public void testURI_4()   { execTest("", "http://example.org/xyz__2007", "http://example.org/xyz__2007"); }
+    public void testURI_5()   { execTest("", "http://example.org/xyz__abc", "http://example.org/xyz__abc"); }
     
     // ---- Relative URIs
     
