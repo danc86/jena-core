@@ -8,19 +8,16 @@ package arq.examples;
 
 
 // The ARQ application API.
-import com.hp.hpl.jena.query.* ;
-//The ARQ engine SPI.
-import com.hp.hpl.jena.query.core.* ;
-import com.hp.hpl.jena.query.expr.* ;
-import com.hp.hpl.jena.query.util.IndentedWriter;
-
+import com.hp.hpl.jena.graph.Triple;
+import com.hp.hpl.jena.query.*;
 import com.hp.hpl.jena.rdf.model.*;
-
-// Queries work at the graph level.
-import com.hp.hpl.jena.graph.* ;
-//import com.hp.hpl.jena.shared.PrefixMapping;
-//import com.hp.hpl.jena.shared.impl.PrefixMappingImpl;
-
+import com.hp.hpl.jena.sparql.core.Var;
+import com.hp.hpl.jena.sparql.expr.E_Regex;
+import com.hp.hpl.jena.sparql.expr.Expr;
+import com.hp.hpl.jena.sparql.expr.NodeVar;
+import com.hp.hpl.jena.sparql.syntax.ElementFilter;
+import com.hp.hpl.jena.sparql.syntax.ElementGroup;
+import com.hp.hpl.jena.sparql.util.IndentedWriter;
 import com.hp.hpl.jena.vocabulary.DC;
 
 /** Example : Build a query with a filter programmatically 

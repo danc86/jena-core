@@ -11,10 +11,10 @@ import com.hp.hpl.jena.query.*;
 import com.hp.hpl.jena.query.larq.IndexBuilderString;
 import com.hp.hpl.jena.query.larq.IndexLARQ;
 import com.hp.hpl.jena.query.larq.LARQ;
-import com.hp.hpl.jena.query.util.StringUtils;
-import com.hp.hpl.jena.query.util.Utils;
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
+import com.hp.hpl.jena.sparql.util.StringUtils;
+import com.hp.hpl.jena.sparql.util.Utils;
 import com.hp.hpl.jena.util.FileManager;
 
 /** Example code to load a model from a file, index all string literals,
@@ -40,9 +40,9 @@ public class ExLucene1
         String searchString = "+document" ;
         
         String queryString = StringUtils.join("\n", new String[]{
-            "PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>" ,
-            "PREFIX : <http://example/>" ,
-            "PREFIX pf: <java:com.hp.hpl.jena.query.pfunction.library.>",
+            "PREFIX xsd:    <http://www.w3.org/2001/XMLSchema#>" ,
+            "PREFIX :       <http://example/>" ,
+            "PREFIX pf:     <http://jena.hpl.hp.com/ARQ/property#>",
             "SELECT * {" ,
             "    ?lit pf:textMatch '"+searchString+"'.",
             "}"

@@ -4,7 +4,7 @@
  * [See end of file]
  */
 
-package arq.examples.ext;
+package arq.examples.propertyfunction;
 
 import java.util.List;
 
@@ -13,22 +13,31 @@ import org.apache.commons.logging.LogFactory;
 
 import com.hp.hpl.jena.graph.Node;
 import com.hp.hpl.jena.graph.Triple;
-import com.hp.hpl.jena.query.QueryBuildException;
-import com.hp.hpl.jena.query.core.ElementBasicGraphPattern;
-import com.hp.hpl.jena.query.core.ElementFilter;
-import com.hp.hpl.jena.query.core.ElementGroup;
-import com.hp.hpl.jena.query.core.Var;
-import com.hp.hpl.jena.query.engine.QueryIterator;
-import com.hp.hpl.jena.query.engine1.ExecutionContext;
-import com.hp.hpl.jena.query.engine1.PlanElement;
-import com.hp.hpl.jena.query.engine1.compiler.QueryPatternCompiler;
-import com.hp.hpl.jena.query.engine1.iterator.QueryIterNullIterator;
-import com.hp.hpl.jena.query.expr.E_Regex;
-import com.hp.hpl.jena.query.expr.Expr;
-import com.hp.hpl.jena.query.expr.NodeVar;
-import com.hp.hpl.jena.query.pfunction.PropFuncArg;
-import com.hp.hpl.jena.query.pfunction.PropertyFunction;
-import com.hp.hpl.jena.query.util.NodeUtils;
+import com.hp.hpl.jena.query.*;
+import com.hp.hpl.jena.rdf.model.Model;
+import com.hp.hpl.jena.rdf.model.ModelFactory;
+import com.hp.hpl.jena.rdf.model.Resource;
+import com.hp.hpl.jena.sparql.algebra.AlgebraGenerator;
+import com.hp.hpl.jena.sparql.algebra.Op;
+import com.hp.hpl.jena.sparql.algebra.op.OpBGP;
+import com.hp.hpl.jena.sparql.algebra.op.OpFilter;
+import com.hp.hpl.jena.sparql.core.BasicPattern;
+import com.hp.hpl.jena.sparql.core.Var;
+import com.hp.hpl.jena.sparql.engine.ExecutionContext;
+import com.hp.hpl.jena.sparql.engine.QueryIterator;
+import com.hp.hpl.jena.sparql.engine.iterator.QueryIterNullIterator;
+import com.hp.hpl.jena.sparql.engine.main.OpCompiler;
+import com.hp.hpl.jena.sparql.expr.E_Regex;
+import com.hp.hpl.jena.sparql.expr.Expr;
+import com.hp.hpl.jena.sparql.expr.NodeVar;
+import com.hp.hpl.jena.sparql.pfunction.PropFuncArg;
+import com.hp.hpl.jena.sparql.pfunction.PropertyFunction;
+import com.hp.hpl.jena.sparql.pfunction.PropertyFunctionRegistry;
+import com.hp.hpl.jena.sparql.syntax.Element;
+import com.hp.hpl.jena.sparql.syntax.ElementFilter;
+import com.hp.hpl.jena.sparql.syntax.ElementGroup;
+import com.hp.hpl.jena.sparql.syntax.ElementTriplesBlock;
+import com.hp.hpl.jena.sparql.util.NodeUtils;
 import com.hp.hpl.jena.vocabulary.RDFS;
 
 /** Example extension or property function to show rewriting part of a query.
@@ -48,7 +57,7 @@ import com.hp.hpl.jena.vocabulary.RDFS;
  *  we just show looking for RDFS labels.
  *  
  *  <pre>
- *    ?x ext:search "something"
+ *    ?x ext:labelSearch "something"
  *  </pre>
  *  as 
  *  <pre>
@@ -83,7 +92,7 @@ public class labelSearch implements PropertyFunction
 
     public QueryIterator exec(QueryIterator input, PropFuncArg argSubject, Node predicate, PropFuncArg argObject, ExecutionContext execCxt)
     {
-        log.debug("labelSearch.exec") ;
+        log.debug("exec") ;
         
         // No real need to check the pattern arguments because
         // the replacement triple pattern and regex will cope
@@ -96,11 +105,33 @@ public class labelSearch implements PropertyFunction
             log.warn("Pattern must be a plain literal or xsd:string: "+argObject.getArg()) ;
             return new QueryIterNullIterator(execCxt) ;
         }
+
+        if ( false )
+            // Old (ARQ 1) way - not recommended.
+            return buildSyntax(input, nodeVar, pattern, execCxt) ;
         
-        Var var2 = createNewVar() ;   // Hidden variable
+        // Build a SPARQL algebra expression
+        Var var2 = createNewVar() ;                     // Hidden variable
         
+        BasicPattern bp = new BasicPattern() ;
+        Triple t = new Triple(nodeVar, RDFS.label.asNode(), var2) ;
+        bp.add(t) ;
+        OpBGP op = new OpBGP(bp) ;
+        
+        Expr regex = new E_Regex(new NodeVar(var2.getName()), pattern, "i") ;
+        OpFilter filter = OpFilter.filter(regex, op) ;
+        
+        return OpCompiler.compile(filter, input, execCxt) ;
+    }
+
+    
+    // Build SPARQL syntax and compile it.
+    // Not recommended.
+    private QueryIterator buildSyntax(QueryIterator input, Node nodeVar, String pattern, ExecutionContext execCxt)
+    {
+        Var var2 = createNewVar() ; 
         // Triple patterns for   ?x rdfs:label ?hiddenVar
-        ElementBasicGraphPattern elementBGP = new ElementBasicGraphPattern();
+        ElementTriplesBlock elementBGP = new ElementTriplesBlock();
         Triple t = new Triple(nodeVar, RDFS.label.asNode(), var2) ;
         elementBGP.addTriple(t) ;
         
@@ -111,10 +142,12 @@ public class labelSearch implements PropertyFunction
         elementGroup.addElement(elementBGP) ;
         elementGroup.addElement(new ElementFilter(regex)) ;
         // Compile it.
-        PlanElement planlet = QueryPatternCompiler.makePlan(execCxt.getContext(), elementGroup) ;
-        return planlet.build(input, execCxt) ;
+        // An alternative design is to build the Op structure programmatically,
+        // 
+        Op op = AlgebraGenerator.compile((Element)elementGroup) ;
+        return OpCompiler.compile(op, input, execCxt) ;
     }
-
+    
     static int hiddenVariableCount = 0 ; 
 
     // Create a new, hidden, variable.
@@ -123,6 +156,48 @@ public class labelSearch implements PropertyFunction
         hiddenVariableCount ++ ;
         String varName = "-search-"+hiddenVariableCount ;
         return Var.alloc(varName) ;
+    }
+    
+    // -------- Example usage
+    
+    public static void main(String[] argv)
+    {
+        // Call the function as java:arq.examples.ext.labelSearch or register it.
+        String prologue = "PREFIX ext: <java:arq.examples.propertyfunction.>\n" ;
+
+        String qs = prologue+"SELECT * { ?x ext:labelSearch 'EF' }" ;
+        Query query = QueryFactory.create(qs) ;
+        Model model = make() ;
+        QueryExecution qExec = QueryExecutionFactory.create(query, model) ;
+        try {
+            ResultSet rs = qExec.execSelect() ;
+            ResultSetFormatter.out(rs) ;
+        } finally { qExec.close() ; }
+        
+        // Or register it.
+        PropertyFunctionRegistry.get().put("http://example/f#search", labelSearch.class) ;
+        prologue = "PREFIX ext: <http://example/f#>\n" ;
+        qs = prologue+"SELECT * { ?x ext:search 'EF' }" ;
+        query = QueryFactory.create(qs) ;
+        qExec = QueryExecutionFactory.create(query, model) ;
+        try {
+            ResultSet rs = qExec.execSelect() ;
+            ResultSetFormatter.out(rs) ;
+        } finally { qExec.close() ; }
+    }
+    
+    private static Model make()
+    {
+        String BASE = "http://example/" ;
+        Model model = ModelFactory.createDefaultModel() ;
+        model.setNsPrefix("", BASE) ;
+        Resource r1 = model.createResource(BASE+"r1") ;
+        Resource r2 = model.createResource(BASE+"r2") ;
+
+        r1.addProperty(RDFS.label, "abc") ;
+        r2.addProperty(RDFS.label, "def") ;
+
+        return model  ;
     }
 }
 

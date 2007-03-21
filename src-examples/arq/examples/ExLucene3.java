@@ -10,10 +10,10 @@ package arq.examples;
 import com.hp.hpl.jena.query.ARQ;
 import com.hp.hpl.jena.query.larq.IndexBuilderString;
 import com.hp.hpl.jena.query.larq.IndexLARQ;
-import com.hp.hpl.jena.query.util.StringUtils;
-import com.hp.hpl.jena.query.util.Utils;
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
+import com.hp.hpl.jena.sparql.util.StringUtils;
+import com.hp.hpl.jena.sparql.util.Utils;
 import com.hp.hpl.jena.util.FileManager;
 import com.hp.hpl.jena.vocabulary.DC;
 
@@ -43,7 +43,7 @@ public class ExLucene3
         String queryString = StringUtils.join("\n", new String[]{
             "PREFIX xsd:    <http://www.w3.org/2001/XMLSchema#>" ,
             "PREFIX :       <http://example/>" ,
-            "PREFIX pf: <java:com.hp.hpl.jena.query.pfunction.library.>",
+            "PREFIX pf:     <http://jena.hpl.hp.com/ARQ/property#>",
             "PREFIX  dc:    <http://purl.org/dc/elements/1.1/>",
             "SELECT ?title {" ,
             "    ?title pf:textMatch '"+searchString+"'.",

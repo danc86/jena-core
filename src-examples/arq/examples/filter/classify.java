@@ -1,55 +1,50 @@
 /*
- * (c) Copyright 2005, 2006, 2007 Hewlett-Packard Development Company, LP
+ * (c) Copyright 2007 Hewlett-Packard Development Company, LP
  * All rights reserved.
  * [See end of file]
  */
 
-package arq.examples.ext;
+package arq.examples.filter;
 
-import com.hp.hpl.jena.query.Dataset;
-import com.hp.hpl.jena.query.Query;
-import com.hp.hpl.jena.query.QueryExecution;
-import com.hp.hpl.jena.query.engine.QueryEngineFactory;
-import com.hp.hpl.jena.query.engine.QueryEngineRegistry;
+import com.hp.hpl.jena.sparql.expr.NodeValue;
+import com.hp.hpl.jena.sparql.function.FunctionBase1;
 
-/**
- * Example factory for an extension query engine 
- * 
+/** Example filter function that returns an indicative type string.
+ *  <ul>
+ *  <li>"Number", if it's a number of some kind</li>
+ *  <li>"String", if it's string</li>
+ *  <li>"DateTime", if it's a date time</li>
+ *  <li>"unknown" otherwise</li>
+ *  </ul>
+ *  
+ *  Usage:
+ *  <pre>
+ *    PREFIX ext: <java:arq.examples.ext.>
+ *  </pre>
+ *  <pre>
+ *    FILTER ext:classify(3+?x)
+ *  <pre>
  * @author Andy Seaborne
  * @version $Id$
- */
+ */ 
 
-public class MyEngineFactory implements QueryEngineFactory 
+public class classify extends FunctionBase1
 {
-    /** Register with the global query engine registry */
-    public static void register()
-    {
-        register(QueryEngineRegistry.get()) ;
-    }
-    
-    /** Register with some specific query engine registry */
-    public static void register(QueryEngineRegistry registry)
-    {
-        registry.add(new MyEngineFactory()) ;
-    }
-    
-    public boolean accept(Query query, Dataset dataset)
-    {
-        return true ;
-    }
+    public classify() { super() ; }
 
-    public QueryExecution create(Query query, Dataset dataset)
-    {
-        MyQueryEngine qe = new MyQueryEngine(query) ;
-        if ( dataset != null )
-            qe.setDataset(dataset) ;
-        return qe ;
+    //@Override
+    public NodeValue exec(NodeValue v)
+    { 
+        if ( v.isNumber() ) return NodeValue.makeString("number") ;
+        if ( v.isDateTime() ) return NodeValue.makeString("dateTime") ;
+        if ( v.isString() ) return NodeValue.makeString("string") ;
+        
+        return NodeValue.makeString("unknown") ;
     }
-
 }
 
 /*
- * (c) Copyright 2005, 2006, 2007 Hewlett-Packard Development Company, LP
+ * (c) Copyright 2007 Hewlett-Packard Development Company, LP
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without

@@ -4,7 +4,7 @@
  * [See end of file]
  */
 
-package arq.examples.ext;
+package arq.examples.propertyfunction;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -12,20 +12,20 @@ import java.util.Set;
 import com.hp.hpl.jena.graph.Graph;
 import com.hp.hpl.jena.graph.Node;
 import com.hp.hpl.jena.graph.Triple;
-import com.hp.hpl.jena.query.core.Var;
-import com.hp.hpl.jena.query.engine.Binding;
-import com.hp.hpl.jena.query.engine.Binding1;
-import com.hp.hpl.jena.query.engine.BindingMap;
-import com.hp.hpl.jena.query.engine.QueryIterator;
-import com.hp.hpl.jena.query.engine1.ExecutionContext;
-import com.hp.hpl.jena.query.engine1.iterator.QueryIterNullIterator;
-import com.hp.hpl.jena.query.engine1.iterator.QueryIterPlainWrapper;
-import com.hp.hpl.jena.query.engine1.iterator.QueryIterSingleton;
-import com.hp.hpl.jena.query.pfunction.PFuncSimple;
-import com.hp.hpl.jena.query.util.NodeUtils;
+import com.hp.hpl.jena.sparql.core.Var;
+import com.hp.hpl.jena.sparql.engine.ExecutionContext;
+import com.hp.hpl.jena.sparql.engine.QueryIterator;
+import com.hp.hpl.jena.sparql.engine.binding.Binding;
+import com.hp.hpl.jena.sparql.engine.binding.Binding1;
+import com.hp.hpl.jena.sparql.engine.binding.BindingMap;
+import com.hp.hpl.jena.sparql.engine.iterator.QueryIterNullIterator;
+import com.hp.hpl.jena.sparql.engine.iterator.QueryIterPlainWrapper;
+import com.hp.hpl.jena.sparql.engine.iterator.QueryIterSingleton;
+import com.hp.hpl.jena.sparql.pfunction.PFuncSimple;
+import com.hp.hpl.jena.sparql.util.NodeUtils;
 import com.hp.hpl.jena.util.iterator.ExtendedIterator;
 
-/** Example property function that creates the associate between a URI and it's localname.
+/** Example property function that creates the association between a URI and it's localname.
  *  See also splitIRI which is more general. This is just an example.
  * 
  *  If it is not a URI, then does not match.
@@ -33,7 +33,7 @@ import com.hp.hpl.jena.util.iterator.ExtendedIterator;
  *  Use as: 
  *  
  *  <pre>
- *    ?uri jext:localname ?localname
+ *    ?uri ext:localname ?localname
  *  </pre>
  * 
  *  Depending on whether the subject/object are bound when called:

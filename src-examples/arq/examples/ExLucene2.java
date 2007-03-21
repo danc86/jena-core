@@ -7,17 +7,17 @@
 package arq.examples;
 
 
+import com.hp.hpl.jena.sparql.util.StringUtils;
+import com.hp.hpl.jena.sparql.util.Utils;
 import com.hp.hpl.jena.query.ARQ;
 import com.hp.hpl.jena.query.larq.IndexLARQ;
-import com.hp.hpl.jena.query.util.StringUtils;
-import com.hp.hpl.jena.query.util.Utils;
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
 
 /** Example code to load a model from a file,
  * index all string literals,
  * then execute a SPARQL query with a Lucene search in it that
- * finds which doicuments have DC titles
+ * finds which documents have DC titles
  * 
  * @author Andy Seaborne
  * @version $Id$
@@ -40,17 +40,17 @@ public class ExLucene2
         
         // This time, find documents with a matching DC title. 
         String queryString = StringUtils.join("\n", new String[]{
-            "PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>" ,
-            "PREFIX : <http://example/>" ,
-            "PREFIX pf: <java:com.hp.hpl.jena.query.pfunction.library.>",
-            "PREFIX  dc:         <http://purl.org/dc/elements/1.1/>",
+            "PREFIX xsd:    <http://www.w3.org/2001/XMLSchema#>" ,
+            "PREFIX :       <http://example/>" ,
+            "PREFIX pf:     <http://jena.hpl.hp.com/ARQ/property#>",
+            "PREFIX  dc:    <http://purl.org/dc/elements/1.1/>",
             "SELECT ?doc ?title {" ,
             "    ?title pf:textMatch '"+searchString+"'.",
             "    ?doc   dc:title ?title", 
             "}"
         }) ;
         
-        // Two of three docuemnts should match. 
+        // Two of three documents should match. 
         ExLucene1.performQuery(model, index, queryString) ;
         index.close() ;
     }
