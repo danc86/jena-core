@@ -23,8 +23,6 @@ public class TestVocabularies extends TestCase
         result.addTest( TestVocabRDF.suite() );
         result.addTest( TestVocabRDFS.suite() );
         result.addTest( TestVocabVCARD.suite() );
-        result.addTest( TestVocabTestQuery.suite() );
-        result.addTest( TestVocabTestManifest.suite() );
         result.addTest( TestVocabDB.suite() );
         result.addTest( TestVocabRSS.suite() );
         result.addTest( TestVocabResultSet.suite() );
