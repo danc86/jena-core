@@ -46,7 +46,8 @@
 
   <!-- Classpaths -->
   <path id="classpath">
-    <fileset dir="${lib.dir}" includes="*.jar" excludes="${jarfile},${arq.jarfile}"/>
+    <!-- Don't exclude arq.jar for now - TEMP fix -->
+    <fileset dir="${lib.dir}" includes="*.jar" excludes="${jarfile}"/>
   </path>
   <path id="classpath.tools">
     <fileset dir="${lib.dir}" includes="*.jar"/>
