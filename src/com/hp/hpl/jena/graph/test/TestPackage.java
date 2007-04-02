@@ -47,9 +47,8 @@ public class TestPackage extends TestSuite {
         addTest( TestGraphUtils.suite() );
         addTest( TestGraphPrefixMapping.suite() );       
         addTest( TestGraphMatchWithInference.suite());
-    
+        addTestSuite( TestGraphEvents.class );
     }
-
 }
 
 /*

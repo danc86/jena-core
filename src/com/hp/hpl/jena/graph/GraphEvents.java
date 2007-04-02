@@ -32,11 +32,17 @@ public class GraphEvents
     public boolean same( GraphEvents o )
         { return title.equals( o.title ) && content.equals( o.content ); }
    
-	public static Object remove( Node s, Node p, Node o )
+	public static GraphEvents remove( Node s, Node p, Node o )
 	    { return new GraphEvents( "remove", Triple.create( s, p, o ) ); }
 	
 	public String toString()
 	    { return "<GE " + title + ">"; }
+
+    public Object getContent()
+        { return content; }
+
+    public Object getTitle()
+        { return title; }
 	}
 
 /*
