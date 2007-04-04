@@ -94,6 +94,29 @@ public class XSDDateTime extends AbstractDateTime {
     }
     
     /**
+     * Set the mask for this date/time to be that appropriate
+     * for the given XSD subtype. If the type is a subtype of XSDdateTime the 
+     * mask will be narrowed appropriately, other types will be silently ignored.
+     */
+    public void narrowType(XSDDatatype dt) {
+        if (dt.equals(XSDDatatype.XSDtime)) {
+            mask = TIME_MASK;
+        } else if (dt.equals(XSDDatatype.XSDgMonth)) {
+            mask = MONTH_MASK;
+        } else if (dt.equals(XSDDatatype.XSDgDay)) {
+            mask = DAY_MASK;
+        } else if (dt.equals(XSDDatatype.XSDgYear)) {
+            mask = YEAR_MASK;
+        } else if (dt.equals(XSDDatatype.XSDgMonthDay)) {
+            mask = MONTH_MASK | DAY_MASK;
+        } else if (dt.equals(XSDDatatype.XSDgYearMonth)) {
+            mask = YEAR_MASK | MONTH_MASK;
+        } else if (dt.equals(XSDDatatype.XSDdate)) {
+            mask = MONTH_MASK | YEAR_MASK | DAY_MASK;
+        }  
+    }
+    
+    /**
      * Convert a java calendar object to a new int[] in the format used by XSDAbstractDateTime
      */
     private static int[] convertCalendar(Calendar date) {

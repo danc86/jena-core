@@ -1015,6 +1015,19 @@ public class TestTypedLiterals extends TestCase {
     }
     
     /**
+     * Test ability to override an apparent DateTime to be just a date
+     */
+    public void testDateOverride() {
+        Calendar date = new GregorianCalendar(2007, 3, 4);
+        date.setTimeZone( TimeZone.getTimeZone("GMT+0") );
+        XSDDateTime  xsdDate = new XSDDateTime( date );
+        Literal l1 = m.createTypedLiteral(xsdDate, XSDDatatype.XSDdate);
+        
+        assertEquals(XSDDatatype.XSDdate, l1.getDatatype());
+        assertEquals("2007-04-04", l1.getLexicalForm());
+    }
+    
+    /**
      * Test that two objects are not semantically the same
      */
     private void assertDiffer( String title, Literal x, Literal y ) {
