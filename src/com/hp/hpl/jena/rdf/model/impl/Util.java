@@ -105,6 +105,23 @@ public class Util extends Object {
             return s;
         }
     
+    protected static Pattern entityValueEntities = 
+ 	   Pattern.compile( "&|%|\'|\"" );
+ 
+   public static String substituteEntitiesInEntityValue( String s )
+     {
+     if (entityValueEntities.matcher( s ).find())
+         {
+         return s
+             .replaceAll( "&","&amp;" )
+             .replaceAll( "'", "&apos;" )
+             .replaceAll( "%", "&#37;" )
+             .replaceAll( "\"", "&quot;" )
+             ;
+         }
+     else
+         return s;
+     }
     protected static Pattern elementContentEntities = Pattern.compile( "<|>|&|[\0-\37&&[^\n\r\t]]|\uFFFF|\uFFFE" );
     /**
         Answer <code>s</code> modified to replace &lt;, &gt;, and &amp; by

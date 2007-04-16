@@ -76,6 +76,38 @@ public class TestEntityOutput extends ModelTestBase
         testCatchesBadEntity( "apos" );
         testCatchesBadEntity( "quot" );
         }
+    
+    /* Old code produced:
+<!DOCTYPE rdf:RDF [
+  <!ENTITY dd 'http://www.example.org/a"b#'>
+  <!ENTITY ampersand 'http://www.example.org/a?a&b#'>
+  <!ENTITY espace 'http://www.example.org/a%20space#'>
+  <!ENTITY zz 'http://www.example.org/a'b#'>
+  <!ENTITY rdf 'http://www.w3.org/1999/02/22-rdf-syntax-ns#'>]>
+     * 
+     */
+    /**
+     * See
+     * http://www.w3.org/TR/xml/#NT-EntityValue
+     * " & and % ' are all legal URI chars, but illegal
+     * in entity defn.
+     * @throws IOException 
+     */
+    public void testDifficultChars() throws IOException 
+    {
+    	Model m = createMemModel();
+    	m.read("file:testing/abbreviated/entities.rdf");
+    	StringWriter w = new StringWriter();
+    	RDFWriter wr = m.getWriter();
+    	wr.setProperty("showDoctypeDeclaration", "true");
+    	wr.write(m, w, "http://example.org/");
+    	w.close();
+//    	System.err.println(w.toString());
+    	Reader r = new StringReader(w.toString());
+    	Model m2 = createMemModel();
+    	m2.read(r,"http://example.org/");
+    	assertIsoModels("showDoctypeDeclaration problem", m, m2);
+    }
 
     private void testCatchesBadEntity( String bad )
         {

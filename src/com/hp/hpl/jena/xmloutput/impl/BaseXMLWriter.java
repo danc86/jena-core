@@ -495,7 +495,7 @@ abstract public class BaseXMLWriter implements RDFXMLWriterI {
             {
             String prefix = (String) it.next();
             if (!isPredefinedEntityName( prefix ) )
-                pw.print(  newline + "  <!ENTITY " + prefix + " '" + prefixes.get( prefix ) + "'>" );
+                pw.print(  newline + "  <!ENTITY " + prefix + " '" + Util.substituteEntitiesInEntityValue((String)prefixes.get( prefix )) + "'>" );
             }
         pw.print( "]>" + newline );
         }
