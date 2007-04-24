@@ -8,6 +8,7 @@
 package com.hp.hpl.jena.rdf.model;
 
 import com.hp.hpl.jena.graph.*;
+import com.hp.hpl.jena.util.iterator.Map1;
 
 /** An RDF Statement.
  *
@@ -409,6 +410,27 @@ public interface Statement extends FrontsTriple
      * removes all four triples of the reification quad.
      */
     void removeReification();
+    
+    /**
+        Utility constants -- in a nested class for namespace reasons.
+    */
+    public static class Util
+        {
+        public static final Map1 getSubject = new Map1() 
+            {
+            public Object map1( Object o ) { return ((Statement) o).getSubject(); }
+            };
+            
+        public static final Map1 getPredicate = new Map1() 
+            {
+            public Object map1( Object o ) { return ((Statement) o).getPredicate(); }
+            };
+            
+        public static final Map1 getObject = new Map1() 
+            {
+            public Object map1( Object o ) { return ((Statement) o).getObject(); }
+            };
+        }
 }
 /*
 	  (c) Copyright 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007 Hewlett-Packard Development Company, LP

@@ -6,10 +6,10 @@
 
 package com.hp.hpl.jena.rdf.model.test;
 
-import com.hp.hpl.jena.datatypes.xsd.XSDDatatype;
 import com.hp.hpl.jena.graph.FrontsTriple;
 import com.hp.hpl.jena.rdf.model.*;
 import junit.framework.*;
+
 import com.hp.hpl.jena.vocabulary.RDF;
 
 public class TestStatements extends ModelTestBase
@@ -19,7 +19,15 @@ public class TestStatements extends ModelTestBase
     
     public static TestSuite suite()
         { return new TestSuite( TestStatements.class ); }   
-        
+    
+    public void testStatmentMap1Selectors()
+        {
+        Statement s = statement( "sub pred obj" );
+        assertEquals( resource( "sub" ), Statement.Util.getSubject.map1( s ) );
+        assertEquals( resource( "pred" ), Statement.Util.getPredicate.map1( s ) );
+        assertEquals( resource( "obj" ), Statement.Util.getObject.map1( s ) );
+        }
+    
     /**
         this case came up when Chris was sorting out ReifedStatement and
         had mishacked Model.createStatement. A resource created in one

@@ -155,18 +155,13 @@ public class ModelExpansion
     private static Set subjectSet( Model result, Resource S, Property P, RDFNode O )
         {
         return IteratorCollection.iteratorToSet
-            ( result.listStatements( S, P, O ) .mapWith( getSubject ) );
+            ( result.listStatements( S, P, O ) .mapWith( Statement.Util.getSubject ) );
         }
 
     private static List asJavaList( Resource resource )
         {
         return ((RDFList) resource.as( RDFList.class )).asJavaList();
         }
-
-    public static final Map1 getSubject = new Map1() 
-        {
-        public Object map1( Object o ) { return ((Statement) o).getSubject(); }
-        };
     }
 
 
