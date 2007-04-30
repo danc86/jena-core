@@ -56,7 +56,18 @@ public class TestEntityOutput extends ModelTestBase
         assertEquals( false, w.isPredefinedEntityName( "nl" ) );
         assertEquals( false, w.isPredefinedEntityName( "acute" ) );
         }
-    
+
+    public void testRDFNamespaceMissing()
+        {
+        Model m = createMemModel();
+        modelAdd( m, "x R fake:uri#bogus" );
+        m.setNsPrefix( "spoo", "fake:uri#" );
+        m.setNsPrefix( "eh", "eh:/" );
+        String s = checkedModelToString( m );
+        assertMatches( "<!DOCTYPE rdf:RDF \\[", s );
+        assertMatches( "<!ENTITY spoo 'fake:uri#'>", s );
+        assertMatches( "rdf:resource=\"&spoo;bogus\"", s );
+        }
     public void testUsesEntityForPrefix()
         {
         Model m = modelWithStatements( "x R fake:uri#bogus" );

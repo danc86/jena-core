@@ -488,7 +488,12 @@ abstract public class BaseXMLWriter implements RDFXMLWriterI {
     
     private void generateDoctypeDeclaration( Model model, PrintWriter pw )
         {
-        String rdfRDF = model.qnameFor( RDF.getURI() + "RDF" );
+        String rdfns = RDF.getURI();
+		String rdfRDF = model.qnameFor( rdfns + "RDF" );
+        if ( rdfRDF == null ) {
+        	model.setNsPrefix("rdf",rdfns);
+        	rdfRDF = "rdf:RDF";
+        }
         Map prefixes = model.getNsPrefixMap();
         pw.print( "<!DOCTYPE " + rdfRDF +" [" );
         for (Iterator it = prefixes.keySet().iterator(); it.hasNext();)
