@@ -195,10 +195,12 @@ public class ParserSupport
 	public void checkEncoding(Taint taintMe, String s) throws SAXParseException {
 		if (arp.encodingProblems) {
 			for (int i = s.length() - 1; i >= 0; i--) {
-				if (s.charAt(i) > 127)
+				if (s.charAt(i) < 0 || s.charAt(i)> 127) {
 					warning(taintMe,
 						ERR_ENCODING_MISMATCH,
 						"Encoding error with non-ascii characters.");
+					break;
+				}
 			}
 		}
 	}
