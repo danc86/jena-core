@@ -52,6 +52,7 @@ ja:Object a rdfs:Class
 ja:Model a rdfs:Class
     ; rdfs:subClassOf ja:Object
     ; rdfs:subClassOf ja:Loadable
+	; rdfs:subClassOf ja:ContentItem
     ; rdfs:label "Assembler.Model"
     ; rdfs:comment "the class of Assembler model objects"
     .

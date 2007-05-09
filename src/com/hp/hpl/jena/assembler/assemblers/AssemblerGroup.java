@@ -25,6 +25,13 @@ public abstract class AssemblerGroup extends AssemblerBase implements Assembler
     public static AssemblerGroup create()
         { return new ExpandingAssemblerGroup(); }
     
+    public AssemblerGroup copy()
+        {
+        ExpandingAssemblerGroup result = (ExpandingAssemblerGroup) create();
+        result.internal.mappings.putAll( ((ExpandingAssemblerGroup) this).internal.mappings );
+        return result;
+        }
+    
     public static class ExpandingAssemblerGroup extends AssemblerGroup
         {
         PlainAssemblerGroup internal = new PlainAssemblerGroup();

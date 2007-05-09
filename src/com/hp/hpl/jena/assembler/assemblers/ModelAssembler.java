@@ -58,7 +58,7 @@ public abstract class ModelAssembler extends AssemblerBase implements Assembler
 
     protected Content getContent( Assembler a, Resource root )
         { 
-        return new Content( ContentAssembler.loadContent( new ArrayList(), a, root ) );
+        return new Content( new ContentAssembler().loadContent( new ArrayList(), a, root ) );
         }
 
     }
