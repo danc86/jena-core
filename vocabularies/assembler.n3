@@ -332,7 +332,13 @@ ja:reasonerURL a rdf:Property
         in the reasoner registry; only one such property per reasoner."""
     ; rdfs:domain ja:ReasonerFactory
     .
-    
+   
+ja:reasonerClass a rdf:Property
+    ; rdfs:label "Assembler.reasonerClass"
+    ; rdfs:comment "property of a ReasonerFactory giving the class name"
+    ; rdfs:domain ja:ReasonerFactory
+    .
+
 ja:reasonerFactory a rdf:Property
 	; rdfs:label "Assembler.reasonerFactory"
 	; rdfs:comment "property of an OntModelSpec giving the reasoner for the spec"
