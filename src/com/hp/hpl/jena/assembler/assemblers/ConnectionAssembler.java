@@ -8,7 +8,6 @@ package com.hp.hpl.jena.assembler.assemblers;
 
 import com.hp.hpl.jena.JenaRuntime;
 import com.hp.hpl.jena.assembler.*;
-import com.hp.hpl.jena.assembler.exceptions.CannotLoadClassException;
 import com.hp.hpl.jena.rdf.model.*;
 
 /**
@@ -61,16 +60,12 @@ public class ConnectionAssembler extends AssemblerBase implements Assembler
             {
             String propertyName = getString( it.nextStatement() );
             String className = JenaRuntime.getSystemProperty( propertyName );
-            try { Class.forName( className ); }
-            catch (ClassNotFoundException e)
-                { throw new CannotLoadClassException( root, className, e ); }
+            loadClass( root, className );
             }
         for (StmtIterator it = root.listProperties( JA.dbClass ); it.hasNext();)
             {
             String className = getString( it.nextStatement() );
-            try { Class.forName( className ); }
-            catch (ClassNotFoundException e)
-                { throw new CannotLoadClassException( root, className, e ); }
+            loadClass( root, className );
             }
         }
 

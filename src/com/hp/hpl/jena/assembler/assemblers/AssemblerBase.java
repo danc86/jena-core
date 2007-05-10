@@ -100,6 +100,14 @@ public abstract class AssemblerBase implements Assembler
         Statement s = getUniqueStatement( root, property );
         return s == null ? null : AssemblerHelp.getString( s );
         }
+
+    protected static Class loadClass( Resource root, String className )
+        {
+        try 
+            { return Class.forName( className ); }
+        catch (ClassNotFoundException e) 
+            { throw new CannotLoadClassException( root, className, e ); }
+        }
     }
 
 
