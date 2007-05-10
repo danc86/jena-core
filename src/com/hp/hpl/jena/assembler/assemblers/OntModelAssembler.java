@@ -6,6 +6,8 @@
 
 package com.hp.hpl.jena.assembler.assemblers;
 
+import java.util.*;
+
 import com.hp.hpl.jena.assembler.*;
 import com.hp.hpl.jena.ontology.*;
 import com.hp.hpl.jena.rdf.model.*;
@@ -17,7 +19,24 @@ public class OntModelAssembler extends InfModelAssembler implements Assembler
         checkType( root, JA.OntModel );
         Model baseModel = getBase( a, root, mode );
         OntModelSpec oms = getOntModelSpec( a, root );
-        return ModelFactory.createOntologyModel( oms, baseModel );
+        OntModel om = ModelFactory.createOntologyModel( oms, baseModel );
+        addSubModels( a, root, mode, om );
+        return om;
+        }
+
+    private void addSubModels( Assembler a, Resource root, Mode mode, OntModel om )
+        {
+        List subModels = getSubModels( a, root, mode );
+        for (Iterator it = subModels.iterator(); it.hasNext();)
+            om.addSubModel( (Model) it.next() );
+        }
+
+    private List getSubModels( Assembler a, Resource root, Mode mode )
+        {
+        List result = new ArrayList();
+        for (StmtIterator it = root.listProperties( JA.subModel ); it.hasNext();)
+            result.add( a.openModel( it.nextStatement().getResource(), mode ) );
+        return result;
         }
 
     private static final OntModelSpec defaultSpec = OntModelSpec.OWL_MEM_RDFS_INF;

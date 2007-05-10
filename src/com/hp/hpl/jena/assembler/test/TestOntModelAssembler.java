@@ -7,6 +7,7 @@
 package com.hp.hpl.jena.assembler.test;
 
 import java.lang.reflect.Field;
+import java.util.List;
 
 import junit.framework.*;
 
@@ -90,6 +91,26 @@ public class TestOntModelAssembler extends AssemblerTestBase
         assertInstanceOf( OntModel.class, m );
         OntModel om = (OntModel) m;
         assertSame( baseModel.getGraph(), om.getBaseModel().getGraph() );
+        }
+    
+    public void testSubModels()
+        {
+        final Model baseModel = model( "a P b" );
+        Assembler a = new OntModelAssembler();
+        Assembler aa = new ModelAssembler()
+            {
+            protected Model openModel( Assembler a, Resource root, Mode irrelevant )
+                { 
+                assertEquals( resource( "y" ), root );
+                return baseModel;  
+                }
+            };
+        Object m = a.open( aa, resourceInModel( "x rdf:type ja:OntModel; x ja:subModel y" ) );
+        assertInstanceOf( OntModel.class, m );
+        OntModel om = (OntModel) m;
+        List subModels = om.listSubModels().toList();
+        assertEquals( 1, subModels.size() );
+        assertSame( baseModel.getGraph(), ((OntModel) subModels.get( 0 )).getBaseModel().getGraph() );
         }
     
     public void testDefaultDocumentManager()
