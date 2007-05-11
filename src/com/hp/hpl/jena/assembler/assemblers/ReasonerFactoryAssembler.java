@@ -13,7 +13,6 @@ import com.hp.hpl.jena.assembler.exceptions.*;
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.reasoner.*;
 import com.hp.hpl.jena.reasoner.rulesys.*;
-import com.hp.hpl.jena.shared.JenaException;
 
 /**
     The ReasonerFactoryAssembler constructs a ReasonerFactory from the
@@ -126,25 +125,7 @@ public class ReasonerFactoryAssembler extends AssemblerBase implements Assembler
         BOOM.
     */
     private static String getOptionalClassName( Resource root )
-        {
-        RDFNode classNode = getUnique( root, JA.reasonerClass );
-        return
-            classNode == null ? null
-            : classNode.isLiteral() ? classNode.asNode().getLiteralLexicalForm()
-            : classNode.isResource() ? mustBeJava( classNode.asNode().getURI() )
-            : null
-            ;
-        }
-
-    /**
-        Throw an exception if <code>uri</code> doesn't start with "java:",
-        otherwise answer the string beyond the ":".
-    */
-    private static String mustBeJava( String uri )
-        { // TODO replace JenaException
-        if (uri.startsWith( "java:" )) return uri.substring( 5 );
-        throw new JenaException( "class name URI must start with 'java:': " + uri );
-        }
+        { return getOptionalClassName( root, JA.reasonerClass ); }
 
     /**
         Answer a ReasonerFactory which delivers reasoners with the given

@@ -466,7 +466,7 @@ ja:policyPath a rdf:Property
 #
 
 ja:OntModel a rdfs:Class
-    ; rdfs:subClassOf ja:InfModel
+    ; rdfs:subClassOf ja:InfModel, ja:UnionModel
     ; rdfs:label "Assembler.OntModel"
     ; rdfs:comment "the class of OntModel specifications"
     .
