@@ -7,8 +7,11 @@
 package arq.examples;
 
 import com.hp.hpl.jena.query.Query;
+import com.hp.hpl.jena.sparql.algebra.Algebra;
 import com.hp.hpl.jena.sparql.algebra.AlgebraGenerator;
 import com.hp.hpl.jena.sparql.algebra.Op;
+import com.hp.hpl.jena.sparql.engine.QueryIterator;
+import com.hp.hpl.jena.sparql.engine.binding.Binding;
 
 import com.hp.hpl.jena.query.QueryFactory;
 
@@ -17,7 +20,7 @@ import com.hp.hpl.jena.query.QueryFactory;
  * @author Andy Seaborne
  * @version $Id$
  */
-public class Algebra
+public class AlgebraEx
 {
     public static void main(String []args)
     {
@@ -28,8 +31,17 @@ public class Algebra
         System.out.println(query) ;
         
         // Generate algebra
-        Op op = AlgebraGenerator.compile(query) ;
+        Op op = AlgebraGenerator.compileQuery(query) ;
         System.out.println(op) ;
+        
+        // Execute it.
+        QueryIterator qIter = Algebra.exec(op, Ex1.createModel()) ;
+        for ( ; qIter.hasNext() ; )
+        {
+            Binding b = qIter.nextBinding() ;
+            System.out.println(b) ;
+        }
+        qIter.close() ;
     }
 }
 
