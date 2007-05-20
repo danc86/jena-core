@@ -11,6 +11,7 @@ import java.util.*;
 
 import com.hp.hpl.jena.assembler.*;
 import com.hp.hpl.jena.assembler.exceptions.UnknownEncodingException;
+import com.hp.hpl.jena.graph.Node;
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.util.*;
 import com.hp.hpl.jena.vocabulary.*;
@@ -117,9 +118,14 @@ public class ContentAssembler extends AssemblerBase implements Assembler
 
     protected Content objectAsContent( Resource root, Statement s )
         {
-        Resource external = getResource( s );
-        final Model m = getFileManager( root ).loadModel( external.getURI() );
+        final Model m = getFileManager( root ).loadModel( getModelName( s ) );
         return newModelContent( m );
+        }
+    
+    private String getModelName( Statement s )
+        {
+        Node o = s.getObject().asNode();
+        return o.isLiteral() ? o.getLiteralLexicalForm(): o.getURI();
         }
 
     private FileManager getFileManager( Resource root )
