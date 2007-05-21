@@ -104,7 +104,7 @@ public abstract class PatternStageBase extends Stage
             { PatternStageBase.this.run( source, sink, e ); }
         }
     
-   public static boolean reuseThreads = JenaRuntime.getSystemProperty( "jena.reusepatternstage.threads", "no" ).equals( "yes" );
+   public static boolean reuseThreads = JenaRuntime.getSystemProperty( "jena.reusepatternstage.threads", "yes" ).equals( "yes" );
    
     public synchronized Pipe deliver( final Pipe sink )
         {

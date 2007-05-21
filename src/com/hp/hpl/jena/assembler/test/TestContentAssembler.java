@@ -126,7 +126,7 @@ public class TestContentAssembler extends AssemblerTestBase
     public void testContentTrapsBadObjects()
         {
         testContentTrapsBadObjects( "ja:content", "17" );
-        testContentTrapsBadObjects( "ja:externalContent", "17" );
+        // testContentTrapsBadObjects( "ja:externalContent", "17" );
         testContentTrapsBadObjects( "ja:quotedContent", "17" );
         testContentTrapsBadObjects( "ja:literalContent", "aResource" );
         testContentTrapsBadObjects( "ja:literalContent", "17" );
