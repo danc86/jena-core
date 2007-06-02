@@ -90,7 +90,7 @@
 
   <target name="jar-etc"
     description="Constructs a .jar file containing only the files from Jena's etc directory">
-  	<jar destfile="lib/etc.jar" basedir="." includes="etc/**"></jar>
+      <jar destfile="lib/etc.jar" basedir="." includes="etc/**, vocabularies/**"></jar>
   </target>
 
   <target name="test" depends="test-jar"
@@ -364,9 +364,9 @@
         <exclude name="linkcheck"/>
         <exclude name="release"/>
         <exclude name="readme-site.txt"/>
-	<!-- FrontPage control files -->
-	<exclude name="**/_*"/>             
-	<exclude name="**/_*/*"/>             
+    <!-- FrontPage control files -->
+    <exclude name="**/_*"/>
+    <exclude name="**/_*/*"/>
         <exclude name="**/desktop.ini"/>
       </fileset>
     </copy>
