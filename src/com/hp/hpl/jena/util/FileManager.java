@@ -382,7 +382,6 @@ public class FileManager
         return model ;
     }
 
-    // replace with RelURI.resolve()
     private static String chooseBaseURI(String baseURI)
     {
 //        return RelURI.chooseBaseURI(baseURI) ;
