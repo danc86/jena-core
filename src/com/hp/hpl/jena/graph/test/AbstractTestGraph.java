@@ -136,6 +136,8 @@ public/* abstract */class AbstractTestGraph extends GraphTestBase
     public void testMatchLanguagedLiteralCaseInsensitive()
         {
         Graph m = graphWith( "a p 'chat'en" );
+
+  // TODO: should be Graph m = getGraphWith( "a p 'chat'en" );
         if (m.getCapabilities().handlesLiteralTyping())
             {
             Node chaten = node( "'chat'en" ), chatEN = node( "'chat'EN" );
@@ -150,6 +152,8 @@ public/* abstract */class AbstractTestGraph extends GraphTestBase
     public void testMatchBothLanguagedLiteralsCaseInsensitive()
         {
         Graph m = graphWith( "a p 'chat'en; a p 'chat'EN" );
+        
+   // TODO: should be Graph m = getGraphWith( "a p 'chat'en; a p 'chat'EN" );
         if (m.getCapabilities().handlesLiteralTyping())
             {
             Node chaten = node( "'chat'en" ), chatEN = node( "'chat'EN" );
@@ -164,6 +168,7 @@ public/* abstract */class AbstractTestGraph extends GraphTestBase
     public void testNoMatchAgainstUnlanguagesLiteral()
         {
         Graph m = graphWith( "a p 'chat'en; a p 'chat'" );
+    // TODO: should be    Graph m = getGraphWith( "a p 'chat'en; a p 'chat'" );
         if (m.getCapabilities().handlesLiteralTyping())
             {
             Node chaten = node( "'chat'en" ), chatEN = node( "'chat'EN" );
