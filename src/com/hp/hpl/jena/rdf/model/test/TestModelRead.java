@@ -13,9 +13,8 @@ import java.net.UnknownHostException;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import com.hp.hpl.jena.n3.RelURI;
+import com.hp.hpl.jena.n3.IRIResolver;
 import com.hp.hpl.jena.rdf.model.*;
-import com.hp.hpl.jena.regression.testReaderInterface;
 import com.hp.hpl.jena.shared.ConfigException;
 import com.hp.hpl.jena.shared.JenaException;
 
@@ -78,7 +77,7 @@ public class TestModelRead extends ModelTestBase
     public void testSimpleLoadImplictBase()
         {
         Model mBasedImplicit = ModelFactory.createDefaultModel();
-        String fn = RelURI.resolveFileURL( "file:testing/modelReading/based.n3" );
+        String fn = IRIResolver.resolveFileURL("file:testing/modelReading/based.n3" );
         Model wanted = 
             ModelFactory.createDefaultModel()
             .add( resource( fn ), property( "jms:predicate" ), resource( "jms:object" ) );

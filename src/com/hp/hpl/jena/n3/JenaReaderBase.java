@@ -95,7 +95,7 @@ public abstract class JenaReaderBase implements RDFReader
         // The reader has been checked, if possible, by now or
         // constructed correctly by code here. 
         if ( base != null )
-            base = RelURI.resolve(base) ;
+            base = IRIResolver.resolveGlobal(base) ;
         try {
             model.notifyEvent( GraphEvents.startRead );
             readWorker(model, reader,  base) ;

@@ -19,7 +19,6 @@ import java.util.regex.Pattern;
 
 import org.apache.commons.logging.LogFactory;
 
-import com.hp.hpl.jena.shared.JenaException;
 import com.hp.hpl.jena.util.FileUtils;
 import com.hp.hpl.jena.util.cache.Cache;
 
@@ -31,16 +30,6 @@ import com.hp.hpl.jena.util.cache.Cache;
 
 public class RelURI
 {
-    public static class JenaURIException extends JenaException
-    {
-        public JenaURIException(String msg) { super(msg) ; }
-    }
-
-    public static class RelativeURIException extends JenaURIException
-    {
-        public RelativeURIException(String msg) { super(msg) ; }
-    }
-    
     static private String globalBase = null ;
     
     static Cache baseCache = new Cache1() ;

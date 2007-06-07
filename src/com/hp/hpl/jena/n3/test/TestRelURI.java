@@ -9,9 +9,9 @@ package com.hp.hpl.jena.n3.test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
+import com.hp.hpl.jena.n3.JenaURIException;
 import com.hp.hpl.jena.n3.RelURI;
-import com.hp.hpl.jena.n3.RelURI.JenaURIException;
-import com.hp.hpl.jena.n3.RelURI.RelativeURIException;
+import com.hp.hpl.jena.n3.RelativeURIException;
 
 /** com.hp.hpl.jena.query.util.test.TestCaseURI
  * 

@@ -13,7 +13,7 @@ import java.util.List;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import com.hp.hpl.jena.n3.RelURI;
+import com.hp.hpl.jena.n3.IRIResolver; 
 import com.hp.hpl.jena.rdf.model.*;
 //import com.hp.hpl.jena.sparql.vocabulary.TestManifest;
 //import com.hp.hpl.jena.sparql.vocabulary.TestManifestX;
@@ -43,7 +43,7 @@ public class Manifest
     public Manifest(String fn)
     {
         log.debug("Manifest = "+fn ) ;
-        filename = RelURI.resolve(fn) ;
+        filename = IRIResolver.resolveGlobal(fn) ;
         log.debug("         = "+filename ) ;
         manifest = FileManager.get().loadModel(filename) ;
         parseIncludes() ;

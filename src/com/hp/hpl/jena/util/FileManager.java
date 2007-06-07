@@ -384,8 +384,6 @@ public class FileManager
 
     private static String chooseBaseURI(String baseURI)
     {
-//        return RelURI.chooseBaseURI(baseURI) ;
-
         String scheme = FileUtils.getScheme(baseURI) ;
         
         if ( scheme != null )
