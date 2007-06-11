@@ -499,7 +499,7 @@ public class Test_schemagen
 
         for (int i = 0; i < posPatterns.length; i++) {
             String msg = "Expecting a positive match to pattern: ||" + posPatterns[i] + "||";
-            assertTrue( msg, foundPos[i] );
+            assertTrue( msg + " in:\n" + result, foundPos[i] );
         }
 
         // check that the file compiles with javac

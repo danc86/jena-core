@@ -62,7 +62,7 @@ public abstract class OntModelSpecObsolete extends ModelSpecImpl
     /**
         Answer the unique subject with the given rdf:type.
         
-        @param m the model in which the typed subject is sought
+        @param description the model in which the typed subject is sought
         @param type the RDF type the subject must have
         @return the unique S such that (S rdf:type type)
         @exception BadDescriptionException if there's not exactly one subject

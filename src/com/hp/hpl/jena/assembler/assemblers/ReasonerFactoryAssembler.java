@@ -110,10 +110,8 @@ public class ReasonerFactoryAssembler extends AssemblerBase implements Assembler
     */
     private static void mustBeReasonerFactory( Resource root, Class c )
         {
-        try 
-            { c.asSubclass( ReasonerFactory.class ); }
-        catch (ClassCastException e) 
-            { throw new NotExpectedTypeException( root, ReasonerFactory.class, c ); }
+        if (!ReasonerFactory.class.isAssignableFrom( c ))
+            throw new NotExpectedTypeException( root, ReasonerFactory.class, c );
         }
 
     /**

@@ -429,7 +429,6 @@ public class schemagen {
     /** Identify the file we are to write the output to */
     protected void selectOutput() {
         String outFile = getValue( OPT_OUTPUT );
-
         if (outFile == null) {
             m_output = System.out;
         }
@@ -446,7 +445,7 @@ public class schemagen {
                 m_output = new PrintStream( new FileOutputStream( out ) );
             }
             catch (Exception e) {
-                abort( "I/O error while trying to open file for writing: " + outFile, null );
+                abort( "I/O error while trying to open file for writing: " + outFile, e );
             }
         }
 
