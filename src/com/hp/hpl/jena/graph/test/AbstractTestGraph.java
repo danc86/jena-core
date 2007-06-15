@@ -689,7 +689,7 @@ public/* abstract */class AbstractTestGraph extends GraphTestBase
     public void testRemoveSomeEvent()
         {
         Graph g = getAndRegister( L );
-        Node S = node( "S" ), P = node( "?P" ), O = node( "??" );
+        Node S = node( "S" ), P = node( "??" ), O = node( "??" );
         g.getBulkUpdateHandler().remove( S, P, O );
         Object event = GraphEvents.remove( S, P, O );
         L.assertHas( new Object[] { "someEvent", g, event } );        
