@@ -6,21 +6,29 @@
 
 package com.hp.hpl.jena.n3.turtle;
 
+import com.hp.hpl.jena.graph.Graph;
 import com.hp.hpl.jena.graph.Triple;
 
-/**
- * @author Andy Seaborne
- * @version $Id$
- */
-public class TripleHandlerNull implements TripleHandler
+
+public class TurtleEventInserter implements TurtleEventHandler
 {
-    public void triple(int line, int col, Triple triple)  {}
-    public void startFormula(int line, int col)           {}
-    public void endFormula(int line, int col)             {}
+    Graph graph = null ;
+    public TurtleEventInserter(Graph graph) { this.graph = graph ; }
+    
+    public void triple(int line, int col, Triple triple) { graph.add(triple) ; }
+
+    public void startFormula(int line, int col)
+    { throw new TurtleParseException("["+line+", "+col+"] : Error: Formula found") ; }
+
+    public void endFormula(int line, int col)
+    { throw new TurtleParseException("["+line+", "+col+"] : Error: Formula found") ; }
+
+    public void prefix(int line, int col, String prefix, String iri)
+    { graph.getPrefixMapping().setNsPrefix(prefix, iri) ; }
 }
 
 /*
- * (c) Copyright 2005, 2006, 2007 Hewlett-Packard Development Company, LP
+ * (c) Copyright 2007 Hewlett-Packard Development Company, LP
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without

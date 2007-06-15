@@ -8,7 +8,7 @@ package com.hp.hpl.jena.n3.turtle.test;
 import junit.framework.* ;
 import java.io.* ;
 
-import com.hp.hpl.jena.n3.turtle.TripleHandlerNull;
+import com.hp.hpl.jena.n3.turtle.TurtleEventNull;
 import com.hp.hpl.jena.n3.turtle.parser.TurtleParser;
 import com.hp.hpl.jena.util.junit.TestUtils;
 
@@ -243,7 +243,7 @@ public class TurtleInternalTests extends TestSuite
 		protected void runTest() throws Throwable
 		{
             TurtleParser parser = new TurtleParser(new StringReader(testString)) ;
-            parser.setTripleHandler(new TripleHandlerNull()) ;
+            parser.setEventHandler(new TurtleEventNull()) ;
             parser.getPrefixMapping().setNsPrefix("a", "http://host/a#") ;
             parser.getPrefixMapping().setNsPrefix("x", "http://host/a#") ;
             // Unicode 00E9 is e-acute
@@ -255,7 +255,6 @@ public class TurtleInternalTests extends TestSuite
             parser.getPrefixMapping().setNsPrefix("xsd", "http://www.w3.org/2001/XMLSchema#") ;
             parser.setBaseURI("http://base/") ;
             parser.parse() ;
-            // TODO Check that's all.
 		}
 	}
 }

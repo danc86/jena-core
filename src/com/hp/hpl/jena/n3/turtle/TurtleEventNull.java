@@ -1,5 +1,5 @@
 /*
- * (c) Copyright 2005, 2006, 2007 Hewlett-Packard Development Company, LP
+ * (c) Copyright 2007 Hewlett-Packard Development Company, LP
  * All rights reserved.
  * [See end of file]
  */
@@ -8,33 +8,20 @@ package com.hp.hpl.jena.n3.turtle;
 
 import com.hp.hpl.jena.graph.Triple;
 
-
-public class TripleDump implements TripleHandler
+/**
+ * @author Andy Seaborne
+ * @version $Id$
+ */
+public class TurtleEventNull implements TurtleEventHandler
 {
-    
-    public void triple(int line, int col, Triple triple)
-    {
-        System.out.print(mark(line, col)) ;
-        System.out.println(triple.toString()) ;
-    }
-    
-    public void startFormula(int line, int col)
-    {
-        System.out.print(mark(line, col)) ;
-        System.out.println("{") ;
-    }
-    
-    public void endFormula(int line, int col)
-    {
-        System.out.print(mark(line, col)) ;
-        System.out.println("}") ;
-    }
-
-    private String mark(int line, int col) { return "["+line+", "+col+"]" ; }
+    public void triple(int line, int col, Triple triple)  {}
+    public void startFormula(int line, int col)           {}
+    public void endFormula(int line, int col)             {}
+    public void prefix(int line, int col, String prefix, String iri) {}
 }
 
 /*
- * (c) Copyright 2005, 2006, 2007 Hewlett-Packard Development Company, LP
+ * (c) Copyright 2007 Hewlett-Packard Development Company, LP
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
