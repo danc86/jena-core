@@ -69,15 +69,29 @@ public class LocatorURL implements Locator
             log.warn("Malformed URL: " + filenameOrURI);
             return null;
         }
+        // IOExceptions that occur sometimes.
+        catch (java.net.UnknownHostException ex)
+        {
+            if ( FileManager.logAllLookups && log.isTraceEnabled() )
+                log.trace("LocatorURL: not found (UnknownHostException): "+filenameOrURI) ;
+            return null ;
+        }
+        catch (java.net.ConnectException ex)
+        { 
+            if ( FileManager.logAllLookups && log.isTraceEnabled() )
+                log.trace("LocatorURL: not found (ConnectException): "+filenameOrURI) ;
+            return null ;
+        }
+        catch (java.net.SocketException ex)
+        {
+            if ( FileManager.logAllLookups && log.isTraceEnabled() )
+                log.trace("LocatorURL: not found (SocketException): "+filenameOrURI) ;
+            return null ;
+        }
+        // And IOExceptions we don't expect
         catch (IOException ex)
         {
-            if ( ex instanceof ConnectException || ex instanceof java.net.SocketException )
-            {
-                if ( FileManager.logAllLookups && log.isTraceEnabled() )
-                    log.trace("LocatorURL: not found: "+filenameOrURI) ;
-            }
-            else
-                log.warn("I/O Exception opening URL: " + filenameOrURI+"  "+ex.getMessage(), ex);
+            log.warn("I/O Exception opening URL: " + filenameOrURI+"  "+ex.getMessage(), ex);
             return null;
         }
     }
