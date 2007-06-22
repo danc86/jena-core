@@ -207,7 +207,29 @@ public class SimpleReifier implements Reifier
         }        
     
     public ExtendedIterator find( TripleMatch m )
-        { return tripleMap.find( m ).andThen( fragmentsMap.find( m ) ); }
+        {
+        return matchesReification( m ) 
+            ? tripleMap.find( m ).andThen( fragmentsMap.find( m ) ) 
+            : NullIterator.instance; 
+        }
+    
+    /**
+        Answer true iff <code>m</code> might match a reification triple.
+    */
+    private boolean matchesReification( TripleMatch m )
+        {
+        Node predicate = m.asTriple().getPredicate();
+        return 
+            !predicate.isConcrete()
+            || predicate.equals( RDF.Nodes.subject ) 
+            || predicate.equals( RDF.Nodes.predicate ) 
+            || predicate.equals( RDF.Nodes.object )
+            || predicate.equals( RDF.Nodes.type ) && matchesStatement( m.asTriple().getObject() )
+            ;
+        }
+
+    private boolean matchesStatement( Node x )
+        { return x.isVariable() || x.equals( RDF.Nodes.Statement ); }
     
     public ExtendedIterator findExposed( TripleMatch m )
         { return findEither( m, false ); }

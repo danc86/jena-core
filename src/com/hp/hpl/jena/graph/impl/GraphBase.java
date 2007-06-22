@@ -344,11 +344,11 @@ public abstract class GraphBase implements GraphWithPerform
 //        System.err.println( ">> GB(" + className + ")::size = " + baseSize + "(base) + " + reifierSize + "(reifier)" );
         return baseSize + reifierSize; }
     
-    private String leafName( String name )
-        {
-        int dot = name.lastIndexOf( '.' );
-        return name.substring( dot + 1 );
-        }
+//    private String leafName( String name )
+//        {
+//        int dot = name.lastIndexOf( '.' );
+//        return name.substring( dot + 1 );
+//        }
 
     /**
          Answer the number of visible reification quads. Subclasses will not normally
