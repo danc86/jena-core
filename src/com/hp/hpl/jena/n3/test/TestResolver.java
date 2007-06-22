@@ -29,6 +29,31 @@ public class TestResolver extends TestCase
         return ts ;
     }
     
+    public void testBase1()
+    {
+        IRIResolver resolver = new IRIResolver() ;
+        assertNotNull(resolver.getBaseIRI()) ;
+        String base = resolver.getBaseIRI() ;
+        assertTrue(base.indexOf(':') > 0 ) ; 
+    }
+    
+    public void testBase2()
+    {
+        IRIResolver resolver = new IRIResolver("x") ;
+        assertNotNull(resolver.getBaseIRI()) ;
+        // Active when IRI library integrated - currently the resolver takes a raw base string.
+//        String base = resolver.getBaseIRI() ;
+//        assertTrue(base.indexOf(':') > 0 ) ; 
+    }
+
+    public void testBase3()
+    {
+        String b = IRIResolver.resolveGlobal("x") ;
+        IRIResolver resolver = new IRIResolver(b) ;
+        assertNotNull(resolver.getBaseIRI()) ;
+        String base = resolver.getBaseIRI() ;
+        assertTrue(base.indexOf(':') > 0 ) ; 
+    }
     // ---- Basic
     
     public void testURI_1()   { execTest("", "http://example.org/", "http://example.org/"); }
