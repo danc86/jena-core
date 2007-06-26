@@ -144,6 +144,7 @@ public abstract class PatternStageBase extends Stage
             }
         PatternStageThread f = new PatternStageThread( "PatternStage-" + ++count );
         log.debug( "created new thread " + f );
+        f.setDaemon( true );
         f.start();
         return f;
         }
