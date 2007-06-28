@@ -2353,7 +2353,7 @@ public abstract class DriverRDB implements IRDBDriver {
 	
 	public String genSQLQualConst ( int alias, char pred, Node lit ) {
 		String val = nodeToRDBString(lit, false);
-		if ( val == "" )
+		if ( val == null )
 			// constant not in database.
 			// should really optimize this and not
 			// even run the query but ok for now.
