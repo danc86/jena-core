@@ -101,4 +101,13 @@
     ; ct:licence "GNU"
     .
 
+[]
+    dc:creator "Steve Battle"
+    ; dc:name "Gloze"
+    ; dc:description "XML to RDF, RDF to XML, XSD to OWL mapping tool"
+    ; ct:link "http://sourceforge.net/project/showfiles.php?group_id=40417"
+    ; ct:linkTitle "jena files page"
+    ; ct:licence "as per Jena"
+    .
+
 
