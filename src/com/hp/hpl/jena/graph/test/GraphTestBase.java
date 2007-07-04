@@ -31,7 +31,7 @@ public class GraphTestBase extends JenaTestBase
         <code>Node.create(x)</code>, which see.
     */
     public static Node node( String x )
-        { return Node.create( x ); }
+        { return NodeCreateUtils.create( x ); }
         
     /**
         Answer a set containing the elements from the iterator <code>it</code>;

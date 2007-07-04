@@ -8,8 +8,9 @@ package com.hp.hpl.jena.graph.query.test;
 
 import junit.framework.TestSuite;
 
-import com.hp.hpl.jena.graph.Node;
+import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.graph.query.*;
+import com.hp.hpl.jena.graph.test.NodeCreateUtils;
 
 public class TestStageElements extends QueryTestBase
     {
@@ -81,7 +82,7 @@ public class TestStageElements extends QueryTestBase
         {
         StageElement.PutBindings b = new StageElement.PutBindings( p );
         Domain d1 = makeDomain( Node.ANY );
-        Domain d2 = makeDomain( Node.create( "_blank" ), Node.create( "17" ) );
+        Domain d2 = makeDomain( NodeCreateUtils.create( "_blank" ), NodeCreateUtils.create( "17" ) );
         b.run( d1 );
         b.run( d2 );
         assertEquals( d2, p.lastPut );
@@ -93,7 +94,7 @@ public class TestStageElements extends QueryTestBase
         ValuatorSet vs = new ControlledValuator( true );
         MockElement next = new MockElement();
         StageElement.RunValuatorSet r = new StageElement.RunValuatorSet( vs, next );
-        Domain d = makeDomain( Node.create( "_blank" ), Node.create( "17" ) );
+        Domain d = makeDomain( NodeCreateUtils.create( "_blank" ), NodeCreateUtils.create( "17" ) );
         r.run( d );
         assertTrue( next.wasRun );
         assertSame( d, next.lastDomain );
@@ -104,7 +105,7 @@ public class TestStageElements extends QueryTestBase
         ValuatorSet vs = new ControlledValuator( false );
         MockElement next = new MockElement();
         StageElement.RunValuatorSet r = new StageElement.RunValuatorSet( vs, next );
-        Domain d = makeDomain( Node.create( "_blank" ), Node.create( "17" ) );
+        Domain d = makeDomain( NodeCreateUtils.create( "_blank" ), NodeCreateUtils.create( "17" ) );
         r.run( d );
         assertFalse( next.wasRun );
         assertNull( next.lastDomain );

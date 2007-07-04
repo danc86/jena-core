@@ -10,6 +10,7 @@ import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.rdf.model.impl.ModelCom;
 import com.hp.hpl.jena.shared.*;
 import com.hp.hpl.jena.graph.*;
+import com.hp.hpl.jena.graph.test.NodeCreateUtils;
 
 /**
  	@author kers
@@ -38,21 +39,21 @@ public abstract class AbstractTestModel extends ModelTestBase
         
     public void testCreateResourceFromNode()
         {
-        RDFNode S = model.getRDFNode( Node.create( "spoo:S" ) ); 
+        RDFNode S = model.getRDFNode( NodeCreateUtils.create( "spoo:S" ) ); 
         assertInstanceOf( Resource.class, S );
         assertEquals( "spoo:S", ((Resource) S).getURI() );
         }
         
     public void testCreateLiteralFromNode()
         {
-        RDFNode S = model.getRDFNode( Node.create( "42" ) ); 
+        RDFNode S = model.getRDFNode( NodeCreateUtils.create( "42" ) ); 
         assertInstanceOf( Literal.class, S );
         assertEquals( "42", ((Literal) S).getLexicalForm() );
         }    
             
    public void testCreateBlankFromNode()
         {
-        RDFNode S = model.getRDFNode( Node.create( "_Blank" ) ); 
+        RDFNode S = model.getRDFNode( NodeCreateUtils.create( "_Blank" ) ); 
         assertInstanceOf( Resource.class, S );
         assertEquals( new AnonId( "_Blank" ), ((Resource) S).getId() );
         }

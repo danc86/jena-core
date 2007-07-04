@@ -6,6 +6,7 @@
 
 package com.hp.hpl.jena.graph;
 
+import com.hp.hpl.jena.graph.test.NodeCreateUtils;
 import com.hp.hpl.jena.shared.*;
 import com.hp.hpl.jena.util.iterator.Filter;
 
@@ -168,9 +169,9 @@ public class Triple implements TripleMatch
     public static Triple create( PrefixMapping pm, String fact )
         {
         StringTokenizer st = new StringTokenizer( fact );
-        Node sub = Node.create( pm, st.nextToken() );
-        Node pred = Node.create( pm, st.nextToken() );
-        Node obj = Node.create( pm, st.nextToken() );
+        Node sub = NodeCreateUtils.create( pm, st.nextToken() );
+        Node pred = NodeCreateUtils.create( pm, st.nextToken() );
+        Node obj = NodeCreateUtils.create( pm, st.nextToken() );
         return Triple.create( sub, pred, obj );
         }
 

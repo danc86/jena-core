@@ -60,7 +60,7 @@ public class ModelTestBase extends GraphTestBase
         { return statement( aModel, fact ); }
          
      public static RDFNode rdfNode( Model m, String s )
-        { return m.asRDFNode( Node.create( m, s ) ); }
+        { return m.asRDFNode( NodeCreateUtils.create( m, s ) ); }
 
      public static RDFNode rdfNode( Model m, String s, Class c )
          { return rdfNode( m, s ).as(  c  );  }

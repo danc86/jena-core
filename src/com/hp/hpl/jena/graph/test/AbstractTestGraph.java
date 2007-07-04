@@ -56,7 +56,7 @@ public/* abstract */class AbstractTestGraph extends GraphTestBase
     public void testFindAndContains()
         {
         Graph g = getGraph();
-        Node r = Node.create( "r" ), s = Node.create( "s" ), p = Node.create( "P" );
+        Node r = NodeCreateUtils.create( "r" ), s = NodeCreateUtils.create( "s" ), p = NodeCreateUtils.create( "P" );
         g.add( Triple.create( r, p, s ) );
         assertTrue( g.contains( r, p, Node.ANY ) );
         assertEquals( 1, g.find( r, p, Node.ANY ).toList().size() );
@@ -362,14 +362,14 @@ public/* abstract */class AbstractTestGraph extends GraphTestBase
     protected void xSPOyXYZ( Reifier r )
         {
         xSPO( r );
-        r.reifyAs( Node.create( "y" ), Triple.create( "X Y Z" ) );       
+        r.reifyAs( NodeCreateUtils.create( "y" ), Triple.create( "X Y Z" ) );       
         }
 
     protected void aABC( Reifier r )
-        { r.reifyAs( Node.create( "a" ), Triple.create( "A B C" ) ); }
+        { r.reifyAs( NodeCreateUtils.create( "a" ), Triple.create( "A B C" ) ); }
         
     protected void xSPO( Reifier r )
-        { r.reifyAs( Node.create( "x" ), Triple.create( "S P O" ) ); }
+        { r.reifyAs( NodeCreateUtils.create( "x" ), Triple.create( "S P O" ) ); }
         
     public void testRemove()
         { 

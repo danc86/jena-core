@@ -8,8 +8,8 @@ package com.hp.hpl.jena.graph.query.test;
 
 import junit.framework.*;
 
-import com.hp.hpl.jena.graph.Node;
 import com.hp.hpl.jena.graph.query.*;
+import com.hp.hpl.jena.graph.test.NodeCreateUtils;
 
 /**
  	@author hedgehog
@@ -233,7 +233,7 @@ public class TestExpressions extends QueryTestBase
         { return e.prepare( emptyMapping ).evalBool( noIVs ); }
     
     protected Expression litString( String s )
-        { return lit( Node.create( s ) ); }  
+        { return lit( NodeCreateUtils.create( s ) ); }  
 
     protected Expression lit( Object x )
         { return new Expression.Fixed( x ); }

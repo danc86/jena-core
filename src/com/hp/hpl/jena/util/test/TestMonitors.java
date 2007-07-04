@@ -15,7 +15,7 @@ import java.util.*;
 import com.hp.hpl.jena.util.MonitorGraph;
 import com.hp.hpl.jena.util.MonitorModel;
 import com.hp.hpl.jena.graph.*;
-import com.hp.hpl.jena.graph.test.RecordingListener;
+import com.hp.hpl.jena.graph.test.*;
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.rdf.model.test.RecordingModelListener;
 import com.hp.hpl.jena.reasoner.test.TestUtil;
@@ -49,14 +49,14 @@ public class TestMonitors extends TestCase {
 
     // constants used in the tests 
     String NS = "http://jena.hpl.hp.com/test#";
-    Node a = Node.create(NS + "a");
-    Node p = Node.create(NS + "p");
-    Triple t1 = new Triple(a, p, Node.create(NS + "v1"));
-    Triple t2 = new Triple(a, p, Node.create(NS + "v2"));
-    Triple t3 = new Triple(a, p, Node.create(NS + "v3"));
-    Triple t4 = new Triple(a, p, Node.create(NS + "v4"));
-    Triple t5 = new Triple(a, p, Node.create(NS + "v5"));
-    Triple t6 = new Triple(a, p, Node.create(NS + "v6"));
+    Node a = NodeCreateUtils.create(NS + "a");
+    Node p = NodeCreateUtils.create(NS + "p");
+    Triple t1 = new Triple(a, p, NodeCreateUtils.create(NS + "v1"));
+    Triple t2 = new Triple(a, p, NodeCreateUtils.create(NS + "v2"));
+    Triple t3 = new Triple(a, p, NodeCreateUtils.create(NS + "v3"));
+    Triple t4 = new Triple(a, p, NodeCreateUtils.create(NS + "v4"));
+    Triple t5 = new Triple(a, p, NodeCreateUtils.create(NS + "v5"));
+    Triple t6 = new Triple(a, p, NodeCreateUtils.create(NS + "v6"));
     
     /**
      * Basic graph level test, no monitoring

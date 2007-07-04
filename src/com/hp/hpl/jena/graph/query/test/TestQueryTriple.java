@@ -10,6 +10,7 @@ import java.util.Set;
 
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.graph.query.*;
+import com.hp.hpl.jena.graph.test.NodeCreateUtils;
 import com.ibm.icu.util.StringTokenizer;
 
 import junit.framework.TestSuite;
@@ -26,9 +27,9 @@ public class TestQueryTriple extends QueryTestBase
     
     public void testQueryTripleSPO()
         { 
-        QueryNode S = new QueryNode.Fixed( Node.create( "_subject" ) );
-        QueryNode P = new QueryNode.Fixed( Node.create( "predicate" ) );
-        QueryNode O = new QueryNode.Fixed( Node.create( "99" ) );
+        QueryNode S = new QueryNode.Fixed( NodeCreateUtils.create( "_subject" ) );
+        QueryNode P = new QueryNode.Fixed( NodeCreateUtils.create( "predicate" ) );
+        QueryNode O = new QueryNode.Fixed( NodeCreateUtils.create( "99" ) );
         QueryTriple t = new QueryTriple( S, P, O );
         assertSame( S, t.S );
         assertSame( P, t.P );
@@ -159,7 +160,7 @@ public class TestQueryTriple extends QueryTestBase
         {
         int eq = binding.indexOf( '=' );
         int index = Integer.parseInt( binding.substring( 0, eq ) );
-        Node value = Node.create( binding.substring( eq + 1 ) );
+        Node value = NodeCreateUtils.create( binding.substring( eq + 1 ) );
         assertEquals( value, d.getElement( index ) );
         }
     }
