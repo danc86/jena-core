@@ -491,21 +491,23 @@ public class N3JenaWriterPP extends N3JenaWriterCommon
 		if ( allowDeep && ! isSimpleObject(rObj))
 		{
 			oneRefDone.add(rObj);
-			//int oldIndent = out.getIndent();
-			//out.setIndent(out.getCol());
-
-			//out.incIndent(4);
-			//out.println();
-			out.print("[ ");
-			out.incIndent(2);
-			writePropertiesForSubject(rObj);
-            out.decIndent(2);
-            out.println() ;
-            // Line up []
-			out.print("]");
-			//out.decIndent(4);
-
-			//out.setIndent(oldIndent);
+	        ClosableIterator iter = preparePropertiesForSubject(rObj);
+	        if (! iter.hasNext() )
+	        {
+	            // No properties.
+	            out.print("[]");
+	        }
+	        else
+	        {
+    			out.print("[ ");
+    			out.incIndent(2);
+    			writePropertiesForSubject(rObj, iter);
+                out.decIndent(2);
+                out.println() ;
+                // Line up []
+    			out.print("]");
+	        }
+	        iter.close();
 			return ;
 		}
 

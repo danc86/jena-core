@@ -276,14 +276,14 @@ public class N3JenaWriterCommon implements RDFWriter
         // Does not take effect until newline.
         out.incIndent(indentProperty) ;
         writeSubject(subject);
-        writePropertiesForSubject(subject) ;
+        ClosableIterator iter = preparePropertiesForSubject(subject);
+        writePropertiesForSubject(subject, iter) ;
         out.decIndent(indentProperty) ; 
         out.println(" .");
     }
 
-    protected void writePropertiesForSubject(Resource subj)
+    protected void writePropertiesForSubject(Resource subj, ClosableIterator iter)
     {
-        ClosableIterator iter = preparePropertiesForSubject(subj);
         // For each property.
         for (; iter.hasNext();)
         {
