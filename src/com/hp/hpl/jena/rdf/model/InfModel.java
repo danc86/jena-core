@@ -11,6 +11,8 @@ package com.hp.hpl.jena.rdf.model;
 
 import com.hp.hpl.jena.reasoner.Reasoner;
 import com.hp.hpl.jena.reasoner.ValidityReport;
+import com.hp.hpl.jena.reasoner.rulesys.FBRuleReasoner;
+
 import java.util.Iterator;
 
 /**

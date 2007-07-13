@@ -300,6 +300,33 @@ public class TestFBRules extends TestCase {
     }
        
     /**
+     * Test rebindAll reconsults a changed ruleset
+     */
+    public void testRebindAll() {
+        String NS = "http://jena.hpl.hp.com/example#";
+        List rules1 = Rule.parseRules( "(?x http://jena.hpl.hp.com/example#p ?y) -> (?x http://jena.hpl.hp.com/example#q ?y)." );
+        List rules2 = Rule.parseRules( "(?x http://jena.hpl.hp.com/example#q ?y) -> (?x http://jena.hpl.hp.com/example#r ?y)." );
+        Model m = ModelFactory.createDefaultModel();
+        Property p = m.createProperty(NS + "p");
+        Property q = m.createProperty(NS + "q");
+        Property r = m.createProperty(NS + "r");
+        Resource a = m.createResource(NS + "a");
+        Resource b = m.createResource(NS + "b");
+        Statement s1 = m.createStatement(a, p, b);
+        Statement s2 = m.createStatement(a, q, b);
+        Statement s3 = m.createStatement(a, r, b);
+        m.add(s1);
+        GenericRuleReasoner reasoner = new GenericRuleReasoner(rules1);
+        InfModel infModel = ModelFactory.createInfModel(reasoner, m);
+        reasoner.addRules(rules2);
+        TestUtil.assertIteratorValues(this, infModel.listStatements(a, null, (RDFNode)null), 
+                new Object[] {s1, s2});
+        ((FBRuleInfGraph)infModel.getGraph()).rebindAll();
+        TestUtil.assertIteratorValues(this, infModel.listStatements(a, null, (RDFNode)null), 
+                new Object[] {s1, s2, s3});
+    }
+    
+    /**
      * Test the close operation.
      */
     public void testClose() {

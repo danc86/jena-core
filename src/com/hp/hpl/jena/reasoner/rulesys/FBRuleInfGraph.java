@@ -483,6 +483,18 @@ public class FBRuleInfGraph  extends BasicForwardRuleInfGraph implements Backwar
     }
     
     /**
+     * Cause the inference graph to reconsult both the underlying graph and
+     * the reasoner ruleset, permits the forward rule set to be dynamically changed.
+     * Causes the entire rule engine to be rebuilt from the current ruleset and 
+     * reinitialized against the current data. Not needed for normal cases.
+     */
+    public void rebindAll() {
+        rawRules = ((FBRuleReasoner)reasoner).getRules();
+        instantiateRuleEngine( rawRules );
+        rebind();
+    }
+    
+    /**
      * Set the state of the trace flag. If set to true then rule firings
      * are logged out to the Log at "INFO" level.
      */
