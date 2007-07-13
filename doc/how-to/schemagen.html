@@ -283,7 +283,7 @@ Options can be specified on the command line (when invoking schemagen), or may b
   schemagen will continue and use default values (plus the other command line
   options) to configure the tool. If a file name or URL is given with <code>-c</code>,
   and that file cannot be located, schemagen will stop with an error.</p>
-  
+
 <p>Schemagen will assume the the language encoding of the configuration file
 is implied by the filename/ULRL suffix: ".n3" means N3, ".nt" means NTRIPLES,
 ".rdf" and ".owl" mean "RDF/XML". By default it assumes RDF/XML.
@@ -719,7 +719,7 @@ is implied by the filename/ULRL suffix: ".n3" means N3, ".nt" means NTRIPLES,
 &lt;!DOCTYPE rdf:RDF [
  &nbsp;&nbsp;&nbsp;&lt;!ENTITY jena &nbsp;&nbsp;&nbsp;'http://jena.hpl.hp.com/'&gt;
 
- &nbsp;&nbsp;&nbsp;&lt;!ENTITY rdf &nbsp;&nbsp;&nbsp;&nbsp;'http://www.w3.org/1999/02/22-rdf-syntax-Ns#'&gt;
+ &nbsp;&nbsp;&nbsp;&lt;!ENTITY rdf &nbsp;&nbsp;&nbsp;&nbsp;'http://www.w3.org/1999/02/22-rdf-syntax-ns#'&gt;
  &nbsp;&nbsp;&nbsp;&lt;!ENTITY rdfs &nbsp;&nbsp;&nbsp;'http://www.w3.org/2000/01/rdf-schema#'&gt;
  &nbsp;&nbsp;&nbsp;&lt;!ENTITY owl &nbsp;&nbsp;&nbsp;&nbsp;'http://www.w3.org/2002/07/owl#'&gt;
  &nbsp;&nbsp;&nbsp;&lt;!ENTITY xsd &nbsp;&nbsp;&nbsp;&nbsp;'http://www.w3.org/2001/XMLSchema#'&gt;
@@ -737,11 +737,11 @@ is implied by the filename/ULRL suffix: ".n3" means N3, ".nt" means NTRIPLES,
 &gt;</span>
 
 &lt;!--
-	Example schemagen configuration for use with jena.schemagen
+    Example schemagen configuration for use with jena.schemagen
  &nbsp;&nbsp;&nbsp;Not all possible options are used in this example, see Javadoc and Howto for full details.
 
-	Author: Ian Dickinson, mailto:ian.dickinson@hp.com
-	CVs: &nbsp;&nbsp;&nbsp;$Id$
+    Author: Ian Dickinson, mailto:ian.dickinson@hp.com
+    CVs: &nbsp;&nbsp;&nbsp;$Id$
 --&gt;
 
 <span class="xmlText">&lt;sgen:Config&gt;
