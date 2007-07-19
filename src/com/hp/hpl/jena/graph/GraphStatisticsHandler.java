@@ -19,7 +19,7 @@ public interface GraphStatisticsHandler
         pattern <code>(S, P, O)</code>, or -1 if no good estimate is available.
         The estimate is good until the graph is updated.
     */
-    public long getStatistics( Node S, Node P, Node O );
+    public long getStatistic( Node S, Node P, Node O );
     }
 
 
