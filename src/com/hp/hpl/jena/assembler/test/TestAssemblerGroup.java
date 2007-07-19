@@ -45,6 +45,11 @@ public class TestAssemblerGroup extends AssemblerTestBase
             }
         }
     
+    public void testLoadsClasses()
+        {
+        // TODO work out how to do this!
+        }
+    
     public void testSingletonAssemblerGroup()
         {
         AssemblerGroup a = AssemblerGroup.create();

@@ -46,7 +46,10 @@ public abstract class AssemblerGroup extends AssemblerBase implements Assembler
             }
 
         public void loadClasses( Model model )
-            { AssemblerHelp.loadClasses( this, model ); }
+            {
+            AssemblerHelp.loadClasses( model );
+            AssemblerHelp.loadClasses( this, model ); 
+            }
 
         public AssemblerGroup implementWith( Resource type, Assembler a )
             {

@@ -61,6 +61,23 @@ public class AssemblerHelp
         }
     
     /**
+        Load all the classes which are objects of any (t, ja:loadClass, S) 
+        statements in <code>m</code>. The order in which the classes are 
+        loaded is not specified, and loading stops immediately if any class 
+        cannot be loaded
+    <p>    
+        Contrast with <code>loadClasses(AssemblerGroup,Model)</code>, 
+        which loads classes and assumes that those classes are assemblers to 
+        be added to the group.
+     */
+    public static void loadClasses( Model m )
+        {
+        Property ANY = null;
+        StmtIterator it = m.listStatements( null, JA.loadClass, ANY );
+        while (it.hasNext()) loadClass( it.nextStatement() );
+        }
+    
+    /**
          Load all the classes which are objects of any (t, ja:assembler, S) statements 
          in <code>m</code>. <code>group.implementWIth(t,c)</code> is called
          for each statement, where <code>c</code> is an instance of the class named
@@ -74,6 +91,12 @@ public class AssemblerHelp
         while (it.hasNext()) loadClass( group, it.nextStatement() );
         }
 
+    private static void loadClass( Statement statement )
+        {
+        try { Class.forName( getString( statement ) ); }
+        catch (Exception e) { throw new JenaException( e ); }        
+        }
+    
     private static void loadClass( AssemblerGroup group, Statement statement )
         {
         try

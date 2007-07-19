@@ -53,6 +53,7 @@ public class TestAssemblerVocabulary extends AssemblerTestBase
         assertLocalname( "externalContent", JA.externalContent );
         assertLocalname( "ontModelSpec", JA.ontModelSpec );
         assertLocalname( "assembler", JA.assembler );
+        assertLocalname( "loadClass", JA.loadClass );
         assertLocalname( "prefix", JA.prefix );
         assertLocalname( "namespace", JA.namespace );
         assertLocalname( "includes", JA.includes );
