@@ -96,6 +96,34 @@ public class TestFasterGraphMem extends AbstractTestGraph
         assertEquals( 0L, h.getStatistics( node( "no" ), node( "P" ), Node.ANY ) );
         }
     
+    public void testStatisticsWithOnlyVariables()
+        {
+        testStatsWithAllVariables( "" );
+        testStatsWithAllVariables( "a P b" );
+        testStatsWithAllVariables( "a P b; a P c" );
+        testStatsWithAllVariables( "a P b; a P c; a Q b; x S y" );
+        }
+
+    private void testStatsWithAllVariables( String triples )
+        {
+        Graph g = getGraphWith( triples );
+        GraphStatisticsHandler h = g.getStatisticsHandler();
+        assertEquals( g.size(), h.getStatistics( Node.ANY, Node.ANY, Node.ANY ) );
+        }
+    
+    public void testStatsWithConcreteTriple()
+        {
+        testStatsWithConcreteTriple( 0, "x P y", "" );
+        }
+    
+    private void testStatsWithConcreteTriple( int expect, String triple, String graph )
+        {
+        Graph g = getGraphWith( graph );
+        GraphStatisticsHandler h = g.getStatisticsHandler();
+        Triple t = triple( triple );
+        assertEquals( expect, h.getStatistics( t.getSubject(), t.getPredicate(), t.getObject() ) );
+        }
+
     protected final class GraphMemWithoutFind extends GraphMemFaster
         {
         public ExtendedIterator graphBaseFind( TripleMatch t )
