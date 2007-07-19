@@ -46,7 +46,7 @@ public class GraphMemFaster extends GraphMemBase
         }
 
     protected GraphStatisticsHandler createStatisticsHandler()
-        { return new GraphMemFasterStatisticsHandler( (FasterTripleStore) store ); }
+        { return new GraphMemFasterStatisticsHandler( (FasterTripleStore) store, getReifier() ); }
     
     /**
         The GraphMemFasterStatisticsHandler exploits the existing FasterTripleStore
@@ -58,9 +58,10 @@ public class GraphMemFaster extends GraphMemBase
     protected static class GraphMemFasterStatisticsHandler implements GraphStatisticsHandler
         {
         protected final FasterTripleStore store;
+        protected final Reifier reifier;
         
-        public GraphMemFasterStatisticsHandler( FasterTripleStore store )
-            { this.store = store; }
+        public GraphMemFasterStatisticsHandler( FasterTripleStore store, Reifier reifier )
+            { this.store = store; this.reifier = reifier; }
 
         private static class C 
             {
@@ -73,6 +74,9 @@ public class GraphMemFaster extends GraphMemBase
         /**
             Answer a good estimate of the number of triples matching (S, P, O)
             if cheaply possible.
+            
+            <p>If there are any reifier triples, return -1. (We may be able to
+            improve this later.)
             
             <p>If only one of S, P, O is concrete, answers the number of triples
             with that value in that field.
@@ -87,6 +91,7 @@ public class GraphMemFaster extends GraphMemBase
          */
         public long getStatistic( Node S, Node P, Node O )
             {
+            if (reifier.size() > 0) return -1;
             int concrete = (S.isConcrete() ? C.S : 0) + (P.isConcrete() ? C.P : 0) + (O.isConcrete() ? C.O : 0);
             switch (concrete)
                 {
