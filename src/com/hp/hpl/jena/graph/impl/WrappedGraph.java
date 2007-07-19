@@ -41,6 +41,9 @@ public class WrappedGraph implements GraphWithPerform
         return bud;
         }
 
+    public GraphStatisticsHandler getStatisticsHandler()
+        { return base.getStatisticsHandler(); }
+    
     public Capabilities getCapabilities()
         { return base.getCapabilities(); }
 

@@ -57,6 +57,12 @@ public interface Graph  extends GraphAdd
     */
     GraphEventManager getEventManager(); 
    
+    /**
+        Answer this Graph's statistics handler, or null if there isn't one. Every
+        call to this method on a particular graph delivers the same (==) answer.
+    */
+    GraphStatisticsHandler getStatisticsHandler();
+    
     /** 
         returns this Graph's reifier. Each call on a given Graph gets the same
         Reifier object.
