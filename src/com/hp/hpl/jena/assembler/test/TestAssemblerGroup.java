@@ -45,9 +45,27 @@ public class TestAssemblerGroup extends AssemblerTestBase
             }
         }
     
+    public static boolean loaded = false;
+    
+    public static class Trivial
+        {
+        static { loaded = true; }
+        }
+    
     public void testLoadsClasses()
         {
-        // TODO work out how to do this!
+        AssemblerGroup a = AssemblerGroup.create();
+        a.implementWith( resource( "T" ), new MockAssembler() );
+        Resource root = resourceInModel( "x rdf:type T; _c ja:loadClass '" + TestAssemblerGroup.class.getName() + "$Trivial'" );
+        assertFalse( "something has pre-loaded Trivial, so we can't test if it gets loaded", loaded );
+        assertEquals( "mockmockmock", a.open( root ) );
+        assertTrue( "the assembler group did not obey the ja:loadClass directive", loaded );
+        }
+    
+    static class MockAssembler extends AssemblerBase
+        {
+        public Object open( Assembler a, Resource root, Mode mode )
+            { return "mockmockmock"; }
         }
     
     public void testSingletonAssemblerGroup()
