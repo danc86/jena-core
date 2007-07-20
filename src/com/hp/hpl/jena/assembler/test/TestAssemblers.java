@@ -26,6 +26,7 @@ public class TestAssemblers extends AssemblerTestBase
         result.addTestSuite( TestRuleSetAssembler.class );
         result.addTestSuite( TestInfModelAssembler.class );
         result.addTestSuite( TestAssemblerGroup.class );
+        result.addTestSuite( TestAssemblerGroupTracing.class );
         result.addTestSuite( TestReasonerFactoryAssembler.class );
         result.addTestSuite( TestContentAssembler.class );
         result.addTestSuite( TestModelContent.class );
