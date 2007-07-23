@@ -234,6 +234,43 @@ public class TestContentAssembler extends AssemblerTestBase
         assertIsoModels( FileManager.get().loadModel( "file:" + source ), c.fill( model( "" ) ) );
         assertTrue( "the supplied file manager must have been used", used[0] );
         }
+    
+    public void testContentAssemblerUsesFileManagerProperty()
+        {
+        Model expected = model( "a P b" );
+        String fileName = "file:spoo";
+        FixedFileManager fm = new FixedFileManager( expected, fileName );
+        NamedObjectAssembler noa = new NamedObjectAssembler( resource( "F" ), fm );
+        Resource root = resourceInModel
+            ( "x rdf:type ja:Content; x rdf:type ja:ExternalContent; x ja:externalContent <F>; x ja:fileManager F"
+            .replaceAll( "<F>", fileName ) 
+            );
+        Assembler a = new ContentAssembler();        
+        Content c = (Content) a.open( noa, root );
+        assertTrue( fm.wasUsed() );
+        assertIsoModels( expected, c.fill( model() ) );
+        }    
+    
+    private final class FixedFileManager extends FileManager
+        {
+        private final Model expected;
+        private final String fileName;
+        private boolean used;
+        
+        private FixedFileManager( Model expected, String fileName )
+            { this.expected = expected; this.fileName = fileName; }
+
+        public Model loadModel( String filenameOrURI )
+            {
+            used = true;
+            assertEquals( fileName, filenameOrURI );
+            return expected;
+            }
+        
+        public boolean wasUsed()
+            { return used; }
+        }
+
     }
 
 

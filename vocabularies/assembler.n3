@@ -121,6 +121,7 @@ ja:ContentGroup a rdfs:Class
 
 ja:ContentItem a rdfs:Class
     ; rdfs:subClassOf ja:Content
+    ; rdfs:subClassOf [owl:onProperty ja:fileManager; owl:maxCardinality 1]
     ; rdfs:label "Assembler.ContentItem"
     ; rdfs:comment "a single loadable model item"
     .

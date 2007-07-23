@@ -32,7 +32,7 @@ public class CannotConstructException extends AssemblerException
         return 
             "the assembler " + getClassName( assemblerClass )
             + " cannot construct the object named " + nice( root )
-            + " because it is not of rdf:type " + nice( root ) 
+            + " because it is not of rdf:type " + nice( type ) 
             ;
         }
     
