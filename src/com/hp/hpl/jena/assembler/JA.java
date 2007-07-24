@@ -57,6 +57,8 @@ public class JA
 
     public static final Resource ReasonerFactory = resource( "ReasonerFactory" );
 
+    public static final Resource HasFileManager = resource( "HasFileManager" );
+
     public static final Resource Content = resource( "Content" );
 
     public static final Resource Connection = resource( "Connection" );

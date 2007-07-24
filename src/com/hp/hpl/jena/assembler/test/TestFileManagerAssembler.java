@@ -27,6 +27,7 @@ public class TestFileManagerAssembler extends AssemblerTestBase
     public void testFileManagerVocabulary()
         {
         assertSubclassOf( JA.FileManager, JA.Object );
+        assertDomain( JA.HasFileManager, JA.fileManager );
         assertDomain( JA.FileManager, JA.locationMapper );
         assertRange( JA.LocationMapper, JA.locationMapper );
         }

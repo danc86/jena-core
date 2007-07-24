@@ -27,7 +27,7 @@ public class TestContentAssembler extends AssemblerTestBase
     
     public void testContentVocabulary()
         {
-        assertSubclassOf( JA.Content, JA.Object );
+        assertSubclassOf( JA.Content, JA.HasFileManager );
         assertSubclassOf( JA.ContentItem, JA.Content );
         // assertSubclassOf( JA.LiteralContent, JA.Content );
         }

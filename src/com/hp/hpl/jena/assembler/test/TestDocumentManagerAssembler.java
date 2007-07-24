@@ -28,7 +28,7 @@ public class TestDocumentManagerAssembler extends AssemblerTestBase
     public void testDocumentManagerVocabulary()
         {
         assertSubclassOf( JA.DocumentManager, JA.Object );
-        assertDomain( JA.DocumentManager, JA.fileManager );
+        assertSubclassOf( JA.DocumentManager,  JA.HasFileManager);
         assertRange( JA.FileManager, JA.fileManager );
         assertDomain( JA.DocumentManager, JA.policyPath );
         }
