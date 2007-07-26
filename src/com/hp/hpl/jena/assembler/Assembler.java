@@ -88,7 +88,7 @@ public interface Assembler
         .implementWith( JA.MemoryModel, memoryModel )
         .implementWith( JA.InfModel, infModel )
         .implementWith( JA.ReasonerFactory, reasonerFactory )
-        .implementWith(  JA.ModelSource, modelSource )
+        .implementWith( JA.ModelSource, modelSource )
         .implementWith( JA.Content, content )
         .implementWith( JA.ContentItem, content )
         .implementWith( JA.Connection, connection )

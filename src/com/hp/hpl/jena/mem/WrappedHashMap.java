@@ -19,6 +19,9 @@ public class WrappedHashMap implements BunchMap
     
     public void clear()
         { map.clear(); }
+    
+    public long size()
+        { return map.size(); }
 
     public TripleBunch get( Object key )
         { return (TripleBunch) map.get( key ); }

@@ -24,8 +24,14 @@ public class HashedBunchMap extends HashCommon implements BunchMap
         elements are set to null (so the values may be garbage-collected).
     */
     public void clear()
-        { for (int i = 0; i < capacity; i += 1) keys[i] = values[i] = null; }  
+        {
+        size = 0;
+        for (int i = 0; i < capacity; i += 1) keys[i] = values[i] = null; 
+        }  
     
+    public long size()
+        { return size; }
+        
     public TripleBunch get( Object key )
         {
         int slot = findSlot( key );

@@ -21,6 +21,11 @@ public interface BunchMap
         Clear this map: all entries are removed.
     */
     public void clear();
+    
+    /**
+        The number of items in the bunch.
+    */
+    public long size();
 
     /**
         Answer the TripleBunch associated with <code>key</code>, or 

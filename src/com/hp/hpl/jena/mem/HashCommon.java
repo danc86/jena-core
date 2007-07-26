@@ -36,7 +36,7 @@ public abstract class HashCommon
     /**
         The capacity (length) of the key array.
     */
-    protected int capacity;
+    public int capacity;
     
     /**
         The threshold number of elements above which we resize the table;
