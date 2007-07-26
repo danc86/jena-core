@@ -292,6 +292,7 @@ public abstract class DBcmd
                             inTransaction = false ;
                         }
                         dbModel.close() ;
+                        closeConnection() ;
                         dbModel = null ;
                         System.exit(9);
                     }
@@ -315,7 +316,7 @@ public abstract class DBcmd
     }
 
     
-    /** Called if there are no psoitional arguments
+    /** Called if there are no positional arguments
      */     
     protected abstract void exec0() ;
     
