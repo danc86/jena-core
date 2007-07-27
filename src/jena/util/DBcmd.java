@@ -225,6 +225,13 @@ public abstract class DBcmd
         }
     }
         
+    protected void closeModel()
+    {
+        if ( dbModel != null )
+            dbModel.close() ;
+        dbModel = null ;
+    }
+    
     protected void closeConnection()
     {
         try {
@@ -291,9 +298,8 @@ public abstract class DBcmd
                             getRDBModel().abort() ;
                             inTransaction = false ;
                         }
-                        dbModel.close() ;
+                        closeModel() ;
                         closeConnection() ;
-                        dbModel = null ;
                         System.exit(9);
                     }
 
@@ -309,8 +315,7 @@ public abstract class DBcmd
         }
         finally 
         {
-            dbModel.close() ;
-            dbModel = null ;
+            closeModel() ;
             closeConnection() ;
         }
     }
