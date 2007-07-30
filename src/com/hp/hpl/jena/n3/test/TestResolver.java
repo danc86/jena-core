@@ -10,9 +10,6 @@ import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
 import com.hp.hpl.jena.n3.IRIResolver;
-import com.hp.hpl.jena.n3.JenaURIException;
-//import com.hp.hpl.jena.n3.RelURI;
-import com.hp.hpl.jena.n3.RelativeURIException;
 
 /** com.hp.hpl.jena.query.util.test.TestCaseURI
  * 
@@ -244,7 +241,7 @@ public class TestResolver extends TestCase
         assertTrue("Not absolute: ("+fn+"=>"+s+")", s.startsWith("file:///") ) ;
     }
     
-    private void execException(String u, String base, Class ex)
+    void execException(String u, String base, Class ex)
     {
         // 1.5.0-ism
         //String s = ex.getSimpleName() ;
@@ -269,18 +266,18 @@ public class TestResolver extends TestCase
         }
     }
     
-    private void execTestGlobal(String u, String result)
-    {
-        String res = IRIResolver.resolveGlobal(u) ;
-        if (result == null )
-        {
-            assertNull("("+u+") => <null> :: Got: "+res, res) ;
-            return ;
-        }
-        
-        assertNotNull("("+u+") => "+result+" :: Got: <null>", res) ;
-        assertTrue("("+u+") => "+result+" :: Got: "+res, res.equals(result)) ;
-    }
+//    private void execTestGlobal(String u, String result)
+//    {
+//        String res = IRIResolver.resolveGlobal(u) ;
+//        if (result == null )
+//        {
+//            assertNull("("+u+") => <null> :: Got: "+res, res) ;
+//            return ;
+//        }
+//        
+//        assertNotNull("("+u+") => "+result+" :: Got: <null>", res) ;
+//        assertTrue("("+u+") => "+result+" :: Got: "+res, res.equals(result)) ;
+//    }
 }
 
 /*
