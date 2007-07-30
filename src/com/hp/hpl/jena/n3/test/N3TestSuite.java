@@ -22,7 +22,6 @@ public class N3TestSuite extends TestSuite
 	private N3TestSuite()
 	{
 		super("N3") ;
-        addTest(TestRelURI.suite()) ;
         addTest(TestResolver.suite()) ;
 		addTest(new N3InternalTests()) ;
 		addTest(new N3ExternalTests()) ;
