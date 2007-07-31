@@ -39,7 +39,6 @@ public class LabelToNodeMap
         return Node.createAnon() ;
     }
     
-    
     public void clear()
     {
         bNodeLabels.clear() ;
