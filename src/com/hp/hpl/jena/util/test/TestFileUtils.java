@@ -205,6 +205,12 @@ public class TestFileUtils extends TestCase {
 		if (!r.matches("^.*/[^/]*" + match + "[^/]*$"))
 			fail("Converted \"" + fn + "\" to <" + r
 					+ "> which did not match /" + match + "/");
+		if (!r.startsWith("file:///"))
+			fail("Converted \"" + fn + "\" to <" + r
+					+ "> which does not start file:///");
+		if (r.startsWith("file:////"))
+			fail("Converted \"" + fn + "\" to <" + r
+					+ "> which has too many initial /");
 
 	}
 }
