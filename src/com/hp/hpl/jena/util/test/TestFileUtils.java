@@ -200,6 +200,9 @@ public class TestFileUtils extends TestCase {
 	public void testToURL4() {
 		checkToURL("A H","%20");
 	}
+	public void testToURL5() {
+		checkToURL("ü","ü");
+	}
 	private void checkToURL(String fn, String match) {
 		String r = FileUtils.toURL(fn);
 		if (!r.matches("^.*/[^/]*" + match + "[^/]*$"))
