@@ -48,29 +48,6 @@ public abstract class CompositionBase
 {
     /**
      * <p>
-     * Answer the number of triples in this graph
-     * </p>
-     * 
-     * @return The integer triple count
-     * @see com.hp.hpl.jena.graph.Graph#size()
-     */
-    public int graphBaseSize()
-        { return countIterator( GraphUtil.findAll( this ) ); }             
-      
-    /**
-     * <p>
-     * Helper to throw an unsupported operation exception. For users whose brains
-     * have been infected by perl.
-     * </p>
-     * 
-     * @param message
-     * @exception Throws {@link UnsupportedOperationException}
-     */
-    protected void die( String message )
-        { throw new UnsupportedOperationException( message ); }
-
-    /**
-     * <p>
      * Answer a {@link Filter} that will reject any element that is a member of iterator i.
      * As a side-effect, i will be closed. 
      * </p>
@@ -156,21 +133,6 @@ public abstract class CompositionBase
         Filter seenFilter = new Filter()
             { public boolean accept( Object x ) { return seen.contains( (Triple) x ); } };
         return i.filterDrop( seenFilter );
-        }
-    
-    /**
-     * <p>
-     * Answer the number of items in the closable iterator i. As a side effect, i
-     * is closed.
-     * </p>
-     * 
-     * @param i A closable iterator
-     * @return The number of elements of i
-     */
-    public static int countIterator( ClosableIterator i )
-        {
-        try { int n = 0; while (i.hasNext()) { n += 1; i.next(); } return n; }
-        finally { i.close(); }
         }
   
     /**

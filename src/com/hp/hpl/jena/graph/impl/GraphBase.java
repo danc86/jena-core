@@ -377,9 +377,14 @@ public abstract class GraphBase implements GraphWithPerform
     protected int graphBaseSize()
         {
 		ExtendedIterator it = GraphUtil.findAll( this );
-        int tripleCount = 0;
-        while (it.hasNext()) { it.next(); tripleCount += 1; }
-        return tripleCount; 
+        try 
+            {
+            int tripleCount = 0;
+            while (it.hasNext()) { it.next(); tripleCount += 1; }
+            return tripleCount;
+            }
+        finally
+            { it.close(); }
         }
 
     /** 
