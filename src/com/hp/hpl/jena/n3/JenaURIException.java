@@ -17,6 +17,8 @@ import com.hp.hpl.jena.shared.JenaException;
 
 public class JenaURIException extends JenaException
 {
+    public JenaURIException(Exception e) { super(e) ; }
+	
     public JenaURIException(String msg) { super(msg) ; }
 }
 
