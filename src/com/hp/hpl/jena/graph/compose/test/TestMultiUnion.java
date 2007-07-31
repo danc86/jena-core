@@ -27,6 +27,7 @@ package com.hp.hpl.jena.graph.compose.test;
 
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.graph.compose.*;
+import com.hp.hpl.jena.graph.compose.MultiUnion.MultiUnionStatisticsHandler;
 import com.hp.hpl.jena.graph.test.*;
 import com.hp.hpl.jena.rdf.model.*;
 
@@ -87,7 +88,18 @@ public class TestMultiUnion
         assertFalse( "Empty model should not contain another graph", m.dependsOn( g0 ) );
     }
     
-   
+    /**
+        A MultiUnion graph should have a MultiUnionStatisticsHandler, and that
+        handler should point right back to that graph.
+    */
+    public void testMultiUnionHasMultiUnionStatisticsHandler()
+        {
+        MultiUnion mu = new MultiUnion();
+        GraphStatisticsHandler sh = mu.getStatisticsHandler();
+        assertInstanceOf( MultiUnionStatisticsHandler.class, sh );
+        assertSame( mu, ((MultiUnionStatisticsHandler) sh).getUnion() );
+        }
+    
 //    public void testDeferredReifier()
 //        {
 //        Graph g1 = graphWith( "" ), g2 = graphWith( "" );

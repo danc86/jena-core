@@ -28,7 +28,6 @@ import com.hp.hpl.jena.JenaRuntime;
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.graph.impl.SimpleEventManager;
 import com.hp.hpl.jena.graph.query.QueryHandler;
-import com.hp.hpl.jena.rdf.model.JenaConfig;
 import com.hp.hpl.jena.shared.JenaException;
 import com.hp.hpl.jena.util.CollectionFactory;
 import com.hp.hpl.jena.util.iterator.*;
@@ -101,6 +100,9 @@ public class MultiUnion extends Polyadic
         { Graph base = getBaseGraph();
         return base == null ? super.getReifier() : base.getReifier(); }
 
+    protected GraphStatisticsHandler createStatisticsHandler()
+        { return new MultiUnionStatisticsHandler( this ); }
+    
     /**
      * <p>
      * Add the given triple to the union model; the actual component model to
@@ -201,6 +203,31 @@ public class MultiUnion extends Polyadic
             m_subGraphs.add( graph );
         }
     }
+    
+    public static class MultiUnionStatisticsHandler implements GraphStatisticsHandler
+        {
+        protected final MultiUnion mu;
+        
+        public MultiUnionStatisticsHandler( MultiUnion mu )
+            { this.mu = mu; }
+    
+        public long getStatistic( Node S, Node P, Node O )
+            {
+            long result = 0;
+            for (int i = 0; i < mu.m_subGraphs.size(); i += 1)
+                {
+                Graph g = (Graph) mu.m_subGraphs.get( i );
+                GraphStatisticsHandler s = g.getStatisticsHandler();
+                long n = s.getStatistic( S, P, O );
+                if (n < 0) return n;
+                result += n;
+                }
+            return result;
+            }
+
+        public MultiUnion getUnion()
+            { return mu; }
+        }
 
 }
 

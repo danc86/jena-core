@@ -12,14 +12,14 @@ package com.hp.hpl.jena.graph.compose.test;
 
 import com.hp.hpl.jena.graph.compose.*;
 
-import junit.framework.TestSuite;
+import junit.framework.*;
 
 /**
  *
  * @author  bwm
  * @version $Name$ $Revision$ $Date$
  */
-public class TestPackage extends Object {
+public class TestPackage extends TestCase {
     
     public static TestSuite suite() {
     	TestSuite result = new TestSuite();
@@ -32,6 +32,7 @@ public class TestPackage extends Object {
         result.addTest( TestDisjointUnion.suite() );
         result.addTest( TestDifference.suite() );
         result.addTest( TestIntersection.suite() );
+        result.addTestSuite( TestUnionStatistics.class );
         result.addTest( TestMultiUnion.suite() );
     /* */
         result.addTest( TestPolyadicPrefixMapping.suite() );
