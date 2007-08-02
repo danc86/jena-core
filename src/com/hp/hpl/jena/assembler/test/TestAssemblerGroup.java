@@ -8,7 +8,7 @@ package com.hp.hpl.jena.assembler.test;
 
 import com.hp.hpl.jena.assembler.*;
 import com.hp.hpl.jena.assembler.assemblers.*;
-import com.hp.hpl.jena.assembler.exceptions.NoImplementationException;
+import com.hp.hpl.jena.assembler.exceptions.*;
 import com.hp.hpl.jena.graph.Graph;
 import com.hp.hpl.jena.mem.GraphMemBase;
 import com.hp.hpl.jena.rdf.model.*;
@@ -37,12 +37,16 @@ public class TestAssemblerGroup extends AssemblerTestBase
             a.open( resourceInModel( "x rdf:type " + type ) ); 
             fail( "should trap missing implementation" ); 
             }
-        catch (NoImplementationException e) 
-            { 
-            assertEquals( resource( "x" ), e.getRoot() ); 
-            assertEquals( JA.Object, e.getType() );
-            assertNotNull( e.getAssembler() );
+        catch (NoSpecificTypeException e)
+            {
+            assertEquals( resource( "x" ), e.getRoot() );
             }
+//        catch (NoImplementationException e) 
+//            { 
+//            assertEquals( resource( "x" ), e.getRoot() ); 
+//            assertEquals( JA.Object, e.getType() );
+//            assertNotNull( e.getAssembler() );
+//            }
         }
     
     public static boolean loaded = false;
