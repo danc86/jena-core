@@ -565,7 +565,7 @@ public class GraphMatcher extends java.lang.Object {
         public boolean mightBeEqual(SomeResource r) {
             if (r!=null && (r instanceof FixedResource)) {
                 FixedResource f = (FixedResource)r;
-                return hash == f.hash && node.equals(f.node);
+                return hash == f.hash && node.sameValueAs(f.node); //AFS -- node.equals(f.node);
             } else {
                 return false;
             }
