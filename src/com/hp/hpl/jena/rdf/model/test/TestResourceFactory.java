@@ -6,6 +6,10 @@
 
 package com.hp.hpl.jena.rdf.model.test;
 
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+import java.util.TimeZone;
+
 import com.hp.hpl.jena.datatypes.RDFDatatype;
 import com.hp.hpl.jena.datatypes.xsd.XSDDatatype;
 import com.hp.hpl.jena.rdf.model.*;
@@ -68,6 +72,16 @@ public class TestResourceFactory extends TestCase {
         assertEquals("22", l.getLexicalForm()) ;
         assertEquals("", l.getLanguage()) ;
         assertEquals(XSDDatatype.XSDint, l.getDatatype()) ;
+    }
+    
+    public void testCreateTypedLiteralOverload() {
+        Calendar testCal = new GregorianCalendar(TimeZone.getTimeZone("GMT"));
+        testCal.set(1999, 4, 30, 15, 9, 32);
+        testCal.set(Calendar.MILLISECOND, 0);   // ms field can be undefined on Linux
+        Literal lc = ResourceFactory.createTypedLiteral(testCal);
+        assertEquals("calendar overloading test", 
+                ResourceFactory.createTypedLiteral("1999-05-30T15:09:32Z", XSDDatatype.XSDdateTime), lc );
+        
     }
 
     public void testCreateStatement() {

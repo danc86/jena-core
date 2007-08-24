@@ -6,7 +6,11 @@
 
 package com.hp.hpl.jena.rdf.model;
 
+import java.util.Calendar;
+
 import com.hp.hpl.jena.datatypes.RDFDatatype;
+import com.hp.hpl.jena.datatypes.xsd.XSDDatatype;
+import com.hp.hpl.jena.datatypes.xsd.XSDDateTime;
 import com.hp.hpl.jena.graph.Node;
 import com.hp.hpl.jena.graph.impl.LiteralLabel;
 import com.hp.hpl.jena.rdf.model.impl.*;
@@ -222,7 +226,14 @@ public class ResourceFactory {
         }
 
         public Literal createTypedLiteral( Object value ) {
-            return new LiteralImpl(Node.createLiteral( new LiteralLabel(value) ), null) ;
+            LiteralLabel ll = null;
+            if (value instanceof Calendar) {
+                Object valuec = new XSDDateTime( (Calendar) value);
+                ll = new LiteralLabel(valuec, "", XSDDatatype.XSDdateTime);
+            } else {
+                ll =  new LiteralLabel(value);
+            }
+            return new LiteralImpl(Node.createLiteral( ll ), null) ;
         }
         
         public Property createProperty(String uriref) {
