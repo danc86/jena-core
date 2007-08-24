@@ -20,6 +20,7 @@ import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.reasoner.*;
 import com.hp.hpl.jena.reasoner.rulesys.*;
 import com.hp.hpl.jena.reasoner.rulesys.builtins.BaseBuiltin;
+import com.hp.hpl.jena.reasoner.rulesys.impl.RDFSCMPPreprocessHook;
 import com.hp.hpl.jena.reasoner.test.TestUtil;
 import com.hp.hpl.jena.util.*;
 import com.hp.hpl.jena.util.iterator.ClosableIterator;
@@ -54,7 +55,7 @@ public class TestBugs extends TestCase {
     public static TestSuite suite() {
         return new TestSuite( TestBugs.class );
 //        TestSuite suite = new TestSuite();
-//        suite.addTest(new TestBugs( "testCMEInTrans" ));
+//        suite.addTest(new TestBugs( "testIndCardValidation" ));
 //        return suite;
     }  
 
@@ -826,6 +827,46 @@ public class TestBugs extends TestCase {
         OntModel model =
             ModelFactory.createOntologyModel(OntModelSpec.OWL_DL_MEM_TRANS_INF);
         model.read("file:testing/reasoners/bugs/tgcCMEbug.owl");
+    }
+    
+    /**
+     * Test case for reported problem in detecting cardinality violations
+     */
+    public void testIndCardValidation() {
+        final String NS = "http://dummy#";
+
+        // prepare TBox
+        OntModel tBox =  ModelFactory.createOntologyModel(OntModelSpec.OWL_DL_MEM);
+        OntClass moleculeClass = tBox.createClass(NS + "Molecule");
+        // add value constraint on molecule2atom
+        ObjectProperty molecule2atomOntProperty  = tBox.createObjectProperty(NS + "molecule2atom");
+        molecule2atomOntProperty.setDomain(moleculeClass);
+        molecule2atomOntProperty.setRange(RDF.Bag);
+        // add cardinality constraint on molecule2atom
+        CardinalityRestriction molecule2atomCardinalityRestriction
+                 = tBox.createCardinalityRestriction(null, molecule2atomOntProperty, 1);
+        moleculeClass.addSuperClass(molecule2atomCardinalityRestriction);
+
+        // prepare ABox
+        Reasoner reasoner = ReasonerRegistry.getOWLReasoner();
+        reasoner = reasoner.bindSchema(tBox);
+        Model    model = ModelFactory.createDefaultModel();
+        InfModel aBox  = ModelFactory.createInfModel(reasoner, model);
+
+        // make sure rdfs:member properties are inferred
+//        ((FBRuleInfGraph)aBox.getGraph()).addPreprocessingHook(new RDFSCMPPreprocessHook());
+
+        // create an invalid molecule
+        Bag bag1 = aBox.createBag();
+        Bag bag2 = aBox.createBag();
+        bag1.addProperty(OWL.differentFrom, bag2);
+        Resource molecule = aBox.createResource();
+        molecule.addProperty(molecule2atomOntProperty, bag1);
+        molecule.addProperty(molecule2atomOntProperty, bag2);
+
+        // check if model has become invalid
+        assertTrue(aBox.contains(molecule, RDF.type, moleculeClass));
+        assertFalse(aBox.validate().isValid()); // fails: why?        
     }
     
     /**
