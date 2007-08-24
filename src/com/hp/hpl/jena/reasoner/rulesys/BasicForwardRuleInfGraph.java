@@ -355,9 +355,18 @@ public class BasicForwardRuleInfGraph extends BaseInfGraph implements ForwardRul
    
     /** 
      * Create the graph used to hold the deductions. Can be overridden
-     * by subclasses that need special purpose graph implementations here. 
+     * by subclasses that need special purpose graph implementations here.
+     * Assumes the graph underlying fdeductions can be reused if present. 
      */
     protected Graph createDeductionsGraph() {
+        if (fdeductions != null) {
+            Graph dg = fdeductions.getGraph();
+            if (dg != null) {
+                // Reuse the old graph in order to preserve any listeners
+                dg.getBulkUpdateHandler().removeAll();
+                return dg;
+            }
+        }
         return Factory.createGraphMem( style );
     }
     
