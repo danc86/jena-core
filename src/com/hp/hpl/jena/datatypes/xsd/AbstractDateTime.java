@@ -54,7 +54,7 @@ public class AbstractDateTime {
      */
     public AbstractDateTime(Object value) {
         data = (int[]) value;
-        if (data[utc] == 0) data[utc]='Z';
+        //if (data[utc] == 0) data[utc]='Z';
         extractFractionalSeconds();
     }
     

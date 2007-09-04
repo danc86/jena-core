@@ -258,6 +258,10 @@ public class XSDDateTime extends AbstractDateTime {
             buff.append("T");
             buff.append(timeLexicalForm());
         }
+
+        if ( data[utc] != 0 )
+            buff.append("Z");
+
         return buff.toString();
     }
     
@@ -266,22 +270,21 @@ public class XSDDateTime extends AbstractDateTime {
      */
     public String timeLexicalForm() {
         StringBuffer buff = new StringBuffer();
-            if(data[h]<10) buff.append("0");
-            buff.append(data[h]);
-            
-            buff.append(":");
-            if(data[m]<10) buff.append("0");
-            buff.append(data[m]);
-            
-            buff.append(":");
-            if(data[s]<10) buff.append("0");
-            buff.append(data[s]);
-             
-            if (data[ms] != 0) {
-                buff.append(".");
-                XSDAbstractDateTimeType.appendFractionalTime(buff, data[ms], data[msscale]);
-            }
-            buff.append("Z");
+        if(data[h]<10) buff.append("0");
+        buff.append(data[h]);
+
+        buff.append(":");
+        if(data[m]<10) buff.append("0");
+        buff.append(data[m]);
+
+        buff.append(":");
+        if(data[s]<10) buff.append("0");
+        buff.append(data[s]);
+
+        if (data[ms] != 0) {
+            buff.append(".");
+            XSDAbstractDateTimeType.appendFractionalTime(buff, data[ms], data[msscale]);
+        }
         return buff.toString();
     }
     

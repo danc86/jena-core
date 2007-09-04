@@ -1024,7 +1024,7 @@ public class TestTypedLiterals extends TestCase {
         Literal l1 = m.createTypedLiteral(xsdDate, XSDDatatype.XSDdate);
         
         assertEquals(XSDDatatype.XSDdate, l1.getDatatype());
-        assertEquals("2007-04-04", l1.getLexicalForm());
+        assertEquals("2007-04-04Z", l1.getLexicalForm());
     }
     
     /**
