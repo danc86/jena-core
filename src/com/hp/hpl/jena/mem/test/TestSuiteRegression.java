@@ -65,7 +65,6 @@ public class TestSuiteRegression extends Object {
         //      suite.addTest(new TestCaseBasic("test20"));
         suite.addTest(new TestCaseBasic("test97"));
 
-        suite.addTest(new TestCaseBasic("testModelEquals"));
       
         suite.addTest(new TestCaseBasic("testMatch"));
         //    suite.addTest(new TestCaseBasic("testWriterAndReader"));

@@ -67,9 +67,7 @@ public class RandomizedTestSuiteRegression extends Object {
         //      suite.addTest(new TestCaseBasic("test20"));
         suite.addTest(new RandomizedTestCaseBasic("test97"));
 
-        suite.addTest(new RandomizedTestCaseBasic("testModelEquals"));
-        
-   
+
         suite.addTest(new RandomizedTestCaseBasic("testMatch"));
         //    suite.addTest(new TestCaseBasic("testWriterAndReader"));
         suite.addTest(new RandomizedTestCaseBasic("testNTripleReader"));

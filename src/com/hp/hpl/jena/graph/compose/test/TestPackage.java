@@ -62,7 +62,6 @@ public class TestPackage extends TestCase {
 //        suite.addTest(new TestCaseBasic("test20"));
         suite.addTest(new TestCaseBasic("test97",c));
         
-        suite.addTest(new TestCaseBasic("testModelEquals",c));
         suite.addTest(new TestCaseBasic("testMatch",c));
         // suite.addTest(new TestCaseBasic("testWriterAndReader",c));
         // suite.addTest(new TestCaseBasic("testNTripleReader",c));

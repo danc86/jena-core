@@ -32,7 +32,6 @@ import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.test.JenaTestBase;
 
 
-import junit.framework.TestCase;
 
 /**
  * <p>
@@ -329,16 +328,6 @@ public class TestCaseBasic extends JenaTestBase {
 				return cache[i++];
 			}
 		};
-	}
-	public void testModelEquals() {
-		try {
-			testModelEquals test = new testModelEquals();
-			test.test(getGetModel());
-			assertTrue(!test.getErrors());
-		} catch (Exception e) {
-			System.out.println(e);
-			assertTrue(false);
-		}
 	}
 	public void testMatch() {
 		try {
