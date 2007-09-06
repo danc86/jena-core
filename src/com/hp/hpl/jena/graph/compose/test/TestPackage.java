@@ -11,6 +11,7 @@ package com.hp.hpl.jena.graph.compose.test;
 */
 
 import com.hp.hpl.jena.graph.compose.*;
+import com.hp.hpl.jena.mem.test.TestSuiteRegression;
 
 import junit.framework.*;
 
@@ -40,36 +41,10 @@ public class TestPackage extends TestCase {
     }
 
     public static TestSuite suite(TestSuite suite,Class c) {
-        suite.addTest(new TestCaseBasic("test1",c));
-        suite.addTest(new TestCaseBasic("test2",c));
-        suite.addTest(new TestCaseBasic("test3",c));
-        suite.addTest(new TestCaseBasic("test4",c));
-        suite.addTest(new TestCaseBasic("test5",c));
-        suite.addTest(new TestCaseBasic("test6",c));
-        suite.addTest(new TestCaseBasic("test7",c));
-        suite.addTest(new TestCaseBasic("test8",c));
-        suite.addTest(new TestCaseBasic("test9",c));
-        suite.addTest(new TestCaseBasic("test10",c));
-        suite.addTest(new TestCaseBasic("test11",c));
-        suite.addTest(new TestCaseBasic("test12",c));
-        suite.addTest(new TestCaseBasic("test13",c));
-        suite.addTest(new TestCaseBasic("test14",c));
-        suite.addTest(new TestCaseBasic("test15",c));
-        suite.addTest(new TestCaseBasic("test16",c));
-        suite.addTest(new TestCaseBasic("test17",c));
-        suite.addTest(new TestCaseBasic("test18",c));
-        suite.addTest(new TestCaseBasic("test19",c));
-//        suite.addTest(new TestCaseBasic("test20"));
-        suite.addTest(new TestCaseBasic("test97",c));
-        
-        suite.addTest(new TestCaseBasic("testMatch",c));
-        // suite.addTest(new TestCaseBasic("testWriterAndReader",c));
-        // suite.addTest(new TestCaseBasic("testNTripleReader",c));
-        // suite.addTest(new TestCaseBasic("testWriterInterface",c));
-        // suite.addTest(new TestCaseBasic("testReaderInterface",c));
-        
-        //suite.addTest(new TestCaseBugs("bug36"));
-        
+
+    	for (int i=0;i<TestSuiteRegression.testNames.length;i++)
+           suite.addTest(new TestCaseBasic(TestSuiteRegression.testNames[i],c));
+    	
         return suite;
     }
 }

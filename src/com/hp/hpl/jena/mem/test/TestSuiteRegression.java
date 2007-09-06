@@ -38,41 +38,40 @@ import junit.framework.*;
  */
 public class TestSuiteRegression extends Object {
 
+	static public final String testNames[] = {
+  "test1",
+  "test2",
+  "test3",
+  "test4",
+  "test5",
+  "test6",
+  "test7",
+  "test8",
+  "test9",
+  "test10",
+  "test11",
+  "test12",
+  "test13",
+  "test14",
+  "test15",
+  "test16",
+  "test17",
+  "test18",
+  "test19",
+  "test97",
+  "testMatch",
+  "testNTripleReader",
+  "testReaderInterface",
+
+		
+	};
     public static TestSuite suite() {
         return suite(new TestSuite());
     }
 
     public static TestSuite suite(TestSuite suite) {
-        suite.addTest(new TestCaseBasic("test1"));
-        suite.addTest(new TestCaseBasic("test2"));
-        suite.addTest(new TestCaseBasic("test3"));
-        suite.addTest(new TestCaseBasic("test4"));
-        suite.addTest(new TestCaseBasic("test5"));
-        suite.addTest(new TestCaseBasic("test6"));
-        suite.addTest(new TestCaseBasic("test7"));
-        suite.addTest(new TestCaseBasic("test8"));
-        suite.addTest(new TestCaseBasic("test9"));
-        suite.addTest(new TestCaseBasic("test10"));
-        suite.addTest(new TestCaseBasic("test11"));
-        suite.addTest(new TestCaseBasic("test12"));
-        suite.addTest(new TestCaseBasic("test13"));
-        suite.addTest(new TestCaseBasic("test14"));
-        suite.addTest(new TestCaseBasic("test15"));
-        suite.addTest(new TestCaseBasic("test16"));
-        suite.addTest(new TestCaseBasic("test17"));
-        suite.addTest(new TestCaseBasic("test18"));
-        suite.addTest(new TestCaseBasic("test19"));
-        //      suite.addTest(new TestCaseBasic("test20"));
-        suite.addTest(new TestCaseBasic("test97"));
-
-      
-        suite.addTest(new TestCaseBasic("testMatch"));
-        //    suite.addTest(new TestCaseBasic("testWriterAndReader"));
-        suite.addTest(new TestCaseBasic("testNTripleReader"));
-        //    suite.addTest(new TestCaseBasic("testWriterInterface"));
-        suite.addTest(new TestCaseBasic("testReaderInterface"));
-
-        suite.addTest(new TestCaseBugs("bug36"));
+    	for (int i=0;i<testNames.length;i++)
+        suite.addTest(new TestCaseBasic(testNames[i]));
 
         return suite;
     }
