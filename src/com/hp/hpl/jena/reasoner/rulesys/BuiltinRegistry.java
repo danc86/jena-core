@@ -82,6 +82,8 @@ public class BuiltinRegistry {
         theRegistry.register(new UriConcat());
         theRegistry.register(new Regex());
         
+        theRegistry.register(new Now());
+        
         // Special purposes support functions for OWL
         theRegistry.register(new AssertDisjointPairs());
     }
