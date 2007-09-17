@@ -128,7 +128,7 @@ public class Query
         Answer a list of the triples that have been added to this query.
         (Note: ignores "named triples").
         
-     	@return
+     	@return List
     */
     public List getPattern()
         { return new ArrayList( triplePattern ); }
@@ -182,7 +182,6 @@ public class Query
     
     /**
         @deprecated use getPattern for the raw triples
-     	@return
      */
     public NamedTripleBunches getTriples()
         { return triples; }
