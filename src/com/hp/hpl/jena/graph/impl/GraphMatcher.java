@@ -15,6 +15,8 @@ import com.hp.hpl.jena.util.CollectionFactory;
 import com.hp.hpl.jena.util.iterator.*;
 import com.hp.hpl.jena.shared.*;
 
+// Purely syntactic: Uses .equals, not .sameVAlueAs (see the one note at "PURE SYNTAX" below) 
+
 /**
  * An implemantation of graph isomorphism for Graph equality.
  * The underlying algorithm is exponential but will only enter
@@ -565,7 +567,7 @@ public class GraphMatcher extends java.lang.Object {
         public boolean mightBeEqual(SomeResource r) {
             if (r!=null && (r instanceof FixedResource)) {
                 FixedResource f = (FixedResource)r;
-                return hash == f.hash && node.sameValueAs(f.node); //AFS -- node.equals(f.node);
+                return hash == f.hash && node.equals(f.node); // PURE SYNTAX
             } else {
                 return false;
             }
