@@ -369,6 +369,8 @@ public class TestTypedLiterals extends TestCase {
     public void testNumberSameValueAs() {
         Literal lDouble = m.createTypedLiteral("5", XSDDatatype.XSDdouble);
         Literal lDouble2 = m.createTypedLiteral("5.5", XSDDatatype.XSDdouble);
+        Literal lDouble3 = m.createTypedLiteral("5.5", XSDDatatype.XSDdouble);
+        Literal lDouble4 = m.createTypedLiteral("5.6", XSDDatatype.XSDdouble);
         Literal lFloat = m.createTypedLiteral("5", XSDDatatype.XSDfloat);
         Literal lint = m.createTypedLiteral("5", XSDDatatype.XSDint);
         Literal linteger = m.createTypedLiteral("5", XSDDatatype.XSDinteger);
@@ -377,6 +379,7 @@ public class TestTypedLiterals extends TestCase {
         assertSameValueAs("integer subclasses equal", lint, linteger);
         assertSameValueAs("integer subclasses equal", lint, lbyte);
         assertSameValueAs("integer subclasses equal", linteger, lbyte);
+        assertSameValueAs("double equality", lDouble2, lDouble3);
         
         assertDiffer("float/double/int distinct", lDouble, lDouble2);
         assertDiffer("float/double/int distinct", lDouble, lFloat);
@@ -388,6 +391,14 @@ public class TestTypedLiterals extends TestCase {
         assertDiffer("float/double/int distinct", lbyte, lDouble);
         assertDiffer("float/double/int distinct", lint, lDouble2);
         assertDiffer("float/double/int distinct", lbyte, lDouble2);
+        
+        assertDiffer("double inequality", lDouble3, lDouble4);
+        assertDiffer("double inequality", lDouble2, lDouble);
+        
+        // Check decimals
+        Literal lDecimal = m.createTypedLiteral("5.5", XSDDatatype.XSDdecimal);
+        Literal lDecimal2 = m.createTypedLiteral("5.6", XSDDatatype.XSDdecimal);
+        assertDiffer("decimal inequality", lDecimal, lDecimal2);
     }
     
     /**

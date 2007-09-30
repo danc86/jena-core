@@ -122,7 +122,7 @@ public class XSDBaseNumericType extends XSDDatatype {
         if (value1.getDatatype() instanceof XSDBaseNumericType && value2.getDatatype() instanceof XSDBaseNumericType) {
             Number n1 = (Number)value1.getValue();
             Number n2 = (Number)value2.getValue();
-            return n1.longValue() == n2.longValue();
+            return n1.equals(n2);
         } else {
             // At least one arg is not part of the integer hierarchy
             return false;
