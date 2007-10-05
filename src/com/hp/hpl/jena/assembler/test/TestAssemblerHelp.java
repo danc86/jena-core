@@ -189,7 +189,7 @@ public class TestAssemblerHelp extends AssemblerTestBase
         AssemblerGroup group = AssemblerGroup.create();
         Model m = model( "eh:Wossname ja:assembler '" + className + "'" );
         assertEquals( false, impIsLoaded );
-        AssemblerHelp.loadClasses( group, m );
+        AssemblerHelp.loadAssemblerClasses( group, m );
         assertEquals( true, impIsLoaded );
         assertEquals( true, impIsConstructed );
         assertEquals( className, group.assemblerFor( resource( "eh:Wossname" ) ).getClass().getName() );
@@ -200,7 +200,7 @@ public class TestAssemblerHelp extends AssemblerTestBase
         AssemblerGroup group = AssemblerGroup.create();
         Model m = model( "eh:Wossname ja:assembler 'com.hp.hpl.jena.assembler.test.TestAssemblerHelp$Gremlin'" );
         assertEquals( false, gremlinInvoked );
-        AssemblerHelp.loadClasses( group, m );
+        AssemblerHelp.loadAssemblerClasses( group, m );
         assertEquals( true, gremlinInvoked );
         }
     }
