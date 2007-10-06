@@ -9,6 +9,9 @@
  *****************************************************************/
 package com.hp.hpl.jena.datatypes.xsd.impl;
 
+import java.math.BigDecimal;
+import java.math.BigInteger;
+
 import com.hp.hpl.jena.datatypes.*;
 import com.hp.hpl.jena.datatypes.xsd.*;
 import com.hp.hpl.jena.graph.impl.LiteralLabel;
@@ -89,7 +92,35 @@ public class XSDBaseNumericType extends XSDDatatype {
      * subclasses to ensure that indexing of typed literals works. 
      */
     public Object cannonicalise( Object value ) {
+        
+        if (value instanceof BigInteger) {
+            return cannonicalizeInteger( (BigInteger)value );
+        } else if (value instanceof BigDecimal) {
+            return cannonicalizeDecimal( (BigDecimal)value );
+        }
         return suitableInteger( ((Number)value).longValue() );
+    }
+    
+    /**
+     * Cannonicalize a big decimal
+     */
+    private Object cannonicalizeDecimal( BigDecimal value) {
+        try {
+            return cannonicalizeInteger( value.toBigIntegerExact() );
+        } catch (ArithmeticException e) {
+            return value;
+        }
+    }
+    
+    /**
+     * Cannonicalize a big integer
+     */
+    private Object cannonicalizeInteger( BigInteger value) {
+        if (value.bitLength() > 63) {
+            return value;
+        } else {
+            return suitableInteger( value.longValue() );
+        }
     }
    
     /**

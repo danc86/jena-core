@@ -402,6 +402,29 @@ public class TestTypedLiterals extends TestCase {
     }
     
     /**
+     * Check basic handling of big integers and decimals
+     */
+    public void testBigNums() {
+        Literal l1 = m.createTypedLiteral("12345678901234567890", XSDDatatype.XSDinteger);
+        Literal l2 = m.createTypedLiteral("12345678901234567891", XSDDatatype.XSDinteger);
+        assertDiffer("Big integer equality", l1, l2);
+        
+        BigInteger bigint1 = new BigInteger("12345678901234567890");
+        Literal lb1 = m.createTypedLiteral(bigint1, XSDDatatype.XSDinteger);
+        assertSameValueAs("big integer creation equality", l1, lb1);
+        
+        BigDecimal bigdec1 = new BigDecimal("12345678901234567890.00");
+        Literal ld1 = m.createTypedLiteral(bigdec1, XSDDatatype.XSDdecimal);
+        BigDecimal bigdec1b = new BigDecimal("12345678901234567890.0");
+        Literal ld1b = m.createTypedLiteral(bigdec1, XSDDatatype.XSDdecimal);
+        BigDecimal bigdec2 = new BigDecimal("12345678901234567890.1");
+        Literal ld2 = m.createTypedLiteral(bigdec2, XSDDatatype.XSDdecimal);
+        assertSameValueAs("big decimal equality check", ld1, ld1b);
+        assertSameValueAs("big decimal equality check", ld1, lb1);
+        assertDiffer("Decimal equality", ld1, ld2);
+    }
+    
+    /**
      * Test user defined data types using the DAML+OIL standard example.
      * N.B. The file on daml.org is not legal (wrong namespace for XMLSchema, missed
      * qualifiers  onsome restriction base types) so we actually load a locally cached
