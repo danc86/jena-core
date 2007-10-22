@@ -48,7 +48,10 @@ import org.apache.commons.logging.LogFactory;
  * represent builtin predicates; in TriplePatterns they represent embedded
  * structured literals that are used to cache matched subgraphs such as
  * restriction specifications. </p>
- *<p>
+ * <p>
+ * The equality contract for rules is that two rules are equal if each of terms
+ * (ClauseEntry objects) are equals and they have the same name, if any.
+ * </p>
  * We include a trivial, recursive descent parser but this is just there
  * to allow rules to be embedded in code. External rule syntax based on N3
  * and RDF could be developed. The embedded syntax supports rules such as:
@@ -1035,6 +1038,12 @@ public class Rule implements ClauseEntry {
         }
         for (int i = 0; i < head.length; i++) {
             if (! ((ClauseEntry)head[i]).sameAs((ClauseEntry)other.head[i]) ) return false;
+        }
+        // Also include the rule name in the equality contract
+        if (name != null) {
+            if ( !name.equals(other.name) ) return false;
+        } else {
+            if (other.name != null) return false;
         }
         return true;
     }
