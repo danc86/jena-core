@@ -103,7 +103,7 @@ public class LocatorFile implements Locator
         return f.exists() ;
     }
     
-    public InputStream open(String filenameOrURI)
+    public TypedStream open(String filenameOrURI)
     {
         // Worry about %20.
         // toFile calls FileUtils.toFilename(filenameOrURI) ;
@@ -138,7 +138,7 @@ public class LocatorFile implements Locator
             // Create base -- Java 1.4-isms
             //base = f.toURI().toURL().toExternalForm() ;
             //base = base.replaceFirst("^file:/([^/])", "file:///$1") ;
-            return in ;
+            return new TypedStream(in) ;
         } catch (IOException ioEx)
         {
             // Includes FileNotFoundException

@@ -26,7 +26,7 @@ public class LocatorURL implements Locator
     
     static final String[] schemeNames = { "http:" , "https:" } ;    // Must be lower case and include the ":"
 
-    public InputStream open(String filenameOrURI)
+    public TypedStream open(String filenameOrURI)
     {
         if ( ! acceptByScheme(filenameOrURI) )
         {
@@ -56,7 +56,7 @@ public class LocatorURL implements Locator
             }
             if ( FileManager.logAllLookups  && log.isTraceEnabled() )
                 log.trace("Found: "+filenameOrURI) ;
-            return in;
+            return new TypedStream(in, conn.getContentType()) ; 
         }
         catch (java.io.FileNotFoundException ex) 
         {

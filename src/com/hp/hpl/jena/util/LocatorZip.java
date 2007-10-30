@@ -35,7 +35,7 @@ class LocatorZip implements Locator
         }
     }
     
-    public InputStream open(String filenameOrURI)
+    public TypedStream open(String filenameOrURI)
     {
         ZipEntry entry = zipFile.getEntry(filenameOrURI) ;
         if ( entry == null )
@@ -58,7 +58,7 @@ class LocatorZip implements Locator
             
             if ( FileManager.logAllLookups  && log.isTraceEnabled() )
                 log.trace("Found: "+filenameOrURI) ;
-            return in;
+            return new TypedStream(in) ;
         }
         catch (IOException ex)
         {
