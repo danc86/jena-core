@@ -42,6 +42,7 @@ public class TestPackage extends TestSuite {
         addTest( "TestBugs", TestBugs.suite() );
         addTest( "TestCapabilities", TestCapabilities.suite() );
         addTestSuite( TestInferenceReification.class );
+        addTestSuite( TestRestrictionsDontNeedTyping.class );
         
         // No longer needed because the tests are now subsumed in OWLUnitTest
         // addTest( "TestOWLConsistency", TestOWLRules.suite() );
