@@ -374,7 +374,7 @@ public class TestBasics extends TestCase  {
      * Test functor handling
      */
     public void testEmbeddedFunctors() {
-        String rules = "(?C rdf:type owl:Restriction), (?C owl:onProperty ?P), (?C owl:allValuesFrom ?D) -> (?C rb:restriction all(?P, ?D))." +
+        String rules = "(?C owl:onProperty ?P), (?C owl:allValuesFrom ?D) -> (?C rb:restriction all(?P, ?D))." +
                        "(?C rb:restriction all(eg:p, eg:D)) -> (?C rb:restriction 'allOK')." +
                        "[ -> (eg:foo eg:prop functor(eg:bar, 1)) ]" +
                        "[ (?x eg:prop functor(eg:bar, ?v)) -> (?x eg:propbar ?v) ]" +
@@ -390,9 +390,7 @@ public class TestBasics extends TestCase  {
         Property propbar = data.createProperty(PrintUtil.egNS, "propbar");
         Property propfunc = data.createProperty(PrintUtil.egNS, "propfunc");
         Property rbr = data.createProperty(ReasonerVocabulary.RBNamespace, "restriction");
-        R1.addProperty(RDF.type, OWL.Restriction)
-          .addProperty(OWL.onProperty, p)
-          .addProperty(OWL.allValuesFrom, D);
+        R1.addProperty(OWL.onProperty, p).addProperty(OWL.allValuesFrom, D);
         
         Reasoner reasoner =  new BasicForwardRuleReasoner(ruleList);
         InfGraph infgraph = reasoner.bind(data.getGraph());

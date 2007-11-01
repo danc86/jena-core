@@ -1017,7 +1017,7 @@ public class TestBasicLP  extends TestCase {
     public void testProblem6() {
         String ruleSrc = 
         "[rdfs9:   (?a rdf:type ?y) <- (?x rdfs:subClassOf ?y), (?a rdf:type ?x)]" +
-        "[restriction2: (?C owl:equivalentClass all(?P, ?D)) <- (?C rdf:type owl:Restriction), (?C owl:onProperty ?P), (?C owl:allValuesFrom ?D)]" +
+        "[restriction2: (?C owl:equivalentClass all(?P, ?D)) <- (?C owl:onProperty ?P), (?C owl:allValuesFrom ?D)]" +
         "[rs2: (?X rdf:type all(?P,?C)) <- (?D owl:equivalentClass all(?P,?C)), (?X rdf:type ?D)]" +
         "[rp4: (?Y rdf:type ?C) <- (?X rdf:type all(?P, ?C)), (?X ?P ?Y)]";
         doTest( ruleSrc,
@@ -1026,7 +1026,6 @@ public class TestBasicLP  extends TestCase {
                     new Triple(a, ty, r),
                     new Triple(a, p, b),
                     new Triple(r, sC, C1),
-                    new Triple(C1, ty, OWL.Restriction.asNode()),
                     new Triple(C1, OWL.onProperty.asNode(), p),
                     new Triple(C1, OWL.allValuesFrom.asNode(), c)
                 },
