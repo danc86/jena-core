@@ -24,10 +24,33 @@ public class TestRestrictionsDontNeedTyping extends ModelTestBase
     public TestRestrictionsDontNeedTyping( String name )
         { super( name ); }
 
-    public void testSomeValuesFrom()
+    public void testAllValuesFromFullRules()
+        { testAllValuesFrom( OntModelSpec.OWL_MEM_RULE_INF ); }
+
+    public void testAllValuesFromMiniRules()
+        { testAllValuesFrom( OntModelSpec.OWL_MEM_MINI_RULE_INF ); }
+
+    public void testAllValuesFromMicroRules()
         {
-        testSomeValuesFrom( OntModelSpec.OWL_MEM_RULE_INF );
+        /* micro doesn't support this anyway */
+        // testAllValuesFrom( OntModelSpec.OWL_MEM_MICRO_RULE_INF ); 
         }
+
+    private void testAllValuesFrom( OntModelSpec owlSpec )
+        {
+        Model m = model( "V owl:equivalentClass _R; _R owl:onProperty P; _R owl:allValuesFrom T; X rdf:type V; X P t" );
+        OntModel ont = ModelFactory.createOntologyModel( owlSpec, m );
+        assertTrue( ont.contains( resource( "t" ), RDF.type, resource( "T" ) ) );
+        }
+    
+    public void testSomeValuesFromMiniRules()
+        { testSomeValuesFrom( OntModelSpec.OWL_MEM_MINI_RULE_INF ); }
+
+    public void testSomeValuesFromMicroRules()
+        { testSomeValuesFrom( OntModelSpec.OWL_MEM_MICRO_RULE_INF ); }
+
+    public void testSomeValuesFromFullRules()
+        { testSomeValuesFrom( OntModelSpec.OWL_MEM_RULE_INF ); }
 
     private void testSomeValuesFrom( OntModelSpec owlSpec )
         {
