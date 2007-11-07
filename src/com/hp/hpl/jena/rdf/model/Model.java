@@ -204,19 +204,19 @@ public interface Model
 
 	public Literal createLiteral(String v, String language);
 
-    /**
-     * @deprecated since Jena2. It is no longer legal to have a language
-     * tag on a well-formed XMLLiteral. Use the 2-argument form of
-     * {@link #createLiteral(String, boolean) createLiteral} instead.
-     *
-     *   Create a literal from a String value with a specified language. An existing literal
-     *   of the right value may be returned, or a fresh one created.
-     *  @param v the lexical form of the literal
-     *  @param language the language associated with the literal
-     *  @param wellFormed true if the Literal is well formed XML
-     *  @return a new literal representing the value v with the given language
-     */
-    public Literal createLiteral(String v, String language, boolean wellFormed);
+//    /**
+//     * @deprecated since Jena2. It is no longer legal to have a language
+//     * tag on a well-formed XMLLiteral. Use the 2-argument form of
+//     * {@link #createLiteral(String, boolean) createLiteral} instead.
+//     *
+//     *   Create a literal from a String value with a specified language. An existing literal
+//     *   of the right value may be returned, or a fresh one created.
+//     *  @param v the lexical form of the literal
+//     *  @param language the language associated with the literal
+//     *  @param wellFormed true if the Literal is well formed XML
+//     *  @return a new literal representing the value v with the given language
+//     */
+//    public Literal createLiteral(String v, String language, boolean wellFormed);
 
     /**
         Create a literal from a String value. An existing literal
@@ -929,14 +929,14 @@ public interface Model
 	 */
 	public void close();
 
-    /** Get the model lock for this model.
-     *  See also the convenience operations enterCriticalSection and leaveCriticalSection.
-     *
-     * @see ModelLock
-     * @return The ModelLock object associated with this model
-     * @deprecated Applications should use {@link #getLock()}
-     */
-    public ModelLock getModelLock() ;
+//    /** Get the model lock for this model.
+//     *  See also the convenience operations enterCriticalSection and leaveCriticalSection.
+//     *
+//     * @see ModelLock
+//     * @return The ModelLock object associated with this model
+//     * @deprecated Applications should use {@link #getLock()}
+//     */
+//    public ModelLock getModelLock() ;
 
     /** Get the model lock for this model.
      *  See also the convenience operations enterCriticalSection and leaveCriticalSection.

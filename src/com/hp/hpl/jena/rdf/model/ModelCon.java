@@ -226,15 +226,15 @@ public interface ModelCon {
  */
     public Property createProperty(String uri) ;
 
-    /** create a literal from a boolean value.
-     *
-     * <p> The value is converted to a string using its <CODE>toString</CODE>
-     * method. </p>
-     * @param v the value of the literal
-     * @return a new literal representing the value v
-     * @deprecated Applications should use typed literals
-     */
-    public Literal createLiteral(boolean v) ; 
+//    /** create a literal from a boolean value.
+//     *
+//     * <p> The value is converted to a string using its <CODE>toString</CODE>
+//     * method. </p>
+//     * @param v the value of the literal
+//     * @return a new literal representing the value v
+//     * @deprecated Applications should use typed literals
+//     */
+//    public Literal createTypedLiteral(boolean v) ; 
     /** create a literal from an integer value.
      *
      * @param v the value of the literal

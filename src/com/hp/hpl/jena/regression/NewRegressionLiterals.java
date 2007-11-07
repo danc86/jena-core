@@ -25,8 +25,8 @@ public class NewRegressionLiterals extends NewRegressionBase
     public void testBooleans()
         {
         Model m = getModel();
-        assertTrue( m.createLiteral( true ).getBoolean() );
-        assertFalse( m.createLiteral( false ).getBoolean() );
+        assertTrue( m.createTypedLiteral( true ).getBoolean() );
+        assertFalse( m.createTypedLiteral( false ).getBoolean() );
         }
 
     public void testByteLiterals()
