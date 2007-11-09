@@ -86,12 +86,12 @@ public class NewRegressionStatementMethods extends NewRegressionBase
     
     public void testFloat()
         {
-        assertEquals( tvFloat, m.createStatement( r, RDF.value, tvFloat ).getFloat(), fDelta );
+        assertEquals( tvFloat, m.createStatement( r, RDF.value, m.createTypedLiteral( tvFloat ) ).getFloat(), fDelta );
         }
     
     public void testDouble()
         {
-        assertEquals( tvDouble, m.createStatement( r, RDF.value, tvDouble ).getDouble(), dDelta );
+        assertEquals( tvDouble, m.createStatement( r, RDF.value, m.createTypedLiteral(  tvDouble ) ).getDouble(), dDelta );
         }
     
     public void testString()

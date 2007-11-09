@@ -193,13 +193,13 @@ public class NewRegressionLiterals extends NewRegressionBase
     
     protected void testFloat( Model m, float tv )
         {
-        assertEquals( tv, m.createLiteral( tv ).getFloat(), fDelta );
+        assertEquals( tv, m.createTypedLiteral( tv ).getFloat(), fDelta );
         }
     
     protected void testDouble( Model m, double tv )
         {
         final double delta = 0.000000005;
-        assertEquals( tv, m.createLiteral( tv ).getDouble(), dDelta );
+        assertEquals( tv, m.createTypedLiteral( tv ).getDouble(), dDelta );
         }
     
     protected void testCharacter( Model m, char tv )

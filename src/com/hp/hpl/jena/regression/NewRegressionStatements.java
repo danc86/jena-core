@@ -92,7 +92,7 @@ public class NewRegressionStatements extends ModelTestBase
     
     public void testCreateStatementFloat()
         {
-        Statement s = m.createStatement( r, p, 123.456f );
+        Statement s = m.createStatement( r, p, m.createTypedLiteral( 123.456f ) );
         assertEquals( r, s.getSubject() );
         assertEquals( p, s.getPredicate() );
         assertEquals( 123.456f, s.getFloat(), 0.0005 );
@@ -100,7 +100,7 @@ public class NewRegressionStatements extends ModelTestBase
     
     public void testCreateStatementDouble()
         {
-        Statement s = m.createStatement( r, p, 12345.67890d );
+        Statement s = m.createStatement( r, p, m.createTypedLiteral( 12345.67890d ) );
         assertEquals( r, s.getSubject() );
         assertEquals( p, s.getPredicate() );
         assertEquals( 12345.67890d, s.getDouble(), 0.0000005 );
