@@ -7,6 +7,7 @@
 package com.hp.hpl.jena.rdf.model.test;
 
 import com.hp.hpl.jena.rdf.model.*;
+import com.hp.hpl.jena.vocabulary.RDF;
 
 import junit.framework.*;
 
@@ -60,6 +61,38 @@ public class TestResourceImpl extends ModelTestBase
         assertTrue( resource( "eh:xyz" ).hasURI( "eh:xyz" ) );
         assertFalse( resource( "eh:xyz" ).hasURI( "eh:1yz" ) );
         assertFalse( ResourceFactory.createResource().hasURI( "42" ) );
+        }
+    
+    public void testAddTypedPropertyDouble()
+        {
+        Model m = ModelFactory.createDefaultModel();
+        Resource r = m.createResource();
+        r.addTypedProperty( RDF.value, 1.0d );
+        assertEquals( m.createTypedLiteral( 1.0d ), r.getProperty( RDF.value ).getLiteral() );
+        }
+    
+    public void testAddTypedPropertyFloat()
+        {
+        Model m = ModelFactory.createDefaultModel();
+        Resource r = m.createResource();
+        r.addTypedProperty( RDF.value, 1.0f );
+        assertEquals( m.createTypedLiteral( 1.0f ), r.getProperty( RDF.value ).getLiteral() );
+        }
+    
+    public void testHasTypedPropertyDouble()
+        {
+        Model m = ModelFactory.createDefaultModel();
+        Resource r = m.createResource();
+        r.addTypedProperty( RDF.value, 1.0d );
+        assertTrue( r.hasTypedProperty( RDF.value, 1.0d ) );       
+        }
+    
+    public void testHasTypedPropertyFloat()
+        {
+        Model m = ModelFactory.createDefaultModel();
+        Resource r = m.createResource();
+        r.addTypedProperty( RDF.value, 1.0f );
+        assertTrue( r.hasTypedProperty( RDF.value, 1.0f ) );       
         }
     
     }    

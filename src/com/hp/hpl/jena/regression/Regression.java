@@ -2540,10 +2540,10 @@ public class Regression extends Object {
                         .hasProperty(RDF.value, tvLong)) error(test, n);
             n++; if (! r.addProperty(RDF.value, tvChar)
                         .hasProperty(RDF.value, tvChar)) error(test, n);
-            n++; if (! r.addProperty(RDF.value, tvFloat)
-                        .hasProperty(RDF.value, tvFloat)) error(test, n);
-            n++; if (! r.addProperty(RDF.value, tvDouble)
-                        .hasProperty(RDF.value, tvDouble)) error(test, n);
+            n++; if (! r.addTypedProperty(RDF.value, tvFloat)
+                        .hasTypedProperty(RDF.value, tvFloat)) error(test, n);
+            n++; if (! r.addTypedProperty(RDF.value, tvDouble)
+                        .hasTypedProperty(RDF.value, tvDouble)) error(test, n);
             n++; if (! r.addProperty(RDF.value, tvString)
                         .hasProperty(RDF.value, tvString)) error(test, n);
             n++; if (! r.addProperty(RDF.value, tvString, lang)
@@ -3959,10 +3959,10 @@ public class Regression extends Object {
                         .hasProperty(RDF.value, tvLong)) error(test, n);
             n++; if (! r.addProperty(RDF.value, tvChar)
                         .hasProperty(RDF.value, tvChar)) error(test, n);
-            n++; if (! r.addProperty(RDF.value, tvFloat)
-                        .hasProperty(RDF.value, tvFloat)) error(test, n);
-            n++; if (! r.addProperty(RDF.value, tvDouble)
-                        .hasProperty(RDF.value, tvDouble)) error(test, n);
+            n++; if (! r.addTypedProperty(RDF.value, tvFloat)
+                        .hasTypedProperty(RDF.value, tvFloat)) error(test, n);
+            n++; if (! r.addTypedProperty(RDF.value, tvDouble)
+                        .hasTypedProperty(RDF.value, tvDouble)) error(test, n);
             n++; if (! r.addProperty(RDF.value, tvString)
                         .hasProperty(RDF.value, tvString)) error(test, n);
             n++; if (! r.addProperty(RDF.value, tvString, lang)

@@ -45,8 +45,8 @@ public class NewRegressionResourceMethods extends NewRegressionBase
             .addProperty( RDF.value, tvInt )
             .addProperty( RDF.value, tvLong )
             .addProperty( RDF.value, tvChar )
-            .addProperty( RDF.value, tvFloat )
-            .addProperty( RDF.value, tvDouble )
+            .addTypedProperty( RDF.value, tvFloat )
+            .addTypedProperty( RDF.value, tvDouble )
             .addProperty( RDF.value, tvString )
             .addProperty( RDF.value, tvString , lang )
             .addProperty( RDF.value, tvObject )
@@ -71,10 +71,10 @@ public class NewRegressionResourceMethods extends NewRegressionBase
         { assertTrue( r.hasProperty( RDF.value, tvChar ) ); }
     
     public void testFloat()
-        { assertTrue( r.hasProperty( RDF.value, tvFloat ) ); }
+        { assertTrue( r.hasTypedProperty( RDF.value, tvFloat ) ); }
     
     public void testDouble()
-        { assertTrue( r.hasProperty( RDF.value, tvDouble ) ); }
+        { assertTrue( r.hasTypedProperty( RDF.value, tvDouble ) ); }
     
     public void testString()
         { assertTrue( r.hasProperty( RDF.value, tvString ) ); }
