@@ -42,7 +42,7 @@ public class Tutorial11 extends Object {
 
       // add the property
       r.addProperty(RDFS.label, "11")
-       .addProperty(RDFS.label, 11);
+       .addTypedProperty(RDFS.label, 11);
       
       // write out the graph
       model.write( System.out, "N-TRIPLE");

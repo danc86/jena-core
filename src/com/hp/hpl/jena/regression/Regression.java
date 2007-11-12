@@ -2530,14 +2530,14 @@ public class Regression extends Object {
             Statement stmt;
 
             n = 100;
-            n++; if (! r.addProperty(RDF.value, tvByte)
-                        .hasProperty(RDF.value, tvByte)) error(test, n);
-            n++; if (! r.addProperty(RDF.value, tvShort)
-                        .hasProperty(RDF.value, tvShort)) error(test, n);
-            n++; if (! r.addProperty(RDF.value, tvInt)
-                        .hasProperty(RDF.value, tvInt)) error(test, n);
-            n++; if (! r.addProperty(RDF.value, tvLong)
-                        .hasProperty(RDF.value, tvLong)) error(test, n);
+            n++; if (! r.addTypedProperty(RDF.value, tvByte)
+                        .hasTypedProperty(RDF.value, tvByte)) error(test, n);
+            n++; if (! r.addTypedProperty(RDF.value, tvShort)
+                        .hasTypedProperty(RDF.value, tvShort)) error(test, n);
+            n++; if (! r.addTypedProperty(RDF.value, tvInt)
+                        .hasTypedProperty(RDF.value, tvInt)) error(test, n);
+            n++; if (! r.addTypedProperty(RDF.value, tvLong)
+                        .hasTypedProperty(RDF.value, tvLong)) error(test, n);
             n++; if (! r.addProperty(RDF.value, tvChar)
                         .hasProperty(RDF.value, tvChar)) error(test, n);
             n++; if (! r.addTypedProperty(RDF.value, tvFloat)
@@ -3766,7 +3766,7 @@ public class Regression extends Object {
                 long size1 = m1.size();
                 long size2 = m2.size();
 
-                r11.addProperty(RDF.value, 1);
+                r11.addTypedProperty(RDF.value, 1);
                 n++; if (! (m1.size() == ++size1)) error(test, n);
                 n++; if (! (m2.size() == size2)) error(test,n);
 
@@ -3778,8 +3778,7 @@ public class Regression extends Object {
                 n++; if (! (m1.size() == ++size1)) error(test, n);
                 n++; if (! (m2.size() == size2)) error(test,n);
 
-                sIter = m1.listStatements(
-                                    new SimpleSelector(r11, RDF.value, r12));
+                sIter = m1.listStatements( new SimpleSelector( r11, RDF.value, r12 ) );
                 n++; if (! sIter.hasNext()) error(test, n);
                 n++; stmt = sIter.nextStatement();
                 n++; if (! (stmt.getSubject().getModel() == m1)) error(test,n);
@@ -3949,14 +3948,14 @@ public class Regression extends Object {
             String     lang = "fr";
             Statement stmt;
 
-            n++; if (! r.addProperty(RDF.value, tvByte)
-                        .hasProperty(RDF.value, tvByte)) error(test, n);
-            n++; if (! r.addProperty(RDF.value, tvShort)
-                        .hasProperty(RDF.value, tvShort)) error(test, n);
-            n++; if (! r.addProperty(RDF.value, tvInt)
-                        .hasProperty(RDF.value, tvInt)) error(test, n);
-            n++; if (! r.addProperty(RDF.value, tvLong)
-                        .hasProperty(RDF.value, tvLong)) error(test, n);
+            n++; if (! r.addTypedProperty(RDF.value, tvByte)
+                        .hasTypedProperty(RDF.value, tvByte)) error(test, n);
+            n++; if (! r.addTypedProperty(RDF.value, tvShort)
+                        .hasTypedProperty(RDF.value, tvShort)) error(test, n);
+            n++; if (! r.addTypedProperty(RDF.value, tvInt)
+                        .hasTypedProperty(RDF.value, tvInt)) error(test, n);
+            n++; if (! r.addTypedProperty(RDF.value, tvLong)
+                        .hasTypedProperty(RDF.value, tvLong)) error(test, n);
             n++; if (! r.addProperty(RDF.value, tvChar)
                         .hasProperty(RDF.value, tvChar)) error(test, n);
             n++; if (! r.addTypedProperty(RDF.value, tvFloat)

@@ -40,10 +40,10 @@ public class NewRegressionResourceMethods extends NewRegressionBase
         tvResource = m.createResource();
         r = 
             m.createResource()
-            .addProperty( RDF.value, tvByte )
-            .addProperty( RDF.value, tvShort )
-            .addProperty( RDF.value, tvInt )
-            .addProperty( RDF.value, tvLong )
+            .addTypedProperty( RDF.value, tvByte )
+            .addTypedProperty( RDF.value, tvShort )
+            .addTypedProperty( RDF.value, tvInt )
+            .addTypedProperty( RDF.value, tvLong )
             .addProperty( RDF.value, tvChar )
             .addTypedProperty( RDF.value, tvFloat )
             .addTypedProperty( RDF.value, tvDouble )
@@ -56,16 +56,16 @@ public class NewRegressionResourceMethods extends NewRegressionBase
         }
     
     public void testByte()
-        { assertTrue( r.hasProperty( RDF.value, tvByte ) ); }
+        { assertTrue( r.hasTypedProperty( RDF.value, tvByte ) ); }
     
     public void testShort()
-        { assertTrue( r.hasProperty( RDF.value, tvShort ) ); }
+        { assertTrue( r.hasTypedProperty( RDF.value, tvShort ) ); }
     
     public void testInt()
-        { assertTrue( r.hasProperty( RDF.value, tvInt ) ); }
+        { assertTrue( r.hasTypedProperty( RDF.value, tvInt ) ); }
     
     public void testLong()
-        { assertTrue( r.hasProperty( RDF.value, tvLong ) ); }
+        { assertTrue( r.hasTypedProperty( RDF.value, tvLong ) ); }
     
     public void testChar()
         { assertTrue( r.hasProperty( RDF.value, tvChar ) ); }

@@ -162,6 +162,13 @@ public class ResourceImpl extends EnhNode implements Resource {
         return this;
     }
     
+    public Resource addTypedProperty( Property p, long o ) 
+        {
+        Model m = mustHaveModel();
+        m.add( this, p, m.createTypedLiteral( o ) );
+        return this;
+        }
+    
     public Resource addProperty(Property p, char o)  {
         mustHaveModel().add( this, p, o );
         return this;
@@ -225,20 +232,18 @@ public class ResourceImpl extends EnhNode implements Resource {
     public boolean hasProperty(Property p, boolean o)  {
         return mustHaveModel().contains( this, p, o );
     }
+    
+    public boolean hasTypedProperty( Property p, long o ) 
+        {
+        ModelCom m = mustHaveModel();
+        return m.contains( this, p, m.createTypedLiteral( o ) );
+        }
 
     public boolean hasProperty(Property p, long o) {
         return mustHaveModel().contains( this, p, o );
     }
 
     public boolean hasProperty(Property p, char o)  {
-        return mustHaveModel().contains( this, p, o );
-    }
-
-    public boolean hasProperty(Property p, float o)  {
-        return mustHaveModel().contains( this, p, o );
-    }
-
-    public boolean hasProperty(Property p, double o) {
         return mustHaveModel().contains( this, p, o );
     }
     
