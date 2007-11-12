@@ -39,9 +39,9 @@ public class TestSimpleListStatements extends ModelTestBase
         
     	model = ModelFactory.createDefaultModel();
     	model.createResource("http://example.org/boolean")
-    	     .addProperty(RDF.value, booleanValue);             
+    	     .addTypedProperty(RDF.value, booleanValue);             
         model.createResource("http://example.org/char")
-             .addProperty(RDF.value, charValue);             
+             .addTypedProperty(RDF.value, charValue);             
         model.createResource("http://example.org/long")             
              .addTypedProperty(RDF.value, longValue);              
         model.createResource("http://example.org/float")
@@ -61,7 +61,7 @@ public class TestSimpleListStatements extends ModelTestBase
     }
     
     public void testBoolean() {
-        StmtIterator iter = model.listStatements(null, null, booleanValue);
+        StmtIterator iter = model.listStatements(null, null, model.createTypedLiteral( booleanValue ) );
         int i =0;
         while (iter.hasNext()) {
             i++;
@@ -72,7 +72,7 @@ public class TestSimpleListStatements extends ModelTestBase
     }
     
     public void testChar() {
-        StmtIterator iter = model.listStatements(null, null, charValue);
+        StmtIterator iter = model.listStatements(null, null, model.createTypedLiteral( charValue ) );
         int i =0;
         while (iter.hasNext()) {
             i++;

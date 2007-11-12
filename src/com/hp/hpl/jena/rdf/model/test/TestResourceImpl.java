@@ -123,22 +123,34 @@ public class TestResourceImpl extends ModelTestBase
     
     public void testAddTypedPropertyChar()
         {
-        
+        Model m = ModelFactory.createDefaultModel();
+        Resource r = m.createResource();
+        r.addTypedProperty( RDF.value, 'x' );
+        assertEquals( m.createTypedLiteral( 'x' ), r.getProperty( RDF.value ).getLiteral() );
         }
     
     public void testHasTypedPropertyChar()
         {
-        
+        Model m = ModelFactory.createDefaultModel();
+        Resource r = m.createResource();
+        r.addTypedProperty( RDF.value, 'x' );
+        assertTrue( r.hasTypedProperty( RDF.value, 'x' ) );     
         }
     
     public void testAddTypedPropertyBoolean()
         {
-        
+        Model m = ModelFactory.createDefaultModel();
+        Resource r = m.createResource();
+        r.addTypedProperty( RDF.value, true );
+        assertEquals( m.createTypedLiteral( true ), r.getProperty( RDF.value ).getLiteral() );
         }
     
     public void testHasTypedPropertyBoolean()
         {
-        
+        Model m = ModelFactory.createDefaultModel();
+        Resource r = m.createResource();
+        r.addTypedProperty( RDF.value, false );
+        assertTrue( r.hasTypedProperty( RDF.value, false ) ); 
         }
     
     public void testAddTypedPropertyString()

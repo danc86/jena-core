@@ -150,12 +150,13 @@ public class ResourceImpl extends EnhNode implements Resource {
 
     public StmtIterator listProperties() 
     	{ return mustHaveModel().listStatements( this, null, (RDFNode) null ); }	
-
-    public Resource addProperty(Property p, boolean o) 
-    	{
-    	mustHaveModel().add( this, p, o );
-    	return this;
-     	}
+    
+    public Resource addTypedProperty( Property p, boolean o ) 
+        {
+        ModelCom m = mustHaveModel();
+        m.add( this, p, m.createTypedLiteral( o ) );
+        return this;
+        }
 
     public Resource addProperty(Property p, long o)  {
         mustHaveModel().add( this, p, o );
@@ -169,10 +170,12 @@ public class ResourceImpl extends EnhNode implements Resource {
         return this;
         }
     
-    public Resource addProperty(Property p, char o)  {
-        mustHaveModel().add( this, p, o );
+    public Resource addTypedProperty( Property p, char o )  
+        {
+        ModelCom m = mustHaveModel();
+        m.add( this, p, m.createTypedLiteral( o ) );
         return this;
-    }
+        }
 
     public Resource addProperty(Property p, float o) {
         mustHaveModel().add( this, p, o );
@@ -229,9 +232,11 @@ public class ResourceImpl extends EnhNode implements Resource {
         return mustHaveModel().contains( this, p );
     }
     
-    public boolean hasProperty(Property p, boolean o)  {
-        return mustHaveModel().contains( this, p, o );
-    }
+    public boolean hasTypedProperty( Property p, boolean o )  
+        {
+        ModelCom m = mustHaveModel();
+        return m.contains( this, p, m.createTypedLiteral( o ) );
+        }
     
     public boolean hasTypedProperty( Property p, long o ) 
         {
@@ -242,10 +247,12 @@ public class ResourceImpl extends EnhNode implements Resource {
     public boolean hasProperty(Property p, long o) {
         return mustHaveModel().contains( this, p, o );
     }
-
-    public boolean hasProperty(Property p, char o)  {
-        return mustHaveModel().contains( this, p, o );
-    }
+    
+    public boolean hasTypedProperty( Property p, char o )  
+        {
+        ModelCom m = mustHaveModel();
+        return m.contains( this, p, m.createTypedLiteral( o ) );
+        }
     
     public boolean hasTypedProperty( Property p, double o ) 
         {

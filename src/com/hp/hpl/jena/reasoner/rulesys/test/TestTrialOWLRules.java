@@ -48,7 +48,7 @@ public class TestTrialOWLRules extends TestCase {
         configuration = m.createResource(GenericRuleReasonerFactory.URI);
         configuration.addProperty(ReasonerVocabulary.PROPruleMode, "hybrid");
         configuration.addProperty(ReasonerVocabulary.PROPruleSet, "etc/owl-fb-test.rules");
-        configuration.addProperty(ReasonerVocabulary.PROPenableOWLTranslation, true);
+        configuration.addProperty(ReasonerVocabulary.PROPenableOWLTranslation, "true" );
     }
     
     /**

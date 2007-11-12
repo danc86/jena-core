@@ -61,7 +61,7 @@ public class TestRDFSReasoners extends ReasonerTestBase {
 //            constructRDFWGtests(suite, RDFSFBRuleReasonerFactory.theInstance(), null);
             constructQuerytests(suite, "rdfs/manifest-nodirect-noresource.rdf", RDFSFBRuleReasonerFactory.theInstance(), null);
             
-            Resource config = newResource().addProperty(ReasonerVocabulary.PROPenableCMPScan, true);
+            Resource config = newResource().addProperty(ReasonerVocabulary.PROPenableCMPScan, "true" ); // TODO make boolean value work
 //            config.addProperty(ReasonerVocabulary.PROPtraceOn, true);
             constructRDFWGtests(suite, RDFSRuleReasonerFactory.theInstance(), null);
             constructQuerytests(suite, "rdfs/manifest-standard.rdf", RDFSRuleReasonerFactory.theInstance(), config);
