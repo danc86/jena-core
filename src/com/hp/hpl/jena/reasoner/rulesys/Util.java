@@ -335,7 +335,7 @@ public class Util {
              i.next();
              i.remove();
         }
-        config.addProperty(parameter, value);
+        config.addProperty( parameter, value.toString() );
     }
 }
 

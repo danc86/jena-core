@@ -75,8 +75,8 @@ public class RDFSReasonerFactory implements ReasonerFactory {
                 .addProperty(ReasonerVocabulary.supportsP, RDFS.member)
                 .addProperty(ReasonerVocabulary.supportsP, RDFS.range)
                 .addProperty(ReasonerVocabulary.supportsP, RDFS.domain)
-                .addProperty(ReasonerVocabulary.supportsP, TransitiveReasoner.directSubClassOf)
-                .addProperty(ReasonerVocabulary.supportsP, TransitiveReasoner.directSubPropertyOf)
+                .addProperty(ReasonerVocabulary.supportsP, TransitiveReasoner.directSubClassOf.toString() ) // TODO -- typing
+                .addProperty(ReasonerVocabulary.supportsP, TransitiveReasoner.directSubPropertyOf.toString() ) // TODO -- typing
                 .addProperty(ReasonerVocabulary.versionP, "0.1");
         }
         return capabilities;

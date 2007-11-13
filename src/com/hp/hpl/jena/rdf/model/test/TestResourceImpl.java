@@ -165,12 +165,20 @@ public class TestResourceImpl extends ModelTestBase
     
     public void testAddTypedPropertyObject()
         {
-        
+        Object z = new Object();
+        Model m = ModelFactory.createDefaultModel();
+        Resource r = m.createResource();
+        r.addTypedProperty( RDF.value, z );
+        assertEquals( m.createTypedLiteral( z ), r.getProperty( RDF.value ).getLiteral() );
         }
     
     public void testHasTypedPropertyObject()
         {
-        
+        Object z = new Object();
+        Model m = ModelFactory.createDefaultModel();
+        Resource r = m.createResource();
+        r.addTypedProperty( RDF.value, z );
+        assertTrue( r.hasTypedProperty( RDF.value, z ) ); 
         }
     
     }    

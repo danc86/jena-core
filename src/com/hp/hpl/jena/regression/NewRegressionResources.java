@@ -172,7 +172,7 @@ public class NewRegressionResources extends NewRegressionBase
         assertTrue( r.addTypedProperty( RDF.value, tvDouble ).hasTypedProperty( RDF.value, tvDouble ) );
         assertTrue( r.addProperty( RDF.value, tvString ).hasProperty( RDF.value, tvString ) );
         assertTrue( r.addProperty( RDF.value, tvString, lang ).hasProperty( RDF.value, tvString, lang ) );
-        assertTrue( r.addProperty( RDF.value, tvObject ).hasProperty( RDF.value, tvObject ) );
+        assertTrue( r.addTypedProperty( RDF.value, tvObject ).hasTypedProperty( RDF.value, tvObject ) );
         assertTrue( r.addProperty( RDF.value, tvLiteral ).hasProperty( RDF.value, tvLiteral ) );
         assertTrue( r.addProperty( RDF.value, tvResource ).hasProperty( RDF.value, tvResource ) );
         assertTrue( r.getRequiredProperty( RDF.value ).getSubject().equals( r ) );

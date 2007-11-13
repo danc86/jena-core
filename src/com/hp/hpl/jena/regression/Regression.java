@@ -2548,8 +2548,8 @@ public class Regression extends Object {
                         .hasProperty(RDF.value, tvString)) error(test, n);
             n++; if (! r.addProperty(RDF.value, tvString, lang)
                         .hasProperty(RDF.value, tvString, lang)) error(test, n);
-            n++; if (! r.addProperty(RDF.value, tvObject)
-                        .hasProperty(RDF.value, tvObject)) error(test, n);
+            n++; if (! r.addTypedProperty(RDF.value, tvObject)
+                        .hasTypedProperty(RDF.value, tvObject)) error(test, n);
             n++; if (! r.addProperty(RDF.value, tvLiteral)
                         .hasProperty(RDF.value, tvLiteral)) error(test, n);
             n++; if (! r.addProperty(RDF.value, tvResource)
@@ -3966,8 +3966,8 @@ public class Regression extends Object {
                         .hasProperty(RDF.value, tvString)) error(test, n);
             n++; if (! r.addProperty(RDF.value, tvString, lang)
                         .hasProperty(RDF.value, tvString, lang)) error(test, n);
-            n++; if (! r.addProperty(RDF.value, tvObject)
-                        .hasProperty(RDF.value, tvObject)) error(test, n);
+            n++; if (! r.addTypedProperty(RDF.value, tvObject)
+                        .hasTypedProperty(RDF.value, tvObject)) error(test, n);
             n++; if (! r.addProperty(RDF.value, tvLiteral)
                         .hasProperty(RDF.value, tvLiteral)) error(test, n);
             n++; if (! r.addProperty(RDF.value, tvResource)

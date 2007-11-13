@@ -223,6 +223,13 @@ public class ResourceImpl extends EnhNode implements Resource {
         return this;
     }
 
+    public Resource addTypedProperty( Property p, Object o ) 
+        {
+        ModelCom m = mustHaveModel();
+        m.add( this, p, m.createTypedLiteral( o ) );
+        return this;
+        }
+
     public Resource addProperty(Property p, RDFNode o) {
         mustHaveModel().add( this, p, o );
         return this;
@@ -277,6 +284,12 @@ public class ResourceImpl extends EnhNode implements Resource {
     public boolean hasProperty(Property p, Object o) {
         return mustHaveModel().contains( this, p, o );
     }
+
+    public boolean hasTypedProperty( Property p, Object o ) 
+        {
+        ModelCom m = mustHaveModel();
+        return m.contains( this, p, m.createTypedLiteral( o ) );
+        }
 
     public boolean hasProperty(Property p, RDFNode o)  {
         return mustHaveModel().contains( this, p, o );
