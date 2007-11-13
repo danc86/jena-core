@@ -198,11 +198,11 @@ public class NewRegressionStatementMethods extends NewRegressionBase
     public void testChangeObjectFloat()
         {
         Statement sTrue = loadInitialStatement();
-        Statement changed = sTrue.changeObject( tvFloat );
+        Statement changed = sTrue.changeTypedObject( tvFloat );
         checkChangedStatementSP( changed );
         assertEquals( tvFloat, changed.getFloat(), fDelta );
         checkCorrectStatements( sTrue, changed );
-        assertTrue( m.contains( r, RDF.value, tvFloat ) );
+        assertTrue( m.containsTyped( r, RDF.value, tvFloat ) );
         }
 
     public void testChangeObjectDouble()

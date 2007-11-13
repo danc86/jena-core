@@ -85,7 +85,7 @@ public class ContainerImpl extends ResourceImpl
         return add( String.valueOf( o ) );
     }
     
-    public Container add(float o)  {
+    public Container add( float o )  {
         return add( String.valueOf( o ) );
     }
     

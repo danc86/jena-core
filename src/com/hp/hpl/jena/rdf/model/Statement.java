@@ -294,7 +294,7 @@ public interface Statement extends FrontsTriple
      *
      * @return the new (S, P, o) statement.
      */
-    public Statement changeObject(float o) ;
+    public Statement changeTypedObject( float o );
     
     /** change the object of the statement (S, P, X) to (S, P, o).
      *  <p>The statement with the old value is removed from the model and 

@@ -823,8 +823,8 @@ public class Regression extends Object {
 
             try {
                 n=170;
-                n++; m.add(subject, RDF.value, tvFloat);
-                n++; if (! m.contains(subject,RDF.value,tvFloat))
+                n++; m.addTyped(subject, RDF.value, tvFloat);
+                n++; if (! m.containsTyped(subject,RDF.value,tvFloat))
                 error(test,n);
             } catch (Exception e) {
                 error(test, n, e);
@@ -2754,11 +2754,11 @@ public class Regression extends Object {
             n++; stmt = m.createStatement(m.createResource(),
                                           RDF.value, tvBoolean);
             n++; m.add(stmt);
-            n++; stmt = stmt.changeObject(tvFloat);
+            n++; stmt = stmt.changeTypedObject(tvFloat);
             n++;  if (! ((stmt.getFloat()-tvFloat)<0.00005)) error(test,n);
             n++;  if (  m.contains(stmt.getSubject(), RDF.value, tvBoolean))
                         error(test,n);
-            n++;  if (! m.contains(stmt.getSubject(), RDF.value, tvFloat))
+            n++;  if (! m.containsTyped(stmt.getSubject(), RDF.value, tvFloat))
                        error(test,n);
 
             n=370;
@@ -4779,6 +4779,7 @@ public class Regression extends Object {
         + testName + " "
         + testNum  + " ");
         errors = true;
+        throw new RuntimeException( "BOOM BOOM BOOM" );
     }
 
     public void error(String testName, int testNum, long v) {
@@ -4787,6 +4788,7 @@ public class Regression extends Object {
         + testNum  + " "
         + Long.toString(v));
         errors = true;
+        throw new RuntimeException( "BOOM BOOM BOOM" );
     }
 
     public void error(String testName, int testNum, Exception e) {
@@ -4795,6 +4797,7 @@ public class Regression extends Object {
         + testNum  + " "
         + e.toString());
         errors = true;
+        throw new RuntimeException( "BOOM BOOM BOOM" );
     }
 
     public boolean getErrors() {

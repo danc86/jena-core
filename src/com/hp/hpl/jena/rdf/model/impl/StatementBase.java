@@ -75,8 +75,8 @@ public abstract class StatementBase
 	public Statement changeObject( char o )
 		{ return stringReplace( String.valueOf( o ) ); }
 
-	public Statement changeObject( float o )
-		{ return stringReplace( String.valueOf( o ) ); }
+	public Statement changeTypedObject( float o )
+		{ return changeObject( model.createTypedLiteral( o ) ); }
 
 	public Statement changeObject( double o )
 		{ return stringReplace( String.valueOf( o ) ); }

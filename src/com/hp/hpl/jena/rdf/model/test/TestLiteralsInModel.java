@@ -13,12 +13,20 @@ public class TestLiteralsInModel extends ModelTestBase
     public TestLiteralsInModel( String name )
         { super( name ); }
 
+    protected final Model m = getModel();
+    
     protected Model getModel()
         { return ModelFactory.createDefaultModel(); }
     
-    public void testMT()
+    static final Resource X = resource( "X" );
+    
+    static final Property P = property( "P" );
+    
+    public void testAddWithFloatObject()
         {
-        Model m = getModel();
+        m.addTyped( X, P, 14.0f );
+        assertTrue( m.contains( X, P, m.createTypedLiteral( 14.0f ) ) );
+        assertTrue( m.containsTyped( X, P, 14.0f ) );
         }
     }
 
