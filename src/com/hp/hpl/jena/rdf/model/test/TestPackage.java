@@ -48,6 +48,7 @@ public class TestPackage extends TestSuite {
         addTest( "TestReaderEvents", TestReaderEvents.suite() );
         addTest( "TestList", TestList.suite() );
         addTest( "TestAnonID", TestAnonID.suite() );
+        addTestSuite( TestLiteralsInModel.class );
         addTest( TestRemoveSPO.suite() );
         addTest( TestListSubjectsEtc.suite() );
         addTest( TestModelExtract.suite() );
