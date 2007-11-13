@@ -159,7 +159,7 @@ public class ResourceImpl extends EnhNode implements Resource {
         }
 
     public Resource addProperty(Property p, long o)  {
-        mustHaveModel().add( this, p, o );
+        mustHaveModel().addTyped( this, p, o );
         return this;
     }
     
@@ -178,12 +178,12 @@ public class ResourceImpl extends EnhNode implements Resource {
         }
 
     public Resource addProperty(Property p, float o) {
-        mustHaveModel().add( this, p, o );
+        mustHaveModel().addTyped( this, p, o );
         return this;
     }
 
     public Resource addProperty(Property p, double o) {
-        mustHaveModel().add( this, p, o );
+        mustHaveModel().addTyped( this, p, o );
         return this;
     }
     

@@ -81,11 +81,11 @@ public class NewRegressionObjects extends ModelTestBase
         assertEquals( wanted, new HashSet( L ) );
         }
     
-    public void testListObejctsOfPropertyBySubject()
+    public void testListObjectsOfPropertyBySubject()
         {
         int size = 10;
         Resource s = m.createResource();
-        for (int i = 0; i < size; i += 1) m.add( s, RDF.value, i );
+        for (int i = 0; i < size; i += 1) m.addTyped( s, RDF.value, i );
         List L = iteratorToList( m.listObjectsOfProperty( s, RDF.value ) );
         assertEquals( size, L.size() );
         Set wanted = literalsUpto( size );
@@ -116,7 +116,7 @@ public class NewRegressionObjects extends ModelTestBase
     protected Set literalsUpto( int limit )
         {
         Set result = new HashSet();
-        for (int i = 0; i < limit; i += 1) result.add( m.createLiteral( i ) );
+        for (int i = 0; i < limit; i += 1) result.add( m.createTypedLiteral( i ) );
         return result;
         }
     
@@ -124,7 +124,7 @@ public class NewRegressionObjects extends ModelTestBase
         {
         Set result = new HashSet();
         for (int i = 0; i < numberSubjects; i += 1)
-            result.add( m.createLiteral( i * numberPredicates + predicate ) );
+            result.add( m.createTypedLiteral( i * numberPredicates + predicate ) );
         return result;
         }
     
@@ -134,7 +134,7 @@ public class NewRegressionObjects extends ModelTestBase
         for (int i = 0; i < numberSubjects; i += 1)
             for (int j = 0; j < numberPredicates; j += 1)
                 {
-                Statement s = m.createStatement
+                Statement s = m.createTypedStatement
                     ( resource( subjectPrefix + i ), 
                     property( predicatePrefix + j + "/p" ), 
                     i * numberPredicates + j );

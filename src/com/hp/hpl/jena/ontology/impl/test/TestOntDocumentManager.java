@@ -224,7 +224,7 @@ public class TestOntDocumentManager
         Model m = ModelFactory.createDefaultModel();
         Resource policy = m.createResource();
         m.add( policy, RDF.type, OntDocManagerVocab.DocumentManagerPolicy );
-        m.add( policy, OntDocManagerVocab.cacheModels, false );
+        m.addTyped( policy, OntDocManagerVocab.cacheModels, false );
 
         OntDocumentManager mgr = new OntDocumentManager( (String) null );
         assertTrue( mgr.getCacheModels() );

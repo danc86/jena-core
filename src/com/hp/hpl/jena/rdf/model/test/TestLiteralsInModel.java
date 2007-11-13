@@ -28,6 +28,41 @@ public class TestLiteralsInModel extends ModelTestBase
         assertTrue( m.contains( X, P, m.createTypedLiteral( 14.0f ) ) );
         assertTrue( m.containsTyped( X, P, 14.0f ) );
         }
+    
+    public void testAddWithDoubleObject()
+        {
+        m.addTyped( X, P, 14.0d );
+        assertTrue( m.contains( X, P, m.createTypedLiteral( 14.0d ) ) );
+        assertTrue( m.containsTyped( X, P, 14.0d ) );
+        }
+    
+    public void testAddWithBooleanObject()
+        {
+        m.addTyped( X, P, true );
+        assertTrue( m.contains( X, P, m.createTypedLiteral( true ) ) );
+        assertTrue( m.containsTyped( X, P, true ) );
+        }
+    
+    public void testAddWithCharObject()
+        {
+        m.addTyped( X, P, 'x' );
+        assertTrue( m.contains( X, P, m.createTypedLiteral( 'x' ) ) );
+        assertTrue( m.containsTyped( X, P, 'x' ) );
+        }
+    
+    public void testAddWithLongObject()
+        {
+        m.addTyped( X, P, 99L );
+        assertTrue( m.contains( X, P, m.createTypedLiteral( 99L ) ) );
+        assertTrue( m.containsTyped( X, P, 99L ) );
+        }
+    
+    public void testAddWithIntObject()
+        {
+        m.addTyped( X, P, 99 );
+        assertTrue( m.contains( X, P, m.createTypedLiteral( 99 ) ) );
+        assertTrue( m.containsTyped( X, P, 99 ) );
+        }
     }
 
 

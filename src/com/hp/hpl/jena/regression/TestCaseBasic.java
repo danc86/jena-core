@@ -142,14 +142,16 @@ public class TestCaseBasic extends JenaTestBase {
 		}
 	}
 
-	public void test6() {
+	public void test6() throws Exception {
 		try {
 			Regression test = new Regression();
 			test.test6(m1);
 			assertTrue(!test.getErrors());
 		} catch (Exception e) {
-			System.out.println(e);
-			assertTrue(false);
+//			System.out.println(e);
+//			assertTrue(false);
+	      System.err.println( "PONGLE" );
+	      throw e;
 		}
 	}
 
@@ -271,6 +273,8 @@ public class TestCaseBasic extends JenaTestBase {
 		} catch (Exception e) {
 			System.out.println(e);
 			assertTrue(false);
+//		System.err.println( "PONGLE" );
+//		throw new RuntimeException( e );
 		}
 	}
 

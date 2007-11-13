@@ -140,13 +140,13 @@ public class SeqImpl extends ContainerImpl implements Seq {
     
     public Seq set(int index, boolean o)  {
         checkIndex(index);
-        getRequiredProperty(RDF.li(index)).changeObject(o);
+        getRequiredProperty(RDF.li(index)).changeTypedObject(o);
         return this;
     }
     
     public Seq set(int index, long o)  {
         checkIndex(index);
-        getRequiredProperty(RDF.li(index)).changeObject(o);
+        getRequiredProperty(RDF.li(index)).changeTypedObject(o);
         return this;
     }
     
@@ -158,7 +158,7 @@ public class SeqImpl extends ContainerImpl implements Seq {
     
     public Seq set(int index, double o)  {
         checkIndex(index);
-        getRequiredProperty(RDF.li(index)).changeObject(o);
+        getRequiredProperty(RDF.li(index)).changeTypedObject(o);
         return this;
     }
     

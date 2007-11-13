@@ -267,7 +267,10 @@ public interface Statement extends FrontsTriple
      * @param o The new value to be set.
      *
      */
-    public Statement changeObject(boolean o) ;
+    public Statement changeTypedObject( boolean o );
+    
+    /** @deprecated use changeTypedObject etc */
+    public Statement changeObject( boolean o );
     
     /** change the object of the statement (S, P, X) to (S, P, o).
      *  <p>The statement with the old value is removed from the model and 
@@ -276,7 +279,10 @@ public interface Statement extends FrontsTriple
      *
      * @return the new (S, P, o) statement.
      */
-    public Statement changeObject(long o) ;
+    public Statement changeTypedObject( long o );
+
+    /** @deprecated use changeTypedObject etc */
+    public Statement changeObject( long o );
     
     /** change the object of the statement (S, P, X) to (S, P, o).
      *  <p>The statement with the old value is removed from the model and 
@@ -296,6 +302,10 @@ public interface Statement extends FrontsTriple
      */
     public Statement changeTypedObject( float o );
     
+    /** @deprecated use changeTypedObject etc */
+    public Statement changeObject( float o );
+    
+    
     /** change the object of the statement (S, P, X) to (S, P, o).
      *  <p>The statement with the old value is removed from the model and 
      *  a new statement with the new value added and returned.</p>
@@ -303,7 +313,10 @@ public interface Statement extends FrontsTriple
      *
      * @return the new (S, P, o) statement.
      */
-    public Statement changeObject(double o) ;
+    public Statement changeTypedObject( double o );
+    
+    /** @deprecated use changeTypedObject etc */
+    public Statement changeObject( double o );
     
     /** change the object of the statement (S, P, X) to (S, P, o).
      *  <p>The statement with the old value is removed from the model and 

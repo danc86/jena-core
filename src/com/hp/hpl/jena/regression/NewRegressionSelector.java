@@ -69,10 +69,10 @@ public class NewRegressionSelector extends ModelTestBase
             {
             for (int j = 0; j < num; j++) 
                 {
-                m.add( subject[i], predicate[j], tvBooleans[j] );
-                m.add( subject[i], predicate[j], tvLongs[j] );
-                m.add( subject[i], predicate[j], tvChars[j] );
-                m.add( subject[i], predicate[j], tvDoubles[j] );
+                m.addTyped( subject[i], predicate[j], tvBooleans[j] );
+                m.addTyped( subject[i], predicate[j], tvLongs[j] );
+                m.addTyped( subject[i], predicate[j], tvChars[j] );
+                m.addTyped( subject[i], predicate[j], tvDoubles[j] );
                 m.add( subject[i], predicate[j], tvStrings[j] );
                 m.add( subject[i], predicate[j], tvStrings[j], langs[j] );
                 m.add( subject[i], predicate[j], tvLitObjs[j] );
@@ -102,7 +102,7 @@ public class NewRegressionSelector extends ModelTestBase
             assertEquals( tvResObjs[1], ((Statement) L4.get(i)).getObject() );
         assertEquals( 2, L4.size() );
         
-        StmtIterator it5 = m.listStatements( new SimpleSelector( null, null, false ) );
+        StmtIterator it5 = m.listStatements( new SimpleSelector( null, null, m.createTypedLiteral( false ) ) );
         List L5 = iteratorToList( it5 );
         for (int i = 0; i < L5.size(); i += 1) 
             assertEquals( false, ((Statement) L5.get(i)).getBoolean() );

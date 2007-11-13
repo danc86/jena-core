@@ -66,20 +66,32 @@ public abstract class StatementBase
 	protected StatementImpl stringReplace( String s )
 		{ return stringReplace( s, "", false ); }
 
-	public Statement changeObject( boolean o )
-		{ return stringReplace( String.valueOf( o ) ); }
+	public Statement changeTypedObject( boolean o )
+		{ return changeObject( model.createTypedLiteral( o ) ); }
+	
+    public Statement changeObject( boolean o )
+        { return stringReplace( String.valueOf( o ) ); }
 
 	public Statement changeObject( long o )
 		{ return stringReplace( String.valueOf( o ) ); }
+	
+    public Statement changeTypedObject( long o )
+        { return changeObject( model.createTypedLiteral( o ) ); }
 
 	public Statement changeObject( char o )
 		{ return stringReplace( String.valueOf( o ) ); }
 
 	public Statement changeTypedObject( float o )
 		{ return changeObject( model.createTypedLiteral( o ) ); }
+	
+    public Statement changeObject( float o )
+        { return changeObject( String.valueOf( o ) ); }
 
-	public Statement changeObject( double o )
-		{ return stringReplace( String.valueOf( o ) ); }
+    public Statement changeObject( double o )
+        { return stringReplace( String.valueOf( o ) ); }
+    
+	public Statement changeTypedObject( double o )
+		{ return changeObject( model.createTypedLiteral( o ) ); }
 
 	public Statement changeObject( String o )
 		{ return stringReplace( String.valueOf( o ) ); }
