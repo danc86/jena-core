@@ -481,7 +481,7 @@ public class PropertyIterator
             // don't use equivalents
             if (m_model != null) {
                 // we have a model to query, so use it to get the subject of the triple
-                i = m_model.listSubjectsWithProperty( m_inverse, res );
+                i = m_model.listResourcesWithProperty( m_inverse, res );
             }
             else {
                 // no model (can occur when using built-in constants from vocab)

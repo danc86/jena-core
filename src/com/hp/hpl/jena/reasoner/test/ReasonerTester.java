@@ -207,7 +207,7 @@ public class ReasonerTester {
      */
     public List listTests() {
         List testList = new ArrayList();
-        ResIterator tests = testManifest.listSubjectsWithProperty(RDF.type, testClass);
+        ResIterator tests = testManifest.listResourcesWithProperty(RDF.type, testClass);
         while (tests.hasNext()) {
             testList.add(tests.next().toString());
         }

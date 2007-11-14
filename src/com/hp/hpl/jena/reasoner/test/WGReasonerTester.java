@@ -210,11 +210,11 @@ public class WGReasonerTester {
      */
     public List listTests() {
         List testList = new ArrayList();
-        ResIterator tests = testManifest.listSubjectsWithProperty(RDF.type, PositiveEntailmentTest);
+        ResIterator tests = testManifest.listResourcesWithProperty(RDF.type, PositiveEntailmentTest);
         while (tests.hasNext()) {
             testList.add(tests.next().toString());
         }
-        tests = testManifest.listSubjectsWithProperty(RDF.type, NegativeEntailmentTest);
+        tests = testManifest.listResourcesWithProperty(RDF.type, NegativeEntailmentTest);
         while (tests.hasNext()) {
             testList.add(tests.next().toString());
         }

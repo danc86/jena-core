@@ -35,7 +35,7 @@ public class Tutorial07 extends Object {
         model.read( in, "");
         
         // select all the resources with a VCARD.FN property
-        ResIterator iter = model.listSubjectsWithProperty(VCARD.FN);
+        ResIterator iter = model.listResourcesWithProperty(VCARD.FN);
         if (iter.hasNext()) {
             System.out.println("The database contains vcards for:");
             while (iter.hasNext()) {

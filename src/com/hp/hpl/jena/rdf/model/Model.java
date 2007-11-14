@@ -592,22 +592,32 @@ public interface Model
     */
     Statement getProperty( Resource s, Property p );
 
-	/** List all subjects with a given property. .remove() is not implemented on
-     *  this iterator.
-	 * @return an iterator over the subjects
-	 * @param p the property sought.
-
+	/** 
+	    An alias for <code>istResourcesWithProperty(Property)</code>,
+	    retained for backward compatability. It may be deprecated in later
+	    releases.
 	 */
-	ResIterator listSubjectsWithProperty(Property p) ;
+	ResIterator listSubjectsWithProperty( Property p );
+	
+	/**
+	    Answer an iterator [with no duplicates] over all the resources in this 
+	    model that have property <code>p</code>. <code>remove()</code>
+	    is not implemented on this iterator.
+	*/
+	ResIterator listResourcesWithProperty( Property p );
 
-	/** List all subjects with a given property and property value.  .remove() is not
-     *  implemented on this iterator.
-	 * @return an iterator over the subjects
-	 * @param p The predicate sought
-	 * @param o The value sought
-	 */
-	ResIterator listSubjectsWithProperty(Property p, RDFNode o)
-		;
+	/** 
+	   An alias for <code>listResourcesWithProperty</code>, retained for
+	   backward compatability. It may be deprecated in later releases.
+	*/
+	ResIterator listSubjectsWithProperty( Property p, RDFNode o );
+	
+	/**
+        Answer an iterator [with no duplicates] over all the resources in this 
+        model that have property <code>p</code> with value <code>o</code>.
+        <code>remove()</code> is not implemented on this iterator. 
+    */
+	ResIterator listResourcesWithProperty( Property p, RDFNode o );
 
 	/** List all objects in a model.
 	 * @return an iterator over the objects.  .remove() is not implemented on this iterator.

@@ -1421,7 +1421,7 @@ public class Regression extends Object {
             }
             boolean found = false;
 
-            ResIterator rIter = m.listSubjectsWithProperty(predicate[4]);
+            ResIterator rIter = m.listResourcesWithProperty(predicate[4]);
             while (rIter.hasNext()) {
                 Resource subj = rIter.nextResource();
                 found = false;
@@ -1442,7 +1442,7 @@ public class Regression extends Object {
                 subjf[i] = false;
             }
             found = false;
-            rIter = m.listSubjectsWithProperty(predicate[0]);
+            rIter = m.listResourcesWithProperty(predicate[0]);
             while (rIter.hasNext()) {
                 Resource subj = rIter.nextResource();
                 found = false;
@@ -1469,7 +1469,7 @@ public class Regression extends Object {
                 subjf[i] = false;
             }
             found = false;
-            rIter = m.listSubjectsWithProperty(predicate[0], m.createTypedLiteral( tvBoolean[0] ) );
+            rIter = m.listResourcesWithProperty(predicate[0], m.createTypedLiteral( tvBoolean[0] ) );
             while (rIter.hasNext()) {
                 Resource subj = rIter.nextResource();
                 found = false;
@@ -1494,7 +1494,7 @@ public class Regression extends Object {
                 subjf[i] = false;
             }
             found = false;
-            rIter = m.listSubjectsWithProperty(predicate[0], m.createTypedLiteral( tvBoolean[1] ) );
+            rIter = m.listResourcesWithProperty(predicate[0], m.createTypedLiteral( tvBoolean[1] ) );
             while (rIter.hasNext()) {
                 Resource subj = rIter.nextResource();
                 found = false;
@@ -1517,7 +1517,7 @@ public class Regression extends Object {
                 subjf[i] = false;
             }
             found = false;
-            rIter = m.listSubjectsWithProperty(predicate[0], (byte)tvLong[0]);
+            rIter = m.listResourcesWithProperty(predicate[0], (byte)tvLong[0]);
             while (rIter.hasNext()) {
                 Resource subj = rIter.nextResource();
                 // System.out.println( "+ " + subj );
@@ -1544,7 +1544,7 @@ public class Regression extends Object {
                 subjf[i] = false;
             }
             found = false;
-            rIter = m.listSubjectsWithProperty(predicate[0], (byte) tvLong[1]);
+            rIter = m.listResourcesWithProperty(predicate[0], (byte) tvLong[1]);
             while (rIter.hasNext()) {
                 Resource subj = rIter.nextResource();
                 found = false;
@@ -1568,7 +1568,7 @@ public class Regression extends Object {
                 subjf[i] = false;
             }
             found = false;
-            rIter = m.listSubjectsWithProperty(predicate[0], (short) tvLong[0]);
+            rIter = m.listResourcesWithProperty(predicate[0], (short) tvLong[0]);
             while (rIter.hasNext()) {
                 Resource subj = rIter.nextResource();
                 found = false;
@@ -1593,7 +1593,7 @@ public class Regression extends Object {
                 subjf[i] = false;
             }
             found = false;
-            rIter = m.listSubjectsWithProperty(predicate[0], (short) tvLong[1]);
+            rIter = m.listResourcesWithProperty(predicate[0], (short) tvLong[1]);
             while (rIter.hasNext()) {
                 Resource subj = rIter.nextResource();
                 found = false;
@@ -1616,7 +1616,7 @@ public class Regression extends Object {
                 subjf[i] = false;
             }
             found = false;
-            rIter = m.listSubjectsWithProperty(predicate[0], (int) tvLong[0]);
+            rIter = m.listResourcesWithProperty(predicate[0], (int) tvLong[0]);
             while (rIter.hasNext()) {
                 Resource subj = rIter.nextResource();
                 found = false;
@@ -1641,7 +1641,7 @@ public class Regression extends Object {
                 subjf[i] = false;
             }
             found = false;
-            rIter = m.listSubjectsWithProperty(predicate[0], (int) tvLong[1]);
+            rIter = m.listResourcesWithProperty(predicate[0], (int) tvLong[1]);
             while (rIter.hasNext()) {
                 Resource subj = rIter.nextResource();
                 found = false;
@@ -1665,7 +1665,7 @@ public class Regression extends Object {
                 subjf[i] = false;
             }
             found = false;
-            rIter = m.listSubjectsWithProperty(predicate[0], tvLong[0]);
+            rIter = m.listResourcesWithProperty(predicate[0], tvLong[0]);
             while (rIter.hasNext()) {
                 Resource subj = rIter.nextResource();
                 found = false;
@@ -1690,7 +1690,7 @@ public class Regression extends Object {
                 subjf[i] = false;
             }
             found = false;
-            rIter = m.listSubjectsWithProperty(predicate[0], tvLong[1]);
+            rIter = m.listResourcesWithProperty(predicate[0], tvLong[1]);
             while (rIter.hasNext()) {
                 Resource subj = rIter.nextResource();
                 found = false;
@@ -1712,7 +1712,7 @@ public class Regression extends Object {
                 subjf[i] = false;
             }
             found = false;
-            rIter = m.listSubjectsWithProperty(predicate[0], tvChar[0]);
+            rIter = m.listResourcesWithProperty(predicate[0], tvChar[0]);
             while (rIter.hasNext()) {
                 Resource subj = rIter.nextResource();
                 found = false;
@@ -1737,7 +1737,7 @@ public class Regression extends Object {
                 subjf[i] = false;
             }
             found = false;
-            rIter = m.listSubjectsWithProperty(predicate[0], tvChar[1]);
+            rIter = m.listResourcesWithProperty(predicate[0], tvChar[1]);
             while (rIter.hasNext()) {
                 Resource subj = rIter.nextResource();
                 found = false;
@@ -1760,7 +1760,7 @@ public class Regression extends Object {
                 subjf[i] = false;
             }
             found = false;
-            rIter = m.listSubjectsWithProperty(predicate[0], m.createTypedLiteral( tvDouble[0] ) );
+            rIter = m.listResourcesWithProperty(predicate[0], m.createTypedLiteral( tvDouble[0] ) );
             while (rIter.hasNext()) {
                 Resource subj = rIter.nextResource();
                 found = false;
@@ -1785,7 +1785,7 @@ public class Regression extends Object {
                 subjf[i] = false;
             }
             found = false;
-            rIter = m.listSubjectsWithProperty(predicate[0], m.createTypedLiteral( tvDouble[1] ) );
+            rIter = m.listResourcesWithProperty(predicate[0], m.createTypedLiteral( tvDouble[1] ) );
             while (rIter.hasNext()) {
                 Resource subj = rIter.nextResource();
                 found = false;
@@ -1808,7 +1808,7 @@ public class Regression extends Object {
                 subjf[i] = false;
             }
             found = false;
-            rIter = m.listSubjectsWithProperty(predicate[0], m.createTypedLiteral( tvDouble[0] ) );
+            rIter = m.listResourcesWithProperty(predicate[0], m.createTypedLiteral( tvDouble[0] ) );
             while (rIter.hasNext()) {
                 Resource subj = rIter.nextResource();
                 found = false;
@@ -1833,7 +1833,7 @@ public class Regression extends Object {
                 subjf[i] = false;
             }
             found = false;
-            rIter = m.listSubjectsWithProperty(predicate[0], m.createTypedLiteral(  tvDouble[1] ) );
+            rIter = m.listResourcesWithProperty(predicate[0], m.createTypedLiteral(  tvDouble[1] ) );
             while (rIter.hasNext()) {
                 Resource subj = rIter.nextResource();
                 found = false;
@@ -1953,7 +1953,7 @@ public class Regression extends Object {
                 subjf[i] = false;
             }
             found = false;
-            rIter = m.listSubjectsWithProperty(predicate[0], tvLitObj[0]);
+            rIter = m.listResourcesWithProperty(predicate[0], tvLitObj[0]);
             while (rIter.hasNext()) {
                 Resource subj = rIter.nextResource();
                 found = false;
@@ -1978,7 +1978,7 @@ public class Regression extends Object {
                 subjf[i] = false;
             }
             found = false;
-            rIter = m.listSubjectsWithProperty(predicate[0], tvLitObj[1]);
+            rIter = m.listResourcesWithProperty(predicate[0], tvLitObj[1]);
             while (rIter.hasNext()) {
                 Resource subj = rIter.nextResource();
                 found = false;
@@ -2001,7 +2001,7 @@ public class Regression extends Object {
                 subjf[i] = false;
             }
             found = false;
-            rIter = m.listSubjectsWithProperty(predicate[0], tvResObj[0]);
+            rIter = m.listResourcesWithProperty(predicate[0], tvResObj[0]);
             while (rIter.hasNext()) {
                 Resource subj = rIter.nextResource();
                 found = false;
@@ -2026,7 +2026,7 @@ public class Regression extends Object {
                 subjf[i] = false;
             }
             found = false;
-            rIter = m.listSubjectsWithProperty(predicate[0], tvResObj[1]);
+            rIter = m.listResourcesWithProperty(predicate[0], tvResObj[1]);
             while (rIter.hasNext()) {
                 Resource subj = rIter.nextResource();
                 found = false;

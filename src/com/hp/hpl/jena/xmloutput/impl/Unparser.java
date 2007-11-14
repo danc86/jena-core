@@ -137,7 +137,7 @@ class Unparser {
                             .hasProperty(RDF.predicate)) ? r : null;
 
                 }
-            }, model.listSubjectsWithProperty(RDF.type, RDF.Statement));
+            }, model.listResourcesWithProperty(RDF.type, RDF.Statement));
             while (reified.hasNext()) {
                 Resource r = (Resource) reified.next();
                 try {

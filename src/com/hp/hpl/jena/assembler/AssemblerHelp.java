@@ -277,7 +277,7 @@ public class AssemblerHelp
         which <i>must</i> be a subtype of <code>ja:Object</code>.
     */
     public static Set findAssemblerRoots( Model model, Resource type )
-        { return fullModel( model ).listSubjectsWithProperty( RDF.type, type ).toSet(); }
+        { return fullModel( model ).listResourcesWithProperty( RDF.type, type ).toSet(); }
 
     /**
          Answer the single resource in <code>singleRoot</code> of type

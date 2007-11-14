@@ -66,7 +66,7 @@ public class TestCaseBugs
                              .getObject();
             assertInstanceOf(Resource.class, n );
             
-            assertTrue(model.listSubjectsWithProperty(RDF.type, oc).hasNext());
+            assertTrue(model.listResourcesWithProperty(RDF.type, oc).hasNext());
             
             assertTrue(model.containsLiteral(r, RDF.type, oc));  
          }

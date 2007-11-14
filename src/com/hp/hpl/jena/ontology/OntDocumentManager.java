@@ -1033,7 +1033,7 @@ public class OntDocumentManager
         getFileManager().getLocationMapper().processConfig( metadata );
 
         // first we process the general policy statements for this document manager
-        for (ResIterator i = metadata.listSubjectsWithProperty( RDF.type, DOC_MGR_POLICY ); i.hasNext(); ) {
+        for (ResIterator i = metadata.listResourcesWithProperty( RDF.type, DOC_MGR_POLICY ); i.hasNext(); ) {
             Resource policy = i.nextResource();
 
             // iterate over each policy statement
@@ -1057,7 +1057,7 @@ public class OntDocumentManager
         }
 
         // then we look up individual meta-data for particular ontologies
-        for (ResIterator i = metadata.listSubjectsWithProperty( RDF.type, ONTOLOGY_SPEC ); i.hasNext(); ) {
+        for (ResIterator i = metadata.listResourcesWithProperty( RDF.type, ONTOLOGY_SPEC ); i.hasNext(); ) {
             Resource root = i.nextResource();
 
             Statement s = root.getProperty( PUBLIC_URI );
