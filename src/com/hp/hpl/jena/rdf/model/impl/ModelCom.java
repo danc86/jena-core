@@ -670,22 +670,14 @@ public class ModelCom
     public Statement createLiteralStatement( Resource r, Property p, char o )
         { return createStatement( r, p, createTypedLiteral( o ) ); }
     
-    public Statement createStatement( Resource r, Property p, float o )
-        { return createStatement( r, p, createLiteral( o ) ); }
+    public Statement createLiteralStatement( Resource r, Property p, float o )
+        { return createStatement( r, p, createTypedLiteral( o ) ); }
     
-    public Statement createStatement( Resource r, Property p, double o )
-        { return createStatement( r, p, createLiteral( o ) ); }
+    public Statement createLiteralStatement( Resource r, Property p, double o )
+        { return createStatement( r, p, createTypedLiteral( o ) ); }
     
     public Statement createStatement( Resource r, Property p, String o )
         { return createStatement( r, p, createLiteral( o ) ); }
-    
-    /**
-     * @deprecated Use {@link #createLiteralStatement(Resource,Property,Object)} instead
-     */
-    public Statement createTypedStatement( Resource r, Property p, Object o )
-        {
-            return createLiteralStatement( r, p, o );
-            }
 
     public Statement createLiteralStatement( Resource r, Property p, Object o )
         { return createStatement( r, p, asObject( o ) ); }

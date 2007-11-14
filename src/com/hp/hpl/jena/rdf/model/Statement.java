@@ -262,61 +262,62 @@ public interface Statement extends FrontsTriple
     */
     public boolean hasWellFormedXML();
     
-    /** change the object of the statement (S, P, X) to (S, P, o).
-     * @return this object to enable cascading of method calls.
-     * @param o The new value to be set.
-     *
-     */
-    public Statement changeTypedObject( boolean o );
+    /** 
+         Remove this statement (s, p, x) from the model that contains it. Create a
+         new statement (s, p, o'), where o' is tye typed literal corresponding to
+         o, add it to the model, and answer it.
+    */
+    public Statement changeLiteralObject( boolean o );
     
-    /** @deprecated use changeTypedObject etc */
-    public Statement changeObject( boolean o );
+    /** 
+         Remove this statement (s, p, x) from the model that contains it. Create a
+         new statement (s, p, o'), where o' is tye typed literal corresponding to
+         o, add it to the model, and answer it.
+    */
+    public Statement changeLiteralObject( long o );
     
-    /** change the object of the statement (S, P, X) to (S, P, o).
-     *  <p>The statement with the old value is removed from the model and 
-     *  a new statement with the new value added and returned.</p>
-     * @param o The value to be set.
-     *
-     * @return the new (S, P, o) statement.
-     */
-    public Statement changeTypedObject( long o );
+    /** 
+         Remove this statement (s, p, x) from the model that contains it. Create a
+         new statement (s, p, o'), where o' is tye typed literal corresponding to
+         o, add it to the model, and answer it.
+    */
+    public Statement changeLiteralObject( int o );
+    
+    /** 
+         Remove this statement (s, p, x) from the model that contains it. Create a
+         new statement (s, p, o'), where o' is tye typed literal corresponding to
+         o, add it to the model, and answer it.
+    */
+    public Statement changeLiteralObject(char o) ;
+    
+    /** 
+         Remove this statement (s, p, x) from the model that contains it. Create a
+         new statement (s, p, o'), where o' is tye typed literal corresponding to
+         o, add it to the model, and answer it.
+    */
+    public Statement changeLiteralObject( float o );
+    
+    /** 
+         Remove this statement (s, p, x) from the model that contains it. Create a
+         new statement (s, p, o'), where o' is tye typed literal corresponding to
+         o, add it to the model, and answer it.
+    */
+    public Statement changeLiteralObject( double o );
+    
+    /** @deprecated use changeLiteralObject etc */
+    public Statement changeObject( float o );
 
-    /** @deprecated use changeTypedObject etc */
+    /** @deprecated use changeLiteralObject etc */
+    public Statement changeObject( boolean o );
+
+    /** @deprecated use changeLiteralObject etc */
     public Statement changeObject( long o );
     
-    /** change the object of the statement (S, P, X) to (S, P, o).
-     *  <p>The statement with the old value is removed from the model and 
-     *  a new statement with the new value added and returned.</p>
-     * @param o The value to be set.
-     *
-     * @return the new (S, P, o) statement.
-     */
-    public Statement changeObject(char o) ;
-    
-    /** change the object of the statement (S, P, X) to (S, P, o).
-     *  <p>The statement with the old value is removed from the model and 
-     *  a new statement with the new value added and returned.</p>
-     * @param o The value to be set.
-     *
-     * @return the new (S, P, o) statement.
-     */
-    public Statement changeTypedObject( float o );
-    
-    /** @deprecated use changeTypedObject etc */
-    public Statement changeObject( float o );
-    
-    
-    /** change the object of the statement (S, P, X) to (S, P, o).
-     *  <p>The statement with the old value is removed from the model and 
-     *  a new statement with the new value added and returned.</p>
-     * @param o The value to be set.
-     *
-     * @return the new (S, P, o) statement.
-     */
-    public Statement changeTypedObject( double o );
-    
-    /** @deprecated use changeTypedObject etc */
+    /** @deprecated use changeLiteralObject etc */
     public Statement changeObject( double o );
+
+    /** @deprecated use changeLiteralObject etc */
+    public Statement changeObject(Object o) ;
     
     /** change the object of the statement (S, P, X) to (S, P, o).
      *  <p>The statement with the old value is removed from the model and 
@@ -365,17 +366,6 @@ public interface Statement extends FrontsTriple
      * @return the new (S, P, o) statement.
      */
     public Statement changeObject(RDFNode o) ;
-    
-    /** change the object of the statement (S, P, X) to o.
-     *  <p>The statement with the old value is removed from the model and 
-     *  a new statement with the new value added.</p>
-     *  The Object o is converted to a string representation by calling its
-     *  <CODE>toString()</CODE> method.
-     * @param o The value to be set.
-     *
-     * @return the new (S, P, o) statement.
-     */
-    public Statement changeObject(Object o) ;
     
     /** Remove this statement from its associated model.
      *

@@ -2691,7 +2691,7 @@ public class Regression extends Object {
             n++; stmt = m.createLiteralStatement(m.createResource(),
                                           RDF.value, tvBoolean);
             n++; m.add(stmt);
-            n++; stmt = stmt.changeTypedObject(!tvBoolean);
+            n++; stmt = stmt.changeLiteralObject(!tvBoolean);
             n++;  if (! (stmt.getBoolean() == !tvBoolean)) error(test,n);
             n++;  if (  m.containsLiteral(stmt.getSubject(), RDF.value, tvBoolean))
                         error(test,n);
@@ -2702,7 +2702,7 @@ public class Regression extends Object {
             n++; stmt = m.createLiteralStatement(m.createResource(),
                                           RDF.value, tvBoolean);
             n++; m.add(stmt);
-            n++; stmt = stmt.changeTypedObject(tvByte);
+            n++; stmt = stmt.changeLiteralObject(tvByte);
             n++;  if (! (stmt.getByte() == tvByte)) error(test,n);
             n++;  if (  m.containsLiteral(stmt.getSubject(), RDF.value, tvBoolean))
                         error(test,n);
@@ -2713,7 +2713,7 @@ public class Regression extends Object {
             n++; stmt = m.createLiteralStatement(m.createResource(),
                                           RDF.value, tvBoolean);
             n++; m.add(stmt);
-            n++; stmt = stmt.changeTypedObject(tvShort);
+            n++; stmt = stmt.changeLiteralObject(tvShort);
             n++;  if (! (stmt.getShort() == tvShort)) error(test,n);
             n++;  if (  m.containsLiteral(stmt.getSubject(), RDF.value, tvBoolean))
                         error(test,n);
@@ -2724,7 +2724,7 @@ public class Regression extends Object {
             n++; stmt = m.createLiteralStatement(m.createResource(),
                                           RDF.value, tvBoolean);
             n++; m.add(stmt);
-            n++; stmt = stmt.changeTypedObject(tvInt);
+            n++; stmt = stmt.changeLiteralObject(tvInt);
             n++;  if (! (stmt.getInt() == tvInt)) error(test,n);
             n++;  if (  m.containsLiteral(stmt.getSubject(), RDF.value, tvBoolean))
                         error(test,n);
@@ -2735,7 +2735,7 @@ public class Regression extends Object {
             n++; stmt = m.createLiteralStatement(m.createResource(),
                                           RDF.value, tvBoolean);
             n++; m.add(stmt);
-            n++; stmt = stmt.changeTypedObject(tvLong);
+            n++; stmt = stmt.changeLiteralObject(tvLong);
             n++;  if (! (stmt.getLong() == tvLong)) error(test,n);
             n++;  if (  m.containsLiteral(stmt.getSubject(), RDF.value, tvBoolean))
                         error(test,n);
@@ -2746,7 +2746,7 @@ public class Regression extends Object {
             n++; stmt = m.createLiteralStatement(m.createResource(),
                                           RDF.value, tvBoolean);
             n++; m.add(stmt);
-            n++; stmt = stmt.changeObject(tvChar);
+            n++; stmt = stmt.changeLiteralObject(tvChar);
             n++;  if (! (stmt.getChar() == tvChar)) error(test,n);
             n++;  if (  m.containsLiteral(stmt.getSubject(), RDF.value, tvBoolean))
                         error(test,n);
@@ -2757,7 +2757,7 @@ public class Regression extends Object {
             n++; stmt = m.createLiteralStatement(m.createResource(),
                                           RDF.value, tvBoolean);
             n++; m.add(stmt);
-            n++; stmt = stmt.changeTypedObject(tvFloat);
+            n++; stmt = stmt.changeLiteralObject(tvFloat);
             n++;  if (! ((stmt.getFloat()-tvFloat)<0.00005)) error(test,n);
             n++;  if (  m.containsLiteral(stmt.getSubject(), RDF.value, tvBoolean))
                         error(test,n);
@@ -2768,7 +2768,7 @@ public class Regression extends Object {
             n++; stmt = m.createLiteralStatement(m.createResource(),
                                           RDF.value, tvBoolean);
             n++; m.add(stmt);
-            n++; stmt = stmt.changeTypedObject(tvDouble);
+            n++; stmt = stmt.changeLiteralObject(tvDouble);
             n++;  if (! ((stmt.getDouble()-tvDouble)<0.0005)) error(test,n);
             n++;  if (  m.containsLiteral(stmt.getSubject(), RDF.value, tvBoolean))
                         error(test,n);

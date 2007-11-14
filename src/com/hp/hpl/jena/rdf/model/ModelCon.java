@@ -383,6 +383,18 @@ public interface ModelCon {
         Answer a new Statement object (s, p, o') where o' is the typed literal
         corresponding to o using createTypedLiteral.
     */
+    public Statement createLiteralStatement( Resource s, Property p, float o );
+    
+    /** 
+        Answer a new Statement object (s, p, o') where o' is the typed literal
+        corresponding to o using createTypedLiteral.
+    */
+    public Statement createLiteralStatement( Resource s, Property p, double o );
+    
+    /** 
+        Answer a new Statement object (s, p, o') where o' is the typed literal
+        corresponding to o using createTypedLiteral.
+    */
     public Statement createLiteralStatement( Resource s, Property p, long o );
     
     /** 
