@@ -658,25 +658,17 @@ public class ModelCom
     public Literal createLiteral( Object v )  
         { return createLiteral( v.toString(), "" ); }
     
-    public Statement createStatement( Resource r, Property p, boolean o )
-        { return createStatement( r, p, createLiteral( o ) ); }
+    public Statement createLiteralStatement( Resource r, Property p, boolean o )
+        { return createStatement( r, p, createTypedLiteral( o ) ); }
     
-    public Statement createStatement( Resource r, Property p, long o )
-        { return createStatement( r, p, createLiteral( o ) ); }
-    
-    /**
-     * @deprecated Use {@link #createLiteralStatement(Resource,Property,int)} instead
-     */
-    public Statement createTypedStatement( Resource r, Property p, int o )
-        {
-            return createLiteralStatement( r, p, o );
-            }
+    public Statement createLiteralStatement( Resource r, Property p, long o )
+        { return createStatement( r, p, createTypedLiteral( o ) ); }
 
     public Statement createLiteralStatement( Resource r, Property p, int o )
         { return createStatement( r, p, createTypedLiteral( o ) ); }
     
-    public Statement createStatement( Resource r, Property p, char o )
-        { return createStatement( r, p, createLiteral( o ) ); }
+    public Statement createLiteralStatement( Resource r, Property p, char o )
+        { return createStatement( r, p, createTypedLiteral( o ) ); }
     
     public Statement createStatement( Resource r, Property p, float o )
         { return createStatement( r, p, createLiteral( o ) ); }
