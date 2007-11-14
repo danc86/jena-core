@@ -162,17 +162,17 @@ public class NewRegressionResources extends NewRegressionBase
         Resource tvResource = m.createResource();
         String lang = "fr";
     //
-        assertTrue( r.addTypedProperty( RDF.value, tvBoolean ).hasTypedProperty( RDF.value, tvBoolean ) );
-        assertTrue( r.addTypedProperty( RDF.value, tvByte ).hasTypedProperty( RDF.value, tvByte ) );
-        assertTrue( r.addTypedProperty( RDF.value, tvShort ).hasTypedProperty( RDF.value, tvShort ) );
-        assertTrue( r.addTypedProperty( RDF.value, tvInt ).hasTypedProperty( RDF.value, tvInt ) );
-        assertTrue( r.addTypedProperty( RDF.value, tvLong ).hasTypedProperty( RDF.value, tvLong ) );
-        assertTrue( r.addTypedProperty( RDF.value, tvChar ).hasTypedProperty( RDF.value, tvChar ) );
-        assertTrue( r.addTypedProperty( RDF.value, tvFloat ).hasTypedProperty( RDF.value, tvFloat ) );
-        assertTrue( r.addTypedProperty( RDF.value, tvDouble ).hasTypedProperty( RDF.value, tvDouble ) );
+        assertTrue( r.addLiteral( RDF.value, tvBoolean ).hasLiteral( RDF.value, tvBoolean ) );
+        assertTrue( r.addLiteral( RDF.value, tvByte ).hasLiteral( RDF.value, tvByte ) );
+        assertTrue( r.addLiteral( RDF.value, tvShort ).hasLiteral( RDF.value, tvShort ) );
+        assertTrue( r.addLiteral( RDF.value, tvInt ).hasLiteral( RDF.value, tvInt ) );
+        assertTrue( r.addLiteral( RDF.value, tvLong ).hasLiteral( RDF.value, tvLong ) );
+        assertTrue( r.addLiteral( RDF.value, tvChar ).hasLiteral( RDF.value, tvChar ) );
+        assertTrue( r.addLiteral( RDF.value, tvFloat ).hasLiteral( RDF.value, tvFloat ) );
+        assertTrue( r.addLiteral( RDF.value, tvDouble ).hasLiteral( RDF.value, tvDouble ) );
         assertTrue( r.addProperty( RDF.value, tvString ).hasProperty( RDF.value, tvString ) );
         assertTrue( r.addProperty( RDF.value, tvString, lang ).hasProperty( RDF.value, tvString, lang ) );
-        assertTrue( r.addTypedProperty( RDF.value, tvObject ).hasTypedProperty( RDF.value, tvObject ) );
+        assertTrue( r.addLiteral( RDF.value, tvObject ).hasLiteral( RDF.value, tvObject ) );
         assertTrue( r.addProperty( RDF.value, tvLiteral ).hasProperty( RDF.value, tvLiteral ) );
         assertTrue( r.addProperty( RDF.value, tvResource ).hasProperty( RDF.value, tvResource ) );
         assertTrue( r.getRequiredProperty( RDF.value ).getSubject().equals( r ) );

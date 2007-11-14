@@ -54,13 +54,13 @@ public class TestCaseBugs
             Object   oc   = RDFS.Class;
             Object   op   = RDF.Property;
             
-            Statement s = model.createStatement(r, RDF.type, oc);
+            Statement s = model.createLiteralStatement(r, RDF.type, oc);
             assertInstanceOf(Resource.class, s.getObject() );
             
             s.changeObject(op);
             assertInstanceOf(Resource.class, s.getObject() );
             
-            model.add(r, RDF.type, oc);
+            model.addLiteral(r, RDF.type, oc);
             RDFNode n = model.listStatements()
                              .nextStatement()
                              .getObject();
@@ -68,6 +68,6 @@ public class TestCaseBugs
             
             assertTrue(model.listSubjectsWithProperty(RDF.type, oc).hasNext());
             
-            assertTrue(model.contains(r, RDF.type, oc));  
+            assertTrue(model.containsLiteral(r, RDF.type, oc));  
          }
 }

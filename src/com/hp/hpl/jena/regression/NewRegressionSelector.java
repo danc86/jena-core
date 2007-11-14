@@ -69,10 +69,10 @@ public class NewRegressionSelector extends ModelTestBase
             {
             for (int j = 0; j < num; j++) 
                 {
-                m.addTyped( subject[i], predicate[j], tvBooleans[j] );
-                m.addTyped( subject[i], predicate[j], tvLongs[j] );
-                m.addTyped( subject[i], predicate[j], tvChars[j] );
-                m.addTyped( subject[i], predicate[j], tvDoubles[j] );
+                m.addLiteral( subject[i], predicate[j], tvBooleans[j] );
+                m.addLiteral( subject[i], predicate[j], tvLongs[j] );
+                m.addLiteral( subject[i], predicate[j], tvChars[j] );
+                m.addLiteral( subject[i], predicate[j], tvDoubles[j] );
                 m.add( subject[i], predicate[j], tvStrings[j] );
                 m.add( subject[i], predicate[j], tvStrings[j], langs[j] );
                 m.add( subject[i], predicate[j], tvLitObjs[j] );

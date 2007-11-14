@@ -176,15 +176,15 @@ public class NewRegressionListSubjects extends ModelTestBase
             }
         
         for (int i = 0; i < num; i += 1) 
-            m.addTyped(subjects[i], predicates[4], false );
+            m.addLiteral(subjects[i], predicates[4], false );
         
         for (int i = 0; i < 2 ; i += 1) 
             {
             for (int j = 0; j < 2; j += 1) 
                 {
                 m.add(subjects[i], predicates[j], m.createTypedLiteral( tvBooleans[j] ) );
-                m.addTyped(subjects[i], predicates[j], tvLongs[j] );
-                m.addTyped(subjects[i], predicates[j], tvChars[j] );
+                m.addLiteral(subjects[i], predicates[j], tvLongs[j] );
+                m.addLiteral(subjects[i], predicates[j], tvChars[j] );
                 m.add(subjects[i], predicates[j], m.createTypedLiteral( tvFloats[j] ) );
                 m.add(subjects[i], predicates[j], m.createTypedLiteral( tvDoubles[j] ) );
                 m.add(subjects[i], predicates[j], tvStrings[j] );

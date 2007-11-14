@@ -447,25 +447,25 @@ public class TestBugReports
 
         Statement st = model1.createStatement(sub, pred, obj);
         model1.add(st);
-        st.createReifiedStatement().addTypedProperty(probabilityP, 0.9);
+        st.createReifiedStatement().addLiteral(probabilityP, 0.9);
         assertTrue("st should be reified", st.isReified());
 
         Statement st2 = model2.createStatement(sub, pred, obj);
         model2.add(st2);
-        st2.createReifiedStatement().addTypedProperty(probabilityP, 0.3);
+        st2.createReifiedStatement().addLiteral(probabilityP, 0.3);
         assertTrue("st2 should be reified", st2.isReified());
 
-        sub.addTypedProperty(probabilityP, 0.3);
-        sub.removeAll(probabilityP).addTypedProperty(probabilityP, 0.3); //!!!
+        sub.addLiteral(probabilityP, 0.3);
+        sub.removeAll(probabilityP).addLiteral(probabilityP, 0.3); //!!!
                                                                     // exception
 
         // Part B - exception in remove All
         Individual sub2 = model2.createIndividual("http://mytest#i1", model1.getProfile().CLASS());
 
-        sub.addTypedProperty(probabilityP, 0.3);
+        sub.addLiteral(probabilityP, 0.3);
         sub.removeAll(probabilityP); //!!! exception
 
-        sub2.addTypedProperty(probabilityP, 0.3);
+        sub2.addLiteral(probabilityP, 0.3);
         sub2.removeAll(probabilityP); //!!! exception
 
     }

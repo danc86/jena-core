@@ -130,7 +130,7 @@ public class NewRegressionStatements extends ModelTestBase
     public void testCreateStatementFactory()
         {
         LitTestObj tv = new LitTestObj( Long.MIN_VALUE );
-        Statement s = m.createStatement( r, p, tv );
+        Statement s = m.createLiteralStatement( r, p, tv );
         assertEquals( r, s.getSubject() );
         assertEquals( p, s.getPredicate() );
         assertEquals( tv, s.getObject( new LitTestObjF() ) );

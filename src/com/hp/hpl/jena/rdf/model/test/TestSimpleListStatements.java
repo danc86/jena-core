@@ -39,15 +39,15 @@ public class TestSimpleListStatements extends ModelTestBase
         
     	model = ModelFactory.createDefaultModel();
     	model.createResource("http://example.org/boolean")
-    	     .addTypedProperty(RDF.value, booleanValue);             
+    	     .addLiteral(RDF.value, booleanValue);             
         model.createResource("http://example.org/char")
-             .addTypedProperty(RDF.value, charValue);             
+             .addLiteral(RDF.value, charValue);             
         model.createResource("http://example.org/long")             
-             .addTypedProperty(RDF.value, longValue);              
+             .addLiteral(RDF.value, longValue);              
         model.createResource("http://example.org/float")
-             .addTypedProperty(RDF.value, floatValue);            
+             .addLiteral(RDF.value, floatValue);            
         model.createResource("http://example.org/double")
-             .addTypedProperty(RDF.value, doubleValue);             
+             .addLiteral(RDF.value, doubleValue);             
         model.createResource("http://example.org/string")
              .addProperty(RDF.value, stringValue);             
         model.createResource("http://example.org/langString")
