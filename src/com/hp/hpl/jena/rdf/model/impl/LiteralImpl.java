@@ -219,15 +219,16 @@ public class LiteralImpl extends EnhNode implements Literal {
         if (isPlainLiteral()) {
             return Byte.parseByte(getLexicalForm());
         } else {
-            return asNumber(getValue()).byteValue();
+            return byteValue( asNumber( getValue() ) );
         }
     }
+
     
     public short getShort()  {
         if (isPlainLiteral()) {
             return Short.parseShort(getLexicalForm());
         } else {
-            return asNumber(getValue()).shortValue();
+            return shortValue( asNumber( getValue() ) );
         }
     }
 
@@ -235,7 +236,7 @@ public class LiteralImpl extends EnhNode implements Literal {
         if (isPlainLiteral()) {
             return Integer.parseInt(getLexicalForm());
         } else {
-            return asNumber(getValue()).intValue();
+            return intValue( asNumber( getValue() ) );
         }
     }
 
@@ -335,6 +336,27 @@ public class LiteralImpl extends EnhNode implements Literal {
             message += "Java representation type is " + (value == null ? "null" : value.getClass().toString());
             throw new DatatypeFormatException(message);
         }
-    }
+    }    
+    private byte byteValue( Number n )
+        {
+        return (byte) getIntegralValueInRange( Byte.MIN_VALUE, n, Byte.MAX_VALUE );
+        }
+
+    private short shortValue( Number n )
+        {
+        return (short) getIntegralValueInRange( Short.MIN_VALUE, n, Short.MAX_VALUE );
+        }
+
+    private int intValue( Number n )
+        {        
+        return (int) getIntegralValueInRange( Integer.MIN_VALUE, n, Integer.MAX_VALUE );
+        }
+
+    private long getIntegralValueInRange( long min, Number n, long max )
+        {
+        long result = n.longValue();
+        if (min <= result && result <= max) return result;
+        throw new IllegalArgumentException( "byte value required: " + result );
+        }
         
 }

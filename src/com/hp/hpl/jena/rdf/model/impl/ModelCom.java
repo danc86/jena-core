@@ -149,27 +149,6 @@ public class ModelCom
 
     public Model add( Resource s, Property p, String o, String l )
         { return add( s, p, o, l, false ); }
-    
-    /**
-        ensure that an object is an RDFNode. If it isn't, fabricate a literal
-        from its string representation. NOTE: probably proper data-typing
-        makes this suspect - Chris introduced it to abstract from some existing code.
-    */
-    private RDFNode ensureRDFNode( Object o )
-        {
-        return o instanceof RDFNode 
-            ? (RDFNode) o 
-            : literal( o.toString(), null, false )
-            ;
-        }
-        
-    /**
-     * @deprecated Use {@link #addLiteral(Resource,Property,Object)} instead
-     */
-    public Model addTyped( Resource s, Property p, Object o )  
-        {
-            return addLiteral( s, p, o );
-            }
 
     public Model addLiteral( Resource s, Property p, Object o )  
         { return add( s, p, asObject( o ) ); }
@@ -631,24 +610,6 @@ public class ModelCom
         LiteralLabel ll = new LiteralLabel( value );
         return new LiteralImpl( Node.createLiteral( ll ), this);
         }
-
-    public Literal createLiteral( boolean v )  
-        { return createLiteral( String.valueOf( v ), "" ); }
-    
-    public Literal createLiteral( int v )  
-        { return createLiteral( String.valueOf( v ), "" ); }
-    
-    public Literal createLiteral( long v )  
-        { return createLiteral( String.valueOf( v ), "" ); }
-    
-    public Literal createLiteral( char v )  
-        { return createLiteral( String.valueOf( v ), "" ); }
-    
-    public Literal createLiteral( float v )  
-        { return createLiteral( String.valueOf( v ), "" ); }
-    
-    public Literal createLiteral( double v )  
-        { return createLiteral( String.valueOf( v ), "" ); }
     
     public Literal createLiteral( String v )  
         { return createLiteral( v, "" ); }
@@ -661,9 +622,6 @@ public class ModelCom
     
     public Literal createLiteral(String v, String l, boolean wellFormed) 
         { return literal( v, l, wellFormed ); }
-    
-    public Literal createLiteral( Object v )  
-        { return createLiteral( v.toString(), "" ); }
     
     public Statement createLiteralStatement( Resource r, Property p, boolean o )
         { return createStatement( r, p, createTypedLiteral( o ) ); }

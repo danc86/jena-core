@@ -297,7 +297,7 @@ public class TestList
             
             assertEquals( "List head should be 'fred'", "fred", ((Literal) l1.getHead()).getString() );
             
-            l1.setHead( m.createLiteral( 42 ) );
+            l1.setHead( m.createTypedLiteral( 42 ) );
             checkValid( "sethead2", l1, true );
             assertEquals( "List head should be '42'", 42, ((Literal) l1.getHead()).getInt() );
             

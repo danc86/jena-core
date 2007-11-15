@@ -386,7 +386,7 @@ public class TestBugReports
 
         ObjectProperty p = m.createObjectProperty(NS + "p");
         Restriction r = m.createRestriction(p);
-        HasValueRestriction hv = r.convertToHasValueRestriction(m.createLiteral(1));
+        HasValueRestriction hv = r.convertToHasValueRestriction(m.createTypedLiteral(1));
 
         RDFNode n = hv.getHasValue();
         assertFalse("Should not be able to convert literal to individual", n.canAs(Individual.class));

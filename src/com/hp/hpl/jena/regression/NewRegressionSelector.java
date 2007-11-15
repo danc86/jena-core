@@ -54,8 +54,8 @@ public class NewRegressionSelector extends ModelTestBase
                                    "test8 testing string 2" };
         String     langs[]      = { "en", "fr" };
 
-        Literal     tvLitObjs[]  = { m.createLiteral(new LitTestObjF()),
-                                    m.createLiteral(new LitTestObjF()) };
+        Literal     tvLitObjs[]  = { m.createTypedLiteral(new LitTestObjF()),
+                                    m.createTypedLiteral(new LitTestObjF()) };
         Resource    tvResObjs[]  = { m.createResource(new ResTestObjF()),
                                     m.createResource(new ResTestObjF()) };
 

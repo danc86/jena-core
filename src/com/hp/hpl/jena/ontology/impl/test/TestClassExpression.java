@@ -401,8 +401,8 @@ public class TestClassExpression
             new OntTestCase( "AllValuesFromRestriction.allValuesFrom.datarange", true, false, false, false ) {
                 public void ontTest( OntModel m ) throws Exception {
                     Profile prof = m.getProfile();
-                    Literal x = m.createLiteral( 1 );
-                    Literal y = m.createLiteral( 2 );
+                    Literal x = m.createTypedLiteral( 1 );
+                    Literal y = m.createTypedLiteral( 2 );
                     DataRange dr = m.createDataRange( m.createList( new RDFNode[] {x, y} ) );
                     OntProperty p = m.createObjectProperty( NS + "p" );
 
@@ -518,8 +518,8 @@ public class TestClassExpression
             new OntTestCase( "SomeValuesFromRestriction.SomeValuesFrom.datarange", true, false, false, false ) {
                 public void ontTest( OntModel m ) throws Exception {
                     Profile prof = m.getProfile();
-                    Literal x = m.createLiteral( 1 );
-                    Literal y = m.createLiteral( 2 );
+                    Literal x = m.createTypedLiteral( 1 );
+                    Literal y = m.createTypedLiteral( 2 );
                     DataRange dr = m.createDataRange( m.createList( new RDFNode[] {x, y} ) );
                     OntProperty p = m.createObjectProperty( NS + "p" );
 

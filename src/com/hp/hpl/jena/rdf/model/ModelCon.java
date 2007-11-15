@@ -225,59 +225,13 @@ public interface ModelCon {
  * @return a property instance
  */
     public Property createProperty(String uri) ;
-
-//    /** create a literal from a boolean value.
-//     *
-//     * <p> The value is converted to a string using its <CODE>toString</CODE>
-//     * method. </p>
-//     * @param v the value of the literal
-//     * @return a new literal representing the value v
-//     * @deprecated Applications should use typed literals
-//     */
-//    public Literal createTypedLiteral(boolean v) ; 
-    /** create a literal from an integer value.
-     *
-     * @param v the value of the literal
-     * @return a new literal representing the value v
-     * @deprecated Applications should use typed literals
-     */   
-    public Literal createLiteral(long v) ;
-    /** create a literal from a char value.
-     *
-     * @param v the value of the literal
-     * @return a new literal representing the value v
-     * @deprecated Applications should use typed literals
-     */
-    public Literal createLiteral(char v) ;
-//    /** create a literal from a float value.
-//     *
-//     * @param v the value of the literal
-//     * @return a new literal representing the value v
-//     * @deprecated Applications should use typed literals
-//     */
-//    public Literal createLiteral(float v) ;
-//    /** create a literal from a double value.
-//     *
-//     * @param v the value of the literal
-//     * @return a new literal representing the value v
-//     * @deprecated Applications should use typed literals
-//     */
-//    public Literal createLiteral(double v) ;
     
     /** create a literal from a String value.
      *
      * @param v the value of the literal
      * @return a new literal representing the value v
      */
-    public Literal createLiteral(String v) ;
-    
-    /** create a literal from an Object.
-     *
-     * @return a new literal representing the value v
-     * @param v the value of the literal.
-     * @deprecated Applications should use typed literals
-     */
-    public Literal createLiteral(Object v) ;
+    public Literal createLiteral( String v );
  
     /** create a type literal from a boolean value.
      *

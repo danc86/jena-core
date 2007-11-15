@@ -154,8 +154,8 @@ public class NewRegressionListSubjects extends ModelTestBase
         {
         final int num = 5;
         tvLitObjs = new Literal[] 
-            { m.createLiteral( new LitTestObjF() ),
-            m.createLiteral( new LitTestObjF() ) };
+            { m.createTypedLiteral( new LitTestObjF() ),
+            m.createTypedLiteral( new LitTestObjF() ) };
         
         tvResObjs  = new Resource[] 
             { m.createResource( new ResTestObjF() ),

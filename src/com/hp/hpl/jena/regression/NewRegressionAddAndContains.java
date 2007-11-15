@@ -131,7 +131,7 @@ public class NewRegressionAddAndContains extends NewRegressionBase
     
     public void testAddContainLiteralByStatement()
         {
-        Literal L = m.createLiteral( 210 );
+        Literal L = m.createTypedLiteral( 210 );
         Statement s = m.createStatement( S, RDF.value, L );
         assertTrue( m.add( s ).contains( s ) );
         assertTrue( m.contains( S, RDF.value ) );
