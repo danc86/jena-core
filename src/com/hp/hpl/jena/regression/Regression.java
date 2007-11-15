@@ -1331,9 +1331,6 @@ public class Regression extends Object {
         String  test = "Test8";
         int     n = 0;
         int     num = 5;
-        
-        System.err.println( "Warning: other test8 tests suppressed pending deprecations for listSubjectsWithProperty" );
-        if (true) return;
 
         Resource  subject[] = new Resource[num];
         Property  predicate[] = new Property[num];
