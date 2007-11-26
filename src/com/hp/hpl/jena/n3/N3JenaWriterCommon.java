@@ -336,6 +336,9 @@ public class N3JenaWriterCommon implements RDFWriter
 //            out.println("# Base: " + baseURIref);
     }
     
+    protected IndentedWriter getOutput() { return out ; }
+    protected Map getPrefixes() { return prefixMap ; }
+    
     protected void writePrefixes(Model model)
     {
         for (Iterator pIter = prefixMap.keySet().iterator(); pIter.hasNext();)

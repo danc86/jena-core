@@ -39,6 +39,9 @@
   <property name="etc.dir"         value="etc"/>
   <property name="test.dir"        value="testing"/>
 
+  <property name="bin.dir"        value="bin"/>
+  <property name="bat.dir"        value="bat"/>
+
   <!-- Vocabulary generation -->
   <property name="vocab.java"      value="src/com/hp/hpl/jena/vocabulary" />
   <property name="vocab.tool"      value="jena.schemagen" />
@@ -369,6 +372,14 @@
     <copy todir="${dist.dir}/${etc.dir}">
       <fileset dir="${etc.dir}" includes="**"/>
     </copy>
+    <!-- Scripts -->
+    <copy todir="${dist.dir}/${bin.dir}">
+      <fileset dir="${bin.dir}" includes="**"/>
+    </copy>
+    <copy todir="${dist.dir}/${bat.dir}">
+      <fileset dir="${bat.dir}" includes="**"/>
+    </copy>
+    
     <!-- Documentation : Try to be clear here -->
     <!-- Javadoc is part of the documentation directory -->
     <copy todir="${dist.dir}/${doc.dir}">
