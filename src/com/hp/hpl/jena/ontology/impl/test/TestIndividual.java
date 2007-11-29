@@ -24,6 +24,8 @@ package com.hp.hpl.jena.ontology.impl.test;
 
 // Imports
 ///////////////
+import java.util.Iterator;
+
 import junit.framework.TestSuite;
 
 import com.hp.hpl.jena.ontology.*;
@@ -38,8 +40,8 @@ import com.hp.hpl.jena.ontology.*;
  *         (<a  href="mailto:Ian.Dickinson@hp.com" >email</a>)
  * @version CVS $Id$
  */
-public class TestIndividual 
-    extends OntTestBase 
+public class TestIndividual
+    extends OntTestBase
 {
     // Constants
     //////////////////////////////////
@@ -58,12 +60,12 @@ public class TestIndividual
     static public TestSuite suite() {
         return new TestIndividual( "TestIndividual" );
     }
-    
+
     public TestIndividual( String name ) {
         super( name );
     }
-    
-    
+
+
     // External signature methods
     //////////////////////////////////
 
@@ -77,29 +79,190 @@ public class TestIndividual
                     Individual x = m.createIndividual( A );
                     Individual y = m.createIndividual( A );
                     Individual z = m.createIndividual( A );
-                    
+
                     x.addSameAs( y );
                     assertEquals( "Cardinality should be 1", 1, x.getCardinality( prof.SAME_AS() ) );
                     assertEquals( "x should be the same as y", y, x.getSameAs() );
                     assertTrue( "x should be the same as y", x.isSameAs( y ) );
-                    
+
                     x.addSameAs( z );
                     assertEquals( "Cardinality should be 2", 2, x.getCardinality( prof.SAME_AS() ) );
                     iteratorTest( x.listSameAs(), new Object[] {z,y} );
-                    
+
                     x.setSameAs( z );
                     assertEquals( "Cardinality should be 1", 1, x.getCardinality( prof.SAME_AS() ) );
                     assertEquals( "x should be same indiv. as z", z, x.getSameAs() );
-                    
+
                     x.removeSameAs( y );
                     assertEquals( "Cardinality should be 1", 1, x.getCardinality( prof.SAME_AS() ) );
                     x.removeSameAs( z );
                     assertEquals( "Cardinality should be 0", 0, x.getCardinality( prof.SAME_AS() ) );
                 }
             },
+
+            new OntTestCase( "Individual.hasOntClass", true, true, true, true ) {
+                protected void ontTest( OntModel m ) throws Exception {
+                    OntClass A = m.createClass( NS + "A" );
+                    OntClass B = m.createClass( NS + "B" );
+                    Individual x = m.createIndividual( A );
+
+                    assertTrue( x.hasOntClass( A ) );
+                    assertFalse( x.hasOntClass( B ) );
+                }
+            },
+
+            new OntTestCase( "Individual.hasOntClass direct", true, true, true, true ) {
+                protected void ontTest( OntModel m ) throws Exception {
+                    OntClass A = m.createClass( NS + "A" );
+                    OntClass B = m.createClass( NS + "B" );
+                    A.addSubClass( B );
+
+                    Individual x = m.createIndividual( A );
+                    x.addRDFType( B );
+
+                    assertTrue( x.hasOntClass( A, false ) );
+                    assertTrue( x.hasOntClass( B, false ) );
+
+                    assertTrue( x.hasOntClass( A, false ) );
+                    assertTrue( x.hasOntClass( B, true ) );
+
+                }
+            },
+
+            new OntTestCase( "Individual.hasOntClass string", true, true, true, true ) {
+                protected void ontTest( OntModel m ) throws Exception {
+                    OntClass A = m.createClass( NS + "A" );
+
+                    Individual x = m.createIndividual( A );
+
+                    assertTrue( x.hasOntClass( NS + "A" ) );
+                }
+            },
+
+            new OntTestCase( "Individual.getOntClass", true, true, true, true ) {
+                protected void ontTest( OntModel m ) throws Exception {
+                    OntClass A = m.createClass( NS + "A" );
+                    Individual x = m.createIndividual( A );
+
+                    assertEquals( A, x.getOntClass() );
+                }
+            },
+
+            new OntTestCase( "Individual.getOntClass direct", true, true, true, true ) {
+                protected void ontTest( OntModel m ) throws Exception {
+                    OntClass A = m.createClass( NS + "A" );
+                    OntClass B = m.createClass( NS + "B" );
+                    A.addSubClass( B );
+
+                    Individual x = m.createIndividual( A );
+                    x.addRDFType( B );
+
+                    // should never get A since it's not a direct class
+                    assertEquals( B, x.getOntClass( true ) );
+                }
+            },
+
+            new OntTestCase( "Individual.listOntClasses", true, true, true, true ) {
+                protected void ontTest( OntModel m ) throws Exception {
+                    OntClass A = m.createClass( NS + "A" );
+                    OntClass B = m.createClass( NS + "B" );
+                    A.addSubClass( B );
+
+                    Individual x = m.createIndividual( A );
+                    x.addRDFType( B );
+
+                    iteratorTest( x.listOntClasses( false ), new Object[] {A,B} );
+
+                    // now check the return types
+                    for (Iterator i = x.listOntClasses( false ) ; i.hasNext(); ) {
+                        assertTrue( i.next() instanceof OntClass );
+                    }
+                }
+            },
+
+            new OntTestCase( "Individual.listOntClasses direct", true, true, true, true ) {
+                protected void ontTest( OntModel m ) throws Exception {
+                    OntClass A = m.createClass( NS + "A" );
+                    OntClass B = m.createClass( NS + "B" );
+                    A.addSubClass( B );
+
+                    Individual x = m.createIndividual( A );
+                    x.addRDFType( B );
+
+                    iteratorTest( x.listOntClasses( true ), new Object[] {B} );
+
+                    // now check the return types
+                    for (Iterator i = x.listOntClasses( true ) ; i.hasNext(); ) {
+                        assertTrue( i.next() instanceof OntClass );
+                    }
+                }
+            },
+
+            new OntTestCase( "Individual.addOntClass", true, true, true, true ) {
+                protected void ontTest( OntModel m ) throws Exception {
+                    OntClass A = m.createClass( NS + "A" );
+                    OntClass B = m.createClass( NS + "B" );
+                    A.addSubClass( B );
+
+                    Individual x = m.createIndividual( A );
+
+                    iteratorTest( x.listOntClasses( false ), new Object[] {A} );
+
+                    // add a class
+                    x.addOntClass( B );
+
+                    // test again
+                    iteratorTest( x.listOntClasses( false ), new Object[] {A,B} );
+                    for (Iterator i = x.listOntClasses( false ) ; i.hasNext(); ) {
+                        assertTrue( i.next() instanceof OntClass );
+                    }
+                }
+            },
+
+            new OntTestCase( "Individual.setOntClass", true, true, true, true ) {
+                protected void ontTest( OntModel m ) throws Exception {
+                    OntClass A = m.createClass( NS + "A" );
+                    OntClass B = m.createClass( NS + "B" );
+                    A.addSubClass( B );
+
+                    Individual x = m.createIndividual( A );
+
+                    iteratorTest( x.listOntClasses( false ), new Object[] {A} );
+
+                    // replace the class
+                    x.setOntClass( B );
+
+                    // test again
+                    iteratorTest( x.listOntClasses( false ), new Object[] {B} );
+                    for (Iterator i = x.listOntClasses( false ) ; i.hasNext(); ) {
+                        assertTrue( i.next() instanceof OntClass );
+                    }
+                }
+            },
+
+            new OntTestCase( "Individual.removeOntClass", true, true, true, true ) {
+                protected void ontTest( OntModel m ) throws Exception {
+                    OntClass A = m.createClass( NS + "A" );
+                    OntClass B = m.createClass( NS + "B" );
+
+                    Individual x = m.createIndividual( A );
+                    x.addOntClass( B );
+
+                    iteratorTest( x.listOntClasses( false ), new Object[] {A,B} );
+
+                    x.removeOntClass( A );
+                    iteratorTest( x.listOntClasses( false ), new Object[] {B} );
+
+                    x.removeOntClass( A );
+                    iteratorTest( x.listOntClasses( false ), new Object[] {B} );
+
+                    x.removeOntClass( B );
+                    iteratorTest( x.listOntClasses( false ), new Object[] {} );
+                }
+            },
         };
-    }    
-    
+    }
+
     // Internal implementation methods
     //////////////////////////////////
 
