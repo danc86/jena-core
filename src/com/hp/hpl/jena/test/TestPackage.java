@@ -61,7 +61,6 @@ public class TestPackage extends TestSuite {
         addTest("Reasoners", com.hp.hpl.jena.reasoner.test.TestPackage.suite());
         addTest("Composed graphs", com.hp.hpl.jena.graph.compose.test.TestPackage.suite() );
         addTest( "Ontology", com.hp.hpl.jena.ontology.impl.test.TestPackage.suite() );
-        addTest( "DAML", com.hp.hpl.jena.ontology.daml.impl.test.TestPackage.suite() );
         addTest( "cmd line utils", jena.test.TestPackage.suite() );
     }
 
