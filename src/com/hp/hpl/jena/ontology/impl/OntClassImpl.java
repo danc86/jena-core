@@ -681,6 +681,18 @@ public class OntClassImpl
 
 
     /**
+     * <p>Remove the given individual from the set of instances that are members of
+     * this class. This is effectively equivalent to the {@link Individual#removeOntClass} method,
+     * but invoked via the class resource rather than via the individual resource.</p>
+     * @param individual A resource denoting an individual that is no longer to be a member
+     * of this class
+     */
+    public void dropIndividual( Resource individual ) {
+        getModel().remove( individual, RDF.type, this );
+    }
+
+
+    /**
      * <p>Answer true if this class is one of the roots of the class hierarchy.
      * This will be true if either (i) this class has <code>owl:Thing</code>
      * (or <code>daml:Thing</code>) as a direct super-class, or (ii) it has
