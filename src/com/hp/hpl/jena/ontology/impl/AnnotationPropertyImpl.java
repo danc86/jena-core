@@ -40,8 +40,8 @@ import com.hp.hpl.jena.rdf.model.*;
  * @version CVS $Id$
  */
 public class AnnotationPropertyImpl
-    extends OntResourceImpl
-    implements AnnotationProperty 
+    extends OntPropertyImpl
+    implements AnnotationProperty
 {
     // Constants
     //////////////////////////////////
@@ -51,19 +51,19 @@ public class AnnotationPropertyImpl
 
     /**
      * A factory for generating AnnotationProperty facets from nodes in enhanced graphs.
-     * Note: should not be invoked directly by user code: use 
+     * Note: should not be invoked directly by user code: use
      * {@link com.hp.hpl.jena.rdf.model.RDFNode#as as()} instead.
      */
     public static Implementation factory = new Implementation() {
-        public EnhNode wrap( Node n, EnhGraph eg ) { 
+        public EnhNode wrap( Node n, EnhGraph eg ) {
             if (canWrap( n, eg )) {
                 return new AnnotationPropertyImpl( n, eg );
             }
             else {
                 throw new ConversionException( "Cannot convert node " + n + " to AnnotationProperty");
-            } 
+            }
         }
-        
+
         public boolean canWrap( Node node, EnhGraph eg ) {
             // node will support being an AnnotationProperty facet if it has rdf:type owl:AnnotationProperty or equivalent
             Profile profile = (eg instanceof OntModel) ? ((OntModel) eg).getProfile() : null;
@@ -79,15 +79,15 @@ public class AnnotationPropertyImpl
      * <p>
      * Construct an ontology resource represented by the given node in the given graph.
      * </p>
-     * 
+     *
      * @param n The node that represents the resource
      * @param g The enh graph that contains n
      */
     public AnnotationPropertyImpl( Node n, EnhGraph g ) {
         super( n, g );
     }
-    
-    
+
+
     // Constructors
     //////////////////////////////////
 
@@ -98,22 +98,22 @@ public class AnnotationPropertyImpl
      * <p>
      * Answer true to indicate that this resource is an RDF property.
      * </p>
-     * 
+     *
      * @return True.
      */
     public boolean isProperty() {
         return true;
     }
-    
-    
+
+
     /**
      * @see Property#getOrdinal()
      */
     public int getOrdinal() {
         return ((Property) as( Property.class )).getOrdinal();
     }
-    
-    
+
+
     // Internal implementation methods
     //////////////////////////////////
 

@@ -33,7 +33,7 @@ import com.hp.hpl.jena.rdf.model.*;
  * language.  Annotation properties are distinguished in some languages (such as
  * OWL) - in order to maintain theoretical properties of the language, which depend
  * on clean separation of syntactic categories.  Annotation properties may not be
- * used in property expressions. There is no guarantee that a given langauge will
+ * used in property expressions. There is no guarantee that a given language will
  * have any annotation properties.
  * </p>
  *
@@ -41,8 +41,8 @@ import com.hp.hpl.jena.rdf.model.*;
  *         (<a  href="mailto:Ian.Dickinson@hp.com" >email</a>)
  * @version CVS $Id$
  */
-public interface AnnotationProperty 
-    extends OntResource, Property
+public interface AnnotationProperty
+    extends OntProperty, Property
 {
     // Constants
     //////////////////////////////////
