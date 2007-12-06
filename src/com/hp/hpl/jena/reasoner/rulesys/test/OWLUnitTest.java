@@ -134,6 +134,9 @@ public class OWLUnitTest extends TestCase {
         new TestDef("cardinality/Manifest005-mod.rdf", FB | MINI),
         new TestDef("cardinality/Manifest006-mod.rdf", FB | MINI),
         
+        new TestDef("localtests/ManifestHv1.rdf", FB | MINI | MICRO),
+        new TestDef("localtests/ManifestHv2.rdf", FB | MINI | MICRO),
+        
         // Needs bNode creation rule
         new TestDef("someValuesFrom/Manifest001.rdf", FB ),
     
