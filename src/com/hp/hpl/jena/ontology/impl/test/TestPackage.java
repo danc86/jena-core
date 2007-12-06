@@ -40,6 +40,7 @@ public class TestPackage extends TestSuite {
         addTest( new TestSuite( TestBugReports.class ));
         addTest( new TestSuite( TestOntClass.class ));
         addTest( new TestSuite( TestFrameView.class ));
+        addTest( new TestSuite( TestOntTools.class ));
     }
 
     private void addTest(String name, TestSuite tc) {
