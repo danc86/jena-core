@@ -32,6 +32,7 @@ import com.hp.hpl.jena.ontology.*;
 import com.hp.hpl.jena.ontology.impl.*;
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.rdf.model.test.*;
+import com.hp.hpl.jena.reasoner.rulesys.test.TestBugs;
 import com.hp.hpl.jena.reasoner.test.TestUtil;
 import com.hp.hpl.jena.shared.PrefixMapping;
 import com.hp.hpl.jena.vocabulary.*;
@@ -1021,7 +1022,9 @@ public class TestOntModel
         assertTrue( m.contains( c, RDFS.subClassOf, a ) );
     }
 
-    /** Getting the deductions model of an OntModel */
+    /** Getting the deductions model of an OntModel
+     * see also {@link TestBugs#testOntModelGetDeductions()}
+     * */
     public void testGetDeductionsModel0() {
         OntModel m = ModelFactory.createOntologyModel( OntModelSpec.OWL_MEM_MICRO_RULE_INF );
         OntClass a = m.createClass( NS + "A" );
@@ -1031,7 +1034,6 @@ public class TestOntModel
         b.addSubClass( c );
 
         // we see the entailments only in the deductions model
-        System.out.println( "Before:" );
         Model dm = m.getDeductionsModel();
         assertTrue( dm.contains( OWL.Nothing, RDFS.subClassOf, a ) );
         assertTrue( dm.contains( OWL.Nothing, RDFS.subClassOf, c ) );
@@ -1042,7 +1044,6 @@ public class TestOntModel
 
         dm = m.getDeductionsModel();
 
-        // prior to fixing bugrep 1835879, this test would fail
         assertFalse( dm.contains( OWL.Nothing, RDFS.subClassOf, a ) );
         assertTrue( dm.contains( OWL.Nothing, RDFS.subClassOf, c ) );
     }

@@ -2662,31 +2662,22 @@ public class OntModelImpl
      * @return The derivations model, if one is defined, or else null
      */
     public Model getDeductionsModel() {
-        // old code - can be pruned once we have the unit test sorted out
-        // TODO: complete the unit test for bug 1835879
-//        if (m_deductionsModel == null) {
-//            InfGraph infGraph = getInfGraph();
-//            if (infGraph != null) {
-//                Graph deductionsGraph = infGraph.getDeductionsGraph();
-//                if (deductionsGraph != null) {
-//                    m_deductionsModel = ModelFactory.createModelForGraph( deductionsGraph );
-//                }
-//            }
-//        }
-//        return m_deductionsModel;
-        Model deductions = null;
-
-        InfGraph infGraph = getInfGraph();
-        if (infGraph != null) {
-            Graph deductionsGraph = infGraph.getDeductionsGraph();
-            if (deductionsGraph != null) {
-                deductions = ModelFactory.createModelForGraph( deductionsGraph );
+        if (m_deductionsModel == null) {
+            InfGraph infGraph = getInfGraph();
+            if (infGraph != null) {
+                Graph deductionsGraph = infGraph.getDeductionsGraph();
+                if (deductionsGraph != null) {
+                    m_deductionsModel = ModelFactory.createModelForGraph( deductionsGraph );
+                }
             }
-        } else {
+        }
+        else {
+            // ensure that the cached model sees the updated changes from the
+            // underlying reasoner graph
             getInfGraph().prepare();
         }
 
-        return deductions;
+        return m_deductionsModel;
     }
 
 
