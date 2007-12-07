@@ -34,8 +34,7 @@ import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.rdf.model.test.*;
 import com.hp.hpl.jena.reasoner.test.TestUtil;
 import com.hp.hpl.jena.shared.PrefixMapping;
-import com.hp.hpl.jena.vocabulary.OWL;
-import com.hp.hpl.jena.vocabulary.RDF;
+import com.hp.hpl.jena.vocabulary.*;
 
 
 
@@ -976,7 +975,77 @@ public class TestOntModel
         assertTrue( "b should be imported", m.hasLoadedImport( "file:testing/ontology/testImport3/b.owl" ) );
     }
 
+    /** Test getting conclusions after loading imports */
+    public void testAddImports0() {
+        OntModel base = ModelFactory.createOntologyModel( OntModelSpec.OWL_MEM );
 
+        base.createClass( NS + "A" );
+        base.createClass( NS + "B" );
+
+        OntModel m = ModelFactory.createOntologyModel( OntModelSpec.OWL_MEM_MICRO_RULE_INF, base );
+
+        OntClass a = m.getOntClass( NS + "A" );
+        OntClass b = m.getOntClass( NS + "B" );
+
+        // nothing is known about a and b yet
+        assertFalse( a.hasSubClass( b ) );
+
+        // add some ontology data
+        OntModel imp = ModelFactory.createOntologyModel( OntModelSpec.OWL_MEM );
+        imp.add( b, RDFS.subClassOf, a );
+
+        m.addSubModel( imp, true );
+        assertTrue( a.hasSubClass( b ) );
+    }
+
+    public void testAddImports1() {
+        String ns = "http://jena.hpl.hp.com/2003/03/testont";
+        OntModel base = ModelFactory.createOntologyModel( OntModelSpec.OWL_MEM );
+
+        OntDocumentManager odm = OntDocumentManager.getInstance();
+        odm.addAltEntry( ns + "#a", "file:testing/ontology/testImport7/a.owl" );
+
+
+        OntModel m = ModelFactory.createOntologyModel( OntModelSpec.OWL_MEM_MICRO_RULE_INF, base );
+
+        Ontology oo = base.createOntology( ns );
+        oo.addImport( base.createResource( ns + "#a") );
+
+        // nothing is known about a and b yet
+        Resource a = m.getResource( ns + "#A" );
+        Resource c = m.getResource( ns + "#C" );
+        assertFalse( m.contains( c, RDFS.subClassOf, a ) );
+
+        // when we load the imports, the odm must kick the reasoner with a rebind()
+        m.getDocumentManager().loadImports( m );
+        assertTrue( m.contains( c, RDFS.subClassOf, a ) );
+    }
+
+    /** Getting the deductions model of an OntModel */
+    public void testGetDeductionsModel0() {
+        OntModel m = ModelFactory.createOntologyModel( OntModelSpec.OWL_MEM_MICRO_RULE_INF );
+        OntClass a = m.createClass( NS + "A" );
+        OntClass b = m.createClass( NS + "B" );
+        OntClass c = m.createClass( NS + "C" );
+
+        b.addSubClass( c );
+
+        // we see the entailments only in the deductions model
+        System.out.println( "Before:" );
+        Model dm = m.getDeductionsModel();
+        assertTrue( dm.contains( OWL.Nothing, RDFS.subClassOf, a ) );
+        assertTrue( dm.contains( OWL.Nothing, RDFS.subClassOf, c ) );
+
+        a.addSubClass( b );
+
+        assertTrue( a.hasSubClass( c ));
+
+        dm = m.getDeductionsModel();
+
+        // prior to fixing bugrep 1835879, this test would fail
+        assertFalse( dm.contains( OWL.Nothing, RDFS.subClassOf, a ) );
+        assertTrue( dm.contains( OWL.Nothing, RDFS.subClassOf, c ) );
+    }
 
 
     // Internal implementation methods

@@ -889,6 +889,9 @@ public class OntDocumentManager
                 loadImport( model, importURI, readQueue );
             }
         }
+
+        // ensure that the reasoner gets to see the updated axioms
+        model.rebind();
     }
 
 
