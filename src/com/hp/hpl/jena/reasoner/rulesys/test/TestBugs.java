@@ -54,7 +54,7 @@ public class TestBugs extends TestCase {
     public static TestSuite suite() {
         return new TestSuite( TestBugs.class );
 //        TestSuite suite = new TestSuite();
-//        suite.addTest(new TestBugs( "testDeductionListener" ));
+//        suite.addTest(new TestBugs( "testOntModelGetDeductions" ));
 //        return suite;
     }
 
@@ -902,6 +902,26 @@ public class TestBugs extends TestCase {
         }
     }
 
+    /**
+     * Problems with getDeductionsModel not rerunning prepare  at OntModel level
+     */
+    public void testOntModelGetDeductions() {
+        List rules = Rule.parseRules( "(?x rdfs:subClassOf ?y) (?i rdf:type ?x) -> (?i rdf:type ?y)." );
+        GenericRuleReasoner reasoner = new GenericRuleReasoner(rules);
+        OntModelSpec spec = new OntModelSpec(OntModelSpec.OWL_MEM);
+        spec.setReasoner(reasoner);
+        OntModel om = ModelFactory.createOntologyModel(spec);
+        OntClass A = om.createClass(PrintUtil.egNS + "A");
+        OntClass B = om.createClass(PrintUtil.egNS + "B");
+        OntResource i = om.createOntResource(PrintUtil.egNS + "i");
+        A.addSuperClass(B);
+        i.addRDFType(A);
+        Model deductions = om.getDeductionsModel();
+        i.removeRDFType(A);
+        deductions = om.getDeductionsModel();
+        assertFalse("Deductions model updating correctly", deductions.contains(i, RDF.type, B));
+    }
+    
     /**
      * Builtin which just records whether it has been called.
      * Used in implementing testGroundClosure.

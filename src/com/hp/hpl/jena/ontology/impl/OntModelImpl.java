@@ -2682,6 +2682,8 @@ public class OntModelImpl
             if (deductionsGraph != null) {
                 deductions = ModelFactory.createModelForGraph( deductionsGraph );
             }
+        } else {
+            getInfGraph().prepare();
         }
 
         return deductions;
