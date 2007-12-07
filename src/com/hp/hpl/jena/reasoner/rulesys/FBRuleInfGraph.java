@@ -670,20 +670,22 @@ public class FBRuleInfGraph  extends BasicForwardRuleInfGraph implements Backwar
      * the default brute force implementation by one that can reuse some of the
      * existing deductions.
      */
-    public InfGraph cloneWithPremises(Graph premises) {
-        prepare();
-        FBRuleInfGraph graph = new FBRuleInfGraph(getReasoner(), rawRules, this);
-        if (useTGCCaching) graph.setUseTGCCache();
-        graph.setDerivationLogging(recordDerivations);
-        graph.setTraceOn(traceOn);
-        // Implementation note:  whilst current tests pass its not clear that 
-        // the nested passing of FBRuleInfGraph's will correctly handle all
-        // cases of indirectly bound schema data. If we do uncover a problem here
-        // then either include the raw schema in a Union with the premises or
-        // revert of a more brute force version. 
-        graph.rebind(premises);
-        return graph;
-    }
+    // This implementatin was incomplete. By commenting it out we revert to
+    // the global brute force solution of cloning the full graph
+//    public InfGraph cloneWithPremises(Graph premises) {
+//        prepare();
+//        FBRuleInfGraph graph = new FBRuleInfGraph(getReasoner(), rawRules, this);
+//        if (useTGCCaching) graph.setUseTGCCache();
+//        graph.setDerivationLogging(recordDerivations);
+//        graph.setTraceOn(traceOn);
+//        // Implementation note:  whilst current tests pass its not clear that 
+//        // the nested passing of FBRuleInfGraph's will correctly handle all
+//        // cases of indirectly bound schema data. If we do uncover a problem here
+//        // then either include the raw schema in a Union with the premises or
+//        // revert of a more brute force version. 
+//        graph.rebind(premises);
+//        return graph;
+//    }
     
     /** 
      * Free all resources, any further use of this Graph is an error.

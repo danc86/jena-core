@@ -10,6 +10,7 @@
 package com.hp.hpl.jena.reasoner;
 
 import com.hp.hpl.jena.graph.*;
+import com.hp.hpl.jena.graph.compose.MultiUnion;
 import com.hp.hpl.jena.graph.compose.Union;
 import com.hp.hpl.jena.graph.impl.*;
 import com.hp.hpl.jena.shared.*;
@@ -455,7 +456,23 @@ public abstract class BaseInfGraph extends GraphBase implements InfGraph {
      * may be able to a more efficient job.
      */
     public InfGraph cloneWithPremises(Graph premises) {
-        return getReasoner().bindSchema(getSchemaGraph()).bind(new Union(getRawGraph(), premises));
+        MultiUnion union = new MultiUnion();
+        Graph raw = getRawGraph();
+        union.addGraph( raw );
+        union.setBaseGraph( raw );
+        union.addGraph( premises );
+        Graph schema = getSchemaGraph();
+        if (schema != null) {
+            if (schema instanceof BaseInfGraph) {
+                BaseInfGraph ischema = (BaseInfGraph)schema;
+                Graph sschema = ischema.getSchemaGraph();
+                if (sschema != null) union.addGraph( sschema );
+                Graph rschema = ischema.getRawGraph();
+                if (rschema != null) union.addGraph( rschema );
+            }
+            
+        }
+        return getReasoner().bind(union);
     }
 
     /**
