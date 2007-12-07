@@ -269,6 +269,24 @@ public class TestGenericRules extends TestCase {
      }
     
     /**
+     * Check that the use of typed literals in the configuration also works
+     */
+    public void testTypedConfigParameters() {
+        Model m = ModelFactory.createDefaultModel();
+        Resource configuration= m.createResource(GenericRuleReasonerFactory.URI);
+        configuration.addProperty(ReasonerVocabulary.PROPenableTGCCaching, m.createTypedLiteral(Boolean.TRUE));
+        
+        GenericRuleReasoner reasoner = (GenericRuleReasoner)GenericRuleReasonerFactory.theInstance().create(configuration);
+        InfModel im = ModelFactory.createInfModel(reasoner, ModelFactory.createDefaultModel());
+        Resource Ac = im.createResource(PrintUtil.egNS + "A");
+        Resource Bc = im.createResource(PrintUtil.egNS + "B");
+        Resource Cc = im.createResource(PrintUtil.egNS + "C");
+        im.add(Ac, RDFS.subClassOf, Bc);
+        im.add(Bc, RDFS.subClassOf, Cc);
+        assertTrue("TGC enabled correctly", im.contains(Ac, RDFS.subClassOf, Cc));
+    }
+    
+    /**
      * Test control of functor filtering
      */
     public void testHybridFunctorFilter() {

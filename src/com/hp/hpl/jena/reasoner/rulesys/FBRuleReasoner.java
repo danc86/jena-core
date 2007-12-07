@@ -346,7 +346,8 @@ public class FBRuleReasoner implements RuleReasoner {
         {
         return
             (value instanceof Resource && doSetResourceParameter( parameter, (Resource) value ))
-            || doSetParameter( parameter, value.toString() )
+            || (value instanceof Literal && doSetParameter( parameter, ((Literal)value).getValue() ))
+            || doSetParameter(parameter, value.toString())
             ;
         }
     
