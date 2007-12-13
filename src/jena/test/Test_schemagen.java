@@ -76,7 +76,6 @@ public class Test_schemagen
     /** This test used to fail with an abort, but we now guess the NS based on prevalence */
     public void testNoBaseURI0() throws Exception {
         String SOURCE = PREFIX + "ex:A a owl:Class .";
-        boolean ex = false;
         testSchemagenOutput( SOURCE, null,
                              new String[] {},
                              new String[] {".*public static final Resource A =.*"},
@@ -430,6 +429,23 @@ public class Test_schemagen
                              new String[] {".*[^\r]"} );
     }
 
+    public void testIncludeSource0() throws Exception {
+        String SOURCE = PREFIX + "ex:A a owl:Class . ex:i a ex:A . ex:p a owl:ObjectProperty .";
+        testSchemagenOutput( SOURCE, null,
+                             new String[] {"-a", "http://example.com/sg#", "--owl", "--includeSource"},
+                             new String[] {".*private static final String SOURCE.*",
+                                           ".*ex:A *a *owl:Class.*"},
+                             new String[] {} );
+    }
+
+    public void testIncludeSource1() throws Exception {
+        String SOURCE = PREFIX + "ex:A a owl:Class ; rdfs:comment \"comment\".";
+        testSchemagenOutput( SOURCE, null,
+                             new String[] {"-a", "http://example.com/sg#", "--owl", "--includeSource"},
+                             new String[] {".*\\\\\"comment\\\\\".*\""},
+                             new String[] {} );
+    }
+
 
     // Internal implementation methods
     //////////////////////////////////
@@ -580,6 +596,7 @@ public class Test_schemagen
         // override the behaviours from schemagen
         protected void selectInput() {
             m_source.add( m_auxSource );
+            m_source.setNsPrefixes( m_auxSource );
         }
         protected void selectOutput() {
             // call super to allow option processing
