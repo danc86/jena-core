@@ -73,21 +73,14 @@ public class Test_schemagen
     // External signature methods
     //////////////////////////////////
 
+    /** This test used to fail with an abort, but we now guess the NS based on prevalence */
     public void testNoBaseURI0() throws Exception {
         String SOURCE = PREFIX + "ex:A a owl:Class .";
         boolean ex = false;
-        try {
-            testSchemagenOutput( SOURCE, null,
-                                 new String[] {},
-                                 new String[] {},
-                                 new String[] {} );
-        }
-        catch (RuntimeException e) {
-            assertEquals( "Could not determine the base URI for the input vocabulary", e.getMessage() );
-            ex = true;
-        }
-
-        assertTrue( "Expected abort", ex );
+        testSchemagenOutput( SOURCE, null,
+                             new String[] {},
+                             new String[] {".*public static final Resource A =.*"},
+                             new String[] {} );
     }
 
     public void testClass0() throws Exception {
