@@ -31,6 +31,22 @@ public class ContentAssembler extends AssemblerBase implements Assembler
         checkType( root, JA.Content );
         return new Content( loadContent( new ArrayList(), a, root ) );
         }
+    
+    public static Set contentProperties = new HashSetWith()
+        .with( JA.content )
+        .with( JA.literalContent )
+        .with( JA.externalContent )
+        .with( JA.quotedContent )
+        ;
+    
+    static class HashSetWith extends HashSet
+        {
+        public HashSetWith with( Object x )
+            {
+            this.add( x );
+            return this;
+            }
+        }
 
     public List loadContent( List contents, Assembler a, Resource root )
         {
@@ -157,9 +173,7 @@ public class ContentAssembler extends AssemblerBase implements Assembler
 
     public Object getFileManager()
         { return defaultFileManager; }
-
     }
-
 
 /*
  * (c) Copyright 2005, 2006, 2007 Hewlett-Packard Development Company, LP

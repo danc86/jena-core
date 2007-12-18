@@ -44,7 +44,6 @@ public class PrefixMappingAssembler extends AssemblerBase implements Assembler
             result.setNsPrefix( prefix.getLexicalForm(), namespace.getLexicalForm() );
             }
         }
-
     }
 
 

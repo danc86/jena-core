@@ -12,6 +12,8 @@ import com.hp.hpl.jena.assembler.*;
 import com.hp.hpl.jena.assembler.exceptions.*;
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.shared.*;
+import com.hp.hpl.jena.util.iterator.Map1;
+import com.hp.hpl.jena.vocabulary.RDF;
 
 public abstract class ModelAssembler extends AssemblerBase implements Assembler
     {    
@@ -21,6 +23,13 @@ public abstract class ModelAssembler extends AssemblerBase implements Assembler
         { 
         Model m = openModel( a, root, mode );
         Content c = getContent( a, root );
+        addContent( root, m, c );
+        m.setNsPrefixes( getPrefixMapping( a, root ) );
+        return m; 
+        }
+
+    private void addContent( Resource root, Model m, Content c )
+        {
         if (m.supportsTransactions())
             {
             m.begin();
@@ -29,8 +38,6 @@ public abstract class ModelAssembler extends AssemblerBase implements Assembler
             }
         else
             c.fill( m );
-        m.setNsPrefixes( getPrefixMapping( a, root ) );
-        return m; 
         }
     
     public static ReificationStyle getReificationStyle( Resource root )
@@ -57,10 +64,43 @@ public abstract class ModelAssembler extends AssemblerBase implements Assembler
         { return (Model) open( this, root, mode ); }
 
     protected Content getContent( Assembler a, Resource root )
-        { 
-        return new Content( new ContentAssembler().loadContent( new ArrayList(), a, root ) );
+        {
+        final Resource newRoot = oneLevelClone( root );
+        final Model fragment = newRoot.getModel();
+        return fragment.isEmpty() ? new Content() : (Content) a.open( a, completedClone( root, newRoot, fragment ) );
         }
 
+    private Resource completedClone( Resource root, Resource newRoot, Model fragment )
+        {
+        Model typed = fragment.add( newRoot, RDF.type, JA.Content );
+        return (Resource) newRoot.inModel(  ModelFactory.createUnion( root.getModel(), typed ) );
+        }
+
+    private Resource oneLevelClone( Resource root )
+        {
+        Model partialCopy = ModelFactory.createDefaultModel();
+        Resource result = partialCopy.createResource();
+        Map1 replace = replaceSubjectMap( partialCopy, result );
+        for (Iterator it = ContentAssembler.contentProperties.iterator(); it.hasNext();)
+            partialCopy.add( copyProperties( root, replace, (Property) it.next() ) );
+        return result;
+        }
+
+    private List copyProperties( Resource root, Map1 replace, Property property )
+        { return root.listProperties( property  ).mapWith( replace ).toList(); }
+
+    private Map1 replaceSubjectMap( final Model inModel, final Resource newSubject )
+        {
+        Map1 replace = new Map1() 
+            {
+            public Object map1( Object o )
+                { 
+                Statement s = (Statement) o;
+                return inModel.createStatement( newSubject, s.getPredicate(), s.getObject() );
+                }
+            };
+        return replace;
+        }
     }
 
 
