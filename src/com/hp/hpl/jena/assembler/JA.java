@@ -111,6 +111,8 @@ public class JA
 
     public static final Property contentEncoding = property( "contentEncoding" );
 
+    public static final Property initialContent = property( "initialContent" );
+
     public static final Resource RuleSet = resource( "RuleSet" );
 
     public static final Property rule = property( "rule" );
