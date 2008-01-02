@@ -833,10 +833,14 @@ public class schemagen {
             writeln( 1, "private static final String SOURCE = " );
             boolean first = true;
 
-            StringTokenizer st = new StringTokenizer( output, m_nl );
+            StringTokenizer st = new StringTokenizer( output, "\n" );
             while (st.hasMoreTokens()) {
+                String tok = st.nextToken();
+                if (tok.endsWith( "\r" )) {
+                    tok = tok.substring( 0, tok.length() - 1 );
+                }
                 write( 2, first ? "   " : " + " );
-                writeln( 2, protectQuotes( st.nextToken() ) );
+                writeln( 2, protectQuotes( tok ) );
                 first = false;
             }
 
