@@ -18,17 +18,17 @@ final class MockTransactionModel extends ModelAssembler
     {
     private final List history;
     private final Model expected;
-    private final boolean supports;
-    private final boolean aborts;
+    private final boolean supportsTransactions;
+    private final boolean abortsOnAdd;
 
     protected MockTransactionModel
-        ( List history, Model expected, boolean supports, boolean aborts )
+        ( List history, Model expected, boolean supportsTransactions, boolean abortsOnAdd )
         {
         super();
         this.history = history;
         this.expected = expected;
-        this.supports = supports;
-        this.aborts = aborts;
+        this.supportsTransactions = supportsTransactions;
+        this.abortsOnAdd = abortsOnAdd;
         }
 
     protected Model openModel( Assembler a, Resource root, Mode irrelevant )
@@ -45,7 +45,12 @@ final class MockTransactionModel extends ModelAssembler
             public Model add( Model other )
                 {
                 history.add( "add" );
-                if (aborts) throw new RuntimeException( "model aborts on add" );
+                if (abortsOnAdd) 
+                    {
+                    RuntimeException e = new RuntimeException( "model aborts on add of " + other );
+                    // e.printStackTrace( System.err );
+                    throw e;
+                    }
                 super.add( other );
                 return this;
                 }
@@ -65,8 +70,8 @@ final class MockTransactionModel extends ModelAssembler
 
             public boolean supportsTransactions()
                 {
-                history.add( "supports[" + supports + "]" );
-                return supports;
+                history.add( "supports[" + supportsTransactions + "]" );
+                return supportsTransactions;
                 }
             };
         }

@@ -2818,7 +2818,7 @@ public class Regression extends Object {
             n++; stmt = m.createLiteralStatement(m.createResource(),
                                           RDF.value, tvBoolean);
             n++; m.add(stmt);
-            n++; stmt = stmt.changeObject(tvLitObj);
+            n++; stmt = stmt.changeObject( m.createTypedLiteral( tvLitObj ) );
             n++;  if (! (stmt.getObject(new LitTestObjF()).equals(tvLitObj)))
                       error(test,n);
             n++;  if (  m.containsLiteral(stmt.getSubject(), RDF.value, tvBoolean))

@@ -39,10 +39,10 @@ public class TestModelAssembler extends AssemblerTestBase
 
     public void testContent()
         {
-//        Resource root = resourceInModel( "x rdf:type ja:DefaultModel; x ja:initialContent c; c ja:quotedContent A; A P B" );
+        Resource root = resourceInModel( "x rdf:type ja:DefaultModel; x ja:initialContent c; c ja:quotedContent A; A P B" );
 //        root.getModel().write( System.err, "N3"  );
-//        Model m = (Model) new FakeModelAssembler().open( new ContentAssembler(), root, Mode.ANY );
-//        assertIsoModels( modelWithStatements( "A P B" ), m );
+        Model m = (Model) new FakeModelAssembler().open( new ContentAssembler(), root, Mode.ANY );
+        assertIsoModels( modelWithStatements( "A P B" ), m );
         }
     
     public void testGetsPrefixMappings()

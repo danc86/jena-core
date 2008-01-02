@@ -41,6 +41,12 @@ public class Content
         for (int i = 0; i < contents.size(); i += 1) ((Content) contents.get(i)).fill( m );
         return m; 
         }
+
+    public boolean isEmpty()
+        {
+        for (int i = 0; i < contents.size(); i += 1) if (!((Content) contents.get( i )).isEmpty()) return false;
+        return true;
+        }
     }
 
 

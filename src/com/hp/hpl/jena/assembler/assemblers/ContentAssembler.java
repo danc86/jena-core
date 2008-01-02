@@ -130,7 +130,11 @@ public class ContentAssembler extends AssemblerBase implements Assembler
     protected static Content newModelContent( final Model m )
         {
         return new Content() 
-            { public Model fill( Model x ) { x.setNsPrefixes( m ); return x.add( m ); } };
+            { 
+            public Model fill( Model x ) { x.setNsPrefixes( m ); return x.add( m ); } 
+            
+            public boolean isEmpty() { return m.isEmpty(); }
+            };
         }
 
     protected Content objectAsContent( FileManager fm, Statement s )
