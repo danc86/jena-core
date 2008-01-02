@@ -257,10 +257,19 @@ public class MoreTests extends TestCase implements RDFErrorHandler,
 		FileInputStream fin = new FileInputStream(
 				"testing/wg/rdf-charmod-literals/test001.rdf"
 				);
-		InputStreamReader r = new InputStreamReader(
+		InputStreamReader r = null;
+		try {
+		   r = new InputStreamReader(
 				fin,
 				"MS950"
 				);
+		}
+		catch (java.io.UnsupportedEncodingException e) {
+			System.err
+			.println("WARNING: Encoding mismatch3 test not executed on platform without MS950 encoding.");
+
+			return;
+		}
 		
 		
 		subTestEncodingMismatch2(r);
