@@ -81,7 +81,7 @@ public class TestOntModelAssembler extends AssemblerTestBase
         Assembler a = new OntModelAssembler();
         Assembler aa = new ModelAssembler()
             {
-            protected Model openModel( Assembler a, Resource root, Mode irrelevant )
+            protected Model openEmptyModel( Assembler a, Resource root, Mode irrelevant )
                 { 
                 assertEquals( resource( "y" ), root );
                 return baseModel;  
@@ -99,7 +99,7 @@ public class TestOntModelAssembler extends AssemblerTestBase
         Assembler a = new OntModelAssembler();
         Assembler aa = new ModelAssembler()
             {
-            protected Model openModel( Assembler a, Resource root, Mode irrelevant )
+            protected Model openEmptyModel( Assembler a, Resource root, Mode irrelevant )
                 { 
                 assertEquals( resource( "y" ), root );
                 return baseModel;  

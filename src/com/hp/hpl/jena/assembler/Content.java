@@ -17,6 +17,14 @@ import com.hp.hpl.jena.rdf.model.Model;
 */
 public class Content
     {
+    /**
+        An empty Content object for your convenience.
+    */
+    public static final Content empty = new Content();
+    
+    /**
+        The list of component Content objects. 
+    */
     protected final List contents;
     
     /**

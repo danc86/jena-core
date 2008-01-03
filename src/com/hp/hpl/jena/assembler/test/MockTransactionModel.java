@@ -37,7 +37,7 @@ final class MockTransactionModel extends ModelAssembler
         this.abortsOnAdd = abortsOnAdd;
         }
 
-    protected Model openModel( Assembler a, Resource root, Mode irrelevant )
+    protected Model openEmptyModel( Assembler a, Resource root, Mode irrelevant )
         {
         return new ModelCom( Factory.createDefaultGraph() ) 
             {

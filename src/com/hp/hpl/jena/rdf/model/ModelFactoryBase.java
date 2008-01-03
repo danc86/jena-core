@@ -37,7 +37,7 @@ public class ModelFactoryBase
     public static String guessDBDriver()
         { return gp( "db.driver", null ); }
     
-    /** Return true if the databas should support concurrent read during transactions */
+    /** Return true if the database should support concurrent read during transactions */
     public static boolean guessDBConcurrent() {
         return gp("db.concurrent", "true").equalsIgnoreCase("true");
     }

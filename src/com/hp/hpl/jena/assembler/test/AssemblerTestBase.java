@@ -6,7 +6,6 @@
 
 package com.hp.hpl.jena.assembler.test;
 
-
 import com.hp.hpl.jena.assembler.*;
 import com.hp.hpl.jena.assembler.assemblers.AssemblerBase;
 import com.hp.hpl.jena.assembler.exceptions.CannotConstructException;

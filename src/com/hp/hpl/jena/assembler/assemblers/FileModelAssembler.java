@@ -18,7 +18,7 @@ import com.hp.hpl.jena.util.FileUtils;
 
 public class FileModelAssembler extends NamedModelAssembler implements Assembler
     {
-    protected Model openModel( Assembler a, Resource root, Mode mode )
+    protected Model openEmptyModel( Assembler a, Resource root, Mode mode )
         {
         checkType( root, JA.FileModel );
         File fullName = getFileName( root );

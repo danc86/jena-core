@@ -74,8 +74,8 @@ public class ConnectionDescription
     public String toString()
         { 
         return
-            "UrlConnection("
-            + " subject=" + subject
+            "UrlConnection ("
+            + "subject=" + subject
             + " url=" + dbURL
             + " type=" + dbType
             + " user=" + dbUser

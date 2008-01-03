@@ -37,7 +37,7 @@ public class TestRDBModelAssembler extends AssemblerTestBase
         final Mode theMode = new Mode( true, true );
         Assembler a = new RDBModelAssembler()
             {
-            public Model openModel( Resource root, ConnectionDescription c, String name, ReificationStyle style, Mode mode )
+            public Model openModel( Resource root, ConnectionDescription c, String name, ReificationStyle style, Content initial, Mode mode )
                 {
                 assertSame( C, c );
                 assertSame( theMode, mode );
@@ -47,7 +47,6 @@ public class TestRDBModelAssembler extends AssemblerTestBase
         Assembler foo = new NamedObjectAssembler( resource( "C" ), C );
         assertSame( fake, a.open( foo, root, theMode ) );
         }
-    
     }
 
 

@@ -14,7 +14,7 @@ import com.hp.hpl.jena.reasoner.rulesys.GenericRuleReasonerFactory;
 
 public class InfModelAssembler extends ModelAssembler
     {
-    protected Model openModel( Assembler a, Resource root, Mode mode )
+    protected Model openEmptyModel( Assembler a, Resource root, Mode mode )
         {
         checkType( root, JA.InfModel );
         Model base = getBase( a, root, mode );

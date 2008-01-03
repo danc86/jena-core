@@ -14,7 +14,7 @@ import com.hp.hpl.jena.rdf.model.*;
 
 public class OntModelAssembler extends InfModelAssembler implements Assembler
     {
-    public Model openModel( Assembler a, Resource root, Mode mode )
+    public Model openEmptyModel( Assembler a, Resource root, Mode mode )
         {
         checkType( root, JA.OntModel );
         Model baseModel = getBase( a, root, mode );

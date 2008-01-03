@@ -18,7 +18,7 @@ public class MemoryModelAssembler extends ModelAssembler implements Assembler
         return super.open( a, root, mode );
         }
     
-    protected Model openModel( Assembler a, Resource root, Mode irrelevant )
+    protected Model openEmptyModel( Assembler a, Resource root, Mode irrelevant )
         { return ModelFactory.createDefaultModel( getReificationStyle( root )); }
     }
 

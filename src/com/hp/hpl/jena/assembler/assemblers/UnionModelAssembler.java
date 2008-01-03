@@ -21,7 +21,7 @@ public class UnionModelAssembler extends ModelAssembler implements Assembler
             { return NullIterator.instance; }
         };
     
-    protected Model openModel( Assembler a, Resource root, Mode mode )
+    protected Model openEmptyModel( Assembler a, Resource root, Mode mode )
         {
         checkType( root, JA.UnionModel );
         MultiUnion union = new MultiUnion();

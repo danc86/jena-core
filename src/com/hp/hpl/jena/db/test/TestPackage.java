@@ -99,6 +99,7 @@ public class TestPackage extends TestSuite
 		addTest( "TestQueryRDB", TestQueryRDB.suite());
 		addTest( "TestQuery1", TestQuery1.suite());
         addTest( "TestModelFactory", TestModelFactory.suite() );
+        addTestSuite( TestRDBAssemblerContents.class );
         }
 
     public static class TestModelFactory extends TestCase
