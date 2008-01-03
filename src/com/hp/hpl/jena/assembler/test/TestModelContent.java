@@ -54,8 +54,6 @@ public class TestModelContent extends AssemblerTestBase
             ( "x rdf:type ja:Model; x ja:content y; y rdf:type ja:Content; y rdf:type ja:LiteralContent; y ja:literalContent '_:x\\srdf:value\\s17.'" );
         try { a.open( Assembler.content, root  ); }
         catch (RuntimeException e) {}
-//        assertEquals( listOfStrings( "supports[false] add" ), history );
-//        assertIsoModels( expected, m );
         }
     
     public void testContentTransactionsCommit()
