@@ -22,8 +22,7 @@ public abstract class NodeToTriplesMapBase
     /**
          The map from nodes to Bunch(Triple).
     */
-     public BunchMap bunchMap = 
-         Factory.newHashing ? (BunchMap) new HashedBunchMap() : new WrappedHashMap();
+     public BunchMap bunchMap = new HashedBunchMap();
 
     /**
          The number of triples held in this NTM, maintained incrementally 

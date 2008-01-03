@@ -35,17 +35,12 @@ public class NodeToTriplesMapFaster extends NodeToTriplesMapBase
        else
            {
            if (s.size() == 9 && s instanceof ArrayBunch)
-               bunchMap.put( o, s = getHashedBunch( s ) );
+               bunchMap.put( o, s = new HashedTripleBunch( s ) );
            s.add( t );
            size += 1; 
            return true; 
            } 
        }
-
-    protected TripleBunch getHashedBunch( TripleBunch s )
-        {
-        return Factory.newHashing ? (TripleBunch) new HashedTripleBunch( s ) : new SetBunch( s );
-        }
     
     /**
         Remove <code>t</code> from this NTM. Answer <code>true</code> iff the 
