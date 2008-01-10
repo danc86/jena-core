@@ -414,14 +414,11 @@ public class OntDocumentManager
             getFileManager().resetCache();
         }
 
-        setDefaults();
-
         m_languageMap.clear();
         m_ignoreImports.clear();
-
-        // copy the standard prefixes
         m_prefixMap = new PrefixMappingImpl();
-        m_prefixMap.setNsPrefixes( PrefixMapping.Standard );
+
+        setDefaults();
 
         if (reload) {
             initialiseMetadata( m_searchPath );
@@ -1226,6 +1223,18 @@ public class OntDocumentManager
         setCacheModels( true );
         setUseDeclaredPrefixes( true );
         setProcessImports( true );
+        setDefaultPrefixMappings();
+    }
+
+
+    /**
+     * Set the default prefix mappings.
+     */
+    protected void setDefaultPrefixMappings() {
+        m_prefixMap.setNsPrefixes( PrefixMapping.Standard );
+
+        // PrefixMapping.Standard includes dc:, which OntModels traditionally haven't included
+        m_prefixMap.removeNsPrefix( "dc" );
     }
 
 

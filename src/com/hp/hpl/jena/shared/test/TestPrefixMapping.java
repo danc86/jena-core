@@ -21,38 +21,38 @@ public class TestPrefixMapping extends AbstractTestPrefixMapping
     {
     public TestPrefixMapping( String name )
         { super( name ); }
-        
+
     public static TestSuite suite()
-        { return new TestSuite( TestPrefixMapping.class ); }   
-    
+        { return new TestSuite( TestPrefixMapping.class ); }
+
     protected PrefixMapping getMapping()
-        { return new PrefixMappingImpl(); }        
-        
+        { return new PrefixMappingImpl(); }
+
     public void testStandard()
         { testStandard( PrefixMapping.Standard ); }
-    
+
     public void testExtended()
         { testExtended( PrefixMapping.Extended ); }
-    
+
     public void testStandard( PrefixMapping st )
         {
         assertEquals( RDF.getURI(), st.getNsPrefixURI( "rdf" ) );
         assertEquals( RDFS.getURI(), st.getNsPrefixURI( "rdfs" ) );
         assertEquals( DC.getURI(), st.getNsPrefixURI( "dc" ) );
         assertEquals( OWL.getURI(), st.getNsPrefixURI( "owl" ) );
-        assertEquals( DAMLVocabulary.NAMESPACE_DAML_2001_03_URI, st.getNsPrefixURI( "daml" ) );
-        }    
-    
+        }
+
     public void testExtended( PrefixMapping st )
         {
         testStandard( st );
+        assertEquals( DAMLVocabulary.NAMESPACE_DAML_2001_03_URI, st.getNsPrefixURI( "daml" ) );
         assertEquals( RSS.getURI(), st.getNsPrefixURI( "rss" ) );
         assertEquals( VCARD.getURI(), st.getNsPrefixURI( "vcard" ) );
         assertEquals( JenaModelSpec.getURI(), st.getNsPrefixURI( "jms" ) );
         assertEquals( JA.getURI(), st.getNsPrefixURI( "ja" ) );
         assertEquals( "http://www.example.org/", st.getNsPrefixURI( "eg" ) );
         }
-        
+
     }
 
 

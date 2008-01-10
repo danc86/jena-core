@@ -199,10 +199,10 @@ public class TestOntDocumentManager
         r.addProperty( OntDocManagerVocab.altURL, m.createResource("file:local.rdf") );
 
         OntDocumentManager odm = new OntDocumentManager( "file:etc/ont-policy-test.rdf" );
-        TestUtil.assertIteratorLength( odm.listDocuments(), 3 );
+        TestUtil.assertIteratorLength( odm.listDocuments(), 2 );
 
         odm.configure( m, false );
-        TestUtil.assertIteratorLength( odm.listDocuments(), 4 );
+        TestUtil.assertIteratorLength( odm.listDocuments(), 3 );
     }
 
     public void testConfigure1() {
@@ -213,7 +213,7 @@ public class TestOntDocumentManager
         r.addProperty( OntDocManagerVocab.altURL, m.createResource("file:local.rdf") );
 
         OntDocumentManager odm = new OntDocumentManager( "file:etc/ont-policy-test.rdf" );
-        TestUtil.assertIteratorLength( odm.listDocuments(), 3 );
+        TestUtil.assertIteratorLength( odm.listDocuments(), 2 );
 
         odm.configure( m );
         TestUtil.assertIteratorLength( odm.listDocuments(), 1 );

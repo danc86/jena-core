@@ -175,12 +175,12 @@ public class TestOntModel
         OntModel om = ModelFactory.createOntologyModel();
         om.setNsPrefix( "spoo", "http://spoo.spoo.com/spoo#" );
         om.add( statement( om, "ping http://spoo.spoo.com/spoo#pang pilly" ) );
-        om.add( statement( om, "gg http://www.daml.org/2001/03/daml+oil#hh ii" ) );
+        om.add( statement( om, "gg " + OWL.getURI() + "hh ii" ) );
         StringWriter sw = new StringWriter();
         om.write( sw );
         String s = sw.getBuffer().toString();
         assertTrue( s.indexOf( "xmlns:spoo=\"http://spoo.spoo.com/spoo#\"" ) > 0 );
-        assertTrue( s.indexOf( "xmlns:daml=\"http://www.daml.org/2001/03/daml+oil#\"" ) > 0 );
+        assertTrue( s.indexOf( "xmlns:owl=\"" + OWL.getURI() + "\"" ) > 0 );
         }
 
     /** Test writing the base model to an output stream */
