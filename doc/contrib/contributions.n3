@@ -110,4 +110,13 @@
     ; ct:licence "as per Jena"
     .
 
+[]
+   dc:creator "Todd Detwiler - University of Washington Structural Informatics Group"
+   ; dc:name "GLEEN"
+   ; dc:description "A path expression (a.k.a. \"regular paths\") property function library for ARQ SparQL"
+   ; ct:link "http://sig.biostr.washington.edu/projects/ontviews/gleen/index.html"
+   ; ct:linkTitle "GLEEN home"
+   ; ct:licence "Apache 2.0"
+   .
+
 
