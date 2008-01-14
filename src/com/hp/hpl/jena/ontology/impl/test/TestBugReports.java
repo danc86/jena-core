@@ -88,6 +88,7 @@ public class TestBugReports
     public void setUp() {
         // ensure the ont doc manager is in a consistent state
         OntDocumentManager.getInstance().reset( true );
+        OntDocumentManager.getInstance().setMetadataSearchPath( "file:etc/ont-policy.rdf", false );
     }
 
 
