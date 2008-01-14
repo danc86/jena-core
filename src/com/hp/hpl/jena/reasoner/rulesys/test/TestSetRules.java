@@ -9,12 +9,9 @@ import java.util.*;
 
 import junit.framework.TestSuite;
 
-import com.hp.hpl.jena.rdf.model.Model;
-import com.hp.hpl.jena.rdf.model.Resource;
-import com.hp.hpl.jena.rdf.model.impl.ModelSpecImpl;
+import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.rdf.model.test.ModelTestBase;
 import com.hp.hpl.jena.reasoner.*;
-import com.hp.hpl.jena.reasoner.Reasoner;
 import com.hp.hpl.jena.reasoner.rulesys.*;
 import com.hp.hpl.jena.reasoner.rulesys.impl.WrappedReasonerFactory;
 
@@ -67,9 +64,12 @@ public class TestSetRules extends ModelTestBase
             return uri; }
         }
     
+    private static Resource emptyResource = 
+        ModelFactory.createDefaultModel().createResource();
+    
     private static ReasonerFactory wrap( final ReasonerFactory rrf )
         {
-        return new WrappedReasonerFactory( rrf, ModelSpecImpl.emptyResource );
+        return new WrappedReasonerFactory( rrf, emptyResource );
         }
     
     }
