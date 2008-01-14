@@ -200,6 +200,7 @@ public class TestBugs extends TestCase {
      */
     public void testSubProperty() {
         OntModel model = ModelFactory.createOntologyModel(OntModelSpec.DAML_MEM_RDFS_INF, null);
+        model.getDocumentManager().setMetadataSearchPath( "file:etc/ont-policy-test.rdf", true );
 
         String base = "urn:x-hp-jena:test#";
         model.read( new ByteArrayInputStream( INPUT_SUBPROPERTY.getBytes() ), base );
