@@ -7,7 +7,6 @@
 package com.hp.hpl.jena.shared.test;
 
 import com.hp.hpl.jena.shared.*;
-import com.hp.hpl.jena.shared.PrefixMapping.Factory;
 import com.hp.hpl.jena.graph.test.*;
 
 import java.util.*;
@@ -215,18 +214,7 @@ public abstract class AbstractTestPrefixMapping extends GraphTestBase
     
     public static void testUseEasyPrefix( String title, PrefixMapping ns )
         {
-        testUsePrefix( title, ns );
         testShortForm( title, ns );
-        }
-    
-    public static void testUsePrefix( String title, PrefixMapping ns )
-        {
-        ns.setNsPrefix( "crisp", crispURI );
-        ns.setNsPrefix( "butter", butterURI );
-        assertEquals( title, "", ns.usePrefix( "" ) );
-        assertEquals( title, ropeURI, ns.usePrefix( ropeURI ) );
-        assertEquals( title, "crisp:tail", ns.usePrefix( crispURI + "tail" ) );
-        assertEquals( title, "butter:here:we:are", ns.usePrefix( butterURI + "here:we:are" ) );
         }
             
     public static void testShortForm( String title, PrefixMapping ns )

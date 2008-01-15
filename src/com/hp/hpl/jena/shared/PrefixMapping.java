@@ -141,12 +141,6 @@ public interface PrefixMapping
     String shortForm( String uri );
 
     /**
-        Old name for shortForm.
-        @deprecated - use shortForm
-    */
-    String usePrefix( String uri );
-
-    /**
         Answer a qname with the expansion of the given uri, or null if no such qname
         can be constructed using the mapping's prefixes.
     */
