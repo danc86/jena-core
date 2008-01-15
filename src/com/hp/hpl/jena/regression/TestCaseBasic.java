@@ -273,8 +273,6 @@ public class TestCaseBasic extends JenaTestBase {
 		} catch (Exception e) {
 			System.out.println(e);
 			assertTrue(false);
-//		System.err.println( "PONGLE" );
-//		throw new RuntimeException( e );
 		}
 	}
 

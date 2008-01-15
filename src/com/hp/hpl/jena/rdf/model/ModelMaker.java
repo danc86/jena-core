@@ -25,7 +25,7 @@ import com.hp.hpl.jena.util.iterator.*;
  	@author kers
 */
 
-public interface ModelMaker extends ModelSpec
+public interface ModelMaker extends ModelSource
     {
     /**
         Create a new Model associated with the given name. If there is no such

@@ -5,6 +5,8 @@
 */
 package com.hp.hpl.jena.mem;
 
+import com.hp.hpl.jena.shared.BrokenException;
+
 /**
     An implementation of BunchMap that does open-addressed hashing.
     @author kers
@@ -66,6 +68,10 @@ public class HashedBunchMap extends HashCommon implements BunchMap
             if (key != null) 
                 {
                 int j = findSlot( key );
+                if (j < 0) 
+                    {
+                    throw new BrokenException( "oh dear, already have a slot for " + key  + ", viz " + ~j );
+                    }
                 keys[j] = key;
                 values[j] = oldValues[i];
                 }

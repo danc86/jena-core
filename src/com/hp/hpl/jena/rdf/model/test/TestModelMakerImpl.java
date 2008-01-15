@@ -119,12 +119,6 @@ public class TestModelMakerImpl extends ModelTestBase
         assertTrue( maker.getGraphMaker() == graphMaker );
         }
 
-    public void testGetDescription()
-        {
-        maker.getDescription();
-        checkHistory( listOfOne( "getDescription()" ) );
-        }
-
     private void checkHistory( List expected )
         { assertEquals( expected, history() ); }
 

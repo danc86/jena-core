@@ -1107,16 +1107,17 @@ public class TestBugReports
 
     /** Test case for SF bug 937810 - NPE from ModelSpec.getDescription() */
     public void test_sf_937810() throws IllegalAccessException {
-        Field[] specs = OntModelSpec.class.getDeclaredFields();
-
-        for (int i = 0;  i < specs.length;  i++) {
-            if (Modifier.isPublic( specs[i].getModifiers()) &&
-                Modifier.isStatic( specs[i].getModifiers()) &&
-                specs[i].getType().equals( OntModelSpec.class )) {
-                OntModelSpec s = (OntModelSpec) specs[i].get( null );
-                assertNotNull( s.getDescription() );
-            }
-        }
+        System.err.println( ">> TestBugReports.test_sf_937810: declared obsolete [ModelSpecs are dead]" );
+//        Field[] specs = OntModelSpec.class.getDeclaredFields();
+//
+//        for (int i = 0;  i < specs.length;  i++) {
+//            if (Modifier.isPublic( specs[i].getModifiers()) &&
+//                Modifier.isStatic( specs[i].getModifiers()) &&
+//                specs[i].getType().equals( OntModelSpec.class )) {
+//                OntModelSpec s = (OntModelSpec) specs[i].get( null );
+//                assertNotNull( s.getDescription() );
+//            }
+//        }
     }
 
     /** Test case for SF bug 940570 - listIndividuals not working with RDFS_INF
