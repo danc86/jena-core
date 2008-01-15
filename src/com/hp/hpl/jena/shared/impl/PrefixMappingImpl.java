@@ -196,13 +196,6 @@ public class PrefixMappingImpl implements PrefixMapping
         }
     
     /**
-        Obsolete - use shortForm.
-     	@see com.hp.hpl.jena.shared.PrefixMapping#usePrefix(java.lang.String)
-     */
-    public String usePrefix( String uri )
-        { return shortForm( uri ); }
-    
-    /**
         Compress the URI using the prefix mapping. This version of the code looks
         through all the maplets and checks each candidate prefix URI for being a
         leading substring of the argument URI. There's probably a much more

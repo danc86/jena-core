@@ -828,9 +828,6 @@ public class ModelCom
         
     public String expandPrefix( String prefixed )
         { return getPrefixMapping().expandPrefix( prefixed ); }
-        
-    public String usePrefix( String uri )
-        { return getPrefixMapping().shortForm( uri ); }
     
     public String qnameFor( String uri )
         { return getPrefixMapping().qnameFor( uri ); }
