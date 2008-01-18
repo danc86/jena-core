@@ -89,6 +89,7 @@ public interface Assembler
         .implementWith( JA.InfModel, infModel )
         .implementWith( JA.ReasonerFactory, reasonerFactory )
         .implementWith( JA.ModelSource, modelSource )
+        .implementWith( JA.RDBModelSource, modelSource )
         .implementWith( JA.Content, content )
         .implementWith( JA.ContentItem, content )
         .implementWith( JA.Connection, connection )
