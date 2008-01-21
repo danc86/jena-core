@@ -9,11 +9,9 @@
  *****************************************************************/
 package com.hp.hpl.jena.reasoner.rulesys;
 
-import com.hp.hpl.jena.mem.GraphMem;
 import com.hp.hpl.jena.reasoner.*;
 import com.hp.hpl.jena.reasoner.rulesys.impl.*;
 import com.hp.hpl.jena.vocabulary.*;
-import com.hp.hpl.jena.vocabulary.ReasonerVocabulary;
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.rdf.model.*;
 
@@ -202,26 +200,48 @@ public class GenericRuleReasoner extends FBRuleReasoner {
         
     protected boolean doSetResourceParameter( Property parameter, Resource value )
         {
-        if (parameter.equals( JenaModelSpec.ruleSetURL )) 
-            {
+        if (isRuleSetURL( parameter )) 
             addRules( Rule.rulesFromURL( value.getURI() ) );
-            }
-        else if (parameter.equals( JenaModelSpec.ruleSet )) 
+        else if (isRuleSet( parameter )) 
             {
-            StmtIterator that = value.listProperties( JenaModelSpec.ruleSetURL );
-            while (that.hasNext())
-                {
-                addRules( Rule.rulesFromURL( that.nextStatement().getResource().getURI() ) );
-                }
-            StmtIterator it = value.listProperties( JenaModelSpec.hasRule );
-            while (it.hasNext()) 
-                {
-                addRules( Rule.parseRules( it.nextStatement().getString() ) ); 
-                }
+            addRulesFromURLs( value );
+            addRulesFromStrings( value ); 
             }
         else
             return false;
         return true;
+        }
+
+    private void addRulesFromStrings( Resource value )
+        {
+        StmtIterator it = getHasRuleStatements( value );
+        while (it.hasNext()) addRules( Rule.parseRules( it.nextStatement().getString() ) );
+        }
+
+    private void addRulesFromURLs( Resource value )
+        {
+        StmtIterator that = getRuleSetURLStatements( value );
+        while (that.hasNext()) addRules( Rule.rulesFromURL( that.nextStatement().getResource().getURI() ) );
+        }
+
+    private StmtIterator getHasRuleStatements( Resource value )
+        {
+        return value.listProperties( JenaModelSpec.hasRule );
+        }
+
+    private StmtIterator getRuleSetURLStatements( Resource value )
+        {
+        return value.listProperties( JenaModelSpec.ruleSetURL );
+        }
+
+    private boolean isRuleSet( Property parameter )
+        {
+        return parameter.equals( JenaModelSpec.ruleSet );
+        }
+
+    private boolean isRuleSetURL( Property parameter )
+        {
+        return parameter.equals( JenaModelSpec.ruleSetURL );
         }
     
     /**

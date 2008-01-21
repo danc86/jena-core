@@ -29,6 +29,7 @@ public class TestPackage extends TestSuite {
     private TestPackage() {
         super("RuleSys");
         
+        addTestSuite( TestConfigVocabulary.class );
         addTest( "TestBasics", TestBasics.suite() );
         addTest( "TestBackchainer", TestBackchainer.suite() );
         addTest( "TestLPBasics", TestBasicLP.suite() );

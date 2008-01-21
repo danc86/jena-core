@@ -29,7 +29,7 @@ public class ReasonerVocabulary {
     public static Resource ReasonerClass = ResourceFactory.createResource(JenaReasonerNS + "ReasonerClass");
     
     /** Reasoner description property: name of the reasoner */
-    public static Property nameP;
+    public static final Property nameP = property( "name" );
     
     /** Reasoner description property: text description of the reasoner */
     public static Property descriptionP;
@@ -123,7 +123,17 @@ public class ReasonerVocabulary {
     /** Property to denote the axioms file that the reasoner will use for background knowledge. 
      *  Values are URL's. Default is no axioms. */
     public static final Property EXT_REASONER_AXIOMS = ResourceFactory.createProperty( JenaReasonerNS, "extReasonerAxioms" );
+
+    public static final Property ruleSet = property( "ruleSet" );
+
+    public static final Property ruleSetURL = property( "ruleSetURL" );
+
+    public static final Property hasRule = property( "hasRule" );
+
+    public static final Property schemaURL = property( "schemaURL" );
     
+    protected static Property property( String localName )
+        { return ResourceFactory.createProperty( JenaReasonerNS, localName ); }
     
 //  --------------------------------------------------------------------
 // Method versions of key namespaces which are more initializer friendly
@@ -143,7 +153,7 @@ public class ReasonerVocabulary {
 
     static {
         try {
-            nameP = ResourceFactory.createProperty(JenaReasonerNS, "name");
+//            nameP = ResourceFactory.createProperty(JenaReasonerNS, "name");
             descriptionP = ResourceFactory.createProperty(JenaReasonerNS, "description");
             versionP = ResourceFactory.createProperty(JenaReasonerNS, "version");
             supportsP = ResourceFactory.createProperty(JenaReasonerNS, "supports");
