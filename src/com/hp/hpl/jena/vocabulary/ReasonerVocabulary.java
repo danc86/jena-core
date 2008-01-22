@@ -124,12 +124,26 @@ public class ReasonerVocabulary {
      *  Values are URL's. Default is no axioms. */
     public static final Property EXT_REASONER_AXIOMS = ResourceFactory.createProperty( JenaReasonerNS, "extReasonerAxioms" );
 
+    /**
+        Property of a GRR config with object a node with rule set properties.
+    */
     public static final Property ruleSet = jenaReasonerProperty( "ruleSet" );
 
+    /**
+        Property of a GRR config with object a resource who's URI is the URL
+        of a Jena rules text.
+    */
     public static final Property ruleSetURL = jenaReasonerProperty( "ruleSetURL" );
 
+    /**
+        Property of a GRR rule-set config that specifies a rule as a string in the
+        Jena rules language.
+    */
     public static final Property hasRule = jenaReasonerProperty( "hasRule" );
 
+    /**
+        Property of a reasoner that specifies the URL of a schema to load.
+    */
     public static final Property schemaURL = jenaReasonerProperty( "schemaURL" );
     
     protected static final Property jenaReasonerProperty( String localName )
