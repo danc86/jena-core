@@ -223,8 +223,8 @@ public class GenericRuleReasoner extends FBRuleReasoner {
 
     private void addRulesFromURLs( Resource value )
         {
-        StmtIterator that = getRuleSetURLStatements( value );
-        while (that.hasNext()) addRules( Rule.rulesFromURL( that.nextStatement().getResource().getURI() ) );
+        Iterator that = getRuleSetURLStatements( value );
+        while (that.hasNext()) addRules( Rule.rulesFromURL( ((Statement) that.next()).getResource().getURI() ) );
         }
 
     private Iterator getHasRuleStatements( Resource value )
@@ -234,8 +234,12 @@ public class GenericRuleReasoner extends FBRuleReasoner {
             .andThen( value.listProperties( ReasonerVocabulary.hasRule ) ); 
         }
 
-    private StmtIterator getRuleSetURLStatements( Resource value )
-        { return value.listProperties( JenaModelSpec.ruleSetURL ); }
+    private Iterator getRuleSetURLStatements( Resource value )
+        {
+        return 
+            value.listProperties( JenaModelSpec.ruleSetURL )
+            .andThen( value.listProperties( ReasonerVocabulary.ruleSetURL ) ); 
+        }
 
     private boolean isHasRule( Property parameter )
         { 
