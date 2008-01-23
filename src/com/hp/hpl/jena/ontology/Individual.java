@@ -183,7 +183,7 @@ public interface Individual
      * <p>If this individual is not a member of the given class, the
      * operation has no effect.</p>
      *
-     * @param cls A resource denoting a class that that is to be removed from
+     * @param ontClass A resource denoting a class that that is to be removed from
      * the set of classes to which this individual belongs
      */
     public void removeOntClass( Resource ontClass );

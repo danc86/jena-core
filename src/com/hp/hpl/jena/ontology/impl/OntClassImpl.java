@@ -928,8 +928,8 @@ public class OntClassImpl
     /**
      * <p>Answer true if this class lies with the domain of p<p>
      * @param p
-     * @param direct
-     * @return
+     * @param direct If true, only consider direct associations with domain
+     * @return True if this class in the domain of property <code>p</code>
      */
     protected boolean testDomain( Property p, boolean direct ) {
         // we ignore any property in the DAML, OWL, etc namespace
@@ -981,7 +981,7 @@ public class OntClassImpl
 
     /**
      * <p>Answer an iterator over all of the properties in this model
-     * @return
+     * @return An iterator over {@link OntProperty}
      */
     protected ExtendedIterator listAllProperties() {
         OntModel mOnt = (OntModel) getModel();

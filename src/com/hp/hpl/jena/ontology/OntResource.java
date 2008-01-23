@@ -488,13 +488,13 @@ public interface OntResource
      * <p>Add the given class as one of the <code>rdf:type</code>'s for this resource.</p>
      *
      * @param cls An RDF resource denoting a new value for the <code>rdf:type</code> property.
-     * @see Individual#addOntClass(Resource
+     * @see Individual#addOntClass(Resource)
      */
     public void addRDFType( Resource cls );
 
     /**
      * <p>
-     * Answer the <code>rdf:type</code> (ie the class) of this resource. If there
+     * Answer the <code>rdf:type</code> (i.e. the class) of this resource. If there
      * is more than one type for this resource, the return value will be one of
      * the values, but it is not specified which one (nor that it will consistently
      * be the same one each time). Equivalent to <code>getRDFType( false )</code>.

@@ -238,7 +238,6 @@ public class OntModelImpl
                                 findByTypeAs( RDF.Property, OntProperty.class ) );
 
         // if we are in OWL_FULL, the properties should also include the annotation properties
-        Profile p = getProfile();
         if (getReasoner() != null  && getProfile().equals( ProfileRegistry.getInstance().getProfile( ProfileRegistry.OWL_LANG ) )) {
             // we are using a reasoner, and in OWL Full
             // so add the annotation properties too
@@ -2024,7 +2023,7 @@ public class OntModelImpl
      * URI's to represent the different OWL language levels. There is a slim chance that this
      * may change in future, in which case these return values will change apropriately.
      * In addition, the given <code>problems</problems> list, if non-null, will be filled with the syntax
-     * problems detected by the {@link com.hp.hpl.jena.ontology.tidy.Checker syntax checker}.
+     * problems detected by the syntax checker (<code> com.hp.hpl.jena.ontology.tidy.Checker</code>).
      * </p>
      * <p>
      * The Jena OWL syntax checker will normally list as problems those constructs used in
@@ -2986,8 +2985,8 @@ public class OntModelImpl
     /**
      * <p>Answer a resource presenting the {@link OntResource} facet, which
      * corresponds to the given resource but attached to this model.</p>
-     * @param resource An existing resource
-     * @return An OntResource attached to this model that has the same URI
+     * @param res An existing resource
+     * @return An {@link OntResource} attached to this model that has the same URI
      * or anonID as the given resource
      */
     public OntResource getOntResource( Resource res ) {

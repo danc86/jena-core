@@ -977,11 +977,11 @@ public interface OntModel
     /**
      * <p>
      * Answer a resource that represents a property restriction in this model. If a resource
-     * with the given uri exists in the model, it will be re-used.  If not, a new one is created in
+     * with the given URI exists in the model, it will be re-used.  If not, a new one is created in
      * the writable sub-model of the ontology model.
      * </p>
      *
-     * @param URI The URI for the restriction node, or null for an anonymous restriction.
+     * @param uri The URI for the restriction node, or null for an anonymous restriction.
      * @param p The property that is restricted by this restriction, or null to omit from the restriction
      * @return A Restriction resource.
      */
