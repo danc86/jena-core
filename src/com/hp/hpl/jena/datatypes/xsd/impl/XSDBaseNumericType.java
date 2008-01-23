@@ -104,11 +104,18 @@ public class XSDBaseNumericType extends XSDDatatype {
     /**
      * Cannonicalize a big decimal
      */
-    private Object cannonicalizeDecimal( BigDecimal value) {
-        try {
-            return cannonicalizeInteger( value.toBigIntegerExact() );
-        } catch (ArithmeticException e) {
-            return value;
+    private Object cannonicalizeDecimal(BigDecimal value) {
+        // This could can be simplified by using toBitIntegerExact
+        // once we drop Java 1.4 support
+        if (value.scale() > 0) {
+            // Fractional part could still be zero so have to check in that case
+            try {
+                return cannonicalizeInteger( value.setScale(0).toBigInteger() );
+            } catch (ArithmeticException e) {
+                return value;
+            }
+        } else {
+            return cannonicalizeInteger( value.toBigInteger() );
         }
     }
     
@@ -153,6 +160,11 @@ public class XSDBaseNumericType extends XSDDatatype {
         if (value1.getDatatype() instanceof XSDBaseNumericType && value2.getDatatype() instanceof XSDBaseNumericType) {
             Number n1 = (Number)value1.getValue();
             Number n2 = (Number)value2.getValue();
+            // The cannonicalization step should take care of all cross-type cases, leaving
+            // us just that equals doesn't work on BigDecimals in the way you expect
+            if (n1 instanceof BigDecimal && n2 instanceof BigDecimal) {
+                return  ((BigDecimal)n1).compareTo((BigDecimal)n2) == 0;
+            } 
             return n1.equals(n2);
         } else {
             // At least one arg is not part of the integer hierarchy

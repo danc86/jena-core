@@ -416,12 +416,21 @@ public class TestTypedLiterals extends TestCase {
         BigDecimal bigdec1 = new BigDecimal("12345678901234567890.00");
         Literal ld1 = m.createTypedLiteral(bigdec1, XSDDatatype.XSDdecimal);
         BigDecimal bigdec1b = new BigDecimal("12345678901234567890.0");
-        Literal ld1b = m.createTypedLiteral(bigdec1, XSDDatatype.XSDdecimal);
+        Literal ld1b = m.createTypedLiteral(bigdec1b, XSDDatatype.XSDdecimal);
         BigDecimal bigdec2 = new BigDecimal("12345678901234567890.1");
         Literal ld2 = m.createTypedLiteral(bigdec2, XSDDatatype.XSDdecimal);
         assertSameValueAs("big decimal equality check", ld1, ld1b);
         assertSameValueAs("big decimal equality check", ld1, lb1);
         assertDiffer("Decimal equality", ld1, ld2);
+        
+        BigDecimal bigdecF = new BigDecimal("12345678901234567890.1");
+        Literal ldF = m.createTypedLiteral(bigdecF, XSDDatatype.XSDdecimal);
+        BigDecimal bigdecFb = new BigDecimal("12345678901234567890.10");
+        Literal ldFb = m.createTypedLiteral(bigdecFb, XSDDatatype.XSDdecimal);
+        BigDecimal bigdecF2 = new BigDecimal("12345678901234567890.2");
+        Literal ldF2 = m.createTypedLiteral(bigdecF2, XSDDatatype.XSDdecimal);
+        assertSameValueAs("big decimal equality check", ldF, ldFb);
+        assertDiffer("Decimal equality", ldF, ldF2);
     }
     
     /**
