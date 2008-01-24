@@ -19,6 +19,10 @@ import com.hp.hpl.jena.util.FileManager;
     TODO ensure these have explicit tests [they were developed implicitly from the
     ModelSpec tests].
     
+    @deprecated Use the ReasonerVocabulary equivalents instead; if there
+        is no such equivalent, then you should be using the corresponding
+        JenaAssembler properties.
+    
  	@author kers
 */
 public class JenaModelSpec

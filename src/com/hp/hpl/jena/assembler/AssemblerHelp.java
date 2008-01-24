@@ -82,7 +82,7 @@ public class AssemblerHelp
         }
     
     /**
-        @deprecated. Use <code>loadAssemblerClasses</code> instead
+        @deprecated Use <code>loadAssemblerClasses</code> instead
             (since it's explicit in what kinds of classes it loads).
     */
     public static void loadClasses( AssemblerGroup group, Model m )
