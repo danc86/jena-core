@@ -8,7 +8,6 @@ package com.hp.hpl.jena.rdf.model.impl;
 
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.rdf.model.*;
-import com.hp.hpl.jena.shared.CannotCreateException;
 import com.hp.hpl.jena.util.iterator.*;
 
 /**
@@ -78,20 +77,6 @@ public class ModelMakerImpl implements ModelMaker
       
     public ExtendedIterator listModels()
         { return maker.listGraphs(); }
-    
-    /**
-        @deprecated 
-        @see com.hp.hpl.jena.rdf.model.ModelSource#getModel()
-    */
-    public Model getModel()
-        { return createDefaultModel(); }
-    
-    /**
-        @deprecated 
-        @see com.hp.hpl.jena.rdf.model.ModelSource#createModel()
-     */
-    public Model createModel()
-        { return createFreshModel(); }
     
     /**
         ModelGetter implementation component.     

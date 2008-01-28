@@ -56,9 +56,7 @@ import org.apache.commons.logging.LogFactory;
  *         (<a  href="mailto:Ian.Dickinson@hp.com" >email</a>)
  * @version CVS $Id$
  */
-public class OntModelImpl
-    extends ModelCom
-    implements OntModel
+public class OntModelImpl extends ModelCom implements OntModel
 {
     // Constants
     //////////////////////////////////

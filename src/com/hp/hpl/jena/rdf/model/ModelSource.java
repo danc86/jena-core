@@ -6,7 +6,6 @@
 
 package com.hp.hpl.jena.rdf.model;
 
-
 /**
     The revised and soon-to-be-core interface for sources of models,
     typically generated from RDF descriptions.
@@ -66,16 +65,6 @@ public interface ModelSource extends ModelGetter
         doesn't already have one.
     */
     Model openModelIfPresent( String string );
-    
-    /**
-        @deprecated use createDefaultModel or createFreshModel as appropriate.
-    */
-    Model getModel();
-    
-    /**
-        @deprecated use createDefaultModel or createFreshModel as appropriate.
-    */
-    Model createModel();
     }
 
 /*
