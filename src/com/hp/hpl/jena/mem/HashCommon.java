@@ -122,7 +122,7 @@ public abstract class HashCommon
         it does not work. (Hence, here, the use of bitmasks.)
     */
     protected final int initialIndexFor( Object key )
-        { return (key.hashCode() & 0x7fffffff) % capacity; }    
+        { return ((key.hashCode() * 1) & 0x7fffffff) % capacity; }    
     
     /**
         Search for the slot in which <code>key</code> is found. If it is absent,
