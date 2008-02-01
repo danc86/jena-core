@@ -36,6 +36,12 @@ public class TestHashCommon extends ModelTestBase
 
         public int capacity()
             { return capacity; }
+        
+        /*
+            Leaving the hashcode alone makes testing simpler. 
+        */
+        protected int improveHashCode( int hashCode )
+            { return hashCode; }   
         }
     
     static class Item
