@@ -365,7 +365,7 @@ public class N3JenaWriterCommon implements RDFWriter
 
     }
     
-    protected void writeObjectList(Resource resource, Property property)
+    protected void writeObjectList(Resource subject, Property property)
     {
         String propStr = formatProperty(property) ;
 
@@ -377,7 +377,7 @@ public class N3JenaWriterCommon implements RDFWriter
         // Write with object lists as clusters of statements with the same property
         // Looks more like a machine did it but fewer bad cases.
 
-        StmtIterator sIter = resource.listProperties(property);
+        StmtIterator sIter = subject.listProperties(property);
         for (; sIter.hasNext();)
         {
             Statement stmt = sIter.nextStatement() ;
