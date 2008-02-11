@@ -1190,8 +1190,8 @@ class Unparser {
      */
 
     private void increaseObjectCount(Resource r) {
-        if (!r.isAnon())
-            return;
+//        if (!r.isAnon())
+//            return;
         Integer cnt = (Integer) objectTable.get(r);
         if (cnt == null) {
             cnt = one;

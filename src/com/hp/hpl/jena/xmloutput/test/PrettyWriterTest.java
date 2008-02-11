@@ -54,6 +54,14 @@ public class PrettyWriterTest extends ModelTestBase {
 	 * @param regex    Written file must match this.
 	 */
 	private void check( String filename, String regex ) throws IOException {
+		check(filename, regex, true);
+	}
+
+	private void checkNoMatch(String filename, String regex ) throws IOException {
+		check(filename, regex, false);
+		
+	}
+	private void check( String filename, String regex, boolean match ) throws IOException {
 		String contents = null;
 		try {
 			Model m = createMemModel();
@@ -69,7 +77,7 @@ public class PrettyWriterTest extends ModelTestBase {
 			assertTrue(
 				"Looking for /" + regex + "/ ",
 //                +contents,
-                Pattern.compile( regex,Pattern.DOTALL ).matcher( contents ).find()
+                match==Pattern.compile( regex,Pattern.DOTALL ).matcher( contents ).find()
 //				matcher.contains(contents, awk.compile(regex))
                 );
 			contents = null;
@@ -80,6 +88,13 @@ public class PrettyWriterTest extends ModelTestBase {
 			}
 		}
 	}
+	
+	public void testConsistency() throws IOException {
+		checkNoMatch(
+				"file:testing/abbreviated/consistency.rdf",
+	            "rdf:resource");
+	}
+
 
 	public void testAnonDamlClass() throws IOException {
 		check(
