@@ -229,7 +229,7 @@ public class SimpleReifier implements Reifier
         }
 
     private boolean matchesStatement( Node x )
-        { return x.isVariable() || x.equals( RDF.Nodes.Statement ); }
+        { return !x.isConcrete() || x.equals( RDF.Nodes.Statement ); }
     
     public ExtendedIterator findExposed( TripleMatch m )
         { return findEither( m, false ); }
