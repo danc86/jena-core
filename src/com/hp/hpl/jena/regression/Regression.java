@@ -4837,6 +4837,9 @@ public class Regression extends Object {
             return "[" + Long.toString(content) + "]";
         }
 
+        public int hashCode()
+            { return (int) (content ^ (content >> 32)); }
+            
         public boolean equals(Object o) {
             if (o instanceof LitTestObj) {
                 return content == ((LitTestObj)o).content;
