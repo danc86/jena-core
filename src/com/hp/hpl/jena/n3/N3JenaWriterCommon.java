@@ -64,7 +64,7 @@ public class N3JenaWriterCommon implements RDFWriter
 	}
 
 	// Work variables controlling the output
-	IndentedWriter out = null ;
+	protected IndentedWriter out = null ;
 	//Removed base URI specials - look for  "// BaseURI - <#>" & doAbbreviatedBaseURIref
 	//String baseURIref = null ;
     //String baseURIrefHash = null ;
