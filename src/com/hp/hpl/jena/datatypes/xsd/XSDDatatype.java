@@ -404,7 +404,8 @@ public class XSDDatatype extends BaseDatatype {
                     return new Integer(0);
                 }
                 if (decimalDV.getFractionDigits(xsdValue) >= 1) {
-                    return new BigDecimal(trimPlus(validatedInfo.normalizedValue));
+                    BigDecimal value =  new BigDecimal(trimPlus(validatedInfo.normalizedValue));
+                    return XSDdecimal.cannonicalise( value );
                 }
                 // Can have 0 fractionDigits but still have a trailing .000
                 String lexical = trimPlus(validatedInfo.normalizedValue);
@@ -437,7 +438,7 @@ public class XSDDatatype extends BaseDatatype {
      	@param number
      	@return
     */
-    protected Number suitableInteger( long number )
+    protected static Number suitableInteger( long number )
         {
         if (number > Integer.MAX_VALUE || number < Integer.MIN_VALUE)
             return new Long( number );
