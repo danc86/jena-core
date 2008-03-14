@@ -119,4 +119,12 @@
    ; ct:licence "Apache 2.0"
    .
 
+[]
+    dc:creator "Fulvio Crivellaro and Gabriele Genovese and Giorgio Orsi"
+    ; dc:name "Micro Jena (uJena)"
+    ; dc:description "Reduced version of Jena for mobile devices"
+    ; ct:link "http://poseidon.elet.polimi.it/ca/?page_id=59"
+    ; ct:linkTitle "Micro Jena"
+    ; ct:licence "as per Jena"
+    .
 
