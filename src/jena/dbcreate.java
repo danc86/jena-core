@@ -33,7 +33,8 @@ public class dbcreate extends DBcmd
         "dbcreate [--spec spec] | [db_description] [--model name]" ,
         "  where db_description is" ,
         "    --db JDBC URL --dbType type" ,
-        "    --dbUser user --dbPassword password" 
+        "    --dbUser user --dbPassword password",
+        "    --driver classname"
      } ;
 
     public static void main(String[] args)
