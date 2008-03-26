@@ -11,6 +11,23 @@ import com.hp.hpl.jena.assembler.assemblers.PrefixMappingAssembler;
 import com.hp.hpl.jena.rdf.model.Resource;
 import com.hp.hpl.jena.shared.PrefixMapping;
 
+/**
+   Tests for prefix-mapping assembler. Note that the basic atom is a
+   <i>single</i> prefix-mapping specified with a ja:prefix and ja:namespace
+   pair. If a prefix-mapping needs multiple bindings, ja:includes must be
+   used to include multiple single mappings:
+   
+   <pre>
+   whatever ja:includes [ja:prefix 'A'; ja:namespace 'namespaceForA']
+       ; ja:includes [ja:prefix 'B'; ja:namespace 'namespaceForB']
+       ...
+   </pre>
+
+    See also <i>TestBuiltinAssembler</i>.
+    
+ 	@author kers
+*/
+
 public class TestPrefixMappingAssembler extends AssemblerTestBase
     {
     public TestPrefixMappingAssembler( String name )

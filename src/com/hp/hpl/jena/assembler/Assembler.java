@@ -96,6 +96,7 @@ public interface Assembler
         .implementWith( JA.RDBModel, rdbModel )
         .implementWith( JA.UnionModel, unionModel )
         .implementWith( JA.PrefixMapping, prefixMapping )
+        .implementWith( JA.SinglePrefixMapping, prefixMapping )
         .implementWith( JA.FileModel, fileModel )
         .implementWith( JA.OntModel, ontModel )
         .implementWith( JA.OntModelSpec, ontModelSpec )

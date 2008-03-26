@@ -40,6 +40,7 @@ public class TestAssemblerVocabulary extends AssemblerTestBase
     //
         assertLocalname( "Connection", JA.Connection );
         assertLocalname( "PrefixMapping", JA.PrefixMapping );
+        assertLocalname( "SinglePrefixMapping", JA.SinglePrefixMapping );
         assertLocalname( "ReasonerFactory", JA.ReasonerFactory );
         assertLocalname( "Content", JA.Content );
         assertLocalname( "LiteralContent", JA.LiteralContent );
@@ -75,6 +76,7 @@ public class TestAssemblerVocabulary extends AssemblerTestBase
         {
         assertSubclassOf( JA.Model, JA.Object );
         assertSubclassOf( JA.PrefixMapping, JA.Object );
+        assertSubclassOf( JA.SinglePrefixMapping, JA.PrefixMapping );
         assertSubclassOf( JA.Content, JA.Object );
         assertSubclassOf( JA.Connection, JA.Object );
         assertSubclassOf( JA.OntModelSpec, JA.Object );

@@ -185,6 +185,8 @@ public class JA
 
     public static final Property likeBuiltinSpec = property( "likeBuiltinSpec" );
 
+    public static final Resource SinglePrefixMapping = resource( "SinglePrefixMapping");
+
     public static Model getSchema()
         { // inline packagename to avoid clash with /our/ FileManager.
         if (schema == null) schema = complete( com.hp.hpl.jena.util.FileManager.get().loadModel( getSchemaPath() ) );
