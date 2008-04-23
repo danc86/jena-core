@@ -28,9 +28,10 @@ package com.hp.hpl.jena.ontology;
 
 /**
  * <p>
- * Interface that encapsulates an property that is transitive i&#046;e&#046; one
- * in which if <code>p(x,&nbsp;y)</code> holds, and <code>p(x,&nbsp;z)
- * </code> holds, then <code>p(x,&nbsp;z)</code> must also hold.
+ * Interface that denotes a property that is transitive i&#046;e&#046; one
+ * in which if <code><em>x</em>&nbsp;p&nbsp;<em>y</em></code> holds,
+ * and <code><em>y</em>&nbsp;p&nbsp;<em>z</em></code>
+ * holds, then <code><em>x</em>&nbsp;p&nbsp;<em>z</em></code> must also hold.
  * </p>
  *
  * @author Ian Dickinson, HP Labs
