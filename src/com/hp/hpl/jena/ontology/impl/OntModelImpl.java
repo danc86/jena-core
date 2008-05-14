@@ -721,7 +721,7 @@ public class OntModelImpl extends ModelCom implements OntModel
         else {
             return UniqueExtendedIterator.create(
                         findByType( r )
-                          .andThen( WrappedIterator.create( getProfile().getAnnotationProperties() ) )
+//                          .andThen( WrappedIterator.create( getProfile().getAnnotationProperties() ) )
                           .mapWith( new SubjectNodeAs( AnnotationProperty.class ) ) );
         }
     }

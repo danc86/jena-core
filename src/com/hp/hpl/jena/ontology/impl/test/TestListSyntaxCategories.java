@@ -80,9 +80,8 @@ public class TestListSyntaxCategories
             }
         },
         // Properties
-        new DoListTest( "OWL list properties",  "file:testing/ontology/owl/list-syntax/test.rdf",  OntModelSpec.OWL_MEM_TRANS_INF,  7,
-                        new String[] {NS+"p",RDFS.label.getURI(),OWL.versionInfo.getURI(),RDFS.seeAlso.getURI(),
-                                      RDFS.comment.getURI(),RDFS.isDefinedBy.getURI(),NS+"karma"} )
+        new DoListTest( "OWL list properties",  "file:testing/ontology/owl/list-syntax/test.rdf",  OntModelSpec.OWL_MEM_TRANS_INF,  2,
+                        new String[] {NS+"p",NS+"karma"} )
         {
             public Iterator doList( OntModel m ) {
                 return m.listOntProperties();
@@ -468,7 +467,7 @@ public class TestListSyntaxCategories
         },
 
         // Annotation property
-        new DoListTest( "OWL list annotation properties",  "file:testing/ontology/owl/list-syntax/test.rdf",  OntModelSpec.OWL_MEM_TRANS_INF,  6,
+        new DoListTest( "OWL list annotation properties",  "file:testing/ontology/owl/list-syntax/test.rdf",  OntModelSpec.OWL_MEM_TRANS_INF,  1,
                         null )
         {
             public Iterator doList( OntModel m ) {
