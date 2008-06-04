@@ -257,7 +257,7 @@ public/* abstract */class AbstractTestGraph extends GraphTestBase
         th.transactionsSupported();
         try { th.begin(); } catch (UnsupportedOperationException x) {}
         try { th.abort(); } catch (UnsupportedOperationException x) {}
-        try { th.commit(); } catch (UnsupportedOperationException x) {}
+        try { th.begin(); th.commit(); } catch (UnsupportedOperationException x) {}
     /* */
         Command cmd = new Command() 
             { public Object execute() { return null; } };
@@ -900,12 +900,14 @@ public/* abstract */class AbstractTestGraph extends GraphTestBase
 		Graph g2 = getGraph();
 		Model m1 = ModelFactory.createModelForGraph(g1);
 		Model m2 = ModelFactory.createModelForGraph(g2);
+		
 		  m1.read(
           		new FileInputStream(filebase + Integer.toString(n) + "-1."+suffix),
               "http://www.example.org/",lang);
           m2.read(
           		new FileInputStream(filebase + Integer.toString(n) + "-2."+suffix),
               "http://www.example.org/",lang);
+
           boolean rslt = g1.isIsomorphicWith(g2) == result;
           if (!rslt) {
             System.out.println("g1:");
