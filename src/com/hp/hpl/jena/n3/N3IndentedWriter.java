@@ -16,7 +16,7 @@ import com.hp.hpl.jena.JenaRuntime ;
  */
 
 // Not robust/complete enough for public use
-/*public*/ class IndentedWriter //extends Writer
+public class N3IndentedWriter
 {
 	String lineSeparator = JenaRuntime.getLineSeparator() ;
 	
@@ -25,7 +25,7 @@ import com.hp.hpl.jena.JenaRuntime ;
 	int row ;
 	int currentIndent ;
 	
-	public IndentedWriter(Writer w)
+	public N3IndentedWriter(Writer w)
 	{
 		writer = w ;
 		column = 0 ; 

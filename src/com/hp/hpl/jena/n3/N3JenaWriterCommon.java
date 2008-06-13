@@ -64,7 +64,7 @@ public class N3JenaWriterCommon implements RDFWriter
 	}
 
 	// Work variables controlling the output
-	protected IndentedWriter out = null ;
+	protected N3IndentedWriter out = null ;
 	//Removed base URI specials - look for  "// BaseURI - <#>" & doAbbreviatedBaseURIref
 	//String baseURIref = null ;
     //String baseURIrefHash = null ;
@@ -153,7 +153,7 @@ public class N3JenaWriterCommon implements RDFWriter
     {
         if (!(_out instanceof BufferedWriter))
             _out = new BufferedWriter(_out);
-        out = new IndentedWriter(_out);
+        out = new N3IndentedWriter(_out);
 
 // BaseURI - <#>        
 //        if ( base != null )
@@ -336,7 +336,7 @@ public class N3JenaWriterCommon implements RDFWriter
 //            out.println("# Base: " + baseURIref);
     }
     
-    protected IndentedWriter getOutput() { return out ; }
+    protected N3IndentedWriter getOutput() { return out ; }
     protected Map getPrefixes() { return prefixMap ; }
     
     protected void writePrefixes(Model model)
