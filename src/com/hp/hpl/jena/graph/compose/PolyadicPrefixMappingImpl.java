@@ -92,8 +92,9 @@ public class PolyadicPrefixMappingImpl extends PrefixMappingImpl implements Pref
         { 
         Map result = CollectionFactory.createHashedMap();
         List graphs = poly.getSubGraphs();
-        for (int i = 0; i < graphs.size(); i += 1)
-            result.putAll( ((Graph) graphs.get(i)).getPrefixMapping().getNsPrefixMap() );
+        for (int i = graphs.size(); i > 0;)
+            result.putAll( ((Graph) graphs.get( --i )).getPrefixMapping().getNsPrefixMap() );
+        result.remove( "" );
         result.putAll( getBaseMapping().getNsPrefixMap() );
         return result; 
         }
