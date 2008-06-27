@@ -1103,8 +1103,6 @@ public class OntDocumentManager
      */
     protected void loadImport( OntModel model, String importURI, List readQueue ) {
         if (m_processImports) {
-            log.debug( "OntDocumentManager loading " + importURI );
-
             // add this model to occurs check list
             model.addLoadedImport( importURI );
 

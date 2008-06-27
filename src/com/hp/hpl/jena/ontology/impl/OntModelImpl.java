@@ -24,25 +24,29 @@ package com.hp.hpl.jena.ontology.impl;
 
 // Imports
 ///////////////
-import com.hp.hpl.jena.rdf.listeners.StatementListener;
-import com.hp.hpl.jena.rdf.model.*;
-import com.hp.hpl.jena.rdf.model.impl.*;
-import com.hp.hpl.jena.reasoner.*;
-import com.hp.hpl.jena.util.iterator.*;
-import com.hp.hpl.jena.vocabulary.*;
-import com.hp.hpl.jena.ontology.*;
-import com.hp.hpl.jena.ontology.event.*;
-import com.hp.hpl.jena.graph.*;
-import com.hp.hpl.jena.graph.compose.MultiUnion;
-import com.hp.hpl.jena.graph.query.*;
-import com.hp.hpl.jena.enhanced.*;
-import com.hp.hpl.jena.shared.*;
-
 import java.io.*;
 import java.util.*;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+
+import com.hp.hpl.jena.enhanced.BuiltinPersonalities;
+import com.hp.hpl.jena.enhanced.EnhNode;
+import com.hp.hpl.jena.graph.*;
+import com.hp.hpl.jena.graph.compose.MultiUnion;
+import com.hp.hpl.jena.graph.query.BindingQueryPlan;
+import com.hp.hpl.jena.graph.query.Query;
+import com.hp.hpl.jena.ontology.*;
+import com.hp.hpl.jena.ontology.event.OntEventManager;
+import com.hp.hpl.jena.rdf.listeners.StatementListener;
+import com.hp.hpl.jena.rdf.model.*;
+import com.hp.hpl.jena.rdf.model.impl.IteratorFactory;
+import com.hp.hpl.jena.rdf.model.impl.ModelCom;
+import com.hp.hpl.jena.reasoner.*;
+import com.hp.hpl.jena.shared.BrokenException;
+import com.hp.hpl.jena.shared.ConfigException;
+import com.hp.hpl.jena.util.iterator.*;
+import com.hp.hpl.jena.vocabulary.*;
 
 
 
@@ -2110,9 +2114,6 @@ public class OntModelImpl extends ModelCom implements OntModel
      */
     public Model read( String uri, String base, String syntax ) {
         // we don't want to load this document again if imported by one of the imports
-        if (s_log.isDebugEnabled()) {
-            s_log.debug( "Noting already loaded import URI " + uri );
-        }
         addLoadedImport( uri );
 
         OntDocumentManager odm = getDocumentManager();

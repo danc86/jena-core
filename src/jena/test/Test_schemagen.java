@@ -481,9 +481,9 @@ public class Test_schemagen
 
         // now run the test pattern over the lines in the file
         String result = buf.toString();
-        if (log.isDebugEnabled()) {
-            log.debug(  result );
-        }
+//        if (log.isDebugEnabled()) {
+//            log.debug(  result );
+//        }
         StringTokenizer tokens = new StringTokenizer( result, "\n" );
 
         boolean[] foundPos = new boolean[posPatterns.length];
