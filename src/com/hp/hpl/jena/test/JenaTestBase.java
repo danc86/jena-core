@@ -85,7 +85,7 @@ public class JenaTestBase extends TestCase
         Answer a Set of the substrings of <code>s</code> that are separated 
         by spaces.
     */
-    protected static Set setOfStrings( String s )
+    public static Set setOfStrings( String s )
         {
         Set result = new HashSet();
         StringTokenizer st = new StringTokenizer( s );
