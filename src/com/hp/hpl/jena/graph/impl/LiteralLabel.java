@@ -361,7 +361,19 @@ final public class LiteralLabel {
 			}
 		} else {
 			// Typed literal
-			return dtype.isEqual(this, other);
+		    if (other.dtype == null)
+		        { // might be plain literal that we count as XSDString
+		        if (JenaParameters.enablePlainLiteralSameAsString && this.dtype.equals( XSDDatatype.XSDstring ))
+		            {
+		            return other.lang.equals( "" ) && lexicalForm.equals( other.lexicalForm );
+		            }
+		        else
+		            return false;
+		        }
+		    else
+		        return dtype.isEqual( this, other );
+//		    return dtype.isEqual( this, other );
+//			 return other.dtype == null ? false : dtype.isEqual(this, other);
 		}
 	}
 
