@@ -13,6 +13,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.*;
 
+import com.hp.hpl.jena.util.FileManager;
 import com.hp.hpl.jena.util.FileUtils;
 import com.hp.hpl.jena.util.PrintUtil;
 import com.hp.hpl.jena.util.Tokenizer;
@@ -460,7 +461,7 @@ public class Rule implements ClauseEntry {
      */
     public static List rulesFromURL( String uri ) {
         try {
-            BufferedReader br = FileUtils.readerFromURL( uri );
+            BufferedReader br = FileUtils.asBufferedUTF8( FileManager.get().open(uri) );
             return parseRules( Rule.rulesParserFromReader( br ) );
         }
         catch (WrappedIOException e)
@@ -599,13 +600,6 @@ public class Rule implements ClauseEntry {
         return i;
     }
 
-    public static void main(String[] args) {
-        String test = " <http://myuri/fool>.";
-        String arg = nextArg(test);
-        String rest = nextAfterArg(test);
-        String uri = extractURI(rest);
-        System.out.println("ARG = [" + arg + "], URI = [" + uri + "]");
-    }
     /**
      * Run a pre-bound rule parser to extract it's rules
      * @return a list of rules

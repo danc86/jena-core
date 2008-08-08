@@ -13,6 +13,8 @@ import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.reasoner.*;
 import com.hp.hpl.jena.reasoner.rulesys.*;
 import com.hp.hpl.jena.reasoner.test.TestUtil;
+import com.hp.hpl.jena.util.FileManager;
+import com.hp.hpl.jena.util.LocationMapper;
 import com.hp.hpl.jena.util.PrintUtil;
 import com.hp.hpl.jena.vocabulary.RDF;
 import com.hp.hpl.jena.vocabulary.RDFS;
@@ -337,6 +339,37 @@ public class TestGenericRules extends TestCase {
         assertTrue("@include test", m.contains(a,a,a));
     }
 
+    /**
+     * Test that @include supports fileManger redirections
+     */
+    public void testIncludeRedirect() {
+        assertFalse( checkIncludeFound("file:testing/reasoners/importTest.rules") );
+        LocationMapper lm = FileManager.get().getLocationMapper();
+        lm.addAltEntry("file:testing/reasoners/includeAlt.rules", 
+                     "file:testing/reasoners/include.rules");
+        assertTrue( checkIncludeFound("file:testing/reasoners/importTest.rules") );
+        lm.removeAltEntry("file:testing/reasoners/includeAlt.rules"); 
+    }
+    
+    /**
+     * Check whether the test included file has been found 
+     */
+    private boolean checkIncludeFound(String ruleSrc) {
+        try {
+            List rules = Rule.rulesFromURL(ruleSrc);
+            GenericRuleReasoner reasoner = new GenericRuleReasoner(rules);
+            Model base = ModelFactory.createDefaultModel();
+            InfModel m = ModelFactory.createInfModel(reasoner, base);
+            
+            // Check prefix case
+            String NS3 = "http://jena.hpl.hp.com/newprefix3#";
+            Property a = m.getProperty(NS3 + "a");
+            return  m.contains(a,a,a);
+        } catch (Exception e) {
+            return false;
+        }
+    }
+    
     /**
      * Test add/remove support
      */
