@@ -54,7 +54,8 @@ public class TestBugs extends TestCase {
     public static TestSuite suite() {
         return new TestSuite( TestBugs.class );
 //        TestSuite suite = new TestSuite();
-//        suite.addTest(new TestBugs( "testOntModelGetDeductions" ));
+//        suite.addTest(new TestBugs( "testGroundClosure" ));
+//        suite.addTest(new TestBugs( "testGroundClosure2" ));
 //        return suite;
     }
 
@@ -800,6 +801,24 @@ public class TestBugs extends TestCase {
         GenericRuleReasoner reasoner = new GenericRuleReasoner(Rule.parseRules(rules));
         InfModel infModel = ModelFactory.createInfModel(reasoner, m);
         assertTrue( infModel.contains(a, q, b) );
+        assertTrue( ! myFlag.fired );
+    }
+
+    /**
+     * Test closure of grounded choice points
+     */
+    public void testGroundClosure2() {
+        Flag myFlag = new Flag();
+        BuiltinRegistry.theRegistry.register(myFlag);
+        List rules = Rule.rulesFromURL("file:testing/reasoners/bugs/groundClosure2.rules");
+        GenericRuleReasoner reasoner = new GenericRuleReasoner( rules );
+        InfModel inf = ModelFactory.createInfModel(reasoner, ModelFactory.createDefaultModel());
+        
+        String NS = "http://jena.hpl.hp.com/example#";
+        Resource Phil = inf.getResource(NS + "Phil");
+        Resource Paul = inf.getResource(NS + "Paul");
+        Property parent = inf.getProperty(NS + "parent");
+        assertTrue ( inf.contains(Paul, parent, Phil) );
         assertTrue( ! myFlag.fired );
     }
 

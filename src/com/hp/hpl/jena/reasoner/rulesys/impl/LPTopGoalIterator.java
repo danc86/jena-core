@@ -47,7 +47,7 @@ public class LPTopGoalIterator implements ClosableIterator, LPInterpreterContext
     protected boolean checkReadyNeeded = false;
 
     /** True if the iteration has started */
-    boolean started = false;
+    boolean lookaheadValid = false;
 
     /** Version stamp of the graph when we start */
     protected int initialVersion;
@@ -73,7 +73,7 @@ public class LPTopGoalIterator implements ClosableIterator, LPInterpreterContext
         synchronized (lpEngine) {
             // LogFactory.getLog( getClass() ).debug( "Entering moveForward sync block on " + interpreter.getEngine() );
 
-            started = true;
+            lookaheadValid = true;
             // LogFactory.getLog( getClass() ).debug( "interpreter = " + interpreter );
 
             lookAhead = interpreter.next();
@@ -179,7 +179,7 @@ public class LPTopGoalIterator implements ClosableIterator, LPInterpreterContext
      */
     public boolean hasNext() {
         checkCME();
-        if (!started) moveForward();
+        if (!lookaheadValid) moveForward();
         return (lookAhead != null);
     }
 
@@ -188,12 +188,12 @@ public class LPTopGoalIterator implements ClosableIterator, LPInterpreterContext
      */
     public Object next() {
         checkCME();
-        if (!started) moveForward();
+        if (!lookaheadValid) moveForward();
         if (lookAhead == null) {
             throw new NoSuchElementException("Overran end of LP result set");
         }
         Object result = lookAhead;
-        moveForward();
+        lookaheadValid = false;
         return result;
     }
     
