@@ -182,6 +182,8 @@ public class JA
     public static final Property reasonerFactory = property( "reasonerFactory" );
 
     public static final Property reasonerClass = property( "reasonerClass" );
+    
+    public static final Property ja_schema = property( "schema" );
 
     public static final Property likeBuiltinSpec = property( "likeBuiltinSpec" );
 

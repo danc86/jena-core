@@ -46,6 +46,7 @@ public class TestAssemblerVocabulary extends AssemblerTestBase
         assertLocalname( "LiteralContent", JA.LiteralContent );
         assertLocalname( "ExternalContent", JA.ExternalContent );
     //
+        assertLocalname( "schema", JA.ja_schema );
         assertLocalname( "rules", JA.rules );
         assertLocalname( "reasoner", JA.reasoner );
         assertLocalname( "reasonerURL", JA.reasonerURL );

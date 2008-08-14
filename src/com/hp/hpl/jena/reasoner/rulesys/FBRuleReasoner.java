@@ -143,6 +143,14 @@ public class FBRuleReasoner implements RuleReasoner {
     }
     
     /**
+        Answer the schema graph bound into this reasoner, or null if there
+        isn't one. (Added mainly for testing purposes, which is why it isn't
+        part of the Reasoner API.)
+    */
+    public Graph getBoundSchema()
+        { return schemaGraph; }
+    
+    /**
      * Add a configuration description for this reasoner into a partial
      * configuration specification model.
      * @param configSpec a Model into which the configuration information should be placed

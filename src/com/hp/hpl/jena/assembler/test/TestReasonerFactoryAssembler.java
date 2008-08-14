@@ -145,6 +145,12 @@ public class TestReasonerFactoryAssembler extends AssemblerTestBase
     
     public void testSchema()
         {
+        Model schema = model( "P rdf:type owl:ObjectProperty" );
+        Resource root = resourceInModel( "x rdf:type ja:ReasonerFactory; x ja:schema S" );
+        Assembler sub = new NamedObjectAssembler( resource( "S" ), schema );
+        ReasonerFactory rf = (ReasonerFactory) ASSEMBLER.open( sub, root );
+        Reasoner r = rf.create( null );
+        assertIsomorphic( schema.getGraph(), ((FBRuleReasoner) r).getBoundSchema() );
         }
     
     public void testSingleRules()
