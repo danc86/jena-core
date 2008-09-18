@@ -15,7 +15,6 @@ import com.hp.hpl.jena.util.FileUtils;
   *  Usage:<pre>
   *  jena.dbload [db spec] file [file ...]
   *  where [db spec] is:
-  *    --spec file        Contains an RDF description of the model 
   *    --db JDBC_url --dbUser userId --dbPassword password --dbType [--model modelName]  
   *  </pre>
   *  The syntax of a file is determimed by its extension (.n3, .nt) and defaults to RDF/XML. 
@@ -29,7 +28,7 @@ public class dbload extends DBcmd
 {
     public static final String[] usage = new String[]
     { 
-        "dbload [--spec spec] | [db_description] [--model name] file" ,
+        "dbload [db_description] [--model name] file" ,
         "  where db_description is" ,
         "    --db JDBC URL --dbType type" ,
         "    --dbUser user --dbPassword password" 

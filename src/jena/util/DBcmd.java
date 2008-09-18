@@ -21,6 +21,7 @@ import java.util.* ;
  
 public abstract class DBcmd
 {
+    protected final ArgDecl argDeclSpec        = new ArgDecl(true, "spec");
     // Standardised names.
     protected final ArgDecl argDeclDbURL       = new ArgDecl(true, "db");
     protected final ArgDecl argDeclDbType      = new ArgDecl(true, "dbType");
@@ -112,6 +113,13 @@ public abstract class DBcmd
         debug = cmdLine.contains(argDeclDebug) ;
         if ( debug )
             verbose = true ;
+        
+        if ( cmdLine.contains(argDeclSpec) )
+        {
+            System.err.println("--spec not implemented") ;
+            
+        }
+        
         
         if (cmdLine.contains(argDeclDbURL))
             argDbURL = cmdLine.getArg(argDeclDbURL).getValue();

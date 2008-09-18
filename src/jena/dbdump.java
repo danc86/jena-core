@@ -28,7 +28,7 @@ public class dbdump extends DBcmd
 {
     public static final String[] usage = new String[]
     { 
-        "dbdump [--spec spec] | [db_description] [--model name] [--format syntax]" ,
+        "dbdump [db_description] [--model name] [--format syntax]" ,
         "  where db_description is" ,
         "    --db JDBC URL --dbType type" ,
         "    --dbUser user --dbPassword password" 

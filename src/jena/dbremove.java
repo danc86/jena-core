@@ -28,7 +28,7 @@ public class dbremove extends DBcmd
 {
     public static final String[] usage = new String[]
     { 
-        "dbremove [--spec spec] | [db_description] [--model name]" ,
+        "dbremove [db_description] [--model name]" ,
         "  where db_description is" ,
         "    --db JDBC URL --dbType type" ,
         "    --dbUser user --dbPassword password" 

@@ -31,7 +31,7 @@ public class dblist extends DBcmd
 {
     public static final String[] usage = new String[]
                                                     { 
-            "dblist [--spec spec] | [db_description] [--model name]" ,
+            "dblist [db_description] [--model name]" ,
             "  where db_description is" ,
             "    --db JDBC URL --dbType type" ,
             "    --dbUser user --dbPassword password" 
