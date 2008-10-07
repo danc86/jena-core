@@ -4804,10 +4804,14 @@ public class Regression extends Object {
     }
 
     public void error(String testName, int testNum, Exception e) {
+        
         System.out.println("Test Failed: "
         + testName + " "
         + testNum  + " "
         + e.toString());
+        System.out.println("--------") ;
+        e.printStackTrace(System.out) ;
+        System.out.println("--------") ;
         errors = true;
         throw new RuntimeException( "BOOM BOOM BOOM" );
     }
