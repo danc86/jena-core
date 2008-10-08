@@ -867,14 +867,13 @@ if ( hack != 0 ) {
 		 * @see com.hp.hpl.jena.graphRDB.IPSet#removeStatementsFromDB()
 		 */
 		public void removeStatementsFromDB(IDBID graphID) {
-            // TODO optimise in the case where 
-			String gid = graphID.getID().toString();
+			int gid = graphID.getIntID() ;
 			
 			try {
 				  PreparedStatement ps = m_sql.getPreparedSQLStatement("removeRowsFromTable",getTblName());
 				  ps.clearParameters();	
 	
-				  ps.setString(1,gid);
+				  ps.setInt(1,gid);
 				  ps.executeUpdate();
 				  m_sql.returnPreparedSQLStatement(ps);
 				 } catch (SQLException e) {
