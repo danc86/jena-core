@@ -99,6 +99,10 @@ public class JA
 
     public static final Property directory = property( "directory" );
 
+    public static final Property create = property( "create" );
+
+    public static final Property strict = property( "strict" );
+
     public static final Property mapName = property( "mapName" );
 
     public static final Property documentManager = property( "documentManager" );

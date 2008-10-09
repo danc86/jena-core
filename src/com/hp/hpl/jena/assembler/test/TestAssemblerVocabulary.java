@@ -60,6 +60,8 @@ public class TestAssemblerVocabulary extends AssemblerTestBase
         assertLocalname( "namespace", JA.namespace );
         assertLocalname( "includes", JA.includes );
         assertLocalname( "directory", JA.directory );
+        assertLocalname( "create", JA.create );
+        assertLocalname( "strict", JA.strict );
         assertLocalname( "mapName", JA.mapName );
         assertLocalname( "documentManager", JA.documentManager );
         assertLocalname( "ontModelSpec", JA.ontModelSpec );

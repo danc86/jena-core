@@ -24,8 +24,8 @@ public class FileModelAssembler extends NamedModelAssembler implements Assembler
         File fullName = getFileName( root );
         boolean mayCreate = mode.permitCreateNew( root, fullName.toString() );
         boolean mayReuse = mode.permitUseExisting( root, fullName.toString() );
-        boolean create = mayCreate;
-        boolean strict = mayCreate != mayReuse;
+        boolean create = getBoolean( root, JA.create, mayCreate );
+        boolean strict = getBoolean( root, JA.strict, mayCreate != mayReuse );
         String lang = getLanguage( root, fullName );
         ReificationStyle style = getReificationStyle( root );
         return createFileModel( fullName, lang, create, strict, style );
@@ -54,10 +54,26 @@ public class FileModelAssembler extends NamedModelAssembler implements Assembler
     
     private boolean getBoolean( Resource root, Property p, boolean ifAbsent )
         {
-        Resource r = getUniqueResource( root, p );
-        return r == null ? ifAbsent : r.equals( JA.True );
+        RDFNode r = getUnique( root, p );
+        return 
+            r == null ? ifAbsent 
+            : r.isLiteral() ? booleanSpelling( r.asNode().getLiteralLexicalForm() )
+            : r.isURIResource() ? booleanSpelling( r.asNode().getLocalName() )
+            : false
+            ;
         }
     
+    private boolean booleanSpelling( String spelling )
+        {
+        if (spelling.equalsIgnoreCase( "true" )) return true;
+        if (spelling.equalsIgnoreCase( "t" )) return true;
+        if (spelling.equalsIgnoreCase( "1" )) return true;
+        if (spelling.equalsIgnoreCase( "false" )) return false;
+        if (spelling.equalsIgnoreCase( "f" )) return false;
+        if (spelling.equalsIgnoreCase( "0" )) return false;
+        throw new IllegalArgumentException( "boolean requires spelling true/false/t/f/0/1" );
+        }
+
     private String getDirectoryName( Resource root )
         {
         return getRequiredResource( root, JA.directory ).getURI().replaceFirst( "file:", "" );
