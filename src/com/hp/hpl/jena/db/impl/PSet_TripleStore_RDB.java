@@ -850,6 +850,21 @@ if ( hack != 0 ) {
 
 				ps.setInt(args++, gid);
 				//*/ }
+				
+//				if ( getTblName().equals("jena_g1t1_stmt"))
+//				{
+//				    // DEBUG - destructive.
+//	                System.out.println("SQL: "+op+"("+subj+","+pred+","+obj+") ["+gid+"] "+getTblName()) ;
+//	                ps.execute() ;
+//	                ResultSet rs = ps.getResultSet();
+//	                while(rs.next())
+//	                {
+//	                    System.out.println(rs.getString(1)) ;
+//                        System.out.println(rs.getString(2)) ;
+//                        System.out.println(rs.getString(3)) ;
+//	                }
+//				}
+				
 				m_sql.executeSQL(ps, op, result);
 
 				//m_sql.returnPreparedSQLStatement(ps,op);

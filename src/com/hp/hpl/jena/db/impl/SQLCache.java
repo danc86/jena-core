@@ -542,33 +542,33 @@ public class SQLCache {
 	public void runSQLGroup(String opname, String [] attr) throws SQLException {
 		String op = null;
 		SQLException eignore = null;
-		String operror = null;
 		java.sql.Statement sql = getConnection().createStatement();
 		Iterator ops = getSQLStatementGroup(opname).iterator();
-		int attrCnt = attr == null ? 0 : attr.length;
-		if ( attrCnt > 6 )
-			throw new RDFRDBException("Too many parameters");
-		while (ops.hasNext()) {
-			op = (String) ops.next();
-			if ( attrCnt > 0 ) op = substitute(op,"${a}",attr[0]);
-			if ( attrCnt > 1 ) op = substitute(op,"${b}",attr[1]);
-			if ( attrCnt > 2 ) op = substitute(op,"${c}",attr[2]);
-			if ( attrCnt > 3 ) op = substitute(op,"${d}",attr[3]);
-			if ( attrCnt > 4 ) op = substitute(op,"${e}",attr[4]);
-			if ( attrCnt > 5 ) op = substitute(op,"${f}",attr[5]);			
-			try {
-				sql.execute(op);
-			} catch (SQLException e) {
-				// This is debugging legacy, exception is still reported at the end
-				// System.out.println("Exec failure: " + op + ": " + e);
-				operror = op;
-				eignore = e;
-			}
-		}
-		sql.close();
-		if (eignore != null) {
-			// operror records the failed operator, mostly internal debugging use
-			throw eignore;
+		
+		try {
+    		int attrCnt = attr == null ? 0 : attr.length;
+    		if ( attrCnt > 6 )
+    			throw new RDFRDBException("Too many parameters");
+    		while (ops.hasNext()) {
+    			op = (String) ops.next();
+    			if ( attrCnt > 0 ) op = substitute(op,"${a}",attr[0]);
+    			if ( attrCnt > 1 ) op = substitute(op,"${b}",attr[1]);
+    			if ( attrCnt > 2 ) op = substitute(op,"${c}",attr[2]);
+    			if ( attrCnt > 3 ) op = substitute(op,"${d}",attr[3]);
+    			if ( attrCnt > 4 ) op = substitute(op,"${e}",attr[4]);
+    			if ( attrCnt > 5 ) op = substitute(op,"${f}",attr[5]);			
+    			try {
+    			    //System.out.println("SQL : "+op) ;
+    				sql.execute(op);
+    			} catch (SQLException e) {
+    				// This is debugging legacy, exception is still reported at the end
+    				//System.out.println("SQL failure: " + op + ": " + e); System.out.flush() ;
+    				throw e ;
+    			}
+    		}
+		} finally 
+		{
+		    try { sql.close(); } catch (SQLException e2) {}
 		}
 	}
 
