@@ -102,7 +102,7 @@ public abstract class AssemblerTestBase extends ModelTestBase
     protected Resource resourceInModel( String string )
         {
         Model m = model( string );
-        Resource r = resource( string.substring( 0, string.indexOf( ' ' ) ) );
+        Resource r = resource( m, string.substring( 0, string.indexOf( ' ' ) ) );
         return (Resource) r.inModel( m );        
         }
 

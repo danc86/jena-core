@@ -51,6 +51,21 @@ public abstract class AbstractTestReifier extends GraphTestBase
     protected final Graph graphWithIf( boolean cond, String facts )
         { return graphWithUnless( !cond, facts ); }
             
+    public void testGetGraphNotNull()
+        {
+        assertNotNull( getGraph( Minimal )  );
+        }
+    
+    public void testGotGraphReifierNotNull()
+        {
+        assertNotNull( getGraph( Minimal ).getReifier() );
+        }
+    
+    public void testGotGraphReifierStyleNotNull()
+        {
+        assertNotNull( getGraph( Minimal ).getReifier().getStyle() );
+        }
+    
     public void testStyle()
         {
         assertSame( Minimal, getGraph( Minimal ).getReifier().getStyle() );    
@@ -212,6 +227,7 @@ public abstract class AbstractTestReifier extends GraphTestBase
             {
             graphAdd( g,  clashingStatement );
             assertEquals( null, g.getReifier().getTriple( node( "x" ) ) );
+            // System.err.println( ">> tRC: clashing = " + clashingStatement );
             assertFalse( g.getReifier().hasTriple( SPO ) );
             }
         catch (AlreadyReifiedException e)
