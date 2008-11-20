@@ -393,7 +393,7 @@ public class GraphTestBase extends JenaTestBase
 
     protected static Graph getReificationTriples( final Reifier r )
         {
-        return new GraphBase()
+        return new GraphBase( ReificationStyle.Minimal )
             {
             public ExtendedIterator graphBaseFind( TripleMatch m ) { return r.find( m ); }
             };
