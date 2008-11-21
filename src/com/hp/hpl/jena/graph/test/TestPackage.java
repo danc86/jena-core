@@ -35,6 +35,7 @@ public class TestPackage extends TestSuite {
         addTest( TestSimpleReifierFragmentsMap.suite() );   
         addTest( TestReifier.suite() );   
         addTestSuite( TestReifierSearch.class );
+        addTest( TestReificationWrapper.suite() );
         addTest( TestReificationPredicates.suite() );
         addTest( TestTypedLiterals.suite() );
         addTest( TestGraphQueryPackage.suite() );
