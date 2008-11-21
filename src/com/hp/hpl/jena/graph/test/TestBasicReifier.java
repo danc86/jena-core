@@ -33,7 +33,7 @@ public class TestBasicReifier extends AbstractTestReifier
     public static TestSuite suite()
         { 
         TestSuite result = new TestSuite();
-        result.addTest( MetaTestGraph.suite( TestBasicReifier.class, BasicReifierGraph.class ) );
+        result.addTest( MetaTestGraph.suite( TestBasicReifier.class, BasicReifierGraph.class, ReificationStyle.Standard ) );
         return result; 
         }       
 

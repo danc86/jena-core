@@ -154,22 +154,14 @@ public abstract class AbstractTestReifier extends GraphTestBase
         assertEquals( 0, g.size() );
         }
         
-    public void testReificationTriplesConvenient()
-        { testReificationTriples( Convenient ); }
-        
-    public void testReificationTriplesStandard()
-        { testReificationTriples( Standard ); }
-    
-    public void testReificationQuadletsMinimal()
-        { testReificationTriples( Minimal ); }
-        
     /**
         test that a reifier with the given style sees [or not, if it's minimal] the reification quads
         that are inserted through its graph.
     */
-    protected void testReificationTriples( ReificationStyle style )
+    public void testReificationTriples()
         {
-        Graph g = getGraph( style );
+        Graph g = getGraph();
+        ReificationStyle style = g.getReifier().getStyle();
         Graph quadlets = getReificationTriples( g.getReifier() );
         String S1 = "SSS rdf:predicate PPP", S2 = "SSS rdf:subject SSS";
         g.add( triple( S1 ) );
