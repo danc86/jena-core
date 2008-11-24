@@ -8,7 +8,7 @@ package com.hp.hpl.jena.graph;
 
 import com.hp.hpl.jena.graph.test.NodeCreateUtils;
 import com.hp.hpl.jena.shared.*;
-import com.hp.hpl.jena.util.iterator.Filter;
+import com.hp.hpl.jena.util.iterator.*;
 
 import java.util.*;
 
@@ -22,7 +22,7 @@ import java.util.*;
 public class Triple implements TripleMatch 
     {    
 	private final Node subj, pred, obj;
-    
+ 
 	public Triple( Node s, Node p, Node o ) 
         {
         if (s == null) throw new UnsupportedOperationException( "subject cannot be null" );
@@ -66,6 +66,15 @@ public class Triple implements TripleMatch
 
     public Node getMatchSubject()
         { return anyToNull( subj ); }
+    
+    public static final Map1 getSubject = new Map1() 
+        { public Object map1( Object t ) { return ((Triple) t).getSubject(); } };
+        
+    public static final Map1 getPredicate = new Map1() 
+        { public Object map1( Object t ) { return ((Triple) t).getPredicate(); } };
+        
+    public static final Map1 getObject = new Map1() 
+        { public Object map1( Object t ) { return ((Triple) t).getObject(); } };
         
     public Node getMatchPredicate()
         { return anyToNull( pred ); }

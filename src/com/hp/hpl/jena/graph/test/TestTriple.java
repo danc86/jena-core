@@ -252,6 +252,14 @@ public class TestTriple extends GraphTestBase
         Triple t1 = Triple.create( "eg://domain.dom/spoo#a b c" );
         assertEquals( "spoo:a @eh:/b eh:/c", t1.toString( pm ) );
         }
+    
+    public void testTripleMaps()
+        {
+        assertEquals( node( "x" ), Triple.getSubject.map1( Triple.create( "x P z" ) ) );
+        assertEquals( node( "P" ), Triple.getPredicate.map1( Triple.create( "x P z" ) ) );
+        assertEquals( node( "z" ), Triple.getObject.map1( Triple.create( "x P z" ) ) );
+        }
+    
 
     }
 /*
