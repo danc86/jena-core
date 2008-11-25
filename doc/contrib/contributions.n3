@@ -128,3 +128,12 @@
     ; ct:licence "as per Jena"
     .
 
+[]
+    dc:creator "Marco Neumann and Taylor Cowan"
+    ; dc:name "GeoSpatialWeb"
+    ; dc:description "This projects adds geo-spatial predicates and reasoning features to Jena property functions."
+    ; ct:link "http://code.google.com/p/geospatialweb/"
+    ; ct:linkTitle "GeoSpatialWeb"
+    ; ct:licence "GNU GPL License"
+    .
+
