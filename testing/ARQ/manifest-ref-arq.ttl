@@ -5,7 +5,7 @@
 @prefix qt:     <http://www.w3.org/2001/sw/DataAccess/tests/test-query#> .
 
 <>  rdf:type mf:Manifest ;
-    rdfs:label "ARQ - Scripts" ;
+    rdfs:label "ARQ - Scripts (Reference Query Engine)" ;
     mfx:include (
     	## Syntax tests are in <Syntax/manifest-syntax.ttl>
     	## but called by a different test suite for separate
@@ -40,7 +40,8 @@
     	<OpenWorld/manifest.ttl>
 
         <Function/manifest.ttl>
-        <PropertyFunctions/manifest.ttl>
+## Property functions not covered by the reference query engine.
+##        <PropertyFunctions/manifest.ttl>
         <TypePromotion/manifest.ttl>
 
         <OrderBy/manifest.ttl> # DAWG tests/data/sort
@@ -53,7 +54,8 @@
 
         <Distinct/manifest.ttl>
         <Sort/manifest.ttl>
-        <Examples/manifest.ttl>
+## More property functions
+##        <Examples/manifest.ttl>
 
     ## Engines
         <EngineRef/manifest.ttl>
