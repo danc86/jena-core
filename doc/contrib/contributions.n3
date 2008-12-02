@@ -29,15 +29,6 @@
     .
 
 []
-    dc:creator "Andy Seaborne"
-    ; dc:name "ARQ"
-    ; dc:description "implementation of SPARQL for Jena"
-    ; ct:link "http://jena.sourceforge.net/ARQ/"
-    ; ct:linkTitle "jena files page"
-    ; ct:licence "as per Jena"
-    .
-
-[]
     dc:creator "Chris Bizer"
     ; dc:name "NG4J"
     ; dc:description "Named Graphs API for Jena"
