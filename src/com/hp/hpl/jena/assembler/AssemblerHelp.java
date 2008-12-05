@@ -29,7 +29,7 @@ public class AssemblerHelp
     /**
         A useful constant for <code>listStatements(S, P, O)</code>. 
     */
-    protected static Property ANY = null;
+    protected static final Property ANY = null;
     
     /**
         Answer a Resource .equals() to <code>root</code>, but in the expanded

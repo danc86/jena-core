@@ -52,7 +52,7 @@ public class TestModelAssembler extends AssemblerTestBase
             .setNsPrefix( "my", "urn:secret:42/" )
             .setNsPrefix( "your", "urn:public:17#" );
         Resource root = resourceInModel
-            ( "x rdf:type ja:DefaultModel; x ja:includes p1; x ja:includes p2"
+            ( "x rdf:type ja:DefaultModel; x ja:prefixMapping p1; x ja:prefixMapping p2"
             + "; p1 rdf:type ja:PrefixMapping; p1 ja:prefix 'my'; p1 ja:namespace 'urn:secret:42/'"
             + "; p2 rdf:type ja:PrefixMapping; p2 ja:prefix 'your'; p2 ja:namespace 'urn:public:17#'" );
         Model m = (Model) a.open( Assembler.prefixMapping, root );
@@ -70,7 +70,7 @@ public class TestModelAssembler extends AssemblerTestBase
                 return ModelFactory.createDefaultModel(); 
                 }
             };
-        Model m = a.openModel( resourceInModel( "a rdf:type ja:Model" ) );
+        a.openModel( resourceInModel( "a rdf:type ja:Model" ) );
         assertEquals( listOfOne( ReificationStyle.Standard ), style );
         }
     
@@ -106,7 +106,7 @@ public class TestModelAssembler extends AssemblerTestBase
                 return ModelFactory.createDefaultModel(); 
                 }
             };
-        Model m = a.openModel( resourceInModel( "a rdf:type ja:Model; a ja:reificationMode " + styleString ) );
+        a.openModel( resourceInModel( "a rdf:type ja:Model; a ja:reificationMode " + styleString ) );
         assertEquals( listOfOne( style ), styles );
         }
     }

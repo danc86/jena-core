@@ -21,13 +21,14 @@ public class PrefixMappingAssembler extends AssemblerBase implements Assembler
     public static PrefixMapping getPrefixes( Assembler a, Resource root, PrefixMapping result )
         {
         setSimplePrefixes( root, result );
-        setIncludedPrefixes( a, root, result );
+        includePrefixesFor( a, root, result, JA.includes );
+        includePrefixesFor( a, root, result, JA.prefixMapping );
         return result;
         }
 
-    private static void setIncludedPrefixes( Assembler a, Resource root, PrefixMapping result )
+    private static void includePrefixesFor( Assembler a, Resource root, PrefixMapping result, Property includeUsing )
         {
-        for (StmtIterator it = root.listProperties( JA.includes ); it.hasNext();)
+        for (StmtIterator it = root.listProperties( includeUsing ); it.hasNext();)
             {
             Statement s = it.nextStatement();
             PrefixMapping sub = (PrefixMapping) a.open( getResource( s ) );

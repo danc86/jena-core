@@ -192,6 +192,8 @@ public class JA
     public static final Property likeBuiltinSpec = property( "likeBuiltinSpec" );
 
     public static final Resource SinglePrefixMapping = resource( "SinglePrefixMapping");
+    
+    public static final Property prefixMapping = property( "prefixMapping" );
 
     public static Model getSchema()
         { // inline packagename to avoid clash with /our/ FileManager.

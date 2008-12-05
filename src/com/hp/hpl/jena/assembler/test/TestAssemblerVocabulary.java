@@ -57,6 +57,7 @@ public class TestAssemblerVocabulary extends AssemblerTestBase
         assertLocalname( "assembler", JA.assembler );
         assertLocalname( "loadClass", JA.loadClass );
         assertLocalname( "prefix", JA.prefix );
+        assertLocalname( "prefixMapping", JA.prefixMapping );
         assertLocalname( "namespace", JA.namespace );
         assertLocalname( "includes", JA.includes );
         assertLocalname( "directory", JA.directory );
