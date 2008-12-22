@@ -98,6 +98,7 @@ public class OWLFBRuleReasoner extends FBRuleReasoner {
         graph.setDerivationLogging(recordDerivations);
         graph.setTraceOn(traceOn);
         graph.rebind(data);
+        graph.setDatatypeRangeValidation(true);
                 
         return graph;
     }

@@ -10,6 +10,7 @@
 package com.hp.hpl.jena.reasoner.rulesys;
 
 import com.hp.hpl.jena.graph.Capabilities;
+import com.hp.hpl.jena.graph.Graph;
 import com.hp.hpl.jena.reasoner.*;
 
 import java.util.*;
@@ -52,7 +53,23 @@ public class OWLMiniReasoner extends GenericRuleReasoner implements Reasoner {
         setMode(HYBRID);
 //        setTransitiveClosureCaching(true);
     }
-    
+        
+    /**
+     * Attach the reasoner to a set of RDF data to process.
+     * The reasoner may already have been bound to specific rules or ontology
+     * axioms (encoded in RDF) through earlier bindRuleset calls.
+     * 
+     * @param data the RDF data to be processed, some reasoners may restrict
+     * the range of RDF which is legal here (e.g. syntactic restrictions in OWL).
+     * @return an inference graph through which the data+reasoner can be queried.
+     * @throws ReasonerException if the data is ill-formed according to the
+     * constraints imposed by this reasoner.
+     */
+    public InfGraph bind(Graph data) throws ReasonerException {
+        InfGraph graph = super.bind(data);
+        ((FBRuleInfGraph)graph).setDatatypeRangeValidation(true);
+        return graph;
+    }
 
     /**
      * Return the Jena Graph Capabilties that the inference graphs generated
