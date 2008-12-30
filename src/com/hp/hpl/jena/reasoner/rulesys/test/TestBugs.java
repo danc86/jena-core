@@ -20,6 +20,7 @@ import com.hp.hpl.jena.datatypes.RDFDatatype;
 import com.hp.hpl.jena.datatypes.TypeMapper;
 import com.hp.hpl.jena.datatypes.xsd.XSDDatatype;
 import com.hp.hpl.jena.graph.Node;
+import com.hp.hpl.jena.graph.Triple;
 import com.hp.hpl.jena.ontology.*;
 import com.hp.hpl.jena.rdf.listeners.StatementListener;
 import com.hp.hpl.jena.rdf.model.*;
@@ -986,7 +987,13 @@ public class TestBugs extends TestCase {
         ont.createResource(NS + "c").addProperty(hasValue, "10", XSDDatatype.XSDinteger);
         
         ValidityReport validity = ont.validate();
-        assertTrue (! validity.isValid());    
+        assertTrue (! validity.isValid()); 
+        
+        // Check culprit reporting
+        ValidityReport.Report report = (ValidityReport.Report)(validity.getReports().next());
+        Triple culprit = (Triple)report.getExtension();
+        assertEquals(culprit.getSubject().getURI(), NS + "c");
+        assertEquals(culprit.getPredicate(), hasValue.asNode());
     }
     
     // debug assistant
