@@ -36,8 +36,10 @@ import com.hp.hpl.jena.graph.query.SimpleQueryHandler;
 import com.hp.hpl.jena.mem.faster.GraphMemFasterQueryHandler;
 import com.hp.hpl.jena.ontology.*;
 import com.hp.hpl.jena.ontology.impl.OntClassImpl;
+import com.hp.hpl.jena.ontology.impl.OntModelImpl;
+import com.hp.hpl.jena.rdf.arp.JenaReader;
 import com.hp.hpl.jena.rdf.model.*;
-import com.hp.hpl.jena.rdf.model.impl.ModelMakerImpl;
+import com.hp.hpl.jena.rdf.model.impl.*;
 import com.hp.hpl.jena.reasoner.Reasoner;
 import com.hp.hpl.jena.reasoner.ReasonerRegistry;
 import com.hp.hpl.jena.reasoner.dig.*;
@@ -45,6 +47,7 @@ import com.hp.hpl.jena.reasoner.rulesys.GenericRuleReasoner;
 import com.hp.hpl.jena.reasoner.rulesys.Rule;
 import com.hp.hpl.jena.reasoner.test.TestUtil;
 import com.hp.hpl.jena.shared.ClosedException;
+import com.hp.hpl.jena.shared.JenaException;
 import com.hp.hpl.jena.util.FileUtils;
 import com.hp.hpl.jena.util.iterator.ExtendedIterator;
 import com.hp.hpl.jena.vocabulary.*;
@@ -1739,6 +1742,101 @@ public class TestBugReports
         assertEquals( "dc:", m.expandPrefix( "dc:" ) );
     }
 
+    /**
+     * OntModel read should do content negotiation if no base URI is given
+     * @param ontModel
+     * @return
+     */
+    public void testReadConneg0() {
+        final boolean[] acceptHeaderSet = new boolean[] {false};
+
+        // because ModelCom has private fields it references directly, we have to mock
+        // a lot more pieces that I would prefer
+        OntModel m = new OntModelImpl(OntModelSpec.OWL_MEM) {
+            protected Model readDelegate( String url ) {
+                acceptHeaderSet[0] = true;
+                return super.readDelegate( url );
+            }
+
+            /** Allow pseudo-conneg even on file: uri's */
+            public boolean ignoreFileURI( String url ) {
+                return false;
+            }
+        };
+
+        assertFalse( acceptHeaderSet[0] );
+        m.read( "file:testing/ontology/bugs/koala.owl" );
+        assertTrue( acceptHeaderSet[0] );
+
+    }
+
+    /** No conneg for file: uri's normally */
+    public void testReadConneg1() {
+        final boolean[] acceptHeaderSet = new boolean[] {false};
+
+        // because ModelCom has private fields it references directly, we have to mock
+        // a lot more pieces that I would prefer
+        OntModel m = new OntModelImpl(OntModelSpec.OWL_MEM) {
+            protected Model readDelegate( String url ) {
+                acceptHeaderSet[0] = true;
+                return super.readDelegate( url );
+            }
+        };
+
+        assertFalse( acceptHeaderSet[0] );
+        m.read( "file:testing/ontology/bugs/koala.owl" );
+        assertFalse( acceptHeaderSet[0] );
+
+    }
+
+    /** With RDF/XML syntax specified, conneg */
+    public void testReadConneg2() {
+        final boolean[] acceptHeaderSet = new boolean[] {false};
+
+        // because ModelCom has private fields it references directly, we have to mock
+        // a lot more pieces that I would prefer
+        OntModel m = new OntModelImpl(OntModelSpec.OWL_MEM) {
+            protected Model readDelegate( String url, String lang ) {
+                acceptHeaderSet[0] = true;
+                return super.readDelegate( url, lang );
+            }
+
+            /** Allow pseudo-conneg even on file: uri's */
+            public boolean ignoreFileURI( String url ) {
+                return false;
+            }
+        };
+
+        assertFalse( acceptHeaderSet[0] );
+        m.read( "file:testing/ontology/bugs/koala.owl", "RDF/XML" );
+        assertTrue( acceptHeaderSet[0] );
+
+    }
+
+    /** With a base URI, no conneg */
+    public void testReadConneg3() {
+        final boolean[] acceptHeaderSet = new boolean[] {false};
+
+        // because ModelCom has private fields it references directly, we have to mock
+        // a lot more pieces that I would prefer
+        OntModel m = new OntModelImpl(OntModelSpec.OWL_MEM) {
+            protected Model readDelegate( String url, String lang ) {
+                acceptHeaderSet[0] = true;
+                return super.readDelegate( url, lang );
+            }
+
+            /** Allow pseudo-conneg even on file: uri's */
+            public boolean ignoreFileURI( String url ) {
+                return false;
+            }
+        };
+
+        assertFalse( acceptHeaderSet[0] );
+        m.read( "file:testing/ontology/bugs/koala.owl", "http://foo.com", "RDF/XML" );
+        assertFalse( acceptHeaderSet[0] );
+
+    }
+
     // Internal implementation methods
     //////////////////////////////////
 
@@ -1771,6 +1869,7 @@ public class TestBugReports
             m_committed = true;
         }
     }
+
 }
 
 /*
