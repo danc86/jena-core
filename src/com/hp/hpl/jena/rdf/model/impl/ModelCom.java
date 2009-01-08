@@ -408,7 +408,7 @@ public class ModelCom
     public StmtIterator listLiteralStatements( Resource S, Property P, char  O )
         { return listStatements( S, P, createTypedLiteral( O ) ); }
     
-    public StmtIterator listlLiteralStatements( Resource S, Property P, float O )
+    public StmtIterator listLiteralStatements( Resource S, Property P, float O )
          { return listStatements( S, P, createTypedLiteral( O ) ); }
     
     public StmtIterator listLiteralStatements( Resource S, Property P, double  O )

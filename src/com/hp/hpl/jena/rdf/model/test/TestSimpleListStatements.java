@@ -91,7 +91,7 @@ public class TestSimpleListStatements extends ModelTestBase
     
     public void testFloat() 
         {
-        List got = model.listlLiteralStatements( null, null, floatValue ).toList();
+        List got = model.listLiteralStatements( null, null, floatValue ).toList();
         assertEquals( 1, got.size() );
         Statement it = (Statement) got.get( 0 );
         assertEquals( resource( "http://example.org/float" ), it.getSubject() );
