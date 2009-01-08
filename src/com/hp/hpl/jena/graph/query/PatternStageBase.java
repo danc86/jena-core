@@ -15,7 +15,6 @@ import com.hp.hpl.jena.JenaRuntime;
 import com.hp.hpl.jena.graph.Graph;
 import com.hp.hpl.jena.graph.Triple;
 import com.hp.hpl.jena.graph.query.StageElement.*;
-import com.hp.hpl.jena.shared.JenaException;
 
 /**
     PatternStageBase contains the features that are common to the 

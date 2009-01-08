@@ -15,7 +15,6 @@ import java.util.*;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
-import com.hp.hpl.jena.datatypes.DatatypeFormatException;
 import com.hp.hpl.jena.datatypes.RDFDatatype;
 import com.hp.hpl.jena.datatypes.TypeMapper;
 import com.hp.hpl.jena.datatypes.xsd.XSDDatatype;

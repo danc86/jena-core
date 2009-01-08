@@ -11,7 +11,6 @@ package com.hp.hpl.jena.reasoner;
 
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.graph.compose.MultiUnion;
-import com.hp.hpl.jena.graph.compose.Union;
 import com.hp.hpl.jena.graph.impl.*;
 import com.hp.hpl.jena.shared.*;
 import com.hp.hpl.jena.util.iterator.*;

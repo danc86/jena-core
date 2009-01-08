@@ -24,8 +24,6 @@ import com.hp.hpl.jena.db.*;
 import com.hp.hpl.jena.rdf.model.test.ModelTestBase;
 import com.hp.hpl.jena.shared.PrefixMapping;
 import com.hp.hpl.jena.shared.impl.PrefixMappingImpl;
-import com.hp.hpl.jena.shared.test.AbstractTestPrefixMapping;
-
 import junit.framework.*;
 
 public class TestNsPrefix extends ModelTestBase {    

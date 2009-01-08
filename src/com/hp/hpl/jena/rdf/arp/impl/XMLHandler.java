@@ -37,7 +37,6 @@
 
 package com.hp.hpl.jena.rdf.arp.impl;
 
-import java.io.File;
 import java.net.MalformedURLException;
 import java.util.HashMap;
 import java.util.Iterator;

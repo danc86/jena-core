@@ -14,7 +14,6 @@ import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.rdf.model.impl.*;
 import com.hp.hpl.jena.regression.Regression.ResTestObjF;
 import com.hp.hpl.jena.shared.*;
-import com.hp.hpl.jena.util.iterator.Map1;
 import com.hp.hpl.jena.vocabulary.RDF;
 import com.hp.hpl.jena.regression.Regression.*;
 
