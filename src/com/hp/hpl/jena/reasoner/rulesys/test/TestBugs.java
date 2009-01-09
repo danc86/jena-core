@@ -995,6 +995,21 @@ public class TestBugs extends TestCase {
         assertEquals(culprit.getPredicate(), hasValue.asNode());
     }
     
+//    /**
+//     * Check ability to report literals as well as resources as culprits
+//     */
+//    public void testLiteralsInErrorReports() {
+//        String rules = "-> (eg:a eg:p 42).  (?X rb:violation error('test', 'arg')) <- (?S eg:p ?X).";
+//        GenericRuleReasoner reasoner = new GenericRuleReasoner( Rule.parseRules(rules) );
+//        InfModel im = ModelFactory.createInfModel(reasoner, ModelFactory.createDefaultModel());
+//        ValidityReport validity = im.validate();
+//        assertTrue (! validity.isValid()); 
+//        ValidityReport.Report report = (ValidityReport.Report)(validity.getReports().next());
+//        assertTrue( report.getExtension() instanceof RDFNode);
+//        RDFNode culprit = (RDFNode)report.getExtension();
+//        assertEquals( culprit, im.createTypedLiteral(42));
+//    }
+    
     // debug assistant
 //    private void tempList(Model m, Resource s, Property p, RDFNode o) {
 //        System.out.println("Listing of " + PrintUtil.print(s) + " " + PrintUtil.print(p) + " " + PrintUtil.print(o));
