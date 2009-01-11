@@ -756,6 +756,19 @@ public class FBRuleInfGraph  extends BasicForwardRuleInfGraph implements Backwar
                     RDFNode culprit = null;
                     if (culpritN.isURI()) {
                         culprit = ResourceFactory.createResource(culpritN.getURI());
+                    } else if (culpritN.isLiteral()) {
+                        RDFDatatype dtype = culpritN.getLiteralDatatype();
+                        String lex = culpritN.getLiteralLexicalForm();
+                        Object value = culpritN.getLiteralValue();
+                        if (dtype == null) {
+                            if (value instanceof String) {
+                                culprit = ResourceFactory.createPlainLiteral(lex);
+                            } else {
+                                culprit = ResourceFactory.createTypedLiteral(value);
+                            }
+                        } else {
+                            culprit = ResourceFactory.createTypedLiteral(lex, dtype);
+                        }
                     }
                     report.add(nature.equalsIgnoreCase("error"), type, description.toString(), culprit);
                 }

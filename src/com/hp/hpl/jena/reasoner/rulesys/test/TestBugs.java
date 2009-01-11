@@ -20,6 +20,7 @@ import com.hp.hpl.jena.datatypes.TypeMapper;
 import com.hp.hpl.jena.datatypes.xsd.XSDDatatype;
 import com.hp.hpl.jena.graph.Node;
 import com.hp.hpl.jena.graph.Triple;
+import com.hp.hpl.jena.graph.impl.LiteralLabel;
 import com.hp.hpl.jena.ontology.*;
 import com.hp.hpl.jena.rdf.listeners.StatementListener;
 import com.hp.hpl.jena.rdf.model.*;
@@ -56,8 +57,7 @@ public class TestBugs extends TestCase {
     public static TestSuite suite() {
         return new TestSuite( TestBugs.class );
 //        TestSuite suite = new TestSuite();
-//        suite.addTest(new TestBugs( "testGroundClosure" ));
-//        suite.addTest(new TestBugs( "testGroundClosure2" ));
+//        suite.addTest(new TestBugs( "testLiteralsInErrorReports" ));
 //        return suite;
     }
 
@@ -995,20 +995,45 @@ public class TestBugs extends TestCase {
         assertEquals(culprit.getPredicate(), hasValue.asNode());
     }
     
-//    /**
-//     * Check ability to report literals as well as resources as culprits
-//     */
-//    public void testLiteralsInErrorReports() {
-//        String rules = "-> (eg:a eg:p 42).  (?X rb:violation error('test', 'arg')) <- (?S eg:p ?X).";
-//        GenericRuleReasoner reasoner = new GenericRuleReasoner( Rule.parseRules(rules) );
-//        InfModel im = ModelFactory.createInfModel(reasoner, ModelFactory.createDefaultModel());
-//        ValidityReport validity = im.validate();
-//        assertTrue (! validity.isValid()); 
-//        ValidityReport.Report report = (ValidityReport.Report)(validity.getReports().next());
-//        assertTrue( report.getExtension() instanceof RDFNode);
-//        RDFNode culprit = (RDFNode)report.getExtension();
-//        assertEquals( culprit, im.createTypedLiteral(42));
-//    }
+    /**
+     * Check ability to report literals as well as resources as culprits
+     */
+    public void testLiteralsInErrorReports() {
+        RDFNode culprit = doTestLiteralsInErrorReports("-> (eg:a eg:p 42).  (?X rb:violation error('test', 'arg')) <- (?S eg:p ?X).");
+        assertEquals( culprit, ResourceFactory.createTypedLiteral(42));
+        culprit = doTestLiteralsInErrorReports("-> (eg:a eg:p 'foo').  (?X rb:violation error('test', 'arg')) <- (?S eg:p ?X).");
+        assertEquals( culprit, ResourceFactory.createPlainLiteral("foo"));
+        BuiltinRegistry.theRegistry.register( new SomeTriple() );
+        culprit = doTestLiteralsInErrorReports("-> (eg:a eg:p 42).  (?X rb:violation error('test', 'arg')) <- (?S eg:p ?Y), someTriple(?X).");
+        assertTrue( culprit.isLiteral() );
+        Object val = ((Literal)culprit).getValue();
+        assertTrue( val instanceof Triple);
+    }
+    
+    private RDFNode doTestLiteralsInErrorReports(String rules) {
+        GenericRuleReasoner reasoner = new GenericRuleReasoner( Rule.parseRules(rules) );
+        InfModel im = ModelFactory.createInfModel(reasoner, ModelFactory.createDefaultModel());
+        ValidityReport validity = im.validate();
+        assertTrue (! validity.isValid()); 
+        ValidityReport.Report report = (ValidityReport.Report)(validity.getReports().next());
+        assertTrue( report.getExtension() instanceof RDFNode);
+        return (RDFNode)report.getExtension();
+    }
+    
+    /**
+     * Builtin which generates an arbitrary Triple to for testing.
+     */
+    private static class SomeTriple extends BaseBuiltin {
+        public String getName() {  return "someTriple";  }
+        public int getArgLength() { return 1; }
+        public boolean bodyCall(Node[] args, int length, RuleContext context) {
+            checkArgs(length, context);
+            BindingEnvironment env = context.getEnv();
+            Triple t = new Triple( Node.createAnon(), Node.createURI("http://jena.hpl.hp.com/example#"), Node.createAnon());
+            Node l = Node.createLiteral( new LiteralLabel(t) );
+            return env.bind(args[0], l);
+        }
+    }
     
     // debug assistant
 //    private void tempList(Model m, Resource s, Property p, RDFNode o) {
