@@ -48,12 +48,6 @@ public class LocatorURL implements Locator
             conn.connect() ;
             InputStream in = new BufferedInputStream(conn.getInputStream());
             
-            if ( in == null )
-            {
-                if ( FileManager.logAllLookups && log.isTraceEnabled() )
-                    log.trace("Not found: "+filenameOrURI) ; 
-                return null ;
-            }
             if ( FileManager.logAllLookups  && log.isTraceEnabled() )
                 log.trace("Found: "+filenameOrURI) ;
             return new TypedStream(in, conn.getContentType()) ; 

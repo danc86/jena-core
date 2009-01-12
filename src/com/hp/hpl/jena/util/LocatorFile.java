@@ -123,14 +123,7 @@ public class LocatorFile implements Locator
         
         try {
             InputStream in = new FileInputStream(f) ;
-            if ( in == null )
-            {
-                // Should not happen 
-                if ( FileManager.logAllLookups && log.isTraceEnabled() )
-                    log.trace("LocatorFile: Failed to open: "+filenameOrURI+altDirLogStr) ;
-                return null ;
-            }
-            
+
             if ( FileManager.logAllLookups && log.isTraceEnabled() )
                 log.trace("Found: "+filenameOrURI+altDirLogStr) ;
                 

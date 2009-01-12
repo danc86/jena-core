@@ -23,9 +23,9 @@ public class N3TestSuite extends TestSuite
 	{
 		super("N3") ;
         addTest(TestResolver.suite()) ;
-		addTest(new N3InternalTests()) ;
-		addTest(new N3ExternalTests()) ;
-		addTest(new N3JenaReaderTests()) ;
+//		addTest(new N3InternalTests()) ;
+//		addTest(new N3ExternalTests()) ;
+//		addTest(new N3JenaReaderTests()) ;
 		addTest(new N3JenaWriterTests()) ;
 	}
 }

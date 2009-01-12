@@ -68,7 +68,7 @@ public class RDFReaderFImpl extends Object implements RDFReaderF {
         "com.hp.hpl.jena.rdf.arp.JenaReader",
         Jena.PATH + ".rdf.model.impl.NTripleReader",
         Jena.PATH + ".rdf.model.impl.NTripleReader",
-        "com.hp.hpl.jena.n3.N3JenaReader",
+        TURTLEREADER, //com.hp.hpl.jena.n3.N3JenaReader.class.getName(),  // N3 replaced by a Turtle-based parser 
         TURTLEREADER,
         TURTLEREADER,
         TURTLEREADER,

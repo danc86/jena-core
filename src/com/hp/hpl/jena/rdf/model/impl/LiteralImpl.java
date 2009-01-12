@@ -76,36 +76,36 @@ public class LiteralImpl extends EnhNode implements Literal {
     public RDFNode inModel( Model m )
         { return this; }
 
-    /**
-     *@deprecated Please use the createLiteral methods on Model.
-     *Model implementors should use Literal instructors which include the Model.
-     */
-    public LiteralImpl(boolean b) {this(String.valueOf(b));}
-    
-    /**
-     *@deprecated Please use the createLiteral methods on Model.
-     *Model implementors should use Literal instructors which include the Model.
-     */
-    public LiteralImpl(long l)    {this(String.valueOf(l));}
-    
-    /**
-     *@deprecated Please use the createLiteral methods on Model.
-     *Model implementors should use Literal instructors which include the Model.
-     */
-    public LiteralImpl(char c)    {this(String.valueOf(c));}
-    
-    /**
-     *@deprecated Please use the createLiteral methods on Model.
-     *Model implementors should use Literal instructors which include the Model.
-     */
-    public LiteralImpl(float f)   {this(String.valueOf(f));}
-    
-    /**
-     *@deprecated Please use the createLiteral methods on Model.
-     *Model implementors should use Literal instructors which include the Model.
-     */
-    public LiteralImpl(double d)  {this(String.valueOf(d));}
-    
+//    /**
+//     *@deprecated Please use the createLiteral methods on Model.
+//     *Model implementors should use Literal instructors which include the Model.
+//     */
+//    public LiteralImpl(boolean b) {this(String.valueOf(b));}
+//    
+//    /**
+//     *@deprecated Please use the createLiteral methods on Model.
+//     *Model implementors should use Literal instructors which include the Model.
+//     */
+//    public LiteralImpl(long l)    {this(String.valueOf(l));}
+//    
+//    /**
+//     *@deprecated Please use the createLiteral methods on Model.
+//     *Model implementors should use Literal instructors which include the Model.
+//     */
+//    public LiteralImpl(char c)    {this(String.valueOf(c));}
+//    
+//    /**
+//     *@deprecated Please use the createLiteral methods on Model.
+//     *Model implementors should use Literal instructors which include the Model.
+//     */
+//    public LiteralImpl(float f)   {this(String.valueOf(f));}
+//    
+//    /**
+//     *@deprecated Please use the createLiteral methods on Model.
+//     *Model implementors should use Literal instructors which include the Model.
+//     */
+//    public LiteralImpl(double d)  {this(String.valueOf(d));}
+
     /**
      *@deprecated Please use the createLiteral methods on Model.
      *Model implementors should use Literal instructors which include the Model.
@@ -137,17 +137,17 @@ public class LiteralImpl extends EnhNode implements Literal {
     
     /**
      *@deprecated Please use the createLiteral methods on Model.
-     *Model implementors should use Literal instructors which include the Model.
+     *Model implementors should use Literal constructors which include the Model.
      */
     public LiteralImpl( String s, String l, boolean wellFormed, ModelCom m ) {    	
         this(Node.createLiteral(s,l,wellFormed),m);
     }
     
-    /**
-     *@deprecated Please use the createLiteral methods on Model.
-     *Model implementors should use Literal instructors which include the Model.
-     */                  
-    public LiteralImpl(Object o)  {this( o.toString());}
+//    /**
+//     *@deprecated Please use the createLiteral methods on Model.
+//     *Model implementors should use Literal instructors which include the Model.
+//     */                  
+//    public LiteralImpl(Object o)  {this( o.toString());}
     
     public String toString() {
         return asNode().toString( PrefixMapping.Standard, false );

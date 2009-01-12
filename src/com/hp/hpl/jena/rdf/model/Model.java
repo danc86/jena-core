@@ -65,7 +65,7 @@ import java.util.*;
  */
 public interface Model
     extends ModelCon, ModelGraphInterface,
-        RDFReaderF, RDFWriterF, PrefixMapping, ModelLock
+        RDFReaderF, RDFWriterF, PrefixMapping, Lock
 {
 
 

@@ -37,12 +37,12 @@ import java.util.*;
 
 public class ModelCom 
     extends EnhGraph
-    implements Model, PrefixMapping, ModelLock
+    implements Model, PrefixMapping, Lock
 {
 
       private static final RDFReaderF readerFactory = new RDFReaderFImpl();
       private static final RDFWriterF writerFactory = new RDFWriterFImpl();
-      private ModelLock modelLock = null ;
+      private Lock modelLock = null ;
       
     /**
     	make a model based on the specified graph
@@ -1276,10 +1276,10 @@ public class ModelCom
         return L.isIsomorphicWith( R );
         }
         
-    public synchronized ModelLock getModelLock()
+    public synchronized Lock getModelLock()
     {
         if ( modelLock == null )
-            modelLock = new ModelLockImpl() ;
+            modelLock = new LockMRSW() ;
         return modelLock ;
     }
     

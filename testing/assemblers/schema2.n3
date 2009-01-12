@@ -10,4 +10,4 @@
 
 @prefix :           <#> .
 
-_:x rdf:value 17.
+_:x rdf:value 17 .

@@ -386,9 +386,9 @@ public class TestXMLFeatures extends XMLOutputTestBase {
 
 			switch (behaviour) {
 			case BadPropURI:
-				fail("Bad property URI <" + s + "> was not detected.");
+				fail("Bad property URI <" + s + "> was not detected."); return ;
 			case BadURI:
-				fail("Bad URI <" + s + "> was not detected.");
+				fail("Bad URI <" + s + "> was not detected."); return ;
 			}
 			// read back in
 			Model m2 = createMemModel();
