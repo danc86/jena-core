@@ -11,8 +11,6 @@ package com.hp.hpl.jena.reasoner.rulesys.test;
 
 import com.hp.hpl.jena.reasoner.*;
 import com.hp.hpl.jena.reasoner.test.*;
-import com.hp.hpl.jena.util.FileManager;
-// import com.hp.hpl.jena.util.PrintUtil;
 import com.hp.hpl.jena.vocabulary.OWL;
 import com.hp.hpl.jena.vocabulary.RDF;
 import com.hp.hpl.jena.vocabulary.RDFS;
