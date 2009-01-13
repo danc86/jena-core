@@ -32,7 +32,7 @@ public class TestGenericRuleReasonerConfig extends AssemblerTestBase
     
     public void testLoadsSingleRuleSetViaURL()
         { 
-        testLoadsSingleRuleViaURL( "jms" );
+//        testLoadsSingleRuleViaURL( "jms" );
         testLoadsSingleRuleViaURL( "jr" );
         }
 
@@ -47,7 +47,7 @@ public class TestGenericRuleReasonerConfig extends AssemblerTestBase
     
     public void testLoadsSingleRuleFromString()
         { 
-        testLoadsSingleRuleFromString( "jms" );
+//        testLoadsSingleRuleFromString( "jms" );
         testLoadsSingleRuleFromString( "jr" );
         }
 
@@ -62,7 +62,7 @@ public class TestGenericRuleReasonerConfig extends AssemblerTestBase
     
     public void testLoadsSingleRuleViaRuleSetStringString()
         { 
-        testLoadsRulesViaRuleSetStrings( "jms" );
+//        testLoadsRulesViaRuleSetStrings( "jms" );
         testLoadsRulesViaRuleSetStrings( "jr" );
         }
 
@@ -83,7 +83,7 @@ public class TestGenericRuleReasonerConfig extends AssemblerTestBase
     
     public void testLoadsMultipleRuleSetsViaRuleSetNode()
         {
-        testLoadsMultipleRuleSetsViaRuleSetNode( "jms" );
+//        testLoadsMultipleRuleSetsViaRuleSetNode( "jms" );
         testLoadsMultipleRuleSetsViaRuleSetNode( "jr" );
         }
 

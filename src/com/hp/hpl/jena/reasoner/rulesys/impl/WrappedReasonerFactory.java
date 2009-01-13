@@ -8,7 +8,6 @@ package com.hp.hpl.jena.reasoner.rulesys.impl;
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.reasoner.*;
 import com.hp.hpl.jena.util.FileManager;
-import com.hp.hpl.jena.vocabulary.JenaModelSpec;
 
 /**
     WrappedReasonerFactory - a wrapper round ReasonerFactories that
@@ -37,10 +36,17 @@ public final class WrappedReasonerFactory implements ReasonerFactory
     public Reasoner create( Resource ignored )
         { Reasoner result = factory.create( config );
         return schemaUnion.isEmpty() ? result : result.bindSchema( schemaUnion ); }
+
+    public static final Property schemaURL = ResourceFactory.createProperty( "http://jena.hpl.hp.com/2003/08/jms#schemaURL" );
     
     private static Model loadSchemas( Model schema, Resource R )
         {
-        StmtIterator schemas = R.listProperties( JenaModelSpec.schemaURL );
+        StmtIterator schemas = R.listProperties( schemaURL );
+        if (schemas.hasNext())
+            {
+            System.err.println( "WARNING: detected obsolete use of jms:schemaURL when wrapping a reasoner factory" );
+            System.err.println( "  This will fail to work in the next release of Jena" );
+            }
         while (schemas.hasNext())
             {
             Statement s = schemas.nextStatement();

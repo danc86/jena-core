@@ -58,6 +58,19 @@ public class TestRuleSet extends AssemblerTestBase
         RuleSet s = RuleSet.create( ruleString );
         assertEquals( Rule.parseRules( ruleString ), s.getRules() );
         }
+    
+    public void testHashAndEquality()
+        {
+        String A = "[(?x breaks ?y) -> (?y brokenBy ?x)]";
+        String B = "[(?a Q b) -> (?a rdf:type U)]";
+        RuleSet rsA = RuleSet.create( A ), rsA2 = RuleSet.create( A );
+        RuleSet rsB = RuleSet.create( B );
+        assertEquals( rsA.getRules(), rsA2.getRules() );
+        assertEquals( rsA, rsA2 );
+        assertDiffer( rsA, rsB );
+        assertEquals( rsA.hashCode(), rsA2.hashCode() );
+        assertFalse( rsA.hashCode() == rsB.hashCode() );
+        }
     }
 
 

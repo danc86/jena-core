@@ -10,7 +10,6 @@ import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.mem.*;
 import com.hp.hpl.jena.shared.*;
 import com.hp.hpl.jena.util.iterator.*;
-import com.hp.hpl.jena.vocabulary.*;
 
 import java.util.*;
 
@@ -35,19 +34,6 @@ public class SimpleGraphMaker extends BaseGraphMaker
     */ 
     public SimpleGraphMaker()
         { this( ReificationStyle.Minimal ); }
-       
-    /**
-        Answer the RDFS class of this Maker
-        @return JenaModelSpec.MemMakerClass [as node]
-    */ 
-    public Node getMakerClass()
-        { return JenaModelSpec.MemMakerSpec.asNode(); }
-       
-    /**
-        Augment the general description of a GraphMaker with any Simple triples [ie none]
-    */ 
-    protected void augmentDescription( Graph d, Node self )
-        {}
     
     /**
         The mapping from the names of graphs to the Graphs themselves.

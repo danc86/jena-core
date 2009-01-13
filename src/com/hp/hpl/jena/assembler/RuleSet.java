@@ -33,6 +33,9 @@ public class RuleSet
     public List getRules()
         { return rules; }
     
+    public int hashCode()
+        { return rules.hashCode(); }
+    
     public boolean equals( Object other )
         { return other instanceof RuleSet && rules.equals( ((RuleSet) other).rules ); }
 

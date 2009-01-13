@@ -229,43 +229,27 @@ public class GenericRuleReasoner extends FBRuleReasoner {
 
     private Iterator getHasRuleStatements( Resource value )
         { 
-        return 
-            value.listProperties( JenaModelSpec.hasRule )
-            .andThen( value.listProperties( ReasonerVocabulary.hasRule ) ); 
+        return value.listProperties( ReasonerVocabulary.hasRule ); 
         }
 
     private Iterator getRuleSetURLStatements( Resource value )
         {
-        return 
-            value.listProperties( JenaModelSpec.ruleSetURL )
-            .andThen( value.listProperties( ReasonerVocabulary.ruleSetURL ) ); 
+        return value.listProperties( ReasonerVocabulary.ruleSetURL ); 
         }
 
     private boolean isHasRule( Property parameter )
         { 
-        return 
-            parameter.equals( JenaModelSpec.hasRule ) && obsolete( "hasRule" )
-            || parameter.equals( ReasonerVocabulary.hasRule ); 
+        return parameter.equals( ReasonerVocabulary.hasRule ); 
         }
 
     private boolean isRuleSet( Property parameter )
         { 
-        return 
-            parameter.equals( JenaModelSpec.ruleSet ) && obsolete( "ruleSet")
-            || parameter.equals( ReasonerVocabulary.ruleSet ); 
+        return  parameter.equals( ReasonerVocabulary.ruleSet ); 
         }
 
     private boolean isRuleSetURL( Property parameter )
         { 
-        return 
-            parameter.equals( JenaModelSpec.ruleSetURL ) && obsolete( "ruleSetURL" )
-            || parameter.equals( ReasonerVocabulary.ruleSetURL ); 
-        }
-    
-    private boolean obsolete( String property )
-        {
-        // System.err.println( ">> OBSOLETE: jms:" + property + "; use " + ReasonerVocabulary.JenaReasonerNS + property + "." );
-        return true;
+        return parameter.equals( ReasonerVocabulary.ruleSetURL ); 
         }
     
     /**

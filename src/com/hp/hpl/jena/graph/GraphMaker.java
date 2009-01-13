@@ -103,24 +103,6 @@ public interface GraphMaker
     public boolean hasGraph( String name );
     
     /**
-        Answer a Graph describing this GraphMaker using the vocabulary of
-        JenaModelSpec.
-        
-        @return a Graph describing this Maker.
-    */
-    public Graph getDescription();
-    
-    public Graph getDescription( Node root );
-    
-    /**
-        Add the description of this GraphMaker to the description graph desc, under the
-        name self.
-        @param desc the graph to which to add the description
-        @param self the root resource to use for the description
-    */
-    public Graph addDescription( Graph desc, Node self );
-    
-    /**
         Close the factory - no more requests need be honoured, and any clean-up
         can be done.
     */
@@ -134,19 +116,6 @@ public interface GraphMaker
      */
     ExtendedIterator listGraphs();
 }
-
-/* ****************************************************************************
- * Source code information
- * -----------------------
- * Original author    Ian Dickinson, HP Labs Bristol
- * Package            Jena 2
- * Web                http://sourceforge.net/projects/jena/
- * Created            06-Mar-2003
- *
- * Last modified on   $Date$
- *               by   $Author$
-
- *****************************************************************************/
 
 /*
     (c) Copyright 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009 Hewlett-Packard Development Company, LP

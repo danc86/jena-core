@@ -57,18 +57,6 @@ public class ModelMakerImpl implements ModelMaker
     public Model createDefaultModel()
         { return makeModel( maker.getGraph() ); }
         
-    public Model getDescription()
-        { 
-        if (description == null) description = makeModel( maker.getDescription() );    
-        return description; 
-        }
-        
-    public Model getDescription( Resource root )
-        { return makeModel( maker.getDescription( root.asNode() ) ); }
-        
-    public Model addDescription( Model m, Resource self )
-        { return makeModel( maker.addDescription( m.getGraph(), self.asNode() ) ); }
-        
     public void removeModel( String name )
         { maker.removeGraph( name ); }
         

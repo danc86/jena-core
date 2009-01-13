@@ -80,7 +80,7 @@ public class TestModelRead extends ModelTestBase
         String fn = IRIResolver.resolveFileURL("file:testing/modelReading/based.n3" );
         Model wanted = 
             ModelFactory.createDefaultModel()
-            .add( resource( fn ), property( "jms:predicate" ), resource( "jms:object" ) );
+            .add( resource( fn ), property( "ja:predicate" ), resource( "ja:object" ) );
         mBasedImplicit.read( fn, "N3" );
         assertIsoModels( wanted, mBasedImplicit );
         }
@@ -89,7 +89,7 @@ public class TestModelRead extends ModelTestBase
         {
         Model mBasedExplicit = ModelFactory.createDefaultModel();
         mBasedExplicit.read( "file:testing/modelReading/based.n3", "http://example/", "N3" );
-        assertIsoModels( modelWithStatements( "http://example/ jms:predicate jms:object" ), mBasedExplicit );
+        assertIsoModels( modelWithStatements( "http://example/ ja:predicate ja:object" ), mBasedExplicit );
         }
     
     public void testDefaultLangXML()

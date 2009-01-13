@@ -63,7 +63,6 @@ public abstract class AssemblerGroup extends AssemblerBase implements Assembler
         
         public Object open( Assembler a, Resource suppliedRoot, Mode mode )
             {
-            List doing = new ArrayList();
             Resource root = AssemblerHelp.withFullModel( suppliedRoot );
             loadClasses( root.getModel() );
             root.getModel().add( implementTypes );

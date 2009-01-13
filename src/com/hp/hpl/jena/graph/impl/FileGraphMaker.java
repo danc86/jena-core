@@ -14,7 +14,6 @@ import java.util.*;
 import com.hp.hpl.jena.shared.*;
 import com.hp.hpl.jena.util.CollectionFactory;
 import com.hp.hpl.jena.util.iterator.*;
-import com.hp.hpl.jena.vocabulary.*;
 
 /**
     A FileGraph factory, making FileGraphs based round some supplied
@@ -69,21 +68,11 @@ public class FileGraphMaker
         }
 
     /**
-        Answer the RDFS class of a FileGraphMaker
-        @return JenaModelSpec.FileMakerClass [node version]
-    */
-    public Node getMakerClass()
-        { return JenaModelSpec.FileMakerSpec.asNode(); }
-
-    /**
         Answer the fileBase of all the graphs created by this FileGraphMaker.
         @return the fileBase of this Maker
     */
     public String getFileBase()
         { return fileBase; }
-        
-    protected void augmentDescription( Graph g, Node self )
-        { g.add( Triple.create( self, JenaModelSpec.fileBase.asNode(), Node.createLiteral( fileBase, "", false ) ) ); }
                 
     /**
         Answer a new, anonynous FileGraph. See FileGraph.create().

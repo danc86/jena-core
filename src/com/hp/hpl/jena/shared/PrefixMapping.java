@@ -198,7 +198,6 @@ public interface PrefixMapping
         .setNsPrefix( "daml", DAMLVocabulary.NAMESPACE_DAML_2001_03_URI )
         .setNsPrefix( "rss", RSS.getURI() )
         .setNsPrefix( "vcard", VCARD.getURI() )
-        .setNsPrefix( "jms", JenaModelSpec.getURI() )
         .setNsPrefix( "ja", JA.getURI() )
         .setNsPrefix( "eg", "http://www.example.org/" )
         .lock()

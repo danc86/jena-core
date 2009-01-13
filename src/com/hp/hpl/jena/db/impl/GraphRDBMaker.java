@@ -13,7 +13,6 @@ import com.hp.hpl.jena.graph.impl.*;
 import com.hp.hpl.jena.shared.*;
 import com.hp.hpl.jena.util.CollectionFactory;
 import com.hp.hpl.jena.util.iterator.*;
-import com.hp.hpl.jena.vocabulary.*;
 
 import java.rmi.server.UID;
 import java.util.*;
@@ -43,20 +42,6 @@ public class GraphRDBMaker extends BaseGraphMaker
         this.c = c; 
         this.reificationStyle = GraphRDB.styleRDB( style );
         }
-
-    /**
-        Answer the RDFS class of this RDB GraphMaker
-        @return JenaModelSpec.RDBMakerClass [as node]
-    */
-    public Node getMakerClass()
-        { return JenaModelSpec.RDBMakerSpec.asNode(); }
-        
-    /**
-        Augment the maker description of this maker with RDB-specific properties.
-        TODO do this
-    */     
-    protected void augmentDescription( Graph g, Node self )
-        {}
         
     /**
         Answer the default graph of this Maker; make it if necessary.

@@ -27,7 +27,6 @@ public class TestVocabularies extends TestCase
         result.addTest( TestVocabRSS.suite() );
         result.addTest( TestVocabResultSet.suite() );
         result.addTest( TestVocabDC10.suite() );
-        result.addTest( TestVocabJenaModelSpec.suite() );
         return result;
         }
     }

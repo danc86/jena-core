@@ -48,7 +48,6 @@ public class TestPrefixMapping extends AbstractTestPrefixMapping
         assertEquals( DAMLVocabulary.NAMESPACE_DAML_2001_03_URI, st.getNsPrefixURI( "daml" ) );
         assertEquals( RSS.getURI(), st.getNsPrefixURI( "rss" ) );
         assertEquals( VCARD.getURI(), st.getNsPrefixURI( "vcard" ) );
-        assertEquals( JenaModelSpec.getURI(), st.getNsPrefixURI( "jms" ) );
         assertEquals( JA.getURI(), st.getNsPrefixURI( "ja" ) );
         assertEquals( "http://www.example.org/", st.getNsPrefixURI( "eg" ) );
         }

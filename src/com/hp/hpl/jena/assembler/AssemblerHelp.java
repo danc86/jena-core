@@ -82,13 +82,6 @@ public class AssemblerHelp
         }
     
     /**
-        @deprecated Use <code>loadAssemblerClasses</code> instead
-            (since it's explicit in what kinds of classes it loads).
-    */
-    public static void loadClasses( AssemblerGroup group, Model m )
-        { loadAssemblerClasses( group, m ); }
-    
-    /**
          Load all the classes which are objects of any (t, ja:assembler, S) statements 
          in <code>m</code>. <code>group.implementWIth(t,c)</code> is called
          for each statement, where <code>c</code> is an instance of the class named
@@ -201,7 +194,6 @@ public class AssemblerHelp
     */
     public static Set findSpecificTypes( Resource root, Resource baseType )
         {
-        Model desc = root.getModel();
         List types = root.listProperties( RDF.type ).mapWith( Statement.Util.getObject ).toList();
         Set results = new HashSet();
         for (int i = 0; i < types.size(); i += 1)

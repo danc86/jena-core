@@ -32,7 +32,7 @@ public class ContentAssembler extends AssemblerBase implements Assembler
         return new Content( loadContent( new ArrayList(), a, root ) );
         }
     
-    public static Set contentProperties = new HashSetWith()
+    public final static Set contentProperties = new HashSetWith()
         .with( JA.content )
         .with( JA.literalContent )
         .with( JA.externalContent )
