@@ -52,10 +52,6 @@ public class TestRDFSReasoners extends ReasonerTestBase {
     public static TestSuite suite() {
         TestSuite suite = new TestSuite();
         try {
-            // Even though it is deprecated, maintain the tests for now
-//            constructRDFWGtests(suite, RDFSReasonerFactory.theInstance(), null);
-//            constructQuerytests(suite, "rdfs/manifest.rdf", RDFSReasonerFactory.theInstance(), null);
-
             // FB reasoner doesn't support validation so the full set of wg tests are
             // commented out            
 //            constructRDFWGtests(suite, RDFSFBRuleReasonerFactory.theInstance(), null);

@@ -215,15 +215,6 @@ public class Util {
     
     /**
      * Open a resource file and read it all into a single string.
-     * Treats lines starting with # as comment lines, as per stringFromReader.
-     * @deprecated Use loadRuleParserFromResourceFile
-     */
-    public static String loadResourceFile( String filename ) {
-        return Rule.rulesStringFromReader( FileUtils.openResourceFile( filename ) );
-    }
-    
-    /**
-     * Open a resource file and read it all into a single string.
      * Treats lines starting with # as comment lines, as per stringFromReader
      */
     public static Rule.Parser loadRuleParserFromResourceFile( String filename ) {

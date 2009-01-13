@@ -467,28 +467,7 @@ public class Rule implements ClauseEntry {
         catch (WrappedIOException e)
             { throw new RulesetNotFoundException( uri ); }
     }
-    
-    /**
-    Answer a String which is the concatenation (with newline glue) of all the
-    non-comment lines readable from <code>src</code>. A comment line is
-    one starting "#" or "//".
-    @deprecated Use rulesParserFromReader
-    */
-    public static String rulesStringFromReader( BufferedReader src ) {
-       try {
-           StringBuffer result = new StringBuffer();
-           String line;
-           while ((line = src.readLine()) != null) {
-               if (line.startsWith( "#" ) || line.startsWith( "//" )) continue;     // Skip comment lines
-               result.append( line );
-               result.append( "\n" );
-           }
-           return result.toString();
-       }
-       catch (IOException e) 
-           { throw new WrappedIOException( e ); }
-   }
-    
+        
     /**
      * Processes the source reader stripping off comment lines and noting prefix
      * definitions (@prefix) and rule inclusion commands (@include).

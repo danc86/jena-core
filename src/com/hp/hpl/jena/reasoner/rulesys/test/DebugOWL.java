@@ -19,7 +19,6 @@ import com.hp.hpl.jena.util.PrintUtil;
 import com.hp.hpl.jena.vocabulary.*;
 import com.hp.hpl.jena.reasoner.*;
 import com.hp.hpl.jena.reasoner.rulesys.*;
-import com.hp.hpl.jena.reasoner.rulesys.impl.oldCode.*;
 import com.hp.hpl.jena.shared.WrappedIOException;
 //import com.hp.hpl.jena.reasoner.transitiveReasoner.TransitiveReasonerFactory;
 
@@ -110,12 +109,7 @@ public class DebugOWL {
                 reasoner = OWLFBRuleReasonerFactory.theInstance().create(null);
 //                ((OWLFBRuleReasoner)reasoner).setTraceOn(true);
                 break;
-            
-            case OWL:
-                reasoner = OWLRuleReasonerFactory.theInstance().create(null);
-//                ((OWLRuleReasoner)reasoner).setTraceOn(true);
-                break;
-            
+                        
             case RDFSFB:
                 reasoner = RDFSFBRuleReasonerFactory.theInstance().create(null);
                 break;
@@ -123,12 +117,7 @@ public class DebugOWL {
             case RDFSFinal:
                 reasoner = RDFSRuleReasonerFactory.theInstance().create(null);
                 break;
-            
-            case OWLExpt:
-                reasoner = OWLExptRuleReasonerFactory.theInstance().create(null);
-//                ((OWLExptRuleReasoner)reasoner).setTraceOn(true);
-                break;
-            
+                        
             case RDFSLPExpt:
                 try {
                     List rules = Rule.parseRules(Util.loadRuleParserFromResourceFile("etc/expt.rules"));

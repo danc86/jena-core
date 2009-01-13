@@ -20,19 +20,12 @@ import com.hp.hpl.jena.datatypes.xsd.XSDDatatype;
  * @author <a href="mailto:der@hplb.hpl.hp.com">Dave Reynolds</a>
  * @version $Revision$ on $Date$
  */
-public class XSD {
-    /** 
-     * The XSD namespace. This is the real XML Schema namespace
-     * and so lacks the RDF-friendly # character. 
-     * @deprecated in order to transition to RDF-friendly version replaced by {@link #getURI()}
-     */
-    public static String NS = XSDDatatype.XSD;
-    
+public class XSD {    
     /**
      * The RDF-friendly version of the XSD namespace
      * with trailing # character.
      */
-    public static String getURI() { return NS + "#"; }
+    public static String getURI() { return XSDDatatype.XSD + "#"; }
     
     /** Resource URI for xsd:float */
     public static Resource xfloat;

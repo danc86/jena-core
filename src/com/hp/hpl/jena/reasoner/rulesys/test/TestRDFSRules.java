@@ -16,7 +16,6 @@ import com.hp.hpl.jena.util.FileManager;
 import com.hp.hpl.jena.vocabulary.OWL;
 import com.hp.hpl.jena.vocabulary.RDF;
 import com.hp.hpl.jena.vocabulary.RDFS;
-import com.hp.hpl.jena.reasoner.rdfsReasoner1.RDFSReasonerFactory;
 import com.hp.hpl.jena.reasoner.rulesys.*;
 import com.hp.hpl.jena.rdf.model.*;
 
@@ -121,37 +120,7 @@ public class TestRDFSRules extends TestCase {
 //        }
 //        t2 = System.currentTimeMillis();
 //        System.out.println(name + ": " + count + " results in " + (t2-t1)/10 +"ms");
-    }
-    
-    /**
-     * Simple timing test used to just a broad feel for how performance of the
-     * pure FPS rules compares with the hand-crafted version.
-     * The test ontology and data is very small. The test query is designed to
-     * require an interesting fraction of the inferences to be made but not all of them.
-     * The bigger the query the more advantage the FPS (which eagerly computes everything)
-     * would have over the normal approach.
-     */
-    public static void main(String[] args) {
-        try {
-            Model tbox = FileManager.get().loadModel("testing/reasoners/rdfs/timing-tbox.rdf");
-            Model data = FileManager.get().loadModel("testing/reasoners/rdfs/timing-data.rdf");
-            Reasoner rdfsFBRule = RDFSFBRuleReasonerFactory.theInstance().create(null);
-            Reasoner rdfs1    = RDFSReasonerFactory.theInstance().create(null);
-            Reasoner rdfsFinal    = RDFSRuleReasonerFactory.theInstance().create(null);
-        
-            doTiming(rdfs1, tbox, data, "RDFS1", 1);    
-            doTiming(rdfsFBRule, tbox, data, "RDFS FB rule", 1);    
-            doTiming(rdfsFinal, tbox, data, "RDFS final rule", 1);    
-            doTiming(rdfs1, tbox, data, "RDFS1", 50);    
-            doTiming(rdfsFBRule, tbox, data, "RDFS FB rule", 50);    
-            doTiming(rdfsFinal, tbox, data, "RDFS final rule", 50);    
- 
-        } catch (Exception e) {
-            System.out.println("Problem: " + e.toString());
-            e.printStackTrace();
-        }
-    }
-    
+    }    
 }
 
 /*

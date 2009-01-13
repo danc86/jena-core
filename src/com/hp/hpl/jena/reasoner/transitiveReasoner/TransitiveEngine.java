@@ -291,10 +291,6 @@ public class TransitiveEngine {
         return checkOccuranceUtility(prop, graph, subPropertyCache);
     }
 
-// ----------------------------------------------------------------------------
-// Global helper routines, maintined in this for just to suppor the (now deprecated)
-// rdfs1 reasoner.
-    
     /**
      * Caches all subClass declarations, including those that
      * are defined via subProperties of subClassOf. Public to allow other reasoners
@@ -337,7 +333,7 @@ public class TransitiveEngine {
      * @param spCache the subPropertyOf cache to use
      * @return true if there is a triple using prop or one of its sub properties
      */
-    public static boolean checkOccuranceUtility(Node prop, Graph graph, TransitiveGraphCache spCache) {
+    private static boolean checkOccuranceUtility(Node prop, Graph graph, TransitiveGraphCache spCache) {
         boolean foundOne = false;
         ExtendedIterator uses  = graph.find( null, prop, null );
         foundOne = uses.hasNext();
