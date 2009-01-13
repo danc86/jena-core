@@ -32,7 +32,7 @@ public class TestPackageARQ extends TestSuite
         {
             return null ; 
         }
-        
+
         Method method = null ;
         try { method = cmd.getMethod("suite", new Class[]{}) ; }
         catch (NoSuchMethodException ex)
@@ -40,14 +40,14 @@ public class TestPackageARQ extends TestSuite
             System.err.println("'suite' not found but the class '"+className+"' was") ;
             return null ;
         }
-        
+
         try 
         {
             return (TestSuite)method.invoke(null, new Object[]{}) ;
         } catch (Exception ex)
         {
             System.err.println("Failed to invoke static method 'suite'"+ex.getMessage()) ;
-            ex.printStackTrace(System.err) ;
+            //ex.printStackTrace(System.err) ;
         }
         return null ;
     }
