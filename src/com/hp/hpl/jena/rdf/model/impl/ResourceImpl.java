@@ -108,9 +108,6 @@ public class ResourceImpl extends EnhNode implements Resource {
     private static Node fresh( String uri )
         { return uri == null ? Node.createAnon() : Node.createURI( uri ); }
 
-    public Node getNode() 
-        { return asNode(); }
-
     public AnonId getId() 
         { return asNode().getBlankNodeId(); }
 
@@ -151,14 +148,6 @@ public class ResourceImpl extends EnhNode implements Resource {
     public StmtIterator listProperties() 
     	{ return mustHaveModel().listStatements( this, null, (RDFNode) null ); }	
     
-    /**
-     * @deprecated Use {@link #addLiteral(Property,boolean)} instead
-     */
-    public Resource addTypedProperty( Property p, boolean o ) 
-        {
-            return addLiteral( p, o );
-            }
-
     public Resource addLiteral( Property p, boolean o ) 
         {
         ModelCom m = mustHaveModel();
@@ -226,14 +215,6 @@ public class ResourceImpl extends EnhNode implements Resource {
         return this ;
     }
 
-    /**
-     * @deprecated Use {@link #addLiteral(Property,Object)} instead
-     */
-    public Resource addTypedProperty( Property p, Object o ) 
-        {
-            return addLiteral( p, o );
-            }
-
     public Resource addLiteral( Property p, Object o ) 
         {
         ModelCom m = mustHaveModel();
@@ -250,14 +231,6 @@ public class ResourceImpl extends EnhNode implements Resource {
         return mustHaveModel().contains( this, p );
     }
     
-    /**
-     * @deprecated Use {@link #hasLiteral(Property,boolean)} instead
-     */
-    public boolean hasTypedProperty( Property p, boolean o )  
-        {
-            return hasLiteral( p, o );
-            }
-
     public boolean hasLiteral( Property p, boolean o )  
         {
         ModelCom m = mustHaveModel();

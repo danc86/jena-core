@@ -405,7 +405,7 @@ int debugC = 0;
 		try {
 			File ff = new File(surl);
 			in = new FileInputStream(ff);
-			url = ff.toURL();
+			url = ff.toURI().toURL() ;
 			baseURL = url.toExternalForm();
 			if (baseURL.startsWith("file:/")
 				&& !baseURL.startsWith("file://")) {
