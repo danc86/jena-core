@@ -23,11 +23,28 @@ public class SimpleQueryEngine
     private TripleSorter sortMethod;
     private int variableCount;
     
+    /**
+         @deprecated NamedTripleBunches are not supported. Use SimpleQueryEngine
+             ( List, TripleSorter, ExpressionSet ) instead.
+    */
 	public SimpleQueryEngine( NamedTripleBunches triples, TripleSorter ts, ExpressionSet constraint )
         { this.constraint = constraint; 
         this.triples = triples; 
         this.sortMethod = ts; }
         
+    public SimpleQueryEngine( List pattern, TripleSorter sorter, ExpressionSet constraints )
+        { this.constraint = constraints; 
+        this.triples = asNamedTripleBunches( pattern ); 
+        this.sortMethod = sorter; }
+
+    private static NamedTripleBunches asNamedTripleBunches( List pattern )
+        {
+        NamedTripleBunches result = new NamedTripleBunches();
+        for (Iterator elements = pattern.iterator(); elements.hasNext();)
+            result.add( NamedTripleBunches.anon, (Triple) elements.next() );
+        return result;
+        }
+
     int getVariableCount()
         { return variableCount; }
         

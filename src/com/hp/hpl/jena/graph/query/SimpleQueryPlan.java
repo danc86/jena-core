@@ -33,7 +33,7 @@ public class SimpleQueryPlan implements BindingQueryPlan
     public ExtendedIterator executeBindings()
         // { return query.executeBindings( graph, variables ); }
         {
-        return new SimpleQueryEngine( query.getTriples(), query.getSorter(), query.getConstraints() )
+        return new SimpleQueryEngine( query.getPattern(), query.getSorter(), query.getConstraints() )
             .executeBindings( new ArrayList(), query.args().put( NamedTripleBunches.anon, graph ), variables );   
         }
     }
