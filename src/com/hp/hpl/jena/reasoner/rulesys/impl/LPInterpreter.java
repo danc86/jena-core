@@ -385,12 +385,10 @@ public class LPInterpreter {
                 pVars = envFrame.pVars;
                 int yi, ai, ti;
                 Node arg, constant;
-                List predicateCode;
-                TripleMatchFrame tmFrame;
                 code = clause.getCode();
                 args = clause.getArgs();
         
-                codeloop: while (true) {
+                while (true) {
                     switch (code[pc++]) {
                         case RuleClauseCode.TEST_BOUND:
                             ai = code[pc++];
