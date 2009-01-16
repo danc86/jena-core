@@ -48,13 +48,13 @@ public interface GraphEventManager extends GraphListener
         Notify all attached listeners that an iterator [of triples] has been added to
         the graph; its content has been captured in the list <code>triples</code>.
      */
-    void notifyAddIterator( Graph g, List triples );
+    void notifyAddIterator( Graph g, List<Triple> triples );
 
     /**
         Notify all attached listeners that an iterator [of triples] has been removed from
         the graph; its content has been captured in the list <code>triples</code>.
      */
-    void notifyDeleteIterator( Graph g, List triples );
+    void notifyDeleteIterator( Graph g, List<Triple> triples );
     }
 
 /*

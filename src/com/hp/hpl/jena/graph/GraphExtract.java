@@ -53,7 +53,7 @@ public class GraphExtract
         {
         protected Graph toUpdate;
         protected Graph extractFrom;
-        protected Set active;
+        protected Set<Node> active;
         protected TripleBoundary b;
         
         Extraction( TripleBoundary b, Graph toUpdate, Graph extractFrom )

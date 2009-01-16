@@ -28,11 +28,11 @@ public class TestNodeToTriplesMap extends GraphTestBase
     public static TestSuite suite()
         { return new TestSuite( TestNodeToTriplesMap.class ); }
     
-    protected NodeToTriplesMap ntS = new NodeToTriplesMap( Field.getSubject, Field.getPredicate, Field.getObject );
+    protected NodeToTriplesMap ntS = new NodeToTriplesMap( Field.fieldSubject, Field.fieldPredicate, Field.fieldObject );
     	
-    protected NodeToTriplesMap ntP = new NodeToTriplesMap( Field.getPredicate, Field.getObject, Field.getSubject );
+    protected NodeToTriplesMap ntP = new NodeToTriplesMap( Field.fieldPredicate, Field.fieldObject, Field.fieldSubject );
     	
-    protected NodeToTriplesMap ntO = new NodeToTriplesMap( Field.getObject, Field.getPredicate, Field.getSubject );
+    protected NodeToTriplesMap ntO = new NodeToTriplesMap( Field.fieldObject, Field.fieldPredicate, Field.fieldSubject );
 
     protected static final Node x = node( "x" );
     

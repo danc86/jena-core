@@ -205,7 +205,7 @@ public class Triple implements TripleMatch
         public final Filter filterOn( Triple t )
             { return filterOn( getField( t ) ); }
         
-        public static final Field getSubject = new Field() 
+        public static final Field fieldSubject = new Field() 
             { 
             @Override
             public Node getField( Triple t ) 
@@ -223,7 +223,7 @@ public class Triple implements TripleMatch
                 }
             };
             
-        public static final Field getObject = new Field() 
+        public static final Field fieldObject = new Field() 
             { 
             @Override
             public Node getField( Triple t ) 
@@ -240,7 +240,7 @@ public class Triple implements TripleMatch
                 }
             };
         
-        public static final Field getPredicate = new Field() 
+        public static final Field fieldPredicate = new Field() 
             { 
             @Override
             public Node getField( Triple t ) 

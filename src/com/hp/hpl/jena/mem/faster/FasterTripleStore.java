@@ -18,9 +18,9 @@ public class FasterTripleStore extends GraphTripleStoreBase implements TripleSto
     public FasterTripleStore( Graph parent )
         { 
         super( parent,
-            new NodeToTriplesMapFaster( Field.getSubject, Field.getPredicate, Field.getObject ),
-            new NodeToTriplesMapFaster( Field.getPredicate, Field.getObject, Field.getSubject ),
-            new NodeToTriplesMapFaster( Field.getObject, Field.getSubject, Field.getPredicate )
+            new NodeToTriplesMapFaster( Field.fieldSubject, Field.fieldPredicate, Field.fieldObject ),
+            new NodeToTriplesMapFaster( Field.fieldPredicate, Field.fieldObject, Field.fieldSubject ),
+            new NodeToTriplesMapFaster( Field.fieldObject, Field.fieldSubject, Field.fieldPredicate )
                 ); 
         }
     

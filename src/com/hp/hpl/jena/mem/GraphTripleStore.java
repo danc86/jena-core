@@ -22,9 +22,9 @@ public class GraphTripleStore extends GraphTripleStoreBase implements TripleStor
     public GraphTripleStore( Graph parent )
         { 
         super( parent,
-            new NodeToTriplesMap( Field.getSubject, Field.getPredicate, Field.getObject ),
-            new NodeToTriplesMap( Field.getPredicate, Field.getObject, Field.getSubject ),
-            new NodeToTriplesMap( Field.getObject, Field.getSubject, Field.getPredicate )
+            new NodeToTriplesMap( Field.fieldSubject, Field.fieldPredicate, Field.fieldObject ),
+            new NodeToTriplesMap( Field.fieldPredicate, Field.fieldObject, Field.fieldSubject ),
+            new NodeToTriplesMap( Field.fieldObject, Field.fieldSubject, Field.fieldPredicate )
             ); 
         }
     }
