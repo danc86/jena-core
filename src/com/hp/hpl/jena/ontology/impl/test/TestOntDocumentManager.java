@@ -161,7 +161,6 @@ public class TestOntDocumentManager
         assertTrue( "Should be at least one specification loaded", mgr.listDocuments().hasNext() );
         assertNotNull( "cache URL for owl should not be null", mgr.doAltURLMapping( "http://www.w3.org/2002/07/owl" ));
         assertEquals( "cache URL for owl not correct", "file:vocabularies/owl.owl", mgr.doAltURLMapping( "http://www.w3.org/2002/07/owl" ));
-        assertEquals( "prefix for owl not correct", "owl", mgr.getPrefixForURI( "http://www.w3.org/2002/07/owl#" ));
     }
 
     public void testGetInstance() {
@@ -252,36 +251,12 @@ public class TestOntDocumentManager
         assertFalse( mgr.getCacheModels() );
         mgr.reset();
         assertTrue( mgr.getCacheModels() );
-
-        assertTrue( mgr.useDeclaredPrefixes() );
-        mgr.setUseDeclaredPrefixes( false );
-        assertFalse( mgr.useDeclaredPrefixes() );
-        mgr.reset();
-        assertTrue( mgr.useDeclaredPrefixes() );
     }
 
     public void testDoAltMapping() {
         OntDocumentManager odm = new OntDocumentManager( "file:etc/ont-policy-test.rdf" );
         assertEquals( "file:vocabularies/owl.owl", odm.doAltURLMapping( "http://www.w3.org/2002/07/owl" ));
         assertEquals( "http://example.com/nocache", odm.doAltURLMapping( "http://example.com/nocache" ));
-    }
-
-    public void testGetLanguage() {
-        OntDocumentManager odm = new OntDocumentManager( "file:etc/ont-policy-test.rdf" );
-        assertEquals( ProfileRegistry.OWL_LANG, odm.getLanguage( "http://www.w3.org/2002/07/owl" ));
-        assertNull( odm.getLanguage( "http://example.com/notthere" ));
-    }
-
-    public void testGetPrefixForURI() {
-        OntDocumentManager odm = new OntDocumentManager( "file:etc/ont-policy-test.rdf" );
-        assertEquals( "owl", odm.getPrefixForURI( "http://www.w3.org/2002/07/owl#" ));
-        assertNull( odm.getPrefixForURI( "http://example.com/notthere" ));
-    }
-
-    public void testGetURIForPrefix() {
-        OntDocumentManager odm = new OntDocumentManager( "file:etc/ont-policy-test.rdf" );
-        assertEquals( "http://www.w3.org/2002/07/owl#", odm.getURIForPrefix( "owl" ));
-        assertNull( odm.getURIForPrefix( "http://example.com/notthere" ));
     }
 
     public void testAddModel0() {
@@ -323,7 +298,6 @@ public class TestOntDocumentManager
     public void testForget() {
         OntDocumentManager odm = new OntDocumentManager( "file:etc/ont-policy-test.rdf" );
         assertEquals( "file:vocabularies/owl.owl", odm.doAltURLMapping( "http://www.w3.org/2002/07/owl" ) );
-        assertEquals( "http://www.w3.org/2002/07/owl#", odm.getLanguage( "http://www.w3.org/2002/07/owl"));
         OntModel m = ModelFactory.createOntologyModel();
         odm.addModel( "http://www.w3.org/2002/07/owl#", m );
         assertNotNull( odm.getModel( "http://www.w3.org/2002/07/owl#" ));
@@ -332,7 +306,6 @@ public class TestOntDocumentManager
         odm.forget( "http://www.w3.org/2002/07/owl" );
 
         assertEquals( "http://www.w3.org/2002/07/owl", odm.doAltURLMapping( "http://www.w3.org/2002/07/owl" ) );
-        assertNull( odm.getLanguage( "http://www.w3.org/2002/07/owl"));
         assertNull( odm.getModel( "http://www.w3.org/2002/07/owl#" ));
     }
 
@@ -362,15 +335,8 @@ public class TestOntDocumentManager
     public void testManualAssociation() {
         OntDocumentManager odm = new OntDocumentManager( (String) null );
 
-        odm.addPrefixMapping( "http://www.w3.org/2002/07/owl#", "owl" );
-        assertEquals( "prefix for owl not correct", "owl", odm.getPrefixForURI( "http://www.w3.org/2002/07/owl#" ));
-        assertEquals( "URI for owl not correct", "http://www.w3.org/2002/07/owl#", odm.getURIForPrefix( "owl" ));
-
         odm.addAltEntry( "http://www.w3.org/2002/07/owl", "file:foo.bar" );
         assertEquals( "Failed to retrieve cache location", "file:foo.bar", odm.doAltURLMapping( "http://www.w3.org/2002/07/owl" ) );
-
-        odm.addLanguageEntry( "http://www.w3.org/2002/07/owl", "http://www.w3.org/2002/07/owl" );
-        assertEquals( "Failed to retrieve language", "http://www.w3.org/2002/07/owl", odm.getLanguage( "http://www.w3.org/2002/07/owl" ) );
     }
 
 

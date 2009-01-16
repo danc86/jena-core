@@ -32,6 +32,7 @@ import com.hp.hpl.jena.reasoner.ReasonerFactory;
 import com.hp.hpl.jena.reasoner.rulesys.*;
 import com.hp.hpl.jena.reasoner.transitiveReasoner.TransitiveReasonerFactory;
 import com.hp.hpl.jena.shared.JenaException;
+import com.hp.hpl.jena.vocabulary.*;
 
 /**
  * <p>
@@ -140,6 +141,14 @@ public class OntModelSpec {
     /** the ModelGetter which will be used - eventually - for imports */
     protected ModelGetter importModelGetter;
 
+    /** Known default namespace prefixes */
+    protected String[][] defaultPrefixes = new String[][] {
+            {"owl", OWL.getURI()},
+            {"rdf", RDF.getURI()},
+            {"rdfs", RDFS.getURI()},
+            {"xsd", XSD.getURI()}
+    };
+
     // Constructors
     //////////////////////////////////
 
@@ -170,7 +179,7 @@ public class OntModelSpec {
 
 
     protected ModelMaker maker;
-    
+
     /**
      * Construct a new ontology model specification from the supplied components.
      * @param baseModelName the name of the model in the baseModelMaker
@@ -466,6 +475,13 @@ public class OntModelSpec {
         return ModelFactory.createDefaultModel();
     }
 
+    /**
+     * Returns the set of known (built-in) namespace prefixes for this OntModelSpec
+     * @return Known prefixes as an array of length-2 arrays
+     */
+    public String[][] getKnownPrefixes() {
+        return defaultPrefixes;
+    }
 }
 
 

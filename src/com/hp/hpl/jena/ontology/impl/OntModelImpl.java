@@ -146,13 +146,17 @@ public class OntModelImpl extends ModelCom implements OntModel
                         ((MultiUnion) getGraph()) :
                         (MultiUnion) ((InfGraph) getGraph()).getRawGraph();
 
-        // add the global prefixes, if required
-        if (getDocumentManager().useDeclaredPrefixes()) {
-            withDefaultMappings( getDocumentManager().getDeclaredPrefixMapping() );
-        }
-
         if (withImports) {
             loadImports();
+        }
+
+        // set the default prefixes
+        if (spec != null && spec.getKnownPrefixes() != null) {
+            String[][] p = spec.getKnownPrefixes();
+            for (int i = 0; i < p.length; i++) {
+                String[] pair = p[i];
+                setNsPrefix( pair[0], pair[1] );
+            }
         }
 
         // force the inference engine, if we have one, to see the new graph data

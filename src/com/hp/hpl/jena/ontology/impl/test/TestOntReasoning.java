@@ -74,9 +74,6 @@ public class TestOntReasoning
     }
 
 
-    public void tearDown() {
-    }
-
     public void testSubClassDirectTransInf1a() {
         OntModel m = ModelFactory.createOntologyModel( ProfileRegistry.OWL_LITE_LANG );
 
