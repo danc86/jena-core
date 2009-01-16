@@ -127,7 +127,7 @@ public abstract class AbstractTestPrefixMapping extends GraphTestBase
     public void testPrefixMappingMap()
         {
         PrefixMapping ns = getCrispyRope();
-        Map map = ns.getNsPrefixMap();
+        Map<String, String> map = ns.getNsPrefixMap();
         assertEquals( "map should have two elements", 2, map.size() );
         assertEquals( crispURI, map.get( "crisp" ) );
         assertEquals( "scheme:rope/string#", map.get( "rope" ) );
@@ -140,7 +140,7 @@ public abstract class AbstractTestPrefixMapping extends GraphTestBase
     public void testPrefixMappingSecret()
         {
         PrefixMapping ns = getCrispyRope();
-        Map map = ns.getNsPrefixMap();
+        Map<String, String> map = ns.getNsPrefixMap();
     /* */
         map.put( "crisp", "with/onions" );
         map.put( "sandwich", "with/cheese" );
@@ -297,7 +297,7 @@ public abstract class AbstractTestPrefixMapping extends GraphTestBase
     public void testAddMap()
         {
         PrefixMapping b = getMapping();
-        Map map = new HashMap();
+        Map<String, String> map = new HashMap<String, String>();
         map.put( "crisp", crispURI );
         map.put( "rope", ropeURI );
         b.setNsPrefix( "butter", butterURI );
@@ -376,7 +376,7 @@ public abstract class AbstractTestPrefixMapping extends GraphTestBase
         PrefixMapping A = getMapping();
         assertSame( A, A.setNsPrefix( "crisp", crispURI ) );
         assertSame( A, A.setNsPrefixes( A ) );
-        assertSame( A, A.setNsPrefixes( new HashMap() ) );
+        assertSame( A, A.setNsPrefixes( new HashMap<String, String>() ) );
         assertSame( A, A.removeNsPrefix( "rhubarb" ) );
         }
     
@@ -428,10 +428,10 @@ public abstract class AbstractTestPrefixMapping extends GraphTestBase
     
     protected void fill( PrefixMapping pm, String settings )
         {
-        List L = listOfStrings( settings );
+        List<String> L = listOfStrings( settings );
         for (int i = 0; i < L.size(); i += 1)
             {
-            String setting = (String) L.get(i);
+            String setting = L.get(i);
             int eq = setting.indexOf( '=' );
             pm.setNsPrefix( setting.substring( 0, eq ), setting.substring( eq + 1 ) );
             }
@@ -453,7 +453,7 @@ public abstract class AbstractTestPrefixMapping extends GraphTestBase
         try { A.setNsPrefixes( A ); fail( "mapping should be frozen" ); }
         catch (PrefixMapping.JenaLockedException e) { pass(); }
     /* */
-        try { A.setNsPrefixes( new HashMap() ); fail( "mapping should be frozen" ); }
+        try { A.setNsPrefixes( new HashMap<String, String>() ); fail( "mapping should be frozen" ); }
         catch (PrefixMapping.JenaLockedException e) { pass(); }
     /* */
         try { A.removeNsPrefix( "toast" ); fail( "mapping should be frozen" ); }

@@ -15,9 +15,9 @@ import java.util.* ;
 public class ArgDecl
 {
     boolean takesValue ;
-    Set names = new HashSet() ;
+    Set<String> names = new HashSet<String>() ;
     boolean takesArg = false ;
-    List argHooks = new ArrayList() ;
+    List<ArgHandler> argHooks = new ArrayList<ArgHandler>() ;
     public static final boolean HasValue = true ;
     public static final boolean NoValue = false ;
 
@@ -187,8 +187,8 @@ public class ArgDecl
         names.add(name) ;
     }
 
-    public Set getNames() { return names ; }
-    public Iterator names() { return names.iterator() ; }
+    public Set<String> getNames() { return names ; }
+    public Iterator<String> names() { return names.iterator() ; }
 
     // Callback model
 
@@ -199,9 +199,9 @@ public class ArgDecl
 
     protected void trigger(Arg arg)
     {
-        for ( Iterator iter = argHooks.iterator() ; iter.hasNext() ; )
+        for ( Iterator<ArgHandler> iter = argHooks.iterator() ; iter.hasNext() ; )
         {
-            ArgHandler handler = (ArgHandler)iter.next() ;
+            ArgHandler handler = iter.next() ;
             handler.action(arg.getName(), arg.getValue()) ;
         }
     }
@@ -210,9 +210,9 @@ public class ArgDecl
 
     public boolean matches(Arg a)
     {
-        for ( Iterator iter = names.iterator() ; iter.hasNext() ; )
+        for ( Iterator<String> iter = names.iterator() ; iter.hasNext() ; )
         {
-            String n = (String)iter.next() ;
+            String n = iter.next() ;
             if ( a.getName().equals(n) )
                 return true ;
         }

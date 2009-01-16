@@ -48,8 +48,8 @@ public class MonitorGraph extends WrappedGraph {
         boolean wantAdditions = listening || additions != null;
         boolean wantDeletions = listening || deletions != null;
         
-        List additionsTemp = (additions != null) ? additions : new ArrayList();
-        List deletionsTemp = (deletions != null) ? deletions : new ArrayList();
+        List<Object> additionsTemp = (additions != null) ? additions : new ArrayList();
+        List<Object> deletionsTemp = (deletions != null) ? deletions : new ArrayList();
         Set  deletionsTempSet = (wantDeletions) ? new HashSet() : null;
         
         if (wantAdditions || wantDeletions) {

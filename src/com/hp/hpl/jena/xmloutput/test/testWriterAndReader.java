@@ -191,7 +191,7 @@ public class testWriterAndReader
     
 	public void testOptions() throws IOException 
         {
-		Vector v = new Vector();
+		Vector<Resource> v = new Vector<Resource>();
 		for (int i = 0; i < blockRules.length; i += 1) 
             {
 			if ((options & (1 << i)) != 0) v.add( blockRules[i] );

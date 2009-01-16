@@ -42,10 +42,10 @@ public class ModelQueryUtil
     public static RDFNode asRDF( Model m, Node n )
         { return m.asRDFNode( n ); }
         
-    public static List mappy( Model m, Object x )
+    public static List<RDFNode> mappy( Model m, Object x )
         {
         List L = (List) x;
-        ArrayList result = new ArrayList( L.size() );
+        ArrayList<RDFNode> result = new ArrayList<RDFNode>( L.size() );
         for (int i = 0; i < L.size(); i += 1) result.add( asRDF( m, (Node) L.get( i ) ) );
         return result;
         }

@@ -81,7 +81,7 @@ abstract public class BaseXMLWriter implements RDFXMLWriterI {
     abstract protected void writeBody
         ( Model mdl, PrintWriter pw, String baseUri, boolean inclXMLBase );
 
-	static private Set badRDF = new HashSet();
+	static private Set<String> badRDF = new HashSet<String>();
     
     /**
         Counter used for allocating Jena transient namespace declarations.
@@ -123,7 +123,7 @@ abstract public class BaseXMLWriter implements RDFXMLWriterI {
     
 	int width = 60;
 
-	HashMap anonMap = new HashMap();
+	HashMap<AnonId, String> anonMap = new HashMap<AnonId, String>();
     
 	int anonCount = 0;
     
@@ -153,7 +153,7 @@ abstract public class BaseXMLWriter implements RDFXMLWriterI {
 	 * internal id.
 	 */
 	private String shortAnonId(Resource r)  {
-		String result = (String) anonMap.get(r.getId());
+		String result = anonMap.get(r.getId());
 		if (result == null) {
 			result = "A" + Integer.toString(anonCount++);
 			anonMap.put(r.getId(), result);
@@ -183,11 +183,11 @@ abstract public class BaseXMLWriter implements RDFXMLWriterI {
         
     private Relation nameSpaces = new Relation();
     
-    private Map ns;
+    private Map<String, String> ns;
     
     private PrefixMapping modelPrefixMapping;
         
-	private Set namespacesNeeded;
+	private Set<String> namespacesNeeded;
     
 	void addNameSpace(String uri) {
 		namespacesNeeded.add(uri);
@@ -230,17 +230,17 @@ abstract public class BaseXMLWriter implements RDFXMLWriterI {
                 
 	void workOutNamespaces() {
 		if (ns == null) {
-    		ns = new HashMap();
-    		Set prefixesUsed = new HashSet();
+    		ns = new HashMap<String, String>();
+    		Set<String> prefixesUsed = new HashSet<String>();
 			setFromWriterSystemProperties( ns, prefixesUsed );
             setFromGivenNamespaces( ns, prefixesUsed );
         }
 	}
 
-    private void setFromWriterSystemProperties( Map ns, Set prefixesUsed ) {
-        Iterator it = namespacesNeeded.iterator();
+    private void setFromWriterSystemProperties( Map<String, String> ns, Set<String> prefixesUsed ) {
+        Iterator<String> it = namespacesNeeded.iterator();
         while (it.hasNext()) {
-            String uri = (String) it.next();
+            String uri = it.next();
             String val = JenaRuntime.getSystemProperty( RDFWriter.NSPREFIXPROPBASE + uri );
             if (val != null && checkLegalPrefix( val ) && !prefixesUsed.contains( val )) {
                 ns.put(uri, val);
@@ -249,10 +249,10 @@ abstract public class BaseXMLWriter implements RDFXMLWriterI {
         }
     }
 
-    private void setFromGivenNamespaces( Map ns, Set prefixesUsed ) {
-		Iterator it = namespacesNeeded.iterator();
+    private void setFromGivenNamespaces( Map<String, String> ns, Set<String> prefixesUsed ) {
+		Iterator<String> it = namespacesNeeded.iterator();
 		while (it.hasNext()) {
-			String uri = (String) it.next();
+			String uri = it.next();
 			if (ns.containsKey(uri))
 				continue;
 			String val = null;
@@ -351,7 +351,7 @@ abstract public class BaseXMLWriter implements RDFXMLWriterI {
 	String tag( String namespace, String local, int type, boolean localIsQname)  {
 		if (dbg)
 			System.err.println(namespace + " - " + local);
-		String prefix = (String) ns.get( namespace );
+		String prefix = ns.get( namespace );
 		if (type != FAST && type != FASTATTR) {
 			if ((!localIsQname) && !XMLChar.isValidNCName(local))
 				return splitTag(namespace + local, type);
@@ -431,7 +431,7 @@ abstract public class BaseXMLWriter implements RDFXMLWriterI {
     */
     private void setupNamespaces( Model baseModel, Model model )
         {
-        this.namespacesNeeded = new HashSet();
+        this.namespacesNeeded = new HashSet<String>();
         this.ns = null;
         this.modelPrefixMapping = baseModel;
         primeNamespace( baseModel );
@@ -708,7 +708,7 @@ abstract public class BaseXMLWriter implements RDFXMLWriterI {
 			blockedRules = (Resource[]) o;
 		} else {
 			StringTokenizer tkn = new StringTokenizer((String) o, ", ");
-			Vector v = new Vector();
+			Vector<Resource> v = new Vector<Resource>();
 			while (tkn.hasMoreElements()) {
 				String frag = tkn.nextToken();
 				//  System.err.println("Blocking " + frag);

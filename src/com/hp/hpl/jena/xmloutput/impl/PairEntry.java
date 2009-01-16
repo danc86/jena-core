@@ -34,32 +34,32 @@ package com.hp.hpl.jena.xmloutput.impl;
  * @author jjc
  * @version  Release='$Name$' Revision='$Revision$' Date='$Date$'
  */
-class PairEntry implements java.util.Map.Entry {
-    Object a;
-    Object b;
+class PairEntry<K,V>  implements java.util.Map.Entry<K,V>  {
+    K a;
+    V b;
     @Override
     public boolean equals(Object o) {
         if (o != null && (o instanceof PairEntry)) {
-            PairEntry e = (PairEntry) o;
+            PairEntry<?,?> e = (PairEntry<?,?>) o;
             return e.a.equals(a) && e.b.equals(b);
         } 
         return false;
         
     }
-    public Object getKey() {
+    public K getKey() {
         return a;
     }
-    public Object getValue() {
+    public V getValue() {
         return b;
     }
     @Override
     public int hashCode() {
         return a.hashCode() ^ b.hashCode();
     }
-    public Object setValue(Object value) {
+    public V setValue(Object value) {
         throw new UnsupportedOperationException();
     }
-    PairEntry(Object a, Object b) {
+    PairEntry(K a, V b) {
         this.a = a;
         this.b = b;
     }

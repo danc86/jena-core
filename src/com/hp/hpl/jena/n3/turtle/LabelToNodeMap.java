@@ -19,14 +19,14 @@ import com.hp.hpl.jena.graph.Node;
 
 public class LabelToNodeMap
 {
-    Map bNodeLabels = new HashMap() ;
+    Map<String, Node> bNodeLabels = new HashMap<String, Node>() ;
     
     public LabelToNodeMap()
     {}
 
     public Node asNode(String label)
     {
-        Node n = (Node)bNodeLabels.get(label) ;
+        Node n = bNodeLabels.get(label) ;
         if ( n != null )
             return n ;
         n = allocNode() ;

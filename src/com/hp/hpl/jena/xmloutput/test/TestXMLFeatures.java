@@ -490,7 +490,7 @@ public class TestXMLFeatures extends XMLOutputTestBase {
 	}
 
 	private void relative(String relativeParam, String base,
-			Collection regexesPresent, Collection regexesAbsent)
+			Collection<String> regexesPresent, Collection<String> regexesAbsent)
 			throws IOException {
 
 		Model m = createMemModel();
@@ -507,9 +507,9 @@ public class TestXMLFeatures extends XMLOutputTestBase {
 			Model m2 = createMemModel();
 			m2.read(new StringReader(contents), base);
 			assertTrue(m.isIsomorphicWith(m2));
-			Iterator it = regexesPresent.iterator();
+			Iterator<String> it = regexesPresent.iterator();
 			while (it.hasNext()) {
-				String regexPresent = (String) it.next();
+				String regexPresent = it.next();
 				assertTrue("Looking for /" + regexPresent + "/", Pattern
 						.compile(Util.substituteStandardEntities(regexPresent),
 								Pattern.DOTALL).matcher(contents).find()
@@ -522,7 +522,7 @@ public class TestXMLFeatures extends XMLOutputTestBase {
 			}
 			it = regexesAbsent.iterator();
 			while (it.hasNext()) {
-				String regexAbsent = (String) it.next();
+				String regexAbsent = it.next();
 				assertTrue(
 						"Looking for (not) /" + regexAbsent + "/",
 						!Pattern
@@ -628,8 +628,8 @@ public class TestXMLFeatures extends XMLOutputTestBase {
 			{ "grandparent", null, null, null, null, null, null, null, }, };
 
 	private void relative(int i, String base, String d[][]) throws IOException {
-		Set in = new HashSet();
-		Set out = new HashSet();
+		Set<String> in = new HashSet<String>();
+		Set<String> out = new HashSet<String>();
 		for (int j = 1; j < d[i].length; j++) {
 
 			in.add(d[i][j] == null ? d[0][j] : d[i][j]);

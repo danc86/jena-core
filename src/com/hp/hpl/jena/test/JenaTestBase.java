@@ -73,9 +73,9 @@ public class JenaTestBase extends TestCase
         Answer a List of the substrings of <code>s</code> that are separated 
         by spaces.
     */
-    public static List listOfStrings( String s )
+    public static List<String> listOfStrings( String s )
         {
-        List result = new ArrayList();
+        List<String> result = new ArrayList<String>();
         StringTokenizer st = new StringTokenizer( s );
         while (st.hasMoreTokens()) result.add( st.nextToken() );
         return result;
@@ -85,9 +85,9 @@ public class JenaTestBase extends TestCase
         Answer a Set of the substrings of <code>s</code> that are separated 
         by spaces.
     */
-    public static Set setOfStrings( String s )
+    public static Set<String> setOfStrings( String s )
         {
-        Set result = new HashSet();
+        Set<String> result = new HashSet<String>();
         StringTokenizer st = new StringTokenizer( s );
         while (st.hasMoreTokens()) result.add( st.nextToken() );
         return result;
@@ -96,9 +96,9 @@ public class JenaTestBase extends TestCase
     /**
         Answer a list containing the single object <code>x</code>.
     */
-    protected static List listOfOne( Object x )
+    protected static List<Object> listOfOne( Object x )
         {
-        List result = new ArrayList();
+        List<Object> result = new ArrayList<Object>();
         result.add( x );
         return result;
         }
@@ -106,9 +106,9 @@ public class JenaTestBase extends TestCase
     /**
         Answer a Set containing the single object <code>x</code>.
     */
-    protected static Set setOfOne( Object x )
+    protected static Set<Object> setOfOne( Object x )
         {
-        Set result = new HashSet();
+        Set<Object> result = new HashSet<Object>();
         result.add( x );
         return result;
         }

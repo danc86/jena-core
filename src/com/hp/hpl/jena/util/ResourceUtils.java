@@ -139,8 +139,8 @@ public class ResourceUtils {
      * @param ref A reference resource
      * @return A list of the resources removed from the parameter list l
      */
-    public static List removeEquiv( List l, Property p, Resource ref ) {
-        List equiv = new ArrayList();
+    public static List<Resource> removeEquiv( List l, Property p, Resource ref ) {
+        List<Resource> equiv = new ArrayList<Resource>();
         
         for (Iterator i = l.iterator(); i.hasNext(); ) {
             Resource r = (Resource) i.next();
@@ -167,17 +167,17 @@ public class ResourceUtils {
      * @return A list of lists which are the partitions of <code>l</code> 
      * under <code>p</code>
      */
-    public static List partition( List l, Property p ) {
+    public static List<List<Resource>> partition( List l, Property p ) {
         // first copy the input so we can mess with it
         List source = new ArrayList();
         source.addAll( l );
-        List parts = new ArrayList();
+        List<List<Resource>> parts = new ArrayList<List<Resource>>();
         
         while (!source.isEmpty()) {
             // each step through the loop we pick a random element, and
             // create a list of that element and all its equivalent values
             Resource seed = (Resource) source.remove( 0 );
-            List part = removeEquiv( source, p, seed );
+            List<Resource> part = removeEquiv( source, p, seed );
             part.add( seed );
             
             // add to the partition list
@@ -247,10 +247,10 @@ public class ResourceUtils {
         Model m = ModelFactory.createDefaultModel();
         
         // set of resources we have passed through already (i.e. the occurs check)
-        Set seen = CollectionFactory.createHashedSet();
+        Set<Resource> seen = CollectionFactory.createHashedSet();
         
         // queue of resources we have not yet visited
-        List queue = new LinkedList();
+        List<RDFNode> queue = new LinkedList<RDFNode>();
         queue.add( root );
         
         while (!queue.isEmpty()) {

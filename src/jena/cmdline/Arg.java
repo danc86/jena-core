@@ -16,7 +16,7 @@ public class Arg
 {
     String name ;
     String value ;
-    List values = new ArrayList() ; 
+    List<String> values = new ArrayList<String>() ; 
     
     Arg() { name = null ; value = null ; }
     
@@ -31,7 +31,7 @@ public class Arg
     
     public String getName() { return name ; }
     public String getValue() { return value; }
-    public List getValues() { return values; }
+    public List<String> getValues() { return values; }
     
     public boolean hasValue() { return value != null ; }
     
