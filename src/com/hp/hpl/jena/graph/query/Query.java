@@ -82,20 +82,20 @@ public class Query
     public Query addMatch( Node s, Node p, Node o )
         { return addNamedMatch( NamedTripleBunches.anon, s, p, o ); }     
 
-    /**
-        Add an (S, P, O) match triple to this query to match against the graph labelled
-        with <code>name</code>. Return this query for cascading.
-        
-        @deprecated named triple patterns are not supported
-        
-        @param name the name that will identify the graph in the matching
-        @param s the node to match the subject
-        @param p the node to match the predicate
-        @param o the node to match the object
-        @return this Query, for cascading.
-    */
-    public Query addMatch( String name, Node s, Node p, Node o )
-        { return addNamedMatch( name, s, p, o ); }   
+//    /**
+//        Add an (S, P, O) match triple to this query to match against the graph labelled
+//        with <code>name</code>. Return this query for cascading.
+//        
+//        @deprecated named triple patterns are not supported
+//        
+//        @param name the name that will identify the graph in the matching
+//        @param s the node to match the subject
+//        @param p the node to match the predicate
+//        @param o the node to match the object
+//        @return this Query, for cascading.
+//    */
+//    public Query addMatch( String name, Node s, Node p, Node o )
+//        { return addNamedMatch( name, s, p, o ); }   
     
     /**
         Add a triple to the query's collection of match triples. Return this query
