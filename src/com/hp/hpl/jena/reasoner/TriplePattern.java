@@ -235,6 +235,7 @@ public class TriplePattern implements ClauseEntry {
     /**
      * Printable string
      */
+    @Override
     public String toString() {
         return simplePrintString(subject) + 
                 " @" + simplePrintString(predicate) + 
@@ -295,6 +296,7 @@ public class TriplePattern implements ClauseEntry {
     /** 
      * Equality override - used so that TriplePattern variants (same to within variable renaming) test as equals
      */
+    @Override
     public boolean equals(Object o) {
 //        return o instanceof TriplePattern && 
 //                subject.equals(((TriplePattern)o).subject) &&
@@ -316,6 +318,7 @@ public class TriplePattern implements ClauseEntry {
     }
         
     /** hash function override */
+    @Override
     public int hashCode() {
         int hash = 0;
         if (!(subject instanceof Node_RuleVariable)) hash ^= (subject.hashCode() >> 1);

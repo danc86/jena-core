@@ -35,6 +35,7 @@ public class ResultSetNodeIterator extends ResultSetIterator {
      * Extract the current row
      * Override in subclasses.
      */
+    @Override
     protected void extractRow() throws Exception {
         if (m_row == null) {
             m_nCols = m_resultSet.getMetaData().getColumnCount();

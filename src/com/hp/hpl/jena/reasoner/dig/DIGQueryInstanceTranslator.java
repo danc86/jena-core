@@ -78,6 +78,7 @@ public class DIGQueryInstanceTranslator
      * <p>Answer a query that will test whether an invidividual is a member of 
      * a given named class</p>
      */
+    @Override
     public Document translatePattern( TriplePattern pattern, DIGAdapter da ) {
         DIGConnection dc = da.getConnection();
         Document query = dc.createDigVerb( DIGProfile.ASKS, da.getProfile() );
@@ -93,6 +94,7 @@ public class DIGQueryInstanceTranslator
      * <p>Answer a query that will test whether an invidividual is a member of 
      * a given named class or class expression (defined by the premises)</p>
      */
+    @Override
     public Document translatePattern( TriplePattern pattern, DIGAdapter da, Model premises ) {
         DIGConnection dc = da.getConnection();
         Document query = dc.createDigVerb( DIGProfile.ASKS, da.getProfile() );
@@ -113,10 +115,12 @@ public class DIGQueryInstanceTranslator
     /**
      * <p>Answer an iterator of triples that match the original find query.</p>
      */
+    @Override
     public ExtendedIterator translateResponseHook( Document response, TriplePattern query, DIGAdapter da ) {
         return isFalse( response ) ? NullIterator.instance : (ExtendedIterator) new SingletonIterator( query.asTriple() );
     }
     
+    @Override
     public boolean checkObject( com.hp.hpl.jena.graph.Node object, DIGAdapter da, Model premises ) {
         return da.isConcept( object, premises );
     }

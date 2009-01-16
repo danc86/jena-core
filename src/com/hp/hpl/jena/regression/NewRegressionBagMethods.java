@@ -19,9 +19,11 @@ public class NewRegressionBagMethods extends NewRegressionContainerMethods
     public static TestSuite suite()
         { return new TestSuite( NewRegressionBagMethods.class );  }
 
+    @Override
     protected Container createContainer()
         { return m.createBag(); }
        
+    @Override
     protected Resource getContainerType()
         { return RDF.Bag; }
     }

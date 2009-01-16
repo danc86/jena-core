@@ -27,6 +27,7 @@ public abstract class StageElement
         public PutBindings( Pipe sink )
             { this.sink = sink; }
         
+        @Override
         public final void run( Domain current )
             { sink.put( current.copy() ); }
         }
@@ -46,6 +47,7 @@ public abstract class StageElement
         public FindTriples( Stage stage, Matcher matcher, Applyer finder, StageElement next )
             { this.stage = stage;  this.matcher = matcher; this.finder = finder; this.next = next; }
     
+        @Override
         public final void run( Domain current )
             { if (stage.stillOpen) finder.applyToTriples( current, matcher, next ); }
         }
@@ -63,6 +65,7 @@ public abstract class StageElement
         public RunValuatorSet( ValuatorSet s, StageElement next )
             { this.s = s; this.next = next; }
         
+        @Override
         public final void run( Domain current )
             { if (s.evalBool( current )) next.run( current ); }
         }

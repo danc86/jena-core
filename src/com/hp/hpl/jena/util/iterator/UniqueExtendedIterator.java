@@ -65,6 +65,7 @@ public class UniqueExtendedIterator extends WrappedIterator {
     /**
      * @see Iterator#hasNext()
      */
+    @Override
     public boolean hasNext() {
         while (next == null && super.hasNext()) next = nextIfNew();
         return next != null;
@@ -73,6 +74,7 @@ public class UniqueExtendedIterator extends WrappedIterator {
     /**
      * @see Iterator#next()
      */
+    @Override
     public Object next() {
         ensureHasNext();
         Object result = next;

@@ -32,6 +32,7 @@ public class TestPolyadicPrefixMapping extends AbstractTestPrefixMapping
     protected static final String alpha = "something:alpha#";
     protected static final String beta = "something:beta#";
     
+    @Override
     public void setUp()
         {
         gBase = Factory.createDefaultGraph();
@@ -41,6 +42,7 @@ public class TestPolyadicPrefixMapping extends AbstractTestPrefixMapping
         poly.setBaseGraph( gBase );
         }
     
+    @Override
     protected PrefixMapping getMapping()
         {
         Graph gBase = Factory.createDefaultGraph();

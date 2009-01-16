@@ -24,6 +24,7 @@ public class TestStandardModels extends AbstractTestModel
         return new TestSuite( TestStandardModels.class );
         }
 
+    @Override
     public Model getModel()
         {
         return ModelFactory.createDefaultModel();

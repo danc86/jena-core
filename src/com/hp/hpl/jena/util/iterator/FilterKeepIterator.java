@@ -18,6 +18,7 @@ public class FilterKeepIterator extends FilterIterator implements Iterator
     public FilterKeepIterator( Filter f, Iterator it )
         { super( f, it ); }
     
+    @Override
     protected boolean accept( Object x )
         { return f.accept( x ); }
     }

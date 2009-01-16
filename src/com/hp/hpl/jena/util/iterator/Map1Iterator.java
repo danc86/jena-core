@@ -29,7 +29,8 @@ public class Map1Iterator extends WrappedIterator implements ClosableIterator
         map = m;
         }
     
-	public Object next() 
+	@Override
+    public Object next() 
         { return map.map1( super.next() ); }
     }
 /*

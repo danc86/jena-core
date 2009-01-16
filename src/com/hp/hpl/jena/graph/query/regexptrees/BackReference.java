@@ -19,12 +19,15 @@ public class BackReference extends RegexpTree
     public int getIndex()
         { return index; }
 
+    @Override
     public boolean equals( Object other )
         { return other instanceof BackReference && index == ((BackReference) other).index; }
 
+    @Override
     public int hashCode()
         { return index; }
 
+    @Override
     public String toString()
         { return "<back " + index + ">"; }
     }

@@ -12,11 +12,13 @@ import com.hp.hpl.jena.mem.GraphMemBase;
 /**
      @deprecated GraphMemBulkUpdateHandler does the job for both now.
 */
+@Deprecated
 public class GraphMemFasterBulkUpdateHandler  extends SimpleBulkUpdateHandler
     {
     public GraphMemFasterBulkUpdateHandler( GraphWithPerform graph ) 
         { super( graph ); }
     
+    @Override
     public void removeAll()
         {
         clearComponents();

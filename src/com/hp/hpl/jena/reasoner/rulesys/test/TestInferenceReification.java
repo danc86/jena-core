@@ -40,9 +40,11 @@ public class TestInferenceReification extends AbstractTestReifier
         return new TestSuite( TestInferenceReification.class ); 
     }  
     
+    @Override
     public Graph getGraph()
         { return getGraph( ReificationStyle.Minimal ); }
 
+    @Override
     public Graph getGraph( ReificationStyle style )
         { return makeInfGraph( "", "", style ); }
 

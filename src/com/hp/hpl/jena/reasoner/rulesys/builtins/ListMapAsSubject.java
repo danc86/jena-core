@@ -35,6 +35,7 @@ public class ListMapAsSubject extends BaseBuiltin {
     /**
      * Return the expected number of arguments for this functor or 0 if the number is flexible.
      */
+    @Override
     public int getArgLength() {
         return 3;
     }
@@ -48,6 +49,7 @@ public class ListMapAsSubject extends BaseBuiltin {
      * for some rule engines
      * @param context an execution context giving access to other relevant data
      */
+    @Override
     public void headAction(Node[] args, int length, RuleContext context) {
         checkArgs(length, context);
         Node n0 = getArg(0, args, context);

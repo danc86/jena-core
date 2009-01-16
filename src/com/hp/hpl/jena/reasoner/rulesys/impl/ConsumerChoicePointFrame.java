@@ -65,6 +65,7 @@ public class ConsumerChoicePointFrame extends GenericTripleMatchFrame
      * @param interpreter the parent interpreter whose state is to be preserved here, its arg stack
      * defines the parameters for the target goal
      */
+    @Override
     public void init(LPInterpreter interpreter) {
         super.init(interpreter);
         context = interpreter.getContext();

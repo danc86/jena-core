@@ -77,6 +77,7 @@ public class DIGQueryDifferentFromTranslator
     /**
      * <p>Answer a query that will test difference between two individuals</p>
      */
+    @Override
     public Document translatePattern( TriplePattern pattern, DIGAdapter da ) {
         DIGConnection dc = da.getConnection();
         Document query = dc.createDigVerb( DIGProfile.ASKS, da.getProfile() );
@@ -95,6 +96,7 @@ public class DIGQueryDifferentFromTranslator
     /**
      * <p>Answer an iterator of triples that match the original find query.</p>
      */
+    @Override
     public ExtendedIterator translateResponseHook( Document response, TriplePattern query, DIGAdapter da ) {
         List answer = new ArrayList();
         if (isTrue( response )) {
@@ -105,15 +107,18 @@ public class DIGQueryDifferentFromTranslator
         return WrappedIterator.create( answer.iterator() );
     }
     
+    @Override
     public Document translatePattern( TriplePattern pattern, DIGAdapter da, Model premises ) {
         // premises not used
         return translatePattern( pattern, da );
     }
 
+    @Override
     public boolean checkSubject( com.hp.hpl.jena.graph.Node subject, DIGAdapter da, Model premises ) {
         return da.isIndividual( subject );
     }
     
+    @Override
     public boolean checkObject( com.hp.hpl.jena.graph.Node object, DIGAdapter da, Model premises ) {
         return da.isIndividual( object );
     }

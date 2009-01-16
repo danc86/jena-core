@@ -70,6 +70,7 @@ public class RETERuleInfGraph extends BasicForwardRuleInfGraph {
      * Subclasses can override this to switch to, say, a RETE imlementation.
      * @param rules the rule set or null if there are not rules bound in yet.
      */
+    @Override
     protected void instantiateRuleEngine(List rules) {
         if (rules != null) {
             engine = new RETEEngine(this, rules);
@@ -82,6 +83,7 @@ public class RETERuleInfGraph extends BasicForwardRuleInfGraph {
      * Add one triple to the data graph, run any rules triggered by
      * the new data item, recursively adding any generated triples.
      */
+    @Override
     public synchronized void performAdd(Triple t) {
         if (!isPrepared) prepare();
         fdata.getGraph().add(t);
@@ -91,6 +93,7 @@ public class RETERuleInfGraph extends BasicForwardRuleInfGraph {
     /** 
      * Removes the triple t (if possible) from the set belonging to this graph. 
      */   
+    @Override
     public void performDelete(Triple t) {
         if (!isPrepared) prepare();
         if (fdata != null) {

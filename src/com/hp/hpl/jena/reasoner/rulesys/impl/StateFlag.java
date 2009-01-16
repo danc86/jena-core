@@ -40,6 +40,7 @@ public class StateFlag {
     }
     
     /** Print string */
+    @Override
     public String toString() {
         return label;
     }

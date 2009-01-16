@@ -45,6 +45,7 @@ public class TestCaseBugs
         super(name);
     }
     
+    @Override
     public void setUp() {
         model = ModelFactory.createDefaultModel();
     }

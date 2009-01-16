@@ -416,6 +416,7 @@ public abstract class AbstractTestReifier extends GraphTestBase
         {
         return new GraphBase() 
             {
+            @Override
             public ExtendedIterator graphBaseFind( TripleMatch m ) { return r.findEither( m, true ); }
             };
         }

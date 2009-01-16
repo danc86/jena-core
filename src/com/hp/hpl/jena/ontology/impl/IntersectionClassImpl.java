@@ -55,6 +55,7 @@ public class IntersectionClassImpl
      * {@link com.hp.hpl.jena.rdf.model.RDFNode#as as()} instead.
      */
     public static Implementation factory = new Implementation() {
+        @Override
         public EnhNode wrap( Node n, EnhGraph eg ) { 
             if (canWrap( n, eg )) {
                 return new IntersectionClassImpl( n, eg );
@@ -64,6 +65,7 @@ public class IntersectionClassImpl
             } 
         }
             
+        @Override
         public boolean canWrap( Node node, EnhGraph eg ) {
             // node will support being an IntersectionClass facet if it has rdf:type owl:Class and an owl:intersectionOf statement (or equivalents) 
             Profile profile = (eg instanceof OntModel) ? ((OntModel) eg).getProfile() : null;
@@ -96,8 +98,10 @@ public class IntersectionClassImpl
     // External signature methods
     //////////////////////////////////
 
-	public Property operator() {return getProfile().INTERSECTION_OF();}
-	public String getOperatorName() {return "INTERSECTION_OF";}
+	@Override
+    public Property operator() {return getProfile().INTERSECTION_OF();}
+	@Override
+    public String getOperatorName() {return "INTERSECTION_OF";}
     
 
     // Internal implementation methods

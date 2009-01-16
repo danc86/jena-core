@@ -248,6 +248,7 @@ public class LPRuleStore extends RuleStore {
      * @param rule the rule, single headed only
      * @param isAdd true to add, false to remove 
      */
+    @Override
     protected void doAddRemoveRule(Rule rule, boolean isAdd) {
         isCompiled = false;
         super.doAddRemoveRule(rule, isAdd);

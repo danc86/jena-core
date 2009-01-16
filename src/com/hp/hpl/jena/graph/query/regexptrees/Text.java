@@ -33,15 +33,19 @@ public abstract class Text extends RegexpTree
         TextString( String s ) 
             { literal = s; }
         
+        @Override
         public String getString()
             { return literal; }
         
+        @Override
         public String toString()
             { return "<text.s '" + literal + "'>"; }
         
+        @Override
         public boolean equals( Object x )
             { return x instanceof TextString && literal.equals( ((TextString) x).literal ); }
         
+        @Override
         public int hashCode()
             { return literal.hashCode(); }
         }
@@ -53,21 +57,27 @@ public abstract class Text extends RegexpTree
         TextChar( char ch ) 
             { this.ch = ch; }
         
+        @Override
         public String getString()
             { return "" + ch; }
         
+        @Override
         public String toString()
             { return "<text.ch '" + ch + "'>"; }
         
+        @Override
         public boolean equals( Object x )
             { return x instanceof TextChar && ch == ((TextChar) x).ch; }
         
+        @Override
         public int hashCode()
             { return ch; }
         }
     
+    @Override
     public abstract boolean equals( Object x );
     
+    @Override
     public abstract int hashCode();
     
     public abstract String getString();

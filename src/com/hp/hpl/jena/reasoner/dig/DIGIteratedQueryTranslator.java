@@ -94,6 +94,7 @@ public abstract class DIGIteratedQueryTranslator
      * @param pattern The pattern to translate to a DIG query
      * @param da The DIG adapter through which we communicate with a DIG reasoner
      */
+    @Override
     public ExtendedIterator find( TriplePattern pattern, DIGAdapter da ) {
         ExtendedIterator all = null;
         
@@ -109,10 +110,12 @@ public abstract class DIGIteratedQueryTranslator
     /**
      * Not needed in this class - delegated to the specific query handlers
      */
+    @Override
     public Document translatePattern( TriplePattern query, DIGAdapter da ) {
         return null;
     }
 
+    @Override
     public Document translatePattern( TriplePattern pattern, DIGAdapter da, Model premises ) {
         // not used
         return null;
@@ -121,6 +124,7 @@ public abstract class DIGIteratedQueryTranslator
     /**
      * Not needed in this class - delegated to the specific query handlers
      */
+    @Override
     public ExtendedIterator translateResponseHook(Document Response, TriplePattern query, DIGAdapter da) {
         return null;
     }

@@ -28,6 +28,7 @@ public class TestModelEvents extends ModelTestBase
     protected Model model;
     protected RecordingModelListener SL;
     
+    @Override
     public void setUp()
         { 
         model = ModelFactory.createDefaultModel(); 
@@ -234,9 +235,11 @@ public class TestModelEvents extends ModelTestBase
         public String getAddOrRem()
             { return addOrRem; }
                 
+        @Override
         public void addedStatement( Statement s )
             { statements.add( s ); addOrRem = "add"; }
             
+        @Override
         public void removedStatement( Statement s )
             { statements.add( s ); addOrRem = "rem"; }
         }
@@ -301,9 +304,11 @@ public class TestModelEvents extends ModelTestBase
         private Object recorded;
         private String how;
         
+        @Override
         public void added( Object x )
             { recorded = x; how = "add"; }
             
+        @Override
         public void removed( Object x )
             { recorded = x; how = "rem"; }
         

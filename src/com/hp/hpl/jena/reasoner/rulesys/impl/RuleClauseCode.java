@@ -324,6 +324,7 @@ public class RuleClauseCode {
     /**
      * Print clause as rule for tracing.
      */
+    @Override
     public String toString() {
         if (rule == null) {
             return "[anon]";
@@ -740,7 +741,7 @@ public class RuleClauseCode {
                     result.add(obj);
                 }
             } else if (term instanceof Functor) {
-                Node[] args = (Node[]) ((Functor)term).getArgs();
+                Node[] args = ((Functor)term).getArgs();
                 for (int i = 0; i < args.length; i++) {
                     result.add(args[i]);
                 }

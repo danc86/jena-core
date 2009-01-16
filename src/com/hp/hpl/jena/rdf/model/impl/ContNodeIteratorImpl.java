@@ -35,6 +35,7 @@ public class ContNodeIteratorImpl
         this.size     = cont.size();
     }
 
+    @Override
     public Object next() throws NoSuchElementException {
         stmt = (Statement) super.next();
         index += 1;
@@ -45,6 +46,7 @@ public class ContNodeIteratorImpl
         return (RDFNode) next();
     }
             
+    @Override
     public void remove() throws NoSuchElementException {
         if (stmt == null) throw new NoSuchElementException();
         super.remove();

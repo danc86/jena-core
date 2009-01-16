@@ -28,6 +28,7 @@ public class NewRegressionGet extends ModelTestBase
     protected Resource S;
     protected Property P;
     
+    @Override
     public void setUp()
         { 
         m = getModel();
@@ -35,6 +36,7 @@ public class NewRegressionGet extends ModelTestBase
         P = m.createProperty( "http://nowhere.man/predicate" ); 
         }
     
+    @Override
     public void tearDown()
         { m = null; S = null; P = null; }
     

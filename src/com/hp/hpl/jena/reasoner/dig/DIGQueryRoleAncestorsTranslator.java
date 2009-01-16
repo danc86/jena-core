@@ -83,6 +83,7 @@ public class DIGQueryRoleAncestorsTranslator
     /**
      * <p>Answer a query that will generate the class hierachy for a concept</p>
      */
+    @Override
     public Document translatePattern( TriplePattern pattern, DIGAdapter da ) {
         DIGConnection dc = da.getConnection();
         Document query = dc.createDigVerb( DIGProfile.ASKS, da.getProfile() );
@@ -103,21 +104,25 @@ public class DIGQueryRoleAncestorsTranslator
     /**
      * <p>Answer an iterator of triples that match the original find query.</p>
      */
+    @Override
     public ExtendedIterator translateResponseHook( Document response, TriplePattern query, DIGAdapter da ) {
         // translate the concept set to triples, but then we must add :a rdfs:subPropertyOf :a to match owl semantics
         return translateRoleSetResponse( response, query, m_ancestors );
     }
 
 
+    @Override
     public Document translatePattern( TriplePattern pattern, DIGAdapter da, Model premises ) {
         // not used
         return null;
     }
 
+    @Override
     public boolean checkSubject( com.hp.hpl.jena.graph.Node subject, DIGAdapter da, Model premises ) {
         return !m_ancestors || da.isRole( subject, premises );
     }
 
+    @Override
     public boolean checkObject( com.hp.hpl.jena.graph.Node object, DIGAdapter da, Model premises ) {
         return m_ancestors || da.isRole( object, premises );
     }

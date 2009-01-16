@@ -21,16 +21,20 @@ import com.hp.hpl.jena.graph.*;
 public class ResourceImpl extends EnhNode implements Resource {
     
     final static public Implementation factory = new Implementation() {
+        @Override
         public boolean canWrap( Node n, EnhGraph eg )
             { return !n.isLiteral(); }
+        @Override
         public EnhNode wrap(Node n,EnhGraph eg) {
             if (n.isLiteral()) throw new ResourceRequiredException( n );
             return new ResourceImpl(n,eg);
         }
     };
     final static public Implementation rdfNodeFactory = new Implementation() {
+        @Override
         public boolean canWrap( Node n, EnhGraph eg )
             { return true; }
+        @Override
         public EnhNode wrap(Node n,EnhGraph eg) {
 		if ( n.isURI() || n.isBlank() )
 		  return new ResourceImpl(n,eg);
@@ -126,6 +130,7 @@ public class ResourceImpl extends EnhNode implements Resource {
     public boolean hasURI( String uri ) 
         { return node.hasURI( uri ); }
     
+    @Override
     public String toString() 
         { return asNode().toString(); }
     

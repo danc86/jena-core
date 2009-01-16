@@ -34,6 +34,7 @@ public class TestReifiedStatements extends ModelTestBase
         {
         public TestStandard( String name ) { super( name ); }
         public static final ReificationStyle style = ModelFactory.Standard;
+        @Override
         public Model getModel() { return ModelFactory.createDefaultModel( style ); } 
         public void testStyle() { assertEquals( style, getModel().getReificationStyle() ); }
         }
@@ -42,6 +43,7 @@ public class TestReifiedStatements extends ModelTestBase
         {
         public TestConvenient( String name ) { super( name ); }
         public static final ReificationStyle style = ModelFactory.Convenient;
+        @Override
         public Model getModel() { return ModelFactory.createDefaultModel( style ); } 
         public void testStyle() { assertEquals( style, getModel().getReificationStyle() ); }
         }
@@ -50,6 +52,7 @@ public class TestReifiedStatements extends ModelTestBase
         {
         public TestMinimal( String name ) { super( name ); }
         public static final ReificationStyle style = ModelFactory.Minimal;
+        @Override
         public Model getModel() { return ModelFactory.createDefaultModel( style); } 
         public void testStyle() { assertEquals( style, getModel().getReificationStyle() ); }
         }

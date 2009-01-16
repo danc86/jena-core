@@ -53,6 +53,7 @@ public class BaseDatatype implements RDFDatatype {
             this.datatypeURI = datatypeURI;
         }
         
+        @Override
         public boolean equals(Object other) {
             if (other instanceof TypedValue) {
                 return lexicalValue.equals(((TypedValue)other).lexicalValue) 
@@ -62,6 +63,7 @@ public class BaseDatatype implements RDFDatatype {
             }
         }
         
+        @Override
         public int hashCode() {
             return lexicalValue.hashCode() ^ datatypeURI.hashCode();
         }
@@ -198,6 +200,7 @@ public class BaseDatatype implements RDFDatatype {
     /**
      * Display format
      */
+    @Override
     public String toString() {
         return "Datatype[" + uri
               + (getJavaClass() == null ? "" : " -> " + getJavaClass())

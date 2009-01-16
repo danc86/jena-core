@@ -44,6 +44,7 @@ public class TestSimpleSelector extends TestCase
     Model model = null;    
 	IDBConnection conn = null;
 	   
+    @Override
     protected void setUp() throws java.lang.Exception {
     	
 		conn = TestConnection.makeAndCleanTestConnection();
@@ -60,6 +61,7 @@ public class TestSimpleSelector extends TestCase
     	
     }
     
+    @Override
     protected void tearDown() throws java.lang.Exception {
     	model.close();
     	model = null;

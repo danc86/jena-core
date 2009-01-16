@@ -66,15 +66,18 @@ public class Free extends Element
 		return var;
 	}
 
-	public boolean match( Domain d, Node x )
+	@Override
+    public boolean match( Domain d, Node x )
 		{throw new JenaException("Attempt to match a free variable");		
 		}
 	
-	public Node asNodeMatch( Domain d ) {
+	@Override
+    public Node asNodeMatch( Domain d ) {
 		throw new JenaException("asNodeMatch not supported");
 	}
 	
-	public String toString()
+	@Override
+    public String toString()
 		{ return "<Free " + listIx + ">"; }
 	}
 

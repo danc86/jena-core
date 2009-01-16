@@ -17,6 +17,7 @@ package com.hp.hpl.jena.mem;
    @deprecated use GraphMemBaseQueryHandler
  	@author hedgehog
 */
+@Deprecated
 public class GraphMemQueryHandler extends GraphMemBaseQueryHandler
 	{
     GraphMemQueryHandler( GraphMemBase graph ) 

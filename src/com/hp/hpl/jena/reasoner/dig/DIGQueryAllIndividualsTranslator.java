@@ -75,6 +75,7 @@ public class DIGQueryAllIndividualsTranslator
      * @param pattern The pattern to translate to a DIG query
      * @param da The DIG adapter through which we communicate with a DIG reasoner
      */
+    @Override
     public ExtendedIterator find( TriplePattern pattern, DIGAdapter da ) {
         return WrappedIterator.create( da.getKnownIndividuals().iterator() )
                               .mapWith( new DIGValueToNodeMapper() )
@@ -82,18 +83,21 @@ public class DIGQueryAllIndividualsTranslator
     }
     
     
+    @Override
     public Document translatePattern( TriplePattern pattern, DIGAdapter da ) {
         // not used
         return null;
     }
 
 
+    @Override
     public Document translatePattern( TriplePattern pattern, DIGAdapter da, Model premises ) {
         // not used
         return null;
     }
 
 
+    @Override
     public ExtendedIterator translateResponseHook( Document response, TriplePattern query, DIGAdapter da ) {
         // not used
         return null;

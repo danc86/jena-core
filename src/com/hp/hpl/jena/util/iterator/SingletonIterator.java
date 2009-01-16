@@ -34,6 +34,7 @@ public class SingletonIterator extends NiceIterator implements ExtendedIterator 
     /**
      * Can return a single value
      */
+    @Override
     public boolean hasNext() {
         return !delivered;
     }
@@ -41,6 +42,7 @@ public class SingletonIterator extends NiceIterator implements ExtendedIterator 
     /**
      * Return the value
      */
+    @Override
     public Object next() {
         if (delivered) 
             return noElements( "no objects in this iterator" );

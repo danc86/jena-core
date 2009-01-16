@@ -368,7 +368,8 @@ public class TestPropEltErrorMsg extends TestCase {
         testAtts = atts;
         n = i;
 	}
-	public String toString() {
+	@Override
+    public String toString() {
 		return getName();
 	}
 
@@ -419,7 +420,8 @@ public class TestPropEltErrorMsg extends TestCase {
         }
         return s;
 	}
-	protected void runTest() {
+	@Override
+    protected void runTest() {
         Attributes noAtts = new Atts();
 		final StringBuffer buf = new StringBuffer();
 		XMLHandler arp = new XMLHandler();

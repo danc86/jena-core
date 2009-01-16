@@ -30,6 +30,7 @@ public class TestCaseBasic extends com.hp.hpl.jena.regression.TestCaseBasic
             ( new Object [] { Factory.createGraphMem(), Factory.createGraphMem() } ); 
     	}
     	
+    @Override
     public void setUp() throws Exception
     	{
 		Constructor constructor = graphClass.getConstructor

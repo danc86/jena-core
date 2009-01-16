@@ -161,7 +161,8 @@ public class PrettyWriterTest extends ModelTestBase {
 		TestXMLFeatures.blockLogger();
 		try {
 			m0.write(new OutputStream() {
-				public void write(int b) throws IOException {
+				@Override
+                public void write(int b) throws IOException {
 				}
 			}, "RDF/XML-ABBREV");
 

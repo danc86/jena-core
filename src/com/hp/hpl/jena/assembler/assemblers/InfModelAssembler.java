@@ -14,6 +14,7 @@ import com.hp.hpl.jena.reasoner.rulesys.GenericRuleReasonerFactory;
 
 public class InfModelAssembler extends ModelAssembler
     {
+    @Override
     protected Model openEmptyModel( Assembler a, Resource root, Mode mode )
         {
         checkType( root, JA.InfModel );

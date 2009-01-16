@@ -29,6 +29,7 @@ public class Fixed extends Element
         @return true iff our value is the same as his
     */
         
+    @Override
     public boolean match( Domain d, Node x ) 
         { return x.sameValueAs(value); }
     
@@ -37,9 +38,11 @@ public class Fixed extends Element
         @param d the variable bindings to use (ignored)
         @return our fixed value
     */
+    @Override
     public Node asNodeMatch( Domain d ) 
         { return value; }
         
+    @Override
     public String toString() 
         { return "<fixed " + value + ">"; }            
 	}

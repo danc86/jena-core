@@ -78,6 +78,7 @@ public class DIGQueryRoleParentsTranslator
     /**
      * <p>Answer a query that will generate the direct class hierarchy (one level up or down) for a node</p>
      */
+    @Override
     public Document translatePattern( TriplePattern pattern, DIGAdapter da ) {
         DIGConnection dc = da.getConnection();
         Document query = dc.createDigVerb( DIGProfile.ASKS, da.getProfile() );

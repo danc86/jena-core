@@ -24,6 +24,7 @@ public class TestSimpleReifierTripleMap extends AbstractTestReifierTripleMap
     public static TestSuite suite()
         { return new TestSuite( TestSimpleReifierTripleMap.class ); }
 
+    @Override
     protected ReifierTripleMap getTripleMap()
         { return new SimpleReifierTripleMap(); }
     }

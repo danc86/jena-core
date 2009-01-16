@@ -18,6 +18,7 @@ public class TestRuleSetAssembler extends AssemblerTestBase
     public TestRuleSetAssembler( String name )
         { super( name ); }
 
+    @Override
     protected Class getAssemblerClass()
         { return RuleSetAssembler.class; }
     

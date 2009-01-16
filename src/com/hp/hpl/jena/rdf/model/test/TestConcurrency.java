@@ -91,6 +91,7 @@ public class TestConcurrency  extends TestSuite
             exceptionExpected = exExpected ;
         }
 
+        @Override
         protected void runTest() throws Throwable
         {
             boolean gotException = false ;
@@ -131,6 +132,7 @@ public class TestConcurrency  extends TestSuite
             super(testName) ;
         }
         
+        @Override
         protected void runTest() throws Throwable
         {
             Model model = ModelFactory.createDefaultModel() ;
@@ -180,7 +182,8 @@ public class TestConcurrency  extends TestSuite
                  model = m ; readLock = withReadLock ;
              }
             
-             public void run()
+             @Override
+            public void run()
              {
                  for ( int i = 0 ; i < 2 ; i++ )
                  {

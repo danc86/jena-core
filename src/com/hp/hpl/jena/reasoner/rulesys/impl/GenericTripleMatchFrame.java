@@ -94,6 +94,7 @@ public class GenericTripleMatchFrame extends GenericChoiceFrame {
      * LPInterpreter and search for the match defined by the current argument registers
      * @param intepreter the interpreter instance whose env, trail and arg values are to be preserved
      */
+    @Override
     public void init(LPInterpreter interpreter) {
         super.init(interpreter);
         Node s = LPInterpreter.deref(interpreter.argVars[0]);

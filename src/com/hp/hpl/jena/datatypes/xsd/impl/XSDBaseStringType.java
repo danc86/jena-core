@@ -71,6 +71,7 @@ public class XSDBaseStringType extends XSDDatatype {
      * equate to strings. The latter option is currently set by a static
      * global flag in LiteralLabel.
      */
+    @Override
     public boolean isEqual(LiteralLabel value1, LiteralLabel value2) {
         // value1 will have been used to dispatch here so we know value1 is an xsdstring or extension
         if ((value2.getDatatype() == null && JenaParameters.enablePlainLiteralSameAsString) ||

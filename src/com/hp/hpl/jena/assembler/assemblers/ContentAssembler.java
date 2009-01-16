@@ -26,6 +26,7 @@ public class ContentAssembler extends AssemblerBase implements Assembler
     public ContentAssembler( FileManager fm )
         { this.defaultFileManager = fm; }
 
+    @Override
     public Object open( Assembler a, Resource root, Mode irrelevant )
         {
         checkType( root, JA.Content );
@@ -131,8 +132,10 @@ public class ContentAssembler extends AssemblerBase implements Assembler
         {
         return new Content() 
             { 
+            @Override
             public Model fill( Model x ) { x.setNsPrefixes( m ); return x.add( m ); } 
             
+            @Override
             public boolean isEmpty() { return m.isEmpty(); }
             };
         }

@@ -88,14 +88,17 @@ public class ARPResource extends TaintImpl implements  AResourceInternal {
         return null;
     }
     
+    @Override
     public String toString() {
         return "_:"+getAnonymousID();
     }
     
+    @Override
     public int hashCode() {
        return nodeID==null ?genId: nodeID.hashCode();
     }
     
+    @Override
     public boolean equals(Object o) {
         if ( o == null || !(o instanceof ARPResource))
             return false;

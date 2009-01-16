@@ -35,7 +35,8 @@ public class N3JenaWriterTests extends N3ExternalTestsCom
 	}
 
 	
-	protected void makeTest(String inputFile, String resultsFile)
+	@Override
+    protected void makeTest(String inputFile, String resultsFile)
 	{
 		String testName = inputFile ;
 
@@ -74,7 +75,8 @@ public class N3JenaWriterTests extends N3ExternalTestsCom
             writerName = wName ;
 		}
 		
-		protected void runTest() throws Throwable
+		@Override
+        protected void runTest() throws Throwable
 		{
 			try {
 				data = makeReader(new FileInputStream(inputFile)) ;

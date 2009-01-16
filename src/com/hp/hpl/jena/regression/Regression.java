@@ -302,18 +302,18 @@ public class Regression extends Object {
             }
             {
                 double tv;
-                double maxerror = (double) 0.000000005;
+                double maxerror = 0.000000005;
                 n = 700;
 
-                tv = (double) 0.0;
+                tv = 0.0;
                 l = m.createTypedLiteral(tv);
                 n++; if (java.lang.Math.abs(l.getDouble() - tv) >= maxerror) error(test, n);
 
-                tv = (double) -1.0;
+                tv = -1.0;
                 l = m.createTypedLiteral(tv);
                 n++; if (java.lang.Math.abs(l.getDouble() - tv) >= maxerror) error(test, n);
 
-                tv = (double) 12345.67890;
+                tv = 12345.67890;
                 l = m.createTypedLiteral(tv);
                 n++; if (java.lang.Math.abs(l.getDouble() - tv) >= maxerror) error(test, n);
 
@@ -4837,13 +4837,16 @@ public class Regression extends Object {
             content = Long.parseLong(s.substring(1, s.length()-1));
         }
 
+        @Override
         public String toString() {
             return "[" + Long.toString(content) + "]";
         }
 
+        @Override
         public int hashCode()
             { return (int) (content ^ (content >> 32)); }
             
+        @Override
         public boolean equals(Object o) {
             if (o instanceof LitTestObj) {
                 return content == ((LitTestObj)o).content;

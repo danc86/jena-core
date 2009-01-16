@@ -58,6 +58,7 @@ public class ComplementClassImpl
      * {@link com.hp.hpl.jena.rdf.model.RDFNode#as as()} instead.
      */
     public static Implementation factory = new Implementation() {
+        @Override
         public EnhNode wrap( Node n, EnhGraph eg ) {
             if (canWrap( n, eg )) {
                 return new ComplementClassImpl( n, eg );
@@ -67,6 +68,7 @@ public class ComplementClassImpl
             }
         }
 
+        @Override
         public boolean canWrap( Node node, EnhGraph eg ) {
             // node will support being an ComplementClass facet if it has rdf:type owl:Class and an owl:complementOf statement (or equivalents)
             Profile profile = (eg instanceof OntModel) ? ((OntModel) eg).getProfile() : null;

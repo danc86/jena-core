@@ -159,6 +159,7 @@ public class TestRDFSReasoners extends ReasonerTestBase {
         /**
          * The test runner
          */
+        @Override
         public void runTest() throws IOException {
             tester.runTest(test, reasoner, this);
         }
@@ -196,6 +197,7 @@ public class TestRDFSReasoners extends ReasonerTestBase {
         /**
          * The test runner
          */
+        @Override
         public void runTest() throws IOException {
             tester.runTest(test, reasonerFactory, this, config);
         }
@@ -224,6 +226,7 @@ public class TestRDFSReasoners extends ReasonerTestBase {
         /**
          * The test runner
          */
+        @Override
         public void runTest() throws IOException {
             ReasonerTester tester = new ReasonerTester("rdfs/manifest.rdf");
             // Test effect of switching off property scan - should break container property test case

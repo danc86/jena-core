@@ -13,6 +13,7 @@ import com.hp.hpl.jena.util.*;
 
 public class DocumentManagerAssembler extends AssemblerBase 
     {    
+    @Override
     public Object open( Assembler a, Resource root, Mode irrelevant )
         { 
         checkType( root, JA.DocumentManager );

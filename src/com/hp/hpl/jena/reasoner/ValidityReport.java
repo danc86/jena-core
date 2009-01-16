@@ -118,6 +118,7 @@ public interface ValidityReport {
          /**
          * Printable form of the report
          */
+        @Override
         public String toString() {
             return (isError ? "Error (" : "Warning (") + type + "): " + description;
         }

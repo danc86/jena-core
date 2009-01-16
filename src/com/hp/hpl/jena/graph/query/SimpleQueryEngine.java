@@ -27,7 +27,8 @@ public class SimpleQueryEngine
          @deprecated NamedTripleBunches are not supported. Use SimpleQueryEngine
              ( List, TripleSorter, ExpressionSet ) instead.
     */
-	public SimpleQueryEngine( NamedTripleBunches triples, TripleSorter ts, ExpressionSet constraint )
+	@Deprecated
+    public SimpleQueryEngine( NamedTripleBunches triples, TripleSorter ts, ExpressionSet constraint )
         { this.constraint = constraint; 
         this.triples = triples; 
         this.sortMethod = ts; }
@@ -69,10 +70,13 @@ public class SimpleQueryEngine
             private void ensurePipe()
                 { if (complete == null) complete = allStages.deliver( new BufferPipe() ); }
             
+            @Override
             public void close() { allStages.close(); clearPipe(); }
             
+            @Override
             public Object next() { ensurePipe(); return complete.get(); }
             
+            @Override
             public boolean hasNext() { ensurePipe(); return complete.hasNext(); }
             
             private void clearPipe()

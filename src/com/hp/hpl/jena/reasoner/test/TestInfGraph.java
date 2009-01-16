@@ -34,6 +34,7 @@ public class TestInfGraph extends AbstractTestGraph
         return (InfGraph) ModelFactory.createOntologyModel().getGraph();
         }
     
+    @Override
     public Graph getGraph()
         { return getInfGraph(); }
     

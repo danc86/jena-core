@@ -14,6 +14,7 @@ import com.hp.hpl.jena.rdf.model.*;
 
 public class OntModelAssembler extends InfModelAssembler implements Assembler
     {
+    @Override
     public Model openEmptyModel( Assembler a, Resource root, Mode mode )
         {
         checkType( root, JA.OntModel );

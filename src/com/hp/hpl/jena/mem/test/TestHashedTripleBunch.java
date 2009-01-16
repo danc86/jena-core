@@ -19,10 +19,12 @@ public class TestHashedTripleBunch extends TestTripleBunch
         public HTB( TripleBunch b )
             { super( b ); }
     
+        @Override
         protected int improveHashCode( int hashCode )
             { return hashCode; }    
         }
     
+    @Override
     public TripleBunch getBunch()
         { return new HashedTripleBunch( emptyBunch ); }
     
@@ -44,6 +46,7 @@ public class TestHashedTripleBunch extends TestTripleBunch
             return new TripleWithHash( n, t.getSubject(), t.getPredicate(), t.getObject() );            
             }
         
+        @Override
         public int hashCode()
             { return hash; }
         }

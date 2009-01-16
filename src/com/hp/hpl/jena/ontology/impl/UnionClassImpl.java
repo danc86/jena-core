@@ -55,6 +55,7 @@ public class UnionClassImpl
      * {@link com.hp.hpl.jena.rdf.model.RDFNode#as as()} instead.
      */
     public static Implementation factory = new Implementation() {
+        @Override
         public EnhNode wrap( Node n, EnhGraph eg ) { 
             if (canWrap( n, eg )) {
                 return new UnionClassImpl( n, eg );
@@ -64,6 +65,7 @@ public class UnionClassImpl
             } 
         }
             
+        @Override
         public boolean canWrap( Node node, EnhGraph eg ) {
             // node will support being an UnionClass facet if it has rdf:type owl:Class and an owl:unionOf statement (or equivalents) 
             Profile profile = (eg instanceof OntModel) ? ((OntModel) eg).getProfile() : null;
@@ -99,8 +101,10 @@ public class UnionClassImpl
     // External signature methods
     //////////////////////////////////
 
-	public Property operator() {return getProfile().UNION_OF();}
-	public String getOperatorName() {return "UNION_OF";}
+	@Override
+    public Property operator() {return getProfile().UNION_OF();}
+	@Override
+    public String getOperatorName() {return "UNION_OF";}
 
 
     // Internal implementation methods

@@ -60,10 +60,12 @@ public class WrappedIterator extends NiceIterator
         this.removeDenied = removeDenied; }
         
     /** hasNext: defer to the base iterator */
+    @Override
     public boolean hasNext()
         { return base.hasNext(); }
         
     /** next: defer to the base iterator */
+    @Override
     public Object next()
         { return base.next(); }
         
@@ -71,6 +73,7 @@ public class WrappedIterator extends NiceIterator
          if .remove() is allowed, delegate to the base iterator's .remove; 
          otherwise, throw an UnsupportedOperationException. 
     */
+    @Override
     public void remove()
         {
         if (removeDenied) throw new UnsupportedOperationException();
@@ -78,6 +81,7 @@ public class WrappedIterator extends NiceIterator
         }
         
     /** close: defer to the base, iff it is closable */
+    @Override
     public void close()
         { close( base ); }
 

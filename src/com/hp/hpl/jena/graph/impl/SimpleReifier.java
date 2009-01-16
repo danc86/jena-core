@@ -85,7 +85,7 @@ public class SimpleReifier implements Reifier
     */
     public Node reifyAs( Node tag, Triple toReify )
     	{
-        Triple existing = (Triple) tripleMap.getTriple( tag );
+        Triple existing = tripleMap.getTriple( tag );
         if (existing != null)
             { if (!toReify.equals( existing )) throw new AlreadyReifiedException( tag ); }
         else
@@ -117,7 +117,7 @@ public class SimpleReifier implements Reifier
     */    	
     public void remove( Node n, Triple t )
         {
-        Triple x = (Triple) tripleMap.getTriple( n );
+        Triple x = tripleMap.getTriple( n );
         if (t.equals( x )) 
             { tripleMap.removeTriple( n, t ); 
             if (!concealing) parentRemoveQuad( n, t ); }
@@ -264,6 +264,7 @@ public class SimpleReifier implements Reifier
         our string representation is <R ...> wrapped round the string representation
         of our node map.
     */
+    @Override
     public String toString()
         { return "<R " + fragmentsMap + "|" + tripleMap + ">"; }
 

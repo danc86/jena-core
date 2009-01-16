@@ -39,6 +39,7 @@ public class ReificationStyle
         a description of the fields. <i>code should not rely on these values</i>;
         they may be changed for debugging or convenience.
     */
+    @Override
     public String toString()
         { 
         if (this == Minimal) return "Minimal";

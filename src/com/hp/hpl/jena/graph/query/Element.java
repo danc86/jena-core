@@ -43,8 +43,11 @@ public abstract class Element
     */
 	public static final Element ANY = new Element()
         {
+        @Override
         public boolean match( Domain d, Node n ) { return true; }
+        @Override
         public Node asNodeMatch( Domain d ) { return Node.ANY; }
+        @Override
         public String toString() { return "<any>"; }
         };
         
@@ -65,6 +68,7 @@ public abstract class Element
     */
     public abstract Node asNodeMatch( Domain d );
         
+    @Override
     public String toString()
     	{ return "<" + this.getClass() + " element>"; }
 	}

@@ -37,6 +37,7 @@ public class AllAccept extends AssemblerTestBase
         public SetupDatabase( Test tests )
             { super( tests ); }
     
+        @Override
         public void setUp() throws Exception
             {
             super.setUp();

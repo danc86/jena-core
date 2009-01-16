@@ -69,10 +69,12 @@ public class TestIndividual
     // External signature methods
     //////////////////////////////////
 
+    @Override
     public OntTestCase[] getTests() {
         return new OntTestCase[] {
             new OntTestCase( "Individual.sameAs", true, false, true, false ) {
                 /** Note: 6/Nov/2003 - updated to use sameAs not sameIndividualAs, following changes to OWL spec */
+                @Override
                 public void ontTest( OntModel m ) throws Exception {
                     Profile prof = m.getProfile();
                     OntClass A = m.createClass( NS + "A" );
@@ -101,6 +103,7 @@ public class TestIndividual
             },
 
             new OntTestCase( "Individual.hasOntClass", true, true, true, true ) {
+                @Override
                 protected void ontTest( OntModel m ) throws Exception {
                     OntClass A = m.createClass( NS + "A" );
                     OntClass B = m.createClass( NS + "B" );
@@ -112,6 +115,7 @@ public class TestIndividual
             },
 
             new OntTestCase( "Individual.hasOntClass direct", true, true, true, true ) {
+                @Override
                 protected void ontTest( OntModel m ) throws Exception {
                     OntClass A = m.createClass( NS + "A" );
                     OntClass B = m.createClass( NS + "B" );
@@ -130,6 +134,7 @@ public class TestIndividual
             },
 
             new OntTestCase( "Individual.hasOntClass string", true, true, true, true ) {
+                @Override
                 protected void ontTest( OntModel m ) throws Exception {
                     OntClass A = m.createClass( NS + "A" );
 
@@ -140,6 +145,7 @@ public class TestIndividual
             },
 
             new OntTestCase( "Individual.getOntClass", true, true, true, true ) {
+                @Override
                 protected void ontTest( OntModel m ) throws Exception {
                     OntClass A = m.createClass( NS + "A" );
                     Individual x = m.createIndividual( A );
@@ -149,6 +155,7 @@ public class TestIndividual
             },
 
             new OntTestCase( "Individual.getOntClass direct", true, true, true, true ) {
+                @Override
                 protected void ontTest( OntModel m ) throws Exception {
                     OntClass A = m.createClass( NS + "A" );
                     OntClass B = m.createClass( NS + "B" );
@@ -163,6 +170,7 @@ public class TestIndividual
             },
 
             new OntTestCase( "Individual.listOntClasses", true, true, true, true ) {
+                @Override
                 protected void ontTest( OntModel m ) throws Exception {
                     OntClass A = m.createClass( NS + "A" );
                     OntClass B = m.createClass( NS + "B" );
@@ -181,6 +189,7 @@ public class TestIndividual
             },
 
             new OntTestCase( "Individual.listOntClasses direct", true, true, true, true ) {
+                @Override
                 protected void ontTest( OntModel m ) throws Exception {
                     OntClass A = m.createClass( NS + "A" );
                     OntClass B = m.createClass( NS + "B" );
@@ -199,6 +208,7 @@ public class TestIndividual
             },
 
             new OntTestCase( "Individual.addOntClass", true, true, true, true ) {
+                @Override
                 protected void ontTest( OntModel m ) throws Exception {
                     OntClass A = m.createClass( NS + "A" );
                     OntClass B = m.createClass( NS + "B" );
@@ -220,6 +230,7 @@ public class TestIndividual
             },
 
             new OntTestCase( "Individual.setOntClass", true, true, true, true ) {
+                @Override
                 protected void ontTest( OntModel m ) throws Exception {
                     OntClass A = m.createClass( NS + "A" );
                     OntClass B = m.createClass( NS + "B" );
@@ -241,6 +252,7 @@ public class TestIndividual
             },
 
             new OntTestCase( "Individual.removeOntClass", true, true, true, true ) {
+                @Override
                 protected void ontTest( OntModel m ) throws Exception {
                     OntClass A = m.createClass( NS + "A" );
                     OntClass B = m.createClass( NS + "B" );

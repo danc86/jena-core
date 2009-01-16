@@ -40,11 +40,13 @@ public class juuid extends CmdGeneral
         super.addModule(modJUUID) ;
     }
 
+    @Override
     protected String getSummary()
     {
         return getCommandName()+" [--num=N] [--reset] [--type={1|4}]" ;
     }
 
+    @Override
     protected void exec()
     {
         if ( uuidType == UUID_V1.version )
@@ -70,11 +72,13 @@ public class juuid extends CmdGeneral
         }
     }
 
+    @Override
     protected String getCommandName()
     {
         return "uuid" ;
     }
 
+    @Override
     protected void processModulesAndArgs()
     {
         

@@ -13,6 +13,7 @@ public class TestWrappedSetTripleBunch extends TestTripleBunch
     public TestWrappedSetTripleBunch( String name )
         { super( name ); }
 
+    @Override
     public TripleBunch getBunch()
         { return new SetBunch( emptyBunch ); }
     }

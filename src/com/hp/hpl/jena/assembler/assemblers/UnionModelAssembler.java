@@ -17,10 +17,12 @@ public class UnionModelAssembler extends ModelAssembler implements Assembler
     {
     private static final Graph immutable = new GraphBase() 
         {
+        @Override
         protected ExtendedIterator graphBaseFind( TripleMatch m )
             { return NullIterator.instance; }
         };
     
+    @Override
     protected Model openEmptyModel( Assembler a, Resource root, Mode mode )
         {
         checkType( root, JA.UnionModel );

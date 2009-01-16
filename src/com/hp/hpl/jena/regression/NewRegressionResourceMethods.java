@@ -33,6 +33,7 @@ public class NewRegressionResourceMethods extends NewRegressionBase
 
     protected Resource tvResource;
     
+    @Override
     public void setUp()
         { 
         m = getModel();

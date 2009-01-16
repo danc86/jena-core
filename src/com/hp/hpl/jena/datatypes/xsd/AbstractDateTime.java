@@ -75,13 +75,14 @@ public class AbstractDateTime {
     protected void extractFractionalSeconds() {
         if (data[ms] != 0) {
             int fs = data[ms];
-            fractionalSeconds = ((double)fs) / Math.pow(10.0, (double)data[msscale]);
+            fractionalSeconds = (fs) / Math.pow(10.0, data[msscale]);
         }
     }
     
     /**
      * Equality function
      */
+    @Override
     public boolean equals(Object obj) {
         if (obj instanceof AbstractDateTime) {
             AbstractDateTime adt = (AbstractDateTime) obj;
@@ -96,6 +97,7 @@ public class AbstractDateTime {
     /**
      * hash function
      */
+    @Override
     public int hashCode() {
         int hash = 0;
         for (int i = 0; i < data.length; i++) {

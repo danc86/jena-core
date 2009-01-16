@@ -24,6 +24,7 @@ public class TestOntModelSpecAssembler extends AssemblerTestBase
     public TestOntModelSpecAssembler( String name )
         { super( name ); }
 
+    @Override
     protected Class getAssemblerClass()
         { return OntModelSpecAssembler.class; }
 
@@ -76,6 +77,7 @@ public class TestOntModelSpecAssembler extends AssemblerTestBase
         {
         return new TestOntModelSpecAssembler( name )
             {
+            @Override
             public void runBare()
                 { testBuiltinSpec( spec, name ); }
             };

@@ -16,6 +16,7 @@ public abstract class Node_Concrete extends Node
     protected Node_Concrete( Object label )
         {  super( label ); }
         
+    @Override
     public boolean isConcrete()
         { return true; }
     }

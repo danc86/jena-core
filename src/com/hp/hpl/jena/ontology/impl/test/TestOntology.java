@@ -69,9 +69,11 @@ public class TestOntology
     // External signature methods
     //////////////////////////////////
 
+    @Override
     public OntTestCase[] getTests() {
         return new OntTestCase[] {
             new OntTestCase( "Ontology.imports", true, true, true, false ) {
+                @Override
                 public void ontTest( OntModel m ) throws Exception {
                     Profile prof = m.getProfile();
                     Ontology x = m.createOntology( NS + "x" );
@@ -97,6 +99,7 @@ public class TestOntology
                 }
             },
             new OntTestCase( "Ontology.backwardCompatibleWith", true, true, false, false ) {
+                @Override
                 public void ontTest( OntModel m ) throws Exception {
                     Profile prof = m.getProfile();
                     Ontology x = m.createOntology( NS + "x" );
@@ -122,6 +125,7 @@ public class TestOntology
                 }
             },
             new OntTestCase( "Ontology.priorVersion", true, true, false, false ) {
+                @Override
                 public void ontTest( OntModel m ) throws Exception {
                     Profile prof = m.getProfile();
                     Ontology x = m.createOntology( NS + "x" );
@@ -147,6 +151,7 @@ public class TestOntology
                 }
             },
             new OntTestCase( "Ontology.incompatibleWith", true, true, false, false ) {
+                @Override
                 public void ontTest( OntModel m ) throws Exception {
                     Profile prof = m.getProfile();
                     Ontology x = m.createOntology( NS + "x" );

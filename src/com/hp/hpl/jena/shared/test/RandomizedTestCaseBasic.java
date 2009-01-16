@@ -20,12 +20,14 @@ public class RandomizedTestCaseBasic extends com.hp.hpl.jena.regression.TestCase
         super(name);
     }
     
+    @Override
     public void setUp() {
         m1 = RandomOrderGraph.createDefaultModel();
         m2 = RandomOrderGraph.createDefaultModel();
         m3 = RandomOrderGraph.createDefaultModel();
         m4 = RandomOrderGraph.createDefaultModel();
     }
+    @Override
     public void tearDown() {
     	m1 = null;
     	m2 = null;

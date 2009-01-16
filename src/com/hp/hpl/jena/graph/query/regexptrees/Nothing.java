@@ -12,12 +12,15 @@ package com.hp.hpl.jena.graph.query.regexptrees;
 */
 public class Nothing extends RegexpTree
     {
+    @Override
     public boolean equals( Object other )
         { return other instanceof Nothing; }
 
+    @Override
     public int hashCode()
         { return 0; }
 
+    @Override
     public String toString()
         { return "<nothing>"; }
     }

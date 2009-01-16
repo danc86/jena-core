@@ -36,6 +36,7 @@ public class TestAssemblerGroupTracing extends AssemblerTestBase
     
     static class ShantAssemble extends AssemblerBase
         {
+        @Override
         public Object open( Assembler a, Resource root, Mode mode )
             {            
             throw new JenaException( "shan't" );

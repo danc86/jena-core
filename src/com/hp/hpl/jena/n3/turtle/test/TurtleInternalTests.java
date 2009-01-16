@@ -240,7 +240,8 @@ public class TurtleInternalTests extends TestSuite
         
 		Test(String s) { super(TestUtils.safeName(s)) ; testString = s ; }
 		
-		protected void runTest() throws Throwable
+		@Override
+        protected void runTest() throws Throwable
 		{
             TurtleParser parser = new TurtleParser(new StringReader(testString)) ;
             parser.setEventHandler(new TurtleEventNull()) ;

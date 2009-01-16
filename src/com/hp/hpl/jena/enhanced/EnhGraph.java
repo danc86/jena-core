@@ -40,6 +40,7 @@ public class EnhGraph
     /** The unique personality that is bound to this polymorphic instace */
     private Personality personality;
 
+    @Override
     public boolean isValid()
         { return true; }
     
@@ -72,6 +73,7 @@ public class EnhGraph
      * Hashcode for an enhnaced graph is delegated to the underlyin graph.
      * @return The hashcode as an int
      */
+    @Override
     final public int hashCode() {
      	return graph.hashCode();
     }
@@ -90,6 +92,7 @@ public class EnhGraph
      * @return True if o is equal to this node.
      * @see #isIsomorphicWith
      */
+    @Override
     final public boolean equals(Object o) {
         return 
             this == o 
@@ -155,6 +158,8 @@ public class EnhGraph
      @param t A type
      @return A polymorphic instance, possibly but not necessarily this, that conforms to t.
      */
+    @Deprecated
+    @Override
     protected Polymorphic convertTo(Class t) {
         throw new PersonalityConfigException
             ( "Alternative perspectives on graphs has not been implemented yet" );
@@ -164,6 +169,8 @@ public class EnhGraph
         we can't convert to anything. 
         @deprecated
     */
+    @Deprecated
+    @Override
     protected boolean canSupport( Class t )
         { return false; }
         
@@ -172,6 +179,7 @@ public class EnhGraph
      * 
      * @return The personality object
      */
+    @Override
     protected Personality getPersonality() {
         return personality;
     }

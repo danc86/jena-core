@@ -75,6 +75,7 @@ public class OntResourceImpl
      * {@link com.hp.hpl.jena.rdf.model.RDFNode#as as()} instead.
      */
     public static Implementation factory = new Implementation() {
+        @Override
         public EnhNode wrap( Node n, EnhGraph eg ) {
             if (canWrap( n, eg )) {
                 return new OntResourceImpl( n, eg );
@@ -84,6 +85,7 @@ public class OntResourceImpl
             }
         }
 
+        @Override
         public boolean canWrap( Node node, EnhGraph eg ) {
             // node will support being an OntResource facet if it is a uri or bnode
             return node.isURI() || node.isBlank();
@@ -1620,6 +1622,7 @@ public class OntResourceImpl
     protected static class ObjectAsOntResourceMapper
         extends ObjectMapper
     {
+        @Override
         public Object map1( Object x ) {
             if (x instanceof Statement) {
                 return asOntResource( ((Statement) x).getObject() );
@@ -1636,6 +1639,7 @@ public class OntResourceImpl
     {
         protected String m_lang;
         public LangTagFilter( String lang ) { m_lang = lang; }
+        @Override
         public boolean accept( Object x ) {
             if (x instanceof Literal) {
                 return langTagMatch( m_lang, ((Literal) x).getLanguage() );
@@ -1656,6 +1660,7 @@ public class OntResourceImpl
     {
         private Object m_obj;
         public SingleEqualityFilter( Object x ) { m_obj = x; }
+        @Override
         public boolean accept( Object x ) {return m_obj.equals( x );}
     }
 }

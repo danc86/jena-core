@@ -16,6 +16,7 @@ import com.hp.hpl.jena.mem.*;
     NodeToTriplesMap.
     @author hedgehog
 */
+@Deprecated
 public class StoreTripleIteratorFaster extends TrackingTripleIterator
     {
     protected NodeToTriplesMapBase X;
@@ -36,6 +37,7 @@ public class StoreTripleIteratorFaster extends TrackingTripleIterator
         this.toNotify = toNotify;
         }
 
+    @Override
     public void remove()
         {
         super.remove();

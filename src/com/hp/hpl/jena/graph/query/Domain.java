@@ -43,8 +43,10 @@ public final class Domain extends AbstractList implements IndexValues
     public Domain( int size ) 
         { this.value = new Node[size]; }
 	
-	public int size() { return value.length; }
+	@Override
+    public int size() { return value.length; }
 	
+    @Override
     public Object get( int i ) { return value[i]; }	  
     
     public void setElement( int i, Node x ) { value[i] = x; }
@@ -53,6 +55,7 @@ public final class Domain extends AbstractList implements IndexValues
     
 	public Domain copy() { return new Domain( this.value ); }
         
+    @Override
     public boolean equals( Object x )
         {
         return 
@@ -60,7 +63,8 @@ public final class Domain extends AbstractList implements IndexValues
             || super.equals( x );
         }
 		
-	public String toString()
+	@Override
+    public String toString()
 		{
 		StringBuffer b = new StringBuffer( 200 );
         b.append( "<domain" );

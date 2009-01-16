@@ -37,6 +37,7 @@ public class TestSimpleListStatements extends ModelTestBase
     static String   stringValue ="stringValue";
     static String   langValue   = "en";   
         
+    @Override
     protected void setUp() throws java.lang.Exception {
         
     	model = ModelFactory.createDefaultModel();
@@ -57,6 +58,7 @@ public class TestSimpleListStatements extends ModelTestBase
     	
     }
     
+    @Override
     protected void tearDown() throws java.lang.Exception {
     	model.close();
         model = null;
@@ -190,6 +192,7 @@ public class TestSimpleListStatements extends ModelTestBase
         modelAdd( m, "S P O; S P O2; S P2 O; S2 P O" );
         Selector sel = new SimpleSelector( null, null, (RDFNode) null )
             {
+            @Override
             public boolean test( Statement st )
                 { return 
                         st.getSubject().toString().length() 
@@ -198,6 +201,7 @@ public class TestSimpleListStatements extends ModelTestBase
                         == 15; /* eh:/S + eh:/P + eh:/O */
                 }
                 
+            @Override
             public boolean isSimple()
                 { return false; }
             };

@@ -67,9 +67,11 @@ public class TestAllDifferent
     // External signature methods
     //////////////////////////////////
 
+    @Override
     public OntTestCase[] getTests() {
         return new OntTestCase[] {
             new OntTestCase( "AllDifferent.distinctMembers", true, true, false, false ) {
+                @Override
                 public void ontTest( OntModel m ) throws Exception {
                     Profile prof = m.getProfile();
                     AllDifferent a = m.createAllDifferent();

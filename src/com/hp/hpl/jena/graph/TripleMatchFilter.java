@@ -27,6 +27,7 @@ public class TripleMatchFilter extends Filter
          @param t The object to accept or reject.  Must be a Triple
          @return true if the object is wanted.
     */
+    @Override
     public boolean accept( Object t ) 
         { return tMatch.matches( (Triple) t ); }
     }

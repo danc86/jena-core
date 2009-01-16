@@ -52,7 +52,8 @@ public class Pattern
             && O.match( d, t.getObject() );
         }
 
-     public String toString()
+     @Override
+    public String toString()
         { return "<pattern " + S + " @" + P + " " + O + ">"; }
 	}
 

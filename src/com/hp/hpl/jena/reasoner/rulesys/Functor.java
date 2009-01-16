@@ -42,6 +42,7 @@ public class Functor implements ClauseEntry {
     
     /** A static Filter instance that detects triples with Functor objects */
     public static final Filter acceptFilter = new Filter() {
+                @Override
                 public boolean accept(Object t) {
                     if (((Triple)t).getSubject().isLiteral()) return true;
                     Node n = ((Triple)t).getObject();
@@ -192,6 +193,7 @@ public class Functor implements ClauseEntry {
     /**
      * Printable string describing the functor
      */
+    @Override
     public String toString() {
         StringBuffer buff = new StringBuffer(name);
         buff.append("(");
@@ -216,6 +218,7 @@ public class Functor implements ClauseEntry {
     /**
      * Equality is based on structural comparison
      */
+    @Override
     public boolean equals(Object obj) {
         if (obj instanceof Functor) {
             Functor f2 = (Functor)obj;
@@ -230,6 +233,7 @@ public class Functor implements ClauseEntry {
     }
     
     /** hash function override */
+    @Override
     public int hashCode() {
         return (name.hashCode()) ^ (args.length << 2);
     }

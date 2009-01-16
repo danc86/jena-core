@@ -33,6 +33,7 @@ public class ListLength extends BaseBuiltin {
     /**
      * Return the expected number of arguments for this functor or 0 if the number is flexible.
      */
+    @Override
     public int getArgLength() {
         return 2;
     }
@@ -47,6 +48,7 @@ public class ListLength extends BaseBuiltin {
      * @return return true if the buildin predicate is deemed to have succeeded in
      * the current environment
      */
+    @Override
     public boolean bodyCall(Node[] args, int length, RuleContext context) {
         checkArgs(length, context);
         BindingEnvironment env = context.getEnv();

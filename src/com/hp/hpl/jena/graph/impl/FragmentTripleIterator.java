@@ -37,6 +37,7 @@ public abstract class FragmentTripleIterator extends NiceIterator
         list once we've refilled.
         @return true iff there are more triples to come
     */
+    @Override
     public boolean hasNext() 
         { 
         refill();
@@ -49,6 +50,7 @@ public abstract class FragmentTripleIterator extends NiceIterator
         @return the next triple
         @throws NoSuchElementException if there isn't one
     */
+    @Override
     public Object next()
         {
         ensureHasNext();

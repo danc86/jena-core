@@ -20,9 +20,11 @@ public class NewRegressionAltMethods extends NewRegressionContainerMethods
     public static Test suite()
         { return new TestSuite( NewRegressionAltMethods.class ); }
 
+    @Override
     protected Container createContainer()
         { return m.createAlt(); }
 
+    @Override
     protected Resource getContainerType()
         { return RDF.Alt; }
     

@@ -68,7 +68,8 @@ public class testWriterAndReader
 		this.options = options;
 	}
     
-	public String toString() {
+	@Override
+    public String toString() {
 		return getName()
 			+ " "
 			+ lang
@@ -162,6 +163,7 @@ public class testWriterAndReader
         {
         return new testWriterAndReader( "testOptions " + fileNumber + " " + optionMask, lang, fileNumber, optionMask ) 
             {
+            @Override
             public void runTest() throws IOException { testOptions(); }
             };
         }

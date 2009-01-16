@@ -48,6 +48,7 @@ public class TestFilters extends ModelTestBase
         ExtendedIterator it = iteratorOfStrings( "gab geb bag big lava hall end" );
         Filter f = new Filter() 
             {
+            @Override
             public boolean accept( Object o )
                 { return ((String) o).charAt( 1 ) == 'a'; }
             };
@@ -61,12 +62,14 @@ public class TestFilters extends ModelTestBase
         }
 
     protected Filter containsA = new Filter() 
-        { public boolean accept( Object o ) { return contains( o, 'a' ); } };
+        { @Override
+        public boolean accept( Object o ) { return contains( o, 'a' ); } };
     
     public void testFilterAnd()
         {
         Filter containsB = new Filter() 
-            { public boolean accept( Object o ) { return contains( o, 'b' ); } };
+            { @Override
+            public boolean accept( Object o ) { return contains( o, 'b' ); } };
         Filter f12 = containsA.and( containsB );
         assertFalse( f12.accept( "a" ) );
         assertFalse( f12.accept( "b" ) );
@@ -78,7 +81,8 @@ public class TestFilters extends ModelTestBase
     public void testFilterShortcircuit()
         {
         Filter oops = new Filter() 
-            { public boolean accept( Object o ) { throw new JenaException( "oops" ); } };
+            { @Override
+            public boolean accept( Object o ) { throw new JenaException( "oops" ); } };
         Filter f12 = containsA.and( oops );
         assertFalse( f12.accept( "z" ) );
         try { f12.accept( "a" ); fail( "oops" ); }

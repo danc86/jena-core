@@ -42,6 +42,7 @@ public class TestTransactions extends TestCase
 	IDBConnection conn = null;
 	DriverRDB m_driver = null;
 	
+    @Override
     protected void setUp() throws java.lang.Exception {
     	
 		conn = TestConnection.makeAndCleanTestConnection();
@@ -51,6 +52,7 @@ public class TestTransactions extends TestCase
 		m_driver.setConnection(conn);
 	}
     
+    @Override
     protected void tearDown() throws java.lang.Exception {
     	model.close();
     	model = null;

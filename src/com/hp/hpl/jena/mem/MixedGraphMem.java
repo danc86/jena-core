@@ -27,15 +27,19 @@ public class MixedGraphMem extends GraphMemBase implements Graph
     /**
         MixedGraphMem's don't use TripleStore's at present. 
     */
+    @Override
     protected TripleStore createTripleStore()
         { return null; }
     
+    @Override
     public void performAdd( Triple t )
         { if (!getReifier().handledAdd( t )) store.add( t ); }
     
+    @Override
     public void performDelete( Triple t )
         { if (!getReifier().handledRemove( t )) store.remove( t ); }
     
+    @Override
     public int graphBaseSize()  
         { return store.size(); }
 
@@ -44,21 +48,26 @@ public class MixedGraphMem extends GraphMemBase implements Graph
         can use a simple membership test; otherwise we resort to the generic
         method using find.
     */
+    @Override
     public boolean graphBaseContains( Triple t ) 
         { return isSafeForEquality( t ) ? store.contains( t ) : containsByFind( t ); }
     
+    @Override
     protected void destroy()
         { store = null; }
     
+    @Override
     public boolean isEmpty()
         {
         checkOpen();
         return store.isEmpty();
         }
     
+    @Override
     public void clear()
         { store.clear(); }
     
+    @Override
     public ExtendedIterator graphBaseFind( TripleMatch m ) 
         {
         Triple t = m.asTriple();

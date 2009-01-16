@@ -60,7 +60,8 @@ public class XSDDouble extends XSDDatatype {
       * Test whether the given object is a legal value form
       * of this datatype. Brute force implementation.
       */
-     public boolean isValidValue(Object valueForm) {
+     @Override
+    public boolean isValidValue(Object valueForm) {
          return (valueForm instanceof Double);
      }
    
@@ -68,7 +69,8 @@ public class XSDDouble extends XSDDatatype {
       * Parse a lexical form of this datatype to a value
       * @throws DatatypeFormatException if the lexical form is not legal
       */
-     public Object parse(String lexicalForm) throws DatatypeFormatException {
+     @Override
+    public Object parse(String lexicalForm) throws DatatypeFormatException {
          checkWhitespace(lexicalForm);        
          return super.parse(lexicalForm);
      }
@@ -78,6 +80,7 @@ public class XSDDouble extends XSDDatatype {
      * parse implementation and are not convered by the explicit convertValidatedData
      * cases should override this.
      */
+    @Override
     public Object parseValidated(String lex) {
        if (lex.equals("INF")) {
            return new Double(Double.NEGATIVE_INFINITY);
@@ -107,7 +110,8 @@ public class XSDDouble extends XSDDatatype {
       * This ignores lang tags and just uses the java.lang.Number 
       * equality.
       */
-     public boolean isEqual(LiteralLabel value1, LiteralLabel value2) {
+     @Override
+    public boolean isEqual(LiteralLabel value1, LiteralLabel value2) {
          return value1.getDatatype() == value2.getDatatype()
               && value1.getValue().equals(value2.getValue());
      }

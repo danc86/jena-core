@@ -399,6 +399,7 @@ public class Rule implements ClauseEntry {
     /**
      * Printable string describing the rule
      */
+    @Override
     public String toString() {
         StringBuffer buff = new StringBuffer();
         buff.append("[ ");
@@ -999,6 +1000,7 @@ public class Rule implements ClauseEntry {
     }
    
     /** Equality override */
+    @Override
     public boolean equals(Object o) {
         // Pass 1 - just check basic shape
         if (! (o instanceof Rule) ) return false;
@@ -1007,10 +1009,10 @@ public class Rule implements ClauseEntry {
         if (other.body.length != body.length) return false;
         // Pass 2 - check clause by clause matching
         for (int i = 0; i < body.length; i++) {
-            if (! ((ClauseEntry)body[i]).sameAs((ClauseEntry)other.body[i]) ) return false;
+            if (! (body[i]).sameAs(other.body[i]) ) return false;
         }
         for (int i = 0; i < head.length; i++) {
-            if (! ((ClauseEntry)head[i]).sameAs((ClauseEntry)other.head[i]) ) return false;
+            if (! (head[i]).sameAs(other.head[i]) ) return false;
         }
         // Also include the rule name in the equality contract
         if (name != null) {
@@ -1022,6 +1024,7 @@ public class Rule implements ClauseEntry {
     }
         
     /** hash function override */
+    @Override
     public int hashCode() {
         int hash = 0;
         for (int i = 0; i < body.length; i++) {

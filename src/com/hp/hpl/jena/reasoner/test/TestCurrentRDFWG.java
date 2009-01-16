@@ -133,6 +133,7 @@ public class TestCurrentRDFWG extends ReasonerTestBase {
         /**
          * The test runner
          */
+        @Override
         public void runTest() throws IOException {
             boolean success = tester.runTest(test, reasonerFactory, this, config);
 //            Resource resultType = null;

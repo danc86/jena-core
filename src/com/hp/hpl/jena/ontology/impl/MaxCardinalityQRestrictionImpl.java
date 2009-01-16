@@ -54,6 +54,7 @@ public class MaxCardinalityQRestrictionImpl
      * {@link com.hp.hpl.jena.rdf.model.RDFNode#as as()} instead.
      */
     public static Implementation factory = new Implementation() {
+        @Override
         public EnhNode wrap( Node n, EnhGraph eg ) { 
             if (canWrap( n, eg )) {
                 return new MaxCardinalityQRestrictionImpl( n, eg );
@@ -63,6 +64,7 @@ public class MaxCardinalityQRestrictionImpl
             } 
         }
             
+        @Override
         public boolean canWrap( Node node, EnhGraph eg ) 
             { return isMaxCardinalityQRestriction( node, eg ); }
     };
@@ -75,6 +77,7 @@ public class MaxCardinalityQRestrictionImpl
         return (profile != null)  &&  profile.isSupported( node, eg, MaxCardinalityQRestriction.class );
         }
     
+    @Override
     public boolean isValid()
         { return super.isValid() &&  isMaxCardinalityQRestriction( asNode(), getGraph() );  }
     

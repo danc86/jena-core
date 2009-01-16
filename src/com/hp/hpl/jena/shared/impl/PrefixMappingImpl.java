@@ -173,6 +173,7 @@ public class PrefixMappingImpl implements PrefixMapping
     /**
         Answer a readable (we hope) representation of this prefix mapping.
     */
+    @Override
     public String toString()
         { return "pm:" + prefixToURI; }
         

@@ -258,7 +258,7 @@ public class LPInterpreter {
                     continue main;
                 }
                 
-                clause = (RuleClauseCode)choice.nextClause();
+                clause = choice.nextClause();
                 // Create an execution environment for the new choice of clause
                 if (recordDerivations) {
                     envFrame = new EnvironmentFrameWithDerivation(clause);

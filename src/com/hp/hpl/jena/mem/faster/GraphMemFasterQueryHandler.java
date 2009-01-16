@@ -15,6 +15,7 @@ public class GraphMemFasterQueryHandler extends GraphMemBaseQueryHandler impleme
     GraphMemFasterQueryHandler( GraphMemFaster graph ) 
         { super( graph ); }
     
+    @Override
     public Stage patternStage( Mapping map, ExpressionSet constraints, Triple [] t )
         { return new FasterPatternStage( graph, map, constraints, t ); }
     }

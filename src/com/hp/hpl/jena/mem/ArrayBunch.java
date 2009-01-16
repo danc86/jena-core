@@ -104,12 +104,14 @@ public class ArrayBunch implements TripleBunch
             protected int i = size;
             protected final Triple [] e = elements;
             
+            @Override
             public boolean hasNext()
                 { 
                 if (changes > initialChanges) throw new ConcurrentModificationException();
                 return i > 0; 
                 }
         
+            @Override
             public Object next()
                 {
                 if (changes > initialChanges) throw new ConcurrentModificationException();
@@ -117,6 +119,7 @@ public class ArrayBunch implements TripleBunch
                 return e[--i]; 
                 }
             
+            @Override
             public void remove()
                 {
                 if (changes > initialChanges) throw new ConcurrentModificationException();

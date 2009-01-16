@@ -221,6 +221,7 @@ public class ModelFactory extends ModelFactoryBase
         {
         public ModelRDBMaker( GraphRDBMaker gm ) { super( gm ); }
 
+        @Override
         public Model makeModel( Graph graphRDB )
             { return new ModelRDB( (GraphRDB) graphRDB ); }
         }

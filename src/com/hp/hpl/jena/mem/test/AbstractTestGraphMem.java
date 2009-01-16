@@ -72,6 +72,7 @@ public class AbstractTestGraphMem extends AbstractTestGraph
         {
         Node special = new Node_URI( "eg:foo" ) 
             {
+            @Override
             public boolean matches( Node s ) 
                 {
                 fail( "Matched called superfluously." );

@@ -24,6 +24,7 @@ public class TestGraphTripleStore extends AbstractTestTripleStore
     public static TestSuite suite()
         { return new TestSuite( TestGraphTripleStore.class ); }
     
+    @Override
     public TripleStore getTripleStore()
         { return new GraphTripleStore( Graph.emptyGraph ); }
     }

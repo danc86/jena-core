@@ -29,6 +29,7 @@ public class TestOntModelAssembler extends AssemblerTestBase
         return result;
         }
 
+    @Override
     protected Class getAssemblerClass()
         { return OntModelAssembler.class; }
 
@@ -55,6 +56,7 @@ public class TestOntModelAssembler extends AssemblerTestBase
         {
         return new TestOntModelAssembler( name )
             {
+            @Override
             public void runBare()
                 { 
                 Assembler a = new OntModelAssembler();
@@ -81,6 +83,7 @@ public class TestOntModelAssembler extends AssemblerTestBase
         Assembler a = new OntModelAssembler();
         Assembler aa = new ModelAssembler()
             {
+            @Override
             protected Model openEmptyModel( Assembler a, Resource root, Mode irrelevant )
                 { 
                 assertEquals( resource( "y" ), root );
@@ -99,6 +102,7 @@ public class TestOntModelAssembler extends AssemblerTestBase
         Assembler a = new OntModelAssembler();
         Assembler aa = new ModelAssembler()
             {
+            @Override
             protected Model openEmptyModel( Assembler a, Resource root, Mode irrelevant )
                 { 
                 assertEquals( resource( "y" ), root );

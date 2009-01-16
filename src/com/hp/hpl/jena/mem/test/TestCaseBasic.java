@@ -20,12 +20,14 @@ public class TestCaseBasic extends com.hp.hpl.jena.regression.TestCaseBasic {
         super(name);
     }
     
+    @Override
     public void setUp() {
         m1 = ModelFactory.createDefaultModel();
         m2 = ModelFactory.createDefaultModel();
         m3 = ModelFactory.createDefaultModel();
         m4 = ModelFactory.createDefaultModel();
     }
+    @Override
     public void tearDown() {
     	m1 = null;
     	m2 = null;

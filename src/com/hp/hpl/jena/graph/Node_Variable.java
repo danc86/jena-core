@@ -29,18 +29,23 @@ public class Node_Variable extends Node_Fluid
     public Node_Variable( String name )
         { super( new VariableName( name ) ); }
 
+    @Override
     public String getName()
         { return ((VariableName) label).name; }
     
+    @Override
     public Object visitWith( NodeVisitor v )
         { return v.visitVariable( this, getName() ); }
         
+    @Override
     public boolean isVariable()
         { return true; }
         
+    @Override
     public String toString()
         { return label.toString(); }
     
+    @Override
     public boolean equals( Object other )
         { return other instanceof Node_Variable && label.equals( ((Node_Variable) other).label ); }
     
@@ -54,12 +59,15 @@ public class Node_Variable extends Node_Fluid
         public VariableName( String name ) 
             { this.name = name; }
         
+        @Override
         public int hashCode()
             { return name.hashCode(); }
         
+        @Override
         public boolean equals( Object other )
             { return other instanceof VariableName && name.equals( ((VariableName) other).name );  }
         
+        @Override
         public String toString()
             { return "?" + name; }
         }

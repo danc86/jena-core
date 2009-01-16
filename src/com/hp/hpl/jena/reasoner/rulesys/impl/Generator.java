@@ -386,6 +386,7 @@ public class Generator implements LPAgendaEntry, LPInterpreterContext {
         }
     
         /** Print string */
+        @Override
         public String toString() {
             return label;
         }

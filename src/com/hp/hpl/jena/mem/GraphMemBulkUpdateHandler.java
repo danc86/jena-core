@@ -20,7 +20,8 @@ public class GraphMemBulkUpdateHandler extends SimpleBulkUpdateHandler
 	public GraphMemBulkUpdateHandler( GraphWithPerform graph ) 
 	    { super( graph ); }
 	
-	public void removeAll()
+	@Override
+    public void removeAll()
 	    {
 	    clearComponents();
 	    notifyRemoveAll();

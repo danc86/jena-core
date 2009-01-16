@@ -77,6 +77,7 @@ public class DIGQuerySubsumesTranslator
     /**
      * <p>Answer a query that will test subsumption between two classes</p>
      */
+    @Override
     public Document translatePattern( TriplePattern pattern, DIGAdapter da ) {
         DIGConnection dc = da.getConnection();
         Document query = dc.createDigVerb( DIGProfile.ASKS, da.getProfile() );
@@ -94,6 +95,7 @@ public class DIGQuerySubsumesTranslator
      * <p>Answer a query that will test subsumption between two classes, given that either one
      * or both may be defined as an expression given the premises</p>
      */
+    @Override
     public Document translatePattern( TriplePattern pattern, DIGAdapter da, Model premises ) {
         DIGConnection dc = da.getConnection();
         Document query = dc.createDigVerb( DIGProfile.ASKS, da.getProfile() );
@@ -121,15 +123,18 @@ public class DIGQuerySubsumesTranslator
     /**
      * <p>Answer an iterator of triples that match the original find query.</p>
      */
+    @Override
     public ExtendedIterator translateResponseHook( Document response, TriplePattern query, DIGAdapter da ) {
         return isTrue( response ) ? (ExtendedIterator) new SingletonIterator( query.asTriple() ) : NullIterator.instance;
     }
     
+    @Override
     public boolean checkSubject( com.hp.hpl.jena.graph.Node subject, DIGAdapter da, Model premises ) {
         boolean isSubjectConcept = da.isConcept( subject, premises );
         return isSubjectConcept;
     }
     
+    @Override
     public boolean checkObject( com.hp.hpl.jena.graph.Node object, DIGAdapter da, Model premises ) {
         boolean isObjectConcept = da.isConcept( object, premises );
         return isObjectConcept;

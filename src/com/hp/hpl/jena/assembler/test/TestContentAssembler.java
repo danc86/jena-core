@@ -19,6 +19,7 @@ public class TestContentAssembler extends AssemblerTestBase
     public TestContentAssembler( String name )
         { super( name ); }
 
+    @Override
     protected Class getAssemblerClass()
         { return ContentAssembler.class; }
 
@@ -221,6 +222,7 @@ public class TestContentAssembler extends AssemblerTestBase
         final boolean [] used = {false};
         FileManager fm = new FileManager()
             {
+            @Override
             public Model loadModel( String filenameOrURI )
                 {
                 used[0] = true;
@@ -260,6 +262,7 @@ public class TestContentAssembler extends AssemblerTestBase
         private FixedFileManager( Model expected, String fileName )
             { this.expected = expected; this.fileName = fileName; }
 
+        @Override
         public Model loadModel( String filenameOrURI )
             {
             used = true;

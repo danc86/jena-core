@@ -281,6 +281,7 @@ public class ModelExpansion
         LinkedSeq push( Resource item ) 
             { return new LinkedSeq( item, this ); }
         
+        @Override
         public String toString()
             {
             StringBuffer result = new StringBuffer( "[" );

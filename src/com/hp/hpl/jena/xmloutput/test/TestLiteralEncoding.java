@@ -95,9 +95,12 @@ public class TestLiteralEncoding extends ModelTestBase
         Model m = ModelFactory.createDefaultModel();
         m.createResource().addProperty(RDF.value, badString);
         Writer w = new Writer(){
-			public void close() throws IOException {}
-			public void flush() throws IOException {}
-			public void write(char[] arg0, int arg1, int arg2) throws IOException {}
+			@Override
+            public void close() throws IOException {}
+			@Override
+            public void flush() throws IOException {}
+			@Override
+            public void write(char[] arg0, int arg1, int arg2) throws IOException {}
         };
         try 
             { 

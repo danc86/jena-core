@@ -34,10 +34,12 @@ public class TestGraphRDB extends MetaTestGraph
     private int count = 0;
     private Graph properties;
     
+    @Override
     public void setUp()
         { con = TestConnection.makeAndCleanTestConnection();
         properties = con.getDefaultModelProperties().getGraph(); }
         
+    @Override
     public void tearDown() throws SQLException
         { con.close(); }
         
@@ -54,9 +56,11 @@ public class TestGraphRDB extends MetaTestGraph
             super( con, "testGraph-" + count ++, properties, styleRDB( ReificationStyle.Minimal ), true );
             }
 
+        @Override
         public ExtendedIterator graphBaseFind( TripleMatch t )
             { throw new JenaException( "find is Not Allowed" ); }
         
+        @Override
         public void performDelete( Triple t )
             { throw new JenaException( "delete is Not Allowed" ); }
         }

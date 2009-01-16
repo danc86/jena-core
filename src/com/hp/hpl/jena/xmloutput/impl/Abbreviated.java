@@ -73,7 +73,8 @@ public class Abbreviated extends BaseXMLWriter implements RDFErrorHandler {
 
     boolean sResourcePropertyElt;
 
-	protected void unblockAll() {
+	@Override
+    protected void unblockAll() {
 		sDamlCollection = false;
 		sReification = false;
 		sResourcePropertyElt = false;
@@ -90,6 +91,7 @@ public class Abbreviated extends BaseXMLWriter implements RDFErrorHandler {
         blockRule(RDFSyntax.propertyAttr);
     }
     
+    @Override
     protected void blockRule(Resource r) {
         if (r.equals(RDFSyntax.sectionReification)) sReification=true;
        // else if (r.equals(RDFSyntax.resourcePropertyElt)) sResourcePropertyElt=true;
@@ -107,13 +109,15 @@ public class Abbreviated extends BaseXMLWriter implements RDFErrorHandler {
             logger.warn("Cannot block rule <"+r.getURI()+">");
         }
     }
-	Resource[] setTypes(Resource[] propValue) {
+	@Override
+    Resource[] setTypes(Resource[] propValue) {
 		Resource[] rslt = types;
 		types = propValue;
 		return rslt;
 	}
 
-	synchronized public void write(Model baseModel, Writer out, String base)
+	@Override
+    synchronized public void write(Model baseModel, Writer out, String base)
 	    { 
 		if (baseModel.getGraph().getCapabilities().findContractSafe() == false) 
             {
@@ -124,7 +128,8 @@ public class Abbreviated extends BaseXMLWriter implements RDFErrorHandler {
             super.write( baseModel, out, base );
 		}
 		
-	protected void writeBody(
+	@Override
+    protected void writeBody(
 		Model model,
 		PrintWriter pw,
 		String base,

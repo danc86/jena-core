@@ -71,6 +71,7 @@ public class ConnectionDescription
         not it has already had its connection opened. 
         @see java.lang.Object#toString()
     */
+    @Override
     public String toString()
         { 
         return

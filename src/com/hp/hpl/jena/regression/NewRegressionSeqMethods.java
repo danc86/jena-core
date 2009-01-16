@@ -20,9 +20,11 @@ public class NewRegressionSeqMethods extends NewRegressionContainerMethods
     public static TestSuite suite()
         { return new TestSuite( NewRegressionSeqMethods.class ); }
     
+    @Override
     protected Container createContainer()
         { return m.createSeq(); }
 
+    @Override
     protected Resource getContainerType()
         { return RDF.Seq; }
     
@@ -41,6 +43,7 @@ public class NewRegressionSeqMethods extends NewRegressionContainerMethods
     protected static final String lang = "fr";
     protected static final int num = 10;
     
+    @Override
     public void setUp()
         {
         super.setUp();

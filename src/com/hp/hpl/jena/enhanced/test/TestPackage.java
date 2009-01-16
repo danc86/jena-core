@@ -367,8 +367,10 @@ public class TestPackage extends GraphTestBase  {
         {
         static final Implementation factory = new Implementation()
             {
+            @Override
             public EnhNode wrap( Node n, EnhGraph g ) { return new EnhNode( n, g ); }
             
+            @Override
             public boolean canWrap( Node n, EnhGraph g ) { return n.isURI(); }
             };
         }
@@ -389,8 +391,10 @@ public class TestPackage extends GraphTestBase  {
         {
         static final Implementation factory = new Implementation()
             {
+            @Override
             public EnhNode wrap( Node n, EnhGraph g ) { return new EnhNode( n, g ); }
             
+            @Override
             public boolean canWrap( Node n, EnhGraph g ) { return n.isURI(); }
             };
         }

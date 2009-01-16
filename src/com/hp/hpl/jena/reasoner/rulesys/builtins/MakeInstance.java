@@ -46,6 +46,7 @@ public class MakeInstance extends BaseBuiltin {
      * @return return true if the buildin predicate is deemed to have succeeded in
      * the current environment
      */
+    @Override
     public boolean bodyCall(Node[] args, int length, RuleContext context) {
 //        System.out.println("MakeInstance on ");
 //        for (int i = 0; i < length; i++) {

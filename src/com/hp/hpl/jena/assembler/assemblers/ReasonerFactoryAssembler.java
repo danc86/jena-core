@@ -33,6 +33,7 @@ import com.hp.hpl.jena.reasoner.rulesys.*;
 */
 public class ReasonerFactoryAssembler extends AssemblerBase implements Assembler
     {
+    @Override
     public Object open( Assembler a, Resource root, Mode irrelevant )
         { 
         checkType( root, JA.ReasonerFactory );
@@ -137,7 +138,7 @@ public class ReasonerFactoryAssembler extends AssemblerBase implements Assembler
     private static ReasonerFactory resultFromStatic( Class c, String methodName )
         {
         try
-            { return (ReasonerFactory) c.getMethod( methodName, null ).invoke( null, null ); }
+            { return (ReasonerFactory) c.getMethod( methodName, (Class[])null ).invoke( null, (Object[])null ); }
         catch (Exception e)
             { return null; }
         }

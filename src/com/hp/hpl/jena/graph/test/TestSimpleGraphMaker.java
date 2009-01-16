@@ -24,6 +24,7 @@ public class TestSimpleGraphMaker extends AbstractTestGraphMaker
     public static TestSuite suite()
         { return new TestSuite( TestSimpleGraphMaker.class ); }
     
+    @Override
     public GraphMaker getGraphMaker()
         { return new SimpleGraphMaker(); }    
     }

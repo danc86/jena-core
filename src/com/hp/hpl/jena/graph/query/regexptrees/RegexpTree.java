@@ -23,10 +23,13 @@ public abstract class RegexpTree
     
     public static final RegexpTree NON = new Nothing();
 
+    @Override
     public abstract boolean equals( Object other );
     
+    @Override
     public abstract int hashCode();
     
+    @Override
     public abstract String toString();
     }
 

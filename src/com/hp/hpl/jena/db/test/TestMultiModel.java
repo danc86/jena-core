@@ -51,6 +51,7 @@ public class TestMultiModel extends TestCase
 	IDBConnection conn = null;
 	IRDBDriver dbDriver;
 	
+    @Override
     protected void setUp() throws java.lang.Exception {
     	conn = TestConnection.makeAndCleanTestConnection();
     	dbDriver = conn.getDriver();
@@ -65,6 +66,7 @@ public class TestMultiModel extends TestCase
 		nmod2 = ModelRDB.createModel(conn,"Named_Model_2");
     }
     
+    @Override
     protected void tearDown() throws java.lang.Exception {
     	dmod1.close(); dmod2.close();
     	nmod1.close(); nmod2.close();

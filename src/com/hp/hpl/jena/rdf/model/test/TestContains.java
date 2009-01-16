@@ -74,6 +74,7 @@ public class TestContains extends ModelTestBase
         final boolean [] wasCalled = {false};
         Model m = new ModelCom( g )
             {
+            @Override
             public boolean contains( Resource s, Property p, RDFNode o )
                 {
                 wasCalled[0] = true;

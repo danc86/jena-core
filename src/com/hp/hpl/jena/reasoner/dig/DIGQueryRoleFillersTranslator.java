@@ -79,6 +79,7 @@ public class DIGQueryRoleFillersTranslator
     /**
      * <p>Answer a query that will list the role fillers for an individual-role pair</p>
      */
+    @Override
     public Document translatePattern( TriplePattern pattern, DIGAdapter da ) {
         DIGConnection dc = da.getConnection();
         Document query = dc.createDigVerb( DIGProfile.ASKS, da.getProfile() );
@@ -94,21 +95,25 @@ public class DIGQueryRoleFillersTranslator
     /**
      * <p>Answer an iterator of triples that match the original find query.</p>
      */
+    @Override
     public ExtendedIterator translateResponseHook( Document response, TriplePattern query, DIGAdapter da ) {
         // translate the concept set to triples, but then we must add :a rdfs:subClassOf :a to match owl semantics
         return translateIndividualSetResponse( response, query, true );
     }
     
     
+    @Override
     public Document translatePattern( TriplePattern pattern, DIGAdapter da, Model premises ) {
         // not used
         return null;
     }
 
+    @Override
     public boolean checkSubject( com.hp.hpl.jena.graph.Node subject, DIGAdapter da, Model premises ) {
         return subject.isConcrete() && da.isIndividual( subject );
     }
 
+    @Override
     public boolean checkPredicate( com.hp.hpl.jena.graph.Node predicate, DIGAdapter da, Model premises ) {
         // check that the predicate is not a datatype property
         if (predicate.isConcrete()) {

@@ -27,6 +27,7 @@ public class TestOntGraph extends AbstractTestGraph
     public static TestSuite suite()
         { return new TestSuite( TestOntGraph.class ); }
 
+    @Override
     public Graph getGraph()
         { return ModelFactory.createOntologyModel().getGraph(); }
     }

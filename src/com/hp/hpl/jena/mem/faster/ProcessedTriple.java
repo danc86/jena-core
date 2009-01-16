@@ -23,13 +23,16 @@ public class ProcessedTriple extends QueryTriple
 
     static final QueryNodeFactory factory = new QueryNodeFactoryBase()
         {
+        @Override
         public QueryTriple createTriple( QueryNode S, QueryNode P, QueryNode O )
             { return new ProcessedTriple( S, P, O ); }
         
+        @Override
         public QueryTriple [] createArray( int size )
             { return new ProcessedTriple[size]; }
         };
 
+    @Override
     public Applyer createApplyer( Graph g )
         { return ((GraphMemFaster) g).createApplyer( this ); }
 

@@ -40,7 +40,8 @@ public class XSDDurationType extends XSDAbstractDateTimeType {
     * XSDDatatype.convertValidatedDataValue rather then from a local
     * parse method to make the implementation of XSDGenericType easier.
     */
-   public Object parseValidated(String str) {
+   @Override
+public Object parseValidated(String str) {
        int len = str.length();
        int[] date=new int[TOTAL_SIZE];
 

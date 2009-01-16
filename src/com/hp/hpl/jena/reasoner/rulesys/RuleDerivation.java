@@ -55,6 +55,7 @@ public class RuleDerivation implements Derivation {
     /**
      * Return a short-form description of this derivation.
      */
+    @Override
     public String toString() {
         if (rule == null) {
             return "DUMMY";
@@ -147,6 +148,7 @@ public class RuleDerivation implements Derivation {
      * are the same if they contain the same conclusion, rule and match list. 
      * They do not need to be derived from the same (or any) infGraph.
      */
+    @Override
     public boolean equals(Object other) {
         if (other instanceof RuleDerivation) {
             RuleDerivation otherD = (RuleDerivation)other;

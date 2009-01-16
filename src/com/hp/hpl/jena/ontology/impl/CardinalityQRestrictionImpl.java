@@ -54,6 +54,7 @@ public class CardinalityQRestrictionImpl
      * {@link com.hp.hpl.jena.rdf.model.RDFNode#as as()} instead.
      */
     public static Implementation factory = new Implementation() {
+        @Override
         public EnhNode wrap( Node n, EnhGraph eg ) { 
             if (canWrap( n, eg )) {
                 return new CardinalityQRestrictionImpl( n, eg );
@@ -63,6 +64,7 @@ public class CardinalityQRestrictionImpl
             } 
         }
             
+        @Override
         public boolean canWrap( Node node, EnhGraph eg ) 
             { return isCardinalityQRestriction( node, eg ); }
     };
@@ -73,6 +75,7 @@ public class CardinalityQRestrictionImpl
         return (profile != null)  &&  profile.isSupported( node, eg, CardinalityQRestriction.class );
     }
     
+    @Override
     public boolean isValid()
         { return isCardinalityQRestriction( asNode(), getGraph() ); }
 

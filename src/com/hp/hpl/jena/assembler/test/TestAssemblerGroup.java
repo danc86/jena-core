@@ -20,6 +20,7 @@ public class TestAssemblerGroup extends AssemblerTestBase
     public TestAssemblerGroup( String name )
         { super( name );  }
 
+    @Override
     protected Class getAssemblerClass()
         { return AssemblerGroup.class; }
     
@@ -69,6 +70,7 @@ public class TestAssemblerGroup extends AssemblerTestBase
     
     static class MockAssembler extends AssemblerBase
         {
+        @Override
         public Object open( Assembler a, Resource root, Mode mode )
             { return "mockmockmock"; }
         }
@@ -110,6 +112,7 @@ public class TestAssemblerGroup extends AssemblerTestBase
     
     private static Assembler mockAssembler = new AssemblerBase() 
         {
+        @Override
         public Object open( Assembler a, Resource root, Mode mode )
             { return null; }
         };
@@ -119,6 +122,7 @@ public class TestAssemblerGroup extends AssemblerTestBase
         final Model [] fullModel = new Model[1];
         AssemblerGroup g = new AssemblerGroup.ExpandingAssemblerGroup()
             {
+            @Override
             public void loadClasses( Model full ) { fullModel[0] = full; }
             };
         Resource root = resourceInModel( "root rdf:type typeA" );
@@ -165,6 +169,7 @@ public class TestAssemblerGroup extends AssemblerTestBase
         final Object result = new Object();
         Assembler fake = new AssemblerBase() 
             {
+            @Override
             public Object open( Assembler a, Resource root, Mode irrelevant )
                 {
                 assertSame( "nested call should pass in assembler group:", group, a );

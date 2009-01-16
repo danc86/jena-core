@@ -102,6 +102,7 @@ public class RDFSRuleReasoner extends GenericRuleReasoner {
      * exception on parameters it does not reconize.
      * @return false if the parameter was not recognized
      */
+    @Override
     protected boolean doSetParameter(Property parameter, Object value) {
         if (parameter.equals(ReasonerVocabulary.PROPenableCMPScan)) {
             boolean scanProperties = Util.convertBooleanPredicateArg(parameter, value);
@@ -136,6 +137,7 @@ public class RDFSRuleReasoner extends GenericRuleReasoner {
      * @throws ReasonerException if the data is ill-formed according to the
      * constraints imposed by this reasoner.
      */
+    @Override
     public InfGraph bind(Graph data) throws ReasonerException {
         Graph schemaArg = schemaGraph == null ? getPreload() : schemaGraph;
         InfGraph graph = null; 
@@ -158,12 +160,13 @@ public class RDFSRuleReasoner extends GenericRuleReasoner {
      * Precompute the implications of a schema graph. The statements in the graph
      * will be combined with the data when the final InfGraph is created.
      */
+    @Override
     public Reasoner bindSchema(Graph tbox) throws ReasonerException {
         if (schemaGraph != null) {
             throw new ReasonerException("Can only bind one schema at a time to an RDFSRuleReasoner");
         }
         FBRuleInfGraph graph = new FBRuleInfGraph(this, rules, getPreload(), tbox);
-        if (enableTGCCaching) ((FBRuleInfGraph)graph).setUseTGCCache();
+        if (enableTGCCaching) (graph).setUseTGCCache();
         graph.prepare();
         RDFSRuleReasoner grr = new RDFSRuleReasoner(graph, factory);
         grr.setDerivationLogging(recordDerivations);
@@ -199,6 +202,7 @@ public class RDFSRuleReasoner extends GenericRuleReasoner {
      * Return the Jena Graph Capabilties that the inference graphs generated
      * by this reasoner are expected to conform to.
      */
+    @Override
     public Capabilities getGraphCapabilities() {
         if (capabilities == null) {
             capabilities = new BaseInfGraph.InfFindSafeCapabilities();

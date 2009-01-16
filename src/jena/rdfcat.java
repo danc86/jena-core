@@ -435,6 +435,7 @@ public class rdfcat
         }
 
         /** Handle an unrecognised argument by assuming it's a URI to read */
+        @Override
         public void handleUnrecognizedArg( String argStr ) {
             if (argStr.equals("-") || !argStr.startsWith( "-" )) {
                 // queue this action for reading later
@@ -448,6 +449,7 @@ public class rdfcat
 
         /** Hook to test whether this argument should be processed further
          */
+        @Override
         public boolean ignoreArgument( String argStr ) {
             return !argStr.startsWith("-") || argStr.length() == 1;
         }

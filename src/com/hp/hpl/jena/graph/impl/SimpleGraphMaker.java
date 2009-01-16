@@ -74,6 +74,7 @@ public class SimpleGraphMaker extends BaseGraphMaker
             return already.openAgain();
         }
         
+    @Override
     public Graph openGraph()
         { return getGraph(); }
     

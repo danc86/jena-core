@@ -49,6 +49,7 @@ public class DBPropPrefix extends DBProp {
 	public ExtendedIterator listTriples() {
 		return DBProp.listTriples(graph, self);
 	}	
+    @Override
     public String toString()
         { return "<[" + getValue() + "=" + getURI() + "]>" ; }
 }

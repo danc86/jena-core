@@ -103,6 +103,7 @@ public class XSDDuration extends AbstractDateTime {
     /**
      * Serializer
      */
+    @Override
     public String toString() {
          StringBuffer message = new StringBuffer(30);
          int negate = 1;
@@ -172,6 +173,7 @@ public class XSDDuration extends AbstractDateTime {
      * If the strict parameter is false, return LESS_THAN if date1 is less than OR equal to date2 and
      * return GREATER_THAN if date1 is greater than OR equal to date2 
      */
+    @Override
     protected short compareDates(int[] date1, int[] date2, boolean strict) {
 
         //REVISIT: this is unoptimazed vs of comparing 2 durations

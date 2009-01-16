@@ -48,11 +48,13 @@ public class DBIDInt implements IDBID {
     }
     
     /** Hash is based on the underlying object */
+    @Override
     public int hashCode() {
         return m_dbid.hashCode();
     }
 
     /** Equality is based on the underlying object */
+    @Override
     public boolean equals(Object obj) {
         if (obj instanceof DBIDInt) {
             return getIntID() == ((DBIDInt)obj).getIntID();

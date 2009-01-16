@@ -40,6 +40,7 @@ public class XMLLiteralType extends BaseDatatype implements RDFDatatype {
      * Convert a serialize a value of this datatype out
      * to lexical form.
      */
+    @Override
     public String unparse(Object value) {
         return value.toString();
     }
@@ -48,6 +49,7 @@ public class XMLLiteralType extends BaseDatatype implements RDFDatatype {
      * Parse a lexical form of this datatype to a value
      * @throws DatatypeFormatException if the lexical form is not legal
      */
+    @Override
     public Object parse(String lexicalForm) throws DatatypeFormatException {
         if ( !isValid(lexicalForm))
           throw new DatatypeFormatException("Bad rdf:XMLLiteral");
@@ -58,6 +60,7 @@ public class XMLLiteralType extends BaseDatatype implements RDFDatatype {
      * Test whether the given string is a legal lexical form
      * of this datatype.
      */
+    @Override
     public boolean isValid(final String lexicalForm) {
         /*
          * To check the lexical form we construct

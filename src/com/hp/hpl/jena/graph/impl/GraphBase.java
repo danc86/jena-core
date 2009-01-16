@@ -410,7 +410,8 @@ public abstract class GraphBase implements GraphWithPerform
          big graphs, as it generates a big string: intended for debugging purposes.
     */
 
-	public String toString() 
+	@Override
+    public String toString() 
         { return toString( (closed ? "closed " : ""), this ); }
         
     /**

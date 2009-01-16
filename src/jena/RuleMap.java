@@ -91,6 +91,7 @@ public class RuleMap {
         /**
          * Return the expected number of arguments for this functor or 0 if the number is flexible.
          */
+        @Override
         public int getArgLength() {
             return 3;
         }
@@ -104,6 +105,7 @@ public class RuleMap {
          * for some rule engines
          * @param context an execution context giving access to other relevant data
          */
+        @Override
         public void headAction(Node[] args, int length, RuleContext context) {
             if (context.getGraph() instanceof FBRuleInfGraph) {
                 Triple t = new Triple(args[0], args[1], args[2]);
@@ -159,7 +161,7 @@ public class RuleMap {
             // Fetch the rule set and create the reasoner
             BuiltinRegistry.theRegistry.register(new Deduce());
             Map prefixes = new HashMap();
-            List rules = loadRules((String)cl.getItem(0), prefixes);
+            List rules = loadRules(cl.getItem(0), prefixes);
             Reasoner reasoner = new GenericRuleReasoner(rules);
             
             // Process

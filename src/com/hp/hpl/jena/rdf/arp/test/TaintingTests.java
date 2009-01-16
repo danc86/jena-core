@@ -168,11 +168,13 @@ public class TaintingTests extends TestCase implements ErrorHandler,
 		return ModelFactory.createDefaultModel();
 	}
 
-	public void setUp() {
+	@Override
+    public void setUp() {
 		// ensure the ont doc manager is in a consistent state
 		OntDocumentManager.getInstance().reset(true);
 	}
 
+    @Override
     public void runTest() throws IOException {
 
 

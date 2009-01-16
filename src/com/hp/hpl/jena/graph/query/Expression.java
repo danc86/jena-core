@@ -110,6 +110,7 @@ public interface Expression
         public String getFun() { return null; }
         public Expression getArg( int i ) { return null; }
         
+        @Override
         public boolean equals( Object other )
             { return other instanceof Expression && Expression.Util.equals( this, (Expression) other ); }
         }
@@ -119,7 +120,9 @@ public interface Expression
     */
     public static abstract class Constant extends Base
         {
+        @Override
         public boolean isConstant() { return true; }
+        @Override
         public abstract Object getValue();
         }
     
@@ -134,12 +137,14 @@ public interface Expression
         public Fixed( Object value )
             { this.value = value; }
     	
+        @Override
         public Object getValue()
             { return value; }
         
         public Valuator prepare( VariableIndexes vi ) 
             { return new FixedValuator( value ); }
         
+        @Override
         public String toString()
             { return value.toString(); }
     	}
@@ -149,7 +154,9 @@ public interface Expression
     */
     public static abstract class Variable extends Base
         {
+        @Override
         public boolean isVariable() { return true; }
+        @Override
         public abstract String getName();
         }
     
@@ -159,9 +166,13 @@ public interface Expression
     */
     public static abstract class Application extends Base
         {
+        @Override
         public boolean isApply() { return true; }
+        @Override
         public abstract int argCount();
+        @Override
         public abstract String getFun();
+        @Override
         public abstract Expression getArg( int i );
         }
     
@@ -261,8 +272,10 @@ public interface Expression
         {
         private boolean value;
         public BoolConstant( boolean value ) { this.value = value; }
+        @Override
         public boolean isConstant() { return true; }
         // TODO when moving to Jave 1.4 can use Boolean.valueOf( value )
+        @Override
         public Object getValue() { return value ? Boolean.TRUE : Boolean.FALSE; }
         public Valuator prepare( VariableIndexes vi ) { return this; }   
         public boolean evalBool( VariableValues vv ) { return value; }

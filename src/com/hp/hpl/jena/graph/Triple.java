@@ -36,7 +36,8 @@ public class Triple implements TripleMatch
     /**
         return a human-readable string "subject @predicate object" describing the triple
     */
-	public String toString()
+	@Override
+    public String toString()
         { return toString( PrefixMapping.Standard ); }
     
     public String toString( PrefixMapping pm )
@@ -98,7 +99,8 @@ public class Triple implements TripleMatch
          Answer true if <code>o</code> is a Triple with the same subject, predicate,
          and object as this triple.
     */
-	public boolean equals(Object o) 
+	@Override
+    public boolean equals(Object o) 
         { return o instanceof Triple && ((Triple) o).sameAs( subj, pred, obj ); }
     
     /** 
@@ -129,6 +131,7 @@ public class Triple implements TripleMatch
         The hash-code of a triple is the hash-codes of its components munged
         together: see hashCode(S, P, O).
     */
+    @Override
     public int hashCode() 
         { return hashCode( subj, pred, obj ); }
     
@@ -204,14 +207,17 @@ public class Triple implements TripleMatch
         
         public static final Field getSubject = new Field() 
             { 
+            @Override
             public Node getField( Triple t ) 
                 { return t.subj; }
             
+            @Override
             public Filter filterOn( final Node n )
                 { 
                 return n.isConcrete() 
                     ? new Filter() 
-                        { public boolean accept( Object x ) { return n.equals( ((Triple) x).subj ); } }
+                        { @Override
+                        public boolean accept( Object x ) { return n.equals( ((Triple) x).subj ); } }
                     : Filter.any
                     ;
                 }
@@ -219,13 +225,16 @@ public class Triple implements TripleMatch
             
         public static final Field getObject = new Field() 
             { 
+            @Override
             public Node getField( Triple t ) 
                 { return t.obj; } 
             
+            @Override
             public Filter filterOn( final Node n )
                 { return n.isConcrete() 
                     ? new Filter() 
-                        { public boolean accept( Object x ) 
+                        { @Override
+                        public boolean accept( Object x ) 
                             { return n.sameValueAs( ((Triple) x).obj ); } }
                     : Filter.any; 
                 }
@@ -233,13 +242,16 @@ public class Triple implements TripleMatch
         
         public static final Field getPredicate = new Field() 
             { 
+            @Override
             public Node getField( Triple t ) 
                 { return t.pred; } 
             
+            @Override
             public Filter filterOn( final Node n )
                 { return n.isConcrete()
                     ? new Filter() 
-                        { public boolean accept( Object x ) { return n.equals( ((Triple) x).pred ); } }
+                        { @Override
+                        public boolean accept( Object x ) { return n.equals( ((Triple) x).pred ); } }
                     : Filter.any; 
                 }
             };

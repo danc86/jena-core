@@ -205,6 +205,7 @@ public class DAML_OILProfile
     public Property SEE_ALSO() {                    return RDFS.seeAlso; }
     public Property IS_DEFINED_BY() {               return RDFS.isDefinedBy; }
 
+    @Override
     protected Resource[][] aliasTable() {
         return new Resource[][] {
             {DAML_OIL.subClassOf,                   RDFS.subClassOf},
@@ -325,6 +326,7 @@ public class DAML_OILProfile
     private static Object[][] s_supportsCheckTable = new Object[][] {
         // Resource (key),              check method
         {  OntClass.class,              new SupportsCheck() {
+                                            @Override
                                             public boolean doCheck( Node n, EnhGraph g ) {
                                                 return g.asGraph().contains( n, RDF.type.asNode(), DAML_OIL.Class.asNode() ) ||
                                                        g.asGraph().contains( n, RDF.type.asNode(), DAML_OIL.Restriction.asNode() ) ||
@@ -339,12 +341,14 @@ public class DAML_OILProfile
                                         }
         },
         {  DatatypeProperty.class,      new SupportsCheck() {
+                                            @Override
                                             public boolean doCheck( Node n, EnhGraph g ) {
                                                 return g.asGraph().contains( n, RDF.type.asNode(), DAML_OIL.DatatypeProperty.asNode() );
                                             }
                                         }
         },
         {  ObjectProperty.class,        new SupportsCheck() {
+                                            @Override
                                             public boolean doCheck( Node n, EnhGraph g ) {
                                                return g.asGraph().contains( n, RDF.type.asNode(), DAML_OIL.ObjectProperty.asNode() ) ||
                                                       g.asGraph().contains( n, RDF.type.asNode(), DAML_OIL.TransitiveProperty.asNode() ) ||
@@ -353,6 +357,7 @@ public class DAML_OILProfile
                                         }
         },
         {  FunctionalProperty.class,    new SupportsCheck() {
+                                            @Override
                                             public boolean doCheck( Node n, EnhGraph g ) {
                                                 // DAML's alias for functional property is uniqueProperty
                                                 return g.asGraph().contains( n, RDF.type.asNode(), DAML_OIL.UniqueProperty.asNode() );
@@ -360,6 +365,7 @@ public class DAML_OILProfile
                                         }
         },
         {  InverseFunctionalProperty.class, new SupportsCheck() {
+                                            @Override
                                             public boolean doCheck( Node n, EnhGraph g ) {
                                                 // DAML's alias for functional property is unambiguousProperty
                                                 return g.asGraph().contains( n, RDF.type.asNode(), DAML_OIL.UnambiguousProperty.asNode() );
@@ -367,6 +373,7 @@ public class DAML_OILProfile
                                         }
         },
         {  RDFList.class,               new SupportsCheck() {
+                                            @Override
                                             public boolean doCheck( Node n, EnhGraph g ) {
                                                 return n.equals( DAML_OIL.nil.asNode() )  ||
                                                        g.asGraph().contains( n, RDF.type.asNode(), DAML_OIL.List.asNode() );
@@ -374,6 +381,7 @@ public class DAML_OILProfile
                                         }
         },
         {  Ontology.class,              new SupportsCheck() {
+                                            @Override
                                             public boolean doCheck( Node n, EnhGraph g ) {
                                                 return n.equals( RDF.nil.asNode() )  ||
                                                        g.asGraph().contains( n, RDF.type.asNode(), DAML_OIL.Ontology.asNode() );
@@ -381,6 +389,7 @@ public class DAML_OILProfile
                                         }
         },
         {  OntProperty.class,           new SupportsCheck() {
+                                            @Override
                                             public boolean doCheck( Node n, EnhGraph g ) {
                                                 return g.asGraph().contains( n, RDF.type.asNode(), RDF.Property.asNode() ) ||
                                                        g.asGraph().contains( n, RDF.type.asNode(), DAML_OIL.Property.asNode() ) ||
@@ -394,12 +403,14 @@ public class DAML_OILProfile
                                         }
         },
         {  Restriction.class,           new SupportsCheck() {
+                                            @Override
                                             public boolean doCheck( Node n, EnhGraph g ) {
                                                 return g.asGraph().contains( n, RDF.type.asNode(), DAML_OIL.Restriction.asNode() );
                                             }
                                         }
         },
         {  HasValueRestriction.class,   new SupportsCheck() {
+                                            @Override
                                             public boolean doCheck( Node n, EnhGraph g ) {
                                                 return g.asGraph().contains( n, RDF.type.asNode(), DAML_OIL.Restriction.asNode() ) &&
                                                        containsSome( g, n, DAML_OIL.hasValue ) &&
@@ -408,6 +419,7 @@ public class DAML_OILProfile
                                         }
         },
         {  AllValuesFromRestriction.class,   new SupportsCheck() {
+                                            @Override
                                             public boolean doCheck( Node n, EnhGraph g ) {
                                                 return g.asGraph().contains( n, RDF.type.asNode(), DAML_OIL.Restriction.asNode() ) &&
                                                        containsSome( g, n, DAML_OIL.toClass ) &&
@@ -416,6 +428,7 @@ public class DAML_OILProfile
                                         }
         },
         {  SomeValuesFromRestriction.class,   new SupportsCheck() {
+                                            @Override
                                             public boolean doCheck( Node n, EnhGraph g ) {
                                                 return g.asGraph().contains( n, RDF.type.asNode(), DAML_OIL.Restriction.asNode() ) &&
                                                        containsSome( g, n, DAML_OIL.hasClass ) &&
@@ -424,6 +437,7 @@ public class DAML_OILProfile
                                         }
         },
         {  CardinalityRestriction.class,   new SupportsCheck() {
+                                            @Override
                                             public boolean doCheck( Node n, EnhGraph g ) {
                                                 return g.asGraph().contains( n, RDF.type.asNode(), DAML_OIL.Restriction.asNode() ) &&
                                                        containsSome( g, n, DAML_OIL.cardinality ) &&
@@ -432,6 +446,7 @@ public class DAML_OILProfile
                                         }
         },
         {  MinCardinalityRestriction.class,   new SupportsCheck() {
+                                            @Override
                                             public boolean doCheck( Node n, EnhGraph g ) {
                                                 return g.asGraph().contains( n, RDF.type.asNode(), DAML_OIL.Restriction.asNode() ) &&
                                                        containsSome( g, n, DAML_OIL.minCardinality ) &&
@@ -440,6 +455,7 @@ public class DAML_OILProfile
                                         }
         },
         {  MaxCardinalityRestriction.class,   new SupportsCheck() {
+                                            @Override
                                             public boolean doCheck( Node n, EnhGraph g ) {
                                                 return g.asGraph().contains( n, RDF.type.asNode(), DAML_OIL.Restriction.asNode() ) &&
                                                        containsSome( g, n, DAML_OIL.maxCardinality ) &&
@@ -448,6 +464,7 @@ public class DAML_OILProfile
                                         }
         },
         {  TransitiveProperty.class,    new SupportsCheck() {
+                                            @Override
                                             public boolean doCheck( Node n, EnhGraph g ) {
                                                 return g.asGraph().contains( n, RDF.type.asNode(), DAML_OIL.TransitiveProperty.asNode() ) &&
                                                        !g.asGraph().contains( n, RDF.type.asNode(), DAML_OIL.DatatypeProperty.asNode() );
@@ -455,6 +472,7 @@ public class DAML_OILProfile
                                         }
         },
         {  QualifiedRestriction.class,  new SupportsCheck() {
+                                            @Override
                                             public boolean doCheck( Node n, EnhGraph g ) {
                                                 return g.asGraph().contains( n, RDF.type.asNode(), DAML_OIL.Restriction.asNode() ) &&
                                                        g.asGraph().contains( n, DAML_OIL.hasClassQ.asNode(), Node.ANY );
@@ -462,6 +480,7 @@ public class DAML_OILProfile
                                         }
         },
         {  CardinalityQRestriction.class,  new SupportsCheck() {
+                                            @Override
                                             public boolean doCheck( Node n, EnhGraph g ) {
                                                 return g.asGraph().contains( n, RDF.type.asNode(), DAML_OIL.Restriction.asNode() ) &&
                                                        g.asGraph().contains( n, DAML_OIL.cardinalityQ.asNode(), Node.ANY );
@@ -469,6 +488,7 @@ public class DAML_OILProfile
                                         }
         },
         {  MinCardinalityQRestriction.class,  new SupportsCheck() {
+                                            @Override
                                             public boolean doCheck( Node n, EnhGraph g ) {
                                                 return g.asGraph().contains( n, RDF.type.asNode(), DAML_OIL.Restriction.asNode() ) &&
                                                        g.asGraph().contains( n, DAML_OIL.minCardinalityQ.asNode(), Node.ANY );
@@ -476,6 +496,7 @@ public class DAML_OILProfile
                                         }
         },
         {  MaxCardinalityQRestriction.class,  new SupportsCheck() {
+                                            @Override
                                             public boolean doCheck( Node n, EnhGraph g ) {
                                                 return g.asGraph().contains( n, RDF.type.asNode(), DAML_OIL.Restriction.asNode() ) &&
                                                        g.asGraph().contains( n, DAML_OIL.maxCardinalityQ.asNode(), Node.ANY );

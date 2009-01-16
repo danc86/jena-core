@@ -67,6 +67,7 @@ public class ModelReifier
         final Reifier r = mGraph.getReifier();
         return new GraphBase()
             {
+            @Override
             public ExtendedIterator graphBaseFind( TripleMatch m ) 
                 { return r.findEither( m, true ); }
             };

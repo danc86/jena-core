@@ -50,9 +50,11 @@ public class TestReifier extends AbstractTestReifier
         return result; 
         }   
         
+    @Override
     public Graph getGraph()
         { return getGraph( style ); }
     
+    @Override
     public Graph getGraph( ReificationStyle style ) 
         {
         try
@@ -73,6 +75,7 @@ public class TestReifier extends AbstractTestReifier
         {
         GraphBase parent = new GraphBase() {
 
+            @Override
             public ExtendedIterator graphBaseFind( TripleMatch m )
                 {
                 // TODO Auto-generated method stub

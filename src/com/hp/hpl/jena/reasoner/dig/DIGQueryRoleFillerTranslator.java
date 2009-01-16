@@ -84,6 +84,7 @@ public class DIGQueryRoleFillerTranslator
     /**
      * <p>Answer a query that will list the role fillers for an individual-role pair</p>
      */
+    @Override
     public Document translatePattern( TriplePattern pattern, DIGAdapter da ) {
         DIGConnection dc = da.getConnection();
         Document query = dc.createDigVerb( DIGProfile.ASKS, da.getProfile() );
@@ -99,6 +100,7 @@ public class DIGQueryRoleFillerTranslator
     /**
      * <p>Answer an iterator of triples that match the original find query.</p>
      */
+    @Override
     public ExtendedIterator translateResponseHook( Document response, TriplePattern query, DIGAdapter da ) {
         // evaluate a path through the return value to give us an iterator over catom names
         SimpleXMLPath p = new SimpleXMLPath( true );
@@ -127,18 +129,22 @@ public class DIGQueryRoleFillerTranslator
     }
     
     
+    @Override
     public Document translatePattern( TriplePattern pattern, DIGAdapter da, Model premises ) {
         return translatePattern( pattern, da );
     }
 
+    @Override
     public boolean checkSubject( com.hp.hpl.jena.graph.Node subject, DIGAdapter da, Model premises ) {
         return subject.isConcrete() && da.isIndividual( subject );
     }
 
+    @Override
     public boolean checkObject( com.hp.hpl.jena.graph.Node object, DIGAdapter da, Model premises ) {
         return object.isConcrete() && da.isIndividual( object );
     }
 
+    @Override
     public boolean checkPredicate( com.hp.hpl.jena.graph.Node predicate, DIGAdapter da, Model premises ) {
         // check that the predicate is not a datatype property
         // and that it is not an RDF or OWL reserved predicate

@@ -21,6 +21,7 @@ public abstract class AbstractTestReifierFragmentsMap extends GraphTestBase
     
     protected ReifierFragmentsMap fragMap;
     
+    @Override
     public void setUp()
         { fragMap = getFragmentsMap(); }
     

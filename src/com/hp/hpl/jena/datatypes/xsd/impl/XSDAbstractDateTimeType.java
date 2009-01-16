@@ -36,6 +36,7 @@ public class XSDAbstractDateTimeType extends XSDDatatype {
      * This ignores lang tags and just uses the java.lang.Number 
      * equality.
      */
+    @Override
     public boolean isEqual(LiteralLabel value1, LiteralLabel value2) {
        return value1.getValue().equals(value2.getValue());
     }
@@ -449,7 +450,8 @@ public class XSDAbstractDateTimeType extends XSDDatatype {
      * @param dt the currently set data type
      * @return a narrower version of the datatype based on the actual value range
       */
-     public RDFDatatype normalizeSubType(Object value, RDFDatatype dt) {
+     @Override
+    public RDFDatatype normalizeSubType(Object value, RDFDatatype dt) {
          if (value instanceof XSDDateTime) {
              if (dt.equals(XSDDatatype.XSDdateTime)) {
                  return ((XSDDateTime)value).getNarrowedDatatype();

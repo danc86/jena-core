@@ -90,6 +90,7 @@ public class AnonId extends java.lang.Object {
         @param o the object to be compared
         @return true if and only if the two id's are the same
     */    
+    @Override
     public boolean equals( Object o ) {
         return o instanceof AnonId && id.equals( ((AnonId) o).id );
     }
@@ -97,6 +98,7 @@ public class AnonId extends java.lang.Object {
     /** return a string representation of the id
      * @return a string representation of the id
      */    
+    @Override
     public String toString() {
         return id;
     }
@@ -112,6 +114,7 @@ public class AnonId extends java.lang.Object {
     /** return a hashcode for this id
      * @return the hash code
      */    
+    @Override
     public int hashCode() {
         return id.hashCode();
     }

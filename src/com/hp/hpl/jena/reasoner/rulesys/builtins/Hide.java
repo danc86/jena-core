@@ -40,6 +40,7 @@ public class Hide extends BaseBuiltin {
      * @return return true if the buildin predicate is deemed to have succeeded in
      * the current environment
      */
+    @Override
     public boolean bodyCall(Node[] args, int length, RuleContext context) {
         doHide(args, length, context);
         return true;   
@@ -55,7 +56,8 @@ public class Hide extends BaseBuiltin {
      * for some rule engines
      * @param context an execution context giving access to other relevant data
      */
-     public void headAction(Node[] args, int length, RuleContext context) {
+     @Override
+    public void headAction(Node[] args, int length, RuleContext context) {
         doHide(args, length, context);
     }
 

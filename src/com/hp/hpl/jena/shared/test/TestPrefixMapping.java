@@ -25,6 +25,7 @@ public class TestPrefixMapping extends AbstractTestPrefixMapping
     public static TestSuite suite()
         { return new TestSuite( TestPrefixMapping.class ); }
 
+    @Override
     protected PrefixMapping getMapping()
         { return new PrefixMappingImpl(); }
 

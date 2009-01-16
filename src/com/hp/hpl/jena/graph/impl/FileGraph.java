@@ -138,6 +138,7 @@ public class FileGraph extends GraphMemFaster
     /**
         Write out and then close this FileGraph. 
     */
+    @Override
     public void close()
         {
         saveContents( name );
@@ -198,6 +199,7 @@ public class FileGraph extends GraphMemFaster
             throw new JenaException( "could not rename " + from + " to " + to ); 
         }
 
+    @Override
     public TransactionHandler getTransactionHandler()
         { if (th == null) th = new FileGraphTransactionHandler( this ); 
         return th; }

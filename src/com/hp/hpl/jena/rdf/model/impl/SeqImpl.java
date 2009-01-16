@@ -21,8 +21,10 @@ import com.hp.hpl.jena.enhanced.*;
 public class SeqImpl extends ContainerImpl implements Seq {
 
     final static public Implementation factory = new Implementation() {
+        @Override
         public boolean canWrap( Node n, EnhGraph eg )
             { return true; }
+        @Override
         public EnhNode wrap(Node n,EnhGraph eg) {
             return new SeqImpl(n,eg);
         }
@@ -231,9 +233,11 @@ public class SeqImpl extends ContainerImpl implements Seq {
         return this;
     }   
         
-     public NodeIterator iterator()  
+     @Override
+    public NodeIterator iterator()  
         { return listContainerMembers( seqIteratorFactory ); }
     
+    @Override
     public Container remove(Statement s) {
         // System.err.println( "]] SeqImpl.remove " + s );
         getModel().remove(s);
@@ -249,6 +253,7 @@ public class SeqImpl extends ContainerImpl implements Seq {
         return this;
     }
     
+    @Override
     public Container remove(int index, RDFNode o)  {
         // System.err.println( "]] SeqImpl::remove( " + index + ", " + o + ")" );
         return remove(getModel().createStatement(this, RDF.li(index), o).remove());

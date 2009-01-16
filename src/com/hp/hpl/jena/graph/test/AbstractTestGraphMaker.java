@@ -33,9 +33,11 @@ public abstract class AbstractTestGraphMaker extends GraphTestBase
     
     private GraphMaker gf;
     
+    @Override
     public void setUp()
         { gf = getGraphMaker(); }
         
+    @Override
     public void tearDown()
         { gf.close(); }
 

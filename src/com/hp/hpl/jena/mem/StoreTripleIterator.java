@@ -39,6 +39,7 @@ public class StoreTripleIterator extends TrackingTripleIterator
         this.toNotify = toNotify;
         }
 
+    @Override
     public void remove()
         {
         super.remove();

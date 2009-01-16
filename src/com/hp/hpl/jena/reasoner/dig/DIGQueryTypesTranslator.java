@@ -77,6 +77,7 @@ public class DIGQueryTypesTranslator
     /**
      * <p>Answer a query that will list the instances of a concept</p>
      */
+    @Override
     public Document translatePattern( TriplePattern pattern, DIGAdapter da ) {
         DIGConnection dc = da.getConnection();
         Document query = dc.createDigVerb( DIGProfile.ASKS, da.getProfile() );
@@ -91,17 +92,20 @@ public class DIGQueryTypesTranslator
     /**
      * <p>Answer an iterator of triples that match the original find query.</p>
      */
+    @Override
     public ExtendedIterator translateResponseHook( Document response, TriplePattern query, DIGAdapter da ) {
         // translate the concept set to triples, but then we must add :a rdfs:subClassOf :a to match owl semantics
         return translateConceptSetResponse( response, query, true, da );
     }
 
 
+    @Override
     public Document translatePattern( TriplePattern pattern, DIGAdapter da, Model premises ) {
         // not used
         return null;
     }
 
+    @Override
     public boolean checkSubject( com.hp.hpl.jena.graph.Node subject, DIGAdapter da, Model premises ) {
         return subject.isConcrete() && da.isIndividual( subject );
     }

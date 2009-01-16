@@ -100,6 +100,7 @@ public class DIGInfGraph
      * rule system) and where an application might wish greater control over when
      * this prepration is done.
      */
+    @Override
     public void prepare() {
         if (!isPrepared) {
             m_adapter.resetKB();
@@ -125,6 +126,7 @@ public class DIGInfGraph
      * @param pattern a TriplePattern to be matched against the data
      * @param continuation Not used in this implementation
      */
+    @Override
     public ExtendedIterator findWithContinuation(TriplePattern pattern, Finder continuation) {
         prepare();
         return m_adapter.find( pattern );
@@ -148,6 +150,7 @@ public class DIGInfGraph
      * @param param a small graph encoding an expression which the subject and/or
      * object nodes refer.
      */
+    @Override
     public ExtendedIterator find( Node subject, Node property, Node object, Graph param ) {
         OntModel premises = ModelFactory.createOntologyModel( m_adapter.getSourceSpecification(),
                                                               ModelFactory.createModelForGraph( param ) );
@@ -159,6 +162,7 @@ public class DIGInfGraph
     /**
      * Return the schema graph, if any, bound into this inference graph.
      */
+    @Override
     public Graph getSchemaGraph() {
         return ((DIGReasoner) reasoner).getSchema();
     }
@@ -170,6 +174,7 @@ public class DIGInfGraph
      * but don't run prepare() just yet.</p>
      * @param t A triple to add to the graph
      */
+    @Override
     public synchronized void performAdd(Triple t) {
         fdata.getGraph().add(t);
         isPrepared = false;
@@ -180,6 +185,7 @@ public class DIGInfGraph
      * but don't run prepare() just yet.</p>
      * @param t A triple to remove from the graph
      */
+    @Override
     public void performDelete(Triple t) {
         fdata.getGraph().delete(t);
         isPrepared = false;
@@ -192,6 +198,7 @@ public class DIGInfGraph
      * inference graph and the raw data, before processing.
      * @param data the new raw data graph
      */
+    @Override
     public void rebind( Graph data ) {
         if (getSchemaGraph() == null) {
             fdata = new FGraph(data);
@@ -207,6 +214,7 @@ public class DIGInfGraph
     /**
      * Switch on/off drivation logging - not supported with DIG reasoner
      */
+    @Override
     public void setDerivationLogging(boolean logOn) {
         throw new UnsupportedOperationException( "Cannot set derivation logging on DIG reasoner" );
     }
@@ -217,6 +225,7 @@ public class DIGInfGraph
      * and for any unsatisfiable classes.</p>
      * @return a ValidityReport structure
      */
+    @Override
     public ValidityReport validate() {
         checkOpen();
         prepare();

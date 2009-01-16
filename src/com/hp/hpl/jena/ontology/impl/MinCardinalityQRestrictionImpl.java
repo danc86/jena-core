@@ -54,6 +54,7 @@ public class MinCardinalityQRestrictionImpl
      * {@link com.hp.hpl.jena.rdf.model.RDFNode#as as()} instead.
      */
     public static Implementation factory = new Implementation() {
+        @Override
         public EnhNode wrap( Node n, EnhGraph eg ) { 
             if (canWrap( n, eg )) {
                 return new MinCardinalityQRestrictionImpl( n, eg );
@@ -63,6 +64,7 @@ public class MinCardinalityQRestrictionImpl
             } 
         }
             
+        @Override
         public boolean canWrap( Node node, EnhGraph eg ) 
             { return isMinCardinalityQRestriction( node, eg ); }
     };
@@ -74,6 +76,7 @@ public class MinCardinalityQRestrictionImpl
         return (profile != null)  &&  profile.isSupported( node, eg, MinCardinalityQRestriction.class );
         }
     
+    @Override
     public boolean isValid()
         { return super.isValid() && isMinCardinalityQRestriction( asNode(), getGraph() ); }
     

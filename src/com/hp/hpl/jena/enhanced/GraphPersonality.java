@@ -27,12 +27,14 @@ public class GraphPersonality extends Personality {
 	public Personality nodePersonality() 
 		{ return nodePersonality; }
     
+    @Override
     public Personality add( Class interf, Implementation t ) {
         nodePersonality.add( interf, t );
         return this;
     }
     
-	public Personality copy()
+	@Override
+    public Personality copy()
         { return new GraphPersonality( this, nodePersonality.copy() ); }
     
 }

@@ -147,10 +147,12 @@ public class DBQueryStage extends Stage
 
         }
 
+    @Override
     public Pipe deliver( final Pipe result )
         {
         final Pipe stream = previous.deliver( new BufferPipe() );
-		new Thread() { public void run() { DBQueryStage.this.run( stream, result ); } } .start();
+		new Thread() { @Override
+        public void run() { DBQueryStage.this.run( stream, result ); } } .start();
         return result;
         }  
       

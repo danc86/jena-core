@@ -34,15 +34,19 @@ public class SmallGraphMem extends GraphMemBase
     /**
         SmallGraphMem's don't use TripleStore's at present. 
     */
+    @Override
     protected TripleStore createTripleStore()
         { return null; }
     
+    @Override
     public void performAdd( Triple t )
         { if (!getReifier().handledAdd( t )) triples.add( t ); }
     
+    @Override
     public void performDelete( Triple t )
         { if (!getReifier().handledRemove( t )) triples.remove( t ); }
     
+    @Override
     public int graphBaseSize()  
         { return triples.size(); }
 
@@ -51,24 +55,29 @@ public class SmallGraphMem extends GraphMemBase
         can use a simple membership test; otherwise we resort to the generic
         method using find.
     */
+    @Override
     public boolean graphBaseContains( Triple t ) 
         { return isSafeForEquality( t ) ? triples.contains( t ) : containsByFind( t ); }
 
+    @Override
     protected void destroy()
         { triples = null; }
     
+    @Override
     public void clear()
         { 
         triples.clear(); 
         ((SimpleReifier) getReifier()).clear();
         }
     
+    @Override
     public BulkUpdateHandler getBulkUpdateHandler()
         {
         if (bulkHandler == null) bulkHandler = new GraphMemBulkUpdateHandler( this );
         return bulkHandler;
         }
     
+    @Override
     public ExtendedIterator graphBaseFind( TripleMatch m ) 
         {
         return 

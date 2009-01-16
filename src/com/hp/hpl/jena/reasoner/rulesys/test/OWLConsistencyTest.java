@@ -125,6 +125,7 @@ public class OWLConsistencyTest extends TestCase {
      * @param rf
      *            The factory for the reasoner to test
      */
+    @Override
     public void runTest() {
         ValidityReport report = testResults();
         switch (expected) {

@@ -63,6 +63,7 @@ public class LocatorFile implements Locator
         this(null) ;
     }
     
+    @Override
     public boolean equals( Object other )
     {
         return
@@ -75,6 +76,7 @@ public class LocatorFile implements Locator
         return a == null ? b == null : a.equals(  b  );
     }
 
+    @Override
     public int hashCode()
     {
         return altDir.hashCode();

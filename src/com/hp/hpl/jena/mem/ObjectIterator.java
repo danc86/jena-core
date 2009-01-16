@@ -34,12 +34,14 @@ public abstract class ObjectIterator extends NiceIterator
     
     final List pending = new ArrayList();
     
+    @Override
     public boolean hasNext()
         {
         while (pending.isEmpty() && domain.hasNext()) refillPending();
         return !pending.isEmpty();                
         }
     
+    @Override
     public Object next()
         {
         if (!hasNext()) throw new NoSuchElementException
@@ -63,6 +65,7 @@ public abstract class ObjectIterator extends NiceIterator
             }
         }
     
+    @Override
     public void remove()
         { throw new UnsupportedOperationException( "listObjects remove()" ); }
     }

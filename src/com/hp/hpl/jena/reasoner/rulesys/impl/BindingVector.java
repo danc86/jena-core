@@ -193,6 +193,7 @@ public class BindingVector implements BindingEnvironment {
     /**
      * Printable form
      */
+    @Override
     public String toString() {
         StringBuffer buffer = new StringBuffer();
         for (int i = 0; i < environment.length; i++) {
@@ -328,6 +329,7 @@ public class BindingVector implements BindingEnvironment {
     }
   
     /** Equality override */
+    @Override
     public boolean equals(Object o) {
         // Pass 1 - just check basic shape
         if (! (o instanceof BindingVector) ) return false;
@@ -346,6 +348,7 @@ public class BindingVector implements BindingEnvironment {
     }
         
     /** hash function override */
+    @Override
     public int hashCode() {
         int hash = 0;
         for (int i = 0; i < environment.length; i++) {

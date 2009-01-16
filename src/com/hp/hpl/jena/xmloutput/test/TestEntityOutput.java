@@ -170,10 +170,13 @@ public class TestEntityOutput extends ModelTestBase
     
     private final static class FakeBaseWriter extends BaseXMLWriter
         {
+        @Override
         protected void unblockAll() {}
 
+        @Override
         protected void blockRule( Resource r ) {}
 
+        @Override
         protected void writeBody( Model mdl, PrintWriter pw, String baseUri, boolean inclXMLBase ) {}
 
         protected boolean getShowDoctypeDeclaration() { return showDoctypeDeclaration.booleanValue(); }

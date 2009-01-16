@@ -71,6 +71,7 @@ public class ClassHierarchy {
         // create an iterator over the root classes that are not anonymous class expressions
         Iterator i = m.listHierarchyRootClasses()
                       .filterDrop( new Filter() {
+                                    @Override
                                     public boolean accept( Object o ) {
                                         return ((Resource) o).isAnon();
                                     }} );

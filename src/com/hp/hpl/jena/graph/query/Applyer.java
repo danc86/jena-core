@@ -22,6 +22,7 @@ public abstract class Applyer
     */
     public static final Applyer empty = new Applyer()
         {
+        @Override
         public void applyToTriples( Domain d, Matcher m, StageElement next )
             {}
         };

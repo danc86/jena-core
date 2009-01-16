@@ -29,18 +29,21 @@ public class Intersection extends Dyadic implements Graph
 	    super( L, R );
 	    }
 	    
-	public void performAdd( Triple t )
+	@Override
+    public void performAdd( Triple t )
 	    {
 	    L.add( t );
 	    R.add( t );
 	    }
 
-	public void performDelete( Triple t )
+	@Override
+    public void performDelete( Triple t )
 		{
 		if (this.contains( t )) L.delete( t );
 		}
 		
-	public ExtendedIterator graphBaseFind( TripleMatch s )
+	@Override
+    public ExtendedIterator graphBaseFind( TripleMatch s )
 		{
         return L.find( s ) .filterKeep(  ifIn( R ) );
 		}

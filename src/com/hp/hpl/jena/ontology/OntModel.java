@@ -1279,6 +1279,7 @@ public interface OntModel
      *
      * @return The local model maker
      */
+    @Deprecated
     public ModelMaker getModelMaker();
 
     /**
@@ -1316,6 +1317,7 @@ public interface OntModel
      * @see #listSubModels()
      * @see #listSubModels(boolean)
      */
+    @Deprecated
     public ExtendedIterator listImportedModels();
 
 

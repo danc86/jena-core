@@ -55,6 +55,7 @@ public class AnnotationPropertyImpl
      * {@link com.hp.hpl.jena.rdf.model.RDFNode#as as()} instead.
      */
     public static Implementation factory = new Implementation() {
+        @Override
         public EnhNode wrap( Node n, EnhGraph eg ) {
             if (canWrap( n, eg )) {
                 return new AnnotationPropertyImpl( n, eg );
@@ -64,6 +65,7 @@ public class AnnotationPropertyImpl
             }
         }
 
+        @Override
         public boolean canWrap( Node node, EnhGraph eg ) {
             // node will support being an AnnotationProperty facet if it has rdf:type owl:AnnotationProperty or equivalent
             Profile profile = (eg instanceof OntModel) ? ((OntModel) eg).getProfile() : null;
@@ -101,6 +103,7 @@ public class AnnotationPropertyImpl
      *
      * @return True.
      */
+    @Override
     public boolean isProperty() {
         return true;
     }
@@ -109,6 +112,7 @@ public class AnnotationPropertyImpl
     /**
      * @see Property#getOrdinal()
      */
+    @Override
     public int getOrdinal() {
         return ((Property) as( Property.class )).getOrdinal();
     }

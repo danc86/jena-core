@@ -223,35 +223,40 @@ IOException {
 	/**
     @deprecated Use {@link #getHandlers}.{@link ARPHandlers#setExtendedHandler setExtendedHandler(eh)}
 	 */
-	public ExtendedHandler setExtendedHandler(ExtendedHandler eh) {
+	@Deprecated
+    public ExtendedHandler setExtendedHandler(ExtendedHandler eh) {
 		
 		return getHandlers().setExtendedHandler(eh);
 	}
 	/**
     @deprecated Use {@link #getHandlers}.{@link ARPHandlers#setNamespaceHandler setNamespaceHandler(nh)}
 	 */
-	public NamespaceHandler setNamespaceHandler(NamespaceHandler nh) {
+	@Deprecated
+    public NamespaceHandler setNamespaceHandler(NamespaceHandler nh) {
 
 		return getHandlers().setNamespaceHandler(nh);
 	}
 	/**
     @deprecated Use {@link #getHandlers}.{@link ARPHandlers#setStatementHandler setStatementHandler(sh)}
 	 */
-	public StatementHandler setStatementHandler(StatementHandler sh) {
+	@Deprecated
+    public StatementHandler setStatementHandler(StatementHandler sh) {
 		
 		return getHandlers().setStatementHandler(sh);
 	}
 	/**
     @deprecated Use {@link #getHandlers}.{@link ARPHandlers#setErrorHandler setErrorHandler(eh)}
 	 */
-	public void setErrorHandler(ErrorHandler eh) {
+	@Deprecated
+    public void setErrorHandler(ErrorHandler eh) {
 		getHandlers().setErrorHandler(eh);
 	}
     /**
      * 
     @deprecated Use {@link #getOptions}.{@link ARPOptions#setErrorMode(int,int) setErrorMode(errno,mode)}
 	 */
-	public int setErrorMode(int errno, int mode) {
+	@Deprecated
+    public int setErrorMode(int errno, int mode) {
 		return 
 		getOptions().setErrorMode(errno,mode);
 
@@ -259,35 +264,40 @@ IOException {
 	/**
     @deprecated Use {@link #getOptions}.{@link ARPOptions#setDefaultErrorMode() setDefaultErrorMode()}
 	 */
-	public void setDefaultErrorMode() {
+	@Deprecated
+    public void setDefaultErrorMode() {
 
 		getOptions().setDefaultErrorMode();
 	}
 	/**
     @deprecated Use {@link #getOptions}.{@link ARPOptions#setLaxErrorMode() setLaxErrorMode()}
 	 */
-	public void setLaxErrorMode() {
+	@Deprecated
+    public void setLaxErrorMode() {
 
 		getOptions().setLaxErrorMode();
 	}
 	/**
     @deprecated Use {@link #getOptions}.{@link ARPOptions#setStrictErrorMode() setStrictErrorMode()}
 	 */
-	public void setStrictErrorMode() {
+	@Deprecated
+    public void setStrictErrorMode() {
 
 		getOptions().setStrictErrorMode();
 	}
 	/**
     @deprecated Use {@link #getOptions}.{@link ARPOptions#setStrictErrorMode(int) setStrictErrorMode(nonErrorMode)}
 	 */	
-	public void setStrictErrorMode(int nonErrorMode) {
+	@Deprecated
+    public void setStrictErrorMode(int nonErrorMode) {
 
 		getOptions().setStrictErrorMode(nonErrorMode);
 	}
 	/**
      @deprecated Use {@link #getOptions}.{@link ARPOptions#setEmbedding(boolean) setEmbedding(embed)}
 	 */
-	public void setEmbedding(boolean embed) {
+	@Deprecated
+    public void setEmbedding(boolean embed) {
 		
 		getOptions().setEmbedding(embed);
 	}

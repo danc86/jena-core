@@ -169,6 +169,7 @@ public class TestTrialOWLRules extends TestCase {
     /**
      * The test runner
      */
+    @Override
     protected void runTest() throws IOException {
         OWLWGTester tester = new OWLWGTester(GenericRuleReasonerFactory.theInstance(), this, configuration);
 //        OWLWGTester tester = new OWLWGTester(OWLExptRuleReasonerFactory.theInstance(), this, null);

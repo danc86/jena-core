@@ -24,9 +24,11 @@ public class TestObjectImpl extends TestCommonImpl implements TestObject {
     /** This method should probably always just call a constructor.
      *  Note the constructor can/should be private.
      */
+    @Override
     public EnhNode wrap(Node n,EnhGraph eg) {
         return new TestObjectImpl(n,eg);
     }
+    @Override
     public boolean canWrap( Node n, EnhGraph eg )
         { return true; }
 };
@@ -36,6 +38,7 @@ public class TestObjectImpl extends TestCommonImpl implements TestObject {
         super( n, eg );
     }
     
+    @Override
     public boolean supports( Class t )
         { return t.isInstance( this) && isObject(); }
         

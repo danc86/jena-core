@@ -64,6 +64,7 @@ public abstract class GraphMemBase extends GraphBase
          Close this graph; if it is now fully closed, destroy its resources and run
          the GraphBase close.
     */
+    @Override
     public void close()
         {
         if (--count == 0)
@@ -78,6 +79,7 @@ public abstract class GraphMemBase extends GraphBase
     */
     public abstract void clear();
 
+    @Override
     public BulkUpdateHandler getBulkUpdateHandler()
         {
         if (bulkHandler == null) bulkHandler = new GraphMemBulkUpdateHandler( this );

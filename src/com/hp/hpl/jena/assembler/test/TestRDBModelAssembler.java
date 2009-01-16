@@ -16,6 +16,7 @@ public class TestRDBModelAssembler extends AssemblerTestBase
     public TestRDBModelAssembler( String name )
         { super( name ); }
 
+    @Override
     protected Class getAssemblerClass()
         { return RDBModelAssembler.class; }
 
@@ -37,6 +38,7 @@ public class TestRDBModelAssembler extends AssemblerTestBase
         final Mode theMode = new Mode( true, true );
         Assembler a = new RDBModelAssembler()
             {
+            @Override
             public Model openModel( Resource root, ConnectionDescription c, String name, ReificationStyle style, Content initial, Mode mode )
                 {
                 assertSame( C, c );

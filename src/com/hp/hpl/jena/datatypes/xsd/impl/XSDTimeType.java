@@ -34,6 +34,7 @@ public class XSDTimeType extends XSDAbstractDateTimeType {
      * XSDDatatype.convertValidatedDataValue rather then from a local
      * parse method to make the implementation of XSDGenericType easier.
      */
+    @Override
     public Object parseValidated(String str) {
         int len = str.length();
         int[] date = new int[TOTAL_SIZE];
@@ -57,6 +58,7 @@ public class XSDTimeType extends XSDAbstractDateTimeType {
      * Convert a value of this datatype out
      * to lexical form.
      */
+    @Override
     public String unparse(Object value) {
         if (value instanceof XSDDateTime) {
             return((XSDDateTime)value).timeLexicalForm();

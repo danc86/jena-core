@@ -16,12 +16,15 @@ public class AnyOf extends RegexpTree
     public AnyOf( String possibles )
         { this.possibles = possibles; }
     
+    @Override
     public boolean equals( Object other )
         { return other instanceof AnyOf && possibles.equals( ((AnyOf) other).possibles ); }
     
+    @Override
     public int hashCode()
         { return possibles.hashCode(); }
     
+    @Override
     public String toString()
         { return "<anyof '" + possibles + "'>"; }
     }

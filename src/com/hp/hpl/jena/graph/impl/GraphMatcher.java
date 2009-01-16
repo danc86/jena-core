@@ -253,6 +253,7 @@ public class GraphMatcher extends java.lang.Object {
         check(HASH_OK);
         return new FilterIterator(
         new Filter() {
+            @Override
             public boolean accept(Object o) {
                 Bucket b = (Bucket)o;
                 if (b.size()==1)
@@ -554,6 +555,7 @@ public class GraphMatcher extends java.lang.Object {
     static private class FixedResource implements SomeResource {
         int hash;
         Node node;
+        @Override
         public String toString() {
             return "f" + hash;
         }
@@ -722,6 +724,7 @@ public class GraphMatcher extends java.lang.Object {
         Set friends = CollectionFactory.createHashedSet(); // Other vars in AnonStatements containing me.
         int myHash;
         
+        @Override
         public String toString() {
             String rslt = r.toString();
             if ( bound!=null )
@@ -843,6 +846,7 @@ public class GraphMatcher extends java.lang.Object {
         private class StatementWrapper {
             int hash;
             AnonStatement statement;
+            @Override
             public boolean equals(Object o) {
                 if (o == null || (!(o instanceof StatementWrapper)))
                     return false;
@@ -850,6 +854,7 @@ public class GraphMatcher extends java.lang.Object {
                 return hash == w.hash &&
                 statement.contextualEquals(AnonResource.this,w.statement,w.asAnonR());
             }
+            @Override
             public int hashCode() {
                 return hash;
             }

@@ -43,6 +43,7 @@ public class TestReificationWrapper extends AbstractTestReifier
         public TestReificationWrapperGraph( String name )
             { super( name ); }
     
+        @Override
         public Graph getGraph()
             {
             Graph base = Factory.createDefaultGraph();            
@@ -50,9 +51,11 @@ public class TestReificationWrapper extends AbstractTestReifier
             }
         }
 
+    @Override
     public Graph getGraph()
         { return getGraph( style );  }
 
+    @Override
     public Graph getGraph( ReificationStyle style )
         { return new ReificationWrapperGraph( new GraphMem( Standard ), style );  }
     }

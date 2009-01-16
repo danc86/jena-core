@@ -23,6 +23,7 @@ public abstract class AbstractTestTripleStore extends GraphTestBase
     
     protected TripleStore store;
     
+    @Override
     public void setUp()
         {
         store = getTripleStore();

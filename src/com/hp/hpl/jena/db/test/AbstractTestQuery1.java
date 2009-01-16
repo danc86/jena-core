@@ -206,6 +206,7 @@ public abstract class AbstractTestQuery1 extends GraphTestBase
 
     };
     
+    @Override
     public void setUp() throws Exception
         {        
         super.setUp();
@@ -222,7 +223,8 @@ public abstract class AbstractTestQuery1 extends GraphTestBase
         loadGraph( s );
         return s; }
  
-	protected void tearDown() throws Exception {
+	@Override
+    protected void tearDown() throws Exception {
         super.tearDown();
 		}
 

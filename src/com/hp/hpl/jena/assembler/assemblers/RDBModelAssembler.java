@@ -14,9 +14,11 @@ import com.hp.hpl.jena.shared.*;
 
 public class RDBModelAssembler extends NamedModelAssembler implements Assembler
     {
+    @Override
     protected Model openEmptyModel( Assembler a, Resource root, Mode mode )
         { return openModel( a, root, Content.empty, mode ); }    
     
+    @Override
     protected Model openModel( Assembler a, Resource root, Content initial, Mode mode )
         {
         checkType( root, JA.RDBModel );

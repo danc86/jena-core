@@ -108,6 +108,7 @@ public class TestRDBAssemblerContents extends AssemblerTestBase
             return this;
             }
         
+        @Override
         public Object open( Assembler a, Resource root, Mode mode )
             {
             Object fromMap = map.get( root );

@@ -17,6 +17,7 @@ public class TestMemoryModelAssembler extends ModelAssemblerTestBase
     public TestMemoryModelAssembler( String name )
         { super( name ); }
 
+    @Override
     protected Class getAssemblerClass()
         { return MemoryModelAssembler.class; }
     

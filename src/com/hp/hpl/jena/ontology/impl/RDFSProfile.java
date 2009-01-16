@@ -128,6 +128,7 @@ public class RDFSProfile
     public Property IS_DEFINED_BY() {               return RDFS.isDefinedBy; }
 
 
+    @Override
     protected Resource[][] aliasTable() {
         return new Resource[][] {
             {}
@@ -231,6 +232,7 @@ public class RDFSProfile
     private static Object[][] s_supportsCheckTable = new Object[][] {
         // Resource (key),              check method
         {  OntClass.class,              new SupportsCheck() {
+                                            @Override
                                             public boolean doCheck( Node n, EnhGraph g ) {
                                                 return g.asGraph().contains( n, RDF.type.asNode(), RDFS.Class.asNode() ) ||
                                                        g.asGraph().contains( n, RDF.type.asNode(), RDFS.Datatype.asNode() ) ||
@@ -243,6 +245,7 @@ public class RDFSProfile
                                         }
         },
         {  RDFList.class,               new SupportsCheck() {
+                                            @Override
                                             public boolean doCheck( Node n, EnhGraph g ) {
                                                 return n.equals( RDF.nil.asNode() )  ||
                                                        g.asGraph().contains( n, RDF.type.asNode(), RDF.List.asNode() );
@@ -250,6 +253,7 @@ public class RDFSProfile
                                         }
         },
         {  OntProperty.class,           new SupportsCheck() {
+                                            @Override
                                             public boolean doCheck( Node n, EnhGraph g ) {
                                                 return g.asGraph().contains( n, RDF.type.asNode(), RDF.Property.asNode() );
                                             }

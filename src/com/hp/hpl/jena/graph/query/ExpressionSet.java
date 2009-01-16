@@ -77,6 +77,7 @@ public class ExpressionSet
     /**
          Answer a string representing this ExpressionSet for human consumption.
     */
+    @Override
     public String toString()
         { return expressions.toString(); }
     }

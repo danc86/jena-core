@@ -233,6 +233,7 @@ public class XSDDateTime extends AbstractDateTime {
     /**
      * Return legal serialized form.
      */
+    @Override
     public String toString() {
         StringBuffer buff = new StringBuffer();
         if ((mask & YEAR_MASK) != 0) {

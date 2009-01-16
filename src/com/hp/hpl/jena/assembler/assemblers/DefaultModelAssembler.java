@@ -11,12 +11,14 @@ import com.hp.hpl.jena.rdf.model.*;
 
 public class DefaultModelAssembler extends ModelAssembler implements Assembler
     {
+    @Override
     public Object open( Assembler a, Resource root, Mode mode )
         {
         checkType( root, JA.DefaultModel );
         return super.open( a, root, mode );
         }
     
+    @Override
     protected Model openEmptyModel( Assembler a, Resource root, Mode irrelevant )
         { return ModelFactory.createDefaultModel(); }
     }

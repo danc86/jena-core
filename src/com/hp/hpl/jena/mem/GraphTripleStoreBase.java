@@ -96,7 +96,8 @@ public abstract class GraphTripleStoreBase implements TripleStore
          {
          return new ObjectIterator( objects.domain() )
              {
-             protected Iterator iteratorFor( Object y )
+             @Override
+            protected Iterator iteratorFor( Object y )
                  { return objects.iteratorForIndexed( y ); }
              };
          }

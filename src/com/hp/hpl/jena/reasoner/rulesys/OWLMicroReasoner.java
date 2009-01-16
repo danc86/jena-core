@@ -63,6 +63,7 @@ public class OWLMicroReasoner extends GenericRuleReasoner implements Reasoner {
      * Return the Jena Graph Capabilties that the inference graphs generated
      * by this reasoner are expected to conform to.
      */
+    @Override
     public Capabilities getGraphCapabilities() {
         if (capabilities == null) {
             capabilities = new BaseInfGraph.InfFindSafeCapabilities();
@@ -81,6 +82,7 @@ public class OWLMicroReasoner extends GenericRuleReasoner implements Reasoner {
      * @throws ReasonerException if the data is ill-formed according to the
      * constraints imposed by this reasoner.
      */
+    @Override
     public InfGraph bind(Graph data) throws ReasonerException {
         InfGraph graph = super.bind(data);
         ((FBRuleInfGraph)graph).setDatatypeRangeValidation(true);

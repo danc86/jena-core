@@ -54,6 +54,7 @@ public class DBPrefixMappingImpl extends PrefixMappingImpl {
         m_graphProperties.conditionalCommit( commit );
 	}
 
+    @Override
     public PrefixMapping removeNsPrefix( String prefix )
         {
         super.removeNsPrefix( prefix );
@@ -66,7 +67,8 @@ public class DBPrefixMappingImpl extends PrefixMappingImpl {
 	 * and update the persistent store.
 	 * @see com.hp.hpl.jena.shared.PrefixMapping#setNsPrefix(java.lang.String, java.lang.String)
 	 */
-	public PrefixMapping setNsPrefix(String prefix, String uri) {
+	@Override
+    public PrefixMapping setNsPrefix(String prefix, String uri) {
         // this avoids touching the database for existing maplets.
         // if (uri.equals( super.getNsPrefixURI( prefix ) )) return this;
 		// Ordering is important here - we need to add it to the prefixMappingImpl
@@ -85,7 +87,8 @@ public class DBPrefixMappingImpl extends PrefixMappingImpl {
 	 * Override the default implementation so we can catch all write operations
 	 * @see com.hp.hpl.jena.shared.PrefixMapping#setNsPrefixes(com.hp.hpl.jena.shared.PrefixMapping)
 	 */
-	public PrefixMapping setNsPrefixes(PrefixMapping other) {
+	@Override
+    public PrefixMapping setNsPrefixes(PrefixMapping other) {
 		return setNsPrefixes(other.getNsPrefixMap());
 	}
 
@@ -93,7 +96,8 @@ public class DBPrefixMappingImpl extends PrefixMappingImpl {
 	 * Override the default implementation so we can catch all write operations
 	 * @see com.hp.hpl.jena.shared.PrefixMapping#setNsPrefixes(java.util.Map)
 	 */
-	public PrefixMapping setNsPrefixes(Map other) {
+	@Override
+    public PrefixMapping setNsPrefixes(Map other) {
         checkUnlocked();
 		Iterator it = other.entrySet().iterator();
 		while (it.hasNext()) {

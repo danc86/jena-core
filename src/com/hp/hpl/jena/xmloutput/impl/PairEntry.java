@@ -37,6 +37,7 @@ package com.hp.hpl.jena.xmloutput.impl;
 class PairEntry implements java.util.Map.Entry {
     Object a;
     Object b;
+    @Override
     public boolean equals(Object o) {
         if (o != null && (o instanceof PairEntry)) {
             PairEntry e = (PairEntry) o;
@@ -51,6 +52,7 @@ class PairEntry implements java.util.Map.Entry {
     public Object getValue() {
         return b;
     }
+    @Override
     public int hashCode() {
         return a.hashCode() ^ b.hashCode();
     }

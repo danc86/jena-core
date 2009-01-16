@@ -24,6 +24,7 @@ public class TestReasonerFactoryAssembler extends AssemblerTestBase
     public TestReasonerFactoryAssembler( String name )
         { super( name ); }
 
+    @Override
     protected Class getAssemblerClass()
         { return ReasonerFactoryAssembler.class; }
 
@@ -160,6 +161,7 @@ public class TestReasonerFactoryAssembler extends AssemblerTestBase
         final RuleSet rules = RuleSet.create( ruleStringA );
         Assembler mock = new AssemblerBase() 
             {
+            @Override
             public Object open( Assembler a, Resource root, Mode irrelevant )
                 {
                 assertEquals( root, resource( "S" ) );
@@ -180,6 +182,7 @@ public class TestReasonerFactoryAssembler extends AssemblerTestBase
         final RuleSet rulesB = RuleSet.create( ruleStringB );
         Assembler mock = new AssemblerBase() 
             {
+            @Override
             public Object open( Assembler a, Resource root, Mode irrelevant )
                 {
                 if (root.equals( resource( "S" ) )) return rulesA;

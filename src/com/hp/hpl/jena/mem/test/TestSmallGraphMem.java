@@ -23,9 +23,11 @@ public class TestSmallGraphMem extends TestGraphMem
     public static TestSuite suite()
         { return new TestSuite( TestSmallGraphMem.class ); }
         
+    @Override
     public Graph getGraph()
         { return new SmallGraphMem(); }
 
+    @Override
     public void testUnnecessaryMatches() { 
         /* test not appropriate for subclass */ 
         }

@@ -55,6 +55,7 @@ public class QualifiedRestrictionImpl
      * {@link com.hp.hpl.jena.rdf.model.RDFNode#as as()} instead.
      */
     public static Implementation factory = new Implementation() {
+        @Override
         public EnhNode wrap( Node n, EnhGraph eg ) {
             if (canWrap( n, eg )) {
                 return new QualifiedRestrictionImpl( n, eg );
@@ -64,6 +65,7 @@ public class QualifiedRestrictionImpl
             }
         }
 
+        @Override
         public boolean canWrap( Node node, EnhGraph eg ) 
             { return isValidQualifiedRestriction( node, eg ); }
     };
@@ -75,6 +77,7 @@ public class QualifiedRestrictionImpl
         return (profile != null)  &&  profile.isSupported( node, eg, QualifiedRestriction.class );
         }
     
+    @Override
     public boolean isValid() 
         { return isValidQualifiedRestriction( asNode(), getGraph() ); }
 

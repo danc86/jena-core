@@ -50,8 +50,8 @@ public class NewRegressionLiterals extends NewRegressionBase
     public void testIntLiterals()
         {
         Model m = getModel();
-        testInt( m, (int) 0 );
-        testInt( m, (int) -1 );
+        testInt( m, 0 );
+        testInt( m, -1 );
         testInt( m, Integer.MIN_VALUE );
         testInt( m, Integer.MAX_VALUE );        
         }
@@ -59,8 +59,8 @@ public class NewRegressionLiterals extends NewRegressionBase
     public void testLongLiterals()
         {
         Model m = getModel();
-        testLong( m, (long) 0 );
-        testLong( m, (long) -1 );
+        testLong( m, 0 );
+        testLong( m, -1 );
         testLong( m, Long.MIN_VALUE );
         testLong( m, Long.MAX_VALUE );        
         }

@@ -36,12 +36,14 @@ public class TestPrefixMapping extends AbstractTestPrefixMapping {
 		return new TestSuite(TestPrefixMapping.class);
 	}
 
-	public void setUp() {
+	@Override
+    public void setUp() {
 		theConnection = TestConnection.makeAndCleanTestConnection();
 		models = new ArrayList();
 	}
 
-	public void tearDown() {
+	@Override
+    public void tearDown() {
 		
 		// close all the models we opened
 		Iterator it = models.iterator();
@@ -67,7 +69,8 @@ public class TestPrefixMapping extends AbstractTestPrefixMapping {
         return model;
         }
         
-	public PrefixMapping getMapping() {
+	@Override
+    public PrefixMapping getMapping() {
 		Model model = getModel();
 		return model.getGraph().getPrefixMapping();
 	}

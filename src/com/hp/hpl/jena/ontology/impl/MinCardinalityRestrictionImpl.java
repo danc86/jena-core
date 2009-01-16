@@ -55,6 +55,7 @@ public class MinCardinalityRestrictionImpl
      * {@link com.hp.hpl.jena.rdf.model.RDFNode#as as()} instead.
      */
     public static Implementation factory = new Implementation() {
+        @Override
         public EnhNode wrap( Node n, EnhGraph eg ) { 
             if (canWrap( n, eg )) {
                 return new MinCardinalityRestrictionImpl( n, eg );
@@ -64,6 +65,7 @@ public class MinCardinalityRestrictionImpl
             } 
         }
             
+        @Override
         public boolean canWrap( Node node, EnhGraph eg ) {
             // node will support being a MinCardinalityRestriction facet if it has rdf:type owl:Restriction or equivalent
             // and the combination of owl:onProperty and owl:cardinality (or equivalents) 

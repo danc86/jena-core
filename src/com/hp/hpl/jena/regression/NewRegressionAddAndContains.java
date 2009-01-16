@@ -27,6 +27,7 @@ public class NewRegressionAddAndContains extends NewRegressionBase
     protected Resource S;
     protected Property P;
     
+    @Override
     public void setUp()
         { 
         m = getModel();
@@ -34,6 +35,7 @@ public class NewRegressionAddAndContains extends NewRegressionBase
         P = m.createProperty( "http://nowhere.man/predicate" ); 
         }
     
+    @Override
     public void tearDown()
         { m = null; S = null; P = null; }
     

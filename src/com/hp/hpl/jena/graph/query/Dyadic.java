@@ -28,12 +28,15 @@ public abstract class Dyadic extends Application
         this.R = R;
         }
     
+    @Override
     public int argCount()
         { return 2; }
     
+    @Override
     public Expression getArg( int i )
         { return i == 0 ? L : R; }
     
+    @Override
     public String getFun()
         { return F; }
     
@@ -76,6 +79,7 @@ public abstract class Dyadic extends Application
             };
         }
     
+    @Override
     public String toString()
         { return L.toString() + " " + F + " " + R.toString(); }
 
@@ -83,6 +87,7 @@ public abstract class Dyadic extends Application
     {
     return new Dyadic( L, ExpressionFunctionURIs.AND, R )
     	{
+        @Override
         public boolean evalBool( Object x, Object y )
             { return ((Boolean) x).booleanValue() && ((Boolean) y).booleanValue(); }
     	};

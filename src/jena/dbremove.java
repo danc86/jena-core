@@ -47,11 +47,13 @@ public class dbremove extends DBcmd
         super("dbremove", false);
     }
 
+    @Override
     protected void exec0()
     {
         getRDBModel().remove() ;
     }
     
+    @Override
     protected boolean exec1(String arg) { return false ; } 
 }
  

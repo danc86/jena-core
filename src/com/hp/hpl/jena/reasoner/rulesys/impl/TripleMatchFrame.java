@@ -57,6 +57,7 @@ public class TripleMatchFrame extends GenericTripleMatchFrame {
      * LPInterpreter and search for the match defined by the current argument registers
      * @param intepreter the interpreter instance whose env, trail and arg values are to be preserved
      */
+    @Override
     public void init(LPInterpreter interpreter) {
         super.init(interpreter);
         this.matchIterator = interpreter.getEngine().getInfGraph().findDataMatches(goal);
@@ -65,6 +66,7 @@ public class TripleMatchFrame extends GenericTripleMatchFrame {
     /**
      * Override close method to reclaim the iterator.
      */
+    @Override
     public void close() {
         if (matchIterator != null) matchIterator.close();
     }

@@ -31,6 +31,7 @@ public class TestPerlyParser extends GraphTestBase
         {
         RegexpTreeGenerator g = new SimpleGenerator()
             {
+            @Override
             public RegexpTree getAnySingle() { throw new FlagException(); }
             };
         PerlPatternParser p = new PerlPatternParser( ".", g );

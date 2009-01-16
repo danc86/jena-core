@@ -237,6 +237,7 @@ public class LocationMapper
         return s_globalMapperPath ;
     }
     
+    @Override
     public int hashCode()
     {
         int x = 0 ;
@@ -257,6 +258,7 @@ public class LocationMapper
         return x ;
     }
     
+    @Override
     public boolean equals(Object obj)
     {
         if ( ! ( obj instanceof LocationMapper ) )
@@ -286,6 +288,7 @@ public class LocationMapper
         return true ;
     }
     
+    @Override
     public String toString()
     {
         String s = "" ;

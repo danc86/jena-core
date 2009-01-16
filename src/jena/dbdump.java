@@ -57,6 +57,7 @@ public class dbdump extends DBcmd
         super("dbdump", false);
     }
 
+    @Override
     protected void exec0()
     {
         // This is a streaming syntax.
@@ -76,6 +77,7 @@ public class dbdump extends DBcmd
         
     }
 
+    @Override
     protected boolean exec1(String arg) { return false ; }
 }
  

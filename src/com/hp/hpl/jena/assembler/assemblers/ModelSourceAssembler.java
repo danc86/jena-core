@@ -13,6 +13,7 @@ import com.hp.hpl.jena.vocabulary.RDF;
 
 public class ModelSourceAssembler extends AssemblerBase
     {
+    @Override
     public Object open( Assembler a, Resource root, Mode irrelevant )
         {
         checkType( root, JA.ModelSource );

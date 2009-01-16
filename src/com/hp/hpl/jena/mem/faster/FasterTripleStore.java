@@ -52,6 +52,7 @@ public class FasterTripleStore extends GraphTripleStoreBase implements TripleSto
         { 
         return new Applyer()
             {
+            @Override
             public void applyToTriples( Domain d, Matcher m, StageElement next )
                 {
                 Triple t = new Triple( pt.S.finder( d ), pt.P.finder( d ), pt.O.finder( d ) );
@@ -75,6 +76,7 @@ public class FasterTripleStore extends GraphTripleStoreBase implements TripleSto
                     return subjects.iterateAll();
                 }
     
+            @Override
             public void applyToTriples( Domain d, Matcher m, StageElement next )
                 {
                 Iterator it = find( d );

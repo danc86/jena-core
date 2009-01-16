@@ -20,6 +20,7 @@ public class TestFasterQuery extends AbstractTestQuery
     public static TestSuite suite()
         { return new TestSuite( TestFasterQuery.class ); }
     
+    @Override
     public Graph getGraph()
         { return new GraphMemFaster(); }
 

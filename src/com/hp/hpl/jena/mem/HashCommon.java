@@ -283,12 +283,14 @@ public abstract class HashCommon
             this.container = container;
             }
 
+        @Override
         public boolean hasNext()
             { 
             if (changes > initialChanges) throw new ConcurrentModificationException();
             return index < keys.size(); 
             }
 
+        @Override
         public Object next()
             {
             if (changes > initialChanges) throw new ConcurrentModificationException();
@@ -296,6 +298,7 @@ public abstract class HashCommon
             return keys.get( index++ );
             }
 
+        @Override
         public void remove()
             { 
             if (changes > initialChanges) throw new ConcurrentModificationException();
@@ -325,6 +328,7 @@ public abstract class HashCommon
             this.container = container;
             }
 
+        @Override
         public boolean hasNext()
             {
             if (changes > initialChanges) throw new ConcurrentModificationException();
@@ -332,6 +336,7 @@ public abstract class HashCommon
             return index < capacity;
             }
 
+        @Override
         public Object next()
             {
             if (changes > initialChanges) throw new ConcurrentModificationException();
@@ -339,6 +344,7 @@ public abstract class HashCommon
             return keys[index++];
             }
 
+        @Override
         public void remove()
             {
             if (changes > initialChanges) throw new ConcurrentModificationException();

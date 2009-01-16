@@ -52,6 +52,7 @@ public class DAMLMicroReasoner  extends GenericRuleReasoner {
      * Return the Jena Graph Capabilties that the inference graphs generated
      * by this reasoner are expected to conform to.
      */
+    @Override
     public Capabilities getGraphCapabilities() {
         if (capabilities == null) {
             capabilities = new BaseInfGraph.InfFindSafeCapabilities();

@@ -25,6 +25,7 @@ public class InitialStage extends Stage
         
     final int count;
     
+    @Override
     public void close()
         { markClosed(); }
 
@@ -33,6 +34,7 @@ public class InitialStage extends Stage
         width in which all the elements are null, then we close the pipe. Everything else
         is spawned by the following stages.
     */
+    @Override
     public Pipe deliver( Pipe result )
         {
         result.put( new Domain( count ) );

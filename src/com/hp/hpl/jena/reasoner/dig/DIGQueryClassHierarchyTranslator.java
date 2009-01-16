@@ -84,6 +84,7 @@ public class DIGQueryClassHierarchyTranslator
      * @param pattern The incoming pattern
      * @param da The current DIG adapter
      */
+    @Override
     protected Iterator expandQuery( TriplePattern pattern, DIGAdapter da ) {
         final Node pred = pattern.getPredicate();
 

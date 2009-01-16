@@ -26,6 +26,7 @@ public class RDFS {
     /**
          @deprecated obsolete: was removed by the most recent standard
     */
+    @Deprecated
     public static final Resource ConstraintProperty  =  resource( "ConstraintProperty");
     
     public static final Resource Container  = resource( "Container");
@@ -36,6 +37,7 @@ public class RDFS {
     /**
         @deprecated obsolete: was removed by the most recent standard
     */
+    @Deprecated
     public static final Resource ConstraintResource  = resource( "ConstraintResource");
     
     public static final Resource Literal = resource( "Literal");

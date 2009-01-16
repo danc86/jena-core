@@ -27,6 +27,7 @@ public class Bind extends Element
         @param d the domain in which to note this element is bound to <code>x</code>.
         @return true [after side-effecting d]
     */		
+    @Override
     public boolean match( Domain d, Node x )
         {
         d.setElement( index, x );
@@ -36,10 +37,12 @@ public class Bind extends Element
     /**
         Answer Node.ANY, as a binding occurance of a variable can match anything.
     */
+    @Override
     public Node asNodeMatch( Domain d )
         { return Node.ANY; } 
         
-	public String toString()
+	@Override
+    public String toString()
 		{ return "<Bind " + index + ">"; }
 	}
 

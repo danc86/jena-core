@@ -59,7 +59,8 @@ public abstract class CompositionBase
         {
         final Set suppress = IteratorCollection.iteratorToSet( i );
         return new Filter()
-            { public boolean accept( Object o ) { return !suppress.contains( o ); } };
+            { @Override
+            public boolean accept( Object o ) { return !suppress.contains( o ); } };
         }
         
     /**
@@ -91,16 +92,20 @@ public abstract class CompositionBase
         {
         return new NiceIterator()
             {
+            @Override
             public void remove()
                 { i.remove(); }
             
+            @Override
             public boolean hasNext()
                 { return i.hasNext(); }    
             
+            @Override
             public Object next()
                 { Object x = i.next(); 
                 try { seen.add( x ); } catch (OutOfMemoryError e) { throw e; } return x; }  
                 
+            @Override
             public void close()
                 { i.close(); }
             };
@@ -120,7 +125,8 @@ public abstract class CompositionBase
     public static ExtendedIterator rejecting( final ExtendedIterator i, final Set seen )
         {
         Filter seenFilter = new Filter()
-            { public boolean accept( Object x ) { return seen.contains( x ); } };
+            { @Override
+            public boolean accept( Object x ) { return seen.contains( x ); } };
         return i.filterDrop( seenFilter );
         }
         
@@ -131,7 +137,8 @@ public abstract class CompositionBase
     public static ExtendedIterator rejecting( final ExtendedIterator i, final Graph seen )
         {
         Filter seenFilter = new Filter()
-            { public boolean accept( Object x ) { return seen.contains( (Triple) x ); } };
+            { @Override
+            public boolean accept( Object x ) { return seen.contains( (Triple) x ); } };
         return i.filterDrop( seenFilter );
         }
   
@@ -148,7 +155,8 @@ public abstract class CompositionBase
         {
         final Set allow = IteratorCollection.iteratorToSet( i );
         return new Filter()
-            { public boolean accept( Object x ) { return allow.contains( x ); } };
+            { @Override
+            public boolean accept( Object x ) { return allow.contains( x ); } };
         }
         
     /**
@@ -163,7 +171,8 @@ public abstract class CompositionBase
     public static Filter ifIn( final Graph g )
         {
         return new Filter()
-            { public boolean accept( Object x ) { return g.contains( (Triple) x ); } };
+            { @Override
+            public boolean accept( Object x ) { return g.contains( (Triple) x ); } };
         }
         
 

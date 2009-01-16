@@ -17,6 +17,7 @@ public class TestModelContent extends AssemblerTestBase
     public TestModelContent( String name )
         { super( name ); }
 
+    @Override
     protected Class getAssemblerClass()
         { return null; }
     

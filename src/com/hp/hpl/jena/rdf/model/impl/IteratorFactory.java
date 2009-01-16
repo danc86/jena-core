@@ -29,14 +29,16 @@ public final class IteratorFactory {
     /**
 	     @deprecated use Model::asRDFNode( Node ) instead. 
 	*/
-	static public RDFNode asRDFNode( Node n, Model m ) {
+	@Deprecated
+    static public RDFNode asRDFNode( Node n, Model m ) {
         return m.asRDFNode( n );
 	}
 		
 	/**
 	    @deprecated use Model::toStatement( Triple )
 	*/
-	static public Statement asStatement( Triple t, ModelCom m ) {
+	@Deprecated
+    static public Statement asStatement( Triple t, ModelCom m ) {
         return StatementImpl.toStatement( t, m );
 	}
 

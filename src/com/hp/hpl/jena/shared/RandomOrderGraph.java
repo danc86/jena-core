@@ -39,11 +39,13 @@ public class RandomOrderGraph extends WrappedGraph {
 		this(10,base);
 	}
 	
-	public ExtendedIterator find( TripleMatch m )
+	@Override
+    public ExtendedIterator find( TripleMatch m )
 	{ return new RandomOrderIterator(bufsz,super.find( m )); 
 	}
 
-	public ExtendedIterator find( Node s, Node p, Node o )
+	@Override
+    public ExtendedIterator find( Node s, Node p, Node o )
 	{ return new RandomOrderIterator(bufsz,super.find( s, p, o )); 
 	}
 	

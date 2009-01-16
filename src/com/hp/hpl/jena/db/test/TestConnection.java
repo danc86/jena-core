@@ -44,9 +44,11 @@ public class TestConnection extends TestCase {
     public static TestSuite suite()
         { return new TestSuite( TestConnection.class ); }           
     
+    @Override
     protected void setUp() throws java.lang.Exception {    	
     }
     
+    @Override
     protected void tearDown() throws java.lang.Exception {
     }
     
@@ -514,7 +516,8 @@ public class TestConnection extends TestCase {
 				s = sc;
 			}
 
-			public void run() {
+			@Override
+            public void run() {
 			    IDBConnection conn = makeAndCleanTestConnection();
 //                try {
 //                    // 0, 1, 2, 4, 8
@@ -570,7 +573,8 @@ public class TestConnection extends TestCase {
 				s = sc;
 			}
 
-			public void run() {
+			@Override
+            public void run() {
 			    s.waitOnCount(1);
 			    IDBConnection conn = makeTestConnection();
 

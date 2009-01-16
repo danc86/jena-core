@@ -43,6 +43,7 @@ public class ReificationWrapper implements Reifier
     
     protected static final Filter isReificationTriple = new Filter()
         {
+        @Override
         public boolean accept( Object o )
             { return isReificationTriple( (Triple) o ); }  
         };

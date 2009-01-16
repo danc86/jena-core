@@ -24,6 +24,7 @@ public class TestGenericRuleReasonerConfig extends AssemblerTestBase
     public TestGenericRuleReasonerConfig( String name )
         { super( name ); }
 
+    @Override
     protected Model setRequiredPrefixes( Model x )
         {
         x.setNsPrefix( "jr", ReasonerVocabulary.JenaReasonerNS );

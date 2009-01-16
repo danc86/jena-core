@@ -103,7 +103,7 @@ public abstract class JenaUUID
 		// Char: 0        9    14   19   24  including hyphens
 		
         int x = (int)Bits.unpack(s, 19, 23) ;
-        int variant = (int)(x>>>14) ;
+        int variant = (x>>>14) ;
         int version = (int)Bits.unpack(s, 14, 15) ;
         
         if ( variant == Var_Std )

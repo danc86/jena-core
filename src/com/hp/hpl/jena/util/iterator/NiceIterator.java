@@ -81,6 +81,7 @@ public class NiceIterator implements ExtendedIterator
             
             private Iterator current = a;
             
+            @Override
             public boolean hasNext()
                 { 
                 while (current.hasNext() == false && index < L.size())
@@ -88,18 +89,22 @@ public class NiceIterator implements ExtendedIterator
                 return current.hasNext();
                 }
                 
+            @Override
             public Object next()
                 { return hasNext() ? current.next() : noElements( "concatenation" ); }
                 
+            @Override
             public void close()
                 {
                 close( current );
                 for (int i = index; i < L.size(); i += 1) close( (Iterator) L.get(i) );
                 }
                 
+            @Override
             public void remove()
                 { current.remove(); }
             
+            @Override
             public ExtendedIterator andThen( ClosableIterator other )
                 { L.add( other ); 
                 return this; }

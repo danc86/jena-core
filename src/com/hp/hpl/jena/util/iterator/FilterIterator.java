@@ -38,7 +38,8 @@ public class FilterIterator extends WrappedIterator
         [Stores reference into <code>current</code>, sets <code>canRemove</code>
         false; answer preserved in `hasCurrent`]
     */        
-	synchronized public boolean hasNext() 
+	@Override
+    synchronized public boolean hasNext() 
         {
 	    while (!hasCurrent && super.hasNext())
             hasCurrent = accept( current = super.next() );
@@ -58,6 +59,7 @@ public class FilterIterator extends WrappedIterator
          after a .next() but before any subsequent .hasNext(), because that
          may advance the underlying iterator.
     */        
+    @Override
     synchronized public void remove() 
         {
         if (!canRemove ) throw new IllegalStateException
@@ -70,7 +72,8 @@ public class FilterIterator extends WrappedIterator
         test of `hasCurrent` appears to make a detectable speed difference.
         Crazy.
     */        
-	synchronized public Object next() 
+	@Override
+    synchronized public Object next() 
         {
 		if (hasCurrent || hasNext()) 
             {

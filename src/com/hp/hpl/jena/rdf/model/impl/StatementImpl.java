@@ -56,17 +56,20 @@ public class StatementImpl  extends StatementBase implements Statement {
         return new StatementImpl( s, p, o, eg );
         }
     
+    @Override
     public Resource getSubject()
 		{
 		return subject;
 		}
 
-	public Property getPredicate()
+	@Override
+    public Property getPredicate()
 		{
 		return predicate;
 		}
 
-	public RDFNode getObject()
+	@Override
+    public RDFNode getObject()
 		{
 		return object;
 		}
@@ -76,6 +79,7 @@ public class StatementImpl  extends StatementBase implements Statement {
 		return asResource().getRequiredProperty( p );
 		}
     
+    @Override
     public Resource getResource()
         { return mustBeResource( object ); }
     
@@ -90,6 +94,7 @@ public class StatementImpl  extends StatementBase implements Statement {
         get the object field of this statement, insisting that it be a Literal.
         If it isn't, throw LiteralRequiredException.
     */
+    @Override
     public Literal getLiteral()  {        
         if (object instanceof Literal) {
             return (Literal) object;
@@ -125,6 +130,7 @@ public class StatementImpl  extends StatementBase implements Statement {
     }    
     
     /** it turns out to be handy to return the new StatementImpl as the result */ 
+    @Override
     protected StatementImpl replace(RDFNode n)  {
     	StatementImpl s = new StatementImpl( subject, predicate, n, model );
     	model.remove( this ).add( s );
@@ -134,6 +140,7 @@ public class StatementImpl  extends StatementBase implements Statement {
     /**
         .equals() defers to .sameAs so we only get the complexity of one cast.
     */
+    @Override
     public boolean equals(Object o)
         { return o instanceof Statement && sameAs( (Statement) o ); }
         
@@ -148,6 +155,7 @@ public class StatementImpl  extends StatementBase implements Statement {
             && object.equals( o.getObject() );
         }
     
+    @Override
     public int hashCode() {
     	return asTriple().hashCode();
     }

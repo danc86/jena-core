@@ -26,6 +26,7 @@ public abstract class ModelAssembler extends AssemblerBase implements Assembler
         return m;
         }
     
+    @Override
     public Object open( Assembler a, Resource root, Mode mode )
         { 
         Model m = openModel( a, root, getInitialContent( a, root ), mode );
@@ -66,6 +67,7 @@ public abstract class ModelAssembler extends AssemblerBase implements Assembler
             ( a, root, PrefixMapping.Factory.create() );
         }
 
+    @Override
     public Model openModel( Resource root, Mode mode )
         { return (Model) open( this, root, mode ); }
 

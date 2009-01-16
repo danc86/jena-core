@@ -395,6 +395,7 @@ public class GraphTestBase extends JenaTestBase
         {
         return new GraphBase( ReificationStyle.Minimal )
             {
+            @Override
             public ExtendedIterator graphBaseFind( TripleMatch m ) { return r.find( m ); }
             };
         }

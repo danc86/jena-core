@@ -44,8 +44,10 @@ import com.hp.hpl.jena.enhanced.*;
 public class BagImpl extends ContainerImpl implements Bag {
     
     final static public Implementation factory = new Implementation() {
+        @Override
         public boolean canWrap( Node n, EnhGraph eg )
             { return true; }
+        @Override
         public EnhNode wrap(Node n,EnhGraph eg) {
             return new BagImpl(n,eg);
         }

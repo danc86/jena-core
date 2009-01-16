@@ -37,10 +37,12 @@ final class MockTransactionModel extends ModelAssembler
         this.abortsOnAdd = abortsOnAdd;
         }
 
+    @Override
     protected Model openEmptyModel( Assembler a, Resource root, Mode irrelevant )
         {
         return new ModelCom( Factory.createDefaultGraph() ) 
             {
+            @Override
             public Model begin()
                 {
                 history.add( "begin" );
@@ -48,6 +50,7 @@ final class MockTransactionModel extends ModelAssembler
                 return this;
                 }
 
+            @Override
             public Model add( Model other )
                 {
                 history.add( "add" );
@@ -56,12 +59,14 @@ final class MockTransactionModel extends ModelAssembler
                 return this;
                 }
 
+            @Override
             public Model abort()
                 {
                 history.add( "abort" );
                 return this;
                 }
 
+            @Override
             public Model commit()
                 {
                 TestModelContent.assertIsoModels( expected, this );
@@ -69,6 +74,7 @@ final class MockTransactionModel extends ModelAssembler
                 return this;
                 }
 
+            @Override
             public boolean supportsTransactions()
                 {
                 history.add( "supports[" + supportsTransactions + "]" );

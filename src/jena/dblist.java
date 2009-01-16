@@ -54,6 +54,7 @@ public class dblist extends DBcmd
 
     static String defaultModelName = "DEFAULT" ;
     
+    @Override
     protected void exec0()
     {
 //        if ( getConnection().containsDefaultModel() )
@@ -78,6 +79,7 @@ public class dblist extends DBcmd
       
     }
     
+    @Override
     protected boolean exec1(String arg) { return true ; } 
 
     private void properties(String name)

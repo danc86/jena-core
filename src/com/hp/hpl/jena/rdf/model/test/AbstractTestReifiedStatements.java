@@ -36,6 +36,7 @@ public abstract class AbstractTestReifiedStatements extends ModelTestBase
     private static final String anotherURI = "jena:test/reifying#anotherURI";
     private static final String anchor = "jena:test/Reifying#";
     
+    @Override
     public void setUp()
         {
         model = getModel();

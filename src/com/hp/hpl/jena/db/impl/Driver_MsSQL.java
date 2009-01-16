@@ -74,6 +74,7 @@ public class Driver_MsSQL extends Driver_PostgreSQL  {
     /**
      * Set the database connection
      */
+    @Override
     public void setConnection( IDBConnection dbcon ) {
         m_dbcon = dbcon;
         
@@ -127,6 +128,7 @@ public class Driver_MsSQL extends Driver_PostgreSQL  {
      *
      * @return the db index of the added literal
      */
+    @Override
     public DBIDInt addRDBLongObject(RDBLongObject lobj, String table)  throws RDFRDBException {
         DBIDInt result = null;
         try {
@@ -166,6 +168,7 @@ public class Driver_MsSQL extends Driver_PostgreSQL  {
      * Allocate an identifier for a new graph.
      *
      */
+    @Override
     public int graphIdAlloc(String graphName) {
         DBIDInt result = null;
         try {
@@ -195,6 +198,7 @@ public class Driver_MsSQL extends Driver_PostgreSQL  {
      * 3) table and index name prefix.
      * @param param array to hold table creation parameters. 
      */
+    @Override
     protected void getTblParams ( String [] param ) {
         String spoColType;
         String headColType;

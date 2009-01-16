@@ -31,6 +31,7 @@ public class TestQuery1 extends AbstractTestQuery1
     
     private List graphs;
     
+    @Override
     public void setUp() throws Exception
         {
         theConnection = TestConnection.makeTestConnection();
@@ -38,6 +39,7 @@ public class TestQuery1 extends AbstractTestQuery1
         super.setUp();
         }
         
+    @Override
     public void tearDown() throws Exception
         {
         removeGraphs();
@@ -48,10 +50,12 @@ public class TestQuery1 extends AbstractTestQuery1
     private void removeGraphs()
         { for (int i = 0; i < graphs.size(); i += 1) ((GraphRDB) graphs.get(i)).remove(); }
 
-	public Graph getGraph ( ) {
+	@Override
+    public Graph getGraph ( ) {
 		return getGraph( ReificationStyle.Minimal );
 	}
         
+    @Override
     public Graph getGraph ( ReificationStyle style )
         { 
         String name = "jena-test-rdb-TestQuery1-" + count ++;

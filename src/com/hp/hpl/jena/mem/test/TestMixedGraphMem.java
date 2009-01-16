@@ -26,6 +26,7 @@ public class TestMixedGraphMem extends TestGraphMem
     public static TestSuite suite()
         { return new TestSuite( TestMixedGraphMem.class ); }
         
+    @Override
     public Graph getGraph()
         { return new MixedGraphMem(); }
     
@@ -34,6 +35,7 @@ public class TestMixedGraphMem extends TestGraphMem
         final List history = new ArrayList();
         MixedGraphMemStore t = new MixedGraphMemStore( getGraph() )
             {
+            @Override
             protected boolean add( Node key, Triple t )
                 {
                 history.add( key );
@@ -46,6 +48,7 @@ public class TestMixedGraphMem extends TestGraphMem
         assertEquals( nodeList( "s P o s" ), history );
         }
     
+    @Override
     public void testUnnecessaryMatches() { 
         /* test not appropriate for subclass */ 
         }
@@ -54,6 +57,7 @@ public class TestMixedGraphMem extends TestGraphMem
         final List history = new ArrayList();
         MixedGraphMemStore t = new MixedGraphMemStore( getGraph() )
             {
+            @Override
             protected boolean remove( Node key, Triple t )
                 {
                 history.add( key );

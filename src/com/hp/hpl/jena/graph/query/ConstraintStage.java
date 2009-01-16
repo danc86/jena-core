@@ -45,12 +45,14 @@ public class ConstraintStage extends Stage
         the delivery component: read the domain elements out of the
         input pipe, and only pass on those that satisfy the predicate.
     */
+    @Override
     public Pipe deliver( final Pipe L )
         {
         final Pipe mine = previous.deliver( new BufferPipe() );
         new Thread( "a ConstraintStage" )
         	{
-        	public void run()
+        	@Override
+            public void run()
         		{
 		        while (mine.hasNext())
 		            { Domain d = mine.get();

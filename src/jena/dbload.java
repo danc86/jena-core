@@ -54,8 +54,10 @@ public class dbload extends DBcmd
         super("dbload", true);
     }
 
+    @Override
     protected void exec0() { return ; }
 
+    @Override
     protected boolean exec1(String arg)
     {
         if ( verbose )

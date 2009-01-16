@@ -19,6 +19,7 @@ public class TestLocationMapperAssembler extends AssemblerTestBase
     public TestLocationMapperAssembler( String name )
         { super( name ); }
 
+    @Override
     protected Class getAssemblerClass()
         { return LocationMapperAssembler.class; }
 

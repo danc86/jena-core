@@ -113,6 +113,7 @@ public class TempNodeCache {
         /**
          * Equality of each component.
          */
+        @Override
         public boolean equals(Object o) {
             return o instanceof NodePair &&
                         first.equals(((NodePair)o).first) && 
@@ -121,6 +122,7 @@ public class TempNodeCache {
         /**
          * Simple combined hashcode.
          */
+        @Override
         public int hashCode() {
             return first.hashCode() ^ (second.hashCode() << 1);
         }

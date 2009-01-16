@@ -26,6 +26,7 @@ public class TestModelPrefixMapping extends AbstractTestPrefixMapping
     public static TestSuite suite()
         { return new TestSuite( TestModelPrefixMapping.class ); }   
 
+    @Override
     protected PrefixMapping getMapping()
         { return ModelFactory.createDefaultModel(); }       
     

@@ -47,6 +47,7 @@ public class Drop  extends BaseBuiltin  {
      * for some rule engines
      * @param context an execution context giving access to other relevant data
      */
+    @Override
     public void headAction(Node[] args, int length, RuleContext context) {
         boolean ok = false;
         InfGraph inf = context.getGraph();
@@ -76,6 +77,7 @@ public class Drop  extends BaseBuiltin  {
      * be an action and makes the overall rule and ruleset non-monotonic. 
      * Most JenaRules are monotonic deductive closure rules in which this should be false.
      */
+    @Override
     public boolean isMonotonic() {
         return false;
     }

@@ -31,8 +31,10 @@ public class TestDyadic extends GraphTestBase
 		return new NiceIterator()
 			{
 			private StringTokenizer tokens = new StringTokenizer( x );
-			public boolean hasNext() { return tokens.hasMoreTokens(); }
-			public Object next() { return tokens.nextToken(); }
+			@Override
+            public boolean hasNext() { return tokens.hasMoreTokens(); }
+			@Override
+            public Object next() { return tokens.nextToken(); }
 			};
 		}
 		
@@ -55,6 +57,7 @@ public class TestDyadic extends GraphTestBase
         Graph g = Factory.createGraphMem(), h = Factory.createGraphMem();
         Dyadic d = new Dyadic( g, h )
             {
+            @Override
             public ExtendedIterator graphBaseFind( TripleMatch m ) { return null; }
             };
         assertSame( g, d.getL() );

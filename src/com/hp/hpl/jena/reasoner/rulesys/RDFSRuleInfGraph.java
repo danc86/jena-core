@@ -50,6 +50,7 @@ public class RDFSRuleInfGraph extends FBRuleInfGraph {
      * 
      * @return a ValidityReport structure
      */
+    @Override
     public ValidityReport validate() {
         // The full configuration uses validation rules so check for these
         StandardValidityReport report = (StandardValidityReport)super.validate();

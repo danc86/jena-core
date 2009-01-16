@@ -33,7 +33,7 @@ public class TestLiteralLabels extends GraphTestBase
 
     public void testHashCode2() 
         {
-        LiteralLabel ll = new LiteralLabel( (Object) "test",  "", null );
+        LiteralLabel ll = new LiteralLabel( "test",  "", null );
         ll.hashCode();
         }    
     
@@ -55,6 +55,7 @@ public class TestLiteralLabels extends GraphTestBase
         {
         RDFDatatype d = new BaseDatatype( "eh:/FakeDataType" ) 
             {
+            @Override
             public boolean isEqual( LiteralLabel A, LiteralLabel B ) 
                 { 
                 fail( "RDFDatatype::isEquals should not be called if B has no datatype" ); 

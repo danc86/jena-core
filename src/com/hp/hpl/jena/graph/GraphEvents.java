@@ -26,6 +26,7 @@ public class GraphEvents
         { this.title = title;
         this.content = content; }
     
+    @Override
     public boolean equals( Object o )
         { return o instanceof GraphEvents && same( (GraphEvents) o ); }
     
@@ -35,7 +36,8 @@ public class GraphEvents
 	public static GraphEvents remove( Node s, Node p, Node o )
 	    { return new GraphEvents( "remove", Triple.create( s, p, o ) ); }
 	
-	public String toString()
+	@Override
+    public String toString()
 	    { return "<GE " + title + ">"; }
 
     public Object getContent()

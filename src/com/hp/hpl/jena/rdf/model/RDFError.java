@@ -36,6 +36,7 @@ import java.io.PrintWriter;
  * @author  bwm
  * @version $Revision$ $Date$
  */
+@Deprecated
 public class RDFError extends java.lang.Error {
     
     Throwable nestedException = null;
@@ -48,6 +49,7 @@ public class RDFError extends java.lang.Error {
         super(s);
     }
     
+    @Override
     public void printStackTrace() {
         if (nestedException != null) {
             nestedException.printStackTrace();
@@ -56,6 +58,7 @@ public class RDFError extends java.lang.Error {
         }
     }
     
+    @Override
     public void printStackTrace(PrintStream s) {
         if (nestedException != null) {
             nestedException.printStackTrace(s);
@@ -64,6 +67,7 @@ public class RDFError extends java.lang.Error {
         }
     }    
     
+    @Override
     public void printStackTrace(PrintWriter s) {
         if (nestedException != null) {
             nestedException.printStackTrace(s);

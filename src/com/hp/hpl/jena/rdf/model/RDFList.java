@@ -380,6 +380,7 @@ public interface RDFList
      * again. Therefore, this method name has been deprecated in favour of {@link #removeList}</p>
      * @deprecated Replaced by {@link #removeList}
      */
+    @Deprecated
     public void removeAll();
     
     

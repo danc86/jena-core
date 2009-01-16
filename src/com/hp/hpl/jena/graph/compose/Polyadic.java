@@ -93,6 +93,7 @@ public abstract class Polyadic extends CompositionBase
 
     private PrefixMapping pm;
 
+    @Override
     public PrefixMapping getPrefixMapping()
         {
         if (pm == null) pm = new PolyadicPrefixMappingImpl( this );
@@ -128,6 +129,7 @@ public abstract class Polyadic extends CompositionBase
      *
      * @see com.hp.hpl.jena.graph.Graph#close()
      */
+    @Override
     public void close() {
         for (Iterator i = m_subGraphs.iterator();  i.hasNext();  ) {
             ((Graph) i.next()).close();
@@ -145,6 +147,7 @@ public abstract class Polyadic extends CompositionBase
      * @return True if the graph is this graph, or is a sub-graph of this one.
      * @see com.hp.hpl.jena.graph.Graph#dependsOn(Graph)
      */
+    @Override
     public boolean dependsOn( Graph graph ) {
         return (graph == this) || m_subGraphs.contains( graph );
     }
@@ -260,6 +263,7 @@ public abstract class Polyadic extends CompositionBase
         return sg;
     }
 
+    @Override
     public BulkUpdateHandler getBulkUpdateHandler() {
         if (bulkHandler == null)
             bulkHandler = new WrappedBulkUpdateHandler( this, getRequiredBaseGraph().getBulkUpdateHandler() );
@@ -269,10 +273,12 @@ public abstract class Polyadic extends CompositionBase
     // the following methods all delegate handling capabilities to the base graph
     // TODO: this needs to be integrated with WrappedGraph, but we don't have time to do so before Jena 2.0 release
 
+    @Override
     public TransactionHandler getTransactionHandler() {
         return (getBaseGraph() == null) ? super.getTransactionHandler() : getBaseGraph().getTransactionHandler();
         }
 
+    @Override
     public Capabilities getCapabilities() {
         return (getBaseGraph() == null) ? super.getCapabilities() : getBaseGraph().getCapabilities();
     }

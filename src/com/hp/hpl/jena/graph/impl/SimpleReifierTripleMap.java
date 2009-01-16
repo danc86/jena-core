@@ -106,6 +106,7 @@ public class SimpleReifierTripleMap implements ReifierTripleMap
             final Iterator it = forwardMap.entrySet().iterator();   
             return new FragmentTripleIterator( pattern, it )
                 {
+                @Override
                 public void fill( GraphAdd ga, Node n, Object fragmentsObject )
                     {
                     SimpleReifier.graphAddQuad( ga, n, (Triple) fragmentsObject );         
@@ -133,7 +134,8 @@ public class SimpleReifierTripleMap implements ReifierTripleMap
     public Graph asGraph()
         {
         return new GraphBase()
-            { public ExtendedIterator graphBaseFind( TripleMatch tm ) { return allTriples( tm ); } };
+            { @Override
+            public ExtendedIterator graphBaseFind( TripleMatch tm ) { return allTriples( tm ); } };
         }
     
     public ExtendedIterator find( TripleMatch m )

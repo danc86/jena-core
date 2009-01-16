@@ -25,9 +25,11 @@ public class NewRegressionContainers extends ModelTestBase
     
     protected Model m;
     
+    @Override
     public void setUp()
         { m = getModel(); }
     
+    @Override
     public void tearDown()
         { m = null; }
     

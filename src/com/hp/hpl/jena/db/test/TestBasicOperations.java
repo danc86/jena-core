@@ -48,13 +48,15 @@ public class TestBasicOperations extends TestCase {
 	IRDBDriver dbDriver = null;
 	IDBConnection conn = null;
 
-	protected void setUp() throws java.lang.Exception {
+	@Override
+    protected void setUp() throws java.lang.Exception {
 		conn = TestConnection.makeAndCleanTestConnection();
 		model = ModelRDB.createModel(conn);
 		dbDriver = conn.getDriver();
 	}
 
-	protected void tearDown() throws java.lang.Exception {
+	@Override
+    protected void tearDown() throws java.lang.Exception {
 		if ( model != null ) model.close();
 		model = null;
 		if ( conn != null ) {
@@ -527,7 +529,7 @@ public class TestBasicOperations extends TestCase {
 
 	private int countPred(Property o)
 	{
-		Iterator it = model.listStatements((Resource)null,(Property)o,(RDFNode)null);
+		Iterator it = model.listStatements((Resource)null,o,(RDFNode)null);
 		return countIter(it);
 	}
 

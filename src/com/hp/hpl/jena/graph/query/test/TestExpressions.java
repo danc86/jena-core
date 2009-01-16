@@ -109,6 +109,7 @@ public class TestExpressions extends QueryTestBase
         Expression R = lit( "b" );
         Expression e = new Dyadic( L, "eh:op", R )
         	{
+            @Override
             public Object evalObject( Object x, Object y )
                 { return "" + x + "--" + y; }
             };

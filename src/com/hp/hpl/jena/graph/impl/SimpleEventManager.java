@@ -134,6 +134,7 @@ public class SimpleEventManager implements GraphEventManager
         return new TrackingTripleIterator( i )
             {            
             protected final GraphEventManager gem = g.getEventManager();
+            @Override
             public void remove()
                 {
                 super.remove();

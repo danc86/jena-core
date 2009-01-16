@@ -16,6 +16,7 @@ public class TestDefaultModelAssembler extends AssemblerTestBase
     public TestDefaultModelAssembler( String name )
         { super( name ); }
 
+    @Override
     protected Class getAssemblerClass()
         { return DefaultModelAssembler.class; }
     

@@ -29,12 +29,14 @@ public class NewRegressionListSubjects extends ModelTestBase
     
     protected Model m;
     
+    @Override
     public void setUp()
         { 
         m = getModel();
         fillModel();
         }
     
+    @Override
     public void tearDown()
         { m = null; }
     

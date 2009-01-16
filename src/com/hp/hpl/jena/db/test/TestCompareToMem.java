@@ -47,12 +47,14 @@ public class TestCompareToMem extends TestCase
     
 	IDBConnection conn = null;
 	
+    @Override
     protected void setUp() throws java.lang.Exception {
 		conn = TestConnection.makeAndCleanTestConnection();
 		modelrdf = ModelRDB.createModel(conn);
 		modelmem = ModelFactory.createDefaultModel();
     }
     
+    @Override
     protected void tearDown() throws java.lang.Exception {
     	modelrdf.close();
     	modelrdf = null;

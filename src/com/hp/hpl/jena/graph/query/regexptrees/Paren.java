@@ -31,12 +31,15 @@ public class Paren extends RegexpTree
     public int getIndex()
         { return index; };
 
+    @Override
     public boolean equals( Object other )
         { return other instanceof Paren && operand.equals( ((Paren) other).operand ); }
 
+    @Override
     public int hashCode()
         { return operand.hashCode(); }
 
+    @Override
     public String toString()
         { return "(" + operand + ")"; }
     }

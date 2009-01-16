@@ -17,12 +17,15 @@ public class NoneOf extends RegexpTree
     public NoneOf( String impossibles )
         { this.impossibles = impossibles; }
     
+    @Override
     public boolean equals( Object other )
         { return other instanceof NoneOf && impossibles.equals( ((NoneOf) other).impossibles ); }
 
+    @Override
     public int hashCode()
         { return impossibles.hashCode(); }
 
+    @Override
     public String toString()
         { return "<none '" + impossibles + "'>"; }
     }

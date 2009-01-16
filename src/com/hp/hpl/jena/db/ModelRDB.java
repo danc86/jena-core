@@ -208,6 +208,7 @@ public class ModelRDB extends ModelCom implements Model {
      *     some do, so in general its best to call it when done with the object,
      *     rather than leave it to the finalizer.</p>
      */
+    @Override
     public void close() {
         m_graphRDB.close();
     }

@@ -19,6 +19,7 @@ public class TestDocumentManagerAssembler extends AssemblerTestBase
     public TestDocumentManagerAssembler( String name )
         { super( name ); }
 
+    @Override
     protected Class getAssemblerClass()
         { return DocumentManagerAssembler.class; }
 
@@ -58,10 +59,12 @@ public class TestDocumentManagerAssembler extends AssemblerTestBase
         final List history = new ArrayList();
         Assembler a = new DocumentManagerAssembler()
             {
+            @Override
             protected OntDocumentManager createDocumentManager()
                 {
                 return new OntDocumentManager( "" )
                     {
+                    @Override
                     public void setMetadataSearchPath( String path, boolean replace ) 
                         {
                         assertEquals( false, replace );
@@ -102,10 +105,12 @@ public class TestDocumentManagerAssembler extends AssemblerTestBase
         final List history = new ArrayList();
         Assembler a = new DocumentManagerAssembler()
             {
+            @Override
             protected OntDocumentManager createDocumentManager()
                 {
                 return new OntDocumentManager( "" )
                     {                    
+                    @Override
                     public void processMetadata( Model m ) 
                         {
                         assertIsoModels( expected, m );

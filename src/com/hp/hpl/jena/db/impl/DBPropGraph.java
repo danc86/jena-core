@@ -273,7 +273,8 @@ public class DBPropGraph extends DBProp {
 		return res;
 	}
 	
-	public void remove() {
+	@Override
+    public void remove() {
 		Iterator it = getAllPrefixes();
 		while( it.hasNext()) {
 			((DBPropPrefix)it.next()).remove();			

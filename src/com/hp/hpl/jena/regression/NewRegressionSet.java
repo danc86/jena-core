@@ -27,6 +27,7 @@ public class NewRegressionSet extends NewRegressionBase
 
     protected Model m;
     
+    @Override
     public void setUp()
         { 
         m = getModel();

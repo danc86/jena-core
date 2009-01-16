@@ -20,9 +20,11 @@ public abstract class MatchOrBind
             protected final QueryNode S = Q.S;
             protected final QueryNode P = Q.P;
             
+            @Override
             public MatchOrBind reset( Domain d )
                 { this.d = d; return this; }
             
+            @Override
             public boolean matches( Triple t )
                 {
                 return 
@@ -41,9 +43,11 @@ public abstract class MatchOrBind
             protected final QueryNode P = Q.P;
             protected final QueryNode O = Q.O;
             
+            @Override
             public MatchOrBind reset( Domain d )
                 { this.d = d; return this; }
             
+            @Override
             public boolean matches( Triple t )
                 {
                 return 

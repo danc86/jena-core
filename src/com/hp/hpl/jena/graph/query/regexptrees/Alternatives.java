@@ -24,12 +24,15 @@ public class Alternatives extends MultiOperandTree
             return new Alternatives( (RegexpTree []) operands.toArray( new RegexpTree [operands.size()] ));
         }
     
+    @Override
     public boolean equals( Object other )
         { return other instanceof Alternatives && sameOperands( (Alternatives) other ); }
 
+    @Override
     public int hashCode()
         { return hashCode( 1 ); }
 
+    @Override
     public String toString()
         { return toString( "alt" ); }
     }

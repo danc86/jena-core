@@ -254,6 +254,7 @@ public class ResultSetIterator implements ExtendedIterator {
      * Clean up the database cursor. Noramlly the client should read to the end
      * or explicity close but....
      */
+    @Override
     protected void finalize() throws SQLException {
         if (!m_finished && m_resultSet != null) close();
     }
@@ -286,7 +287,8 @@ public class ResultSetIterator implements ExtendedIterator {
 	 * @see com.hp.hpl.jena.util.iterator.ExtendedIterator#filterDrop(com.hp.hpl.jena.util.iterator.Filter)
 	 */
 	public ExtendedIterator filterDrop(final Filter f) {
-		Filter notF = new Filter() { public boolean accept( Object x ) { return !f.accept( x ); } };
+		Filter notF = new Filter() { @Override
+        public boolean accept( Object x ) { return !f.accept( x ); } };
 		return new FilterIterator( notF, this ); 
 	}
 

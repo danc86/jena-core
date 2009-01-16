@@ -40,6 +40,7 @@ public abstract class AssemblerTestBase extends ModelTestBase
             { this.x = x; }
         
         
+        @Override
         public Object open( Assembler a, Resource root, Mode irrelevant )
             { return x; }
         }
@@ -57,9 +58,11 @@ public abstract class AssemblerTestBase extends ModelTestBase
             public NamedObjectAssembler( Resource name, Object result )
                 { this.name = name; this.result = result; }
             
+            @Override
             public Model openModel( Resource root, Mode mode )
                 { return (Model) open( this, root, mode ); }
             
+            @Override
             public Object open( Assembler a, Resource root, Mode irrelevant )
                 {
                 assertEquals( name, root );

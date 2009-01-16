@@ -39,6 +39,7 @@ public class Unbound extends BaseBuiltin {
      * @return return true if the buildin predicate is deemed to have succeeded in
      * the current environment
      */
+    @Override
     public boolean bodyCall(Node[] args, int length, RuleContext context) {
         BindingEnvironment env = context.getEnv();
         for (int i = 0; i < length; i++) {

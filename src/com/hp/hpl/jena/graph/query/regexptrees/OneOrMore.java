@@ -16,12 +16,15 @@ public class OneOrMore extends Repeated
     public OneOrMore( RegexpTree operand ) 
         { super( operand ); }
     
+    @Override
     public int hashCode()
         { return operand.hashCode(); }
     
+    @Override
     public boolean equals( Object x )
         { return x instanceof OneOrMore && operand.equals( ((OneOrMore) x).operand ); }
     
+    @Override
     public String toString()
         { return "<plus " + operand.toString() + ">"; }
     }

@@ -24,6 +24,7 @@ public class TestGraphMem extends AbstractTestGraphMem
     public static TestSuite suite()
         { return new TestSuite( TestGraphMem.class ); }
         
+    @Override
     public Graph getGraph()
         { return Factory.createGraphMem(); }
         
@@ -35,6 +36,7 @@ public class TestGraphMem extends AbstractTestGraphMem
         assertEquals( 0, g.size() );
         }
     
+    @Override
     public void testSizeAfterRemove() 
         {
         Graph g = getGraphWith( "x p y" );
@@ -55,6 +57,7 @@ public class TestGraphMem extends AbstractTestGraphMem
     
     protected final class GraphMemWithoutFind extends GraphMem
         {
+        @Override
         public ExtendedIterator graphBaseFind( TripleMatch t )
             { throw new JenaException( "find is Not Allowed" ); }
         }

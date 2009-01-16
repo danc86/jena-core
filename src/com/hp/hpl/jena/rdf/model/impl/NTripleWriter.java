@@ -234,7 +234,7 @@ public class NTripleWriter extends Object implements RDFWriter {
             } else if (Character.isLetterOrDigit(c)) {
                 name = name + c;
             } else {
-                name = name + "X" + Integer.toHexString((int) c) + "X";
+                name = name + "X" + Integer.toHexString(c) + "X";
             }
         }
         return name;

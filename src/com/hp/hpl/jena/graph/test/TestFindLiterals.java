@@ -37,6 +37,7 @@ public class TestFindLiterals extends GraphTestBase
             + " search " + search 
             + " expecting {" + results + "}" )
             {
+            @Override
             public void runBare()
                 { 
                 Graph g = graphWith( graph );

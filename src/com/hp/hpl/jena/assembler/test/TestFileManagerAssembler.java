@@ -18,6 +18,7 @@ public class TestFileManagerAssembler extends AssemblerTestBase
     public TestFileManagerAssembler( String name )
         { super( name ); }
 
+    @Override
     protected Class getAssemblerClass()
         { return FileManagerAssembler.class; }
 

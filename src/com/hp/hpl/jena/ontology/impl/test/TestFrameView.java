@@ -108,6 +108,7 @@ public class TestFrameView
     // External signature methods
     //////////////////////////////////
 
+    @Override
     public void setUp() {
         OntDocumentManager.getInstance().reset();
         OntDocumentManager.getInstance().clearCache();
@@ -163,6 +164,7 @@ public class TestFrameView
         noinfPintersect = mNoInf.getObjectProperty( NS + "intersectP" );
     }
 
+    @Override
     public void tearDown() {
         /* assistance with monitoring space leak
         System.gc();

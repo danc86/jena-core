@@ -39,6 +39,7 @@ public class ConnectionAssembler extends AssemblerBase implements Assembler
     public ConnectionAssembler()
         { this( emptyRoot ); }
 
+    @Override
     public Object open( Assembler a, Resource root, Mode irrelevant )
         {
         checkType( root, JA.Connection );

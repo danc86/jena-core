@@ -30,6 +30,7 @@ public class TestFileGraphMaker extends AbstractTestGraphMaker
     public static TestSuite suite()
         { return new TestSuite( TestFileGraphMaker.class ); }
 
+    @Override
     public GraphMaker getGraphMaker()
         { String scratch = FileUtils.getScratchDirectory( "jena-test-FileGraphMaker" ).getPath();
         return new FileGraphMaker( scratch, ReificationStyle.Minimal, true ); }

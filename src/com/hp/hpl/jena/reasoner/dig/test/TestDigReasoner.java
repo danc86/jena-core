@@ -95,17 +95,18 @@ public class TestDigReasoner
     }
 
 
+    @Override
     public void setUp() {
         // ensure the ont doc manager is in a consistent state
         OntDocumentManager.getInstance().reset( true );
     }
 
     public void testAxioms() {
-        DIGReasoner r = (DIGReasoner) ReasonerRegistry.getDIGReasoner();
-        DIGReasoner ro = (DIGReasoner) ReasonerRegistry.getDIGReasoner( OWL.NAMESPACE, null );
-        DIGReasoner rd = (DIGReasoner) ReasonerRegistry.getDIGReasoner( DAML_OIL.NAMESPACE_DAML, null );
-        DIGReasoner roA = (DIGReasoner) ReasonerRegistry.getDIGReasoner( OWL.NAMESPACE, true, null );
-        DIGReasoner rdA = (DIGReasoner) ReasonerRegistry.getDIGReasoner( DAML_OIL.NAMESPACE_DAML, true, null );
+        DIGReasoner r = ReasonerRegistry.getDIGReasoner();
+        DIGReasoner ro = ReasonerRegistry.getDIGReasoner( OWL.NAMESPACE, null );
+        DIGReasoner rd = ReasonerRegistry.getDIGReasoner( DAML_OIL.NAMESPACE_DAML, null );
+        DIGReasoner roA = ReasonerRegistry.getDIGReasoner( OWL.NAMESPACE, true, null );
+        DIGReasoner rdA = ReasonerRegistry.getDIGReasoner( DAML_OIL.NAMESPACE_DAML, true, null );
 
         axiomTestAux( r, OntModelSpec.OWL_MEM, false, false );
         //axiomTestAux( r, OntModelSpec.DAML_MEM, false, false );
@@ -1005,6 +1006,7 @@ public class TestDigReasoner
             m_spec = spec;
         }
 
+        @Override
         public void runTest()
             throws Exception
         {
@@ -1040,6 +1042,7 @@ public class TestDigReasoner
             m_spec = spec;
         }
 
+        @Override
         public void runTest()
             throws Exception
         {

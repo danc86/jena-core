@@ -14,6 +14,7 @@ public class TestAssemblerVocabulary extends AssemblerTestBase
     public TestAssemblerVocabulary( String name )
         { super( name ); }
 
+    @Override
     protected Class getAssemblerClass()
         { return null; }
 

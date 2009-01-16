@@ -300,6 +300,7 @@ public class Test_schemagen
     public void testClassname() throws Exception {
         String SOURCE = PREFIX + "ex:A a owl:Class .";
         SchemaGenAux fixture = new SchemaGenAux() {
+            @Override
             protected String getValue( Object option ) {
                 if (option.equals( OPT_INPUT )) {
                     // without the -n option, this will force the classname to be Soggy
@@ -594,10 +595,12 @@ public class Test_schemagen
         }
 
         // override the behaviours from schemagen
+        @Override
         protected void selectInput() {
             m_source.add( m_auxSource );
             m_source.setNsPrefixes( m_auxSource );
         }
+        @Override
         protected void selectOutput() {
             // call super to allow option processing
             super.selectOutput();
@@ -610,6 +613,7 @@ public class Test_schemagen
         }
 
         // option faking
+        @Override
         protected String getValue( Object option ) {
             if (option.equals( OPT_INPUT )) {
                 return "http://example.org/sg";
@@ -619,6 +623,7 @@ public class Test_schemagen
             }
         }
 
+        @Override
         protected Resource getResource( Object option ) {
             if (option.equals( OPT_INPUT )) {
                 return ResourceFactory.createResource( "http://example.org/sg" );
@@ -628,6 +633,7 @@ public class Test_schemagen
             }
         }
 
+        @Override
         protected void abort( String msg, Exception e ) {
             throw new RuntimeException( msg, e );
         }

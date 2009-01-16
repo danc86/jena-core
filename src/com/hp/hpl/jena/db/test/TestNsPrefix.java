@@ -34,9 +34,11 @@ public class TestNsPrefix extends ModelTestBase {
     public static TestSuite suite()
         { return new TestSuite( TestNsPrefix.class ); }           
     
+    @Override
     protected void setUp() throws java.lang.Exception {    	
     }
     
+    @Override
     protected void tearDown() throws java.lang.Exception {
     }    
         

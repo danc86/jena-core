@@ -18,6 +18,7 @@ import com.hp.hpl.jena.util.FileUtils;
 
 public class FileModelAssembler extends NamedModelAssembler implements Assembler
     {
+    @Override
     protected Model openEmptyModel( Assembler a, Resource root, Mode mode )
         {
         checkType( root, JA.FileModel );

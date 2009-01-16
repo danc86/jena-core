@@ -26,12 +26,15 @@ public class Bound extends Element
         Donain[index]. The matching uses datatype-value semantics, implemented by
         <code>Node::sameValueAs()</code>.
     */  
+    @Override
     public boolean match( Domain d, Node x )
         { return x.sameValueAs( d.getElement( index ) ); }
      
+    @Override
     public Node asNodeMatch( Domain d ) 
-        { return (Node) d.getElement( index ); }
+        { return d.getElement( index ); }
         
+    @Override
     public String toString()
     	{ return "<Bound " + index + ">"; }
 	}

@@ -129,6 +129,7 @@ public class FileManager
     public FileManager(LocationMapper _mapper)    { setLocationMapper(_mapper) ; }
 
     /** @deprecated Use setLocationMapper */
+    @Deprecated
     public void setMapper(LocationMapper _mapper) { setLocationMapper(_mapper) ; }
     
     
@@ -439,6 +440,7 @@ public class FileManager
 
 
     /** @deprecated Use mapURI */
+    @Deprecated
     public String remap(String filenameOrURI)
     { return mapURI(filenameOrURI) ; }
     

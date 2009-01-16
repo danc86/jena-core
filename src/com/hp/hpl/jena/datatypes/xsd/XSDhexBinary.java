@@ -37,6 +37,7 @@ public class XSDhexBinary extends XSDDatatype {
      * Test whether the given object is a legal value form
      * of this datatype. Brute force implementation.
      */
+    @Override
     public boolean isValidValue(Object valueForm) {
         return (valueForm instanceof byte[]);
     }
@@ -45,6 +46,7 @@ public class XSDhexBinary extends XSDDatatype {
      * Convert a value of this datatype out
      * to lexical form.
      */
+    @Override
     public String unparse(Object value) {
         if (value instanceof byte[]) {
             return HexBin.encode((byte[])value);
@@ -58,12 +60,14 @@ public class XSDhexBinary extends XSDDatatype {
      * This ignores lang tags and just uses the java.lang.Number 
      * equality.
      */
+    @Override
     public boolean isEqual(LiteralLabel value1, LiteralLabel value2) {
         return value1.getDatatype() == value2.getDatatype()
             && Arrays.equals((byte[])value1.getValue(), (byte[])value2.getValue());
 //      && value1.getLexicalForm().equals(value2.getLexicalForm());  // bug tracking, not real code
     }
     
+    @Override
     public int getHashCode( LiteralLabel lit )
         { return getHashCode( (byte []) lit.getValue() ); }
 

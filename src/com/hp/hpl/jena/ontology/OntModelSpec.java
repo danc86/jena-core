@@ -225,6 +225,7 @@ public class OntModelSpec {
               spec.getReasonerFactory(), spec.getLanguage() );
     }
 
+    @Override
     public boolean equals( Object other )
         { return other instanceof OntModelSpec && same( (OntModelSpec) other );}
 

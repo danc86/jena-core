@@ -30,14 +30,17 @@ public class Sequence extends MultiOperandTree
             return new Sequence( (RegexpTree []) operands.toArray( new RegexpTree [operands.size()] ));
         }
     
+    @Override
     public boolean equals( Object other )
         {
         return other instanceof Sequence && sameOperands( (MultiOperandTree) other );
         }
 
+    @Override
     public int hashCode()
         { return hashCode( 0 ); }
     
+    @Override
     public String toString()
         { return toString( "seq" ); }
 

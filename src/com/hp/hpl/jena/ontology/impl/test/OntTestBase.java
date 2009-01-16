@@ -110,6 +110,7 @@ public abstract class OntTestBase
             m_inRDFS = inRDFS;
         }
 
+        @Override
         public void runTest()
             throws Exception
         {
@@ -157,6 +158,7 @@ public abstract class OntTestBase
             TestUtil.assertIteratorValues( this, i, expected );
         }
 
+        @Override
         public void setUp() {
             // ensure the ont doc manager is in a consistent state
             OntDocumentManager.getInstance().reset( true );

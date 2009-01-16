@@ -21,6 +21,7 @@ public class TestSimpleReifierFragmentsMap extends AbstractTestReifierFragmentsM
     public static TestSuite suite()
         { return new TestSuite( TestSimpleReifierFragmentsMap.class ); }
     
+    @Override
     public ReifierFragmentsMap getFragmentsMap()
         { return new SimpleReifierFragmentsMap(); }
     }

@@ -61,6 +61,7 @@ public class TestBugs extends TestCase {
 //        return suite;
     }
 
+    @Override
     public void setUp() {
         // ensure the ont doc manager is in a consistent state
         OntDocumentManager.getInstance().reset( true );
@@ -917,6 +918,7 @@ public class TestBugs extends TestCase {
             }
         }
 
+        @Override
         public void addedStatement( Statement s ) {
             if (s.getPredicate().equals(Q)) {
                 lastValue = s.getObject();
@@ -951,6 +953,7 @@ public class TestBugs extends TestCase {
     private static class Flag extends BaseBuiltin {
         public String getName() {  return "flag";  }
         public boolean fired = false;
+        @Override
         public boolean bodyCall(Node[] args, int length, RuleContext context) {
             fired = true;
             return true;
@@ -1025,7 +1028,9 @@ public class TestBugs extends TestCase {
      */
     private static class SomeTriple extends BaseBuiltin {
         public String getName() {  return "someTriple";  }
+        @Override
         public int getArgLength() { return 1; }
+        @Override
         public boolean bodyCall(Node[] args, int length, RuleContext context) {
             checkArgs(length, context);
             BindingEnvironment env = context.getEnv();

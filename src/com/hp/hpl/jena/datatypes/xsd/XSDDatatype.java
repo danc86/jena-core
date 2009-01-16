@@ -240,6 +240,7 @@ public class XSDDatatype extends BaseDatatype {
      * Parse a lexical form of this datatype to a value
      * @throws DatatypeFormatException if the lexical form is not legal
      */
+    @Override
     public Object parse(String lexicalForm) throws DatatypeFormatException {
         try {
             ValidationContext context = new ValidationState();
@@ -255,6 +256,7 @@ public class XSDDatatype extends BaseDatatype {
      * Convert a value of this datatype out
      * to lexical form.
      */
+    @Override
     public String unparse(Object value) {
         return value.toString();
     }
@@ -264,6 +266,7 @@ public class XSDDatatype extends BaseDatatype {
      * This ignores lang tags and defers to the equality function
      * defined by the Xerces package - to be checked.
      */
+    @Override
     public boolean isEqual(LiteralLabel value1, LiteralLabel value2) {
        return typeDeclaration.isEqual(value1.getValue(), value2.getValue());
     }
@@ -273,6 +276,7 @@ public class XSDDatatype extends BaseDatatype {
      * for a particular java datatype then return that java type,
      * otherwise returns null.
      */
+    @Override
     public Class getJavaClass() {
         return javaClass;
     }
@@ -281,6 +285,7 @@ public class XSDDatatype extends BaseDatatype {
      * Returns the Xerces datatype representation for this type, this
      * is an XSSimpleType, in fact an XSSimpleTypeDecl.
      */
+    @Override
     public Object extendedTypeDefinition() {
         return typeDeclaration;
     }
@@ -370,14 +375,14 @@ public class XSDDatatype extends BaseDatatype {
         switch (validatedInfo.actualValueType) {
             case XSConstants.BASE64BINARY_DT:
                 byte[] decoded = Base64.decode(validatedInfo.normalizedValue);
-                return (Object)(decoded);
+                return (decoded);
                 
             case XSConstants.BOOLEAN_DT:
-                return (Boolean)validatedInfo.actualValue;
+                return validatedInfo.actualValue;
                                 
             case XSConstants.HEXBINARY_DT:
                 decoded = HexBin.decode(validatedInfo.normalizedValue);
-                return (Object)(decoded);
+                return (decoded);
 
             case XSConstants.UNSIGNEDSHORT_DT:
             case XSConstants.INT_DT:
@@ -462,6 +467,7 @@ public class XSDDatatype extends BaseDatatype {
      * never considered valid as an xsd:integer (even if it is
      * lexically legal like "1").
      */
+    @Override
     public boolean isValidLiteral(LiteralLabel lit) {
         return isBaseTypeCompatible(lit) && isValid(lit.getLexicalForm());
     }

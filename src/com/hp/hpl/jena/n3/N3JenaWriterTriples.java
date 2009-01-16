@@ -20,6 +20,7 @@ public class N3JenaWriterTriples extends N3JenaWriterCommon
 {
     static public final int colWidth = 8 ; 
     
+    @Override
     protected void writeModel(Model model)
     {
         alwaysAllocateBNodeLabel = true ;

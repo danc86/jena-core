@@ -15,12 +15,15 @@ public class ZeroOrMore extends Repeated
     public ZeroOrMore( RegexpTree operand ) 
         { super( operand ); }
     
+    @Override
     public int hashCode()
         { return operand.hashCode(); }
     
+    @Override
     public boolean equals( Object x )
         { return x instanceof ZeroOrMore && operand.equals( ((ZeroOrMore) x).operand ); }
     
+    @Override
     public String toString()
         { return "<zeroOrMore " + operand.toString() + ">"; }
     }

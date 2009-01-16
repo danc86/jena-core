@@ -219,6 +219,7 @@ public final class SelectorImpl extends SimpleSelector  {
         Answer true to the question "is this a simple selector". Otherwise the default for
         SimpleSelector subclasses, false, would apply.
     */
+    @Override
     public boolean isSimple()
         { return true; }
     

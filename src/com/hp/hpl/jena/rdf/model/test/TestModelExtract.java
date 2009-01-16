@@ -19,11 +19,13 @@ public class TestModelExtract extends ModelTestBase
     {
     protected static final StatementBoundary sbTrue = new StatementBoundaryBase()
         { 
+        @Override
         public boolean stopAt( Statement s ) { return true; } 
         };
         
     protected static final StatementBoundary sbFalse = new StatementBoundaryBase()
         { 
+        @Override
         public boolean stopAt( Statement s ) { return false; }
         };
 
@@ -45,10 +47,12 @@ public class TestModelExtract extends ModelTestBase
         public StatementBoundary getStatementBoundary()
             { return boundary; }
         
+        @Override
         protected GraphExtract getGraphExtract( TripleBoundary b )
             {
             return new GraphExtract( b )
                 {
+                @Override
                 public Graph extractInto( Graph toUpdate, Node n, Graph source )
                     {
                     root = n;
@@ -76,7 +80,8 @@ public class TestModelExtract extends ModelTestBase
     public void testStatementContinueWith()
         {
         StatementBoundary sb = new StatementBoundaryBase()
-             { public boolean continueWith( Statement s ) { return false; } };
+             { @Override
+            public boolean continueWith( Statement s ) { return false; } };
         assertTrue( sb.stopAt( statement( "x pings y" ) ) );
         }
     

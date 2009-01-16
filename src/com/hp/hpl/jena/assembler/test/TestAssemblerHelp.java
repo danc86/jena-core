@@ -20,6 +20,7 @@ public class TestAssemblerHelp extends AssemblerTestBase
     public TestAssemblerHelp( String name )
         { super( name ); }
 
+    @Override
     protected Class getAssemblerClass()
         { throw new BrokenException( "TestAssemblers does not need this method" ); }
     
@@ -159,6 +160,7 @@ public class TestAssemblerHelp extends AssemblerTestBase
         public Imp()
             { impIsConstructed = true; }
         
+        @Override
         public Object open( Assembler a, Resource root, Mode irrelevant )
             { return null; }
         }
@@ -179,6 +181,7 @@ public class TestAssemblerHelp extends AssemblerTestBase
             gremlinInvoked = true;
             }
         
+        @Override
         public Object open( Assembler a, Resource root, Mode irrelevant )
             { return null; }
         }

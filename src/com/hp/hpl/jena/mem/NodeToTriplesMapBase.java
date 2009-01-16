@@ -106,6 +106,7 @@ public abstract class NodeToTriplesMapBase
             
             // private Object cn = "(none)";
 
+            @Override
             public Object next()
                 {
                 if (hasNext() == false) noElements( "NodeToTriples iterator" );
@@ -121,6 +122,7 @@ public abstract class NodeToTriplesMapBase
                     }
                 }
             
+            @Override
             public boolean hasNext()
                 {
                 while (true)
@@ -134,6 +136,7 @@ public abstract class NodeToTriplesMapBase
                     }
                 }
 
+            @Override
             public void remove()
                 { current.remove(); }
             };

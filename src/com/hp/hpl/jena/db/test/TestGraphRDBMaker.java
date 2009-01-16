@@ -35,6 +35,7 @@ public class TestGraphRDBMaker extends AbstractTestGraphMaker
     public static TestSuite suite()
         { return new TestSuite( TestGraphRDBMaker.class ); }
         
+    @Override
     public void setUp()
         { // order is import - super.setUp grabs a graph 
         connection = TestConnection.makeAndCleanTestConnection();
@@ -49,6 +50,7 @@ public class TestGraphRDBMaker extends AbstractTestGraphMaker
     /**
         Invent a new factory on the connection, record it, and return it.    
     */
+    @Override
     public GraphMaker getGraphMaker()
         { return current = new GraphRDBMaker( connection, ReificationStyle.Minimal ); }    
         
@@ -56,6 +58,7 @@ public class TestGraphRDBMaker extends AbstractTestGraphMaker
         Run the parent teardown, and then remove all the freshly created graphs.
      * @throws  
     */
+    @Override
     public void tearDown()
         {
         super.tearDown();

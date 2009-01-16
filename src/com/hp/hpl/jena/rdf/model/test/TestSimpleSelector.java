@@ -26,6 +26,7 @@ public class TestSimpleSelector extends TestCase
     
     Model model = null;    
         
+    @Override
     protected void setUp() throws java.lang.Exception {
     	model = ModelFactory.createDefaultModel();
     	model.createResource()
@@ -39,6 +40,7 @@ public class TestSimpleSelector extends TestCase
     	
     }
     
+    @Override
     protected void tearDown() throws java.lang.Exception {
     	model = null;
     }

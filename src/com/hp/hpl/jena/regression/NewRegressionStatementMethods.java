@@ -26,6 +26,7 @@ public class NewRegressionStatementMethods extends NewRegressionBase
     protected Model m;
     protected Resource r;
 
+    @Override
     public void setUp()
         { 
         m = getModel(); 

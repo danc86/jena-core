@@ -19,6 +19,7 @@ public class TestUnionModelAssembler extends AssemblerTestBase
     public TestUnionModelAssembler( String name )
         { super( name ); }
 
+    @Override
     protected Class getAssemblerClass()
         { return UnionModelAssembler.class; }
 
@@ -59,11 +60,13 @@ public class TestUnionModelAssembler extends AssemblerTestBase
             return this;
             }
 
+        @Override
         public Model openModel( Resource root, Mode mode )
             { return (Model) open( this, root, mode ); }
         
+        @Override
         public Object open( Assembler a, Resource root, Mode irrelevant )
-            { return (Model) map.get( root ); }
+            { return map.get( root ); }
         }
     
     public void testCreatesUnionWithSubModels()

@@ -56,11 +56,13 @@ public class XMLBaselessContext extends AbsXMLContext implements ARPErrorNumbers
         errmsg = parent.errmsg;
     }
 
+    @Override
     AbsXMLContext clone(IRI u, Taint baseT, String lng,
             Taint langT) {
         return new XMLBaselessContext(document, u, baseT, lng, langT, this);
     }
 
+    @Override
     public AbsXMLContext withBase(XMLHandler forErrors, String b)
             throws SAXParseException {
         TaintImpl taintB = new TaintImpl();
@@ -74,6 +76,7 @@ public class XMLBaselessContext extends AbsXMLContext implements ARPErrorNumbers
                 .create(""), taintB, lang, langTaint);
     }
 
+    @Override
     boolean keepDocument(XMLHandler forErrors) {
         return !forErrors.ignoring(IGN_XMLBASE_SIGNIFICANT);
     }
@@ -87,6 +90,7 @@ public class XMLBaselessContext extends AbsXMLContext implements ARPErrorNumbers
         forErrors.warning(taintMe, errno, errmsg + ": <" + relUri + ">");
 
     }
+    @Override
     void checkBaseUse(XMLHandler forErrors, Taint taintMe, String relUri, IRI rslt) throws SAXParseException {
 
         String resolvedURI = rslt.toString();

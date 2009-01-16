@@ -33,6 +33,7 @@ public class QueryTest extends TestCase
         {
         public TestQueryGraphMem( String name ) { super( name ); }
         
+        @Override
         public Graph getGraph() { return Factory.createGraphMem(); }       
         }
     
@@ -40,6 +41,7 @@ public class QueryTest extends TestCase
         {
         public TestQuerySmallGraphMem( String name ) { super( name ); }
         
+        @Override
         public Graph getGraph() { return new SmallGraphMem(); }       
         }
      

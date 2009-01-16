@@ -26,6 +26,7 @@ public class TestStageElements extends QueryTestBase
 
         public Domain lastDomain = null;
 
+        @Override
         public void run( Domain current )
             { wasRun = true; lastDomain = current; }
         }
@@ -37,6 +38,7 @@ public class TestStageElements extends QueryTestBase
         public ControlledValuator( boolean result )
             { this.result = result; }
         
+        @Override
         public boolean evalBool( IndexValues vv )
             { return result; }
         }

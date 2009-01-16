@@ -22,6 +22,7 @@ public class TestFasterGraphMem extends AbstractTestGraph
     public static TestSuite suite()
         { return new TestSuite( TestFasterGraphMem.class ); }
     
+    @Override
     public Graph getGraph()
         { return new GraphMemFaster(); }   
     
@@ -135,6 +136,7 @@ public class TestFasterGraphMem extends AbstractTestGraph
 
     protected final class GraphMemWithoutFind extends GraphMemFaster
         {
+        @Override
         public ExtendedIterator graphBaseFind( TripleMatch t )
             { throw new JenaException( "find is Not Allowed" ); }
         }

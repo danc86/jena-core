@@ -16,6 +16,7 @@ public class TestBuiltinAssemblerGroup extends AssemblerTestBase
     public TestBuiltinAssemblerGroup( String name )
         { super( name ); }
 
+    @Override
     protected Class getAssemblerClass()
         { return null; }
 

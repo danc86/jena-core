@@ -41,6 +41,7 @@ public class NoValue extends BaseBuiltin {
      * @return return true if the buildin predicate is deemed to have succeeded in
      * the current environment
      */
+    @Override
     public boolean bodyCall(Node[] args, int length, RuleContext context) {
         if (length !=2 && length != 3) {
             throw new BuiltinException(this, context, "builtin " + getName() + " requires 2 or 3 arguments but saw " + length);
@@ -65,6 +66,7 @@ public class NoValue extends BaseBuiltin {
      * Flag as non-monotonic so the guard clause will get rerun after deferal
      * as part of a non-trivial conflict set.
      */
+    @Override
     public boolean isMonotonic() {
         return false;
     }

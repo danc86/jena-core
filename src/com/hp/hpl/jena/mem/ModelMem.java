@@ -16,6 +16,7 @@ import com.hp.hpl.jena.rdf.model.impl.ModelCom;
     @deprecated Use the code in ModelFactory
 */
 
+@Deprecated
 public class ModelMem extends ModelCom implements Model
     {    
     /** 

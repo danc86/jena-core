@@ -81,6 +81,7 @@ public class DIGQueryIsRoleTranslator
      * @param pattern The pattern to translate to a DIG query
      * @param da The DIG adapter through which we communicate with a DIG reasoner
      */
+    @Override
     public ExtendedIterator find( TriplePattern pattern, DIGAdapter da ) {
         List result = new ArrayList();
         if (da.isRole( pattern.getSubject(), null )) {
@@ -92,22 +93,26 @@ public class DIGQueryIsRoleTranslator
     
     
     /** For this translation, we ignore premises */
+    @Override
     public ExtendedIterator find( TriplePattern pattern, DIGAdapter da, Model premises ) {
         return find( pattern, da );
     }
     
     
+    @Override
     public Document translatePattern( TriplePattern pattern, DIGAdapter da ) {
         // not used
         return null;
     }
 
 
+    @Override
     public Document translatePattern( TriplePattern pattern, DIGAdapter da, Model premises ) {
         // not used
         return null;
     }
 
+    @Override
     public ExtendedIterator translateResponseHook( Document response, TriplePattern query, DIGAdapter da ) {
         // not used
         return null;
@@ -122,11 +127,13 @@ public class DIGQueryIsRoleTranslator
      * is ignored.
      * @return True if this object matches the trigger condition expressed by this translator instance
      */
+    @Override
     public boolean checkObject( Node object, DIGAdapter da, Model premises ) {
         return da.getOntLanguage().OBJECT_PROPERTY().asNode().equals( object );
     }
     
 
+    @Override
     public boolean checkSubject( Node subject, DIGAdapter da, Model premises ) {
         return subject instanceof Node_Concrete;
     }

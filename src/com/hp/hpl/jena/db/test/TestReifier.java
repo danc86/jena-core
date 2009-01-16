@@ -52,16 +52,20 @@ public class TestReifier extends AbstractTestReifier  {
             { super( con, "testGraph-" + count ++, properties, styleRDB( style ), true ); }   
         } 
         
-	public void setUp() 
+	@Override
+    public void setUp() 
         { con = TestConnection.makeAndCleanTestConnection(); 
         properties = con.getDefaultModelProperties().getGraph(); }
 
-	public void tearDown() throws Exception 
+	@Override
+    public void tearDown() throws Exception 
         { con.close(); }
 
+    @Override
     public Graph getGraph( ReificationStyle style )
         { return new LocalGraphRDB( style ); }
     
+    @Override
     public Graph getGraph()
         { return getGraph( ReificationStyle.Minimal ); }
         

@@ -32,6 +32,7 @@ public abstract class QueryTestBase extends GraphTestBase
         { 
         return new Dyadic( asExpression( x ), "http://jena.hpl.hp.com/constraints/NE", asExpression( y ) )
         	{
+            @Override
             public boolean evalBool( Object x, Object y )
                 { return !x.equals( y ); }
         	};  
@@ -45,6 +46,7 @@ public abstract class QueryTestBase extends GraphTestBase
         { 
         return new Dyadic( asExpression( x ), "http://jena.hpl.hp.com/constraints/EQ", asExpression( y ) ) 
         	{            
+            @Override
             public boolean evalBool( Object x, Object y )
                 { return x.equals( y ); }
         	};  
@@ -59,7 +61,8 @@ public abstract class QueryTestBase extends GraphTestBase
 	    {
 	    return new Dyadic( asExpression( x ), "http://jena.hpl.hp.com/constraints/MATCHES", asExpression( y ) ) 
 	        {
-	        public boolean evalBool( Object L, Object R )
+	        @Override
+            public boolean evalBool( Object L, Object R )
 	            {
                 Node l = (Node) L, r = (Node) R;
                 return l.toString( false ).indexOf( r.toString( false ) ) > -1; 
@@ -88,7 +91,8 @@ public abstract class QueryTestBase extends GraphTestBase
 	    {
 	    if( x.isVariable()) return new Expression.Variable()
 	        {
-	        public String getName()
+	        @Override
+            public String getName()
 	            { return x.getName(); }
 	    
 	        public Valuator prepare( VariableIndexes vi )

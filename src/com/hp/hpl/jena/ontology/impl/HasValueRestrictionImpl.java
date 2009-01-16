@@ -56,6 +56,7 @@ public class HasValueRestrictionImpl
      * {@link com.hp.hpl.jena.rdf.model.RDFNode#as as()} instead.
      */
     public static Implementation factory = new Implementation() {
+        @Override
         public EnhNode wrap( Node n, EnhGraph eg ) { 
             if (canWrap( n, eg )) {
                 return new HasValueRestrictionImpl( n, eg );
@@ -65,6 +66,7 @@ public class HasValueRestrictionImpl
             } 
         }
             
+        @Override
         public boolean canWrap( Node node, EnhGraph eg ) {
             // node will support being a HasValueRestriction facet if it has rdf:type owl:Restriction or equivalent
             // and the combination of owl:onProperty and owl:hasValue (or equivalents) 

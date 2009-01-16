@@ -90,6 +90,7 @@ public class AssemblerException extends JenaException
     public List getDoing()
         { return doing; }
     
+    @Override
     public String toString()
         { 
         String parent = super.toString();

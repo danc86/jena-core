@@ -27,6 +27,7 @@ public class OntModelSpecAssembler extends AssemblerBase implements Assembler
     {
     private static final OntModelSpec DEFAULT = OntModelSpec.OWL_MEM_RDFS_INF;
 
+    @Override
     public Object open( Assembler a, Resource root, Mode irrelevant )
         {
         checkType( root, JA.OntModelSpec );

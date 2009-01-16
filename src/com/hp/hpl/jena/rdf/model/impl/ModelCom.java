@@ -143,6 +143,7 @@ public class ModelCom
         { return add( s, p, o, l, false ); }
 
     /** @deprecated */
+    @Deprecated
     public Model addLiteral( Resource s, Property p, Object o )  
         { return add( s, p, asObject( o ) ); }
     
@@ -1053,7 +1054,8 @@ public class ModelCom
    */
     public Filter asFilter( final Selector s )
         { return new Filter()
-                { public boolean accept( Object x ) { return s.test( (Statement) x ); } };
+                { @Override
+                public boolean accept( Object x ) { return s.test( (Statement) x ); } };
         }
         
     
@@ -1230,6 +1232,7 @@ public class ModelCom
         }
     }
     
+    @Override
     public String toString()
         { return "<ModelCom  " + getGraph() + " | " + reifiedToString() + ">"; }
         

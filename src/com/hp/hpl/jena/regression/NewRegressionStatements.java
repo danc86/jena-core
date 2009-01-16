@@ -32,6 +32,7 @@ public class NewRegressionStatements extends ModelTestBase
     
     protected Model m;
     
+    @Override
     public void setUp()
         {
         m = getModel();
@@ -39,6 +40,7 @@ public class NewRegressionStatements extends ModelTestBase
         p = m.createProperty( predURI );
         }
     
+    @Override
     public void tearDown()
         { m = null; r = null; p = null; }
     

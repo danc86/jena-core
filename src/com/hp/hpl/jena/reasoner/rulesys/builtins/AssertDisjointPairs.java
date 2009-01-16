@@ -33,6 +33,7 @@ public class AssertDisjointPairs extends BaseBuiltin {
     /**
      * Return the expected number of arguments for this functor or 0 if the number is flexible.
      */
+    @Override
     public int getArgLength() {
         return 1;
     }
@@ -46,6 +47,7 @@ public class AssertDisjointPairs extends BaseBuiltin {
      * for some rule engines
      * @param context an execution context giving access to other relevant data
      */
+    @Override
     public void headAction(Node[] args, int length, RuleContext context) {
         checkArgs(length, context);
         List l = Util.convertList(args[0], context);

@@ -23,11 +23,13 @@ public class Factory
     /**
         @deprecated -- doesn't do anything anymore.
     */
+    @Deprecated
     public static final boolean faster = true;
 
     /**
         @deprecated -- doesn't do anything anymore.
     */
+    @Deprecated
     public static final boolean newHashing = true;
     
     /**
@@ -52,6 +54,7 @@ public class Factory
         {
         Graph g = new GraphMemFaster() 
             {
+            @Override
             public TransactionHandler getTransactionHandler() 
                 {  return th; }
             };

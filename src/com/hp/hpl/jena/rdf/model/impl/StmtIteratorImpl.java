@@ -29,9 +29,11 @@ public class StmtIteratorImpl extends WrappedIterator implements StmtIterator
         return *and remember* the next element. It must be remembered
         so that remove works whichever next-method is called.
     */
+    @Override
     public Object next()
         { return current = (Statement) super.next(); }
         
+    @Override
     public void remove()
         {
         super.remove();

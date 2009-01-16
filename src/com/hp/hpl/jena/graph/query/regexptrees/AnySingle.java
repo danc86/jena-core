@@ -12,12 +12,15 @@ package com.hp.hpl.jena.graph.query.regexptrees;
 
 public class AnySingle extends RegexpTree
     {
+    @Override
     public int hashCode()
         { return 0; }
     
+    @Override
     public boolean equals( Object x )
         { return x instanceof AnySingle; }
     
+    @Override
     public String toString()
         { return "<AnySingle>"; }
     }

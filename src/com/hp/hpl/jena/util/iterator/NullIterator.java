@@ -14,6 +14,7 @@ public class NullIterator extends NiceIterator
     {
     public static NullIterator instance = new NullIterator();
     
+    @Override
     public ExtendedIterator andThen( ClosableIterator it )
         { 
         return it instanceof ExtendedIterator 

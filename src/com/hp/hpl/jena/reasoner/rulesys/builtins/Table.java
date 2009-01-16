@@ -37,6 +37,7 @@ public class Table extends BaseBuiltin {
      * for some rule engines
      * @param context an execution context giving access to other relevant data
      */
+    @Override
     public void headAction(Node[] args, int length, RuleContext context) {
         InfGraph infgraph = context.getGraph();
         if (infgraph instanceof FBRuleInfGraph) {

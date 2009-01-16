@@ -29,12 +29,16 @@ class UUID_nil extends JenaUUID
     {}
     
     
+    @Override
     public long getMostSignificantBits() { return bitsMostSignificant ; }
+    @Override
     public long getLeastSignificantBits() { return bitsLeastSignificant ; }
     
+    @Override
     public String toString()
     { return nilStr ; }
 
+    @Override
     public boolean equals(Object other)
     {
         if ( ! ( other instanceof UUID_nil ) )
@@ -44,7 +48,9 @@ class UUID_nil extends JenaUUID
     }
 
 
+    @Override
     public int getVariant() { return variant ; }
+    @Override
     public int getVersion() { return version ; }
     
     // Testing only.

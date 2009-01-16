@@ -17,6 +17,7 @@ public class TestRuleSet extends AssemblerTestBase
     public TestRuleSet( String name )
         { super( name ); }
 
+    @Override
     protected Class getAssemblerClass()
         { throw new BrokenException( "TestAssemblers does not need this method" ); }
     

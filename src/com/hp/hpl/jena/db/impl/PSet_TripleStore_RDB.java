@@ -158,7 +158,8 @@ public  class PSet_TripleStore_RDB implements IPSet {
      /**
       * Printable name for the driver configuration
       */
-     public String toString() {
+     @Override
+    public String toString() {
         return this.getClass().getPackage().getName();
      }
      

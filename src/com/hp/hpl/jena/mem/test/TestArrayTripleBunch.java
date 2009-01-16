@@ -13,6 +13,7 @@ public class TestArrayTripleBunch extends TestTripleBunch
     public TestArrayTripleBunch( String name )
         { super( name ); }
     
+    @Override
     public TripleBunch getBunch()
         { return new ArrayBunch(); }
     }

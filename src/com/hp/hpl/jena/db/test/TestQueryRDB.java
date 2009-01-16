@@ -28,18 +28,21 @@ public class TestQueryRDB extends AbstractTestQuery
     private IDBConnection theConnection;
     private int count = 0;
     
+    @Override
     public void setUp()
         {
         theConnection = TestConnection.makeAndCleanTestConnection();
         super.setUp();
         }
         
+    @Override
     public void tearDown()
         {
         try { theConnection.close(); }
         catch (Exception e) { throw new JenaException( e ); }
         }
         
+    @Override
     public Graph getGraph()
         { 
         return new GraphRDB

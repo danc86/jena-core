@@ -60,7 +60,8 @@ public class DBPropLSet extends DBProp {
 			return null;
 	}
 
-	public void remove() {
+	@Override
+    public void remove() {
 		DBPropPSet pSet = getPset();
 		if (pSet != null )
 			pSet.remove();

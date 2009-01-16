@@ -32,6 +32,7 @@ public class TrackingTripleIterator extends WrappedIterator
         Answer the next object, remembering it in <code>current</code>. 
      	@see java.util.Iterator#next()
     */
+    @Override
     public Object next()
         { return current = (Triple) super.next(); }       
     }

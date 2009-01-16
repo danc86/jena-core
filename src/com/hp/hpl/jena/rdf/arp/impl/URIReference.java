@@ -72,6 +72,7 @@ public class URIReference extends TaintImpl implements AResourceInternal, ARPErr
 //        uri = null;
 //    }
 
+    @Override
     public String toString() {
         return uri;
     }
@@ -101,11 +102,13 @@ public class URIReference extends TaintImpl implements AResourceInternal, ARPErr
     /**
      * Does not compare userData field, only URI.
      */
+    @Override
     public boolean equals(Object o) {
         return o != null && (o instanceof URIReference)
                 && uri.equals(((URIReference) o).uri);
     }
 
+    @Override
     public int hashCode() {
         return uri.hashCode();
     }

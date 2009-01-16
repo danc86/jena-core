@@ -79,6 +79,7 @@ public class DIGQueryRelatedIndividualsTranslator
     /**
      * <p>Answer a query that will list the role fillers for an individual-role pair</p>
      */
+    @Override
     public Document translatePattern( TriplePattern pattern, DIGAdapter da ) {
         DIGConnection dc = da.getConnection();
         Document query = dc.createDigVerb( DIGProfile.ASKS, da.getProfile() );
@@ -93,16 +94,19 @@ public class DIGQueryRelatedIndividualsTranslator
     /**
      * <p>Answer an iterator of triples that match the original find query.</p>
      */
+    @Override
     public ExtendedIterator translateResponseHook( Document response, TriplePattern query, DIGAdapter da ) {
         return translateIndividualPairSetResponse( response, query );
     }
 
 
+    @Override
     public Document translatePattern( TriplePattern pattern, DIGAdapter da, Model premises ) {
         // not used
         return null;
     }
 
+    @Override
     public boolean checkPredicate( com.hp.hpl.jena.graph.Node predicate, DIGAdapter da, Model premises ) {
         // check that the predicate is not a datatype property
         if (predicate.isConcrete()) {

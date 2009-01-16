@@ -217,6 +217,7 @@ public class OWLUnitTest extends TestCase {
     /**
      * The test runner
      */
+    @Override
     protected void runTest() throws IOException {
 //        System.out.println(" - " + manifest + " using " + reasonerFactory.getURI());
         OWLWGTester tester = new OWLWGTester(reasonerFactory, this, null);

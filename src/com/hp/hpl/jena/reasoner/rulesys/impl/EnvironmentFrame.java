@@ -67,6 +67,7 @@ public class EnvironmentFrame extends FrameObject {
     /**
      * Printable string for debugging.
      */
+    @Override
     public String toString() {
         if (clause == null || clause.rule == null) {
             return "[anon]";

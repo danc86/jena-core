@@ -72,6 +72,7 @@ public class OntClassImpl
      * {@link com.hp.hpl.jena.rdf.model.RDFNode#as as()} instead.
      */
     public static Implementation factory = new Implementation() {
+        @Override
         public EnhNode wrap( Node n, EnhGraph eg ) {
             if (canWrap( n, eg )) {
                 return new OntClassImpl( n, eg );
@@ -81,6 +82,7 @@ public class OntClassImpl
             }
         }
 
+        @Override
         public boolean canWrap( Node node, EnhGraph eg ) {
             // node will support being an OntClass facet if it has rdf:type owl:Class or equivalent
             Profile profile = (eg instanceof OntModel) ? ((OntModel) eg).getProfile() : null;
@@ -653,6 +655,7 @@ public class OntClassImpl
                 .listStatements( null, RDF.type, this )
                 .mapWith( new SubjectAsMapper( Individual.class ) )
                 .filterKeep( new Filter() {
+                    @Override
                     public boolean accept( Object o ) {
                         // if direct, ignore the sub-class typed resources
                         return ((Individual) o).hasRDFType( OntClassImpl.this, direct );

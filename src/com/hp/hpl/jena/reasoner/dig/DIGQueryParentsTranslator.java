@@ -95,6 +95,7 @@ public class DIGQueryParentsTranslator
     /**
      * <p>Answer a query that will generate the direct class hierarchy (one level up or down) for a node</p>
      */
+    @Override
     public Document translatePattern( TriplePattern pattern, DIGAdapter da ) {
         DIGConnection dc = da.getConnection();
         Document query = dc.createDigVerb( DIGProfile.ASKS, da.getProfile() );
@@ -116,6 +117,7 @@ public class DIGQueryParentsTranslator
      * and filter the returned results against the original query.</p>
      * @return An optional filter on the results of a DIG query
      */
+    @Override
     protected Filter getResultsTripleFilter( TriplePattern query ) {
         return new FilterSubjectAndObject( query.getSubject(), query.getObject() );
     }
@@ -139,6 +141,7 @@ public class DIGQueryParentsTranslator
             m_obj = obj;
         }
 
+        @Override
         public boolean accept( Object o ) {
             Triple t = (Triple) o;
             return ((m_subj == null) ||

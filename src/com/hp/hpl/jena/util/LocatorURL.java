@@ -38,7 +38,7 @@ public class LocatorURL implements Locator
         try
         {
             URL url = new URL(filenameOrURI);
-            URLConnection conn = (HttpURLConnection) url.openConnection();
+            URLConnection conn = url.openConnection();
             conn.setRequestProperty("Accept", acceptHeader) ;
             conn.setRequestProperty("Accept-Charset", "utf-8,*") ;
             conn.setDoInput(true) ;
@@ -90,11 +90,13 @@ public class LocatorURL implements Locator
         }
     }
 
+    @Override
     public boolean equals( Object other )
     {
         return other instanceof LocatorURL;
     }
 
+    @Override
     public int hashCode()
     {
         return LocatorURL.class.hashCode();

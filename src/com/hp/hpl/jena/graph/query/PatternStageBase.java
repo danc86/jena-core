@@ -80,6 +80,7 @@ public abstract class PatternStageBase extends Stage
                 { throw new BufferPipe.BoundedBufferTakeException( e ); }
             }
         
+        @Override
         public void run() 
             { 
             while (true)
@@ -105,6 +106,7 @@ public abstract class PatternStageBase extends Stage
     
    public static boolean reuseThreads = JenaRuntime.getSystemProperty( "jena.reusepatternstage.threads", "yes" ).equals( "yes" );
    
+    @Override
     public synchronized Pipe deliver( final Pipe sink )
         {
         final Pipe source = previous.deliver( new BufferPipe() );
@@ -113,7 +115,8 @@ public abstract class PatternStageBase extends Stage
             getAvailableThread().put( new Work( source, sink, s ) ); 
         else
             new Thread( "PatternStage-" + ++count ) 
-                { public void run() { PatternStageBase.this.run( source, sink, s ); } } 
+                { @Override
+                public void run() { PatternStageBase.this.run( source, sink, s ); } } 
             .start();
         return sink;
         }

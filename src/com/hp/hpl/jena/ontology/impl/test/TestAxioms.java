@@ -69,6 +69,7 @@ public class TestAxioms
     }
     
     
+    @Override
     public OntTestCase[] getTests() {
         return new OntTestCase[] {
         };

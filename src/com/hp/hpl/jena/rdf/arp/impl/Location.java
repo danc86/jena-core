@@ -60,6 +60,7 @@ public class Location implements Locator {
         publicId = locator.getPublicId();
     	}
     }
+    @Override
     public String toString() {
         return //"before column " + endColumn +
         "line " + endLine + " in '"

@@ -66,6 +66,7 @@ public class ModelListenerAdapter implements GraphListener
     public void notifyEvent( Graph g, Object event )
         { L.notifyEvent( m, event ); }
         
+    @Override
     public boolean equals( Object other )
         { 
         return 

@@ -410,6 +410,7 @@ public class TransitiveGraphCache implements Finder {
         /**
          * Print node label to assist with debug.
          */
+        @Override
         public String toString() {
             return "[" + rdfNode.getLocalName() + "]";
         }

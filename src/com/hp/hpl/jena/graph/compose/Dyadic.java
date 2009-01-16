@@ -34,6 +34,7 @@ public abstract class Dyadic extends CompositionBase
             ;
 		}
 
+    @Override
     public void close()
     	{
     	L.close();
@@ -43,6 +44,7 @@ public abstract class Dyadic extends CompositionBase
     /**
         Generic dependsOn, true iff it depends on either of the subgraphs.
     */
+    @Override
     public boolean dependsOn( Graph other )
         { return other == this || L.dependsOn( other ) || R.dependsOn( other ); }
  				

@@ -410,6 +410,7 @@ public class LPBRuleEngine {
         }
         
         /** Printable form */
+        @Override
         public String toString() {
             return " " + count + "\t - " + clause;
         }

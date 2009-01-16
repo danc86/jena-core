@@ -96,6 +96,7 @@ public class TestOntModel
     // External signature methods
     //////////////////////////////////
 
+    @Override
     public void setUp() {
         // ensure the ont doc manager is in a consistent state
         OntDocumentManager.getInstance().reset( true );

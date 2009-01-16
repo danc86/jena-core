@@ -59,6 +59,7 @@ public class DataRangeImpl
      * {@link com.hp.hpl.jena.rdf.model.RDFNode#as as()} instead.
      */
     public static Implementation factory = new Implementation() {
+        @Override
         public EnhNode wrap( Node n, EnhGraph eg ) { 
             if (canWrap( n, eg )) {
                 return new DataRangeImpl( n, eg );
@@ -68,6 +69,7 @@ public class DataRangeImpl
             } 
         }
             
+        @Override
         public boolean canWrap( Node node, EnhGraph eg ) {
             // node will support being an DataRange facet if it has rdf:type owl:Datarange and is a bNode
             Profile profile = (eg instanceof OntModel) ? ((OntModel) eg).getProfile() : null;

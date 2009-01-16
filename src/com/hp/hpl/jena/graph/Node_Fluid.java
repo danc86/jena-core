@@ -16,6 +16,7 @@ public abstract class Node_Fluid extends Node
     protected Node_Fluid(Object label)
         { super(label); }
 
+    @Override
     public boolean isConcrete()
         { return false; }
     }

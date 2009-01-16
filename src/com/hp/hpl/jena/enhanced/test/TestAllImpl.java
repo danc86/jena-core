@@ -15,8 +15,10 @@ import com.hp.hpl.jena.graph.*;
 public class TestAllImpl extends TestCommonImpl implements TestSubject, TestProperty, TestObject {
 
     public static final Implementation factory = new Implementation() {
+    @Override
     public boolean canWrap( Node n, EnhGraph eg )
         { return true; }
+    @Override
     public EnhNode wrap(Node n,EnhGraph eg) {
         return new TestAllImpl(n,eg);
     }
@@ -27,6 +29,7 @@ public class TestAllImpl extends TestCommonImpl implements TestSubject, TestProp
         super( n, eg );
     }
     
+    @Override
     public boolean supports( Class t )
         {
         // return convertTo( t ) != null;

@@ -29,6 +29,7 @@ public abstract class Matcher
     */
     public static final Matcher always = new Matcher() 
         {
+        @Override
         public boolean match( Domain d, Triple t )
             { return true; }
         };

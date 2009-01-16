@@ -77,7 +77,8 @@ public class ResultSetTripleIterator extends ResultSetIterator {
 	 * @param cache The originating SQLcache to return the statement to, can be null
 	 * @param opname The name of the original operation that lead to this statement, can be null if SQLCache is null
 	 */
-	public void reset(ResultSet resultSet, PreparedStatement sourceStatement, SQLCache cache, String opname) {
+	@Override
+    public void reset(ResultSet resultSet, PreparedStatement sourceStatement, SQLCache cache, String opname) {
 		super.reset(resultSet, sourceStatement, cache, opname);
 		m_triple = null;
 	}
@@ -96,6 +97,7 @@ public class ResultSetTripleIterator extends ResultSetIterator {
      * (in which case both the object value and the object literal id 
      * columns may be populated.
      */
+    @Override
     protected void extractRow() throws SQLException {
         int rx = 1;
         ResultSet rs = m_resultSet;
@@ -123,7 +125,8 @@ public class ResultSetTripleIterator extends ResultSetIterator {
 		/**
 		 * Return the current row, which should have already been extracted.
 		 */
-		protected Object getRow() {
+		@Override
+        protected Object getRow() {
 			return m_triple;
 		}
 		
@@ -157,7 +160,8 @@ public class ResultSetTripleIterator extends ResultSetIterator {
 		/** 
 		 * Remove the current triple from the data store.
 		 */
-		public void remove() {
+		@Override
+        public void remove() {
 			if (m_triple == null)
 				  throw new IllegalStateException();
 			m_pset.deleteTriple(m_triple, m_graphID);

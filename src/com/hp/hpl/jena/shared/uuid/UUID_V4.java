@@ -32,7 +32,9 @@ public class UUID_V4 extends JenaUUID
         this.bitsLeastSignificant = leastSigBits ;
     }
     
+    @Override
     public long getMostSignificantBits() { return bitsMostSignificant ; }
+    @Override
     public long getLeastSignificantBits() { return bitsLeastSignificant ; }
 
     private boolean check(long mostSigBits, long leastSigBits)
@@ -45,13 +47,16 @@ public class UUID_V4 extends JenaUUID
         return true ;
     }
     
+    @Override
     public String toString()
     {
         return UUID_V4_Gen.unparse(this) ;
     }
 
+    @Override
     public int hashCode() { return (int) Bits.unpack(bitsMostSignificant, 32, 64) ; }
     
+    @Override
     public boolean equals(Object other)
     {
         if ( ! (other instanceof UUID_V4 ) )
@@ -93,7 +98,9 @@ public class UUID_V4 extends JenaUUID
         }
     }
 
+    @Override
     public int getVersion() { return _getVersion(bitsMostSignificant, bitsLeastSignificant) ; }
+    @Override
     public int getVariant() { return _getVariant(bitsMostSignificant, bitsLeastSignificant) ; }
 }
 

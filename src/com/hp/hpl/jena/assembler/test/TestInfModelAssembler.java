@@ -18,6 +18,7 @@ public class TestInfModelAssembler extends AssemblerTestBase
     public TestInfModelAssembler( String name )
         { super( name ); }
 
+    @Override
     protected Class getAssemblerClass()
         { return InfModelAssembler.class; }
 

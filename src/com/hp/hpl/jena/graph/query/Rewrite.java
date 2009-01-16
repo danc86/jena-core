@@ -56,6 +56,7 @@ public class Rewrite
         public DyadicLiteral( Expression L, String F, String R )
             { super( L, F, new Expression.Fixed( R ) ); }
         
+        @Override
         public boolean evalBool( Object l, Object r )
             { return evalBool( nodeAsString( l ), r.toString() ); }
         
@@ -78,6 +79,7 @@ public class Rewrite
                 {          
                 protected final String lowerContent = content.toLowerCase();
                 
+                @Override
                 public boolean evalBool( String l, String r )
                     { return l.toLowerCase().endsWith( lowerContent ); }
                 };
@@ -86,6 +88,7 @@ public class Rewrite
             {
             return new DyadicLiteral( L, ExpressionFunctionURIs.J_EndsWith, content )
                 {            
+                @Override
                 public boolean evalBool( String l, String r )
                     { return l.endsWith( r ); }
                 };    
@@ -100,6 +103,7 @@ public class Rewrite
                 { 
                 protected final String lowerContent = content.toLowerCase();
                 
+                @Override
                 public boolean evalBool( String l, String r )
                     { return l.toLowerCase().startsWith( lowerContent ); }
                 };  
@@ -108,6 +112,7 @@ public class Rewrite
             {                
             return new DyadicLiteral( L, ExpressionFunctionURIs.J_startsWith, content )
                 { 
+                @Override
                 public boolean evalBool( String l, String r )
                     { return l.startsWith( r ); }
                 };  
@@ -122,6 +127,7 @@ public class Rewrite
                 { 
                 protected final String lowerContent = content.toLowerCase();
                 
+                @Override
                 public boolean evalBool( String l, String r )
                     { return l.toLowerCase().indexOf( lowerContent ) > -1; }
                 };      
@@ -130,6 +136,7 @@ public class Rewrite
             {
             return new DyadicLiteral( L, ExpressionFunctionURIs.J_contains, content )
                 { 
+                @Override
                 public boolean evalBool( String l, String r )
                     { return l.indexOf( r ) > -1; }
                 };     

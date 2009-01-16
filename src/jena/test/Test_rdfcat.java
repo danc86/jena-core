@@ -236,6 +236,7 @@ public class Test_rdfcat extends TestCase
         protected rdfcatFixture( OutputStream so ) {
             m_so = so;
         }
+        @Override
         protected OutputStream getOutputStream() {
             return m_so;
         }

@@ -150,7 +150,8 @@ public abstract class StatementBase
 	 	Answer a string describing this Statement in a vagely pretty way, with the 
 	 	representations of the subject, predicate, and object in that order.
 	*/
-	public String toString()
+	@Override
+    public String toString()
 		{
 		return
 		    "[" 

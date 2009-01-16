@@ -24,9 +24,11 @@ public abstract class AbstractTestModel extends ModelTestBase
     
     private Model model;
     
+    @Override
     public void setUp()
         { model = getModel(); }
         
+    @Override
     public void tearDown()
         { model.close(); } 
        

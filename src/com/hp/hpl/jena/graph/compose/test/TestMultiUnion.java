@@ -74,6 +74,7 @@ public class TestMultiUnion
     public static TestSuite suite()
         { return new TestSuite( TestMultiUnion.class ); }   
     
+    @Override
     public Graph getGraph()
         {
         Graph gBase = graphWith( "" ), g1 = graphWith( "" );

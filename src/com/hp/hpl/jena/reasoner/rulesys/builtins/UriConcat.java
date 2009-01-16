@@ -28,6 +28,7 @@ public class UriConcat extends StrConcat {
      * Return a name for this builtin, normally this will be the name of the 
      * functor that will be used to invoke it.
      */
+    @Override
     public String getName() {
         return "uriConcat";
     }
@@ -42,6 +43,7 @@ public class UriConcat extends StrConcat {
      * @return return true if the buildin predicate is deemed to have succeeded in
      * the current environment
      */
+    @Override
     public boolean bodyCall(Node[] args, int length, RuleContext context) {
         if (length < 1) 
             throw new BuiltinException(this, context, "Must have at least 1 argument to " + getName());

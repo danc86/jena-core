@@ -92,6 +92,7 @@ public class DIGQueryAncestorsTranslator
     /**
      * <p>Answer a query that will generate the class hierachy for a concept</p>
      */
+    @Override
     public Document translatePattern( TriplePattern pattern, DIGAdapter da ) {
         DIGConnection dc = da.getConnection();
         Document query = dc.createDigVerb( DIGProfile.ASKS, da.getProfile() );
@@ -112,6 +113,7 @@ public class DIGQueryAncestorsTranslator
     /**
      * <p>Answer an iterator of triples that match the original find query.</p>
      */
+    @Override
     public ExtendedIterator translateResponseHook( Document response, TriplePattern query, DIGAdapter da ) {
         // translate the concept set to triples, but then we must add :a rdfs:subClassOf :a to match owl semantics
         return translateConceptSetResponse( response, query, m_ancestors, da )
@@ -122,15 +124,18 @@ public class DIGQueryAncestorsTranslator
     }
 
 
+    @Override
     public Document translatePattern( TriplePattern pattern, DIGAdapter da, Model premises ) {
         // not used
         return null;
     }
 
+    @Override
     public boolean checkSubject( com.hp.hpl.jena.graph.Node subject, DIGAdapter da, Model premises ) {
         return !m_ancestors || da.isConcept( subject, premises );
     }
 
+    @Override
     public boolean checkObject( com.hp.hpl.jena.graph.Node object, DIGAdapter da, Model premises ) {
         return m_ancestors || da.isConcept( object, premises );
     }

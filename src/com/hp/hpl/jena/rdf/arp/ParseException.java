@@ -124,6 +124,7 @@ public class ParseException extends SAXParseException implements
      * 
      * @return The exception message.
      */
+    @Override
     public String getMessage() {
         // turn 1 to W001
         // turn 204 to E204

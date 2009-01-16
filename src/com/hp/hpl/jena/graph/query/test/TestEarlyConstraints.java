@@ -39,15 +39,18 @@ public class TestEarlyConstraints extends QueryTestBase
         Graph gBase = graphWith( "a eg:p1 a; c eg:p1 d; x eg:p2 y" );
         Graph g = new WrappedGraph( gBase )
             {
+            @Override
             public QueryHandler queryHandler()
                 { return new SimpleQueryHandler( this ); }
             
+            @Override
             public ExtendedIterator find( Node S, Node P, Node O ) 
                 {
                 if (P.equals( node( "eg:p2" ) )) count[0] += 1;
                 return super.find( S, P, O ); 
                 }
             
+            @Override
             public ExtendedIterator find( TripleMatch tm ) 
                 {
                 if (tm.getMatchPredicate().equals( node( "eg:p2" ) )) count[0] += 1;

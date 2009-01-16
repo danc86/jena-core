@@ -51,9 +51,11 @@ public class PropertyImpl extends ResourceImpl implements Property
 
     final static public Implementation factory = new Implementation() 
         {
+        @Override
         public boolean canWrap( Node n, EnhGraph eg )
             { return n.isURI(); }
 
+        @Override
         public EnhNode wrap( Node n, EnhGraph eg )
             { return new PropertyImpl( n, eg ); }
     };
@@ -70,6 +72,7 @@ public class PropertyImpl extends ResourceImpl implements Property
         checkOrdinal();
         }
 
+    @Override
     public RDFNode inModel( Model m )
         { return getModel() == m ? this : m.createProperty( getURI() ); }
 

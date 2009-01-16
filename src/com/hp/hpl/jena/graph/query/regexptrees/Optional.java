@@ -17,12 +17,15 @@ public class Optional extends Repeated
     public Optional( RegexpTree operand ) 
         { super( operand ); }
     
+    @Override
     public int hashCode()
         { return operand.hashCode(); }
     
+    @Override
     public boolean equals( Object x )
         { return x instanceof Optional && operand.equals( ((Optional) x).operand ); }
     
+    @Override
     public String toString()
         { return "<optional " + operand.toString() + ">"; }
     }

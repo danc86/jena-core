@@ -12,6 +12,7 @@ import com.hp.hpl.jena.shared.PrefixMapping;
 
 public class PrefixMappingAssembler extends AssemblerBase implements Assembler
     {
+    @Override
     public Object open( Assembler a, Resource root, Mode irrelevant )
         {
         checkType( root, JA.PrefixMapping );

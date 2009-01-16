@@ -55,7 +55,8 @@ public class TestIteratorCollection extends GraphTestBase
         {
         final boolean [] closed = {false};
         Iterator iterator = new WrappedIterator( Arrays.asList( objects ).iterator() ) 
-            { public void close() { super.close(); closed[0] = true; } };
+            { @Override
+            public void close() { super.close(); closed[0] = true; } };
         iteratorToSet( iterator );
         assertTrue( closed[0] );
         }
@@ -89,7 +90,8 @@ public class TestIteratorCollection extends GraphTestBase
         {
         final boolean [] closed = {false};
         Iterator iterator = new WrappedIterator( Arrays.asList( objects ).iterator() ) 
-            { public void close() { super.close(); closed[0] = true; } };
+            { @Override
+            public void close() { super.close(); closed[0] = true; } };
         iteratorToList( iterator );
         assertTrue( closed[0] );
         }

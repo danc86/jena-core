@@ -73,6 +73,7 @@ public class ARPString extends TaintImpl implements ALiteral {
     private boolean isWellFormedXML;
     private String parseType;
     
+    @Override
     public String toString() {
         return value;
     }
@@ -94,6 +95,7 @@ public class ARPString extends TaintImpl implements ALiteral {
     /**
      * @deprecated
      */
+    @Deprecated
     public String getParseType() {
         return parseType;
     }

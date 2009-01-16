@@ -12,7 +12,7 @@ import com.hp.hpl.jena.graph.query.*;
 public class FasterPatternStage extends PatternStageBase
     {
     public FasterPatternStage( Graph graph, Mapping map, ExpressionSet constraints, Triple [] triples )
-        { super( ProcessedTriple.factory, (GraphMemFaster) graph, map, constraints, triples ); }
+        { super( ProcessedTriple.factory, graph, map, constraints, triples ); }
     }
 
 

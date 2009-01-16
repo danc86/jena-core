@@ -212,6 +212,7 @@ public class DBReifierGraph implements Graph {
 		return 0;
 	}
     
+    @Override
     public String toString()
         { return GraphBase.toString( "DBReifier ", this ); }
 }

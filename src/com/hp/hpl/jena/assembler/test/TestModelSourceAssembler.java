@@ -19,6 +19,7 @@ public class TestModelSourceAssembler extends AssemblerTestBase
     public TestModelSourceAssembler( String name )
         { super( name ); }
 
+    @Override
     protected Class getAssemblerClass()
         { return ModelSourceAssembler.class; }
 
@@ -60,6 +61,7 @@ public class TestModelSourceAssembler extends AssemblerTestBase
         final List history = new ArrayList();
         Assembler a = new ModelSourceAssembler() 
             {
+            @Override
             protected ModelGetter createRDBGetter( ConnectionDescription cGiven )
                 {
                 assertSame( c, cGiven );

@@ -76,6 +76,7 @@ public class DIGQueryEquivalentsTranslator
     /**
      * <p>Answer a query that will generate the class hierachy for a concept</p>
      */
+    @Override
     public Document translatePattern( TriplePattern pattern, DIGAdapter da ) {
         DIGConnection dc = da.getConnection();
         Document query = dc.createDigVerb( DIGProfile.ASKS, da.getProfile() );
@@ -90,24 +91,29 @@ public class DIGQueryEquivalentsTranslator
     /**
      * <p>Answer an iterator of triples that match the original find query.</p>
      */
+    @Override
     public ExtendedIterator translateResponseHook( Document response, TriplePattern query, DIGAdapter da ) {
         return translateConceptSetResponse( response, query, !m_subjectFree, da );
     }
 
+    @Override
     public Document translatePattern( TriplePattern pattern, DIGAdapter da, Model premises ) {
         // not used
         return null;
     }
 
 
+    @Override
     public boolean checkSubject( com.hp.hpl.jena.graph.Node subject, DIGAdapter da, Model premises ) {
         return (m_subjectFree && !subject.isConcrete()) || da.isConcept( subject, premises );
     }
 
+    @Override
     public boolean checkObject( com.hp.hpl.jena.graph.Node object, DIGAdapter da, Model premises ) {
         return (!m_subjectFree && !object.isConcrete()) || da.isConcept( object, premises );
     }
 
+    @Override
     public boolean checkTriple( TriplePattern pattern, DIGAdapter da, Model premises ) {
         return super.checkTriple( pattern, da, premises ) &&
                (!pattern.getSubject().isConcrete() || !pattern.getObject().isConcrete());

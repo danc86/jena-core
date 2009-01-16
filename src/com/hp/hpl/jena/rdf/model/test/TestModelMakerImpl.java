@@ -35,6 +35,7 @@ public class TestModelMakerImpl extends ModelTestBase
     private Graph graph;
     private GraphMaker graphMaker;
 
+    @Override
     public void setUp()
         {
         graph = GraphTestBase.graphWith( "" );

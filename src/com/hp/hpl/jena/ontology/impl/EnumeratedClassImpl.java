@@ -58,6 +58,7 @@ public class EnumeratedClassImpl
      * {@link com.hp.hpl.jena.rdf.model.RDFNode#as as()} instead.
      */
     public static Implementation factory = new Implementation() {
+        @Override
         public EnhNode wrap( Node n, EnhGraph eg ) { 
             if (canWrap( n, eg )) {
                 return new EnumeratedClassImpl( n, eg );
@@ -67,6 +68,7 @@ public class EnumeratedClassImpl
             } 
         }
             
+        @Override
         public boolean canWrap( Node node, EnhGraph eg ) {
             // node will support being an EnumeratedClass facet if it has rdf:type owl:Class and an owl:oneOf statement (or equivalents) 
             Profile profile = (eg instanceof OntModel) ? ((OntModel) eg).getProfile() : null;

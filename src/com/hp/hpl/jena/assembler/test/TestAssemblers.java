@@ -48,6 +48,7 @@ public class TestAssemblers extends AssemblerTestBase
     
     public void testToSilenceJUnit() {}
 
+    @Override
     protected Class getAssemblerClass()
         { throw new BrokenException( "TestAssemblers does not need this method" ); }
     }

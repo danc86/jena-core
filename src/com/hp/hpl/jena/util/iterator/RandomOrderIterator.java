@@ -29,10 +29,12 @@ public class RandomOrderIterator extends WrappedIterator {
 		fill();
 	}
 	
-	public boolean hasNext() {
+	@Override
+    public boolean hasNext() {
 		return top > 0;
 	}
-	public Object next() {
+	@Override
+    public Object next() {
 		int ix = rnd.nextInt(top);
 		Object rslt = buffer[ix];
 		top--;
@@ -41,7 +43,8 @@ public class RandomOrderIterator extends WrappedIterator {
 		return rslt;
 	}
 	
-	public void remove() {
+	@Override
+    public void remove() {
 		throw new UnsupportedOperationException("randomizing does not allow modification");
 	}
 	

@@ -56,6 +56,7 @@ public class ReifiedStatementImpl extends ResourceImpl implements ReifiedStateme
             _eg_ by looking into this graph's reifier to find the binding for the
             node; throw a DoesNotReify exception if there's no mapping. 
         */
+        @Override
         public EnhNode wrap( Node n, EnhGraph eg ) 
             {
             Triple x = getTriple( eg, n );
@@ -71,6 +72,7 @@ public class ReifiedStatementImpl extends ResourceImpl implements ReifiedStateme
             @param n the node who's triple is required
             @return true iff there's an associated triple
         */
+        @Override
         public boolean canWrap( Node n, EnhGraph eg )
             { return getTriple( eg, n ) != null; }
             
@@ -90,6 +92,7 @@ public class ReifiedStatementImpl extends ResourceImpl implements ReifiedStateme
     protected Reifier getReifier()
         { return getModel().getGraph().getReifier(); }
         
+    @Override
     public boolean isValid()
         { return getModel().getGraph().getReifier().getTriple( this.asNode() ) != null; }
         
@@ -121,6 +124,7 @@ public class ReifiedStatementImpl extends ResourceImpl implements ReifiedStateme
     public static ReifiedStatementImpl create( EnhGraph eg, Node n, Statement s )
         { return new ReifiedStatementImpl( eg, n, s ).installInReifier(); }
     
+    @Override
     public String toString()
         { return super.toString() + "=>" + statement; }
 

@@ -19,6 +19,7 @@ public class TestConnectionAssembler extends AssemblerTestBase
     public TestConnectionAssembler( String name )
         { super( name ); }  
 
+    @Override
     protected Class getAssemblerClass()
         { return ConnectionAssembler.class; }
 
@@ -217,6 +218,7 @@ public class TestConnectionAssembler extends AssemblerTestBase
             this.result = result;
             }
 
+        @Override
         public ConnectionDescription createConnection
             ( String subject, String url, String type, String user, String pass )
             {

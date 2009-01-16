@@ -83,11 +83,13 @@ public class DIGQueryIsEquivalentTranslator
     /**
      * <p>Answer a query that will generate a query to see if two concepts are equivalent</p>
      */
+    @Override
     public Document translatePattern( TriplePattern pattern, DIGAdapter da ) {
         return translatePattern( pattern, da, null );
     }
 
 
+    @Override
     public Document translatePattern( TriplePattern pattern, DIGAdapter da, Model premises ) {
         DIGConnection dc = da.getConnection();
         Document query = dc.createDigVerb( DIGProfile.ASKS, da.getProfile() );
@@ -139,6 +141,7 @@ public class DIGQueryIsEquivalentTranslator
     /**
      * <p>Answer an iterator of triples that match the original find query.</p>
      */
+    @Override
     public ExtendedIterator translateResponseHook( Document response, TriplePattern query, DIGAdapter da ) {
         return conceptSetNameCheck( response, da, m_qObject, query.asTriple() );
     }
@@ -152,6 +155,7 @@ public class DIGQueryIsEquivalentTranslator
      * relations (in which case the query will have to introduce a bNode as a
      * comprehension step).
      */
+    @Override
     public boolean checkTriple( TriplePattern pattern, DIGAdapter da, Model premises ) {
         Node object = pattern.getObject();
         Node subject = pattern.getSubject();
@@ -177,6 +181,7 @@ public class DIGQueryIsEquivalentTranslator
         return pass;
     }
 
+    @Override
     public boolean trigger( TriplePattern pattern, DIGAdapter da, Model premises ) {
         return super.trigger( pattern, da, premises );
     }

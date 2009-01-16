@@ -44,6 +44,7 @@ public class Tutorial10 extends Object {
         StmtIterator iter = model.listStatements(
             new 
                 SimpleSelector(null, VCARD.FN, (RDFNode) null) {
+                    @Override
                     public boolean selects(Statement s) {
                             return s.getString().endsWith("Smith");
                     }

@@ -36,6 +36,7 @@ public class TestCache extends TestCase
             this.cacheType = cacheType;
         }
 
+        @Override
         protected void runTest() {
             testCache();
         }

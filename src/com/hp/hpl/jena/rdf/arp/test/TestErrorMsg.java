@@ -26,7 +26,8 @@ public class TestErrorMsg extends TestCase {
 	public TestErrorMsg(String name) {
 		super(name);
 	}
-	public String toString() {
+	@Override
+    public String toString() {
 		return getName();
 	}
 

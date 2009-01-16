@@ -62,6 +62,7 @@ public class RDFListImpl
      * A factory for generating RDFList facets from nodes in enhanced graphs.
      */
     public static Implementation factory = new Implementation() {
+        @Override
         public EnhNode wrap( Node n, EnhGraph eg ) { 
             if (canWrap( n, eg )) {
                 RDFListImpl impl = new RDFListImpl( n, eg );
@@ -82,6 +83,7 @@ public class RDFListImpl
             } 
         }
             
+        @Override
         public boolean canWrap( Node node, EnhGraph eg ) {
             Graph g = eg.asGraph();
             
@@ -734,6 +736,7 @@ public class RDFListImpl
      * again. Therefore, this method name has been deprecated in favour of {@link #removeList}</p>
      * @deprecated Replaced by {@link #removeList}
      */
+    @Deprecated
     public void removeAll() {
         removeList();
     }
@@ -902,6 +905,7 @@ public class RDFListImpl
      * 
      * @return True if the list is well-formed.
      */
+    @Override
     public boolean isValid() {
         m_errorMsg = null;
         
@@ -1171,6 +1175,7 @@ public class RDFListImpl
         /**
          * @see Iterator#hasNext
          */
+        @Override
         public boolean hasNext() {
             return !m_head.isEmpty();
         }
@@ -1178,6 +1183,7 @@ public class RDFListImpl
         /**
          * @see Iterator#next
          */
+        @Override
         public Object next() {
             m_seen = m_head;
             m_head = m_head.getTail();
@@ -1188,6 +1194,7 @@ public class RDFListImpl
         /**
          * @see Iterator#remove
          */
+        @Override
         public void remove() {
             if (m_seen == null) {
                 throw new IllegalStateException( "Illegal remove from list operator" );

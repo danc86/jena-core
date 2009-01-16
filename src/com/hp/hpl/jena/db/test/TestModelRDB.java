@@ -29,14 +29,17 @@ public class TestModelRDB extends AbstractTestModel
     private IDBConnection con;
     private int count = 0;
     
+    @Override
     public void setUp()
         { con = TestConnection.makeAndCleanTestConnection();
         super.setUp(); }
     
+    @Override
     public void tearDown() 
         { try { con.close(); }
         catch (SQLException e) { throw new JenaException( e ); } }
     
+    @Override
     public Model getModel()
         {
         return ModelRDB.createModel( con, "db-test-model-" + ++count );

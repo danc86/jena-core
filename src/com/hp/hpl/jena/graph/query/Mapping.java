@@ -103,6 +103,7 @@ public class Mapping implements VariableIndexes
     /**
         @return a string representing this mapping
     */
+    @Override
     public String toString()
         { return map.toString(); }
 	}
