@@ -135,7 +135,7 @@ public class DBQueryStage extends Stage
             {
             for (int i = 0; i < compiled.argCnt; i++)
                 {
-                int ix = ((Integer) compiled.argIndex.get( i )).intValue();
+                int ix = (compiled.argIndex.get( i )).intValue();
                 Node arg = (Node) args.get( ix );
                 if (arg == null) throw new JenaException( "Null query argument" );
                 String val = compiled.driver.nodeToRDBString( arg, false );

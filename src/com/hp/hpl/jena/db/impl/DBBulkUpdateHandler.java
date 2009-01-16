@@ -42,13 +42,13 @@ public class DBBulkUpdateHandler implements BulkUpdateHandler {
         manager.notifyAddArray( graph, triples );
 	}
 
-	public void add( List triples ) 
+	public void add( List<Triple> triples ) 
         { add( triples, true ); }
         
     /**
         add a list of triples to the graph, notifying only if requested.
     */
-    protected void add( List triples, boolean notify ) {
+    protected void add( List<Triple> triples, boolean notify ) {
 		graph.add(triples);
         if (notify) manager.notifyAddList( graph, triples );
 	}
@@ -60,11 +60,11 @@ public class DBBulkUpdateHandler implements BulkUpdateHandler {
         turned off.
      	@see com.hp.hpl.jena.graph.BulkUpdateHandler#add(java.util.Iterator)
      */
-	public void add(Iterator it) 
+	public void add(Iterator<Triple> it) 
         { 
         if (manager.listening())
             {
-            List L = IteratorCollection.iteratorToList( it );
+            List<Triple> L = IteratorCollection.iteratorToList( it );
             add( L, false );
             manager.notifyAddIterator( graph, L );    
             }
@@ -72,9 +72,9 @@ public class DBBulkUpdateHandler implements BulkUpdateHandler {
             addIterator( it ); 
         }
     
-    protected void addIterator( Iterator it )
+    protected void addIterator( Iterator<Triple> it )
     {
-		ArrayList list = new ArrayList(CHUNK_SIZE);
+		ArrayList<Triple> list = new ArrayList<Triple>(CHUNK_SIZE);
 		while (it.hasNext()) {
 			while (it.hasNext() && list.size() < CHUNK_SIZE) {
 				list.add( it.next() );
@@ -103,13 +103,13 @@ public class DBBulkUpdateHandler implements BulkUpdateHandler {
         manager.notifyDeleteArray( graph, triples );
 	}
 
-    public void delete( List triples )
+    public void delete( List<Triple> triples )
         { delete( triples, true ); }
         
     /**
         Add a list of triples to the graph, notifying only if requested.
     */
-	protected void delete(List triples, boolean notify ) {
+	protected void delete(List<Triple> triples, boolean notify ) {
 		graph.delete( triples );
         if (notify) manager.notifyDeleteList( graph, triples );
 	}
@@ -121,11 +121,11 @@ public class DBBulkUpdateHandler implements BulkUpdateHandler {
         with notification turned off.
         @see com.hp.hpl.jena.graph.BulkUpdateHandler#add(java.util.Iterator)
      */
-    public void delete(Iterator it) 
+    public void delete(Iterator<Triple> it) 
         { 
         if (manager.listening())
             {
-            List L = IteratorCollection.iteratorToList( it );
+            List<Triple> L = IteratorCollection.iteratorToList( it );
             delete( L, false );
             manager.notifyDeleteIterator( graph, L );    
             }
@@ -133,8 +133,8 @@ public class DBBulkUpdateHandler implements BulkUpdateHandler {
             deleteIterator( it ); 
         }
     
-	protected void deleteIterator(Iterator it) {
-		ArrayList list = new ArrayList(CHUNK_SIZE);
+	protected void deleteIterator(Iterator<Triple> it) {
+		ArrayList<Triple> list = new ArrayList<Triple>(CHUNK_SIZE);
 		while (it.hasNext()) {
 			while (it.hasNext() && list.size() < CHUNK_SIZE) {
 				list.add(it.next());

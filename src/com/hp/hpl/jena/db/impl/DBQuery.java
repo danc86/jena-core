@@ -17,7 +17,7 @@ public class DBQuery
 	{
 	int argCnt;         // number of arguments to query
 	String argType;     // list of argument types
-	List argIndex;		// index of argument in input
+	List<Integer> argIndex;		// index of argument in input
 	int varCnt;         // number of variables in query
 	int aliasCnt;        // number of tables aliases (scans) in from clause
 	String stmt;        // query string
@@ -39,12 +39,12 @@ public class DBQuery
 	boolean isEmpty;		// true if compiler determines query has no results
 
 	
-	public DBQuery ( SpecializedGraph sg, List varList,
+	public DBQuery ( SpecializedGraph sg, List<VarDesc> varList,
 		boolean queryOnlyStmt,  boolean queryOnlyReif, boolean queryFullReif ) {
 
 		argCnt = 0;
 		argType = "";
-		argIndex = new ArrayList();	
+		argIndex = new ArrayList<Integer>();	
 		aliasCnt = 0;
 		stmt = "";
 		isMultiModel = true;  // for now
@@ -70,7 +70,7 @@ public class DBQuery
 		// array of variable bound by query
 		vars = new VarDesc[varList.size()];
 		for ( varCnt=0; varCnt<varList.size(); varCnt++ ) {
-			vars[varCnt] = (VarDesc) varList.get(varCnt);
+			vars[varCnt] = varList.get(varCnt);
 		}
 
 	}

@@ -52,8 +52,8 @@ public class LRUCache implements ICache {
     
 	*/
 	
-	protected Map keyCache;
-	protected Map valCache;
+	protected Map<IDBID, Object> keyCache;
+	protected Map<Object, IDBID> valCache;
 
 	protected IDBID Keys[];
 	protected Random rand;

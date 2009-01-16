@@ -26,7 +26,7 @@ public class DriverMap
     public static final Property driverClass = property( "driverClass" );
     public static final Property driverName = property( "driverName" );
     
-    private final static Map mapped = new HashMap();
+    private final static Map<String, String> mapped = new HashMap<String, String>();
     
     static
         {
@@ -43,7 +43,7 @@ public class DriverMap
     */
     
     public static String get( String name )
-        { return (String) mapped.get( name.toLowerCase() ); }
+        { return mapped.get( name.toLowerCase() ); }
     
     /**
         Add a mapping from a driver name to its class name. The driver name

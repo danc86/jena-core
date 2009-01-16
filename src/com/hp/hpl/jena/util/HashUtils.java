@@ -15,15 +15,15 @@ import java.util.*;
 @Deprecated
 public class HashUtils
     {
-    public static Map createMap() { return new HashMap(); }
+    public static <K,V> Map<K,V> createMap() { return new HashMap<K,V>(); }
     
-    public static Map createMap( int size ) { return new HashMap( size ); }
+    public static <K,V> Map<K,V> createMap( int size ) { return new HashMap<K,V>( size ); }
     
-    public static Map createMap( Map toCopy ) { return new HashMap( toCopy ); }
+    public static <K,V> Map<K,V> createMap( Map<K,V> toCopy ) { return new HashMap<K,V>( toCopy ); }
         
-    public static Set createSet() { return new HashSet(); }
+    public static <T> Set<T> createSet() { return new HashSet<T>(); }
     
-    public static Set createSet( Collection  toCopy ) { return new HashSet( toCopy ); }
+    public static <T> Set<T> createSet( Collection<T>  toCopy ) { return new HashSet<T>( toCopy ); }
     }
 
 
