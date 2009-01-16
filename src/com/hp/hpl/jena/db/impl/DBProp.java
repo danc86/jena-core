@@ -116,17 +116,6 @@ public abstract class DBProp {
 		return g.find( self, null, null, newComplete() );
 	}
     
-    /**
-        @deprecated no uses remaining in Jena codebase
-    */
-    protected static Node findProperty( Graph graph, Node_URI predicate ) {
-		ClosableIterator it = graph.find( null, predicate, null );
-		Node result = null;
-		if( it.hasNext() ) result = ((Triple) it.next()).getObject();
-		it.close();
-		return result;
-	}	
-
 	public static String generateUniqueID() {
 		UID uid = new UID();
 		String hostname;

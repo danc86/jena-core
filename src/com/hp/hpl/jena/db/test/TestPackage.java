@@ -85,7 +85,6 @@ public class TestPackage extends TestSuite
 		addTest( "TestConnection", TestConnection.suite() );
         addTest( "TestBasicOperations", TestBasicOperations.suite() );
         addTest( "TestSimpleSelector", TestSimpleSelector.suite() );
-		addTest( "TestCompatability", TestCompatability.suite() );
 		addTest( "TestCompareToMem", TestCompareToMem.suite() );
 		addTest( "TestGraphRDB", TestGraphRDB.suite());
 		addTest( "TestModelRDB", TestModelRDB.suite());

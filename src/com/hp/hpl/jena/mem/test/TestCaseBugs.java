@@ -57,7 +57,9 @@ public class TestCaseBugs
             Statement s = model.createLiteralStatement(r, RDF.type, oc);
             assertInstanceOf(Resource.class, s.getObject() );
             
-            s.changeObject(op);
+            //s.changeObject(op);
+            s = model.createLiteralStatement(r, RDF.type, op);
+            
             assertInstanceOf(Resource.class, s.getObject() );
             
             model.addLiteral(r, RDF.type, oc);

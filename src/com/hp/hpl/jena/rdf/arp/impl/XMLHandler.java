@@ -350,9 +350,8 @@ public class XMLHandler extends LexicalHandlerImpl implements ARPErrorNumbers,
     }
     */
 
-    private ARPOptions options = new ARPOptions();
-
-    private ARPHandlers handlers = new ARPHandlers();
+    private ARPOptions options = ARPOptions.createNewOptions() ;
+    private ARPHandlers handlers = ARPHandlers.createNewHandlers() ;
 
     StatementHandler getStatementHandler() {
         return handlers.getStatementHandler();
@@ -372,7 +371,7 @@ public class XMLHandler extends LexicalHandlerImpl implements ARPErrorNumbers,
     }
 
     public void setHandlersWith(ARPHandlers newHh) {
-        handlers = new ARPHandlers();
+        handlers = ARPHandlers.createNewHandlers() ;
         handlers.setErrorHandler(newHh.getErrorHandler());
         handlers.setExtendedHandler(newHh.getExtendedHandler());
         handlers.setNamespaceHandler(newHh.getNamespaceHandler());

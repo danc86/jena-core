@@ -182,7 +182,12 @@ public class SeqImpl extends ContainerImpl implements Seq {
     
     public Seq set(int index, Object o)  {
         checkIndex(index);
-        getRequiredProperty(RDF.li(index)).changeObject(o);
+        Statement s = getRequiredProperty(RDF.li(index)) ;
+        Model m = s.getModel() ;
+        Statement s2 = m.createLiteralStatement(s.getSubject(), s.getPredicate(), o) ; 
+        s.getModel().remove(s) ;
+        s.getModel().add(s2) ;
+        //getRequiredProperty(RDF.li(index)).changeObject(o);
         return this;
     }
     
