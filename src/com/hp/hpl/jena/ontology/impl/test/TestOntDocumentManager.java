@@ -509,7 +509,7 @@ public class TestOntDocumentManager
         assertNull( o1.getReadFailureHandler() );
 
         OntDocumentManager.ReadFailureHandler rfh = new OntDocumentManager.ReadFailureHandler() {
-            public void handleFailedRead( String url, Model model, Exception e ) {}};
+            public void handleFailedRead( String url, Model model, Exception e ) {/**/}};
 
         o1.setReadFailureHandler( rfh );
         assertSame( rfh, o1.getReadFailureHandler() );

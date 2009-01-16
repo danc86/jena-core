@@ -25,7 +25,6 @@ package com.hp.hpl.jena.ontology;
 // Imports
 ///////////////
 import com.hp.hpl.jena.graph.query.BindingQueryPlan;
-import com.hp.hpl.jena.ontology.event.OntEventManager;
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.util.iterator.ExtendedIterator;
 
@@ -1736,13 +1735,6 @@ public interface OntModel
      * @return This model
      */
     public Model writeAll( OutputStream out, String lang, String base );
-
-
-    /**
-     * <p>Answer the ontology event manager for this model.</p>
-     * @return This model's event manager
-     */
-    public OntEventManager getEventManager();
 }
 
 

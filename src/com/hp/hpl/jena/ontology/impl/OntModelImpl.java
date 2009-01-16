@@ -37,7 +37,6 @@ import com.hp.hpl.jena.graph.compose.MultiUnion;
 import com.hp.hpl.jena.graph.query.BindingQueryPlan;
 import com.hp.hpl.jena.graph.query.Query;
 import com.hp.hpl.jena.ontology.*;
-import com.hp.hpl.jena.ontology.event.OntEventManager;
 import com.hp.hpl.jena.rdf.listeners.StatementListener;
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.rdf.model.impl.IteratorFactory;
@@ -98,9 +97,6 @@ public class OntModelImpl extends ModelCom implements OntModel
 
     /** The listener that detects dynamically added or removed imports statements */
     protected ImportsListener m_importsListener = null;
-
-    /** The event manager for ontology events on this model */
-    protected OntEventManager m_ontEventMgr = null;
 
     /** Cached deductions model */
     private Model m_deductionsModel = null;
@@ -2540,20 +2536,6 @@ public class OntModelImpl extends ModelCom implements OntModel
      */
     public OntModelSpec getSpecification() {
         return m_spec;
-    }
-
-
-    /**
-     * <p>Answer the ontology event manager attached to this model.  If there is no event
-     * manager currently attached, a new one will be created.</p>
-     * @return The current, or a new, ontology event mananger
-     */
-    public OntEventManager getEventManager() {
-        if (m_ontEventMgr == null) {
-            m_ontEventMgr = new OntEventManager( this );
-        }
-
-        return m_ontEventMgr;
     }
 
 
