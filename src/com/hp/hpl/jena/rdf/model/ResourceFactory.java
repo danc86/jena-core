@@ -217,7 +217,7 @@ public class ResourceFactory {
         }
         
         public Literal createPlainLiteral( String string ) {
-            return new LiteralImpl( string );
+            return new LiteralImpl(  Node.createLiteral( string, "", false ), null );
         }
 
         public Literal createTypedLiteral( String string , RDFDatatype dType)

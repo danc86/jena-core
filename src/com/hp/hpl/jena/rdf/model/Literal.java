@@ -208,14 +208,6 @@ public interface Literal extends RDFNode {
     */    
     public String getLanguage();
     
-    /** Return whether Literal is well formed XML
-     * @deprecated use isWellFormedXML instead.
-     *  @return true if the literal is well formed XML, e.g. as
-     *               would be produced from a parseType="Literal"
-     *               element.
-     */
-    public boolean getWellFormed();
-    
     /**
         Answer true iff this literal is (or claims to be) well-formed XML.
     */
