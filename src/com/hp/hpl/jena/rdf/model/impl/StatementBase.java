@@ -69,12 +69,6 @@ public abstract class StatementBase
 	public Statement changeLiteralObject( boolean o )
 		{ return changeObject( model.createTypedLiteral( o ) ); }
 	
-    public Statement changeObject( boolean o )
-        { return stringReplace( String.valueOf( o ) ); }
-
-	public Statement changeObject( long o )
-		{ return stringReplace( String.valueOf( o ) ); }
-	
     public Statement changeLiteralObject( long o )
         { return changeObject( model.createTypedLiteral( o ) ); }
 
@@ -89,15 +83,6 @@ public abstract class StatementBase
 	
     public Statement changeLiteralObject( int o )
         { return changeObject( model.createTypedLiteral( o ) ); }
-	
-    public Statement changeObject( float o )
-        { return changeObject( String.valueOf( o ) ); }
-
-    public Statement changeObject( double o )
-        { return stringReplace( String.valueOf( o ) ); }
-    
-	public Statement changeTypedObject( double o )
-		{ return changeObject( model.createTypedLiteral( o ) ); }
 
 	public Statement changeObject( String o )
 		{ return stringReplace( String.valueOf( o ) ); }
@@ -113,13 +98,6 @@ public abstract class StatementBase
 
 	public Statement changeObject( RDFNode o )
 		{ return replace( o ); }
-
-	public Statement changeObject( Object o )
-		{
-		return o instanceof RDFNode 
-			? replace( (RDFNode) o ) 
-		    : stringReplace( o.toString() );
-		}
 
 	public boolean getBoolean()
 		{ return getLiteral().getBoolean(); }

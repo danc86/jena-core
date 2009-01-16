@@ -294,21 +294,6 @@ public interface Statement extends FrontsTriple
     */
     public Statement changeLiteralObject( double o );
     
-    /** @deprecated use changeLiteralObject etc */
-    public Statement changeObject( float o );
-
-    /** @deprecated use changeLiteralObject etc */
-    public Statement changeObject( boolean o );
-
-    /** @deprecated use changeLiteralObject etc */
-    public Statement changeObject( long o );
-    
-    /** @deprecated use changeLiteralObject etc */
-    public Statement changeObject( double o );
-
-    /** @deprecated use changeLiteralObject etc */
-    public Statement changeObject(Object o) ;
-    
     /** change the object of the statement (S, P, X) to (S, P, o).
      *  <p>The statement with the old value is removed from the model and 
      *  a new statement with the new value added and returned.</p>
