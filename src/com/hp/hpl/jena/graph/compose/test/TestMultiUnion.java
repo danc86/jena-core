@@ -79,7 +79,7 @@ public class TestMultiUnion
         {
         Graph gBase = graphWith( "" ), g1 = graphWith( "" );
         return new MultiUnion( new Graph[] {gBase, g1} ); 
-        };
+        }
 
     public void testEmptyGraph() {
         Graph m = new MultiUnion();

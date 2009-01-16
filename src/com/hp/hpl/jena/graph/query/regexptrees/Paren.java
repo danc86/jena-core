@@ -29,7 +29,7 @@ public class Paren extends RegexpTree
         { return operand; }
     
     public int getIndex()
-        { return index; };
+        { return index; }
 
     @Override
     public boolean equals( Object other )

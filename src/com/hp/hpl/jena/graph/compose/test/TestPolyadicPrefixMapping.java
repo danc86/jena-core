@@ -113,7 +113,7 @@ public class TestPolyadicPrefixMapping extends AbstractTestPrefixMapping
         {
         g1.getPrefixMapping().setNsPrefix( "a", "eh:/U1" );
         g2.getPrefixMapping().setNsPrefix( "a", "eh:/U2" );
-        String a = (String) poly.getPrefixMapping().getNsPrefixMap().get( "a" );
+        String a = poly.getPrefixMapping().getNsPrefixMap().get( "a" );
         assertEquals( "eh:/U1", a );
         }
     
@@ -121,7 +121,7 @@ public class TestPolyadicPrefixMapping extends AbstractTestPrefixMapping
         {
         g1.getPrefixMapping().setNsPrefix( "", "eh:/U1" );
         g2.getPrefixMapping().setNsPrefix( "", "eh:/U2" );
-        String a = (String) poly.getPrefixMapping().getNsPrefixMap().get( "" );
+        String a = poly.getPrefixMapping().getNsPrefixMap().get( "" );
         assertEquals( poly.getPrefixMapping().getNsPrefixURI( "" ), a );
         }
     }

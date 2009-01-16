@@ -4087,7 +4087,7 @@ public class Regression extends Object {
             n++; if (! (cont1.size()==13)) error(test,n);
 
             {
-                n=(n/100+1)*100;;
+                n=(n/100+1)*100;
                      for (int i=0; i<num; i++) {
                         cont2.add(i);
                     }
@@ -4106,7 +4106,7 @@ public class Regression extends Object {
                   {true,  true,  true,  false, false,
                    false, false, false, true,  true };
 
-                n=(n/100+1)*100;;
+                n=(n/100+1)*100;
                 n++; nIter=cont2.iterator();
                      for (int i=0; i<num; i++) {
                 n++;    nIter.nextNode();
@@ -4114,7 +4114,7 @@ public class Regression extends Object {
                         found[i] = false;
                      }
                 n++; nIter.close();
-                n=(n/100+1)*100;;
+                n=(n/100+1)*100;
                 n++; nIter = cont2.iterator();
                      while (nIter.hasNext()) {
                         int v = ((Literal) nIter.nextNode()).getInt();
@@ -4218,7 +4218,7 @@ public class Regression extends Object {
                         found[i] = false;
                      }
                 n++; nIter.close();
-                n=(n/100+1)*100;;
+                n=(n/100+1)*100;
                 n++; nIter = bag3.iterator();
                      while (nIter.hasNext()) {
                         int v = ((Literal) nIter.nextNode()).getInt();

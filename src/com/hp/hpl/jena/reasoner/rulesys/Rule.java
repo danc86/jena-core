@@ -633,7 +633,7 @@ public class Rule implements ClauseEntry {
         private static final int STARTED_LITERAL = 1;
         
         /** Literal parse state */
-        private int literalState = NORMAL;;
+        private int literalState = NORMAL;
         
         /** Trace back of recent tokens for error reporting */
         protected List priorTokens = new ArrayList();

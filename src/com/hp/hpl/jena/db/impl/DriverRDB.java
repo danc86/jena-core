@@ -643,10 +643,10 @@ public abstract class DriverRDB implements IRDBDriver {
 				// the order of creation above.
 				if (reifTbl != null)
 					try { deleteTable(reifTbl); }
-					catch ( Exception e ) {};
+					catch ( Exception e ) {}
 				if (stmtTbl != null)
 					try { deleteTable(stmtTbl); }
-					catch ( Exception e ) {};
+					catch ( Exception e ) {}
 			}
 			xactOp(xactCommit);
 			if (autoOn) xactOp(xactAutoOn);

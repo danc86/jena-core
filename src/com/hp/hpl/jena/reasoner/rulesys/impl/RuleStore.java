@@ -44,7 +44,7 @@ public class RuleStore {
      */
     public RuleStore() {
         allRules = new ArrayList();
-    };
+    }
     
     /**
      * Constructor. Stores and indexes a list of rules.

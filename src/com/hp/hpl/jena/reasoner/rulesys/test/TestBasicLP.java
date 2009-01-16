@@ -1255,7 +1255,7 @@ public class TestBasicLP  extends TestCase {
         data.add(new Triple(a, p, 
             Util.makeList( new Node[]{C1, Util.makeIntNode(3), C3}, data) ));
         data.add(new Triple(a, q, C1));
-        data.add(new Triple(a, q, Util.makeLongNode(3)));;
+        data.add(new Triple(a, q, Util.makeLongNode(3)));
         data.add(new Triple(a, q, C2));
         infgraph =  makeInfGraph(rules, data);
         TestUtil.assertIteratorValues(this, 
