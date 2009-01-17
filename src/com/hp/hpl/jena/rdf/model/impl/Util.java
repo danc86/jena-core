@@ -43,8 +43,6 @@ import com.hp.hpl.jena.shared.*;
  */
 public class Util extends Object {
 
-    public static final String CLASSPATH = "com.hp.hpl.jena";
-
     /** Given an absolute URI, determine the split point between the namespace part
      * and the localname part.
      * If there is no valid localname part then the length of the
@@ -60,13 +58,13 @@ public class Util extends Object {
         int lg = uri.length();
         if (lg == 0)
             return 0;
-        int j;
-        int i;
-        for (i = lg - 1; i >= 1; i--) {
+        int i = lg-1 ;
+        for ( ; i >= 1 ; i--) {
             ch = uri.charAt(i);
             if (notNameChar(ch)) break;
         }
-        for (j = i + 1; j < lg; j++) {
+        int j = i + 1 ;
+        for (; j < lg; j++) {
             ch = uri.charAt(j);
             if (XMLChar.isNCNameStart(ch)) {
                 if (uri.charAt(j - 1) == ':'

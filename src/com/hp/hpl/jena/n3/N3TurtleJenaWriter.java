@@ -25,8 +25,7 @@ public class N3TurtleJenaWriter extends N3JenaWriter
         
         if ( writer.getPropValue("usePropertySymbols") == null )
             writer.useWellKnownPropertySymbols = false ;
-        writer.allowTripleQuotedStrings = false ;
-        writer.allowDoubles = false ;
+        writer.allowTripleQuotedStrings = true ;
     }
 }
 
