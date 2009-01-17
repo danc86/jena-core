@@ -306,8 +306,9 @@ public class DBQueryHandler extends SimpleQueryHandler {
 	}
 
 
-	private boolean findConstraints ( ExpressionSet constraints, ExpressionSet evalCons, VarDesc vx ) {
+    private boolean findConstraints ( ExpressionSet constraints, ExpressionSet evalCons, VarDesc vx ) {
 		boolean res = false;
+	    @SuppressWarnings("unchecked")
 		Iterator<Expression> it = constraints.iterator();
 		Expression e;
 		while (it.hasNext()) {

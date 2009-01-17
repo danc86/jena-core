@@ -46,7 +46,7 @@ public class ResultSetTripleIterator extends ResultSetIterator {
     /** HasType flag if iterating over reified statements */
     protected boolean m_hasType;
 
-    static protected Log logger = LogFactory.getLog( ResultSetTripleIterator.class );
+    static private Log logger = LogFactory.getLog( ResultSetTripleIterator.class );
     
 	// Constructor
 	public ResultSetTripleIterator(IPSet p, IDBID graphID) {

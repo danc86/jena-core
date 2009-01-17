@@ -40,7 +40,7 @@ public class XSDFloat extends XSDDatatype {
       * @param javaClass the java class for which this xsd type is to be
       * treated as the cannonical representation
       */
-     public XSDFloat(String typeName, Class javaClass) {
+     public XSDFloat(String typeName, Class<?> javaClass) {
          super(typeName, javaClass);
      }
 

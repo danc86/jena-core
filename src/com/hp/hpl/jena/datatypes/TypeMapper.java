@@ -57,10 +57,10 @@ public class TypeMapper {
 // Variables
 
     /** Map from uri to datatype */
-    private HashMap uriToDT = new HashMap();
+    private HashMap<String, RDFDatatype> uriToDT = new HashMap<String, RDFDatatype>();
     
     /** Map from java class to datatype */
-    private HashMap classToDT = new HashMap();
+    private HashMap<Class<?>, RDFDatatype> classToDT = new HashMap<Class<?>, RDFDatatype>();
     
 //=======================================================================
 // Methods
@@ -77,7 +77,7 @@ public class TypeMapper {
      * uri is null it returns null (indicating a plain RDF literal).
      */
     public RDFDatatype getSafeTypeByName(String uri) {
-        RDFDatatype dtype = (RDFDatatype) uriToDT.get(uri);
+        RDFDatatype dtype = uriToDT.get(uri);
         if (dtype == null) {
             if (uri == null) {
                 // Plain literal
@@ -104,7 +104,7 @@ public class TypeMapper {
      * @return Datatype the datatype definition of null if not known.
      */
     public RDFDatatype getTypeByName(String uri) {
-        return (RDFDatatype) uriToDT.get(uri);
+        return uriToDT.get(uri);
     }
     
     /**
@@ -116,13 +116,13 @@ public class TypeMapper {
      * of <code>value</code>
      */
     public RDFDatatype getTypeByValue(Object value) {
-        return (RDFDatatype) classToDT.get(value.getClass());
+        return classToDT.get(value.getClass());
     }
     
     /**
      * List all the known datatypes 
      */
-    public Iterator listTypes() {
+    public Iterator<RDFDatatype> listTypes() {
         return uriToDT.values().iterator();
     }
     
@@ -131,7 +131,7 @@ public class TypeMapper {
      */
     public void registerDatatype(RDFDatatype type) {
         uriToDT.put(type.getURI(), type);
-        Class jc = type.getJavaClass();
+        Class<?> jc = type.getJavaClass();
         if (jc != null) {
             classToDT.put(jc, type);
         }
@@ -139,8 +139,8 @@ public class TypeMapper {
 
     // Temporary development code
     public static void main(String[] args) {
-        for (Iterator iter = theTypeMap.listTypes(); iter.hasNext();) {
-            RDFDatatype dt = (RDFDatatype) iter.next();
+        for (Iterator<RDFDatatype> iter = theTypeMap.listTypes(); iter.hasNext();) {
+            RDFDatatype dt = iter.next();
             System.out.println(" - " + dt);
         }
     }

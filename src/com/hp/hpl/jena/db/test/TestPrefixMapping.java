@@ -24,7 +24,7 @@ import junit.framework.*;
  */
 public class TestPrefixMapping extends AbstractTestPrefixMapping {
 
-	private List models = null;
+	private List<Model> models = null;
 	private IDBConnection theConnection = null;
 	private static int count = 0;
 	
@@ -39,16 +39,16 @@ public class TestPrefixMapping extends AbstractTestPrefixMapping {
 	@Override
     public void setUp() {
 		theConnection = TestConnection.makeAndCleanTestConnection();
-		models = new ArrayList();
+		models = new ArrayList<Model>();
 	}
 
 	@Override
     public void tearDown() {
 		
 		// close all the models we opened
-		Iterator it = models.iterator();
+		Iterator<Model> it = models.iterator();
 		while(it.hasNext()) {
-			Model m = (Model)it.next();
+			Model m = it.next();
 			m.close();
 		}
 			

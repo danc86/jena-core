@@ -29,13 +29,13 @@ public class TestQuery1 extends AbstractTestQuery1
     private IDBConnection theConnection;
     private int count = 0;
     
-    private List graphs;
+    private List<GraphRDB> graphs;
     
     @Override
     public void setUp() throws Exception
         {
         theConnection = TestConnection.makeTestConnection();
-        graphs = new ArrayList();
+        graphs = new ArrayList<GraphRDB>();
         super.setUp();
         }
         
@@ -48,7 +48,7 @@ public class TestQuery1 extends AbstractTestQuery1
         }
         
     private void removeGraphs()
-        { for (int i = 0; i < graphs.size(); i += 1) ((GraphRDB) graphs.get(i)).remove(); }
+        { for (int i = 0; i < graphs.size(); i += 1) graphs.get(i).remove(); }
 
 	@Override
     public Graph getGraph ( ) {

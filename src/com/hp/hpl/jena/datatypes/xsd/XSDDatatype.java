@@ -191,7 +191,7 @@ public class XSDDatatype extends BaseDatatype {
     protected XSSimpleType typeDeclaration;
     
     /** the corresponding java primitive class, if any */
-    protected Class javaClass = null;
+    protected Class<?> javaClass = null;
     
     /** Used to access the values and facets of any of the decimal numeric types */
     static final DecimalDV decimalDV = new DecimalDV();
@@ -217,7 +217,7 @@ public class XSDDatatype extends BaseDatatype {
      * @param javaClass the java class for which this xsd type is to be
      * treated as the cannonical representation
      */
-    public XSDDatatype(String typeName, Class javaClass) {
+    public XSDDatatype(String typeName, Class<?> javaClass) {
         this(typeName);
         this.javaClass = javaClass;
     }
@@ -277,7 +277,7 @@ public class XSDDatatype extends BaseDatatype {
      * otherwise returns null.
      */
     @Override
-    public Class getJavaClass() {
+    public Class< ? > getJavaClass() {
         return javaClass;
     }
     
@@ -304,7 +304,7 @@ public class XSDDatatype extends BaseDatatype {
      * @throws DatatypeFormatException if there is a problem during load (not that we use Xerces 
      * in default mode for load which may provide diagnostic output direct to stderr)
      */
-    public static List loadUserDefined(String uri, Reader reader, String encoding, TypeMapper tm) throws DatatypeFormatException {
+    public static List<String> loadUserDefined(String uri, Reader reader, String encoding, TypeMapper tm) throws DatatypeFormatException {
         return loadUserDefined(new XMLInputSource(null, uri, uri, reader, encoding), tm);
     }
       
@@ -321,7 +321,7 @@ public class XSDDatatype extends BaseDatatype {
      * @throws DatatypeFormatException if there is a problem during load (not that we use Xerces 
      * in default mode for load which may provide diagnostic output direct to stderr)
      */
-    public static List loadUserDefined(String uri, String encoding, TypeMapper tm) throws DatatypeFormatException {
+    public static List<String> loadUserDefined(String uri, String encoding, TypeMapper tm) throws DatatypeFormatException {
         return loadUserDefined(new XMLInputSource(null, uri, uri), tm);        
     }
     
@@ -336,7 +336,7 @@ public class XSDDatatype extends BaseDatatype {
      * @throws DatatypeFormatException if there is a problem during load (not that we use Xerces 
      * in default mode for load which may provide diagnostic output direct to stderr)
      */
-    private static List loadUserDefined(XMLInputSource source, TypeMapper tm) throws DatatypeFormatException {
+    private static List<String> loadUserDefined(XMLInputSource source, TypeMapper tm) throws DatatypeFormatException {
         XMLGrammarPreparser parser = new XMLGrammarPreparser();
         parser.registerPreparser(XMLGrammarDescription.XML_SCHEMA, null);
         try {
@@ -344,7 +344,7 @@ public class XSDDatatype extends BaseDatatype {
             org.apache.xerces.xs.XSModel xsm = xsg.toXSModel();
             XSNamedMap map = xsm.getComponents(XSTypeDefinition.SIMPLE_TYPE);
             int numDefs = map.getLength();
-            ArrayList names = new ArrayList(numDefs);
+            ArrayList<String> names = new ArrayList<String>(numDefs);
             for (int i = 0; i < numDefs; i++) {
                 XSSimpleType xstype = (XSSimpleType) map.item(i);
                 // Filter built in types - only needed for 2.6.0

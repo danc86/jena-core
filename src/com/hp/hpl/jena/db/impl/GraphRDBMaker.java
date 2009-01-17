@@ -29,7 +29,7 @@ import java.util.*;
 public class GraphRDBMaker extends BaseGraphMaker
     {
     protected IDBConnection c;
-    protected Set created = CollectionFactory.createHashedSet();
+    protected Set<String> created = CollectionFactory.createHashedSet();
     int reificationStyle;
     
     /**
@@ -136,8 +136,8 @@ public class GraphRDBMaker extends BaseGraphMaker
     */
     public void removeAll()
         {
-        Iterator it = CollectionFactory.createHashedSet( created ).iterator();
-        while (it.hasNext()) removeGraph( (String) it.next() );
+        Iterator<String> it = CollectionFactory.createHashedSet( created ).iterator();
+        while (it.hasNext()) removeGraph( it.next() );
         }
         
     public void close()

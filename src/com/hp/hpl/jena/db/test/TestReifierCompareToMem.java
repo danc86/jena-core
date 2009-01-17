@@ -77,34 +77,39 @@ public class TestReifierCompareToMem extends TestCase
 	}
 
 	private void compareModels() {
-		
-		Iterator it = modelmem.listStatements();
-		while( it.hasNext()) {
-			Statement s = (Statement)it.next();
-			if( ! modelrdb.contains(s)) {
-				logger.error( "Statment:"+s+" is in mem but not rdf");
-				logModel(modelmem, "Mem");
-				logModel(modelrdb, "RDF");
-			}
-			assertTrue( modelrdb.contains(s));
-		}
-		it = modelrdb.listStatements();
-		while( it.hasNext()) {
-			Statement s = (Statement)it.next();
-			if( ! modelmem.contains(s)) {
-				logger.error("Statment:"+s+" is in rdf but not memory");
-				logModel(modelmem, "Mem");
-				logModel(modelrdb, "RDF");
-			}
-			assertTrue( modelmem.contains(s));
-		}
-		
-		assertTrue( modelmem.size() == modelrdb.size() );
-    }
+	    {
+	        @SuppressWarnings("unchecked")
+	        Iterator<Statement> it = modelmem.listStatements();
+	        while( it.hasNext()) {
+	            Statement s = it.next();
+	            if( ! modelrdb.contains(s)) {
+	                logger.error( "Statment:"+s+" is in mem but not rdf");
+	                logModel(modelmem, "Mem");
+	                logModel(modelrdb, "RDF");
+	            }
+	            assertTrue( modelrdb.contains(s));
+	        }
+	    }
+	    {
+	        @SuppressWarnings("unchecked")
+	        Iterator<Statement> it = modelrdb.listStatements();
+	        while( it.hasNext()) {
+	            Statement s = it.next();
+	            if( ! modelmem.contains(s)) {
+	                logger.error("Statment:"+s+" is in rdf but not memory");
+	                logModel(modelmem, "Mem");
+	                logModel(modelrdb, "RDF");
+	            }
+	            assertTrue( modelmem.contains(s));
+	        }
+	    }
+	    assertTrue( modelmem.size() == modelrdb.size() );
+	}
     
     private void logModel(Model m, String name) {
     	logger.debug("Model");
-		Iterator it = m.listStatements();
+    	@SuppressWarnings("unchecked")
+        Iterator<Statement> it = m.listStatements();
 		while( it.hasNext()) { 
             logger.debug( name + ": " + it.next() );
 //			Statement s = (Statement)it.next();

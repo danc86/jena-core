@@ -39,7 +39,7 @@ public class XSDBaseStringType extends XSDDatatype {
      * @param javaClass the java class for which this xsd type is to be
      * treated as the cannonical representation
      */
-    public XSDBaseStringType(String typeName, Class javaClass) {
+    public XSDBaseStringType(String typeName, Class<?> javaClass) {
         super(typeName, javaClass);
     }
 

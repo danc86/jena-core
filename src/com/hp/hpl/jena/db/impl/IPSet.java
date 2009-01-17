@@ -80,7 +80,7 @@ public interface IPSet {
 	 * @param triples List of triples to be added.  This is modified by the call.
 	 * @param my_GID  ID of the graph.
 	 */
-	public void storeTripleList(List triples, IDBID my_GID);
+	public void storeTripleList(List<Triple> triples, IDBID my_GID);
 
 
 
@@ -95,7 +95,7 @@ public interface IPSet {
 		 * @param t the triple to be added
 		 * @param gid the id of the graph
 		 */
-	public void deleteTripleList(List triples, IDBID gid);
+	public void deleteTripleList(List<Triple> triples, IDBID gid);
 	
 	
 	/**

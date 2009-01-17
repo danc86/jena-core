@@ -40,7 +40,7 @@ public class XSDDouble extends XSDDatatype {
       * @param javaClass the java class for which this xsd type is to be
       * treated as the cannonical representation
       */
-     public XSDDouble(String typeName, Class javaClass) {
+     public XSDDouble(String typeName, Class<?> javaClass) {
          super(typeName, javaClass);
      }
 

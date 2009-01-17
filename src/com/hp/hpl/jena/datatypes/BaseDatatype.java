@@ -157,7 +157,7 @@ public class BaseDatatype implements RDFDatatype {
      * Returns the java class which is used to represent value
      * instances of this datatype.
      */
-    public Class getJavaClass() {
+    public Class<?> getJavaClass() {
         return null;
     }
     

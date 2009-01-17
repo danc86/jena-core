@@ -24,13 +24,16 @@ package com.hp.hpl.jena.db.test;
 
 import java.util.Iterator;
 
-import com.hp.hpl.jena.db.*;
-import com.hp.hpl.jena.db.impl.IRDBDriver;
-import com.hp.hpl.jena.rdf.model.*;
-import com.hp.hpl.jena.vocabulary.RDF;
-
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
+
+import com.hp.hpl.jena.rdf.model.*;
+
+import com.hp.hpl.jena.db.GraphRDB;
+import com.hp.hpl.jena.db.IDBConnection;
+import com.hp.hpl.jena.db.ModelRDB;
+import com.hp.hpl.jena.db.impl.IRDBDriver;
+import com.hp.hpl.jena.vocabulary.RDF;
 
 
 
@@ -500,7 +503,7 @@ public class TestBasicOperations extends TestCase {
 		}
 	}
 	
-	private int countIter( Iterator it ) {
+	private int countIter( Iterator<?> it ) {
 		int i = 0;
 		while( it.hasNext()) {
 			Statement s = (Statement) it.next();
@@ -511,25 +514,25 @@ public class TestBasicOperations extends TestCase {
 
 	private int countAll()
 	{
-		Iterator it = model.listStatements();
+		Iterator<?> it = model.listStatements();
 		return countIter(it);
 	}
 
 	private int countSubj(Resource s)
 	{
-		Iterator it = model.listStatements(s,(Property)null,(RDFNode)null);
+		Iterator<?> it = model.listStatements(s,(Property)null,(RDFNode)null);
 		return countIter(it);
 	}
 
 	private int countObj(RDFNode o)
 	{
-		Iterator it = model.listStatements((Resource)null,(Property)null,o);
+		Iterator<?> it = model.listStatements((Resource)null,(Property)null,o);
 		return countIter(it);
 	}
 
 	private int countPred(Property o)
 	{
-		Iterator it = model.listStatements((Resource)null,o,(RDFNode)null);
+		Iterator<?> it = model.listStatements((Resource)null,o,(RDFNode)null);
 		return countIter(it);
 	}
 

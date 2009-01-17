@@ -39,7 +39,7 @@ public class ResultSetNodeIterator extends ResultSetIterator {
     protected void extractRow() throws Exception {
         if (m_row == null) {
             m_nCols = m_resultSet.getMetaData().getColumnCount();
-            m_row = new ArrayList(m_nCols);
+            m_row = new ArrayList<Object>(m_nCols);
             for (int i = 0; i < m_nCols; i++) m_row.add(null);
         }
         for (int i = 0; i < m_nCols; i++) {

@@ -38,8 +38,8 @@ public class XSDDateTime extends AbstractDateTime {
     /** Mask to indicate all date/time are present */
     public static final short FULL_MASK = 0xf;
     
-    /** table mapping xs type name to mask of legal values */
-    public static final HashMap maskMap = new HashMap();
+    // Unused /** table mapping xs type name to mask of legal values */
+    //public static final HashMap maskMap = new HashMap();
         
     /** Set of legal fields for the particular date/time instance */
     protected short mask;

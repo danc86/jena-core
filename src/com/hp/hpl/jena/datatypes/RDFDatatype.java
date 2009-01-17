@@ -80,7 +80,7 @@ public interface RDFDatatype {
      * for a particular java datatype then return that java type,
      * otherwise returns null.
      */
-    public Class getJavaClass();
+    public Class<?> getJavaClass();
     
     /**
      * Cannonicalise a java Object value to a normal form.

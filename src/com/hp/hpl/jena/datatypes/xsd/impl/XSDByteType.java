@@ -33,7 +33,7 @@ public class XSDByteType extends XSDBaseNumericType {
      * @param javaClass the java class for which this xsd type is to be
      * treated as the cannonical representation
      */
-    public XSDByteType(String typeName, Class javaClass) {
+    public XSDByteType(String typeName, Class<?> javaClass) {
         super(typeName, javaClass);
     }
 

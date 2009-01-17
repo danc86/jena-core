@@ -31,7 +31,7 @@ public class TestReifier extends AbstractTestReifier  {
     /** 
         Initialiser required for MetaTestGraph interface.
      */
-    public TestReifier( Class graphClass, String name, ReificationStyle style ) 
+    public TestReifier( Class<?> graphClass, String name, ReificationStyle style ) 
         { super( name ); }
         
 	public static TestSuite suite() {

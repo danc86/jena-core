@@ -465,10 +465,10 @@ public class TestConnection extends TestCase {
 	
 
 	// helper class to sync threads
-    public class syncOnCount {
+    public class SyncOnCount {
     	private int count;
     	
-    	public syncOnCount () { count = 0; }
+    	public SyncOnCount () { count = 0; }
     	
     	public synchronized boolean testCount ( int i ) {
     		return count >= i;
@@ -503,15 +503,15 @@ public class TestConnection extends TestCase {
 
     }
     
-	syncOnCount s;
+	//syncOnCount s;
     volatile String msg = "" ;
     
     public void testConcurrentThread() {
         
 		class thread1 extends Thread {
-			syncOnCount s;
+			SyncOnCount s;
 
-			public thread1(syncOnCount sc) {
+			public thread1(SyncOnCount sc) {
 				super("thread1");
 				s = sc;
 			}
@@ -566,9 +566,9 @@ public class TestConnection extends TestCase {
         }
 
 		class thread2 extends Thread {
-			syncOnCount s;
+			SyncOnCount s;
 
-			public thread2(syncOnCount sc) {
+			public thread2(SyncOnCount sc) {
 				super("thread2");
 				s = sc;
 			}
@@ -624,7 +624,7 @@ public class TestConnection extends TestCase {
             logger.warn("Transaction isolation test surpressed");
             return;
         }
-		syncOnCount s = new syncOnCount();
+		SyncOnCount s = new SyncOnCount();
 		Thread t1 = new thread1(s);
 		Thread t2 = new thread2(s);
 		t2.start();

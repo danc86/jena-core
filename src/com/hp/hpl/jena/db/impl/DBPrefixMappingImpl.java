@@ -39,16 +39,17 @@ public class DBPrefixMappingImpl extends PrefixMappingImpl {
 	 * 
 	 * @param graphProperties the system properties of a persistent graph.
 	 */
-	public DBPrefixMappingImpl( DBPropGraph graphProperties) {
+    public DBPrefixMappingImpl( DBPropGraph graphProperties) {
 		super();
 		m_graphProperties = graphProperties;
 		
 		// Populate the prefix map using data from the 
 		// persistent graph properties
         boolean commit = m_graphProperties.begin();
-		Iterator it = m_graphProperties.getAllPrefixes();
+        @SuppressWarnings("unchecked")
+		Iterator<DBPropPrefix> it = m_graphProperties.getAllPrefixes();
 		while( it.hasNext()) {
-			DBPropPrefix prefix = (DBPropPrefix)it.next();
+			DBPropPrefix prefix = it.next();
 			super.setNsPrefix( prefix.getValue(), prefix.getURI() );
 		}
         m_graphProperties.conditionalCommit( commit );
@@ -97,12 +98,12 @@ public class DBPrefixMappingImpl extends PrefixMappingImpl {
 	 * @see com.hp.hpl.jena.shared.PrefixMapping#setNsPrefixes(java.util.Map)
 	 */
 	@Override
-    public PrefixMapping setNsPrefixes(Map other) {
+    public PrefixMapping setNsPrefixes(Map<String, String> other) {
         checkUnlocked();
-		Iterator it = other.entrySet().iterator();
+		Iterator<Map.Entry<String, String>> it = other.entrySet().iterator();
 		while (it.hasNext()) {
-			Map.Entry e = (Map.Entry) it.next();
-			setNsPrefix((String) e.getKey(), (String) e.getValue());
+			Map.Entry<String, String> e = it.next();
+			setNsPrefix(e.getKey(), e.getValue());
 		}
         return this;
 	}

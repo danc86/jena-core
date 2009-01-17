@@ -96,11 +96,11 @@ public class TestRDBAssemblerContents extends AssemblerTestBase
     
     static class AssistantAssembler extends AssemblerBase
         {
-        protected final Assembler general;
-        protected final Map map = new HashMap();
+        protected final Assembler assistentGeneral;
+        protected final Map<Resource, Object> map = new HashMap<Resource, Object>();
         
         public AssistantAssembler( Assembler general )
-            { this.general = general; }
+            { this.assistentGeneral = general; }
         
         public AssistantAssembler with( Resource name, Object value )
             {
@@ -112,7 +112,7 @@ public class TestRDBAssemblerContents extends AssemblerTestBase
         public Object open( Assembler a, Resource root, Mode mode )
             {
             Object fromMap = map.get( root );
-            return fromMap == null ? general.open( a, root, mode ) : fromMap;
+            return fromMap == null ? assistentGeneral.open( a, root, mode ) : fromMap;
             }
     
         }

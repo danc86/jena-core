@@ -24,7 +24,7 @@ public class TestGraphRDB extends MetaTestGraph
     public TestGraphRDB( String name )
         { super( name ); }
     
-    public TestGraphRDB( Class graphClass, String name, ReificationStyle style ) 
+    public TestGraphRDB( Class<?> graphClass, String name, ReificationStyle style ) 
         { super( graphClass, name, style ); }
         
     public static TestSuite suite()

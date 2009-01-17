@@ -6,13 +6,17 @@
 
 package com.hp.hpl.jena.db.impl;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.List;
 
-import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.util.IteratorCollection;
-import com.hp.hpl.jena.util.iterator.ExtendedIterator;
-import com.hp.hpl.jena.graph.impl.*;
-import com.hp.hpl.jena.db.*;
+import com.hp.hpl.jena.util.iterator.NiceIterator;
+
+import com.hp.hpl.jena.db.GraphRDB;
+import com.hp.hpl.jena.graph.*;
+import com.hp.hpl.jena.graph.impl.SimpleBulkUpdateHandler;
 
 /**
     An implementation of the bulk update interface. Updated by kers to permit event
@@ -87,9 +91,10 @@ public class DBBulkUpdateHandler implements BulkUpdateHandler {
     public void add( Graph g )
         { add( g, false ); }
         
-	public void add( Graph g, boolean withReifications ) {
-		ExtendedIterator triplesToAdd = GraphUtil.findAll( g );
-		try { addIterator( triplesToAdd ); } finally { triplesToAdd.close(); }
+    public void add( Graph g, boolean withReifications ) {
+        @SuppressWarnings("unchecked")
+		Iterator<Triple> triplesToAdd = GraphUtil.findAll( g );
+		try { addIterator( triplesToAdd ); } finally { NiceIterator.close(triplesToAdd); }
         if (withReifications) SimpleBulkUpdateHandler.addReifications( graph, g );
         manager.notifyAddGraph( graph, g );
 	}
@@ -148,8 +153,9 @@ public class DBBulkUpdateHandler implements BulkUpdateHandler {
         { delete( g, false ); }
         
     public void delete( Graph g, boolean withReifications ) {
-		ExtendedIterator triplesToDelete = GraphUtil.findAll( g );
-		try { deleteIterator( triplesToDelete ); } finally { triplesToDelete.close(); }
+        @SuppressWarnings("unchecked")
+        Iterator<Triple> triplesToDelete = GraphUtil.findAll( g );
+		try { deleteIterator( triplesToDelete ); } finally { NiceIterator.close(triplesToDelete) ; }
         if (withReifications) SimpleBulkUpdateHandler.deleteReifications( graph, g );
         manager.notifyDeleteGraph( graph, g );
    	}

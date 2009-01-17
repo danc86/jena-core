@@ -60,7 +60,7 @@ public class GraphRDB extends GraphBase implements Graph {
 	protected DBPropGraph m_properties = null; 
 	protected DBPrefixMappingImpl m_prefixMapping = null;
 	protected List<SpecializedGraph> m_specializedGraphs = null;
-	protected List<SpecializedGraph> m_specializedGraphReifiers = null;
+	protected List<SpecializedGraphReifier> m_specializedGraphReifiers = null;
 	protected List<SpecializedGraph> m_specializedGraphAsserted = null;
 	protected List<SpecializedGraph> m_specializedGraphsAll = null;
 	protected Reifier m_reifier = null;
@@ -214,13 +214,13 @@ public class GraphRDB extends GraphBase implements Graph {
 		// Keep a list of the specialized graphs that handle reification
 		// (we'll need this later to support getReifier)
 		
-		m_specializedGraphReifiers = new ArrayList<SpecializedGraph>();
+		m_specializedGraphReifiers = new ArrayList<SpecializedGraphReifier>();
 		m_specializedGraphAsserted = new ArrayList<SpecializedGraph>();
 		Iterator<SpecializedGraph> it = m_specializedGraphsAll.iterator();
 		while( it.hasNext() ) {
 		    SpecializedGraph o = it.next();
 			if( o instanceof SpecializedGraphReifier )
-				m_specializedGraphReifiers.add(o);
+				m_specializedGraphReifiers.add((SpecializedGraphReifier)o);
 			else 
 				m_specializedGraphAsserted.add(o);
 		}
@@ -641,7 +641,8 @@ public class GraphRDB extends GraphBase implements Graph {
 	 */
 	public void setQueryOnlyReified ( boolean opt ) {
 		if ( opt ) {
-			m_specializedGraphs = m_specializedGraphReifiers;
+			
+		    m_specializedGraphs = new ArrayList<SpecializedGraph>(m_specializedGraphReifiers) ;
 			DBqueryHandler().setQueryOnlyAsserted(false);
 		} else {
 			m_specializedGraphs = m_specializedGraphsAll;

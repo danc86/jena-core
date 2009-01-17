@@ -475,7 +475,7 @@ public abstract class AbstractTestQuery1 extends GraphTestBase
         int n = 0;
         while (it.hasNext()) {
             n++;
-            ((List) it.next()).size();  // hedgehog asks, do we need to check this works?
+            ((List<?>) it.next()).size();  // hedgehog asks, do we need to check this works?
         }
         return n;
     }

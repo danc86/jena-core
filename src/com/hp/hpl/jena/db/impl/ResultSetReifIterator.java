@@ -11,15 +11,18 @@ package com.hp.hpl.jena.db.impl;
 
 //=======================================================================
 // Imports
-import java.sql.*;
-
-import com.hp.hpl.jena.db.RDFRDBException;
-import com.hp.hpl.jena.graph.*;
-import com.hp.hpl.jena.shared.JenaException;
-import com.hp.hpl.jena.vocabulary.RDF;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+
+import com.hp.hpl.jena.db.RDFRDBException;
+import com.hp.hpl.jena.graph.Node;
+import com.hp.hpl.jena.graph.Triple;
+import com.hp.hpl.jena.shared.JenaException;
+import com.hp.hpl.jena.vocabulary.RDF;
 
 //=======================================================================
 /**
