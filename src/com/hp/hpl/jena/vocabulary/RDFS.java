@@ -23,22 +23,10 @@ public class RDFS {
     public static final Resource Class = resource( "Class");
     public static final Resource Datatype = resource( "Datatype");
     
-    /**
-         @deprecated obsolete: was removed by the most recent standard
-    */
-    @Deprecated
-    public static final Resource ConstraintProperty  =  resource( "ConstraintProperty");
-    
     public static final Resource Container  = resource( "Container");
     
     public static final Resource ContainerMembershipProperty
                                                      = resource( "ContainerMembershipProperty");  
- 
-    /**
-        @deprecated obsolete: was removed by the most recent standard
-    */
-    @Deprecated
-    public static final Resource ConstraintResource  = resource( "ConstraintResource");
     
     public static final Resource Literal = resource( "Literal");
     public static final Resource Resource = resource( "Resource");
@@ -56,11 +44,10 @@ public class RDFS {
     /**
         The RDFS vocabulary, expressed for the SPI layer in terms of .graph Nodes.
     */
-    public static class Nodes
+    @SuppressWarnings("hiding") public static class Nodes
         {
         public static final Node Class = RDFS.Class.asNode();
         public static final Node Datatype = RDFS.Datatype.asNode();
-        public static final Node ConstraintProperty  = RDFS. ConstraintProperty.asNode();
         public static final Node Container  = RDFS.Container.asNode();
         public static final Node ContainerMembershipProperty
                                                          = RDFS.ContainerMembershipProperty.asNode();

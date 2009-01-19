@@ -19,18 +19,6 @@ public class Factory
     {
     private Factory()
         { super(); }
-
-    /**
-        @deprecated -- doesn't do anything anymore.
-    */
-    @Deprecated
-    public static final boolean faster = true;
-
-    /**
-        @deprecated -- doesn't do anything anymore.
-    */
-    @Deprecated
-    public static final boolean newHashing = true;
     
     /**
         Answer a memory-based Graph with the Standard reification style.

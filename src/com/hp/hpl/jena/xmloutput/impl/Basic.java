@@ -32,8 +32,7 @@ public class Basic extends BaseXMLWriter
     
     private String space;
 	
-    @Override
-    protected void writeBody
+    @Override protected void writeBody
         ( Model model, PrintWriter pw, String base, boolean inclXMLBase ) 
         {
         setSpaceFromTabCount();
@@ -112,14 +111,12 @@ public class Basic extends BaseXMLWriter
 		}
 	}
     
-    @Override
-    protected void unblockAll() 
+    @Override protected void unblockAll() 
         { blockLiterals = false; }
     
     private boolean blockLiterals = false;
     
-    @Override
-    protected void blockRule( Resource r ) {
+    @Override protected void blockRule( Resource r ) {
         if (r.equals( RDFSyntax.parseTypeLiteralPropertyElt )) {
      //       System.err.println("Blocking");
             blockLiterals = true;
@@ -130,13 +127,6 @@ public class Basic extends BaseXMLWriter
 	protected void writeDescriptionTrailer( Resource subject, PrintWriter writer ) 
         { writer.println( space + "</" + rdfEl( "Description" ) + ">" ); }
     
-    /**
-        @deprecated - use writeDescriptionTrailer( Resource subject, PrintWriter writer )
-        @param writer
-    */
-    @Deprecated
-    protected void writeDescriptionTrailer( PrintWriter writer )
-        { writeDescriptionTrailer( null, writer ); }
     
     protected void writeResourceId( Resource r, PrintWriter writer )
         {

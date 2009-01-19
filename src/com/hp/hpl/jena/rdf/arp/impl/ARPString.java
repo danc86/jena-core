@@ -92,6 +92,7 @@ public class ARPString extends TaintImpl implements ALiteral {
     public boolean isWellFormedXML() {
         return this.isWellFormedXML;
     }
+    
     /**
      * @deprecated
      */
