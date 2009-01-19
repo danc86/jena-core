@@ -46,7 +46,6 @@ public interface RDFErrorHandler {
     public void error(Exception e);
 /** report a catastrophic error.  Must not return.
  * @param e an exception representing the error
- * @throws RDFError a generic RDF exception
  */    
     public void fatalError(Exception e);
 }

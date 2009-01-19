@@ -25,22 +25,6 @@ import com.hp.hpl.jena.graph.*;
 public final class IteratorFactory {
 
     private IteratorFactory(){}
-	
-    /**
-	     @deprecated use Model::asRDFNode( Node ) instead. 
-	*/
-	@Deprecated
-    static public RDFNode asRDFNode( Node n, Model m ) {
-        return m.asRDFNode( n );
-	}
-		
-	/**
-	    @deprecated use Model::toStatement( Triple )
-	*/
-	@Deprecated
-    static public Statement asStatement( Triple t, ModelCom m ) {
-        return StatementImpl.toStatement( t, m );
-	}
 
 	/**
 	 * 
@@ -79,7 +63,6 @@ public final class IteratorFactory {
     }
     
     static  Literal asLiteral(Node n,ModelCom m) {
-    	// return (Literal) m.getNodeAs( n, Literal.class );
         return (Literal) m.getNodeAs( n, Literal.class );
     }
     
