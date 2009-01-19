@@ -67,8 +67,5 @@ public interface RDFWriterF {
  * @return the old class name for this language
  */    
     public String setWriterClassName(String lang, String className);
-    
-// * @deprecated Replaced by setWriter.
-
 }
 
