@@ -76,14 +76,18 @@ public class rdfcopy extends java.lang.Object {
 		String in = args[0];
 		String inlang = "RDF/XML";
 		int j;
-		for (j = 1; j < args.length && args[j].indexOf("=") != -1; j++);
+		for (j = 1; j < args.length && args[j].indexOf("=") != -1; j++)
+        {}
 		int lastInProp = j;
 		if (j < args.length) {
 			inlang = args[j];
 		}
 		j++;
 		String outlang = "N-TRIPLE";
-		for (; j < args.length && args[j].indexOf("=") != -1; j++);
+		
+		for (; j < args.length && args[j].indexOf("=") != -1; j++)
+		{}
+		
 		int lastOutProp = j;
 		if (j < args.length) {
 			outlang = args[j];
