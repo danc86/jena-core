@@ -81,11 +81,11 @@ public class Personality {
         {
         Implementation impl = (Implementation) types.get( interf );
         if (impl == null) throw new PersonalityConfigException( interf + " not in Personality." );
-        Polymorphic rslt = impl.wrap(  n, (EnhGraph) that  );
-        if (!interf.isInstance(rslt))
+        Polymorphic result = impl.wrap(  n, (EnhGraph) that  );
+        if (!interf.isInstance(result))
         	throw new PersonalityConfigException( interf + " misconfigured." );
 
-        return rslt;
+        return result;
         }
     
     protected Map getMap() {return types;}

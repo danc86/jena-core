@@ -113,8 +113,7 @@ public abstract class Polymorphic {
         to nowadays ... I have expunged the clever facet-identity test
         (and indeed facets).
     */
-    @Override
-    public abstract boolean equals( Object o );
+    @Override public abstract boolean equals( Object o );
     
     /**
         add another view for this object. <code>other</code> must be freshly 

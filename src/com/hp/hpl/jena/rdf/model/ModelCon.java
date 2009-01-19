@@ -549,8 +549,9 @@ public interface ModelCon {
      * @param s the subject of the statement to add
      * @param p the predicate of the statement to add
      * @param o the object of the statement to add
+     * @deprecated Freshly (should have been done a while ago)
      */ 
-        Model addLiteral( Resource s, Property p, Object o );
+      @Deprecated Model addLiteral( Resource s, Property p, Object o );
 
     /** add a statement to this model.
      *

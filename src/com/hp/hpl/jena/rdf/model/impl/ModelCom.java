@@ -142,9 +142,7 @@ public class ModelCom
     public Model add( Resource s, Property p, String o, String l )
         { return add( s, p, o, l, false ); }
 
-    /** @deprecated */
-    @Deprecated
-    public Model addLiteral( Resource s, Property p, Object o )  
+    @Deprecated public Model addLiteral( Resource s, Property p, Object o )  
         { return add( s, p, asObject( o ) ); }
     
     private RDFNode asObject( Object o )

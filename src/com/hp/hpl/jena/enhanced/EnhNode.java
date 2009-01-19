@@ -106,8 +106,7 @@ public class EnhNode extends Polymorphic implements FrontsNode
      * The hash code of an enhanced node is defined to be the same as the underlying node.
      * @return The hashcode as an int
      */
-    @Override
-    final public int hashCode() {
+    @Override final public int hashCode() {
      	return node.hashCode();
     }
        
@@ -122,12 +121,10 @@ public class EnhNode extends Polymorphic implements FrontsNode
      * @param o An object to test for equality with this node
      * @return True if o is equal to this node.
      */
-    @Override
-    final public boolean equals( Object o )
+    @Override final public boolean equals( Object o )
         { return o instanceof FrontsNode && node.equals(((FrontsNode) o).asNode()); }
     
-    @Override
-    public boolean isValid()
+    @Override public boolean isValid()
         { return true; }
         
     /** 
@@ -136,8 +133,7 @@ public class EnhNode extends Polymorphic implements FrontsNode
         object's sibling ring. If the node cannot be converted, throw an
         UnsupportedPolymorphismException.
     */
-    @Override
-    protected Polymorphic convertTo( Class t ) 
+    @Override protected Polymorphic convertTo( Class t ) 
         {
         EnhGraph eg = getGraph();
         if (eg == null) throw new UnsupportedPolymorphismException( this, t );
@@ -154,8 +150,7 @@ public class EnhNode extends Polymorphic implements FrontsNode
         as a <code>t</code> via the graph's personality's implementation.
         If this node has no graph, answer false.       
     */
-    @Override
-    protected boolean canSupport( Class t )
+    @Override protected boolean canSupport( Class t )
         {
         if (alreadyHasView( t )) return true;
         if (getGraph() == null) return false;
@@ -169,8 +164,7 @@ public class EnhNode extends Polymorphic implements FrontsNode
      * 
      * @return The personality object
      */
-    @Override
-    protected Personality getPersonality() {
+    @Override protected Personality getPersonality() {
         return ((GraphPersonality) getGraph().getPersonality()).nodePersonality();
     }
     
