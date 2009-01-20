@@ -22,9 +22,9 @@ public class Util
 	/**
          Answer a new set which is the union of the two argument sets.
 	*/
-	public static Set union( Set x, Set y )
+	public static <T> Set<T> union( Set<T> x, Set<T> y )
     	{
-    	Set result = CollectionFactory.createHashedSet( x );
+    	Set<T> result = CollectionFactory.createHashedSet( x );
     	result.addAll( y );
     	return result;
     	}
@@ -33,16 +33,16 @@ public class Util
     	Answer a new set which contains exactly the names of the variable[ node]s
         in the triple.
     */
-	public static Set variablesOf( Triple t )
+	public static Set<String> variablesOf( Triple t )
     	{
-    	Set result = CollectionFactory.createHashedSet();
+    	Set<String> result = CollectionFactory.createHashedSet();
         addIfVariable( result, t.getSubject() );
         addIfVariable( result, t.getPredicate() );
         addIfVariable( result, t.getObject() );
     	return result;
     	}
     
-    private static void addIfVariable( Set result, Node n )
+    private static void addIfVariable( Set<String> result, Node n )
         { if (n.isVariable()) result.add( n.getName() ); }
     }
 
