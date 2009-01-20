@@ -19,8 +19,7 @@ public class TestDocumentManagerAssembler extends AssemblerTestBase
     public TestDocumentManagerAssembler( String name )
         { super( name ); }
 
-    @Override
-    protected Class getAssemblerClass()
+    @Override protected Class<? extends Assembler> getAssemblerClass()
         { return DocumentManagerAssembler.class; }
 
     public void testDocumentManagerAssemblerType()
@@ -56,7 +55,7 @@ public class TestDocumentManagerAssembler extends AssemblerTestBase
     public void testSetsPolicyPath()
         {
         Resource root = resourceInModel( "x rdf:type ja:DocumentManager; x ja:policyPath 'somePath'" );
-        final List history = new ArrayList();
+        final List<String> history = new ArrayList<String>();
         Assembler a = new DocumentManagerAssembler()
             {
             @Override
@@ -88,7 +87,6 @@ public class TestDocumentManagerAssembler extends AssemblerTestBase
     private void testTrapsBadPolicyPath( String path )
         {
         Resource root = resourceInModel( "x rdf:type ja:DocumentManager; x ja:policyPath <policy>".replaceAll( "<policy>", path ) );
-        final List history = new ArrayList();
         Assembler a = new DocumentManagerAssembler();
         try
             { a.open( root );
@@ -102,7 +100,7 @@ public class TestDocumentManagerAssembler extends AssemblerTestBase
         { // we set policyPath to avoid Ont default models being thrown at us
         Resource root = resourceInModel( "x rdf:type ja:DocumentManager; x ja:policyPath ''; x P a; a Q b; y R z" );
         final Model expected = model( "x rdf:type ja:DocumentManager; x ja:policyPath ''; x P a; a Q b" );
-        final List history = new ArrayList();
+        final List<String> history = new ArrayList<String>();
         Assembler a = new DocumentManagerAssembler()
             {
             @Override

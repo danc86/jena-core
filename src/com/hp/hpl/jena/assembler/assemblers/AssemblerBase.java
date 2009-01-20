@@ -50,7 +50,7 @@ public abstract class AssemblerBase implements Assembler
 
     protected static Statement getUniqueStatement( Resource root, Property property )
         {
-        List statements = IteratorCollection.iteratorToList( root.listProperties( property ) );
+        List statements = root.listProperties( property ).toList();
         if (statements.size() == 0) return null;
         if (statements.size() == 1) return (Statement) statements.get(0);
         throw new NotUniqueException( root, property );
@@ -58,7 +58,7 @@ public abstract class AssemblerBase implements Assembler
     
     protected static RDFNode getUnique( Resource root, Property property )
         {
-        List nodes = IteratorCollection.iteratorToList( root.listProperties( property ) .mapWith( getObject ) );
+        List nodes = root.listProperties( property ) .mapWith( getObject ).toList();
         if (nodes.size() == 0) return null;
         if (nodes.size() == 1) return (RDFNode) nodes.get(0);
         throw new NotUniqueException( root, property );

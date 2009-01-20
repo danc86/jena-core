@@ -19,8 +19,7 @@ public class TestModelSourceAssembler extends AssemblerTestBase
     public TestModelSourceAssembler( String name )
         { super( name ); }
 
-    @Override
-    protected Class getAssemblerClass()
+    @Override protected Class<? extends Assembler> getAssemblerClass()
         { return ModelSourceAssembler.class; }
 
     public void testModelSourceAssemblerType()
@@ -58,7 +57,7 @@ public class TestModelSourceAssembler extends AssemblerTestBase
     public void testRDBModelMakerSource()
         {
         final ConnectionDescription c = new ConnectionDescription( "eh:/subject", "url", "user", "password", "type" );
-        final List history = new ArrayList();
+        final List<String> history = new ArrayList<String>();
         Assembler a = new ModelSourceAssembler() 
             {
             @Override

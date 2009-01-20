@@ -33,8 +33,7 @@ public class TestPrefixMappingAssembler extends AssemblerTestBase
     public TestPrefixMappingAssembler( String name )
         { super( name ); }
 
-    @Override
-    protected Class getAssemblerClass()
+    @Override protected Class<? extends Assembler> getAssemblerClass()
         { return PrefixMappingAssembler.class; }
 
     public void testPrefixMappingAssemblerType()

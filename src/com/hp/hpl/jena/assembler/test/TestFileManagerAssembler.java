@@ -18,8 +18,7 @@ public class TestFileManagerAssembler extends AssemblerTestBase
     public TestFileManagerAssembler( String name )
         { super( name ); }
 
-    @Override
-    protected Class getAssemblerClass()
+    @Override protected Class<? extends Assembler> getAssemblerClass()
         { return FileManagerAssembler.class; }
 
     public void testFileModelAssemblerType()
@@ -67,7 +66,7 @@ public class TestFileManagerAssembler extends AssemblerTestBase
         assertEquals( wanted, obtained );
         }
 
-    private Iterator standardLocators()
+    private Iterator<Locator> standardLocators()
         {
         FileManager fm = new FileManager();
         FileManager.setStdLocators( fm );

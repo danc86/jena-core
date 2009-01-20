@@ -24,8 +24,7 @@ public class TestOntModelSpecAssembler extends AssemblerTestBase
     public TestOntModelSpecAssembler( String name )
         { super( name ); }
 
-    @Override
-    protected Class getAssemblerClass()
+    @Override protected Class<? extends Assembler> getAssemblerClass()
         { return OntModelSpecAssembler.class; }
 
     public void testOntModelSpecAssemblerType()

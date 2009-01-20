@@ -25,7 +25,7 @@ import com.hp.hpl.jena.vocabulary.*;
 */
 public abstract class AssemblerTestBase extends ModelTestBase
     {
-    protected Class getAssemblerClass()
+    protected Class<? extends Assembler> getAssemblerClass()
         { throw new BrokenException( "this class must define getAssemblerClass" ); }
     
     /**

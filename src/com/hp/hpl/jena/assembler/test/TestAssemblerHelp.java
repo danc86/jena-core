@@ -133,10 +133,10 @@ public class TestAssemblerHelp extends AssemblerTestBase
             }
         }
 
-    private Set resources( Resource root, String items )
+    private Set<Resource> resources( Resource root, String items )
         {
         List L = listOfStrings( items );
-        Set result = new HashSet();
+        Set<Resource> result = new HashSet<Resource>();
         for (int i = 0; i < L.size(); i += 1)
             result.add( resource( root.getModel(), (String) L.get(i) ) );
         return result;

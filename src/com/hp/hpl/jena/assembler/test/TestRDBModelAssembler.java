@@ -16,8 +16,7 @@ public class TestRDBModelAssembler extends AssemblerTestBase
     public TestRDBModelAssembler( String name )
         { super( name ); }
 
-    @Override
-    protected Class getAssemblerClass()
+    @Override protected Class<? extends Assembler> getAssemblerClass()
         { return RDBModelAssembler.class; }
 
     public void testRDBModelAssemblerType()

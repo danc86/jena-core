@@ -79,7 +79,7 @@ public class TestModelExpansion extends AssemblerTestBase
     private String rdfList( String base, String types )
         {
         StringBuffer result = new StringBuffer();
-        List L = listOfStrings( types );
+        List<String> L = listOfStrings( types );
         String rest = "rdf:nil";
         for (int i = L.size(); i > 0; i -= 1)
             {

@@ -18,8 +18,7 @@ public class TestInfModelAssembler extends AssemblerTestBase
     public TestInfModelAssembler( String name )
         { super( name ); }
 
-    @Override
-    protected Class getAssemblerClass()
+    @Override protected Class<? extends Assembler> getAssemblerClass()
         { return InfModelAssembler.class; }
 
     public void testLocationMapperAssemblerType()

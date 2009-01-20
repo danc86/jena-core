@@ -8,7 +8,7 @@ package com.hp.hpl.jena.assembler.test;
 
 import java.util.*;
 
-import com.hp.hpl.jena.assembler.RuleSet;
+import com.hp.hpl.jena.assembler.*;
 import com.hp.hpl.jena.reasoner.rulesys.Rule;
 import com.hp.hpl.jena.shared.BrokenException;
 
@@ -17,8 +17,7 @@ public class TestRuleSet extends AssemblerTestBase
     public TestRuleSet( String name )
         { super( name ); }
 
-    @Override
-    protected Class getAssemblerClass()
+    @Override protected Class<? extends Assembler> getAssemblerClass()
         { throw new BrokenException( "TestAssemblers does not need this method" ); }
     
     public void testEmpty()
@@ -37,7 +36,7 @@ public class TestRuleSet extends AssemblerTestBase
     public void testSingleRuleSet()
         {
         Rule rule = Rule.parseRule( "[(?a P b) -> (?a rdf:type T)]" );
-        List list = listOfOne( rule );
+        List<Rule> list = listOfOne( rule );
         RuleSet s = RuleSet.create( list );
         assertEquals( list, s.getRules() );
         assertNotSame( list, s.getRules() );
@@ -47,7 +46,7 @@ public class TestRuleSet extends AssemblerTestBase
         {
         Rule A = Rule.parseRule( "[(?a P b) -> (?a rdf:type T)]" );
         Rule B = Rule.parseRule( "[(?a Q b) -> (?a rdf:type U)]" );
-        List rules = Arrays.asList( new Rule[] {A, B } );
+        List<Rule> rules = Arrays.asList( new Rule[] {A, B } );
         RuleSet s = RuleSet.create( rules );
         assertEquals( rules, s.getRules() );
         assertNotSame( rules, s.getRules() );

@@ -19,8 +19,7 @@ public class TestConnectionAssembler extends AssemblerTestBase
     public TestConnectionAssembler( String name )
         { super( name ); }  
 
-    @Override
-    protected Class getAssemblerClass()
+    @Override protected Class<? extends Assembler> getAssemblerClass()
         { return ConnectionAssembler.class; }
 
     public void testConnectionAssemblerType()

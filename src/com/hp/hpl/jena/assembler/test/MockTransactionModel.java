@@ -22,13 +22,13 @@ import com.hp.hpl.jena.rdf.model.impl.ModelCom;
 */
 final class MockTransactionModel extends ModelAssembler
     {
-    private final List history;
+    private final List<String> history;
     private final Model expected;
     private final boolean supportsTransactions;
     private final boolean abortsOnAdd;
 
     protected MockTransactionModel
-        ( List history, Model expected, boolean supportsTransactions, boolean abortsOnAdd )
+        ( List<String> history, Model expected, boolean supportsTransactions, boolean abortsOnAdd )
         {
         super();
         this.history = history;

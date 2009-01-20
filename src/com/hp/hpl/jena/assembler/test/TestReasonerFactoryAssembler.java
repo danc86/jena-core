@@ -24,8 +24,7 @@ public class TestReasonerFactoryAssembler extends AssemblerTestBase
     public TestReasonerFactoryAssembler( String name )
         { super( name ); }
 
-    @Override
-    protected Class getAssemblerClass()
+    @Override protected Class<? extends Assembler> getAssemblerClass()
         { return ReasonerFactoryAssembler.class; }
 
     public void testReasonerFactoryAssemblerType()

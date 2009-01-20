@@ -21,8 +21,7 @@ public class TestFileModelAssembler extends ModelAssemblerTestBase
     public TestFileModelAssembler( String name )
         { super( name );  }
 
-    @Override
-    protected Class getAssemblerClass()
+    @Override protected Class<? extends Assembler> getAssemblerClass()
         { return FileModelAssembler.class; }
 
     public void testFileModelAssemblerType()

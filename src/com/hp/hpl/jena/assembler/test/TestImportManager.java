@@ -20,12 +20,11 @@ public class TestImportManager extends AssemblerTestBase
     
     static class FixedFileManager extends FileManager
         {
-        Map map = new HashMap();
+        Map<String, Model> map = new HashMap<String, Model>();
         
-        @Override
-        public Model loadModel( String URL )
+        @Override public Model loadModel( String URL )
             {
-            Model result = (Model) map.get( URL );
+            Model result = map.get( URL );
             if (result == null) fail( "no model for " + URL );
             return result;
             }

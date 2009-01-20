@@ -19,8 +19,7 @@ public class TestContentAssembler extends AssemblerTestBase
     public TestContentAssembler( String name )
         { super( name ); }
 
-    @Override
-    protected Class getAssemblerClass()
+    @Override protected Class<? extends Assembler> getAssemblerClass()
         { return ContentAssembler.class; }
 
     public void testContentAssemblerType()

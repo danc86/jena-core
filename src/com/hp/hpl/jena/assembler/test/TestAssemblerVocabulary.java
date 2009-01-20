@@ -6,7 +6,7 @@
 
 package com.hp.hpl.jena.assembler.test;
 
-import com.hp.hpl.jena.assembler.JA;
+import com.hp.hpl.jena.assembler.*;
 import com.hp.hpl.jena.rdf.model.*;
 
 public class TestAssemblerVocabulary extends AssemblerTestBase
@@ -14,8 +14,7 @@ public class TestAssemblerVocabulary extends AssemblerTestBase
     public TestAssemblerVocabulary( String name )
         { super( name ); }
 
-    @Override
-    protected Class getAssemblerClass()
+    @Override protected Class<? extends Assembler> getAssemblerClass()
         { return null; }
 
     public void testVocabulary()

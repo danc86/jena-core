@@ -29,8 +29,7 @@ public class TestOntModelAssembler extends AssemblerTestBase
         return result;
         }
 
-    @Override
-    protected Class getAssemblerClass()
+    @Override protected Class<? extends Assembler> getAssemblerClass()
         { return OntModelAssembler.class; }
 
     public void testOntModelAssemblerType()

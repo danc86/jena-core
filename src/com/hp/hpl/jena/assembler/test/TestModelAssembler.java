@@ -18,16 +18,14 @@ public class TestModelAssembler extends AssemblerTestBase
     {
     protected static final class FakeModelAssembler extends ModelAssembler
         {
-        @Override
-        protected Model openEmptyModel( Assembler a, Resource root, Mode mode )
+        @Override protected Model openEmptyModel( Assembler a, Resource root, Mode mode )
             { return ModelFactory.createDefaultModel(); }
         }
 
     public TestModelAssembler( String name )
         { super( name ); }
 
-    @Override
-    protected Class getAssemblerClass()
+    @Override protected Class<? extends Assembler> getAssemblerClass()
         { return null; }
     
     public void testModelAssemblerVocabulary()
@@ -63,7 +61,7 @@ public class TestModelAssembler extends AssemblerTestBase
     
     public void testGetsStandardReificationMode()
         {
-        final List style = new ArrayList();
+        final List<ReificationStyle> style = new ArrayList<ReificationStyle>();
         Assembler a = new ModelAssembler() 
             {
             @Override
@@ -100,7 +98,7 @@ public class TestModelAssembler extends AssemblerTestBase
 
     private void testGetsStyle( String styleString, ReificationStyle style )
         {
-        final List styles = new ArrayList();
+        final List<ReificationStyle> styles = new ArrayList<ReificationStyle>();
         Assembler a = new ModelAssembler() 
             {
             @Override

@@ -16,8 +16,7 @@ public class TestBuiltinAssemblerGroup extends AssemblerTestBase
     public TestBuiltinAssemblerGroup( String name )
         { super( name ); }
 
-    @Override
-    protected Class getAssemblerClass()
+    @Override protected Class<? extends Assembler> getAssemblerClass()
         { return null; }
 
     public void testGeneralRegistration()
@@ -88,7 +87,7 @@ public class TestBuiltinAssemblerGroup extends AssemblerTestBase
             fail( "expected " + wanted + " but was: " + got );
         }
     
-    private void assertAssemblerClass( Resource type, Class C )
+    private void assertAssemblerClass( Resource type, Class<?> C )
         {
         assertInstanceOf( C, Assembler.general.assemblerFor( type ) );
         }

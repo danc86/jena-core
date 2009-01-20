@@ -33,12 +33,10 @@ public class RuleSet
     public List getRules()
         { return rules; }
     
-    @Override
-    public int hashCode()
+    @Override public int hashCode()
         { return rules.hashCode(); }
     
-    @Override
-    public boolean equals( Object other )
+    @Override public boolean equals( Object other )
         { return other instanceof RuleSet && rules.equals( ((RuleSet) other).rules ); }
 
     }

@@ -19,7 +19,7 @@ public class TestRuleSetAssembler extends AssemblerTestBase
         { super( name ); }
 
     @Override
-    protected Class getAssemblerClass()
+    protected Class<? extends Assembler> getAssemblerClass()
         { return RuleSetAssembler.class; }
     
     public void testRuleSetVocabulary()

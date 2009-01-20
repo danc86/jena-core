@@ -17,8 +17,7 @@ public class TestModelContent extends AssemblerTestBase
     public TestModelContent( String name )
         { super( name ); }
 
-    @Override
-    protected Class getAssemblerClass()
+    @Override protected Class<? extends Assembler> getAssemblerClass()
         { return null; }
     
     public void testMemoryModelLoadsSingleContent()
@@ -48,7 +47,7 @@ public class TestModelContent extends AssemblerTestBase
 
     public void testContentTransactionsNone()
         {
-        final List history = new ArrayList();
+        final List<String> history = new ArrayList<String>();
         final Model expected = model( "_x rdf:value '17'xsd:integer" );
         Assembler a = new MockTransactionModel( history, expected, false, true );
         Resource root = resourceInModel
@@ -59,7 +58,7 @@ public class TestModelContent extends AssemblerTestBase
     
     public void testContentTransactionsCommit()
         {
-        final List history = new ArrayList();
+        final List<String> history = new ArrayList<String>();
         final Model expected = model( "_x rdf:value '17'xsd:integer" );
         Assembler a = new MockTransactionModel( history, expected, true, false );
         Resource root = resourceInModel
@@ -71,7 +70,7 @@ public class TestModelContent extends AssemblerTestBase
 
     public void testContentTransactionsAbort()
         {
-        final List history = new ArrayList();
+        final List<String> history = new ArrayList<String>();
         final Model expected = model( "_x rdf:value '17'xsd:integer" );
         final Model toDeliver = model( "" ).add( expected );
         Assembler a = new MockTransactionModel( history, toDeliver, true, true );

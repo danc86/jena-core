@@ -6,6 +6,7 @@
 
 package com.hp.hpl.jena.assembler.test;
 
+import com.hp.hpl.jena.assembler.Assembler;
 import com.hp.hpl.jena.shared.BrokenException;
 
 import junit.framework.TestSuite;
@@ -48,8 +49,7 @@ public class TestAssemblers extends AssemblerTestBase
     
     public void testToSilenceJUnit() {}
 
-    @Override
-    protected Class getAssemblerClass()
+    @Override protected Class<? extends Assembler> getAssemblerClass()
         { throw new BrokenException( "TestAssemblers does not need this method" ); }
     }
 
