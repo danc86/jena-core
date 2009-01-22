@@ -48,7 +48,7 @@ public class RuleMap {
      * comment lines and any initial prefix definition lines.
      * Also notes the prefix definitions for adding to a later inf model.
      */
-    public static List loadRules(String filename, Map prefixes) throws IOException {
+    public static List<Rule> loadRules(String filename, Map<String, String> prefixes) throws IOException {
         String fname = filename;
         if (fname.startsWith("file:///")) {
             fname = File.separator + fname.substring(8);
@@ -67,9 +67,9 @@ public class RuleMap {
      * comment lines and any initial prefix definition lines.
      * Also notes the prefix definitions for adding to a later inf model.
      */
-    public static List loadRules(BufferedReader src, Map prefixes) throws IOException {
+    public static List<Rule> loadRules(BufferedReader src, Map<String, String> prefixes) throws IOException {
         Rule.Parser parser = Rule.rulesParserFromReader(src);
-        List rules = Rule.parseRules(parser);
+        List<Rule> rules = Rule.parseRules(parser);
         prefixes.putAll(parser.getPrefixMap());
         return rules;
     }
@@ -160,8 +160,8 @@ public class RuleMap {
             
             // Fetch the rule set and create the reasoner
             BuiltinRegistry.theRegistry.register(new Deduce());
-            Map prefixes = new HashMap();
-            List rules = loadRules(cl.getItem(0), prefixes);
+            Map<String, String> prefixes = new HashMap<String, String>();
+            List<Rule> rules = loadRules(cl.getItem(0), prefixes);
             Reasoner reasoner = new GenericRuleReasoner(rules);
             
             // Process
