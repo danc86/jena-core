@@ -22,7 +22,7 @@ public class Personality {
 
     // Instance variables
     /** Records the bindings from type specifications to implementations.  */
-    private Map types = CollectionFactory.createHashedMap();
+    private Map<Class, Implementation> types = CollectionFactory.createHashedMap();
     
     // Constructors
     
@@ -61,7 +61,7 @@ public class Personality {
         isn't one available. 
     */
     Implementation getImplementation( Class t )
-        { return (Implementation) types.get( t ); }
+        { return types.get( t ); }
     
     /**
     	extend this personality by adding in all the mappins from the argument _p_.
@@ -79,7 +79,7 @@ public class Personality {
     */
     public Polymorphic newInstance(Class interf, Node n, Polymorphic that ) 
         {
-        Implementation impl = (Implementation) types.get( interf );
+        Implementation impl = types.get( interf );
         if (impl == null) throw new PersonalityConfigException( interf + " not in Personality." );
         Polymorphic result = impl.wrap(  n, (EnhGraph) that  );
         if (!interf.isInstance(result))
@@ -88,7 +88,7 @@ public class Personality {
         return result;
         }
     
-    protected Map getMap() {return types;}
+    protected Map<Class, Implementation> getMap() {return types;}
 }
 
 /*

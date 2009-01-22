@@ -3089,6 +3089,7 @@ public class OntModelImpl extends ModelCom implements OntModel
         protected SubjectNodeAs( Class asKey ) { m_asKey = asKey; }
 
         public Object map1( Object x ) {
+//            Triple t = (Triple) x;
             Node n = (x instanceof Triple)
                          ? ((Triple) x).getSubject()
                          : ((x instanceof EnhNode) ? ((EnhNode) x).asNode() :  (Node) x);

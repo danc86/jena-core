@@ -105,7 +105,7 @@ public class OntModelSpecAssembler extends AssemblerBase implements Assembler
         {
         try 
             { 
-            Class omc = OntModelSpec.class;
+            Class<OntModelSpec> omc = OntModelSpec.class;
             Field f = omc.getField( name ); 
             int mods = f.getModifiers();
             if (f.getType() == omc && isConstant( mods )) 

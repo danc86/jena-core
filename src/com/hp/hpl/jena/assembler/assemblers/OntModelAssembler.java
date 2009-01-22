@@ -14,8 +14,7 @@ import com.hp.hpl.jena.rdf.model.*;
 
 public class OntModelAssembler extends InfModelAssembler implements Assembler
     {
-    @Override
-    public Model openEmptyModel( Assembler a, Resource root, Mode mode )
+    @Override public Model openEmptyModel( Assembler a, Resource root, Mode mode )
         {
         checkType( root, JA.OntModel );
         Model baseModel = getBase( a, root, mode );
@@ -27,14 +26,14 @@ public class OntModelAssembler extends InfModelAssembler implements Assembler
 
     private void addSubModels( Assembler a, Resource root, Mode mode, OntModel om )
         {
-        List subModels = getSubModels( a, root, mode );
-        for (Iterator it = subModels.iterator(); it.hasNext();)
-            om.addSubModel( (Model) it.next() );
+        List<Model> subModels = getSubModels( a, root, mode );
+        for (Iterator<Model> it = subModels.iterator(); it.hasNext();)
+            om.addSubModel( it.next() );
         }
 
-    private List getSubModels( Assembler a, Resource root, Mode mode )
+    private List<Model> getSubModels( Assembler a, Resource root, Mode mode )
         {
-        List result = new ArrayList();
+        List<Model> result = new ArrayList<Model>();
         for (StmtIterator it = root.listProperties( JA.subModel ); it.hasNext();)
             result.add( a.openModel( it.nextStatement().getResource(), mode ) );
         return result;

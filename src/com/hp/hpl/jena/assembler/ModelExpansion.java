@@ -9,7 +9,6 @@ package com.hp.hpl.jena.assembler;
 import java.util.*;
 
 import com.hp.hpl.jena.rdf.model.*;
-import com.hp.hpl.jena.util.IteratorCollection;
 import com.hp.hpl.jena.vocabulary.*;
 
 /**
@@ -217,18 +216,18 @@ public class ModelExpansion
         {
         Resource type = s.getSubject();
         List types = asJavaList( AssemblerHelp.getResource( s ) );
-        Set candidates = subjectSet( result, ANY, RDF.type, (Resource) types.get(0) );
+        Set<Resource> candidates = subjectSet( result, ANY, RDF.type, (Resource) types.get(0) );
         for (int i = 1; i < types.size(); i += 1)
             removeElementsWithoutType( candidates, (Resource) types.get(i) );
         addTypeToAll( type, candidates );
         }
 
-    private static void addTypeToAll( Resource type, Set candidates )
+    private static void addTypeToAll( Resource type, Set<Resource> candidates )
         {
         List<Resource> types = equivalentTypes( type );
-        for (Iterator it = candidates.iterator(); it.hasNext();)
+        for (Resource element : candidates)
             {
-            Resource resource = ((Resource) it.next());
+            Resource resource = element;
             for (int i = 0; i < types.size(); i += 1)
                 resource.addProperty( RDF.type, types.get(i) );
             }
@@ -243,19 +242,18 @@ public class ModelExpansion
         return types;
         }
 
-    private static void removeElementsWithoutType( Set candidates, Resource type )
+    private static void removeElementsWithoutType( Set<Resource> candidates, Resource type )
         {
-        for (Iterator it = candidates.iterator(); it.hasNext();)
+        for (Iterator<Resource> it = candidates.iterator(); it.hasNext();)
             {
-            Resource candidate = (Resource) it.next();
+            Resource candidate = it.next();
             if (!candidate.hasProperty( RDF.type, type )) it.remove();
             }
         }
 
-    private static Set subjectSet( Model result, Resource S, Property P, RDFNode O )
+    private static Set<Resource> subjectSet( Model result, Resource S, Property P, RDFNode O )
         {
-        return IteratorCollection.iteratorToSet
-            ( result.listStatements( S, P, O ) .mapWith( Statement.Util.getSubject ) );
+        return result.listStatements( S, P, O ) .mapWith( Statement.Util.getSubject ).toSet();
         }
 
     private static List asJavaList( Resource resource )

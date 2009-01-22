@@ -14,17 +14,16 @@ import com.hp.hpl.jena.reasoner.rulesys.Rule;
 
 public class RuleSetAssembler extends AssemblerBase implements Assembler
     {
-    @Override
-    public Object open( Assembler a, Resource root, Mode irrelevant )
+    @Override public Object open( Assembler a, Resource root, Mode irrelevant )
         { 
         checkType( root, JA.RuleSet );
         return createRuleSet( a, root ); 
         }
 
     public static RuleSet createRuleSet( Assembler a, Resource root )
-        { return RuleSet.create( addRules( new ArrayList(), a, root ) ); }
+        { return RuleSet.create( addRules( new ArrayList<Rule>(), a, root ) ); }
 
-    public static List addRules( List result, Assembler a, Resource root )
+    public static List<Rule> addRules( List<Rule> result, Assembler a, Resource root )
         {
         addLiteralRules( root, result );
         addIndirectRules( a, root, result );
@@ -32,7 +31,7 @@ public class RuleSetAssembler extends AssemblerBase implements Assembler
         return result;
         }
 
-    static private void addIndirectRules( Assembler a, Resource root, List result )
+    static private void addIndirectRules( Assembler a, Resource root, List<Rule> result )
         {
         StmtIterator it = root.listProperties( JA.rules );
         while (it.hasNext()) 
@@ -42,7 +41,7 @@ public class RuleSetAssembler extends AssemblerBase implements Assembler
             }
         }
 
-    static private void addExternalRules( Resource root, List result )
+    static private void addExternalRules( Resource root, List<Rule> result )
         {
         StmtIterator it = root.listProperties( JA.rulesFrom );
         while (it.hasNext())
@@ -52,7 +51,7 @@ public class RuleSetAssembler extends AssemblerBase implements Assembler
             }
         }
 
-    static private void addLiteralRules( Resource root, List result )
+    static private void addLiteralRules( Resource root, List<Rule> result )
         {
         StmtIterator it = root.listProperties( JA.rule );
         while (it.hasNext())

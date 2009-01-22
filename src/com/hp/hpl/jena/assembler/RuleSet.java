@@ -17,20 +17,22 @@ import com.hp.hpl.jena.reasoner.rulesys.Rule;
  */
 public class RuleSet
     {
-    public static final RuleSet empty = create( Collections.EMPTY_LIST );
+    private static final List<Rule> emptyRules = Collections.emptyList();
     
-    public static RuleSet create( List rules )
+    public static final RuleSet empty = create( emptyRules );
+    
+    public static RuleSet create( List<Rule> rules )
         { return new RuleSet( rules ); }
 
     public static RuleSet create( String ruleString )
         { return create( Rule.parseRules( ruleString ) ); }
     
-    private final List rules;
+    private final List<Rule> rules;
     
-    protected RuleSet( List rules )
-        { this.rules = new ArrayList( rules ); }
+    protected RuleSet( List<Rule> rules )
+        { this.rules = new ArrayList<Rule>( rules ); }
 
-    public List getRules()
+    public List<Rule> getRules()
         { return rules; }
     
     @Override public int hashCode()

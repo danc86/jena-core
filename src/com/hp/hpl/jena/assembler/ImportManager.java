@@ -28,7 +28,7 @@ public class ImportManager
     /**
         The cache of models already read by this manager.
     */
-    protected Map cache = new HashMap();
+    protected Map<String, Graph> cache = new HashMap<String, Graph>();
     
     /**
         Clear this ImportManager's cache.
@@ -51,9 +51,9 @@ public class ImportManager
         imported models.
     */
     public Model withImports( FileManager fm, Model model )
-        { return withImports( fm, model, new HashSet() ); }
+        { return withImports( fm, model, new HashSet<String>() ); }
 
-    private Model withImports( FileManager fm, Model model, Set loading )
+    private Model withImports( FileManager fm, Model model, Set<String> loading )
         {
         StmtIterator oit = model.listStatements( null, OWL.imports, (RDFNode) null );
         StmtIterator jit = model.listStatements( null, JA.imports, (RDFNode) null );
@@ -68,7 +68,7 @@ public class ImportManager
             return model;
         }
 
-    private void addImportedGraphs( FileManager fm, Set loading, StmtIterator oit, MultiUnion g )
+    private void addImportedGraphs( FileManager fm, Set<String> loading, StmtIterator oit, MultiUnion g )
         {
         while (oit.hasNext()) 
             {
@@ -85,9 +85,9 @@ public class ImportManager
         return ((Resource) ob).getURI();
         }
 
-    protected Graph graphFor( FileManager fm, Set loading, String path )
+    protected Graph graphFor( FileManager fm, Set<String> loading, String path )
         {
-        Graph already = (Graph) cache.get( path );
+        Graph already = cache.get( path );
         if (already == null)
             {
             Graph result = withImports( fm, fm.loadModel( path ), loading ).getGraph();

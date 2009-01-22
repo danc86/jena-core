@@ -93,7 +93,7 @@ public class TestPackage extends GraphTestBase  {
     /**
      * View n as intf. This is supported iff rslt.
      */
-    private static void miniAsSupports(String title, TestNode n, Class intf, boolean rslt ) {
+    private static void miniAsSupports(String title, TestNode n, Class<?> intf, boolean rslt ) {
         assertTrue(title +":sanity",n instanceof Polymorphic);
         
         // It is always possible to view any node with any interface.
@@ -363,7 +363,7 @@ public class TestPackage extends GraphTestBase  {
     	}
     }
     
-    static class Example 
+    static abstract class Example implements RDFNode 
         {
         static final Implementation factory = new Implementation()
             {
