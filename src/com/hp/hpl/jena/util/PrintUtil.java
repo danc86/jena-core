@@ -67,7 +67,7 @@ public class PrintUtil {
      * Register a set of new prefix/namespace mapping which will be used to shorten
      * the print strings for resources in known namespaces.
      */
-    public static void registerPrefixMap(Map map) {
+    public static void registerPrefixMap(Map<String, String> map) {
         prefixMapping.setNsPrefixes( map );
     }
     
