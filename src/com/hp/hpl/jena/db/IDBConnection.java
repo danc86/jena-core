@@ -32,10 +32,10 @@ public interface IDBConnection {
     public void close() throws SQLException;
 
     /**
-     * Clear all RDF information from the database.
-     * 
-     * This wipes all the information stored by Jena from the database.
-     * Obviously should be used with care.
+     * Clear all RDF information from the database. All the Jena RDF tables
+     * are dropped. This wipes all the information stored by Jena from the 
+     * database. Obviously should be used with care. The next atempt to
+     * open a DB model will (attempt to) recreate the Jena tables.
      */
     public void cleanDB() throws SQLException;
 
