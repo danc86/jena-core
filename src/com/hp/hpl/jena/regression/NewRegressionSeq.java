@@ -128,7 +128,7 @@ public class NewRegressionSeq extends NewRegressionBase
         Seq seq = m.createSeq();
         for (int i = 0; i < num; i += 1) seq.add( i );
     //                         
-        List retained = new ArrayList();
+        List<RDFNode> retained = new ArrayList<RDFNode>();
     //    
         NodeIterator nIter = seq.iterator();
         for (int i = 0; i < num; i += 1) 

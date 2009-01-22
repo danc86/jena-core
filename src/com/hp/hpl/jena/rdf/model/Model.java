@@ -282,7 +282,7 @@ public interface Model
      * @param members An iterator, each value of which is expected to be an RDFNode
      * @return An RDF-encoded list of the elements of the iterator
      */
-    public RDFList createList( Iterator members );
+    public RDFList createList( Iterator<RDFNode> members );
 
 
     /**
@@ -322,7 +322,7 @@ public interface Model
         @param statements a List of Statements
         @return this model, to allow cascading
     */
-    Model add( List statements );
+    Model add( List<Statement> statements );
 
     /**
         Remove all the statements in the list from this model, using the bulk
@@ -330,7 +330,7 @@ public interface Model
         @param statements a List of Statements to remove
         @return this model, to allow cascading
     */
-    Model remove( List statements );
+    Model remove( List<Statement> statements );
 
 	/** Add all the statements returned by an iterator to this model.
 	 * @return this model

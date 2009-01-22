@@ -66,7 +66,7 @@ public class JenaTestBase extends TestCase
     /**
     	Answer a Set formed from the elements of the List <code>L</code>.
     */
-    public static Set listToSet( List L )
+    public static <T> Set<T> listToSet( List<T> L )
         { return CollectionFactory.createHashedSet( L ); }
 
     /**
@@ -117,8 +117,8 @@ public class JenaTestBase extends TestCase
         Answer a fresh list which is the concatenation of <code>L</code> then
         <code>R</code>. Neither <code>L</code> nor <code>R</code> is updated.
     */
-    public static List append( List L, List R )
-        { List result = new ArrayList( L );
+    public static <T> List<T> append( List<? extends T> L, List<? extends T> R )
+        { List<T> result = new ArrayList<T>( L );
         result.addAll( R );
         return result; }
     

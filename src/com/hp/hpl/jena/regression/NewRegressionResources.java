@@ -149,9 +149,9 @@ public class NewRegressionResources extends NewRegressionBase
        //                       m.createSeq() );
         }
     
-    protected Set setOf( Object x )
+    protected Set<Object> setOf( Object x )
         {
-        Set result = new HashSet();
+        Set<Object> result = new HashSet<Object>();
         result.add( x );
         return result;
         }

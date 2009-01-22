@@ -110,12 +110,12 @@ public class NewRegressionAddAndContains extends NewRegressionBase
         assertTrue( m.containsLiteral( S, P, tvDouble ) );
         }
 
-    public void testAddContainsObject()
-        {
-        LitTestObj O = new LitTestObj( 12345 );
-        m.addLiteral( S, P, O );
-        assertTrue( m.containsLiteral( S, P, O ) );
-        }
+//    public void testAddContainsObject()
+//        {
+//        LitTestObj O = new LitTestObj( 12345 );
+//        m.addLiteral( S, P, O );
+//        assertTrue( m.containsLiteral( S, P, O ) );
+//        }
     
     public void testAddContainsPlainString()
         {
