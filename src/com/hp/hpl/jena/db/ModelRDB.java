@@ -35,7 +35,7 @@ import com.hp.hpl.jena.graph.*;
  * @author csayers (based on ModelMem written by bwm and the Jena 1 version of Model RDB by der.)
  * @version $Revision$
  */
-@SuppressWarnings("unchecked")
+
 public class ModelRDB extends ModelCom implements Model {    
     
     protected GraphRDB m_graphRDB = null;
