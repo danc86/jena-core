@@ -220,8 +220,6 @@ public class ResourceImpl extends EnhNode implements Resource {
         return this ;
     }
 
-    /** @deprecated */
-    @Deprecated
     public Resource addLiteral( Property p, Object o ) 
         {
         ModelCom m = mustHaveModel();
