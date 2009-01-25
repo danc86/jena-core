@@ -206,7 +206,9 @@ public interface Resource extends RDFNode {
         to this resource, <i>ie</i> add (this, p, typed(o)) to this's model. Answer
         this resource. The typed literal is equal to one constructed by using
         <code>this.getModel().createTypedLiteral(o)</code>.
+        @deprecated Use addProperty
     */
+    @Deprecated
     public Resource addLiteral( Property p, Object o );
     
     /** Add a property to this resource.
