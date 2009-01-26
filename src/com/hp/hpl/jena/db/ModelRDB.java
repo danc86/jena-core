@@ -52,7 +52,7 @@ public class ModelRDB extends ModelCom implements Model {
      * 
      * @since Jena 2.0
      */
-    public ModelRDB( Personality p, GraphRDB graph) throws RDFRDBException {
+    public ModelRDB( Personality<RDFNode> p, GraphRDB graph) throws RDFRDBException {
     	super( graph, p);
     	m_graphRDB = graph;
     }

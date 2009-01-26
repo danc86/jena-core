@@ -19,7 +19,7 @@ public class UnionModelAssembler extends ModelAssembler implements Assembler
         {
         @Override
         protected ExtendedIterator graphBaseFind( TripleMatch m )
-            { return NullIterator.instance; }
+            { return NullIterator.instance(); }
         };
     
     @Override

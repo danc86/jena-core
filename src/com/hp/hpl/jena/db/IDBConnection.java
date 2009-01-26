@@ -172,7 +172,7 @@ public interface IDBConnection {
 	 * @throws RDFDBException
 	 * @since Jena 2.0
 	 */
-	public ExtendedIterator getAllModelNames() throws RDFRDBException;
+	public ExtendedIterator<String> getAllModelNames() throws RDFRDBException;
 
 	/**
 	 * Test if a given model is contained in the database.
