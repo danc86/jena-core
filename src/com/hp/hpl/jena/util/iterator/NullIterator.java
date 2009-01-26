@@ -12,7 +12,7 @@ package com.hp.hpl.jena.util.iterator;
 */
 public class NullIterator<T> extends NiceIterator<T> 
     {
-    public static NullIterator instance = new NullIterator();
+    public static <T> NullIterator<T>  instance() { return new NullIterator<T>(); }
     
     @Override
     public ExtendedIterator<T> andThen( ClosableIterator<? extends T> it )

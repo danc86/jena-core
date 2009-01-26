@@ -72,7 +72,7 @@ public class NodeToTriplesMapFaster extends NodeToTriplesMapBase
        {
        // System.err.println( ">> BOINK" ); // if (true) throw new JenaException( "BOINK" );
        TripleBunch s = bunchMap.get( o );
-       return s == null ? NullIterator.instance : s.iterator( container );
+       return s == null ? NullIterator.instance() : s.iterator( container );
        }
     
     public class NotifyMe implements HashCommon.NotifyEmpty
@@ -116,7 +116,7 @@ public class NodeToTriplesMapFaster extends NodeToTriplesMapBase
        TripleBunch s = bunchMap.get( indexValue );
 //       System.err.println( ">> ntmf::iterator: " + (s == null ? (Object) "None" : s.getClass()) );
        return s == null
-           ? NullIterator.instance
+           ? NullIterator.instance()
            : f2.filterOn( n2 ).and( f3.filterOn( n3 ) )
                .filterKeep( s.iterator( new NotifyMe( indexValue ) ) )
            ;

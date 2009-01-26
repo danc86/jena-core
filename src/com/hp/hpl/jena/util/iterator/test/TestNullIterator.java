@@ -24,18 +24,18 @@ public class TestNullIterator extends ModelTestBase
         { return new TestSuite( TestNullIterator.class ); }
     
     public void testHasntNext()
-        { assertFalse( NullIterator.instance.hasNext() ); }
+        { assertFalse( NullIterator.instance().hasNext() ); }
     
     public void testNextFails()
         { try
-            { NullIterator.instance.next(); fail( "should throw NoSuchElementException" ); }
+            { NullIterator.instance().next(); fail( "should throw NoSuchElementException" ); }
         catch (NoSuchElementException e) { pass(); }
         }
     
     public void testAndThenReturnsArgument()
         {
         ExtendedIterator it = new NiceIterator();
-        assertSame( it, NullIterator.instance.andThen( it ) );
+        assertSame( it, NullIterator.instance().andThen( it ) );
         }
     }
 

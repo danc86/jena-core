@@ -298,18 +298,18 @@ public class N3JenaWriterCommon implements RDFWriter
         // Does not take effect until newline.
         out.incIndent(indentProperty) ;
         writeSubject(subject);
-        ClosableIterator iter = preparePropertiesForSubject(subject);
+        ClosableIterator<Property> iter = preparePropertiesForSubject(subject);
         writePropertiesForSubject(subject, iter) ;
         out.decIndent(indentProperty) ; 
         out.println(" .");
     }
 
-    protected void writePropertiesForSubject(Resource subj, ClosableIterator iter)
+    protected void writePropertiesForSubject(Resource subj, ClosableIterator<Property> iter)
     {
         // For each property.
         for (; iter.hasNext();)
         {
-            Property property = (Property) iter.next();
+            Property property = iter.next();
 
             // Object list
             writeObjectList(subj, property);
@@ -461,7 +461,7 @@ public class N3JenaWriterCommon implements RDFWriter
         out.print(formatLiteral(literal)) ;
     }
     
-    protected ClosableIterator preparePropertiesForSubject(Resource r)
+    protected ClosableIterator<Property> preparePropertiesForSubject(Resource r)
     {
         // Properties to do.
         Set<Property> properties = new HashSet<Property>() ;

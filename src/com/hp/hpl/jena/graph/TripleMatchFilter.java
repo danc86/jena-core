@@ -14,7 +14,7 @@ import com.hp.hpl.jena.util.iterator.Filter;
     
     @author  bwm, kers
 */
-public class TripleMatchFilter extends Filter 
+public class TripleMatchFilter extends Filter<Triple> 
     {
     final protected Triple tMatch;
 
@@ -28,8 +28,8 @@ public class TripleMatchFilter extends Filter
          @return true if the object is wanted.
     */
     @Override
-    public boolean accept( Object t ) 
-        { return tMatch.matches( (Triple) t ); }
+    public boolean accept( Triple t ) 
+        { return tMatch.matches( t ); }
     }
 /*
  *  (c) Copyright 2000, 2001, 2002, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009 Hewlett-Packard Development Company, LP

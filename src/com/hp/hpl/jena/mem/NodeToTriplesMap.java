@@ -72,7 +72,7 @@ public class NodeToTriplesMap extends NodeToTriplesMapBase
     public Iterator iterator( Object o, HashCommon.NotifyEmpty container )
         {
         TripleBunch b = bunchMap.get( o );
-        return b == null ? NullIterator.instance : b.iterator();
+        return b == null ? NullIterator.instance() : b.iterator();
         }
     
     /** 
@@ -127,7 +127,7 @@ public class NodeToTriplesMap extends NodeToTriplesMapBase
         {
         TripleBunch s = bunchMap.get( index.getIndexingValue() );
         return s == null
-            ? NullIterator.instance
+            ? NullIterator.instance()
             : f2.filterOn( n2 ).and( f3.filterOn( n3 ) )
                 .filterKeep( s.iterator() )
             ;

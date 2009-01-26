@@ -45,14 +45,14 @@ public class SimpleReifierFragmentsMap implements ReifierFragmentsMap
     protected ExtendedIterator allTriples( TripleMatch tm )
         {
         if (forwardMap.isEmpty())
-            return NullIterator.instance;
+            return NullIterator.instance();
         Triple t = tm.asTriple();
         Node subject = t.getSubject();
         if (subject.isConcrete())
             {
             Fragments x = (Fragments) forwardMap.get( subject );  
             return x == null
-                ? NullIterator.instance
+                ? NullIterator.instance()
                 : explodeFragments( t, subject, x )
                 ; 
             }

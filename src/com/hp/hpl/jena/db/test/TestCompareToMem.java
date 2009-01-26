@@ -87,7 +87,6 @@ public class TestCompareToMem extends TestCase
 	private void compareModels() {
 
 	    {
-	        @SuppressWarnings("unchecked")
 	        Iterator<Statement> it = modelmem.listStatements();
 	        while( it.hasNext()) {
 	            Statement s = it.next();
@@ -100,7 +99,6 @@ public class TestCompareToMem extends TestCase
 	        }
 	    }
 	    {
-	        @SuppressWarnings("unchecked")
 	        Iterator<Statement> it = modelrdf.listStatements();
 	        while( it.hasNext()) {
 	            Statement s = it.next();
@@ -116,7 +114,6 @@ public class TestCompareToMem extends TestCase
     
     private void logModel(Model m, String name) {
     	logger.debug("Model");
-    	@SuppressWarnings("unchecked")
         Iterator<Statement> it = m.listStatements();
 		while( it.hasNext()) { 
 			Statement s = it.next();

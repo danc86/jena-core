@@ -459,7 +459,7 @@ public abstract class AbstractTestQuery1 extends GraphTestBase
     private void checkCount( int expected, Graph g, Query q, Node [] results ) 
        {
        BindingQueryPlan plan = g.queryHandler().prepareBindings( q, results );
-       ExtendedIterator it = plan.executeBindings();
+       ExtendedIterator<Domain> it = plan.executeBindings();
        assertEquals( "number of reified statements", expected, queryResultCount( it ) ); 
        it.close();
 	   }
@@ -471,11 +471,11 @@ public abstract class AbstractTestQuery1 extends GraphTestBase
      	@param it the iterator to run down
      	@return the number of elements in that iterator
      */
-    protected int queryResultCount( ExtendedIterator it ) {
+    protected static int queryResultCount( ExtendedIterator<Domain> it ) {
         int n = 0;
         while (it.hasNext()) {
             n++;
-            ((List<?>) it.next()).size();  // hedgehog asks, do we need to check this works?
+            it.next().size();  // hedgehog asks, do we need to check this works?
         }
         return n;
     }

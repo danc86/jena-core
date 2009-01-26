@@ -770,7 +770,7 @@ public void deleteTripleAR(
 	 * @return boolean result to indicte if the tripple was contained
 	 */
 	public boolean statementTableContains(IDBID graphID, Triple t) {
-	   ExtendedIterator it = find( t,  graphID );
+	   ExtendedIterator<Triple> it = find( t,  graphID );
 	   boolean res = it.hasNext();
 	   it.close();
 	   return res;
@@ -779,7 +779,7 @@ public void deleteTripleAR(
 	/* (non-Javadoc)
 	 * @see com.hp.hpl.jena.db.impl.IPSet#find(com.hp.hpl.jena.graph.TripleMatch, com.hp.hpl.jena.db.impl.IDBID)
 	 */
-	public ExtendedIterator find(TripleMatch t, IDBID graphID) {
+	public ExtendedIterator<Triple> find(TripleMatch t, IDBID graphID) {
 		String astName = getTblName();
 		Node subj_node = t.getMatchSubject();
 		Node pred_node = t.getMatchPredicate();

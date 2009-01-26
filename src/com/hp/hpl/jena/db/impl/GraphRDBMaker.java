@@ -143,12 +143,12 @@ public class GraphRDBMaker extends BaseGraphMaker
     public void close()
         { /* should consider - do we close the connection or not? */ }
         
-    public ExtendedIterator listGraphs()
+    public ExtendedIterator<String> listGraphs()
         { return c.getAllModelNames() .filterDrop ( filterDEFAULT ); }
         
-    private Filter filterDEFAULT = new Filter()
+    private Filter<String>  filterDEFAULT = new Filter<String> ()
         { @Override
-        public boolean accept( Object x ) { return "DEFAULT".equals( x ); } };
+        public boolean accept( String x ) { return "DEFAULT".equals( x ); } };
     }
 
 /*

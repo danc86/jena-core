@@ -433,7 +433,7 @@ public abstract class AbstractTestQuery extends QueryTestBase
             {
             @Override
             public ExtendedIterator graphBaseFind( TripleMatch tm )
-                { return NullIterator.instance; }
+                { return NullIterator.instance(); }
             @Override
             public QueryHandler queryHandler()
                 {

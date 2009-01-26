@@ -14,7 +14,7 @@ import java.util.*;
  * @author jjc
  *
  */
-public class RandomOrderIterator extends WrappedIterator {
+public class RandomOrderIterator<T> extends WrappedIterator<T> {
 	private Random rnd = new Random();
     private Object buffer[];
     // one more than the index of the last non-null element.
@@ -22,7 +22,7 @@ public class RandomOrderIterator extends WrappedIterator {
 	/**
 	 * Wrap the base iterator, randomizing with a buffer of length sz.
 	 */
-	public RandomOrderIterator(int sz, Iterator base) {
+	public RandomOrderIterator(int sz, Iterator<T> base) {
 		super(base);
 		buffer = new Object[sz];
 		top = 0;
@@ -33,14 +33,16 @@ public class RandomOrderIterator extends WrappedIterator {
     public boolean hasNext() {
 		return top > 0;
 	}
-	@Override
-    public Object next() {
+    @Override
+    public T next() {
 		int ix = rnd.nextInt(top);
 		Object rslt = buffer[ix];
 		top--;
 		buffer[ix] = buffer[top];
 		fill();
-		return rslt;
+	    @SuppressWarnings("unchecked")
+	    T obj = (T)rslt;
+	    return obj ;
 	}
 	
 	@Override

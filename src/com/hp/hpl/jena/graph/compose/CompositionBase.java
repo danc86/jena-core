@@ -88,9 +88,9 @@ public abstract class CompositionBase
      * @param seen A set that will record each element of i in turn
      * @return An iterator that records the elements of i.
      */
-    public static ExtendedIterator recording( final ClosableIterator i, final Set seen )
+    public static <T> ExtendedIterator<T> recording( final ClosableIterator<T> i, final Set seen )
         {
-        return new NiceIterator()
+        return new NiceIterator<T>()
             {
             @Override
             public void remove()
@@ -101,8 +101,8 @@ public abstract class CompositionBase
                 { return i.hasNext(); }    
             
             @Override
-            public Object next()
-                { Object x = i.next(); 
+            public T next()
+                { T x = i.next(); 
                 try { seen.add( x ); } catch (OutOfMemoryError e) { throw e; } return x; }  
                 
             @Override

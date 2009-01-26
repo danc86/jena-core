@@ -129,7 +129,7 @@ public class SimpleEventManager implements GraphEventManager
      * Answer an iterator which wraps <code>i</code> to ensure that if a .remove()
      * is executed on it, the graph <code>g</code> will be notified.
     */
-    public static ExtendedIterator notifyingRemove( final Graph g, Iterator i )
+    public static ExtendedIterator<Triple> notifyingRemove( final Graph g, Iterator i )
         {
         return new TrackingTripleIterator( i )
             {            

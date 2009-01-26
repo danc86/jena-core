@@ -292,7 +292,7 @@ public class TestClassExpression
                     assertTrue( "Should fail to add to a complement", ex );
 
                     ex = false;
-                    try { A.addOperands( NullIterator.instance ); } catch (UnsupportedOperationException e) {ex = true;}
+                    try { A.addOperands( NullIterator.instance() ); } catch (UnsupportedOperationException e) {ex = true;}
                     assertTrue( "Should fail to add to a complement", ex );
 
                     ex = false;

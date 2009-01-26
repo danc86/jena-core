@@ -57,7 +57,7 @@ public class TestGraphRDB extends MetaTestGraph
             }
 
         @Override
-        public ExtendedIterator graphBaseFind( TripleMatch t )
+        public ExtendedIterator<Triple> graphBaseFind( TripleMatch t )
             { throw new JenaException( "find is Not Allowed" ); }
         
         @Override

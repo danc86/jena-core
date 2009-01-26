@@ -15,10 +15,10 @@ package com.hp.hpl.jena.util.iterator;
  * @author <a href="mailto:der@hplb.hpl.hp.com">Dave Reynolds</a>
  * @version $Revision$ on $Date$
  */
-public class SingletonIterator extends NiceIterator implements ExtendedIterator {
+public class SingletonIterator<T> extends NiceIterator<T> implements ExtendedIterator<T> {
     
     /** The single value to be returned */
-    private Object item;
+    private T item;
 
     /** element delivered */
     private boolean delivered = false;
@@ -27,7 +27,7 @@ public class SingletonIterator extends NiceIterator implements ExtendedIterator 
      * Constructor
      * @param element the single value to be returned
      */
-    public SingletonIterator(Object element) {
+    public SingletonIterator(T element) {
         this.item = element;
     }
     
@@ -43,7 +43,7 @@ public class SingletonIterator extends NiceIterator implements ExtendedIterator 
      * Return the value
      */
     @Override
-    public Object next() {
+    public T next() {
         if (delivered) 
             return noElements( "no objects in this iterator" );
         else {

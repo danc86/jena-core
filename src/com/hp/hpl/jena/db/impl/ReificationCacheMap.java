@@ -63,7 +63,7 @@ public class ReificationCacheMap {
 		ResultSetReifIterator it = this.reifier_RDB.m_reif.findReifStmt(stmtURI,false,this.reifier_RDB.my_GID, false);
 		while (it.hasNext()) {
 			cnt++;
-			Triple db = (Triple) it.next();				
+			Triple db = it.next();				
 			ReificationStatementMask n = new ReificationStatementMask();
 			hasSubj = !db.getSubject().equals(Node.NULL);
 			if ( hasSubj && checkSame )

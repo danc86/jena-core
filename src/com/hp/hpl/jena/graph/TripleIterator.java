@@ -12,7 +12,7 @@ import com.hp.hpl.jena.util.iterator.ExtendedIterator;
     An extended iterator that can return its next element as a Triple.
  	@author kers
 */
-public interface TripleIterator extends ExtendedIterator
+public interface TripleIterator extends ExtendedIterator<Triple>
     {
     /**
         Answer the next() element cast to Triple.

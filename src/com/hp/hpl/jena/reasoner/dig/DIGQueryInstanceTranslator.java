@@ -117,7 +117,7 @@ public class DIGQueryInstanceTranslator
      */
     @Override
     public ExtendedIterator translateResponseHook( Document response, TriplePattern query, DIGAdapter da ) {
-        return isFalse( response ) ? NullIterator.instance : (ExtendedIterator) new SingletonIterator( query.asTriple() );
+        return isFalse( response ) ? NullIterator.instance() : (ExtendedIterator) new SingletonIterator( query.asTriple() );
     }
     
     @Override

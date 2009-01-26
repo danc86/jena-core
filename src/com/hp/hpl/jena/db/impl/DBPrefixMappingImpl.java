@@ -46,7 +46,6 @@ public class DBPrefixMappingImpl extends PrefixMappingImpl {
 		// Populate the prefix map using data from the 
 		// persistent graph properties
         boolean commit = m_graphProperties.begin();
-        @SuppressWarnings("unchecked")
 		Iterator<DBPropPrefix> it = m_graphProperties.getAllPrefixes();
 		while( it.hasNext()) {
 			DBPropPrefix prefix = it.next();

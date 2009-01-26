@@ -118,8 +118,7 @@ public interface IPSet {
 	 * @param graphID of the graph to search
 	 * @return ExtendedIterator holding results
 	 */
-	public ExtendedIterator find(TripleMatch t, 
-	IDBID graphID);
+	public ExtendedIterator<Triple>  find(TripleMatch t, IDBID graphID);
 	
 	/**
 	 * Return a count of the rows in a given table

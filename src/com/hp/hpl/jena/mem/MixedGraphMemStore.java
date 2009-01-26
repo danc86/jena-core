@@ -63,7 +63,7 @@ public class MixedGraphMemStore
         {
         Set s = (Set) map.get( key );
         if (s == null)
-            return NullIterator.instance;
+            return NullIterator.instance();
         else
             {
             final Iterator it = s.iterator();
@@ -104,7 +104,7 @@ public class MixedGraphMemStore
         return new NiceIterator()
             {
             protected Iterator keys = map.keySet().iterator();
-            protected Iterator current = NullIterator.instance;
+            protected Iterator current = NullIterator.instance();
             protected Triple triple = null;
             protected Triple remember = null;
             protected Node key = null;

@@ -37,7 +37,7 @@ public class Manifest
     Model manifest ;
     String manifestName ;
     String filename ;
-    List includedFiles = new ArrayList() ;
+    List<String> includedFiles = new ArrayList<String>() ;
     Resource manifestRes = null ;
      
     public Manifest(String fn)
@@ -52,7 +52,7 @@ public class Manifest
     
     public String getName() { return manifestName ; } 
     
-    public Iterator includedManifests() { return includedFiles.iterator() ; }
+    public Iterator<String> includedManifests() { return includedFiles.iterator() ; }
 
     private void parseManifest()
     {

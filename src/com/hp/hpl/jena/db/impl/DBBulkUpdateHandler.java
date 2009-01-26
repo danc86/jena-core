@@ -92,8 +92,7 @@ public class DBBulkUpdateHandler implements BulkUpdateHandler {
         { add( g, false ); }
         
     public void add( Graph g, boolean withReifications ) {
-        @SuppressWarnings("unchecked")
-		Iterator<Triple> triplesToAdd = GraphUtil.findAll( g );
+        Iterator<Triple> triplesToAdd = GraphUtil.findAll( g );
 		try { addIterator( triplesToAdd ); } finally { NiceIterator.close(triplesToAdd); }
         if (withReifications) SimpleBulkUpdateHandler.addReifications( graph, g );
         manager.notifyAddGraph( graph, g );
@@ -153,7 +152,6 @@ public class DBBulkUpdateHandler implements BulkUpdateHandler {
         { delete( g, false ); }
         
     public void delete( Graph g, boolean withReifications ) {
-        @SuppressWarnings("unchecked")
         Iterator<Triple> triplesToDelete = GraphUtil.findAll( g );
 		try { deleteIterator( triplesToDelete ); } finally { NiceIterator.close(triplesToDelete) ; }
         if (withReifications) SimpleBulkUpdateHandler.deleteReifications( graph, g );

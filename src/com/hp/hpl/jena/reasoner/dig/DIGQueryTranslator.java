@@ -137,7 +137,7 @@ public abstract class DIGQueryTranslator {
         Document query = translatePattern( pattern, da, premises );
         if (query == null) {
             LogFactory.getLog( getClass() ).warn( "Could not find pattern translator for nested DIG query " + pattern );
-            return NullIterator.instance;
+            return NullIterator.instance();
         }
         else {
             Document response = da.getConnection().sendDigVerb( query, da.getProfile() );
@@ -470,7 +470,7 @@ public abstract class DIGQueryTranslator {
 
         // the resulting iterator is either of length 0 or 1
         return found ? (ExtendedIterator) new SingletonIterator( result )
-                     : NullIterator.instance;
+                     : NullIterator.instance();
     }
 
 

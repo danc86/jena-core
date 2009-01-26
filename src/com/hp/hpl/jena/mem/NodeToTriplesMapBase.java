@@ -101,7 +101,7 @@ public abstract class NodeToTriplesMapBase
         // System.err.println( "*>> NTM:iterateAll: nodes = " + IteratorCollection.iteratorToList( domain() ) );
         return new NiceIterator() 
             {
-            private Iterator current = NullIterator.instance;
+            private Iterator current = NullIterator.instance();
             private NotifyMe emptier = new NotifyMe();
             
             // private Object cn = "(none)";

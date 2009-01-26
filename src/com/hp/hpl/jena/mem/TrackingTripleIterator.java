@@ -18,9 +18,9 @@ import com.hp.hpl.jena.util.iterator.WrappedIterator;
 
 	@author kers
 */
-public class TrackingTripleIterator extends WrappedIterator
+public class TrackingTripleIterator extends WrappedIterator<Triple>
     {
-    public TrackingTripleIterator( Iterator it ) 
+    public TrackingTripleIterator( Iterator<Triple> it ) 
         { super( it ); }    
     
     /**
@@ -33,8 +33,8 @@ public class TrackingTripleIterator extends WrappedIterator
      	@see java.util.Iterator#next()
     */
     @Override
-    public Object next()
-        { return current = (Triple) super.next(); }       
+    public Triple next()
+        { return current = super.next(); }       
     }
 
 /*

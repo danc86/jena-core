@@ -87,19 +87,19 @@ public class SimpleReifierTripleMap implements ReifierTripleMap
         { 
         Set s = (Set) inverseMap.get( t );
         return s == null
-            ? (ExtendedIterator) NullIterator.instance
+            ? (ExtendedIterator) NullIterator.instance()
             : WrappedIterator.create( s.iterator() );
         }
 
     protected ExtendedIterator allTriples( TripleMatch tm )
         {
-        if (forwardMap.isEmpty()) return NullIterator.instance;
+        if (forwardMap.isEmpty()) return NullIterator.instance();
         Triple pattern = tm.asTriple();
         Node tag = pattern.getSubject();
         if (tag.isConcrete())
             {
             Triple x = getTriple( tag );  
-            return x == null ? NullIterator.instance : explodeTriple( pattern, tag, x ); 
+            return x == null ? NullIterator.instance() : explodeTriple( pattern, tag, x ); 
             }
         else
             {

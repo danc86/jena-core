@@ -67,10 +67,10 @@ public class WrappedGraph implements GraphWithPerform
         { base.delete( t ); 
         getEventManager().notifyDeleteTriple( this, t ); }
 
-    public ExtendedIterator find( TripleMatch m )
+    public ExtendedIterator<Triple> find( TripleMatch m )
         { return SimpleEventManager.notifyingRemove( this, base.find( m ) ); }
 
-    public ExtendedIterator find( Node s, Node p, Node o )
+    public ExtendedIterator<Triple> find( Node s, Node p, Node o )
         { return SimpleEventManager.notifyingRemove( this, base.find( s, p, o ) ); }
 
     public boolean isIsomorphicWith( Graph g )

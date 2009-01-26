@@ -31,7 +31,7 @@ import com.hp.hpl.jena.vocabulary.RDF;
 * @author hkuno.  Based on ResultSetResource Iterator, by Dave Reynolds, HPLabs, Bristol <a href="mailto:der@hplb.hpl.hp.com">Dave Reynolds</a>
 * @version $Revision$ on $Date$
 */
-public class ResultSetReifIterator extends ResultSetIterator {
+public class ResultSetReifIterator extends ResultSetIterator<Triple> {
 
     /** The rdf model in which to instantiate any resources */
     protected IDBID m_graphID;
@@ -191,7 +191,7 @@ public class ResultSetReifIterator extends ResultSetIterator {
 		 * Return triples for the current row, which should have already been extracted.
 		 */
 		@Override
-        protected Object getRow() {
+        protected Triple getRow() {
 			Triple t = null;
 			
 			if ( m_getTriples == true ) {

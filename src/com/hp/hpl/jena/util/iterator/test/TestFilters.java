@@ -39,7 +39,7 @@ public class TestFilters extends ModelTestBase
     
     public void testFilterFilterMethod()
         {
-        ExtendedIterator it = Filter.any.filterKeep( NullIterator.instance );
+        ExtendedIterator it = Filter.any.filterKeep( NullIterator.instance() );
         assertFalse( it.hasNext() );
         }
     

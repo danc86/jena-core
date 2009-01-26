@@ -15,11 +15,11 @@ import java.util.Iterator;
  	It used to take TripleMatch's, but those are obsolete.
  	@author  bwm, kers
 */
-public class TripleMatchIterator 
-    extends FilterKeepIterator
-    implements ExtendedIterator 
+public class TripleMatchIterator
+    extends FilterKeepIterator<Triple>
+    implements ExtendedIterator<Triple>
     {
-    public TripleMatchIterator( Triple m, Iterator iter ) 
+    public TripleMatchIterator( Triple m, Iterator<Triple> iter ) 
         { super( new TripleMatchFilter( m ), iter ); }
     }
 

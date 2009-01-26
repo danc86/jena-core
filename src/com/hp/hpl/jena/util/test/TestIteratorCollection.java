@@ -27,7 +27,7 @@ public class TestIteratorCollection extends GraphTestBase
     
     public void testEmptyToEmptySet()
         {
-        assertEquals( CollectionFactory.createHashedSet(), IteratorCollection.iteratorToSet( NullIterator.instance ) );
+        assertEquals( CollectionFactory.createHashedSet(), IteratorCollection.iteratorToSet( NullIterator.instance() ) );
         }
     
     public void testSingletonToSingleSet()
@@ -63,7 +63,7 @@ public class TestIteratorCollection extends GraphTestBase
 
     public void testEmptyToEmptyList()
         {
-        assertEquals( new ArrayList(), IteratorCollection.iteratorToList( NullIterator.instance ) );
+        assertEquals( new ArrayList(), IteratorCollection.iteratorToList( NullIterator.instance() ) );
         }
     
     public void testSingletonToSingletonList()

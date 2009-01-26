@@ -12,6 +12,7 @@ package com.hp.hpl.jena.db.impl;
 //=======================================================================
 // Imports
 import java.util.ArrayList;
+import java.util.List;
 
 //=======================================================================
 /**
@@ -29,17 +30,17 @@ import java.util.ArrayList;
 * @version $Revision$ on $Date$
 */
 
-public class ResultSetNodeIterator extends ResultSetIterator {
+public class ResultSetStringIterator extends ResultSetIterator<List<String>> {
 
     /**
-     * Extract the current row
+     * Extract the current row - turn into strings.
      * Override in subclasses.
      */
     @Override
     protected void extractRow() throws Exception {
         if (m_row == null) {
             m_nCols = m_resultSet.getMetaData().getColumnCount();
-            m_row = new ArrayList<Object>(m_nCols);
+            m_row = new ArrayList<String>(m_nCols);
             for (int i = 0; i < m_nCols; i++) m_row.add(null);
         }
         for (int i = 0; i < m_nCols; i++) {

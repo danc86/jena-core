@@ -39,16 +39,16 @@ import java.util.NoSuchElementException;
  * @author jjc
  * @version Release='$Name$' Revision='$Revision$' Date='$Date$'
  */
-public class IteratorIterator implements Iterator
+public class IteratorIterator<T> implements Iterator<T>
 {
-	private Iterator top;
-	private Iterator currentMember;
+	private Iterator<Iterator<T>> top;
+	private Iterator<T> currentMember;
 
 /** The first element of this Iterator is the first element of the
  * first non-empty element of <code>e</code>.
  * @param e An Iterator all of whose members are themselves Iterator's.
  */        
-	public IteratorIterator(Iterator e) {
+	public IteratorIterator(Iterator<Iterator<T>> e) {
 		top = e;
 		currentMember = null;
 	}
@@ -60,12 +60,12 @@ public class IteratorIterator implements Iterator
 		while ( currentMember == null || !currentMember.hasNext() ) {
 			if (!top.hasNext())
 				return false;
-			currentMember = (Iterator)top.next();
+			currentMember = top.next();
 		}
 		return true;
 	}
 
-	public Object next() {
+	public T next() {
 		hasNext();
 		if (currentMember == null)
 			throw new NoSuchElementException();
