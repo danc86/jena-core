@@ -17,9 +17,9 @@ package com.hp.hpl.jena.util.iterator;
  * @author jjc, modified to use ExtendedIterators by csayers
  * @version $Revision$
  */
-abstract public class LazyIterator implements ExtendedIterator {
+abstract public class LazyIterator<T> implements ExtendedIterator<T> {
 
-	private ExtendedIterator it=null;
+	private ExtendedIterator<T> it=null;
 
 	/** An ExtendedIterator that is created lazily. 
 	 * This constructor has very low overhead - the real work is 
@@ -33,7 +33,7 @@ abstract public class LazyIterator implements ExtendedIterator {
 		return it.hasNext();
 	}
 
-	public Object next() {
+	public T next() {
 		lazy();
 		return it.next();
 	}
@@ -43,22 +43,22 @@ abstract public class LazyIterator implements ExtendedIterator {
 		it.remove();
 	}
 
-	public ExtendedIterator andThen(ClosableIterator other) {
+	public ExtendedIterator<T> andThen(ClosableIterator<? extends T> other) {
 		lazy();
 		return it.andThen(other);
 	}
 
-	public ExtendedIterator filterKeep(Filter f) {
+	public ExtendedIterator<T> filterKeep(Filter<T> f) {
 		lazy();
 		return it.filterKeep(f);
 	}
 
-	public ExtendedIterator filterDrop(Filter f) {
+	public ExtendedIterator<T> filterDrop(Filter<T> f) {
 		lazy();
 		return it.filterDrop(f);
 	}
 
-	public ExtendedIterator mapWith(Map1 map1) {
+	public <U> ExtendedIterator<U> mapWith(Map1<T,U> map1) {
 		lazy();
 		return it.mapWith(map1);
 	}
@@ -82,7 +82,7 @@ abstract public class LazyIterator implements ExtendedIterator {
 	 * through to the returned Iterator.
 	 * @return The parent iterator defining the sequence.
 	 */
-	public abstract ExtendedIterator create();
+	public abstract ExtendedIterator<T> create();
 
 }
 
