@@ -12,14 +12,14 @@ package com.hp.hpl.jena.util.iterator;
     value.
 	@author kers
 */
-public interface MapFilter 
+public interface MapFilter<R,S>
     {
     /**
         a compiled filter and test - returns null if x is unacceptable, and
         the mapped value if x is acceptable; clearly useless if the mapping
         might deliver null. Tough.
     */
-    public Object accept( Object x );
+    public S accept( R x );
     }
 
 /*
