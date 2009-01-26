@@ -11,17 +11,13 @@ import com.hp.hpl.jena.rdf.model.Resource;
 /**
     Exception used to report that a transaction was aborted when loading
     content into a model.
+    
     @author kers
 */
 public class TransactionAbortedException extends AssemblerException
-    {
-    protected final Resource root;
-    
+    {    
     public TransactionAbortedException( Resource root, Throwable t )
-        { 
-        super( root, makeMessage( root, t ), t ); 
-        this.root = root;
-        }
+        { super( root, makeMessage( root, t ), t ); }
 
     private static String makeMessage( Resource root, Throwable t )
         {

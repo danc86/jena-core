@@ -18,16 +18,16 @@ import com.hp.hpl.jena.rdf.model.Resource;
 public class CannotConstructException extends AssemblerException
     {
     protected final Resource type;
-    protected final Class assemblerClass;
+    protected final Class<?> assemblerClass;
     
-    public CannotConstructException( Class assemblerClass, Resource root, Resource type )
+    public CannotConstructException( Class<?> assemblerClass, Resource root, Resource type )
         {
         super( root, constructMessage( assemblerClass, root, type ) );
         this.type = type; 
         this.assemblerClass = assemblerClass;
         }
 
-    private static String constructMessage( Class assemblerClass, Resource root, Resource type )
+    private static String constructMessage( Class<?>assemblerClass, Resource root, Resource type )
         {
         return 
             "the assembler " + getClassName( assemblerClass )
@@ -38,7 +38,7 @@ public class CannotConstructException extends AssemblerException
     
     private static final String rootPrefix = getPackagePrefix( Assembler.class.getName() );
     
-    private static String getClassName( Class c )
+    private static String getClassName( Class<?> c )
         {
         String name = c.getName();
         return getPackagePrefix( name ).equals( rootPrefix ) ? getLeafName( name ) : name;
@@ -53,7 +53,7 @@ public class CannotConstructException extends AssemblerException
     /**
         Answer the Assembler that cannot do the construction.
     */
-    public Class getAssemblerClass()
+    public Class<?> getAssemblerClass()
         { return assemblerClass; }
 
     /**

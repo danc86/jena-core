@@ -109,21 +109,21 @@ public abstract class ModelAssembler extends AssemblerBase implements Assembler
 
     private void transferContentProperties( Model partial, Resource someInitial, Resource combined )
         {
-        Map1 replace = replaceSubjectMap( partial, combined );
+        Map1<Statement, Statement> replace = replaceSubjectMap( partial, combined );
         for (Iterator<Property> it = ContentAssembler.contentProperties.iterator(); it.hasNext();)
             partial.add( copyProperties( someInitial, replace, it.next() ) );
         }
     
-    private List copyProperties( Resource root, Map1 replace, Property property )
+    private List<Statement> copyProperties( Resource root, Map1<Statement, Statement> replace, Property property )
         { return root.listProperties( property  ).mapWith( replace ).toList(); }
 
-    private Map1 replaceSubjectMap( final Model inModel, final Resource newSubject )
+    private Map1<Statement, Statement> replaceSubjectMap( final Model inModel, final Resource newSubject )
         {
-        Map1 replace = new Map1() 
+        Map1<Statement, Statement> replace = new Map1<Statement, Statement>() 
             {
-            public Object map1( Object o )
+            public Statement map1( Statement o )
                 { 
-                Statement s = (Statement) o;
+                Statement s = o;
                 return inModel.createStatement( newSubject, s.getPredicate(), s.getObject() );
                 }
             };

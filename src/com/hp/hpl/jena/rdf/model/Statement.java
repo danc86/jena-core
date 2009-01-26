@@ -394,19 +394,19 @@ public interface Statement extends FrontsTriple
     */
     public static class Util
         {
-        public static final Map1 getSubject = new Map1() 
+        public static final Map1<Statement, Resource> getSubject = new Map1<Statement, Resource>() 
             {
-            public Object map1( Object o ) { return ((Statement) o).getSubject(); }
+            public Resource map1( Statement o ) { return o.getSubject(); }
             };
             
-        public static final Map1 getPredicate = new Map1() 
+        public static final Map1<Statement, Property> getPredicate = new Map1<Statement, Property>() 
             {
-            public Object map1( Object o ) { return ((Statement) o).getPredicate(); }
+            public Property map1( Statement o ) { return o.getPredicate(); }
             };
             
-        public static final Map1 getObject = new Map1() 
+        public static final Map1<Statement, RDFNode> getObject = new Map1<Statement, RDFNode>() 
             {
-            public Object map1( Object o ) { return ((Statement) o).getObject(); }
+            public RDFNode map1( Statement o ) { return o.getObject(); }
             };
         }
 }

@@ -121,13 +121,13 @@ public class ReasonerFactoryAssembler extends AssemblerBase implements Assembler
     private static ReasonerFactory getReasonerFactoryByClassName
         ( Resource root, String className )
         {
-        Class c = loadClass( root, className );
+        Class<?> c = loadClass( root, className );
         mustBeReasonerFactory( root, c );
         ReasonerFactory theInstance = resultFromStatic( c, "theInstance" );
         return theInstance == null ? createInstance( root, c ) : theInstance;
         }
 
-    private static ReasonerFactory createInstance( Resource root, Class c )
+    private static ReasonerFactory createInstance( Resource root, Class<?> c )
         { 
         try
             { return (ReasonerFactory) c.newInstance(); }
@@ -135,7 +135,7 @@ public class ReasonerFactoryAssembler extends AssemblerBase implements Assembler
             { throw new AssemblerException( root, "could not create instance of " + c.getName(), e ); }
         }
 
-    private static ReasonerFactory resultFromStatic( Class c, String methodName )
+    private static ReasonerFactory resultFromStatic( Class<?> c, String methodName )
         {
         try
             { return (ReasonerFactory) c.getMethod( methodName, (Class[])null ).invoke( null, (Object[])null ); }
@@ -147,7 +147,7 @@ public class ReasonerFactoryAssembler extends AssemblerBase implements Assembler
         Throw a <code>NotExpectedTypeException</code> if <code>c</code>
         isn't a subclass of <code>ReasonerFactory</code>.
     */
-    private static void mustBeReasonerFactory( Resource root, Class c )
+    private static void mustBeReasonerFactory( Resource root, Class<?> c )
         {
         if (!ReasonerFactory.class.isAssignableFrom( c ))
             throw new NotExpectedTypeException( root, ReasonerFactory.class, c );

@@ -18,7 +18,7 @@ public class UnionModelAssembler extends ModelAssembler implements Assembler
     private static final Graph immutable = new GraphBase() 
         {
         @Override
-        protected ExtendedIterator graphBaseFind( TripleMatch m )
+        protected ExtendedIterator<Triple> graphBaseFind( TripleMatch m )
             { return NullIterator.instance(); }
         };
     

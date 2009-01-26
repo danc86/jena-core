@@ -16,20 +16,20 @@ import com.hp.hpl.jena.rdf.model.Resource;
 */
 public class NotExpectedTypeException extends AssemblerException
     {
-    protected final Class expectedType;
-    protected final Class actualType;
+    protected final Class<?> expectedType;
+    protected final Class<?> actualType;
     
-    public NotExpectedTypeException( Resource root, Class expectedType, Class actualType )
+    public NotExpectedTypeException( Resource root, Class<?> expectedType, Class<?> actualType )
         {
         super( root, "expected class " + expectedType.getName() + ", but had class " + actualType.getName() );
         this.expectedType = expectedType;
         this.actualType = actualType;
         }
 
-    public Class getExpectedType()
+    public Class<?> getExpectedType()
         { return expectedType; }
 
-    public Class getActualType()
+    public Class<?> getActualType()
         { return actualType; }
     }
 

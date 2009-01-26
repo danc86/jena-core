@@ -17,21 +17,18 @@ import com.hp.hpl.jena.vocabulary.RDF;
 
 public abstract class AssemblerBase implements Assembler
     {
-    protected static class MapObjectToContent implements Map1
+    protected static class MapObjectToContent implements Map1<Statement, Content>
         {
         protected final Assembler a;
         
         public MapObjectToContent( Assembler a ) 
             { this.a = a; }
         
-        public Object map1( Object o )
-            { return a.open( getResource( (Statement) o ) ); }
+        public Content map1( Statement o )
+            { return (Content) a.open( getResource( o ) ); }
         }
 
-    static final Map1 getObject = new Map1() 
-        {
-        public Object map1( Object o ) { return ((Statement) o).getObject(); }
-        };
+    protected static final Map1<Statement, RDFNode> getObject = Statement.Util.getObject;
         
     public final Object open( Resource root )
         { return open( this, root ); }
@@ -49,17 +46,17 @@ public abstract class AssemblerBase implements Assembler
 
     protected static Statement getUniqueStatement( Resource root, Property property )
         {
-        List statements = root.listProperties( property ).toList();
+        List<Statement> statements = root.listProperties( property ).toList();
         if (statements.size() == 0) return null;
-        if (statements.size() == 1) return (Statement) statements.get(0);
+        if (statements.size() == 1) return statements.get(0);
         throw new NotUniqueException( root, property );
         }
     
     protected static RDFNode getUnique( Resource root, Property property )
         {
-        List nodes = root.listProperties( property ) .mapWith( getObject ).toList();
+        List<RDFNode> nodes = root.listProperties( property ) .mapWith( getObject ).toList();
         if (nodes.size() == 0) return null;
-        if (nodes.size() == 1) return (RDFNode) nodes.get(0);
+        if (nodes.size() == 1) return nodes.get(0);
         throw new NotUniqueException( root, property );
         }
 
@@ -101,7 +98,7 @@ public abstract class AssemblerBase implements Assembler
         return s == null ? null : AssemblerHelp.getString( s );
         }
 
-    protected static Class loadClass( Resource root, String className )
+    protected static Class<?> loadClass( Resource root, String className )
         {
         try 
             { return Class.forName( className ); }
