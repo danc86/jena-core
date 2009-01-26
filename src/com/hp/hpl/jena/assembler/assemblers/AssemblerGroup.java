@@ -85,7 +85,7 @@ public abstract class AssemblerGroup extends AssemblerBase implements Assembler
         @Override public Assembler assemblerFor( Resource type )
             { return internal.assemblerFor( type ); }
         
-        public Set implementsTypes()
+        public Set<Resource> implementsTypes()
             { 
             return implementTypes.listStatements().mapWith( Statement.Util.getSubject ).toSet(); }
             }
@@ -94,16 +94,15 @@ public abstract class AssemblerGroup extends AssemblerBase implements Assembler
         {
         Map<Resource, Assembler> mappings = new HashMap<Resource, Assembler>();
 
-        @Override
-        public Object open( Assembler a, Resource root, Mode mode )
+        @Override public Object open( Assembler a, Resource root, Mode mode )
             {
-            Set types = AssemblerHelp.findSpecificTypes( root, JA.Object );
+            Set <Resource>types = AssemblerHelp.findSpecificTypes( root, JA.Object );
             if (types.size() == 0)
                 throw new NoSpecificTypeException( root );
             else if (types.size() > 1)
-                throw new AmbiguousSpecificTypeException( root, new ArrayList( types ) );
+                throw new AmbiguousSpecificTypeException( root, new ArrayList<Resource>( types ) );
             else
-                return openBySpecificType( a, root, mode, (Resource) types.iterator().next() );
+                return openBySpecificType( a, root, mode, types.iterator().next() );
             }
 
         private Object openBySpecificType( Assembler a, Resource root, Mode mode, Resource type )

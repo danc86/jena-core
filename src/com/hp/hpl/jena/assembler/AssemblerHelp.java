@@ -102,7 +102,7 @@ public class AssemblerHelp
     */
     private static void loadAssemblerClass( AssemblerGroup group, Statement s )
         {
-        Class c = loadArbitraryClass( group, s );
+        Class<?> c = loadArbitraryClass( group, s );
         runAnyAssemblerConstructor( group, s, c );
         }
     
@@ -112,9 +112,9 @@ public class AssemblerHelp
         with an <code>AssemblerGroup</code> argument, call that method
         passing it <code>ag</code>.
     */
-    private static Class loadArbitraryClass( AssemblerGroup ag, Statement s )
+    private static Class<?> loadArbitraryClass( AssemblerGroup ag, Statement s )
         {
-        Class loaded = loadClassNamedBy( s ); 
+        Class<?> loaded = loadClassNamedBy( s ); 
         try 
             { 
             Method m = loaded.getDeclaredMethod( "whenRequiredByAssembler", new Class[] {AssemblerGroup.class} );
@@ -127,18 +127,18 @@ public class AssemblerHelp
         return loaded;
         }
     
-    private static Class loadClassNamedBy( Statement s )
+    private static Class<?> loadClassNamedBy( Statement s )
         {
         try { return Class.forName( getString( s ) ); }
         catch (Exception e) { throw new JenaException( e ); }
         }
 
-    private static void runAnyAssemblerConstructor( AssemblerGroup group,  Statement s, Class c )
+    private static void runAnyAssemblerConstructor( AssemblerGroup group,  Statement s, Class<?> c )
         {
         try
             {
             Resource type = s.getSubject();
-            Constructor con = getResourcedConstructor( c );
+            Constructor<?> con = getResourcedConstructor( c );
             if (con == null)
                 establish( group, type, c.newInstance() );
             else
@@ -156,7 +156,7 @@ public class AssemblerHelp
             throw new JenaException( "constructed entity is not an Assembler: " + x );
         }
 
-    private static Constructor getResourcedConstructor( Class c )
+    private static Constructor<?> getResourcedConstructor( Class<?> c )
         {
         try { return c.getConstructor( new Class[] { Resource.class } ); }
         catch (SecurityException e) { return null; }
@@ -194,7 +194,7 @@ public class AssemblerHelp
     */
     public static Set<Resource> findSpecificTypes( Resource root, Resource baseType )
         {
-        List types = root.listProperties( RDF.type ).mapWith( Statement.Util.getObject ).toList();
+        List<RDFNode> types = root.listProperties( RDF.type ).mapWith( Statement.Util.getObject ).toList();
         Set<Resource> results = new HashSet<Resource>();
         for (int i = 0; i < types.size(); i += 1)
             {
@@ -206,7 +206,7 @@ public class AssemblerHelp
         return results;
         }
 
-    private static boolean hasNoCompetingSubclass( List types, Resource candidate )
+    private static boolean hasNoCompetingSubclass( List<RDFNode> types, Resource candidate )
         {
         for (int j = 0; j < types.size(); j += 1)
             {
@@ -260,7 +260,7 @@ public class AssemblerHelp
         Answer a Set of the ja:Object resources in the full expansion of
         the assembler specification model <code>model</code>.
     */
-    public static Set findAssemblerRoots( Model model )
+    public static Set<Resource> findAssemblerRoots( Model model )
         { return findAssemblerRoots( model, JA.Object ); }
 
     /**
@@ -268,7 +268,7 @@ public class AssemblerHelp
         specification <code>model</code> which have rdf:type <code>type</code>,
         which <i>must</i> be a subtype of <code>ja:Object</code>.
     */
-    public static Set findAssemblerRoots( Model model, Resource type )
+    public static Set<Resource> findAssemblerRoots( Model model, Resource type )
         { return fullModel( model ).listResourcesWithProperty( RDF.type, type ).toSet(); }
 
     /**
@@ -284,8 +284,8 @@ public class AssemblerHelp
     */
     public static Resource singleRoot( Model singleRoot, Resource type )
         {
-        Set roots = findAssemblerRoots( singleRoot, type );
-        if (roots.size() == 1) return (Resource) roots.iterator().next();
+        Set<Resource> roots = findAssemblerRoots( singleRoot, type );
+        if (roots.size() == 1) return roots.iterator().next();
         if (roots.size() == 0) throw new BadDescriptionNoRootException( singleRoot, type );
         throw new BadDescriptionMultipleRootsException( singleRoot, type );
         }
