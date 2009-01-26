@@ -222,7 +222,7 @@ public class DAML_OILLegacyProfile
     }
 
     /** There are no first-class axioms in DAML */
-    public Iterator getAxiomTypes() {
+    public Iterator<Resource> getAxiomTypes() {
         return Arrays.asList(
             new Resource[] {
             }
@@ -230,14 +230,14 @@ public class DAML_OILLegacyProfile
     }
 
     /** The annotation properties of DAML (currently none) */
-    public Iterator getAnnotationProperties() {
+    public Iterator<Resource> getAnnotationProperties() {
         return Arrays.asList(
             new Resource[] {
             }
         ).iterator();
     }
 
-    public Iterator getClassDescriptionTypes() {
+    public Iterator<Resource> getClassDescriptionTypes() {
         return Arrays.asList(
             new Resource[] {
                 DAML_OIL.Class,
@@ -263,7 +263,7 @@ public class DAML_OILLegacyProfile
      * @return True if strict checking is off, or if <code>n</code> can be
      * viewed according to the facet resource <code>res</code>
      */
-    public boolean isSupported( Node n, EnhGraph g, Class type ) {
+    public <T> boolean isSupported( Node n, EnhGraph g, Class<T> type ) {
         if (g instanceof OntModel) {
             OntModel m = (OntModel) g;
 
@@ -513,7 +513,7 @@ public class DAML_OILLegacyProfile
     //////////////////////////////////
 
     /** Map from resource to syntactic/semantic checks that a node can be seen as the given facet */
-    protected static HashMap s_supportsChecks = new HashMap();
+    protected static HashMap<Object, Object> s_supportsChecks = new HashMap<Object, Object>();
 
     static {
         // initialise the map of supports checks from a table of static data

@@ -15,23 +15,23 @@ import java.util.Iterator;
     @version  Release='$Name$' Revision='$Revision$' Date='$Date$'
 */
 
-public class Map1Iterator extends NiceIterator implements ClosableIterator
+public class Map1Iterator<From, To> extends NiceIterator<To> implements ClosableIterator<To>
     {
-	private Map1 map;
-	private Iterator base;
+	private Map1<From, To> map;
+	private Iterator<From> base;
 	
         /**
          * Construct a list of the converted.
          * @param m The conversion to apply.
          * @param it the iterator of elements to convert
          */
-	public Map1Iterator( Map1 map, Iterator base ) 
+	public Map1Iterator( Map1<From, To> map, Iterator<From> base ) 
         {
         this.map = map;
         this.base = base;
         }
     
-	public @Override Object next() 
+	public @Override To next() 
         { return map.map1( base.next() ); }
 	
 	public @Override boolean hasNext()

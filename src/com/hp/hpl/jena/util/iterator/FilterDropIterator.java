@@ -14,13 +14,13 @@ import java.util.Iterator;
     
     @author kers
  */
-public class FilterDropIterator extends FilterIterator implements Iterator
+public class FilterDropIterator<T> extends FilterIterator<T> implements Iterator<T>
     {
-    public FilterDropIterator( Filter f, Iterator it )
+    public FilterDropIterator( Filter<T> f, Iterator<T> it )
         { super( f, it ); }
     
     @Override
-    protected boolean accept( Object x )
+    protected boolean accept( T x )
         { return !f.accept( x ); }
     }
 

@@ -9,15 +9,16 @@ package com.hp.hpl.jena.rdf.model.impl;
 import java.util.Iterator;
 
 import com.hp.hpl.jena.rdf.model.*;
+import com.hp.hpl.jena.util.iterator.WrappedIterator;
 //import com.hp.hpl.jena.util.iterator.*;
 
-public class RSIteratorImpl extends ResIteratorImpl implements RSIterator
+public class RSIteratorImpl extends WrappedIterator<ReifiedStatement> implements RSIterator
     {
-    public RSIteratorImpl( Iterator iterator )
+    public RSIteratorImpl( Iterator<ReifiedStatement> iterator )
         { super( iterator ); }
 
     public ReifiedStatement nextRS()
-        { return (ReifiedStatement) ((RDFNode) next()).as( ReifiedStatement.class ); }
+        { return next(); }
     }
 
 /*

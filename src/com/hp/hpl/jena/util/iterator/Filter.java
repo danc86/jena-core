@@ -13,22 +13,22 @@ import java.util.Iterator;
     
     @author jjc, kers
 */
-public abstract class Filter
+public abstract class Filter<T>
     {
     /**
         Answer true iff the object <code>o</code> is acceptable. This method
         may also throw an exception if the argument is of a wrong type; it
         is not required to return <code>false</code> in such a case.
     */
-	public abstract boolean accept( Object o );
+	public abstract boolean accept( T o );
     
-    public ExtendedIterator filterKeep( Iterator it )
-        { return new FilterKeepIterator( this, it ); }
+    public ExtendedIterator<T> filterKeep( Iterator<T> it )
+        { return new FilterKeepIterator<T>( this, it ); }
     
-    public Filter and( final Filter other )
-        { return other == any ? this : new Filter()
+    public Filter<T> and( final Filter<T> other )
+        { return other == any ? this : new Filter<T>()
             { @Override
-            public boolean accept( Object x ) 
+            public boolean accept( T x ) 
                 { return Filter.this.accept( x ) && other.accept( x ); } 
             };
         }

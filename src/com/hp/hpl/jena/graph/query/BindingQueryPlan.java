@@ -16,7 +16,7 @@ import com.hp.hpl.jena.util.iterator.*;
 */
 public interface BindingQueryPlan
     {
-    public ExtendedIterator executeBindings();
+    public ExtendedIterator<Domain> executeBindings();
     }
 
 /*

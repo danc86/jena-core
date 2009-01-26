@@ -29,7 +29,7 @@ public interface Graph  extends GraphAdd
     */
     public static final Graph emptyGraph = new GraphBase()
         { @Override
-        public ExtendedIterator graphBaseFind( TripleMatch tm ) { return NullIterator.instance; } };
+        public ExtendedIterator<Triple> graphBaseFind( TripleMatch tm ) { return Triple.None; } };
     	
     /** 
         true if this graph's content depends on the other graph. May be
@@ -90,11 +90,11 @@ public interface Graph  extends GraphAdd
         @param m a Triple[Match] encoding the pattern to look for
         @return an iterator of all triples in this graph that match m
     */
-	ExtendedIterator find(TripleMatch m);
+	ExtendedIterator<Triple> find(TripleMatch m);
     
 	  /** Returns an iterator over Triple.
 	   */
-	ExtendedIterator find(Node s,Node p,Node o);
+	ExtendedIterator<Triple> find(Node s,Node p,Node o);
     
 	/**
 	 * Compare this graph with another using the method

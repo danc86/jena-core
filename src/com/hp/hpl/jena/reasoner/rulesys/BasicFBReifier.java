@@ -26,26 +26,26 @@ public class BasicFBReifier implements Reifier
     interface GetReifier
         { Reifier getReifier(); }
 
-    public ExtendedIterator allNodes()
+    public ExtendedIterator<Node> allNodes()
         { return base.allNodes().andThen( deductions.getReifier().allNodes() ); }
 
-    public ExtendedIterator allNodes( Triple t )
+    public ExtendedIterator<Node> allNodes( Triple t )
         { return base.allNodes( t ).andThen( deductions.getReifier().allNodes() );  }
 
     public void close()
         { base.close(); }
 
-    public ExtendedIterator find( TripleMatch m )
+    public ExtendedIterator<Triple> find( TripleMatch m )
         { return base.find( m ).andThen( deductions.getReifier().find( m ) ); }
 
-    public ExtendedIterator findEither( TripleMatch m, boolean showHidden )
+    public ExtendedIterator<Triple> findEither( TripleMatch m, boolean showHidden )
         { 
         return 
             base.findEither(  m, showHidden )
             .andThen( deductions.getReifier().findEither(  m, showHidden ) ); 
         }
 
-    public ExtendedIterator findExposed( TripleMatch m )
+    public ExtendedIterator<Triple> findExposed( TripleMatch m )
         { return base.findExposed( m ).andThen( deductions.getReifier().findExposed( m ) );  }
 
     public Graph getParentGraph()

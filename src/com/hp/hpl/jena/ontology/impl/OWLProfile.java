@@ -134,7 +134,7 @@ public class OWLProfile
     }
 
     /** The only first-class axiom type in OWL is AllDifferent */
-    public Iterator getAxiomTypes() {
+    public Iterator<Resource> getAxiomTypes() {
         return Arrays.asList(
             new Resource[] {
                 OWL.AllDifferent
@@ -143,7 +143,7 @@ public class OWLProfile
     }
 
     /** The annotation properties of OWL */
-    public Iterator getAnnotationProperties() {
+    public Iterator<Resource> getAnnotationProperties() {
         return Arrays.asList(
             new Resource[] {
                 OWL.versionInfo,
@@ -155,7 +155,7 @@ public class OWLProfile
         ).iterator();
     }
 
-    public Iterator getClassDescriptionTypes() {
+    public Iterator<Resource> getClassDescriptionTypes() {
         return Arrays.asList(
             new Resource[] {
                 OWL.Class,
@@ -180,7 +180,7 @@ public class OWLProfile
      * @return True if strict checking is off, or if <code>n</code> can be
      * viewed according to the facet resource <code>res</code>
      */
-    public boolean isSupported( Node n, EnhGraph g, Class type ) {
+    public <T> boolean isSupported( Node n, EnhGraph g, Class<T> type ) {
         if (g instanceof OntModel) {
             OntModel m = (OntModel) g;
 
@@ -243,8 +243,8 @@ public class OWLProfile
         {  AnnotationProperty.class,    new SupportsCheck() {
                                             @Override
                                             public boolean doCheck( Node n, EnhGraph g ) {
-                                                for (Iterator i = ((OntModel) g).getProfile().getAnnotationProperties();  i.hasNext(); ) {
-                                                    if (((Resource) i.next()).asNode().equals( n )) {
+                                                for (Iterator<Resource> i = ((OntModel) g).getProfile().getAnnotationProperties();  i.hasNext(); ) {
+                                                    if (i.next().asNode().equals( n )) {
                                                         // a built-in annotation property
                                                         return true;
                                                     }
@@ -438,7 +438,7 @@ public class OWLProfile
     //////////////////////////////////
 
     /** Map from resource to syntactic/semantic checks that a node can be seen as the given facet */
-    private static HashMap s_supportsChecks = new HashMap();
+    private static HashMap<Object, Object> s_supportsChecks = new HashMap<Object, Object>();
 
     static {
         // initialise the map of supports checks from a table of static data
@@ -447,7 +447,7 @@ public class OWLProfile
         }
     }
 
-    protected Map getCheckTable() {
+    protected Map<Object, Object> getCheckTable() {
         return s_supportsChecks;
     }
 }

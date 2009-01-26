@@ -34,11 +34,11 @@ public class WrappedReifier implements Reifier
 	*/
 	public Graph getParentGraph() { return parent; }
     
-    public ExtendedIterator find( TripleMatch m ) { return base.find( m ); }
+    public ExtendedIterator<Triple> find( TripleMatch m ) { return base.find( m ); }
     
-    public ExtendedIterator findExposed( TripleMatch m ) { return base.findExposed( m ); }
+    public ExtendedIterator<Triple> findExposed( TripleMatch m ) { return base.findExposed( m ); }
     
-    public ExtendedIterator findEither( TripleMatch m, boolean showHidden ) 
+    public ExtendedIterator<Triple> findEither( TripleMatch m, boolean showHidden ) 
         { return base.findEither( m, showHidden ); }
     
     public int size() { return base.size(); }
@@ -61,12 +61,12 @@ public class WrappedReifier implements Reifier
 	/** 
 	 	@see com.hp.hpl.jena.graph.Reifier#allNodes()
 	*/
-	public ExtendedIterator allNodes() { return base.allNodes(); }
+	public ExtendedIterator<Node> allNodes() { return base.allNodes(); }
 
 	/** 
 	 	@see com.hp.hpl.jena.graph.Reifier#allNodes(com.hp.hpl.jena.graph.Triple)
 	*/
-	public ExtendedIterator allNodes( Triple t ) { return base.allNodes( t ); }
+	public ExtendedIterator<Node> allNodes( Triple t ) { return base.allNodes( t ); }
 	/** 
 	 	@see com.hp.hpl.jena.graph.Reifier#remove(com.hp.hpl.jena.graph.Node, com.hp.hpl.jena.graph.Triple)
 	*/

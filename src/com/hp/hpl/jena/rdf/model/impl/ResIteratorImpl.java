@@ -16,19 +16,19 @@ import java.util.*;
  * @author  bwm, kers
  * @version   Release='$Name$' Revision='$Revision$' Date='$Date$'
  */
-public class ResIteratorImpl extends WrappedIterator implements ResIterator {
+public class ResIteratorImpl extends WrappedIterator<Resource> implements ResIterator {
     
     /** Creates new ResIterator; _object_ is ignored */
-    public ResIteratorImpl( Iterator iter, Object object ) {
+    public ResIteratorImpl( Iterator<Resource> iter, Object object ) {
         this( iter );
     }
     
     /** create a new ResIterator */
-    public ResIteratorImpl( Iterator iter )
+    public ResIteratorImpl( Iterator<Resource> iter )
         { super( iter ); }
 
     public Resource nextResource() {
-        return (Resource) next();
+        return next();
     }
     
 }

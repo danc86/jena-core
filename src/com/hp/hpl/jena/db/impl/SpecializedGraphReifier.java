@@ -66,7 +66,7 @@ public interface SpecializedGraphReifier extends SpecializedGraph {
 	 * @return ExtendedIterator which iterates over any matching nodes
 	 */
 //	public ExtendedIterator findReifiedNodes(TripleMatch t, CompletionFlag complete);
-	public ExtendedIterator findReifiedNodes(Triple t, CompletionFlag complete);
+	public ExtendedIterator<Node> findReifiedNodes(Triple t, CompletionFlag complete);
 
 
 	/**

@@ -15,10 +15,10 @@ import java.util.NoSuchElementException;
      should be used instead. 
      @author jjc, mods [clarity & speedup] by kers
  */
-public class FilterIterator extends WrappedIterator
+public class FilterIterator<T> extends WrappedIterator<T>
     {
-	protected final Filter f;
-	protected Object current;
+	protected final Filter<T> f;
+	protected T current;
     protected boolean canRemove;
     protected boolean hasCurrent;
 
@@ -27,7 +27,7 @@ public class FilterIterator extends WrappedIterator
         @param fl An object is included if it is accepted by this Filter.
         @param e The base Iterator.
     */        
-	public FilterIterator( Filter fl, Iterator e ) 
+	public FilterIterator( Filter<T> fl, Iterator<T> e ) 
         {
 		super( e );
 		f = fl;
@@ -38,8 +38,7 @@ public class FilterIterator extends WrappedIterator
         [Stores reference into <code>current</code>, sets <code>canRemove</code>
         false; answer preserved in `hasCurrent`]
     */        
-	@Override
-    synchronized public boolean hasNext() 
+	@Override public boolean hasNext() 
         {
 	    while (!hasCurrent && super.hasNext())
             hasCurrent = accept( current = super.next() );
@@ -51,7 +50,7 @@ public class FilterIterator extends WrappedIterator
         Overridden in Drop/Keep as appropriate. Answer true if the object is
         to be kept in the output, false if it is to be dropped.
     */
-    protected boolean accept( Object x )
+    protected boolean accept( T x )
         { return f.accept( x ); }
     
     /** 
@@ -59,8 +58,7 @@ public class FilterIterator extends WrappedIterator
          after a .next() but before any subsequent .hasNext(), because that
          may advance the underlying iterator.
     */        
-    @Override
-    synchronized public void remove() 
+    @Override public void remove() 
         {
         if (!canRemove ) throw new IllegalStateException
             ( "FilterIterators do not permit calls to hasNext between calls to next and remove." );
@@ -72,8 +70,7 @@ public class FilterIterator extends WrappedIterator
         test of `hasCurrent` appears to make a detectable speed difference.
         Crazy.
     */        
-	@Override
-    synchronized public Object next() 
+	@Override public T next() 
         {
 		if (hasCurrent || hasNext()) 
             {

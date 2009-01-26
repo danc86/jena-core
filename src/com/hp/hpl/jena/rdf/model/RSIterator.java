@@ -13,7 +13,7 @@ import com.hp.hpl.jena.util.iterator.*;
     and which has a next-method with that return type.
 */
 
-public interface RSIterator extends ExtendedIterator
+public interface RSIterator extends ExtendedIterator<ReifiedStatement>
     {
     /** return the next object, cast to a ReifedStatement */
     public ReifiedStatement nextRS();

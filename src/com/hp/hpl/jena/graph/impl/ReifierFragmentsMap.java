@@ -20,7 +20,7 @@ public interface ReifierFragmentsMap
     /**
          Answer an iterator over all the fragments that match <code>m</code>.
     */
-    public ExtendedIterator find( TripleMatch m );
+    public ExtendedIterator<Triple> find( TripleMatch m );
     
     /**
          Answer the number of fragments in this map.

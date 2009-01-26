@@ -18,30 +18,28 @@ import java.util.Iterator;
  */
 
 
-public class StmtIteratorImpl extends WrappedIterator implements StmtIterator
+public class StmtIteratorImpl extends WrappedIterator<Statement> implements StmtIterator
     {
     private Statement current;
     
-    public StmtIteratorImpl( Iterator iterator )
+    public StmtIteratorImpl( Iterator<Statement>iterator )
         { super( iterator ); }
 
     /**
         return *and remember* the next element. It must be remembered
         so that remove works whichever next-method is called.
     */
-    @Override
-    public Object next()
-        { return current = (Statement) super.next(); }
+    @Override public Statement next()
+        { return current = super.next(); }
         
-    @Override
-    public void remove()
+    @Override public void remove()
         {
         super.remove();
         current.remove();
         }
         
     public Statement nextStatement()
-        { return (Statement) next(); }
+        { return next(); }
     }
 
 /*

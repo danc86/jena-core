@@ -26,16 +26,13 @@ public class GraphMemBaseQueryHandler extends SimpleQueryHandler
     public GraphMemBaseQueryHandler( GraphMemBase graph )
         { super( graph ); this.store = graph.store; }
 
-    @Override
-    public ExtendedIterator objectsFor( Node s, Node p )
+    @Override public ExtendedIterator<Node> objectsFor( Node s, Node p )
         { return bothANY( s, p ) ? findObjects() : super.objectsFor( s, p ); }
 
-    @Override
-    public ExtendedIterator predicatesFor( Node s, Node o )
+    @Override public ExtendedIterator<Node> predicatesFor( Node s, Node o )
         { return bothANY( s, o ) ? findPredicates() : super.predicatesFor( s, o ); }
 
-    @Override
-    public ExtendedIterator subjectsFor( Node p, Node o )
+    @Override public ExtendedIterator<Node> subjectsFor( Node p, Node o )
         { return bothANY( p, o ) ? findSubjects() : super.subjectsFor( p, o ); }
 
     /**
@@ -45,13 +42,13 @@ public class GraphMemBaseQueryHandler extends SimpleQueryHandler
     private boolean bothANY( Node a, Node b )
         { return (a == null || a.equals( Node.ANY )) && (b == null || b.equals( Node.ANY )); }
 
-    public ExtendedIterator findPredicates()
+    public ExtendedIterator<Node> findPredicates()
         { return store.listPredicates(); }
 
-    public ExtendedIterator findObjects()
+    public ExtendedIterator<Node> findObjects()
         { return store.listObjects(); }
 
-    public ExtendedIterator findSubjects()
+    public ExtendedIterator<Node> findSubjects()
         { return store.listSubjects(); }
 
     }

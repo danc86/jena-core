@@ -680,7 +680,7 @@ public interface Profile
      * 
      * @return An iterator over axiom types.
      */
-    public Iterator getAxiomTypes();
+    public Iterator<Resource> getAxiomTypes();
     
     
     /**
@@ -692,7 +692,7 @@ public interface Profile
      * 
      * @return An iterator over annotation properties.
      */
-    public Iterator getAnnotationProperties();
+    public Iterator<Resource> getAnnotationProperties();
     
     
     /**
@@ -703,7 +703,7 @@ public interface Profile
      * 
      * @return An iterator over the various rdf:types of class descriptions.
      */
-    public Iterator getClassDescriptionTypes();
+    public Iterator<Resource> getClassDescriptionTypes();
     
     
     // Alias management
@@ -741,7 +741,7 @@ public interface Profile
      * @return An iterator over the aliases for <code>res</code>. If there are
      * no aliases, the empty iterator is returned.
      */
-    public Iterator listAliasesFor( Resource res );
+    public Iterator<Resource> listAliasesFor( Resource res );
     
     
     /**
@@ -759,7 +759,7 @@ public interface Profile
      * @return True if strict checking is off, or if <code>n</code> can be 
      * viewed according to the facet resource <code>res</code>
      */
-    public boolean isSupported( Node n, EnhGraph g, Class type );
+    public <T> boolean isSupported( Node n, EnhGraph g, Class<T> type );
     
     // Other stuff
     

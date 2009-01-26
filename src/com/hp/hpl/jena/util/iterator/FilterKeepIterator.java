@@ -13,13 +13,12 @@ import java.util.Iterator;
     test.
     @author kers
 */
-public class FilterKeepIterator extends FilterIterator implements Iterator
+public class FilterKeepIterator<T> extends FilterIterator<T> implements Iterator<T>
     {
-    public FilterKeepIterator( Filter f, Iterator it )
+    public FilterKeepIterator( Filter<T> f, Iterator<T> it )
         { super( f, it ); }
     
-    @Override
-    protected boolean accept( Object x )
+    @Override protected boolean accept( T x )
         { return f.accept( x ); }
     }
 

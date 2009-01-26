@@ -56,7 +56,7 @@ public abstract class AbstractProfile
     //////////////////////////////////
 
     /** Map of aliases for resources */
-    protected OneToManyMap m_aliasesMap;
+    protected OneToManyMap<Resource, Resource> m_aliasesMap;
     
     
     // Constructors
@@ -90,7 +90,7 @@ public abstract class AbstractProfile
      * 
      */
     public Resource getAliasFor( Resource res ) {
-        return (Resource) aliasMap().get( res );
+        return aliasMap().get( res );
     }
     
     /**
@@ -102,7 +102,7 @@ public abstract class AbstractProfile
      * @return An iterator over the aliases for <code>res</code>. If there are
      * no aliases, the empty iterator is returned.
      */
-    public Iterator listAliasesFor( Resource res ) {
+    public Iterator<Resource> listAliasesFor( Resource res ) {
         return aliasMap().getAll( res );
     }
 
@@ -134,20 +134,18 @@ public abstract class AbstractProfile
      * Prepare the local alias map by reading the alias table from the concrete sub-class.
      * </p>
      */
-    protected OneToManyMap aliasMap() {
+    protected OneToManyMap<Resource, Resource> aliasMap() {
         if (m_aliasesMap == null) {
             // aliases map not prepared yet, so initialise using the data from
             // the concrete profile class
-            m_aliasesMap = new OneToManyMap();
-            Resource[][] aliases = aliasTable();
-            
+            m_aliasesMap = new OneToManyMap<Resource, Resource>();
+            Resource[][] aliases = aliasTable();  
             for (int i = 0;  i < aliases.length;  i++) {
                 // since alias relationship is symmetric, we record both directions
                 m_aliasesMap.put( aliases[i][0], aliases[i][1] );
                 m_aliasesMap.put( aliases[i][1], aliases[i][0] );
             }
-        }
-        
+        }     
         return m_aliasesMap;
     }
 

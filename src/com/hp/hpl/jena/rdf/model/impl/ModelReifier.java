@@ -67,8 +67,7 @@ public class ModelReifier
         final Reifier r = mGraph.getReifier();
         return new GraphBase()
             {
-            @Override
-            public ExtendedIterator graphBaseFind( TripleMatch m ) 
+            @Override public ExtendedIterator<Triple> graphBaseFind( TripleMatch m ) 
                 { return r.findEither( m, true ); }
             };
         }
@@ -186,15 +185,15 @@ public class ModelReifier
         A mapper that maps modes to their corresponding ReifiedStatement objects. This
         cannot be static: getRS cannot be static, because the mapping is model-specific.
     */
-    protected final Map1 mapToRS = new Map1()
+    protected final Map1<Node, ReifiedStatement> mapToRS = new Map1<Node, ReifiedStatement>()
         {
-        public Object map1( Object node ) { return getRS( (Node) node ); }
+        public ReifiedStatement map1( Node node ) { return getRS( node ); }
         };
 
-    private ExtendedIterator findReifiedStatements()
+    private ExtendedIterator<ReifiedStatement> findReifiedStatements()
         { return reifier .allNodes() .mapWith( mapToRS ); }
 
-    private ExtendedIterator findReifiedStatements( Triple t )
+    private ExtendedIterator<ReifiedStatement> findReifiedStatements( Triple t )
         { return reifier .allNodes( t ) .mapWith( mapToRS ); }
         
     /**

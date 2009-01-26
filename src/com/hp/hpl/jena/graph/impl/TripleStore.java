@@ -48,23 +48,23 @@ public interface TripleStore
     /**
          Answer an setwise iterator over all the subjects of triples in this store.
     */
-    public ExtendedIterator listSubjects();
+    public ExtendedIterator<Node> listSubjects();
     
     /**
          Answer an iterator over all the predicates of triples in this store.
     */
-    public ExtendedIterator listPredicates();
+    public ExtendedIterator<Node> listPredicates();
     
     /**
          Answer an setwise iterator over all the objects of triples in this store.
     */    
-    public ExtendedIterator listObjects();
+    public ExtendedIterator<Node> listObjects();
     
     /** 
          Answer an ExtendedIterator returning all the triples from this store that
          match the pattern <code>m = (S, P, O)</code>.
     */
-    public abstract ExtendedIterator find( TripleMatch tm );
+    public abstract ExtendedIterator<Triple> find( TripleMatch tm );
 
     /**
         Clear this store, ie remove all triples from it.

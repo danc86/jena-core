@@ -34,11 +34,11 @@ package com.hp.hpl.jena.util.iterator;
  * @author jjc
  * @version Release='$Name$' Revision='$Revision$' Date='$Date$'
  */
-public interface Map1
+public interface Map1<From, To>
 {  /** Convert an object.
     * @param o The thing to be converted.
     * @return The converted thing.
     * 
     */
-    Object map1(Object o);
+    To map1( From o );
 }

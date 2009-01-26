@@ -43,7 +43,7 @@ import com.hp.hpl.jena.util.iterator.*;
  * @author bwm
  * @version Release='$Name$' Revision='$Revision$' Date='$Date$'
  */
-public interface ResIterator extends ExtendedIterator {
-   
+public interface ResIterator extends ExtendedIterator<Resource> 
+    {
     public Resource nextResource();
-}
+    }

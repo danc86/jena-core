@@ -47,21 +47,21 @@ public interface QueryHandler
     	underlying graph; nulls count as wildcards.  .remove() is not defined 
         on this iterator.
     */
-    public ExtendedIterator objectsFor( Node s, Node p );
+    public ExtendedIterator<Node> objectsFor( Node s, Node p );
 
     /**
     	deliver an iterator over all the subjects _s_ such that _(s, p, o)_ is in the
     	underlying graph; nulls count as wildcards.  .remove() is not defined 
         on this iterator.
     */
-    public ExtendedIterator subjectsFor( Node p, Node o );
+    public ExtendedIterator<Node> subjectsFor( Node p, Node o );
 
     /**
          Answer an iterator over all the predicates <code>p</code> such that
          <code>(s, p, o)</code> is in the underlying graph.  .remove() is not 
          defined on this iterator.
     */
-    public ExtendedIterator predicatesFor( Node s, Node o );
+    public ExtendedIterator<Node> predicatesFor( Node s, Node o );
     
     /**
         true iff the graph contains a triple in which n appears somewhere.

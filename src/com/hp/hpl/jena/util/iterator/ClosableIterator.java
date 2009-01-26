@@ -24,7 +24,7 @@ import java.util.Iterator;
     @version $Id$
  */
 
-public interface ClosableIterator extends Iterator 
+public interface ClosableIterator<T> extends Iterator<T> 
     {
     /** 
         Close the iterator. Other oeprations on this iterator may now throw an exception. A

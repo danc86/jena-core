@@ -67,10 +67,10 @@ public class SimpleReifier implements Reifier
     	{ return getTriple( n ) != null; }
         
     /** */
-    public ExtendedIterator allNodes()
+    public ExtendedIterator<Node> allNodes()
         { return tripleMap.tagIterator(); }
         
-    public ExtendedIterator allNodes( Triple t )
+    public ExtendedIterator<Node> allNodes( Triple t )
         { return tripleMap.tagIterator( t ); }
 
     public void clear()
@@ -171,7 +171,7 @@ public class SimpleReifier implements Reifier
     private void updateFragments( ReifierFragmentHandler s, Triple fragment, Node tag, Node object )
         {
         Triple t = s.reifyIfCompleteQuad( fragment, tag, object );
-        if (t instanceof Triple) tripleMap.putTriple( tag, t );
+        if (t != null) tripleMap.putTriple( tag, t );
         }
 
     public boolean handledRemove( Triple fragment )
@@ -206,11 +206,11 @@ public class SimpleReifier implements Reifier
             tripleMap.putTriple( tag, complete );
         }        
     
-    public ExtendedIterator find( TripleMatch m )
+    public ExtendedIterator<Triple> find( TripleMatch m )
         {
         return matchesReification( m ) 
             ? tripleMap.find( m ).andThen( fragmentsMap.find( m ) ) 
-            : NullIterator.instance; 
+            : Triple.None; 
         }
     
     /**
@@ -231,11 +231,11 @@ public class SimpleReifier implements Reifier
     private boolean matchesStatement( Node x )
         { return !x.isConcrete() || x.equals( RDF.Nodes.Statement ); }
     
-    public ExtendedIterator findExposed( TripleMatch m )
+    public ExtendedIterator<Triple> findExposed( TripleMatch m )
         { return findEither( m, false ); }
     
-    public ExtendedIterator findEither( TripleMatch m, boolean showHidden )
-        { return showHidden == concealing ? find( m ) : NullIterator.instance; }
+    public ExtendedIterator<Triple> findEither( TripleMatch m, boolean showHidden )
+        { return showHidden == concealing ? find( m ) : Triple.None; }
         
     public int size()
         { return concealing ? 0 : tripleMap.size() + fragmentsMap.size(); }

@@ -74,14 +74,14 @@ public class DBReifier implements Reifier
 		return m_hiddenTriples;
 	}
     
-    public ExtendedIterator find( TripleMatch m )
+    public ExtendedIterator<Triple> find( TripleMatch m )
         { return getReificationTriples().find( m ); }
     
-    public ExtendedIterator findExposed( TripleMatch m )
+    public ExtendedIterator<Triple> findExposed( TripleMatch m )
         { return getReificationTriples().find( m ); }
     
-    public ExtendedIterator findEither( TripleMatch m, boolean showHidden )
-        { return showHidden == m_style.conceals() ? getReificationTriples().find( m ) : NullIterator.instance; }
+    public ExtendedIterator<Triple> findEither( TripleMatch m, boolean showHidden )
+        { return showHidden == m_style.conceals() ? getReificationTriples().find( m ) : Triple.None; }
 
     public int size() 
         { return m_style.conceals() ? 0 : getReificationTriples().size(); }
@@ -118,7 +118,7 @@ public class DBReifier implements Reifier
 	/* (non-Javadoc)
 	 * @see com.hp.hpl.jena.graph.Reifier#allNodes()
 	 */
-	public ExtendedIterator allNodes() {
+	public ExtendedIterator<Node> allNodes() {
 		return m_reifier.findReifiedNodes( null, newComplete() );
 	}
     
@@ -126,7 +126,7 @@ public class DBReifier implements Reifier
         All the nodes reifying triple <code>t</code>, using the matching code
         from SimpleReifier.
     */
-    public ExtendedIterator allNodes( Triple t )
+    public ExtendedIterator<Node> allNodes( Triple t )
         { return m_reifier.findReifiedNodes( t, newComplete() ); }
         
 	/* (non-Javadoc)

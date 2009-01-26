@@ -55,7 +55,7 @@ public interface ReifierTripleMap
          Answer an iterator over all the quadlets that match <code>m</code> that
          correspond to complete reified triples held in this map.
     */
-    public ExtendedIterator find( TripleMatch m );
+    public ExtendedIterator<Triple> find( TripleMatch m );
     
     /**
          Answer the number of quadlets in this map.
@@ -65,13 +65,13 @@ public interface ReifierTripleMap
     /**
          Answer an iterator over all the bound tags in this map.
     */
-    public abstract ExtendedIterator tagIterator();
+    public abstract ExtendedIterator<Node> tagIterator();
 
     /**
          Answer an iterator over all the tags in this map that are bound to
          <code>t</code>.
     */
-    public abstract ExtendedIterator tagIterator( Triple t );
+    public abstract ExtendedIterator<Node> tagIterator( Triple t );
     
     /**
         Clear away all the triples.

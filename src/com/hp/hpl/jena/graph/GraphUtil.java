@@ -27,7 +27,7 @@ public class GraphUtil
     	@param g the graph from which to extract triples
     	@return an iterator over all the graph's triples
     */
-    public static ExtendedIterator findAll( Graph g )
+    public static ExtendedIterator<Triple> findAll( Graph g )
         { return g.find( Triple.ANY ); }
                 
     }
