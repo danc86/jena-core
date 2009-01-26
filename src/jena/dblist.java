@@ -63,11 +63,11 @@ public class dblist extends DBcmd
 //            properties(null) ;
 //        }
         
-        ClosableIterator iter = getConnection().getAllModelNames() ;
+        ClosableIterator<String> iter = getConnection().getAllModelNames() ;
         try {
             for ( ; iter.hasNext() ; )
             {
-                String name = (String)iter.next() ; 
+                String name = iter.next() ; 
                 System.out.println("Model: "+name) ;
                 properties(name) ;
             }
