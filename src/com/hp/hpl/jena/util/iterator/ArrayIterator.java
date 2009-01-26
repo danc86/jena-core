@@ -37,14 +37,14 @@ import java.util.NoSuchElementException ;
  * @author Jeremy Carroll
  * @version Release='$Name$' Revision='$Revision$' Date='$Date$'
  */
-public class ArrayIterator implements Iterator {
+public class ArrayIterator<T> implements Iterator<T> {
 	private int i;
-	private Object a;
+	private T[] a;
 	/** Constructs an iterator over the members of an array.
          * All arrays are supported including primitive types.
          * @param array Must be an array.
  */
-	public ArrayIterator(Object array) {
+	public ArrayIterator(T[] array) {
 		i = 0;
 		a = array;
 		if (!a.getClass().isArray())
@@ -53,9 +53,9 @@ public class ArrayIterator implements Iterator {
 	public boolean hasNext() {
 		return i<Array.getLength(a);
 	}
-	public Object next() throws NoSuchElementException {
+	public T next() throws NoSuchElementException {
 		try {
-			return Array.get(a,i++);
+			return a[i++]; // Array.get(a,i++);
 		}
 		catch (IndexOutOfBoundsException e) {
 			throw new NoSuchElementException();
