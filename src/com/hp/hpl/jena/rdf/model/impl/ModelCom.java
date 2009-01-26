@@ -50,7 +50,7 @@ public class ModelCom
 	public ModelCom( Graph base ) 
         { this( base, BuiltinPersonalities.model ); }
     
-    public ModelCom( Graph base, Personality personality )
+    public ModelCom( Graph base, Personality<RDFNode> personality )
         { super( base, personality ); 
         withDefaultMappings( defaultPrefixMapping ); }
     
@@ -656,7 +656,7 @@ public class ModelCom
         @return An RDF-encoded list of no elements (ie nil)
     */
     public RDFList createList() 
-        { return (RDFList) getResource( RDF.nil.getURI() ).as( RDFList.class ); }
+        { return getResource( RDF.nil.getURI() ).as( RDFList.class ); }
     
     
     /**
@@ -700,13 +700,13 @@ public class ModelCom
         { return (Seq) IteratorFactory.asResource( makeURI( uri ),Seq.class, this); }
     
     public Seq getSeq( Resource r )  
-        { return (Seq) r.as( Seq.class ); }
+        { return r.as( Seq.class ); }
     
     public Bag getBag( String uri )  
         { return (Bag) IteratorFactory.asResource( makeURI( uri ),Bag.class, this ); }
     
     public Bag getBag( Resource r )  
-        { return (Bag) r.as( Bag.class ); }
+        { return r.as( Bag.class ); }
     
     static private Node makeURI(String uri) 
         { return uri == null ? Node.createAnon() : Node.createURI( uri ); }
@@ -715,7 +715,7 @@ public class ModelCom
         { return (Alt) IteratorFactory.asResource( makeURI(uri) ,Alt.class, this ); }
     
     public Alt getAlt( Resource r )  
-        { return (Alt) r.as( Alt.class ); }
+        { return r.as( Alt.class ); }
     
     public long size()  
         { return graph.size(); }

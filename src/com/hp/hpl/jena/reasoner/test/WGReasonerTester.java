@@ -20,7 +20,7 @@ import com.hp.hpl.jena.rdf.arp.test.ARPTests;
 
 import com.hp.hpl.jena.shared.*;
 
-import junit.framework.TestCase;
+import junit.framework.*;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -355,7 +355,7 @@ public class WGReasonerTester {
         
         // Signal the results        
         if (testcase != null) {
-            TestCase.assertTrue("Test: " + test + "\n" +  description, correct);
+            Assert.assertTrue("Test: " + test + "\n" +  description, correct);
         }
         return correct?goodResult:FAIL;
     }

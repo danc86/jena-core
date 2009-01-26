@@ -171,7 +171,7 @@ public class IndividualImpl
      * <code>OntModel</code>. See {@link OntModel#setStrictMode(boolean)}
      */
     public OntClass getOntClass( boolean direct ) {
-        return (OntClass) (getRDFType( direct ).as( OntClass.class ));
+        return (getRDFType( direct ).as( OntClass.class ));
     }
 
     /**

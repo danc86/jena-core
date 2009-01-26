@@ -20,7 +20,7 @@ import com.hp.hpl.jena.graph.query.*;
 
 import com.hp.hpl.jena.shared.*;
 
-import junit.framework.TestCase;
+import junit.framework.*;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -215,7 +215,7 @@ public class OWLWGTester {
         
         // Signal the results        
         if (testcase != null) {
-            TestCase.assertTrue("Test: " + test + "\n" +  reasonerF.getURI() + "\n" + description, correct);
+            Assert.assertTrue("Test: " + test + "\n" +  reasonerF.getURI() + "\n" + description, correct);
         }
         return correct;
     }

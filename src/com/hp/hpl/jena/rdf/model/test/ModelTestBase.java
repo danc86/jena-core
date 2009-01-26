@@ -77,10 +77,10 @@ public class ModelTestBase extends GraphTestBase
         { return property( aModel, s ); }
     
     public static Property property( Model m, String s )
-        { return (Property) rdfNode( m, s ).as( Property.class ); }
+        { return rdfNode( m, s ).as( Property.class ); }
         
     public static Literal literal( Model m, String s )
-        { return (Literal) rdfNode( m, s ).as( Literal.class ); }
+        { return rdfNode( m, s ).as( Literal.class ); }
          
      /**
         Create an array of Statements parsed from a semi-separated string.

@@ -158,7 +158,7 @@ public class PrettyWriterTest extends ModelTestBase {
 			//  	assertEquals(m0.contains(st),copyOfm0.contains(st));
 			  }
 		*/
-		TestXMLFeatures.blockLogger();
+		XMLOutputTestBase.blockLogger();
 		try {
 			m0.write(new OutputStream() {
 				@Override
@@ -169,7 +169,7 @@ public class PrettyWriterTest extends ModelTestBase {
 		} finally {
 			// This will need to change when the bug is finally fixed.
 			
-			assertTrue(TestXMLFeatures.unblockLogger());
+			assertTrue(XMLOutputTestBase.unblockLogger());
 		}
 	}
 }

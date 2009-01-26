@@ -4,11 +4,14 @@
   $Id$
 */
 package com.hp.hpl.jena.enhanced.test;
+
+import com.hp.hpl.jena.rdf.model.RDFNode;
+
 /**
  * @see TestObject
  * @author  jjc
  */
-public interface TestProperty extends TestNode {  
+public interface TestProperty extends RDFNode, TestNode {  
    
     boolean isProperty();
     TestObject anObject();

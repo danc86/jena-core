@@ -7,6 +7,7 @@
 package com.hp.hpl.jena.enhanced.test;
 import com.hp.hpl.jena.enhanced.*;
 import com.hp.hpl.jena.graph.*;
+import com.hp.hpl.jena.rdf.model.RDFNode;
 import com.hp.hpl.jena.util.iterator.*;
 
 /**
@@ -16,7 +17,7 @@ import com.hp.hpl.jena.util.iterator.*;
 public class TestModelImpl extends EnhGraph implements TestModel {
     
     /** Creates a new instance of TestModelImpl */
-    public TestModelImpl(Graph g, Personality p) {
+    public TestModelImpl(Graph g, Personality<RDFNode> p) {
         super(g,p);
     }
     private Triple aTriple() {
@@ -32,15 +33,15 @@ public class TestModelImpl extends EnhGraph implements TestModel {
     }
         
     public TestObject anObject() {
-        return (TestObject)getNodeAs(aTriple().getObject(),TestObject.class);
+        return getNodeAs(aTriple().getObject(),TestObject.class);
     }
     
     public TestProperty aProperty() {
-        return (TestProperty)getNodeAs(aTriple().getPredicate(),TestProperty.class);
+        return getNodeAs(aTriple().getPredicate(),TestProperty.class);
     }
     
     public TestSubject aSubject() {
-        return (TestSubject)getNodeAs(aTriple().getSubject(),TestSubject.class);
+        return getNodeAs(aTriple().getSubject(),TestSubject.class);
     }
     
 }

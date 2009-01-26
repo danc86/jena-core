@@ -37,7 +37,7 @@ public class LPBackwardRuleInfGraph extends BaseInfGraph implements BackwardRule
     protected LPBRuleEngine engine;
     
     /** Table of derivation records, maps from triple to RuleDerivation */
-    protected OneToManyMap derivations;
+    protected OneToManyMap<Triple, Derivation> derivations;
     
     /** An optional graph of separate schema assertions that should also be processed */
     protected FGraph fschema;
@@ -158,7 +158,7 @@ public class LPBackwardRuleInfGraph extends BaseInfGraph implements BackwardRule
      * may not have completely satisfied the query.
      */
     @Override
-    public synchronized ExtendedIterator findWithContinuation(TriplePattern pattern, Finder continuation) {
+    public synchronized ExtendedIterator<Triple> findWithContinuation(TriplePattern pattern, Finder continuation) {
         checkOpen();
         if (!isPrepared) prepare();
         ExtendedIterator result = new UniqueExtendedIterator(engine.find(pattern));
@@ -274,7 +274,7 @@ public class LPBackwardRuleInfGraph extends BaseInfGraph implements BackwardRule
     /**
      * Log a dervivation record against the given triple.
      */
-    public void logDerivation(Triple t, Object derivation) {
+    public void logDerivation(Triple t, Derivation derivation) {
         derivations.put(t, derivation);
     }
 

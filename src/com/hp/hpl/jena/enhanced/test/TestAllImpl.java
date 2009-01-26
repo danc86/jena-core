@@ -7,6 +7,7 @@
 package com.hp.hpl.jena.enhanced.test;
 import com.hp.hpl.jena.enhanced.*;
 import com.hp.hpl.jena.graph.*;
+import com.hp.hpl.jena.rdf.model.*;
 
 /**
  * @see TestObjectImpl
@@ -29,8 +30,7 @@ public class TestAllImpl extends TestCommonImpl implements TestSubject, TestProp
         super( n, eg );
     }
     
-    @Override
-    public boolean supports( Class t )
+    @Override public <X extends RDFNode> boolean supports( Class<X> t )
         {
         // return convertTo( t ) != null;
         return
@@ -57,19 +57,19 @@ public class TestAllImpl extends TestCommonImpl implements TestSubject, TestProp
         if (!isProperty())
             
             throw new IllegalStateException("Node is not the property of a triple.");
-        return (TestObject)enhGraph.getNodeAs(findPredicate().getObject(),TestObject.class);
+        return enhGraph.getNodeAs(findPredicate().getObject(),TestObject.class);
     }
     
     public TestProperty aProperty() {
         if (!isSubject())
             throw new IllegalStateException("Node is not the subject of a triple.");
-        return (TestProperty)enhGraph.getNodeAs(findSubject().getPredicate(),TestProperty.class);
+        return enhGraph.getNodeAs(findSubject().getPredicate(),TestProperty.class);
     }
     
     public TestSubject aSubject() {
         if (!isObject())
             throw new IllegalStateException("Node is not the object of a triple.");
-        return (TestSubject)enhGraph.getNodeAs(findObject().getSubject(),TestSubject.class);
+        return enhGraph.getNodeAs(findObject().getSubject(),TestSubject.class);
     }
     
 }

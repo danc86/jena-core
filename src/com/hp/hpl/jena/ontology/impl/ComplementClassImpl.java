@@ -184,7 +184,7 @@ public class ComplementClassImpl
      * @return The class that this class is a complement of.
      */
     public OntClass getOperand() {
-        return (OntClass) objectAs( getProfile().COMPLEMENT_OF(), "COMPLEMENT_OF", OntClass.class );
+        return objectAs( getProfile().COMPLEMENT_OF(), "COMPLEMENT_OF", OntClass.class );
     }
 
     /**

@@ -19,7 +19,7 @@ public class AlreadyLinkedViewException extends JenaException
         The polymorphic <code>other</code> has already been linked into
         a sibling ring and hence cannot be linked into a different one.
     */
-    public AlreadyLinkedViewException( Polymorphic other )
+    public AlreadyLinkedViewException( Polymorphic<?> other )
         { super( other.toString() ); }
     }
 

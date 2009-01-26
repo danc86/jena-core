@@ -5,11 +5,14 @@
 */
 
 package com.hp.hpl.jena.enhanced.test;
+
+import com.hp.hpl.jena.rdf.model.RDFNode;
+
 /**
  * @see TestObject
  * @author  jjc
  */
-public interface TestSubject  extends TestNode {
+public interface TestSubject  extends RDFNode, TestNode {
     
     boolean isSubject();
     TestProperty aProperty();

@@ -140,7 +140,7 @@ public class EnumeratedClassImpl
      * @exception OntProfileException If the {@link Profile#ONE_OF()} property is not supported in the current language profile.   
      */ 
     public RDFList getOneOf() {
-        return (RDFList) objectAs( getProfile().ONE_OF(), "ONE_OF", RDFList.class );
+        return objectAs( getProfile().ONE_OF(), "ONE_OF", RDFList.class );
     }
 
     /**

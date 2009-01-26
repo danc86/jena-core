@@ -9,7 +9,7 @@
  *****************************************************************/
 package com.hp.hpl.jena.reasoner;
 
-import com.hp.hpl.jena.graph.Graph;
+import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.util.iterator.*;
 
 /**
@@ -37,8 +37,8 @@ public class FGraph implements Finder {
      * @return a ClosableIterator over all Triples in the data set
      *  that match the pattern
      */
-    public ExtendedIterator find(TriplePattern pattern) {
-        if (graph == null) return WrappedIterator.create(new NullIterator());
+    public ExtendedIterator<Triple> find(TriplePattern pattern) {
+        if (graph == null) return new NullIterator<Triple>();
         return graph.find(pattern.asTripleMatch());
     }
     
@@ -53,8 +53,8 @@ public class FGraph implements Finder {
      * will be asked for additional match results if the implementor
      * may not have completely satisfied the query.
      */
-    public ExtendedIterator findWithContinuation(TriplePattern pattern, Finder continuation) {
-        if (graph == null) return WrappedIterator.create(new NullIterator());
+    public ExtendedIterator<Triple> findWithContinuation(TriplePattern pattern, Finder continuation) {
+        if (graph == null) return new NullIterator<Triple>();
         if (continuation == null) {
             return graph.find(pattern.asTripleMatch());
         } else {

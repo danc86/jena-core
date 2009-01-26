@@ -128,11 +128,11 @@ public class SomeValuesFromRestrictionImpl
         try {
             if (r.canAs( OntClass.class )) {
                 // all values from a class
-                return (Resource) r.as( OntClass.class );
+                return r.as( OntClass.class );
             }
             else if (r.canAs( DataRange.class )) {
                 // all values from a given data range
-                return (Resource) r.as( DataRange.class );
+                return r.as( DataRange.class );
             }
             else {
                 // must be a datatype ID or rdfs:Literal

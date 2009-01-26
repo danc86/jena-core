@@ -29,8 +29,8 @@ public class FileGraphMaker
     {
     protected String fileBase;
     protected boolean deleteOnClose;
-    protected Map created = CollectionFactory.createHashedMap();
-    protected Set toDelete = CollectionFactory.createHashedSet();
+    protected Map<File, FileGraph> created = CollectionFactory.createHashedMap();
+    protected Set<File> toDelete = CollectionFactory.createHashedSet();
     
     /**
         Construct a file graph factory whose files will appear in root. The reifier
@@ -85,7 +85,7 @@ public class FileGraphMaker
     public Graph createGraph( String name, boolean strict )
         {
         File f = withRoot( name );
-        FileGraph already = (FileGraph) created.get( f );
+        FileGraph already = created.get( f );
         if (already == null)
             return remember( f, new FileGraph( this, f, true, strict, style ) ); 
         else
@@ -99,7 +99,7 @@ public class FileGraphMaker
         { 
         File f = withRoot( name );
         return created.containsKey( f )  
-            ? ((FileGraph) created.get( f )).openAgain()
+            ? created.get( f ).openAgain()
             : remember( f, new FileGraph( this, f, false, strict, style ) )
             ;
         }
@@ -175,8 +175,8 @@ public class FileGraphMaker
             }
         }
 
-    protected void deleteFiles( Iterator it )
-        { while (it.hasNext()) ((File) it.next()).delete(); }
+    protected void deleteFiles( Iterator<File> it )
+        { while (it.hasNext()) it.next().delete(); }
         
     /**
         A Map1 that will convert filename strings to the corresponding graphname strings.
@@ -209,9 +209,9 @@ public class FileGraphMaker
      */
     public ExtendedIterator listGraphs()
         { String [] fileNames = new File( fileBase ).list( graphName() );
-        Set allNames = CollectionFactory.createHashedSet( Arrays.asList( fileNames ) );
-        Iterator it = created.keySet().iterator();
-        while (it.hasNext()) allNames.add( ((File) it.next()).getName() ); 
+        Set<String> allNames = CollectionFactory.createHashedSet( Arrays.asList( fileNames ) );
+        Iterator<File> it = created.keySet().iterator();
+        while (it.hasNext()) allNames.add( it.next().getName() ); 
 		return WrappedIterator.create( allNames.iterator() ) .mapWith( unconvert ); }
     }
 

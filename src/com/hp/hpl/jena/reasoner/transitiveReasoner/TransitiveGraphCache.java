@@ -508,11 +508,13 @@ public class TransitiveGraphCache implements Finder {
         }
         
         /** Iterator interface - test if more values available */
+        @Override
         public boolean hasNext() {
             return next != null;
         }
         
         /** Iterator interface - get next value */
+        @Override
         public Object next() {
             Object toReturn = next;
             walkOne();
@@ -620,11 +622,13 @@ public class TransitiveGraphCache implements Finder {
         }
         
         /** Iterator interface - test if more values available */
+        @Override
         public boolean hasNext() {
             return next != null;
         }
         
         /** Iterator interface - get next value */
+        @Override
         public Object next() {
             Object toReturn = next;
             walkOne();

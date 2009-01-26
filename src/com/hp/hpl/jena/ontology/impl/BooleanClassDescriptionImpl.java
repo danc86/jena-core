@@ -115,7 +115,7 @@ public abstract class BooleanClassDescriptionImpl
 	 * @exception OntProfileException If the operand property is not supported in the current language profile.   
 	 */ 
 	public RDFList getOperands() {
-		return (RDFList) objectAs( operator(), getOperatorName(), RDFList.class );
+		return objectAs( operator(), getOperatorName(), RDFList.class );
 	}
 
 	/**

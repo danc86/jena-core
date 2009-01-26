@@ -6,14 +6,14 @@
 
 package com.hp.hpl.jena.enhanced;
 
+import com.hp.hpl.jena.rdf.model.RDFNode;
+
 /**
     Personalities for nodes.
  * @author jjc + kers
 */
-public class NodePersonality extends Personality {
-    
-	NodePersonality() {}
-}
+public class NodePersonality extends Personality<RDFNode> 
+    {}
 
 /*
     (c) Copyright 2002, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009 Hewlett-Packard Development Company, LP

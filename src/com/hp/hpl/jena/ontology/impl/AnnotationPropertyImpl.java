@@ -114,7 +114,7 @@ public class AnnotationPropertyImpl
      */
     @Override
     public int getOrdinal() {
-        return ((Property) as( Property.class )).getOrdinal();
+        return (as( Property.class )).getOrdinal();
     }
 
 

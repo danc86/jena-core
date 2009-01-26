@@ -6,6 +6,8 @@
 
 package com.hp.hpl.jena.assembler.acceptance;
 
+import junit.framework.Assert;
+
 import com.hp.hpl.jena.assembler.*;
 import com.hp.hpl.jena.assembler.test.AssemblerTestBase;
 import com.hp.hpl.jena.rdf.model.Resource;
@@ -33,20 +35,20 @@ public class TestDatabaseModes extends AssemblerTestBase
         try
             {
             openWith( "triangle", true, false );
-            AllAccept.fail( "should trap existing model" );
+            Assert.fail( "should trap existing model" );
             }
         catch (AlreadyExistsException e)
             {
-            AllAccept.assertEquals( "triangle", e.getMessage() );
+            Assert.assertEquals( "triangle", e.getMessage() );
             }
         try
             {
             openWith( "hex", false, false );
-            AllAccept.fail( "should trap existing model" );
+            Assert.fail( "should trap existing model" );
             }
         catch (AlreadyExistsException e)
             {
-            AllAccept.assertEquals( "hex", e.getMessage() );
+            Assert.assertEquals( "hex", e.getMessage() );
             }
         }
 
@@ -55,20 +57,20 @@ public class TestDatabaseModes extends AssemblerTestBase
         try
             {
             openWith( "parabola", false, true );
-            AllAccept.fail( "should trap missing model" );
+            Assert.fail( "should trap missing model" );
             }
         catch (NotFoundException e)
             {
-            AllAccept.assertEquals( "parabola", e.getMessage() );
+            Assert.assertEquals( "parabola", e.getMessage() );
             }
         try
             {
             openWith( "curve", false, false );
-            AllAccept.fail( "should trap missing model" );
+            Assert.fail( "should trap missing model" );
             }
         catch (NotFoundException e)
             {
-            AllAccept.assertEquals( "curve", e.getMessage() );
+            Assert.assertEquals( "curve", e.getMessage() );
             }
         }
 

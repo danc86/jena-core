@@ -15,21 +15,21 @@ import com.hp.hpl.jena.shared.JenaException;
 */
 public class UnsupportedPolymorphismException extends JenaException
     {
-    private final Class type;
+    private final Class<?> type;
     private final EnhNode node;
         
     /**
         Initialise this exception with the node that couldn't be polymorphed and
         the class it couldn't be polymorphed to.
     */
-    public UnsupportedPolymorphismException( EnhNode node, Class type )
+    public UnsupportedPolymorphismException( EnhNode node, Class<?> type )
         {
         super( constructMessage( node, type ) );
         this.node = node;
         this.type = type;
         }
 
-    private static String constructMessage( EnhNode node, Class type )
+    private static String constructMessage( EnhNode node, Class<?> type )
         {
         String mainMessage = "cannot convert " + node + " to " + type;
         return node.getGraph() == null ? mainMessage : mainMessage + " -- it has no model";
@@ -45,7 +45,7 @@ public class UnsupportedPolymorphismException extends JenaException
     /** 
         Answer the class that the node couldn't be polymorphed to
     */
-    public Class getBadClass() 
+    public Class<?> getBadClass() 
         { return type; }
 
     /**

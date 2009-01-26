@@ -176,7 +176,7 @@ public class ModelReifier
         {
         if (n.canAs( ReifiedStatement.class ))
             {
-            ReifiedStatement rs = (ReifiedStatement) n.as( ReifiedStatement.class );
+            ReifiedStatement rs = n.as( ReifiedStatement.class );
             createReifiedStatement( rs.getURI(), rs.getStatement() );
             }
         }

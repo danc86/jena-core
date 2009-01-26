@@ -162,7 +162,7 @@ public class ModelExpansion
         for (StmtIterator it = schema.listStatements( ANY, RDFS.domain, ANY ); it.hasNext();)
             {
             Statement s = it.nextStatement();
-            Property property = (Property) s.getSubject().as( Property.class );
+            Property property = s.getSubject().as( Property.class );
             RDFNode type = s.getObject();
             for (StmtIterator x = result.listStatements( ANY, property, ANY ); x.hasNext();)
                 {
@@ -179,7 +179,7 @@ public class ModelExpansion
             {
             Statement s = it.nextStatement();
             RDFNode type = s.getObject();
-            Property property = (Property) s.getSubject().as( Property.class );
+            Property property = s.getSubject().as( Property.class );
             for (StmtIterator x = result.listStatements( ANY, property, ANY ); x.hasNext();)
                 {
                 RDFNode ob = x.nextStatement().getObject();
@@ -258,7 +258,7 @@ public class ModelExpansion
 
     private static List asJavaList( Resource resource )
         {
-        return ((RDFList) resource.as( RDFList.class )).asJavaList();
+        return (resource.as( RDFList.class )).asJavaList();
         }
     
     /**

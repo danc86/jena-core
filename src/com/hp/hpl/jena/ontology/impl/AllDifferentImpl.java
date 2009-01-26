@@ -138,7 +138,7 @@ public class AllDifferentImpl
      * @exception OntProfileException If the {@link Profile#DISTINCT_MEMBERS()} property is not supported in the current language profile.   
      */ 
     public RDFList getDistinctMembers() {
-        return (RDFList) objectAs( getProfile().DISTINCT_MEMBERS(), "DISTINCT_MEMBERS", RDFList.class );
+        return objectAs( getProfile().DISTINCT_MEMBERS(), "DISTINCT_MEMBERS", RDFList.class );
     }
 
     /**

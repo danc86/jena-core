@@ -8,11 +8,14 @@ package com.hp.hpl.jena.assembler.test;
 
 import java.util.List;
 
+import junit.framework.Assert;
+
 import com.hp.hpl.jena.assembler.*;
 import com.hp.hpl.jena.assembler.assemblers.ModelAssembler;
 import com.hp.hpl.jena.graph.Factory;
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.rdf.model.impl.ModelCom;
+import com.hp.hpl.jena.rdf.model.test.ModelTestBase;
 
 /**
     A model assembler that creates a model with controllable supporting of
@@ -46,7 +49,7 @@ final class MockTransactionModel extends ModelAssembler
             public Model begin()
                 {
                 history.add( "begin" );
-                TestModelContent.assertTrue( isEmpty() );
+                Assert.assertTrue( isEmpty() );
                 return this;
                 }
 
@@ -69,7 +72,7 @@ final class MockTransactionModel extends ModelAssembler
             @Override
             public Model commit()
                 {
-                TestModelContent.assertIsoModels( expected, this );
+                ModelTestBase.assertIsoModels( expected, this );
                 history.add( "commit" );
                 return this;
                 }

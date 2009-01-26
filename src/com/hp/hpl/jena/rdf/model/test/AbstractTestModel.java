@@ -168,7 +168,7 @@ public abstract class AbstractTestModel extends ModelTestBase
 	            Triple remove = triple( cases[i][1] );
 	            Node s = remove.getSubject(), p = remove.getPredicate(), o = remove.getObject();
 	            Resource S = (Resource) (s.equals( Node.ANY ) ? null : mc.getRDFNode( s ));
-	            Property P = (Property)((p.equals( Node.ANY ) ? null : mc.getRDFNode( p ).as( Property.class )));
+	            Property P = ((p.equals( Node.ANY ) ? null : mc.getRDFNode( p ).as( Property.class )));
 	            RDFNode O = o.equals( Node.ANY ) ? null : mc.getRDFNode( o );
 	            Model expected = modelWithStatements( cases[i][2] );
 	            content.removeAll( S, P, O );

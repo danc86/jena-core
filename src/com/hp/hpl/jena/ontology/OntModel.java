@@ -1171,7 +1171,7 @@ public interface OntModel
      * @param uri The URI for the ontology resource, or null for an anonymous resource.
      * @return An ontology resource, of the type specified by the <code>javaClass</code>
      */
-    public OntResource createOntResource( Class javaClass, Resource rdfType, String uri );
+    public <T extends OntResource> T createOntResource( Class<T> javaClass, Resource rdfType, String uri );
 
     /**
      * <p>Answer a resource presenting the {@link OntResource} facet, which has the
@@ -1294,7 +1294,7 @@ public interface OntModel
     public ModelMaker getImportModelMaker();
 
     /**
-     * <p>
+     * <p>i.next()
      * Answer the sub-graphs of this model. A sub-graph is defined as a graph that
      * is used to contain the triples from an imported document.
      * </p>
@@ -1550,7 +1550,7 @@ public interface OntModel
      * @return ExtendedIterator An iterator over the (assumed single) results of
      * executing the queries.
      */
-    public ExtendedIterator queryFor( BindingQueryPlan query, List altQueries, Class asKey );
+    public <T extends RDFNode> ExtendedIterator<T> queryFor( BindingQueryPlan query, List<BindingQueryPlan> altQueries, Class<T> asKey );
 
 
     /**

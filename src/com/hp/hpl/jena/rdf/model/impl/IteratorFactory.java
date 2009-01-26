@@ -63,7 +63,7 @@ public final class IteratorFactory {
     }
     
     static  Literal asLiteral(Node n,ModelCom m) {
-        return (Literal) m.getNodeAs( n, Literal.class );
+        return m.getNodeAs( n, Literal.class );
     }
     
     static  Resource asResource(Node n, Class cl,ModelCom m) {

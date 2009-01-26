@@ -117,7 +117,7 @@ public interface InfGraph extends Graph {
      * @param param a small graph encoding an expression which the subject and/or
      * object nodes refer.
      */
-    public ExtendedIterator find(Node subject, Node property, Node object, Graph param);
+    public ExtendedIterator<Triple> find(Node subject, Node property, Node object, Graph param);
     
     /**
      * Switch on/off drivation logging
@@ -131,7 +131,7 @@ public interface InfGraph extends Graph {
      * @return an iterator over Derivation records or null if there is no derivation information
      * available for this triple.
      */
-    public Iterator getDerivation(Triple triple);
+    public Iterator<Derivation> getDerivation(Triple triple);
     
     /**
      * Returns a derivations graph. The rule reasoners typically create a 

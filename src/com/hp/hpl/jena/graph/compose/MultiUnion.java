@@ -155,7 +155,7 @@ public class MultiUnion extends Polyadic
         { return optimiseOne() ? singleGraphQueryHandler() : super.queryHandler(); }
     
     private QueryHandler singleGraphQueryHandler()
-        { return ((Graph) m_subGraphs.get( 0 )).queryHandler(); }
+        { return (m_subGraphs.get( 0 )).queryHandler(); }
 
     /**
      * <p>
@@ -179,7 +179,7 @@ public class MultiUnion extends Polyadic
          this union.
     */
     private ExtendedIterator singleGraphFind( final TripleMatch t )
-        { return ((Graph) m_subGraphs.get( 0 )).find(  t  ); }
+        { return (m_subGraphs.get( 0 )).find(  t  ); }
 
 
     /**
@@ -224,7 +224,7 @@ public class MultiUnion extends Polyadic
             long result = 0;
             for (int i = 0; i < mu.m_subGraphs.size(); i += 1)
                 {
-                Graph g = (Graph) mu.m_subGraphs.get( i );
+                Graph g = mu.m_subGraphs.get( i );
                 GraphStatisticsHandler s = g.getStatisticsHandler();
                 long n = s.getStatistic( S, P, O );
                 if (n < 0) return n;

@@ -184,7 +184,7 @@ public interface PrefixMapping
     public static final PrefixMapping Standard = PrefixMapping.Factory.create()
         .setNsPrefix( "rdfs", RDFS.getURI() )
         .setNsPrefix( "rdf", RDF.getURI() )
-        .setNsPrefix( "dc", DC.getURI() )
+        .setNsPrefix( "dc", DC_11.getURI() )
         .setNsPrefix( "owl", OWL.getURI() )
         .setNsPrefix( "xsd", XSD.getURI() )
         .lock()

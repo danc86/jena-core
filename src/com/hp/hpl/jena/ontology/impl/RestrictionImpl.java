@@ -117,7 +117,7 @@ public class RestrictionImpl
      * @exception OntProfileException If the {@link Profile#ON_PROPERTY()} property is not supported in the current language profile.   
      */ 
     public OntProperty getOnProperty() {
-        return (OntProperty) objectAs( getProfile().ON_PROPERTY(), "ON_PROPERTY", OntProperty.class );
+        return objectAs( getProfile().ON_PROPERTY(), "ON_PROPERTY", OntProperty.class );
     }
 
     /**
@@ -147,7 +147,7 @@ public class RestrictionImpl
      * given the lanuage profile and the current state of the underlying model.
      */
     public AllValuesFromRestriction asAllValuesFromRestriction() {
-        return (AllValuesFromRestriction) as( AllValuesFromRestriction.class );
+        return as( AllValuesFromRestriction.class );
     }
          
     /** 
@@ -157,7 +157,7 @@ public class RestrictionImpl
      * given the lanuage profile and the current state of the underlying model.
      */
     public SomeValuesFromRestriction asSomeValuesFromRestriction() {
-        return (SomeValuesFromRestriction) as( SomeValuesFromRestriction.class );
+        return as( SomeValuesFromRestriction.class );
     }
          
     /** 
@@ -167,7 +167,7 @@ public class RestrictionImpl
      * given the lanuage profile and the current state of the underlying model.
      */
     public HasValueRestriction asHasValueRestriction() {
-        return (HasValueRestriction) as( HasValueRestriction.class );
+        return as( HasValueRestriction.class );
     }
          
     /** 
@@ -177,7 +177,7 @@ public class RestrictionImpl
      * given the lanuage profile and the current state of the underlying model.
      */
     public CardinalityRestriction asCardinalityRestriction() {
-        return (CardinalityRestriction) as( CardinalityRestriction.class );
+        return as( CardinalityRestriction.class );
     }
 
     /** 
@@ -187,7 +187,7 @@ public class RestrictionImpl
      * given the lanuage profile and the current state of the underlying model.
      */
     public MinCardinalityRestriction asMinCardinalityRestriction() {
-        return (MinCardinalityRestriction) as( MinCardinalityRestriction.class );
+        return as( MinCardinalityRestriction.class );
     }
 
     /** 
@@ -197,7 +197,7 @@ public class RestrictionImpl
      * given the lanuage profile and the current state of the underlying model.
      */
     public MaxCardinalityRestriction asMaxCardinalityRestriction() {
-        return (MaxCardinalityRestriction) as( MaxCardinalityRestriction.class );
+        return as( MaxCardinalityRestriction.class );
     }
 
 
@@ -281,7 +281,7 @@ public class RestrictionImpl
      */
     public AllValuesFromRestriction convertToAllValuesFromRestriction( Resource cls ) {
         setPropertyValue( getProfile().ALL_VALUES_FROM(), "ALL_VALUES_FROM", cls );
-        return (AllValuesFromRestriction) as( AllValuesFromRestriction.class );
+        return as( AllValuesFromRestriction.class );
     }
          
     /** 
@@ -293,7 +293,7 @@ public class RestrictionImpl
      */
     public SomeValuesFromRestriction convertToSomeValuesFromRestriction( Resource cls ) {
         setPropertyValue( getProfile().SOME_VALUES_FROM(), "SOME_VALUES_FROM", cls );
-        return (SomeValuesFromRestriction) as( SomeValuesFromRestriction.class );
+        return as( SomeValuesFromRestriction.class );
     }
          
     /** 
@@ -305,7 +305,7 @@ public class RestrictionImpl
      */
     public HasValueRestriction convertToHasValueRestriction( RDFNode value ) {
         setPropertyValue( getProfile().HAS_VALUE(), "HAS_VALUE", value );
-        return (HasValueRestriction) as( HasValueRestriction.class );
+        return as( HasValueRestriction.class );
     }
          
     /** 
@@ -316,7 +316,7 @@ public class RestrictionImpl
      */
     public CardinalityRestriction convertToCardinalityRestriction( int cardinality ) {
         setPropertyValue( getProfile().CARDINALITY(), "CARDINALITY", getModel().createTypedLiteral( cardinality ) );
-        return (CardinalityRestriction) as( CardinalityRestriction.class );
+        return as( CardinalityRestriction.class );
     }
 
     /** 
@@ -327,7 +327,7 @@ public class RestrictionImpl
      */
     public MinCardinalityRestriction convertToMinCardinalityRestriction( int cardinality ) {
         setPropertyValue( getProfile().MIN_CARDINALITY(), "MIN_CARDINALITY", getModel().createTypedLiteral( cardinality ) );
-        return (MinCardinalityRestriction) as( MinCardinalityRestriction.class );
+        return as( MinCardinalityRestriction.class );
     }
 
     /** 
@@ -338,7 +338,7 @@ public class RestrictionImpl
      */
     public MaxCardinalityRestriction convertToMaxCardinalityRestriction( int cardinality ) {
         setPropertyValue( getProfile().MAX_CARDINALITY(), "MAX_CARDINALITY", getModel().createTypedLiteral( cardinality ) );
-        return (MaxCardinalityRestriction) as( MaxCardinalityRestriction.class );
+        return as( MaxCardinalityRestriction.class );
     }
 
 

@@ -10,6 +10,7 @@ import com.hp.hpl.jena.assembler.JA;
 import com.hp.hpl.jena.shared.*;
 import com.hp.hpl.jena.shared.impl.*;
 import com.hp.hpl.jena.vocabulary.*;
+
 import junit.framework.*;
 
 /**
@@ -39,7 +40,7 @@ public class TestPrefixMapping extends AbstractTestPrefixMapping
         {
         assertEquals( RDF.getURI(), st.getNsPrefixURI( "rdf" ) );
         assertEquals( RDFS.getURI(), st.getNsPrefixURI( "rdfs" ) );
-        assertEquals( DC.getURI(), st.getNsPrefixURI( "dc" ) );
+        assertEquals( DC_11.getURI(), st.getNsPrefixURI( "dc" ) );
         assertEquals( OWL.getURI(), st.getNsPrefixURI( "owl" ) );
         }
 

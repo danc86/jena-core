@@ -156,7 +156,7 @@ public class OneToManyMap<From, To> implements Map<From, To>
 
         for (Iterator e0 = m_table.keySet().iterator();  e0.hasNext(); ) {
             Object key = e0.next();
-            List values = (List) m_table.get( key );
+            List values = m_table.get( key );
 
             // add each key-value pair to the result set
             for (ListIterator e1 = values.listIterator();  e1.hasNext(); ) {
@@ -373,7 +373,7 @@ public class OneToManyMap<From, To> implements Map<From, To>
         Set s = CollectionFactory.createHashedSet();
 
         for (Iterator e = m_table.keySet().iterator();  e.hasNext();  ) {
-            s.addAll( (List) m_table.get(e.next()) );
+            s.addAll( m_table.get(e.next()) );
         }
 
         return s;

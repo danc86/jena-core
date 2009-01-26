@@ -12,7 +12,6 @@ import com.hp.hpl.jena.assembler.*;
 import com.hp.hpl.jena.assembler.exceptions.*;
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.shared.JenaException;
-import com.hp.hpl.jena.util.IteratorCollection;
 import com.hp.hpl.jena.util.iterator.Map1;
 import com.hp.hpl.jena.vocabulary.RDF;
 

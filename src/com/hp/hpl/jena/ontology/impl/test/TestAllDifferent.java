@@ -75,8 +75,8 @@ public class TestAllDifferent
                 public void ontTest( OntModel m ) throws Exception {
                     Profile prof = m.getProfile();
                     AllDifferent a = m.createAllDifferent();
-                    OntResource b = (OntResource) m.getResource( NS + "b" ).as( OntResource.class );
-                    OntResource c = (OntResource) m.getResource( NS + "c" ).as( OntResource.class );
+                    OntResource b = m.getResource( NS + "b" ).as( OntResource.class );
+                    OntResource c = m.getResource( NS + "c" ).as( OntResource.class );
                     
                     a.addDistinctMember( b );
                     assertEquals( "Cardinality should be 1", 1, a.getCardinality( prof.DISTINCT_MEMBERS() ) );

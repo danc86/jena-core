@@ -11,8 +11,7 @@ package com.hp.hpl.jena.reasoner.rulesys;
 
 import com.hp.hpl.jena.graph.Node;
 import com.hp.hpl.jena.graph.Triple;
-import com.hp.hpl.jena.reasoner.InfGraph;
-import com.hp.hpl.jena.reasoner.TriplePattern;
+import com.hp.hpl.jena.reasoner.*;
 import com.hp.hpl.jena.util.iterator.ExtendedIterator;
 
 /**
@@ -38,12 +37,12 @@ public interface BackwardRuleInfGraphI extends SilentAddI, InfGraph {
      * Match a pattern just against the stored data (raw data, schema,
      * axioms) but no backchaining derivation.
      */
-    public ExtendedIterator findDataMatches(TriplePattern pattern);
+    public ExtendedIterator<Triple> findDataMatches(TriplePattern pattern);
 
     /**
      * Log a dervivation record against the given triple.
      */
-    public void logDerivation(Triple t, Object derivation);
+    public void logDerivation(Triple t, Derivation derivation);
 
     /**
      * Retrieve or create a bNode representing an inferred property value.

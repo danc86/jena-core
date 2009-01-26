@@ -41,11 +41,11 @@ public class Functor implements ClauseEntry {
     protected Builtin implementor;
     
     /** A static Filter instance that detects triples with Functor objects */
-    public static final Filter acceptFilter = new Filter() {
+    public static final Filter<Triple> acceptFilter = new Filter<Triple>() {
                 @Override
-                public boolean accept(Object t) {
-                    if (((Triple)t).getSubject().isLiteral()) return true;
-                    Node n = ((Triple)t).getObject();
+                public boolean accept( Triple t) {
+                    if (t.getSubject().isLiteral()) return true;
+                    Node n = t.getObject();
                     return n.isLiteral() && n.getLiteralDatatype() == FunctorDatatype.theFunctorDatatype;
                 }
             };
@@ -57,9 +57,9 @@ public class Functor implements ClauseEntry {
      * @param name the name of the functor
      * @param args a list of nodes defining the arguments
      */
-    public Functor(String name, List args) {
+    public Functor(String name, List<Node> args) {
         this.name = name;
-        this.args = (Node[]) args.toArray(new Node[]{});
+        this.args = args.toArray(new Node[]{});
     }
     
     /**
@@ -80,9 +80,9 @@ public class Functor implements ClauseEntry {
      * @param registry a table of builtins to consult to check for 
      * implementations of this functor when used as a rule clause
      */
-    public Functor(String name, List args, BuiltinRegistry registry) {
+    public Functor(String name, List<Node> args, BuiltinRegistry registry) {
         this.name = name;
-        this.args = (Node[]) args.toArray(new Node[]{});
+        this.args = args.toArray(new Node[]{});
         this.implementor = registry.getImplementation(name);
     }
     

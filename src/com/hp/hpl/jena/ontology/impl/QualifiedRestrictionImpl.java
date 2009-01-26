@@ -124,13 +124,13 @@ public class QualifiedRestrictionImpl
         checkProfile( getProfile().HAS_CLASS_Q(), "HAS_CLASS_Q" );
         Resource r = getProperty( getProfile().HAS_CLASS_Q() ).getResource();
         if (r.canAs( OntClass.class )) {
-            return (OntClass) r.as( OntClass.class );
+            return r.as( OntClass.class );
         }
         else if (r.canAs( DataRange.class )) {
-            return (DataRange) r.as( DataRange.class );
+            return r.as( DataRange.class );
         }
         else {
-            return (OntResource) r.as( OntResource.class );
+            return r.as( OntResource.class );
         }
     }
 

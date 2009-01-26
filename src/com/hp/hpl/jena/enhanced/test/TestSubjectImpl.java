@@ -8,6 +8,7 @@ package com.hp.hpl.jena.enhanced.test;
 
 import com.hp.hpl.jena.enhanced.*;
 import com.hp.hpl.jena.graph.*;
+import com.hp.hpl.jena.rdf.model.RDFNode;
 /**
  * @see TestObjectImpl
  * @author  jjc
@@ -29,8 +30,7 @@ public class TestSubjectImpl extends TestCommonImpl implements TestSubject {
         super( n, eg );
     }
     
-    @Override
-    public boolean supports( Class t)
+    @Override public <X extends RDFNode> boolean supports( Class<X> t )
         { return t.isInstance( this ) && isSubject(); }
         
     public boolean isSubject() {
@@ -40,7 +40,7 @@ public class TestSubjectImpl extends TestCommonImpl implements TestSubject {
     public TestProperty aProperty() {
         if (!isSubject())
             throw new IllegalStateException("Node is not the subject of a triple.");
-        return (TestProperty)enhGraph.getNodeAs(findSubject().getPredicate(),TestProperty.class);
+        return enhGraph.getNodeAs(findSubject().getPredicate(),TestProperty.class);
     }
 }
 

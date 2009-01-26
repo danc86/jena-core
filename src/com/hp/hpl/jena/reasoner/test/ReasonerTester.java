@@ -18,7 +18,7 @@ import com.hp.hpl.jena.vocabulary.RDF;
 
 import com.hp.hpl.jena.shared.*;
 
-import junit.framework.TestCase;
+import junit.framework.*;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -298,7 +298,7 @@ public class ReasonerTester {
         */
         // ... end of debugging hack
         if (testcase != null) {
-            TestCase.assertTrue(description, correct);
+            Assert.assertTrue(description, correct);
         }
         return correct;
     }

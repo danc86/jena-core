@@ -5,11 +5,14 @@
 */
 
 package com.hp.hpl.jena.enhanced.test;
+
+import com.hp.hpl.jena.rdf.model.RDFNode;
+
 /**
  * An interface for viewing object nodes in the graph.
  * @author  jjc
  */
-public interface TestObject extends TestNode {
+public interface TestObject extends RDFNode, TestNode {
     
     /**
      * Checks whether this node is right now the object of some

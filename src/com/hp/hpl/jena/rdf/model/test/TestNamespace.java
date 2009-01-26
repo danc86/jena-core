@@ -102,7 +102,7 @@ public class TestNamespace extends ModelTestBase
         
     public void testUseEasyPrefix()
         {
-        TestPrefixMapping.testUseEasyPrefix
+        AbstractTestPrefixMapping.testUseEasyPrefix
             ( "default model", ModelFactory.createDefaultModel() );
         }
 
