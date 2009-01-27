@@ -38,7 +38,7 @@ public class SimpleGraphMaker extends BaseGraphMaker
     /**
         The mapping from the names of graphs to the Graphs themselves.
     */    
-    private Map graphs = new HashMap();
+    private Map<String, Graph> graphs = new HashMap<String, Graph>();
     
     public Graph create()
         { return Factory.createGraphMem(); }
@@ -99,7 +99,7 @@ public class SimpleGraphMaker extends BaseGraphMaker
     public void close()
         { /* nothing to do */ }
         
-    public ExtendedIterator listGraphs()
+    public ExtendedIterator<String> listGraphs()
         { return WrappedIterator.create( graphs.keySet().iterator() ); }
 	}
 

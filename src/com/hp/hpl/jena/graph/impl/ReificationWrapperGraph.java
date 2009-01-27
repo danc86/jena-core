@@ -49,18 +49,16 @@ public final class ReificationWrapperGraph extends WrappedGraph
     public Graph getBase()
         { return base; }
     
-    @Override
-    public ExtendedIterator find( TripleMatch tm )
+    @Override public ExtendedIterator<Triple> find( TripleMatch tm )
         { return find( tm.asTriple() ); }
     
-    @Override
-    public ExtendedIterator find( Node s, Node p, Node o )
+    @Override public ExtendedIterator<Triple> find( Node s, Node p, Node o )
         { return find( Triple.create( s, p, o ) ); }
     
-    private ExtendedIterator find( Triple t )
+    private ExtendedIterator<Triple> find( Triple t )
         { 
-        ExtendedIterator found = base.find( t );
-        ExtendedIterator result = reifier.getStyle().conceals() ? found.filterDrop( ReificationWrapper.isReificationTriple ) : found;
+        ExtendedIterator<Triple> found = base.find( t );
+        ExtendedIterator<Triple> result = reifier.getStyle().conceals() ? found.filterDrop( ReificationWrapper.isReificationTriple ) : found;
         return SimpleEventManager.notifyingRemove( this, result );
         }
     
@@ -71,8 +69,7 @@ public final class ReificationWrapperGraph extends WrappedGraph
         
      	@see com.hp.hpl.jena.graph.impl.WrappedGraph#size()
     */
-    @Override
-    public int size()  
+    @Override public int size()  
         { 
         ReificationWrapper br = (ReificationWrapper) reifier;
         return base.size() - br.countConcealed();
@@ -81,8 +78,7 @@ public final class ReificationWrapperGraph extends WrappedGraph
     /**
         An identifying string. For diagnostic messages only.
     */
-    @Override
-    public String toString()
+    @Override public String toString()
         { return "<rwg " + index + ">"; }
     
     private static int count = 0;
