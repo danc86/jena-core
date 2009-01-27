@@ -60,8 +60,8 @@ public class TestFileManagerAssembler extends AssemblerTestBase
         Resource root = resourceInModel( "f rdf:type ja:FileManager" );
         Assembler a = new FileManagerAssembler();
         FileManager f = (FileManager) a.open( null, root );
-        List wanted = IteratorCollection.iteratorToList( standardLocators() );
-        List obtained = IteratorCollection.iteratorToList( f.locators() );
+        List<Locator> wanted = IteratorCollection.iteratorToList( standardLocators() );
+        List<Locator> obtained = IteratorCollection.iteratorToList( f.locators() );
         assertEquals( wanted.size(), obtained.size() );
         assertEquals( wanted, obtained );
         }

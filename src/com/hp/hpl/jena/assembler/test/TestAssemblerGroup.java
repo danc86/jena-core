@@ -20,8 +20,7 @@ public class TestAssemblerGroup extends AssemblerTestBase
     public TestAssemblerGroup( String name )
         { super( name );  }
 
-    @Override
-    protected Class getAssemblerClass()
+    @Override protected Class<? extends Assembler> getAssemblerClass()
         { return AssemblerGroup.class; }
     
     public void testEmptyAssemblerGroup()

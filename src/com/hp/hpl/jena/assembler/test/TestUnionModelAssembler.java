@@ -79,8 +79,8 @@ public class TestUnionModelAssembler extends AssemblerTestBase
         Model m = (Model) a.open( mock, root );
         assertInstanceOf( MultiUnion.class, m.getGraph() );
         MultiUnion mu = (MultiUnion) m.getGraph();
-        List L = mu.getSubGraphs();
-        assertEquals( expected, new HashSet( L ) );
+        List<Graph> L = mu.getSubGraphs();
+        assertEquals( expected, new HashSet<Graph>( L ) );
         checkImmutable( m );
         }
     

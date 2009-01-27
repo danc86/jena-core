@@ -111,9 +111,9 @@ public class TestOntModelAssembler extends AssemblerTestBase
         Object m = a.open( aa, resourceInModel( "x rdf:type ja:OntModel; x ja:subModel y" ) );
         assertInstanceOf( OntModel.class, m );
         OntModel om = (OntModel) m;
-        List subModels = om.listSubModels().toList();
+        List<OntModel> subModels = om.listSubModels().toList();
         assertEquals( 1, subModels.size() );
-        assertSame( baseModel.getGraph(), ((OntModel) subModels.get( 0 )).getBaseModel().getGraph() );
+        assertSame( baseModel.getGraph(), subModels.get( 0 ).getBaseModel().getGraph() );
         }
     
     public void testDefaultDocumentManager()

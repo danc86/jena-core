@@ -23,12 +23,12 @@ public class TestRuleSet extends AssemblerTestBase
     public void testEmpty()
         {
         assertEquals( Collections.EMPTY_LIST, RuleSet.empty.getRules() );
-        assertEquals( RuleSet.empty, RuleSet.create( Collections.EMPTY_LIST ) );
+        assertEquals( RuleSet.empty, RuleSet.create( Collections.<Rule>emptyList() ) );
         }
     
     public void testEmptyRuleSet()
         { 
-        RuleSet s = RuleSet.create( Collections.EMPTY_LIST );
+        RuleSet s = RuleSet.create( Collections.<Rule>emptyList() );
         assertEquals( Collections.EMPTY_LIST, s.getRules() );
         assertNotSame( Collections.EMPTY_LIST, s.getRules() );
         }
