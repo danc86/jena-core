@@ -17,7 +17,7 @@ public class HashedTripleBunch extends HashCommon implements TripleBunch
     public HashedTripleBunch( TripleBunch b )
         {
         super( nextSize( (int) (b.size() / loadFactor) ) );
-        for (Iterator it = b.iterator(); it.hasNext();) add( (Triple) it.next() );        
+        for (Iterator<Triple> it = b.iterator(); it.hasNext();) add( it.next() );        
         changes = 0;
         }
 
@@ -79,10 +79,10 @@ public class HashedTripleBunch extends HashCommon implements TripleBunch
         changes += 1;
         }
     
-    public ExtendedIterator iterator()
+    public ExtendedIterator<Triple> iterator()
         { return iterator( NotifyEmpty.ignore ); }
     
-    public ExtendedIterator iterator( final NotifyEmpty container )
+    public ExtendedIterator<Triple> iterator( final NotifyEmpty container )
         { return keyIterator( container ); }
     
     public void app( Domain d, StageElement next, MatchOrBind s )

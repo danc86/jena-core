@@ -55,14 +55,14 @@ public interface TripleBunch
         Answer an iterator over all the triples in this bunch. It is unwise to
         .remove from this iterator. (It may become illegal.)
     */
-    public abstract ExtendedIterator iterator();
+    public abstract ExtendedIterator<Triple> iterator();
     
     /**
         Answer an iterator over all the triples in this bunch. If use of .remove on
         this iterator empties the bunch, the <code>emptied</code> method of
         <code>container</code> is invoked.
     */
-    public abstract ExtendedIterator iterator( HashCommon.NotifyEmpty container );
+    public abstract ExtendedIterator<Triple> iterator( HashCommon.NotifyEmpty container );
     
     /**
          For every triple t in this bunch that matches <code>s<code>, invoke
