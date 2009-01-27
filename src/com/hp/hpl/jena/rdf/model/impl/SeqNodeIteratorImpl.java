@@ -43,43 +43,41 @@ import java.util.Iterator;
  * @author  bwm
  * @version Release='$Name$' Revision='$Revision$' Date='$Date$'
  */
-public class SeqNodeIteratorImpl extends WrappedIterator implements NodeIterator {
-    
+public class SeqNodeIteratorImpl extends NiceIterator<RDFNode> implements NodeIterator 
+    {
     Seq       seq;
     int       size;
     int       index = 0;
     Statement stmt = null;
+    Iterator<Statement> base;
+    
     private int       numDeleted=0;
     
     /** Creates new SeqNodeIteratorImpl 
     */
-    public SeqNodeIteratorImpl ( Iterator  iterator, Seq seq )  {
-        super( iterator ); 
-        this.seq      = seq;
-        this.size     = seq.size();
+    public SeqNodeIteratorImpl ( Iterator<Statement>  iterator, Seq seq )  {
+        this.base = iterator; 
+        this.seq = seq;
+        this.size = seq.size();
     }
+    
+    @Override public boolean hasNext()
+        { return base.hasNext(); }
 
-    @Override
-    public Object next() throws NoSuchElementException {
-        stmt = (Statement) super.next();
+    @Override public RDFNode next() {
+        stmt = base.next();
         index += 1;
         return stmt.getObject();
     }
     
-    public RDFNode nextNode() throws NoSuchElementException {
-        return (RDFNode) next();
+    public RDFNode nextNode() {
+        return next();
     }
             
-    @Override
-    public void remove() throws NoSuchElementException {
+    @Override public void remove() {
         if (stmt == null) throw new NoSuchElementException();
         ((ContainerI)seq).remove(index-numDeleted, stmt.getObject());
         stmt = null;
         numDeleted++;
-    }
-    
-    @Override
-    public void close() {
-        super.close();
     }
 }

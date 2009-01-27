@@ -457,8 +457,7 @@ public class OntModelImpl extends ModelCom implements OntModel
         }
         else {
             // we have inference, so we pick the nodes that are of type Thing
-            return UniqueExtendedIterator.create(
-                    findByTypeAs( getProfile().THING(), Individual.class ) );
+            return UniqueExtendedIterator.create( findByTypeAs( getProfile().THING(), Individual.class ) );
         }
     }
 

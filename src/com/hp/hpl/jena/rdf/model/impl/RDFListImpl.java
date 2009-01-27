@@ -162,7 +162,7 @@ public class RDFListImpl
     public Resource listNil()           { return m_listNil; }
     public Property listFirst()         { return m_listFirst; }
     public Property listRest()          { return m_listRest; }
-    public Class listAbstractionClass() { return RDFList.class; }
+    public Class<RDFList> listAbstractionClass() { return RDFList.class; }
     
     
     /**
@@ -249,7 +249,7 @@ public class RDFListImpl
         checkNotNil( "Tried to get the tail of an empty list" );
         
         Resource tail = getRequiredProperty( listRest() ).getResource();
-        return (RDFList) tail.as( listAbstractionClass() );
+        return tail.as( listAbstractionClass() );
     }
     
     
@@ -269,7 +269,7 @@ public class RDFListImpl
         
         checkNotNil( "Tried to set the tail of an empty list" );
 
-        return (RDFList) (setTailAux( this, tail, listRest() )).as( listAbstractionClass() );
+        return (setTailAux( this, tail, listRest() )).as( listAbstractionClass() );
     }
     
     
@@ -303,7 +303,7 @@ public class RDFListImpl
         
         // create a new, anonymous typed resource to be the list cell
         // map to a list facet
-        return (RDFList) (newListCell( value, this )).as( listAbstractionClass() );
+        return (newListCell( value, this )).as( listAbstractionClass() );
     }
     
     
@@ -759,8 +759,8 @@ public class RDFListImpl
      * statement is the only mention of that resource in the model.</p>
      */
     public void removeList() {
-        for (Iterator i = collectStatements().iterator(); i.hasNext(); ) {
-            ((Statement) i.next()).remove();
+        for (Iterator<Statement> i = collectStatements().iterator(); i.hasNext(); ) {
+            i.next().remove();
         }
     }
     
@@ -770,13 +770,13 @@ public class RDFListImpl
      * of this list.</p>
      * @return A list of the statements that form the encoding of this list.
      */
-    public Set collectStatements() {
-        Set stmts = new HashSet();
+    public Set<Statement> collectStatements() {
+        Set<Statement> stmts = new HashSet<Statement>();
         RDFList l = this;
         
         do {
             // collect all statements of this list cell
-            for (Iterator i = l.listProperties(); i.hasNext(); ) {
+            for (Iterator<Statement> i = l.listProperties(); i.hasNext(); ) {
                 stmts.add( i.next() );
             }
             
@@ -1067,7 +1067,7 @@ public class RDFListImpl
             }
         }
         else {
-            return (RDFList) l.as( listAbstractionClass() );
+            return l.as( listAbstractionClass() );
         }
     }
     
@@ -1108,7 +1108,7 @@ public class RDFListImpl
         // finally close the list
         list.addProperty( tail, listNil() );
             
-        return (RDFList) start.as( listAbstractionClass() );
+        return start.as( listAbstractionClass() );
     }
     
     
@@ -1146,8 +1146,7 @@ public class RDFListImpl
      * list.
      * </p>
      */
-    protected class RDFListIterator
-        extends NiceIterator
+    protected class RDFListIterator extends NiceIterator
     {
         // Instance variables
         

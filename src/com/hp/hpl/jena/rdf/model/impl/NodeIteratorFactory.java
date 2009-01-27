@@ -42,6 +42,6 @@ import java.util.Iterator;
  */
 public interface NodeIteratorFactory {
     
-    NodeIterator createIterator(Iterator iter, Object o, Container cont);
+    NodeIterator createIterator(Iterator<Statement> iter, Object o, Container cont);
 
 }

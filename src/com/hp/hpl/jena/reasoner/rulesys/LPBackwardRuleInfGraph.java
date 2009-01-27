@@ -161,7 +161,7 @@ public class LPBackwardRuleInfGraph extends BaseInfGraph implements BackwardRule
     public synchronized ExtendedIterator<Triple> findWithContinuation(TriplePattern pattern, Finder continuation) {
         checkOpen();
         if (!isPrepared) prepare();
-        ExtendedIterator result = new UniqueExtendedIterator(engine.find(pattern));
+        ExtendedIterator<Triple> result = UniqueExtendedIterator.create( engine.find(pattern) );
         if (continuation != null) {
             result = result.andThen(continuation.find(pattern));
         }
@@ -174,7 +174,7 @@ public class LPBackwardRuleInfGraph extends BaseInfGraph implements BackwardRule
      * will have also consulted the raw data.
      */
     @Override
-    public ExtendedIterator graphBaseFind(Node subject, Node property, Node object) {
+    public ExtendedIterator<Triple> graphBaseFind(Node subject, Node property, Node object) {
         return findWithContinuation(new TriplePattern(subject, property, object), null);
     }
 
@@ -187,7 +187,7 @@ public class LPBackwardRuleInfGraph extends BaseInfGraph implements BackwardRule
      *  that match the pattern
      */
     @Override
-    public ExtendedIterator find(TriplePattern pattern) {
+    public ExtendedIterator<Triple> find(TriplePattern pattern) {
         return findWithContinuation(pattern, null);
     }
         
@@ -234,7 +234,7 @@ public class LPBackwardRuleInfGraph extends BaseInfGraph implements BackwardRule
     public void setDerivationLogging(boolean recordDerivations) {
         engine.setDerivationLogging(recordDerivations);
         if (recordDerivations) {
-            derivations = new OneToManyMap();
+            derivations = new OneToManyMap<Triple, Derivation>();
         } else {
             derivations = null;
         }
@@ -245,9 +245,9 @@ public class LPBackwardRuleInfGraph extends BaseInfGraph implements BackwardRule
      * The derivation is a List of DerivationRecords
      */
     @Override
-    public Iterator getDerivation(Triple t) {
+    public Iterator<Derivation> getDerivation(Triple t) {
         if (derivations == null) {
-            return new NullIterator();
+            return new NullIterator<Derivation>();
         } else {
             return derivations.getAll(t);
         }
@@ -282,7 +282,7 @@ public class LPBackwardRuleInfGraph extends BaseInfGraph implements BackwardRule
      * Match a pattern just against the stored data (raw data, schema,
      * axioms) but no derivation.
      */
-    public ExtendedIterator findDataMatches(TriplePattern pattern) {
+    public ExtendedIterator<Triple> findDataMatches(TriplePattern pattern) {
         return dataFind.find(pattern);
     }
             
@@ -325,8 +325,8 @@ public class LPBackwardRuleInfGraph extends BaseInfGraph implements BackwardRule
     protected void extractAxioms() {
         Graph axioms = fdeductions.getGraph();
         BBRuleContext contextForBuiltins = null;
-        for (Iterator i = engine.getRuleStore().getAllRules().iterator(); i.hasNext(); ) {
-            Rule rule = (Rule)i.next();
+        for (Iterator<Rule> i = engine.getRuleStore().getAllRules().iterator(); i.hasNext(); ) {
+            Rule rule = i.next();
             if (rule.bodyLength() == 0) {
                 // An axiom
                 for (int j = 0; j < rule.headLength(); j++) {

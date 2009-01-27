@@ -40,11 +40,8 @@ import java.util.Iterator;
  * @author bwm
  * @version   Release='$Name$' Revision='$Revision$' Date='$Date$'
  */
-public class ContNodeIteratorFactoryImpl
-  extends Object implements NodeIteratorFactory {
-
-    public NodeIterator createIterator(Iterator iter,Object o,Container cont)
-     {
-        return new ContNodeIteratorImpl(iter, o, cont);
+public class ContNodeIteratorFactoryImpl implements NodeIteratorFactory 
+    {
+    public NodeIterator createIterator( Iterator<Statement> iter,Object o,Container cont )
+        { return new ContNodeIteratorImpl(iter, o, cont); }
     }
-}

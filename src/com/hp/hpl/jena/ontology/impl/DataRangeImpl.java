@@ -130,9 +130,9 @@ public class DataRangeImpl
      * @param literals An iterator over literals
      * @exception OntProfileException If the {@link Profile#ONE_OF()} property is not supported in the current language profile.   
      */ 
-    public void addOneOf( Iterator literals ) {
+    public void addOneOf( Iterator<Literal> literals ) {
         while( literals.hasNext() ) {
-            addOneOf( (Literal) literals.next() );
+            addOneOf( literals.next() );
         }
     }
 
@@ -151,7 +151,7 @@ public class DataRangeImpl
      * @return An iterator over the literals that are the permissible values
      * @exception OntProfileException If the {@link Profile#ONE_OF()} property is not supported in the current language profile.   
      */ 
-    public ExtendedIterator listOneOf() {
+    public ExtendedIterator<Literal> listOneOf() {
         return getOneOf().iterator().mapWith( new AsMapper( Literal.class ) );
     }
 

@@ -16,15 +16,15 @@ import java.util.*;
  * @author  bwm + kers
  * @version   Release='$Name$' Revision='$Revision$' Date='$Date$'
  */
-public class NodeIteratorImpl extends WrappedIterator implements NodeIterator {
+public class NodeIteratorImpl extends WrappedIterator<RDFNode> implements NodeIterator {
     
     /** Creates new NodeIteratorImpl */
-    public NodeIteratorImpl(Iterator iter, Object object) {
+    public NodeIteratorImpl( Iterator<? extends RDFNode> iter, Object object ) {
         super( iter );
     }
     
     public RDFNode nextNode() {
-        return (RDFNode) super.next();
+        return super.next();
     }
     
 }

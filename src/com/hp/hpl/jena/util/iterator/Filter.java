@@ -27,8 +27,7 @@ public abstract class Filter<T>
     
     public Filter<T> and( final Filter<T> other )
         { return other == any ? this : new Filter<T>()
-            { @Override
-            public boolean accept( T x ) 
+            { @Override public boolean accept( T x ) 
                 { return Filter.this.accept( x ) && other.accept( x ); } 
             };
         }
@@ -38,14 +37,11 @@ public abstract class Filter<T>
     */
     public static final Filter any = new Filter()
         { 
-        @Override
-        public final boolean accept( Object o ) { return true; } 
+        @Override public final boolean accept( Object o ) { return true; } 
         
-        @Override
-        public Filter and( Filter other ) { return other; }
+        @Override public Filter and( Filter other ) { return other; }
         
-        @Override
-        public ExtendedIterator filterKeep( Iterator it )
+        @Override public ExtendedIterator filterKeep( Iterator it )
             { return WrappedIterator.create( it ); }
         };
         

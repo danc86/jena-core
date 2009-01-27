@@ -17,14 +17,14 @@ import java.util.*;
  * @version Release='$Name$' Revision='$Revision$' Date='$Date$'
  */
 public class ContNodeIteratorImpl 
-  extends WrappedIterator implements NodeIterator{
+  extends WrappedIterator<RDFNode> implements NodeIterator{
     
     protected Statement stmt = null;
     protected Container cont;
     protected int size;
     protected int index = 0;
     protected int numDeleted = 0;
-    protected Vector moved = new Vector();
+    protected List<Integer> moved = new ArrayList<Integer>();
     
     /** Creates new ContNodeIteratorImpl */
     public ContNodeIteratorImpl (Iterator  iterator, 
@@ -35,24 +35,22 @@ public class ContNodeIteratorImpl
         this.size     = cont.size();
     }
 
-    @Override
-    public Object next() throws NoSuchElementException {
+    @Override public RDFNode next() throws NoSuchElementException {
         stmt = (Statement) super.next();
         index += 1;
         return stmt.getObject();
     }
     
     public RDFNode nextNode() throws NoSuchElementException {
-        return (RDFNode) next();
+        return next();
     }
             
-    @Override
-    public void remove() throws NoSuchElementException {
+    @Override public void remove() throws NoSuchElementException {
         if (stmt == null) throw new NoSuchElementException();
         super.remove();
         
         if (index > (size-numDeleted)) {
-            ((ContainerI)cont).remove(((Integer) moved.elementAt(size-index))
+            ((ContainerI)cont).remove(moved.get(size-index)
                                                       .intValue(),
                                        stmt.getObject());
         } else {

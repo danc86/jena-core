@@ -664,7 +664,7 @@ public class ModelCom
      * @param members An iterator, each value of which is expected to be an RDFNode.
      * @return An RDF-encoded list of the elements of the iterator
      */
-    public RDFList createList( Iterator<RDFNode> members ) 
+    public RDFList createList( Iterator<? extends RDFNode> members ) 
         {
         RDFList list = createList();
         while (members != null && members.hasNext()) list = list.with( members.next() );

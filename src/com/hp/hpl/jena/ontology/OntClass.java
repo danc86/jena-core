@@ -84,7 +84,7 @@ public interface OntClass
      * @return An iterator over the super-classes of this class.
      * @exception OntProfileException If the {@link Profile#SUB_CLASS_OF()} property is not supported in the current language profile.
      */
-    public ExtendedIterator listSuperClasses();
+    public ExtendedIterator<OntClass> listSuperClasses();
 
     /**
      * <p>Answer an iterator over all of the classes that are super-classes of
@@ -99,7 +99,7 @@ public interface OntClass
      * @return an iterator over the resources representing this class's sub-classes.
      * @exception OntProfileException If the {@link Profile#SUB_CLASS_OF()} property is not supported in the current language profile.
      */
-    public ExtendedIterator listSuperClasses( boolean direct );
+    public ExtendedIterator<OntClass> listSuperClasses( boolean direct );
 
     /**
      * <p>Answer true if the given class is a super-class of this class.</p>
@@ -170,7 +170,7 @@ public interface OntClass
      * @return An iterator over the sub-classes of this class.
      * @exception OntProfileException If the {@link Profile#SUB_CLASS_OF()} property is not supported in the current language profile.
      */
-    public ExtendedIterator listSubClasses();
+    public ExtendedIterator<OntClass> listSubClasses();
 
     /**
      * <p>
@@ -218,7 +218,7 @@ public interface OntClass
      * @return an iterator over the resources representing this class's sub-classes
      * @exception OntProfileException If the {@link Profile#SUB_CLASS_OF()} property is not supported in the current language profile.
      */
-    public ExtendedIterator listSubClasses( boolean direct );
+    public ExtendedIterator<OntClass> listSubClasses( boolean direct );
 
     /**
      * <p>Answer true if the given class is a sub-class of this class.</p>
@@ -289,7 +289,7 @@ public interface OntClass
      * @return An iterator over the classes equivalent to this class.
      * @exception OntProfileException If the {@link Profile#EQUIVALENT_CLASS()} property is not supported in the current language profile.
      */
-    public ExtendedIterator listEquivalentClasses();
+    public ExtendedIterator<OntClass> listEquivalentClasses();
 
     /**
      * <p>Answer true if the given class is equivalent to this class.</p>
@@ -340,7 +340,7 @@ public interface OntClass
      * @return An iterator over the classes disjoint with this class.
      * @exception OntProfileException If the {@link Profile#DISJOINT_WITH()} property is not supported in the current language profile.
      */
-    public ExtendedIterator listDisjointWith();
+    public ExtendedIterator<OntClass> listDisjointWith();
 
     /**
      * <p>Answer true if this class is disjoint with the given class.</p>
@@ -374,7 +374,7 @@ public interface OntClass
      * @return An iteration of the properties that are associated with this class
      * by their domain.
      */
-    public ExtendedIterator listDeclaredProperties();
+    public ExtendedIterator<OntProperty> listDeclaredProperties();
 
 
     /**
@@ -390,7 +390,7 @@ public interface OntClass
      * @return An iteration of the properties that are associated with this class
      * by their domain.
      */
-    public ExtendedIterator listDeclaredProperties( boolean direct );
+    public ExtendedIterator<OntProperty> listDeclaredProperties( boolean direct );
 
 
     /**

@@ -207,7 +207,7 @@ public interface OntResource
      * @return An iterator over the resources providing additional definition on this resource.
      * @exception OntProfileException If the {@link Profile#SEE_ALSO()} property is not supported in the current language profile.
      */
-    public ExtendedIterator listSeeAlso();
+    public ExtendedIterator<RDFNode> listSeeAlso();
 
     /**
      * <p>Answer true if this resource has the given resource as a source of additional information.</p>
@@ -255,7 +255,7 @@ public interface OntResource
      * @return An iterator over the resources defining this resource.
      * @exception OntProfileException If the {@link Profile#IS_DEFINED_BY()} property is not supported in the current language profile.
      */
-    public ExtendedIterator listIsDefinedBy();
+    public ExtendedIterator<RDFNode> listIsDefinedBy();
 
     /**
      * <p>Answer true if this resource is defined by the given resource.</p>
@@ -301,7 +301,7 @@ public interface OntResource
      * @return An iterator over the version info strings for this resource.
      * @exception OntProfileException If the {@link Profile#VERSION_INFO()} property is not supported in the current language profile.
      */
-    public ExtendedIterator listVersionInfo();
+    public ExtendedIterator<String> listVersionInfo();
 
     /**
      * <p>Answer true if this resource has the given version information</p>
@@ -360,7 +360,7 @@ public interface OntResource
      * @return An iterator over RDF {@link Literal}'s.
      * @exception OntProfileException If the {@link Profile#LABEL()} property is not supported in the current language profile.
      */
-    public ExtendedIterator listLabels( String lang );
+    public ExtendedIterator<RDFNode> listLabels( String lang );
 
     /**
      * <p>Answer true if this resource has the given label</p>
@@ -436,7 +436,7 @@ public interface OntResource
      * @return An iterator over RDF {@link Literal}'s.
      * @exception OntProfileException If the {@link Profile#COMMENT()} property is not supported in the current language profile.
      */
-    public ExtendedIterator listComments( String lang );
+    public ExtendedIterator<RDFNode> listComments( String lang );
 
     /**
      * <p>Answer true if this resource has the given comment.</p>
@@ -535,7 +535,7 @@ public interface OntResource
      * an OntClass.
      * @see Individual#listOntClasses(boolean)
      */
-    public ExtendedIterator listRDFTypes( boolean direct );
+    public ExtendedIterator<Resource> listRDFTypes( boolean direct );
 
     /**
      * <p>

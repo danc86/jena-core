@@ -41,10 +41,8 @@ import java.util.Iterator;
  * @author  bwm
  * @version Release='$Name$' Revision='$Revision$' Date='$Date$'
  */
-public class SeqNodeIteratorFactoryImpl extends Object 
-  implements NodeIteratorFactory {
-
-    public NodeIterator createIterator(Iterator iter, Object ignored, Container cont)  {
-        return new SeqNodeIteratorImpl(iter, (Seq) cont);
+public class SeqNodeIteratorFactoryImpl implements NodeIteratorFactory 
+    {
+    public NodeIterator createIterator( Iterator<Statement> iter, Object ignored, Container cont ) 
+        { return new SeqNodeIteratorImpl( iter, (Seq) cont ); }
     }
-}

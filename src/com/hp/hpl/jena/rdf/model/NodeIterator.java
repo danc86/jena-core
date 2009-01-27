@@ -44,7 +44,8 @@ import java.util.NoSuchElementException;
  * @author bwm
  * @version Release='$Name$' Revision='$Revision$' Date='$Date$'
  */
-public interface NodeIterator extends ExtendedIterator {
+public interface NodeIterator extends ExtendedIterator<RDFNode>
+    {
     /** Determine if there any more values in the iteration.
      .
      * @return true if and only if there are more values available
@@ -56,7 +57,7 @@ public interface NodeIterator extends ExtendedIterator {
      .
      * @return The next RDFNode from the iteration.
      */
-    public Object next() throws  NoSuchElementException;
+    public RDFNode next() throws  NoSuchElementException;
     /** Return the next RDFNode of the iteration.
      * @throws NoSuchElementException if there are no more nodes to be returned.
      .

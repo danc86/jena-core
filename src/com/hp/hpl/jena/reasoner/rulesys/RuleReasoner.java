@@ -22,12 +22,12 @@ public interface RuleReasoner extends Reasoner
          Set the rules used by this reasoner. <code>rules</code> must be a list
          of Rule objects.
     */
-    void setRules( List rules );
+    void setRules( List<Rule> rules );
     
     /**
          Answer the rules used by this Reasoner.
     */
-    List getRules();
+    List<Rule> getRules();
     }
 
 

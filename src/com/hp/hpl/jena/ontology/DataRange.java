@@ -74,7 +74,7 @@ public interface DataRange
      * @param literals An iterator over literals
      * @exception OntProfileException If the {@link Profile#ONE_OF()} property is not supported in the current language profile.   
      */ 
-    public void addOneOf( Iterator literals );
+    public void addOneOf( Iterator<Literal> literals );
 
     /**
      * <p>Answer a list of literals that defines the extension of this datarange.</p>
@@ -89,7 +89,7 @@ public interface DataRange
      * @return An iterator over the literals that are the permissible values
      * @exception OntProfileException If the {@link Profile#ONE_OF()} property is not supported in the current language profile.   
      */ 
-    public ExtendedIterator listOneOf();
+    public ExtendedIterator<Literal> listOneOf();
 
     /**
      * <p>Answer true if the given literal is one of the enumerated literals that are the permissible values
