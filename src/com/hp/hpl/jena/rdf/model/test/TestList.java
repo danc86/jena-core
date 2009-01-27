@@ -860,8 +860,8 @@ public class TestList
             };
             
             for (int i = 0;  i < testSpec.length;  i++) {
-                RDFList l0 = nilList.append( Arrays.asList( (Object[]) testSpec[i][0] ).iterator() );
-                RDFList l1 = nilList.append( Arrays.asList( (Object[]) testSpec[i][1] ).iterator() );
+                RDFList l0 = nilList.append( Arrays.asList( (Resource[]) testSpec[i][0] ).iterator() );
+                RDFList l1 = nilList.append( Arrays.asList( (Resource[]) testSpec[i][1] ).iterator() );
                 boolean expected = ((Boolean) testSpec[i][2]).booleanValue();
                 
                 assertEquals( "sameListAs testSpec[" + i + "] incorrect", expected, l0.sameListAs( l1 ) );
