@@ -562,7 +562,7 @@ public class TestBugs extends TestCase {
     /** Problem with bindSchema and validation rules */
     public void test_der_validation() {
         Model abox = FileManager.get().loadModel("file:testing/reasoners/owl/nondetbug.rdf");
-        List rules = FBRuleReasoner.loadRules("testing/reasoners/owl/nondetbug.rules");
+        List<Rule> rules = FBRuleReasoner.loadRules("testing/reasoners/owl/nondetbug.rules");
         GenericRuleReasoner r = new GenericRuleReasoner(rules);
 //        r.setTraceOn(true);
         for (int i = 0; i < 10; i++) {
@@ -668,7 +668,7 @@ public class TestBugs extends TestCase {
         i.addProperty(scoreA, data.createTypedLiteral(100));
         GenericRuleReasoner reasoner = new GenericRuleReasoner(rules);
         InfModel inf = ModelFactory.createInfModel(reasoner, data);
-        Iterator values = inf.listObjectsOfProperty(i, scoreA);
+        Iterator<RDFNode> values = inf.listObjectsOfProperty(i, scoreA);
         TestUtil.assertIteratorValues(this, values, new Object[] { data.createTypedLiteral(173)});
     }
 
@@ -887,7 +887,7 @@ public class TestBugs extends TestCase {
         i.addProperty(p, "foo");
 
         // Inf model
-        List rules = Rule.parseRules( "(?x eg:p ?y) -> (?x eg:q ?y). " );
+        List<Rule> rules = Rule.parseRules( "(?x eg:p ?y) -> (?x eg:q ?y). " );
         GenericRuleReasoner reasoner = new GenericRuleReasoner(rules);
         InfModel infModel = ModelFactory.createInfModel(reasoner, base);
 
@@ -930,7 +930,7 @@ public class TestBugs extends TestCase {
      * Problems with getDeductionsModel not rerunning prepare  at OntModel level
      */
     public void testOntModelGetDeductions() {
-        List rules = Rule.parseRules( "(?x rdfs:subClassOf ?y) (?i rdf:type ?x) -> (?i rdf:type ?y)." );
+        List<Rule> rules = Rule.parseRules( "(?x rdfs:subClassOf ?y) (?i rdf:type ?x) -> (?i rdf:type ?y)." );
         GenericRuleReasoner reasoner = new GenericRuleReasoner(rules);
         OntModelSpec spec = new OntModelSpec(OntModelSpec.OWL_MEM);
         spec.setReasoner(reasoner);
