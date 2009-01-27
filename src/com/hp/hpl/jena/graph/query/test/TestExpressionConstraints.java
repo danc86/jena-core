@@ -53,7 +53,7 @@ public class TestExpressionConstraints extends QueryTestBase
             .addMatch( X, ANY, Y )
             .addConstraint( notEqual( X, Y ) )
             ;
-        Set expected = CollectionFactory.createHashedSet();
+        Set<Node> expected = CollectionFactory.createHashedSet();
         expected.add( node( "x" ) );
         assertEquals( expected, iteratorToSet( q.executeBindings( g, justX ).mapWith( getFirst ) ) );     
         }        
@@ -66,7 +66,7 @@ public class TestExpressionConstraints extends QueryTestBase
             .addMatch( X, ANY, Y )
             .addConstraint( notEqual( X, Y ) )
             ;
-        Set expected = CollectionFactory.createHashedSet();
+        Set<Node> expected = CollectionFactory.createHashedSet();
         expected.add( node( "x" ) );
         assertEquals( expected, iteratorToSet( q.executeBindings( g, justX ).mapWith( getFirst ) ) );     
         }
@@ -78,7 +78,7 @@ public class TestExpressionConstraints extends QueryTestBase
             .addMatch( X, ANY, ANY )
             .addConstraint( notEqual( X, node( "y" ) ) )
             ;
-        Set expected = CollectionFactory.createHashedSet();
+        Set<Node> expected = CollectionFactory.createHashedSet();
         expected.add( node( "x" ) );
         expected.add( node( "z" ) );
         assertEquals( expected, iteratorToSet( q.executeBindings( g, justX ).mapWith( getFirst ) ) );     
@@ -92,23 +92,23 @@ public class TestExpressionConstraints extends QueryTestBase
             .addConstraint( notEqual( X, node( "y" ) ) )
             .addConstraint( notEqual( X, node( "x" ) ) )
             ;
-        Set expected = CollectionFactory.createHashedSet();
+        Set<Node> expected = CollectionFactory.createHashedSet();
         expected.add( node( "z" ) );
         assertEquals( expected, iteratorToSet( q.executeBindings( g, justX ).mapWith( getFirst ) ) );     
         }
         
     public static class VI implements VariableIndexes
         {
-        private Map values = CollectionFactory.createHashedMap();
+        private Map<String, Integer> values = CollectionFactory.createHashedMap();
         
         public VI set( String x, int i ) { values.put( x, new Integer( i ) ); return this; }    
         
-        public int indexOf( String name ) { return ((Integer) values.get( name )).intValue(); }
+        public int indexOf( String name ) { return values.get( name ).intValue(); }
         }
     
     public static class IV implements IndexValues
         {
-        private Map values = CollectionFactory.createHashedMap();
+        private Map<Integer, Node> values = CollectionFactory.createHashedMap();
         
         public IV set( int i, String x ) { values.put( new Integer( i ), Node.createLiteral( x ) ); return this; }    
         
@@ -166,7 +166,7 @@ public class TestExpressionConstraints extends QueryTestBase
         {
         Expression e1 = notEqual( X, Y ), e2 = notEqual( X, Z );
         Query q = new Query().addConstraint( Dyadic.and( e1, e2 ) );
-        Set eBoth = CollectionFactory.createHashedSet(); eBoth.add( e1 ); eBoth.add( e2 );
+        Set<Expression> eBoth = CollectionFactory.createHashedSet(); eBoth.add( e1 ); eBoth.add( e2 );
         Set s = iteratorToSet( q.getConstraints().iterator() );
         assertEquals( eBoth, s );
         }

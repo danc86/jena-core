@@ -7,6 +7,7 @@
 package com.hp.hpl.jena.graph.query;
 
 import com.hp.hpl.jena.graph.Triple;
+import com.hp.hpl.jena.graph.query.SimpleQueryEngine.Cons;
 import com.hp.hpl.jena.util.CollectionFactory;
 
 import java.util.*;
@@ -19,7 +20,7 @@ import java.util.*;
 */
 public class NamedTripleBunches
     {
-    private Map triples = CollectionFactory.createHashedMap();
+    private Map<String, Cons> triples = CollectionFactory.createHashedMap();
 
     /**
         A more-or-less internal object for referring to the "default" graph in a query.
@@ -44,7 +45,7 @@ public class NamedTripleBunches
         Answer an iterator over the entry set of the associated map: this will be
         cleaned up as we refactor.
      */    
-    public Iterator entrySetIterator()
+    public Iterator<Map.Entry<String, Cons>> entrySetIterator()
         { return triples.entrySet().iterator(); }
     }
 
