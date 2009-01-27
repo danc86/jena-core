@@ -6,10 +6,12 @@
 
 package com.hp.hpl.jena.graph.query;
 
-import EDU.oswego.cs.dl.util.concurrent.*;
-import com.hp.hpl.jena.shared.*;
+import java.util.NoSuchElementException;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.BlockingQueue;
 
-import java.util.*;
+import com.hp.hpl.jena.shared.JenaException;
+import com.hp.hpl.jena.shared.QueryStageException;
 
 /**
     This class is a pipe between query threads, implemented as a bounded buffer.
@@ -18,7 +20,7 @@ import java.util.*;
 public class BufferPipe implements Pipe
     {
     private boolean open = true;
-    private BoundedBuffer buffer = new BoundedBuffer( 5 );
+    private BlockingQueue<Object> buffer = new ArrayBlockingQueue<Object>( 5 );
     private Object pending = null;
     
     public static class Finished

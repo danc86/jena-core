@@ -5,16 +5,18 @@
 */
 package com.hp.hpl.jena.graph.query;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.BlockingQueue;
 
-import org.apache.commons.logging.*;
-
-import EDU.oswego.cs.dl.util.concurrent.BoundedBuffer;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 import com.hp.hpl.jena.JenaRuntime;
 import com.hp.hpl.jena.graph.Graph;
 import com.hp.hpl.jena.graph.Triple;
-import com.hp.hpl.jena.graph.query.StageElement.*;
+import com.hp.hpl.jena.graph.query.StageElement.PutBindings;
 
 /**
     PatternStageBase contains the features that are common to the 
@@ -61,7 +63,7 @@ public abstract class PatternStageBase extends Stage
     
     private final class PatternStageThread extends Thread
         {
-        private BoundedBuffer buffer = new BoundedBuffer(1);
+        private BlockingQueue<Work> buffer = new ArrayBlockingQueue<Work>(1);
         
         public PatternStageThread( String name )
             { super( name ); }
@@ -75,7 +77,7 @@ public abstract class PatternStageBase extends Stage
         
         protected Work get()
             {
-            try { return (Work) buffer.take(); }
+            try { return buffer.take(); }
             catch (InterruptedException e)
                 { throw new BufferPipe.BoundedBufferTakeException( e ); }
             }
@@ -121,7 +123,7 @@ public abstract class PatternStageBase extends Stage
         return sink;
         }
 
-    private static final List threads = new ArrayList();
+    private static final List<PatternStageThread> threads = new ArrayList<PatternStageThread>();
     
     private void addToAvailableThreads( PatternStageThread thread )
         {
@@ -139,7 +141,7 @@ public abstract class PatternStageBase extends Stage
             int size = threads.size();
             if (size > 0)
                 {
-                PatternStageThread x = (PatternStageThread) threads.remove( size - 1 );
+                PatternStageThread x = threads.remove( size - 1 );
                 log.debug( "reusing thread " + x );
                 return x;
                 }
