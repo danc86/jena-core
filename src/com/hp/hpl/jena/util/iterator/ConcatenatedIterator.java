@@ -95,7 +95,8 @@ public class ConcatenatedIterator<T> implements Iterator<T>
 
         // are there any more values from the encapsulted iterations?
         if (next0 || next1) {
-            T next = (next0) ? m_iter0.next() : m_iter1.next();
+            // Casts necessary : without, it does not compile with 1.6.0 update 11 (it does in Eclipse)
+            T next = (next0) ? (T)m_iter0.next() : (T)m_iter1.next();
 
             // is this the default value?
             if (hasDefaultValue()  &&  m_defaultValue.equals( next )) {
