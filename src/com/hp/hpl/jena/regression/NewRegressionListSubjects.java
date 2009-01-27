@@ -136,11 +136,11 @@ public class NewRegressionListSubjects extends ModelTestBase
         // assertEquiv( new HashSet( Arrays.asList( objects ) ), m.listObjectsOfProperty( predicates[1] ) );
         }
 
-    protected void assertEquiv( Set<Resource> set, Iterator iterator )
+    protected void assertEquiv( Set<? extends Resource> set, Iterator<? extends Resource> iterator )
         {
-        List L = iteratorToList( iterator );
+        List<? extends Resource> L = iteratorToList( iterator );
         assertEquals( set.size(), L.size() );
-        assertEquals( set, new HashSet( L ) );
+        assertEquals( set, new HashSet<Resource>( L ) );
         }
 
     public void testGetRequiredProperty()

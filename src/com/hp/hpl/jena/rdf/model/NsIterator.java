@@ -43,11 +43,11 @@ import com.hp.hpl.jena.util.iterator.*;
  * @author bwm
  * @version Release='$Name$' Revision='$Revision$' Date='$Date$'
  */
-public interface NsIterator extends ExtendedIterator {
-    
+public interface NsIterator extends ExtendedIterator<String> 
+    {
     /** Return the next namespace name of the iteration.
      * @throws NoSuchElementException if there are no more to be returned.
      * @return The next name space URI from the iteration.
      */
     public String nextNs();
-}
+    }

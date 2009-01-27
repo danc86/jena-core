@@ -10,25 +10,21 @@ import com.hp.hpl.jena.util.iterator.*;
 import com.hp.hpl.jena.rdf.model.*;
 
 import java.util.Iterator;
-import java.util.NoSuchElementException;
 
 /** An NsIterator implementation
  *
  * @author  bwm
  * @version   Release='$Name$' Revision='$Revision$' Date='$Date$'
  */
-public class NsIteratorImpl extends WrappedIterator implements NsIterator {
-    
+public class NsIteratorImpl extends WrappedIterator<String> implements NsIterator
+    {
     /** Creates new NsIteratorImpl, ignores _o_ */
-    public NsIteratorImpl(Iterator iter, Object o) {
-        super( iter ); 
-    }
+    public NsIteratorImpl( Iterator<String> iter, Object o ) 
+        { super( iter ); }
 
-    public String nextNs() throws NoSuchElementException {
-        return (String) next();
+    public String nextNs()
+        { return next(); }
     }
-    
-}
 
 /*
  *  (c) Copyright 2000, 2003, 2004, 2005, 2006, 2007, 2008, 2009 Hewlett-Packard Development Company, LP

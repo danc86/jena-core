@@ -49,6 +49,7 @@ import org.apache.commons.logging.LogFactory;
 public class PropertyImpl extends ResourceImpl implements Property
     {
 
+    @SuppressWarnings("hiding")
     final static public Implementation factory = new Implementation() 
         {
         @Override

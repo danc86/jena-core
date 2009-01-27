@@ -31,11 +31,11 @@ public class NewRegressionSeqMethods extends NewRegressionContainerMethods
     public void error( String test, int n )
         { fail( test + " -- " + n ); }
         
-    protected LitTestObj tvObject;
+    protected LitTestObj aLitTestObj;
     protected Literal tvLiteral;
     protected Resource tvResource;
     protected Resource tvResObj;
-    protected Object tvLitObj;
+    protected Object anObject;
     protected Bag tvBag;
     protected Alt tvAlt;
     protected Seq tvSeq;
@@ -47,11 +47,11 @@ public class NewRegressionSeqMethods extends NewRegressionContainerMethods
     public void setUp()
         {
         super.setUp();
-        tvObject = new LitTestObj( 12345 );
+        aLitTestObj = new LitTestObj( 12345 );
         tvLiteral = m.createLiteral( "test 12 string 2" );
         tvResource = m.createResource();
         tvResObj = m.createResource( new ResTestObjF() );
-        tvLitObj = new LitTestObj( 1234 );
+        anObject = new LitTestObj( 1234 );
         tvBag = m.createBag();
         tvAlt = m.createAlt();
         tvSeq = m.createSeq();
@@ -191,9 +191,9 @@ public class NewRegressionSeqMethods extends NewRegressionContainerMethods
         n++;
         if (!(seq7.size() == num)) error( test, n );
         n = (n / 100) * 100 + 100;
-        seq7.set( 5, tvLitObj );
+        seq7.set( 5, anObject );
         n++;
-        if (!(seq7.getObject( 5, new LitTestObjF() )).equals( tvLitObj )) error(
+        if (!(seq7.getObject( 5, new LitTestObjF() )).equals( anObject )) error(
                 test, n );
         n++;
         if (!(seq7.getInt( 4 ) == 3)) error( test, n );
@@ -256,14 +256,14 @@ public class NewRegressionSeqMethods extends NewRegressionContainerMethods
         seq6.add( 1, tvLiteral );
         n++;
         if (!(seq6.getLiteral( 1 ).equals( tvLiteral ))) error( test, n );
-        seq6.add( 1, tvLitObj );
+        seq6.add( 1, anObject );
         n++;
-        if (!(seq6.getObject( 1, new LitTestObjF() ).equals( tvLitObj ))) error(
+        if (!(seq6.getObject( 1, new LitTestObjF() ).equals( anObject ))) error(
                 test, n );
 
         n = (n / 100) * 100 + 100;
         n++;
-        if (!(seq6.indexOf( tvLitObj ) == 1)) error( test, n );
+        if (!(seq6.indexOf( anObject ) == 1)) error( test, n );
         n++;
         if (!(seq6.indexOf( tvLiteral ) == 2)) error( test, n );
         n++;
@@ -394,9 +394,9 @@ public class NewRegressionSeqMethods extends NewRegressionContainerMethods
         n++;
         if (!(seq4.getLanguage( 10 ).equals( lang ))) error( test, n );
         n++;
-        seq4.add( tvLitObj );
+        seq4.add( anObject );
         n++;
-        if (!(seq4.getObject( 11, new LitTestObjF() ).equals( tvLitObj ))) error(
+        if (!(seq4.getObject( 11, new LitTestObjF() ).equals( anObject ))) error(
                 test, n );
         n++;
         seq4.add( tvResource );

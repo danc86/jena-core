@@ -184,7 +184,7 @@ public class NewRegressionResources extends NewRegressionBase
         assertEquals( setOf( r ), iteratorToSet( r.listProperties( RDF.value ).mapWith( Statement.Util.getSubject ) ) );
     //
         assertEquals( 0, iteratorToSet( r.listProperties( p ) ).size() );
-        assertEquals( new HashSet(), iteratorToSet( r.listProperties( p ).mapWith( Statement.Util.getSubject ) ) );
+        assertEquals( new HashSet<Resource>(), iteratorToSet( r.listProperties( p ).mapWith( Statement.Util.getSubject ) ) );
     //
         assertEquals( 13 + numProps, iteratorToSet( r.listProperties() ).size() );
         assertEquals( setOf( r ), iteratorToSet( r.listProperties().mapWith( Statement.Util.getSubject ) ) );

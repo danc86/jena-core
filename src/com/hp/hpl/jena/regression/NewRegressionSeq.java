@@ -100,7 +100,7 @@ public class NewRegressionSeq extends NewRegressionBase
         Seq seq = m.createSeq();
         for (int i = 0; i < num; i += 1) seq.add( i );
         assertEquals( num, seq.size() );
-        List L = iteratorToList( seq.iterator() );
+        List<RDFNode> L = iteratorToList( seq.iterator() );
         assertEquals( num, L.size() );
         for (int i = 0; i < num; i +=1 ) 
             assertEquals( i, ((Literal) L.get(i)).getInt() );

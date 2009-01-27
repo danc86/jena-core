@@ -50,7 +50,7 @@ public class NTripleReader extends Object implements RDFReader {
     static final Log log = LogFactory.getLog(NTripleReader.class);
 
     private Model model = null;
-    private Hashtable anons = new Hashtable();
+    private Hashtable<String, Resource> anons = new Hashtable<String, Resource>();
 
     private IStream in = null;
     private boolean inErr = false;
@@ -422,7 +422,7 @@ public class NTripleReader extends Object implements RDFReader {
 
     protected Resource lookupResource(String name)  {
         Resource r;
-        r = (Resource) anons.get(name);
+        r = anons.get(name);
         if (r == null) {
             r = model.createResource();
             anons.put(name, r);

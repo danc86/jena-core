@@ -111,27 +111,21 @@ public class StatementImpl  extends StatementBase implements Statement {
             throw new JenaException(e);
         }
     }
-    
-   /** I suspect that this is now not pulling its weight. */
-   private EnhNode get( Class interf ) {
-        return (EnhNode) object.as( interf );
-    }
         
     public Bag getBag()  {
-        return (Bag) get(Bag.class);
+        return object.as( Bag.class );
     }
     
     public Alt getAlt()  {
-        return (Alt)get(Alt.class);
+        return object.as( Alt.class );
     }
     
     public Seq getSeq()  {
-        return (Seq)get(Seq.class);
+        return object.as( Seq.class );
     }    
     
     /** it turns out to be handy to return the new StatementImpl as the result */ 
-    @Override
-    protected StatementImpl replace(RDFNode n)  {
+    @Override protected StatementImpl replace( RDFNode n )  {
     	StatementImpl s = new StatementImpl( subject, predicate, n, model );
     	model.remove( this ).add( s );
         return s;
@@ -140,8 +134,7 @@ public class StatementImpl  extends StatementBase implements Statement {
     /**
         .equals() defers to .sameAs so we only get the complexity of one cast.
     */
-    @Override
-    public boolean equals(Object o)
+    @Override public boolean equals(Object o)
         { return o instanceof Statement && sameAs( (Statement) o ); }
         
     /**
@@ -155,8 +148,7 @@ public class StatementImpl  extends StatementBase implements Statement {
             && object.equals( o.getObject() );
         }
     
-    @Override
-    public int hashCode() {
+    @Override public int hashCode() {
     	return asTriple().hashCode();
     }
     

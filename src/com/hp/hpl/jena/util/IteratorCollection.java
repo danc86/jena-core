@@ -31,7 +31,7 @@ public class IteratorCollection
         @param i the iterator to convert
         @return A set of the members of i
     */
-    public static <T> Set<T> iteratorToSet( Iterator<T> i )
+    public static <T> Set<T> iteratorToSet( Iterator<? extends T> i )
         {
         Set<T> result = CollectionFactory.createHashedSet();
         try { while (i.hasNext()) result.add( i.next() ); }
@@ -46,7 +46,7 @@ public class IteratorCollection
     	@param it the iterator to convert
     	@return a list of the elements of <code>it</code>, in order
      */
-    public static <T> List<T> iteratorToList( Iterator<T> it )
+    public static <T> List<T> iteratorToList( Iterator<? extends T> it )
         {
         List<T> result = new ArrayList<T>();
         try { while (it.hasNext()) result.add( it.next() ); }
