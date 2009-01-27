@@ -61,6 +61,7 @@ public class RDFListImpl
     /**
      * A factory for generating RDFList facets from nodes in enhanced graphs.
      */
+    @SuppressWarnings("hiding")
     public static Implementation factory = new Implementation() {
         @Override
         public EnhNode wrap( Node n, EnhGraph eg ) { 
@@ -179,7 +180,7 @@ public class RDFListImpl
         
         int size = 0;
         
-        for (Iterator i = iterator(); i.hasNext(); i.next()) {
+        for (Iterator<RDFNode> i = iterator(); i.hasNext(); i.next()) {
             size++;
         } 
         return size;
@@ -503,7 +504,7 @@ public class RDFListImpl
      * @return A new RDFList that contains all of this elements of this list,
      * followed by all of the elements of the given iterator.
      */
-    public RDFList append( Iterator nodes ) {
+    public RDFList append( Iterator<? extends RDFNode> nodes ) {
         return append( copy( nodes) );
     }
             
@@ -581,7 +582,7 @@ public class RDFListImpl
      * @exception EmptyListUpdateException if this list is the nil list
      * @see #concatenate(RDFList) for details on avoiding the empty list update exception.
      */
-    public void concatenate( Iterator nodes ) {
+    public void concatenate( Iterator<? extends RDFNode> nodes ) {
         // make a list of the nodes and add to the end of this
         concatenate( copy( nodes ) );
     }
@@ -616,8 +617,8 @@ public class RDFListImpl
             checkValid();
         }
         
-        for (Iterator i = iterator();  i.hasNext(); ) {
-            fn.apply( (RDFNode) i.next() );
+        for (Iterator<RDFNode> i = iterator();  i.hasNext(); ) {
+            fn.apply( i.next() );
         }
     }
     
@@ -640,8 +641,8 @@ public class RDFListImpl
         
         Object acc = initial;
         
-        for (Iterator i = iterator();  i.hasNext();  ) {
-            acc = fn.reduce( (RDFNode) i.next(), acc );
+        for (Iterator<RDFNode> i = iterator();  i.hasNext();  ) {
+            acc = fn.reduce( i.next(), acc );
         }
         
         return acc;
@@ -799,7 +800,7 @@ public class RDFListImpl
      * 
      * @return A closable iterator over the elements of the list.
      */
-    public ExtendedIterator iterator() {
+    public ExtendedIterator<RDFNode> iterator() {
         return new RDFListIterator( this );
     }
     
@@ -811,10 +812,10 @@ public class RDFListImpl
      * 
      * @return The contents of this list as a Java List.
      */
-    public List asJavaList() {
-        List l = new ArrayList();
+    public List<RDFNode> asJavaList() {
+        List<RDFNode> l = new ArrayList<RDFNode>();
         
-        for (Iterator i = iterator();  i.hasNext(); ) {
+        for (Iterator<RDFNode> i = iterator();  i.hasNext(); ) {
             l.add( i.next() );
         }
         
@@ -1080,7 +1081,7 @@ public class RDFListImpl
      * @param i An iterator of RDFNodes
      * @return A list formed from all of the nodes of i, in sequence
      */
-    protected RDFList copy( Iterator i ) {
+    protected RDFList copy( Iterator<? extends RDFNode> i ) {
         Resource list = null;
         Resource start = null;
         
@@ -1091,7 +1092,7 @@ public class RDFListImpl
         while (i.hasNext()){
             // create a list cell to hold the next value from the existing list
             Resource cell = getModel().createResource( cellType );
-            cell.addProperty( head, (RDFNode) i.next() );
+            cell.addProperty( head, i.next() );
                 
             // point the previous list cell to this one
             if (list != null) {
@@ -1146,7 +1147,7 @@ public class RDFListImpl
      * list.
      * </p>
      */
-    protected class RDFListIterator extends NiceIterator
+    protected class RDFListIterator extends NiceIterator<RDFNode>
     {
         // Instance variables
         
@@ -1174,16 +1175,14 @@ public class RDFListImpl
         /**
          * @see Iterator#hasNext
          */
-        @Override
-        public boolean hasNext() {
+        @Override public boolean hasNext() {
             return !m_head.isEmpty();
         }
 
         /**
          * @see Iterator#next
          */
-        @Override
-        public Object next() {
+        @Override public RDFNode next() {
             m_seen = m_head;
             m_head = m_head.getTail();
             
@@ -1193,8 +1192,7 @@ public class RDFListImpl
         /**
          * @see Iterator#remove
          */
-        @Override
-        public void remove() {
+        @Override public void remove() {
             if (m_seen == null) {
                 throw new IllegalStateException( "Illegal remove from list operator" );
             }

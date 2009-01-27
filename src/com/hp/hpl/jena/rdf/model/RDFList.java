@@ -281,7 +281,7 @@ public interface RDFList
      * @return A new RDFList that contains all of this elements of this list,
      * followed by all of the elements of the given iterator.
      */
-    public RDFList append( Iterator nodes );
+    public RDFList append( Iterator<? extends RDFNode> nodes );
         
         
     /**
@@ -312,7 +312,7 @@ public interface RDFList
      * @exception EmptyListUpdateException if this list is the nil list
      * @see #concatenate(RDFList) for details on avoiding the empty list update exception.
      */
-    public void concatenate( Iterator nodes );
+    public void concatenate( Iterator<? extends RDFNode> nodes );
         
     
     /**
@@ -428,7 +428,7 @@ public interface RDFList
      * 
      * @return A closable iterator over the elements of the list.
      */
-    public ExtendedIterator iterator();
+    public ExtendedIterator<RDFNode> iterator();
     
     
     /**
@@ -438,7 +438,7 @@ public interface RDFList
      * 
      * @return The contents of this list as a Java List.
      */
-    public List asJavaList();
+    public List<RDFNode> asJavaList();
     
     
     /**

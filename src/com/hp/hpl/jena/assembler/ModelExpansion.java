@@ -215,8 +215,8 @@ public class ModelExpansion
     private static void addIntersections( Model result, Model schema, Statement s )
         {
         Resource type = s.getSubject();
-        List types = asJavaList( AssemblerHelp.getResource( s ) );
-        Set<Resource> candidates = subjectSet( result, ANY, RDF.type, (Resource) types.get(0) );
+        List<RDFNode> types = asJavaList( AssemblerHelp.getResource( s ) );
+        Set<Resource> candidates = subjectSet( result, ANY, RDF.type, types.get(0) );
         for (int i = 1; i < types.size(); i += 1)
             removeElementsWithoutType( candidates, (Resource) types.get(i) );
         addTypeToAll( type, candidates );
@@ -256,7 +256,7 @@ public class ModelExpansion
         return result.listStatements( S, P, O ) .mapWith( Statement.Util.getSubject ).toSet();
         }
 
-    private static List asJavaList( Resource resource )
+    private static List<RDFNode> asJavaList( Resource resource )
         {
         return (resource.as( RDFList.class )).asJavaList();
         }
