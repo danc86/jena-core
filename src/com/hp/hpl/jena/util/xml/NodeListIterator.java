@@ -26,7 +26,7 @@ package com.hp.hpl.jena.util.xml;
 ///////////////
 import java.util.*;
 
-import org.w3c.dom.NodeList;
+import org.w3c.dom.*;
 
 
 /**
@@ -37,16 +37,8 @@ import org.w3c.dom.NodeList;
  * @author Ian Dickinson, HP Labs (<a  href="mailto:Ian.Dickinson@hp.com" >email</a>)
  * @version CVS $Id$
  */
-public class NodeListIterator 
-    implements Iterator
+public class NodeListIterator implements Iterator<Node>
 {
-
-    // Constants
-    //////////////////////////////////
-
-    // Static variables
-    //////////////////////////////////
-
     // Instance variables
     //////////////////////////////////
 
@@ -85,18 +77,9 @@ public class NodeListIterator
     /**
      * Answer the next object from the list
      */
-    public Object next() {
+    public Node next() {
         return m_nodeList.item( m_index++ );
     }
-    
-
-    // Internal implementation methods
-    //////////////////////////////////
-
-    //==============================================================================
-    // Inner class definitions
-    //==============================================================================
-
 }
 
 

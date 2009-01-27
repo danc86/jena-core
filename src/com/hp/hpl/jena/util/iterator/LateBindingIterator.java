@@ -45,9 +45,9 @@ import java.util.Iterator ;
  * @author jjc
  * @version Release='$Name$' Revision='$Revision$' Date='$Date$'
  */
-abstract public class LateBindingIterator implements Iterator {
+abstract public class LateBindingIterator<T> implements Iterator<T> {
 
-    private Iterator it;
+    private Iterator<? extends T> it;
     
     /** An Iterator that is created lazily. 
      * The sequence to be defined is defined by 
@@ -63,7 +63,7 @@ abstract public class LateBindingIterator implements Iterator {
         return it.hasNext();
     }
     
-    public Object next() {
+    public T next() {
         lazy();
         return it.next();
     }
@@ -85,6 +85,6 @@ abstract public class LateBindingIterator implements Iterator {
  * through to the returned Iterator.
  * @return The parent iterator defining the sequence.
  */    
-    public abstract Iterator create();
+    public abstract Iterator<? extends T> create();
     
 }

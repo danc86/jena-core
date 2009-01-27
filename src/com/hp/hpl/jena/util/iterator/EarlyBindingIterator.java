@@ -12,16 +12,17 @@ import java.util.*;
  * @author jjc
  *
  */
-public class EarlyBindingIterator extends WrappedIterator {
-	static private Iterator early(Iterator it) {
-		Vector v = new Vector();
-		while (it.hasNext())
-			v.add(it.next());
+public class EarlyBindingIterator<T> extends WrappedIterator<T> {
+
+static private <X> Iterator<X> early(Iterator<X> it) {
+		List<X> v = new ArrayList<X>();
+		while (it.hasNext()) v.add(it.next());
 		close(it);
 		return v.iterator();
 	}
-	public EarlyBindingIterator(Iterator it) {
-		super(early(it));
+
+    public EarlyBindingIterator(Iterator<? extends T> it) {
+		super( early(it) );
 	}
 
 }
