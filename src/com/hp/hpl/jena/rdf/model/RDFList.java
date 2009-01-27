@@ -356,7 +356,7 @@ public interface RDFList
      * @param fn A Map function
      * @return The iterator of the elements of this list mapped with the given map function.
      */
-    public ExtendedIterator mapWith( Map1 fn );
+    public <T> ExtendedIterator<T> mapWith( Map1<RDFNode, T> fn );
     
     
     /**
