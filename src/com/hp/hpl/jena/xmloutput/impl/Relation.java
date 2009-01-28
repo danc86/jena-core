@@ -190,12 +190,12 @@ class Relation<T> {
     }
  
     // ------------
-    private static <T> Map1<T, PairEntry<T, T>> inner(final T a)
+    private static <X> Map1<X, PairEntry<X, X>> inner(final X a)
     {
-        return new Map1<T, PairEntry<T, T>>() {
-            public PairEntry<T, T> map1(T b)
+        return new Map1<X, PairEntry<X, X>>() {
+            public PairEntry<X, X> map1(X b)
             {
-                return new PairEntry<T, T>(a, b) ;
+                return new PairEntry<X, X>(a, b) ;
             }
         } ;
     }
@@ -222,14 +222,16 @@ class Relation<T> {
         
         // Convert  Map.Entry<T, Set<T>> to Iterator<PairEntry<T, T>>
         // applied to an entrySet.
+        
+        Map1<Map.Entry<T, Set<T>>, Iterator<PairEntry<T, T>>> m1 = 
+        new Map1<Map.Entry<T, Set<T>>, Iterator<PairEntry<T, T>>>(){
+            public Iterator<PairEntry<T, T>> map1(Entry<T, Set<T>> entry)
+            {
+                return pairEntry(entry) ;
+            }} ;
+        
         Map1Iterator<Map.Entry<T, Set<T>>,Iterator<PairEntry<T, T>>> iter1 =
-            new Map1Iterator<Map.Entry<T, Set<T>>,Iterator<PairEntry<T, T>>>(
-                new Map1<Map.Entry<T, Set<T>>,Iterator<PairEntry<T, T>>>(){
-                    public Iterator<PairEntry<T, T>> map1(Entry<T, Set<T>> entry)
-                    {
-                        return pairEntry(entry) ;
-                    }}
-                , rows.entrySet().iterator()) ;
+            new Map1Iterator<Map.Entry<T, Set<T>>,Iterator<PairEntry<T, T>>>(m1 , rows.entrySet().iterator()) ;
         // And now flatten it.
         Iterator<PairEntry<T, T>> iter2 = new IteratorIterator<PairEntry<T, T>>(iter1) ; 
         return iter2 ;
