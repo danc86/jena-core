@@ -27,8 +27,7 @@ public class Difference extends Dyadic implements Graph
         Add a triple to the difference: add it to the left operand, and remove it from the 
         right operand.
     */
-	@Override
-    public void performAdd( Triple t )
+	@Override public void performAdd( Triple t )
 		{
 		L.add( t );
 		R.delete( t );
@@ -38,12 +37,10 @@ public class Difference extends Dyadic implements Graph
         Remove a triple from the difference: remove it from the left operand. [It could
         be added to the right operand instead, but somehow that feels less satisfactory.]
     */
-	@Override
-    public void performDelete( Triple t )
+	@Override public void performDelete( Triple t )
 		{ L.delete( t ); }
 
-	@Override
-    public ExtendedIterator graphBaseFind( TripleMatch t ) 
+	@Override public ExtendedIterator<Triple> graphBaseFind( TripleMatch t ) 
 		{ return L.find( t ). filterDrop ( ifIn( R ) ); }
 	}
 

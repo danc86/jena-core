@@ -368,7 +368,7 @@ final public class LiteralLabel {
     private boolean sameByFormAndLanguage( LiteralLabel other )
         {
         return 
-            lexicalForm.equals( other.lexicalForm ) 
+            lexicalForm.equals( other.getLexicalForm() ) 
             && lang.equalsIgnoreCase( other.lang );
         }
 
