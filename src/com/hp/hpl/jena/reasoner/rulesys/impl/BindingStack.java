@@ -35,7 +35,7 @@ public class BindingStack implements BindingEnvironment {
     protected Node[] environment;
     
     /** A stack of prior binding sets */
-    protected ArrayList trail = new ArrayList();
+    protected ArrayList<Node[]> trail = new ArrayList<Node[]>();
     
     /** Index of the current binding set */
     protected int index = 0;
@@ -70,7 +70,7 @@ public class BindingStack implements BindingEnvironment {
     public void unwind() throws IndexOutOfBoundsException {
         if (index > 0) {
             // just point to previous stack entry
-            environment = (Node[]) trail.get(--index);
+            environment = trail.get(--index);
             trail.set(index, null);     // free the old space for GC
         } else {
             throw new IndexOutOfBoundsException("Underflow of BindingEnvironment");
@@ -120,9 +120,9 @@ public class BindingStack implements BindingEnvironment {
             Functor functor = (Functor)node.getLiteralValue();
             if (functor.isGround()) return node;
             Node[] args = functor.getArgs();
-            ArrayList boundargs = new ArrayList(args.length);
+            List<Node> boundargs = new ArrayList<Node>(args.length);
             for (int i = 0; i < args.length; i++) {
-                Object binding = getBinding(args[i]);
+                Node binding = getBinding(args[i]);
                 if (binding == null) {
                     // Not sufficent bound to instantiate functor yet
                     return null;

@@ -46,7 +46,7 @@ public class BBRuleContext implements RuleContext {
      * @see com.hp.hpl.jena.reasoner.rulesys.RuleContext#contains(com.hp.hpl.jena.graph.Node, com.hp.hpl.jena.graph.Node, com.hp.hpl.jena.graph.Node)
      */
     public boolean contains(Node s, Node p, Node o) {
-        ClosableIterator i = find(s, p, o);
+        ClosableIterator<Triple> i = find(s, p, o);
         boolean result = i.hasNext();
         i.close();
         return result;
@@ -62,7 +62,7 @@ public class BBRuleContext implements RuleContext {
     /**
      * @see com.hp.hpl.jena.reasoner.rulesys.RuleContext#find(com.hp.hpl.jena.graph.Node, com.hp.hpl.jena.graph.Node, com.hp.hpl.jena.graph.Node)
      */
-    public ClosableIterator find(Node s, Node p, Node o) {
+    public ClosableIterator<Triple> find(Node s, Node p, Node o) {
         return graph.findDataMatches(new TriplePattern(s, p, o));
 //        return searchpath.find(new TriplePattern(s, p, o));
     }

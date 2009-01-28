@@ -81,9 +81,9 @@ public class BindingVector implements BindingEnvironment {
             Functor functor = (Functor)node.getLiteralValue();
             if (functor.isGround()) return node;
             Node[] args = functor.getArgs();
-            ArrayList boundargs = new ArrayList(args.length);
+            List<Node> boundargs = new ArrayList<Node>(args.length);
             for (int i = 0; i < args.length; i++) {
-                Object binding = getBinding(args[i]);
+                Node binding = getBinding(args[i]);
                 if (binding == null) {
                     // Not sufficently bound to instantiate functor yet
                     return null;
