@@ -26,24 +26,22 @@ public class TestDyadic extends GraphTestBase
 	public static TestSuite suite()
     	{ return new TestSuite( TestDyadic.class ); }
     	
-	static private ExtendedIterator things( final String x ) 
+	static private ExtendedIterator<String> things( final String x ) 
 		{
-		return new NiceIterator()
+		return new NiceIterator<String>()
 			{
 			private StringTokenizer tokens = new StringTokenizer( x );
-			@Override
-            public boolean hasNext() { return tokens.hasMoreTokens(); }
-			@Override
-            public Object next() { return tokens.nextToken(); }
+			@Override public boolean hasNext() { return tokens.hasMoreTokens(); }
+			@Override public String next() { return tokens.nextToken(); }
 			};
 		}
 		
 	public void testDyadic() 
 		{
-		ExtendedIterator it1 = things( "now is the time" );
-		ExtendedIterator it2 = things( "now is the time" );
-		ExtendedIterator mt1 = things( "" );
-		ExtendedIterator mt2 = things( "" );
+		ExtendedIterator<String> it1 = things( "now is the time" );
+		ExtendedIterator<String> it2 = things( "now is the time" );
+		ExtendedIterator<String> mt1 = things( "" );
+		ExtendedIterator<String> mt2 = things( "" );
 		assertEquals( "mt1.hasNext()", false, mt1.hasNext() );
 		assertEquals( "mt2.hasNext()", false, mt2.hasNext() );
 		assertEquals( "andThen(mt1,mt2).hasNext()", false, mt1.andThen( mt2 ).hasNext() ); 		
@@ -57,8 +55,7 @@ public class TestDyadic extends GraphTestBase
         Graph g = Factory.createGraphMem(), h = Factory.createGraphMem();
         Dyadic d = new Dyadic( g, h )
             {
-            @Override
-            public ExtendedIterator graphBaseFind( TripleMatch m ) { return null; }
+            @Override public ExtendedIterator<Triple> graphBaseFind( TripleMatch m ) { return null; }
             };
         assertSame( g, d.getL() );
         assertSame( h, d.getR() );

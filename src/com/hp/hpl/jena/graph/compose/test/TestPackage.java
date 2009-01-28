@@ -10,6 +10,7 @@ package com.hp.hpl.jena.graph.compose.test;
 	@author kers
 */
 
+import com.hp.hpl.jena.graph.Graph;
 import com.hp.hpl.jena.graph.compose.*;
 import com.hp.hpl.jena.mem.test.TestSuiteRegression;
 
@@ -40,7 +41,7 @@ public class TestPackage extends TestCase {
         return  result;
     }
 
-    public static TestSuite suite(TestSuite suite,Class c) {
+    public static TestSuite suite(TestSuite suite, Class<? extends Graph> c) {
 
     	for (int i=0;i<TestSuiteRegression.testNames.length;i++)
            suite.addTest(new TestCaseBasic(TestSuiteRegression.testNames[i],c));

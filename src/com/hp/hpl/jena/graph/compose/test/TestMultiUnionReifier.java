@@ -26,7 +26,7 @@ public class TestMultiUnionReifier extends ModelTestBase
     public void testX()
         {
         MultiUnion mu = multi( "a P b; !b Q c; ~c R d", "" );
-        for (ExtendedIterator it = GraphUtil.findAll( mu ); it.hasNext();)
+        for (ExtendedIterator<Triple> it = GraphUtil.findAll( mu ); it.hasNext();)
             {
             System.err.println( "]]  " + it.next() );
             }

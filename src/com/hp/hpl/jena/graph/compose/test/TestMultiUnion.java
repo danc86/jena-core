@@ -45,29 +45,13 @@ import junit.framework.*;
  *         (<a  href="mailto:Ian.Dickinson@hp.com" >email</a>)
  * @version CVS $Id$
  */
-public class TestMultiUnion
-    extends AbstractTestGraph
+public class TestMultiUnion extends AbstractTestGraph
 {
-    // Constants
-    //////////////////////////////////
-
-
-    // Static variables
-    //////////////////////////////////
-
-
-    // Instance variables
-    //////////////////////////////////
-
-
-    // Constructors
-    //////////////////////////////////
 
     public TestMultiUnion( String s ) {
         super( s );
     }
     
-
     // External signature methods
     //////////////////////////////////
 
@@ -320,19 +304,19 @@ public class TestMultiUnion
         assertEquals( "Delete check: m size", m0, m.size() );
     }
     
-    protected Iterator iterateOver( Object x0 ) {
-        List l = new ArrayList();
+    protected <T> Iterator<T> iterateOver( T x0 ) {
+        List<T> l = new ArrayList<T>();
         l.add( x0 );
         return l.iterator();
     }
-    protected Iterator iterateOver( Object x0, Object x1 ) {
-        List l = new ArrayList();
+    protected <T> Iterator<T> iterateOver( T x0, T x1 ) {
+        List<T> l = new ArrayList<T>();
         l.add( x0 );
         l.add( x1 );
         return l.iterator();
     }
-    protected Iterator iterateOver( Object x0, Object x1, Object x2 ) {
-        List l = new ArrayList();
+    protected <T> Iterator<T> iterateOver( T x0, T x1, T x2 ) {
+        List<T> l = new ArrayList<T>();
         l.add( x0 );
         l.add( x1 );
         l.add( x2 );
