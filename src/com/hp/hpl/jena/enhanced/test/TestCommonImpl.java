@@ -35,8 +35,8 @@ class TestCommonImpl extends EnhNode implements TestNode {
         
     Triple findNode( Node s, Node p, Node o )
         {
-        ClosableIterator it = enhGraph.asGraph().find( s, p, o );
-        try { return it.hasNext() ? (Triple) it.next() : null; }
+        ClosableIterator<Triple> it = enhGraph.asGraph().find( s, p, o );
+        try { return it.hasNext() ? it.next() : null; }
         finally { it.close(); }
         }
         

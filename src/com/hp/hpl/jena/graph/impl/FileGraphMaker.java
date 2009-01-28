@@ -181,9 +181,9 @@ public class FileGraphMaker
     /**
         A Map1 that will convert filename strings to the corresponding graphname strings.
     */
-    private static Map1 unconvert = new Map1()
-        { public Object map1( Object x )
-            { return toGraphname( (String) x ); }
+    private static Map1<String, String> unconvert = new Map1<String, String>()
+        { public String map1( String x )
+            { return toGraphname( x ); }
         };
         
     /**
@@ -207,7 +207,7 @@ public class FileGraphMaker
          
      	@see com.hp.hpl.jena.graph.GraphMaker#listGraphs()
      */
-    public ExtendedIterator listGraphs()
+    public ExtendedIterator<String> listGraphs()
         { String [] fileNames = new File( fileBase ).list( graphName() );
         Set<String> allNames = CollectionFactory.createHashedSet( Arrays.asList( fileNames ) );
         Iterator<File> it = created.keySet().iterator();

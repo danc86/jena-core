@@ -114,7 +114,7 @@ public interface GraphMaker
         order is expected from the list.
      	@return an extended iterator over the names of graphs known to this Maker.
      */
-    ExtendedIterator listGraphs();
+    ExtendedIterator<String> listGraphs();
 }
 
 /*

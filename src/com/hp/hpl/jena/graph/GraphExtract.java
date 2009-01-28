@@ -67,10 +67,10 @@ public class GraphExtract
         public void extractInto( Node root  )
             {
             active.add( root );
-            Iterator it = extractFrom.find( root, Node.ANY, Node.ANY );
+            Iterator<Triple> it = extractFrom.find( root, Node.ANY, Node.ANY );
             while (it.hasNext())
                 {
-                Triple t = (Triple) it.next();
+                Triple t = it.next();
                 Node subRoot = t.getObject();
                 toUpdate.add( t );
                 if (! (active.contains( subRoot ) || b.stopAt( t ))) extractInto( subRoot );

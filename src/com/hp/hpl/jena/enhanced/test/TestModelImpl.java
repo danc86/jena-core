@@ -20,17 +20,17 @@ public class TestModelImpl extends EnhGraph implements TestModel {
     public TestModelImpl(Graph g, Personality<RDFNode> p) {
         super(g,p);
     }
-    private Triple aTriple() {
-        ClosableIterator it = null;
-        try {
-        it = graph.find(null,null,null);
-            return it.hasNext()?(Triple)it.next():null;
+    private Triple aTriple() 
+        {
+        ClosableIterator<Triple> it = null;
+        try 
+            {
+            it = graph.find( null, null, null );
+            return it.hasNext() ? it.next() : null;
+            }
+        finally 
+            { if (it != null) it.close(); }
         }
-        finally {
-            if (it!=null) 
-                it.close();
-        }
-    }
         
     public TestObject anObject() {
         return getNodeAs(aTriple().getObject(),TestObject.class);
