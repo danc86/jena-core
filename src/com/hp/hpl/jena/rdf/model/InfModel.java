@@ -9,8 +9,7 @@
  *****************************************************************/
 package com.hp.hpl.jena.rdf.model;
 
-import com.hp.hpl.jena.reasoner.Reasoner;
-import com.hp.hpl.jena.reasoner.ValidityReport;
+import com.hp.hpl.jena.reasoner.*;
 import java.util.Iterator;
 
 /**
@@ -122,7 +121,7 @@ public interface InfModel extends Model {
      * available for this triple.
      * @see com.hp.hpl.jena.reasoner.Derivation Derviation
      */
-    public Iterator getDerivation(Statement statement);    
+    public Iterator<Derivation> getDerivation(Statement statement);    
     
     /**
      * Returns a derivations model. The rule reasoners typically create a 

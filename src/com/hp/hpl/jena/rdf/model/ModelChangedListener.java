@@ -42,7 +42,7 @@ public interface ModelChangedListener
         NOTE. This list need not be == to the list added using Model::add(List).
         @param statements the list of statements that has been removed.
     */
-    void addedStatements( List statements );
+    void addedStatements( List<Statement> statements );
     
     /**
         Method to call when a statement iterator has supplied elements to be added
@@ -79,7 +79,7 @@ public interface ModelChangedListener
         Model::remov(List).
         @param statements the list of statements that have been removed.
     */
-    void removedStatements( List statements );
+    void removedStatements( List<Statement> statements );
     
     /**
         Method to call when a statement iterator has been used to remove 

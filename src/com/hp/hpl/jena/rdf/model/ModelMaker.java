@@ -96,7 +96,7 @@ public interface ModelMaker extends ModelSource
         order is expected from the list.
         @return an extended iterator over the names of models known to this Maker.
     */
-    public ExtendedIterator listModels();
+    public ExtendedIterator<String> listModels();
     }
 
 

@@ -98,7 +98,7 @@ public class ModelFactory extends ModelFactoryBase
         their <code>getModel()</code> - they may be members of an
         extended constructed model.
     */
-    public static Set findAssemblerRoots( Model m )
+    public static Set<Resource> findAssemblerRoots( Model m )
         { return AssemblerHelp.findAssemblerRoots( m ); }
 
     /**
@@ -221,8 +221,7 @@ public class ModelFactory extends ModelFactoryBase
         {
         public ModelRDBMaker( GraphRDBMaker gm ) { super( gm ); }
 
-        @Override
-        public Model makeModel( Graph graphRDB )
+        @Override public Model makeModel( Graph graphRDB )
             { return new ModelRDB( (GraphRDB) graphRDB ); }
         }
 

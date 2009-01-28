@@ -63,7 +63,7 @@ public class ModelMakerImpl implements ModelMaker
     public boolean hasModel( String name )
         { return maker.hasGraph( name ); }
       
-    public ExtendedIterator listModels()
+    public ExtendedIterator<String> listModels()
         { return maker.listGraphs(); }
     
     /**

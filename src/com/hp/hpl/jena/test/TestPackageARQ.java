@@ -26,7 +26,7 @@ public class TestPackageARQ extends TestSuite
     private static TestSuite suiteByReflection(String className)
     {
         // Reflection to invoke <class>.suite() and return a TestSuite.
-        Class cmd = null ;
+        Class<?> cmd = null ;
         try { cmd = Class.forName(className) ; }
         catch (ClassNotFoundException ex)
         {
