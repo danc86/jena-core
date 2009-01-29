@@ -8,8 +8,6 @@ package com.hp.hpl.jena.graph.query;
 
 import java.util.*;
 
-import com.hp.hpl.jena.util.CollectionFactory;
-
 /**
 	Expression - the interface for expressions that is expected by Query for 
     constraints. An Expression can be evaluated (given a name->value mapping);
@@ -186,14 +184,14 @@ public interface Expression
             Answer a set containing exactly the names of variables within 
             <code>e</code>.
         */
-        public static Set variablesOf( Expression e )
-            { return addVariablesOf( CollectionFactory.createHashedSet(), e ); }
+        public static Set<String> variablesOf( Expression e )
+            { return addVariablesOf( new HashSet<String>(), e ); }
         
         /**
             Add all the variables of <code>e</code> to <code>s</code>, and answer
             <code>s</code>.
         */
-        public static Set addVariablesOf( Set s, Expression e )
+        public static Set<String> addVariablesOf( Set<String> s, Expression e )
             {
             if (e.isVariable()) 
                 s.add( e.getName() );
@@ -203,7 +201,7 @@ public interface Expression
             return s;
             }
 
-		public static boolean containsAllVariablesOf( Set variables, Expression e ) 
+		public static boolean containsAllVariablesOf( Set<String> variables, Expression e ) 
     		{
     		if (e.isConstant()) 
     		    return true;

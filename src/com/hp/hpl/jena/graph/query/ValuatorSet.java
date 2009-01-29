@@ -17,7 +17,7 @@ import com.hp.hpl.jena.util.CollectionFactory;
 */
 public class ValuatorSet 
     {
-    private Set valuators = CollectionFactory.createHashedSet();
+    private Set<Valuator> valuators = CollectionFactory.createHashedSet();
     
     public ValuatorSet() 
         {}
@@ -44,9 +44,9 @@ public class ValuatorSet
     */
     public boolean evalBool( IndexValues vv )
         { 
-        Iterator it = valuators.iterator();
+        Iterator<Valuator> it = valuators.iterator();
         while (it.hasNext()) 
-            if (((Valuator) it.next()).evalBool( vv ) == false) return false;
+            if (it.next().evalBool( vv ) == false) return false;
         return true;
         }
                     

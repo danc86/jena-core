@@ -19,7 +19,7 @@ import java.util.*;
 
 public class Mapping implements VariableIndexes
 	{
-	private Map map;
+	private Map<Node, Integer> map;
 	
 	private int index = 0;
     private int preIndex = 0;
@@ -65,7 +65,7 @@ public class Mapping implements VariableIndexes
 	*/
 	public int lookUp( Node v )
 		{ 
-		Integer i = (Integer) map.get( v );
+		Integer i = map.get( v );
 		if (i == null || i.intValue() < 0) return -1;
 		return i.intValue();
 		}
@@ -79,7 +79,7 @@ public class Mapping implements VariableIndexes
     */
 	public int newIndex( Node v )
 		{
-        Integer already = (Integer) map.get( v );
+        Integer already = map.get( v );
         int result = already == null ? index++ : -already.intValue() - 1;
         map.put( v, new Integer( result ) );
         return result;
@@ -98,7 +98,7 @@ public class Mapping implements VariableIndexes
         @return true iff this mapping has seen a binding occurance of v
     */
 	public boolean hasBound( Node v )
-		{ return map.containsKey( v )  && ((Integer) map.get( v )).intValue() > -1; }
+		{ return map.containsKey( v )  && map.get( v ).intValue() > -1; }
         
     /**
         @return a string representing this mapping

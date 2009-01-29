@@ -29,12 +29,12 @@ public class SimpleTreeQueryPlan implements TreeQueryPlan
 	public Graph executeTree() 
 		{ 
 		Graph result = Factory.createGraphMem();
-		Set roots = getRoots( pattern );
-		for (Iterator it = roots.iterator(); it.hasNext(); handleRoot( result, (Node) it.next(), CollectionFactory.createHashedSet())) {}
+		Set<Node> roots = getRoots( pattern );
+		for (Iterator<Node> it = roots.iterator(); it.hasNext(); handleRoot( result, it.next(), new HashSet<Triple>() )) {}
 		return result;
 		}
 		
-	private Iterator findFromTriple( Graph g, Triple t )
+	private Iterator<Triple> findFromTriple( Graph g, Triple t )
 		{
 		return g.find( asPattern( t.getSubject() ), asPattern( t.getPredicate() ), asPattern( t.getObject() ) );
 		}
@@ -42,9 +42,9 @@ public class SimpleTreeQueryPlan implements TreeQueryPlan
 	private Node asPattern( Node x )
 		{ return x.isBlank() ? null : x; }
 		
-	private void handleRoot( Graph result, Node root, Set pending )
+	private void handleRoot( Graph result, Node root, Set<Triple> pending )
 		{
-		ClosableIterator it = pattern.find( root, null, null );
+		ClosableIterator<Triple> it = pattern.find( root, null, null );
 		if (!it.hasNext())
 			{
 			absorb( result, pending );
@@ -52,30 +52,30 @@ public class SimpleTreeQueryPlan implements TreeQueryPlan
 			}
 		while (it.hasNext())
 			{
-			Triple base = (Triple) it.next();
-			Iterator that = findFromTriple( target, base ); // target.find( base.getSubject(), base.getPredicate(), base.getObject() );
+			Triple base = it.next();
+			Iterator<Triple> that = findFromTriple( target, base ); 
 			while (that.hasNext())
 				{
-				Triple x = (Triple) that.next();
+				Triple x = that.next();
 				pending.add( x );
 				handleRoot( result, base.getObject(), pending );
 				}
 			}
 		}
 		
-	private void absorb( Graph result, Set triples )
+	private void absorb( Graph result, Set<Triple> triples )
 		{
-		for (Iterator it = triples.iterator(); it.hasNext(); result.add( (Triple) it.next())) {}
+		for (Iterator<Triple> it = triples.iterator(); it.hasNext(); result.add( it.next())) {}
 		triples.clear(); 
 		}
 		
-	public static Set getRoots( Graph pattern )
+	public static Set<Node> getRoots( Graph pattern )
 		{
-		Set roots = CollectionFactory.createHashedSet();
-		ClosableIterator sub = GraphUtil.findAll( pattern );
-		while (sub.hasNext()) roots.add( ((Triple) sub.next()).getSubject() );
-		ClosableIterator obj = GraphUtil.findAll( pattern );
-		while (obj.hasNext()) roots.remove( ((Triple) obj.next()).getObject() );
+		Set<Node> roots = CollectionFactory.createHashedSet();
+		ClosableIterator<Triple> sub = GraphUtil.findAll( pattern );
+		while (sub.hasNext()) roots.add( sub.next().getSubject() );
+		ClosableIterator<Triple> obj = GraphUtil.findAll( pattern );
+		while (obj.hasNext()) roots.remove( obj.next().getObject() );
 		return roots;
 		}
 	}

@@ -118,7 +118,7 @@ public abstract class QueryNode
         earlier in the same triple.
     */
     public static QueryNode classify
-        ( QueryNodeFactory f, Mapping map, Set recent, Node n )
+        ( QueryNodeFactory f, Mapping map, Set<Node> recent, Node n )
         {
         if (n.equals( Node.ANY ))
             return f.createAny();

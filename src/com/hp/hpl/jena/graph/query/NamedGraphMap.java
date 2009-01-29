@@ -18,7 +18,7 @@ public class NamedGraphMap
     {
     NamedGraphMap() {}      
     
-    private Map map = CollectionFactory.createHashedMap();    
+    private Map<String, Graph> map = CollectionFactory.createHashedMap();    
     
     /**
         Add a named graph to the map and return this map.
@@ -36,7 +36,7 @@ public class NamedGraphMap
     	@return the named graph, or null
     */
     public Graph get( String name ) 
-        { return (Graph) map.get( name ); } 
+        { return map.get( name ); } 
     }
 
 /*

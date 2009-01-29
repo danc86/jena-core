@@ -30,11 +30,11 @@ public class SimpleQueryPlan implements BindingQueryPlan
         this.variables = variables;
         }
         
-    public ExtendedIterator executeBindings()
+    public ExtendedIterator<Domain> executeBindings()
         // { return query.executeBindings( graph, variables ); }
         {
         return new SimpleQueryEngine( query.getPattern(), query.getSorter(), query.getConstraints() )
-            .executeBindings( new ArrayList(), query.args().put( NamedTripleBunches.anon, graph ), variables );   
+            .executeBindings( new ArrayList<Stage>(), query.args().put( NamedTripleBunches.anon, graph ), variables );   
         }
     }
     

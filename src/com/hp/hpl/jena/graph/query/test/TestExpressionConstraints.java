@@ -182,7 +182,7 @@ public class TestExpressionConstraints extends QueryTestBase
             { public Valuator prepare(VariableIndexes vi) 
                 { return null; }
             };
-        assertFalse( Util.containsAllVariablesOf( CollectionFactory.createHashedSet(), eOpaque ) );
+        assertFalse( Util.containsAllVariablesOf( new HashSet<String>(), eOpaque ) );
         }
     }
 

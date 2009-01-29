@@ -17,7 +17,7 @@ import com.hp.hpl.jena.util.CollectionFactory;
 */
 public class ExpressionSet 
     {
-    private Set expressions = CollectionFactory.createHashedSet();
+    private Set<Expression> expressions = CollectionFactory.createHashedSet();
     /**
         Initialise an expression set with no members.
     */
@@ -40,21 +40,6 @@ public class ExpressionSet
     */
     public boolean isComplex()
         { return !expressions.isEmpty(); }
-    
-//    /**
-//        Evaluate this expression set, delivering true iff no member of the set evaluates
-//        to false.
-//        
-//     	@param vv the mapping from variables to values
-//     	@return true iff no member evaluates to false
-//     */    
-//    public boolean evalBool( VariableValues vv )
-//        { 
-//        Iterator it = expressions.iterator();
-//        while (it.hasNext()) 
-//            if (((Expression) it.next()).evalBool( vv ) == false) return false;
-//        return true;
-//        }
 
     /**
          Answer a ValuatorSet which contains exactly the valuators for each
@@ -63,22 +48,21 @@ public class ExpressionSet
     public ValuatorSet prepare( VariableIndexes vi )
         {
         ValuatorSet result = new ValuatorSet();
-        Iterator it = expressions.iterator();
-        while (it.hasNext()) result.add( ((Expression) it.next()).prepare( vi ) );
+        Iterator<Expression> it = expressions.iterator();
+        while (it.hasNext()) result.add( it.next().prepare( vi ) );
         return result;    
         }
     
     /**
          Answer an iterator over all the Expressions in this ExpressionSet.
     */
-    public Iterator iterator()
+    public Iterator<Expression> iterator()
         { return expressions.iterator(); }
     
     /**
          Answer a string representing this ExpressionSet for human consumption.
     */
-    @Override
-    public String toString()
+    @Override public String toString()
         { return expressions.toString(); }
     }
 

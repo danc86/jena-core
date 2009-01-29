@@ -20,14 +20,14 @@ public class Sequence extends MultiOperandTree
     protected Sequence( RegexpTree [] operands )
         { super( operands ); }
     
-    public static RegexpTree create( List operands )
+    public static RegexpTree create( List<? extends RegexpTree> operands )
         {
         if (operands.size() == 0)
             return NON;
         else if (operands.size() == 1) 
-            return (RegexpTree) operands.get(0);
+            return operands.get(0);
         else
-            return new Sequence( (RegexpTree []) operands.toArray( new RegexpTree [operands.size()] ));
+            return new Sequence( operands.toArray( new RegexpTree [operands.size()] ));
         }
     
     @Override

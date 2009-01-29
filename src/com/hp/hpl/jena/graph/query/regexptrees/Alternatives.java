@@ -16,24 +16,21 @@ public class Alternatives extends MultiOperandTree
     public Alternatives( RegexpTree [] operands )
         { super( operands ); }
     
-    public static RegexpTree create( List operands )
+    public static RegexpTree create( List<? extends RegexpTree> operands )
         {
         if (operands.size() == 1) 
-            return (RegexpTree) operands.get(0);
+            return operands.get(0);
         else
-            return new Alternatives( (RegexpTree []) operands.toArray( new RegexpTree [operands.size()] ));
+            return new Alternatives( operands.toArray( new RegexpTree [operands.size()] ));
         }
     
-    @Override
-    public boolean equals( Object other )
+    @Override public boolean equals( Object other )
         { return other instanceof Alternatives && sameOperands( (Alternatives) other ); }
 
-    @Override
-    public int hashCode()
+    @Override public int hashCode()
         { return hashCode( 1 ); }
 
-    @Override
-    public String toString()
+    @Override public String toString()
         { return toString( "alt" ); }
     }
 

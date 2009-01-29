@@ -42,7 +42,7 @@ public class QueryTriple
     
     public static QueryTriple classify( QueryNodeFactory f, Mapping m, Triple t )
         { 
-        HashSet fresh = new HashSet();
+        HashSet<Node> fresh = new HashSet<Node>();
         return f.createTriple
             ( QueryNode.classify( f, m, fresh, t.getSubject() ), 
             QueryNode.classify( f, m, fresh, t.getPredicate() ),
@@ -145,15 +145,14 @@ public class QueryTriple
         protected SimpleApplyer( Graph g, QueryTriple qt )
             { this.g = g; this.o = qt.O; this.p = qt.P; this.s = qt.S; }
 
-        public Iterator find( Domain d )
+        public Iterator<Triple> find( Domain d )
             { return g.find( s.finder( d ), p.finder( d ), o.finder( d ) ); }
 
-        @Override
-        public void applyToTriples( Domain d, Matcher m, StageElement next )
+        @Override public void applyToTriples( Domain d, Matcher m, StageElement next )
             {
-            Iterator it = find( d );
+            Iterator<Triple> it = find( d );
             while (it.hasNext())
-                if (m.match( d, (Triple) it.next() )) 
+                if (m.match( d, it.next() )) 
                      next.run( d );
             }
         }

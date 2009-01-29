@@ -354,7 +354,7 @@ public class PerlPatternParser
     */
     public RegexpTree parseSeq()
         {
-        List operands = new ArrayList();
+        List<RegexpTree> operands = new ArrayList<RegexpTree>();
         while (true)
             {
             RegexpTree next = parseElement();
@@ -370,7 +370,7 @@ public class PerlPatternParser
     */
     public RegexpTree parseAlts()
         {
-        List operands = new ArrayList();
+        List<RegexpTree> operands = new ArrayList<RegexpTree>();
         while (true)
             {
             operands.add( parseSeq() );

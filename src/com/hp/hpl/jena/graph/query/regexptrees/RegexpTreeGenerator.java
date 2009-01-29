@@ -61,7 +61,7 @@ public interface RegexpTreeGenerator
          exactly one element, it is strongly recommended that that element be
          returned. If the list is empty, it is recommended that Nothing be returned.
     */
-    public abstract RegexpTree getSequence( List operands );
+    public abstract RegexpTree getSequence( List<? extends RegexpTree> operands );
 
     /**
          Answer a RegexpTree for matching one of a set of alternative operand
@@ -69,7 +69,7 @@ public interface RegexpTreeGenerator
          list has exactly one element, it is recommended that that element be 
          returned.
     */
-    public abstract RegexpTree getAlternatives( List operands );
+    public abstract RegexpTree getAlternatives( List <? extends RegexpTree> operands );
 
     /**
          Answer an empty RegexpTree (corresponding to nothing in a parsed
