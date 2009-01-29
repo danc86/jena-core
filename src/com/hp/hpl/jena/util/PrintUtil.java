@@ -81,9 +81,9 @@ public class PrintUtil {
     /**
      * Remove a set of prefix mappings from the table of known short forms
      */
-    public static void removePrefixMap(Map map) {
-        for(Iterator i = map.keySet().iterator(); i.hasNext(); ) {
-            prefixMapping.removeNsPrefix( (String) i.next() );
+    public static void removePrefixMap(Map<String, String> map) {
+        for(Iterator<String> i = map.keySet().iterator(); i.hasNext(); ) {
+            prefixMapping.removeNsPrefix( i.next() );
         }
     }
     
@@ -182,7 +182,7 @@ public class PrintUtil {
     /**
      * Print all the Triple values from a find iterator.
      */
-    public static void printOut(Iterator it) {
+    public static void printOut( Iterator<?> it ) {
         while (it.hasNext()) {
             System.out.println("   " + print(it.next()));
         }

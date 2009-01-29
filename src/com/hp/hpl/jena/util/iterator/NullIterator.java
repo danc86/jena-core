@@ -6,16 +6,18 @@
 
 package com.hp.hpl.jena.util.iterator;
 
+import java.util.Iterator;
+
 /**
      An empty iterator. The specialised versions of andThen() eliminate left operands
      that are empty iterators from cascaded sequences.
 */
 public class NullIterator<T> extends NiceIterator<T> 
     {
-    public static <T> NullIterator<T>  instance() { return new NullIterator<T>(); }
+    public static <T> NullIterator<T>  instance() 
+        { return new NullIterator<T>(); }
     
-    @Override
-    public ExtendedIterator<T> andThen( ClosableIterator<? extends T> it )
+    @Override public <X extends T>ExtendedIterator<T> andThen( Iterator<X> it )
         { 
         return it instanceof ExtendedIterator 
             ? (ExtendedIterator<T>) it 

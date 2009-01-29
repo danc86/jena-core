@@ -42,20 +42,6 @@ import com.hp.hpl.jena.rdf.model.*;
  * @version CVS $Id$
  */
 public class ResourceUtils {
-    // Constants
-    //////////////////////////////////
-
-    // Static variables
-    //////////////////////////////////
-
-    // Instance variables
-    //////////////////////////////////
-
-    // Constructors
-    //////////////////////////////////
-
-    // External signature methods
-    //////////////////////////////////
 
     /**
      * <p>

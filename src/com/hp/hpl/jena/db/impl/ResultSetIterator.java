@@ -266,7 +266,7 @@ public abstract class ResultSetIterator<T> implements ExtendedIterator<T>{
          then all the elements of the other iterator. Does not copy either iterator;
          they are consumed as the result iterator is consumed.
      */
-	public ExtendedIterator<T> andThen(ClosableIterator<? extends T> other) {
+	public <X extends T> ExtendedIterator<T> andThen( Iterator<X> other ) {
 		return NiceIterator.andThen(this, other);
 	}
 

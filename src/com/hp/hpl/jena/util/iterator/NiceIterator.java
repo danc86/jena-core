@@ -81,31 +81,26 @@ public class NiceIterator<T> implements ExtendedIterator<T>
             
             private Iterator<? extends T> current = a;
             
-            @Override
-            public boolean hasNext()
+            @Override public boolean hasNext()
                 { 
                 while (current.hasNext() == false && index < L.size())
                     current = L.get( index++ );
                 return current.hasNext();
                 }
                 
-            @Override
-            public T next()
+            @Override public T next()
                 { return hasNext() ? current.next() : noElements( "concatenation" ); }
                 
-            @Override
-            public void close()
+            @Override public void close()
                 {
                 close( current );
                 for (int i = index; i < L.size(); i += 1) close( L.get(i) );
                 }
                 
-            @Override
-            public void remove()
+            @Override public void remove()
                 { current.remove(); }
             
-            @Override
-            public ExtendedIterator<T> andThen( ClosableIterator<? extends T> other )
+            @Override public <X extends T> ExtendedIterator<T> andThen( Iterator<X> other )
                 { L.add( other ); 
                 return this; }
             };
@@ -114,7 +109,7 @@ public class NiceIterator<T> implements ExtendedIterator<T>
     /**
         make a new iterator, which is us then the other chap.
     */   
-    public ExtendedIterator<T> andThen( ClosableIterator<? extends T> other )
+    public <X extends T> ExtendedIterator<T> andThen( Iterator<X> other )
         { return andThen( this, other ); }
         
     /**

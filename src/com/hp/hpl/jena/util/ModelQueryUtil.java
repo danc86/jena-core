@@ -8,6 +8,7 @@ package com.hp.hpl.jena.util;
 
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.graph.*;
+import com.hp.hpl.jena.graph.query.Domain;
 import com.hp.hpl.jena.util.iterator.*;
 
 import java.util.*;
@@ -27,11 +28,11 @@ public class ModelQueryUtil
     private ModelQueryUtil()
         {}
     
-    public static ExtendedIterator queryBindingsWith
+    public static ExtendedIterator<List<? extends RDFNode>> queryBindingsWith
         ( final Model model, Model query, Resource [] variables )
         {
-        Map1 mm = new Map1()
-            { public Object map1( Object x ) { return mappy( model, x ); } };
+        Map1<Domain, List<? extends RDFNode>> mm = new Map1<Domain, List<? extends RDFNode>>()
+            { public List<? extends RDFNode> map1( Domain x ) { return mappy( model, x ); } };
         QueryMapper qm = new QueryMapper( query, variables );
         return
             qm.getQuery().executeBindings( model.getGraph(), qm.getVariables() )
@@ -42,11 +43,10 @@ public class ModelQueryUtil
     public static RDFNode asRDF( Model m, Node n )
         { return m.asRDFNode( n ); }
         
-    public static List<RDFNode> mappy( Model m, Object x )
+    public static List<RDFNode> mappy( Model m, Domain L )
         {
-        List L = (List) x;
         ArrayList<RDFNode> result = new ArrayList<RDFNode>( L.size() );
-        for (int i = 0; i < L.size(); i += 1) result.add( asRDF( m, (Node) L.get( i ) ) );
+        for (int i = 0; i < L.size(); i += 1) result.add( asRDF( m, L.get( i ) ) );
         return result;
         }
 
