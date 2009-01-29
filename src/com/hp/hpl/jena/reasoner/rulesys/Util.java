@@ -134,10 +134,10 @@ public class Util {
     /**
      * Internall implementation of all the getPropValue variants.
      */
-    private static Node doGetPropValue(ClosableIterator it) {
+    private static Node doGetPropValue(ClosableIterator<Triple> it) {
         Node result = null;
         if (it.hasNext()) {
-            result = ((Triple)it.next()).getObject();
+            result = it.next().getObject();
         }
         it.close();
         return result;
@@ -148,14 +148,14 @@ public class Util {
      * @param root the root node of the list
      * @param context the graph containing the list assertions
      */
-    public static List convertList(Node root, RuleContext context) {
-        return convertList(root, context, new LinkedList());
+    public static List<Node> convertList(Node root, RuleContext context) {
+        return convertList(root, context, new LinkedList<Node>());
     }
     
     /**
      * Convert an (assumed well formed) RDF list to a java list of Nodes
      */
-    private static List convertList(Node node, RuleContext context, List sofar) {
+    private static List<Node> convertList( Node node, RuleContext context, List<Node> sofar ) {
         if (node == null || node.equals(RDF.nil.asNode())) return sofar;
         Node next = getPropValue(node, RDF.first.asNode(), context);
         if (next != null) {

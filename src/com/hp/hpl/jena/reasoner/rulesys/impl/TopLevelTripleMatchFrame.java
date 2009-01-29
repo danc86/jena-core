@@ -24,7 +24,7 @@ public class TopLevelTripleMatchFrame extends GenericChoiceFrame {
     protected Triple lastMatch;
     
     /** An iterator over triples matching a goal */
-    ExtendedIterator matchIterator;
+    ExtendedIterator<Triple> matchIterator;
 
     /** Used for debug/tracing only */
     protected TriplePattern goal;
@@ -48,7 +48,7 @@ public class TopLevelTripleMatchFrame extends GenericChoiceFrame {
      */
     public boolean nextMatch(LPInterpreter interpreter) {
         if (matchIterator.hasNext()) {
-            lastMatch = (Triple)matchIterator.next();
+            lastMatch = matchIterator.next();
             return true;
         } else {
             return false;

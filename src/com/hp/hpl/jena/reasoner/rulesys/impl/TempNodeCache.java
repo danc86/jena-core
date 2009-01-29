@@ -33,10 +33,10 @@ import com.hp.hpl.jena.util.OneToManyMap;
 public class TempNodeCache {
 
     /** Map from instance+property to value */
-    protected OneToManyMap ipMap = new OneToManyMap();
+    protected OneToManyMap<NodePair, Node> ipMap = new OneToManyMap<NodePair, Node>();
     
     /** Map from temp to RDF class, if any */
-    protected Map classMap = new HashMap(); 
+    protected Map<Node, Node> classMap = new HashMap<Node, Node>(); 
     
     /**
      * Cosntructor.
@@ -56,8 +56,8 @@ public class TempNodeCache {
     public synchronized Node getTemp(Node instance, Node prop, Node pclass) {
         NodePair ip = new NodePair(instance, prop);
         Node result = null;
-        for (Iterator i = ipMap.getAll(ip); i.hasNext(); ) {
-            Node t = (Node)i.next();
+        for (Iterator<Node> i = ipMap.getAll(ip); i.hasNext(); ) {
+            Node t = i.next();
             if (pclass != null) {
                 Object tClass = classMap.get(t);
                 if (tClass != null && tClass.equals(pclass)) {

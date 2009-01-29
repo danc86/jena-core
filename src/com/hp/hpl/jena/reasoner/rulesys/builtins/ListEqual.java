@@ -60,14 +60,14 @@ public class ListEqual extends BaseBuiltin {
      * Test two RDF lists for semantic equality. Expensive.
      */
     protected static boolean listEqual(Node list1, Node list2, RuleContext context ) {
-        List elts1 = Util.convertList(list1, context);
-        List elts2 = Util.convertList(list2, context);
+        List<Node> elts1 = Util.convertList(list1, context);
+        List<Node> elts2 = Util.convertList(list2, context);
         if (elts1.size() != elts2.size()) return false;
-        for (Iterator i = elts1.iterator(); i.hasNext(); ) {
-            Node elt = (Node)i.next();
+        for (Iterator<Node> i = elts1.iterator(); i.hasNext(); ) {
+            Node elt = i.next();
             boolean matched = false;
-            for (Iterator j = elts2.iterator(); j.hasNext(); ) {
-                Node elt2 = (Node)j.next();
+            for (Iterator<Node> j = elts2.iterator(); j.hasNext(); ) {
+                Node elt2 = j.next();
                 if (elt.sameValueAs(elt2)) {
                     // Found match, consume it
                     j.remove();

@@ -63,7 +63,7 @@ public interface RuleContext {
      * In some formulations the context includes deductions that are not yet
      * visible to the underlying graph but need to be checked for.
      */
-    public ClosableIterator find(Node s, Node p, Node o);
+    public ClosableIterator<Triple> find(Node s, Node p, Node o);
     
     /**
      * Assert a new triple in the deduction graph, bypassing any processing machinery.

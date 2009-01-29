@@ -56,10 +56,10 @@ public class ListMapAsObject extends BaseBuiltin {
         Node n0 = getArg(0, args, context);
         Node n1 = getArg(1, args, context);
         Node n2 = getArg(2, args, context);
-        List l = Util.convertList(n2, context);
-        for (Iterator i = l.iterator(); i.hasNext(); ) {
-            Node x = (Node)i.next();
-            context.add( new Triple(n0, n1, x));
+        List<Node> l = Util.convertList(n2, context);
+        for (Iterator<Node> i = l.iterator(); i.hasNext(); ) {
+            Node x = i.next();
+            context.add( new Triple( n0, n1, x ) );
         }
     }
     

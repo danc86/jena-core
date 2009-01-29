@@ -26,7 +26,7 @@ import com.hp.hpl.jena.util.iterator.ExtendedIterator;
 public class TripleMatchFrame extends GenericTripleMatchFrame {
     
     /** An iterator over triples matching a goal */
-    ExtendedIterator matchIterator;
+    ExtendedIterator<Triple> matchIterator;
     
     /**
      * Constructor.
@@ -45,7 +45,7 @@ public class TripleMatchFrame extends GenericTripleMatchFrame {
      */
     public boolean nextMatch(LPInterpreter interpreter) {
         while (matchIterator.hasNext()) {
-            if (bindResult((Triple)matchIterator.next(), interpreter)) {
+            if (bindResult(matchIterator.next(), interpreter)) {
                 return true;
             }
         }
@@ -57,8 +57,7 @@ public class TripleMatchFrame extends GenericTripleMatchFrame {
      * LPInterpreter and search for the match defined by the current argument registers
      * @param intepreter the interpreter instance whose env, trail and arg values are to be preserved
      */
-    @Override
-    public void init(LPInterpreter interpreter) {
+    @Override public void init(LPInterpreter interpreter) {
         super.init(interpreter);
         this.matchIterator = interpreter.getEngine().getInfGraph().findDataMatches(goal);
     }
@@ -66,8 +65,7 @@ public class TripleMatchFrame extends GenericTripleMatchFrame {
     /**
      * Override close method to reclaim the iterator.
      */
-    @Override
-    public void close() {
+    @Override public void close() {
         if (matchIterator != null) matchIterator.close();
     }
     
