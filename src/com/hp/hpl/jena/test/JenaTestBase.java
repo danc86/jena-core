@@ -96,7 +96,7 @@ public class JenaTestBase extends TestCase
     /**
         Answer a list containing the single object <code>x</code>.
     */
-    protected static <T> List<T> listOfOne( T x )
+    public static <T> List<T> listOfOne( T x )
         {
         List<T> result = new ArrayList<T>();
         result.add( x );
@@ -106,7 +106,7 @@ public class JenaTestBase extends TestCase
     /**
         Answer a Set containing the single object <code>x</code>.
     */
-    protected static <T> Set<T> setOfOne( T x )
+    public static <T> Set<T> setOfOne( T x )
         {
         Set<T> result = new HashSet<T>();
         result.add( x );
