@@ -530,7 +530,7 @@ public abstract class AbstractTestQuery extends QueryTestBase
         Expression provided = dyadic( L, "Q_StringMatch", R );
         Expression desired = dyadic( L, "J_startsWith", constant( "begins" ) );
         q.addConstraint( provided );
-        Expression e2 = (Expression) q.getConstraints().iterator().next();
+        Expression e2 = q.getConstraints().iterator().next();
         assertEquals( desired, e2 );
         }
 
@@ -542,7 +542,7 @@ public abstract class AbstractTestQuery extends QueryTestBase
         Expression provided = dyadic( L, "Q_StringMatch", R );
         Expression desired = dyadic( L, "J_startsWithInsensitive", constant( "begins" ) );
         q.addConstraint( provided );
-        Expression e2 = (Expression) q.getConstraints().iterator().next();
+        Expression e2 = q.getConstraints().iterator().next();
         assertEquals( desired, e2 );
         }
 
@@ -554,7 +554,7 @@ public abstract class AbstractTestQuery extends QueryTestBase
         Expression provided = dyadic( L, "Q_StringMatch", R );
         Expression desired = dyadic( L, "J_endsWith", constant( "ends" ) );
         q.addConstraint( provided );
-        Expression e2 = (Expression) q.getConstraints().iterator().next();
+        Expression e2 = q.getConstraints().iterator().next();
         assertEquals( desired, e2 );
         }
    
@@ -566,7 +566,7 @@ public abstract class AbstractTestQuery extends QueryTestBase
         Expression provided = dyadic( L, "Q_StringMatch", R );
         Expression desired = dyadic( L, "J_endsWithInsensitive", constant( "ends" ) );
         q.addConstraint( provided );
-        Expression e2 = (Expression) q.getConstraints().iterator().next();
+        Expression e2 = q.getConstraints().iterator().next();
         assertEquals( desired, e2 );
         }
    
@@ -578,7 +578,7 @@ public abstract class AbstractTestQuery extends QueryTestBase
         Expression provided = dyadic( L, "Q_StringMatch", R );
         Expression desired = dyadic( L, "J_contains", constant( "contains" ) );
         q.addConstraint( provided );
-        Expression e2 = (Expression) q.getConstraints().iterator().next();
+        Expression e2 = q.getConstraints().iterator().next();
         assertEquals( desired, e2 );
         }    
     
@@ -590,7 +590,7 @@ public abstract class AbstractTestQuery extends QueryTestBase
         Expression provided = dyadic( L, "Q_StringMatch", R );
         Expression desired = dyadic( L, "J_containsInsensitive", constant( "coNtaIns" ) );
         q.addConstraint( provided );
-        Expression e2 = (Expression) q.getConstraints().iterator().next();
+        Expression e2 = q.getConstraints().iterator().next();
         assertEquals( desired, e2 );
         }
 

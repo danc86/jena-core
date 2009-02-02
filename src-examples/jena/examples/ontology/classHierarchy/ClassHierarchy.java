@@ -115,7 +115,7 @@ public class ClassHierarchy {
         indent( out, depth );
 
         if (c.isRestriction()) {
-            renderRestriction( out, (Restriction) c.as( Restriction.class ) );
+            renderRestriction( out, c.as( Restriction.class ) );
         }
         else {
             if (!c.isAnon()) {

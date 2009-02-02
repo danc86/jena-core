@@ -186,8 +186,8 @@ public class TestClassExpression
                 public void ontTest( OntModel m ) throws Exception {
 					Profile prof = m.getProfile();
 					EnumeratedClass A = m.createEnumeratedClass( NS + "A", null );
-					OntResource a = (OntResource) m.getResource( NS + "a" ).as( OntResource.class );
-					OntResource b = (OntResource) m.getResource( NS + "b" ).as( OntResource.class );
+					OntResource a = m.getResource( NS + "a" ).as( OntResource.class );
+					OntResource b = m.getResource( NS + "b" ).as( OntResource.class );
 
 					A.addOneOf( a );
 					assertEquals( "Cardinality should be 1", 1, A.getCardinality( prof.ONE_OF() ) );

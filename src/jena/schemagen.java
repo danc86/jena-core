@@ -955,7 +955,7 @@ public class schemagen {
 
         // count all of the namespaces used in the model
         for (StmtIterator i = m_source.listStatements(); i.hasNext(); ) {
-            Statement s = (Statement) i.next();
+            Statement s = i.next();
             countNamespace( s.getSubject(), nsCount );
             countNamespace( s.getPredicate(), nsCount );
             if (s.getObject().isResource()) {
@@ -1164,7 +1164,7 @@ public class schemagen {
         String template = hasValue( OPT_INDIVIDUAL_TEMPLATE ) ?  getValue( OPT_INDIVIDUAL_TEMPLATE ) : DEFAULT_INDIVIDUAL_TEMPLATE;
 
         for (Iterator i = selectIndividuals(); i.hasNext(); ) {
-            Individual ind = (Individual) ((Resource) i.next()).as( Individual.class );
+            Individual ind = ((Resource) i.next()).as( Individual.class );
 
             // do we have a local class resource
             Resource cls = ind.getOntClass();

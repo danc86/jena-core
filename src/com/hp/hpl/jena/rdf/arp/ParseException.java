@@ -179,7 +179,7 @@ public class ParseException extends SAXParseException implements
      * @return The field name from {@link ARPErrorNumbers} with this error number, or null
      */
     static public String errorCodeName(int errNo) {
-        Class c = ARPErrorNumbers.class;
+        Class<?> c = ARPErrorNumbers.class;
         java.lang.reflect.Field flds[] = c.getDeclaredFields();
         for (int i = 0; i < flds.length; i++) {
             try {
@@ -201,7 +201,7 @@ public class ParseException extends SAXParseException implements
      * @return The integer value or -1, if none.
      */
     static public int errorCode(String upper) {
-        Class c = ARPErrorNumbers.class;
+        Class<?> c = ARPErrorNumbers.class;
         try {
             java.lang.reflect.Field fld = c.getField(upper);
             return fld.getInt(null);

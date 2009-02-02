@@ -737,7 +737,7 @@ public class TestFBRules extends TestCase {
         infgraph.prepare();
         Graph result = infgraph.getDeductionsGraph();
         assertEquals(1, result.size());
-        Triple tr = (Triple)result.find(null, null, null).next();
+        Triple tr = result.find(null, null, null).next();
         Node nowN = tr.getObject();
         assertTrue(nowN.isLiteral());
         Object nowO = nowN.getLiteralValue();
