@@ -127,4 +127,12 @@
     ; ct:linkTitle "GeoSpatialWeb"
     ; ct:licence "GNU GPL License"
     .
+[]
+    dc:creator "UTD"
+    ; dc:name "Infinite Graph"
+    ; dc:description "An infinite graph implementation for RDF graphs"
+    ; ct:link "http://ig.semanticsupport.org/"
+    ; ct:linkTitle "Infinite Graph for Jena"
+    ; ct:licence "BSD LICENCE"
+    .
 
