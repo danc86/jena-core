@@ -6,7 +6,6 @@
 
 package com.hp.hpl.jena.shared;
 
-import com.hp.hpl.jena.db.RDFRDBException;
 
 /**
     Exception to throw when an attempt is made to create a named
@@ -15,7 +14,7 @@ import com.hp.hpl.jena.db.RDFRDBException;
     
  	@author kers
 */
-public class AlreadyExistsException extends RDFRDBException
+public class AlreadyExistsException extends JenaException
     {
     public AlreadyExistsException( String name )
         { super( name ); }

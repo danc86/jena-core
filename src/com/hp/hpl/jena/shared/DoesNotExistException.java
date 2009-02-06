@@ -6,7 +6,6 @@
 
 package com.hp.hpl.jena.shared;
 
-import com.hp.hpl.jena.db.RDFRDBException;
 
 /**
     Exception thrown when an attempt is made find an entity by name, but it
@@ -15,7 +14,7 @@ import com.hp.hpl.jena.db.RDFRDBException;
  	@author kers
 */
 
-public class DoesNotExistException extends RDFRDBException
+public class DoesNotExistException extends JenaException
     {
     /**
          The entity <code>name</code> does not exist.

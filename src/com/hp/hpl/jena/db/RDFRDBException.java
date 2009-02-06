@@ -12,6 +12,8 @@ import com.hp.hpl.jena.shared.*;
 * Used to signal most errors with RDB access. Updated by kers to
 * switch to using JenaException not the (now deprecated) RDFException.
 *
+* Deprecated for use outside the RDB codebase.
+*
 * @author <a href="mailto:der@hplb.hpl.hp.com">Dave Reynolds</a>
 * @author Chris Dollin <a href="mailto:chris.dollin@hp.com">email</a>
 */
