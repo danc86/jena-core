@@ -448,6 +448,18 @@ public class Test_schemagen
     }
 
 
+    public void testIncludeSource2() throws Exception {
+        // had a report of the following not compiling ....
+        String SOURCE = PREFIX + "@prefix skos: <http://www.w3.org/2004/02/skos/core#>.\n" +
+                       " <http://purl.org/dc/elements/1.1/relation> skos:note \"\"\"A second property with the same name as this property has been declared in the dcterms: namespace (http://purl.org/dc/terms/).  See the Introduction to the document \"DCMI Metadata Terms\" (http://dublincore.org/documents/dcmi-terms/) for an explanation.\"\"\".";
+
+        testSchemagenOutput( SOURCE, null,
+                new String[] {"-a", "http://example.com/sg#", "--owl", "--includeSource"},
+                new String[] {},
+                new String[] {} );
+
+    }
+
     // Internal implementation methods
     //////////////////////////////////
 
