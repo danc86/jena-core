@@ -1,1 +1,12 @@
+.cvsignore
+bldsrc
+bldbin
+classes
+dist
+announce.txt
+fix*
+ReleaseProcess.txt
+snapshot
+tmp
+jena-src.zip
 D.*
