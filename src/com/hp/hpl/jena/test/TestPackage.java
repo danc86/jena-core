@@ -46,9 +46,7 @@ public class TestPackage extends TestSuite {
         addTest("Util", com.hp.hpl.jena.util.test.TestPackage.suite());
         addTest( com.hp.hpl.jena.util.iterator.test.TestPackage.suite() );
         addTest("Mega", com.hp.hpl.jena.regression.MegaTestSuite.suite());
-        addTest( com.hp.hpl.jena.rdf.arp.test.TestARPMain.suite());
-        addTest( TestAssemblerPackage.suite() );
-        addTest( com.hp.hpl.jena.rdf.arp.test.SAX2RDFTest.suite());
+        addTest( "Assembler", TestAssemblerPackage.suite() );
         addTest( com.hp.hpl.jena.rdf.arp.test.TestPackage.suite());
         addTest( "Vocabularies", com.hp.hpl.jena.vocabulary.test.TestVocabularies.suite() );
         addTest( com.hp.hpl.jena.shared.test.TestSharedPackage.suite() );
