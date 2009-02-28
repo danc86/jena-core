@@ -26,7 +26,7 @@ public class TestARPStates extends TestCase {
     public static TestSuite suite() {
         TestSuite rslt = new TestSuite();
         rslt.setName("ARP state machine");
-        Map tests = new HashMap();
+        Map<String, TestSuite> tests = new HashMap<String, TestSuite>();
         try {
           LineNumberReader r = new LineNumberReader(new FileReader(TestData.dataFile));
           while (true) {
@@ -38,7 +38,7 @@ public class TestARPStates extends TestCase {
               String fields[] = line.split("  *");
               if (fields.length==0)
                   continue;
-              TestSuite child = (TestSuite)tests.get(fields[0]);
+              TestSuite child = tests.get(fields[0]);
               if (child==null) {
                   child = new TestSuite();
                   child.setName(TestData.stateLongName(fields[0]));

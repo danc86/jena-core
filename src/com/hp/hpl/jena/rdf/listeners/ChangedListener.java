@@ -34,12 +34,12 @@ public class ChangedListener implements ModelChangedListener
     public boolean hasChanged() { try { return changed; } finally { changed = false; } }
     public void addedStatement( Statement s ) { setChanged(); }
     public void addedStatements( Statement [] statements ) { setChanged(); }
-    public void addedStatements( List statements ) { setChanged(); }
+    public void addedStatements( List<Statement> statements ) { setChanged(); }
     public void addedStatements( StmtIterator statements ) { setChanged(); }
     public void addedStatements( Model m ) { setChanged(); }
     public void removedStatement( Statement s ) { setChanged(); }   
     public void removedStatements( Statement [] statements ) { setChanged(); }
-    public void removedStatements( List statements ) { setChanged(); }
+    public void removedStatements( List<Statement> statements ) { setChanged(); }
     public void removedStatements( StmtIterator statements ) { setChanged(); }
     public void removedStatements( Model m ) { setChanged(); }          
     public void notifyEvent( Model m, Object event ) {}

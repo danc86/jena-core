@@ -52,7 +52,7 @@ import java.util.Map;
 public class Iso3166  {
 
    
-    static final Map all = new HashMap();
+    static final Map<String, Iso3166> all = new HashMap<String, Iso3166>();
 
     /** Creates new Iso639 */
     private Iso3166(String code,String engName) {
@@ -67,7 +67,7 @@ public class Iso3166  {
  * or null if not in the list.
  */    
     static public Iso3166 find(String countryId) {
-        return (Iso3166)all.get(countryId);
+        return all.get(countryId);
     }
 /** The 2 character country code.
  */    

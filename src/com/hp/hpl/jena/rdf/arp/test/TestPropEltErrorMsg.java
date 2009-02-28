@@ -308,19 +308,19 @@ public class TestPropEltErrorMsg extends TestCase {
     }
         
     static private class Atts implements Attributes {
-        ArrayList atts = new ArrayList();
+        ArrayList<Att> atts = new ArrayList<Att>();
         public int getLength() {
             return atts.size();
         }
         public String getURI(int index) {
-            return ((Att)atts.get(index)).getURI();
+            return atts.get(index).getURI();
         }
         public String getLocalName(int index) {
-            return ((Att)atts.get(index)).getLocalName();
+            return atts.get(index).getLocalName();
         }
 
         public String getQName(int index) {
-            return ((Att)atts.get(index)).getQName();
+            return atts.get(index).getQName();
         }
 
         public String getType(int index) {
@@ -328,7 +328,7 @@ public class TestPropEltErrorMsg extends TestCase {
         }
 
         public String getValue(int index) {
-            return ((Att)atts.get(index)).getValue();
+            return atts.get(index).getValue();
         }
 
         public int getIndex(String uri, String localName) {

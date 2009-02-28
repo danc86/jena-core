@@ -34,9 +34,6 @@ public class TestPackage extends TestSuite {
         addTest("N3", com.hp.hpl.jena.n3.test.N3TestSuite.suite());
         addTest("Turtle", com.hp.hpl.jena.n3.turtle.test.TurtleTestSuite.suite()) ;
 
-        // RDQL is deprecated and will be removed
-        // addTest("RDQL", com.hp.hpl.jena.rdql.test.RDQLTestSuite.suite());
-
         // Avoid a compile time dependency on ARQ.
         {
             TestSuite arqSuite = TestPackageARQ.suite() ;
@@ -49,13 +46,10 @@ public class TestPackage extends TestSuite {
         addTest("Util", com.hp.hpl.jena.util.test.TestPackage.suite());
         addTest( com.hp.hpl.jena.util.iterator.test.TestPackage.suite() );
         addTest("Mega", com.hp.hpl.jena.regression.MegaTestSuite.suite());
-        addTest( com.hp.hpl.jena.rdf.arp.test.TestPackage.suite());
+        addTest( com.hp.hpl.jena.rdf.arp.test.TestARPMain.suite());
         addTest( TestAssemblerPackage.suite() );
         addTest( com.hp.hpl.jena.rdf.arp.test.SAX2RDFTest.suite());
-        addTest( com.hp.hpl.jena.rdf.arp.test.MoreTests.suite());
-        addTest( com.hp.hpl.jena.rdf.arp.states.test.TestARPStates.suite());
-        addTest( com.hp.hpl.jena.rdf.arp.test.URITests.suite());
-        addTest( com.hp.hpl.jena.rdf.arp.test.TaintingTests.suite());
+        addTest( com.hp.hpl.jena.rdf.arp.test.TestPackage.suite());
         addTest( "Vocabularies", com.hp.hpl.jena.vocabulary.test.TestVocabularies.suite() );
         addTest( com.hp.hpl.jena.shared.test.TestSharedPackage.suite() );
         addTest("Reasoners", com.hp.hpl.jena.reasoner.test.TestPackage.suite());

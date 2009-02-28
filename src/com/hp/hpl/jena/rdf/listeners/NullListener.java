@@ -20,12 +20,12 @@ public class NullListener implements ModelChangedListener
     {
     public void addedStatement( Statement s ) {}
     public void addedStatements( Statement [] statements ) {}
-    public void addedStatements( List statements ) {}
+    public void addedStatements( List<Statement> statements ) {}
     public void addedStatements( StmtIterator statements ) {}
     public void addedStatements( Model m ) {}
     public void removedStatement( Statement s ) {}   
     public void removedStatements( Statement [] statements ) {}
-    public void removedStatements( List statements ) {}
+    public void removedStatements( List<Statement> statements ) {}
     public void removedStatements( StmtIterator statements ) {}
     public void removedStatements( Model m ) {}            
     public void notifyEvent( Model m, Object event ) {}

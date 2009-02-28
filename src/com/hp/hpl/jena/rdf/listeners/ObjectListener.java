@@ -7,6 +7,7 @@
 package com.hp.hpl.jena.rdf.listeners;
 
 import com.hp.hpl.jena.rdf.model.*;
+
 import java.util.*;
 
 /**
@@ -30,12 +31,12 @@ public class ObjectListener implements ModelChangedListener
 /* */
     public void addedStatement( Statement s ) { added( s ); }
     public void addedStatements( Statement [] statements ) { added( statements ); }
-    public void addedStatements( List statements ) { added( statements ); }
+    public void addedStatements( List<Statement> statements ) { added( statements ); }
     public void addedStatements( StmtIterator statements ) { added( statements ); }
     public void addedStatements( Model m ) { added( m ); }
     public void removedStatement( Statement s ) { removed( s ); }   
     public void removedStatements( Statement [] statements ) { removed( statements ); }
-    public void removedStatements( List statements ) { removed( statements ); }
+    public void removedStatements( List<Statement> statements ) { removed( statements ); }
     public void removedStatements( StmtIterator statements ) { removed( statements ); }
     public void removedStatements( Model m ) { removed( m ); }       
     public void notifyEvent( Model m, Object event ) {}         
