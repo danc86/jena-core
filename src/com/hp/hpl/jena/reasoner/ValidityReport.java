@@ -39,7 +39,7 @@ public interface ValidityReport {
     /**
      * Return an iterator over the separate ValidityReport.Report records.
      */
-    public Iterator getReports();
+    public Iterator<Report> getReports();
     
     // Inner class defining the datastructure of a single error report
     static class Report {

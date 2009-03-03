@@ -33,7 +33,7 @@ public class LPBackwardRuleReasoner implements Reasoner {
     protected ReasonerFactory factory;
     
     /** The rules to be used by this instance of the backward engine */
-    protected List rules;
+    protected List<Rule> rules;
     
     /** Indexed, normalized copy of the rule list */
     protected LPRuleStore ruleStore;
@@ -55,7 +55,7 @@ public class LPBackwardRuleReasoner implements Reasoner {
      * and so has no capabilities description. 
      * @param rules a list of Rule instances which defines the ruleset to process
      */
-    public LPBackwardRuleReasoner(List rules) {
+    public LPBackwardRuleReasoner(List<Rule> rules) {
         this.rules = rules;
         ruleStore = new LPRuleStore(rules);
     }
@@ -65,7 +65,7 @@ public class LPBackwardRuleReasoner implements Reasoner {
      * @param rules a list of Rule instances which defines the ruleset to process
      * @param factory the parent reasoner factory which is consulted to answer capability questions
      */
-    public LPBackwardRuleReasoner(List rules, ReasonerFactory factory) {
+    public LPBackwardRuleReasoner(List<Rule> rules, ReasonerFactory factory) {
         this.rules = rules;
         this.factory = factory;
         ruleStore = new LPRuleStore(rules);
@@ -166,7 +166,7 @@ public class LPBackwardRuleReasoner implements Reasoner {
      * Return the this of Rules used by this reasoner
      * @return a List of Rule objects
      */
-    public List getRules() {
+    public List<Rule> getRules() {
         return rules;
     } 
    

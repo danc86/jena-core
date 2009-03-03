@@ -48,7 +48,7 @@ public class RETERuleInfGraph extends BasicForwardRuleInfGraph {
      * @param rules the list of rules to use this time
      * @param schema the (optional) schema or preload data which is being processed
      */
-    public RETERuleInfGraph(Reasoner reasoner, List rules, Graph schema) {
+    public RETERuleInfGraph(Reasoner reasoner, List<Rule> rules, Graph schema) {
         super(reasoner, rules, schema);
     }    
 
@@ -61,7 +61,7 @@ public class RETERuleInfGraph extends BasicForwardRuleInfGraph {
       * @param schema the (optional) schema or preload data which is being processed
       * @param data the data graph to be processed
       */
-     public RETERuleInfGraph(Reasoner reasoner, List rules, Graph schema, Graph data) {
+     public RETERuleInfGraph(Reasoner reasoner, List<Rule> rules, Graph schema, Graph data) {
          super(reasoner, rules, schema, data);
      }
 
@@ -71,7 +71,7 @@ public class RETERuleInfGraph extends BasicForwardRuleInfGraph {
      * @param rules the rule set or null if there are not rules bound in yet.
      */
     @Override
-    protected void instantiateRuleEngine(List rules) {
+    protected void instantiateRuleEngine(List<Rule> rules) {
         if (rules != null) {
             engine = new RETEEngine(this, rules);
         } else {

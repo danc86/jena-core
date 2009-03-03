@@ -9,7 +9,9 @@
  *****************************************************************/
 package com.hp.hpl.jena.reasoner;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 /**
  * Default implementation of ValidityReport which simply stores a list
@@ -21,7 +23,7 @@ import java.util.*;
 public class StandardValidityReport implements ValidityReport {
 
     /** The total set of error reports */
-    protected List reports = new ArrayList();
+    protected List<Report> reports = new ArrayList<Report>();
     
     /** Flag to indicate if there are any error reports so far */
     protected boolean isError;
@@ -93,7 +95,7 @@ public class StandardValidityReport implements ValidityReport {
     /**
      * Return an iterator over the separate ValidityReport.Report records.
      */
-    public Iterator getReports() {
+    public Iterator<Report> getReports() {
         return reports.iterator();
     }
 

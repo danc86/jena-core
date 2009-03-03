@@ -37,12 +37,12 @@ public class OWLMicroReasoner extends GenericRuleReasoner implements Reasoner {
     protected static final String MICRO_RULE_FILE = "etc/owl-fb-micro.rules";
     
     /** The parsed rules */
-    protected static List microRuleSet;
+    protected static List<Rule> microRuleSet;
     
     /**
      * Return the rule set, loading it in if necessary
      */
-    public static List loadRules() {
+    public static List<Rule> loadRules() {
         if (microRuleSet == null) microRuleSet = loadRules( MICRO_RULE_FILE );
         return microRuleSet;
     }

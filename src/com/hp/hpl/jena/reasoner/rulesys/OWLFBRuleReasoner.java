@@ -30,7 +30,7 @@ public class OWLFBRuleReasoner extends FBRuleReasoner {
     protected static final String RULE_FILE = "etc/owl-fb.rules";
     
     /** The parsed rules */
-    protected static List ruleSet;
+    protected static List<Rule> ruleSet;
     
     /** The precomputed axiom closure and compiled rule set */
     protected static FBRuleInfGraph staticPreload; 
@@ -56,7 +56,7 @@ public class OWLFBRuleReasoner extends FBRuleReasoner {
     /**
      * Return the rule set, loading it in if necessary
      */
-    public static List loadRules() {
+    public static List<Rule> loadRules() {
         if (ruleSet == null) ruleSet = loadRules( RULE_FILE );
         return ruleSet;
     }
@@ -94,7 +94,7 @@ public class OWLFBRuleReasoner extends FBRuleReasoner {
         checkArgGraph(data);
         FBRuleInfGraph graph =  null;
         InfGraph schemaArg = schemaGraph == null ? getPreload() : (FBRuleInfGraph)schemaGraph; 
-        List baseRules = ((FBRuleInfGraph)schemaArg).getRules();
+        List<Rule> baseRules = ((FBRuleInfGraph)schemaArg).getRules();
         graph = new FBRuleInfGraph(this, baseRules, schemaArg);
         graph.addPreprocessingHook(new OWLRuleTranslationHook());
         graph.setDerivationLogging(recordDerivations);

@@ -9,6 +9,7 @@
  *****************************************************************/
 package com.hp.hpl.jena.reasoner;
 
+import com.hp.hpl.jena.graph.Triple;
 import com.hp.hpl.jena.util.iterator.*;
 
 /**
@@ -80,7 +81,7 @@ public class FinderUtil {
          * @return a ClosableIterator over all Triples in the data set
          *  that match the pattern
          */
-        public ExtendedIterator find(TriplePattern pattern) {
+        public ExtendedIterator<Triple> find(TriplePattern pattern) {
             if (second == null) {
                 return first.find(pattern);
             } else if (first == null) {
@@ -101,7 +102,7 @@ public class FinderUtil {
          * will be asked for additional match results if the implementor
          * may not have completely satisfied the query.
          */
-        public ExtendedIterator findWithContinuation(TriplePattern pattern, Finder continuation) {
+        public ExtendedIterator<Triple> findWithContinuation(TriplePattern pattern, Finder continuation) {
             return (FinderUtil.cascade(first, second, continuation)).find(pattern);
         }
 
@@ -109,7 +110,7 @@ public class FinderUtil {
          * Return true if the given pattern occurs somewhere in the find sequence.
          */
         public boolean contains(TriplePattern pattern) {
-            ClosableIterator it = find(pattern);
+            ClosableIterator<Triple> it = find(pattern);
             boolean result = it.hasNext();
             it.close();
             return result;

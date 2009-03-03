@@ -31,7 +31,7 @@ public class RDFSForwardRuleReasoner extends GenericRuleReasoner {
 //    public static final String RULE_FILE = "etc/rdfs-noresource.rules";
     
     /** The parsed rules */
-    protected static List ruleSet;
+    protected static List<Rule> ruleSet;
     
     /**
      * Constructor
@@ -45,7 +45,7 @@ public class RDFSForwardRuleReasoner extends GenericRuleReasoner {
     /**
      * Return the RDFS rule set, loading it in if necessary
      */
-    public static List loadRules() {
+    public static List<Rule> loadRules() {
         if (ruleSet == null) ruleSet = loadRules( RULE_FILE ); 
         return ruleSet;
     }

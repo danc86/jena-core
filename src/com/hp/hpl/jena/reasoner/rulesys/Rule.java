@@ -11,21 +11,29 @@ package com.hp.hpl.jena.reasoner.rulesys;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.NoSuchElementException;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
+import com.hp.hpl.jena.datatypes.RDFDatatype;
+import com.hp.hpl.jena.datatypes.TypeMapper;
+import com.hp.hpl.jena.datatypes.xsd.XSDDatatype;
+import com.hp.hpl.jena.graph.Node;
+import com.hp.hpl.jena.reasoner.ReasonerException;
+import com.hp.hpl.jena.reasoner.TriplePattern;
+import com.hp.hpl.jena.shared.JenaException;
+import com.hp.hpl.jena.shared.PrefixMapping;
+import com.hp.hpl.jena.shared.RulesetNotFoundException;
+import com.hp.hpl.jena.shared.WrappedIOException;
 import com.hp.hpl.jena.util.FileManager;
 import com.hp.hpl.jena.util.FileUtils;
 import com.hp.hpl.jena.util.PrintUtil;
 import com.hp.hpl.jena.util.Tokenizer;
-import com.hp.hpl.jena.graph.*;
-import com.hp.hpl.jena.reasoner.*;
-import com.hp.hpl.jena.shared.*;
-import com.hp.hpl.jena.datatypes.RDFDatatype;
-import com.hp.hpl.jena.datatypes.TypeMapper;
-import com.hp.hpl.jena.datatypes.xsd.*;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 
 /**Representation of a generic inference rule. 
  * <p>
@@ -98,7 +106,7 @@ public class Rule implements ClauseEntry {
      * @param body a list of TriplePatterns or Functors.
      * @param head a list of TriplePatterns, Functors or rules
      */
-    public Rule(List head, List body) {
+    public Rule(List<ClauseEntry> head, List<ClauseEntry> body) {
         this(null, head, body);
     }
     
@@ -108,7 +116,7 @@ public class Rule implements ClauseEntry {
      * @param body a list of TriplePatterns or Functors.
      * @param head a list of TriplePatterns, Functors or rules
      */
-    public Rule(String name, List<Object> head, List<Object> body) {
+    public Rule(String name, List<ClauseEntry> head, List<ClauseEntry> body) {
         this(name, 
                 head.toArray(new ClauseEntry[head.size()]),
                 body.toArray(new ClauseEntry[body.size()]) );
@@ -909,7 +917,7 @@ public class Rule implements ClauseEntry {
         /**
          * Parse a clause, could be a triple pattern, a rule or a functor
          */
-        Object parseClause() {
+        ClauseEntry parseClause() {
             String token = peekToken();
             if (token.equals("(")) {
                 List<Node> nodes = parseNodeList();
@@ -968,14 +976,14 @@ public class Rule implements ClauseEntry {
                 // Start rule parsing with empty variable table
                 if (!retainVarMap) varMap = new HashMap<String, Node_RuleVariable>();
                 // Body
-                List<Object> body = new ArrayList<Object>();
+                List<ClauseEntry> body = new ArrayList<ClauseEntry>();
                 token = peekToken();
                 while ( !(token.equals("->") || token.equals("<-")) ) {
                     body.add(parseClause());
                     token = peekToken();
                 }
                 boolean backwardRule = token.equals("<-");
-                List<Object> head = new ArrayList<Object>();
+                List<ClauseEntry> head = new ArrayList<ClauseEntry>();
                 token = nextToken();   // skip -> token
                 token = peekToken();
                 while ( !(token.equals(".") || token.equals("]")) ) {

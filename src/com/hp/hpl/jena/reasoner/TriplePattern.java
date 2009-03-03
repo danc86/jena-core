@@ -152,7 +152,7 @@ public class TriplePattern implements ClauseEntry {
      * of the same variable.
      */
     public boolean variantOf(TriplePattern pattern) {
-        Map vmap = CollectionFactory.createHashedMap();
+        Map<Node, Node> vmap = CollectionFactory.createHashedMap();
         if ( ! variantOf(subject, pattern.subject, vmap) ) return false;
         if ( ! variantOf(predicate, pattern.predicate, vmap) ) return false;
         if (Functor.isFunctor(object) && Functor.isFunctor(pattern.object)) {
@@ -174,7 +174,7 @@ public class TriplePattern implements ClauseEntry {
     /**
      * Test if one node is a variant of another give a table of variable matches.
      */
-    private boolean variantOf(Node n, Node p, Map vmap) {
+    private boolean variantOf(Node n, Node p, Map<Node, Node> vmap) {
         if (n instanceof Node_RuleVariable) {
             if (p instanceof Node_RuleVariable) {
                 Object nMatch = vmap.get(n);

@@ -33,12 +33,12 @@ public class OWLMiniReasoner extends GenericRuleReasoner implements Reasoner {
     protected static final String MINI_RULE_FILE = "etc/owl-fb-mini.rules";
     
     /** The parsed rules */
-    protected static List miniRuleSet;
+    protected static List<Rule> miniRuleSet;
     
     /**
      * Return the rule set, loading it in if necessary
      */
-    public static List loadRules() {
+    public static List<Rule> loadRules() {
         if (miniRuleSet == null) miniRuleSet = loadRules( MINI_RULE_FILE );
         return miniRuleSet;
     }

@@ -52,12 +52,12 @@ public class BasicForwardRuleInfGraph extends BaseInfGraph implements ForwardRul
     protected FRuleEngineI engine;
     
     /** The original rule set as supplied */
-    protected List<Rule> rules;
+    private List<Rule> rules;
     
     /** Flag which, if true, enables tracing of rule actions to logger.info */
     protected boolean traceOn = false;
     
-    protected static Log logger = LogFactory.getLog(BasicForwardRuleInfGraph.class);
+    private static Log logger = LogFactory.getLog(BasicForwardRuleInfGraph.class);
     
 //=======================================================================
 // Core methods

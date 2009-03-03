@@ -25,10 +25,10 @@ public class BuiltinRegistry {
     public static BuiltinRegistry theRegistry;
     
     /** Mapping from functor name to Builtin implementing it */
-    protected Map builtins = new HashMap();
+    protected Map<String,Builtin> builtins = new HashMap<String,Builtin>();
     
     /** Mapping from URI of builtin to implementation */
-    protected Map builtinsByURI = new HashMap();
+    protected Map<String,Builtin> builtinsByURI = new HashMap<String,Builtin>();
     
     // Static initilizer for the singleton instance
     static {
@@ -119,7 +119,7 @@ public class BuiltinRegistry {
      * @return a Builtin or null if there is none registered under that name
      */
     public Builtin getImplementation(String functor) {
-        return (Builtin)builtins.get(functor);
+        return builtins.get(functor);
     }
     
     /**
@@ -128,7 +128,7 @@ public class BuiltinRegistry {
      * @return a Builtin or null if there is none registered under that name
      */
     public Builtin getImplementationByURI(String uri) {
-        return (Builtin)builtinsByURI.get(uri);
+        return builtinsByURI.get(uri);
     }
     
 }

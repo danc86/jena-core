@@ -33,7 +33,7 @@ public class RuleDerivation implements Derivation {
     protected Triple conclusion;
     
     /** The list of triple matches that fired the rule */
-    protected List matches;
+    protected List<Triple> matches;
 
     /** The InfGraph which produced this derivation */
     protected InfGraph infGraph;
@@ -45,7 +45,7 @@ public class RuleDerivation implements Derivation {
      * @param matches a list of matching Triples corresponding to the rule body patterns
      * @param infGraph the parent infGraph which was controlling the derivation
      */
-    public RuleDerivation(Rule rule, Triple conclusion, List matches, InfGraph infGraph) {
+    public RuleDerivation(Rule rule, Triple conclusion, List<Triple> matches, InfGraph infGraph) {
         this.rule = rule;
         this.conclusion = conclusion;
         this.matches = matches;
@@ -72,7 +72,7 @@ public class RuleDerivation implements Derivation {
      * each stage in the derivation
      */
     public void printTrace(PrintWriter out, boolean bindings) {
-       printTrace(out, bindings, 0, new HashSet());
+       printTrace(out, bindings, 0, new HashSet<RuleDerivation>());
     }
     
      /**
@@ -84,7 +84,7 @@ public class RuleDerivation implements Derivation {
      * @param indent the number of indent spaces to use
      * @param seen a HashSet of derviations that have already been listed
      */
-    protected void printTrace(PrintWriter out, boolean bindings, int indent, HashSet seen) {
+    protected void printTrace(PrintWriter out, boolean bindings, int indent, HashSet<RuleDerivation> seen) {
         PrintUtil.printIndent(out, indent);
         out.print(this.toString());
         if (bindings) {
@@ -93,8 +93,8 @@ public class RuleDerivation implements Derivation {
         out.println(" <-");
         int margin = indent + 4;
         for (int i = 0; i < matches.size(); i++) {
-            Triple match = (Triple)matches.get(i);
-            Iterator derivations = infGraph.getDerivation(match);
+            Triple match = matches.get(i);
+            Iterator<Derivation> derivations = infGraph.getDerivation(match);
             if (derivations == null || !derivations.hasNext()) {
                 PrintUtil.printIndent(out, margin);
                 if (match == null) {
@@ -132,7 +132,7 @@ public class RuleDerivation implements Derivation {
     /**
      * @return the set of triples which were used in firing this rule derivation
      */
-    public List getMatches() {
+    public List<Triple> getMatches() {
         return matches;
     }
 

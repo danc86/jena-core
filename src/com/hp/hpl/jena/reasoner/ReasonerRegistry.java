@@ -44,7 +44,7 @@ public class ReasonerRegistry {
     protected static ReasonerRegistry theRegistry;
     
     /** Map from reasoner URI to the associated factory */
-    protected Map reasonerFactories = new HashMap();
+    protected Map<String, ReasonerFactory> reasonerFactories = new HashMap<String, ReasonerFactory>();
     
     /** Union of the all reasoner capability descriptions */
     protected Model allDescriptions;
@@ -132,7 +132,7 @@ public class ReasonerRegistry {
      * @return the ReasonerFactory instance for this reasoner
      */
     public ReasonerFactory getFactory(String uri) {
-        return (ReasonerFactory)reasonerFactories.get(uri);
+        return reasonerFactories.get(uri);
     }
     
     /**

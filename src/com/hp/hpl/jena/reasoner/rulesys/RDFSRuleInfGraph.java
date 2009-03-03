@@ -29,7 +29,7 @@ public class RDFSRuleInfGraph extends FBRuleInfGraph {
      * @param rules the rules to process
      * @param schema the (optional) schema graph to be included
      */
-    public RDFSRuleInfGraph(Reasoner reasoner, List rules, Graph schema) {
+    public RDFSRuleInfGraph(Reasoner reasoner, List<Rule> rules, Graph schema) {
         super(reasoner, rules, schema);
     }
 
@@ -40,7 +40,7 @@ public class RDFSRuleInfGraph extends FBRuleInfGraph {
      * @param schema the (optional) schema graph to be included
      * @param data the data graph to be processed
      */
-    public RDFSRuleInfGraph(Reasoner reasoner, List rules, Graph schema, Graph data) {
+    public RDFSRuleInfGraph(Reasoner reasoner, List<Rule> rules, Graph schema, Graph data) {
         super(reasoner, rules, schema, data);
     }
     

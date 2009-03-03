@@ -28,7 +28,7 @@ public class RDFSFBRuleReasoner extends FBRuleReasoner {
     public static final String RULE_FILE = "etc/rdfs-fb.rules";
     
     /** The parsed rules */
-    protected static List ruleSet;
+    protected static List<Rule> ruleSet;
     
     /**
      * Constructor
@@ -40,7 +40,7 @@ public class RDFSFBRuleReasoner extends FBRuleReasoner {
     /**
      * Return the RDFS rule set, loading it in if necessary
      */
-    public static List loadRules() {
+    public static List<Rule> loadRules() {
         if (ruleSet == null) ruleSet = loadRules( RULE_FILE );
         return ruleSet;
     }
