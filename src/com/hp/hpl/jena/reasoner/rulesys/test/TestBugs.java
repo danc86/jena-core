@@ -108,10 +108,12 @@ public class TestBugs extends TestCase {
         base.read("file:testing/reasoners/bugs/cceTest.owl");
         InfModel test = ModelFactory.createInfModel(ReasonerRegistry.getOWLReasoner(), base);
 
-        boolean b = anyInstancesOfNothing(test);
+//        boolean b = 
+            anyInstancesOfNothing(test);
         ResIterator rIter = test.listSubjects();
         while (rIter.hasNext()) {
-            Resource res = rIter.nextResource();
+//            Resource res = 
+                rIter.nextResource();
         }
     }
 
@@ -331,11 +333,11 @@ public class TestBugs extends TestCase {
      */
     public void testRangeBug() {
         Model model = FileManager.get().loadModel("file:testing/reasoners/bugs/rangeBug.owl");
-        Model m = ModelFactory.createDefaultModel();
+//        Model m = ModelFactory.createDefaultModel();
         Reasoner r = ReasonerRegistry.getOWLReasoner();
         InfModel omodel = ModelFactory.createInfModel(r, model);
         String baseuri = "http://decsai.ugr.es/~ontoserver/bacarex2.owl#";
-        Resource js = omodel.getResource(baseuri + "JS");
+//        Resource js = omodel.getResource(baseuri + "JS");
         Resource surname = omodel.getResource(baseuri + "surname");
         Statement s = omodel.createStatement(surname, RDFS.range, OWL.Nothing);
         assertTrue(! omodel.contains(s));
@@ -346,7 +348,7 @@ public class TestBugs extends TestCase {
      */
     public void testLiteralBug() {
         Model model = FileManager.get().loadModel("file:testing/reasoners/bugs/dtValidation.owl");
-        Model m = ModelFactory.createDefaultModel();
+//        Model m = ModelFactory.createDefaultModel();
         Reasoner r = ReasonerRegistry.getOWLReasoner();
         InfModel infmodel = ModelFactory.createInfModel(r, model);
         ValidityReport validity = infmodel.validate();
@@ -467,7 +469,7 @@ public class TestBugs extends TestCase {
        Resource source = m.createResource("urn:alfie:testResource");
        Property prop   = m.createProperty("urn:alfie:testProperty");
        Statement s1=m.createStatement(source, prop, "value1");
-       Statement s2=m.createStatement(source, prop, "value2");
+       m.createStatement(source, prop, "value2");
 
        m.add(prop, RDF.type, RDF.Property);
        m.add(s1);
@@ -969,7 +971,7 @@ public class TestBugs extends TestCase {
         TypeMapper tm = TypeMapper.getInstance();
         XSDDatatype.loadUserDefined(uri, new FileReader(filename), null, tm);
         
-        Model m = ModelFactory.createDefaultModel();
+//        Model m = ModelFactory.createDefaultModel();
         RDFDatatype over12Type = tm.getSafeTypeByName(uri + "#over12");
 
         doTestDatatypeRangeValidation(over12Type, OntModelSpec.OWL_MEM_MICRO_RULE_INF);
@@ -1038,6 +1040,24 @@ public class TestBugs extends TestCase {
             Node l = Node.createLiteral( new LiteralLabel(t) );
             return env.bind(args[0], l);
         }
+    }
+
+    /**
+     * Test a problem with the RDFS rule set.
+     * Arguably this should be moved to ../test/TestRDFSReasoners but that requires more
+     * fiddling with manifest files and declarative test specifications
+     */
+    public void testRDFSSimple() {
+        Model model = ModelFactory.createDefaultModel();
+        String NS = "http://jena.hpl.hp.com/example#";
+        Property prop = model.createProperty(NS + "prop");
+        model.add(prop, RDF.type, RDF.Property);
+        
+        Reasoner reasoner = RDFSRuleReasonerFactory.theInstance().create(null);
+        reasoner.setParameter(ReasonerVocabulary.PROPsetRDFSLevel, 
+                ReasonerVocabulary.RDFS_SIMPLE);
+        InfModel im = ModelFactory.createInfModel(reasoner, model);
+        assertTrue( im.contains(prop, RDFS.subPropertyOf, prop) );
     }
     
     // debug assistant
