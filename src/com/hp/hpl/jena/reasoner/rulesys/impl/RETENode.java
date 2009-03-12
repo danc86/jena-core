@@ -24,7 +24,7 @@ public interface RETENode {
      * @param netCopy a map from RETENodes to cloned instance so far.
      * @param context the new context to which the network is being ported
      */
-    public RETENode clone(Map netCopy, RETERuleContext context);
+    public RETENode clone(Map<RETENode, RETENode> netCopy, RETERuleContext context) ;
 
 }
 

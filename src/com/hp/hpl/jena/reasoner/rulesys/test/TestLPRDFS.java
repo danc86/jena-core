@@ -33,7 +33,7 @@ public class TestLPRDFS extends TestCase {
     public static final String RULE_FILE = "etc/rdfs-fb-lp-expt.rules";
     
     /** The parsed rules */
-    protected static List ruleSet;
+    protected static List<Rule> ruleSet;
         
     /** The tester utility */
     protected ReasonerTester tester;

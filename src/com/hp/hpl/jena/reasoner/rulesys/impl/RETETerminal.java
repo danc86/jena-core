@@ -78,7 +78,8 @@ public class RETETerminal implements RETESinkNode {
      * @param netCopy a map from RETENode to cloned instance
      * @param context the new context to which the network is being ported
      */
-    public RETENode clone(Map netCopy, RETERuleContext contextIn) {
+    
+    public RETENode clone(Map<RETENode, RETENode> netCopy, RETERuleContext contextIn) {
         RETETerminal clone = (RETETerminal)netCopy.get(this);
         if (clone == null) {
             RETERuleContext newContext = new RETERuleContext((ForwardRuleInfGraphI)contextIn.getGraph(), contextIn.getEngine());

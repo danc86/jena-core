@@ -120,7 +120,7 @@ public class DebugOWL {
                         
             case RDFSLPExpt:
                 try {
-                    List rules = Rule.parseRules(Util.loadRuleParserFromResourceFile("etc/expt.rules"));
+                    List<Rule> rules = Rule.parseRules(Util.loadRuleParserFromResourceFile("etc/expt.rules"));
                     reasoner = new FBRuleReasoner(rules);
                 } catch (WrappedIOException e) {
                     System.out.println("Failed to open rules file: " + e.getCause());
@@ -254,8 +254,8 @@ public class DebugOWL {
         long t1 = System.currentTimeMillis();
         init();
         int count = 0;
-        for (Iterator i = infgraph.find(s,p,o); i.hasNext(); ) {
-            Triple t = (Triple)i.next();
+        for (Iterator<Triple> i = infgraph.find(s,p,o); i.hasNext(); ) {
+            Triple t = i.next();
             count++;
             if (print) {
                 logger.info(PrintUtil.print(t));

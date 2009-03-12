@@ -40,10 +40,10 @@ public class RDFSCMPPreprocessHook implements RulePreprocessHook {
      * all new deductions that should be seen by the rules.
      */
     public void run(FBRuleInfGraph infGraph, Finder dataFind, Graph inserts) {
-        ExtendedIterator it = dataFind.find(new TriplePattern(null, null, null));
-        HashSet properties = new HashSet();
+        ExtendedIterator<Triple> it = dataFind.find(new TriplePattern(null, null, null));
+        HashSet<Node> properties = new HashSet<Node>();
         while (it.hasNext()) {
-            Triple triple = (Triple)it.next();
+            Triple triple = it.next();
             Node prop = triple.getPredicate();
             if (prop.equals(RDF.Nodes.type) && triple.getObject().equals(RDF.Nodes.Property) ) {
                 prop = triple.getSubject();

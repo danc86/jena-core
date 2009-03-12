@@ -587,7 +587,7 @@ public class LPInterpreter {
                                 if (envFrame instanceof EnvironmentFrameWithDerivation) {
                                     EnvironmentFrameWithDerivation efd = (EnvironmentFrameWithDerivation) envFrame;
                                     Triple result = efd.getResult();
-                                    List matches = efd.getMatchList();
+                                    List<Triple> matches = efd.getMatchList();
                                     BackwardRuleInfGraphI infGraph = engine.getInfGraph();
                                     RuleDerivation d = new RuleDerivation(envFrame.getRule(), result, matches, infGraph);
                                     infGraph.logDerivation(result, d);

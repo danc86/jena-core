@@ -38,17 +38,17 @@ public class OWLRuleTranslationHook implements RulePreprocessHook {
      * all new deductions that should be seen by the rules.
      */
     public void run(FBRuleInfGraph infGraph, Finder dataFind, Graph inserts) {
-        Iterator it = dataFind.find(new TriplePattern(null, OWL.intersectionOf.asNode(), null));
+        Iterator<Triple> it = dataFind.find(new TriplePattern(null, OWL.intersectionOf.asNode(), null));
         while (it.hasNext()) {
-            Triple decl = (Triple)it.next();
+            Triple decl = it.next();
             Node className = decl.getSubject();
-            List elements = new ArrayList();
+            List<Node> elements = new ArrayList<Node>();
             translateIntersectionList(decl.getObject(), dataFind, elements);
             // Generate the corresponding ruleset
-            List recognitionBody = new ArrayList();
+            List<ClauseEntry> recognitionBody = new ArrayList<ClauseEntry>();
             Node var = new Node_RuleVariable("?x", 0);
-            for (Iterator i = elements.iterator(); i.hasNext(); ) {
-                Node description = (Node)i.next();
+            for (Iterator<Node> i = elements.iterator(); i.hasNext(); ) {
+                Node description = i.next();
                 // Implication rule
                 Rule ir = new Rule("intersectionImplication", new ClauseEntry[] {
                                     new TriplePattern(className, RDFS.subClassOf.asNode(), description)
@@ -59,7 +59,7 @@ public class OWLRuleTranslationHook implements RulePreprocessHook {
                // Recognition rule elements
                recognitionBody.add(new TriplePattern(var, RDF.type.asNode(), description));
             }
-            List recognitionHead = new ArrayList(1);
+            List<ClauseEntry> recognitionHead = new ArrayList<ClauseEntry>(1);
             recognitionHead.add(new TriplePattern(var, RDF.type.asNode(), className));
             Rule rr = new Rule("intersectionRecognition", recognitionHead, recognitionBody);
             rr.setBackward(true);
@@ -75,7 +75,7 @@ public class OWLRuleTranslationHook implements RulePreprocessHook {
      * @param data the source data to use as a context for this processing
      * @param elements the list of elements found so far
      */
-    protected static void translateIntersectionList(Node node, Finder dataFind, List elements) {
+    protected static void translateIntersectionList(Node node, Finder dataFind, List<Node> elements) {
         if (node == null) {
             throw new ReasonerException("Illegal list structure in owl:intersectionOf");
         }

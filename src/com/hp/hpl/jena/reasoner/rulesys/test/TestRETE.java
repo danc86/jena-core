@@ -108,7 +108,7 @@ public class TestRETE  extends TestCase {
      */
     private void doTestClauseFilter(TriplePattern pattern, Triple test, Node[] expected) {
         RETETestNode tnode = new RETETestNode();
-        RETEClauseFilter cf = RETEClauseFilter.compile(pattern, 3, new LinkedList());
+        RETEClauseFilter cf = RETEClauseFilter.compile(pattern, 3, new LinkedList<Node>());
         cf.setContinuation(tnode);
         cf.fire(test, true);
         if (expected == null) {
@@ -149,7 +149,7 @@ public class TestRETE  extends TestCase {
          * @param netCopy a map from RETENodes to cloned instance so far.
          * @param context the new context to which the network is being ported
          */
-        public RETENode clone(Map netCopy, RETERuleContext context) {
+        public RETENode clone(Map<RETENode, RETENode> netCopy, RETERuleContext context) {
             // Dummy, not used in testing
             return this;
         }
@@ -223,8 +223,8 @@ public class TestRETE  extends TestCase {
      * with dummy parent graphs.
      */
     private void doRuleTest(String rules, Triple[] adds, Triple[] expected) {
-        List ruleList = Rule.parseRules(rules);
-        BasicForwardRuleInfGraph infgraph = new BasicForwardRuleInfGraph(null, new ArrayList(), null, Factory.createGraphMem());
+        List<Rule> ruleList = Rule.parseRules(rules);
+        BasicForwardRuleInfGraph infgraph = new BasicForwardRuleInfGraph(null, new ArrayList<Rule>(), null, Factory.createGraphMem());
 //        infgraph.setTraceOn(true);
         RETEEngine engine = new RETEEngine(infgraph, ruleList);
         infgraph.prepare();
@@ -243,7 +243,7 @@ public class TestRETE  extends TestCase {
     public void testRuleClone() {
         String rules = "[testRule1: (a p ?x) (b p ?x) -> (n1 p ?x) ]" +
                        "[testRule2: (?x q ?y) -> (?x p ?y)]";
-        List ruleList = Rule.parseRules(rules);
+        List<Rule> ruleList = Rule.parseRules(rules);
         Graph schema = Factory.createGraphMem();
         schema.add(new Triple(a, q, c));
         schema.add(new Triple(a, q, d));

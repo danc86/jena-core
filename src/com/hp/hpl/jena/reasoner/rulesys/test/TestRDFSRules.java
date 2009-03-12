@@ -104,7 +104,7 @@ public class TestRDFSRules extends TestCase {
         for (int lp = 0; lp < loop; lp++) {
             Model m = ModelFactory.createModelForGraph(r.bindSchema(tbox.getGraph()).bind(data.getGraph()));
             count = 0;
-            for (Iterator i = m.listStatements(null, RDF.type, C1); i.hasNext(); i.next()) count++;
+            for (Iterator<Statement> i = m.listStatements(null, RDF.type, C1); i.hasNext(); i.next()) count++;
         }
         long t2 = System.currentTimeMillis();
         long time10 = (t2-t1)*10/loop;

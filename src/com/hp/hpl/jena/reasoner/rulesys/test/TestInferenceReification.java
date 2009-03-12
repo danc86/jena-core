@@ -127,7 +127,7 @@ public class TestInferenceReification extends AbstractTestReifier
     private InfGraph makeInfGraph(String rules, String data, ReificationStyle style ) {
         PrintUtil.registerPrefix("eh", "eh:/");
         Graph base = graphWith( data, style );
-        List ruleList = Rule.parseRules(rules);
+        List<Rule> ruleList = Rule.parseRules(rules);
         return new FBRuleReasoner(ruleList).bind( base );
     }
     

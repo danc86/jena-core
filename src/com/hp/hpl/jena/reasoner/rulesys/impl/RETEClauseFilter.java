@@ -83,10 +83,10 @@ public class RETEClauseFilter implements RETESourceNode {
      * @param envLength the size of binding environment that should be created on successful matches
      * @param varList a list to which all clause variables will be appended
      */
-    public static RETEClauseFilter compile(TriplePattern clause, int envLength, List varList) { 
+    public static RETEClauseFilter compile(TriplePattern clause, int envLength, List<Node> varList) { 
         byte[] instructions = new byte[300];
         byte[] bindInstructions = new byte[100];
-        ArrayList args = new ArrayList();
+        ArrayList<Object> args = new ArrayList<Object>();
         int pc = 0;   
         int bpc = 0;
         
@@ -246,7 +246,7 @@ public class RETEClauseFilter implements RETESourceNode {
      * @param netCopy a map from RETENode to cloned instance
      * @param context the new context to which the network is being ported
      */
-    public RETENode clone(Map netCopy, RETERuleContext context) {
+    public RETENode clone(Map<RETENode, RETENode> netCopy, RETERuleContext context) {
         RETEClauseFilter clone = (RETEClauseFilter)netCopy.get(this);
         if (clone == null) {
             clone = new RETEClauseFilter(instructions, args);

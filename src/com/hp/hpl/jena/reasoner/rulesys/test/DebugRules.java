@@ -27,7 +27,7 @@ public class DebugRules {
     public static final String ruleFile = "etc/temp.rules";
     
     /** The parsed set of rules */
-    public List ruleset;
+    public List<Rule> ruleset;
     
     /** Constructor - loads the rules */
     public DebugRules(String rulefileName) throws IOException {
@@ -40,8 +40,8 @@ public class DebugRules {
         BasicForwardRuleReasoner reasoner = new BasicForwardRuleReasoner(ruleset);
         InfGraph result = reasoner.bind(Factory.createGraphMem());
         System.out.println("Final graph state");
-        for (Iterator i = result.find(null, null, null); i.hasNext(); ) {
-            System.out.println(PrintUtil.print((Triple)i.next()));
+        for (Iterator<Triple> i = result.find(null, null, null); i.hasNext(); ) {
+            System.out.println(PrintUtil.print(i.next()));
         }
         
     }

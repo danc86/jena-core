@@ -20,6 +20,8 @@ import com.hp.hpl.jena.rdf.model.ModelFactory;
 import com.hp.hpl.jena.reasoner.Reasoner;
 import com.hp.hpl.jena.reasoner.ReasonerFactory;
 import com.hp.hpl.jena.reasoner.ValidityReport;
+import com.hp.hpl.jena.reasoner.ValidityReport.Report;
+
 import com.hp.hpl.jena.util.FileManager;
 
 /**
@@ -142,8 +144,8 @@ public class OWLConsistencyTest extends TestCase {
         }
         if (culprit != null) {
             boolean foundit = false;
-            for (Iterator i = report.getReports(); i.hasNext();) {
-                ValidityReport.Report r = (ValidityReport.Report) i.next();
+            for (Iterator<Report> i = report.getReports(); i.hasNext();) {
+                ValidityReport.Report r = i.next();
                 if (r.getExtension() != null
                         && r.getExtension().equals(culprit)) {
                     foundit = true;

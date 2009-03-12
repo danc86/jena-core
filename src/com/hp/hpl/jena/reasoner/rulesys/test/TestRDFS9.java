@@ -78,8 +78,8 @@ public class TestRDFS9 extends TestCase {
         // Check if first of these is in the wildcard listing
         boolean ok = false;
         Triple target = new Triple(a,ty,D);
-        for (Iterator i = igraph.find(null,ty,null); i.hasNext(); ) {
-            Triple t = (Triple)i.next();
+        for (Iterator<Triple> i = igraph.find(null,ty,null); i.hasNext(); ) {
+            Triple t = i.next();
             if (t.equals(target)) {
                 ok = true;
                 break;
@@ -95,8 +95,8 @@ public class TestRDFS9 extends TestCase {
         // Check if first of these is in the wildcard listing
         ok = false;
         target = new Triple(a,ty,D);
-        for (Iterator i = igraph.find(null,ty,null); i.hasNext(); ) {
-            Triple t = (Triple)i.next();
+        for (Iterator<Triple> i = igraph.find(null,ty,null); i.hasNext(); ) {
+            Triple t = i.next();
             if (t.equals(target)) {
                 ok = true;
                 break;

@@ -105,7 +105,7 @@ public class RETERuleContext implements RuleContext {
      * I.e. it has already been deduced.
      */
     public boolean contains(Node s, Node p, Node o) {
-        ClosableIterator it = find(s, p, o);
+        ClosableIterator<Triple> it = find(s, p, o);
         boolean result = it.hasNext();
         it.close();
         return result;
@@ -116,7 +116,7 @@ public class RETERuleContext implements RuleContext {
      * visible to the underlying graph but need to be checked for.
      * However, currently this calls the graph find directly.
      */
-    public ClosableIterator find(Node s, Node p, Node o) {
+    public ClosableIterator<Triple> find(Node s, Node p, Node o) {
         //return graph.find(s, p, o).andThen(pendingCache.find(s, p, o));
         return graph.findDataMatches(s, p, o);
     }

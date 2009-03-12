@@ -19,6 +19,7 @@ import com.hp.hpl.jena.graph.Graph;
 import com.hp.hpl.jena.graph.Node;
 import com.hp.hpl.jena.graph.Triple;
 import com.hp.hpl.jena.graph.TripleMatch;
+import com.hp.hpl.jena.reasoner.Derivation;
 import com.hp.hpl.jena.reasoner.InfGraph;
 import com.hp.hpl.jena.reasoner.rulesys.FBRuleInfGraph;
 import com.hp.hpl.jena.reasoner.rulesys.FBRuleReasoner;
@@ -71,7 +72,7 @@ public class TestLPDerivation extends TestCase {
      * @param data the graph of triples to process
      * @param tabled an array of predicates that should be tabled
      */
-    public static InfGraph makeInfGraph(List rules, Graph data, Node[] tabled) {
+    public static InfGraph makeInfGraph(List<Rule> rules, Graph data, Node[] tabled) {
         FBRuleReasoner reasoner = new FBRuleReasoner(rules);
         FBRuleInfGraph infgraph = (FBRuleInfGraph) reasoner.bind(data);
         for (int i = 0; i < tabled.length; i++) {
@@ -92,19 +93,19 @@ public class TestLPDerivation extends TestCase {
      * @param rulenumber the index of the rule in the rule list which should occur in the derivation
      */
     private void doTest(String ruleSrc, Node[] tabled, Triple[] triples, TripleMatch query, Triple[] matches, int rulenumber) {
-        List rules = Rule.parseRules(ruleSrc);
+        List<Rule> rules = Rule.parseRules(ruleSrc);
         Graph data = Factory.createGraphMem();
         for (int i = 0; i < triples.length; i++) {
             data.add(triples[i]);
         }
         InfGraph infgraph =  makeInfGraph(rules, data, tabled);
-        ExtendedIterator results = infgraph.find(query);
+        ExtendedIterator<Triple> results = infgraph.find(query);
         assertTrue(results.hasNext());
-        Triple result = (Triple) results.next();
+        Triple result = results.next();
         results.close();
-        Rule rule = (Rule)rules.get(rulenumber);
-        List matchList = Arrays.asList(matches);
-        Iterator derivations = infgraph.getDerivation(result);
+        Rule rule = rules.get(rulenumber);
+        List<Triple> matchList = Arrays.asList(matches);
+        Iterator<Derivation> derivations = infgraph.getDerivation(result);
         assertTrue(derivations.hasNext());
         RuleDerivation derivation = (RuleDerivation) derivations.next();
 //        PrintWriter pw = new PrintWriter(System.out);
