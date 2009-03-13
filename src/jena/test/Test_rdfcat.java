@@ -199,7 +199,7 @@ public class Test_rdfcat extends TestCase
 
         rdfcatFixture rc = new rdfcatFixture( so );
 
-        List l = new ArrayList();
+        List<String> l = new ArrayList<String>();
         if (outFormArg != null) {
             l.add(  "-out" );
             l.add(  outFormArg );
@@ -209,7 +209,7 @@ public class Test_rdfcat extends TestCase
 
         String[] args = new String[l.size()];
         for (int i = 0; i < l.size(); i++) {
-            args[i] = (String) l.get(i);
+            args[i] = l.get(i);
         }
         // use file extension guessing
         rc.testGo( args );

@@ -549,10 +549,10 @@ public class Test_schemagen
 
         // now get ready to invoke javac
         try {
-            Class jcMain = Class.forName(  "sun.tools.javac.Main" );
+            Class<?> jcMain = Class.forName(  "sun.tools.javac.Main" );
 
             // constructor
-            Constructor jcConstruct = jcMain.getConstructor( new Class[] {OutputStream.class, String.class} );
+            Constructor<?> jcConstruct = jcMain.getConstructor( new Class[] {OutputStream.class, String.class} );
             Method jcCompile = jcMain.getMethod( "compile", new Class[] {String[].class} );
             ByteArrayOutputStream byteOut = new ByteArrayOutputStream();
             Object jc = jcConstruct.newInstance( new Object[] {byteOut, "javac"} );
