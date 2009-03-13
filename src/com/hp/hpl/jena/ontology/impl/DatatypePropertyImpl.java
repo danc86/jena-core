@@ -42,7 +42,7 @@ import com.hp.hpl.jena.ontology.*;
  */
 public class DatatypePropertyImpl
     extends OntPropertyImpl
-    implements DatatypeProperty 
+    implements DatatypeProperty
 {
     // Constants
     //////////////////////////////////
@@ -52,20 +52,21 @@ public class DatatypePropertyImpl
 
     /**
      * A factory for generating DatatypeProperty facets from nodes in enhanced graphs.
-     * Note: should not be invoked directly by user code: use 
+     * Note: should not be invoked directly by user code: use
      * {@link com.hp.hpl.jena.rdf.model.RDFNode#as as()} instead.
      */
+    @SuppressWarnings("hiding")
     public static Implementation factory = new Implementation() {
         @Override
-        public EnhNode wrap( Node n, EnhGraph eg ) { 
+        public EnhNode wrap( Node n, EnhGraph eg ) {
             if (canWrap( n, eg )) {
                 return new DatatypePropertyImpl( n, eg );
             }
             else {
                 throw new ConversionException( "Cannot convert node " + n + " to DatatypeProperty");
-            } 
+            }
         }
-            
+
         @Override
         public boolean canWrap( Node node, EnhGraph eg ) {
             // node will support being an DatatypeProperty facet if it has rdf:type owl:DatatypeProperty or equivalent
@@ -85,7 +86,7 @@ public class DatatypePropertyImpl
      * <p>
      * Construct a datatype property node represented by the given node in the given graph.
      * </p>
-     * 
+     *
      * @param n The node that represents the resource
      * @param g The enh graph that contains n
      */

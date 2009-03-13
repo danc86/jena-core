@@ -181,104 +181,104 @@ public class TestClassExpression
                     assertEquals( "Cardinality should be 0", 0, A.getCardinality( prof.DISJOINT_WITH() ) );
                 }
             },
-			new OntTestCase( "EnumeratedClass.oneOf", true, false, true, false ) {
-				@Override
+            new OntTestCase( "EnumeratedClass.oneOf", true, false, true, false ) {
+                @Override
                 public void ontTest( OntModel m ) throws Exception {
-					Profile prof = m.getProfile();
-					EnumeratedClass A = m.createEnumeratedClass( NS + "A", null );
-					OntResource a = m.getResource( NS + "a" ).as( OntResource.class );
-					OntResource b = m.getResource( NS + "b" ).as( OntResource.class );
+                    Profile prof = m.getProfile();
+                    EnumeratedClass A = m.createEnumeratedClass( NS + "A", null );
+                    OntResource a = m.getResource( NS + "a" ).as( OntResource.class );
+                    OntResource b = m.getResource( NS + "b" ).as( OntResource.class );
 
-					A.addOneOf( a );
-					assertEquals( "Cardinality should be 1", 1, A.getCardinality( prof.ONE_OF() ) );
-					assertEquals( "Size should be 1", 1, A.getOneOf().size() );
-					assertTrue( "A should have a as enumerated member", A.getOneOf().contains( a ) );
+                    A.addOneOf( a );
+                    assertEquals( "Cardinality should be 1", 1, A.getCardinality( prof.ONE_OF() ) );
+                    assertEquals( "Size should be 1", 1, A.getOneOf().size() );
+                    assertTrue( "A should have a as enumerated member", A.getOneOf().contains( a ) );
 
-					A.addOneOf( b );
-					assertEquals( "Cardinality should be 1", 1, A.getCardinality( prof.ONE_OF() ) );
-					assertEquals( "Size should be 2", 2, A.getOneOf().size() );
-					iteratorTest( A.listOneOf(), new Object[] {a,b} );
+                    A.addOneOf( b );
+                    assertEquals( "Cardinality should be 1", 1, A.getCardinality( prof.ONE_OF() ) );
+                    assertEquals( "Size should be 2", 2, A.getOneOf().size() );
+                    iteratorTest( A.listOneOf(), new Object[] {a,b} );
 
-					A.setOneOf( m.createList( new RDFNode[] {b} ) );
-					assertEquals( "Cardinality should be 1", 1, A.getCardinality( prof.ONE_OF() ) );
-					assertEquals( "Size should be 1", 1, A.getOneOf().size() );
-					assertTrue( "A should have b in the enum", A.hasOneOf( b ) );
-					assertTrue( "A should not have a in the enum", !A.hasOneOf( a ) );
+                    A.setOneOf( m.createList( new RDFNode[] {b} ) );
+                    assertEquals( "Cardinality should be 1", 1, A.getCardinality( prof.ONE_OF() ) );
+                    assertEquals( "Size should be 1", 1, A.getOneOf().size() );
+                    assertTrue( "A should have b in the enum", A.hasOneOf( b ) );
+                    assertTrue( "A should not have a in the enum", !A.hasOneOf( a ) );
 
                     A.removeOneOf( a );
                     assertTrue( "Should have b as an enum value", A.hasOneOf( b ) );
                     A.removeOneOf( b );
                     assertTrue( "Should not have b as an enum value", !A.hasOneOf( b ) );
-				}
-			},
-			new OntTestCase( "IntersectionClass.intersectionOf", true, true, true, false ) {
-				@Override
+                }
+            },
+            new OntTestCase( "IntersectionClass.intersectionOf", true, true, true, false ) {
+                @Override
                 public void ontTest( OntModel m ) throws Exception {
-					Profile prof = m.getProfile();
-					IntersectionClass A = m.createIntersectionClass( NS + "A", null );
-					OntClass B = m.createClass( NS + "B" );
-					OntClass C = m.createClass( NS + "C" );
+                    Profile prof = m.getProfile();
+                    IntersectionClass A = m.createIntersectionClass( NS + "A", null );
+                    OntClass B = m.createClass( NS + "B" );
+                    OntClass C = m.createClass( NS + "C" );
 
-					A.addOperand( B );
-					assertEquals( "Cardinality should be 1", 1, A.getCardinality( prof.INTERSECTION_OF() ) );
-					assertEquals( "Size should be 1", 1, A.getOperands().size() );
-					assertTrue( "A should have a as intersection member", A.getOperands().contains( B ) );
+                    A.addOperand( B );
+                    assertEquals( "Cardinality should be 1", 1, A.getCardinality( prof.INTERSECTION_OF() ) );
+                    assertEquals( "Size should be 1", 1, A.getOperands().size() );
+                    assertTrue( "A should have a as intersection member", A.getOperands().contains( B ) );
 
-					A.addOperand( C );
-					assertEquals( "Cardinality should be 1", 1, A.getCardinality( prof.INTERSECTION_OF() ) );
-					assertEquals( "Size should be 2", 2, A.getOperands().size() );
-					iteratorTest( A.listOperands(), new Object[] {B,C} );
+                    A.addOperand( C );
+                    assertEquals( "Cardinality should be 1", 1, A.getCardinality( prof.INTERSECTION_OF() ) );
+                    assertEquals( "Size should be 2", 2, A.getOperands().size() );
+                    iteratorTest( A.listOperands(), new Object[] {B,C} );
 
-                    ClosableIterator i = A.listOperands();
+                    ClosableIterator<? extends Resource> i = A.listOperands();
                     assertTrue( "Argument should be an OntClass", i.next() instanceof OntClass );
                     i.close();
 
-					A.setOperands( m.createList( new RDFNode[] {C} ) );
-					assertEquals( "Cardinality should be 1", 1, A.getCardinality( prof.INTERSECTION_OF() ) );
-					assertEquals( "Size should be 1", 1, A.getOperands().size() );
-					assertTrue( "A should have C in the intersection", A.hasOperand( C ) );
-					assertTrue( "A should not have B in the intersection", !A.hasOperand( B ) );
+                    A.setOperands( m.createList( new RDFNode[] {C} ) );
+                    assertEquals( "Cardinality should be 1", 1, A.getCardinality( prof.INTERSECTION_OF() ) );
+                    assertEquals( "Size should be 1", 1, A.getOperands().size() );
+                    assertTrue( "A should have C in the intersection", A.hasOperand( C ) );
+                    assertTrue( "A should not have B in the intersection", !A.hasOperand( B ) );
 
                     A.removeOperand( B );
                     assertTrue( "Should have C as an operand", A.hasOperand( C ) );
                     A.removeOperand( C );
                     assertTrue( "Should not have C as an operand", !A.hasOperand( C ) );
-				}
-			},
-			new OntTestCase( "UnionClass.unionOf", true, false, true, false ) {
-				@Override
+                }
+            },
+            new OntTestCase( "UnionClass.unionOf", true, false, true, false ) {
+                @Override
                 public void ontTest( OntModel m ) throws Exception {
-					Profile prof = m.getProfile();
-					UnionClass A = m.createUnionClass( NS + "A", null );
-					OntClass B = m.createClass( NS + "B" );
-					OntClass C = m.createClass( NS + "C" );
+                    Profile prof = m.getProfile();
+                    UnionClass A = m.createUnionClass( NS + "A", null );
+                    OntClass B = m.createClass( NS + "B" );
+                    OntClass C = m.createClass( NS + "C" );
 
-					A.addOperand( B );
-					assertEquals( "Cardinality should be 1", 1, A.getCardinality( prof.UNION_OF() ) );
-					assertEquals( "Size should be 1", 1, A.getOperands().size() );
-					assertTrue( "A should have a as union member", A.getOperands().contains( B ) );
+                    A.addOperand( B );
+                    assertEquals( "Cardinality should be 1", 1, A.getCardinality( prof.UNION_OF() ) );
+                    assertEquals( "Size should be 1", 1, A.getOperands().size() );
+                    assertTrue( "A should have a as union member", A.getOperands().contains( B ) );
 
-					A.addOperand( C );
-					assertEquals( "Cardinality should be 1", 1, A.getCardinality( prof.UNION_OF() ) );
-					assertEquals( "Size should be 2", 2, A.getOperands().size() );
-					iteratorTest( A.listOperands(), new Object[] {B,C} );
+                    A.addOperand( C );
+                    assertEquals( "Cardinality should be 1", 1, A.getCardinality( prof.UNION_OF() ) );
+                    assertEquals( "Size should be 2", 2, A.getOperands().size() );
+                    iteratorTest( A.listOperands(), new Object[] {B,C} );
 
-                    ClosableIterator i = A.listOperands();
+                    ClosableIterator<? extends Resource> i = A.listOperands();
                     assertTrue( "Argument should be an OntClass", i.next() instanceof OntClass );
                     i.close();
 
-					A.setOperands( m.createList( new RDFNode[] {C} ) );
-					assertEquals( "Cardinality should be 1", 1, A.getCardinality( prof.UNION_OF() ) );
-					assertEquals( "Size should be 1", 1, A.getOperands().size() );
-					assertTrue( "A should have C in the union", A.hasOperand( C ) );
-					assertTrue( "A should not have B in the union", !A.hasOperand( B ) );
+                    A.setOperands( m.createList( new RDFNode[] {C} ) );
+                    assertEquals( "Cardinality should be 1", 1, A.getCardinality( prof.UNION_OF() ) );
+                    assertEquals( "Size should be 1", 1, A.getOperands().size() );
+                    assertTrue( "A should have C in the union", A.hasOperand( C ) );
+                    assertTrue( "A should not have B in the union", !A.hasOperand( B ) );
 
                     A.removeOperand( B );
                     assertTrue( "Should have C as an operand", A.hasOperand( C ) );
                     A.removeOperand( C );
                     assertTrue( "Should not have C as an operand", !A.hasOperand( C ) );
-				}
-			},
+                }
+            },
             new OntTestCase( "ComplementClass.complementOf", true, false, true, false ) {
                 @Override
                 public void ontTest( OntModel m ) throws Exception {
@@ -292,7 +292,7 @@ public class TestClassExpression
                     assertTrue( "Should fail to add to a complement", ex );
 
                     ex = false;
-                    try { A.addOperands( NullIterator.instance() ); } catch (UnsupportedOperationException e) {ex = true;}
+                    try { A.addOperands( new NullIterator<Resource>() ); } catch (UnsupportedOperationException e) {ex = true;}
                     assertTrue( "Should fail to add to a complement", ex );
 
                     ex = false;
@@ -1253,8 +1253,8 @@ public class TestClassExpression
                     iteratorTest( C.listDeclaredProperties( false ), new Object[] { p, q, s} );
                     iteratorTest( C.listDeclaredProperties( true ), new Object[] {s} );
 
-                    assertTrue( "declared property should be an ont prop", C.listDeclaredProperties( true ).next() instanceof OntProperty );
-                    assertTrue( "declared property should be an ont prop", C.listDeclaredProperties( false ).next() instanceof OntProperty );
+                    assertNotNull( "declared property should be an ont prop", C.listDeclaredProperties( true ).next() );
+                    assertNotNull( "declared property should be an ont prop", C.listDeclaredProperties( false ).next()  );
                 }
             },
             new OntTestCase( "DataRange.oneOf", true, false, false, false ) {

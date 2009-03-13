@@ -113,7 +113,7 @@ public interface OntResource
      * @return An iterator over the resources equivalent to this resource.
      * @exception OntProfileException If the {@link Profile#SAME_AS()} property is not supported in the current language profile.
      */
-    public ExtendedIterator listSameAs();
+    public ExtendedIterator<? extends Resource> listSameAs();
 
     /**
      * <p>Answer true if this resource is the same as the given resource.</p>
@@ -161,7 +161,7 @@ public interface OntResource
      * @return An iterator over the resources different from this resource.
      * @exception OntProfileException If the {@link Profile#DIFFERENT_FROM()} property is not supported in the current language profile.
      */
-    public ExtendedIterator listDifferentFrom();
+    public ExtendedIterator<? extends Resource> listDifferentFrom();
 
     /**
      * <p>Answer true if this resource is different from the given resource.</p>

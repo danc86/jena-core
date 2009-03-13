@@ -42,7 +42,7 @@ import com.hp.hpl.jena.ontology.*;
  */
 public class FunctionalPropertyImpl
     extends OntPropertyImpl
-    implements FunctionalProperty 
+    implements FunctionalProperty
 {
     // Constants
     //////////////////////////////////
@@ -52,20 +52,21 @@ public class FunctionalPropertyImpl
 
     /**
      * A factory for generating FunctionalProperty facets from nodes in enhanced graphs.
-     * Note: should not be invoked directly by user code: use 
+     * Note: should not be invoked directly by user code: use
      * {@link com.hp.hpl.jena.rdf.model.RDFNode#as as()} instead.
      */
+    @SuppressWarnings("hiding")
     public static Implementation factory = new Implementation() {
         @Override
-        public EnhNode wrap( Node n, EnhGraph eg ) { 
+        public EnhNode wrap( Node n, EnhGraph eg ) {
             if (canWrap( n, eg )) {
                 return new FunctionalPropertyImpl( n, eg );
             }
             else {
                 throw new ConversionException( "Cannot convert node " + n + " to FunctionalProperty");
-            } 
+            }
         }
-            
+
         @Override
         public boolean canWrap( Node node, EnhGraph eg ) {
             // node will support being an FunctionalProperty facet if it has rdf:type owl:FunctionalProperty or equivalent
@@ -85,7 +86,7 @@ public class FunctionalPropertyImpl
      * <p>
      * Construct a functional property node represented by the given node in the given graph.
      * </p>
-     * 
+     *
      * @param n The node that represents the resource
      * @param g The enh graph that contains n
      */

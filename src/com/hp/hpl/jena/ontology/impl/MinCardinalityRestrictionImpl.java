@@ -39,7 +39,7 @@ import com.hp.hpl.jena.ontology.*;
  *         (<a  href="mailto:Ian.Dickinson@hp.com" >email</a>)
  * @version CVS $Id$
  */
-public class MinCardinalityRestrictionImpl 
+public class MinCardinalityRestrictionImpl
     extends RestrictionImpl
     implements MinCardinalityRestriction
 {
@@ -51,24 +51,25 @@ public class MinCardinalityRestrictionImpl
 
     /**
      * A factory for generating MinCardinalityRestriction facets from nodes in enhanced graphs.
-     * Note: should not be invoked directly by user code: use 
+     * Note: should not be invoked directly by user code: use
      * {@link com.hp.hpl.jena.rdf.model.RDFNode#as as()} instead.
      */
+    @SuppressWarnings("hiding")
     public static Implementation factory = new Implementation() {
         @Override
-        public EnhNode wrap( Node n, EnhGraph eg ) { 
+        public EnhNode wrap( Node n, EnhGraph eg ) {
             if (canWrap( n, eg )) {
                 return new MinCardinalityRestrictionImpl( n, eg );
             }
             else {
                 throw new ConversionException( "Cannot convert node " + n + " to MinCardinalityRestriction");
-            } 
+            }
         }
-            
+
         @Override
         public boolean canWrap( Node node, EnhGraph eg ) {
             // node will support being a MinCardinalityRestriction facet if it has rdf:type owl:Restriction or equivalent
-            // and the combination of owl:onProperty and owl:cardinality (or equivalents) 
+            // and the combination of owl:onProperty and owl:cardinality (or equivalents)
             Profile profile = (eg instanceof OntModel) ? ((OntModel) eg).getProfile() : null;
             return (profile != null)  &&  profile.isSupported( node, eg, MinCardinalityRestriction.class );
         }
@@ -85,7 +86,7 @@ public class MinCardinalityRestrictionImpl
      * <p>
      * Construct a min cardinality restriction node represented by the given node in the given graph.
      * </p>
-     * 
+     *
      * @param n The node that represents the resource
      * @param g The enh graph that contains n
      */
@@ -97,14 +98,14 @@ public class MinCardinalityRestrictionImpl
     //////////////////////////////////
 
     // minCardinality
-    
+
     /**
      * <p>Assert that this restriction restricts the property to have the given
      * minimum cardinality. Any existing statements for <code>minCardinality</code>
      * will be removed.</p>
      * @param cardinality The minimum cardinality of the restricted property
-     * @exception OntProfileException If the {@link Profile#MIN_CARDINALITY()} property is not supported in the current language profile.   
-     */ 
+     * @exception OntProfileException If the {@link Profile#MIN_CARDINALITY()} property is not supported in the current language profile.
+     */
     public void setMinCardinality( int cardinality ) {
         setPropertyValue( getProfile().MIN_CARDINALITY(), "MIN_CARDINALITY", getModel().createTypedLiteral( cardinality ) );
     }
@@ -112,24 +113,24 @@ public class MinCardinalityRestrictionImpl
     /**
      * <p>Answer the minimum cardinality of the restricted property.</p>
      * @return The minimum cardinality of the restricted property
-     * @exception OntProfileException If the {@link Profile#MIN_CARDINALITY()} property is not supported in the current language profile.   
-     */ 
+     * @exception OntProfileException If the {@link Profile#MIN_CARDINALITY()} property is not supported in the current language profile.
+     */
     public int getMinCardinality() {
         return objectAsInt( getProfile().MIN_CARDINALITY(), "MIN_CARDINALITY" );
     }
 
     /**
      * <p>Answer true if this property restriction has the given minimum cardinality.</p>
-     * @param cardinality The cardinality to test against 
+     * @param cardinality The cardinality to test against
      * @return True if the given cardinality is the min cardinality of the restricted property in this restriction
-     * @exception OntProfileException If the {@link Profile#MIN_CARDINALITY()} property is not supported in the current language profile.   
+     * @exception OntProfileException If the {@link Profile#MIN_CARDINALITY()} property is not supported in the current language profile.
      */
     public boolean hasMinCardinality( int cardinality ) {
         return hasPropertyValue( getProfile().MIN_CARDINALITY(), "MIN_CARDINALITY", getModel().createTypedLiteral( cardinality ) );
     }
-    
+
     /**
-     * <p>Remove the statement that this restriction has the given minimum cardinality 
+     * <p>Remove the statement that this restriction has the given minimum cardinality
      * for the restricted property.  If this statement
      * is not true of the current model, nothing happens.</p>
      * @param cardinality A min cardinality value to be removed from this restriction
@@ -137,7 +138,7 @@ public class MinCardinalityRestrictionImpl
     public void removeMinCardinality( int cardinality ) {
         removePropertyValue( getProfile().MIN_CARDINALITY(), "MIN_CARDINALITY", getModel().createTypedLiteral( cardinality ) );
     }
-    
+
 
 
     // Internal implementation methods

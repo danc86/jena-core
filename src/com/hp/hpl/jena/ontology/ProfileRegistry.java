@@ -46,20 +46,20 @@ public class ProfileRegistry {
 
     /** The URI that maps to the language profile for OWL-Full */
     public static final String OWL_LANG = OWL.FULL_LANG.getURI();
-    
+
     /** The URI that maps to the language profile for OWL-DL */
     public static final String OWL_DL_LANG = OWL.DL_LANG.getURI();
-    
+
     /** The URI that maps to the language profile for OWL-Lite */
     public static final String OWL_LITE_LANG = OWL.LITE_LANG.getURI();
-    
+
     /** The URI that maps to the language profile for DAML+OIL */
     public static final String DAML_LANG = DAMLVocabulary.NAMESPACE_DAML_2001_03_URI;
-    
+
     /** The URI that maps to the language profile for RDFS */
     public static final String RDFS_LANG = RDFS.getURI();
-    
-    
+
+
     // Static variables
     //////////////////////////////////
 
@@ -70,17 +70,17 @@ public class ProfileRegistry {
         {DAML_LANG,     new DAML_OILProfile()},
         {RDFS_LANG,     new RDFSProfile()}
     };
-    
-    
+
+
     /** Singleton instance */
     private static ProfileRegistry s_instance = new ProfileRegistry();
-    
-    
+
+
     // Instance variables
     //////////////////////////////////
-    
+
     /** Maps from public URI's to language profiles */
-    private Map m_registry = new HashMap();
+    private Map<String,Profile> m_registry = new HashMap<String, Profile>();
 
 
     // Constructors
@@ -96,8 +96,8 @@ public class ProfileRegistry {
             registerProfile( (String) s_initData[i][0], (Profile) s_initData[i][1] );
         }
     }
-    
-    
+
+
     // External signature methods
     //////////////////////////////////
 
@@ -105,40 +105,40 @@ public class ProfileRegistry {
      * <p>
      * Answer the singleton instance
      * </p>
-     * 
+     *
      * @return The singleton registry
      */
     public static ProfileRegistry getInstance() {
         return s_instance;
     }
-    
-    
+
+
     /**
      * <p>
      * Add a language profile with the given URI key
      * </p>
-     * 
+     *
      * @param uri The URI denoting the language
      * @param profile The language profile for the language
      */
     public void registerProfile( String uri, Profile profile ) {
         m_registry.put( uri, profile );
     }
-    
-    
+
+
     /**
      * <p>
      * Answer the language profile for the given language URI, or null if not known.
      * </p>
-     * 
+     *
      * @param uri A URI denoting an ontology language
-     * @return An ontology langugae profile for that language
+     * @return An ontology language profile for that language
      */
     public Profile getProfile( String uri ) {
-        return (Profile) m_registry.get( uri );        
+        return m_registry.get( uri );
     }
-    
-    
+
+
     // Internal implementation methods
     //////////////////////////////////
 

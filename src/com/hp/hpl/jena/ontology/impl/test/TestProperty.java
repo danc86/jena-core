@@ -580,7 +580,7 @@ public class TestProperty
                     assertFalse( iteratorContains( p.listReferringRestrictions(), r2 ) );
                     assertFalse( iteratorContains( p.listReferringRestrictions(), r3 ) );
 
-                    assertTrue( p.listReferringRestrictions().next() instanceof Restriction );
+                    assertNotNull( p.listReferringRestrictions().next() );
                 }
             }
         };

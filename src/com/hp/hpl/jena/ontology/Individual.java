@@ -130,7 +130,7 @@ public interface Individual
      * @return An iterator over the set of this individual's classes. Each member
      * of the iteration will be an {@link OntClass}.
      */
-    public ExtendedIterator listOntClasses( boolean direct );
+    public <T extends OntClass> ExtendedIterator<T> listOntClasses( boolean direct );
 
     /**
      * <p>

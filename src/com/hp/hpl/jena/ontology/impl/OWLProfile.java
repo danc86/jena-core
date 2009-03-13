@@ -190,7 +190,7 @@ public class OWLProfile
             }
             else {
                 // lookup the profile check for this resource
-                SupportsCheck check = (SupportsCheck) getCheckTable().get( type );
+                SupportsCheck check = getCheckTable().get( type );
 
                 // a check must be defined for the test to succeed
                 return (check != null)  && check.doCheck( n, g );
@@ -438,16 +438,16 @@ public class OWLProfile
     //////////////////////////////////
 
     /** Map from resource to syntactic/semantic checks that a node can be seen as the given facet */
-    private static HashMap<Object, Object> s_supportsChecks = new HashMap<Object, Object>();
+    private static HashMap<Class<?>, SupportsCheck> s_supportsChecks = new HashMap<Class<?>, SupportsCheck>();
 
     static {
         // initialise the map of supports checks from a table of static data
         for (int i = 0;  i < s_supportsCheckData.length;  i++) {
-            s_supportsChecks.put( s_supportsCheckData[i][0], s_supportsCheckData[i][1] );
+            s_supportsChecks.put( (Class<?>) s_supportsCheckData[i][0], (SupportsCheck) s_supportsCheckData[i][1] );
         }
     }
 
-    protected Map<Object, Object> getCheckTable() {
+    protected Map<Class<?>, SupportsCheck> getCheckTable() {
         return s_supportsChecks;
     }
 }

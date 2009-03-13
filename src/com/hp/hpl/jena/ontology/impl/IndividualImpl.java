@@ -55,6 +55,7 @@ public class IndividualImpl
      * Note: should not be invoked directly by user code: use
      * {@link com.hp.hpl.jena.rdf.model.RDFNode#as as()} instead.
      */
+    @SuppressWarnings("hiding")
     public static Implementation factory = new Implementation() {
         @Override
         public EnhNode wrap( Node n, EnhGraph eg ) {
@@ -185,8 +186,10 @@ public class IndividualImpl
      * @return An iterator over the set of this individual's classes. Each member
      * of the iteration will be an {@link OntClass}.
      */
-    public ExtendedIterator listOntClasses( boolean direct ) {
-        return listRDFTypes( direct ).mapWith( new AsMapper( OntClass.class ) );
+    @SuppressWarnings("unchecked")
+    public  ExtendedIterator<? extends OntClass> listOntClasses( boolean direct ) {
+        return listRDFTypes( direct ).mapWith( new ResourceAsMapper<OntClass>( OntClass.class ) );
+
     }
 
     /**

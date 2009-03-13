@@ -154,7 +154,7 @@ public abstract class OntTestBase
         protected abstract void ontTest( OntModel m ) throws Exception;
 
         /** Test that an iterator delivers the expected values */
-        protected void iteratorTest( Iterator i, Object[] expected ) {
+        protected void iteratorTest( Iterator<?> i, Object[] expected ) {
             TestUtil.assertIteratorValues( this, i, expected );
         }
 
@@ -169,7 +169,7 @@ public abstract class OntTestBase
         }
 
         /** Answer true if an iterator contains a given value */
-        protected boolean iteratorContains( Iterator i, Object target ) {
+        protected boolean iteratorContains( Iterator<?> i, Object target ) {
             boolean found = false;
             while (i.hasNext()) {
                 found = i.next().equals( target ) || found;

@@ -413,7 +413,7 @@ public interface OntClass
      * @return An iterator over those instances that have this class as one of
      *         the classes to which they belong
      */
-    public ExtendedIterator listInstances();
+    public ExtendedIterator<? extends OntResource> listInstances();
 
 
     /**
@@ -425,7 +425,7 @@ public interface OntClass
      * @return An iterator over those instances that have this class as one of
      *         the classes to which they belong
      */
-    public ExtendedIterator listInstances( boolean direct );
+    public ExtendedIterator<? extends OntResource> listInstances( boolean direct );
 
 
     /**

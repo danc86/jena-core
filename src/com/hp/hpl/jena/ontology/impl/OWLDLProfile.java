@@ -93,8 +93,8 @@ public class OWLDLProfile
             {  AnnotationProperty.class,    new SupportsCheck() {
                 @Override
                 public boolean doCheck( Node n, EnhGraph g ) {
-                    for (Iterator i = ((OntModel) g).getProfile().getAnnotationProperties();  i.hasNext(); ) {
-                        if (((Resource) i.next()).asNode().equals( n )) {
+                    for (Iterator<Resource> i = ((OntModel) g).getProfile().getAnnotationProperties();  i.hasNext(); ) {
+                        if (i.next().asNode().equals( n )) {
                             // a built-in annotation property
                             return true;
                         }
@@ -296,17 +296,17 @@ public class OWLDLProfile
     }
 
     /** Map from resource to syntactic/semantic checks that a node can be seen as the given facet */
-    private static HashMap s_supportsChecks = new HashMap();
+    private static HashMap<Class<?>,SupportsCheck> s_supportsChecks = new HashMap<Class<?>, SupportsCheck>();
 
     static {
         // initialise the map of supports checks from a table of static data
         for (int i = 0;  i < s_supportsCheckData.length;  i++) {
-            s_supportsChecks.put( s_supportsCheckData[i][0], s_supportsCheckData[i][1] );
+            s_supportsChecks.put( (Class<?>) s_supportsCheckData[i][0], (SupportsCheck) s_supportsCheckData[i][1] );
         }
     }
 
     @Override
-    protected Map getCheckTable() {
+    protected Map<Class<?>,SupportsCheck> getCheckTable() {
         return s_supportsChecks;
     }
 

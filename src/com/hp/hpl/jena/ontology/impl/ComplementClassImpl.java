@@ -57,6 +57,7 @@ public class ComplementClassImpl
      * Note: should not be invoked directly by user code: use
      * {@link com.hp.hpl.jena.rdf.model.RDFNode#as as()} instead.
      */
+    @SuppressWarnings("hiding")
     public static Implementation factory = new Implementation() {
         @Override
         public EnhNode wrap( Node n, EnhGraph eg ) {
@@ -145,7 +146,7 @@ public class ComplementClassImpl
      * @exception Always throws UnsupportedOperationException since a complement expression takes only
      * a single argument.
      */
-    public void addOperands( Iterator classes ) {
+    public void addOperands( Iterator<? extends Resource> classes ) {
         throw new UnsupportedOperationException( "ComplementClass is only defined for  a single operand.");
     }
 
@@ -159,12 +160,12 @@ public class ComplementClassImpl
     }
 
     /**
-     * <p>Answer an iterator over all of the clases that are the operands of this
+     * <p>Answer an iterator over all of the classes that are the operands of this
      * Boolean class expression. Each element of the iterator will be an {@link OntClass}.</p>
      * @return An iterator over the operands of the expression.
      * @exception OntProfileException If the operand property is not supported in the current language profile.
      */
-    public ExtendedIterator listOperands() {
+    public ExtendedIterator<? extends OntClass> listOperands() {
         return listAs( getProfile().COMPLEMENT_OF(), "COMPLEMENT_OF", OntClass.class );
     }
 

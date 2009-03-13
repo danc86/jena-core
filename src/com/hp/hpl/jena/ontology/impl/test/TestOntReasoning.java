@@ -273,9 +273,9 @@ public class TestOntReasoning
     //////////////////////////////////
 
     /** Test that an iterator delivers the expected values */
-    protected void iteratorTest( Iterator i, Object[] expected ) {
+    protected void iteratorTest( Iterator<?> i, Object[] expected ) {
         Log logger = LogFactory.getLog( getClass() );
-        List expList = new ArrayList();
+        List<Object> expList = new ArrayList<Object>();
         for (int j = 0; j < expected.length; j++) {
             expList.add( expected[j] );
         }
@@ -294,7 +294,7 @@ public class TestOntReasoning
 
         if (!(expList.size() == 0)) {
             logger.debug( getName() + " Expected iterator results not found" );
-            for (Iterator j = expList.iterator(); j.hasNext(); ) {
+            for (Iterator<?> j = expList.iterator(); j.hasNext(); ) {
                 logger.debug( getName() + " - missing: " + j.next() );
             }
         }

@@ -503,7 +503,7 @@ public class OntPropertyImpl
      * @return An iterator over the properties inverse to this property.
      * @exception OntProfileException If the {@link Profile#INVERSE_OF()} property is not supported in the current language profile.
      */
-    public ExtendedIterator<OntProperty> listInverseOf() {
+    public ExtendedIterator<? extends OntProperty> listInverseOf() {
         return listAs( getProfile().INVERSE_OF(), "INVERSE_OF", OntProperty.class );
     }
 
@@ -781,10 +781,10 @@ public class OntPropertyImpl
                 // in the non-direct case, global properties appear in the ldp
                 // of all classes, but we ignore the built-in classes
                 return ((OntModel) getModel()).listClasses()
-                                              .filterDrop( new Filter() {
+                                              .filterDrop( new Filter<OntClass>() {
                                                 @Override
-                                                public boolean accept( Object o ) {
-                                                    return ((OntClass) o).isOntLanguageTerm();
+                                                public boolean accept( OntClass c ) {
+                                                    return c.isOntLanguageTerm();
                                                 }} );
             }
             else {

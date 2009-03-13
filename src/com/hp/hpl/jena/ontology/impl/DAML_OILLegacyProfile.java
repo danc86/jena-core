@@ -39,7 +39,7 @@ import java.util.*;
  * Vocabulary constants for DAML+OIL March 2001 version. This version of the vocabulary is
  * the one that was in use up to Jena 2.1.  It has been replaced by a new version that
  * uses RDFS namespace terms for subClass and subProperty, which is more normal practice
- * in DAML ontologies. This version is retained for backwards compatability with Jena 2.1
+ * in DAML ontologies. This version is retained for backwards compatibility with Jena 2.1
  * programs.
  * </p>
  *

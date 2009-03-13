@@ -54,6 +54,7 @@ public class QualifiedRestrictionImpl
      * Note: should not be invoked directly by user code: use
      * {@link com.hp.hpl.jena.rdf.model.RDFNode#as as()} instead.
      */
+    @SuppressWarnings("hiding")
     public static Implementation factory = new Implementation() {
         @Override
         public EnhNode wrap( Node n, EnhGraph eg ) {
@@ -66,19 +67,19 @@ public class QualifiedRestrictionImpl
         }
 
         @Override
-        public boolean canWrap( Node node, EnhGraph eg ) 
+        public boolean canWrap( Node node, EnhGraph eg )
             { return isValidQualifiedRestriction( node, eg ); }
     };
-    
+
     private static boolean isValidQualifiedRestriction( Node node, EnhGraph eg )
         {
         // node will support being a QualifiedRestriction facet if it has rdf:type owl:Restriction or equivalent
         Profile profile = (eg instanceof OntModel) ? ((OntModel) eg).getProfile() : null;
         return (profile != null)  &&  profile.isSupported( node, eg, QualifiedRestriction.class );
         }
-    
+
     @Override
-    public boolean isValid() 
+    public boolean isValid()
         { return isValidQualifiedRestriction( asNode(), getGraph() ); }
 
     // Instance variables
