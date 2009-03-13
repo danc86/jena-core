@@ -224,13 +224,13 @@ public class rdfcat
     protected boolean m_include = false;
 
     /** List of URL's that have been loaded already, occurs check */
-    protected Set m_seen = new HashSet();
+    protected Set<String> m_seen = new HashSet<String>();
 
     /** Flag to control whether import/include statements are filtered from merged models */
     protected boolean m_removeIncludeStatements = true;
 
     /** Action queue */
-    protected List m_actionQ = new ArrayList();
+    protected List<RCAction> m_actionQ = new ArrayList<RCAction>();
 
 
     // Constructors
@@ -254,8 +254,8 @@ public class rdfcat
         for (int i = 0; i < m_cmdLine.numItems(); i++) {
             m_actionQ.add(  new ReadAction( m_cmdLine.getItem( i ), getExpectedInput() ) );
         }
-        for (Iterator j = m_actionQ.iterator(); j.hasNext(); ) {
-            ((RCAction) j.next()).run( this );
+        for (Iterator<RCAction> j = m_actionQ.iterator(); j.hasNext(); ) {
+            j.next().run( this );
         }
 
         // generate the output
@@ -286,7 +286,7 @@ public class rdfcat
     */
     public static String getCheckedLanguage( String shortLang )
         {
-        String fullLang = (String) unabbreviate.get( shortLang );
+        String fullLang = unabbreviate.get( shortLang );
         String tryLang = (fullLang == null ? shortLang : fullLang);
         try { new RDFWriterFImpl().getWriter( tryLang ); }
         catch (NoWriterForLangException e)
@@ -297,14 +297,14 @@ public class rdfcat
     /**
         Map from abbreviated names to full names.
     */
-    public static Map unabbreviate = makeUnabbreviateMap();
+    public static Map<String,String> unabbreviate = makeUnabbreviateMap();
 
     /**
         Construct the canonical abbreviation map.
     */
-    protected static Map makeUnabbreviateMap()
+    protected static Map<String,String> makeUnabbreviateMap()
         {
-        Map result = new HashMap();
+        Map<String,String> result = new HashMap<String,String>();
         result.put( "x", "RDF/XML" );
         result.put( "rdf", "RDF/XML" );
         result.put( "rdfxml", "RDF/XML" );
@@ -334,11 +334,11 @@ public class rdfcat
      * try to read using the current default input syntax.
      */
     protected void readInput( String inputName ) {
-        List queue = new ArrayList();
+        List<IncludeQueueEntry> queue = new ArrayList<IncludeQueueEntry>();
         queue.add( new IncludeQueueEntry( inputName, null ) );
 
         while (!queue.isEmpty()) {
-            IncludeQueueEntry entry = (IncludeQueueEntry) queue.remove( 0 );
+            IncludeQueueEntry entry = queue.remove( 0 );
             String in = entry.m_includeURI;
 
             if (!m_seen.contains( in )) {
@@ -380,7 +380,7 @@ public class rdfcat
     /** Add any additional models to include given the rdfs:seeAlso and
      * owl:imports statements in the given model
      */
-    protected void addIncludes( Model inModel, List queue ) {
+    protected void addIncludes( Model inModel, List<IncludeQueueEntry> queue ) {
         // first collect any rdfs:seeAlso statements
         StmtIterator i = inModel.listStatements( null, RDFS.seeAlso, (RDFNode) null );
         while (i.hasNext()) {
@@ -455,7 +455,7 @@ public class rdfcat
         }
 
         /** Answer an iterator over the non-arg items from the command line */
-        public Iterator getItems() {
+        public Iterator<String> getItems() {
             return items.iterator();
         }
     }
