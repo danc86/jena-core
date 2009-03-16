@@ -29,15 +29,13 @@ public class NewRegressionListSubjects extends ModelTestBase
     
     protected Model m;
     
-    @Override
-    public void setUp()
+    @Override public void setUp()
         { 
         m = getModel();
         fillModel();
         }
     
-    @Override
-    public void tearDown()
+    @Override public void tearDown()
         { m = null; }
     
     static final String subjectPrefix = "http://aldabaran/test8/s";

@@ -78,8 +78,8 @@ public class rdfparse {
          wrapped this way so JUnit not a compile-time requirement.
     */
     protected static void runTests( boolean internetTest ) throws Exception { 
-        Class rdfparse = Class.forName( "jena.test.rdfparse" );
-        Constructor constructor = rdfparse.getConstructor( new Class[] {boolean.class} );
+        Class<?> rdfparse = Class.forName( "jena.test.rdfparse" );
+        Constructor<?> constructor = rdfparse.getConstructor( new Class[] {boolean.class} );
         Command c = (Command) constructor.newInstance( new Object[] {new Boolean( internetTest ) } );
         c.execute();
 //        ARPTests.internet = internetTest;

@@ -10,6 +10,7 @@
 package com.hp.hpl.jena.reasoner.test;
 
 import com.hp.hpl.jena.rdf.model.*;
+import com.hp.hpl.jena.reasoner.ValidityReport.Report;
 import com.hp.hpl.jena.reasoner.rulesys.*;
 import com.hp.hpl.jena.reasoner.*;
 import com.hp.hpl.jena.util.FileManager;
@@ -66,8 +67,8 @@ public class ManualExample {
             System.out.println("OK");
         } else {
             System.out.println("Conflicts");
-            for (Iterator i = validity.getReports(); i.hasNext(); ) {
-                ValidityReport.Report report = (ValidityReport.Report)i.next();
+            for (Iterator<Report> i = validity.getReports(); i.hasNext(); ) {
+                ValidityReport.Report report = i.next();
                 System.out.println(" - " + report);
 //                System.out.println(" - " + i.next());
             }
@@ -98,8 +99,8 @@ public class ManualExample {
         for (StmtIterator i = inf.listStatements(A, p, D); i.hasNext(); ) {
             Statement s = i.nextStatement(); 
             System.out.println("Statement is " + s);
-            for (Iterator id = inf.getDerivation(s); id.hasNext(); ) {
-                Derivation deriv = (Derivation) id.next();
+            for (Iterator<Derivation> id = inf.getDerivation(s); id.hasNext(); ) {
+                Derivation deriv = id.next();
                 deriv.printTrace(out, true);
             }
         }
@@ -130,7 +131,7 @@ public class ManualExample {
 //        reasoner.setParameter(ReasonerVocabulary.PROPtraceOn, Boolean.TRUE);
         InfModel inf = ModelFactory.createInfModel(reasoner, rawData);
 //        System.out.println("OK = " + inf.contains(A, r, C));
-        Iterator list = inf.listStatements(A, null, (RDFNode)null);
+        Iterator<Statement> list = inf.listStatements(A, null, (RDFNode)null);
         System.out.println("A * * =>");
         while (list.hasNext()) {
             System.out.println(" - " + list.next());

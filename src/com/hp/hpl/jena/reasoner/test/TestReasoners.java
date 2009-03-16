@@ -16,7 +16,6 @@ import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.ontology.*;
 import com.hp.hpl.jena.util.FileManager;
-import com.hp.hpl.jena.util.IteratorCollection;
 import com.hp.hpl.jena.util.PrintUtil;
 import com.hp.hpl.jena.vocabulary.*;
 
@@ -24,7 +23,6 @@ import junit.framework.TestCase;
 import junit.framework.TestSuite;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
@@ -262,8 +260,8 @@ public class TestReasoners extends TestCase {
         for (ResIterator i = im.listSubjects(); i.hasNext();) {
             Resource base = i.nextResource();
             
-            List directLinks = new ArrayList();
-            for (Iterator j = im.listObjectsOfProperty(base, dp); j.hasNext(); ) {
+            List<RDFNode> directLinks = new ArrayList<RDFNode>();
+            for (NodeIterator j = im.listObjectsOfProperty(base, dp); j.hasNext(); ) {
                 directLinks.add(j.next());
             }
 
@@ -395,7 +393,7 @@ public class TestReasoners extends TestCase {
         OntModel om = ModelFactory.createOntologyModel( OntModelSpec.RDFS_MEM_TRANS_INF, m );
         OntClass rootClass = om.getOntClass( RDFS.Resource.getURI() );
         Resource c = m.getResource("c");
-        Set direct = IteratorCollection.iteratorToSet( rootClass.listSubClasses( true ));
+        Set<OntClass> direct = rootClass.listSubClasses( true ).toSet();
         assertFalse( direct.contains( c ) );
         
     }

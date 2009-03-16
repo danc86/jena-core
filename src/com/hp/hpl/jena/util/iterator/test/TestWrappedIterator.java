@@ -11,7 +11,7 @@ package com.hp.hpl.jena.util.iterator.test;
     some fake base iterator to do the checking, and _close_, ditto.
 */
 
-import com.hp.hpl.jena.graph.Triple;
+import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.graph.test.GraphTestBase;
 import com.hp.hpl.jena.util.iterator.*;
 import java.util.*;
@@ -27,8 +27,8 @@ public class TestWrappedIterator extends GraphTestBase
 
     public void testWrappedIterator()
         {
-        Iterator i = Arrays.asList( new String [] {"bill", "and", "ben"} ).iterator();
-        ExtendedIterator e = WrappedIterator.create( i );
+        Iterator<String> i = Arrays.asList( new String [] {"bill", "and", "ben"} ).iterator();
+        ExtendedIterator<String> e = WrappedIterator.create( i );
         assertTrue( "wrapper has at least one element", e.hasNext() );
         assertEquals( "", "bill", e.next() );
         assertTrue( "wrapper has at least two elements", e.hasNext() );
@@ -40,16 +40,16 @@ public class TestWrappedIterator extends GraphTestBase
     
     public void testUnwrapExtendedIterator()
         {
-        ExtendedIterator i = graphWith( "a R b" ).find( Triple.ANY );
+        ExtendedIterator<Triple> i = graphWith( "a R b" ).find( Triple.ANY );
         assertSame( i, WrappedIterator.create( i ) );
         }
     
     public void testWrappedNoRemove()
         {
-        Iterator base = nodeSet( "a b c" ).iterator();
+        Iterator<Node> base = nodeSet( "a b c" ).iterator();
         base.next();
         base.remove();
-        ExtendedIterator wrapped = WrappedIterator.createNoRemove( base );
+        ExtendedIterator<Node> wrapped = WrappedIterator.createNoRemove( base );
         wrapped.next();
         try { wrapped.remove(); fail( "wrapped-no-remove iterator should deny .remove()" ); }
         catch (UnsupportedOperationException e) { pass(); }

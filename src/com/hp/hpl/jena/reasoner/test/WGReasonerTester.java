@@ -198,8 +198,8 @@ public class WGReasonerTester {
      * @throws RDFException if the test can't be found or fails internally
      */
     public boolean runTests(ReasonerFactory reasonerF, TestCase testcase, Resource configuration) throws IOException {
-        for (Iterator i = listTests().iterator(); i.hasNext(); ) {
-            String test = (String)i.next();
+        for (Iterator<String> i = listTests().iterator(); i.hasNext(); ) {
+            String test = i.next();
             if (!runTest(test, reasonerF, testcase, configuration)) return false;
         }
         return true;
@@ -208,8 +208,8 @@ public class WGReasonerTester {
     /**
      * Return a list of all test names defined in the manifest for this test harness.
      */
-    public List listTests() {
-        List testList = new ArrayList();
+    public List<String> listTests() {
+        List<String> testList = new ArrayList<String>();
         ResIterator tests = testManifest.listResourcesWithProperty(RDF.type, PositiveEntailmentTest);
         while (tests.hasNext()) {
             testList.add(tests.next().toString());
@@ -368,7 +368,7 @@ public class WGReasonerTester {
     private boolean testConclusions(Graph conclusions, Graph result) {
         QueryHandler qh = result.queryHandler();
         Query query = graphToQuery(conclusions);
-        Iterator i = qh.prepareBindings(query, new Node[] {}).executeBindings();
+        Iterator<Domain> i = qh.prepareBindings(query, new Node[] {}).executeBindings();
         return i.hasNext();
     }
 
@@ -377,10 +377,10 @@ public class WGReasonerTester {
      * Translate a conclusions graph into a query pattern
      */
     public static Query graphToQuery(Graph graph) {
-        HashMap bnodeToVar = new HashMap();
+        HashMap<Node, Node> bnodeToVar = new HashMap<Node, Node>();
         Query query = new Query();
-        for (Iterator i = graph.find(null, null, null); i.hasNext(); ) {
-            Triple triple = (Triple)i.next();
+        for (Iterator<Triple> i = graph.find(null, null, null); i.hasNext(); ) {
+            Triple triple = i.next();
             query.addMatch(
                 translate(triple.getSubject(), bnodeToVar),
                 translate(triple.getPredicate(), bnodeToVar),
@@ -395,10 +395,10 @@ public class WGReasonerTester {
      * @param bnodeToVar a map of translations already known about
      * @return a variable node
      */
-    private static Node translate(Node node, HashMap bnodeToVar) {
+    private static Node translate(Node node, HashMap<Node, Node> bnodeToVar) {
         String varnames = "abcdefghijklmnopqrstuvwxyz";
         if (node.isBlank()) {
-            Node t = (Node)bnodeToVar.get(node);
+            Node t = bnodeToVar.get(node);
             if (t == null) {
                int i = bnodeToVar.size();
                if (i > varnames.length()) {

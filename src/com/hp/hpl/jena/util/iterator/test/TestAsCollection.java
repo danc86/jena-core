@@ -34,16 +34,16 @@ public class TestAsCollection extends ModelTestBase
         testReturnsSet( "the avalanch has already started" );
         }
 
-    private Set testReturnsSet( String elements )
+    private Set<String> testReturnsSet( String elements )
         {
-        Set result = setOfStrings( elements );
+        Set<String> result = setOfStrings( elements );
         assertEquals( result, WrappedIterator.create( result.iterator() ).toSet() );
         return result;
         }
 
     private void testReturnsList( String elements )
         {
-        List L = listOfStrings( elements );
+        List<String> L = listOfStrings( elements );
         assertEquals( L, WrappedIterator.create( L.iterator() ).toList() );
         }
     }

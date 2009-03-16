@@ -96,8 +96,8 @@ public class TestCurrentRDFWG extends ReasonerTestBase {
     private static void constructRDFWGtests(TestSuite suite, ReasonerFactory rf, Resource config) throws IOException {
         JenaParameters.enableWhitespaceCheckingOfTypedLiterals = true;
         WGReasonerTester tester = new WGReasonerTester("Manifest.rdf", TEST_DIR);
-        for (Iterator i = tester.listTests().iterator(); i.hasNext(); ) {
-            String test = (String)i.next();
+        for (Iterator<String> i = tester.listTests().iterator(); i.hasNext(); ) {
+            String test = i.next();
             suite.addTest(new TestReasonerWG(tester, test, rf, config));
         }
     }        
