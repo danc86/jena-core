@@ -59,12 +59,10 @@ public class SimpleReifierFragmentsMap implements ReifierFragmentsMap
         else
             {
             final Iterator<Map.Entry<Node, Fragments>> it = forwardMap.entrySet().iterator();   
-            return new FragmentTripleIterator( t, it )
+            return new FragmentTripleIterator<Fragments>( t, it )
                 {
-                @Override public void fill( GraphAdd ga, Node n, Object fragmentsObject )
-                    { 
-                    ((Fragments) fragmentsObject).includeInto( ga );    
-                    }
+                @Override public void fill( GraphAdd ga, Node n, Fragments fragmentsObject )
+                    { fragmentsObject.includeInto( ga ); }
                 };
             }
         }

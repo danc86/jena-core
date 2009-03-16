@@ -24,6 +24,7 @@ import com.hp.hpl.jena.datatypes.RDFDatatype;
 import com.hp.hpl.jena.datatypes.TypeMapper;
 import com.hp.hpl.jena.datatypes.xsd.XSDDatatype;
 import com.hp.hpl.jena.graph.Node;
+import com.hp.hpl.jena.rdf.model.AnonId;
 import com.hp.hpl.jena.reasoner.ReasonerException;
 import com.hp.hpl.jena.reasoner.TriplePattern;
 import com.hp.hpl.jena.shared.JenaException;
@@ -812,6 +813,8 @@ public class Rule implements ClauseEntry {
             } else if (token.startsWith("<") && token.endsWith(">")) {
                 String uri = token.substring(1, token.length()-1);
                 return Node.createURI(uri);
+            } else if (token.startsWith( "_" )) { // TODO rationalise [this is for the RIF code]
+                return Node.createAnon( new AnonId( token.substring( 1 ) ) );
             } else if (token.indexOf(':') != -1) {
                 String exp = prefixMapping.expandPrefix(token); // Local map first
                 exp = PrintUtil.expandQname(exp);  // Retain global map for backward compatibility
