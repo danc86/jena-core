@@ -63,7 +63,7 @@ public abstract class NodeToTriplesMapBase
         The nodes which appear in the index position of the stored triples; useful
         for eg listSubjects().
     */
-    public final Iterator domain()
+    public final Iterator<Node> domain()
         { return bunchMap.keyIterator(); }
 
     protected final Object getIndexField( Triple t )

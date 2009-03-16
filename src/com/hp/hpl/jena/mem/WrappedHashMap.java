@@ -15,7 +15,7 @@ import com.hp.hpl.jena.util.iterator.*;
 */
 public class WrappedHashMap implements BunchMap
     {
-    protected final Map map = CollectionFactory.createHashedMap();
+    protected final Map<Object, TripleBunch> map = CollectionFactory.createHashedMap();
     
     public void clear()
         { map.clear(); }
@@ -24,7 +24,7 @@ public class WrappedHashMap implements BunchMap
         { return map.size(); }
 
     public TripleBunch get( Object key )
-        { return (TripleBunch) map.get( key ); }
+        { return map.get( key ); }
 
     public void put( Object key, TripleBunch value )
         { map.put( key, value ); }
@@ -32,7 +32,7 @@ public class WrappedHashMap implements BunchMap
     public void remove( Object key )
         { map.remove( key ); }
 
-    public ExtendedIterator keyIterator()
+    public ExtendedIterator<Object> keyIterator()
         { return WrappedIterator.create( map.keySet().iterator() ); }
     }
 

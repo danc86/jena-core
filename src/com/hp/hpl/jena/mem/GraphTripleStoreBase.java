@@ -86,18 +86,17 @@ public abstract class GraphTripleStoreBase implements TripleStore
      public boolean isEmpty()
          { return subjects.isEmpty(); }
      
-     public ExtendedIterator listSubjects()
-         { return WrappedIterator.createNoRemove( subjects.domain() ); }
+     public ExtendedIterator<Node> listSubjects()
+         { return WrappedIterator.<Node>createNoRemove( subjects.domain() ); }
 
-     public ExtendedIterator listPredicates()
-         { return WrappedIterator.createNoRemove( predicates.domain() ); }
+     public ExtendedIterator<Node> listPredicates()
+         { return WrappedIterator.<Node>createNoRemove( predicates.domain() ); }
      
-     public ExtendedIterator listObjects()
+     public ExtendedIterator<Node> listObjects()
          {
          return new ObjectIterator( objects.domain() )
              {
-             @Override
-            protected Iterator iteratorFor( Object y )
+             @Override protected Iterator iteratorFor( Object y )
                  { return objects.iteratorForIndexed( y ); }
              };
          }
@@ -128,7 +127,7 @@ public abstract class GraphTripleStoreBase implements TripleStore
          (ANY, P, O) searches on largish models with few predicates declined
          dramatically - specifically on the not-galen.owl ontology.
      */
-     public ExtendedIterator find( TripleMatch tm )
+     public ExtendedIterator<Triple> find( TripleMatch tm )
          {
          Triple t = tm.asTriple();
          Node pm = t.getPredicate();
