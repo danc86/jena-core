@@ -212,7 +212,7 @@ public abstract class AbstractTestGraphMaker extends GraphTestBase
     */
     public void testListNoGraphs()
         { 
-        Set s = iteratorToSet( gf.listGraphs() );
+        Set<String> s = gf.listGraphs().toSet();
         if (s.size() > 0)
             fail( "found names from 'empty' graph maker: " + s );
         }
@@ -227,7 +227,7 @@ public abstract class AbstractTestGraphMaker extends GraphTestBase
         Graph X = gf.createGraph( x );
         Graph Y = gf.createGraph( y );
         Graph Z = gf.createGraph( z );
-        Set wanted = setOfStrings( x + " " + y + " " + z );
+        Set<String> wanted = setOfStrings( x + " " + y + " " + z );
         assertEquals( wanted, iteratorToSet( gf.listGraphs() ) ); 
         X.close(); Y.close(); Z.close(); }
         
@@ -241,7 +241,7 @@ public abstract class AbstractTestGraphMaker extends GraphTestBase
         Graph Y = gf.createGraph( y );
         Graph Z = gf.createGraph( z );
         gf.removeGraph( x );
-        Set s = iteratorToSet( gf.listGraphs() );
+        Set<String> s = iteratorToSet( gf.listGraphs() );
         assertEquals( setOfStrings( y + " " + z ), s );
         X.close(); Y.close(); Z.close();
         }

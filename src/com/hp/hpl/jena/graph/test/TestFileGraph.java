@@ -125,7 +125,7 @@ public class TestFileGraph extends GraphTestBase
 
     public void testClosingNotifys()
         {
-        final List history = new ArrayList();
+        final List<File> history = new ArrayList<File>();
         FileGraph.NotifyOnClose n = new FileGraph.NotifyOnClose() 
             {
             public void notifyClosed( File f )
@@ -133,14 +133,14 @@ public class TestFileGraph extends GraphTestBase
             };
         File file = FileUtils.tempFileName( "fileGraph", ".nt" );
         Graph g = new FileGraph( n, file, true, true, ReificationStyle.Minimal );
-        assertEquals( new ArrayList(), history );
+        assertEquals( new ArrayList<File>(), history );
         g.close();
         assertEquals( oneElementList( file ), history );
         }
     
-    protected List oneElementList( Object x )
+    protected List<Object> oneElementList( Object x )
         {
-        List result = new ArrayList();
+        List<Object> result = new ArrayList<Object>();
         result.add( x );
         return result;
         }

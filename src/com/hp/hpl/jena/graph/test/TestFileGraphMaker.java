@@ -82,7 +82,7 @@ public class TestFileGraphMaker extends AbstractTestGraphMaker
         File scratch = FileUtils.getScratchDirectory( "jena-test-FileGraphMaker-forgets" );
         FileGraphMaker m = new FileGraphMaker( scratch.getPath(), ReificationStyle.Minimal, true );
         m.createGraph( "example" ).close();
-        assertEquals( new HashSet(), iteratorToSet( m.listGraphs() ) );
+        assertEquals( new HashSet<String>(), m.listGraphs().toSet() );
         m.close();
         }
     

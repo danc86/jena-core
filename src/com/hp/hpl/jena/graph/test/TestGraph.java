@@ -75,11 +75,9 @@ public class TestGraph extends GraphTestBase
     public void testListSubjectsDoesntUseFind()
         {
         final boolean [] called = {false};
-        
         Graph g = Factory.createGraphMem();
-        
-        ExtendedIterator subjects = g.queryHandler().subjectsFor( null, null );
-        Set s = CollectionFactory.createHashedSet();
+        ExtendedIterator<Node> subjects = g.queryHandler().subjectsFor( null, null );
+        Set<Node> s = CollectionFactory.createHashedSet();
         while (subjects.hasNext()) s.add( subjects.next() );
         assertFalse( "find should not have been called", called[0] );
         }   
@@ -87,11 +85,9 @@ public class TestGraph extends GraphTestBase
     public void testListPredicatesDoesntUseFind()
         {
         final boolean [] called = {false};
-        
         Graph g = Factory.createGraphMem();
-        
-        ExtendedIterator predicates = g.queryHandler().predicatesFor( null, null );
-        Set s = CollectionFactory.createHashedSet();
+        ExtendedIterator<Node> predicates = g.queryHandler().predicatesFor( null, null );
+        Set<Node> s = CollectionFactory.createHashedSet();
         while (predicates.hasNext()) s.add( predicates.next() );
         assertFalse( "find should not have been called", called[0] );
         }
@@ -99,11 +95,9 @@ public class TestGraph extends GraphTestBase
     public void testListObjectsDoesntUseFind()
         {
         final boolean [] called = {false};
-        
         Graph g = Factory.createGraphMem();
-        
-        ExtendedIterator subjects = g.queryHandler().objectsFor( null, null );
-        Set s = CollectionFactory.createHashedSet();
+        ExtendedIterator<Node> subjects = g.queryHandler().objectsFor( null, null );
+        Set<Node> s = CollectionFactory.createHashedSet();
         while (subjects.hasNext()) s.add( subjects.next() );
         assertFalse( "find should not have been called", called[0] );
         }   

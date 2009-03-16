@@ -23,9 +23,9 @@ public class TestFindLiterals extends GraphTestBase
     public TestFindLiterals( String name )
         { super( name ); }
 
-    static final Map1 getObject = new Map1() 
+    static final Map1<Triple, Node> getObject = new Map1<Triple, Node>() 
         {
-        public Object map1( Object o ) { return ((Triple) o).getObject(); }
+        public Node map1( Triple o ) { return o.getObject(); }
         };
     
     public static TestFindLiterals aTest
@@ -45,8 +45,7 @@ public class TestFindLiterals extends GraphTestBase
                 Node literal = NodeCreateUtils.create( search );
             //
                 assertEquals( "graph has wrong size", n, g.size() );
-                Set got = iteratorToSet
-                    ( g.find( Node.ANY, Node.ANY, literal ).mapWith( getObject ) );
+                Set<Node> got = g.find( Node.ANY, Node.ANY, literal ).mapWith( getObject ).toSet();
                 assertEquals( nodeSet( results ), got );
                 }
             };
