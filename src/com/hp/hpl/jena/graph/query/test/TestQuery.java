@@ -19,7 +19,7 @@ public class TestQuery extends QueryTestBase
 
     public void testEmptyQueryPattern()
         {
-        assertEquals( new ArrayList(), new Query().getPattern() );
+        assertEquals( new ArrayList<Triple>(), new Query().getPattern() );
         }
     
     public void testIOneTriple()
@@ -33,7 +33,7 @@ public class TestQuery extends QueryTestBase
     public void testSeveralTriples()
         {
         Triple [] triples = tripleArray( "a P b; c Q ?d; ?e R '17'" );
-        List expected = new ArrayList();
+        List<Triple> expected = new ArrayList<Triple>();
         Query q = new Query();
         for (int i = 0; i < triples.length; i += 1)
             {

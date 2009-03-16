@@ -48,14 +48,14 @@ public class TestQueryTriple extends QueryTestBase
         {
         Mapping m = new Mapping( new Node[0] );
         Mapping m2 = new Mapping( new Node[0] );
-        Set s = new HashSet();
+        Set<Node> s = new HashSet<Node>();
         QueryTriple q = QueryTriple.classify( F, m, t );
         testClassifiedOK( t.getSubject(), m2, s, q.S );
         testClassifiedOK( t.getPredicate(), m2, s, q.P );
         testClassifiedOK( t.getObject(), m2, s, q.O );
         }
 
-    protected void testClassifiedOK( Node node, Mapping m2, Set s, QueryNode q )
+    protected void testClassifiedOK( Node node, Mapping m2, Set<Node> s, QueryNode q )
         {
         assertSame( node, q.node );
         assertSame( QueryNode.classify( F, m2, s, node ).getClass(), q.getClass() );

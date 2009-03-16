@@ -8,6 +8,7 @@ package com.hp.hpl.jena.graph.query.test;
 
 import java.util.*;
 
+import com.hp.hpl.jena.graph.Node;
 import com.hp.hpl.jena.graph.query.Domain;
 
 import junit.framework.*;
@@ -56,7 +57,7 @@ public class TestDomain extends QueryTestBase
     public void testEqualsList()
         {
         Domain d = new Domain( 2 );
-        List L = new ArrayList();
+        List<Node> L = new ArrayList<Node>();
         d.setElement( 0, node( "a" ) ); L.add( node( "a" ) );
         d.setElement( 1, node( "b" ) ); L.add( node( "b" ) );
         assertEquals( L, d );

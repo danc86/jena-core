@@ -6,10 +6,9 @@
 
 package com.hp.hpl.jena.graph.query.test;
 
-import java.util.*;
-
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.graph.query.Query;
+import com.hp.hpl.jena.util.iterator.ExtendedIterator;
 import com.hp.hpl.jena.vocabulary.RDF;
 
 import junit.framework.*;
@@ -32,23 +31,23 @@ public class TestQueryReification extends QueryTestBase
         {  
         Graph g = geGraphSPO();
         Query q = new Query().addMatch( Query.X, RDF.Nodes.subject, Query.S );
-        Iterator it = q.executeBindings( g, new Node[] {Query.X, Query.S} ).mapWith( select(1) );
-        assertEquals( nodeSet( "S" ), iteratorToSet( it ) );
+        ExtendedIterator<Node> it = q.executeBindings( g, new Node[] {Query.X, Query.S} ).mapWith( select(1) );
+        assertEquals( nodeSet( "S" ), it.toSet() );
         }
     public void testP()
         {  
         Graph g = geGraphSPO();
         Query q = new Query().addMatch( Query.X, RDF.Nodes.predicate, Query.P );
-        Iterator it = q.executeBindings( g, new Node[] {Query.X, Query.P} ).mapWith( select(1) );
-        assertEquals( nodeSet( "P" ), iteratorToSet( it ) );
+        ExtendedIterator<Node> it = q.executeBindings( g, new Node[] {Query.X, Query.P} ).mapWith( select(1) );
+        assertEquals( nodeSet( "P" ), it.toSet() );
         }
     
     public void testO()
         {  
         Graph g = geGraphSPO();
         Query q = new Query().addMatch( Query.X, RDF.Nodes.object, Query.O );
-        Iterator it = q.executeBindings( g, new Node[] {Query.X, Query.O} ).mapWith( select(1) );
-        assertEquals( nodeSet( "O" ), iteratorToSet( it ) );
+        ExtendedIterator<Node> it = q.executeBindings( g, new Node[] {Query.X, Query.O} ).mapWith( select(1) );
+        assertEquals( nodeSet( "O" ), it.toSet() );
         }
     
     protected Graph geGraphSPO()

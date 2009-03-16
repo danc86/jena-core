@@ -74,12 +74,10 @@ public abstract class QueryTestBase extends GraphTestBase
         Answer a filter that selects the <code>index</code>th element of the
         list it's given.
     */
-    protected Map1 select( final int index )
+    protected Map1<Domain, Node> select( final int index )
         {
-        return new Map1() 
-            { 
-            public Object map1( Object o ) { return ((List) o).get( index ); }
-            };
+        return new Map1<Domain, Node>() 
+            { public Node map1( Domain o ) { return o.get( index ); } };
         }
 
     /**
