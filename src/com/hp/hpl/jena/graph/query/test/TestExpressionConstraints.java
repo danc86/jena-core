@@ -167,7 +167,7 @@ public class TestExpressionConstraints extends QueryTestBase
         Expression e1 = notEqual( X, Y ), e2 = notEqual( X, Z );
         Query q = new Query().addConstraint( Dyadic.and( e1, e2 ) );
         Set<Expression> eBoth = CollectionFactory.createHashedSet(); eBoth.add( e1 ); eBoth.add( e2 );
-        Set s = iteratorToSet( q.getConstraints().iterator() );
+        Set<Expression> s = iteratorToSet( q.getConstraints().iterator() );
         assertEquals( eBoth, s );
         }
     

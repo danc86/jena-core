@@ -6,8 +6,6 @@
 
 package com.hp.hpl.jena.graph.query.test;
 
-import java.util.List;
-
 import com.hp.hpl.jena.graph.Node;
 import com.hp.hpl.jena.graph.query.*;
 import com.hp.hpl.jena.graph.test.GraphTestBase;
@@ -32,8 +30,7 @@ public abstract class QueryTestBase extends GraphTestBase
         { 
         return new Dyadic( asExpression( x ), "http://jena.hpl.hp.com/constraints/NE", asExpression( y ) )
         	{
-            @Override
-            public boolean evalBool( Object x, Object y )
+            @Override public boolean evalBool( Object x, Object y )
                 { return !x.equals( y ); }
         	};  
         }
@@ -46,8 +43,7 @@ public abstract class QueryTestBase extends GraphTestBase
         { 
         return new Dyadic( asExpression( x ), "http://jena.hpl.hp.com/constraints/EQ", asExpression( y ) ) 
         	{            
-            @Override
-            public boolean evalBool( Object x, Object y )
+            @Override public boolean evalBool( Object x, Object y )
                 { return x.equals( y ); }
         	};  
         }
@@ -61,8 +57,7 @@ public abstract class QueryTestBase extends GraphTestBase
 	    {
 	    return new Dyadic( asExpression( x ), "http://jena.hpl.hp.com/constraints/MATCHES", asExpression( y ) ) 
 	        {
-	        @Override
-            public boolean evalBool( Object L, Object R )
+	        @Override public boolean evalBool( Object L, Object R )
 	            {
                 Node l = (Node) L, r = (Node) R;
                 return l.toString( false ).indexOf( r.toString( false ) ) > -1; 
@@ -103,8 +98,8 @@ public abstract class QueryTestBase extends GraphTestBase
      	A Map1 (suitable for a .mapWith iterator conversion) which 
      	assumes the elements are lists and extracts their first elements.
     */
-    protected static Map1 getFirst = new Map1() 
-    	{ public Object map1( Object x ) { return ((List) x).get(0); } };  
+    protected static Map1<Domain, Node> getFirst = new Map1<Domain, Node>() 
+    	{ public Node map1( Domain x ) { return x.get(0); } };  
     
     /**
        An IndexValues with no elements - ever slot maps to null

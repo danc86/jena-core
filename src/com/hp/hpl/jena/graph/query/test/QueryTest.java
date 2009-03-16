@@ -33,16 +33,14 @@ public class QueryTest extends TestCase
         {
         public TestQueryGraphMem( String name ) { super( name ); }
         
-        @Override
-        public Graph getGraph() { return Factory.createGraphMem(); }       
+        @Override public Graph getGraph() { return Factory.createGraphMem(); }       
         }
     
     public static class TestQuerySmallGraphMem extends AbstractTestQuery
         {
         public TestQuerySmallGraphMem( String name ) { super( name ); }
         
-        @Override
-        public Graph getGraph() { return new SmallGraphMem(); }       
+        @Override public Graph getGraph() { return new SmallGraphMem(); }       
         }
      
     }

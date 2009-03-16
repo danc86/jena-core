@@ -54,7 +54,7 @@ public class TestEarlyConstraints extends QueryTestBase
                 return super.find( tm ); 
                 }
             };
-        Set s = iteratorToSet( q.executeBindings( g, new Node[] {Query.S} ) .mapWith ( getFirst ) );
+        Set<Node> s = q.executeBindings( g, new Node[] {Query.S} ) .mapWith ( getFirst ).toSet();
         assertEquals( nodeSet( "c" ), s );
         assertEquals( 1, count[0] );
         }
