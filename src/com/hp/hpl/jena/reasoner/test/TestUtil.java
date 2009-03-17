@@ -30,7 +30,7 @@ public class TestUtil {
      * @param it The iterator to test
      * @param vals The expected values of the iterator
      */
-    public static void assertIteratorValues(TestCase testCase, Iterator it, Object[] vals) {
+    public static void assertIteratorValues(TestCase testCase, Iterator<?> it, Object[] vals) {
         assertIteratorValues( testCase, it, vals, 0 );
     }
     
@@ -44,7 +44,7 @@ public class TestUtil {
      * @param anonCount If non zero, count the number of anonymous resources returned by <code>it</code>,
      * and don't check these resources against the expected <code>vals</code>.
      */
-    public static void assertIteratorValues(TestCase testCase, Iterator it, Object[] vals, int countAnon ) {
+    public static void assertIteratorValues(TestCase testCase, Iterator<?> it, Object[] vals, int countAnon ) {
         Log logger = LogFactory.getLog( testCase.getClass() );
         
         boolean[] found = new boolean[vals.length];
@@ -117,7 +117,7 @@ public class TestUtil {
     /**
      * Check the length of an iterator.
      */
-    public static void assertIteratorLength(Iterator it, int expectedLength) {
+    public static void assertIteratorLength(Iterator<?> it, int expectedLength) {
         int length = 0;
         while (it.hasNext()) {
             it.next();

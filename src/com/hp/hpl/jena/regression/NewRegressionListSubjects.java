@@ -63,15 +63,16 @@ public class NewRegressionListSubjects extends ModelTestBase
         return result;
         }
     
-    public void testListResourcesOnObject()
-        {
-        Object d = new Date();
-        Model m = modelWithStatements( "" );
-        m.addLiteral( resource( "S" ), property( "P" ), d );
-        m.addLiteral( resource( "X" ), property( "P" ), new Object() );
-        List answers = m.listResourcesWithProperty( property( "P" ), d ).toList();
-        assertEquals( listOfOne( resource( "S" ) ), answers );
-        }
+// the methods are deprecated, the tests eliminated
+//    public void testListResourcesOnObject()
+//        {
+//        Object d = new Date();
+//        Model m = modelWithStatements( "" );
+//        m.addLiteral( resource( "S" ), property( "P" ), d );
+//        m.addLiteral( resource( "X" ), property( "P" ), new Object() );
+//        List answers = m.listResourcesWithProperty( property( "P" ), d ).toList();
+//        assertEquals( listOfOne( resource( "S" ) ), answers );
+//        }
     
     public void test8()  
         {

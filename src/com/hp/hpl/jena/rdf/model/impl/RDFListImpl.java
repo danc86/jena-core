@@ -63,8 +63,7 @@ public class RDFListImpl
      */
     @SuppressWarnings("hiding")
     public static Implementation factory = new Implementation() {
-        @Override
-        public EnhNode wrap( Node n, EnhGraph eg ) { 
+        @Override public EnhNode wrap( Node n, EnhGraph eg ) { 
             if (canWrap( n, eg )) {
                 RDFListImpl impl = new RDFListImpl( n, eg );
                 
@@ -84,8 +83,7 @@ public class RDFListImpl
             } 
         }
             
-        @Override
-        public boolean canWrap( Node node, EnhGraph eg ) {
+        @Override public boolean canWrap( Node node, EnhGraph eg ) {
             Graph g = eg.asGraph();
             
             // if we are using a language profile, get the first, rest and next resources from there
@@ -163,7 +161,7 @@ public class RDFListImpl
     public Resource listNil()           { return m_listNil; }
     public Property listFirst()         { return m_listFirst; }
     public Property listRest()          { return m_listRest; }
-    public Class<RDFList> listAbstractionClass() { return RDFList.class; }
+    public Class<? extends RDFList> listAbstractionClass() { return RDFList.class; }
     
     
     /**

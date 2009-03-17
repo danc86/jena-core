@@ -64,7 +64,7 @@ public class GraphTestBase extends JenaTestBase
     /**
         Answer a set of the elements of <code>A</code>.
     */
-    public Set<Object> arrayToSet( Object [] A )
+    public <T> Set<T> arrayToSet( T [] A )
         { return CollectionFactory.createHashedSet( Arrays.asList( A ) ); }
     
     /**

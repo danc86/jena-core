@@ -318,7 +318,7 @@ public class TransitiveGraphCache implements Finder {
             for (Iterator<GraphNode> i = members.iterator(); i.hasNext(); ) {
             	GraphNode m = i.next();
             	if (m.aliases instanceof Set) {
-            		newAliases.addAll((Set)m.aliases);
+            		newAliases.addAll((Set<GraphNode>)m.aliases);
             	} else {
             		newAliases.add(m);
             	}
@@ -379,11 +379,11 @@ public class TransitiveGraphCache implements Finder {
          * Create a list of triples for a given set of successors to this node.
          */
         private List<Triple> triplesForSuccessors(Node base, boolean closed, TransitiveGraphCache tgc) {
-            Set successors = closed ? succClosed : succ;
+            Set<GraphNode> successors = closed ? succClosed : succ;
             ArrayList<Triple> result = new ArrayList<Triple>(successors.size() + 10);
             result.add(new Triple(base, tgc.closedPredicate, base));    // implicit reflexive case 
-            for (Iterator i = successors.iterator(); i.hasNext(); ) {
-                GraphNode s = (GraphNode)i.next();
+            for (Iterator<GraphNode> i = successors.iterator(); i.hasNext(); ) {
+                GraphNode s = i.next();
                 result.add(new Triple(base, tgc.closedPredicate, s.rdfNode));
                 if (s.aliases instanceof Set) {
                     for (Iterator j = ((Set)s.aliases).iterator(); j.hasNext(); ) {
@@ -600,7 +600,7 @@ public class TransitiveGraphCache implements Finder {
         Node predicate; 
         
         /** Iterator over the successor nodes for the baseNode */
-        Iterator succIt = null;
+        Iterator<GraphNode> succIt = null;
         
         /** The current successor being processed */
         GraphNode succ;
@@ -648,7 +648,7 @@ public class TransitiveGraphCache implements Finder {
             
             if (succIt != null) {
                 while (succIt.hasNext()) {
-                    succ = (GraphNode)succIt.next();
+                    succ = succIt.next();
                     if (succ == node) continue; // Skip accidental reflexive cases, already done
                     if (succ.aliases instanceof Set) {
                         aliasesIt = ((Set)succ.aliases).iterator();
@@ -665,7 +665,7 @@ public class TransitiveGraphCache implements Finder {
                 GraphNode lead = node.leadNode();
                 succIt = (closed ? lead.succClosed : lead.succ).iterator();
                 if (lead.aliases instanceof Set) {
-                    succIt = new ConcatenatedIterator(succIt, ((Set)lead.aliases).iterator());
+                    succIt = new ConcatenatedIterator<GraphNode>(succIt, ((Set<GraphNode>)lead.aliases).iterator());
                 }
                 next = new Triple(nodeN, predicate, nodeN); // Implicit reflexive case
             } else {
