@@ -464,7 +464,7 @@ public class TestTypedLiterals extends TestCase {
      * Helper for testDecimalCannonicalize. Run a single
      * cannonicalization test on a value specified in string form.
      */
-    private void doTestDecimalCanonicalize(String value, String expected, Class expectedClass) {
+    private void doTestDecimalCanonicalize(String value, String expected, Class<?> expectedClass) {
         Object normalized = XSDDatatype.XSDdecimal.cannonicalise( new BigDecimal(value) );
         assertEquals(expected, normalized.toString());
         assertEquals(expectedClass, normalized.getClass());
@@ -1146,7 +1146,7 @@ public class TestTypedLiterals extends TestCase {
     /**
      * Check can legally construct a literal with given lex, value and dtype
      */
-    public void checkLegalLiteral(String lex, RDFDatatype dtype, Class jtype, Object value) {
+    public void checkLegalLiteral(String lex, RDFDatatype dtype, Class<?> jtype, Object value) {
         Literal l = m.createTypedLiteral(lex, dtype);
         assertEquals(l.getValue().getClass(), jtype);
         assertEquals(l.getValue(), value);

@@ -67,7 +67,7 @@ public class FasterTripleStore extends GraphTripleStoreBase implements TripleSto
             {
             protected final QueryNode p = pt.P;
         
-            public Iterator find( Domain d )
+            public Iterator<Triple> find( Domain d )
                 {
                 Node P = p.finder( d );
                 if (P.isConcrete())
@@ -76,13 +76,10 @@ public class FasterTripleStore extends GraphTripleStoreBase implements TripleSto
                     return subjects.iterateAll();
                 }
     
-            @Override
-            public void applyToTriples( Domain d, Matcher m, StageElement next )
+            @Override public void applyToTriples( Domain d, Matcher m, StageElement next )
                 {
-                Iterator it = find( d );
-                while (it.hasNext())
-                    if (m.match( d, (Triple) it.next() )) 
-                         next.run( d );
+                Iterator<Triple> it = find( d );
+                while (it.hasNext()) if (m.match( d, it.next() )) next.run( d );
                 }
             };
         }

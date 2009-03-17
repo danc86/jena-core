@@ -15,14 +15,14 @@ import com.hp.hpl.jena.rdf.model.ModelReader;
 
 public class MemoryModelGetter implements ModelGetter
 	{
-	protected HashMap models = new HashMap();
+	protected HashMap<String, Model> models = new HashMap<String, Model>();
 	
 	public Model getModel(String URL) 
-		{ return (Model) models.get( URL ); }
+		{ return models.get( URL ); }
 	
 	public Model getModel(String URL, ModelReader loadIfAbsent) 
 		{
-		Model m = (Model) models.get( URL );
+		Model m = models.get( URL );
 		if (m == null) models.put( URL, m = ModelFactory.createDefaultModel() );
 		return m;
 		}

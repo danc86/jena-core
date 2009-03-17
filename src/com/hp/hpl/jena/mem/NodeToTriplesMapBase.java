@@ -90,7 +90,7 @@ public abstract class NodeToTriplesMapBase
         Answer an iterator over all the triples that are indexed by the item <code>y</code>.
         Note that <code>y</code> need not be a Node (because of indexing values).
     */
-    public abstract Iterator iteratorForIndexed( Object y );
+    public abstract Iterator<Triple> iteratorForIndexed( Object y );
     
     /**
         Answer an iterator over all the triples in this NTM.

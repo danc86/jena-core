@@ -9,7 +9,7 @@
  *****************************************************************/
 package com.hp.hpl.jena.rdf.model.impl;
 
-import com.hp.hpl.jena.graph.Graph;
+import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.reasoner.*;
 import java.util.Iterator;
@@ -114,7 +114,7 @@ public class InfModelImpl extends ModelCom implements InfModel {
      * @param object    The value sought
      */ 
     public StmtIterator listStatements( Resource subject, Property predicate, RDFNode object, Model posit ) {
-        Iterator iter = getInfGraph().find(asNode(subject), asNode(predicate), asNode(object), posit.getGraph());
+        Iterator<Triple> iter = getInfGraph().find(asNode(subject), asNode(predicate), asNode(object), posit.getGraph());
         return IteratorFactory.asStmtIterator(iter,this);
     }
     
@@ -134,7 +134,7 @@ public class InfModelImpl extends ModelCom implements InfModel {
      * @return an iterator over Derivation records or null if there is no derivation information
      * available for this triple.
      */
-    public Iterator getDerivation(Statement statement) {
+    public Iterator<Derivation> getDerivation(Statement statement) {
         return getInfGraph().getDerivation(statement.asTriple());
     }
     

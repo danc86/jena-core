@@ -29,7 +29,6 @@ import java.util.*;
 import org.w3c.dom.*;
 
 import com.hp.hpl.jena.util.iterator.*;
-import com.hp.hpl.jena.util.iterator.ExtendedIterator;
 
 
 /**
@@ -54,7 +53,7 @@ public class SimpleXMLPath
     //////////////////////////////////
 
     /** The list of path components that comprises this path */
-    protected List m_path = new ArrayList();
+    protected List<SimpleXMLPathComponent> m_path = new ArrayList<SimpleXMLPathComponent>();
     
     // Constructors
     //////////////////////////////////
@@ -133,7 +132,7 @@ public class SimpleXMLPath
      * <p>Answer the list of components of this path</p>
      * @return The path components list
      */
-    public List getPathComponents() {
+    public List<SimpleXMLPathComponent> getPathComponents() {
         return m_path;
     }
     
@@ -144,7 +143,7 @@ public class SimpleXMLPath
      * @return The simple path component at that index
      */
     public SimpleXMLPathComponent getPathComponent( int i ) {
-        return (SimpleXMLPathComponent) m_path.get( i );
+        return m_path.get( i );
     }
     
     

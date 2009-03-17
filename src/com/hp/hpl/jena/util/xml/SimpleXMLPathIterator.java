@@ -50,7 +50,7 @@ public class SimpleXMLPathIterator
     //////////////////////////////////
 
     /** The stack of iterators we use to search down the paths */
-    protected List m_stack;
+    protected List<Iterator> m_stack;
     
     /** The simple path we are evaluating */
     protected SimpleXMLPath m_path;
@@ -70,7 +70,7 @@ public class SimpleXMLPathIterator
     public SimpleXMLPathIterator( SimpleXMLPath path, Node node ) {
         m_path = path;
         m_len = path.getPathComponents().size();
-        m_stack = new ArrayList( m_len );
+        m_stack = new ArrayList<Iterator>( m_len );
         
         // put the first stage on the stack
         m_stack.add( path.getPathComponent( 0 ).getAll( node ) );
@@ -139,7 +139,7 @@ public class SimpleXMLPathIterator
         i--;
         
         while (i >= 0 && i < min(m_len, m_stack.size())) {
-            Iterator j = (Iterator) m_stack.get( i );
+            Iterator j = m_stack.get( i );
             
             if (j == null) {
                 // go back a stage

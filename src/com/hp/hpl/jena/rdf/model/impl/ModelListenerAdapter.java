@@ -39,25 +39,25 @@ public class ModelListenerAdapter implements GraphListener
     public void notifyAddTriple( Graph g, Triple t )
         { L.addedStatement( m.asStatement( t ) ); }
 
-    public void notifyAddList( Graph g, List triples )
+    public void notifyAddList( Graph g, List<Triple> triples )
         { L.addedStatements( m.asStatements( triples ) ); }  
               
-    public void notifyAddIterator( Graph g, Iterator it )
+    public void notifyAddIterator( Graph g, Iterator<Triple> it )
         { L.addedStatements( m.asStatements( it ) ); }
         
     public void notifyAddGraph( Graph g, Graph added )
         { L.addedStatements( m.asModel( added ) ); }
         
-    public void notifyDeleteIterator( Graph g, Iterator it )
+    public void notifyDeleteIterator( Graph g, Iterator<Triple> it )
         { L.removedStatements( m.asStatements( it ) ); }
         
     public void notifyDeleteTriple( Graph g, Triple t )
         { L.removedStatement( m.asStatement( t ) ); }
         
-    public void notifyAddIterator( Graph g, List triples )
+    public void notifyAddIterator( Graph g, List<Triple> triples )
         { L.addedStatements( m.asStatements( triples ) ); }
         
-    public void notifyDeleteList( Graph g, List triples )
+    public void notifyDeleteList( Graph g, List<Triple> triples )
         { L.removedStatements( m.asStatements( triples ) ); }
 
     public void notifyDeleteGraph( Graph g, Graph removed )
