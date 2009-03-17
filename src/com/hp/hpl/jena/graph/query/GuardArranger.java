@@ -38,8 +38,8 @@ public class GuardArranger
     protected Set<String> [] makeBoundVariables( Triple [] triples )
         {
         int length = triples.length;
-        Set<String> [] result = new Set[length];
-        Set prev = CollectionFactory.createHashedSet();
+        @SuppressWarnings("unchecked")  Set<String> [] result = new Set[length];
+        Set<String> prev = CollectionFactory.createHashedSet();
         for (int i = 0; i < length; i += 1) 
             prev = result[i] = Util.union( prev, Util.variablesOf( triples[i] ) );
         return result;
