@@ -111,7 +111,7 @@ public class TestHashCommon extends ModelTestBase
     public void testKeyIterator()
         {
         ProbeHashCommon h = probeWith( "0:0:X" );
-        Set elements = h.keyIterator().toSet();
+        Set<?> elements = h.keyIterator().toSet();
         assertEquals( itemSet( "0:X" ), elements );
         }
 
@@ -151,15 +151,15 @@ public class TestHashCommon extends ModelTestBase
         return result;
         }
     
-    protected Set itemSet( String items )
+    protected Set<Item> itemSet( String items )
         {
-        Set result = new HashSet();
+        Set<Item> result = new HashSet<Item>();
         StringTokenizer st = new StringTokenizer( items );
         while (st.hasMoreTokens()) addItem( result, st.nextToken() );
         return result;
         }
 
-    private void addItem( Set result, String item )
+    private void addItem( Set<Item> result, String item )
         {
         StringTokenizer itemElements = new StringTokenizer( item, ":" );
         int hash = Integer.parseInt( itemElements.nextToken() );

@@ -12,7 +12,6 @@ import junit.framework.TestSuite;
 
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.mem.*;
-import com.hp.hpl.jena.mem.MixedGraphMem;
 
 
 /**
@@ -26,13 +25,12 @@ public class TestMixedGraphMem extends TestGraphMem
     public static TestSuite suite()
         { return new TestSuite( TestMixedGraphMem.class ); }
         
-    @Override
-    public Graph getGraph()
+    @Override public Graph getGraph()
         { return new MixedGraphMem(); }
     
     public void testRepeatedAddSuppressesPredicateAndObject()
         {
-        final List history = new ArrayList();
+        final List<Node> history = new ArrayList<Node>();
         MixedGraphMemStore t = new MixedGraphMemStore( getGraph() )
             {
             @Override
@@ -48,13 +46,13 @@ public class TestMixedGraphMem extends TestGraphMem
         assertEquals( nodeList( "s P o s" ), history );
         }
     
-    @Override
-    public void testUnnecessaryMatches() { 
+    @Override public void testUnnecessaryMatches() { 
         /* test not appropriate for subclass */ 
         }
+    
     public void testRemoveAbsentSuppressesPredicateAndObject()
         {
-        final List history = new ArrayList();
+        final List<Node> history = new ArrayList<Node>();
         MixedGraphMemStore t = new MixedGraphMemStore( getGraph() )
             {
             @Override

@@ -106,7 +106,7 @@ public abstract class TestTripleBunch extends GraphTestBase
         b.add( triple( "a P b" ) );
         b.add( triple( "c Q d" ) );
         b.add( triple( "e R f" ) );
-        ExtendedIterator it = b.iterator();
+        ExtendedIterator<Triple> it = b.iterator();
         while (it.hasNext()) if (it.next().equals( triple( "c Q d") )) it.remove();
         assertEquals( tripleSet( "a P b; e R f" ), b.iterator().toSet() );
         }
@@ -117,28 +117,28 @@ public abstract class TestTripleBunch extends GraphTestBase
         b.add( triple( "a P b" ) );
         b.add( triple( "c Q d" ) );
         b.add( triple( "e R f" ) );
-        ExtendedIterator it = b.iterator();
+        ExtendedIterator<Triple> it = b.iterator();
         while (it.hasNext()) it.removeNext();
         assertEquals( tripleSet( "" ), b.iterator().toSet() );
         }
         
-    protected List listOf( Triple x )
+    protected List<Triple> listOf( Triple x )
         {
-        List result = new ArrayList();
+        List<Triple> result = new ArrayList<Triple>();
         result.add( x );
         return result;
         }
     
-    protected Set setOf( Triple x, Triple y )
+    protected Set<Triple> setOf( Triple x, Triple y )
         {
-        Set result = setOf( x );
+        Set<Triple> result = setOf( x );
         result.add( y );
         return result;
         }
     
-    protected Set setOf( Triple x )
+    protected Set<Triple> setOf( Triple x )
         {
-        Set result = new HashSet();
+        Set<Triple> result = new HashSet<Triple>();
         result.add( x );
         return result;
         }

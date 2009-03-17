@@ -65,7 +65,7 @@ public class TestStoreSpeed extends GraphTestBase
     private void consumeAll( Graph g )
         {
         int count = 0;
-        ClosableIterator it = g.find( node("s500"), null, null );
+        ClosableIterator<Triple> it = g.find( node("s500"), null, null );
         while (it.hasNext()) { it.next(); count += 1; /* if (count %1000 == 0) System.err.print( (count / 1000) %10 ); */}
         // System.err.println( "| we have " + count + " triples." );
         // assertEquals( g.size(), count );
