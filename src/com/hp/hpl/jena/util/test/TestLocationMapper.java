@@ -72,16 +72,16 @@ public class TestLocationMapper extends TestCase
         
         // Light test that the two location mappers are "the same"
         LocationMapper locMap = new LocationMapper(mapping) ;
-        for ( Iterator iter = loc.listAltEntries() ; iter.hasNext() ; )
+        for ( Iterator<String> iter = loc.listAltEntries() ; iter.hasNext() ; )
         {
-            String e = (String)iter.next() ;
+            String e = iter.next() ;
             String v1 = locMap.getAltEntry(e) ;
             String v2 = loc.getAltEntry(e) ;
             assertEquals("Different entries", v1, v2) ;
         }
-        for ( Iterator iter = loc.listAltPrefixes() ; iter.hasNext() ; )
+        for ( Iterator<String> iter = loc.listAltPrefixes() ; iter.hasNext() ; )
         {
-            String e = (String)iter.next() ;
+            String e = iter.next() ;
             String v1 = locMap.getAltPrefix(e) ;
             String v2 = loc.getAltPrefix(e) ;
             assertEquals("Different entries", v1, v2) ;

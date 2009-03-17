@@ -71,8 +71,8 @@ public class TestMonitors extends TestCase {
         base.add(t3);
         
         // Test changes from empty
-        List additions = new ArrayList();
-        List deletions = new ArrayList();
+        List<Triple> additions = new ArrayList<Triple>();
+        List<Triple> deletions = new ArrayList<Triple>();
         monitor.snapshot(additions, deletions);
         TestUtil.assertIteratorValues(this, additions.iterator(), new Object[] {t1, t2, t3});
         TestUtil.assertIteratorValues(this, deletions.iterator(), new Object[] {});
@@ -107,8 +107,8 @@ public class TestMonitors extends TestCase {
         listener.has(new Object[]{});
         
         // Test changes from empty
-        List additions = new ArrayList();
-        List deletions = new ArrayList();
+        List<Triple> additions = new ArrayList<Triple>();
+        List<Triple> deletions = new ArrayList<Triple>();
         monitor.snapshot(additions, deletions);
         TestUtil.assertIteratorValues(this, additions.iterator(), new Object[] {t1, t2, t3});
         TestUtil.assertIteratorValues(this, deletions.iterator(), new Object[] {});
@@ -157,8 +157,8 @@ public class TestMonitors extends TestCase {
         base.add(s3);
         
         // Test changes from empty
-        List additions = new ArrayList();
-        List deletions = new ArrayList();
+        List<Statement> additions = new ArrayList<Statement>();
+        List<Statement> deletions = new ArrayList<Statement>();
         monitor.snapshot(additions, deletions);
         TestUtil.assertIteratorValues(this, additions.iterator(), new Object[] {s1, s2, s3});
         TestUtil.assertIteratorValues(this, deletions.iterator(), new Object[] {});

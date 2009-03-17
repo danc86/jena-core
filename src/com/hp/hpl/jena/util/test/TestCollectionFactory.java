@@ -26,37 +26,34 @@ public class TestCollectionFactory extends ModelTestBase
 
     public void testHashMapExists()
         {
-        Map map = CollectionFactory.createHashedMap();
-        assertInstanceOf( Map.class, map );
+        assertInstanceOf( Map.class, CollectionFactory.<Object, Object>createHashedMap() );
         }
     
     public void testHashMapSized()
         {
-        Map map = CollectionFactory.createHashedMap( 42 );
-        assertInstanceOf( Map.class, map );
+        assertInstanceOf( Map.class, CollectionFactory.<Object, Object>createHashedMap( 42 ) );
         }
     
     public void testHashMapCopy()
         {
-        Map map = new HashMap();
+        Map<String, String> map = new HashMap<String, String>();
         map.put( "here", "Bristol" );
         map.put( "there", "Oxford" );
-        Map copy = CollectionFactory.createHashedMap( map );
+        Map<String, String> copy = CollectionFactory.createHashedMap( map );
         assertEquals( map, copy );
         }
     
     public void testHashSetExists()
         {
-        Set set = CollectionFactory.createHashedSet();
-        assertInstanceOf( Set.class, set );
+        assertInstanceOf( Set.class, CollectionFactory.<Object>createHashedSet() );
         }
     
     public void testHashSetCopy()
         {
-        Set s = new HashSet();
+        Set<String> s = new HashSet<String>();
         s.add( "jelly" );
         s.add( "concrete" );
-        Set copy = CollectionFactory.createHashedSet( s );
+        Set<String> copy = CollectionFactory.createHashedSet( s );
         assertEquals( s, copy );
         }
     }
