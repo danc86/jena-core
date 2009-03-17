@@ -70,12 +70,13 @@ public class TestOneToManyMap
     @Override public void tearDown() {}
     
     public void testConstruct0() {
-        OneToManyMap map0 = new OneToManyMap();
+        // the types of these maps
+        OneToManyMap<String, Integer> map0 = new OneToManyMap<String, Integer>();
         assertNotNull( map0 );
         
         assertTrue( map0.isEmpty() );
         
-        OneToManyMap map1 = new OneToManyMap( map0 );
+        OneToManyMap<String, Integer> map1 = new OneToManyMap<String, Integer>( map0 );
         assertNotNull( map1 );
         assertTrue( map1.isEmpty() );
     }
@@ -156,8 +157,8 @@ public class TestOneToManyMap
         boolean s0s2 = false;
         boolean s3s4 = false;
         
-        for (Iterator i = map0.entrySet().iterator(); i.hasNext(); ) {
-            Map.Entry e = (Map.Entry) i.next();
+        for (Iterator<Map.Entry<String, String>> i = map0.entrySet().iterator(); i.hasNext(); ) {
+            Map.Entry<String, String> e = i.next();
             if (e.getKey().equals( s0 ) && e.getValue().equals( s1 )) {
                 s0s1 = true;
             }
