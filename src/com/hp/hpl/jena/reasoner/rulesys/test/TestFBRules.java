@@ -943,7 +943,7 @@ public class TestFBRules extends TestCase {
     private Node getValue(Graph g, Node s, Node p) {
         ExtendedIterator<Triple> i = g.find(s, p, null);
         assertTrue(i.hasNext());
-        Node result = ((Triple)i.next()).getObject();
+        Node result = i.next().getObject();
         if (i.hasNext()) {
             assertTrue("multiple values not expected", false);
             i.close();
