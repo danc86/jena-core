@@ -81,8 +81,8 @@ public class PersistentOntology {
         // create an ontology model using the persistent model as base
         OntModel m = ModelFactory.createOntologyModel( getModelSpec( maker ), base );
 
-        for (Iterator i = m.listClasses(); i.hasNext(); ) {
-            OntClass c = (OntClass) i.next();
+        for (Iterator<OntClass> i = m.listClasses(); i.hasNext(); ) {
+            OntClass c = i.next();
             System.out.println( "Class " + c.getURI() );
         }
     }

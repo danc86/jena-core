@@ -57,20 +57,12 @@ public class Main {
 
     public static void main( String[] args ) {
         // read the argument file, or the default
-        String source = (args.length == 0) ? "http://www.w3.org/TR/2003/CR-owl-guide-20030818/wine" : args[0];
+        String source = (args.length == 0) ? "http://www.w3.org/2001/sw/WebOnt/guide-src/wine" : args[0];
 
-        // guess if we're using a daml source
-        boolean isDAML = source.endsWith( ".daml" );
-
-        OntModel m = ModelFactory.createOntologyModel(
-                        isDAML ? OntModelSpec.DAML_MEM : OntModelSpec.OWL_MEM, null
-                     );
+        OntModel m = ModelFactory.createOntologyModel( OntModelSpec.OWL_MEM, null );
 
         // we have a local copy of the wine ontology
-        m.getDocumentManager().addAltEntry( "http://www.w3.org/TR/2003/CR-owl-guide-20030818/wine",
-                                            "file:./testing/reasoners/bugs/wine.owl" );
-        m.getDocumentManager().addAltEntry( "http://www.w3.org/TR/2003/CR-owl-guide-20030818/food",
-                                            "file:./testing/reasoners/bugs/food.owl" );
+        addFoodWineAltPaths( m.getDocumentManager() );
 
         // read the source document
         m.read( source );
@@ -83,9 +75,9 @@ public class Main {
             dc.describeClass( System.out, c );
         }
         else {
-            for (Iterator i = m.listClasses();  i.hasNext(); ) {
+            for (Iterator<OntClass> i = m.listClasses();  i.hasNext(); ) {
                 // now list the classes
-                dc.describeClass( System.out, (OntClass) i.next() );
+                dc.describeClass( System.out, i.next() );
             }
         }
     }
@@ -93,6 +85,20 @@ public class Main {
 
     // Internal implementation methods
     //////////////////////////////////
+
+    /**
+     * Add alternate paths to save downloading the default ontologies from the Web
+     */
+    protected static void addFoodWineAltPaths( OntDocumentManager odm ) {
+        odm.addAltEntry( "http://www.w3.org/2001/sw/WebOnt/guide-src/wine",
+                         "file:testing/reasoners/bugs/wine.owl" );
+        odm.addAltEntry( "http://www.w3.org/2001/sw/WebOnt/guide-src/wine.owl",
+                         "file:testing/reasoners/bugs/wine.owl" );
+        odm.addAltEntry( "http://www.w3.org/2001/sw/WebOnt/guide-src/food",
+                         "file:testing/reasoners/bugs/food.owl" );
+        odm.addAltEntry( "http://www.w3.org/2001/sw/WebOnt/guide-src/food.owl",
+                         "file:testing/reasoners/bugs/food.owl" );
+    }
 
     //==============================================================================
     // Inner class definitions
