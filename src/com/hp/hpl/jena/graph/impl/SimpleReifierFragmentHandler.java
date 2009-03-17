@@ -10,10 +10,10 @@ import com.hp.hpl.jena.graph.Triple;
 
 public abstract class SimpleReifierFragmentHandler implements ReifierFragmentHandler 
     { 
-    int which; 
+    Fragments.GetSlot which; 
     SimpleReifierFragmentsMap map;
     
-    public SimpleReifierFragmentHandler( SimpleReifierFragmentsMap map, int n ) 
+    public SimpleReifierFragmentHandler( SimpleReifierFragmentsMap map, Fragments.GetSlot n ) 
         { which = n; this.map = map; }
     
     public abstract boolean clashesWith( ReifierFragmentsMap map, Node fragmentObject, Triple reified );
