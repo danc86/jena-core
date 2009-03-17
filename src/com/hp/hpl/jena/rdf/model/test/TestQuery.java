@@ -77,7 +77,7 @@ public class TestQuery extends ModelTestBase
         { 
         Model m = modelWithStatements( "a R b; b S c; a R p; p T d" );
         Model q = modelWithStatements( "jqv:x R jqv:y; jqv:y S jqv:z" );
-        ExtendedIterator it = ModelQueryUtil.queryBindingsWith( m, q, resources( q, "jqv:x jqv:z") );
+        ExtendedIterator<List<? extends RDFNode>> it = ModelQueryUtil.queryBindingsWith( m, q, resources( q, "jqv:x jqv:z") );
         assertTrue( it.hasNext() );
         assertEquals( Arrays.asList( resources( m, "a c b" ) ), it.next() );
         assertFalse( it.hasNext() );

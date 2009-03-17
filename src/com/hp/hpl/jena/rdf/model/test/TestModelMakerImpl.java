@@ -120,15 +120,15 @@ public class TestModelMakerImpl extends ModelTestBase
         assertTrue( maker.getGraphMaker() == graphMaker );
         }
 
-    private void checkHistory( List expected )
+    private void checkHistory( List<String> expected )
         { assertEquals( expected, history() ); }
 
-    private List history()
+    private List<String> history()
         { return ((MockGraphMaker) maker.getGraphMaker()).history; }
 
     static class MockGraphMaker implements GraphMaker
         {
-        List history = new ArrayList();
+        List<String> history = new ArrayList<String>();
         Graph graph;
 
         public MockGraphMaker( Graph graph )
@@ -210,7 +210,7 @@ public class TestModelMakerImpl extends ModelTestBase
             history.add( "close()" );
             }
 
-        public ExtendedIterator listGraphs()
+        public ExtendedIterator<String> listGraphs()
             {
             history.add( "listModels()" );
             return NullIterator.instance();

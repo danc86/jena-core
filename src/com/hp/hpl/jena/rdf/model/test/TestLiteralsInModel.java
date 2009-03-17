@@ -6,8 +6,6 @@
 
 package com.hp.hpl.jena.rdf.model.test;
 
-import java.util.Date;
-
 import com.hp.hpl.jena.rdf.model.*;
 
 public class TestLiteralsInModel extends ModelTestBase
@@ -66,13 +64,14 @@ public class TestLiteralsInModel extends ModelTestBase
         assertTrue( m.containsLiteral( X, P, 99 ) );
         }
     
-    public void testAddWithAnObject()
-        {
-        Object z = new Date();
-        m.addLiteral( X, P, z );
-        assertTrue( m.contains( X, P, m.createTypedLiteral( z ) ) );
-        assertTrue( m.containsLiteral( X, P, z ) );
-        }
+// that version of addLiteral is deprecated; test removed.
+//    public void testAddWithAnObject()
+//        {
+//        Object z = new Date();
+//        m.addLiteral( X, P, z );
+//        assertTrue( m.contains( X, P, m.createTypedLiteral( z ) ) );
+//        assertTrue( m.containsLiteral( X, P, z ) );
+//        }
     }
 
 

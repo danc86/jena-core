@@ -32,7 +32,7 @@ public class TestRemoveSPO extends ModelTestBase
     public void testRemoveSPOCallsGraphDeleteTriple()
         {
         Graph base = Factory.createDefaultGraph();
-        final List deleted = new ArrayList();
+        final List<Triple> deleted = new ArrayList<Triple>();
         Graph wrapped = new WrappedGraph( base )
             { @Override
             public void delete( Triple t ) { deleted.add( t ); } };
