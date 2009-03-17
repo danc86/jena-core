@@ -45,7 +45,7 @@ public class TestGraph extends GraphTestBase
         return result;
         }
         
-    public static TestSuite suite( Class classWithTests, Class graphClass )
+    public static TestSuite suite( Class<? extends Test> classWithTests, Class<? extends Graph> graphClass )
         { return MetaTestGraph.suite( classWithTests, graphClass ); }
         
     /**

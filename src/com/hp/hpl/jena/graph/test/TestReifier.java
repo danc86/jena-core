@@ -32,10 +32,10 @@ public class TestReifier extends AbstractTestReifier
     public TestReifier( String name )
         { super( name ); graphClass = null; style = null; }
         
-    protected final Class graphClass;
+    protected final Class<? extends Graph> graphClass;
     protected final ReificationStyle style;
     
-    public TestReifier( Class graphClass, String name, ReificationStyle style ) 
+    public TestReifier( Class<? extends Graph> graphClass, String name, ReificationStyle style ) 
         {
         super( name );
         this.graphClass = graphClass;
@@ -50,18 +50,16 @@ public class TestReifier extends AbstractTestReifier
         return result; 
         }   
         
-    @Override
-    public Graph getGraph()
+    @Override public Graph getGraph()
         { return getGraph( style ); }
     
-    @Override
-    public Graph getGraph( ReificationStyle style ) 
+    @Override public Graph getGraph( ReificationStyle style ) 
         {
         try
             {
-            Constructor cons = getConstructor( graphClass, new Class[] {ReificationStyle.class} );
+            Constructor<?> cons = getConstructor( graphClass, new Class[] {ReificationStyle.class} );
             if (cons != null) return (Graph) cons.newInstance( new Object[] { style } );
-            Constructor cons2 = getConstructor( graphClass, new Class [] {this.getClass(), ReificationStyle.class} );
+            Constructor<?> cons2 = getConstructor( graphClass, new Class [] {this.getClass(), ReificationStyle.class} );
             if (cons2 != null) return (Graph) cons2.newInstance( new Object[] { this, style } );
             throw new JenaException( "no suitable graph constructor found for " + graphClass );
             }
@@ -75,8 +73,7 @@ public class TestReifier extends AbstractTestReifier
         {
         GraphBase parent = new GraphBase() {
 
-            @Override
-            public ExtendedIterator graphBaseFind( TripleMatch m )
+            @Override public ExtendedIterator<Triple> graphBaseFind( TripleMatch m )
                 {
                 // TODO Auto-generated method stub
                 return null;

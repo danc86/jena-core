@@ -20,10 +20,10 @@ import com.hp.hpl.jena.shared.*;
 */
 public class TestReificationWrapper extends AbstractTestReifier
     {
-    protected final Class graphClass;
+    protected final Class<? extends Graph> graphClass;
     protected final ReificationStyle style;
     
-    public TestReificationWrapper( Class graphClass, String name, ReificationStyle style ) 
+    public TestReificationWrapper( Class<? extends Graph> graphClass, String name, ReificationStyle style ) 
         {
         super( name );
         this.graphClass = graphClass;
