@@ -84,7 +84,7 @@ public abstract class NodeToTriplesMapBase
     public boolean isEmpty()
         { return size == 0; }
 
-    public abstract ExtendedIterator iterator( Node index, Node n2, Node n3 );
+    public abstract ExtendedIterator<Triple> iterator( Node index, Node n2, Node n3 );
     
     /**
         Answer an iterator over all the triples that are indexed by the item <code>y</code>.
@@ -97,7 +97,7 @@ public abstract class NodeToTriplesMapBase
     */
     public ExtendedIterator<Triple> iterateAll()
         {
-        final Iterator nodes = domain();
+        final Iterator<Node> nodes = domain();
         // System.err.println( "*>> NTM:iterateAll: nodes = " + IteratorCollection.iteratorToList( domain() ) );
         return new NiceIterator<Triple>() 
             {

@@ -15,6 +15,7 @@ import com.hp.hpl.jena.graph.query.Domain;
 import com.hp.hpl.jena.graph.query.StageElement;
 import com.hp.hpl.jena.mem.*;
 import com.hp.hpl.jena.rdf.model.test.ModelTestBase;
+import com.hp.hpl.jena.util.iterator.ExtendedIterator;
 
 public abstract class TestConcurrentModificationException extends ModelTestBase
     {
@@ -37,8 +38,7 @@ public abstract class TestConcurrentModificationException extends ModelTestBase
         public TestArrayBunchCME(String name)
             { super( name ); }
 
-        @Override
-        public TripleBunch getBunch()
+        @Override public TripleBunch getBunch()
             { return new ArrayBunch(); }
         }
     
@@ -47,8 +47,7 @@ public abstract class TestConcurrentModificationException extends ModelTestBase
         public TestSetBunchCME(String name)
             { super( name ); }
 
-        @Override
-        public TripleBunch getBunch()
+        @Override public TripleBunch getBunch()
             { return new SetBunch( new ArrayBunch() ); }
         }
     
@@ -67,7 +66,7 @@ public abstract class TestConcurrentModificationException extends ModelTestBase
         TripleBunch b = getBunch();
         b.add( Triple.create( "a P b" ) );
         b.add( Triple.create( "c Q d" ) );
-        Iterator it = b.iterator();
+        ExtendedIterator<Triple> it = b.iterator();
         it.next();
         b.add( Triple.create( "change its state" ) );
         try { it.next(); fail( "should have thrown ConcurrentModificationException" ); }
@@ -79,7 +78,7 @@ public abstract class TestConcurrentModificationException extends ModelTestBase
         TripleBunch b = getBunch();
         b.add( Triple.create( "a P b" ) );
         b.add( Triple.create( "c Q d" ) );
-        Iterator it = b.iterator();
+        ExtendedIterator<Triple> it = b.iterator();
         it.next();
         b.remove( Triple.create( "a P b" ) );
         try { it.next(); fail( "should have thrown ConcurrentModificationException" ); }
