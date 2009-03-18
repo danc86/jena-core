@@ -16,7 +16,7 @@ public class TestHashedBunchMap extends ModelTestBase
     
     public void testSize()
         {
-        HashCommon b = new HashedBunchMap();
+        HashCommon<Object> b = new HashedBunchMap();
         }
 
     public void testClearSetsSizeToZero()

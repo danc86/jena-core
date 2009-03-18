@@ -251,7 +251,7 @@ public class OWLWGTester {
     private boolean testConclusions(Graph conclusions, Graph result) {
         QueryHandler qh = result.queryHandler();
         Query query = WGReasonerTester.graphToQuery(conclusions);
-        Iterator i = qh.prepareBindings(query, new Node[] {}).executeBindings();
+        Iterator<Domain> i = qh.prepareBindings(query, new Node[] {}).executeBindings();
         return i.hasNext();
     }
     

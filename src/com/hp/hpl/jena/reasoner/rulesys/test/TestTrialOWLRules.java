@@ -16,11 +16,9 @@ import com.hp.hpl.jena.util.FileManager;
 import com.hp.hpl.jena.vocabulary.RDF;
 import com.hp.hpl.jena.vocabulary.ReasonerVocabulary;
 
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
+import junit.framework.*;
 
 import java.io.IOException;
-import java.util.*;
 
 /**
  * Test suite to test experimental versions of the OWL reasoner, not 
@@ -186,7 +184,7 @@ public class TestTrialOWLRules extends TestCase {
         InfModel conclusions = ModelFactory.createInfModel(reasoner, premises);
         
         System.out.println("Premises = ");
-        for (Iterator i = premises.listStatements(); i.hasNext(); ) {
+        for (StmtIterator i = premises.listStatements(); i.hasNext(); ) {
             System.out.println(" - " + i.next());
         }
         
@@ -197,7 +195,7 @@ public class TestTrialOWLRules extends TestCase {
         Resource v = (Resource)i.getRequiredProperty(p).getObject();
         System.out.println("Value of i.p = " + v);
         System.out.println("Types of v are: ");
-        for (Iterator it2 = conclusions.listStatements(v, RDF.type, (RDFNode)null); it2.hasNext(); ) {
+        for (StmtIterator it2 = conclusions.listStatements(v, RDF.type, (RDFNode)null); it2.hasNext(); ) {
             System.out.println(" - " + it2.next());
         }
 //        System.out.println("Things of type r are: ");

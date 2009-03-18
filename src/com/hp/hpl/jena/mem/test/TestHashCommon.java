@@ -20,7 +20,7 @@ public class TestHashCommon extends ModelTestBase
     public TestHashCommon( String name )
         { super( name ); }
     
-    static class ProbeHashCommon extends HashCommon
+    static class ProbeHashCommon extends HashCommon<Object>
         {
         protected ProbeHashCommon( int initialCapacity )
             { super( initialCapacity ); }

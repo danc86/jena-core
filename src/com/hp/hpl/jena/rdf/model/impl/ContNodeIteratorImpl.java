@@ -16,8 +16,8 @@ import java.util.*;
  * @author bwm, kers
  * @version Release='$Name$' Revision='$Revision$' Date='$Date$'
  */
-public class ContNodeIteratorImpl 
-  extends WrappedIterator<RDFNode> implements NodeIterator{
+public class ContNodeIteratorImpl extends WrappedIterator<RDFNode> implements NodeIterator
+{
     
     protected Statement stmt = null;
     protected Container cont;

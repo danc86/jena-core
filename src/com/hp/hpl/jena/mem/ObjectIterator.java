@@ -23,12 +23,12 @@ import com.hp.hpl.jena.util.iterator.NiceIterator;
 */
 public abstract class ObjectIterator extends NiceIterator<Node>
     {
-    public ObjectIterator( Iterator domain )
+    public ObjectIterator( Iterator<?> domain )
         { this.domain = domain; }
 
     protected abstract Iterator<Triple> iteratorFor( Object y );
 
-    final Iterator domain;
+    final Iterator<?> domain;
     
     final Set<Node> seen = CollectionFactory.createHashedSet();
     
