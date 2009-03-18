@@ -49,11 +49,11 @@ public class RETEQueue implements RETESinkNode, RETESourceNode {
      * to a sibling and a continuation node.
      * @param A List of variable indices which should match between the two inputs
      */
-    public RETEQueue(List matchIndexList) {
+    public RETEQueue(List<? extends Byte> matchIndexList) {
         int len = matchIndexList.size();
         matchIndices = new byte[len];
         for (int i = 0; i < len; i++) {
-            matchIndices[i] = (byte) ((Number)matchIndexList.get(i)).intValue();
+            matchIndices[i] = matchIndexList.get(i).byteValue();
         }
     }
     

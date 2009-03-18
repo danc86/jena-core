@@ -30,7 +30,7 @@ public class ChoicePointFrame extends GenericChoiceFrame {
     Node[] argVars = new Node[RuleClauseCode.MAX_ARGUMENT_VARS];
 
     /** Iterator over the clauses being searched */
-    Iterator clauseIterator;
+    Iterator<RuleClauseCode> clauseIterator;
     
     /** Flag that this is a singleton choice point */
     boolean isSingleton = false;
@@ -43,7 +43,7 @@ public class ChoicePointFrame extends GenericChoiceFrame {
      * @param predicateClauses the list of predicates for this choice point
      * @param isSingleton true if this choice should abort after one successful result
      */
-    public ChoicePointFrame(LPInterpreter interpreter, List predicateClauses, boolean isSingleton) {
+    public ChoicePointFrame(LPInterpreter interpreter, List<RuleClauseCode> predicateClauses, boolean isSingleton) {
         init(interpreter, predicateClauses);
         this.isSingleton = isSingleton;
     }
@@ -54,7 +54,7 @@ public class ChoicePointFrame extends GenericChoiceFrame {
      * @param interpreter the LPInterpreter whose state is to be preserved
      * @param predicateClauses the list of predicates for this choice point
      */
-    public void init(LPInterpreter interpreter, List predicateClauses) {
+    public void init(LPInterpreter interpreter, List<RuleClauseCode> predicateClauses) {
         super.init(interpreter);
         System.arraycopy(interpreter.argVars, 0, argVars, 0, argVars.length);
         clauseIterator = predicateClauses.iterator();
@@ -76,7 +76,7 @@ public class ChoicePointFrame extends GenericChoiceFrame {
      */
     public RuleClauseCode nextClause() {
         if (clauseIterator == null) return null;
-        return (RuleClauseCode) clauseIterator.next();
+        return clauseIterator.next();
     }
 
     /**

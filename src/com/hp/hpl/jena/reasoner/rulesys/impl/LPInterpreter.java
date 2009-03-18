@@ -101,7 +101,7 @@ public class LPInterpreter {
      * @param isTop true if this is a top level call from the outside iterator, false means it is an
      * internal generator call which means we don't need to insert an tabled call
      */
-    public LPInterpreter(LPBRuleEngine engine, TriplePattern goal, List clauses, boolean isTop) {
+    public LPInterpreter(LPBRuleEngine engine, TriplePattern goal, List<RuleClauseCode> clauses, boolean isTop) {
         this.engine = engine;
         this.goal = goal;       // Used for debug only
         
@@ -537,7 +537,7 @@ public class LPInterpreter {
                         case RuleClauseCode.LAST_CALL_PREDICATE:
                             // TODO: improved implementation of last call case
                         case RuleClauseCode.CALL_PREDICATE:
-                            List clauses = (List)args[ac++];
+                            List<RuleClauseCode> clauses = (List)args[ac++];
                             // Check if this call is now grounded
                             boolean groundCall = isGrounded(argVars[0]) && isGrounded(argVars[1]) && isGrounded(argVars[2]);
                             setupClauseCall(pc, ac, clauses, groundCall);
@@ -547,7 +547,7 @@ public class LPInterpreter {
                         case RuleClauseCode.CALL_PREDICATE_INDEX:
                             // This code path is experimental, don't yet know if it has enough 
                             // performance benefit to justify the cost of maintaining it.
-                            clauses = (List)args[ac++];
+                            clauses = (List<RuleClauseCode>) args[ac++];
                             // Check if we can futher index the clauses
                             if (!argVars[2].isVariable()) {
                                 clauses = engine.getRuleStore().codeFor(
@@ -658,7 +658,7 @@ public class LPInterpreter {
     /**
      * Set up a clause choice point as part of a CALL.
      */
-    private void setupClauseCall(int pc, int ac, List clauses, boolean isSingleton) {
+    private void setupClauseCall(int pc, int ac, List<RuleClauseCode> clauses, boolean isSingleton) {
         ChoicePointFrame newChoiceFrame = new ChoicePointFrame(this, clauses, isSingleton);
         newChoiceFrame.linkTo(cpFrame);
         newChoiceFrame.setContinuation(pc, ac);

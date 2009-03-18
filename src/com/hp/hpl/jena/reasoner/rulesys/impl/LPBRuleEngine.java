@@ -246,7 +246,7 @@ public class LPBRuleEngine {
      * @param goal the goal whose results are to be generated
      * @param clauses the precomputed set of code blocks used to implement the goal
      */
-    public synchronized Generator generatorFor(TriplePattern goal, List clauses) {
+    public synchronized Generator generatorFor(TriplePattern goal, List<RuleClauseCode> clauses) {
         Generator generator = tabledGoals.get(goal);
         if (generator == null) {
             LPInterpreter interpreter = new LPInterpreter(this, goal, clauses, false);
@@ -360,7 +360,7 @@ public class LPBRuleEngine {
      * if false profiling will stop all current data lost.
      */
     public void resetProfile(boolean enable) {
-        profile = enable ? new HashMap() : null;
+        profile = enable ? new HashMap<String, Count>() : null;
     }
     
     /**
