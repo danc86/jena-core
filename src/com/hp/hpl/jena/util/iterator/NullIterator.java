@@ -17,7 +17,8 @@ public class NullIterator<T> extends NiceIterator<T>
     public static <T> NullIterator<T>  instance() 
         { return new NullIterator<T>(); }
     
-    @Override public <X extends T>ExtendedIterator<T> andThen( Iterator<X> it )
+    @SuppressWarnings("unchecked")
+    @Override public <X extends T> ExtendedIterator<T> andThen( Iterator<X> it )
         { 
         return it instanceof ExtendedIterator 
             ? (ExtendedIterator<T>) it 
