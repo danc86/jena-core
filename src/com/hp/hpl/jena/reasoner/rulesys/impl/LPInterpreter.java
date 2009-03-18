@@ -537,7 +537,7 @@ public class LPInterpreter {
                         case RuleClauseCode.LAST_CALL_PREDICATE:
                             // TODO: improved implementation of last call case
                         case RuleClauseCode.CALL_PREDICATE:
-                            List<RuleClauseCode> clauses = (List)args[ac++];
+                            List<RuleClauseCode> clauses = (List<RuleClauseCode>)args[ac++];
                             // Check if this call is now grounded
                             boolean groundCall = isGrounded(argVars[0]) && isGrounded(argVars[1]) && isGrounded(argVars[2]);
                             setupClauseCall(pc, ac, clauses, groundCall);
