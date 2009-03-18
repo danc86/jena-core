@@ -285,11 +285,11 @@ public class Generator implements LPAgendaEntry, LPInterpreterContext {
      * Check for deadlocked states across a collection of generators which have
      * been run.
      */
-    public static void checkForCompletions(Collection completions) {
+    public static void checkForCompletions(Collection<? extends Generator> completions) {
         HashSet<Generator> visited = new HashSet<Generator>();
         boolean atLeastOneZombie = false;
-        for (Iterator i = completions.iterator(); i.hasNext(); ) {
-            Generator g = (Generator)i.next();
+        for (Iterator<? extends Generator> i = completions.iterator(); i.hasNext(); ) {
+            Generator g = i.next();
             if (g.runCompletionCheck(visited) != LFlag.LIVE) {
                 atLeastOneZombie = true;
             }

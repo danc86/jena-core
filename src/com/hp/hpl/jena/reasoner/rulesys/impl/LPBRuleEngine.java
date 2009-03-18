@@ -288,9 +288,9 @@ public class LPBRuleEngine {
      */
     public synchronized void pump(LPInterpreterContext gen) {
 //        System.out.println("Pump agenda on engine " + this + ", size = " + agenda.size());
-        Collection<LPInterpreterContext> batch = null;
+        Collection<Generator> batch = null;
         if (CYCLES_BETWEEN_COMPLETION_CHECK > 0) {
-            batch = new ArrayList<LPInterpreterContext>(CYCLES_BETWEEN_COMPLETION_CHECK);
+            batch = new ArrayList<Generator>(CYCLES_BETWEEN_COMPLETION_CHECK);
         }
         int count = 0; 
         while(!gen.isReady()) {
@@ -326,14 +326,14 @@ public class LPBRuleEngine {
      * Check all known interpeter contexts to see if any are complete.
      */
     public void checkForCompletions() {
-        ArrayList<LPInterpreterContext> contexts = new ArrayList<LPInterpreterContext>(activeInterpreters.size());
+        List<Generator> contexts = new ArrayList<Generator>(activeInterpreters.size());
         for (Iterator<LPInterpreter> i = activeInterpreters.iterator(); i.hasNext(); ) {
-            LPInterpreter interpreter = i.next();
-            if (interpreter.getContext() instanceof Generator) {
-                contexts.add(interpreter.getContext());     
+            LPInterpreterContext context = i.next().getContext();
+            if (context instanceof Generator) {
+                contexts.add( (Generator) context);     
             }
         }
-        Generator.checkForCompletions(contexts);
+        Generator.checkForCompletions( contexts );
     }
     
 //  =======================================================================
