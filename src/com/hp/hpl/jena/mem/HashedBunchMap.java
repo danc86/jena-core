@@ -5,13 +5,13 @@
 */
 package com.hp.hpl.jena.mem;
 
-import com.hp.hpl.jena.shared.BrokenException;
+import com.hp.hpl.jena.shared.*;
 
 /**
     An implementation of BunchMap that does open-addressed hashing.
     @author kers
 */
-public class HashedBunchMap extends HashCommon implements BunchMap
+public class HashedBunchMap extends HashCommon<Object> implements BunchMap
     {
     protected TripleBunch [] values;
     
@@ -82,16 +82,14 @@ public class HashedBunchMap extends HashCommon implements BunchMap
         Called by HashCommon when a key is removed: remove
         associated element of the <code>values</code> array.
     */
-    @Override
-    protected void removeAssociatedValues( int here )
+    @Override protected void removeAssociatedValues( int here )
         { values[here] = null; }
     
     /**
         Called by HashCommon when a key is moved: move the
         associated element of the <code>values</code> array.
     */
-    @Override
-    protected void moveAssociatedValues( int here, int scan )
+    @Override protected void moveAssociatedValues( int here, int scan )
         { values[here] = values[scan]; }
     }
 

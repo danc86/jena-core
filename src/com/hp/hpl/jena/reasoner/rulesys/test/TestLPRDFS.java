@@ -158,7 +158,7 @@ public class TestLPRDFS extends TestCase {
     /**
      * Return the RDFS rule set, loading it in if necessary
      */
-    public static List loadRules() {
+    public static List<Rule> loadRules() {
         if (ruleSet == null) ruleSet = FBRuleReasoner.loadRules( RULE_FILE );
         return ruleSet;
     }
