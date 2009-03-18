@@ -47,27 +47,28 @@ import java.util.NoSuchElementException;
 public interface NodeIterator extends ExtendedIterator<RDFNode>
     {
     /** Determine if there any more values in the iteration.
-     .
      * @return true if and only if there are more values available
      * from the iteration.
      */
-    public boolean hasNext() ;
+    public boolean hasNext();
+    
     /** Return the next RDFNode of the iteration.
      * @throws NoSuchElementException if there are no more nodes to be returned.
-     .
      * @return The next RDFNode from the iteration.
      */
     public RDFNode next() throws  NoSuchElementException;
+
     /** Return the next RDFNode of the iteration.
      * @throws NoSuchElementException if there are no more nodes to be returned.
-     .
      * @return The next RDFNode from the iteration.
      */
     public RDFNode nextNode() throws  NoSuchElementException;
+    
     /** Unsupported Operation.
      * @throws NoSuchElementException
      */
     public void remove() throws NoSuchElementException;
+    
     /** Terminate the iteration and free up resources.
      *
      * <p>Some implementations, e.g. on relational databases, hold resources while

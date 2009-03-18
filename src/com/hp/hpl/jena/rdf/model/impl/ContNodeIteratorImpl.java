@@ -16,52 +16,55 @@ import java.util.*;
  * @author bwm, kers
  * @version Release='$Name$' Revision='$Revision$' Date='$Date$'
  */
-public class ContNodeIteratorImpl extends WrappedIterator<RDFNode> implements NodeIterator
-{
-    
+public class ContNodeIteratorImpl extends NiceIterator<RDFNode> implements NodeIterator
+    {
     protected Statement stmt = null;
-    protected Container cont;
+    protected final Container cont;
     protected int size;
     protected int index = 0;
     protected int numDeleted = 0;
-    protected List<Integer> moved = new ArrayList<Integer>();
+    protected final List<Integer> moved = new ArrayList<Integer>();
+    
+    protected final Iterator<Statement> iterator;
     
     /** Creates new ContNodeIteratorImpl */
-    public ContNodeIteratorImpl (Iterator  iterator, 
-                                Object     object,
-                                Container  cont)  {
-        super( iterator ); 
-        this.cont     = cont;
-        this.size     = cont.size();
-    }
+    public ContNodeIteratorImpl (Iterator<Statement>iterator, Object ignored, Container  cont )  
+        {
+        this.iterator = iterator;
+        this.cont = cont;
+        this.size = cont.size();
+        }
 
-    @Override public RDFNode next() throws NoSuchElementException {
-        stmt = (Statement) super.next();
+    @Override public RDFNode next() throws NoSuchElementException 
+        {
+        stmt = iterator.next();
         index += 1;
         return stmt.getObject();
-    }
-    
-    public RDFNode nextNode() throws NoSuchElementException {
-        return next();
-    }
-            
-    @Override public void remove() throws NoSuchElementException {
-        if (stmt == null) throw new NoSuchElementException();
-        super.remove();
-        
-        if (index > (size-numDeleted)) {
-            ((ContainerI)cont).remove(moved.get(size-index)
-                                                      .intValue(),
-                                       stmt.getObject());
-        } else {
-            cont.remove(stmt);
-            moved.add(new Integer(index));
         }
-        stmt = null;
-        numDeleted++;
-    }
     
-}
+    @Override public boolean hasNext()
+        { return iterator.hasNext(); }
+    
+    public RDFNode nextNode() throws NoSuchElementException 
+        { return next(); }
+            
+    @Override public void remove() throws NoSuchElementException
+        {
+        if (stmt == null) throw new NoSuchElementException();
+        iterator.remove();
+        if (index > (size - numDeleted)) 
+            {
+            ((ContainerI) cont).remove( moved.get(size-index).intValue(), stmt.getObject() );
+            } 
+        else 
+            {
+            cont.remove( stmt );
+            moved.add( new Integer( index ) );
+            }
+        stmt = null;
+        numDeleted += 1;
+        }
+    }
 /*
  *  (c) Copyright 2000, 2003, 2004, 2005, 2006, 2007, 2008, 2009 Hewlett-Packard Development Company, LP
  *  All rights reserved.
