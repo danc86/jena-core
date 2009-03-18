@@ -22,54 +22,52 @@ import com.hp.hpl.jena.graph.*;
  *  Builds Jena Iterators and other things (RDFNode and Statement)
  *  needed in a Model.
  */
-public final class IteratorFactory {
-
+public final class IteratorFactory
+    {
     private IteratorFactory(){}
 
 	/**
 	 * 
 	 */
-	static public StmtIterator asStmtIterator(Iterator i, final ModelCom m) {
-		return new StmtIteratorImpl(new Map1Iterator(new Map1(){
-			public Object map1(Object o) {	return m.asStatement( (Triple) o ); }
-		},i));
-	}
+	static public StmtIterator asStmtIterator( Iterator<Triple> i, final ModelCom m ) 
+	    {
+	    Map1<Triple, Statement> asStatement = new Map1<Triple, Statement>() 
+	        { public Statement map1( Triple t ) { return m.asStatement( t ); }};
+	    return new StmtIteratorImpl( WrappedIterator.create( i ).mapWith( asStatement ) );
+	   }
 
 	/**
 	 * 
 	 */
-	static public ResIterator asResIterator(Iterator i, final ModelCom m) {
-		return new ResIteratorImpl(new Map1Iterator(new Map1(){
-			public Object map1(Object o) { return m.asRDFNode( (Node) o ); }
-		},i),null);
-	}
+	static public ResIterator asResIterator( Iterator<Node> i, final ModelCom m) 
+	    {
+		Map1<Node, Resource> asResource = new Map1<Node, Resource>() 
+		    { public Resource map1( Node o) { return (Resource) m.asRDFNode( o ); }};
+		return new ResIteratorImpl( WrappedIterator.create( i ).mapWith( asResource ), null );
+	    }
 
 	/**
 	 * 
 	 */
-	static public NodeIterator asRDFNodeIterator(Iterator i, final ModelCom m) {
-		return new NodeIteratorImpl(new Map1Iterator(new Map1(){
-			public Object map1(Object o) { return m.asRDFNode( (Node) o ); }
-		},i),null);
-	}
+	static public NodeIterator asRDFNodeIterator( Iterator<Node> i, final ModelCom m) 
+	    {      
+	    Map1<Node, RDFNode> asRDFNode = new Map1<Node, RDFNode>() 
+	        { public RDFNode map1( Node o) { return m.asRDFNode( o ); }};
+	    return new NodeIteratorImpl( WrappedIterator.create( i ).mapWith( asRDFNode ), null );
+	    }
 	    
-    static  Resource asResource(Node n,ModelCom m) {
-    	return asResource(n,Resource.class,m);
-    	
-    }	    
+    static  Resource asResource( Node n, ModelCom m )  
+        { return asResource( n, Resource.class, m );  }	    
     
-    static  Property asProperty(Node n,ModelCom m) {
-    	return (Property)asResource(n,Property.class,m);
-    }
+    static Property asProperty( Node n, ModelCom m ) 
+        { return (Property)asResource( n, Property.class, m ); }
     
-    static  Literal asLiteral(Node n,ModelCom m) {
-        return m.getNodeAs( n, Literal.class );
-    }
+    static Literal asLiteral(Node n,ModelCom m) 
+        { return m.getNodeAs( n, Literal.class ); }
     
-    static  Resource asResource(Node n, Class cl,ModelCom m) {
-    	return (Resource)m.getNodeAs(n,cl);
+    static <X extends RDFNode> Resource asResource( Node n, Class<X> cl, ModelCom m ) 
+        { return (Resource) m.getNodeAs( n, cl ); }
     }
-}
 
 /*
     (c) Copyright 2003, 2004, 2005, 2006, 2007, 2008, 2009 Hewlett-Packard Development Company, LP
