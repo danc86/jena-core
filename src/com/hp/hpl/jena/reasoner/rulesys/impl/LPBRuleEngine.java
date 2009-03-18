@@ -383,7 +383,7 @@ public class LPBRuleEngine {
     /**
      * Record count of number of rule invocations, used in profile structure only.
      */
-    static class Count implements Comparable {
+    static class Count implements Comparable<Count> {
         protected int count = 0;
         protected RuleClauseCode clause;
 
@@ -404,9 +404,8 @@ public class LPBRuleEngine {
         }
         
         /** Ordering */
-        public int compareTo(Object other) {
-            Count otherCount = (Count) other;
-            return (count < otherCount.count) ? -1 : ( (count == otherCount.count) ? 0 : +1);
+        public int compareTo(Count other) {
+            return (count < other.count) ? -1 : ( (count == other.count) ? 0 : +1);
         }
         
         /** Printable form */
