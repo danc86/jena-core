@@ -18,7 +18,7 @@ import java.util.*;
  */
 public class ContNodeIteratorImpl extends NiceIterator<RDFNode> implements NodeIterator
     {
-    protected Statement stmt = null;
+    protected Statement recent = null;
     protected final Container cont;
     protected int size;
     protected int index = 0;
@@ -37,9 +37,9 @@ public class ContNodeIteratorImpl extends NiceIterator<RDFNode> implements NodeI
 
     @Override public RDFNode next() throws NoSuchElementException 
         {
-        stmt = iterator.next();
+        recent = iterator.next();
         index += 1;
-        return stmt.getObject();
+        return recent.getObject();
         }
     
     @Override public boolean hasNext()
@@ -50,18 +50,18 @@ public class ContNodeIteratorImpl extends NiceIterator<RDFNode> implements NodeI
             
     @Override public void remove() throws NoSuchElementException
         {
-        if (stmt == null) throw new NoSuchElementException();
+        if (recent == null) throw new NoSuchElementException();
         iterator.remove();
         if (index > (size - numDeleted)) 
             {
-            ((ContainerI) cont).remove( moved.get(size-index).intValue(), stmt.getObject() );
+            ((ContainerI) cont).remove( moved.get(size-index).intValue(), recent.getObject() );
             } 
         else 
             {
-            cont.remove( stmt );
+            cont.remove( recent );
             moved.add( new Integer( index ) );
             }
-        stmt = null;
+        recent = null;
         numDeleted += 1;
         }
     }

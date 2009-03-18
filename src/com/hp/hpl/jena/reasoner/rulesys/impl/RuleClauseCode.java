@@ -348,7 +348,7 @@ public class RuleClauseCode {
         int p;
         
         /** array of lists of variables in the rule clauses, array index is 0 for head, body starts at 1 */
-        private List[] termVarTable;
+        private List<Node>[] termVarTable;
         
         /** Map from variables to the list of term positions in which it occurs */
         private Map<Node_RuleVariable, List<TermIndex>> varOccurrence = new HashMap<Node_RuleVariable, List<TermIndex>>();
@@ -492,7 +492,7 @@ public class RuleClauseCode {
             emitBodyPut(goal.getSubject(), 0, false);
             emitBodyPut(goal.getPredicate(), 1, false);
             emitBodyPut(goal.getObject(), 2, false);
-            List predicateCode = store.codeFor(goal);
+            List<RuleClauseCode> predicateCode = store.codeFor(goal);
             if (predicateCode == null || predicateCode.size() == 0) {
                 code[p++] = CALL_TRIPLE_MATCH;
             } else {
@@ -623,21 +623,22 @@ public class RuleClauseCode {
          * index number of the variables so they lie in two sequences - temp
          * and permanent separately. 
          */
-        void classifyVariables(Rule rule) {
+        void classifyVariables( Rule rule ) {
             // Build index data structure into var use in each term in the rule
-            termVarTable = new List[rule.bodyLength() + 1];
-            termVarTable[0] = termVars(rule.getHeadElement(0));
+            @SuppressWarnings("unchecked") List<Node>[] termListArray = new List[rule.bodyLength() + 1];
+            termVarTable = termListArray;
+            termVarTable[0] = termVars( rule.getHeadElement(0) );
             totalOccurrences += termVarTable[0].size();
             for (int i = 0; i < rule.bodyLength(); i++) {
-                termVarTable[i+1] = termVars(rule.getBodyElement(i));
+                termVarTable[i+1] = termVars( rule.getBodyElement(i) );
                 totalOccurrences += termVarTable[i+1].size();
             }
             
             // Build the inverted data structure
             for (int i = 0; i < rule.bodyLength() + 1; i++ ) {
-                List varEnts = termVarTable[i];
+                List<Node> varEnts = termVarTable[i];
                 for (int j = 0; j < varEnts.size(); j++) {
-                    Node n = (Node)varEnts.get(j);
+                    Node n = varEnts.get(j);
                     if (n.isVariable()) {
                         Node_RuleVariable var = (Node_RuleVariable)n; 
                         List<TermIndex> occurrences = varOccurrence.get(var);
@@ -805,8 +806,8 @@ public class RuleClauseCode {
             String test22 = "(?C p ?D) <- (?C rb:xsdBase ?BC), (?D rb:xsdBase ?BD), notEqual(?BC, ?BD).";
             store.addRule(Rule.parseRule(test22));
             System.out.println("Code for p:");
-            List codeList = store.codeFor(Node.createURI("p"));
-            RuleClauseCode code = (RuleClauseCode)codeList.get(0);
+            List<RuleClauseCode> codeList = store.codeFor(Node.createURI("p"));
+            RuleClauseCode code = codeList.get(0);
             code.print(System.out);
         } catch (Exception e) {
             System.out.println("Problem: " + e);
