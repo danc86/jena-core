@@ -465,7 +465,7 @@ public class WebOntTestHarness {
     public boolean testEntailment(Graph conclusions, Graph result) {
         QueryHandler qh = result.queryHandler();
         Query query = WGReasonerTester.graphToQuery(conclusions);
-        Iterator i = qh.prepareBindings(query, new Node[] {}).executeBindings();
+        Iterator<Domain> i = qh.prepareBindings(query, new Node[] {}).executeBindings();
         return i.hasNext();
     }
     
@@ -503,12 +503,12 @@ public class WebOntTestHarness {
         // Rewrite queries of the form (X intersectionOf Y) to the form
         //   (X equivalentClass ?CC) (?CC intersectionOf Y)
         StmtIterator ii = conclusions.listStatements(null, OWL.intersectionOf, (RDFNode)null);
-        List intersections = new ArrayList();
+        List<Statement> intersections = new ArrayList<Statement>();
         while (ii.hasNext()) { 
-            intersections.add(ii.next());
+            intersections.add(ii.nextStatement());
         }
-        for (Iterator i = intersections.iterator(); i.hasNext(); ) {
-            Statement is = (Statement)i.next();
+        for (Iterator<Statement> i = intersections.iterator(); i.hasNext(); ) {
+            Statement is = i.next();
             // Declare in the premises that such an intersection exists
             Resource comp = premises.createResource()
                    .addProperty(RDF.type, OWL.Class)
