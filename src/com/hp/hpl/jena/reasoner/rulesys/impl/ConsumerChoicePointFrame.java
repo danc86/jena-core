@@ -77,7 +77,7 @@ public class ConsumerChoicePointFrame extends GenericTripleMatchFrame
     /**
      * Preserve the state of an interpreter into this frame.
      */
-    public void preserveState(List trail) {
+    public void preserveState( List<Node> trail ) {
         // Save the trail state
         int trailLen = trail.size();
         if (trailLen > trailLength) {
