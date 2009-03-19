@@ -60,10 +60,10 @@ public abstract class NodeToTriplesMapBase
     public abstract boolean containsBySameValueAs( Triple t );
 
     /**
-        The nodes which appear in the index position of the stored triples; useful
+        The values (usually nodes) which appear in the index position of the stored triples; useful
         for eg listSubjects().
     */
-    public final Iterator<Node> domain()
+    public final Iterator<Object> domain()
         { return bunchMap.keyIterator(); }
 
     protected final Object getIndexField( Triple t )
@@ -97,7 +97,7 @@ public abstract class NodeToTriplesMapBase
     */
     public ExtendedIterator<Triple> iterateAll()
         {
-        final Iterator<Node> nodes = domain();
+        final Iterator<Object> nodes = domain();
         // System.err.println( "*>> NTM:iterateAll: nodes = " + IteratorCollection.iteratorToList( domain() ) );
         return new NiceIterator<Triple>() 
             {

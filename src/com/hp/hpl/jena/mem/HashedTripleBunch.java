@@ -12,7 +12,7 @@ import com.hp.hpl.jena.graph.Triple;
 import com.hp.hpl.jena.graph.query.*;
 import com.hp.hpl.jena.util.iterator.*;
 
-public class HashedTripleBunch extends HashCommon implements TripleBunch
+public class HashedTripleBunch extends HashCommon<Triple> implements TripleBunch
     {    
     public HashedTripleBunch( TripleBunch b )
         {
@@ -68,14 +68,14 @@ public class HashedTripleBunch extends HashCommon implements TripleBunch
         Object [] newKeys = keys = new Triple[capacity];
         for (int i = 0; i < oldCapacity; i += 1)
             {
-            Object t = oldContents[i];
+            Triple t = (Triple) oldContents[i];
             if (t != null) newKeys[findSlot( t )] = t;
             }
         }
     
-    public void remove( Triple t )
+    @Override public void remove( Triple t )
         {
-        removeFrom( ~findSlot( t ) );
+        super.remove( t );
         changes += 1;
         }
     

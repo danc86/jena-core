@@ -47,7 +47,7 @@ public interface BunchMap
     /**
         Answer an iterator over all the keys in this map.
     */
-    public ExtendedIterator keyIterator();
+    public ExtendedIterator<Object> keyIterator();
     }
 
 /*

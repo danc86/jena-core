@@ -13,8 +13,7 @@ import com.hp.hpl.jena.graph.Node;
 import com.hp.hpl.jena.graph.Triple;
 import com.hp.hpl.jena.graph.TripleMatch;
 import com.hp.hpl.jena.graph.impl.TripleStore;
-import com.hp.hpl.jena.util.iterator.ExtendedIterator;
-import com.hp.hpl.jena.util.iterator.WrappedIterator;
+import com.hp.hpl.jena.util.iterator.*;
 
 public abstract class GraphTripleStoreBase implements TripleStore
     {
@@ -87,16 +86,22 @@ public abstract class GraphTripleStoreBase implements TripleStore
          { return subjects.isEmpty(); }
      
      public ExtendedIterator<Node> listSubjects()
-         { return WrappedIterator.<Node>createNoRemove( subjects.domain() ); }
-
+         { return expectOnlyNodes( subjects.domain() ); }
+     
      public ExtendedIterator<Node> listPredicates()
-         { return WrappedIterator.<Node>createNoRemove( predicates.domain() ); }
+         { return expectOnlyNodes( predicates.domain() ); }
+    
+     private ExtendedIterator<Node> expectOnlyNodes( Iterator<Object> elements )
+        { return WrappedIterator.<Object>createNoRemove( elements ).mapWith( expectNode ); }
+     
+     private static final Map1<Object, Node> expectNode = new Map1<Object, Node>()
+         { public Node map1( Object o ) { return (Node) o; }};
      
      public ExtendedIterator<Node> listObjects()
          {
          return new ObjectIterator( objects.domain() )
              {
-             @Override protected Iterator iteratorFor( Object y )
+             @Override protected Iterator <Triple>iteratorFor( Object y )
                  { return objects.iteratorForIndexed( y ); }
              };
          }
