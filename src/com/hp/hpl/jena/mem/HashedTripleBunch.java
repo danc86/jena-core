@@ -21,6 +21,9 @@ public class HashedTripleBunch extends HashCommon<Triple> implements TripleBunch
         changes = 0;
         }
 
+    @Override protected Triple[] newKeyArray( int size )
+        { return new Triple[size]; }
+
     public boolean contains( Triple t )
         { return findSlot( t ) < 0; }    
     
