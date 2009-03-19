@@ -6,7 +6,7 @@ $Id$
 
 package jena.test;
 
-import junit.swingui.TestRunner;
+//import junit.swingui.TestRunner;
 
 import com.hp.hpl.jena.rdf.arp.test.ARPTests;
 import com.hp.hpl.jena.shared.Command;
@@ -20,7 +20,7 @@ public class rdfparse implements Command
     
     public Object execute()
         { ARPTests.internet = internetTest;
-        TestRunner.main( new String[] { "-noloading", ARPTests.class.getName()});
+//        TestRunner.main( new String[] { "-noloading", ARPTests.class.getName()});
         return null; }
     }
 
