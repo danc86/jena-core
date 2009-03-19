@@ -132,7 +132,7 @@ public class TransitiveGraphCache implements Finder {
             this.root = rdfNode;
             this.predicate = predicate;
             this.iterator = node.pred.iterator();
-            aliasIterator = node.aliasIterator();
+            aliasIterator = node.siblingIterator();
             next = new Triple(root, predicate, root);   // implicit reflexive case 
         }
         
@@ -168,7 +168,7 @@ public class TransitiveGraphCache implements Finder {
                     if (isDeep)
                         pushStack(nextNode);
                     next =  new Triple(nextNode.rdfNode, predicate, root);
-                    aliasIterator = nextNode.aliasIterator();
+                    aliasIterator = nextNode.siblingIterator();
                 } else { 
                     // Already visited this junction, skip it
                     walkOne();
@@ -277,7 +277,7 @@ public class TransitiveGraphCache implements Finder {
                 while (succIt.hasNext()) {
                     succ = succIt.next();
                     if (succ == node) continue; // Skip accidental reflexive cases, already done
-                    aliasesIt = succ.aliasIterator();
+                    aliasesIt = succ.siblingIterator();
                     next = new Triple(nodeN, predicate, succ.rdfNode);
                     return;
                 }
@@ -289,7 +289,7 @@ public class TransitiveGraphCache implements Finder {
                 nodeN = node.rdfNode;
                 GraphNode lead = node.leadNode();
                 succIt = (closed ? lead.succClosed : lead.succ).iterator();
-                succIt = lead.concatenateAliases( succIt );
+                succIt = lead.concatenateSiblings( succIt );
                 next = new Triple(nodeN, predicate, nodeN); // Implicit reflexive case
             } else {
                 next = null; // End of walk
