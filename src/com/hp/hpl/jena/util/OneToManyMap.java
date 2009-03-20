@@ -280,7 +280,13 @@ public class OneToManyMap<From, To> implements Map<From, To>
         for (Iterator<? extends From> i = m.keySet().iterator(); i.hasNext(); ) {
             From key = i.next();
             if (many) {
-                for (Iterator<? extends To> j = ((OneToManyMap<? extends From, ? extends To>) m).getAll( key ); j.hasNext(); ) {
+                // Bizare way to write it but this way makes all compilers happy.
+                OneToManyMap<?,?> Z =  (OneToManyMap<?,?>)m ;
+                @SuppressWarnings("unchecked")
+                OneToManyMap<? extends From, ? extends To> X = (OneToManyMap<? extends From, ? extends To>) Z ;
+                Iterator<? extends To> j = X.getAll( key ) ;
+                
+                for (; j.hasNext(); ) {
                     put( key, j.next() );
                 }
             }

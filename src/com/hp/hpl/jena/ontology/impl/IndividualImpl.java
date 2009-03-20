@@ -186,10 +186,11 @@ public class IndividualImpl
      * @return An iterator over the set of this individual's classes. Each member
      * of the iteration will be an {@link OntClass}.
      */
-    @SuppressWarnings("unchecked")
-    public  ExtendedIterator<? extends OntClass> listOntClasses( boolean direct ) {
-        return listRDFTypes( direct ).mapWith( new ResourceAsMapper<OntClass>( OntClass.class ) );
-
+    public <T extends OntClass> ExtendedIterator<T> listOntClasses( boolean direct ) {
+        @SuppressWarnings("unchecked")
+        ExtendedIterator<T> iter = 
+            (ExtendedIterator<T>)listRDFTypes( direct ).mapWith( new ResourceAsMapper<OntClass>( OntClass.class ) );
+        return iter ;
     }
 
     /**
