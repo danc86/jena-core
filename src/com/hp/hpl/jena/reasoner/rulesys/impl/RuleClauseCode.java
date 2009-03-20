@@ -514,10 +514,21 @@ public class RuleClauseCode {
                             code[p++] = CALL_PREDICATE;
                         }
                     }
-                    args.add(predicateCode);
+                    args.add( new RuleClauseCodeList( predicateCode ) );
                 }
             }
         }
+        
+        /**
+            Wrapper class with reified 
+         	@author kers
+         */
+        public static class RuleClauseCodeList 
+            {
+            private final List<RuleClauseCode> list;
+            public RuleClauseCodeList( List<RuleClauseCode> list ) { this.list = list; }
+            List<RuleClauseCode> getList()  { return list; }
+            }
         
         /**
          * Emit code a single body put operation.

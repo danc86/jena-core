@@ -12,6 +12,7 @@ package com.hp.hpl.jena.reasoner.rulesys.impl;
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.reasoner.*;
 import com.hp.hpl.jena.reasoner.rulesys.*;
+import com.hp.hpl.jena.reasoner.rulesys.impl.RuleClauseCode.CompileState.RuleClauseCodeList;
 import com.hp.hpl.jena.util.PrintUtil;
 
 import java.util.*;
@@ -537,7 +538,7 @@ public class LPInterpreter {
                         case RuleClauseCode.LAST_CALL_PREDICATE:
                             // TODO: improved implementation of last call case
                         case RuleClauseCode.CALL_PREDICATE:
-                            List<RuleClauseCode> clauses = (List<RuleClauseCode>)args[ac++];
+                            List<RuleClauseCode> clauses = ((RuleClauseCodeList) args[ac++]).getList();
                             // Check if this call is now grounded
                             boolean groundCall = isGrounded(argVars[0]) && isGrounded(argVars[1]) && isGrounded(argVars[2]);
                             setupClauseCall(pc, ac, clauses, groundCall);
@@ -547,7 +548,7 @@ public class LPInterpreter {
                         case RuleClauseCode.CALL_PREDICATE_INDEX:
                             // This code path is experimental, don't yet know if it has enough 
                             // performance benefit to justify the cost of maintaining it.
-                            clauses = (List<RuleClauseCode>) args[ac++];
+                            clauses = ((RuleClauseCodeList) args[ac++]).getList();
                             // Check if we can futher index the clauses
                             if (!argVars[2].isVariable()) {
                                 clauses = engine.getRuleStore().codeFor(
