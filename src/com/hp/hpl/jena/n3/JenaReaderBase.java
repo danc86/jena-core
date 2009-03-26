@@ -15,7 +15,7 @@ import org.apache.commons.logging.LogFactory;
 import com.hp.hpl.jena.shared.*;
 import com.hp.hpl.jena.util.FileUtils;
 
-/** Abstract class that sorts out input sterams, readers and base URIs, to call a
+/** Abstract class that sorts out input streams, readers and base URIs, to call a
  * single worker function with model, UTF8 reader and visated base  
  *   
  * @author		Andy Seaborne
