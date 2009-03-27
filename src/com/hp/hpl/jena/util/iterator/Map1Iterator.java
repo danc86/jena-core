@@ -22,8 +22,8 @@ public class Map1Iterator<From, To> extends NiceIterator<To> implements Closable
 	
         /**
          * Construct a list of the converted.
-         * @param m The conversion to apply.
-         * @param it the iterator of elements to convert
+         * @param map The conversion to apply.
+         * @param base the iterator of elements to convert
          */
 	public Map1Iterator( Map1<From, To> map, Iterator<From> base ) 
         {

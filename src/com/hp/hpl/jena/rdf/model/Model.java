@@ -939,7 +939,7 @@ public interface Model
     /** Get the model lock for this model.
      *  See also the convenience operations enterCriticalSection and leaveCriticalSection.
      *
-     * @see ModelLock
+     * @see Lock
      * @return The ModelLock object associated with this model
      */
     public Lock getLock() ;
