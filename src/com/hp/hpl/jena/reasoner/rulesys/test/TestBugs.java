@@ -1048,14 +1048,18 @@ public class TestBugs extends TestCase {
      * fiddling with manifest files and declarative test specifications
      */
     public void testRDFSSimple() {
+        doTestRDFSSimple(ReasonerVocabulary.RDFS_DEFAULT);
+        doTestRDFSSimple(ReasonerVocabulary.RDFS_SIMPLE);
+    }
+    
+    private void doTestRDFSSimple(String level) {
         Model model = ModelFactory.createDefaultModel();
         String NS = "http://jena.hpl.hp.com/example#";
         Property prop = model.createProperty(NS + "prop");
         model.add(prop, RDF.type, RDF.Property);
         
         Reasoner reasoner = RDFSRuleReasonerFactory.theInstance().create(null);
-        reasoner.setParameter(ReasonerVocabulary.PROPsetRDFSLevel, 
-                ReasonerVocabulary.RDFS_SIMPLE);
+        reasoner.setParameter(ReasonerVocabulary.PROPsetRDFSLevel, level); 
         InfModel im = ModelFactory.createInfModel(reasoner, model);
         assertTrue( im.contains(prop, RDFS.subPropertyOf, prop) );
     }
