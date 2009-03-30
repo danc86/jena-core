@@ -53,11 +53,14 @@ public interface Jena
     /** The full name of the current Jena version */    
     public static final String VERSION = "@version@";
     
-    /** The major version number for this release of Jena (ie '2' for Jena 2.0) */
+    /** The major version number for this release of Jena (ie '2' for Jena 2.6.0) */
     public static final String MAJOR_VERSION = "@version-major@";
     
-    /** The minor version number for this release of Jena (ie '0' for Jena 2.0) */
+    /** The minor version number for this release of Jena (ie '6' for Jena 2.6.0) */
     public static final String MINOR_VERSION = "@version-minor@";
+    
+    /** The minor version number for this release of Jena (ie '0' for Jena 2.6.0) */
+    public static final String REVISION_VERSION = "@version-revision@";
     
     /** The version status for this release of Jena (eg '-beta1' or the empty string) */
     public static final String VERSION_STATUS = "@version-status@";
