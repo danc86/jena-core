@@ -52,7 +52,7 @@ public class URITests
 		    IRI ref =
             factory.create(uri);
             if (ok && ref.hasViolation(false)) {
-                Violation v = (Violation)ref.violations(false).next();
+                Violation v = ref.violations(false).next();
                 fail("<" + uri + "> is expected to be a URI, but: "+v.getLongMessage());
             }
 			assertEquals("<" + uri + "> is"+(ok?" ":" not ")+"a URI", ok, !ref.hasViolation(false));

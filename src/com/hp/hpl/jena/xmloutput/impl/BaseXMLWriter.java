@@ -767,7 +767,7 @@ abstract public class BaseXMLWriter implements RDFXMLWriterI {
             
             if (iri.hasViolation(false) ) 
             throw new BadURIException( "Only well-formed absolute URIrefs can be included in RDF/XML output: "
-                     + ((Violation)iri.violations(false).next()).getShortMessage()); 
+                     + (iri.violations(false).next()).getShortMessage()); 
         }
              
             
