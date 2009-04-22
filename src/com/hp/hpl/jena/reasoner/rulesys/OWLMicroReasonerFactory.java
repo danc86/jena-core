@@ -90,6 +90,7 @@ public class OWLMicroReasonerFactory implements ReasonerFactory {
                 .addProperty(ReasonerVocabulary.supportsP, TransitiveReasoner.directSubClassOf.toString() ) // TODO -- typing
                 .addProperty(ReasonerVocabulary.supportsP, TransitiveReasoner.directSubPropertyOf.toString() ) // TODO -- typing
                 // TODO - add OWL elements supported
+                .addProperty(ReasonerVocabulary.supportsP, ReasonerVocabulary.individualAsThingP )
                 .addProperty(ReasonerVocabulary.supportsP, OWL.ObjectProperty )
                 .addProperty(ReasonerVocabulary.supportsP, OWL.DatatypeProperty)
                 .addProperty(ReasonerVocabulary.supportsP, OWL.FunctionalProperty )
