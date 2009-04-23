@@ -277,15 +277,23 @@ public interface OntClass
 
     /**
      * <p>Answer a class that is equivalent to this class. If there is
-     * more than one such class, an arbitrary selection is made.</p>
+     * more than one such class, an arbitrary selection is made.
+     * See {@link #listEquivalentClasses()} for a note on equivalent classes
+     * when using a reasoner.
+     * </p>
      * @return A class equivalent to this class
      * @exception OntProfileException If the {@link Profile#EQUIVALENT_CLASS()} property is not supported in the current language profile.
      */
     public OntClass getEquivalentClass();
 
     /**
-     * <p>Answer an iterator over all of the classes that are declared to be equivalent classes to
-     * this class. Each element of the iterator will be an {@link OntClass}.</p>
+     * <p>Answer an iterator over all of the classes that are known to be equivalent to
+     * this class. Equivalence may be asserted in the model (using, for example,
+     * <code>owl:equivalentClass</code>, or may be inferred by the reasoner attached to the
+     * model. <strong>Note</strong> that the OWL semantics entails that every class is
+     * equivalent to itself, so when using a reasoning model clients should expect that
+     * this class will appear as a member of its own equivalent classes.</p><p>
+     * Each element of the returned iterator will be an {@link OntClass}.</p>
      * @return An iterator over the classes equivalent to this class.
      * @exception OntProfileException If the {@link Profile#EQUIVALENT_CLASS()} property is not supported in the current language profile.
      */
