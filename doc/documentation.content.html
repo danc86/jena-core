@@ -45,11 +45,13 @@ Jena Documentation
 
 <h2>Persistence Subsystems for Jena</h2>
 <p>There are two subsystems for persisting RDF and OWL data,
-<a href="http://jena.sf.net/SDB">SDB</a> or <a href="http://jena.sf.net/TDB">TDB</a>. 
-These are separate downloads. </p>
+<a href="http://jena.sf.net/TDB">TDB</a> or <a href="http://jena.sf.net/SDB">SDB</a>. </p>
+<p><a href="http://jena.sf.net/TDB">TDB</a> is non-transactional, custom store.
+<a href="http://jena.sf.net/SDB">SDB</a> runs backed by a relational database. 
+TDB is faster and simpler to setup.</p>
 <ul>
-	<li><a href="http://jena.hpl.hp.com/wiki/TDB">SDB documentation</a></li>
 	<li><a href="http://jena.hpl.hp.com/wiki/SDB">TDB documentation</a></li>
+	<li><a href="http://jena.hpl.hp.com/wiki/TDB">SDB documentation</a></li>
 </ul>
 <p>The original RDB system is still shipped with Jena for legacy applications. 
 It is deprecated for new development.</p>
