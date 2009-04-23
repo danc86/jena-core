@@ -1176,6 +1176,15 @@ public class OntResourceImpl
                             // the resource has rdf:type owl:Thing (or equivalent)
                             return true;
                         }
+
+                        // if the type itself is OWL.Class or similar, we should ignore it ... this may
+                        // arise in cases where the user has materialised results of inference and is then
+                        // accessing them from a plain model
+                        if (rType.equals( getProfile().CLASS() )) {
+                            continue;
+                        }
+
+                        // otherwise, we check to see if the given type is known to be a class
                         for (j = rType.listProperties( RDF.type ); j.hasNext(); ) {
                             if (j.nextStatement().getResource().equals( getProfile().CLASS() )) {
                                 // we have found an rdf:type of the subject that is an owl, rdfs or daml Class

@@ -1808,6 +1808,97 @@ public class TestBugReports
 
     }
 
+    /** User report of builtin classes showing up as individuals */
+    public void testIsIndividual1() {
+        String NS = "http://jena.hpl.hp.com/example#";
+        OntModel m = ModelFactory.createOntologyModel(OntModelSpec.OWL_MEM);
+
+        OntClass c1 = m.createClass(NS + "C1");
+
+        for (Iterator<OntClass> it = m.listClasses(); it.hasNext(); ) {
+            OntClass ontClass = it.next();
+            assertFalse( ontClass.getLocalName() + "should not be an individual", ontClass.isIndividual() );
+        }
+    }
+
+    public void testIsIndividual2() {
+        String NS = "http://jena.hpl.hp.com/example#";
+        OntModel m = ModelFactory.createOntologyModel( OntModelSpec.OWL_MEM_MICRO_RULE_INF);
+
+        OntClass c1 = m.createClass(NS + "C1");
+
+        for (Iterator<OntClass> it=m.listClasses(); it.hasNext(); ) {
+            OntClass ontClass = it.next();
+            assertFalse( ontClass.getLocalName() + "should not be an individual", ontClass.isIndividual() );
+        }
+    }
+
+    /** Edge case - suppose we imagine that user has materialised results of offline inference */
+    public void testIsIndividual3() {
+        String NS = "http://jena.hpl.hp.com/example#";
+        OntModel m = ModelFactory.createOntologyModel(OntModelSpec.OWL_DL_MEM);
+
+        OntClass c1 = m.createClass(NS + "C1");
+        m.add( OWL.Class, RDF.type, OWL.Class );
+
+        for (Iterator<OntClass> it = m.listClasses(); it.hasNext(); ) {
+            OntClass ontClass = it.next();
+            assertFalse( ontClass.getLocalName() + " should not be an individual", ontClass.isIndividual() );
+        }
+    }
+
+    public void testIsIndividual4() {
+        String NS = "http://jena.hpl.hp.com/example#";
+        OntModel m = ModelFactory.createOntologyModel(OntModelSpec.OWL_DL_MEM);
+
+        OntClass c1 = m.createClass(NS + "C1");
+        m.add( OWL.Class, RDF.type, RDFS.Class );
+
+        for (Iterator<OntClass> it = m.listClasses(); it.hasNext(); ) {
+            OntClass ontClass = it.next();
+            assertFalse( ontClass.getLocalName() + " should not be an individual", ontClass.isIndividual() );
+        }
+    }
+
+    public void testIsIndividual5() {
+        String NS = "http://jena.hpl.hp.com/example#";
+        OntModel m = ModelFactory.createOntologyModel(OntModelSpec.RDFS_MEM);
+
+        OntClass c1 = m.createClass(NS + "C1");
+        m.add( RDFS.Class, RDF.type, RDFS.Class );
+
+        for (Iterator<OntClass> it = m.listClasses(); it.hasNext(); ) {
+            OntClass ontClass = it.next();
+            assertFalse( ontClass.getLocalName() + " should not be an individual", ontClass.isIndividual() );
+        }
+    }
+
+    /** But we do allow punning */
+    public void testIsIndividual6a() {
+        String NS = "http://jena.hpl.hp.com/example#";
+        OntModel m = ModelFactory.createOntologyModel(OntModelSpec.OWL_MEM);
+
+        OntClass punned = m.createClass(NS + "C1");
+        OntClass c2 = m.createClass(NS + "C2");
+        m.add( punned, RDF.type, c2 ); // punned is a class and and instance of c2
+
+        assertFalse( "should not be an individual", c2.isIndividual() );
+        assertTrue(  "should be an individual", punned.isIndividual() );
+    }
+
+    public void testIsIndividual6b() {
+        String NS = "http://jena.hpl.hp.com/example#";
+        OntModel m = ModelFactory.createOntologyModel(OntModelSpec.OWL_MEM_MICRO_RULE_INF);
+
+        OntClass punned = m.createClass(NS + "C1");
+        OntClass c2 = m.createClass(NS + "C2");
+        m.add( punned, RDF.type, c2 ); // punned is a class and and instance of c2
+
+        assertFalse( "should not be an individual", c2.isIndividual() );
+        assertTrue(  "should be an individual", punned.isIndividual() );
+    }
+
+
     // Internal implementation methods
     //////////////////////////////////
 
