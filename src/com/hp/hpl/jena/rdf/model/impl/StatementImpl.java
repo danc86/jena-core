@@ -104,7 +104,7 @@ public class StatementImpl  extends StatementBase implements Statement {
     }
     
 
-    public Object getObject(ObjectF f)  {
+    @Deprecated public Object getObject(ObjectF f)  {
         try {
             return f.createObject( getLiteral().toString());
         } catch (Exception e) {

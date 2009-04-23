@@ -252,7 +252,7 @@ public interface Seq extends Container {
      * @param f A factory object used to create the returned object.
      .
      */
-    public Object getObject(int index, ObjectF f) ;
+    @Deprecated public Object getObject(int index, ObjectF f) ;
     
     /** Get the member at a given index.
      *

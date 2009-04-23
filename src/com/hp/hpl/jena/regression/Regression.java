@@ -4843,7 +4843,7 @@ public class Regression extends Object {
             { return o instanceof LitTestObj && content == ((LitTestObj)o).content; }
     }
 
-    public static class LitTestObjF implements ObjectF {
+    @Deprecated public static class LitTestObjF implements ObjectF {
         public Object createObject(String s) {
             return new LitTestObj(s);
         }

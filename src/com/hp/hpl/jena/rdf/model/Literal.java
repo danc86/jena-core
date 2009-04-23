@@ -200,7 +200,7 @@ public interface Literal extends RDFNode {
      */
     // @TODO is this the right approach, could reparse the lexical form 
     //       using the factory even for typed literals
-    public Object getObject(ObjectF f) ;
+    @Deprecated public Object getObject(ObjectF f) ;
     
     /** 
          If a language is defined for this literal return it

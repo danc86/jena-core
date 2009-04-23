@@ -208,7 +208,7 @@ public interface Statement extends FrontsTriple
      * @param f A factory used to create the returned object.
      * 
      */    
-    public Object getObject(ObjectF f) ;
+    @Deprecated public Object getObject(ObjectF f) ;
     
     /** Return the object of the statement.
      *

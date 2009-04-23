@@ -218,7 +218,7 @@ public interface Alt extends Container {
      * @param f A factory object used to create the object returned.
      
      */
-    public Object getDefaultObject(ObjectF f);
+    @Deprecated public Object getDefaultObject(ObjectF f);
     
     /** Return the default value for this resource. 
      * @return the default value for this resource interpreted as the return

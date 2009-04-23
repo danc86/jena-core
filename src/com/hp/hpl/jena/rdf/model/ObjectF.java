@@ -40,7 +40,7 @@ package com.hp.hpl.jena.rdf.model;
  * @author bwm
  * @version Release='$Name$' Revision='$Revision$' Date='$Date$'
  */
-public interface ObjectF {
+@Deprecated public interface ObjectF {
     /** Create an instance of an object.
      * @param s The String used to initialise the state of the object.
      * @throws Exception may throw any exception.
