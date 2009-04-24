@@ -16,8 +16,8 @@ import com.hp.hpl.jena.reasoner.rulesys.impl.RuleClauseCode.CompileState.RuleCla
 import com.hp.hpl.jena.util.PrintUtil;
 
 import java.util.*;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Bytecode interpeter engine for the LP version of the backward
@@ -68,7 +68,7 @@ public class LPInterpreter {
     /** Original set up goal, only used for debugging */
     protected TriplePattern goal;
         
-    static Log logger = LogFactory.getLog(LPInterpreter.class);
+    static Logger logger = LoggerFactory.getLogger(LPInterpreter.class);
 
     //  =======================================================================
     //  Constructors

@@ -18,8 +18,8 @@ import com.hp.hpl.jena.db.RDFRDBException;
 
 import com.hp.hpl.jena.vocabulary.RDF;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 //=======================================================================
 /**
@@ -47,7 +47,7 @@ public class PSet_ReifStore_RDB extends PSet_TripleStore_RDB {
 	//=======================================================================
 	// Internal variables
     
-    private static Log logger = LogFactory.getLog( PSet_ReifStore_RDB.class );
+    private static Logger logger = LoggerFactory.getLogger( PSet_ReifStore_RDB.class );
     
 	//=======================================================================
 	// Constructors and accessors

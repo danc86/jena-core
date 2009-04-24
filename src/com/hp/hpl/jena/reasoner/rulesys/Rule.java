@@ -17,8 +17,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.NoSuchElementException;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.hp.hpl.jena.datatypes.RDFDatatype;
 import com.hp.hpl.jena.datatypes.TypeMapper;
@@ -100,7 +100,7 @@ public class Rule implements ClauseEntry {
     /** Flags whether the rule is monotonic */
     protected boolean isMonotonic = true;
     
-    static Log logger = LogFactory.getLog(Rule.class);
+    static Logger logger = LoggerFactory.getLogger(Rule.class);
     
     /**
      * Constructor
@@ -942,7 +942,7 @@ public class Rule implements ClauseEntry {
                 List<Node> args = parseNodeList();
                 Functor clause = new Functor(name, args, BuiltinRegistry.theRegistry);
                 if (clause.getImplementor() == null) {
-                    // Not a fatal error becase later processing can add this
+                    // Not a.error error becase later processing can add this
                     // implementation to the registry
                     logger.warn("Rule references unimplemented functor: " + name);
                 }

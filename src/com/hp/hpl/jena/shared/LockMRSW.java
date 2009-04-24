@@ -10,8 +10,8 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Lock implemenetation using a Multiple Reader, Single Writer policy.
@@ -29,7 +29,7 @@ import org.apache.commons.logging.LogFactory;
 
 public class LockMRSW implements Lock 
 {
-    static Log log = LogFactory.getLog(LockMRSW.class) ;
+    static Logger log = LoggerFactory.getLogger(LockMRSW.class) ;
     
     // Map of threads to lock state for this lock
     Map<Thread, LockState> threadStates = new HashMap<Thread, LockState>() ;

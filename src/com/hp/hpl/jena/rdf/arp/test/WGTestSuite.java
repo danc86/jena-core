@@ -374,7 +374,7 @@ class WGTestSuite extends TestSuite implements ARPErrorNumbers {
     }
 
     final static String errorLevelName[] =
-        new String[] { "warning", "error", "fatal error" };
+        new String[] { "warning", "error", "fatal" };
         
     interface Act {
         void act(Resource r) ;
@@ -669,7 +669,7 @@ class WGTestSuite extends TestSuite implements ARPErrorNumbers {
                                 getName().charAt("rdf-nnn/67_".length()))
                                 != -1) {
                         // ignore
-                        //  System.err.println("Last message probably reflects a benign race condition on ARP teardown after fatal error that can be ignored.");
+                        //  System.err.println("Last message probably reflects a benign race condition on ARP teardown after.error error that can be ignored.");
                         //  System.err.println("It is known to happen with tests rdf-nnn/67_[1234] and ERR_SYNTAX_ERROR.");
 
                     } else {

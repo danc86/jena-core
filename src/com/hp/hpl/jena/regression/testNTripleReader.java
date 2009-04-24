@@ -30,8 +30,8 @@
 package com.hp.hpl.jena.regression;
 
 import com.hp.hpl.jena.rdf.model.*;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  *
@@ -45,7 +45,7 @@ public class testNTripleReader extends Object {
         (new testNTripleReader()).test(m1);
     }
     
-    protected static Log logger = LogFactory.getLog( testNTripleReader.class );
+    protected static Logger logger = LoggerFactory.getLogger( testNTripleReader.class );
     
     void test(Model m1) {
 

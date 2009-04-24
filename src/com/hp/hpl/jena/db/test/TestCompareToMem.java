@@ -26,8 +26,8 @@ import java.util.Iterator;
 
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.hp.hpl.jena.rdf.model.*;
 
@@ -43,7 +43,7 @@ public class TestCompareToMem extends TestCase
     public static TestSuite suite()
         { return new TestSuite( TestCompareToMem.class ); }   
      
-     static Log logger = LogFactory.getLog( TestCompareToMem.class );
+     static Logger logger = LoggerFactory.getLogger( TestCompareToMem.class );
      
     Model modelrdf = null;    
     Model modelmem = null;

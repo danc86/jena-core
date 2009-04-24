@@ -20,8 +20,8 @@ package com.hp.hpl.jena.db.test;
  * @version 0.1
 */
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.hp.hpl.jena.db.*;
 import com.hp.hpl.jena.db.impl.IRDBDriver;
@@ -34,7 +34,7 @@ import com.hp.hpl.jena.vocabulary.DB;
 
 public class TestConnection extends TestCase {
     
-    protected static Log logger = LogFactory.getLog( TestConnection.class );
+    protected static Logger logger = LoggerFactory.getLogger( TestConnection.class );
 	
 	String DefModel = GraphRDB.DEFAULT;    
         

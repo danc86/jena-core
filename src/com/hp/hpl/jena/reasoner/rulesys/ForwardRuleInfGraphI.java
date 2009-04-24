@@ -70,7 +70,7 @@ public interface ForwardRuleInfGraphI extends InfGraph, SilentAddI {
     public boolean shouldLogDerivations();
     
     /**
-     * Log a dervivation record against the given triple.
+     * Logger a dervivation record against the given triple.
      */
     public void logDerivation(Triple t, Derivation derivation);
 

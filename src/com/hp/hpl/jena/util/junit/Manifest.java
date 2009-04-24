@@ -10,8 +10,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.hp.hpl.jena.n3.IRIResolver; 
 import com.hp.hpl.jena.rdf.model.*;
@@ -33,7 +33,7 @@ import com.hp.hpl.jena.vocabulary.TestManifestX;
 public class Manifest
 {
     // This class does not know about JUnit.
-    private static Log log = LogFactory.getLog(Manifest.class) ;
+    private static Logger log = LoggerFactory.getLogger(Manifest.class) ;
     Model manifest ;
     String manifestName ;
     String filename ;

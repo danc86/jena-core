@@ -15,8 +15,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.hp.hpl.jena.db.RDFRDBException;
 import com.hp.hpl.jena.graph.Node;
@@ -77,7 +77,7 @@ public class ResultSetReifIterator extends ResultSetIterator<Triple> {
 	protected int m_nextFrag;
 
 
-    static protected Log logger = LogFactory.getLog( ResultSetReifIterator.class );
+    static protected Logger logger = LoggerFactory.getLogger( ResultSetReifIterator.class );
     
 	// Constructor
 	public ResultSetReifIterator(IPSet p, boolean getTriples, IDBID graphID) {

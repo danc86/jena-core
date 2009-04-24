@@ -12,7 +12,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.security.AccessControlException;
 
-import org.apache.commons.logging.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /** Location files in the filing system.
  *  A FileLocator can have a "current directory" - this is separate from any
@@ -24,7 +25,7 @@ import org.apache.commons.logging.*;
 
 public class LocatorFile implements Locator
 {
-    static Log log = LogFactory.getLog(LocatorFile.class) ;
+    static Logger log = LoggerFactory.getLogger(LocatorFile.class) ;
     private String altDir = null ;
     private String altDirLogStr = "" ;
     

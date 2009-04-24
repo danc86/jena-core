@@ -19,8 +19,8 @@ import java.util.*;
 import com.hp.hpl.jena.util.OneToManyMap;
 import com.hp.hpl.jena.util.iterator.*;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * An inference graph interface that runs a set of forward chaining
@@ -57,7 +57,7 @@ public class BasicForwardRuleInfGraph extends BaseInfGraph implements ForwardRul
     /** Flag which, if true, enables tracing of rule actions to logger.info */
     protected boolean traceOn = false;
     
-    private static Log logger = LogFactory.getLog(BasicForwardRuleInfGraph.class);
+    private static Logger logger = LoggerFactory.getLogger(BasicForwardRuleInfGraph.class);
     
 //=======================================================================
 // Core methods

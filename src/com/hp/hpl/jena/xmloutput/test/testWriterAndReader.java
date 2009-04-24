@@ -14,8 +14,8 @@ import java.util.Vector;
 import junit.framework.Test;
 import junit.framework.TestSuite;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.Property;
@@ -48,7 +48,7 @@ public class testWriterAndReader
 	static private int lastTest = 9;
 	static private int repetitionsJ = 6;
     
-  protected static Log logger = LogFactory.getLog( testWriterAndReader.class );
+  protected static Logger logger = LoggerFactory.getLogger( testWriterAndReader.class );
     
 	final String lang;
    

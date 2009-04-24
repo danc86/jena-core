@@ -8,8 +8,8 @@ package com.hp.hpl.jena.util.tuple ;
 import java.io.* ;
 import java.util.* ;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author  Andy Seaborne
@@ -26,7 +26,7 @@ public class TupleSet implements Iterator<List<TupleItem>>
     List<TupleItem> current = null ;
     boolean finished = false ;
 
-    protected static Log logger = LogFactory.getLog( TupleSet.class );
+    protected static Logger logger = LoggerFactory.getLogger( TupleSet.class );
     
     /** Creates new TupleSet */
     public TupleSet(Reader r)

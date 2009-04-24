@@ -26,8 +26,8 @@ package com.hp.hpl.jena.ontology.impl.test;
 ///////////////
 import java.util.*;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import junit.framework.TestCase;
 
@@ -274,7 +274,7 @@ public class TestOntReasoning
 
     /** Test that an iterator delivers the expected values */
     protected void iteratorTest( Iterator<?> i, Object[] expected ) {
-        Log logger = LogFactory.getLog( getClass() );
+        Logger logger = LoggerFactory.getLogger( getClass() );
         List<Object> expList = new ArrayList<Object>();
         for (int j = 0; j < expected.length; j++) {
             expList.add( expected[j] );

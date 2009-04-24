@@ -34,8 +34,8 @@ import com.hp.hpl.jena.vocabulary.*;
 
 import java.util.*;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 /**
@@ -110,7 +110,7 @@ public class RDFListImpl
     /** Flag to indicate whether we are checking for valid lists during list operations. Default false. */
     protected static boolean s_checkValid = false;
     
-    private static final Log log = LogFactory.getLog( RDFListImpl.class );
+    private static final Logger log = LoggerFactory.getLogger( RDFListImpl.class );
     
 
     // Instance variables

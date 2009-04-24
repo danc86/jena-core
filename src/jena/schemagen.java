@@ -31,7 +31,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.LoggerFactory;
 import org.apache.xerces.util.XMLChar;
 
 import com.hp.hpl.jena.ontology.*;
@@ -1315,7 +1315,7 @@ public class schemagen {
                 comment.append( ((Literal) n).getLexicalForm().trim() );
             }
             else {
-                LogFactory.getLog( getClass() ).debug( "Not a literal: " + n );
+                LoggerFactory.getLogger( getClass() ).debug( "Not a literal: " + n );
             }
         }
 

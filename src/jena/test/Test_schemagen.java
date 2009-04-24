@@ -32,8 +32,8 @@ import java.util.regex.Pattern;
 import jena.schemagen;
 import junit.framework.TestCase;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.util.FileUtils;
@@ -62,7 +62,7 @@ public class Test_schemagen
     // Static variables
     //////////////////////////////////
 
-    private static Log log = LogFactory.getLog( Test_schemagen.class );
+    private static Logger log = LoggerFactory.getLogger( Test_schemagen.class );
 
     // Instance variables
     //////////////////////////////////

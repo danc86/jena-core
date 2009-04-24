@@ -40,7 +40,7 @@ public interface BackwardRuleInfGraphI extends SilentAddI, InfGraph {
     public ExtendedIterator<Triple> findDataMatches(TriplePattern pattern);
 
     /**
-     * Log a dervivation record against the given triple.
+     * Logger a dervivation record against the given triple.
      */
     public void logDerivation(Triple t, Derivation derivation);
 

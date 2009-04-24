@@ -28,8 +28,8 @@ import junit.framework.TestSuite;
 import java.io.IOException;
 import java.util.*;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Test suite for the hybrid forward/backward rule system.
@@ -39,7 +39,7 @@ import org.apache.commons.logging.LogFactory;
  */
 public class TestFBRules extends TestCase {
     
-    protected static Log logger = LogFactory.getLog(TestFBRules.class);
+    protected static Logger logger = LoggerFactory.getLogger(TestFBRules.class);
     
     // Useful constants
     protected Node p = Node.createURI("p");

@@ -69,15 +69,20 @@ package com.hp.hpl.jena.xmloutput.impl;
 import java.io.PrintWriter;
 import java.util.*;
 
-import org.apache.commons.logging.*;
 import org.apache.xerces.util.XMLChar;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.hp.hpl.jena.iri.IRI;
 import com.hp.hpl.jena.rdf.model.*;
-import com.hp.hpl.jena.rdf.model.impl.*;
-import com.hp.hpl.jena.shared.*;
+import com.hp.hpl.jena.rdf.model.impl.PropertyImpl;
+import com.hp.hpl.jena.rdf.model.impl.Util;
+import com.hp.hpl.jena.shared.BrokenException;
+import com.hp.hpl.jena.shared.JenaException;
+import com.hp.hpl.jena.shared.PropertyNotFoundException;
 import com.hp.hpl.jena.util.iterator.*;
-import com.hp.hpl.jena.vocabulary.*;
+import com.hp.hpl.jena.vocabulary.DAML_OIL;
+import com.hp.hpl.jena.vocabulary.RDF;
 
 /**
  * An Unparser will output a model in the abbreviated syntax. *
@@ -92,7 +97,7 @@ class Unparser {
     static private Property DESCRIPTION = new PropertyImpl(RDF.getURI(),
             "Description");
 
-    static protected Log logger = LogFactory.getLog(Unparser.class);
+    static protected Logger logger = LoggerFactory.getLogger(Unparser.class);
 
     /**
      * Creates an Unparser for the specified model. The localName is the URI

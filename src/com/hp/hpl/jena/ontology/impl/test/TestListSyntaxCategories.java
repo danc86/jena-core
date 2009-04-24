@@ -32,8 +32,8 @@ import junit.framework.*;
 
 import java.util.*;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 
@@ -885,7 +885,7 @@ public class TestListSyntaxCategories
 
         @Override
         public void runTest() {
-            Log logger = LogFactory.getLog( getClass() );
+            Logger logger = LoggerFactory.getLogger( getClass() );
             OntModel m = ModelFactory.createOntologyModel( m_spec, null );
             m.getDocumentManager().setMetadataSearchPath( "file:etc/ont-policy-test.rdf", true );
 

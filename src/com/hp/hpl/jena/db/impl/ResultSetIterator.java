@@ -16,8 +16,8 @@ import java.util.*;
 import com.hp.hpl.jena.util.iterator.*;
 import com.hp.hpl.jena.shared.*;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 //=======================================================================
 /**
@@ -65,7 +65,7 @@ public abstract class ResultSetIterator<T> implements ExtendedIterator<T>{
     /** Flag if we have prefeteched the next row but not yet returned it */
     protected boolean m_prefetched = false;
 
-    private static Log logger = LogFactory.getLog( ResultSetIterator.class );
+    private static Logger logger = LoggerFactory.getLogger( ResultSetIterator.class );
     /**
      * Create an empty iterator.
      * Needs to be initialized by reset

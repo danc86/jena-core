@@ -12,8 +12,8 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  *
@@ -29,7 +29,7 @@ public class RandCache implements Cache, CacheControl {
     HashMap<Object, Object> map;
     Collection<Object> collection;
 
-    protected static Log logger = LogFactory.getLog(RandCache.class);
+    protected static Logger logger = LoggerFactory.getLogger(RandCache.class);
     
     long gets = 0;
     long puts = 0;

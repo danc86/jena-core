@@ -14,8 +14,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.hp.hpl.jena.graph.Triple;
 import com.hp.hpl.jena.reasoner.ReasonerException;
@@ -41,7 +41,7 @@ import com.hp.hpl.jena.reasoner.rulesys.RuleDerivation;
  */
 
 public class RETEConflictSet {
-    protected static Log logger = LogFactory.getLog(FRuleEngine.class);
+    protected static Logger logger = LoggerFactory.getLogger(FRuleEngine.class);
 
     /** the execution context for this conflict set */
     protected RETERuleContext gcontext;

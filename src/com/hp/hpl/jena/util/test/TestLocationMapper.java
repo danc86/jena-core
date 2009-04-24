@@ -6,13 +6,16 @@
 
 package com.hp.hpl.jena.util.test;
 
-import java.util.Iterator ;
-import junit.framework.*;
-import org.apache.commons.logging.*;
+import java.util.Iterator;
 
-import com.hp.hpl.jena.util.LocationMapper;
+import junit.framework.TestCase;
+import junit.framework.TestSuite;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.util.FileManager;
-import com.hp.hpl.jena.rdf.model.Model ;
+import com.hp.hpl.jena.util.LocationMapper;
 
 /** TestLocationMapper
  * 
@@ -22,7 +25,7 @@ import com.hp.hpl.jena.rdf.model.Model ;
 
 public class TestLocationMapper extends TestCase
 {
-    static Log log = LogFactory.getLog(TestLocationMapper.class) ;
+    static Logger log = LoggerFactory.getLogger(TestLocationMapper.class) ;
     static final String testingDir = TestFileManager.testingDir ;
     static final String filename1 = "file:test" ; 
     static final String notFilename = "zzzz" ;

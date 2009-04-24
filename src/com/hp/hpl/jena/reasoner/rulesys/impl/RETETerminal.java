@@ -11,8 +11,8 @@ package com.hp.hpl.jena.reasoner.rulesys.impl;
 
 import com.hp.hpl.jena.reasoner.rulesys.*;
 import java.util.*;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * The final node in a RETE graph. It runs the builtin guard clauses
@@ -26,7 +26,7 @@ public class RETETerminal implements RETESinkNode {
     /** Context containing the specific rule and parent graph */
     protected RETERuleContext context;
     
-    protected static Log logger = LogFactory.getLog(FRuleEngine.class);
+    protected static Logger logger = LoggerFactory.getLogger(FRuleEngine.class);
     
     /**
      * Constructor.

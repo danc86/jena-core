@@ -11,8 +11,8 @@ package com.hp.hpl.jena.reasoner.test;
 
 import junit.framework.*;
 import java.util.Iterator;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.hp.hpl.jena.rdf.model.*;
 
@@ -45,7 +45,7 @@ public class TestUtil {
      * and don't check these resources against the expected <code>vals</code>.
      */
     public static void assertIteratorValues(TestCase testCase, Iterator<?> it, Object[] vals, int countAnon ) {
-        Log logger = LogFactory.getLog( testCase.getClass() );
+        Logger logger = LoggerFactory.getLogger( testCase.getClass() );
         
         boolean[] found = new boolean[vals.length];
         int anonFound = 0;

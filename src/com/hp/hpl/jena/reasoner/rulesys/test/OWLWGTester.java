@@ -21,8 +21,8 @@ import com.hp.hpl.jena.graph.query.*;
 import com.hp.hpl.jena.shared.*;
 
 import junit.framework.*;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.*;
 import java.util.*;
@@ -86,7 +86,7 @@ public class OWLWGTester {
     /** The total number of tests run */
     protected static int numTests = 0;
     
-    protected static Log logger = LogFactory.getLog(OWLWGTester.class);
+    protected static Logger logger = LoggerFactory.getLogger(OWLWGTester.class);
     
     // Static initializer for the predicates
     static {

@@ -21,8 +21,8 @@ import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.xml.sax.ErrorHandler;
 import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
@@ -42,7 +42,7 @@ import com.hp.hpl.jena.vocabulary.RDF;
  */
 public class MoreTests extends TestCase implements RDFErrorHandler,
 		ARPErrorNumbers {
-	static private Log logger = LogFactory.getLog(MoreTests.class);
+	static private Logger logger = LoggerFactory.getLogger(MoreTests.class);
 
 	static public Test suite() {
 		TestSuite suite = new TestSuite("ARP Plus");

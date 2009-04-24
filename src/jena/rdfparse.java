@@ -45,7 +45,7 @@ import com.hp.hpl.jena.shared.Command;
  * </dd><dt>
  * -u     </dt><dd>   Allow unqualified attributes (defaults to warning).
  * </dd><dt>
- * -f    </dt><dd>    All errors are fatal - report first one only.
+ * -f    </dt><dd>    All errors are.error - report first one only.
  * </dd><dt>
  * -b url </dt><dd>   Sets XML Base to the absolute url.
  * </dd><dt>

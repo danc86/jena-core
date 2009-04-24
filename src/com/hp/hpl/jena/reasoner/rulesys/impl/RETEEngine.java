@@ -19,8 +19,8 @@ import com.hp.hpl.jena.util.OneToManyMap;
 import com.hp.hpl.jena.util.PrintUtil;
 import com.hp.hpl.jena.util.iterator.ConcatenatedIterator;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * A RETE version of the the forward rule system engine. It neeeds to reference
@@ -67,7 +67,7 @@ public class RETEEngine implements FRuleEngineI {
     /** True if all the rules are monotonic, so we short circuit the conflict set processing */
     boolean isMonotonic = true;
     
-    protected static Log logger = LogFactory.getLog(FRuleEngine.class);
+    protected static Logger logger = LoggerFactory.getLogger(FRuleEngine.class);
     
 //  =======================================================================
 //  Constructors

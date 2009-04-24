@@ -37,8 +37,8 @@ import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.enhanced.*;
 import com.hp.hpl.jena.shared.*;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /** An implementation of Property.
  *
@@ -61,7 +61,7 @@ public class PropertyImpl extends ResourceImpl implements Property
             { return new PropertyImpl( n, eg ); }
     };
 
-    protected static Log logger = LogFactory.getLog( PropertyImpl.class );
+    protected static Logger logger = LoggerFactory.getLogger( PropertyImpl.class );
 
     protected int ordinal = -1;
 

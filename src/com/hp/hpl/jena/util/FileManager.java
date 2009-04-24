@@ -8,7 +8,8 @@ package com.hp.hpl.jena.util;
 import java.io.* ;
 import java.util.* ;
 
-import org.apache.commons.logging.*; 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 //import javax.servlet.* ;
 
 import com.hp.hpl.jena.rdf.model.* ;
@@ -61,7 +62,7 @@ public class FileManager
     /** Delimiter between path entries : because URI scheme names use : we only allow ; */
     public static final String PATH_DELIMITER = ";";
     public static final String filePathSeparator = java.io.File.separator ;
-    private static Log log = LogFactory.getLog(FileManager.class) ;
+    private static Logger log = LoggerFactory.getLogger(FileManager.class) ;
 
     static FileManager instance = null ;
 

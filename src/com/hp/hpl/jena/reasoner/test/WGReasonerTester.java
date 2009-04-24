@@ -21,8 +21,8 @@ import com.hp.hpl.jena.rdf.arp.test.ARPTests;
 import com.hp.hpl.jena.shared.*;
 
 import junit.framework.*;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.*;
 import java.util.*;
@@ -113,7 +113,7 @@ public class WGReasonerTester {
     /** The rdf defining all the tests to be run */
     protected Model testManifest;
     
-    protected static Log logger = LogFactory.getLog(WGReasonerTester.class);
+    protected static Logger logger = LoggerFactory.getLogger(WGReasonerTester.class);
     
     /**
      * Constructor.

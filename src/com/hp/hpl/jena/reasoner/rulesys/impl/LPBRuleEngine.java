@@ -14,8 +14,8 @@ import com.hp.hpl.jena.reasoner.*;
 import com.hp.hpl.jena.reasoner.rulesys.*;
 import com.hp.hpl.jena.util.iterator.*;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import java.util.*;
 
 /**
@@ -64,7 +64,7 @@ public class LPBRuleEngine {
      *  If set to 0 then checks will be done in the generator each time. */
     public static final int CYCLES_BETWEEN_COMPLETION_CHECK = 3;
     
-    static Log logger = LogFactory.getLog(LPBRuleEngine.class);
+    static Logger logger = LoggerFactory.getLogger(LPBRuleEngine.class);
     
 //  =======================================================================
 //  Constructors

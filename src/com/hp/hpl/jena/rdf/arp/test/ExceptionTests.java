@@ -102,7 +102,7 @@ public class ExceptionTests
 		catch (JenaException e){
 			System.err.println(e.getMessage());
 			e.printStackTrace();
-			  fail("Demoted fatal error threw an exception");
+			  fail("Demoted.error error threw an exception");
 		}
 		finally {
 			RDFDefaultErrorHandler.silent = false;			

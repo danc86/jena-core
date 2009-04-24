@@ -10,8 +10,8 @@ import java.util.List;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.hp.hpl.jena.JenaRuntime;
 import com.hp.hpl.jena.graph.Graph;
@@ -47,7 +47,7 @@ public abstract class PatternStageBase extends Stage
         this.guards = new GuardArranger( triples ).makeGuards( map, constraints );
         }
 
-    static Log log = LogFactory.getLog( PatternStageBase.class );
+    static Logger log = LoggerFactory.getLogger( PatternStageBase.class );
     
     protected void run( Pipe source, Pipe sink, StageElement se )
         {

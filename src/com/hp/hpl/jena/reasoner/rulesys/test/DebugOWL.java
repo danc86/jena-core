@@ -22,8 +22,8 @@ import com.hp.hpl.jena.reasoner.rulesys.*;
 import com.hp.hpl.jena.shared.WrappedIOException;
 //import com.hp.hpl.jena.reasoner.transitiveReasoner.TransitiveReasonerFactory;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import java.util.*;
 
 /**
@@ -57,7 +57,7 @@ public class DebugOWL {
     /** Instance properties */
     Node[] properties;
         
-    static Log logger = LogFactory.getLog(DebugOWL.class);
+    static Logger logger = LoggerFactory.getLogger(DebugOWL.class);
     
     /** reasoner config: experimental ruleset and config */
     public static final int EXPT = 1;

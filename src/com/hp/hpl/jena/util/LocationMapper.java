@@ -8,12 +8,13 @@ package com.hp.hpl.jena.util;
 import java.io.InputStream;
 import java.util.*;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.hp.hpl.jena.JenaRuntime;
 import com.hp.hpl.jena.vocabulary.LocationMappingVocab;
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.shared.JenaException;
-
-import org.apache.commons.logging.*;
 
 /** 
  * Alternative locations for URIs.  Maintains two maps:
@@ -34,7 +35,7 @@ import org.apache.commons.logging.*;
 
 public class LocationMapper
 {
-    static Log log = LogFactory.getLog(LocationMapper.class)  ;
+    static Logger log = LoggerFactory.getLogger(LocationMapper.class)  ;
     /** The default path for searching for the location mapper */
     public static final String DEFAULT_PATH =
         "file:location-mapping.rdf;file:location-mapping.n3;file:location-mapping.ttl;"+
@@ -148,7 +149,7 @@ public class LocationMapper
             processConfig(model) ;
         } catch (JenaException ex)
         {
-            LogFactory.getLog(LocationMapper.class).warn("Error in configuration file: "+ex.getMessage()) ;
+            LoggerFactory.getLogger(LocationMapper.class).warn("Error in configuration file: "+ex.getMessage()) ;
         }
     }
     

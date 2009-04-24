@@ -10,8 +10,8 @@
 package com.hp.hpl.jena.reasoner.rulesys;
 
 import java.util.*;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.hp.hpl.jena.reasoner.*;
 import com.hp.hpl.jena.reasoner.rulesys.impl.OWLRuleTranslationHook;
@@ -35,7 +35,7 @@ public class OWLFBRuleReasoner extends FBRuleReasoner {
     /** The precomputed axiom closure and compiled rule set */
     protected static FBRuleInfGraph staticPreload; 
     
-    protected static Log logger = LogFactory.getLog(OWLFBRuleReasoner.class);
+    protected static Logger logger = LoggerFactory.getLogger(OWLFBRuleReasoner.class);
     
     /**
      * Constructor

@@ -23,7 +23,7 @@ import com.hp.hpl.jena.vocabulary.*;
  * be recorded in an internal data structure for replay through the {@link com.hp.hpl.jena.reasoner.InfGraph#getDerivation getDerivation}
  * method. </li>
  * <li><b>traceOn</b> - if set to true this causes all rule firings and deduced triples to be
- * written out to the Log at INFO level.</li>
+ * written out to the Logger at INFO level.</li>
  * <li><b>ruleThreshold</b> - which limits the number of rules that can be fired on a single 
  * data processing stage to the given number (useful to limit infinite runaways). </li>
  * </ul>

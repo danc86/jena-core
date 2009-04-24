@@ -27,8 +27,8 @@ package com.hp.hpl.jena.ontology.impl;
 import java.io.*;
 import java.util.*;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.hp.hpl.jena.enhanced.BuiltinPersonalities;
 import com.hp.hpl.jena.enhanced.EnhNode;
@@ -72,7 +72,7 @@ public class OntModelImpl extends ModelCom implements OntModel
     // Static variables
     //////////////////////////////////
 
-    static private Log s_log = LogFactory.getLog( OntModelImpl.class );
+    static private Logger s_log = LoggerFactory.getLogger( OntModelImpl.class );
 
     /** Found from {@link owlSyntaxCheckerClassName}, must implement
      * {@link OWLSyntaxChecker}. */

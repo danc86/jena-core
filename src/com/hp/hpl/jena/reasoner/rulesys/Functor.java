@@ -13,8 +13,8 @@ import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.util.PrintUtil;
 import com.hp.hpl.jena.util.iterator.Filter;
 import com.hp.hpl.jena.datatypes.*;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.*;
 
@@ -50,7 +50,7 @@ public class Functor implements ClauseEntry {
                 }
             };
     
-    protected static Log logger = LogFactory.getLog(Functor.class);
+    protected static Logger logger = LoggerFactory.getLogger(Functor.class);
     
     /**
      * Constructor. 

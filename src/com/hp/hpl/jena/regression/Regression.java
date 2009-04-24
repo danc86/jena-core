@@ -16,8 +16,8 @@ import com.hp.hpl.jena.graph.*;
 import java.net.*;
 import java.io.*;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /** A common set of regression tests. [Now being factored out into the
  * NewRegression suite; kers.]
@@ -33,7 +33,7 @@ public class Regression extends Object {
         (new Regression()).test(m1, m2, m3, m4);
     }
 
-    protected static Log logger = LogFactory.getLog( Regression.class );
+    protected static Logger logger = LoggerFactory.getLogger( Regression.class );
 
     /** Run the whole batch of common tests on a model implementation
      * @param m an instance of the model to be tested

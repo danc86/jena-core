@@ -19,8 +19,8 @@ import com.hp.hpl.jena.vocabulary.RDF;
 import com.hp.hpl.jena.shared.*;
 
 import junit.framework.*;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.*;
 import java.io.*;
@@ -91,7 +91,7 @@ public class ReasonerTester {
     /** A cache of loaded source files, map from source name to Model */
     protected Map<String, Model> sourceCache = new HashMap<String, Model>();
     
-    protected static Log logger = LogFactory.getLog(ReasonerTester.class);
+    protected static Logger logger = LoggerFactory.getLogger(ReasonerTester.class);
     
     /**
      * Constructor.

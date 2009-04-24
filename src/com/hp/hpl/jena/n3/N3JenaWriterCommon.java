@@ -14,8 +14,8 @@ import java.text.StringCharacterIterator;
 import java.util.*;
 import java.util.Map.Entry;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.hp.hpl.jena.rdf.model.*;
 
@@ -36,7 +36,7 @@ import com.hp.hpl.jena.vocabulary.XSD;
 
 public class N3JenaWriterCommon implements RDFWriter
 {
-    static Log logger = LogFactory.getLog(N3JenaWriterCommon.class) ;
+    static Logger logger = LoggerFactory.getLogger(N3JenaWriterCommon.class) ;
     
 	// N3 writing proceeds in 2 stages.
     // First, it analysis the model to be written to extract information

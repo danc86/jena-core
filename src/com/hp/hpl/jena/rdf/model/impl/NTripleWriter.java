@@ -35,8 +35,8 @@ import com.hp.hpl.jena.shared.*;
 
 import java.io.*;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /** Writes out an XML serialization of a model.
  *
@@ -47,7 +47,7 @@ public class NTripleWriter extends Object implements RDFWriter {
 
     RDFErrorHandler errorHandler = new RDFDefaultErrorHandler();
 
-    protected static Log logger = LogFactory.getLog( NTripleWriter.class );
+    protected static Logger logger = LoggerFactory.getLogger( NTripleWriter.class );
     
     public NTripleWriter() {
     }

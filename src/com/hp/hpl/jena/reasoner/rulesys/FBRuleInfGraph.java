@@ -29,8 +29,8 @@ import com.hp.hpl.jena.util.PrintUtil;
 import com.hp.hpl.jena.util.iterator.*;
 import com.hp.hpl.jena.vocabulary.*;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * An inference graph that uses a mixture of forward and backward
@@ -87,7 +87,7 @@ public class FBRuleInfGraph  extends BasicForwardRuleInfGraph implements Backwar
     /** Flag to request datatype range validation be included in the validation step */
     protected boolean requestDatatypeRangeValidation = false;
     
-    static Log logger = LogFactory.getLog(FBRuleInfGraph.class);
+    static Logger logger = LoggerFactory.getLogger(FBRuleInfGraph.class);
 
 //  =======================================================================
 //  Constructors

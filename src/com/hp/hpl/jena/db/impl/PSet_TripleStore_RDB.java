@@ -18,8 +18,8 @@ import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.shared.*;
 import com.hp.hpl.jena.util.iterator.ExtendedIterator;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 //=======================================================================
 /**
@@ -98,7 +98,7 @@ public  class PSet_TripleStore_RDB implements IPSet {
 		m_driver = driver;
 	}
 
-    private static Log logger = LogFactory.getLog(PSet_TripleStore_RDB.class);
+    private static Logger logger = LoggerFactory.getLogger(PSet_TripleStore_RDB.class);
     
 	public void setSQLType(String value) { ID_SQL_TYPE = value; }
 	public void setSkipDuplicateCheck(boolean value) { SKIP_DUPLICATE_CHECK = value;}

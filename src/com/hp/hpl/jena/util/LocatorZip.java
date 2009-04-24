@@ -6,10 +6,15 @@
 
 package com.hp.hpl.jena.util;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipFile;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.hp.hpl.jena.shared.JenaException;
-import java.io.* ;
-import java.util.zip.* ;
-import org.apache.commons.logging.*;
 
 /** Location files in a zip file
  *  
@@ -20,7 +25,7 @@ import org.apache.commons.logging.*;
 
 class LocatorZip implements Locator
 {
-    static Log log = LogFactory.getLog(LocatorZip.class) ;
+    static Logger log = LoggerFactory.getLogger(LocatorZip.class) ;
     String zipFileName = null ; 
     ZipFile zipFile = null ;
     

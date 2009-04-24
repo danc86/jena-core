@@ -27,8 +27,8 @@ package com.hp.hpl.jena.ontology;
 import java.io.*;
 import java.util.*;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.util.*;
@@ -116,8 +116,8 @@ public class OntDocumentManager
     /** Default document manager instance */
     private static OntDocumentManager s_instance = null;
 
-    /** Log for this class */
-    private static Log log = LogFactory.getLog( OntDocumentManager.class );
+    /** Logger for this class */
+    private static Logger log = LoggerFactory.getLogger( OntDocumentManager.class );
 
 
     // Instance variables

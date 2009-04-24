@@ -26,8 +26,8 @@ import junit.framework.TestSuite;
 
 import java.util.*;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 /**
@@ -40,7 +40,7 @@ import org.apache.commons.logging.LogFactory;
  */
 public class TestGenericRules extends TestCase {
     
-    protected static Log logger = LogFactory.getLog(TestFBRules.class);
+    protected static Logger logger = LoggerFactory.getLogger(TestFBRules.class);
 
     // Useful constants
     Node p = Node.createURI("p");

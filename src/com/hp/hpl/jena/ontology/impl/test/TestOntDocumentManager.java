@@ -27,8 +27,8 @@ package com.hp.hpl.jena.ontology.impl.test;
 import java.io.StringReader;
 import java.util.*;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import junit.framework.*;
 
@@ -61,8 +61,8 @@ public class TestOntDocumentManager
     // Static variables
     //////////////////////////////////
 
-    /** Log for this class */
-    private static Log log = LogFactory.getLog( TestOntDocumentManager.class );
+    /** Logger for this class */
+    private static Logger log = LoggerFactory.getLogger( TestOntDocumentManager.class );
 
     public static final Integer cnt( int x ) {return new Integer(x);}
 

@@ -10,8 +10,8 @@ import com.hp.hpl.jena.rdf.arp.ParseException;
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.shared.*;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 /**
  * The default error handler for I/O.
  * This uses log4j as its utility.
@@ -26,7 +26,7 @@ public class RDFDefaultErrorHandler extends Object implements RDFErrorHandler {
 	 */
 	public static boolean silent = false;
 	
-    public static final Log logger = LogFactory.getLog( RDFDefaultErrorHandler.class );
+    public static final Logger logger = LoggerFactory.getLogger( RDFDefaultErrorHandler.class );
     
     /** Creates new RDFDefaultErrorHandler */
     public RDFDefaultErrorHandler() {
