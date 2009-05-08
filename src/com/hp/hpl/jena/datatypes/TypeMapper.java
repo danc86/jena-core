@@ -9,6 +9,8 @@
  *****************************************************************/
 package com.hp.hpl.jena.datatypes;
 
+import java.net.URI;
+import java.net.URL;
 import java.util.HashMap;
 import java.util.Iterator;
 
@@ -24,6 +26,10 @@ import com.hp.hpl.jena.shared.impl.JenaParameters;
  * @author <a href="mailto:der@hplb.hpl.hp.com">Dave Reynolds</a>
  * @version $Revision$ on $Date$
  */
+
+// Added extended set of class mappings and getTypeByClass
+// as suggested by Thorsten Moeller. der 8/5/09
+
 public class TypeMapper {
 
 //=======================================================================
@@ -51,6 +57,24 @@ public class TypeMapper {
         theTypeMap = new TypeMapper();
         theTypeMap.registerDatatype(XMLLiteralType.theXMLLiteralType);
         XSDDatatype.loadXSDSimpleTypes(theTypeMap);
+    }
+    
+    public TypeMapper() {
+        // add primitive types
+        classToDT.put(float.class, classToDT.get(Float.class));
+        classToDT.put(double.class, classToDT.get(Double.class));
+        classToDT.put(int.class, classToDT.get(Integer.class));
+        classToDT.put(long.class, classToDT.get(Long.class));
+        classToDT.put(short.class, classToDT.get(Short.class));
+        classToDT.put(byte.class, classToDT.get(Byte.class));
+        classToDT.put(boolean.class, classToDT.get(Boolean.class));
+
+        // add missing character types
+        classToDT.put(char.class, classToDT.get(String.class));
+        classToDT.put(Character.class, classToDT.get(String.class));
+
+        // add mapping for URL class
+        classToDT.put(URL.class, classToDT.get(URI.class));        
     }
     
 //=======================================================================
@@ -126,6 +150,17 @@ public class TypeMapper {
         return uriToDT.values().iterator();
     }
     
+    /**
+     * Look up a datatype suitable for representing instances of the
+     * given Java class.
+     *
+     * @param class a Java class to be represented
+     * @return a datatype whose value space matches the given java class
+     */
+    public RDFDatatype getTypeByClass(Class<?> clazz) {
+        return classToDT.get(clazz);
+    }
+
     /**
      * Register a new datatype
      */

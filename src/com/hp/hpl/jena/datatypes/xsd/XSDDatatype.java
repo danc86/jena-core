@@ -12,6 +12,7 @@ package com.hp.hpl.jena.datatypes.xsd;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.net.URI;
 import java.io.Reader;
 import java.util.*;
 
@@ -108,7 +109,7 @@ public class XSDDatatype extends BaseDatatype {
     public static final XSDDatatype XSDnormalizedString = new XSDBaseStringType("normalizedString", String.class);
     
     /** Datatype representing xsd:anyURI */
-    public static final XSDDatatype XSDanyURI = new XSDDatatype("anyURI");
+    public static final XSDDatatype XSDanyURI = new XSDDatatype("anyURI", URI.class);  
     
     /** Datatype representing xsd:token */
     public static final XSDDatatype XSDtoken = new XSDBaseStringType("token");
