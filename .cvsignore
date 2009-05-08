@@ -12,3 +12,4 @@ jena-src.zip
 D.*
 local
 target
+*.log

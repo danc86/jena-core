@@ -154,7 +154,7 @@ public class TypeMapper {
      * Look up a datatype suitable for representing instances of the
      * given Java class.
      *
-     * @param class a Java class to be represented
+     * @param clazz a Java class to be represented
      * @return a datatype whose value space matches the given java class
      */
     public RDFDatatype getTypeByClass(Class<?> clazz) {
