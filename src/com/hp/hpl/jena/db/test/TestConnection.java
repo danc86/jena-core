@@ -269,7 +269,7 @@ public class TestConnection extends TestCase {
 			m2.remove();
 			conn.close();
 			assertTrue("Successfully opened non-existent model", false);
-		} catch ( RDFRDBException e ) {
+		} catch ( DoesNotExistException e ) {
 			conn.close();
 		}   
 	}
@@ -282,7 +282,7 @@ public class TestConnection extends TestCase {
 			m2.remove();
 			conn.close();
 			assertTrue("Successfully opened unnamed non-existent model", false);
-		} catch ( RDFRDBException e ) {
+		} catch ( DoesNotExistException e ) {
 			conn.close();
 		}   
 	}
@@ -295,7 +295,7 @@ public class TestConnection extends TestCase {
 			m.remove(); m2.remove();
 			conn.close();
 			assertTrue("Successfully created pre-existing model", false);
-		} catch ( RDFRDBException e ) {
+		} catch ( AlreadyExistsException e ) {
 			m.remove();
 			conn.close();
 		}
