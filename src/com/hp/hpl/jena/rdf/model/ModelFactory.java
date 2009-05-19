@@ -286,7 +286,8 @@ public class ModelFactory extends ModelFactoryBase
      * Build an inferred model by attaching the given RDF model to the given reasoner.
      *
      * @param reasoner the reasoner to use to process the data
-     * @param model the Model containing both instance data and schema assertions to be inferenced over
+     * @param model the Model containing both instance data and schema assertions to be inferenced over, 
+     * any statements added to the InfModel will be added to this underlying data model.
      */
     public static InfModel createInfModel( Reasoner reasoner, Model model ) {
          InfGraph graph = reasoner.bind(model.getGraph());
@@ -301,7 +302,8 @@ public class ModelFactory extends ModelFactoryBase
      *
      * @param reasoner the reasoner to use to process the data
      * @param schema a Model containing RDFS schema data
-     * @param model a Model containing instance data assertions
+     * @param model a Model containing instance data assertions, any statements added to the InfModel
+     * will be added to this underlying data model.
      */
     public static InfModel createInfModel(Reasoner reasoner, Model schema, Model model) {
          InfGraph graph = reasoner.bindSchema(schema.getGraph()).bind(model.getGraph());
