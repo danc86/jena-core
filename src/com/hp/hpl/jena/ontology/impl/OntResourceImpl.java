@@ -239,8 +239,8 @@ public class OntResourceImpl
     }
 
     /**
-     * <p>Add a resource that is declared to be equivalent to this resource.</p>
-     * @param res A resource that declared to be the same as this resource
+     * <p>Add a statement declaring that this resource is distinct from the given resource.</p>
+     * @param res A resource that declared to be distinct from this resource
      * @exception OntProfileException If the {@link Profile#DIFFERENT_FROM()} property is not supported in the current language profile.
      */
     public void addDifferentFrom( Resource res ) {
