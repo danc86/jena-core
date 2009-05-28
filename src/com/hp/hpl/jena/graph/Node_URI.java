@@ -41,7 +41,9 @@ public class Node_URI extends Node_Concrete
         
     @Override
     public boolean equals( Object other )
-        { return 
+        {
+        if ( this == other ) return true ;
+        return 
             other instanceof Node_URI 
             && same( (Node_URI) other ); }
 

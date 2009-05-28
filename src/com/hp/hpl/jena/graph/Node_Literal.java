@@ -69,7 +69,10 @@ public class Node_Literal extends Node_Concrete
         
     @Override
     public boolean equals( Object other )
-        { return other instanceof Node_Literal && label.equals( ((Node_Literal) other).label ); }
+        {
+        if ( this == other ) return true ;
+        return other instanceof Node_Literal && label.equals( ((Node_Literal) other).label );
+        }
         
     /**
      * Test that two nodes are semantically equivalent.

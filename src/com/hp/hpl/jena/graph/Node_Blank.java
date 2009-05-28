@@ -29,8 +29,10 @@ public class Node_Blank extends Node_Concrete
     
     @Override
     public boolean equals( Object other )
-        { return other instanceof Node_Blank && label.equals( ((Node_Blank) other).label ); }
-    }
+        {
+        if ( this == other ) return true ;
+        return other instanceof Node_Blank && label.equals( ((Node_Blank) other).label ); }
+        }
 
 /*
     (c) Copyright 2003, 2004, 2005, 2006, 2007, 2008, 2009 Hewlett-Packard Development Company, LP

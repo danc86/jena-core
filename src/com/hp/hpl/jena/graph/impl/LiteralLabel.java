@@ -319,19 +319,20 @@ final public class LiteralLabel {
     */
 	@Override
     public boolean equals(Object other) {
-            if (other == null || !(other instanceof LiteralLabel)) {
-            	return false;
-            }
-            LiteralLabel otherLiteral = (LiteralLabel) other;
-            boolean typeEqual =
-            	(dtype == null
-            		? otherLiteral.dtype == null
-            		: dtype.equals(otherLiteral.dtype));
-            boolean langEqual =
-                (dtype == null ? lang.equals(otherLiteral.lang) : true);
-            return typeEqual
-                && langEqual
-                && getLexicalForm().equals(otherLiteral.getLexicalForm());
+	    if ( this == other ) return true ;
+	    if (other == null || !(other instanceof LiteralLabel)) {
+	        return false;
+	    }
+	    LiteralLabel otherLiteral = (LiteralLabel) other;
+	    boolean typeEqual =
+	        (dtype == null
+	            ? otherLiteral.dtype == null
+	            : dtype.equals(otherLiteral.dtype));
+	    boolean langEqual =
+	        (dtype == null ? lang.equals(otherLiteral.lang) : true);
+	    return typeEqual
+	        && langEqual
+	        && getLexicalForm().equals(otherLiteral.getLexicalForm());
 	}
 
 	/** 

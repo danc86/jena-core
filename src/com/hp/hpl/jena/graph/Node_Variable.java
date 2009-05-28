@@ -47,7 +47,10 @@ public class Node_Variable extends Node_Fluid
     
     @Override
     public boolean equals( Object other )
-        { return other instanceof Node_Variable && label.equals( ((Node_Variable) other).label ); }
+        {
+        if ( this == other ) return true ;
+        return other instanceof Node_Variable && label.equals( ((Node_Variable) other).label );
+        }
     
     public static Object variable( String name )
         { return new VariableName( name ); }
@@ -65,7 +68,10 @@ public class Node_Variable extends Node_Fluid
         
         @Override
         public boolean equals( Object other )
-            { return other instanceof VariableName && name.equals( ((VariableName) other).name );  }
+            {
+            if ( this == other ) return true ;
+            return other instanceof VariableName && name.equals( ((VariableName) other).name );
+            }
         
         @Override
         public String toString()
