@@ -10,7 +10,7 @@ import junit.framework.*;
 
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.rdf.model.test.ModelTestBase;
-import com.hp.hpl.jena.regression.Regression.ResTestObjF;
+//import com.hp.hpl.jena.regression.Regression.ResTestObjF;
 import com.hp.hpl.jena.vocabulary.RDF;
 
 public class NewRegressionGet extends ModelTestBase
@@ -47,12 +47,12 @@ public class NewRegressionGet extends ModelTestBase
         assertEquals( uri, r.getURI() );
         }
 
-    public void testGetResourceFactory()
-        {
-        String uri = "http://aldabaran.hpl.hp.com/rdf/test4/a" + 120;
-        Resource r = m.getResource( uri, new ResTestObjF() );
-        assertEquals( uri, r.getURI() );
-        }
+//    public void testGetResourceFactory()
+//        {
+//        String uri = "http://aldabaran.hpl.hp.com/rdf/test4/a" + 120;
+//        Resource r = m.getResource( uri, new ResTestObjF() );
+//        assertEquals( uri, r.getURI() );
+//        }
 
     public void testGetPropertyOneArg()
         {

@@ -10,7 +10,7 @@ import junit.framework.*;
 
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.vocabulary.RDF;
-import com.hp.hpl.jena.regression.Regression.*;
+//import com.hp.hpl.jena.regression.Regression.*;
 
 public class NewRegressionAltMethods extends NewRegressionContainerMethods
     {
@@ -32,7 +32,7 @@ public class NewRegressionAltMethods extends NewRegressionContainerMethods
         {
         Alt a = m.createAlt();
         Literal tvLiteral = m.createLiteral( "test 12 string 2" );
-        Resource tvResObj = m.createResource( new ResTestObjF() );
+//        Resource tvResObj = m.createResource( new ResTestObjF() );
         Bag tvBag = m.createBag();
         Alt tvAlt = m.createAlt();
         Seq tvSeq = m.createSeq();
@@ -49,7 +49,7 @@ public class NewRegressionAltMethods extends NewRegressionContainerMethods
         assertEquals( tvDouble, a.setDefault( tvDouble ).getDefaultDouble(), dDelta );
         assertEquals( tvChar, a.setDefault( tvChar ).getDefaultChar() );
         assertEquals( tvString, a.setDefault( tvString ).getDefaultString() );
-        assertEquals( tvResObj, a.setDefault( tvResObj ).getDefaultResource() );
+//        assertEquals( tvResObj, a.setDefault( tvResObj ).getDefaultResource() );
 //        assertEquals( tvLitObj, a.setDefault( tvLitObj ).getDefaultObject( new LitTestObjF() ) );
         assertEquals( tvAlt, a.setDefault( tvAlt ).getDefaultAlt() );
         assertEquals( tvBag, a.setDefault( tvBag ).getDefaultBag() );

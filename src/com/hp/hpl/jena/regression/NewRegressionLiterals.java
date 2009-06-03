@@ -9,7 +9,7 @@ package com.hp.hpl.jena.regression;
 import junit.framework.TestSuite;
 
 import com.hp.hpl.jena.rdf.model.*;
-import com.hp.hpl.jena.regression.Regression.*;
+//import com.hp.hpl.jena.regression.Regression.*;
 
 public class NewRegressionLiterals extends NewRegressionBase
     {
