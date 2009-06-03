@@ -82,7 +82,7 @@ public class StatementImpl  extends StatementBase implements Statement {
     public Resource getResource()
         { return mustBeResource( object ); }
     
-    public Resource getResource( ResourceF f )
+    @Deprecated public Resource getResource( ResourceF f )
         { return f.createResource( getResource() ); }
     
     public Statement getProperty(Property p)  {

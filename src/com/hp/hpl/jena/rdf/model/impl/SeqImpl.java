@@ -112,7 +112,7 @@ public class SeqImpl extends ContainerImpl implements Seq {
         return getRequiredProperty(RDF.li(index)).getLanguage();
     }
     
-    public Resource getResource(int index, ResourceF f) {
+    @Deprecated public Resource getResource(int index, ResourceF f) {
         return getRequiredProperty(RDF.li(index)).getResource(f);
     }
     

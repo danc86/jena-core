@@ -39,8 +39,9 @@ package com.hp.hpl.jena.rdf.model;
  * so called enhanced resources.</p>
  * @author bwm
  * @version Release='$Name$' Revision='$Revision$' Date='$Date$'
+
  */
-public interface ResourceF {
+@Deprecated public interface ResourceF {
     /** Create new resource instance which extends the behaviour of a supplied
      * resource.
      * @param r The core resource whose behaviour is to be extended.

@@ -206,7 +206,7 @@ public interface Alt extends Container {
      * object returned.
      
      */
-    public Resource getDefaultResource(ResourceF f);
+    @Deprecated public Resource getDefaultResource(ResourceF f);
     
     /** Return the default value for this resource. 
      * @return the default value for this resource interpreted as the return

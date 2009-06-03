@@ -85,7 +85,7 @@ public class ModelCom
     */
     protected ModelReifier modelReifier = new ModelReifier( this ); 
 	
-    public Resource getResource(String uri, ResourceF f)  {
+    @Deprecated public Resource getResource(String uri, ResourceF f)  {
         try {
             return f.createResource(getResource(uri));
         } catch (Exception e) {
@@ -435,13 +435,13 @@ public class ModelCom
     public Resource createResource( String uri,Resource type )
         { return getResource( uri ).addProperty( RDF.type, type ); }
     
-    public Resource createResource( ResourceF f )  
+    @Deprecated public Resource createResource( ResourceF f )  
         { return createResource( null, f ); }
     
     public Resource createResource( AnonId id )
         { return new ResourceImpl( id, this ); }
         
-    public Resource createResource( String uri, ResourceF f )  
+    @Deprecated public Resource createResource( String uri, ResourceF f )  
         { return f.createResource( createResource( uri ) ); }
     
  

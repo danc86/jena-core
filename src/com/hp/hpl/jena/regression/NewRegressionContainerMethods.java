@@ -7,7 +7,7 @@
 package com.hp.hpl.jena.regression;
 
 import com.hp.hpl.jena.rdf.model.*;
-import com.hp.hpl.jena.regression.Regression.ResTestObjF;
+//import com.hp.hpl.jena.regression.Regression.ResTestObjF;
 import com.hp.hpl.jena.vocabulary.RDF;
 
 public abstract class NewRegressionContainerMethods extends NewRegressionBase
@@ -21,8 +21,7 @@ public abstract class NewRegressionContainerMethods extends NewRegressionBase
     protected Model m;
     protected Resource r;
 
-    @Override
-    public void setUp()
+    @Override public void setUp()
         { 
         m = getModel(); 
         r = m.createResource();
@@ -52,7 +51,7 @@ public abstract class NewRegressionContainerMethods extends NewRegressionBase
         Container c = createContainer();
         String lang = "fr";
         Literal tvLiteral = m.createLiteral( "test 12 string 2" );
-        Resource tvResObj = m.createResource( new ResTestObjF() );
+//        Resource tvResObj = m.createResource( new ResTestObjF() );
         c.add( tvBoolean ); assertTrue( c.contains( tvBoolean ) );
         c.add( tvByte ); assertTrue( c.contains( tvByte ) );
         c.add( tvShort ); assertTrue( c.contains( tvShort ) );
@@ -63,9 +62,9 @@ public abstract class NewRegressionContainerMethods extends NewRegressionBase
         c.add( tvString ); assertTrue( c.contains( tvString ) );
         c.add( tvString, lang ); assertTrue( c.contains( tvString, lang ) );
         c.add( tvLiteral ); assertTrue( c.contains( tvLiteral ) );
-        c.add( tvResObj ); assertTrue( c.contains( tvResObj ) );
+//        c.add( tvResObj ); assertTrue( c.contains( tvResObj ) );
         c.add( tvLitObj ); assertTrue( c.contains( tvLitObj ) );
-        assertEquals( 12, c.size() );
+        assertEquals( 11, c.size() );
         }
 
     public void testContainerOfIntegers()

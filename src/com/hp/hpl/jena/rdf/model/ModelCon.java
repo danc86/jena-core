@@ -72,7 +72,7 @@ public interface ModelCon {
  * @param f the factory object
   
  */    
-    Resource getResource(String uri, ResourceF f) ;
+@Deprecated Resource getResource(String uri, ResourceF f) ;
 
 /** Return a Property instance in this model.
  *
@@ -203,7 +203,7 @@ public interface ModelCon {
  * @param f A factory object to create the returned object.
  .
  */
-    public Resource createResource(ResourceF f) ;
+    @Deprecated public Resource createResource(ResourceF f) ;
  
 /** Create a new resource using the supplied factory.
  *
@@ -214,7 +214,7 @@ public interface ModelCon {
  * @param f A factory to create the returned object.
  .
  */   
-    public Resource createResource(String uri, ResourceF f) ;
+    @Deprecated public Resource createResource(String uri, ResourceF f) ;
 
 /** Create a property.
  *

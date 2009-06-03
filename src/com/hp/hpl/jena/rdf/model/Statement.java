@@ -200,7 +200,7 @@ public interface Statement extends FrontsTriple
      * @return The object of the statement.
      * 
      */    
-    public Resource getResource(ResourceF f) ;
+    @Deprecated public Resource getResource(ResourceF f) ;
     
     /** Return the object of the statement.
      *

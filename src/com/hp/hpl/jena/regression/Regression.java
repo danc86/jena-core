@@ -450,22 +450,22 @@ public class Regression extends Object {
                     error(test, n, e);
                 }
 
-                try {
-                    n = 170;
-                    n++; r = m.createResource(new ResTestObjF());
-                    n++; if (! r.isAnon()) error(test, n);
-                } catch (JenaException e) {
-                    error(test, n, e);
-                }
+//                try {
+//                    n = 170;
+//                    n++; r = m.createResource(new ResTestObjF());
+//                    n++; if (! r.isAnon()) error(test, n);
+//                } catch (JenaException e) {
+//                    error(test, n, e);
+//                }
 
-                try {
-                    n = 180;
-                    uri = "http://aldabaran.hpl.hp.com/foo";
-                    n++; r = m.createResource(uri, new ResTestObjF());
-                    n++; if (! r.getURI().equals(uri)) error(test, n);
-                } catch (JenaException e) {
-                    error(test, n, e);
-                }
+//                try {
+//                    n = 180;
+//                    uri = "http://aldabaran.hpl.hp.com/foo";
+//                    n++; r = m.createResource(uri, new ResTestObjF());
+//                    n++; if (! r.getURI().equals(uri)) error(test, n);
+//                } catch (JenaException e) {
+//                    error(test, n, e);
+//                }
             }
 
             {
@@ -917,16 +917,16 @@ public class Regression extends Object {
                 error(test, n, e);
             }
 
-            try {
-                Resource r;
-                n = 120;
-                String uri = "http://aldabaran.hpl.hp.com/rdf/test4/a"
-                + Integer.toString(n);
-                n++; r = m.getResource(uri, new ResTestObjF());
-                n++; if (! r.getURI().equals(uri)) error(test,n);
-            } catch (Exception e) {
-                error(test, n, e);
-            }
+//            try {
+//                Resource r;
+//                n = 120;
+//                String uri = "http://aldabaran.hpl.hp.com/rdf/test4/a"
+//                + Integer.toString(n);
+//                n++; r = m.getResource(uri, new ResTestObjF());
+//                n++; if (! r.getURI().equals(uri)) error(test,n);
+//            } catch (Exception e) {
+//                error(test, n, e);
+//            }
 
             try {
                 Property p;
@@ -4862,7 +4862,7 @@ public class Regression extends Object {
 //        }
 //    }
 
-    public static class ResTestObjF implements ResourceF {
+    @Deprecated public static class ResTestObjF implements ResourceF {
         public Resource createResource(Resource r)
             { return new ResourceImpl( r, (ModelCom) r.getModel() ); }
     }

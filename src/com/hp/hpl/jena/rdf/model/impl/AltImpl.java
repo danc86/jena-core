@@ -131,7 +131,7 @@ public class AltImpl extends ContainerImpl implements Alt {
     	return needDefaultStatement().getLanguage();
     }
     
-    public Resource getDefaultResource(ResourceF f)  {
+    @Deprecated public Resource getDefaultResource(ResourceF f)  {
     	return needDefaultStatement().getResource();
     }
     
