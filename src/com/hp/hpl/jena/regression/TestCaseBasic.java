@@ -167,25 +167,27 @@ public class TestCaseBasic extends JenaTestBase {
 	}
 
 	public void test8() {
-		try {
-			Regression test = new Regression();
-			test.test8(m1);
-			assertTrue(!test.getErrors());
-		} catch (Exception e) {
-			System.out.println(e);
-			assertTrue(false);
-		}
+	    new Regression().test8( m1 );
+//		try {
+//			Regression test = new Regression();
+//			test.test8(m1);
+//			assertTrue(!test.getErrors());
+//		} catch (Exception e) {
+//			System.out.println(e);
+//			assertTrue(false);
+//		}
 	}
 
 	public void test9() {
-		try {
-			Regression test = new Regression();
-			test.test9(m2);
-			assertTrue(!test.getErrors());
-		} catch (Exception e) {
-			System.out.println(e);
-			assertTrue(false);
-		}
+	    new Regression().test9( m2 );
+//		try {
+//			Regression test = new Regression();
+//			test.test9(m2);
+//			assertTrue(!test.getErrors());
+//		} catch (Exception e) {
+//			System.out.println(e);
+//			assertTrue(false);
+//		}
 	}
 
 	public void test10() {
@@ -244,14 +246,15 @@ public class TestCaseBasic extends JenaTestBase {
 	}
 
 	public void test15() {
-		try {
-			Regression test = new Regression();
-			test.test15(m1);
-			assertTrue(!test.getErrors());
-		} catch (Exception e) {
-			System.out.println(e);
-			assertTrue(false);
-		}
+	    new Regression().test15( m1 );
+//		try {
+//			Regression test = new Regression();
+//			test.test15(m1);
+//			assertTrue(!test.getErrors());
+//		} catch (Exception e) {
+//			System.out.println(e);
+//			assertTrue(false);
+//		}
 	}
 
 	public void test16() {

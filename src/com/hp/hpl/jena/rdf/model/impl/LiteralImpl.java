@@ -212,17 +212,17 @@ public class LiteralImpl extends EnhNode implements Literal {
         return asNode().getLiteralLexicalForm();
     }
     
-    @Deprecated public Object getObject(ObjectF f)  {
-        if (isPlainLiteral()) {
-            try {
-                return f.createObject(getString());
-            } catch (Exception e) {
-                throw new JenaException(e);
-            }
-        } else {
-            return getValue();
-        }
-    }
+//    @Deprecated public Object getObject(ObjectF f)  {
+//        if (isPlainLiteral()) {
+//            try {
+//                return f.createObject(getString());
+//            } catch (Exception e) {
+//                throw new JenaException(e);
+//            }
+//        } else {
+//            return getValue();
+//        }
+//    }
     
     public String getLanguage() {
         return asNode().getLiteralLanguage();

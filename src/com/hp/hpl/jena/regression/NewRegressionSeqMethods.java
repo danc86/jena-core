@@ -193,8 +193,8 @@ public class NewRegressionSeqMethods extends NewRegressionContainerMethods
         n = (n / 100) * 100 + 100;
         seq7.set( 5, anObject );
         n++;
-        if (!(seq7.getObject( 5, new LitTestObjF() )).equals( anObject )) error(
-                test, n );
+//        if (!(seq7.getObject( 5, new LitTestObjF() )).equals( anObject )) error(
+//                test, n );
         n++;
         if (!(seq7.getInt( 4 ) == 3)) error( test, n );
         n++;
@@ -258,8 +258,8 @@ public class NewRegressionSeqMethods extends NewRegressionContainerMethods
         if (!(seq6.getLiteral( 1 ).equals( tvLiteral ))) error( test, n );
         seq6.add( 1, anObject );
         n++;
-        if (!(seq6.getObject( 1, new LitTestObjF() ).equals( anObject ))) error(
-                test, n );
+//        if (!(seq6.getObject( 1, new LitTestObjF() ).equals( anObject ))) error(
+//                test, n );
 
         n = (n / 100) * 100 + 100;
         n++;
@@ -396,8 +396,8 @@ public class NewRegressionSeqMethods extends NewRegressionContainerMethods
         n++;
         seq4.add( anObject );
         n++;
-        if (!(seq4.getObject( 11, new LitTestObjF() ).equals( anObject ))) error(
-                test, n );
+//        if (!(seq4.getObject( 11, new LitTestObjF() ).equals( anObject ))) error(
+//                test, n );
         n++;
         seq4.add( tvResource );
         n++;

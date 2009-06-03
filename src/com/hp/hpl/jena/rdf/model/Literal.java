@@ -189,18 +189,18 @@ public interface Literal extends RDFNode {
     //       with getLexicalForm
     public String getString() ;
     
-    /**
-     * In the case of plain literals this recreates an object from its
-     * lexical form using the given factory. In the case of typed literals
-     * the factory is ignored and the value is returned instead.
-     * 
-     * @return the object created from the literal string
-     * @param f A factory object for creating the returned object.
-     
-     */
-    // @TODO is this the right approach, could reparse the lexical form 
-    //       using the factory even for typed literals
-    @Deprecated public Object getObject(ObjectF f) ;
+//    /**
+//     * In the case of plain literals this recreates an object from its
+//     * lexical form using the given factory. In the case of typed literals
+//     * the factory is ignored and the value is returned instead.
+//     * 
+//     * @return the object created from the literal string
+//     * @param f A factory object for creating the returned object.
+//     
+//     */
+//    // @TODO is this the right approach, could reparse the lexical form 
+//    //       using the factory even for typed literals
+//    @Deprecated public Object getObject(ObjectF f) ;
     
     /** 
          If a language is defined for this literal return it

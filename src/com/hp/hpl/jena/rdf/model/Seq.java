@@ -246,16 +246,6 @@ public interface Seq extends Container {
     
     /** Get the member at a given index.
      *
-     * <p>The supplied factory object is used to created the object return.</p>
-     * @return The member at the given index.
-     * @param index The index of the required member.
-     * @param f A factory object used to create the returned object.
-     .
-     */
-    @Deprecated public Object getObject(int index, ObjectF f) ;
-    
-    /** Get the member at a given index.
-     *
      * <p>The supplied factory object is used to create the returned object.</p>
      * @return The member at the given index.
      * @param index The index of the required member.

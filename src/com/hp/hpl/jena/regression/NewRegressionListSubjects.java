@@ -45,7 +45,7 @@ public class NewRegressionListSubjects extends ModelTestBase
     Resource [] subjects;
     Property [] predicates;  
     RDFNode []  objects;
-    Literal []  tvLitObjs;
+//    Literal []  tvLitObjs;
     Resource [] tvResObjs;
     
     boolean [] tvBooleans = { false, true };
@@ -124,11 +124,11 @@ public class NewRegressionListSubjects extends ModelTestBase
 
         assertEquiv( subjectsTo( subjectPrefix, 0 ), m.listSubjectsWithProperty( predicates[0], tvStrings[1], langs[1] ) );
 
-        assertEquiv( subjectsTo( subjectPrefix, 2 ), m.listResourcesWithProperty( predicates[0], tvLitObjs[0] ) );
+//        assertEquiv( subjectsTo( subjectPrefix, 2 ), m.listResourcesWithProperty( predicates[0], tvLitObjs[0] ) );
+//
+//        assertEquiv( subjectsTo( subjectPrefix, 0 ), m.listResourcesWithProperty( predicates[0], tvLitObjs[1] ) );
 
-        assertEquiv( subjectsTo( subjectPrefix, 0 ), m.listResourcesWithProperty( predicates[0], tvLitObjs[1] ) );
-
-        assertEquiv( subjectsTo( subjectPrefix, 2 ), m.listResourcesWithProperty( predicates[0], tvResObjs[0] ) );
+        assertEquiv( subjectsTo( subjectPrefix, 0 ), m.listResourcesWithProperty( predicates[0], tvResObjs[0] ) );
 
         assertEquiv( subjectsTo( subjectPrefix, 0 ), m.listResourcesWithProperty( predicates[0], tvResObjs[1] ) );
 
@@ -154,9 +154,9 @@ public class NewRegressionListSubjects extends ModelTestBase
     protected void fillModel(  )
         {
         final int num = 5;
-        tvLitObjs = new Literal[] 
-            { m.createTypedLiteral( new LitTestObjF() ),
-            m.createTypedLiteral( new LitTestObjF() ) };
+//        tvLitObjs = new Literal[] 
+//            { m.createTypedLiteral( new LitTestObjF() ),
+//            m.createTypedLiteral( new LitTestObjF() ) };
         
         tvResObjs  = new Resource[] 
             { m.createResource( new ResTestObjF() ),
@@ -170,9 +170,9 @@ public class NewRegressionListSubjects extends ModelTestBase
             m.createTypedLiteral( tvFloats[1] ),
             m.createTypedLiteral( tvDoubles[1] ),
             m.createLiteral( tvStrings[1] ),
-            m.createLiteral( tvStrings[1], langs[1] ),
-            tvLitObjs[1],
-            tvResObjs[1]                  
+            m.createLiteral( tvStrings[1], langs[1] )
+//            tvLitObjs[1],
+//            tvResObjs[1]                  
             };
 
         subjects = new Resource[num];
@@ -198,8 +198,8 @@ public class NewRegressionListSubjects extends ModelTestBase
                 m.add(subjects[i], predicates[j], m.createTypedLiteral( tvDoubles[j] ) );
                 m.add(subjects[i], predicates[j], tvStrings[j] );
                 m.add(subjects[i], predicates[j], tvStrings[j], langs[j] );
-                m.add(subjects[i], predicates[j], tvLitObjs[j] );
-                m.add(subjects[i], predicates[j], tvResObjs[j] );
+//                m.add(subjects[i], predicates[j], tvLitObjs[j] );
+//                m.add(subjects[i], predicates[j], tvResObjs[j] );
                 }
             }
         }

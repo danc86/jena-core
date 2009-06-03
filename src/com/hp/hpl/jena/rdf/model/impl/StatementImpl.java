@@ -7,7 +7,6 @@ package com.hp.hpl.jena.rdf.model.impl;
 
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.enhanced.*;
-import com.hp.hpl.jena.shared.*;
 
 import com.hp.hpl.jena.graph.*;
 
@@ -100,15 +99,6 @@ public class StatementImpl  extends StatementBase implements Statement {
             return (Literal) object;
         } else {    
             throw new LiteralRequiredException( object );
-        }
-    }
-    
-
-    @Deprecated public Object getObject(ObjectF f)  {
-        try {
-            return f.createObject( getLiteral().toString());
-        } catch (Exception e) {
-            throw new JenaException(e);
         }
     }
         

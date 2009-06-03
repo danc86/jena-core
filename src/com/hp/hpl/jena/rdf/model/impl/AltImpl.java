@@ -135,10 +135,6 @@ public class AltImpl extends ContainerImpl implements Alt {
     	return needDefaultStatement().getResource();
     }
     
-    @Deprecated public Object getDefaultObject(ObjectF f)    {
-     	return needDefaultStatement().getObject( f );
-    }
-    
     public Alt getDefaultAlt()  {
     	return needDefaultStatement().getAlt();
     }

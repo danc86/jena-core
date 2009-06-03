@@ -208,18 +208,6 @@ public interface Alt extends Container {
      */
     public Resource getDefaultResource(ResourceF f);
     
-    /** Return the default value for this resource.
-     *
-     * <p>The object returned is created by calling the
-     * <CODE>createObject</CODE> method of the factory object <CODE>f</CODE>.
-     * </p>
-     * @return the default value for this resource as an object created
-     * by the factory object f.
-     * @param f A factory object used to create the object returned.
-     
-     */
-    @Deprecated public Object getDefaultObject(ObjectF f);
-    
     /** Return the default value for this resource. 
      * @return the default value for this resource interpreted as the return
      *         type.

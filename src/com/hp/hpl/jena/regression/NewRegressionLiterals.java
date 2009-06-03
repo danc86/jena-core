@@ -127,13 +127,13 @@ public class NewRegressionLiterals extends NewRegressionBase
         assertEquals( m.createLiteral( "A", "en" ), m.createLiteral( "A", "en" ) );
         }
 
-    public void testLiteralObjects()
-        {
-        Model m = getModel();
-        testLiteralObject( m, 0 );
-        testLiteralObject( m, 12345 );
-        testLiteralObject( m, -67890 );
-        }
+//    public void testLiteralObjects()
+//        {
+//        Model m = getModel();
+////        testLiteralObject( m, 0 );
+////        testLiteralObject( m, 12345 );
+////        testLiteralObject( m, -67890 );
+//        }
 
     protected void testByte( Model m, byte tv )
         {
@@ -229,12 +229,12 @@ public class NewRegressionLiterals extends NewRegressionBase
         assertEquals( "", l.getLanguage() );
         }
 
-    protected void testLiteralObject( Model m, int x )
-        {
-        LitTestObj tv = new LitTestObj( x );
-        LitTestObjF factory = new LitTestObjF();
-        assertEquals( tv, m.createTypedLiteral( tv ).getObject( factory ) );
-        }
+//    protected void testLiteralObject( Model m, int x )
+//        {
+//        LitTestObj tv = new LitTestObj( x );
+//        LitTestObjF factory = new LitTestObjF();
+//        assertEquals( tv, m.createTypedLiteral( tv ).getObject( factory ) );
+//        }
     }
 
 

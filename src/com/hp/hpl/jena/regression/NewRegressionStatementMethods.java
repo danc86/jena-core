@@ -129,10 +129,10 @@ public class NewRegressionStatementMethods extends NewRegressionBase
         assertEquals( tvResObj, m.createStatement( r, RDF.value, tvResObj ).getResource() );
         }
     
-    public void testLitObj()
-        {
-        assertEquals( tvLitObj, m.createLiteralStatement( r, RDF.value, tvLitObj ).getObject( new LitTestObjF() ) );
-        }
+//    public void testLitObj()
+//        {
+//        assertEquals( tvLitObj, m.createLiteralStatement( r, RDF.value, tvLitObj ).getObject( new LitTestObjF() ) );
+//        }
     
     public void testBag()
         {
