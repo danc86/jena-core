@@ -10,7 +10,7 @@ import java.lang.reflect.Method;
 
 import junit.framework.TestSuite;
 
-/** This class provides an indiret way to get the ARQ test suite.
+/** This class provides an indirect way to get the ARQ test suite.
  *   This is done to remove a Jena compile-time dependency on ARQ. 
  * @author Andy Seaborne
  * @version $Id$
