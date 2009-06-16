@@ -51,17 +51,17 @@ public class TestMultiUnionReifier extends ModelTestBase
                 {}
             else if (fact.charAt( 0 ) == '!')
                 {
-                Triple t = Triple.create( fact.substring( 1 ) );
+                Triple t = NodeCreateUtils.createTriple( fact.substring( 1 ) );
                 result.add( t );
                 result.getReifier().reifyAs( NodeCreateUtils.create( "_r" + ++count ), t );
                 }
             else if (fact.charAt( 0 ) == '~')
                 {
-                Triple t = Triple.create( fact.substring( 1 ) );
+                Triple t = NodeCreateUtils.createTriple( fact.substring( 1 ) );
                 result.getReifier().reifyAs( NodeCreateUtils.create( "_r" + ++count ), t );
                 }
             else
-                result.add( Triple.create( fact ) );
+                result.add( NodeCreateUtils.createTriple( fact ) );
             }
         return result;
         }

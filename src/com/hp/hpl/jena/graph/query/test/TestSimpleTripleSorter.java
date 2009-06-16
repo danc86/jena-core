@@ -59,7 +59,7 @@ public class TestSimpleTripleSorter extends GraphTestBase
         
     public void testSingle(String ts )
         {
-        Triple t = Triple.create( ts );
+        Triple t = NodeCreateUtils.createTriple( ts );
         assertEquals( Arrays.asList( new Triple[] {t} ), Arrays.asList( sorter.sort( new Triple[] {t} ) ) );
         }
         

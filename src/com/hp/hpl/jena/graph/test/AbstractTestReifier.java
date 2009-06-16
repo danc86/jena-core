@@ -122,13 +122,13 @@ public abstract class AbstractTestReifier extends GraphTestBase
         {
         Graph g = getGraph( Standard );
         assertFalse( g.getReifier().hasTriple( triple( "s p o" ) ) );
-        g.add( Triple.create( "x rdf:subject s" ) );
+        g.add( NodeCreateUtils.createTriple( "x rdf:subject s" ) );
         assertEquals( 1, g.size() );
-        g.add( Triple.create( "x rdf:predicate p" ) );
+        g.add( NodeCreateUtils.createTriple( "x rdf:predicate p" ) );
         assertEquals( 2, g.size() );  
-        g.add( Triple.create( "x rdf:object o" ) );
+        g.add( NodeCreateUtils.createTriple( "x rdf:object o" ) );
         assertEquals( 3, g.size() );            
-        g.add( Triple.create( "x rdf:type rdf:Statement" ) );
+        g.add( NodeCreateUtils.createTriple( "x rdf:type rdf:Statement" ) );
         assertEquals( 4, g.size() );
         assertTrue( g.getReifier().hasTriple( triple( "s p o" ) ) );                      
         }
@@ -213,7 +213,7 @@ public abstract class AbstractTestReifier extends GraphTestBase
         Graph g = getGraph();
         if (isStandard( g ))
             {            
-            Triple SPO = Triple.create( "S P O" );
+            Triple SPO = NodeCreateUtils.createTriple( "S P O" );
             g.getReifier().reifyAs( node( "x" ), SPO );
             assertTrue( g.getReifier().hasTriple( SPO ) );
             try
@@ -427,10 +427,10 @@ public abstract class AbstractTestReifier extends GraphTestBase
 		if (isStandard( g ))
 		    {
     		assertEquals( 0, g.size() );
-    		Triple s = Triple.create( "x rdf:subject s" );
-    		Triple p = Triple.create( "x rdf:predicate p" );
-    		Triple o = Triple.create( "x rdf:object o" );
-    		Triple t = Triple.create( "x rdf:type rdf:Statement");
+    		Triple s = NodeCreateUtils.createTriple( "x rdf:subject s" );
+    		Triple p = NodeCreateUtils.createTriple( "x rdf:predicate p" );
+    		Triple o = NodeCreateUtils.createTriple( "x rdf:object o" );
+    		Triple t = NodeCreateUtils.createTriple( "x rdf:type rdf:Statement");
     		g.add(s); g.add(p); g.add(o); g.add(t);
     		assertEquals( 4, g.size() );
     		g.delete(s); g.delete(p); g.delete(o); g.delete(t);

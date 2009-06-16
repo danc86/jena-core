@@ -193,15 +193,15 @@ public/* abstract */class AbstractTestGraph extends GraphTestBase
         if (canBeEmpty( g ))
             {
             assertTrue( g.isEmpty() );
-            g.add( Triple.create( "S P O" ) );
+            g.add( NodeCreateUtils.createTriple( "S P O" ) );
             assertFalse( g.isEmpty() );
-            g.add( Triple.create( "A B C" ) );
+            g.add( NodeCreateUtils.createTriple( "A B C" ) );
             assertFalse( g.isEmpty() );
-            g.add( Triple.create( "S P O" ) );
+            g.add( NodeCreateUtils.createTriple( "S P O" ) );
             assertFalse( g.isEmpty() );
-            g.delete( Triple.create( "S P O" ) );
+            g.delete( NodeCreateUtils.createTriple( "S P O" ) );
             assertFalse( g.isEmpty() );
-            g.delete( Triple.create( "A B C" ) );
+            g.delete( NodeCreateUtils.createTriple( "A B C" ) );
             assertTrue( g.isEmpty() );
             }
         }
@@ -366,14 +366,14 @@ public/* abstract */class AbstractTestGraph extends GraphTestBase
     protected void xSPOyXYZ( Reifier r )
         {
         xSPO( r );
-        r.reifyAs( NodeCreateUtils.create( "y" ), Triple.create( "X Y Z" ) );       
+        r.reifyAs( NodeCreateUtils.create( "y" ), NodeCreateUtils.createTriple( "X Y Z" ) );       
         }
 
     protected void aABC( Reifier r )
-        { r.reifyAs( NodeCreateUtils.create( "a" ), Triple.create( "A B C" ) ); }
+        { r.reifyAs( NodeCreateUtils.create( "a" ), NodeCreateUtils.createTriple( "A B C" ) ); }
         
     protected void xSPO( Reifier r )
-        { r.reifyAs( NodeCreateUtils.create( "x" ), Triple.create( "S P O" ) ); }
+        { r.reifyAs( NodeCreateUtils.create( "x" ), NodeCreateUtils.createTriple( "S P O" ) ); }
         
     public void testRemove()
         { 
@@ -392,12 +392,12 @@ public/* abstract */class AbstractTestGraph extends GraphTestBase
     public void testRemove( String findRemove, String findCheck )
         {
         Graph g = getGraphWith( "S P O" );
-        ExtendedIterator<Triple> it = g.find( Triple.create( findRemove ) );
+        ExtendedIterator<Triple> it = g.find( NodeCreateUtils.createTriple( findRemove ) );
         try 
             {
             it.next(); it.remove(); it.close();
             assertEquals( "remove with " + findRemove + ":", 0, g.size() );
-            assertFalse( g.contains( Triple.create( findCheck ) ) );
+            assertFalse( g.contains( NodeCreateUtils.createTriple( findCheck ) ) );
             }
         catch (UnsupportedOperationException e) {
             it.close();
@@ -474,7 +474,7 @@ public/* abstract */class AbstractTestGraph extends GraphTestBase
     /**
         Handy triple for test purposes.
     */
-    protected Triple SPO = Triple.create( "S P O" );
+    protected Triple SPO = NodeCreateUtils.createTriple( "S P O" );
     protected RecordingListener L = new RecordingListener();
     
     /**

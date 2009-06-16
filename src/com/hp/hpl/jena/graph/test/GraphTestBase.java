@@ -73,7 +73,7 @@ public class GraphTestBase extends JenaTestBase
         which see.
     */
     public static Triple triple( String fact )
-        { return Triple.create( fact ); }
+        { return NodeCreateUtils.createTriple( fact ); }
     
     /**
         Answer a triple described by the three space-separated node descriptions
@@ -81,7 +81,7 @@ public class GraphTestBase extends JenaTestBase
         shorthand for <code>Triple.create(pm, fact)</code>, which see.
     */
     public static Triple triple( PrefixMapping pm, String fact )
-        { return Triple.create( pm, fact ); }
+        { return NodeCreateUtils.createTriple( pm, fact ); }
         
     /**
         Answer an array of triples; each triple is described by one of the

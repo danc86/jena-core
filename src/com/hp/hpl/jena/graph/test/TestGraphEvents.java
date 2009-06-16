@@ -17,7 +17,7 @@ public class TestGraphEvents extends GraphTestBase
         {
         testGraphEventContents( "testing", "an example" );
         testGraphEventContents( "toasting", Boolean.TRUE );
-        testGraphEventContents( "tasting", Triple.create( "we are here" ) );
+        testGraphEventContents( "tasting", NodeCreateUtils.createTriple( "we are here" ) );
         }
     
     public void testGraphEventsRemove()
@@ -30,7 +30,7 @@ public class TestGraphEvents extends GraphTestBase
 
     private void testGraphEventsRemove( String S, String P, String O )
         {
-        Triple expected = Triple.create( S + " " + P + " " + O );
+        Triple expected = NodeCreateUtils.createTriple( S + " " + P + " " + O );
         GraphEvents e = GraphEvents.remove( node( S ), node( P ), node( O ) );
         assertEquals( expected, e.getContent() );
         assertEquals( "remove", e.getTitle() );

@@ -8,6 +8,7 @@ package com.hp.hpl.jena.graph.query.test;
 
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.graph.query.*;
+import com.hp.hpl.jena.graph.test.NodeCreateUtils;
 import com.hp.hpl.jena.shared.JenaException;
 import com.hp.hpl.jena.shared.QueryStageException;
 import com.hp.hpl.jena.util.CollectionFactory;
@@ -414,7 +415,7 @@ public abstract class AbstractTestQuery extends QueryTestBase
      */
     public void testQueryTripleOrder()
         {
-        Triple t1 = Triple.create( "A B C" ), t2 = Triple.create( "D E F" );
+        Triple t1 = NodeCreateUtils.createTriple( "A B C" ), t2 = NodeCreateUtils.createTriple( "D E F" );
         List<Triple> desired = Arrays.asList( new Triple[] {t1, t2} );
         List<Triple> obtained = getTriplesFromQuery( desired );
         assertEquals( desired, obtained );

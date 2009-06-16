@@ -10,6 +10,7 @@ import java.util.*;
 
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.graph.impl.WrappedGraph;
+import com.hp.hpl.jena.graph.test.NodeCreateUtils;
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.impl.ModelCom;
 
@@ -38,7 +39,7 @@ public class TestRemoveSPO extends ModelTestBase
             public void delete( Triple t ) { deleted.add( t ); } };
         Model m = new ModelCom( wrapped );
         m.remove( resource( "R" ), property( "P" ), rdfNode( m, "17" ) );
-        assertEquals( listOfOne( Triple.create( "R P 17" ) ), deleted );
+        assertEquals( listOfOne( NodeCreateUtils.createTriple( "R P 17" ) ), deleted );
         }
     }
 
