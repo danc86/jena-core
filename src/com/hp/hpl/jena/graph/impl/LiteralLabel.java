@@ -62,7 +62,13 @@ final public class LiteralLabel {
 	 * N.B. This applies to any literal, not just XML well-formed literals.
 	 */
 	private boolean wellformed = true;
-
+	
+	/**
+	 * keeps the message provided by the DatatypeFormatException
+	 * if parsing failed for delayed exception thrown in getValue()
+	 */
+	private String exceptionMsg = null; // Suggested by Andreas Langegger
+	
 	//=======================================================================
 	// Constructors
 
@@ -199,6 +205,7 @@ final public class LiteralLabel {
 				throw e;
 			} else {
 				wellformed = false;
+				exceptionMsg  = e.getMessage();
 			}
 		}
 	}
@@ -293,7 +300,7 @@ final public class LiteralLabel {
 			throw new DatatypeFormatException(
 				lexicalForm,
 				dtype,
-				" in getValue()");
+				exceptionMsg);
 		}
 	}
 
