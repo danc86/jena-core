@@ -227,15 +227,18 @@ public class DBConnection implements IDBConnection {
 	/* (non-Javadoc)
 	 * @see com.hp.hpl.jena.db.IDBConnection#setDatabaseType(java.lang.String)
 	 */
-	public void setDatabaseType( String databaseType ) {
-		if (databaseType != null) {
-			if (databaseType.compareToIgnoreCase("mysql") == 0) {
-					m_databaseType = "MySQL";
-			} else {
-				m_databaseType = databaseType;
-			}
-		}
-					
+	public void setDatabaseType( String databaseType )
+	{
+	    if (databaseType != null) {
+	        if (databaseType.equalsIgnoreCase("mysql"))
+	            m_databaseType = "MySQL";
+	        else if ( databaseType.equalsIgnoreCase("hsql") )
+	            m_databaseType = "HSQLDB" ;
+	        else if ( databaseType.equalsIgnoreCase("hsqldb") )
+                m_databaseType = "HSQLDB" ;
+	    } else {
+	        m_databaseType = databaseType;
+	    }
 	}
 	
 	/* (non-Javadoc)
