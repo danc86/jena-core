@@ -229,16 +229,20 @@ public class DBConnection implements IDBConnection {
 	 */
 	public void setDatabaseType( String databaseType )
 	{
-	    if (databaseType != null) {
-	        if (databaseType.equalsIgnoreCase("mysql"))
-	            m_databaseType = "MySQL";
-	        else if ( databaseType.equalsIgnoreCase("hsql") )
-	            m_databaseType = "HSQLDB" ;
-	        else if ( databaseType.equalsIgnoreCase("hsqldb") )
-                m_databaseType = "HSQLDB" ;
-	    } else {
+	    if ( databaseType == null )
+	    {
 	        m_databaseType = databaseType;
+	        return ;
 	    }
+	    
+	    if (databaseType.equalsIgnoreCase("mysql"))
+	        m_databaseType = "MySQL";
+	    else if ( databaseType.equalsIgnoreCase("hsql") )
+	        m_databaseType = "HSQLDB" ;
+	    else if ( databaseType.equalsIgnoreCase("hsqldb") )
+	        m_databaseType = "HSQLDB" ;
+	    else
+	        m_databaseType = databaseType;
 	}
 	
 	/* (non-Javadoc)

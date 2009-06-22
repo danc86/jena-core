@@ -106,7 +106,6 @@ public class TestPackage extends TestCase
     }
 
     private static void addTest(TestSuite ts, String name, TestSuite tc) {
-        System.err.println("Add test -- "+name) ;
         if ( name != null )
             tc.setName(name);
         ts.addTest(tc);
