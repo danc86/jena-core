@@ -1511,9 +1511,10 @@ public abstract class DriverRDB implements IRDBDriver {
 		String res = null;
 		if ( node.isURI() ) {
 			String uri = new String(((Node_URI) node).getURI());
-			if ( uri.startsWith(RDBCodeURI) ) {
-				throw new RDFRDBException ("URI Node looks like a blank node: " + uri );
-			}
+			
+//			if ( uri.startsWith(RDBCodeURI) )
+//				throw new RDFRDBException ("URI Node looks like a blank node: " + uri );
+			
 			// TO DO: need to write special version of splitNamespace for rdb.
 			//		or else, need a guarantee that splitNamespace never changes.
 			//		the problem is that if the splitNamespace algorithm changes,
