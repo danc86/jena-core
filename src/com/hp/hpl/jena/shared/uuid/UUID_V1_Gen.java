@@ -263,7 +263,7 @@ public class UUID_V1_Gen implements UUIDFactory
 	{
         long random = LibUUID.makeRandom().nextLong() ;
 
-        node = Bits.unpack(random, 0, 47);      // Low 48bits, except grousp address bit
+        node = Bits.unpack(random, 0, 47);      // Low 48bits, except groups address bit
         node = Bits.set(node, 47) ;             // Set group address bit
         
         // Can also set the clock sequence number to increase the randomness.
