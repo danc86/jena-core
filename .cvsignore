@@ -2,6 +2,7 @@
 bldsrc
 bldbin
 classes
+target
 dist
 announce.txt
 fix*
