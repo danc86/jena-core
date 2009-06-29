@@ -4,38 +4,26 @@
   $Id$
 */
 
-package com.hp.hpl.jena.graph.test;
+package com.hp.hpl.jena.shared;
 
-import junit.framework.TestSuite;
-
-import com.hp.hpl.jena.graph.Factory;
-import com.hp.hpl.jena.graph.Graph;
-import com.hp.hpl.jena.shared.AbstractTestPrefixMapping;
-import com.hp.hpl.jena.shared.PrefixMapping;
+import junit.framework.*;
 
 /**
  	@author kers
 */
-public class TestGraphPrefixMapping extends GraphTestBase
+public class TestSharedPackage extends TestCase
     {
-    public TestGraphPrefixMapping( String name )
-        { super( name ); }
-        
+    public TestSharedPackage()
+        { super(); }
+
     public static TestSuite suite()
-        { return new TestSuite( TestGraphPrefixMapping.class ); }   
-    
-    public void testGraphPrefixMapping()
         { 
-        Graph g = Factory.createDefaultGraph();
-        AbstractTestPrefixMapping.testUseEasyPrefix
-            ( "from Graph", g.getPrefixMapping() ); 
-        testSameMapping( g );
-        }
-        
-    public void testSameMapping( Graph g )
-        {
-        PrefixMapping pm = g.getPrefixMapping();
-        assertTrue( pm == g.getPrefixMapping() );
+        TestSuite result = new TestSuite();
+        result.addTest( TestPrefixMapping.suite() );
+        result.addTest( TestJenaException.suite() );
+        result.addTest( TestReificationStyle.suite() );
+        result.addTest( RandomizedTestSuiteRegression.suite() );
+        return result;
         }
     }
 

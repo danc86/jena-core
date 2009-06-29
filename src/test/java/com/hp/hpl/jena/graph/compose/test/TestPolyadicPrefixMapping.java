@@ -10,8 +10,8 @@ import junit.framework.TestSuite;
 
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.graph.compose.*;
+import com.hp.hpl.jena.shared.AbstractTestPrefixMapping;
 import com.hp.hpl.jena.shared.PrefixMapping;
-import com.hp.hpl.jena.shared.test.AbstractTestPrefixMapping;
 
 public class TestPolyadicPrefixMapping extends AbstractTestPrefixMapping
     {

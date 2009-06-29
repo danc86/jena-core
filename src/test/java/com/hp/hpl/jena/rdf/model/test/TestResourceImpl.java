@@ -44,7 +44,7 @@ public class TestResourceImpl extends ModelTestBase
     
     public void testNameSpace()
         { 
-        assertEquals( "eh:x", resource( "eh:xyz" ).getNameSpace() ); 
+        assertEquals( "eh:", resource( "eh:xyz" ).getNameSpace() ); 
         assertEquals( "http://d/", resource( "http://d/stuff" ).getNameSpace() ); 
         assertEquals( "ftp://dd.com/12345", resource( "ftp://dd.com/12345" ).getNameSpace() ); 
         assertEquals( "http://domain/spoo#", resource( "http://domain/spoo#anchor" ).getNameSpace() ); 
@@ -53,7 +53,7 @@ public class TestResourceImpl extends ModelTestBase
     
     public void testLocalName()
         { 
-        assertEquals( "yz", resource( "eh:xyz" ).getLocalName() );
+        assertEquals( "xyz", resource( "eh:xyz" ).getLocalName() );
         }
     
     public void testHasURI()

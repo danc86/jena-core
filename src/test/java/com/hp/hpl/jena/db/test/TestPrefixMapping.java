@@ -11,7 +11,7 @@ import java.util.*;
 import com.hp.hpl.jena.db.*;
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.shared.*;
-import com.hp.hpl.jena.shared.test.AbstractTestPrefixMapping;
+
 import junit.framework.*;
 
 /**

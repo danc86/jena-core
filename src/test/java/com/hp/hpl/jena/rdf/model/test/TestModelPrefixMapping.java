@@ -6,13 +6,15 @@
 
 package com.hp.hpl.jena.rdf.model.test;
 
-import com.hp.hpl.jena.shared.*;
-import com.hp.hpl.jena.shared.test.*;
-import com.hp.hpl.jena.graph.*;
-import com.hp.hpl.jena.rdf.model.*;
-import com.hp.hpl.jena.rdf.model.impl.ModelCom;
+import junit.framework.TestSuite;
 
-import junit.framework.*;
+import com.hp.hpl.jena.graph.Factory;
+import com.hp.hpl.jena.graph.Graph;
+import com.hp.hpl.jena.rdf.model.Model;
+import com.hp.hpl.jena.rdf.model.ModelFactory;
+import com.hp.hpl.jena.rdf.model.impl.ModelCom;
+import com.hp.hpl.jena.shared.AbstractTestPrefixMapping;
+import com.hp.hpl.jena.shared.PrefixMapping;
 
 /**
     Test that a model is a prefix mapping.
