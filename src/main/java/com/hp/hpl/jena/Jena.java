@@ -66,7 +66,7 @@ public interface Jena
     public static final String VERSION_STATUS = "-dev";
     
     /** The date and time at which this release was built */    
-    public static final String BUILD_DATE = "29-June-2009 15:01";
+    public static final String BUILD_DATE = "29-June-2009 20:56";
     
 
     // External signature methods
