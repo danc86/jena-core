@@ -37,7 +37,7 @@ public class N3JenaWriterPP extends N3JenaWriterCommon
     protected Set<Resource> rdfLists      	= null ; 		// Heads of lists
     protected Set<Resource> rdfListsAll   	= null ;		// Any resources in a daml lists
     protected Set<Resource> rdfListsDone  	= null ;		// RDF lists written
-    protected Set<RDFNode> oneRefObjects 	= null ;		// Bnodes referred to once as an object - can inline
+    protected Set<RDFNode>  oneRefObjects 	= null ;		// Bnodes referred to once as an object - can inline
     protected Set<Resource> oneRefDone   	= null ;		// Things done - so we can check for missed items
 
     // Do we do nested (one reference) nodes?
