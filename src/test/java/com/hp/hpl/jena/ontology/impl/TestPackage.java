@@ -4,7 +4,7 @@
   $Id$
 */
 
-package com.hp.hpl.jena.ontology.impl.test;
+package com.hp.hpl.jena.ontology.impl;
 
 
 import junit.framework.*;

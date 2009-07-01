@@ -39,7 +39,7 @@ public class TestPackage extends TestCase{
         addTest(ts,  "Shared", com.hp.hpl.jena.shared.TestSharedPackage.suite() );
         addTest(ts,  "Reasoners", com.hp.hpl.jena.reasoner.test.TestPackage.suite());
         addTest(ts,  "Composed graphs", com.hp.hpl.jena.graph.compose.test.TestPackage.suite() );
-        addTest(ts,  "Ontology", com.hp.hpl.jena.ontology.impl.test.TestPackage.suite() );
+        addTest(ts,  "Ontology", com.hp.hpl.jena.ontology.impl.TestPackage.suite() );
         addTest(ts,  "cmd line utils", jena.test.TestPackage.suite() );
         return ts ;
     }
