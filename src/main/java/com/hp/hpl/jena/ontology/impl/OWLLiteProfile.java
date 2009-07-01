@@ -134,10 +134,8 @@ public class OWLLiteProfile
                 public boolean doCheck( Node n, EnhGraph eg ) {
                     Graph g = eg.asGraph();
                     Node rdfTypeNode = RDF.type.asNode();
-                    return g.contains( n, rdfTypeNode, OWL.Class.asNode() ) ||
-                           g.contains( n, rdfTypeNode, OWL.Restriction.asNode() ) ||
-                           g.contains( n, rdfTypeNode, RDFS.Class.asNode() ) ||
-                           g.contains( n, rdfTypeNode, RDFS.Datatype.asNode() ) ||
+
+                    return hasType( n, eg, new Resource[] {OWL.Class, OWL.Restriction, RDFS.Class, RDFS.Datatype} ) ||
                            // These are common cases that we should support
                            n.equals( OWL.Thing.asNode() ) ||
                            g.contains( Node.ANY, RDFS.domain.asNode(), n ) ||
@@ -157,10 +155,8 @@ public class OWLLiteProfile
             {  ObjectProperty.class,        new SupportsCheck() {
                 @Override
                 public boolean doCheck( Node n, EnhGraph g ) {
-                    return g.asGraph().contains( n, RDF.type.asNode(), OWL.ObjectProperty.asNode() ) ||
-                    g.asGraph().contains( n, RDF.type.asNode(), OWL.TransitiveProperty.asNode() ) ||
-                    g.asGraph().contains( n, RDF.type.asNode(), OWL.SymmetricProperty.asNode() ) ||
-                    g.asGraph().contains( n, RDF.type.asNode(), OWL.InverseFunctionalProperty.asNode() );
+                    return hasType( n, g, new Resource[] {OWL.ObjectProperty,OWL.TransitiveProperty,
+                                                          OWL.SymmetricProperty, OWL.InverseFunctionalProperty} );
                 }
             }
             },
@@ -190,14 +186,10 @@ public class OWLLiteProfile
             {  OntProperty.class,           new SupportsCheck() {
                 @Override
                 public boolean doCheck( Node n, EnhGraph g ) {
-                    return g.asGraph().contains( n, RDF.type.asNode(), RDF.Property.asNode() ) ||
-                    g.asGraph().contains( n, RDF.type.asNode(), OWL.ObjectProperty.asNode() ) ||
-                    g.asGraph().contains( n, RDF.type.asNode(), OWL.DatatypeProperty.asNode() ) ||
-                    g.asGraph().contains( n, RDF.type.asNode(), OWL.AnnotationProperty.asNode() ) ||
-                    g.asGraph().contains( n, RDF.type.asNode(), OWL.TransitiveProperty.asNode() ) ||
-                    g.asGraph().contains( n, RDF.type.asNode(), OWL.SymmetricProperty.asNode() ) ||
-                    g.asGraph().contains( n, RDF.type.asNode(), OWL.FunctionalProperty.asNode() ) ||
-                    g.asGraph().contains( n, RDF.type.asNode(), OWL.InverseFunctionalProperty.asNode() );
+                    return hasType( n, g, new Resource[] {RDF.Property, OWL.ObjectProperty, OWL.DatatypeProperty,
+                                                          OWL.AnnotationProperty, OWL.TransitiveProperty,
+                                                          OWL.SymmetricProperty, OWL.InverseFunctionalProperty,
+                                                          OWL.FunctionalProperty} );
                 }
             }
             },
@@ -278,14 +270,12 @@ public class OWLLiteProfile
             },
             {  Individual.class,    new SupportsCheck() {
                 @Override
-                public boolean doCheck( Node n, EnhGraph eg ) {
+                public boolean doCheck( Node n, EnhGraph g ) {
                     if (n instanceof Node_URI || n instanceof Node_Blank) {
-                        // necessary to be a uri or bNode, but not sufficient
-                        Graph g = eg.asGraph();
-
-                        // this check filters out OWL-full entailments from the OWL-rule reasoner
-                        return !(g.contains( n, RDF.type.asNode(), RDFS.Class.asNode() ) ||
-                                 g.contains( n, RDF.type.asNode(), RDF.Property.asNode() ));
+                        // OWL Lite individuals are disjoint from other language classes
+                        return !hasType( n, g, new Resource[] {RDFS.Class, RDF.Property, OWL.Class,
+                                                               OWL.ObjectProperty, OWL.DatatypeProperty, OWL.TransitiveProperty,
+                                                               OWL.FunctionalProperty, OWL.InverseFunctionalProperty} );
                     }
                     else {
                         return false;

@@ -1898,6 +1898,28 @@ public class TestBugReports
         assertTrue(  "should be an individual", punned.isIndividual() );
     }
 
+    /* Bugrep from David Patterson - classes as individuals in OWL Lite */
+    public void testDP0() {
+        String NS = "http://jena.hpl.hp.com/example#";
+
+        OntModelSpec mySpec = OntModelSpec.OWL_LITE_MEM_TRANS_INF; // classes are also individuals
+        OntModel model = ModelFactory.createOntologyModel( mySpec );
+
+        OntClass book = model.createClass( NS + "Book" );
+        OntProperty title = model.createOntProperty( NS + "title" );
+        ObjectProperty publisher = model.createObjectProperty( NS + "publisher" );
+        DatatypeProperty price = model.createDatatypeProperty( NS + "price" );
+
+        Individual sc1 = model.createIndividual( NS + "Ant: The Definitive Guide", book );
+
+        model.setStrictMode( true );
+
+        assertFalse( book + " should not be an individual", book.canAs( Individual.class ));
+        assertFalse( title + " should not be an individual", title.canAs( Individual.class ));
+        assertFalse( publisher + " should not be an individual", publisher.canAs( Individual.class ));
+        assertFalse( price + " should not be an individual", price.canAs( Individual.class ));
+    }
+
 
     // Internal implementation methods
     //////////////////////////////////
