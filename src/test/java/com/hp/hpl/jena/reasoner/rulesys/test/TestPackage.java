@@ -41,6 +41,7 @@ public class TestPackage extends TestSuite {
         addTest( TestSetRules.suite() );
         addTest( "OWLRuleUnitTests", OWLUnitTest.suite() );
         addTest( "TestBugs", TestBugs.suite() );
+        addTest( "TestOWLMisc", TestOWLMisc.suite() );
         addTest( "TestCapabilities", TestCapabilities.suite() );
         addTestSuite( TestInferenceReification.class );
         addTestSuite( TestRestrictionsDontNeedTyping.class );
