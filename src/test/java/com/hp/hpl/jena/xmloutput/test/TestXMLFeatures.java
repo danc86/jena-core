@@ -21,17 +21,8 @@ import com.hp.hpl.jena.shared.*;
 import com.hp.hpl.jena.vocabulary.RDF;
 import com.hp.hpl.jena.xmloutput.impl.*;
 
-/**
- * @author bwm
- * @version $Name$ $Revision$ $Date$
- */
-
 public class TestXMLFeatures extends XMLOutputTestBase {
-	// static AwkCompiler awk = PrettyWriterTest.awk;
-	// static AwkMatcher matcher = PrettyWriterTest.matcher;
-
 	// static protected Logger logger = LoggerFactory.getLogger( TestXMLFeatures.class );
-
 	// static { logger.setLevel( Level.OFF ); }
 
 	private String base1 = "http://example/foobar";

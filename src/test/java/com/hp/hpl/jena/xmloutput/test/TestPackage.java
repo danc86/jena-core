@@ -47,6 +47,7 @@ public class TestPackage extends TestCase{
         suite.addTestSuite( TestURIExceptions.class );
         suite.addTestSuite( TestEntityOutput.class );
         suite.addTestSuite( TestLiteralEncoding.class );
+        suite.addTestSuite( TestWriterFeatures.class ) ;
         return suite;
     }
     
