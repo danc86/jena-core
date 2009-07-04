@@ -16,7 +16,7 @@ import com.hp.hpl.jena.rdf.model.impl.PropertyImpl;
 import com.hp.hpl.jena.rdf.model.impl.ResourceImpl;
 import com.hp.hpl.jena.reasoner.*;
 import com.hp.hpl.jena.vocabulary.RDF;
-import com.hp.hpl.jena.rdf.arp.test.ARPTests;
+import com.hp.hpl.jena.rdf.arp.ARPTests;
 
 import com.hp.hpl.jena.shared.*;
 
