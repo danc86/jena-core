@@ -3,12 +3,11 @@ bldsrc
 bldbin
 classes
 target
+tmp
 dist
 announce.txt
-fix*
 ReleaseProcess.txt
 snapshot
-tmp
 jena-src.zip
 D.*
 local
