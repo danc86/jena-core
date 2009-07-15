@@ -24,7 +24,7 @@ import com.hp.hpl.jena.util.FileUtils;
 
 public abstract class JenaReaderBase implements RDFReader
 {
-	RDFErrorHandler errorHandler = null ;
+	protected RDFErrorHandler errorHandler = null ;
 	
 	public JenaReaderBase() {}
 
