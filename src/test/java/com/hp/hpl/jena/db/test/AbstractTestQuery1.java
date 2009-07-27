@@ -248,7 +248,7 @@ public abstract class AbstractTestQuery1 extends GraphTestBase
 		boolean isRef = u.charAt(0) == 'U';
         return 
             isRef ? makeResource( u.substring(1) )
-            : Node.createLiteral( new LiteralLabel( expandLong( u ) ) );	
+            : Node.createLiteral( LiteralLabelFactory.create( expandLong( u ) ) );	
 	}
 
     protected String expandLong( String s )

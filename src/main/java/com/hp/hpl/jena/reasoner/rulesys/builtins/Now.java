@@ -14,7 +14,7 @@ import java.util.Calendar;
 
 import com.hp.hpl.jena.datatypes.xsd.XSDDateTime;
 import com.hp.hpl.jena.graph.Node;
-import com.hp.hpl.jena.graph.impl.LiteralLabel;
+import com.hp.hpl.jena.graph.impl.LiteralLabelFactory;
 import com.hp.hpl.jena.reasoner.rulesys.BindingEnvironment;
 import com.hp.hpl.jena.reasoner.rulesys.RuleContext;
 
@@ -54,7 +54,7 @@ public class Now extends BaseBuiltin {
     public boolean bodyCall(Node[] args, int length, RuleContext context) {
         checkArgs(length, context);
         BindingEnvironment env = context.getEnv();
-        Node now = Node.createLiteral( new LiteralLabel(new XSDDateTime(Calendar.getInstance())) );
+        Node now = Node.createLiteral( LiteralLabelFactory.create(new XSDDateTime(Calendar.getInstance())) );
         return env.bind(args[0], now);
     }
 }

@@ -12,6 +12,7 @@ package com.hp.hpl.jena.graph.test;
 
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.graph.impl.LiteralLabel;
+import com.hp.hpl.jena.graph.impl.LiteralLabelFactory;
 import com.hp.hpl.jena.rdf.model.AnonId;
 import com.hp.hpl.jena.shared.*;
 
@@ -28,7 +29,7 @@ public class TestTriple extends GraphTestBase
                 
     private static final String U = "http://some.domain.name/magic/spells.incant";
     private static final String N = "Alice";
-    private static final LiteralLabel L = new LiteralLabel( "ashes are burning", "en", false );
+    private static final LiteralLabel L = LiteralLabelFactory.create( "ashes are burning", "en", false );
         
     public void testTripleEquals() {
         try {
@@ -36,7 +37,7 @@ public class TestTriple extends GraphTestBase
             
             // create some nodes to test
             AnonId id = AnonId.create();
-            LiteralLabel L2 = new LiteralLabel(id.toString(), "", false);
+            LiteralLabel L2 = LiteralLabelFactory.create(id.toString(), "", false);
             String U2 = id.toString();
             String N2 = id.toString();
             

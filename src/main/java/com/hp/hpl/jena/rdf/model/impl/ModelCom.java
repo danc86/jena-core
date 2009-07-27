@@ -514,7 +514,7 @@ public class ModelCom
      * @return a new literal representing the value v
      */
     public Literal createTypedLiteral(String v)  {
-        LiteralLabel ll = new LiteralLabel(v);
+        LiteralLabel ll = LiteralLabelFactory.create(v);
         return new LiteralImpl(Node.createLiteral(ll), this);
     }
 
@@ -523,7 +523,7 @@ public class ModelCom
      */
     public Literal createTypedLiteral(Calendar cal) {
         Object value = new XSDDateTime(cal);
-        LiteralLabel ll = new LiteralLabel(value, "", XSDDatatype.XSDdateTime);
+        LiteralLabel ll = LiteralLabelFactory.create(value, "", XSDDatatype.XSDdateTime);
         return new LiteralImpl(Node.createLiteral(ll), this);
         
     }
@@ -549,7 +549,7 @@ public class ModelCom
      * @param dtype the type of the literal, null for old style "plain" literals
      */
     public Literal createTypedLiteral(Object value, RDFDatatype dtype) {
-        LiteralLabel ll = new LiteralLabel(value, "", dtype);
+        LiteralLabel ll = LiteralLabelFactory.create(value, "", dtype);
         return new LiteralImpl( Node.createLiteral(ll), this );
     }
 
@@ -564,7 +564,7 @@ public class ModelCom
      */
     public Literal createTypedLiteral(String lex, String typeURI)  {
         RDFDatatype dt = TypeMapper.getInstance().getSafeTypeByName(typeURI);
-        LiteralLabel ll = LiteralLabel.createLiteralLabel( lex, "", dt );
+        LiteralLabel ll = LiteralLabelFactory.createLiteralLabel( lex, "", dt );
         return new LiteralImpl( Node.createLiteral(ll), this );
     }
         
@@ -576,7 +576,7 @@ public class ModelCom
      */
     public Literal createTypedLiteral(Object value, String typeURI) {
         RDFDatatype dt = TypeMapper.getInstance().getSafeTypeByName(typeURI);
-        LiteralLabel ll = new LiteralLabel(value, "", dt);
+        LiteralLabel ll = LiteralLabelFactory.create(value, "", dt);
         return new LiteralImpl(Node.createLiteral(ll), this);
     }
         
@@ -591,7 +591,7 @@ public class ModelCom
         // Catch special case of a Calendar which we want to act as if it were an XSDDateTime
         if (value instanceof Calendar) 
             return createTypedLiteral( (Calendar)value );
-        LiteralLabel ll = new LiteralLabel( value );
+        LiteralLabel ll = LiteralLabelFactory.create( value );
         return new LiteralImpl( Node.createLiteral( ll ), this);
         }
     

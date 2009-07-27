@@ -170,7 +170,7 @@ public class Util {
      * Construct a new integer valued node
      */
     public static Node makeIntNode(int value) {
-        return Node.createLiteral(new LiteralLabel(new Integer(value)));
+        return Node.createLiteral(LiteralLabelFactory.create(new Integer(value)));
     }
     
     /**
@@ -178,9 +178,9 @@ public class Util {
      */
     public static Node makeLongNode(long value) {
         if (value > Integer.MAX_VALUE) {
-            return Node.createLiteral(new LiteralLabel(new Long(value)));
+            return Node.createLiteral(LiteralLabelFactory.create(new Long(value)));
         } else {
-            return Node.createLiteral(new LiteralLabel(new Integer((int)value)));
+            return Node.createLiteral(LiteralLabelFactory.create(new Integer((int)value)));
         }
     }
     
@@ -188,7 +188,7 @@ public class Util {
      * Construct a new double valued node
      */
     public static Node makeDoubleNode(double value) {
-        return Node.createLiteral(new LiteralLabel(new Double(value)));
+        return Node.createLiteral(LiteralLabelFactory.create(new Double(value)));
     }
     
     /**
