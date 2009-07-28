@@ -7,7 +7,6 @@
 package com.hp.hpl.jena.n3.turtle;
 
 import java.io.PrintStream;
-import java.io.PrintWriter;
 
 import com.hp.hpl.jena.graph.Node;
 import com.hp.hpl.jena.graph.Triple;
@@ -61,7 +60,7 @@ public class Turtle2NTriples implements TurtleEventHandler
         if ( node.isLiteral() )
         {
             out.print('"') ;
-            outputEsc(node.getLiteralLexicalForm()) ;
+            outputEsc(node.getLiteralLexicalForm(), true) ;
             out.print('"') ;
 
             if ( node.getLiteralLanguage() != null && node.getLiteralLanguage().length()>0)
@@ -92,64 +91,66 @@ public class Turtle2NTriples implements TurtleEventHandler
     
     static boolean applyUnicodeEscapes = true ;
     
-    private static void writeString(String s, PrintWriter writer) {
-
-        for (int i = 0; i < s.length(); i++) {
-            char c = s.charAt(i);
-            if (c == '\\' || c == '"') {
-                writer.print('\\');
-                writer.print(c);
-            } else if (c == '\n') {
-                writer.print("\\n");
-            } else if (c == '\r') {
-                writer.print("\\r");
-            } else if (c == '\t') {
-                writer.print("\\t");
-            } else if (c >= 32 && c < 127) {
-                writer.print(c);
-            } else {
-                String hexstr = Integer.toHexString(c).toUpperCase();
-                int pad = 4 - hexstr.length();
-                writer.print("\\u");
-                for (; pad > 0; pad--)
-                    writer.print("0");
-                writer.print(hexstr);
-            }
-        }
-    }
-    
-    
-    public  void outputEsc(String s)
+    public  void outputEsc(String s, boolean singleLineString)
     {
         int len = s.length() ;
         for (int i = 0; i < len; i++) {
             char c = s.charAt(i);
-            
+
             // Escape escapes and quotes
-            if (c == '\\' || c == '"' ) 
+            if (c == '\\' || c == '"' )
             {
                 out.print('\\') ;
                 out.print(c) ;
+                continue ;
             }
-            else if (c == '\n') out.print("\\n");
-            else if (c == '\t') out.print("\\t");
-            else if (c == '\r') out.print("\\r");
-            else if (c == '\f') out.print("\\f");
-            else if ( c >= 32 && c < 127 )
-                out.print(c);
+            
+            // Characters to literally output.
+            // This would generate 7-bit safe files 
+//            if (c >= 32 && c < 127)
+//            {
+//                sbuff.append(c) ;
+//                continue;
+//            }    
+
+            // Whitespace
+            if ( singleLineString && ( c == '\n' || c == '\r' || c == '\f' ) )
+            {
+                if (c == '\n') out.print("\\n");
+                if (c == '\t') out.print("\\t");
+                if (c == '\r') out.print("\\r");
+                if (c == '\f') out.print("\\f");
+                continue ;
+            }
+            
+            // Output as is (subject to UTF-8 encoding on output that is)
+            
+            if ( ! applyUnicodeEscapes )
+                out.print(c) ;
             else
             {
-                // Unsubtle.  Does not cover beyond 16 bits codepoints 
-                // which Java keeps as surrogate pairs and wil print as two \ u escapes. 
-                String hexstr = Integer.toHexString(c).toUpperCase();
-                int pad = 4 - hexstr.length();
-                out.print("\\u");
-                for (; pad > 0; pad--)
-                    out.print("0");
-                out.print(hexstr);
+                // Unicode escapes
+                // ASCII
+                // c < 32, c >= 127, not whitespace or other specials
+                if ( c >= 32 && c < 127 )
+                {
+                    out.print(c) ;
+                }
+                else
+                {
+                    // Unsubtle.
+                    String hexstr = Integer.toHexString(c).toUpperCase();
+                    int pad = 4 - hexstr.length();
+                    out.print("\\u");
+                    for (; pad > 0; pad--)
+                        out.print("0");
+                    out.print(hexstr);
+                }
             }
         }
     }
+ 
+
 }
 
 /*
