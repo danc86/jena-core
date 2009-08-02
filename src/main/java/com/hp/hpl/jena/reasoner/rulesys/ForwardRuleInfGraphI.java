@@ -73,6 +73,12 @@ public interface ForwardRuleInfGraphI extends InfGraph, SilentAddI {
      * Logger a dervivation record against the given triple.
      */
     public void logDerivation(Triple t, Derivation derivation);
+    
+    /**
+     * Set to true to cause functor-valued literals to be dropped from rule output.
+     * Default is true.
+     */
+    public void setFunctorFiltering(boolean param) ;
 
 }
 

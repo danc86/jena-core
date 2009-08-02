@@ -54,6 +54,9 @@ public class BasicForwardRuleInfGraph extends BaseInfGraph implements ForwardRul
     /** The original rule set as supplied */
     private List<Rule> rules;
     
+    /** Flag, if true then find results will be filtered to remove functors and illegal RDF */
+    public boolean filterFunctors = true;
+    
     /** Flag which, if true, enables tracing of rule actions to logger.info */
     protected boolean traceOn = false;
     
@@ -224,6 +227,14 @@ public class BasicForwardRuleInfGraph extends BaseInfGraph implements ForwardRul
     public void addDeduction(Triple t) {
         getDeductionsGraph().add(t);
     }
+    
+    /**
+     * Set to true to cause functor-valued literals to be dropped from rule output.
+     * Default is true.
+     */
+    public void setFunctorFiltering(boolean param) {
+        filterFunctors = param;
+    }
    
     /**
      * Extended find interface used in situations where the implementator
@@ -238,6 +249,14 @@ public class BasicForwardRuleInfGraph extends BaseInfGraph implements ForwardRul
      */
     @Override
     public ExtendedIterator<Triple> findWithContinuation(TriplePattern pattern, Finder continuation) {
+        return findWithContinuation(pattern, continuation, true);
+    }
+    
+    /**
+     * Internals of findWithContinuation implementation which allows control
+     * over functor filtering.
+     */
+    private ExtendedIterator<Triple> findWithContinuation(TriplePattern pattern, Finder continuation, boolean filter) {
         checkOpen();
         if (!isPrepared) prepare();
         ExtendedIterator<Triple> result = null;
@@ -250,7 +269,11 @@ public class BasicForwardRuleInfGraph extends BaseInfGraph implements ForwardRul
                 result = fdata.findWithContinuation(pattern, FinderUtil.cascade(fdeductions, continuation) );
             }
         }
-        return result.filterDrop(Functor.acceptFilter);
+        if (filter && filterFunctors) {
+          return result.filterDrop(Functor.acceptFilter);
+        } else {
+            return result;
+        }
     }
    
     /** 
@@ -396,7 +419,7 @@ public class BasicForwardRuleInfGraph extends BaseInfGraph implements ForwardRul
      * where we are side-stepping the backward deduction step.
      */
     public ExtendedIterator<Triple> findDataMatches(Node subject, Node predicate, Node object) {
-        return find(subject, predicate, object);
+        return findWithContinuation(new TriplePattern(subject, predicate, object), null, false);
     }
    
 

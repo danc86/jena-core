@@ -363,6 +363,7 @@ public class GenericRuleReasoner extends FBRuleReasoner {
         } else if (mode == FORWARD_RETE) {
                 graph = new RETERuleInfGraph(this, rules, schemaArg);
                 ((BasicForwardRuleInfGraph)graph).setTraceOn(traceOn);
+                ((BasicForwardRuleInfGraph)graph).setFunctorFiltering(filterFunctors);
         } else if (mode == BACKWARD) {
             graph = new LPBackwardRuleInfGraph(this, getBruleStore(), data, schemaArg);
             ((LPBackwardRuleInfGraph)graph).setTraceOn(traceOn);
