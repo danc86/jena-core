@@ -331,15 +331,14 @@ public class TestGenericRules extends TestCase {
     public void doTestFunctorLooping(RuleMode mode) {
         Graph data = Factory.createGraphMem();
         data.add(new Triple(a, r, b));
-        List<Rule> rules = Rule.parseRules( "[r0: (?x r ?y) -> (?x p func(?y)) ]" );        
+        List<Rule> rules = Rule.parseRules( "(?x r ?y) -> (?x p func(?x)). (?x p ?y) -> (?x p func(?x))." );        
         GenericRuleReasoner reasoner = (GenericRuleReasoner)GenericRuleReasonerFactory.theInstance().create(null);
         reasoner.setRules(rules);
         reasoner.setMode(mode);
         
         InfGraph infgraph = reasoner.bind(data);
-        TestUtil.assertIteratorValues(this, 
-              infgraph.find(null, q, null), new Object[] {
-              } );
+        // The p should have been asserted but is invisible
+        assertFalse( infgraph.contains(Node.ANY, p, Node.ANY) );
     }
     
     /**

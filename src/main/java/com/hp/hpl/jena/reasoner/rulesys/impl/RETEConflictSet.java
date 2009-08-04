@@ -152,7 +152,9 @@ public class RETEConflictSet {
             Object hClause = rule.getHeadElement(i);
             if (hClause instanceof TriplePattern) {
                 Triple t = env.instantiate((TriplePattern) hClause);
-                if (!t.getSubject().isLiteral()) {
+                // Used to filter out triples with literal subjects
+                // but this is not necessary
+                // if (!t.getSubject().isLiteral()) {
                     // Only add the result if it is legal at the RDF level.
                     // E.g. RDFS rules can create assertions about literals
                     // that we can't record in RDF
@@ -169,7 +171,7 @@ public class RETEConflictSet {
                             engine.deleteTriple(t, true);
                         }
                     }
-                }
+              // }
             } else if (hClause instanceof Functor && isAdd) {
                 Functor f = (Functor)hClause;
                 Builtin imp = f.getImplementor();
