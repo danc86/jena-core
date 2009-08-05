@@ -9,11 +9,7 @@
 package com.hp.hpl.jena.n3;
 
 
-/** Turtle writer.  It is actually an appropriately configured   
- *
- * @author		Andy Seaborne
- * @version 	$Id$
- */
+/** Turtle writer */
 
 
 
