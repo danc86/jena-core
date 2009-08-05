@@ -73,10 +73,14 @@ public class RDFWriterFImpl extends Object implements RDFWriterF {
             Jena.PATH + ".rdf.model.impl.NTripleWriter",
             Jena.PATH + ".n3.N3JenaWriter",
             Jena.PATH + ".n3.N3JenaWriterPP",
-            Jena.PATH + ".n3.N3JenaWriterPlain",
+//            Jena.PATH + ".n3.N3TurtleJenaWriter",   // Write Turtle to ensure safe round tripping.
+//            Jena.PATH + ".n3.N3TurtleJenaWriter",   // Ditto.
+
+            Jena.PATH + ".n3.N3JenaWriterPlain",      // Keep as N3 for now - a test fails.
             Jena.PATH + ".n3.N3JenaWriterTriples",
+            
             Jena.PATH + ".n3.N3JenaWriterTriples",  // Same writer, different writer name
-            Jena.PATH + ".n3.N3TurtleJenaWriter",     // Alternative names for Turtle
+            Jena.PATH + ".n3.N3TurtleJenaWriter",   // Alternative names for Turtle
             Jena.PATH + ".n3.N3TurtleJenaWriter",
             Jena.PATH + ".n3.N3TurtleJenaWriter",
              };
