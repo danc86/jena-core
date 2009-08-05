@@ -166,20 +166,21 @@ public class OntPropertyImpl
     /**
      * <p>Answer an iterator over all of the properties that are declared to be super-properties of
      * this property. Each element of the iterator will be an {@link OntProperty}.</p>
-     * @param direct If true, only answer the direcly adjacent properties in the
+     * @param direct If true, only answer the directly adjacent properties in the
      * property hierarchy: i&#046;e&#046; eliminate any property for which there is a longer route
      * to reach that child under the super-property relation.
      * @return An iterator over the super-properties of this property.
      * @exception OntProfileException If the {@link Profile#SUB_PROPERTY_OF()} property is not supported in the current language profile.
      */
     public ExtendedIterator<OntProperty> listSuperProperties( boolean direct ) {
-        return listDirectPropertyValues( getProfile().SUB_PROPERTY_OF(), "SUB_PROPERTY_OF", OntProperty.class, getProfile().SUB_PROPERTY_OF(), direct, false );
+        return listDirectPropertyValues( getProfile().SUB_PROPERTY_OF(), "SUB_PROPERTY_OF", OntProperty.class, getProfile().SUB_PROPERTY_OF(), direct, false )
+                        .filterDrop( new SingleEqualityFilter<OntProperty>( this ) );
     }
 
     /**
      * <p>Answer true if the given property is a super-property of this property.</p>
      * @param prop A property to test.
-     * @param direct If true, only consider the direcly adjacent properties in the
+     * @param direct If true, only consider the directly adjacent properties in the
      * property hierarchy
      * @return True if the given property is a super-property of this property.
      */

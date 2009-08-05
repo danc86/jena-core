@@ -519,7 +519,7 @@ public interface OntProperty
      * <p>Answer the property that has declared itself to be the inverse of this property,
      * if any such property is defined.
      * If no such property is defined,
-     * return null.  If more than one inverse is defined, return an abritrary selection.</p>
+     * return null.  If more than one inverse is defined, return an arbitrary selection.</p>
      * <p>Note that this method is slightly different from {@link #getInverseOf}. Suppose that
      * we have:</p>
      * <pre>

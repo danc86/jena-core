@@ -37,6 +37,7 @@ import com.hp.hpl.jena.mem.faster.GraphMemFasterQueryHandler;
 import com.hp.hpl.jena.ontology.*;
 import com.hp.hpl.jena.ontology.impl.OntClassImpl;
 import com.hp.hpl.jena.ontology.impl.OntModelImpl;
+import com.hp.hpl.jena.ontology.impl.OntTestBase.OntTestCase;
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.rdf.model.impl.*;
 import com.hp.hpl.jena.reasoner.Reasoner;
@@ -1918,6 +1919,16 @@ public class TestBugReports
         assertFalse( title + " should not be an individual", title.canAs( Individual.class ));
         assertFalse( publisher + " should not be an individual", publisher.canAs( Individual.class ));
         assertFalse( price + " should not be an individual", price.canAs( Individual.class ));
+    }
+
+    /* Bugrep from Eniz Soztutar: OntProperty.listSuperProperties() should rule out reflexive case, for
+     * symmetry with OntClass.listSuperClasses(). */
+    public void testES0() {
+        OntModel m = ModelFactory.createOntologyModel();
+        OntProperty p = m.createOntProperty( NS+"p" );
+
+        List<? extends OntProperty> sp = p.listSuperProperties().toList();
+        assertFalse( "super-properties should not include reflexive case", sp.contains( p ) );
     }
 
 
