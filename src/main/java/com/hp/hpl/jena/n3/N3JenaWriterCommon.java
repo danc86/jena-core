@@ -62,13 +62,22 @@ public class N3JenaWriterCommon implements RDFWriter
     // Specific properties that have a short form.
 	// Not Turtle.
     protected static final String NS_W3_log = "http://www.w3.org/2000/10/swap/log#" ;
-	protected static Map<String, String> wellKnownPropsMap = new HashMap<String, String>() ;
+    
+	protected static Map<String, String> wellKnownPropsMapN3 = new HashMap<String, String>() ;
 	static {
-		wellKnownPropsMap.put(NS_W3_log+"implies",		"=>" ) ;
-		wellKnownPropsMap.put(OWL.sameAs.getURI(),	    "="  ) ;
-		wellKnownPropsMap.put(RDF.type.getURI(),		"a"  ) ;
+	    wellKnownPropsMapN3.put(NS_W3_log+"implies",		"=>" ) ;
+	    wellKnownPropsMapN3.put(OWL.sameAs.getURI(),	    "="  ) ;
+	    wellKnownPropsMapN3.put(RDF.type.getURI(),		"a"  ) ;
 	}
 
+    protected static Map<String, String> wellKnownPropsMapTurtle = new HashMap<String, String>() ;
+    static {
+        //wellKnownPropsMapTurtle.put(OWL.sameAs.getURI(),      "="  ) ;
+        wellKnownPropsMapTurtle.put(RDF.type.getURI(),        "a"  ) ;
+    }
+
+    protected Map<String, String> wellKnownPropsMap = wellKnownPropsMapN3 ;
+    
 	// Work variables controlling the output
 	protected N3IndentedWriter out = null ;
 	//Removed base URI specials - look for  "// BaseURI - <#>" & doAbbreviatedBaseURIref

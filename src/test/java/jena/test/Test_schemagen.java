@@ -435,7 +435,7 @@ public class Test_schemagen
         testSchemagenOutput( SOURCE, null,
                              new String[] {"-a", "http://example.com/sg#", "--owl", "--includeSource"},
                              new String[] {".*private static final String SOURCE.*",
-                                           ".*ex:A *a *owl:Class.*"},
+                                            ".*ex:A *(a|rdf:type) *owl:Class.*"} ,
                              new String[] {} );
     }
 

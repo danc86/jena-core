@@ -23,8 +23,10 @@ public class N3TurtleJenaWriter extends N3JenaWriter
     {
         super() ;
         
-        if ( writer.getPropValue("usePropertySymbols") == null )
-            writer.useWellKnownPropertySymbols = false ;
+//        if ( writer.getPropValue("usePropertySymbols") == null )
+//            writer.useWellKnownPropertySymbols = false ;
+        // Only allow "a" for rdf:type.
+        writer.wellKnownPropsMap = N3JenaWriterPP.wellKnownPropsMapTurtle ;
         writer.allowTripleQuotedStrings = true ;
     }
 }
