@@ -137,7 +137,7 @@ public class Node_RuleVariable extends Node_Variable {
     @Override
     public String toString() {
         if (getName() == null) return "*";
-        return "?" + getName();
+        return getName();
     }
 
     @Override
