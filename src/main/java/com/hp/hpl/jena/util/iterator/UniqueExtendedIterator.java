@@ -47,7 +47,7 @@ public class UniqueExtendedIterator<T> extends WrappedIterator<T> {
      * extended iteator, it is not further wrapped.
      */
     public static <T> ExtendedIterator<T> create( Iterator<T> it ) {
-        return (it instanceof UniqueExtendedIterator) ? 
+        return (it instanceof UniqueExtendedIterator<?>) ? 
                     ((UniqueExtendedIterator<T>) it) : new UniqueExtendedIterator<T>( it );
     }
     

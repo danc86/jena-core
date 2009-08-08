@@ -314,7 +314,7 @@ public class TestModelEvents extends ModelTestBase
         private Object comparable( Object x )
             {
             if (x instanceof Statement []) return Arrays.asList( (Statement []) x );
-            if (x instanceof Iterator) return iteratorToList( (Iterator<?>) x );
+            if (x instanceof Iterator<?>) return iteratorToList( (Iterator<?>) x );
             return x;
             }    
             

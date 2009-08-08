@@ -39,7 +39,7 @@ class PairEntry<K,V>  implements java.util.Map.Entry<K,V>  {
     V b;
     @Override
     public boolean equals(Object o) {
-        if (o != null && (o instanceof PairEntry)) {
+        if (o != null && (o instanceof PairEntry<?,?>)) {
             PairEntry<?,?> e = (PairEntry<?,?>) o;
             return e.a.equals(a) && e.b.equals(b);
         } 

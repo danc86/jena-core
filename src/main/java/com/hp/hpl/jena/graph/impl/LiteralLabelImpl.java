@@ -407,13 +407,17 @@ final /*public*/ class LiteralLabelImpl implements LiteralLabel {
             && JenaParameters.enablePlainLiteralSameAsString;
         }
 
+    private int hash = 0 ;
 	/** 
      	Answer the hashcode of this literal, derived from its value if it's
         well-formed and otherwise its lexical form.
     */
 	@Override
     public int hashCode() {
-		return dtype == null ? getDefaultHashcode() : dtype.getHashCode( this );
+	    // Literal labels are immutable.
+	    if ( hash == 0 )
+	        hash = (dtype == null ? getDefaultHashcode() : dtype.getHashCode( this ));
+	    return hash ;
 	}
 
     /**

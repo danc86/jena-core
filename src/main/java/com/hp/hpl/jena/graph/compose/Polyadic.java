@@ -113,7 +113,7 @@ public abstract class Polyadic extends CompositionBase
             m_subGraphs.add( graphs.next() );
         }
 
-        if (graphs instanceof ClosableIterator) {
+        if (graphs instanceof ClosableIterator<?>) {
             ((ClosableIterator<Graph>) graphs).close();
         }
     }

@@ -95,7 +95,7 @@ public class TestPackage extends GraphTestBase  {
      * View n as intf. This is supported iff rslt.
      */
     private static <X extends RDFNode> void miniAsSupports(String title, TestNode n, Class<X> intf, boolean rslt ) {
-        assertTrue(title +":sanity",n instanceof Polymorphic);
+        assertTrue(title +":sanity",n instanceof Polymorphic<?>);
         
         // It is always possible to view any node with any interface.
         TestNode as1 = (TestNode)((EnhNode)n).viewAs(intf);

@@ -31,7 +31,7 @@ public class WrappedIterator<T> extends NiceIterator<T>
         wrap <code>it</code>.
     */
     public static <T> ExtendedIterator<T> create( Iterator<T> it )
-        { return it instanceof ExtendedIterator ? (ExtendedIterator<T>) it : new WrappedIterator<T>( it, false ); }
+        { return it instanceof ExtendedIterator<?> ? (ExtendedIterator<T>) it : new WrappedIterator<T>( it, false ); }
     
     /**
         Answer an ExtendedIterator wrapped round <code>it</code> which does not

@@ -275,7 +275,7 @@ public class OneToManyMap<From, To> implements Map<From, To>
      * @param m The map whose contents are to be copied into this map
      */
     public void putAll( Map<? extends From, ? extends To> m ) {
-        boolean many = (m instanceof OneToManyMap);
+        boolean many = (m instanceof OneToManyMap<?,?>);
         
         for (Iterator<? extends From> i = m.keySet().iterator(); i.hasNext(); ) {
             From key = i.next();
@@ -442,7 +442,7 @@ public class OneToManyMap<From, To> implements Map<From, To>
          * @return True if the given object is equal to this Map.Entry object.
          */
         @Override public boolean equals( Object x ) {
-            if (x instanceof java.util.Map.Entry) {
+            if (x instanceof java.util.Map.Entry<?,?>) {
                 Map.Entry<?,?> e1 = (Map.Entry<?,?>) x;
                 return (e1.getKey()==null ?
                                           m_key==null : e1.getKey().equals(m_key))  &&

@@ -135,7 +135,7 @@ public class NiceIterator<T> implements ExtendedIterator<T>
         tests [that were] scattered through the code.
     */
     public static void close( Iterator<?> it )
-        { if (it instanceof ClosableIterator) ((ClosableIterator<?>) it).close(); }
+        { if (it instanceof ClosableIterator<?>) ((ClosableIterator<?>) it).close(); }
    
     /**
      * An iterator over no elements.
