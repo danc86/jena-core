@@ -38,6 +38,7 @@ public class TestPackage extends TestSuite {
         addTest( TestReificationWrapper.suite() );
         addTest( TestReificationPredicates.suite() );
         addTest( TestTypedLiterals.suite() );
+        addTest( TestDateTime.suite() );
         addTest( TestGraphQueryPackage.suite() );
         addTest( TestFactory.suite() );
         addTest( TestGraph.suite() );
