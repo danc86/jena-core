@@ -218,7 +218,6 @@ public class AbstractDateTime implements Comparable<AbstractDateTime> {
      */
     protected short compareOrder (int[] date1, int[] date2) {
 
-        short order;
         for ( int i=0; i < COMPARABLE_SUBSET;i++ ) {
             if (date1[i] < date2[i]) {
                 return -1;
