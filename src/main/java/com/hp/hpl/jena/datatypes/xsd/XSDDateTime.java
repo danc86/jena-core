@@ -134,8 +134,9 @@ public class XSDDateTime extends AbstractDateTime {
         data[AbstractDateTime.h] = cal.get(Calendar.HOUR_OF_DAY);
         data[AbstractDateTime.m] = cal.get(Calendar.MINUTE);
         data[AbstractDateTime.s] = cal.get(Calendar.SECOND);
-        data[AbstractDateTime.ms] = cal.get(Calendar.MILLISECOND);
-        data[AbstractDateTime.msscale] = 3;
+        int ms = cal.get(Calendar.MILLISECOND);
+        data[AbstractDateTime.ms] = ms;
+        data[AbstractDateTime.msscale] = (ms == 0) ? 0 : 3;
         data[AbstractDateTime.utc] = 'Z';
         return data;
     }
