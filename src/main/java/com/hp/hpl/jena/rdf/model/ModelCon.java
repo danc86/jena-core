@@ -553,6 +553,15 @@ public interface ModelCon {
      */ 
       @Deprecated Model addLiteral( Resource s, Property p, Object o );
 
+      /** add a statement to this model.
+       *
+       * @return this model
+       * @param s the subject of the statement to add
+       * @param p the predicate of the statement to add
+       * @param o the object of the statement to add
+       */ 
+        Model addLiteral( Resource s, Property p, Literal o );
+
     /** add a statement to this model.
      *
      * @return this model

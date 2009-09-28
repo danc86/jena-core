@@ -144,6 +144,9 @@ public class ModelCom
 
     @Deprecated public Model addLiteral( Resource s, Property p, Object o )  
         { return add( s, p, asObject( o ) ); }
+
+    public Model addLiteral( Resource s, Property p, Literal o )  
+        { return add( s, p, o ); }
     
     private RDFNode asObject( Object o )
         { return o instanceof RDFNode ? (RDFNode) o : createTypedLiteral( o ); }

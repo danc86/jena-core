@@ -57,6 +57,14 @@ public class TestLiteralsInModel extends ModelTestBase
         assertTrue( m.containsLiteral( X, P, 99L ) );
         }
     
+    public void testAddWithLiteralObject()
+        {
+        Literal lit = m.createLiteral( "spoo" );
+        m.addLiteral( X, P, lit );
+        assertTrue( m.contains( X, P, lit ) );
+        assertTrue( m.containsLiteral( X, P, lit ) );
+        }
+    
     public void testAddWithIntObject()
         {
         m.addLiteral( X, P, 99 );

@@ -172,6 +172,15 @@ public class TestResourceImpl extends ModelTestBase
         assertEquals( m.createTypedLiteral( z ), r.getProperty( RDF.value ).getLiteral() );
         }
     
+    public void testAddLiteralPassesLiteralUnmodified()
+        {
+        Model m = ModelFactory.createDefaultModel();
+        Resource r = m.createResource();
+        Literal lit = m.createLiteral( "spoo" );
+        r.addLiteral( RDF.value, lit );
+        assertTrue( "model should contain unmodified literal", m.contains( null, RDF.value, lit ) );       
+        }
+    
     public void testHasTypedPropertyObject()
         {
         Object z = new Object();
