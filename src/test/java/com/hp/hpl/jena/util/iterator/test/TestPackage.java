@@ -21,6 +21,7 @@ public class TestPackage extends TestSuite
         addTest( TestFilters.suite() );
         addTest( TestAndThen.suite() );
         addTestSuite( TestAsCollection.class );
+        addTestSuite( TestMapIterators.class );
         addTest( new TestSuite( TestResourceUtils.class ) );
         }
     }

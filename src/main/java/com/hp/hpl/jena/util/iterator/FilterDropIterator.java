@@ -19,8 +19,7 @@ public class FilterDropIterator<T> extends FilterIterator<T> implements Iterator
     public FilterDropIterator( Filter<T> f, Iterator<T> it )
         { super( f, it ); }
     
-    @Override
-    protected boolean accept( T x )
+    @Override protected boolean accept( T x )
         { return !f.accept( x ); }
     }
 
