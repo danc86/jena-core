@@ -39,7 +39,8 @@ public interface ModelMaker extends ModelSource
     public Model createModel( String name, boolean strict );
     
     /**
-        Create a Model that does not already exist - equivalent to
+        Create a Model with the given name if no such model exists. Otherwise,
+        answer the existing model. Equivalent to 
         <br><code>createModel( name, false )</code>.
     */
     public Model createModel( String name );
