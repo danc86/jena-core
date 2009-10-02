@@ -44,6 +44,10 @@ public class TestLiteralEncoding extends ModelTestBase
         assertEquals( "a&amp;b&gt;c", Util.substituteEntitiesInElementContent( "a&b>c" ) );
         assertEquals( "a&amp;b&lt;c", Util.substituteEntitiesInElementContent( "a&b<c" ) );
     //
+        // Encoding in content output : protect CR but raw NL is fine. 
+        assertEquals( "&#xD;", Util.substituteEntitiesInElementContent( "\r" ) );
+        assertEquals( "\n", Util.substituteEntitiesInElementContent( "\n" ) );
+    //
         assertEquals( "", Util.substituteStandardEntities( "" ) );
         assertEquals( "&lt;", Util.substituteStandardEntities( "<" ) );
         assertEquals( "&gt;", Util.substituteStandardEntities( ">" ) );
@@ -55,16 +59,6 @@ public class TestLiteralEncoding extends ModelTestBase
         assertEquals( "&#9;", Util.substituteStandardEntities( "\t" ) );
     //
         assertEquals( "a&lt;b&amp;c&gt;d", Util.substituteStandardEntities( "a<b&c>d" ) );
-        assertEquals( "", Util.substituteStandardEntities( "" ) );
-        assertEquals( "", Util.substituteStandardEntities( "" ) );
-        assertEquals( "", Util.substituteStandardEntities( "" ) );
-        assertEquals( "", Util.substituteStandardEntities( "" ) );
-        assertEquals( "", Util.substituteStandardEntities( "" ) );
-        assertEquals( "", Util.substituteStandardEntities( "" ) );
-        assertEquals( "", Util.substituteStandardEntities( "" ) );
-        assertEquals( "", Util.substituteStandardEntities( "" ) );
-        assertEquals( "", Util.substituteStandardEntities( "" ) );
-        assertEquals( "", Util.substituteStandardEntities( "" ) );
         }
     
     public void testLexicalEncodingException(String lang)

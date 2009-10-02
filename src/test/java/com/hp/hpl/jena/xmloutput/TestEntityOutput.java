@@ -119,6 +119,19 @@ public class TestEntityOutput extends ModelTestBase
     	m2.read(r,"http://example.org/");
     	assertIsoModels("showDoctypeDeclaration problem", m, m2);
     }
+    
+    public void testCRinLiterals() throws IOException 
+    {
+        Model m = createMemModel();
+        Resource r = m.createResource("http://example/r") ;
+        Property p = m.createProperty("http://example/p") ;
+        m.add(r, p, "abc\r\nxyz") ;
+        StringWriter w = new StringWriter();
+        m.write(w) ;
+        Model m2 = createMemModel();
+        m2.read(new StringReader(w.toString()), null) ;
+        assertTrue(m.isIsomorphicWith(m2)) ;
+    }
 
     private void testCatchesBadEntity( String bad )
         {
