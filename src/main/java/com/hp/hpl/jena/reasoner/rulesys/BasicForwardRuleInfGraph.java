@@ -45,6 +45,9 @@ public class BasicForwardRuleInfGraph extends BaseInfGraph implements ForwardRul
     /** The set of deduced triples, this is in addition to base triples in the fdata graph */
     protected FGraph fdeductions;
     
+    /** A safe wrapped version of the deductions graph used for reporting getDeductions */
+    protected Graph safeDeductions;
+    
     /** Reference to any schema graph data bound into the parent reasoner */
     protected Graph schemaGraph;
     
@@ -385,7 +388,7 @@ public class BasicForwardRuleInfGraph extends BaseInfGraph implements ForwardRul
     @Override
     public Graph getDeductionsGraph() {
         prepare();
-        return fdeductions.getGraph();
+        return safeDeductions; 
     }
    
     /** 
@@ -398,11 +401,14 @@ public class BasicForwardRuleInfGraph extends BaseInfGraph implements ForwardRul
             Graph dg = fdeductions.getGraph();
             if (dg != null) {
                 // Reuse the old graph in order to preserve any listeners
-                dg.getBulkUpdateHandler().removeAll();
+                safeDeductions.getBulkUpdateHandler().removeAll();
                 return dg;
             }
         }
-        return Factory.createGraphMem( style );
+        Graph dg = Factory.createGraphMem( style ); 
+//        safeDeductions = new SafeGraph( dg );
+        safeDeductions = dg;  // Temporary patch during checkin
+        return dg;
     }
     
     /**

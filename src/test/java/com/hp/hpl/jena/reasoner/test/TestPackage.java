@@ -35,6 +35,7 @@ public class TestPackage extends TestSuite {
         addTest( "TestReasonerPrefixMapping", TestInfPrefixMapping.suite() );
         addTest( "TestInfGraph", TestInfGraph.suite() );
         addTest( "TestInfModel", TestInfModel.suite() );
+        addTest( "TestSafeModel", TestSafeModel.suite() );
     }
 
     // helper method
