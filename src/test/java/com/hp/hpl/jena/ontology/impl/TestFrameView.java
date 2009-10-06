@@ -2,7 +2,7 @@
  * Source code information
  * -----------------------
  * Original author    Ian Dickinson, HP Labs Bristol
- * Author email       Ian.Dickinson@hp.com
+ * Author email       ian_dickinson@users.sourceforge.net
  * Package            Jena 2
  * Web                http://sourceforge.net/projects/jena/
  * Created            04-Apr-2005
@@ -37,7 +37,7 @@ import com.hp.hpl.jena.reasoner.test.TestUtil;
  * Unit-tests for frame-like views of OWL and RDFS-classes, especially listDeclaredProperties
  * </p>
  *
- * @author Ian Dickinson, HP Labs (<a href="mailto:Ian.Dickinson@hp.com">email</a>)
+ * @author Ian Dickinson, HP Labs (<a href="mailto:ian_dickinson@users.sourceforge.net">email</a>)
  * @version Release @release@ ($Id$)
  */
 public class TestFrameView

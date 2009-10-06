@@ -2,7 +2,7 @@
  * Source code information
  * -----------------------
  * Original author    Ian Dickinson, HP Labs Bristol
- * Author email       ian.dickinson@hp.com
+ * Author email       ian_dickinson@users.sourceforge.net
  * Package            Jena 2
  * Web                http://jena.sourceforge.net
  * Created            22-Aug-2003
@@ -48,7 +48,7 @@ import com.hp.hpl.jena.rdf.model.ModelMaker;
  * </p>
  *
  * @author Ian Dickinson, HP Labs
- *         (<a  href="mailto:Ian.Dickinson@hp.com" >email</a>)
+ *         (<a  href="mailto:ian_dickinson@users.sourceforge.net" >email</a>)
  * @version CVS $Id$
  */
 public class Main {

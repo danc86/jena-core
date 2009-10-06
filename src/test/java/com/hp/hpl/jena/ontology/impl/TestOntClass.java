@@ -2,7 +2,7 @@
  * Source code information
  * -----------------------
  * Original author    Ian Dickinson, HP Labs Bristol
- * Author email       ian.dickinson@hp.com
+ * Author email       ian_dickinson@users.sourceforge.net
  * Package            Jena2
  * Web site           http://jena.sourceforge.net
  * Created            07-Dec-2004
@@ -37,7 +37,7 @@ import com.hp.hpl.jena.vocabulary.*;
  * {@link TestClassExpression}
  * </p>
  *
- * @author Ian Dickinson, HP Labs (<a href="mailto:Ian.Dickinson@hp.com">email</a>)
+ * @author Ian Dickinson, HP Labs (<a href="mailto:ian_dickinson@users.sourceforge.net">email</a>)
  * @version CVS $Id$
  */
 public class TestOntClass

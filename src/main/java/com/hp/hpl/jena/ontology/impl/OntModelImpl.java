@@ -2,7 +2,7 @@
  * Source code information
  * -----------------------
  * Original author    Ian Dickinson, HP Labs Bristol
- * Author email       Ian.Dickinson@hp.com
+ * Author email       ian_dickinson@users.sourceforge.net
  * Package            Jena 2
  * Web                http://sourceforge.net/projects/jena/
  * Created            22 Feb 2003
@@ -54,7 +54,7 @@ import com.hp.hpl.jena.vocabulary.*;
  * </p>
  *
  * @author Ian Dickinson, HP Labs
- *         (<a  href="mailto:Ian.Dickinson@hp.com" >email</a>)
+ *         (<a  href="mailto:ian_dickinson@users.sourceforge.net" >email</a>)
  * @version CVS $Id$
  */
 public class OntModelImpl extends ModelCom implements OntModel

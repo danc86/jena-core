@@ -23,7 +23,7 @@ import com.hp.hpl.jena.util.cache.*;
     
     @author <a href="mailto:Jeremy.Carroll@hp.com">Jeremy Carroll</a> (original code)
     <br><a href="mailto:Chris.Dollin@hp.com">Chris Dollin</a> (original code)
-    <br><a href="mailto:Ian.Dickinson@hp.com">Ian Dickinson</a> 
+    <br><a href="mailto:ian_dickinson@users.sourceforge.net">Ian Dickinson</a> 
     (refactoring and commentage)
 */
 

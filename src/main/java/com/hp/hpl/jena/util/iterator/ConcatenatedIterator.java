@@ -2,7 +2,7 @@
  * Source code information
  * -----------------------
  * Original author    Ian Dickinson, HP Labs Bristol
- * Author email       Ian.Dickinson@hp.com
+ * Author email       ian_dickinson@users.sourceforge.net
  * Package            Jena
  * Created            8 Aug 2001
  * Filename           $RCSfile$
@@ -30,7 +30,7 @@ import java.util.*;
  * The concatenated iterator will range over the elements of the first iterator,
  * followed by the elements of the second.
  *
- * @author Ian Dickinson, HP Labs (<a href="mailto:Ian.Dickinson@hp.com">email</a>)
+ * @author Ian Dickinson, HP Labs (<a href="mailto:ian_dickinson@users.sourceforge.net">email</a>)
  * @version CVS info: $Id$
  */
 public class ConcatenatedIterator<T> implements Iterator<T>

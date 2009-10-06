@@ -2,7 +2,7 @@
  * Source code information
  * -----------------------
  * Original author    Ian Dickinson, HP Labs Bristol
- * Author email       ian.dickinson@hp.com
+ * Author email       ian_dickinson@users.sourceforge.net
  * Package            @package@
  * Web site           @website@
  * Created            Jan 29, 2007
@@ -34,7 +34,7 @@ import junit.framework.TestSuite;
  * Suite of tests for command line utilities
  * </p>
  *
- * @author Ian Dickinson, HP Labs (<a href="mailto:Ian.Dickinson@hp.com">email</a>)
+ * @author Ian Dickinson, HP Labs (<a href="mailto:ian_dickinson@users.sourceforge.net">email</a>)
  * @version Release @release@ ($Id$)
  */
 public class TestPackage

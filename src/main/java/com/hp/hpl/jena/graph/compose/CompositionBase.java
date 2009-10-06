@@ -2,7 +2,7 @@
  * Source code information
  * -----------------------
  * Original author    Ian Dickinson, HP Labs Bristol
- * Author email       Ian.Dickinson@hp.com
+ * Author email       ian_dickinson@users.sourceforge.net
  * Package            Jena 2
  * Web                http://sourceforge.net/projects/jena/
  * Created            4 Mar 2003

@@ -2,7 +2,7 @@
  * Source code information
  * -----------------------
  * Original author    Ian Dickinson, HP Labs Bristol
- * Author email       ian.dickinson@hp.com
+ * Author email       ian_dickinson@users.sourceforge.net
  * Package            Jena2
  * Web site           http://jena.sourceforge.net
  * Created            16-Sep-2005
@@ -116,7 +116,7 @@ import jena.cmdline.*;
  * input documents, and does not preserve any statement ordering from the input
  * serialisations. Also, duplicate triples will be suppressed.</p>
  *
- * @author Ian Dickinson, HP Labs (<a href="mailto:Ian.Dickinson@hp.com">email</a>)
+ * @author Ian Dickinson, HP Labs (<a href="mailto:ian_dickinson@users.sourceforge.net">email</a>)
  * @version Release @release@ ($Id$)
  */
 public class rdfcat

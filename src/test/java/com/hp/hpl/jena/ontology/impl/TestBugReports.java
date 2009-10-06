@@ -2,7 +2,7 @@
  * Source code information
  * -----------------------
  * Original author    Ian Dickinson, HP Labs Bristol
- * Author email       Ian.Dickinson@hp.com
+ * Author email       ian_dickinson@users.sourceforge.net
  * Package            Jena 2
  * Web                http://sourceforge.net/projects/jena/
  * Created            16-Jun-2003
@@ -64,7 +64,7 @@ import com.hp.hpl.jena.vocabulary.RDFS;
  * Unit tests that are derived from user bug reports
  * </p>
  *
- * @author Ian Dickinson, HP Labs (<a  href="mailto:Ian.Dickinson@hp.com" >
+ * @author Ian Dickinson, HP Labs (<a  href="mailto:ian_dickinson@users.sourceforge.net" >
  *         email</a>)
  * @version CVS $Id: TestBugReports.java,v 1.23 2003/11/20 17:53:10
  *          ian_dickinson Exp $

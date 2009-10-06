@@ -2,7 +2,7 @@
  * Source code information
  * -----------------------
  * Original author    Ian Dickinson, HP Labs Bristol
- * Author email       ian.dickinson@hp.com
+ * Author email       ian_dickinson@users.sourceforge.net
  * Package            @package@
  * Web site           @website@
  * Created            21-Jan-2005
@@ -37,7 +37,7 @@ import junit.framework.TestCase;
  * Unit tests for one-to-many map
  * </p>
  *
- * @author Ian Dickinson, HP Labs (<a href="mailto:Ian.Dickinson@hp.com">email</a>)
+ * @author Ian Dickinson, HP Labs (<a href="mailto:ian_dickinson@users.sourceforge.net">email</a>)
  * @version Release @release@ ($Id$)
  */
 public class TestOneToManyMap 
