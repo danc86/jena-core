@@ -74,8 +74,6 @@ public class TestSafeModel  extends TestCase {
         InfModel inf = ModelFactory.createInfModel(reasoner, base);
         TestUtil.assertIteratorValues(this, inf.listStatements(), new Statement[]{asserted});
         
-        /**
-         * Commented out to enable safe checkin
         Model deductions = inf.getDeductionsModel();
         TestUtil.assertIteratorValues(this, deductions.listStatements(), new Statement[]{});
         
@@ -87,7 +85,6 @@ public class TestSafeModel  extends TestCase {
         TestUtil.assertIteratorValues(this, 
                 rawGraph.find(Node.ANY, Node.ANY, Node.ANY), 
                 new Triple[]{deduction});
-        */
     }
 
 }

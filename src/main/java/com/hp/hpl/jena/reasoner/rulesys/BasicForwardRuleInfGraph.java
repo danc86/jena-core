@@ -384,6 +384,7 @@ public class BasicForwardRuleInfGraph extends BaseInfGraph implements ForwardRul
     
     /**
      * Return the Graph containing all the static deductions available so far.
+     * Will force a prepare.
      */
     @Override
     public Graph getDeductionsGraph() {
@@ -394,7 +395,9 @@ public class BasicForwardRuleInfGraph extends BaseInfGraph implements ForwardRul
     /** 
      * Create the graph used to hold the deductions. Can be overridden
      * by subclasses that need special purpose graph implementations here.
-     * Assumes the graph underlying fdeductions can be reused if present. 
+     * Assumes the graph underlying fdeductions and associated SafeGraph
+     * wrapper can be reused if present thus enabling preservation of
+     * listeners. 
      */
     protected Graph createDeductionsGraph() {
         if (fdeductions != null) {
@@ -406,17 +409,19 @@ public class BasicForwardRuleInfGraph extends BaseInfGraph implements ForwardRul
             }
         }
         Graph dg = Factory.createGraphMem( style ); 
-//        safeDeductions = new SafeGraph( dg );
-        safeDeductions = dg;  // Temporary patch during checkin
+        safeDeductions = new SafeGraph( dg );
         return dg;
     }
     
     /**
      * Return the Graph containing all the static deductions available so far.
-     * Does not trigger a prepare action.
+     * Does not trigger a prepare action. Returns a SafeWrapper and so
+     * can be used for update (thus triggering listeners) but not
+     * for access to generalized triples
      */
     public Graph getCurrentDeductionsGraph() {
-        return fdeductions.getGraph();
+        return safeDeductions;
+//        return fdeductions.getGraph();
     }
     
     /**
