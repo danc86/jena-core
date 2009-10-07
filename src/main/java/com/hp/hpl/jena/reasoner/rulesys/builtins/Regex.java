@@ -58,7 +58,8 @@ public class Regex extends BaseBuiltin {
             // bind any capture groups
             BindingEnvironment env = context.getEnv();
             for (int i = 0; i < Math.min(length-2, m.groupCount()); i++) {
-                Node match = Node.createLiteral( m.group(i+1) );
+                String gm = m.group(i+1);
+                Node match =  (gm != null) ? Node.createLiteral( gm ) : Node.createLiteral("");
                 if ( !env.bind(args[i+2], match) ) return false;
             }
         }
