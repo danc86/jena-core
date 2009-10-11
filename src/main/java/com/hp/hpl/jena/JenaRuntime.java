@@ -10,7 +10,9 @@ import java.util.* ;
 import java.security.AccessController;
 import java.security.PrivilegedAction;
 
-/** Methods and constants that define features of the curren the environment.
+import com.hp.hpl.jena.util.Metadata ;
+
+/** Methods and constants that define features of the current the environment.
  *  Primarily for other parts of the Jena framework. 
  * 
  * @author Andy Seaborne
@@ -19,6 +21,10 @@ import java.security.PrivilegedAction;
 
 public class JenaRuntime
 {
+    private static String metadataLocation = "com/hp/hpl/jena/jena-properties.xml" ;
+    private static Metadata metadata = new Metadata(metadataLocation) ;
+    public static String getMetadata(String key, String defaultValue) { return metadata.get(key, defaultValue) ; }
+    
     /** The JVM does not implement java.security (correctly) */
     public static final String featureNoSecurity = "http://jena.hpl.hp.com/2004/07/feature/noSecurity" ;
     
