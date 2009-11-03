@@ -704,9 +704,17 @@ public class N3JenaWriterCommon implements RDFWriter
     
     protected static boolean checkLocalPart(String s)
     {
+        if ( s.length() == 0 )
+            return true; 
+        
         // This is too restrictive (but safe)
         // local parts with dots are legal.
-        return checkNamePart(s) ;
+        if ( ! checkNamePart(s) )
+            return false ;
+        char ch = s.charAt(0) ;
+        if ( Character.isDigit(ch) )
+            return false ;
+        return true ;
     }
 
     
