@@ -151,7 +151,7 @@ public class TestTypedLiterals extends TestCase {
     	ll = m.createLiteral("<bad",true);
     	
     	assertTrue("Error checking must be off.",((EnhNode)ll).asNode().getLiteralIsXML());
-		ll = m.createTypedLiteral("<bad/>",XMLLiteralType.theXMLLiteralType);
+		ll = m.createTypedLiteral("<badagain",XMLLiteralType.theXMLLiteralType);
 		assertFalse("Error checking must be on.",((EnhNode)ll).asNode().getLiteralIsXML());
 		ll = m.createTypedLiteral("<good></good>",XMLLiteralType.theXMLLiteralType);
 		assertTrue("Well-formed XMLLiteral.",((EnhNode)ll).asNode().getLiteralIsXML());

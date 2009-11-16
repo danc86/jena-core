@@ -72,8 +72,8 @@ public class TestFindLiterals extends GraphTestBase
         result.addTest( aTest( "a P '1.1'xsd:float", "1", "'1'xsd:float", "" ) );
         result.addTest( aTest( "a P '1'xsd:double", "1", "'1'xsd:int", "" ) );
     //
-        result.addTest( aTest( "a P 'abc'rdf:XMLLiteral", "1", "'abc'", "" ) );
-        result.addTest( aTest( "a P 'abc'", "1", "'abc'rdf:XMLLiteral", "" ) );
+        result.addTest( aTest( "a P '<abc/>'rdf:XMLLiteral", "1", "'<abc/>'", "" ) );
+        result.addTest( aTest( "a P '<abc/>'", "1", "'<abc/>'rdf:XMLLiteral", "" ) );
     //    
     // floats & doubles are not compatible
     //
