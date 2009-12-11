@@ -48,6 +48,7 @@ public class MetaTestGraph extends AbstractTestGraph
         result.addTest( suite( testClass, graphClass, ReificationStyle.Minimal ) ); 
         result.addTest( suite( testClass, graphClass, ReificationStyle.Standard ) ); 
         result.addTest( suite( testClass, graphClass, ReificationStyle.Convenient ) ); 
+        result.setName("Meta "+testClass.getName());
         return result;    
         }
         
@@ -59,6 +60,7 @@ public class MetaTestGraph extends AbstractTestGraph
             Method [] methods = c.getDeclaredMethods();
             addTestMethods( result, testClass, methods, graphClass, style );  
             }
+        result.setName(testClass.getName()+" "+style.toString());
         return result;    
         }
         

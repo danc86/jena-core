@@ -42,6 +42,7 @@ public class TestGraph extends GraphTestBase
         result.addTest( suite( TestReifier.class, SmallGraphMem.class ) );
         result.addTest( suite( MetaTestGraph.class, WrappedGraphMem.class ) );
         result.addTest( suite( TestReifier.class, WrappedGraphMem.class ) );
+        result.addTest( TestGraphListener.suite() );
         return result;
         }
         
