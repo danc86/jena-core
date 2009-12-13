@@ -39,6 +39,23 @@ public class SimpleEventManager implements GraphEventManager
         { 
         this.graph = graph;
         this.listeners = new CopyOnWriteArrayList<GraphListener>(); 
+/* Implementation note: Jeremy Carroll
+ * 
+ * Use of CopyOnWriteArray is unnecessarily inefficient, in that
+ * a copy is only needed when the register or unregister
+ * is concurrent with an iteration over the list.
+ * Since this list is not public we can either make it private
+ * or provide methods for iterating, so that we know when
+ * it is necessary to copy the array of listeners and when it 
+ * isn't.
+ * This is a fair bit of code, and would need either a lock or
+ * an atomic integer or something from the concurrent package.
+ * Until and unless the high cost of registering and unregistering
+ * is an issue I think the current code is elegant and clean.
+ * In practice, most graphs have no more than 10 listeners
+ * so the 10 registrations take 55 word copy operations - nothing
+ * to get upset about.
+ */
         }
     
     public GraphEventManager register( GraphListener listener ) 
