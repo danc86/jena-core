@@ -24,6 +24,18 @@ public interface GraphEventManager extends GraphListener
         be registered multiple times, in which case it's called multiple times per
         event.
         
+        A listener will be notified of an event if it is registered
+        before the Graph method call that initiated the event, and 
+        was not unregistered before that method call returned.
+        In addition, a listener <em>may</em> (or may not) be notified 
+        of an event if it is registered
+        before such a method returns or is unregistered after such
+        a method is called. For example, it may unregister itself
+        in response to the event.
+        
+        If the registration and/or unregistration occur on different
+        threads the usual thread uncertainties in such statements apply.
+        
         @param listener a listener to be fed events
         @return this manager, for cascading
     */
