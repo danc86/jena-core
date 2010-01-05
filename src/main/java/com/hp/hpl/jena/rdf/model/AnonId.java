@@ -74,6 +74,8 @@ public class AnonId extends java.lang.Object {
             synchronized (AnonId.class) {
                 id = "A" + idCount++; // + rand.nextLong();
             }
+        } else if (JenaParameters.enableGAEcompatibility) {
+            id = java.util.UUID.randomUUID().toString(); 
         } else {
             id = (new UID()).toString();
         }
