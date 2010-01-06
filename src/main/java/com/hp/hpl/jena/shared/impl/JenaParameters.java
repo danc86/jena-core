@@ -104,13 +104,7 @@ public class JenaParameters {
      * will only be unique for this single JVM run.
      */
     public static boolean disableBNodeUIDGeneration = false;
-    
-    /**
-     * If this flag is true (default is false) then changes are made to 
-     * enable compatibility with Google App Engine. At present the only
-     * effect is to use UUID instead of UID for AnonID generation.
-     */
-    public static boolean enableGAEcompatibility = false;
+
 }
 
 

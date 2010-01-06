@@ -47,6 +47,15 @@ import com.hp.hpl.jena.shared.impl.JenaParameters;
 
 public class AnonId extends java.lang.Object {
     
+    // Support for running in environments, like Google App Engine, where
+    // java.rmi.server.UID is not available
+    // Will be obsoleted by improved AnonId handling
+    static boolean UIDok = true;
+    static {
+        try { new UID() ; }
+        catch (Throwable ex) { UIDok = false ; }
+    }
+    
     protected String id = null;
 
     /** 
@@ -74,7 +83,7 @@ public class AnonId extends java.lang.Object {
             synchronized (AnonId.class) {
                 id = "A" + idCount++; // + rand.nextLong();
             }
-        } else if (JenaParameters.enableGAEcompatibility) {
+        } else if (!UIDok) {
             id = java.util.UUID.randomUUID().toString(); 
         } else {
             id = (new UID()).toString();
