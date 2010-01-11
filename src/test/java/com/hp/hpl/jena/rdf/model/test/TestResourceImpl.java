@@ -51,7 +51,13 @@ public class TestResourceImpl extends ModelTestBase
         assertEquals( "ftp://abd/def#ghi#", resource( "ftp://abd/def#ghi#e11-2" ).getNameSpace() ); 
         }
     
-    public void testLocalName()
+    public void testGetModel()
+        {
+        Model m = ModelFactory.createDefaultModel();
+        assertSame( m, m.createResource( "eh:/wossname" ).getModel() );
+        }
+    
+    public void testGetLocalNameReturnsLocalName()
         { 
         assertEquals( "xyz", resource( "eh:xyz" ).getLocalName() );
         }
@@ -113,12 +119,18 @@ public class TestResourceImpl extends ModelTestBase
     
     public void testAddTypedPropertyInt()
         {
-        
+//        Model m = ModelFactory.createDefaultModel();
+//        Resource r = m.createResource();
+//        r.addLiteral( RDF.value, 1 );
+//        assertEquals( m.createTypedLiteral( 1 ), r.getProperty( RDF.value ).getLiteral() );
         }
     
     public void testHasTypedPropertyInt()
         {
-        
+        Model m = ModelFactory.createDefaultModel();
+        Resource r = m.createResource();
+        r.addLiteral( RDF.value, 1 );
+        assertTrue( r.hasLiteral( RDF.value, 1 ) ); 
         }
     
     public void testAddTypedPropertyChar()

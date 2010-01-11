@@ -73,8 +73,19 @@ public class LiteralImpl extends EnhNode implements Literal {
         @param m a model to move the literal into
         @return this
     */
-    public RDFNode inModel( Model m )
-        { return this; }
+    public Literal inModel( Model m )
+        {
+        return getModel() == m 
+            ? this 
+            : (Literal) ((ModelCom) m).getRDFNode( asNode() )
+            ;
+         }
+    
+    /**
+        Answer the model this literal was created in, if any, otherwise null.
+    */
+    public Model getModel()
+        { return (ModelCom) getGraph(); }
     
     @Override public String toString() {
         return asNode().toString( PrefixMapping.Standard, false );

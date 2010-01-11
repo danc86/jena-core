@@ -371,19 +371,21 @@ public class TestPackage extends GraphTestBase  {
 
         static final Implementation factory = new Implementation()
             {
-            @Override
-            public EnhNode wrap( Node n, EnhGraph g ) { return new EnhNode( n, g ); }
+            @Override public EnhNode wrap( Node n, EnhGraph g ) 
+                { return new EnhNode( n, g ); }
             
-            @Override
-            public boolean canWrap( Node n, EnhGraph g ) { return n.isURI(); }
+            @Override public boolean canWrap( Node n, EnhGraph g ) 
+                { return n.isURI(); }
             };
 
         public RDFNode inModel( Model m )
             { return null; }
 
         public Object visitWith( RDFVisitor rv )
-            { return null;
-            }
+            { return null; }
+
+        public Model getModel()
+            { return null; }
         }
     
     public void testSimple()

@@ -368,13 +368,6 @@ public interface Resource extends RDFNode {
      */
     public Resource commit();
 
-    /** Return the model associated with this resource. If the Resource
-     * was not created by a Model, the result may be null.
-     * 
-     * @return The model associated with this resource.
-     */
-    public Model getModel();
-
     /**
        Answer some resource R for which this.hasProperty( p, R ),
        or null if no such R exists.
