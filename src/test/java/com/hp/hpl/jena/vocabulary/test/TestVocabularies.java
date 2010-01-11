@@ -27,10 +27,10 @@ public class TestVocabularies extends TestCase
         result.addTest( TestVocabRSS.suite() );
         result.addTest( TestVocabResultSet.suite() );
         result.addTest( TestVocabDC10.suite() );
+        result.addTestSuite( TestOWL2Vocabulary.class );
         return result;
         }
     }
-
 
 /*
     (c) Copyright 2003, 2004, 2005, 2006, 2007, 2008, 2009 Hewlett-Packard Development Company, LP

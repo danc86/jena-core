@@ -93,8 +93,8 @@ public class TestRDFNodes extends ModelTestBase
         assertFalse( r1.isAnon() );
         assertTrue( r2.isAnon() );
     /* */
-        assertTrue( ((Resource) r1.inModel( m2 )).getModel() == m2 );
-        assertTrue( ((Resource) r2.inModel( m2 )).getModel() == m2 );
+        assertTrue( r1.inModel( m2 ).getModel() == m2 );
+        assertTrue( r2.inModel( m2 ).getModel() == m2 );
     /* */
         assertEquals( r1, r1.inModel( m2 ) );
         assertEquals( r2, r2.inModel( m2 ) );

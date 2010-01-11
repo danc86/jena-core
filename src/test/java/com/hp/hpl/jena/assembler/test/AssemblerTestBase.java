@@ -106,7 +106,7 @@ public abstract class AssemblerTestBase extends ModelTestBase
         {
         Model m = model( string );
         Resource r = resource( m, string.substring( 0, string.indexOf( ' ' ) ) );
-        return (Resource) r.inModel( m );        
+        return r.inModel( m );        
         }
 
     protected void testDemandsMinimalType( Assembler a, Resource type )

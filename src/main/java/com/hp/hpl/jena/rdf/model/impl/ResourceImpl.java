@@ -100,12 +100,12 @@ public class ResourceImpl extends EnhNode implements Resource {
     public Object visitWith( RDFVisitor rv )
         { return isAnon() ? rv.visitBlank( this, getId() ) : rv.visitURI( this, getURI() ); }
         
-    public RDFNode inModel( Model m )
+    public Resource inModel( Model m )
         { 
         return 
             getModel() == m ? this 
             : isAnon() ? m.createResource( getId() ) 
-            : asNode().isConcrete() == false ? ((ModelCom) m).getRDFNode( asNode() )
+            : asNode().isConcrete() == false ? (Resource) ((ModelCom) m).getRDFNode( asNode() )
             : m.createResource( getURI() ); 
         }
     
@@ -322,7 +322,18 @@ public class ResourceImpl extends EnhNode implements Resource {
     
     protected ModelCom getModelCom()
         { return (ModelCom) getGraph(); }
+
+    public Resource getPropertyResourceValue( Property p )
+        {
+        for (StmtIterator it = listProperties( p ); it.hasNext();)
+            {
+            RDFNode n = it.next().getObject();
+            if (n.isResource()) return (Resource) n;
+            }
+        return null;
+        }
 }
+
 /*
  *  (c) Copyright 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009 Hewlett-Packard Development Company, LP
  *  All rights reserved.

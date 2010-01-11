@@ -955,10 +955,10 @@ public class TestList
                     UserDefListImpl impl = new UserDefListImpl( n, eg );
                     
                     Model m = impl.getModel();
-                    impl.m_listFirst = (Property) FIRST.inModel( m );
-                    impl.m_listRest = (Property) REST.inModel( m );
-                    impl.m_listNil = (Resource) NIL.inModel( m );
-                    impl.m_listType = (Resource) LIST.inModel( m );
+                    impl.m_listFirst = FIRST.inModel( m );
+                    impl.m_listRest = REST.inModel( m );
+                    impl.m_listNil = NIL.inModel( m );
+                    impl.m_listType = LIST.inModel( m );
                     
                     return impl;
                 }

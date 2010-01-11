@@ -190,6 +190,21 @@ public class TestResourceImpl extends ModelTestBase
         assertTrue( r.hasLiteral( RDF.value, z ) ); 
         }
     
+    public void testGetPropertyResourceValueReturnsResource()
+        {
+        Model m = modelWithStatements( "x p 17; x p y" );
+        Resource r = m.createResource( "eh:/x" );
+        Resource value = r.getPropertyResourceValue( property( "p" ) );
+        assertEquals( resource( "y" ), value );
+        }
+    
+    public void testGetPropertyResourceValueReturnsNull()
+        {
+        Model m = modelWithStatements( "x p 17" );
+        Resource r = m.createResource( "eh:/x" );
+        assertNull( r.getPropertyResourceValue( property( "q" ) ) );
+        assertNull( r.getPropertyResourceValue( property( "p" ) ) );
+        }
     }    
 
 

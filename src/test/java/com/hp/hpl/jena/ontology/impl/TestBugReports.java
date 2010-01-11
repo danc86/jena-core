@@ -1097,11 +1097,11 @@ public class TestBugReports
     public void test_sf_934528() {
         OntModel m = ModelFactory.createOntologyModel( OntModelSpec.OWL_MEM );
 
-        Resource r = (Resource) OWL.Thing.inModel( m );
+        Resource r = OWL.Thing.inModel( m );
         OntClass thingClass = r.as( OntClass.class );
         assertNotNull( thingClass );
 
-        r = (Resource) OWL.Nothing.inModel( m );
+        r = OWL.Nothing.inModel( m );
         OntClass nothingClass = r.as( OntClass.class );
         assertNotNull( nothingClass );
 

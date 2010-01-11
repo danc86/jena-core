@@ -40,6 +40,8 @@ public interface ModelGraphInterface
        with <code>n</code> as their value carrier.
     */
     RDFNode asRDFNode( Node n );
+    
+    Resource wrapAsResource( Node n );
     }
 
 /*

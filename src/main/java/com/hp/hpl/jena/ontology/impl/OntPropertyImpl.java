@@ -836,12 +836,9 @@ public class OntPropertyImpl
      * @param m A model
      * @return A property equal to this property that is attached to m.
      */
-    @Override
-    public RDFNode inModel( Model m ) {
+    @Override public Property inModel( Model m ) {
         return (getModel() == m) ? this : m.createProperty( getURI() );
     }
-
-
 
     //==============================================================================
     // Inner class definitions
