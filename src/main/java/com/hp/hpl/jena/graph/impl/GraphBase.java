@@ -410,10 +410,19 @@ public abstract class GraphBase implements GraphWithPerform
          big graphs, as it generates a big string: intended for debugging purposes.
     */
 
-	@Override
-    public String toString() 
+	@Override public String toString() 
         { return toString( (closed ? "closed " : ""), this ); }
         
+	/**
+	    toString will not cut off up to this number of triples.
+	*/
+	public static final int TOSTRING_TRIPLE_BASE = 10;
+    
+	/**
+	    toString will not output more than this number of triples.
+	*/
+	public static final int TOSTRING_TRIPLE_LIMIT = 17;
+	
     /**
          Answer a human-consumable representation of <code>that</code>. The 
          string <code>prefix</code> will appear near the beginning of the string. Nodes
@@ -425,14 +434,18 @@ public abstract class GraphBase implements GraphWithPerform
         {
         PrefixMapping pm = that.getPrefixMapping();
 		StringBuffer b = new StringBuffer( prefix + " {" );
+		int count = 0;
 		String gap = "";
 		ClosableIterator<Triple> it = GraphUtil.findAll( that );
-		while (it.hasNext()) 
+		while (it.hasNext() && count < TOSTRING_TRIPLE_LIMIT) 
             {
 			b.append( gap );
 			gap = "; ";
+			count += 1;
 			b.append( it.next().toString( pm ) );
 		    } 
+		if (it.hasNext()) b.append( "..." );
+		it.close();
 		b.append( "}" );
 		return b.toString();
 	   }
