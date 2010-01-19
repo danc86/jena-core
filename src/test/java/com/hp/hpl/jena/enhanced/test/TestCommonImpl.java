@@ -32,6 +32,12 @@ class TestCommonImpl extends EnhNode implements TestNode {
     */
     public Model getModel() 
         { throw new JenaException( "getModel() should not be called in the EnhGraph/Node tests" ); }
+    
+    public Resource asResource()
+        { throw new JenaException( "asResource() should not be called in the EnhGraph/Node tests" ); }
+    
+    public Literal asLiteral()
+        { throw new JenaException( "asLiteral() should not be called in the EnhGraph/Node tests" ); }
 
     Triple findSubject()
         { return findNode( node, null, null ); }

@@ -14,6 +14,7 @@ package com.hp.hpl.jena.enhanced.test;
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.graph.test.*;
 import com.hp.hpl.jena.rdf.model.*;
+import com.hp.hpl.jena.shared.JenaException;
 import com.hp.hpl.jena.enhanced.*;
 
 import junit.framework.*;
@@ -380,11 +381,17 @@ public class TestPackage extends GraphTestBase  {
 
         public RDFNode inModel( Model m )
             { return null; }
+        
+        public Model getModel() 
+            { throw new JenaException( "getModel() should not be called in the EnhGraph/Node tests" ); }
+        
+        public Resource asResource()
+            { throw new JenaException( "asResource() should not be called in the EnhGraph/Node tests" ); }
+        
+        public Literal asLiteral()
+            { throw new JenaException( "asLiteral() should not be called in the EnhGraph/Node tests" ); }
 
         public Object visitWith( RDFVisitor rv )
-            { return null; }
-
-        public Model getModel()
             { return null; }
         }
     

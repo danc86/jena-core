@@ -81,6 +81,12 @@ public class LiteralImpl extends EnhNode implements Literal {
             ;
          }
     
+    public Literal asLiteral()
+        { return this; }
+    
+    public Resource asResource()
+        { throw new ResourceRequiredException( asNode() ); }
+    
     /**
         Answer the model this literal was created in, if any, otherwise null.
     */
