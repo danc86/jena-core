@@ -479,7 +479,7 @@ public class FileManager
             Reader r = FileUtils.asBufferedUTF8(in) ;
             StringWriter sw = new StringWriter(1024);
             char buff[] = new char[1024];
-            while (r.ready()) {
+            while (true) {
                 int l = r.read(buff);
                 if (l <= 0)
                     break;
