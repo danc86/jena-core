@@ -34,7 +34,7 @@
     <scm>
         <url>http://code.miskinhill.com.au/hg/jena-fork/</url>
         <connection>scm:hg:http://code.miskinhill.com.au/hg/jena-fork/</connection>
-        <developerConnection>scm:hg:http://code.miskinhill.com.au/hg/jena-fork/</developerConnection>
+        <developerConnection>scm:hg:file://${project.basedir}</developerConnection>
     </scm>
   
    <dependencies>
