@@ -22,6 +22,20 @@
       <distribution>repo</distribution>
     </license>
   </licenses>
+
+    <distributionManagement>
+        <repository>
+            <id>code.miskinhill.com.au</id>
+            <name>Miskin Hill Maven repository</name>
+            <url>dav:http://code.miskinhill.com.au/maven2/</url>
+        </repository>
+    </distributionManagement>
+
+    <scm>
+        <url>http://code.miskinhill.com.au/hg/jena-fork/</url>
+        <connection>scm:hg:http://code.miskinhill.com.au/hg/jena-fork/</connection>
+        <developerConnection>scm:hg:http://code.miskinhill.com.au/hg/jena-fork/</developerConnection>
+    </scm>
   
    <dependencies>
      <!-- 
