@@ -325,7 +325,8 @@ public class RETEEngine implements FRuleEngineI {
             logger.debug("Add triple: " + PrintUtil.print(triple));
         }
         if (deletesPending.size() > 0) deletesPending.remove(triple);
-        addsPending.add(triple);
+        if (!addsPending.contains(triple))      // Experimental, not sure why it wasn't done before
+            addsPending.add(triple);
         if (deduction) {
             infGraph.addDeduction(triple);
         }
