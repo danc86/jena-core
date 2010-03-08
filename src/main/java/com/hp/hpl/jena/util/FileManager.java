@@ -304,7 +304,8 @@ public class FileManager
     }
     
     /**
-     * Read a file of RDF into a model.
+     * Read a file of RDF into a model.  Guesses the syntax of the file based on filename extension, 
+     *  defaulting to RDF/XML.
      * @param model
      * @param filenameOrURI
      * @return The model or null, if there was an error.
