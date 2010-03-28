@@ -76,6 +76,8 @@ public class BuiltinRegistry {
         theRegistry.register(new Table());
         theRegistry.register(new TableAll());
         
+        theRegistry.register(new MakeSkolem());
+        
         theRegistry.register(new Hide());
         
         theRegistry.register(new StrConcat());
