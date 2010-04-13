@@ -110,7 +110,8 @@ public class ObjectPropertyImpl
      */
     @Override
     public OntProperty getInverseOf() {
-        return super.getInverseOf().asObjectProperty();
+        OntProperty inv = super.getInverseOf();
+        return (inv == null) ? null : inv.asObjectProperty();
     }
 
     /**

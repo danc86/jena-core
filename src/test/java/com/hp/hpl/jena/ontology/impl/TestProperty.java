@@ -34,7 +34,7 @@ import com.hp.hpl.jena.vocabulary.RDF;
 
 /**
  * <p>
- * Unit test cases for the Ontology class
+ * Unit test cases for the OntProperty class
  * </p>
  *
  * @author Ian Dickinson, HP Labs
@@ -212,6 +212,9 @@ public class TestProperty
                     OntProperty p = m.createObjectProperty( NS + "p" );
                     OntProperty q = m.createObjectProperty( NS + "q" );
                     OntProperty r = m.createObjectProperty( NS + "r" );
+
+                    assertFalse( p.isInverseOf( q ) );
+                    assertEquals( null, p.getInverseOf() );
 
                     p.addInverseOf( q );
                     assertEquals( "Cardinality should be 1", 1, p.getCardinality( prof.INVERSE_OF() ) );
@@ -548,7 +551,7 @@ public class TestProperty
                     if (m_owlLang) {assertTrue( "isSymmetricProperty not correct", p.isSymmetricProperty() ); }
                 }
             },
-            new OntTestCase( "OntProperty.inverse", true, true, true, false ) {
+            new OntTestCase( "ObjectProperty.inverse", true, true, true, false ) {
                 @Override
                 public void ontTest( OntModel m ) throws Exception {
                     ObjectProperty p = m.createObjectProperty( NS + "p" );
@@ -556,6 +559,7 @@ public class TestProperty
                     ObjectProperty r = m.createObjectProperty( NS + "r" );
 
                     assertFalse( "No inverse of p", p.hasInverse() );
+                    assertEquals( null, p.getInverse() );
 
                     q.addInverseOf( p );
                     assertTrue( "Inverse of p", p.hasInverse() );
