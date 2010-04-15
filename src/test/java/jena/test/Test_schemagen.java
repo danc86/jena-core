@@ -30,6 +30,7 @@ import java.util.StringTokenizer;
 import java.util.regex.Pattern;
 
 import jena.schemagen;
+import jena.schemagen.SchemagenOptionsImpl;
 import junit.framework.TestCase;
 
 import org.slf4j.Logger;
@@ -301,14 +302,14 @@ public class Test_schemagen
         String SOURCE = PREFIX + "ex:A a owl:Class .";
         SchemaGenAux fixture = new SchemaGenAux() {
             @Override
-            protected String getValue( Object option ) {
-                if (option.equals( OPT_INPUT )) {
-                    // without the -n option, this will force the classname to be Soggy
-                    return "http://example.org/soggy";
-                }
-                else {
-                    return super.getValue( option );
-                }
+            protected void go( String[] args ) {
+                SchemagenOptionsFixture sgf = new SchemagenOptionsFixture( args ) {
+                    @Override
+                    public Resource getInputOption() {
+                        return ResourceFactory.createResource( "http://example.org/soggy" );
+                    }
+                };
+                go( sgf );
             }
         };
 
@@ -624,30 +625,28 @@ public class Test_schemagen
             go( args );
         }
 
-        // option faking
         @Override
-        protected String getValue( Object option ) {
-            if (option.equals( OPT_INPUT )) {
-                return "http://example.org/sg";
-            }
-            else {
-                return super.getValue( option );
-            }
-        }
-
-        @Override
-        protected Resource getResource( Object option ) {
-            if (option.equals( OPT_INPUT )) {
-                return ResourceFactory.createResource( "http://example.org/sg" );
-            }
-            else {
-                return super.getResource( option );
-            }
+        protected void go( String[] args ) {
+            go( new SchemagenOptionsFixture( args ) );
         }
 
         @Override
         protected void abort( String msg, Exception e ) {
             throw new RuntimeException( msg, e );
+        }
+    }
+
+    static class SchemagenOptionsFixture
+        extends SchemagenOptionsImpl
+    {
+
+        public SchemagenOptionsFixture( String[] args ) {
+            super( args );
+        }
+
+        @Override
+        public Resource getInputOption() {
+            return ResourceFactory.createResource( "http://example.org/sg" );
         }
     }
 }
