@@ -748,6 +748,18 @@ public class schemagen {
             char ch = uri.charAt( uri.length() - 1 );
             boolean endsWithNCNameCh = XMLChar.isNCName( ch );
             uri = endsWithNCNameCh ? uri + "#" : uri;
+
+            // check for ambiguous answers
+            if (i.hasNext()) {
+                System.err.println( "Warning: ambiguous default namespace - there is more than one owl:Ontology element." );
+                System.err.println( "Picking first choice: " + uri  + ". Other choices are:" );
+                while (i.hasNext()) {
+                    System.err.print( " " );
+                    System.err.print( i.nextStatement().getString() );
+                }
+                System.err.println();
+                System.err.println( "Use the -a option to specify a particular namespace if required." );
+            }
         }
 
         return uri;
