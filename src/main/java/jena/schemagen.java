@@ -1315,7 +1315,7 @@ public class schemagen {
     public interface SchemagenOptions {
         /* Constants for the various options we can set */
 
-        enum OPT {
+        public enum OPT {
             /** Select an alternative config file; use <code>-c &lt;filename&gt;</code> on command line */
             CONFIG_FILE,
 
@@ -1579,8 +1579,8 @@ public class schemagen {
 
         /** Determine the root resource in the configuration file */
         protected void determineConfigRoot() {
-            if (hasRootURIOption()) {
-                m_root = m_config.getResource( getRootURIOption() );
+            if (hasValue( OPT.ROOT )) {
+                m_root = m_config.getResource( getValue( OPT.ROOT ) );
             }
             else {
                 // no specified root, we assume there is only one with type sgen:Config
@@ -1595,36 +1595,33 @@ public class schemagen {
             }
         }
 
-        public String getRootURIOption() {
-            return getValue( OPT.ROOT );
-        }
-
-        public boolean hasRootURIOption() {
-            return hasValue( OPT.ROOT );
-        }
-
         /** Answer true if the given option is set to true */
-        protected boolean isTrue( Object option ) {
+        protected boolean isTrue( OPT option ) {
             return getOpt( option ).isTrue( m_cmdLineArgs, m_root );
         }
 
         /** Answer true if the given option has value */
-        protected boolean hasValue( Object option ) {
+        protected boolean hasValue( OPT option ) {
             return getOpt( option ).hasValue( m_cmdLineArgs, m_root );
         }
 
+        /** Answer the value of the option or null */
+        protected String getValue( OPT option ) {
+            return getOpt( option ).getValue( m_cmdLineArgs, m_root );
+        }
+
         /** Answer true if the given option has a resource value */
-        protected boolean hasResourceValue( Object option ) {
+        protected boolean hasResourceValue( OPT option ) {
             return getOpt( option ).hasResourceValue( m_cmdLineArgs, m_root );
         }
 
         /** Answer the value of the option or null */
-        protected String getValue( Object option ) {
-            return getOpt( option ).getValue( m_cmdLineArgs, m_root );
+        protected Resource getResource( OPT option ) {
+            return getOpt( option ).getResource( m_cmdLineArgs, m_root );
         }
 
         /** Answer all values for the given options as Strings */
-        protected List<String> getAllValues( Object option ) {
+        protected List<String> getAllValues( OPT option ) {
             List<String> values = new ArrayList<String>();
             OptionDefinition opt = getOpt( option );
 
@@ -1652,13 +1649,8 @@ public class schemagen {
             return values;
         }
 
-        /** Answer the value of the option or null */
-        protected Resource getResource( Object option ) {
-            return getOpt( option ).getResource( m_cmdLineArgs, m_root );
-        }
-
         /** Answer the option object for the given option */
-        protected OptionDefinition getOpt( Object option ) {
+        protected OptionDefinition getOpt( OPT option ) {
             for (int i = 0;  i < m_optionDefinitions.length;  i++) {
                 if (m_optionDefinitions[i][0] == option) {
                     return (OptionDefinition) m_optionDefinitions[i][1];
@@ -1737,7 +1729,7 @@ public class schemagen {
     }
 
     /** An option that can be set either on the command line or in the RDF config */
-    protected static class OptionDefinition
+    public static class OptionDefinition
     {
         protected String m_cmdLineForm;
         protected Property m_prop;
