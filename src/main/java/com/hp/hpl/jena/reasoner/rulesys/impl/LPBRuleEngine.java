@@ -286,8 +286,7 @@ public class LPBRuleEngine {
     /**
      * Run the scheduled generators until the given generator is ready to run.
      */
-    public synchronized void pump(LPInterpreterContext gen) {
-//        System.out.println("Pump agenda on engine " + this + ", size = " + agenda.size());
+    public void pump(LPInterpreterContext gen) {
         Collection<Generator> batch = null;
         if (CYCLES_BETWEEN_COMPLETION_CHECK > 0) {
             batch = new ArrayList<Generator>(CYCLES_BETWEEN_COMPLETION_CHECK);
@@ -297,14 +296,9 @@ public class LPBRuleEngine {
             if (agenda.isEmpty()) {
 //                System.out.println("Cycled " + this + ", " + count);
                 return;
-            } 
-//            Iterator ai = agenda.iterator();
-//            LPAgendaEntry next = (LPAgendaEntry) ai.next();
-//            ai.remove();
-            int chosen = agenda.size() - 1;
-            LPAgendaEntry next = agenda.get(chosen);
-            agenda.remove(chosen);
-//            System.out.println("  pumping entry " + next);
+            }
+            
+            LPAgendaEntry next = getNextAgendaEntry(); 
             next.pump();
             count ++;
             if (CYCLES_BETWEEN_COMPLETION_CHECK > 0) {
@@ -321,17 +315,33 @@ public class LPBRuleEngine {
         
 //        System.out.println("Cycled " + this + ", " + count);
     }
-     
+    
+    /**
+     * Pick and agenda entry to progress and remove it from the queue
+     */
+    private LPAgendaEntry getNextAgendaEntry() {
+        synchronized (agenda) {
+            int chosen = agenda.size() - 1;
+            LPAgendaEntry next = agenda.get(chosen);
+            agenda.remove(chosen);
+            return next;
+        }
+    }
+    
     /**
      * Check all known interpeter contexts to see if any are complete.
      */
     public void checkForCompletions() {
-        List<Generator> contexts = new ArrayList<Generator>(activeInterpreters.size());
-        for (Iterator<LPInterpreter> i = activeInterpreters.iterator(); i.hasNext(); ) {
-            LPInterpreterContext context = i.next().getContext();
-            if (context instanceof Generator) {
-                contexts.add( (Generator) context);     
+        List<Generator> contexts = null;
+        synchronized (activeInterpreters) {
+            contexts = new ArrayList<Generator>(activeInterpreters.size());
+            for (Iterator<LPInterpreter> i = activeInterpreters.iterator(); i.hasNext(); ) {
+                LPInterpreterContext context = i.next().getContext();
+                if (context instanceof Generator) {
+                    contexts.add( (Generator) context);     
+                }
             }
+
         }
         Generator.checkForCompletions( contexts );
     }

@@ -380,7 +380,7 @@ public class FBRuleInfGraph  extends BasicForwardRuleInfGraph implements Backwar
      * this prepration is done.
      */
     @Override
-    public void prepare() {
+    public synchronized void prepare() {
         if (!isPrepared) {
             isPrepared = true;
             

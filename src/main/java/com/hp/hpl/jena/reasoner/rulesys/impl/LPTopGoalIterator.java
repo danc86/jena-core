@@ -72,10 +72,8 @@ public class LPTopGoalIterator implements ClosableIterator<Triple>, LPInterprete
         checkClosed();
         LPBRuleEngine lpEngine = interpreter.getEngine();
         synchronized (lpEngine) {
-            // LoggerFactory.getLogger( getClass() ).debug( "Entering moveForward sync block on " + interpreter.getEngine() );
 
             lookaheadValid = true;
-            // LogFactory.getLog( getClass() ).debug( "interpreter = " + interpreter );
 
             // TODO nasty dynamic typing here.
             Object next = interpreter.next();
@@ -97,8 +95,6 @@ public class LPTopGoalIterator implements ClosableIterator<Triple>, LPInterprete
                     }
                 }
             }
-            // LogFactory.getLog( getClass() ).debug( "Leaving moveForward sync block " );
-
         }
     }
 

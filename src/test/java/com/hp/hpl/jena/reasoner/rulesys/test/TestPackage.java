@@ -43,6 +43,7 @@ public class TestPackage extends TestSuite {
         addTest( "TestBugs", TestBugs.suite() );
         addTest( "TestOWLMisc", TestOWLMisc.suite() );
         addTest( "TestCapabilities", TestCapabilities.suite() );
+        addTest( "ConcurrentyTest", ConcurrencyTest.suite() );
         addTestSuite( TestInferenceReification.class );
         addTestSuite( TestRestrictionsDontNeedTyping.class );
         

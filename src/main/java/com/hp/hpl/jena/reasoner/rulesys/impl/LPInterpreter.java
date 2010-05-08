@@ -157,11 +157,9 @@ public class LPInterpreter {
      * either finished or the calling application has had enough. 
      */
     public void close() {
-        synchronized (engine) {
-            isComplete = true;
-            engine.detach(this);
-            if (cpFrame != null) cpFrame.close();
-        }
+        isComplete = true;
+        engine.detach(this);
+        if (cpFrame != null) cpFrame.close();
     }
     
     /**
