@@ -10,6 +10,12 @@
 package com.hp.hpl.jena.reasoner.rulesys.test;
 
 
+import java.lang.management.ManagementFactory;
+import java.lang.management.ThreadMXBean;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import junit.framework.*;
 
 /**
@@ -21,6 +27,8 @@ import junit.framework.*;
 
 public class TestPackage extends TestSuite {
 
+    protected static Logger logger = LoggerFactory.getLogger(TestPackage.class);
+    
     static public TestSuite suite() {
         return new TestPackage();
     }
@@ -43,7 +51,16 @@ public class TestPackage extends TestSuite {
         addTest( "TestBugs", TestBugs.suite() );
         addTest( "TestOWLMisc", TestOWLMisc.suite() );
         addTest( "TestCapabilities", TestCapabilities.suite() );
-        addTest( "ConcurrentyTest", ConcurrencyTest.suite() );
+        
+        try {
+            // Check the JVM supports the management interfaces needed for
+            // running the concurrency test
+            ThreadMXBean tmx = ManagementFactory.getThreadMXBean();
+            long[] ids = tmx.findDeadlockedThreads();
+            addTest( "ConcurrentyTest", ConcurrencyTest.suite() );
+        } catch (Throwable t) {
+            logger.warn("Skipping concurrency test, JVM doesn't seem to support fileDeadlockedThreads");
+        }
         addTestSuite( TestInferenceReification.class );
         addTestSuite( TestRestrictionsDontNeedTyping.class );
         

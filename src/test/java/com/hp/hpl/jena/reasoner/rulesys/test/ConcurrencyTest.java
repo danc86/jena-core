@@ -88,12 +88,15 @@ public class ConcurrencyTest  extends TestCase {
     private void doTestConcurrency(final OntModel model) throws InterruptedException {
         // initialize the model
         final String NS = PrintUtil.egNS;
+        
+        model.enterCriticalSection(Lock.WRITE);
         final OntClass Top = model.createClass(NS + "Top");
         for (int i = 0; i < MODEL_SIZE; i++) {
             OntClass C = model.createClass(NS + "C" + i);
             Top.addSubClass(C);
             model.createIndividual(NS + "i" + i, C);
         }
+        model.leaveCriticalSection();
 
         class QueryExecutingRunnable implements Runnable {
             @SuppressWarnings("unchecked")
