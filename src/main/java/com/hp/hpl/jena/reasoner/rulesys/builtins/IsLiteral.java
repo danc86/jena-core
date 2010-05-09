@@ -10,6 +10,7 @@
 package com.hp.hpl.jena.reasoner.rulesys.builtins;
 
 import com.hp.hpl.jena.reasoner.rulesys.*;
+import com.hp.hpl.jena.reasoner.rulesys.Functor.FunctorDatatype;
 import com.hp.hpl.jena.graph.*;
 
 /**
@@ -49,8 +50,17 @@ public class IsLiteral extends BaseBuiltin {
     @Override
     public boolean bodyCall(Node[] args, int length, RuleContext context) {
         checkArgs(length, context);
-        return getArg(0, args, context).isLiteral();
+        Node arg = getArg(0, args, context);
+        if (arg.isLiteral()) {
+            if (FunctorDatatype.theFunctorDatatype.equals( arg.getLiteralDatatype() )) {
+                return false;  // functors are indeterminate, can represent literals or objects
+            } else {
+                return true;
+            }
+        }
+        return false;
     }
+    
     
 }
 
