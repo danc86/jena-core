@@ -52,7 +52,7 @@ public class IsLiteral extends BaseBuiltin {
         checkArgs(length, context);
         Node arg = getArg(0, args, context);
         if (arg.isLiteral()) {
-            if (FunctorDatatype.theFunctorDatatype.equals( arg.getLiteralDatatype() )) {
+            if (Functor.isFunctor(arg)) {
                 return false;  // functors are indeterminate, can represent literals or objects
             } else {
                 return true;
