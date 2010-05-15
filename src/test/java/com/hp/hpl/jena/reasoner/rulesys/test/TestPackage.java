@@ -10,13 +10,9 @@
 package com.hp.hpl.jena.reasoner.rulesys.test;
 
 
-import java.lang.management.ManagementFactory;
-import java.lang.management.ThreadMXBean;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import junit.framework.*;
+import junit.framework.TestSuite ;
+import org.slf4j.Logger ;
+import org.slf4j.LoggerFactory ;
 
 /**
  * Aggregate tester that runs all the test associated with the rulesys package.

@@ -9,26 +9,22 @@
 
 package com.hp.hpl.jena.reasoner.rulesys.test;
 
-import java.lang.management.ManagementFactory;
-import java.lang.management.ThreadInfo;
-import java.lang.management.ThreadMXBean;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
+import java.util.concurrent.ExecutorService ;
+import java.util.concurrent.Executors ;
 
-import com.hp.hpl.jena.ontology.OntClass;
-import com.hp.hpl.jena.ontology.OntModel;
-import com.hp.hpl.jena.ontology.OntModelSpec;
-import com.hp.hpl.jena.ontology.OntResource;
-import com.hp.hpl.jena.rdf.model.ModelFactory;
-import com.hp.hpl.jena.rdf.model.StmtIterator;
-import com.hp.hpl.jena.shared.JenaException;
-import com.hp.hpl.jena.shared.Lock;
-import com.hp.hpl.jena.util.PrintUtil;
-import com.hp.hpl.jena.util.iterator.ExtendedIterator;
+import junit.framework.TestCase ;
+import junit.framework.TestSuite ;
 
-import junit.framework.Assert;
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
+import com.hp.hpl.jena.ontology.OntClass ;
+import com.hp.hpl.jena.ontology.OntModel ;
+import com.hp.hpl.jena.ontology.OntModelSpec ;
+import com.hp.hpl.jena.ontology.OntResource ;
+import com.hp.hpl.jena.rdf.model.ModelFactory ;
+import com.hp.hpl.jena.rdf.model.StmtIterator ;
+import com.hp.hpl.jena.shared.JenaException ;
+import com.hp.hpl.jena.shared.Lock ;
+import com.hp.hpl.jena.util.PrintUtil ;
+import com.hp.hpl.jena.util.iterator.ExtendedIterator ;
 
 /**
  * Test for deadlock and concurrency problems in rule engines.

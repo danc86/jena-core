@@ -9,9 +9,9 @@
  *****************************************************************/
 package com.hp.hpl.jena.reasoner.rulesys.builtins;
 
-import com.hp.hpl.jena.reasoner.rulesys.*;
-import com.hp.hpl.jena.reasoner.rulesys.Functor.FunctorDatatype;
-import com.hp.hpl.jena.graph.*;
+import com.hp.hpl.jena.graph.Node ;
+import com.hp.hpl.jena.reasoner.rulesys.Functor ;
+import com.hp.hpl.jena.reasoner.rulesys.RuleContext ;
 
 /**
  * Tests the single argument to make sure it is a literal.
