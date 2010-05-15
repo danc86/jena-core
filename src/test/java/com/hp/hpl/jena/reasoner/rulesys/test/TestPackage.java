@@ -53,10 +53,11 @@ public class TestPackage extends TestSuite {
         addTest( "TestCapabilities", TestCapabilities.suite() );
         
         try {
-            // Check the JVM supports the management interfaces needed for
-            // running the concurrency test
-            ThreadMXBean tmx = ManagementFactory.getThreadMXBean();
-            long[] ids = tmx.findDeadlockedThreads();
+            /* uncomment the following block when we switch to java 1.6 and update ConcurrentTest to do deadlock detection */
+//            // Check the JVM supports the management interfaces needed for
+//            // running the concurrency test
+//            ThreadMXBean tmx = ManagementFactory.getThreadMXBean();
+//            long[] ids = tmx.findDeadlockedThreads();
             addTest( "ConcurrentyTest", ConcurrencyTest.suite() );
         } catch (Throwable t) {
             logger.warn("Skipping concurrency test, JVM doesn't seem to support fileDeadlockedThreads");
