@@ -183,6 +183,15 @@ public class Test_schemagen
                              new String[] {} );
     }
 
+    /** Bug report by Brian: instance is in the namespace, but the class itself is not */
+    public void testInstance4() throws Exception {
+        String SOURCE = PREFIX + "@prefix ex2: <http://example.org/otherNS#>. ex2:A a rdfs:Class . ex:i a ex2:A .";
+        testSchemagenOutput( SOURCE, null,
+                             new String[] {"-a", "http://example.com/sg#", "--rdfs"},
+                             new String[] {".*public static final Resource i.*"},
+                             new String[] {} );
+    }
+
     /** Bug report by Richard Cyganiak */
     public void testRC0() throws Exception {
         String SOURCE = PREFIX + "ex:class a owl:Class .";
@@ -207,6 +216,22 @@ public class Test_schemagen
                              new String[] {"-a", "http://example.com/sg#", "--owl", "--nocomments"},
                              new String[] {},
                              new String[] {" */\\*\\* <p>commentcomment</p> \\*/ *"} );
+    }
+
+    public void testComment2() throws Exception {
+        String SOURCE = PREFIX + "ex:A a owl:Class ; rdfs:comment \"commentcomment\" .";
+
+        // we don't want the input fixed to be http://example.com/sg
+        SchemaGenAux sga = new SchemaGenAux() {
+            @Override
+            protected void go( String[] args ) {
+                go( new SchemagenOptionsImpl( args ) );
+            }
+        };
+        testSchemagenOutput( SOURCE, sga,
+                             new String[] {"-a", "http://example.com/sg#", "--owl", "-i", "file:\\\\C:\\Users\\fubar/vocabs/test.ttl"},
+                             new String[] {".*Vocabulary definitions from file:\\\\\\\\C:\\\\Users\\\\fubar/vocabs/test.ttl.*"},
+                             new String[] {} );
     }
 
     public void testOntClass0() throws Exception {
