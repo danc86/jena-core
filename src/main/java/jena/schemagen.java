@@ -51,7 +51,7 @@ import com.hp.hpl.jena.vocabulary.*;
  * Designed to be highly flexible and customisable.
  * </p>
  *
- * @author Ian Dickinson, HP Labs
+ * @author Ian Dickinson
  *         (<a  href="mailto:ian_dickinson@users.sourceforge.net" >email</a>)
  * @version CVS $Id$
  */
