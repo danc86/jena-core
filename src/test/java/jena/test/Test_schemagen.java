@@ -192,6 +192,32 @@ public class Test_schemagen
                              new String[] {} );
     }
 
+    /** Bug report by Brian: instances not being recognised */
+    public void testInstance5() throws Exception {
+        String SOURCE = "@prefix :        <http://ontology.earthster.org/eco/impact#> .\n" +
+                "@prefix core:    <http://ontology.earthster.org/eco/core#> .\n" +
+                "@prefix ecoinvent:  <http://ontology.earthster.org/eco/ecoinvent#> .\n" +
+                "@prefix owl:     <http://www.w3.org/2002/07/owl#> .\n" +
+                "@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .\n" +
+                "@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .\n" +
+                "@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .\n" +
+                "\n" +
+                "<http://ontology.earthster.org/eco/impact>\n" +
+                "      rdf:type owl:Ontology ;\n" +
+                "      owl:imports <http://ontology.earthster.org/eco/ecoinvent> , <http://ontology.earthster.org/eco/core> ;\n" +
+                "      owl:versionInfo \"Created with TopBraid Composer\"^^xsd:string .\n" +
+                "\n" +
+                ":CD-CML2001-AbioticDepletion\n" +
+                "      rdf:type core:ImpactAssessmentMethodCategoryDescription ;\n" +
+                "      rdfs:label \"abiotic resource depletion\"^^xsd:string ;\n" +
+                "      core:hasImpactCategory\n" +
+                "              :abioticDepletion .";
+        testSchemagenOutput( SOURCE, null,
+                             new String[] {"--owl", "--inference"},
+                             new String[] {".*public static final Resource CD_CML2001_AbioticDepletion.*"},
+                             new String[] {".*valtype.*"} );
+    }
+
     /** Bug report by Richard Cyganiak */
     public void testRC0() throws Exception {
         String SOURCE = PREFIX + "ex:class a owl:Class .";
