@@ -334,8 +334,9 @@ public class schemagen {
         addReplacementPattern( "nl", m_nl );
 
         // protect \ in Windows file pathnames
+        // looks for file:.* or C:.* (or variants thereof)
         String source = m_options.getInputOption().getURI();
-        if (source.startsWith( "file:" )) {
+        if (source.matches( "(file:|[A-Za-z]:).*$" )) {
             source = source.replace( "\\", "\\\\" );
         }
         addReplacementPattern( "sourceURI", source );

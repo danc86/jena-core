@@ -234,6 +234,22 @@ public class Test_schemagen
                              new String[] {} );
     }
 
+    public void testComment3() throws Exception {
+        String SOURCE = PREFIX + "ex:A a owl:Class ; rdfs:comment \"commentcomment\" .";
+
+        // we don't want the input fixed to be http://example.com/sg
+        SchemaGenAux sga = new SchemaGenAux() {
+            @Override
+            protected void go( String[] args ) {
+                go( new SchemagenOptionsImpl( args ) );
+            }
+        };
+        testSchemagenOutput( SOURCE, sga,
+                             new String[] {"-a", "http://example.com/sg#", "--owl", "-i", "C:\\Users\\fubar/vocabs/test.ttl"},
+                             new String[] {".*Vocabulary definitions from C:\\\\Users\\\\fubar/vocabs/test.ttl.*"},
+                             new String[] {} );
+    }
+
     public void testOntClass0() throws Exception {
         String SOURCE = PREFIX + "ex:A a owl:Class .";
         testSchemagenOutput( SOURCE, null,
