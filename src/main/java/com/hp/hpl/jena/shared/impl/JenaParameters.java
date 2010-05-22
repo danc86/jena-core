@@ -77,6 +77,7 @@ public class JenaParameters {
      * leading and trailing white space is silently trimmed when parsing an
      * XSD numberic typed literal.
      */
+     // Remove this sometime. 
     public static boolean enableWhitespaceCheckingOfTypedLiterals = false;
     
     /**
