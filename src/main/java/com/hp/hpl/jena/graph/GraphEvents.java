@@ -86,7 +86,6 @@ public class GraphEvents
      * <dt><q>removeAll</q></dt><dd>{@link #removeAll}</dd>
      * <dt><q>remove</q></dt><dd>{@link #remove(Node, Node, Node)}</dd>
      * </dl>
-     * @return
      */
     public Object getTitle()
         { return title; }
