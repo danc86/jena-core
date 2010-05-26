@@ -560,7 +560,7 @@ public class MoreTests extends TestCase implements RDFErrorHandler,
     	String data[][] = {
     			{ "foo", "foo" },
     			{ "fooZX", "fooZ5aX" },
-    			{ "André", "AndrZc3Za9" },
+    			{ "Andr\u00E9", "AndrZc3Za9" },
     			{ "a.b", "aZ2eb" },
     			{ "a:b", "aZ3ab" },
     	};
