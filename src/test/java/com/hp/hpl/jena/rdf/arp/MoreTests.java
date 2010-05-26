@@ -10,6 +10,7 @@ package com.hp.hpl.jena.rdf.arp;
 import java.io.*;
 import java.nio.charset.Charset;
 
+import junit.framework.Assert;
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
@@ -553,6 +554,22 @@ public class MoreTests extends TestCase implements RDFErrorHandler,
         expected = new int[] { WARN_MALFORMED_URI , WARN_MALFORMED_URI };   // Errors actually continue.
         r.read(model, new StringReader(RDF_TEXT), "http://example/") ;
         checkExpected() ;
+    }
+    
+    public void testNTripleEscaping() {
+    	String data[][] = {
+    			{ "foo", "foo" },
+    			{ "fooZX", "fooZ5aX" },
+    			{ "André", "AndrZc3Za9" },
+    			{ "a.b", "aZ2eb" },
+    			{ "a:b", "aZ3ab" },
+    	};
+    	for (String p[] : data ) {
+//    		System.err.println(NTriple.escapeNTriple(p[0]));
+    		Assert.assertEquals("NTriple escaping", p[1],NTriple.escapeNTriple(p[0]) );
+    	}
+    	
+    	
     }
 	
 	private void checkExpected() {
