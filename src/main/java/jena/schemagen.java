@@ -278,11 +278,31 @@ public class schemagen {
         }
         else {
             try {
+                // check for package name
+                String packageName = m_options.getPackagenameOption();
+                if (packageName != null) {
+                    String packagePath = "";
+
+                    // build the package path (e.g. com.foo.bar -> /com/foo/bar)
+                    for (String p: packageName.split( "\\." )) {
+                        packagePath = packagePath + File.separator + p;
+                    }
+
+                    if (!outFile.endsWith( packagePath )) {
+                        outFile = outFile + packagePath;
+                    }
+                }
+
                 File out = new File( outFile );
+
+                if (!out.exists() && !outFile.endsWith( ".java" )) {
+                    // create the directory if needed
+                    out.mkdirs();
+                }
 
                 if (out.isDirectory()) {
                     // create a file in this directory named classname.java
-                    String fileName = outFile + System.getProperty( "file.separator" ) + getClassName() + ".java";
+                    String fileName = outFile + File.separator + getClassName() + ".java";
                     out = new File( fileName );
                 }
 
@@ -482,6 +502,7 @@ public class schemagen {
         uri = (uri.endsWith( ".rdfs" )) ? uri.substring( 0, uri.length() - 5 ) : uri;
         uri = (uri.endsWith( ".n3" )) ? uri.substring( 0, uri.length() - 3 ) : uri;
         uri = (uri.endsWith( ".xml" )) ? uri.substring( 0, uri.length() - 4 ) : uri;
+        uri = (uri.endsWith( ".ttl" )) ? uri.substring( 0, uri.length() - 4 ) : uri;
 
         // now work back to the first non name character from the end
         int i = uri.length() - 1;
