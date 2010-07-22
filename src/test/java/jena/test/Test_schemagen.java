@@ -605,9 +605,20 @@ public class Test_schemagen
      * @param className
      * @throws Exception
      */
-    protected void testCompile( String source, String className )
+    protected void testCompile( String source, String defaultClassName )
         throws Exception
     {
+        String className = defaultClassName;
+
+        // ensure we use the right class name for the temp file
+        // should do this with a regex, but java Pattern & Matcher is borked
+        String key = "public class ";
+        int i = source.indexOf( key );
+        if (i > 0) {
+            i += key.length();
+            className = source.substring( i, source.indexOf( " ", i ) );
+        }
+
         // first write the source file to a temp dir
         File tmpDir = FileUtils.getScratchDirectory( "schemagen" );
         File srcFile = new File( tmpDir, className + ".java" );
