@@ -671,7 +671,10 @@ public class Test_schemagen
      * @return
      */
     protected String getClassPath( File tmpDir ) {
-        return System.getProperty ("java.class.path");
+        Properties pp = System.getProperties();
+        // if we're running under maven, use Special Secret Knowledge to identify the class path
+        // otherwise, default to the CP that Java thinks it's using
+        return pp.getProperty( "surefire.test.class.path", pp.getProperty( "java.class.path" ) );
     }
 
     //==============================================================================
