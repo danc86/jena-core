@@ -14,8 +14,12 @@
  *               by   $Author$
  *
  * (c) Copyright 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009 Hewlett-Packard Development Company, LP
+ * (c) Copyright 2010, Epimorphics Ltd
+ * (c) Copyright 2010, Thorsten Möller
+ *     Incorporates tracked patch #3046428 from Thorsten Möller <Thorsten.Moeller@unibas.ch>
  * (see footer for full conditions)
  *****************************************************************************/
+
 
 // Package
 ///////////////
@@ -336,6 +340,8 @@ public class ResourceUtils {
 
 /*
     (c) Copyright 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009 Hewlett-Packard Development Company, LP
+    (c) Copyright 2010, Epimorphics Ltd
+    (c) Copyright 2010, Thorsten Möller <Thorsten.Moeller@unibas.ch>
     All rights reserved.
 
     Redistribution and use in source and binary forms, with or without
