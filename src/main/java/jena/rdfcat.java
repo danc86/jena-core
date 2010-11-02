@@ -26,7 +26,12 @@ package jena;
 ///////////////
 
 import java.io.OutputStream;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.*;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.hp.hpl.jena.rdf.model.*;
 import com.hp.hpl.jena.rdf.model.impl.RDFWriterFImpl;
@@ -196,6 +201,8 @@ public class rdfcat
     // Static variables
     //////////////////////////////////
 
+    static private Logger log = LoggerFactory.getLogger( rdfcat.class );
+
     // Instance variables
     //////////////////////////////////
 
@@ -248,6 +255,9 @@ public class rdfcat
 
     /* main loop */
     protected void go( String[] args ) {
+        // ensure we use the new RIOT parser subsystem
+        enableRIOTParser();
+
         m_cmdLine.process( args );
 
         // process any stored items
@@ -420,6 +430,40 @@ public class rdfcat
         return n.isLiteral() ? ((Literal) n).getLexicalForm() : ((Resource) n).getURI();
     }
 
+    /**
+     * Enable the new RIOT parser subsystem if it is available
+     */
+    private void enableRIOTParser() {
+        try {
+            Class<?> sysRIOT = Class.forName( "org.openjena.riot.SysRIOT" );
+            Method initMethod = sysRIOT.getMethod( "init" );
+            initMethod.invoke( null );
+        }
+        catch (ClassNotFoundException e) {
+            // log if we're in debug mode, but otherwise ignore
+            log.debug( "Did not initialise RIOT parser: " +  e.getMessage(), e );
+        }
+        catch (SecurityException e) {
+            // log if we're in debug mode, but otherwise ignore
+            log.debug( "Did not initialise RIOT parser: " +  e.getMessage(), e );
+        }
+        catch (NoSuchMethodException e) {
+            // log if we're in debug mode, but otherwise ignore
+            log.debug( "Did not initialise RIOT parser: " +  e.getMessage(), e );
+        }
+        catch (IllegalArgumentException e) {
+            // log if we're in debug mode, but otherwise ignore
+            log.debug( "Did not initialise RIOT parser: " +  e.getMessage(), e );
+        }
+        catch (IllegalAccessException e) {
+            // log if we're in debug mode, but otherwise ignore
+            log.debug( "Did not initialise RIOT parser: " +  e.getMessage(), e );
+        }
+        catch (InvocationTargetException e) {
+            // log if we're in debug mode, but otherwise ignore
+            log.debug( "Did not initialise RIOT parser: " +  e.getMessage(), e );
+        }
+    }
 
     //==============================================================================
     // Inner class definitions
