@@ -65,6 +65,27 @@ public class TestLiteralImpl extends ModelTestBase
         Literal l2 = l1.inModel( m2 );
         assertEquals( l1, l2 );
         assertSame( m2, l2.getModel() );
+        }    
+    
+    
+    /*
+        Two literals with the same lexical form, language, and data-type URIs,
+        which are .equals, yet their hashCodes and values are different.
+        OOPS.
+    */
+    public void SUPPRESStestTypedLiteralTypesAndValues()
+        {
+        Model m = ModelFactory.createDefaultModel();
+        Resource r = m.createResource( "eh:/rhubarb" );
+        Literal typed = m.createTypedLiteral( r ); 
+        Literal string = m.createLiteral( r.getURI() );
+        assertEquals( string.getLexicalForm(), typed.getLexicalForm() );
+        assertEquals( string.getLanguage(), typed.getLanguage() );
+        assertEquals( string.getDatatypeURI(), typed.getDatatypeURI() );
+        assertEquals( string.getDatatype(), typed.getDatatype() );
+        assertEquals( typed, string );
+        assertEquals( typed.getValue(), string.getValue() );
+        assertEquals( typed.hashCode(), string.hashCode() );
         }
     }
 
