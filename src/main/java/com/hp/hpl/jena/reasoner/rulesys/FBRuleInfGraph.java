@@ -742,6 +742,7 @@ public class FBRuleInfGraph  extends BasicForwardRuleInfGraph implements Backwar
         engine.add(validateOn); 
         // Look for all reports
         TriplePattern pattern = new TriplePattern(null, ReasonerVocabulary.RB_VALIDATION_REPORT.asNode(), null);
+        final Model forConversion = ModelFactory.createDefaultModel();
         for (Iterator<Triple> i = findFull(pattern); i.hasNext(); ) {
             Triple t = i.next();
             Node rNode = t.getObject();
@@ -771,8 +772,6 @@ public class FBRuleInfGraph  extends BasicForwardRuleInfGraph implements Backwar
         }
         return report;
     }
-    
-    private final Model forConversion = ModelFactory.createDefaultModel();
     
     /**
      * Switch on/off datatype range validation
