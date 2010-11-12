@@ -6,6 +6,8 @@
 
 package com.hp.hpl.jena.rdf.model.test;
 
+import com.hp.hpl.jena.datatypes.TypeMapper;
+import com.hp.hpl.jena.graph.impl.AdhocDatatype;
 import com.hp.hpl.jena.rdf.model.*;
 
 import junit.framework.*;
@@ -28,7 +30,7 @@ public class TestLiteralImpl extends ModelTestBase
         Test that a non-literal node cannot be as'ed into a literal
     */
     public void testCannotAsNonLiteral()
-        { Model m = ModelFactory.createDefaultModel();  
+        { Model m = ModelFactory.createDefaultModel(); 
         try
             { resource( m, "plumPie" ).as( Literal.class ); 
             fail( "non-literal cannot be converted to literal" ); }
@@ -67,13 +69,19 @@ public class TestLiteralImpl extends ModelTestBase
         assertSame( m2, l2.getModel() );
         }    
     
+    public void testSameAdhocClassUS()
+    	{
+        Model m = ModelFactory.createDefaultModel();
+        Resource ra = m.createResource( "eh:/rhubarb" );
+        Resource rb = m.createResource( "eh:/cottage" );
+        assertNull( "not expecting ResourceImpl to have RDF Datatype get", TypeMapper.getInstance().getTypeByValue( ra ) );
+        Literal la = m.createTypedLiteral( ra ); 
+        Literal lb = m.createTypedLiteral( rb );
+        assertInstanceOf( AdhocDatatype.class, la.getDatatype() );
+        assertSame( la.getDatatype(), lb.getDatatype() );
+    	}
     
-    /*
-        Two literals with the same lexical form, language, and data-type URIs,
-        which are .equals, yet their hashCodes and values are different.
-        OOPS.
-    */
-    public void SUPPRESStestTypedLiteralTypesAndValues()
+    public void testTypedLiteralTypesAndValues()
         {
         Model m = ModelFactory.createDefaultModel();
         Resource r = m.createResource( "eh:/rhubarb" );
@@ -81,11 +89,12 @@ public class TestLiteralImpl extends ModelTestBase
         Literal string = m.createLiteral( r.getURI() );
         assertEquals( string.getLexicalForm(), typed.getLexicalForm() );
         assertEquals( string.getLanguage(), typed.getLanguage() );
-        assertEquals( string.getDatatypeURI(), typed.getDatatypeURI() );
-        assertEquals( string.getDatatype(), typed.getDatatype() );
-        assertEquals( typed, string );
-        assertEquals( typed.getValue(), string.getValue() );
-        assertEquals( typed.hashCode(), string.hashCode() );
+        assertDiffer( string.getDatatypeURI(), typed.getDatatypeURI() );
+        assertNotNull( "a datatype should have been invented for Resource[Impl]", typed.getDatatype() );
+        assertDiffer( typed, string );
+        assertDiffer( typed.getValue(), string.getValue() );
+        assertEquals( r, typed.getValue() );
+        assertDiffer( typed.hashCode(), string.hashCode() );
         }
     }
 
