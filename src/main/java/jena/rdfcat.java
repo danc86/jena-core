@@ -441,7 +441,7 @@ public class rdfcat
         }
         catch (ClassNotFoundException e) {
             // log if we're in debug mode, but otherwise ignore
-            log.debug( "Did not initialise RIOT parser: " +  e.getMessage(), e );
+//            log.debug( "Did not initialise RIOT parser: " +  e.getMessage(), e );
         }
         catch (SecurityException e) {
             // log if we're in debug mode, but otherwise ignore
