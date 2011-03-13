@@ -93,8 +93,8 @@ public class TestRDFNodes extends ModelTestBase
         assertFalse( r1.isAnon() );
         assertTrue( r2.isAnon() );
     /* */
-        assertTrue( ((Resource) r1.inModel( m2 )).getModel() == m2 );
-        assertTrue( ((Resource) r2.inModel( m2 )).getModel() == m2 );
+        assertTrue( r1.inModel( m2 ).getModel() == m2 );
+        assertTrue( r2.inModel( m2 ).getModel() == m2 );
     /* */
         assertEquals( r1, r1.inModel( m2 ) );
         assertEquals( r2, r2.inModel( m2 ) );
@@ -134,6 +134,36 @@ public class TestRDFNodes extends ModelTestBase
         assertEquals( true, m.createResource().isResource() );
         assertEquals( false, m.createTypedLiteral( 17 ).isResource() );
         assertEquals( false, m.createTypedLiteral( "hello" ).isResource() );
+        }
+    
+    public void testRDFNodeAsResource()
+        {
+        Model m = modelWithStatements( "" );
+        Resource r = m.createResource( "eh:/spoo" );
+        assertSame( r, ((RDFNode) r).asResource() );
+        }
+    
+    public void testLiteralAsResourceThrows()
+        {
+        Model m = modelWithStatements( "" );
+        Resource r = m.createResource( "eh:/spoo" );
+        try { r.asLiteral(); fail( "should not be able to do Resource.asLiteral()" ); }
+        catch (LiteralRequiredException e) {}
+        }
+    
+    public void testRDFNodeAsLiteral()
+        {
+        Model m = modelWithStatements( "" );
+        Literal l = m.createLiteral( "hello, world" );
+        assertSame( l, ((RDFNode) l).asLiteral() );
+        }
+    
+    public void testResourceAsLiteralThrows()
+        {
+        Model m = modelWithStatements( "" );
+        Literal l = m.createLiteral( "hello, world" );
+        try { l.asResource(); fail( "should not be able to do Literal.asResource()" ); }
+        catch (ResourceRequiredException e) {}
         }
     }
 

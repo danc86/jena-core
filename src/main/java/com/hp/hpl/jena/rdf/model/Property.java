@@ -38,15 +38,24 @@ package com.hp.hpl.jena.rdf.model;
 public interface Property extends Resource {
 	
   public boolean isProperty();
-    /** Returns the namespace associated with this property.
+
+  /** Returns the namespace associated with this property.
      * @return The namespace for this property.
      */
   public String getNameSpace();
+
+  /**
+      Override RDFNode.inModel() to produce a staticly-typed Property
+      in the given Model.
+  */
+  public Property inModel( Model m );
+  
     /** Returns the name of this property within its namespace.
      * @return The name of this property within its namespace.
      */
   public String getLocalName();
-    /** Returns the ordinal value of a containment property.
+  
+  /** Returns the ordinal value of a containment property.
      *
      * <p>RDF containers use properties of the form _1, _2, _3 etc to represent
      * the containment relationship between the container and the objects it

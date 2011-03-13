@@ -35,8 +35,7 @@ import java.util.*;
  * hacked by Jeremy, tweaked by Chris (May 2002 - October 2002)
  */
 
-public class ModelCom 
-    extends EnhGraph
+public class ModelCom extends EnhGraph
     implements Model, PrefixMapping, Lock
 {
 
@@ -78,6 +77,13 @@ public class ModelCom
         return n.isLiteral() 
           ? (RDFNode) this.getNodeAs( n, Literal.class )
           : (RDFNode) this.getNodeAs( n, Resource.class );
+        }
+
+    public Resource wrapAsResource( Node n )
+        {
+        if (n.isLiteral()) 
+            throw new UnsupportedOperationException( "literal cannot be converted to Resource" );
+        return this.getNodeAs( n, Resource.class );
         }
 
     /**
@@ -685,7 +691,7 @@ public class ModelCom
     }
     
     public RDFNode getRDFNode( Node n )
-        {   return asRDFNode( n ); }
+        { return asRDFNode( n ); }
     
     public Resource getResource( String uri )  
         { return IteratorFactory.asResource(makeURI(uri),this); }

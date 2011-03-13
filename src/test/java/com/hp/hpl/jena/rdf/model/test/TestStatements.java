@@ -96,7 +96,7 @@ public class TestStatements extends ModelTestBase
         Model A = ModelFactory.createDefaultModel();
         Model B = ModelFactory.createDefaultModel();
         Resource anon = A.createResource();
-        Resource bAnon = (Resource) anon.inModel( B );
+        Resource bAnon = anon.inModel( B );
         assertTrue( "moved resource should still be blank", bAnon.isAnon() );
         assertEquals( "move resource should equal original", anon, bAnon );
         }

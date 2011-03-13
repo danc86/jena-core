@@ -36,7 +36,7 @@ public class AssemblerHelp
         model.
     */
     public static Resource withFullModel( Resource root )
-        { return (Resource) root.inModel( fullModel( root.getModel() ) ); }
+        { return root.inModel( fullModel( root.getModel() ) ); }
     
     /**
         Answer the full model of <code>m</code>, with all its imports included and

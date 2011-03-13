@@ -51,6 +51,7 @@ public class TestPackage extends TestSuite {
         addTest( TestGraphPrefixMapping.suite() );       
         addTest( TestGraphMatchWithInference.suite());
         addTestSuite( TestGraphEvents.class );
+        addTestSuite( TestGraphBaseToString.class );
     }
 }
 

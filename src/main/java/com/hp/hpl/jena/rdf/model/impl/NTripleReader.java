@@ -379,7 +379,9 @@ public class NTripleReader extends Object implements RDFReader {
     protected String readName() {
         StringBuffer name = new StringBuffer(sbLength);
 
-        while (!Character.isWhitespace(in.nextChar())) {
+        char nextChar;
+        while (Character.isLetterOrDigit(nextChar=in.nextChar())
+        		|| '-'==nextChar ) {
             name = name.append(in.readChar());
             if (badEOF())
                 return null;

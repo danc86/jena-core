@@ -63,6 +63,13 @@ import com.hp.hpl.jena.datatypes.RDFDatatype;
 public interface Literal extends RDFNode {
     
     /**
+        Answer a version of this literal in the model m. If this literal is
+        already in m, answer itself rather than create a new literal. This
+        method covariantly overrides the method in RDFNode.
+    */
+    public Literal inModel( Model m );
+    
+    /**
      * Return the value of the literal. In the case of plain literals
      * this will return the literal string. In the case of typed literals
      * it will return a java object representing the value. In the case
@@ -188,19 +195,6 @@ public interface Literal extends RDFNode {
     // TODO is this the right approach, could make getString synonomous 
     //       with getLexicalForm
     public String getString() ;
-    
-//    /**
-//     * In the case of plain literals this recreates an object from its
-//     * lexical form using the given factory. In the case of typed literals
-//     * the factory is ignored and the value is returned instead.
-//     * 
-//     * @return the object created from the literal string
-//     * @param f A factory object for creating the returned object.
-//     
-//     */
-//    // @TODO is this the right approach, could reparse the lexical form 
-//    //       using the factory even for typed literals
-//    @Deprecated public Object getObject(ObjectF f) ;
     
     /** 
          If a language is defined for this literal return it

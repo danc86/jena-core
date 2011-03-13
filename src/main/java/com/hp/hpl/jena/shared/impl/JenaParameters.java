@@ -104,6 +104,7 @@ public class JenaParameters {
      * will only be unique for this single JVM run.
      */
     public static boolean disableBNodeUIDGeneration = false;
+
 }
 
 

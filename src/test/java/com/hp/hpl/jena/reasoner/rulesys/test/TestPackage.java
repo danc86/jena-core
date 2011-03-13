@@ -10,7 +10,9 @@
 package com.hp.hpl.jena.reasoner.rulesys.test;
 
 
-import junit.framework.*;
+import junit.framework.TestSuite ;
+import org.slf4j.Logger ;
+import org.slf4j.LoggerFactory ;
 
 /**
  * Aggregate tester that runs all the test associated with the rulesys package.
@@ -21,6 +23,8 @@ import junit.framework.*;
 
 public class TestPackage extends TestSuite {
 
+    protected static Logger logger = LoggerFactory.getLogger(TestPackage.class);
+    
     static public TestSuite suite() {
         return new TestPackage();
     }
@@ -43,6 +47,17 @@ public class TestPackage extends TestSuite {
         addTest( "TestBugs", TestBugs.suite() );
         addTest( "TestOWLMisc", TestOWLMisc.suite() );
         addTest( "TestCapabilities", TestCapabilities.suite() );
+        
+        try {
+            /* uncomment the following block when we switch to java 1.6 and update ConcurrentTest to do deadlock detection */
+//            // Check the JVM supports the management interfaces needed for
+//            // running the concurrency test
+//            ThreadMXBean tmx = ManagementFactory.getThreadMXBean();
+//            long[] ids = tmx.findDeadlockedThreads();
+            addTest( "ConcurrentyTest", ConcurrencyTest.suite() );
+        } catch (Throwable t) {
+            logger.warn("Skipping concurrency test, JVM doesn't seem to support fileDeadlockedThreads");
+        }
         addTestSuite( TestInferenceReification.class );
         addTestSuite( TestRestrictionsDontNeedTyping.class );
         

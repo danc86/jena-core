@@ -482,6 +482,12 @@ public class TestOntDocumentManager
         assertSame( rfh, o1.getReadFailureHandler() );
     }
 
+    /**
+     * Test the read-fail handler hook.
+     * Test updated to use the domain "example.invalid", not example.com, since .invalid
+     * is designed for domain names that are sure to be invalid. See
+     * <a href="http://tools.ietf.org/html/rfc2606#section-2">tools.ietf.org/html/rfc2606#section-2</a>
+     */
     public void testReadFailHandler1() {
         OntDocumentManager o1 = new OntDocumentManager( "file:etc/ont-policy-test.rdf" );
 
@@ -489,7 +495,7 @@ public class TestOntDocumentManager
         o1.setReadFailureHandler( rfh );
 
         // trigger the odm to read a non-existant source
-        String source = "@prefix owl: <http://www.w3.org/2002/07/owl#> . <> a owl:Ontology ; owl:imports <http://example.com/not/exist>. ";
+        String source = "@prefix owl: <http://www.w3.org/2002/07/owl#> . <> a owl:Ontology ; owl:imports <http://example.invalid/not/exist>. ";
         OntModelSpec spec = new OntModelSpec( OntModelSpec.OWL_MEM );
         spec.setDocumentManager(  o1 );
         OntModel m = ModelFactory.createOntologyModel( spec );

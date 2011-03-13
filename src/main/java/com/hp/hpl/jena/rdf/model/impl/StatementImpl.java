@@ -26,8 +26,8 @@ public class StatementImpl  extends StatementBase implements Statement {
 			ModelCom model)
 		{
 		super( model );
-		this.subject = (Resource) subject.inModel( model );
-		this.predicate = (Property) predicate.inModel( model );
+		this.subject = subject.inModel( model );
+		this.predicate = predicate.inModel( model );
 		this.object = object.inModel( model );
 		}
     
@@ -37,8 +37,8 @@ public class StatementImpl  extends StatementBase implements Statement {
 	public StatementImpl(Resource subject, Property predicate, RDFNode object)
 		{
 		super( empty );
-		this.subject = (Resource) subject.inModel( model );
-		this.predicate = (Property) predicate.inModel( model );
+		this.subject = subject.inModel( model );
+		this.predicate = predicate.inModel( model );
 		this.object = object.inModel( model );
 		}    
     

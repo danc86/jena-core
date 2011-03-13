@@ -35,6 +35,7 @@ public class TestReificationWrapper extends AbstractTestReifier
         TestSuite result = new TestSuite();
         result.addTest( MetaTestGraph.suite( TestReificationWrapper.class, ReificationWrapperGraph.class, ReificationStyle.Standard ) );
         result.addTestSuite( TestReificationWrapperGraph.class );
+        result.setName(TestReificationWrapper.class.getSimpleName());
         return result; 
         }       
     

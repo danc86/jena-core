@@ -9,8 +9,9 @@
  *****************************************************************/
 package com.hp.hpl.jena.reasoner.rulesys.builtins;
 
-import com.hp.hpl.jena.reasoner.rulesys.*;
-import com.hp.hpl.jena.graph.*;
+import com.hp.hpl.jena.graph.Node ;
+import com.hp.hpl.jena.reasoner.rulesys.Functor ;
+import com.hp.hpl.jena.reasoner.rulesys.RuleContext ;
 
 /**
  * Tests the single argument to make sure it is a literal.
@@ -49,8 +50,17 @@ public class IsLiteral extends BaseBuiltin {
     @Override
     public boolean bodyCall(Node[] args, int length, RuleContext context) {
         checkArgs(length, context);
-        return getArg(0, args, context).isLiteral();
+        Node arg = getArg(0, args, context);
+        if (arg.isLiteral()) {
+            if (Functor.isFunctor(arg)) {
+                return false;  // functors are indeterminate, can represent literals or objects
+            } else {
+                return true;
+            }
+        }
+        return false;
     }
+    
     
 }
 

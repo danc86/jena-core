@@ -22,6 +22,7 @@ import com.hp.hpl.jena.datatypes.xsd.impl.XSDAbstractDateTimeType;
  * @author <a href="mailto:der@hplb.hpl.hp.com">Dave Reynolds</a>
  * @version $Revision$ on $Date$
  */
+
 public class XSDDuration extends AbstractDateTime {
 
     /**
@@ -145,6 +146,8 @@ public class XSDDuration extends AbstractDateTime {
          return message.toString();
      }
 
+    // The following duration comparison code is based on Xerces DurationDV, Apache Software Foundation
+    
     // order-relation on duration is a partial order. The dates below are used to
     // for comparison of 2 durations, based on the fact that
     // duration x and y is x<=y iff s+x<=s+y
@@ -185,6 +188,7 @@ public class XSDDuration extends AbstractDateTime {
 
         //try and see if the objects are equal
         resultA = compareOrder (date1, date2);
+        short baseResult = resultA;   // Full comparison including time fractions
         if ( resultA == 0 ) {
             return 0;
         }
@@ -220,6 +224,11 @@ public class XSDDuration extends AbstractDateTime {
         resultB = compareOrder(tempA, tempB);
         resultA = compareResults(resultA, resultB, strict);
 
+        if (resultA == 0) {
+            // determinate equality for data portion, so base comparison
+            // (which includes fractional time) is the correct result
+            return baseResult;
+        }
         return resultA;
     }
 

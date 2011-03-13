@@ -47,6 +47,7 @@ public class TestReifier extends AbstractTestReifier
         TestSuite result = new TestSuite();
         result.addTest( MetaTestGraph.suite( TestReifier.class, GraphMem.class ) );
         result.addTest( MetaTestGraph.suite( TestReifier.class, GraphMemFaster.class ) );
+        result.setName(TestReifier.class.getSimpleName());
         return result; 
         }   
         

@@ -71,7 +71,7 @@ public class TestBugs extends TestCase {
     public static TestSuite suite() {
         return new TestSuite( TestBugs.class );
 //        TestSuite suite = new TestSuite();
-//        suite.addTest(new TestBugs( "testLiteralsInErrorReports" ));
+//        suite.addTest(new TestBugs( "testLayeredValidation" ));
 //        return suite;
     }
 
@@ -929,6 +929,21 @@ public class TestBugs extends TestCase {
         assertTrue( im.contains(prop, RDFS.subPropertyOf, prop) );
     }
     
+    
+    /**
+     * Layering one reasoner on another leads to exposed functors which
+     * used to trip up validation
+     */
+    public void testLayeredValidation() {
+        Model ont = FileManager.get().loadModel("testing/reasoners/bugs/layeredValidation.owl");
+        InfModel infModel =
+            ModelFactory.createInfModel(ReasonerRegistry.getOWLReasoner(), ont);
+        OntModel model = ModelFactory.createOntologyModel(OntModelSpec.OWL_MEM_RULE_INF,
+            infModel);
+        ValidityReport validity = model.validate();
+        assertTrue(validity.isClean());
+    }
+
     // debug assistant
 //    private void tempList(Model m, Resource s, Property p, RDFNode o) {
 //        System.out.println("Listing of " + PrintUtil.print(s) + " " + PrintUtil.print(p) + " " + PrintUtil.print(o));

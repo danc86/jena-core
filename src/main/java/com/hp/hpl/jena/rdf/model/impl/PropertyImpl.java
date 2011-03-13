@@ -73,8 +73,7 @@ public class PropertyImpl extends ResourceImpl implements Property
         checkOrdinal();
         }
 
-    @Override
-    public RDFNode inModel( Model m )
+    @Override public Property inModel( Model m )
         { return getModel() == m ? this : m.createProperty( getURI() ); }
 
     private void checkLocalName()

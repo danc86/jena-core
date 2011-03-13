@@ -1007,6 +1007,46 @@ public class TestFBRules extends TestCase {
     }
     
     /**
+     * Test skolem constant generation
+     */
+    public void testSkolem() {
+        assertEquals( getSkolem(a, Util.makeIntNode(42)), 
+                      getSkolem(a, Util.makeIntNode(42)) );
+        
+        assertNotSame( getSkolem(a, Util.makeIntNode(42)), 
+                       getSkolem(b, Util.makeIntNode(42)) );
+        
+        assertNotSame( getSkolem(a, Util.makeIntNode(42)), 
+                       getSkolem(a, Util.makeIntNode(43)) );
+        
+        assertNotSame( getSkolem(a, Node.createLiteral("foo")), 
+                       getSkolem(a, Node.createLiteral("foo", "en", false)) );
+        
+        assertEquals( getSkolem(Node.createLiteral("foo")),
+                getSkolem(Node.createLiteral("foo")));
+        
+        assertNotSame( getSkolem(Node.createLiteral("foo")),
+                       getSkolem(Node.createLiteral("bar")));
+    }
+    
+    private Node getSkolem(Node x, Node y) {
+        String rules =  "[r1: (?n p ?x) (?n q ?y) makeSkolem(?s ?x ?y) -> (?n s ?s)]";
+        Graph data = Factory.createGraphMem();
+        data.add(new Triple(n1, p, x));
+        data.add(new Triple(n1, q, y));
+        InfGraph infgraph = createInfGraph(rules, data);
+        return infgraph.find(n1, s, Node.ANY).next().getObject();
+    }
+    
+    private Node getSkolem(Node x) {
+        String rules =  "[r1: (?n p ?x)  makeSkolem(?s ?x) -> (?n s ?s)]";
+        Graph data = Factory.createGraphMem();
+        data.add(new Triple(n1, p, x));
+        InfGraph infgraph = createInfGraph(rules, data);
+        return infgraph.find(n1, s, Node.ANY).next().getObject();
+    }
+    
+    /**
      * Check cost of creating an empty OWL closure.
      */
     public void temp() {

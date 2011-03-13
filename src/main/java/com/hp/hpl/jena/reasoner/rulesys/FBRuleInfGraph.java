@@ -9,8 +9,9 @@
  *****************************************************************/
 package com.hp.hpl.jena.reasoner.rulesys;
 
+import com.hp.hpl.jena.rdf.model.Model;
+import com.hp.hpl.jena.rdf.model.ModelFactory;
 import com.hp.hpl.jena.rdf.model.RDFNode;
-import com.hp.hpl.jena.rdf.model.ResourceFactory;
 import com.hp.hpl.jena.reasoner.rulesys.impl.*;
 import com.hp.hpl.jena.reasoner.transitiveReasoner.*;
 import com.hp.hpl.jena.reasoner.*;
@@ -380,7 +381,7 @@ public class FBRuleInfGraph  extends BasicForwardRuleInfGraph implements Backwar
      * this prepration is done.
      */
     @Override
-    public void prepare() {
+    public synchronized void prepare() {
         if (!isPrepared) {
             isPrepared = true;
             
@@ -741,6 +742,7 @@ public class FBRuleInfGraph  extends BasicForwardRuleInfGraph implements Backwar
         engine.add(validateOn); 
         // Look for all reports
         TriplePattern pattern = new TriplePattern(null, ReasonerVocabulary.RB_VALIDATION_REPORT.asNode(), null);
+        final Model forConversion = ModelFactory.createDefaultModel();
         for (Iterator<Triple> i = findFull(pattern); i.hasNext(); ) {
             Triple t = i.next();
             Node rNode = t.getObject();
@@ -759,24 +761,7 @@ public class FBRuleInfGraph  extends BasicForwardRuleInfGraph implements Backwar
                     for (int j = 2; j < rFunc.getArgLength(); j++) {
                         description.append( "Implicated node: " + PrintUtil.print(rFunc.getArgs()[j]) + "\n");
                     }
-                    Node culpritN = t.getSubject();
-                    RDFNode culprit = null;
-                    if (culpritN.isURI()) {
-                        culprit = ResourceFactory.createResource(culpritN.getURI());
-                    } else if (culpritN.isLiteral()) {
-                        RDFDatatype dtype = culpritN.getLiteralDatatype();
-                        String lex = culpritN.getLiteralLexicalForm();
-                        Object value = culpritN.getLiteralValue();
-                        if (dtype == null) {
-                            if (value instanceof String) {
-                                culprit = ResourceFactory.createPlainLiteral(lex);
-                            } else {
-                                culprit = ResourceFactory.createTypedLiteral(value);
-                            }
-                        } else {
-                            culprit = ResourceFactory.createTypedLiteral(lex, dtype);
-                        }
-                    }
+                    RDFNode culprit = forConversion.asRDFNode( t.getSubject() );
                     report.add(nature.equalsIgnoreCase("error"), type, description.toString(), culprit);
                 }
             }

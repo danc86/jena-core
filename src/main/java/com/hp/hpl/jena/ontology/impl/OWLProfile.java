@@ -28,8 +28,10 @@ import com.hp.hpl.jena.util.iterator.ExtendedIterator;
 import com.hp.hpl.jena.vocabulary.*;
 import com.hp.hpl.jena.enhanced.*;
 import com.hp.hpl.jena.graph.*;
+import com.hp.hpl.jena.graph.compose.Polyadic;
 import com.hp.hpl.jena.ontology.*;
 import com.hp.hpl.jena.rdf.model.*;
+import com.hp.hpl.jena.reasoner.InfGraph;
 
 import java.util.*;
 
@@ -234,9 +236,9 @@ public class OWLProfile
          * @param g A graph
          * @return All <code>rdf:type</code> nodes for <code>n</code> in <code>g</code>
          */
-        public Set<Node> allTypes( Node n, EnhGraph g) {
+        public Set<Node> allTypes( Node n, Graph g) {
             Set<Node> types = new HashSet<Node>();
-            for (ExtendedIterator<Triple> i = g.asGraph().find( n, RDF.type.asNode(), Node.ANY ); i.hasNext(); ) {
+            for (ExtendedIterator<Triple> i = g.find( n, RDF.type.asNode(), Node.ANY ); i.hasNext(); ) {
                 types.add( i.next().getObject() );
             }
             return types;
@@ -262,8 +264,36 @@ public class OWLProfile
          * Return true if the node <code>n</code> in graph <code>g</code> has one of the
          * types in <code>ref</code>
          */
-        public boolean hasType( Node n, EnhGraph g, Resource[] ref ) {
-            return intersect( allTypes( n, g ), ref );
+        public boolean hasType( Node n, EnhGraph eg, Resource[] ref ) {
+            // depending on the type of the underlying graph, it may or may not be advantageous
+            // to get all types at once, or ask many separate queries. heuristically, we assume
+            // that fine-grain queries to an inference graph is preferable, and all-at-once for
+            // other types, including persistent stores
+
+            Graph g = eg.asGraph();
+
+            if (isInferenceGraph( g )) {
+                for (Resource r: ref) {
+                    if (g.contains( n, RDF.type.asNode(), r.asNode() )) {
+                        return true;
+                    }
+                }
+                return false;
+            }
+            else {
+                return intersect( allTypes( n, g ), ref );
+            }
+        }
+
+        /**
+         * Return true if a given graph is an inference graph
+         * @param g A graph
+         * @return True if the graph is an inference graph, or is a union with an inference
+         * base graph
+         */
+        public boolean isInferenceGraph( Graph g ) {
+            return (g instanceof InfGraph) ||
+                   (g instanceof Polyadic && ((Polyadic) g).getBaseGraph() instanceof InfGraph);
         }
     }
 

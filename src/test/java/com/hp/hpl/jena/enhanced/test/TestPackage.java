@@ -14,6 +14,7 @@ package com.hp.hpl.jena.enhanced.test;
 import com.hp.hpl.jena.graph.*;
 import com.hp.hpl.jena.graph.test.*;
 import com.hp.hpl.jena.rdf.model.*;
+import com.hp.hpl.jena.shared.JenaException;
 import com.hp.hpl.jena.enhanced.*;
 
 import junit.framework.*;
@@ -371,19 +372,27 @@ public class TestPackage extends GraphTestBase  {
 
         static final Implementation factory = new Implementation()
             {
-            @Override
-            public EnhNode wrap( Node n, EnhGraph g ) { return new EnhNode( n, g ); }
+            @Override public EnhNode wrap( Node n, EnhGraph g ) 
+                { return new EnhNode( n, g ); }
             
-            @Override
-            public boolean canWrap( Node n, EnhGraph g ) { return n.isURI(); }
+            @Override public boolean canWrap( Node n, EnhGraph g ) 
+                { return n.isURI(); }
             };
 
         public RDFNode inModel( Model m )
             { return null; }
+        
+        public Model getModel() 
+            { throw new JenaException( "getModel() should not be called in the EnhGraph/Node tests" ); }
+        
+        public Resource asResource()
+            { throw new JenaException( "asResource() should not be called in the EnhGraph/Node tests" ); }
+        
+        public Literal asLiteral()
+            { throw new JenaException( "asLiteral() should not be called in the EnhGraph/Node tests" ); }
 
         public Object visitWith( RDFVisitor rv )
-            { return null;
-            }
+            { return null; }
         }
     
     public void testSimple()

@@ -78,6 +78,12 @@ public interface Resource extends RDFNode {
      * @return A unique id for an anonymous resource.
      */
     public AnonId getId();
+    
+    /**
+        Override RDFNode.inModel() to produce a staticly-typed Resource
+        in the given Model.
+    */
+    public Resource inModel( Model m );
 
     /**
         Answer true iff this Resource is a URI resource with the given URI.
@@ -362,11 +368,10 @@ public interface Resource extends RDFNode {
      */
     public Resource commit();
 
-    /** Return the model associated with this resource. If the Resource
-     * was not created by a Model, the result may be null.
-     * 
-     * @return The model associated with this resource.
-     */
-    public Model getModel();
+    /**
+       Answer some resource R for which this.hasProperty( p, R ),
+       or null if no such R exists.
+    */
+    public Resource getPropertyResourceValue( Property p );
 }
 

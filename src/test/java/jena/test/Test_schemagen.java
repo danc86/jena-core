@@ -24,12 +24,12 @@ package jena.test;
 // Imports
 ///////////////
 import java.io.*;
-import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
-import java.util.StringTokenizer;
+import java.util.*;
 import java.util.regex.Pattern;
 
 import jena.schemagen;
+import jena.schemagen.SchemagenOptionsImpl;
 import junit.framework.TestCase;
 
 import org.slf4j.Logger;
@@ -182,6 +182,41 @@ public class Test_schemagen
                              new String[] {} );
     }
 
+    /** Bug report by Brian: instance is in the namespace, but the class itself is not */
+    public void testInstance4() throws Exception {
+        String SOURCE = PREFIX + "@prefix ex2: <http://example.org/otherNS#>. ex2:A a rdfs:Class . ex:i a ex2:A .";
+        testSchemagenOutput( SOURCE, null,
+                             new String[] {"-a", "http://example.com/sg#", "--rdfs"},
+                             new String[] {".*public static final Resource i.*"},
+                             new String[] {} );
+    }
+
+    /** Bug report by Brian: instances not being recognised */
+    public void testInstance5() throws Exception {
+        String SOURCE = "@prefix :        <http://ontology.earthster.org/eco/impact#> .\n" +
+                "@prefix core:    <http://ontology.earthster.org/eco/core#> .\n" +
+                "@prefix ecoinvent:  <http://ontology.earthster.org/eco/ecoinvent#> .\n" +
+                "@prefix owl:     <http://www.w3.org/2002/07/owl#> .\n" +
+                "@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .\n" +
+                "@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .\n" +
+                "@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .\n" +
+                "\n" +
+                "<http://ontology.earthster.org/eco/impact>\n" +
+                "      rdf:type owl:Ontology ;\n" +
+                "      owl:imports <http://ontology.earthster.org/eco/ecoinvent> , <http://ontology.earthster.org/eco/core> ;\n" +
+                "      owl:versionInfo \"Created with TopBraid Composer\"^^xsd:string .\n" +
+                "\n" +
+                ":CD-CML2001-AbioticDepletion\n" +
+                "      rdf:type core:ImpactAssessmentMethodCategoryDescription ;\n" +
+                "      rdfs:label \"abiotic resource depletion\"^^xsd:string ;\n" +
+                "      core:hasImpactCategory\n" +
+                "              :abioticDepletion .";
+        testSchemagenOutput( SOURCE, null,
+                             new String[] {"--owl", "--inference"},
+                             new String[] {".*public static final Resource CD_CML2001_AbioticDepletion.*"},
+                             new String[] {".*valtype.*"} );
+    }
+
     /** Bug report by Richard Cyganiak */
     public void testRC0() throws Exception {
         String SOURCE = PREFIX + "ex:class a owl:Class .";
@@ -206,6 +241,38 @@ public class Test_schemagen
                              new String[] {"-a", "http://example.com/sg#", "--owl", "--nocomments"},
                              new String[] {},
                              new String[] {" */\\*\\* <p>commentcomment</p> \\*/ *"} );
+    }
+
+    public void testComment2() throws Exception {
+        String SOURCE = PREFIX + "ex:A a owl:Class ; rdfs:comment \"commentcomment\" .";
+
+        // we don't want the input fixed to be http://example.com/sg
+        SchemaGenAux sga = new SchemaGenAux() {
+            @Override
+            protected void go( String[] args ) {
+                go( new SchemagenOptionsImpl( args ) );
+            }
+        };
+        testSchemagenOutput( SOURCE, sga,
+                             new String[] {"-a", "http://example.com/sg#", "--owl", "-i", "file:\\\\C:\\Users\\fubar/vocabs/test.ttl"},
+                             new String[] {".*Vocabulary definitions from file:\\\\\\\\C:\\\\Users\\\\fubar/vocabs/test.ttl.*"},
+                             new String[] {} );
+    }
+
+    public void testComment3() throws Exception {
+        String SOURCE = PREFIX + "ex:A a owl:Class ; rdfs:comment \"commentcomment\" .";
+
+        // we don't want the input fixed to be http://example.com/sg
+        SchemaGenAux sga = new SchemaGenAux() {
+            @Override
+            protected void go( String[] args ) {
+                go( new SchemagenOptionsImpl( args ) );
+            }
+        };
+        testSchemagenOutput( SOURCE, sga,
+                             new String[] {"-a", "http://example.com/sg#", "--owl", "-i", "C:\\Users\\fubar/vocabs/test.ttl"},
+                             new String[] {".*Vocabulary definitions from C:\\\\Users\\\\fubar/vocabs/test.ttl.*"},
+                             new String[] {} );
     }
 
     public void testOntClass0() throws Exception {
@@ -301,14 +368,14 @@ public class Test_schemagen
         String SOURCE = PREFIX + "ex:A a owl:Class .";
         SchemaGenAux fixture = new SchemaGenAux() {
             @Override
-            protected String getValue( Object option ) {
-                if (option.equals( OPT_INPUT )) {
-                    // without the -n option, this will force the classname to be Soggy
-                    return "http://example.org/soggy";
-                }
-                else {
-                    return super.getValue( option );
-                }
+            protected void go( String[] args ) {
+                SchemagenOptionsFixture sgf = new SchemagenOptionsFixture( args ) {
+                    @Override
+                    public Resource getInputOption() {
+                        return ResourceFactory.createResource( "http://example.org/soggy" );
+                    }
+                };
+                go( sgf );
             }
         };
 
@@ -537,9 +604,20 @@ public class Test_schemagen
      * @param className
      * @throws Exception
      */
-    protected void testCompile( String source, String className )
+    protected void testCompile( String source, String defaultClassName )
         throws Exception
     {
+        String className = defaultClassName;
+
+        // ensure we use the right class name for the temp file
+        // should do this with a regex, but java Pattern & Matcher is borked
+        String key = "public class ";
+        int i = source.indexOf( key );
+        if (i > 0) {
+            i += key.length();
+            className = source.substring( i, source.indexOf( " ", i ) );
+        }
+
         // first write the source file to a temp dir
         File tmpDir = FileUtils.getScratchDirectory( "schemagen" );
         File srcFile = new File( tmpDir, className + ".java" );
@@ -547,43 +625,56 @@ public class Test_schemagen
         out.write(  source );
         out.close();
 
-        // now get ready to invoke javac
+        // now get ready to invoke javac using the new javax.tools package
         try {
-            Class<?> jcMain = Class.forName(  "sun.tools.javac.Main" );
+            Class<?> tp = Class.forName(  "javax.tools.ToolProvider" );
 
-            // constructor
-            Constructor<?> jcConstruct = jcMain.getConstructor( new Class[] {OutputStream.class, String.class} );
-            Method jcCompile = jcMain.getMethod( "compile", new Class[] {String[].class} );
-            ByteArrayOutputStream byteOut = new ByteArrayOutputStream();
-            Object jc = jcConstruct.newInstance( new Object[] {byteOut, "javac"} );
+            // static method to get the Java compiler tool
+            Method gsjc = tp.getMethod( "getSystemJavaCompiler" );
+            Object sjc = gsjc.invoke( null );
+
+            // get the run method for the Java compiler tool
+            Class<?> jc = Class.forName( "javax.tools.JavaCompiler" );
+            Method jcRun = jc.getMethod( "run", new Class[] {InputStream.class, OutputStream.class, OutputStream.class, String[].class} );
 
             // build the args list for javac
-            String[] args = new String[] {"-classpath", getClassPath( tmpDir ), "-d", tmpDir.getPath(), srcFile.getPath() };
+            String[] args = new String[] {"-classpath", getClassPath( tmpDir ), "-d", tmpDir.getPath(), srcFile.getPath()};
 
-            Boolean success = (Boolean) jcCompile.invoke( jc, new Object[] {args} );
-            log.debug( "compiled - success = " + success );
-            log.debug( "message = " + byteOut.toString() );
-            assertTrue( "Errors reported from compilation of schemagen output", success.booleanValue() );
+            int success = (Integer) jcRun.invoke( sjc, null, null, null, args );
+            assertEquals( "Errors reported from compilation of schemagen output", 0, success );
         }
         catch (ClassNotFoundException nf) {
-            log.debug( "sun.tools.java.Main not found (no tools.jar on classpath?). schemagen compilation test skipped." );
+            log.debug( "javax.tools not found (no tools.jar on classpath?). schemagen compilation test skipped." );
+        }
+        catch (Exception e) {
+            log.debug( e.getMessage(), e );
+            fail( e.getMessage() );
         }
 
         // clean up
-        srcFile.deleteOnExit();
-        new File( tmpDir, className + ".class" ).deleteOnExit();
-        tmpDir.deleteOnExit();
+        List<File> toClean = new ArrayList<File>();
+        toClean.add( tmpDir );
+
+        while (!toClean.isEmpty()) {
+            File f = toClean.remove( 0 );
+            f.deleteOnExit();
+
+            if (f.isDirectory()) {
+                for (File g: f.listFiles()) {toClean.add( g );}
+            }
+        }
     }
 
     /**
-     * answer the classpath we can use to compile the sg output files
+     * Return the classpath we can use to compile the sg output files
      * @param tmpDir
      * @return
      */
     protected String getClassPath( File tmpDir ) {
-        return System.getProperty ("java.class.path") +
-               System.getProperty ("path.separator") +
-               tmpDir.getPath();
+        Properties pp = System.getProperties();
+        // if we're running under maven, use Special Secret Knowledge to identify the class path
+        // otherwise, default to the CP that Java thinks it's using
+        return pp.getProperty( "surefire.test.class.path", pp.getProperty( "java.class.path" ) );
     }
 
     //==============================================================================
@@ -624,30 +715,28 @@ public class Test_schemagen
             go( args );
         }
 
-        // option faking
         @Override
-        protected String getValue( Object option ) {
-            if (option.equals( OPT_INPUT )) {
-                return "http://example.org/sg";
-            }
-            else {
-                return super.getValue( option );
-            }
-        }
-
-        @Override
-        protected Resource getResource( Object option ) {
-            if (option.equals( OPT_INPUT )) {
-                return ResourceFactory.createResource( "http://example.org/sg" );
-            }
-            else {
-                return super.getResource( option );
-            }
+        protected void go( String[] args ) {
+            go( new SchemagenOptionsFixture( args ) );
         }
 
         @Override
         protected void abort( String msg, Exception e ) {
             throw new RuntimeException( msg, e );
+        }
+    }
+
+    static class SchemagenOptionsFixture
+        extends SchemagenOptionsImpl
+    {
+
+        public SchemagenOptionsFixture( String[] args ) {
+            super( args );
+        }
+
+        @Override
+        public Resource getInputOption() {
+            return ResourceFactory.createResource( "http://example.org/sg" );
         }
     }
 }

@@ -4,7 +4,6 @@
 	$Id$
 */
 
-
 package com.hp.hpl.jena.rdf.model;
 
 /**

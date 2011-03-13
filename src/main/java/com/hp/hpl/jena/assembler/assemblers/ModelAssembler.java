@@ -96,7 +96,7 @@ public abstract class ModelAssembler extends AssemblerBase implements Assembler
     private Resource completedClone( Resource root, Resource newRoot, Model fragment )
         {
         Model typed = fragment.add( newRoot, RDF.type, JA.Content );
-        return (Resource) newRoot.inModel(  ModelFactory.createUnion( root.getModel(), typed ) );
+        return newRoot.inModel(  ModelFactory.createUnion( root.getModel(), typed ) );
         }
 
     private Resource oneLevelClone( Resource root )

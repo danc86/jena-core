@@ -416,7 +416,7 @@ public class OntClassImpl
             (cls.getModel() == null || !(cls.getModel() instanceof OntModel)))
         {
             // could be outside an ontmodel if a constant
-            cls = (Resource) cls.inModel( getModel() );
+            cls = cls.inModel( getModel() );
         }
         return cls.as( OntClass.class ).hasSuperClass( this, direct );
     }

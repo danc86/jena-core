@@ -26,6 +26,7 @@ public class QueryTest extends TestCase
         result.addTest( new TestSuite( TestQueryGraphMem.class ) );
         result.addTest( new TestSuite( TestQuerySmallGraphMem.class ) );
         result.addTestSuite( TestQuery.class );
+        result.setName(QueryTest.class.getName());
         return result;
         } 
     

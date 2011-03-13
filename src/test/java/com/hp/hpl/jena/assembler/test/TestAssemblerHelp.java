@@ -144,7 +144,7 @@ public class TestAssemblerHelp extends AssemblerTestBase
     private void testSpecificType( String expected, String specification )
         { // TODO relies on fullModel, would be nice to remove this dependency
         Resource root = resourceInModel( specification );
-        Resource rooted = (Resource) root.inModel( AssemblerHelp.fullModel( root.getModel() ) );
+        Resource rooted = root.inModel( AssemblerHelp.fullModel( root.getModel() ) );
         Resource mst = AssemblerHelp.findSpecificType( rooted );
         assertEquals( resource( root.getModel(), expected ), mst );
         }

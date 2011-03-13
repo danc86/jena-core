@@ -1,6 +1,66 @@
 Release Notes
 =============
 
+==== Jena 2.6.5
+
++ Lucene version (used by ARQ) is now 2.9.3.
+
+==== Jena 2.6.4
+
++ Maintenace release
+
+==== Jena 2.6.3
+
+GraphBase:
+   o Added limits to the number of triples thatr GraphBase.toString() will
+     serialise.
+
+Model/Resource API:
+   o Took advantage of covariant return types to allow Resource.inModel() and
+     Property.inModel() to have Resource resp. Property return types, allowing
+     casts of calls to inModel() to (mostly) be eliminated.
+
+   o As per request on mailing list, ModelGraphInterface now has a method
+     `Resource wrapAsResource(Node)` [name changed to fit better] which
+     wraps a node as a Resource and throws if the node is a Literal.
+
+    o As per request on mailing list, added Resource method
+        x.getPropertyResourceValue( Property p )
+      which answers some R such that x p R if any exists, otherwise null
+
+    o As per request on mailing list, there's now an OWL2 vocabulary class
+      with constants for the terms of OWL2. NOTE: there is no OWL2 ontology
+      support present or implied by this vocabulary class.
+
+    o getModel() has been pulled up from Resource to RDFNode. This means that
+      Literal now supports getModel() and inModel().
+
+    o RDFNode has .asLiteral() and .asResource() methods, which deliver
+      the Literal or Resource respectively if the RDF Node has that type,
+      and otherwise throw a *RequiredException.
+
+Misc:
+   o Patched AnonId using UID when running in environments like GAE
+   o Fixed problem with comparison on XSDDurations with fractional seconds
+
+Reasoners:
+   o added makeSkolem builtin
+   o fixed deadlock problem with hybrid rule systems
+   o changed interpretation of Functors so they are neither literals nor objects,
+     this allows validation of nested reasoners to cope with the introduction of
+     functors representing inferred individuals
+   o improved RETE initialization so that fewer triples are injected
+     into the rule network in cases such as the RDFS no-resource rules
+
+Ontology API:
+   o Fixed NPE bug when an ObjectProperty was not the inverseOf another property
+
+Schemagen:
+   o Internal refactoring, which should not affect the external behaviour but should
+     make it easier to extend the schemagen class
+   o Individuals in an included namespace now appear in the output, even if their
+     rdf:type is not included.
+
 
 ==== Jena 2.6.2
 
@@ -9,13 +69,13 @@ Release Notes
   would be treated as an Object and converted to a String literal, oops).
   Similarly model.addLiteral() has a Literal overloading.
 
-+ N3 pretty writer now write Turtle (no use of "=" for owl:sameAs) 
++ N3 pretty writer now write Turtle (no use of "=" for owl:sameAs)
 
 + Maven-style codebase layout.
 
-+ Update to iri.jar (version 0.7). 
++ Update to iri.jar (version 0.7).
 
-+ Change the way URIs are split into namespace and 
++ Change the way URIs are split into namespace and
   local part so as to not split %-encoded sequences.
 
 Reasoners:
@@ -27,20 +87,20 @@ Reasoners:
    o Fixed handling of unbound groups in regex.
 
 Core API:
-   o Fixed bug in comparison of dateTimes with fractional seconds and with 
+   o Fixed bug in comparison of dateTimes with fractional seconds and with
      round-tripping from calendars
-        
+
 ARQ: removed from Jena development
   The following jars have been removed from the lib/ directory - they are only used by ARQ:
-  arq.jar, arq-extra.jar, lucene-core-2.3.1.jar, json.jar, stax-api-1.0.jar, wstx-asl-3.0.0.jar 
+  arq.jar, arq-extra.jar, lucene-core-2.3.1.jar, json.jar, stax-api-1.0.jar, wstx-asl-3.0.0.jar
 
-(Jena 2.6.1 is an internal tag, not a release) 
+(Jena 2.6.1 is an internal tag, not a release)
 
 ==== Jena 2.6.0
 
 ** Codebase converted to Java 5
 
-   o Convert to use SLF4J for logging facade 
+   o Convert to use SLF4J for logging facade
 
    o Exceptions AlreadyExistsException, DoesNotExistException and
      RulesetNotFoundException no longer inherit via RDFRDBException
@@ -50,7 +110,7 @@ Jar changes:
    o Removed concurrent.jar (no longer used)
    o Removed xml-apis.jar (no longer used)
    o Removed commons-logging-1.1.1.jar
-   o Add slf4j-api-1.5.6.jar, slf4j-log4j12.jar 
+   o Add slf4j-api-1.5.6.jar, slf4j-log4j12.jar
    o junit.jar upgraded to junit-4.5.jar
 
 Deprecation clearance.
@@ -94,11 +154,11 @@ Ontology API:
    o Unified code for checking individuals in OntResource.isIndividual() and
      OntModel.listIndividuals(), and updated the check to account for some user-reported
      edge cases.
-     
+
 Datatypes:
    o Added a getTypeByClass call to TypeMapper and registered additional primitive types
-     based on suggestion and patch supplied by Thorsten Moeller. 
-     
+     based on suggestion and patch supplied by Thorsten Moeller.
+
 ==== Jena 2.5.7
 
 Database layer:

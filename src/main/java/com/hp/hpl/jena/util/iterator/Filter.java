@@ -43,7 +43,7 @@ public abstract class Filter<T>
         A Filter that accepts everything it's offered.
         @deprecated use Filter.any()
     */
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "rawtypes"})
     // Knowingly suppressed - maximum backward compatibility. 
     @Deprecated public static final Filter any = new Filter()
         { 
