@@ -2,13 +2,13 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>au.com.miskinhill.jena</groupId>
+  <groupId>au.id.djc.jena</groupId>
   <artifactId>jena</artifactId>
   <version>2.6.4.1-SNAPSHOT</version>
   <packaging>jar</packaging>
 
   <name>Jena (fork)</name>
-  <url>http://code.miskinhill.com.au/</url>
+  <url>https://github.com/danc86/jena/</url>
   <inceptionYear>2000</inceptionYear>
   <description>Jena is a Java framework for building Semantic Web applications. It provides a programmatic environment for RDF, RDFS and OWL, SPARQL and includes a rule-based inference engine.</description>
 
@@ -22,16 +22,16 @@
 
     <distributionManagement>
         <repository>
-            <id>code.miskinhill.com.au</id>
-            <name>Miskin Hill Maven repository</name>
-            <url>dav:http://code.miskinhill.com.au/maven2/</url>
+            <id>code.djc.id.au</id>
+            <name>Dan's Maven repository</name>
+            <url>dav:http://code.djc.id.au/maven2/</url>
         </repository>
     </distributionManagement>
 
     <scm>
-        <url>http://code.miskinhill.com.au/hg/jena-fork/</url>
-        <connection>scm:hg:http://code.miskinhill.com.au/hg/jena-fork/</connection>
-        <developerConnection>scm:hg:file://${project.basedir}</developerConnection>
+        <url>https://github.com/danc86/jena/</url>
+        <connection>scm:git:git://github.com/danc86/jena.git</connection>
+        <developerConnection>scm:git:file://${project.basedir}</developerConnection>
     </scm>
   
    <dependencies>
