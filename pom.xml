@@ -18,12 +18,13 @@
 
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>org.apache.jena</groupId>
+  <groupId>au.id.djc.jena</groupId>
   <artifactId>jena-core</artifactId>
   <packaging>jar</packaging>
-  <name>Jena Core</name>
+  <name>Jena Core (fork)</name>
   <!--<version>${ver.jena}</version>-->
-  <version>2.7.1-incubating-SNAPSHOT</version>
+  <version>2.7.0.1-SNAPSHOT</version>
+  <url>https://github.com/danc86/jena-core</url>
 
   <parent>
     <groupId>org.apache.jena</groupId>
@@ -33,11 +34,19 @@
 
   <description>Jena is a Java framework for building Semantic Web applications. It provides a programmatic environment for RDF, RDFS and OWL, SPARQL and includes a rule-based inference engine.</description>
 
-  <scm>
-    <connection>scm:svn:http://svn.apache.org/repos/asf/incubator/jena/Jena2/jena/trunk</connection>
-    <developerConnection>scm:svn:https://svn.apache.org/repos/asf/incubator/jena/Jena2/jena/trunk</developerConnection>
-    <url>https://svn.apache.org/repos/asf/incubator/jena/Jena2/jena/</url>
-  </scm>
+    <distributionManagement>
+        <repository>
+            <id>code.djc.id.au</id>
+            <name>Dan's Maven repository</name>
+            <url>dav:http://code.djc.id.au/maven2/</url>
+        </repository>
+    </distributionManagement>
+
+    <scm>
+        <url>https://github.com/danc86/jena-core</url>
+        <connection>scm:git:git://github.com/danc86/jena-core.git</connection>
+        <developerConnection>scm:git:file://${project.basedir}</developerConnection>
+    </scm>
 
   <properties>
     <this.root>${project.artifactId}-${project.version}</this.root>
@@ -53,6 +62,14 @@
   </dependencies>
 
   <build>
+    <extensions>
+        <extension>
+            <groupId>org.apache.maven.wagon</groupId>
+            <artifactId>wagon-webdav-jackrabbit</artifactId>
+            <version>1.0-beta-7</version>
+        </extension>
+    </extensions>
+
     <plugins>
 
       <plugin>

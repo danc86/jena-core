@@ -1,3 +1,8 @@
+This is a fork of Jena, maintained at <http://code.miskinhill.com.au/>.
+
+Original README follows ...
+
+
 Jena2 README
 ============
 
